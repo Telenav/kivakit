@@ -24,6 +24,7 @@ import com.telenav.kivakit.resource.Resource;
 import com.telenav.kivakit.resource.lexakai.DiagramFileSystemFile;
 import com.telenav.kivakit.resource.lexakai.DiagramResource;
 import com.telenav.kivakit.resource.resources.StringResource;
+import com.telenav.kivakit.resource.writing.WritableResource;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
@@ -42,8 +43,9 @@ import java.nio.charset.StandardCharsets;
  * </ul>
  * <p>
  * The {@link #resource()} method must be defined by the implementer, as well as the method
- * {@link #copyTo(Resource, CopyMode, ProgressReporter)}.
+ * {@link #copyTo(WritableResource, CopyMode, ProgressReporter)}.
  */
+@SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramFileSystemFile.class)
 @UmlClassDiagram(diagram = DiagramResource.class)
 @UmlRelation(label = "provides", referent = ResourceReader.class)
@@ -68,7 +70,7 @@ public interface ReadableResource extends Readable
      *
      * @param destination The destination to write to
      */
-    void copyTo(Resource destination, CopyMode mode, ProgressReporter reporter);
+    void copyTo(WritableResource destination, CopyMode mode, ProgressReporter reporter);
 
     /**
      * @return A reader with convenient methods for reading from the resource

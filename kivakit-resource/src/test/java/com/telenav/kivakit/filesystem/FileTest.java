@@ -19,20 +19,21 @@
 package com.telenav.kivakit.filesystem;
 
 import com.telenav.kivakit.core.collections.map.VariableMap;
-import com.telenav.kivakit.test.UnitTest;
 import com.telenav.kivakit.resource.Resource;
-import com.telenav.kivakit.resource.Extension;
+import com.telenav.kivakit.test.UnitTest;
 import org.junit.Test;
 
 import java.net.URISyntaxException;
 import java.util.Objects;
+
+import static com.telenav.kivakit.resource.Extension.TXT;
 
 public class FileTest extends UnitTest
 {
     @Test
     public void testFactory()
     {
-        var temp = File.temporary(Extension.TXT);
+        var temp = File.temporary(TXT);
         temp.writer().save("hello");
         ensureEqual("hello", File.parseFile(this, temp.toString()).reader().asString());
         temp.delete();

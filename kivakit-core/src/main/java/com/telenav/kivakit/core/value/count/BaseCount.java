@@ -4,9 +4,9 @@ import com.telenav.kivakit.core.language.primitive.Ints;
 import com.telenav.kivakit.core.language.primitive.Longs;
 import com.telenav.kivakit.core.language.primitive.Primes;
 import com.telenav.kivakit.core.value.level.Percent;
-import com.telenav.kivakit.interfaces.code.LoopBody;
 import com.telenav.kivakit.interfaces.code.FilteredLoopBody;
 import com.telenav.kivakit.interfaces.code.FilteredLoopBody.FilterAction;
+import com.telenav.kivakit.interfaces.code.LoopBody;
 import com.telenav.kivakit.interfaces.numeric.IntegerNumeric;
 import com.telenav.kivakit.interfaces.numeric.Quantizable;
 import com.telenav.kivakit.interfaces.value.Source;
@@ -235,12 +235,14 @@ public abstract class BaseCount<SubClass extends BaseCount<SubClass>> implements
         return estimate(asLong());
     }
 
+    @Override
     public int asInt()
     {
         var value = asLong();
         return value > Integer.MAX_VALUE ? Integer.MAX_VALUE : (int) value;
     }
 
+    @Override
     public long asLong()
     {
         return count;
@@ -279,6 +281,7 @@ public abstract class BaseCount<SubClass extends BaseCount<SubClass>> implements
         return Count.count(asLong());
     }
 
+    @Override
     public SubClass decremented()
     {
         return offset(-1);
@@ -384,6 +387,7 @@ public abstract class BaseCount<SubClass extends BaseCount<SubClass>> implements
         return newInstance(value);
     }
 
+    @Override
     public SubClass incremented()
     {
         return offset(1);
@@ -399,21 +403,25 @@ public abstract class BaseCount<SubClass extends BaseCount<SubClass>> implements
         return Longs.isBetweenInclusive(asLong(), minimum.asLong(), inclusiveMaximum.asLong());
     }
 
+    @Override
     public boolean isGreaterThan(Quantizable that)
     {
         return asLong() > that.quantum();
     }
 
+    @Override
     public boolean isGreaterThanOrEqualTo(Quantizable that)
     {
         return asLong() >= that.quantum();
     }
 
+    @Override
     public boolean isLessThan(Quantizable that)
     {
         return asLong() < that.quantum();
     }
 
+    @Override
     public boolean isLessThanOrEqualTo(Quantizable that)
     {
         return asLong() <= that.quantum();
@@ -574,6 +582,12 @@ public abstract class BaseCount<SubClass extends BaseCount<SubClass>> implements
      * @return The new instance
      */
     public abstract SubClass newInstance(long count);
+
+    @Override
+    public final SubClass newInstance(Long count)
+    {
+        return newInstance(count.intValue());
+    }
 
     public int[] newIntArray()
     {

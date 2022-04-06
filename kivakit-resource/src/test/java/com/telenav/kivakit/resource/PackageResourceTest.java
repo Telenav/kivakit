@@ -18,11 +18,11 @@
 
 package com.telenav.kivakit.resource;
 
-import com.telenav.kivakit.test.UnitTest;
 import com.telenav.kivakit.core.time.Time;
 import com.telenav.kivakit.core.value.count.Bytes;
 import com.telenav.kivakit.resource.packages.PackageResource;
 import com.telenav.kivakit.resource.packages.PackageTrait;
+import com.telenav.kivakit.test.UnitTest;
 import org.junit.Test;
 
 /**
@@ -33,7 +33,7 @@ public class PackageResourceTest extends UnitTest implements PackageTrait
     @Test
     public void testLastModified()
     {
-        ensure(a().lastModified().isAfter(Time.START_OF_UNIX_TIME));
+        ensure(a().modifiedAt().isAfter(Time.START_OF_UNIX_TIME));
     }
 
     @Test

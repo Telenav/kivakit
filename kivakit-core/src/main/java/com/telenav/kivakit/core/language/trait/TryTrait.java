@@ -46,7 +46,9 @@ import com.telenav.kivakit.core.messaging.Broadcaster;
  *
  * @author jonathanl (shibo)
  */
-public interface TryTrait extends Broadcaster, SilentTryTrait
+public interface TryTrait extends
+        Broadcaster,
+        SilentTryTrait
 {
     default <T> T tryCatch(UncheckedCode<T> code, String message, Object... arguments)
     {
@@ -137,7 +139,7 @@ public interface TryTrait extends Broadcaster, SilentTryTrait
                 problem(e, "Code threw exception");
             }
         }
-        
+
         return null;
     }
 }

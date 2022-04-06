@@ -60,7 +60,7 @@ import static com.telenav.kivakit.resource.packages.PackagePath.packagePath;
  *     <li>{@link #packageResource(Listener listener, Class, String)}</li>
  *     <li>{@link #packageResource(Listener listener, PackagePath, String)}</li>
  *     <li>{@link #packageResource(Listener, PackagePath, FileName)}</li>
- *     <li>{@link #packageResource(Listener, PackagePath, FilePath)}</li>
+ *     <li>{@link #packageResource(Listener, PackagePath, ResourcePathed)}</li>
  * </ul>
  * <p>
  * They can also be retrieved from a (KivaKit) {@link Package} with these methods:
@@ -101,14 +101,6 @@ public class PackageResource extends BaseReadableResource
     }
 
     /**
-     * @return A package resource for the resource at the given path relative to the given package
-     */
-    public static PackageResource packageResource(Listener listener, ResourcePathed pathed)
-    {
-        return packageResource(listener, pathed, FilePath.parseFilePath(listener, path));
-    }
-
-    /**
      * @return A package resource for the resource at the given path relative to the given class
      */
     public static PackageResource packageResource(Listener listener, Class<?> type, String path)
@@ -119,8 +111,9 @@ public class PackageResource extends BaseReadableResource
     /**
      * @return A package resource for the resource at the given path relative to the given package
      */
-    public static PackageResource packageResource(Listener listener, PackagePath packagePath, FilePath path)
+    public static PackageResource packageResource(Listener listener, PackagePath packagePath, ResourcePathed relative)
     {
+        var path = relative.path();
         var resource = moduleResource(listener, packagePath.withChild(path));
         if (path.size() == 1)
         {
@@ -193,7 +186,7 @@ public class PackageResource extends BaseReadableResource
     }
 
     @Override
-    public Time created()
+    public Time createdAt()
     {
         return resource.created();
     }
@@ -225,7 +218,7 @@ public class PackageResource extends BaseReadableResource
      * {@inheritDoc}
      */
     @Override
-    public Time lastModified()
+    public Time modifiedAt()
     {
         return resource == null ? Time.now() : resource.lastModified();
     }

@@ -21,10 +21,10 @@ package com.telenav.kivakit.resource.path;
 import com.telenav.kivakit.conversion.core.time.LocalDateTimeWithMillisecondsConverter;
 import com.telenav.kivakit.conversion.core.time.LocalDateTimeWithSecondsConverter;
 import com.telenav.kivakit.core.messaging.listeners.ThrowingListener;
-import com.telenav.kivakit.test.UnitTest;
 import com.telenav.kivakit.core.time.DayOfWeek;
 import com.telenav.kivakit.core.time.LocalTime;
 import com.telenav.kivakit.core.time.Time;
+import com.telenav.kivakit.test.UnitTest;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -58,13 +58,13 @@ public class FileNameTest extends UnitTest
         trace("Time Representation: ${debug}", timeRepresentation);
 
         trace("Hour of day:     ${debug}", localTime.hourOfDay());
-        Assert.assertEquals(13, localTime.hourOfDay());
+        Assert.assertEquals(13, localTime.hourOfDay().asMilitaryHour());
         trace("Minutes of day:  ${debug}", localTime.minuteOfDay());
         Assert.assertEquals(801, localTime.minuteOfDay());
         trace("Minutes of Hour: ${debug}", localTime.minuteOfHour());
-        Assert.assertEquals(21, localTime.minuteOfHour());
+        Assert.assertEquals(21, localTime.minuteOfHour().asInt());
         trace("Day of Year:    ${debug}", localTime.dayOfYear());
-        Assert.assertEquals(216, localTime.dayOfYear());
+        Assert.assertEquals(216, localTime.dayOfYear().asInt());
         trace("Week of Year:    ${debug}", localTime.weekOfYear());
         Assert.assertEquals(30, localTime.weekOfYear());
         trace("Day of Week:    ${debug}", localTime.dayOfWeek());

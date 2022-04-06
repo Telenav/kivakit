@@ -63,9 +63,9 @@ public class ResourceSection extends BaseReadableResource
     }
 
     @Override
-    public Time created()
+    public Time createdAt()
     {
-        return resource().created();
+        return resource().createdAt();
     }
 
     @Override

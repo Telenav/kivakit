@@ -89,7 +89,7 @@ import static com.telenav.kivakit.filesystem.loader.FileSystemServiceLoader.file
  *     <li>{@link #absolute()}</li>
  *     <li>{@link #normalized()}</li>
  *     <li>{@link #messageSource()}</li>
- *     <li>{@link #relativeTo(Folder)}</li>
+ *     <li>{@link #relativeTo(ResourceFolder)}</li>
  *     <li>{@link #root()}</li>
  * </ul>
  *
@@ -134,7 +134,7 @@ import static com.telenav.kivakit.filesystem.loader.FileSystemServiceLoader.file
  *
  * @author jonathanl (shibo)
  */
-@SuppressWarnings("SameParameterValue")
+@SuppressWarnings({ "SameParameterValue", "unused" })
 @UmlClassDiagram(diagram = DiagramFileSystemFile.class)
 @LexakaiJavadoc(complete = true)
 public class File extends BaseWritableResource implements FileSystemObject
@@ -288,6 +288,11 @@ public class File extends BaseWritableResource implements FileSystemObject
         return File.file(FilePath.parseFilePath(listener, path));
     }
 
+    public static File temporary(Extension extension)
+    {
+        return Folder.kivakitTemporary().file("temp-" + temporaryFileNumber++ + extension);
+    }
+
     /**
      * Converts to and from {@link File} objects
      *
@@ -361,7 +366,7 @@ public class File extends BaseWritableResource implements FileSystemObject
     @Override
     public Duration age()
     {
-        return created().elapsedSince();
+        return createdAt().elapsedSince();
     }
 
     /**
@@ -375,6 +380,7 @@ public class File extends BaseWritableResource implements FileSystemObject
     /**
      * @return This file as a {@link java.io.File}
      */
+    @Override
     public java.io.File asJavaFile()
     {
         return service.asJavaFile();
@@ -399,9 +405,9 @@ public class File extends BaseWritableResource implements FileSystemObject
     }
 
     @Override
-    public Time created()
+    public Time createdAt()
     {
-        return service.created();
+        return service.createdAt();
     }
 
     /**
@@ -500,7 +506,7 @@ public class File extends BaseWritableResource implements FileSystemObject
      */
     public boolean isNewerThan(File that)
     {
-        return service.lastModified().isAfter(that.service.lastModified());
+        return service.modifiedAt().isAfter(that.service.modifiedAt());
     }
 
     public boolean isNewerThan(Duration duration)
@@ -521,7 +527,7 @@ public class File extends BaseWritableResource implements FileSystemObject
      */
     public boolean isOlderThan(File that)
     {
-        return service.lastModified().isBefore(that.service.lastModified());
+        return service.modifiedAt().isBefore(that.service.modifiedAt());
     }
 
     public boolean isOlderThan(Duration duration)
@@ -554,17 +560,6 @@ public class File extends BaseWritableResource implements FileSystemObject
     public Boolean isWritable()
     {
         return service.isWritable();
-    }
-
-    /**
-     * @return The last time of modification of this file
-     */
-    @Override
-    public Time lastModified()
-    {
-        var lastModified = service.lastModified();
-        trace("Last modified time of $ is $", this, lastModified);
-        return lastModified;
     }
 
     /**
@@ -605,6 +600,17 @@ public class File extends BaseWritableResource implements FileSystemObject
         {
             return this;
         }
+    }
+
+    /**
+     * @return The last time of modification of this file
+     */
+    @Override
+    public Time modifiedAt()
+    {
+        var lastModified = service.modifiedAt();
+        trace("Last modified time of $ is $", this, lastModified);
+        return lastModified;
     }
 
     /**
@@ -659,9 +665,10 @@ public class File extends BaseWritableResource implements FileSystemObject
     }
 
     @Override
-    public <R extends Resource, F extends ResourceFolder<?>> R relativeTo(final F folder)
+    public File relativeTo(final ResourceFolder<?> folder)
     {
-        return File.file(service.relativePath(folder.service()).withoutTrailingSlash());
+        var service = ((Folder) folder).service();
+        return File.file(this.service.relativePath(service).withoutTrailingSlash());
     }
 
     /**
@@ -834,10 +841,5 @@ public class File extends BaseWritableResource implements FileSystemObject
             count++;
         }
         return file;
-    }
-
-    File temporary(Extension extension)
-    {
-        return Folder.kivakitTemporary().file("temp-" + temporaryFileNumber++ + extension);
     }
 }

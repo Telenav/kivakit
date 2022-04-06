@@ -27,9 +27,8 @@ import com.telenav.kivakit.network.core.NetworkAccessConstraints;
 import com.telenav.kivakit.network.core.NetworkLocation;
 import com.telenav.kivakit.network.ftp.lexakai.DiagramSecureFtp;
 import com.telenav.kivakit.resource.CopyMode;
-import com.telenav.kivakit.resource.Resource;
-import com.telenav.kivakit.resource.writing.WritableResource;
 import com.telenav.kivakit.resource.compression.codecs.GzipCodec;
+import com.telenav.kivakit.resource.writing.WritableResource;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlAggregation;
@@ -42,6 +41,7 @@ import java.io.InputStream;
  *
  * @author jonathanl (shibo)
  */
+@SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramSecureFtp.class)
 @LexakaiJavadoc(complete = true)
 public class SecureFtpResource extends BaseNetworkResource
@@ -71,7 +71,7 @@ public class SecureFtpResource extends BaseNetworkResource
      * Copy this resource to the disk
      */
     @Override
-    public void copyTo(Resource destination, CopyMode mode, ProgressReporter reporter)
+    public void copyTo(WritableResource destination, CopyMode mode, ProgressReporter reporter)
     {
         try
         {

@@ -110,12 +110,6 @@ public abstract class BaseReadableResource extends BaseRepeater implements Resou
     }
 
     @Override
-    public boolean delete()
-    {
-        return unsupported();
-    }
-
-    @Override
     public final Charset charset()
     {
         return charset;
@@ -149,17 +143,23 @@ public abstract class BaseReadableResource extends BaseRepeater implements Resou
      * Copies the data in this resource to the destination.
      */
     @Override
-    public void copyTo(Resource destination, CopyMode mode, ProgressReporter reporter)
+    public void copyTo(WritableResource destination, CopyMode mode, ProgressReporter reporter)
     {
         // If we can copy from this resource to the given resource in this mode,
         if (mode.canCopy(this, destination))
         {
             // copy the resource stream (which might involve compression or decompression or both).
-            if (!IO.copyAndClose(openForReading(reporter), ((WritableResource) destination).openForWriting()))
+            if (!IO.copyAndClose(openForReading(reporter), destination.openForWriting()))
             {
                 throw new IllegalStateException("Unable to copy " + this + " to " + destination);
             }
         }
+    }
+
+    @Override
+    public boolean delete()
+    {
+        return unsupported();
     }
 
     /**

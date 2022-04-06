@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.resource;
 
-import com.telenav.kivakit.core.language.trait.TryTrait;
+import com.telenav.kivakit.core.messaging.messages.status.Problem;
 import com.telenav.kivakit.interfaces.comparison.Matcher;
 import com.telenav.kivakit.resource.lexakai.DiagramResource;
 import com.telenav.kivakit.resource.lexakai.DiagramResourcePath;
@@ -26,6 +26,7 @@ import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
 
+import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URL;
 
@@ -38,9 +39,7 @@ import java.net.URL;
 @UmlClassDiagram(diagram = DiagramResourcePath.class)
 @UmlClassDiagram(diagram = DiagramResource.class)
 @LexakaiJavadoc(complete = true)
-public interface ResourcePathed extends
-        UriIdentified,
-        TryTrait
+public interface ResourcePathed extends UriIdentified
 {
     default java.io.File asJavaFile()
     {
@@ -112,6 +111,14 @@ public interface ResourcePathed extends
 
     default URL url()
     {
-        return tryCatch(uri()::toURL);
+        try
+        {
+            return uri().toURL();
+        }
+        catch (MalformedURLException e)
+        {
+            new Problem(e, "Unable to convert to URL: $", uri()).throwAsIllegalStateException();
+            return null;
+        }
     }
 }

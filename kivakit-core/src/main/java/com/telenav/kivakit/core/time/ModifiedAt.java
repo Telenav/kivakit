@@ -18,20 +18,21 @@
 
 package com.telenav.kivakit.core.time;
 
-public interface LastModifiedAt
+@SuppressWarnings("unused")
+public interface ModifiedAt
 {
-    default Time lastModified()
+    default Time modifiedAt()
     {
         throw new UnsupportedOperationException("Cannot retrieve last modified time from: " + getClass());
     }
 
-    default boolean wasChangedAfter(LastModifiedAt that)
+    default boolean wasChangedAfter(ModifiedAt that)
     {
-        return lastModified().isAfter(that.lastModified());
+        return modifiedAt().isAfter(that.modifiedAt());
     }
 
-    default boolean wasChangedBefore(LastModifiedAt that)
+    default boolean wasChangedBefore(ModifiedAt that)
     {
-        return lastModified().isBefore(that.lastModified());
+        return modifiedAt().isBefore(that.modifiedAt());
     }
 }

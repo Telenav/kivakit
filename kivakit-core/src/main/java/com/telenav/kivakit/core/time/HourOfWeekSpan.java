@@ -15,6 +15,7 @@ import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
  *
  * @author jonathanl (shibo)
  */
+@SuppressWarnings("unused")
 public class HourOfWeekSpan
 {
     @Tested

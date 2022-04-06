@@ -29,6 +29,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Pattern;
 
+import static com.telenav.kivakit.core.value.count.Count._7;
+
 /**
  * @author jonathanl (shibo)
  */
@@ -88,11 +90,11 @@ public class HumanizedLocalDateTimeConverter extends BaseStringConverter<LocalTi
                 var now = LocalTime.now();
                 if (today != null)
                 {
-                    return localTime.withEpochDay(now.epochDay());
+                    return localTime.withUnixEpochDay(now.dayOfUnixEpoch());
                 }
                 if (yesterday != null)
                 {
-                    return localTime.withEpochDay(now.epochDay() - 1);
+                    return localTime.withUnixEpochDay(now.dayOfUnixEpoch().decremented());
                 }
                 if (day != null)
                 {
@@ -103,14 +105,14 @@ public class HumanizedLocalDateTimeConverter extends BaseStringConverter<LocalTi
                     {
                         daysAgo += 7;
                     }
-                    return localTime.withEpochDay(now.epochDay() - daysAgo);
+                    return localTime.withUnixEpochDay(now.dayOfUnixEpoch().minus(daysAgo));
                 }
                 if (date != null)
                 {
                     var localDate = new LocalDateConverter(Listener.none()).convert(date);
                     if (localDate != null)
                     {
-                        return localTime.withEpochDay(localDate.epochDay());
+                        return localTime.withUnixEpochDay(localDate.dayOfUnixEpoch());
                     }
                 }
             }
@@ -124,17 +126,17 @@ public class HumanizedLocalDateTimeConverter extends BaseStringConverter<LocalTi
         var nowYear = now.year();
         var nowDayOfYear = now.dayOfYear();
 
-        if (nowYear == time.year())
+        if (nowYear.equals(time.year()))
         {
-            if (nowDayOfYear == time.dayOfYear())
+            if (nowDayOfYear.equals(time.dayOfYear()))
             {
                 return "Today";
             }
-            if (nowDayOfYear == time.dayOfYear() + 1)
+            if (nowDayOfYear.equals(time.dayOfYear().incremented()))
             {
                 return "Yesterday";
             }
-            if (nowDayOfYear - time.dayOfYear() <= 7)
+            if (nowDayOfYear.minus(time.dayOfYear()).isLessThanOrEqualTo(_7))
             {
                 return time.dayOfWeek().toString();
             }

@@ -75,7 +75,7 @@ public class ZipEntry extends BaseWritableResource implements AutoCloseable
     }
 
     @Override
-    public Time created()
+    public Time createdAt()
     {
         return UncheckedCode.of(() -> Time.milliseconds(Files.readAttributes(path, BasicFileAttributes.class)
                 .creationTime().toMillis())).orNull();
@@ -89,7 +89,7 @@ public class ZipEntry extends BaseWritableResource implements AutoCloseable
 
     @KivaKitIncludeProperty
     @Override
-    public Time lastModified()
+    public Time modifiedAt()
     {
         return UncheckedCode.of(() -> Time.milliseconds(Files.getLastModifiedTime(path).toMillis())).orNull();
     }

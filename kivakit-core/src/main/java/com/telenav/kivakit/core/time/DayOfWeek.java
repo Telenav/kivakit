@@ -30,15 +30,33 @@ import static com.telenav.kivakit.core.time.DayOfWeek.Standard.JAVA;
 import static com.telenav.kivakit.interfaces.string.Stringable.Format.USER_LABEL;
 
 /**
- * Typesafe value for day of week. The value stored in the {@link BaseCount} superclass is the ISO day of the week
- * ordinal, where MONDAY is 0 and SUNDAY is 6. The Java day of the week (see java.time.{@link java.time.DayOfWeek}),
- * where MONDAY is 1 and SUNDAY is 7 also supported.
+ * Typesafe value for day of week. Supports both ISO and Java numbering {@link Standard}s.
+ *
+ * <p><b>Creation</b></p>
+ *
+ * <ul>
+ *     <li>{@link #dayOfWeek(int, Standard)} - Constructs from a day of the week using the given numbering standard</li>
+ *     <li>{@link #isoDayOfWeek(int)} - Constructs from an ISO day of the week (0-6)</li>
+ *     <li>{@link #javaDayOfWeek(int)} - Constructs from a Java day of the week (1-7)</li>
+ *     <li>{@link #javaDayOfWeek(java.time.DayOfWeek)} - Constructs from a Java day of the week</li>
+ * </ul>
+ *
+ * <p><b>Conversions</b></p>
+ *
+ * <ul>
+ *     <li>{@link #isIso()} - True if this day of the week was constructed from an ISO value</li>
+ *     <li>{@link #isJava()} - True if this day of the week was constructed from a Java value</li>
+ *     <li>{@link #asDay()} - Converts to a {@link Day} object</li>
+ *     <li>{@link #asIso()} - The ISO number for this day of the week, from 0 to 6</li>
+ *     <li>{@link #asJava()} - The Java number for this day of the week, from 1 to 7</li>
+ *     <li>{@link #asJavaDayOfWeek()} - This day of the week as a Java day of the week object</li>
+ * </ul>
  *
  * @author jonathanl (shibo)
  * @author matthieun
  * @see java.time.DayOfWeek
  */
-@UmlClassDiagram(diagram = DiagramTime.class)
+@SuppressWarnings("unused") @UmlClassDiagram(diagram = DiagramTime.class)
 @LexakaiJavadoc(complete = true)
 public class DayOfWeek extends BaseCount<DayOfWeek>
 {
@@ -98,15 +116,22 @@ public class DayOfWeek extends BaseCount<DayOfWeek>
      */
     public static DayOfWeek javaDayOfWeek(int dayOfWeek)
     {
-        return dayOfWeek(dayOfWeek, ISO);
+        return dayOfWeek(dayOfWeek, JAVA);
     }
 
+    /**
+     * The day of week numbering standard
+     */
     public enum Standard
     {
+        /** ISO day of the week numbering is from 0 to 6 */
         ISO,
+
+        /** Java day of the week numbering is from 1 to 7 */
         JAVA
     }
 
+    /** The day of the week numbering standard */
     private final Standard standard;
 
     protected DayOfWeek(int dayOfWeek, Standard standard)
@@ -116,6 +141,11 @@ public class DayOfWeek extends BaseCount<DayOfWeek>
         this.standard = standard;
 
         ensureBetweenInclusive(asIso(), 0, 6, "Invalid day of the week: " + this);
+    }
+
+    public Day asDay()
+    {
+        return Day.dayOfWeek(asIso(), ISO);
     }
 
     /**
@@ -193,12 +223,6 @@ public class DayOfWeek extends BaseCount<DayOfWeek>
     public DayOfWeek newInstance(long ordinal)
     {
         return dayOfWeek(asInt(), standard);
-    }
-
-    @Override
-    public DayOfWeek newInstance(Long javaOrdinal)
-    {
-        return newInstance(javaOrdinal.longValue());
     }
 
     @Override

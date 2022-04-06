@@ -26,8 +26,8 @@ import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.messaging.Repeater;
 import com.telenav.kivakit.core.progress.ProgressReporter;
 import com.telenav.kivakit.core.time.CreatedAt;
-import com.telenav.kivakit.core.time.LastModifiedAt;
 import com.telenav.kivakit.core.time.Modifiable;
+import com.telenav.kivakit.core.time.ModifiedAt;
 import com.telenav.kivakit.core.value.count.ByteSized;
 import com.telenav.kivakit.filesystem.File;
 import com.telenav.kivakit.interfaces.string.StringSource;
@@ -48,8 +48,6 @@ import com.telenav.lexakai.annotations.associations.UmlRelation;
 
 import java.util.ServiceLoader;
 
-import static com.telenav.kivakit.core.ensure.Ensure.unsupported;
-
 import static com.telenav.kivakit.core.collections.set.ObjectSet.emptyObjectSet;
 import static com.telenav.kivakit.core.ensure.Ensure.ensure;
 import static com.telenav.kivakit.core.ensure.Ensure.unsupported;
@@ -57,7 +55,7 @@ import static com.telenav.kivakit.resource.Resource.Can.DELETE;
 import static com.telenav.kivakit.resource.Resource.Can.RENAME;
 
 /**
- * A resource that can be read via {@link ReadableResource}. In addition, resources are {@link LastModifiedAt}, {@link
+ * A resource that can be read via {@link ReadableResource}. In addition, resources are {@link ModifiedAt}, {@link
  * ByteSized} and are message {@link Repeater}s. A resource can be created by instantiating a concrete implementation of
  * {@link Resource} or one can be resolved from an abstract {@link ResourceIdentifier} with {@link #resolve(Listener,
  * ResourceIdentifier)}.
@@ -90,7 +88,7 @@ import static com.telenav.kivakit.resource.Resource.Can.RENAME;
  * <ul>
  *     <li>{@link #materialized(ProgressReporter)}</li>
  *     <li>{@link #dematerialize()}</li>
- *     <li>{@link #safeCopyTo(Resource, CopyMode, ProgressReporter)}</li>
+ *     <li>{@link #safeCopyTo(WritableResource, CopyMode, ProgressReporter)}</li>
  * </ul>
  *
  * <p><b>Checks</b></p>
@@ -112,8 +110,9 @@ import static com.telenav.kivakit.resource.Resource.Can.RENAME;
 public interface Resource extends
         ResourcePathed,
         Modifiable,
-        LastModifiedAt,
+        ModifiedAt,
         CreatedAt,
+        Deletable,
         ByteSized,
         StringSource,
         ReadableResource,
@@ -206,6 +205,11 @@ public interface Resource extends
         return reader().asString();
     }
 
+    default WritableResource asWritable()
+    {
+        return (WritableResource) this;
+    }
+
     default ObjectSet<Can> can()
     {
         return emptyObjectSet();
@@ -216,24 +220,11 @@ public interface Resource extends
         return can().contains(ability);
     }
 
-    default WritableResource asWritable()
-    {
-        return (WritableResource) this;
-    }
-
     /**
      * @return Any codec for compression / decompression
      */
     @UmlRelation(label = "uses")
     Codec codec();
-
-    /**
-     * @return True if this file was deleted
-     */
-    default boolean delete()
-    {
-        return unsupported();
-    }
 
     /**
      * Remove any materialized local copy if this is a remote resource that's been cached
@@ -285,7 +276,7 @@ public interface Resource extends
 
     default boolean isOlderThan(Resource that)
     {
-        return lastModified().isOlderThan(that.lastModified());
+        return modifiedAt().isOlderThan(that.modifiedAt());
     }
 
     /**
@@ -310,12 +301,12 @@ public interface Resource extends
     default boolean isSame(Resource that)
     {
         assert that != null;
-        assert lastModified() != null;
+        assert modifiedAt() != null;
         assert sizeInBytes() != null;
-        assert that.lastModified() != null;
+        assert that.modifiedAt() != null;
         assert that.sizeInBytes() != null;
 
-        return lastModified().equals(that.lastModified()) && sizeInBytes().equals(that.sizeInBytes());
+        return modifiedAt().equals(that.modifiedAt()) && sizeInBytes().equals(that.sizeInBytes());
     }
 
     /**
@@ -339,15 +330,15 @@ public interface Resource extends
     @Override
     ResourcePath path();
 
-    default boolean renameTo(Resource that)
+    /**
+     * @return This file with a path relative to the given folder
+     */
+    default Resource relativeTo(ResourceFolder<?> folder)
     {
         return unsupported();
     }
 
-    /**
-     * @return This file with a path relative to the given folder
-     */
-    default <R extends Resource, F extends ResourceFolder<?>> R relativeTo(F folder)
+    default boolean renameTo(Resource that)
     {
         return unsupported();
     }
@@ -366,7 +357,7 @@ public interface Resource extends
      */
     default void safeCopyTo(ResourceFolder<?> destination, CopyMode mode)
     {
-        safeCopyTo(destination.resource(fileName()), mode, ProgressReporter.none());
+        safeCopyTo(destination.resource(fileName()).asWritable(), mode, ProgressReporter.none());
     }
 
     /**
@@ -377,7 +368,7 @@ public interface Resource extends
      */
     default void safeCopyTo(ResourceFolder<?> destination, CopyMode mode, ProgressReporter reporter)
     {
-        safeCopyTo((WritableResource) destination.resource(fileName()), mode, reporter);
+        safeCopyTo(destination.resource(fileName()).asWritable(), mode, reporter);
     }
 
     /**
@@ -388,7 +379,7 @@ public interface Resource extends
      * @param destination The file to copy to
      * @param mode Copying semantics
      */
-    default void safeCopyTo(Resource destination, CopyMode mode)
+    default void safeCopyTo(WritableResource destination, CopyMode mode)
     {
         safeCopyTo(destination, mode, ProgressReporter.none());
     }
@@ -402,7 +393,7 @@ public interface Resource extends
      * @param mode Copying semantics
      * @param reporter Progress reporter to call as copy proceeds
      */
-    default void safeCopyTo(Resource destination, CopyMode mode, ProgressReporter reporter)
+    default void safeCopyTo(WritableResource destination, CopyMode mode, ProgressReporter reporter)
     {
         // If there is no destination file or we can overwrite,
         if (mode.canCopy(this, destination))

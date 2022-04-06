@@ -245,10 +245,4 @@ public class Estimate extends BaseCount<Estimate> implements Stringable
     {
         return estimate(count);
     }
-
-    @Override
-    public Estimate newInstance(Long count)
-    {
-        return newInstance(count.longValue());
-    }
 }

@@ -28,6 +28,7 @@ import com.telenav.kivakit.interfaces.comparison.Matchable;
 import com.telenav.kivakit.interfaces.comparison.Matcher;
 import com.telenav.kivakit.resource.packages.Package;
 import com.telenav.kivakit.resource.spi.ResourceFolderResolverServiceLoader;
+import com.telenav.kivakit.resource.writing.WritableResource;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 
 import java.nio.file.attribute.PosixFilePermission;
@@ -121,6 +122,7 @@ import static com.telenav.kivakit.resource.ResourcePath.parseResourcePath;
  *
  * @author jonathanl (shibo)
  */
+@SuppressWarnings("unused")
 public interface ResourceFolder<T extends ResourceFolder<T>> extends
         UriIdentified,
         ResourcePathed,
@@ -285,7 +287,7 @@ public interface ResourceFolder<T extends ResourceFolder<T>> extends
         return newFolder(relativePath);
     }
 
-    void renameTo(ResourceFolder<?> folder);
+    boolean renameTo(ResourceFolder<?> folder);
 
     /**
      * @return The resource of the given in this container
@@ -331,17 +333,17 @@ public interface ResourceFolder<T extends ResourceFolder<T>> extends
             var destination = folder.mkdirs().resource(at.fileName());
             if (mode.canCopy(at, destination))
             {
-                at.safeCopyTo(destination, mode, reporter);
+                at.safeCopyTo(destination.asWritable(), mode, reporter);
             }
         }
     }
 
-    default Resource temporary(FileName baseName)
+    default WritableResource temporary(FileName baseName)
     {
         return temporary(baseName, Extension.TMP);
     }
 
-    File temporary(FileName baseName, Extension extension);
+    WritableResource temporary(FileName baseName, Extension extension);
 
     default ResourceFolder<?> temporaryFolder(FileName baseName)
     {

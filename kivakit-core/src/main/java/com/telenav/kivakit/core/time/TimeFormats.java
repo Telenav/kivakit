@@ -39,9 +39,9 @@ public class TimeFormats
             .toFormatter();
 
     public static final DateTimeFormatter KIVAKIT_TIME = builder("h.mma")
-            .parseDefaulting(ChronoField.YEAR, LocalTime.now().year())
-            .parseDefaulting(ChronoField.MONTH_OF_YEAR, LocalTime.now().month())
-            .parseDefaulting(ChronoField.DAY_OF_MONTH, LocalTime.now().day())
+            .parseDefaulting(ChronoField.YEAR, LocalTime.now().year().asInt())
+            .parseDefaulting(ChronoField.MONTH_OF_YEAR, LocalTime.now().month().monthOfYear())
+            .parseDefaulting(ChronoField.DAY_OF_MONTH, LocalTime.now().dayOfMonth().asInt())
             .toFormatter();
 
     public static final DateTimeFormatter KIVAKIT_DATE_TIME = builder("yyyy.MM.dd_h.mma").toFormatter();

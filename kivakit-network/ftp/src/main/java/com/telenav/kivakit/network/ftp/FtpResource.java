@@ -30,7 +30,6 @@ import com.telenav.kivakit.network.core.NetworkPath;
 import com.telenav.kivakit.network.core.Protocol;
 import com.telenav.kivakit.network.ftp.lexakai.DiagramFtp;
 import com.telenav.kivakit.resource.CopyMode;
-import com.telenav.kivakit.resource.Resource;
 import com.telenav.kivakit.resource.writing.WritableResource;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
@@ -52,6 +51,7 @@ import java.util.List;
  *
  * @author ericg
  */
+@SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramFtp.class)
 @LexakaiJavadoc(complete = true)
 public class FtpResource extends BaseNetworkResource
@@ -123,7 +123,7 @@ public class FtpResource extends BaseNetworkResource
     }
 
     @Override
-    public void copyTo(Resource destination, CopyMode mode, ProgressReporter reporter)
+    public void copyTo(WritableResource destination, CopyMode mode, ProgressReporter reporter)
     {
         try
         {

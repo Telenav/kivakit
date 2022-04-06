@@ -31,7 +31,7 @@ public class HourOfWeek extends BaseCount<HourOfWeek>
         var dayOfWeek = hourOfWeek / 24;
         var hourOfDay = hourOfWeek % 24;
 
-        return new HourOfWeek(isoDayOfWeek(dayOfWeek), HourOfDay.hourOfDay(hourOfDay));
+        return new HourOfWeek(isoDayOfWeek(dayOfWeek), Hour.militaryHour(hourOfDay));
     }
 
     /**
@@ -46,14 +46,14 @@ public class HourOfWeek extends BaseCount<HourOfWeek>
     }
 
     /**
-     * Returns an {@link HourOfWeek} for the given {@link DayOfWeek} and {@link HourOfDay}.
+     * Returns an {@link HourOfWeek} for the given {@link DayOfWeek} and {@link Hour}.
      *
      * @param dayOfWeek The day of the week
      * @param hourOfDay The hour of the day
      * @return The hour of the week
      */
     @Tested
-    public static HourOfWeek hourOfWeek(DayOfWeek dayOfWeek, HourOfDay hourOfDay)
+    public static HourOfWeek hourOfWeek(DayOfWeek dayOfWeek, Hour hourOfDay)
     {
         return hourOfWeek((dayOfWeek.asIso() * 24 + hourOfDay.asInt()));
     }
@@ -62,13 +62,13 @@ public class HourOfWeek extends BaseCount<HourOfWeek>
     private DayOfWeek dayOfWeek;
 
     /** The hour of the day used to compute the hour of the week */
-    private HourOfDay hourOfDay;
+    private Hour hourOfDay;
 
     protected HourOfWeek()
     {
     }
 
-    protected HourOfWeek(DayOfWeek dayOfWeek, HourOfDay hourOfDay)
+    protected HourOfWeek(DayOfWeek dayOfWeek, Hour hourOfDay)
     {
         // This value is not used because
         super(0);
@@ -120,7 +120,7 @@ public class HourOfWeek extends BaseCount<HourOfWeek>
      * @return The hour of the day
      */
     @Tested
-    public HourOfDay hourOfDay()
+    public Hour hourOfDay()
     {
         return hourOfDay;
     }
@@ -137,12 +137,6 @@ public class HourOfWeek extends BaseCount<HourOfWeek>
     public HourOfWeek minus(long count)
     {
         return wrappedOffset(-count);
-    }
-
-    @Override
-    public HourOfWeek newInstance(Long value)
-    {
-        return newInstance(value.longValue());
     }
 
     /**

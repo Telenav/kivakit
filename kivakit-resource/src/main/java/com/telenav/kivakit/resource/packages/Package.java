@@ -39,10 +39,12 @@ import com.telenav.kivakit.resource.ResourceFolder;
 import com.telenav.kivakit.resource.ResourceFolderIdentifier;
 import com.telenav.kivakit.resource.ResourceIdentifier;
 import com.telenav.kivakit.resource.ResourceList;
+import com.telenav.kivakit.resource.ResourcePath;
 import com.telenav.kivakit.resource.ResourcePathed;
 import com.telenav.kivakit.resource.lexakai.DiagramResourceService;
 import com.telenav.kivakit.resource.lexakai.DiagramResourceType;
 import com.telenav.kivakit.resource.spi.ResourceFolderResolver;
+import com.telenav.kivakit.resource.writing.WritableResource;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
@@ -57,7 +59,6 @@ import java.util.stream.Collectors;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
-import static com.telenav.kivakit.core.ensure.Ensure.fail;
 import static com.telenav.kivakit.core.ensure.Ensure.unsupported;
 import static com.telenav.kivakit.core.language.module.PackageReference.packageReference;
 import static com.telenav.kivakit.core.messaging.Listener.throwing;
@@ -235,6 +236,12 @@ public class Package extends BaseRepeater implements ResourceFolder<Package>
         return PropertyMap.localized(listener, path(), locale);
     }
 
+    @Override
+    public ResourceFolder<?> newFolder(ResourcePath relativePath)
+    {
+        return packageForPath(this, packagePath(relativePath));
+    }
+
     /**
      * @return The parent package of this package, or null if there is none
      */
@@ -269,15 +276,9 @@ public class Package extends BaseRepeater implements ResourceFolder<Package>
      * @return The resource in this package with the given name
      */
     @Override
-    public PackageResource resource(ResourcePathed pathed)
+    public Resource resource(ResourcePathed pathed)
     {
-        return packageResource(this, pathed);
-    }
-
-    @Override
-    public Resource resource(ResourcePathed name)
-    {
-        return resource(name.path().toString());
+        return packageResource(this, path(), pathed.path());
     }
 
     /**
@@ -311,7 +312,7 @@ public class Package extends BaseRepeater implements ResourceFolder<Package>
     }
 
     @Override
-    public Resource temporary(final FileName baseName, final Extension extension)
+    public WritableResource temporary(final FileName baseName, final Extension extension)
     {
         return unsupported();
     }
@@ -361,7 +362,7 @@ public class Package extends BaseRepeater implements ResourceFolder<Package>
                 if (location != null && location.toString().endsWith("/"))
                 {
                     var filepath = packagePath.join("/") + "/";
-                    var directory = Folder.from(location.toURI()).folder(filepath);
+                    var directory = Folder.folder(location.toURI()).folder(filepath);
                     if (directory.exists())
                     {
                         for (var file : directory.files())

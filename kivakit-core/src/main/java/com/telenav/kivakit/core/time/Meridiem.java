@@ -18,19 +18,78 @@
 
 package com.telenav.kivakit.core.time;
 
+import com.telenav.kivakit.core.language.primitive.Ints;
 import com.telenav.kivakit.core.lexakai.DiagramTime;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
+import static com.telenav.kivakit.core.ensure.Ensure.ensure;
+import static com.telenav.kivakit.core.ensure.Ensure.unsupported;
+
 /**
- * Anti-meridiem (AM) or post-meridiem (PM) in the English system of keeping time.
+ * Anti-meridiem (AM) or post-meridiem (PM) in the English system of keeping time, or MILITARY_TIME for the rest of the
+ * world.
  *
  * @author jonathanl (shibo)
  */
+@SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramTime.class)
 @LexakaiJavadoc(complete = true)
 public enum Meridiem
 {
+    NO_MERIDIEM,
     AM,
-    PM
+    PM;
+
+    /**
+     * Returns the Meridiem for the given military (0-23) hour.
+     */
+    public static Meridiem meridiem(int militaryHour)
+    {
+        ensure(Ints.isBetweenInclusive(militaryHour, 0, 23));
+
+        return militaryHour < 12 ? AM : PM;
+    }
+
+    public static int meridiemHour(int militaryHour)
+    {
+        ensure(Ints.isBetweenInclusive(militaryHour, 0, 23));
+
+        if (militaryHour == 0 || militaryHour == 12)
+        {
+            return 12;
+        }
+
+        return militaryHour < 12
+                ? militaryHour
+                : militaryHour - 12;
+    }
+
+    int asMilitaryHour(int meridiemHour)
+    {
+        ensure(Ints.isBetweenInclusive(meridiemHour, 1, 12));
+
+        switch (this)
+        {
+            case PM:
+                if (meridiemHour == 12)
+                {
+                    return 12;
+                }
+                return meridiemHour + 12;
+
+            case AM:
+                if (meridiemHour == 12)
+                {
+                    return 0;
+                }
+                return meridiemHour;
+
+            case NO_MERIDIEM:
+                return meridiemHour;
+
+            default:
+                return unsupported();
+        }
+    }
 }

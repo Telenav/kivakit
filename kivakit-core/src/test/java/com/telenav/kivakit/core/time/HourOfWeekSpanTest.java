@@ -1,4 +1,5 @@
 package com.telenav.kivakit.core.time;
+
 import com.telenav.kivakit.core.test.CoreUnitTest;
 import org.jetbrains.annotations.NotNull;
 import org.junit.Test;
@@ -8,8 +9,8 @@ import java.time.ZoneId;
 import static com.telenav.kivakit.core.time.DayOfWeek.MONDAY;
 import static com.telenav.kivakit.core.time.DayOfWeek.SATURDAY;
 import static com.telenav.kivakit.core.time.DayOfWeek.SUNDAY;
-import static com.telenav.kivakit.core.time.HourOfDay.am;
-import static com.telenav.kivakit.core.time.HourOfDay.pm;
+import static com.telenav.kivakit.core.time.Hour.am;
+import static com.telenav.kivakit.core.time.Hour.pm;
 import static com.telenav.kivakit.core.time.HourOfWeek.hourOfWeek;
 import static com.telenav.kivakit.core.time.HourOfWeekSpan.hourOfWeekSpan;
 import static com.telenav.kivakit.core.time.HourOfWeekSpan.hourOfWeekSpanUtc;
