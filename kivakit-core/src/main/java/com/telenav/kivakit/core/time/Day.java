@@ -4,7 +4,6 @@ import com.telenav.kivakit.core.language.primitive.Ints;
 import com.telenav.kivakit.core.test.NoTestRequired;
 import com.telenav.kivakit.core.test.Tested;
 import com.telenav.kivakit.core.time.DayOfWeek.Standard;
-import com.telenav.kivakit.core.value.count.BaseCount;
 
 import java.util.Objects;
 
@@ -28,7 +27,7 @@ import static java.lang.Integer.MAX_VALUE;
  */
 @SuppressWarnings("unused")
 @Tested
-public class Day extends BaseCount<Day>
+public class Day extends BaseTime<Day>
 {
     /**
      * @return An absolute day from 0 to n

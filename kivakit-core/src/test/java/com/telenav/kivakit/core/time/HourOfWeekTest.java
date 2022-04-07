@@ -125,7 +125,7 @@ public class HourOfWeekTest extends CoreUnitTest
     @Test
     public void testMaximum()
     {
-        ensure(hourOfWeek(0).maximumInclusive().asInt() == 167);
+        ensure(hourOfWeek(0).maximum().asInt() == 167);
     }
 
     @Test

@@ -3,7 +3,6 @@ package com.telenav.kivakit.core.time;
 import com.telenav.kivakit.core.language.primitive.Ints;
 import com.telenav.kivakit.core.test.NoTestRequired;
 import com.telenav.kivakit.core.test.Tested;
-import com.telenav.kivakit.core.value.count.BaseCount;
 
 import java.util.Objects;
 
@@ -26,7 +25,7 @@ import static com.telenav.kivakit.core.time.Meridiem.meridiemHour;
  *
  * <ul>
  *     <li>{@link #am(int)} - A morning hour</li>
- *     <li>{@link #militaryHour(int)} - An hour of the day on a 24-hour clock</li>
+ *     <li>{@link #militaryHour(long)} - An hour of the day on a 24-hour clock</li>
  *     <li>{@link #hourOfDay(int, Meridiem)} - An hour of the day, AM or PM</li>
  *     <li>{@link #midnight()} - Hour zero</li>
  *     <li>{@link #noon()} - Hour twelve</li>
@@ -50,8 +49,10 @@ import static com.telenav.kivakit.core.time.Meridiem.meridiemHour;
  * @author jonathanl (shibo)
  */
 @SuppressWarnings("unused")
-public class Hour extends BaseCount<Hour>
+public class Hour extends BaseTime<Hour>
 {
+    private static final long millisecondsPer = 60 * 60 * 1_000;
+
     @Tested
     public static Hour am(int hour)
     {
@@ -77,7 +78,7 @@ public class Hour extends BaseCount<Hour>
     }
 
     @Tested
-    public static Hour militaryHour(int militaryHouor)
+    public static Hour militaryHour(long militaryHouor)
     {
         return new Hour(MILITARY_HOUR, NO_MERIDIEM, militaryHouor);
     }
@@ -139,7 +140,7 @@ public class Hour extends BaseCount<Hour>
     @Tested
     protected Hour(Type type, Meridiem meridiem, long hour)
     {
-        super(type.militaryHour(meridiem, (int) hour));
+        super(type.militaryHour(meridiem, (int) hour) * millisecondsPer);
 
         this.type = ensureNotNull(type);
     }
@@ -165,7 +166,7 @@ public class Hour extends BaseCount<Hour>
     @Tested
     public int asMilitaryHour()
     {
-        return asInt();
+        return (int) (asLong() / millisecondsPer);
     }
 
     @Override
@@ -208,10 +209,25 @@ public class Hour extends BaseCount<Hour>
     }
 
     @Override
-    @Tested
-    public Hour maximumInclusive()
+    public Hour maximum()
     {
-        return militaryHour(23);
+        switch (type())
+        {
+            case HOUR:
+                return newInstance(Long.MAX_VALUE);
+
+            case MILITARY_HOUR:
+                return militaryHour(23);
+
+            case HOUR_OF_MERIDIEM:
+                return hour(12);
+
+            case HOUR_OF_WEEK:
+                return hour(7 * 24 - 1);
+
+            default:
+                return unsupported();
+        }
     }
 
     /**
@@ -235,7 +251,6 @@ public class Hour extends BaseCount<Hour>
     }
 
     @Override
-    @Tested
     public Hour minimum()
     {
         return militaryHour(0);
@@ -244,7 +259,7 @@ public class Hour extends BaseCount<Hour>
     @Override
     public Hour newInstance(long count)
     {
-        return militaryHour((int) count);
+        return militaryHour((int) (count / millisecondsPer));
     }
 
     @Override
@@ -256,13 +271,13 @@ public class Hour extends BaseCount<Hour>
                 return super.next();
 
             case HOUR_OF_MERIDIEM:
-                return asInt() == 11 ? null : super.next();
+                return asMilitaryHour() == 11 ? null : super.next();
 
             case MILITARY_HOUR:
-                return asInt() == 23 ? null : super.next();
+                return asMilitaryHour() == 23 ? null : super.next();
 
             case HOUR_OF_WEEK:
-                return asInt() == (7 * 24) - 1 ? null : super.next();
+                return asMilitaryHour() == (7 * 24) - 1 ? null : super.next();
 
             default:
                 return unsupported();

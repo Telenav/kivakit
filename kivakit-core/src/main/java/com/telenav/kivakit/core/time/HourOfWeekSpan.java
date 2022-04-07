@@ -3,6 +3,7 @@ package com.telenav.kivakit.core.time;
 import com.telenav.kivakit.core.language.Hash;
 import com.telenav.kivakit.core.language.Objects;
 import com.telenav.kivakit.core.string.Formatter;
+import com.telenav.kivakit.core.test.NoTestRequired;
 import com.telenav.kivakit.core.test.Tested;
 
 import java.time.ZoneId;
@@ -36,26 +37,36 @@ public class HourOfWeekSpan
 
     private String timeZone;
 
+    @NoTestRequired
     public HourOfWeekSpan()
     {
     }
 
-    @Tested
-    protected HourOfWeekSpan(HourOfWeek startHourOfWeek, HourOfWeek endHourOfWeek, ZoneId timeZone)
+    /**
+     * Creates and {@link HourOfWeekSpan}, where the start hour of the week does not have to be less than the end hour
+     * of the week, and wrapping from sunday to monday is supported. For example, the period from saturday to tuesday
+     * would include saturday, sunday, monday and tuesday (inclusive).
+     *
+     * @param startHourOfWeek The start hour of the week
+     * @param endHourOfWeekInclusive The end hour of the week, inclusive
+     */
+    @NoTestRequired
+    protected HourOfWeekSpan(HourOfWeek startHourOfWeek, HourOfWeek endHourOfWeekInclusive, ZoneId timeZone)
     {
         this.startHourOfWeek = ensureNotNull(startHourOfWeek, "Start hour of week is required");
-        this.endHourOfWeek = ensureNotNull(endHourOfWeek, "End hour of week is required");
+        this.endHourOfWeek = ensureNotNull(endHourOfWeekInclusive, "End hour of week is required");
         this.timeZone = ensureNotNull(timeZone, "Time zone is required").getId();
     }
 
     /**
      * @return This UTC span of hours in local time
      */
-    public HourOfWeekSpan asLocalTime()
+    @Tested
+    public HourOfWeekSpan asLocalTime(ZoneId zone)
     {
         if (isUtc())
         {
-            return new HourOfWeekSpan(startHourOfWeek.asLocalTime(zoneId()), endHourOfWeek.asLocalTime(zoneId()), zoneId());
+            return hourOfWeekSpan(startHourOfWeek.asLocalTime(zone), endHourOfWeek.asLocalTime(zone), zone);
         }
         return this;
     }
@@ -63,11 +74,12 @@ public class HourOfWeekSpan
     /**
      * @return This localtime span of hours in UTC time
      */
+    @Tested
     public HourOfWeekSpan asUtc()
     {
         if (!isUtc())
         {
-            return new HourOfWeekSpan(startHourOfWeek.asUtc(zoneId()), endHourOfWeek.asUtc(zoneId()), ZoneId.of("UTC"));
+            return hourOfWeekSpan(startHourOfWeek.asUtc(zoneId()), endHourOfWeek.asUtc(zoneId()), ZoneId.of("UTC"));
         }
         return this;
     }
@@ -82,17 +94,20 @@ public class HourOfWeekSpan
     }
 
     @Override
+    @Tested
     public boolean equals(final Object object)
     {
         if (object instanceof HourOfWeekSpan)
         {
             HourOfWeekSpan that = (HourOfWeekSpan) object;
-            return Objects.equalPairs(startHourOfWeek(), that.startHourOfWeek(), endHourOfWeek(), that.endHourOfWeek());
+            return Objects.equalPairs(startHourOfWeek(), that.startHourOfWeek(),
+                    endHourOfWeek(), that.endHourOfWeek());
         }
         return false;
     }
 
     @Override
+    @Tested
     public int hashCode()
     {
         return Hash.many(startHourOfWeek(), endHourOfWeek());
@@ -104,8 +119,16 @@ public class HourOfWeekSpan
      */
     public boolean includes(LocalTime time)
     {
-        return HourOfWeek.hourOfWeek(time.hourOfWeek())
-                .isBetweenInclusive(startHourOfWeek, endHourOfWeek);
+        if (startHourOfWeek.isLessThanOrEqualTo(endHourOfWeek))
+        {
+            return time.hourOfWeek().isBetweenInclusive(startHourOfWeek, endHourOfWeek);
+        }
+        else
+        {
+            return !time.hourOfWeek().isBetweenInclusive(
+                    endHourOfWeek.incremented(),
+                    startHourOfWeek.decremented());
+        }
     }
 
     /**
@@ -114,7 +137,7 @@ public class HourOfWeekSpan
      */
     public boolean includes(Time time)
     {
-        return includes(time.localTime(timeZone));
+        return includes(time.inTimeZone(zoneId()));
     }
 
     /**

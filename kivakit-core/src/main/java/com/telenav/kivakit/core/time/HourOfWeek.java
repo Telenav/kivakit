@@ -5,6 +5,7 @@ import com.telenav.kivakit.core.test.Tested;
 import com.telenav.kivakit.core.value.count.BaseCount;
 
 import java.time.ZoneId;
+import java.util.Objects;
 import java.util.TimeZone;
 
 import static com.telenav.kivakit.core.ensure.Ensure.ensureBetweenExclusive;
@@ -17,7 +18,8 @@ import static com.telenav.kivakit.core.time.DayOfWeek.isoDayOfWeek;
  *
  * @author jonathanl (shibo)
  */
-public class HourOfWeek extends BaseCount<HourOfWeek>
+@SuppressWarnings("unused")
+public class HourOfWeek extends BaseTime<HourOfWeek>
 {
     /**
      * Returns an {@link HourOfWeek} for the given ordinal value
@@ -73,11 +75,15 @@ public class HourOfWeek extends BaseCount<HourOfWeek>
     @NoTestRequired
     protected HourOfWeek(DayOfWeek dayOfWeek, Hour hourOfDay)
     {
-        // This value is not used because
-        super(0);
+        super(dayOfWeek.asMilliseconds() + hourOfDay.asMilliseconds());
 
         this.dayOfWeek = dayOfWeek;
         this.hourOfDay = hourOfDay;
+    }
+
+    public Time asEpochTime()
+    {
+        return Time.milliseconds(asMilliseconds());
     }
 
     /**
@@ -102,13 +108,13 @@ public class HourOfWeek extends BaseCount<HourOfWeek>
     /**
      * Converts this hour of the week, assumed to be in localtime, to UTC.
      *
-     * @param zone The time zone for this hour of the week
+     * @param localZone The time zone for this hour of the week
      * @return The hour of the week in UTC time
      */
     @Tested
-    public HourOfWeek asUtc(ZoneId zone)
+    public HourOfWeek asUtc(ZoneId localZone)
     {
-        return offset(zone, true);
+        return offset(localZone, true);
     }
 
     /**
@@ -118,6 +124,24 @@ public class HourOfWeek extends BaseCount<HourOfWeek>
     public DayOfWeek dayOfWeek()
     {
         return dayOfWeek;
+    }
+
+    @Override
+    public boolean equals(final Object object)
+    {
+        if (object instanceof HourOfWeek)
+        {
+            HourOfWeek that = (HourOfWeek) object;
+            return this.dayOfWeek().equals(that.dayOfWeek())
+                    && this.hourOfDay().equals(that.hourOfDay());
+        }
+        return false;
+    }
+
+    @Override
+    public int hashCode()
+    {
+        return Objects.hash(dayOfWeek(), hourOfDay());
     }
 
     /**
@@ -131,7 +155,7 @@ public class HourOfWeek extends BaseCount<HourOfWeek>
 
     @Override
     @Tested
-    public HourOfWeek maximumInclusive()
+    public HourOfWeek maximum()
     {
         return hourOfWeek(7 * 24 - 1);
     }
@@ -201,7 +225,7 @@ public class HourOfWeek extends BaseCount<HourOfWeek>
 
     private HourOfWeek wrappedOffset(long offset)
     {
-        var maximum = this.maximumInclusive().asInt() + 1;
+        var maximum = this.maximum().asInt() + 1;
         return hourOfWeek((int) ((asLong() + offset + maximum) % maximum));
     }
 }

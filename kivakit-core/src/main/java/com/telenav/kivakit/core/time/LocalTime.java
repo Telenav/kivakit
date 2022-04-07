@@ -29,6 +29,8 @@ import java.util.Objects;
 
 import static com.telenav.kivakit.core.ensure.Ensure.unsupported;
 import static com.telenav.kivakit.core.time.DayOfWeek.javaDayOfWeek;
+import static com.telenav.kivakit.core.time.Hour.militaryHour;
+import static com.telenav.kivakit.core.time.Second.second;
 import static java.time.temporal.ChronoField.DAY_OF_MONTH;
 import static java.time.temporal.ChronoField.DAY_OF_WEEK;
 import static java.time.temporal.ChronoField.DAY_OF_YEAR;
@@ -50,9 +52,24 @@ public class LocalTime extends Time
         return localTime(zone, milliseconds(milliseconds));
     }
 
-    public static LocalTime localTime(ZoneId zone, Time time)
+    public static LocalTime localTime(ZoneId zone, BaseTime<?> time)
     {
         return milliseconds(zone, time.asMilliseconds());
+    }
+
+    public static LocalTime localTime(ZoneId zone, Year year, Month month, Day dayOfMonth, Hour hour)
+    {
+        return localTime(zone, year, month, dayOfMonth, hour, Minute.minute(0), second(0));
+    }
+
+    public static LocalTime localTime(ZoneId zone, Year year, Month month, Day dayOfMonth)
+    {
+        return localTime(zone, year, month, dayOfMonth, militaryHour(0));
+    }
+
+    public static LocalTime localTime(ZoneId zone, Year year, Month month)
+    {
+        return localTime(zone, year, month, Day.dayOfMonth(1), militaryHour(0));
     }
 
     public static LocalTime localTime(ZoneId zone,
@@ -61,11 +78,15 @@ public class LocalTime extends Time
                                       Day dayOfMonth,
                                       Hour hour,
                                       Minute minute,
-                                      Second second,
-                                      Meridiem meridiem)
+                                      Second second)
     {
-        return localTime(zone, LocalDateTime.of(year.asInt(), month.monthOfYear(), dayOfMonth.asInt(),
-                meridiem == Meridiem.AM ? hour.asInt() : hour.asInt() + 12, minute.asInt(), second.asInt()));
+        return localTime(zone, LocalDateTime.of(
+                year.asInt(),
+                month.monthOfYear(),
+                dayOfMonth.asInt(),
+                hour.asMilitaryHour(),
+                minute.asInt(),
+                second.asInt()));
     }
 
     public static ZoneId localTimeZone()
@@ -186,6 +207,13 @@ public class LocalTime extends Time
     }
 
     @Override
+    public Duration elapsedSince(BaseTime<?> thatTime)
+    {
+        var that = inLocalZone(thatTime);
+        return Duration.milliseconds(asMilliseconds() - that.asMilliseconds());
+    }
+
+    @Override
     public boolean equals(Object object)
     {
         if (object instanceof LocalTime)
@@ -215,12 +243,18 @@ public class LocalTime extends Time
      */
     public Hour hourOfDay()
     {
-        return Hour.militaryHour(javaLocalDateTime().get(HOUR_OF_DAY));
+        return militaryHour(javaLocalDateTime().get(HOUR_OF_DAY));
     }
 
     public HourOfWeek hourOfWeek()
     {
         return HourOfWeek.hourOfWeek(dayOfWeek().asIso() * 24 + hourOfDay().asMilitaryHour());
+    }
+
+    @Override
+    public boolean isLocal()
+    {
+        return true;
     }
 
     public LocalDateTime javaLocalDateTime()
@@ -252,13 +286,6 @@ public class LocalTime extends Time
     public LocalTime minus(Duration duration)
     {
         return localTime(timeZone(), super.minus(duration));
-    }
-
-    @Override
-    public Duration minus(Time time)
-    {
-        var localTime = milliseconds(timeZone(), super.minus(time).milliseconds());
-        return Duration.milliseconds(localTime.asMilliseconds());
     }
 
     /**
@@ -322,6 +349,7 @@ public class LocalTime extends Time
         return startOfDay().plus(Duration.ONE_DAY);
     }
 
+    @Override
     public ZoneId timeZone()
     {
         return timeZone;
@@ -401,5 +429,12 @@ public class LocalTime extends Time
     public Year year()
     {
         return Year.year(javaLocalDateTime().getYear());
+    }
+
+    private LocalTime inLocalZone(BaseTime<?> that)
+    {
+        return that.isLocal()
+                ? (LocalTime) that
+                : that.inTimeZone(timeZone());
     }
 }

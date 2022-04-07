@@ -1,27 +1,38 @@
 package com.telenav.kivakit.core.time;
 
-import com.telenav.kivakit.core.language.primitive.Ints;
-import com.telenav.kivakit.core.value.count.BaseCount;
+import com.telenav.kivakit.core.language.primitive.Longs;
 
 import static com.telenav.kivakit.core.ensure.Ensure.ensure;
 
 @SuppressWarnings("unused")
-public class Minute extends BaseCount<Minute>
+public class Minute extends BaseTime<Minute>
 {
-    public static Minute minute(int minuteOfHour)
+    public static Minute minute(long minute)
     {
-        ensure(Ints.isBetweenInclusive(minuteOfHour, 0, 59));
-        return new Minute(minuteOfHour);
+        ensure(Longs.isBetweenInclusive(minute, 0, 59));
+        return new Minute(minute);
     }
 
-    protected Minute(int minuteOfHour)
+    protected Minute(long minute)
     {
-        super(minuteOfHour);
+        super(minute * 60 * 1_000);
     }
 
     @Override
-    public Minute newInstance(long minuteOfHour)
+    public Minute maximum()
     {
-        return minute((int) minuteOfHour);
+        return minute(59);
+    }
+
+    @Override
+    public Minute minimum()
+    {
+        return minute(0);
+    }
+
+    @Override
+    public Minute newInstance(long minute)
+    {
+        return minute(minute);
     }
 }

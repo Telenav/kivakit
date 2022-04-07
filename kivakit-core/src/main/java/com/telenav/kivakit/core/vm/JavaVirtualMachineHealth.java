@@ -36,6 +36,7 @@ import static com.telenav.kivakit.core.language.object.ObjectFormatter.Format.SI
 /**
  * @author jonathanl (shibo)
  */
+@SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramLanguage.class)
 public class JavaVirtualMachineHealth
 {
@@ -76,7 +77,7 @@ public class JavaVirtualMachineHealth
     @KivaKitIncludeProperty
     public Duration elapsed()
     {
-        return lastSnapshot == null ? Duration.ZERO_DURATION : snapshot.capturedAt().minus(lastSnapshot.capturedAt());
+        return lastSnapshot == null ? Duration.ZERO_DURATION : snapshot.capturedAt().elapsedSince(lastSnapshot.capturedAt());
     }
 
     @KivaKitIncludeProperty

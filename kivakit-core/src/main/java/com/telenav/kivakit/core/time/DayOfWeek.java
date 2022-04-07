@@ -22,7 +22,6 @@ import com.telenav.kivakit.core.language.Hash;
 import com.telenav.kivakit.core.lexakai.DiagramTime;
 import com.telenav.kivakit.core.test.NoTestRequired;
 import com.telenav.kivakit.core.test.Tested;
-import com.telenav.kivakit.core.value.count.BaseCount;
 import com.telenav.kivakit.core.value.level.Percent;
 import com.telenav.kivakit.interfaces.numeric.Quantizable;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
@@ -33,6 +32,8 @@ import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
 import static com.telenav.kivakit.core.ensure.Ensure.unsupported;
 import static com.telenav.kivakit.core.time.DayOfWeek.Standard.ISO;
 import static com.telenav.kivakit.core.time.DayOfWeek.Standard.JAVA;
+import static com.telenav.kivakit.core.time.Duration.days;
+import static com.telenav.kivakit.core.time.HourOfWeek.hourOfWeek;
 import static com.telenav.kivakit.interfaces.string.Stringable.Format.USER_LABEL;
 
 /**
@@ -65,7 +66,7 @@ import static com.telenav.kivakit.interfaces.string.Stringable.Format.USER_LABEL
 @SuppressWarnings("unused") @UmlClassDiagram(diagram = DiagramTime.class)
 @LexakaiJavadoc(complete = true)
 @Tested
-public class DayOfWeek extends BaseCount<DayOfWeek>
+public class DayOfWeek extends BaseTime<DayOfWeek>
 {
     public static final DayOfWeek MONDAY = isoDayOfWeek(0);
 
@@ -140,7 +141,17 @@ public class DayOfWeek extends BaseCount<DayOfWeek>
         ISO,
 
         /** Java day of the week numbering is from 1 to 7 */
-        JAVA
+        JAVA;
+
+        public int asIso(int dayOfWeek)
+        {
+            return this == ISO ? dayOfWeek : dayOfWeek - 1;
+        }
+
+        public int asJava(int dayOfWeek)
+        {
+            return this == JAVA ? dayOfWeek : dayOfWeek + 1;
+        }
     }
 
     /** The day of the week numbering standard */
@@ -149,7 +160,7 @@ public class DayOfWeek extends BaseCount<DayOfWeek>
     @NoTestRequired
     protected DayOfWeek(int dayOfWeek, Standard standard)
     {
-        super(dayOfWeek);
+        super(days(standard.asIso(dayOfWeek)).milliseconds());
 
         this.standard = ensureNotNull(standard);
 
@@ -165,7 +176,7 @@ public class DayOfWeek extends BaseCount<DayOfWeek>
     @Tested
     public HourOfWeek asHourOfWeek()
     {
-        return HourOfWeek.hourOfWeek(asIso() * 24);
+        return hourOfWeek(asIso() * 24);
     }
 
     /**
@@ -174,13 +185,13 @@ public class DayOfWeek extends BaseCount<DayOfWeek>
     @Tested
     public int asIso()
     {
-        return isIso() ? asInt() : asInt() - 1;
+        return standard.asIso(asInt());
     }
 
     @Tested
     public int asJava()
     {
-        return isJava() ? asInt() : asInt() + 1;
+        return standard.asJava(asInt());
     }
 
     @Tested
@@ -202,6 +213,11 @@ public class DayOfWeek extends BaseCount<DayOfWeek>
             default:
                 return asJavaDayOfWeek().name();
         }
+    }
+
+    public HourOfWeek at(Hour hour)
+    {
+        return hourOfWeek(this, hour);
     }
 
     @Override
@@ -244,7 +260,7 @@ public class DayOfWeek extends BaseCount<DayOfWeek>
 
     @Override
     @NoTestRequired
-    public DayOfWeek maximumInclusive()
+    public DayOfWeek maximum()
     {
         return SUNDAY;
     }

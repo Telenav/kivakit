@@ -151,7 +151,7 @@ public class Rate implements
     }
 
     @Override
-    public Rate maximumInclusive()
+    public Rate maximum()
     {
         return Rate.MAXIMUM;
     }

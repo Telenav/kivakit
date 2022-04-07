@@ -247,7 +247,8 @@ public class Duration implements
     public static Duration untilNextSecond()
     {
         var now = Time.now();
-        return now.roundUp(ONE_SECOND).minus(now);
+        var then = now.roundUp(ONE_SECOND);
+        return now.until(then);
     }
 
     @Tested

@@ -200,7 +200,7 @@ public class HourTest extends CoreUnitTest
     @Test
     public void testMaximum()
     {
-        ensureEqual(am(12).maximumInclusive(), militaryHour(23));
+        ensureEqual(am(12).maximum(), militaryHour(23));
     }
 
     @Test

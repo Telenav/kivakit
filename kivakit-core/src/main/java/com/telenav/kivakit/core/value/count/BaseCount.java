@@ -109,7 +109,7 @@ import static com.telenav.kivakit.core.value.count.Estimate.estimate;
  * <p><b>Minima and Maxima</b></p>
  *
  * <ul>
- *     <li>{@link #isMaximum()} - True if this count is {@link #maximumInclusive()}</li>
+ *     <li>{@link #isMaximum()} - True if this count is {@link #maximum()}</li>
  *     <li>{@link #isMinimum()} - True if this count is zero</li>
  *     <li>{@link #asMaximum()} - Converts this count to a {@link Maximum}</li>
  *     <li>{@link #asMinimum()} - Converts this count to a {@link Minimum}</li>
@@ -330,7 +330,7 @@ public abstract class BaseCount<SubClass extends BaseCount<SubClass>> implements
 
     public void forEachByte(Consumer<Byte> consumer)
     {
-        for (byte i = 0; i < maximumInclusive().asInt(); i++)
+        for (byte i = 0; i < maximum().asInt(); i++)
         {
             consumer.accept(i);
         }
@@ -338,7 +338,7 @@ public abstract class BaseCount<SubClass extends BaseCount<SubClass>> implements
 
     public void forEachInteger(Consumer<Integer> consumer)
     {
-        for (var i = 0; i < maximumInclusive().asInt(); i++)
+        for (var i = 0; i < maximum().asInt(); i++)
         {
             consumer.accept(i);
         }
@@ -354,7 +354,7 @@ public abstract class BaseCount<SubClass extends BaseCount<SubClass>> implements
 
     public void forEachShort(Consumer<Short> consumer)
     {
-        for (short i = 0; i < maximumInclusive().asInt(); i++)
+        for (short i = 0; i < maximum().asInt(); i++)
         {
             consumer.accept(i);
         }
@@ -382,7 +382,7 @@ public abstract class BaseCount<SubClass extends BaseCount<SubClass>> implements
 
     public SubClass inRangeInclusive(long value)
     {
-        if (value > maximumInclusive().asLong())
+        if (value > maximum().asLong())
         {
             return null;
         }
@@ -435,7 +435,7 @@ public abstract class BaseCount<SubClass extends BaseCount<SubClass>> implements
 
     public boolean isMaximum()
     {
-        return asLong() == maximumInclusive().asLong();
+        return asLong() == maximum().asLong();
     }
 
     public boolean isMinimum()
@@ -519,7 +519,7 @@ public abstract class BaseCount<SubClass extends BaseCount<SubClass>> implements
      * {@inheritDoc}
      */
     @Override
-    public SubClass maximumInclusive()
+    public SubClass maximum()
     {
         return newInstance(Long.MAX_VALUE);
     }
@@ -638,6 +638,15 @@ public abstract class BaseCount<SubClass extends BaseCount<SubClass>> implements
     public SubClass nextPrime()
     {
         return newInstance(Primes.primeAllocationSize(asInt()));
+    }
+
+    /**
+     * Returns the next value, but wraps around to {@link #minimum()} when {@link #next()} returns null.
+     */
+    public SubClass nextWrap()
+    {
+        var next = next();
+        return next == null ? minimum() : next;
     }
 
     public SubClass offset(long offset)

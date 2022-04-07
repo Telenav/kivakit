@@ -22,10 +22,9 @@ import com.telenav.kivakit.core.lexakai.DiagramTime;
 import com.telenav.kivakit.interfaces.numeric.Quantizable;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
-import java.time.Instant;
-import java.time.ZoneId;
-
-import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
+import static com.telenav.kivakit.core.time.Hour.militaryHour;
+import static com.telenav.kivakit.core.time.LocalTime.utcTimeZone;
+import static com.telenav.kivakit.core.time.Second.second;
 
 /**
  * An immutable <code>Time</code> class that represents a specific point in UNIX time. The underlying representation is
@@ -37,8 +36,9 @@ import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
  * @author Jonathan Locke
  * @since 1.2.6
  */
+@SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramTime.class)
-public class Time implements Quantizable
+public class Time extends BaseTime<Time> implements Quantizable
 {
     /** The beginning of UNIX time: January 1, 1970, 0:00 GMT. */
     public static final Time START_OF_UNIX_TIME = milliseconds(0);
@@ -89,8 +89,30 @@ public class Time implements Quantizable
         return milliseconds((long) (seconds * 1000));
     }
 
-    /** The number of milliseconds since start of UNIX time */
-    private long milliseconds;
+    public static Time utcTime(Year year, Month month, Day dayOfMonth, Hour hour)
+    {
+        return utcTime(year, month, dayOfMonth, hour, Minute.minute(0), second(0));
+    }
+
+    public static Time utcTime(Year year, Month month, Day dayOfMonth)
+    {
+        return utcTime(year, month, dayOfMonth, militaryHour(0));
+    }
+
+    public static Time utcTime(Year year, Month month)
+    {
+        return utcTime(year, month, Day.dayOfMonth(1), militaryHour(0));
+    }
+
+    public static Time utcTime(Year year,
+                               Month month,
+                               Day dayOfMonth,
+                               Hour hour,
+                               Minute minute,
+                               Second second)
+    {
+        return milliseconds(LocalTime.localTime(utcTimeZone(), year, month, dayOfMonth, hour, minute, second).asMilliseconds());
+    }
 
     /**
      * Private constructor forces use of static factory methods.
@@ -99,242 +121,29 @@ public class Time implements Quantizable
      */
     protected Time(long milliseconds)
     {
-        assert milliseconds >= 0;
-        this.milliseconds = milliseconds;
+        super(milliseconds);
     }
 
     protected Time()
     {
     }
 
-    public Instant asInstant()
+    @Override
+    public Time maximum()
     {
-        return Instant.ofEpochMilli(asMilliseconds());
-    }
-
-    /**
-     * Converts this time to a UNIX time stamp (milliseconds since the start of UNIX time on January 1, 1970)
-     *
-     * @return This time as milliseconds since 1970
-     */
-    public long asMilliseconds()
-    {
-        return milliseconds;
-    }
-
-    public int asSeconds()
-    {
-        return (int) (asMilliseconds() / 1000);
-    }
-
-    public int compareTo(Time that)
-    {
-        return Long.compare(asMilliseconds(), that.asMilliseconds());
-    }
-
-    /**
-     * Calculates the amount of time that has elapsed since this <code>Time</code> value.
-     *
-     * @return the amount of time that has elapsed since this <code>Time</code> value
-     */
-    public Duration elapsedSince()
-    {
-        var now = now();
-        if (isAfter(now))
-        {
-            return Duration.ZERO_DURATION;
-        }
-        return now.minus(this);
+        return MAXIMUM;
     }
 
     @Override
-    public boolean equals(Object object)
+    public Time minimum()
     {
-        if (object instanceof Time)
-        {
-            var that = (Time) object;
-            return milliseconds == that.milliseconds;
-        }
-        return false;
-    }
-
-    /**
-     * Retrieves the <code>Duration</code> from now to this <code>Time</code> value. If this
-     * <code>Time</code> value is in the past, then the <code>Duration</code> returned will be
-     * negative. Otherwise, it will be the number of milliseconds from now to this <code>Time</code> .
-     *
-     * @return the <code>Duration</code> from now to this <code>Time</code> value
-     */
-    public Duration fromNow()
-    {
-        var now = now();
-        if (isAfter(now))
-        {
-            return minus(now);
-        }
-        return Duration.ZERO_DURATION;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public int hashCode()
-    {
-        return Long.hashCode(milliseconds);
-    }
-
-    public boolean isAfter(Time that)
-    {
-        return milliseconds > that.milliseconds;
-    }
-
-    public boolean isAtOrAfter(Time that)
-    {
-        return milliseconds >= that.milliseconds;
-    }
-
-    public boolean isAtOrBefore(Time that)
-    {
-        return milliseconds <= that.milliseconds;
-    }
-
-    public boolean isBefore(Time that)
-    {
-        return milliseconds < that.milliseconds;
-    }
-
-    public boolean isNewerThan(Duration duration)
-    {
-        return elapsedSince().isLessThan(duration);
-    }
-
-    public boolean isNewerThan(Time that)
-    {
-        return isGreaterThan(that);
-    }
-
-    public boolean isNewerThanOrEqual(Duration duration)
-    {
-        return elapsedSince().isLessThanOrEqualTo(duration);
-    }
-
-    public boolean isNewerThanOrEqualTo(Time that)
-    {
-        return isGreaterThanOrEqualTo(that);
-    }
-
-    /**
-     * True if this time is now older than the given duration.
-     *
-     * @param duration Amount of time to be considered old
-     * @return True if the time that has elapsed since this time is greater than the given duration
-     */
-    public boolean isOlderThan(Duration duration)
-    {
-        return elapsedSince().isGreaterThan(duration);
-    }
-
-    public boolean isOlderThan(Time that)
-    {
-        return isLessThan(that);
-    }
-
-    public boolean isOlderThanOrEqual(Duration duration)
-    {
-        return elapsedSince().isGreaterThanOrEqualTo(duration);
-    }
-
-    public boolean isOlderThanOrEqualTo(Time that)
-    {
-        return isLessThanOrEqualTo(that);
-    }
-
-    /**
-     * @return The amount of time left until the given amount of time has elapsed
-     */
-    public Duration leftUntil(Duration elapsed)
-    {
-        return elapsed.minus(elapsedSince());
-    }
-
-    public LocalTime localTime()
-    {
-        return new LocalTime(LocalTime.localTimeZone(), this);
-    }
-
-    public LocalTime localTime(String zone)
-    {
-        return localTime(ZoneId.of(ensureNotNull(zone)));
-    }
-
-    public LocalTime localTime(ZoneId zone)
-    {
-        return new LocalTime(ensureNotNull(zone), this);
-    }
-
-    public Time maximum(Time that)
-    {
-        return isAfter(that) ? this : that;
-    }
-
-    public Time minimum(Time that)
-    {
-        return isBefore(that) ? this : that;
-    }
-
-    /**
-     * Subtracts the given <code>Duration</code> from this <code>Time</code> object, moving the time into the past.
-     *
-     * @param duration the <code>Duration</code> to subtract
-     * @return this duration of time
-     */
-    public Time minus(Duration duration)
-    {
-        return milliseconds(milliseconds - duration.milliseconds());
-    }
-
-    /**
-     * Subtract time from this and returns the difference as a <code>Duration</code> object.
-     *
-     * @param that the time to subtract
-     * @return the <code>Duration</code> between this and that time
-     */
-    public Duration minus(Time that)
-    {
-        return Duration.milliseconds(milliseconds - that.milliseconds);
-    }
-
-    public Time nearest(Duration unit)
-    {
-        return plus(unit.dividedBy(2)).roundDown(unit);
-    }
-
-    /**
-     * Adds the given <code>Duration</code> to this <code>Time</code> object, moving the time into the future.
-     *
-     * @param duration the <code>Duration</code> to add
-     * @return this <code>Time</code> + <code>Duration</code>
-     */
-    public Time plus(Duration duration)
-    {
-        return milliseconds(milliseconds + duration.milliseconds());
+        return START_OF_UNIX_TIME;
     }
 
     @Override
-    public long quantum()
+    public Time newInstance(long count)
     {
-        return milliseconds;
-    }
-
-    public Time roundDown(Duration unit)
-    {
-        return milliseconds(milliseconds / unit.milliseconds() * unit.milliseconds());
-    }
-
-    public Time roundUp(Duration unit)
-    {
-        return roundDown(unit).plus(unit);
+        return milliseconds(count);
     }
 
     @Override
