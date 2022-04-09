@@ -17,45 +17,59 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.Condition;
 
 /**
- * Functional interface to an object having a duration, measured in milliseconds.
+ * Interface to an object having a length of time, measured in milliseconds.
+ *
+ * <p><b>Conversion</b></p>
+ *
+ * <p>
+ * A length of time can be converted to specific time units by calling one of the following methods:
+ * <ul>
+ *     <li>{@link #asMilliseconds()}</li>
+ *     <li>{@link #asSeconds()}</li>
+ *     <li>{@link #asMinutes()}</li>
+ *     <li>{@link #asHours()}</li>
+ *     <li>{@link #asDays()}</li>
+ *     <li>{@link #asWeeks()}</li>
+ *     <li>{@link #asYears()}</li>
+ * </ul>
+ *
+ * <p><b>Arithmetic</b></p>
+ *
+ * <ul>
+ *     <li>{@link #plus(LengthOfTime)}</li>
+ *     <li>{@link #minus(LengthOfTime)}</li>
+ *     <li>{@link #times(double)}</li>
+ *     <li>{@link #dividedBy(double)}</li>
+ * </ul>
+ *
+ * <p><b>Comparison</b></p>
+ *
+ * <ul>
+ *     <li>{@link #compareTo(LengthOfTime)}</li>
+ *     <li>{@link #isLessThan(LengthOfTime)}</li>
+ *     <li>{@link #isLessThanOrEqualTo(LengthOfTime)}</li>
+ *     <li>{@link #isGreaterThan(LengthOfTime)}</li>
+ *     <li>{@link #isLessThanOrEqualTo(LengthOfTime)}</li>
+ *     <li>{@link #isApproximately(LengthOfTime, LengthOfTime)}</li>
+ *     <li>{@link #isZero()}</li>
+ *     <li>{@link #isNonZero()}</li>
+ * </ul>
  *
  * @author jonathanl (shibo)
  */
-@FunctionalInterface
+@SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramTime.class)
-public interface LengthOfTime extends
+public interface LengthOfTime<T extends LengthOfTime<T>> extends
         Quantizable,
-        Comparable<LengthOfTime>,
+        Comparable<LengthOfTime<?>>,
         Stringable
 {
-    LengthOfTime MAXIMUM = milliseconds(Long.MAX_VALUE);
-
-    LengthOfTime NONE = milliseconds(0);
-
     double WEEKS_PER_YEAR = 52.177457;
 
-    static LengthOfTime milliseconds(long milliseconds)
-    {
-        return () -> milliseconds;
-    }
-
-    default void after(Callback<Timer> onTimer)
-    {
-        var timer = new Timer();
-        timer.schedule(new TimerTask()
-        {
-            @Override
-            public void run()
-            {
-                onTimer.callback(timer);
-            }
-        }, milliseconds());
-    }
-
     /**
-     * Retrieves the number of days of the current <code>Duration</code>.
+     * Retrieves the number of days of the current Duration.
      *
-     * @return Number of days of the current <code>Duration</code>
+     * @return Number of days of the current Duration
      */
     default double asDays()
     {
@@ -63,9 +77,9 @@ public interface LengthOfTime extends
     }
 
     /**
-     * Retrieves the number of hours of the current <code>Duration</code>.
+     * Retrieves the number of hours of the current Duration.
      *
-     * @return number of hours of the current <code>Duration</code>
+     * @return number of hours of the current Duration
      */
     default double asHours()
     {
@@ -126,9 +140,9 @@ public interface LengthOfTime extends
     }
 
     /**
-     * Retrieves the number of minutes of the current <code>Duration</code>.
+     * Retrieves the number of minutes of the current Duration.
      *
-     * @return number of minutes of the current <code>Duration</code>
+     * @return number of minutes of the current Duration
      */
     default double asMinutes()
     {
@@ -136,9 +150,9 @@ public interface LengthOfTime extends
     }
 
     /**
-     * Retrieves the number of seconds of the current <code>Duration</code>.
+     * Retrieves the number of seconds of the current Duration.
      *
-     * @return number of seconds of the current <code>Duration</code>
+     * @return number of seconds of the current Duration
      */
     default double asSeconds()
     {
@@ -146,11 +160,12 @@ public interface LengthOfTime extends
     }
 
     /**
-     * Retrieves the <code>String</code> representation of this <code>Duration</code> in days, hours, minutes, seconds
-     * or milliseconds, as appropriate.
+     * Retrieves the String representation of this Duration in days, hours, minutes, seconds or milliseconds, as
+     * appropriate.
      *
-     * @return a <code>String</code> representation
+     * @return a String representation
      */
+    @Override
     @SuppressWarnings("SpellCheckingInspection")
     default String asString(Format format)
     {
@@ -202,9 +217,9 @@ public interface LengthOfTime extends
     }
 
     /**
-     * Retrieves the number of weeks of the current <code>Duration</code>.
+     * Retrieves the number of weeks of the current Duration.
      *
-     * @return Number of weeks of the current <code>Duration</code>
+     * @return Number of weeks of the current Duration
      */
     default double asWeeks()
     {
@@ -212,9 +227,9 @@ public interface LengthOfTime extends
     }
 
     /**
-     * Retrieves the number of years of the current <code>Duration</code>.
+     * Retrieves the number of years of the current Duration.
      *
-     * @return Number of years of the current <code>Duration</code>
+     * @return Number of years of the current Duration
      */
     default double asYears()
     {
@@ -241,49 +256,15 @@ public interface LengthOfTime extends
     /**
      * {@inheritDoc}
      */
-    default int compareTo(LengthOfTime that)
+    @Override
+    default int compareTo(LengthOfTime<?> that)
     {
         return Long.compare(milliseconds(), that.milliseconds());
     }
 
-    default LengthOfTime dividedBy(int value)
+    default T dividedBy(double value)
     {
-        return milliseconds(milliseconds() / value);
-    }
-
-    default boolean isApproximately(LengthOfTime that, LengthOfTime within)
-    {
-        return Math.abs(milliseconds() - that.milliseconds()) <= within.milliseconds();
-    }
-
-    default boolean isGreaterThan(LengthOfTime that)
-    {
-        return milliseconds() > that.milliseconds();
-    }
-
-    default boolean isGreaterThanOrEqualTo(LengthOfTime that)
-    {
-        return milliseconds() >= that.milliseconds();
-    }
-
-    default boolean isLessThan(LengthOfTime that)
-    {
-        return milliseconds() < that.milliseconds();
-    }
-
-    default boolean isLessThanOrEqualTo(LengthOfTime that)
-    {
-        return milliseconds() <= that.milliseconds();
-    }
-
-    default boolean isNone()
-    {
-        return milliseconds() == NONE.milliseconds();
-    }
-
-    default boolean isSome()
-    {
-        return !isNone();
+        return newInstance((long) (milliseconds() / value));
     }
 
     /**
@@ -291,14 +272,16 @@ public interface LengthOfTime extends
      */
     long milliseconds();
 
-    default LengthOfTime minus(int value)
+    default T minus(LengthOfTime<?> that)
     {
-        return milliseconds(milliseconds() - value);
+        return newInstance(milliseconds() - that.milliseconds());
     }
 
-    default LengthOfTime plus(int value)
+    T newInstance(long milliseconds);
+
+    default T plus(LengthOfTime<?> that)
     {
-        return milliseconds(milliseconds() + value);
+        return newInstance(milliseconds() + that.milliseconds());
     }
 
     /**
@@ -327,7 +310,7 @@ public interface LengthOfTime extends
     }
 
     /**
-     * Sleeps for the current <code>Duration</code>.
+     * Sleeps for the current Duration.
      */
     default void sleep()
     {
@@ -344,17 +327,17 @@ public interface LengthOfTime extends
         }
     }
 
-    default LengthOfTime times(double value)
+    default T times(double value)
     {
-        return milliseconds((long) (milliseconds() * value));
+        return newInstance((long) (milliseconds() * value));
     }
 
     /**
      * Converts a value to a unit-suffixed value, taking care of English singular/plural suffix.
      *
-     * @param value a <code>double</code> value to format
+     * @param value a double value to format
      * @param units the units to apply singular or plural suffix to
-     * @return a <code>String</code> representation
+     * @return a String representation
      */
     default String unitString(double value, String units)
     {
@@ -389,5 +372,18 @@ public interface LengthOfTime extends
                 return false;
             }
         }
+    }
+
+    default void waitThen(Callback<Timer> onTimer)
+    {
+        var timer = new Timer();
+        timer.schedule(new TimerTask()
+        {
+            @Override
+            public void run()
+            {
+                onTimer.callback(timer);
+            }
+        }, milliseconds());
     }
 }

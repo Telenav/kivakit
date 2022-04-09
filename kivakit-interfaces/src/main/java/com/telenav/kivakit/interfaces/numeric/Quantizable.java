@@ -21,8 +21,8 @@ package com.telenav.kivakit.interfaces.numeric;
 import com.telenav.kivakit.interfaces.collection.Indexed;
 import com.telenav.kivakit.interfaces.collection.LongKeyed;
 import com.telenav.kivakit.interfaces.factory.MapFactory;
-import com.telenav.kivakit.interfaces.model.Identifiable;
 import com.telenav.kivakit.interfaces.lexakai.DiagramNumeric;
+import com.telenav.kivakit.interfaces.model.Identifiable;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.Collection;
@@ -67,46 +67,20 @@ import java.util.Collection;
  *
  * @author jonathanl (shibo)
  */
+@SuppressWarnings("unused")
 @FunctionalInterface
 @UmlClassDiagram(diagram = DiagramNumeric.class)
 public interface Quantizable extends DoubleQuantizable
 {
-    static Quantizable quantizable(Integer value)
-    {
-        return () -> value;
-    }
-
-    static Quantizable quantizable(Long value)
-    {
-        return () -> value;
-    }
-
-    static int[] toIntArray(Collection<? extends Quantizable> values)
-    {
-        var array = new int[values.size()];
-        var index = 0;
-        for (Quantizable value : values)
-        {
-            array[index++] = (int) value.quantum();
-        }
-        return array;
-    }
-
-    static long[] toLongArray(Collection<? extends Quantizable> values)
-    {
-        var array = new long[values.size()];
-        var index = 0;
-        for (Quantizable value : values)
-        {
-            array[index++] = value.quantum();
-        }
-        return array;
-    }
-
     @Override
     default double doubleQuantum()
     {
         return quantum();
+    }
+
+    default boolean isApproximately(Quantizable that, Quantizable within)
+    {
+        return Math.abs(quantum() - that.quantum()) <= within.quantum();
     }
 
     default boolean isGreaterThan(Quantizable that)
@@ -140,7 +114,7 @@ public interface Quantizable extends DoubleQuantizable
     }
 
     /**
-     * @return The discrete value for this object
+     * Returns the discrete value for this object
      */
     long quantum();
 }

@@ -54,19 +54,19 @@ public class Hour extends BaseTime<Hour>
     private static final long millisecondsPer = 60 * 60 * 1_000;
 
     @Tested
-    public static Hour am(int hour)
+    public static Hour am(long hour)
     {
         return hourOfDay(hour, AM);
     }
 
     @Tested
-    public static Hour hour(int hour)
+    public static Hour hour(long hour)
     {
         return new Hour(HOUR, NO_MERIDIEM, hour);
     }
 
     @Tested
-    public static Hour hourOfDay(int hour, Meridiem meridiem)
+    public static Hour hourOfDay(long hour, Meridiem meridiem)
     {
         return new Hour(HOUR_OF_MERIDIEM, meridiem, hour);
     }
@@ -90,7 +90,7 @@ public class Hour extends BaseTime<Hour>
     }
 
     @Tested
-    public static Hour pm(int hour)
+    public static Hour pm(long hour)
     {
         return hourOfDay(hour, PM);
     }
@@ -251,9 +251,21 @@ public class Hour extends BaseTime<Hour>
     }
 
     @Override
+    public long millisecondsPerUnit()
+    {
+        return 60 * 60 * 1_000;
+    }
+
+    @Override
     public Hour minimum()
     {
         return militaryHour(0);
+    }
+
+    @Override
+    public Hour minus(long count)
+    {
+        return super.minus(hour(count));
     }
 
     @Override
@@ -282,6 +294,18 @@ public class Hour extends BaseTime<Hour>
             default:
                 return unsupported();
         }
+    }
+
+    @Override
+    public Hour offset(long offset)
+    {
+        return super.offset(offset);
+    }
+
+    @Override
+    public Hour plus(long count)
+    {
+        return super.plus(hour(count));
     }
 
     @Override

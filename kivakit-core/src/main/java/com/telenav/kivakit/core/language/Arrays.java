@@ -19,10 +19,12 @@
 package com.telenav.kivakit.core.language;
 
 import com.telenav.kivakit.core.lexakai.DiagramPrimitive;
+import com.telenav.kivakit.interfaces.numeric.Quantizable;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.lang.reflect.Array;
+import java.util.Collection;
 
 /**
  * Utility methods for working with arrays.
@@ -35,7 +37,7 @@ import java.lang.reflect.Array;
  *
  * @author jonathanl (shibo)
  */
-@UmlClassDiagram(diagram = DiagramPrimitive.class)
+@SuppressWarnings("unused") @UmlClassDiagram(diagram = DiagramPrimitive.class)
 @LexakaiJavadoc(complete = true)
 public class Arrays
 {
@@ -71,6 +73,28 @@ public class Arrays
             }
         }
         return false;
+    }
+
+    static int[] intArray(Collection<? extends Quantizable> values)
+    {
+        var array = new int[values.size()];
+        var index = 0;
+        for (Quantizable value : values)
+        {
+            array[index++] = (int) value.quantum();
+        }
+        return array;
+    }
+
+    static long[] longArray(Collection<? extends Quantizable> values)
+    {
+        var array = new long[values.size()];
+        var index = 0;
+        for (Quantizable value : values)
+        {
+            array[index++] = value.quantum();
+        }
+        return array;
     }
 
     /**

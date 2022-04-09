@@ -17,6 +17,7 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.telenav.kivakit.core.time;
+
 import com.telenav.kivakit.core.test.CoreUnitTest;
 import org.junit.Test;
 
@@ -50,6 +51,14 @@ public class TimeTest extends CoreUnitTest
     }
 
     @Test
+    public void testMinus()
+    {
+        var now = Time.now();
+        var later = now.plus(Duration.ONE_SECOND);
+        ensureEqual(Duration.ONE_SECOND, later.minus(now));
+    }
+
+    @Test
     public void testRoundDown()
     {
         var now = Time.now();
@@ -62,13 +71,5 @@ public class TimeTest extends CoreUnitTest
     {
         Time startOfToday = Time.now().localTime().startOfDay();
         ensure(Time.now().minus(startOfToday).isLessThanOrEqualTo(Duration.ONE_DAY));
-    }
-
-    @Test
-    public void testSubtract()
-    {
-        var now = Time.now();
-        var later = now.plus(Duration.ONE_SECOND);
-        ensureEqual(Duration.ONE_SECOND, later.minus(now));
     }
 }
