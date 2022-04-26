@@ -1,6 +1,6 @@
 package com.telenav.kivakit.conversion.core.language;
 
-import com.telenav.kivakit.core.test.CoreUnitTest;
+import com.telenav.kivakit.core.test.support.CoreUnitTest;
 import org.junit.Test;
 
 import java.util.List;

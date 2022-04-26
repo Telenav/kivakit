@@ -1,7 +1,7 @@
 package com.telenav.kivakit.conversion.core.value.count;
 
 import com.telenav.kivakit.conversion.core.value.CountConverter;
-import com.telenav.kivakit.core.test.CoreUnitTest;
+import com.telenav.kivakit.core.test.support.CoreUnitTest;
 import org.junit.Test;
 
 import java.util.Objects;

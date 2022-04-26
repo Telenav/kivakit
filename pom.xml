@@ -112,7 +112,8 @@
         <module>kivakit-component</module>
         <module>kivakit-commandline</module>
         <module>kivakit-application</module>
-
+        <module>kivakit-internal</module>
+        <module>kivakit-test</module>
     </modules>
 
 </project>

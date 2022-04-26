@@ -42,6 +42,12 @@
             <artifactId>javax.activation</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>com.telenav.kivakit</groupId>
+            <artifactId>kivakit-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+
     </dependencies>
 
 </project>

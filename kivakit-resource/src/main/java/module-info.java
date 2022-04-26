@@ -59,5 +59,4 @@ open module kivakit.resource
     exports com.telenav.kivakit.resource.spi;
     exports com.telenav.kivakit.resource.writing;
     exports com.telenav.kivakit.resource;
-    exports com.telenav.kivakit.test;
 }

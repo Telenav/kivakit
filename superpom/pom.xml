@@ -135,7 +135,7 @@
 
         <maven.version>3.8.1</maven.version>
         <maven-antrun-plugin.version>3.0.0</maven-antrun-plugin.version>
-        <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
+        <maven-compiler-plugin.version>3.10.1</maven-compiler-plugin.version>
         <maven-gpg-plugin.version>1.6</maven-gpg-plugin.version>
         <maven-jar-plugin.version>2.4</maven-jar-plugin.version>
         <maven-javadoc-plugin.version>3.3.1</maven-javadoc-plugin.version>
@@ -518,7 +518,7 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-surefire-plugin</artifactId>
-                    <version>3.0.0-M5</version>
+                    <version>3.0.0-M6</version>
                     <configuration>
                         <excludedGroups>${exclude.test.groups}</excludedGroups>
                         <systemPropertyVariables>
@@ -959,6 +959,21 @@
                 <artifactId>kivakit-mixins</artifactId>
                 <version>${kivakit.version}</version>
             </dependency>
+            <dependency>
+                <groupId>com.telenav.kivakit</groupId>
+                <artifactId>kivakit-test-internal</artifactId>
+                <version>${kivakit.version}</version>
+            </dependency>            
+            <dependency>
+                <groupId>com.telenav.kivakit</groupId>
+                <artifactId>kivakit-resource-tests</artifactId>
+                <version>${kivakit.version}</version>
+            </dependency>            
+            <dependency>
+                <groupId>com.telenav.kivakit</groupId>
+                <artifactId>kivakit-test</artifactId>
+                <version>${kivakit.version}</version>
+            </dependency>            
             <dependency>
                 <groupId>com.telenav.kivakit</groupId>
                 <artifactId>kivakit-conversion</artifactId>

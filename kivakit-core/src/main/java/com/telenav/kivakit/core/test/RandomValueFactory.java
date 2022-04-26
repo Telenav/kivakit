@@ -25,7 +25,6 @@ import com.telenav.kivakit.core.lexakai.DiagramTest;
 import com.telenav.kivakit.core.logging.Logger;
 import com.telenav.kivakit.core.logging.LoggerFactory;
 import com.telenav.kivakit.core.messaging.Debug;
-import com.telenav.kivakit.core.test.CoreUnitTest.Repeats;
 import com.telenav.kivakit.core.value.count.BaseCount;
 import com.telenav.kivakit.core.value.count.Count;
 import com.telenav.kivakit.core.value.count.Range;
@@ -44,8 +43,8 @@ import java.util.Random;
 import java.util.function.Consumer;
 
 import static com.telenav.kivakit.core.ensure.Ensure.ensure;
-import static com.telenav.kivakit.core.test.CoreUnitTest.Repeats.ALLOW_REPEATS;
-import static com.telenav.kivakit.core.test.CoreUnitTest.Repeats.NO_REPEATS;
+import static com.telenav.kivakit.core.test.Repeats.ALLOW_REPEATS;
+import static com.telenav.kivakit.core.test.Repeats.NO_REPEATS;
 import static com.telenav.kivakit.core.value.count.Count._256;
 import static com.telenav.kivakit.core.value.count.Count._65_536;
 import static com.telenav.kivakit.core.value.count.Count.count;
