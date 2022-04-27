@@ -1,7 +1,7 @@
 package com.telenav.kivakit.conversion.core.language.primitive;
 
 import com.telenav.kivakit.core.messaging.Listener;
-import com.telenav.kivakit.core.test.CoreUnitTest;
+import com.telenav.kivakit.core.test.support.CoreUnitTest;
 import org.junit.Test;
 
 public class PrimitiveConverterTest extends CoreUnitTest

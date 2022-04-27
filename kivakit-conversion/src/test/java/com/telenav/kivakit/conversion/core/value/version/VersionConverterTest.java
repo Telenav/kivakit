@@ -1,7 +1,7 @@
 package com.telenav.kivakit.conversion.core.value.version;
 
 import com.telenav.kivakit.conversion.core.value.VersionConverter;
-import com.telenav.kivakit.core.test.CoreUnitTest;
+import com.telenav.kivakit.core.test.support.CoreUnitTest;
 import com.telenav.kivakit.core.version.Version;
 import org.junit.Test;
 

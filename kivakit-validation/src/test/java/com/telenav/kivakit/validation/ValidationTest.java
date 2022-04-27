@@ -19,7 +19,7 @@
 package com.telenav.kivakit.validation;
 
 import com.telenav.kivakit.core.ensure.Ensure;
-import com.telenav.kivakit.core.test.CoreUnitTest;
+import com.telenav.kivakit.core.test.support.CoreUnitTest;
 
 public class ValidationTest extends CoreUnitTest
 {
