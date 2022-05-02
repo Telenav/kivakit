@@ -1,6 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <!--/////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
 <!--                                                                                                                 -->
-<!--  © 2011-2021 Telenav, Inc.                                                                                      -->
+<!--  © 2011-2022 Telenav, Inc.                                                                                      -->
 <!--  Licensed under Apache License, Version 2.0                                                                     -->
 <!--                                                                                                                 -->
 <!--/////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
@@ -11,10 +12,10 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.telenav.kivakit</groupId>
-        <artifactId>kivakit-network</artifactId>
+        <artifactId>superpom</artifactId>
         <version>1.5.1-SNAPSHOT</version>
+        <relativePath>../../superpom</relativePath>
     </parent>
-
     <artifactId>kivakit-network-ftp</artifactId>
     <packaging>jar</packaging>
 
