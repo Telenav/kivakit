@@ -3,6 +3,7 @@ package com.telenav.kivakit.interfaces.time;
 import com.telenav.kivakit.interfaces.code.Callback;
 import com.telenav.kivakit.interfaces.lexakai.DiagramTime;
 import com.telenav.kivakit.interfaces.numeric.Quantizable;
+import com.telenav.kivakit.interfaces.numeric.QuantumComparable;
 import com.telenav.kivakit.interfaces.string.Stringable;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import org.jetbrains.annotations.NotNull;
@@ -46,11 +47,11 @@ import java.util.concurrent.locks.Condition;
  *
  * <ul>
  *     <li>{@link #compareTo(LengthOfTime)}</li>
- *     <li>{@link #isLessThan(LengthOfTime)}</li>
- *     <li>{@link #isLessThanOrEqualTo(LengthOfTime)}</li>
- *     <li>{@link #isGreaterThan(LengthOfTime)}</li>
- *     <li>{@link #isLessThanOrEqualTo(LengthOfTime)}</li>
- *     <li>{@link #isApproximately(LengthOfTime, LengthOfTime)}</li>
+ *     <li>{@link #isLessThan(Quantizable)}</li>
+ *     <li>{@link #isLessThanOrEqualTo(Quantizable)}</li>
+ *     <li>{@link #isGreaterThan(Quantizable)}</li>
+ *     <li>{@link #isLessThanOrEqualTo(Quantizable)}</li>
+ *     <li>{@link #isApproximately(Quantizable, Quantizable)}</li>
  *     <li>{@link #isZero()}</li>
  *     <li>{@link #isNonZero()}</li>
  * </ul>
@@ -61,6 +62,7 @@ import java.util.concurrent.locks.Condition;
 @UmlClassDiagram(diagram = DiagramTime.class)
 public interface LengthOfTime<T extends LengthOfTime<T>> extends
         Quantizable,
+        QuantumComparable<LengthOfTime<?>>,
         Comparable<LengthOfTime<?>>,
         Stringable
 {

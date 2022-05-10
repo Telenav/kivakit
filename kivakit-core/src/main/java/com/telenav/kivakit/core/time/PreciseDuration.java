@@ -23,7 +23,9 @@ import com.telenav.kivakit.interfaces.time.LengthOfTime;
 import java.lang.management.ManagementFactory;
 import java.lang.management.ThreadMXBean;
 
-public class PreciseDuration implements LengthOfTime
+public class PreciseDuration implements
+        LengthOfTime<PreciseDuration>,
+        Comparable<LengthOfTime<?>>
 {
     private static final double WEEKS_PER_YEAR = 52.177457;
 
@@ -164,6 +166,12 @@ public class PreciseDuration implements LengthOfTime
     public PreciseDuration minus(PreciseDuration that)
     {
         return new PreciseDuration(nanoseconds - that.nanoseconds);
+    }
+
+    @Override
+    public PreciseDuration newInstance(long milliseconds)
+    {
+        return new PreciseDuration(milliseconds * 1_000_000);
     }
 
     public PreciseDuration plus(PreciseDuration that)

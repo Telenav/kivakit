@@ -20,6 +20,7 @@ package com.telenav.kivakit.interfaces.model;
 
 import com.telenav.kivakit.interfaces.numeric.Quantizable;
 import com.telenav.kivakit.interfaces.lexakai.DiagramModel;
+import com.telenav.kivakit.interfaces.numeric.QuantumComparable;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 /**
@@ -29,7 +30,9 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
  * @see Quantizable
  */
 @UmlClassDiagram(diagram = DiagramModel.class)
-public interface Identifiable extends Quantizable
+public interface Identifiable extends
+        Quantizable,
+        QuantumComparable<Identifiable>
 {
     /**
      * @return The identifier for this object

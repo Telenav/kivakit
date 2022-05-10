@@ -23,9 +23,8 @@ import com.telenav.kivakit.interfaces.collection.LongKeyed;
 import com.telenav.kivakit.interfaces.factory.MapFactory;
 import com.telenav.kivakit.interfaces.lexakai.DiagramNumeric;
 import com.telenav.kivakit.interfaces.model.Identifiable;
+import com.telenav.kivakit.interfaces.string.Stringable;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
-
-import java.util.Collection;
 
 /**
  * A quantizable object can be turned into a quantum. A quantum is a discrete value and is represented by the Java
@@ -60,47 +59,42 @@ import java.util.Collection;
  *     }
  * }</pre>
  *
- * <p>
- * A collection of quantizable values can be converted to an int[] with {@link #toIntArray(Collection)} or a long[] with
- * {@link #toLongArray(Collection)}.
- * </p>
- *
  * @author jonathanl (shibo)
  */
 @SuppressWarnings("unused")
 @FunctionalInterface
 @UmlClassDiagram(diagram = DiagramNumeric.class)
-public interface Quantizable extends DoubleQuantizable
+public interface Quantizable extends
+        DoubleQuantizable,
+        Stringable
 {
+    default String asCommaSeparatedString()
+    {
+        return String.format("%,d", quantum());
+    }
+
+    default String asSimpleString()
+    {
+        return Long.toString(quantum());
+    }
+
+    @SuppressWarnings("SwitchStatementWithTooFewBranches")
+    default String asString(Stringable.Format format)
+    {
+        switch (format)
+        {
+            case PROGRAMMATIC:
+                return asSimpleString();
+
+            default:
+                return asCommaSeparatedString();
+        }
+    }
+
     @Override
     default double doubleQuantum()
     {
         return quantum();
-    }
-
-    default boolean isApproximately(Quantizable that, Quantizable within)
-    {
-        return Math.abs(quantum() - that.quantum()) <= within.quantum();
-    }
-
-    default boolean isGreaterThan(Quantizable that)
-    {
-        return quantum() > that.quantum();
-    }
-
-    default boolean isGreaterThanOrEqualTo(Quantizable that)
-    {
-        return quantum() >= that.quantum();
-    }
-
-    default boolean isLessThan(Quantizable that)
-    {
-        return quantum() < that.quantum();
-    }
-
-    default boolean isLessThanOrEqualTo(Quantizable that)
-    {
-        return quantum() <= that.quantum();
     }
 
     default boolean isNonZero()

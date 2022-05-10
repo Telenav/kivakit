@@ -19,6 +19,7 @@
 package com.telenav.kivakit.interfaces.code;
 
 import com.telenav.kivakit.interfaces.collection.NextValue;
+import com.telenav.kivakit.interfaces.collection.Sized;
 import com.telenav.kivakit.interfaces.lexakai.DiagramCode;
 import com.telenav.kivakit.interfaces.numeric.Maximizable;
 import com.telenav.kivakit.interfaces.numeric.Minimizable;
@@ -43,8 +44,8 @@ import static java.util.Objects.requireNonNull;
 @FunctionalInterface
 public interface LoopBody<Value extends Minimizable<Value>
         & Maximizable<Value>
-        & Comparable<Value>
-        & NextValue<Value>>
+        & NextValue<Value>
+        & Sized>
 {
     /**
      * Executes the target code for next value in a sequence
@@ -62,7 +63,7 @@ public interface LoopBody<Value extends Minimizable<Value>
         requireNonNull(exclusiveMaximum);
 
         // Loop through values from minimum to maximum, exclusive,
-        for (Value value = minimum; value != null && value.compareTo(exclusiveMaximum) < 0; value = value.next())
+        for (Value value = minimum; value != null && value.size() < exclusiveMaximum.size(); value = value.next())
         {
             // and call the body.
             at(value);
@@ -78,7 +79,7 @@ public interface LoopBody<Value extends Minimizable<Value>
         requireNonNull(inclusiveMaximum);
 
         // Loop through values from minimum to maximum, exclusive,
-        for (Value value = minimum; value != null && value.compareTo(inclusiveMaximum) <= 0; value = value.next())
+        for (Value value = minimum; value != null && value.size() <= inclusiveMaximum.size(); value = value.next())
         {
             // and call the body.
             at(value);

@@ -156,8 +156,8 @@ public class Frequency
         @Tested
         public Duration waitTimeBeforeNextCycle()
         {
-            // If there is no cycle lenth,
-            if (cycleLength.isNone())
+            // If there is no cycle length,
+            if (cycleLength.isZero())
             {
                 // then it's always time for the next cycle.
                 return ZERO_DURATION;

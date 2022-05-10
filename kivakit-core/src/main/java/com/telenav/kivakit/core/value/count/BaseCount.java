@@ -9,6 +9,7 @@ import com.telenav.kivakit.interfaces.code.FilteredLoopBody.FilterAction;
 import com.telenav.kivakit.interfaces.code.LoopBody;
 import com.telenav.kivakit.interfaces.numeric.IntegerNumeric;
 import com.telenav.kivakit.interfaces.numeric.Quantizable;
+import com.telenav.kivakit.interfaces.numeric.QuantumComparable;
 import com.telenav.kivakit.interfaces.value.Source;
 
 import java.util.function.Consumer;
@@ -95,7 +96,7 @@ import static com.telenav.kivakit.core.value.count.Estimate.estimate;
  * <p><b>Comparison</b></p>
  *
  * <ul>
- *     <li>{@link #compareTo(SubClass)} - {@link Comparable#compareTo(Object)} implementation</li>
+ *     <li>{@link #compareTo(Countable)} - {@link Comparable#compareTo(Object)} implementation</li>
  *     <li>{@link #isLessThan(Quantizable)} - True if this count is less than the given quantum</li>
  *     <li>{@link #isGreaterThan(Quantizable)} - True if this count is greater than the given quantum</li>
  *     <li>{@link #isLessThanOrEqualTo(Quantizable)} - True if this count is less than or equal to the given quantum</li>
@@ -203,7 +204,10 @@ import static com.telenav.kivakit.core.value.count.Estimate.estimate;
 @SuppressWarnings("unused")
 public abstract class BaseCount<SubClass extends BaseCount<SubClass>> implements
         IntegerNumeric<SubClass>,
+        Quantizable,
         Countable,
+        Comparable<Countable>,
+        QuantumComparable<Countable>,
         Source<Long>
 {
     /** The underlying primitive cardinal number */
@@ -268,9 +272,9 @@ public abstract class BaseCount<SubClass extends BaseCount<SubClass>> implements
      * {@inheritDoc}
      */
     @Override
-    public int compareTo(SubClass that)
+    public int compareTo(Countable that)
     {
-        return Long.compare(asLong(), that.asLong());
+        return Long.compare(asLong(), that.size());
     }
 
     /**
@@ -407,30 +411,6 @@ public abstract class BaseCount<SubClass extends BaseCount<SubClass>> implements
     public boolean isBetweenInclusive(BaseCount<?> minimum, BaseCount<?> inclusiveMaximum)
     {
         return Longs.isBetweenInclusive(asLong(), minimum.asLong(), inclusiveMaximum.asLong());
-    }
-
-    @Override
-    public boolean isGreaterThan(Quantizable that)
-    {
-        return asLong() > that.quantum();
-    }
-
-    @Override
-    public boolean isGreaterThanOrEqualTo(Quantizable that)
-    {
-        return asLong() >= that.quantum();
-    }
-
-    @Override
-    public boolean isLessThan(Quantizable that)
-    {
-        return asLong() < that.quantum();
-    }
-
-    @Override
-    public boolean isLessThanOrEqualTo(Quantizable that)
-    {
-        return asLong() <= that.quantum();
     }
 
     public boolean isMaximum()

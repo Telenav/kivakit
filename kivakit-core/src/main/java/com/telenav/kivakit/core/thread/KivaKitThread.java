@@ -34,7 +34,6 @@ import com.telenav.kivakit.interfaces.lifecycle.Pausable;
 import com.telenav.kivakit.interfaces.lifecycle.Startable;
 import com.telenav.kivakit.interfaces.lifecycle.Stoppable;
 import com.telenav.kivakit.interfaces.naming.Named;
-import com.telenav.kivakit.interfaces.time.LengthOfTime;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import org.jetbrains.annotations.MustBeInvokedByOverriders;
@@ -60,8 +59,8 @@ import static com.telenav.kivakit.core.thread.KivaKitThread.State.WAITING;
  * During the lifecycle of a KivaKit thread, it transitions from one {@link State} to another as code executes and
  * methods are called to control execution. These states are managed with a {@link StateMachine}, which enables state
  * transitions and allows specific states to be waited on. The method {@link #state()} gives access to the {@link
- * StateMachine} and the convenience methods {@link #waitFor(State)} or {@link #waitFor(State, LengthOfTime)} allow
- * states to be waited for. In lifecycle-order, thread states are:
+ * StateMachine} and the convenience methods {@link #waitFor(State)} or {@link #waitFor(State, Duration)} allow states
+ * to be waited for. In lifecycle-order, thread states are:
  * </p>
  *
  * <ul>
@@ -103,9 +102,9 @@ import static com.telenav.kivakit.core.thread.KivaKitThread.State.WAITING;
  *     <li>{@link #interrupt()} - Interrupts this thread</li>
  *     <li>{@link #stop()} - Asks this thread to stop by transitioning to the {@link State#STOP_REQUESTED} state.
  *         When user code checks this value, it should return, causing the thread to exit. </li>
- *     <li>{@link #stop(LengthOfTime)} - Asks this thread to stop and waits for up to the given duration for it to reach {@link State#EXITED}</li>
+ *     <li>{@link #stop(Duration)} - Asks this thread to stop and waits for up to the given duration for it to reach {@link State#EXITED}</li>
  *     <li>{@link #waitFor(State)} - Waits for the given {@link State}</li>
- *     <li>{@link #waitFor(State, LengthOfTime)} - Waits for up to the given maximum duration for this thread to reach the given {@link State}</li>
+ *     <li>{@link #waitFor(State, Duration)} - Waits for up to the given maximum duration for this thread to reach the given {@link State}</li>
  * </ul>
  *
  * <p><b>Overrides</b></p>
@@ -132,7 +131,7 @@ import static com.telenav.kivakit.core.thread.KivaKitThread.State.WAITING;
 public class KivaKitThread extends BaseRepeater implements
         Startable,
         Runnable,
-        Stoppable,
+        Stoppable<Duration>,
         Named
 {
     private static final Logger LOGGER = LoggerFactory.newLogger();
@@ -335,6 +334,12 @@ public class KivaKitThread extends BaseRepeater implements
         return this;
     }
 
+    @Override
+    public Duration maximumWaitTime()
+    {
+        return Duration.MAXIMUM;
+    }
+
     /**
      * @return This thread's name
      */
@@ -431,7 +436,7 @@ public class KivaKitThread extends BaseRepeater implements
      * Attempt to stop this thread, waiting for the maximum specified time for it to exit
      */
     @Override
-    public void stop(LengthOfTime maximumWait)
+    public void stop(Duration maximumWait)
     {
         whileLocked(() ->
         {
@@ -456,7 +461,7 @@ public class KivaKitThread extends BaseRepeater implements
     /**
      * Wait for this thread to achieve the given states
      */
-    public void waitFor(State state, LengthOfTime maximumWait)
+    public void waitFor(State state, Duration maximumWait)
     {
         trace("Wait for $", state);
         state().waitFor(state, maximumWait);

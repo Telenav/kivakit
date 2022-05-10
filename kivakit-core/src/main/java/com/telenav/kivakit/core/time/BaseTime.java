@@ -7,8 +7,6 @@ import java.time.ZoneId;
 
 import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
 import static com.telenav.kivakit.core.ensure.Ensure.unsupported;
-import static com.telenav.kivakit.core.time.Duration.ZERO_DURATION;
-import static com.telenav.kivakit.core.time.Duration.milliseconds;
 import static com.telenav.kivakit.core.time.LocalTime.localTimeZone;
 import static com.telenav.kivakit.core.time.LocalTime.utcTimeZone;
 
@@ -124,34 +122,6 @@ public abstract class BaseTime<T extends BaseTime<T>> extends BaseCount<T>
         return asDays() / 7;
     }
 
-    /**
-     * Calculates the amount of time that has elapsed since this <code>Time</code> value.
-     *
-     * @return the amount of time that has elapsed since this <code>Time</code> value
-     */
-    public Duration elapsedSince()
-    {
-        return elapsedSince(Time.now());
-    }
-
-    /**
-     * Subtract time from this and returns the difference as a <code>Duration</code> object.
-     *
-     * @param that The time to subtract
-     * @return The <code>Duration</code> between this and that time
-     */
-    public Duration elapsedSince(BaseTime<?> that)
-    {
-        // If this time is after the given time,
-        if (isAfter(that))
-        {
-            // then we can subtract to get the duration.
-            return milliseconds(asMilliseconds() - that.asUtc().asMilliseconds());
-        }
-
-        return ZERO_DURATION;
-    }
-
     public LocalTime inTimeZone(ZoneId zone)
     {
         return LocalTime.localTime(ensureNotNull(zone), this);
@@ -160,7 +130,7 @@ public abstract class BaseTime<T extends BaseTime<T>> extends BaseCount<T>
     /**
      * @return True if this time value is after the given value
      */
-    public boolean isAfter(BaseTime<?> that)
+    public boolean isAfter(T that)
     {
         return isGreaterThan(that);
     }
@@ -168,7 +138,7 @@ public abstract class BaseTime<T extends BaseTime<T>> extends BaseCount<T>
     /**
      * @return True if this time value is at or after the given value
      */
-    public boolean isAtOrAfter(BaseTime<?> that)
+    public boolean isAtOrAfter(T that)
     {
         return isGreaterThanOrEqualTo(that);
     }
@@ -176,7 +146,7 @@ public abstract class BaseTime<T extends BaseTime<T>> extends BaseCount<T>
     /**
      * @return True if this time value is at or before the given value
      */
-    public boolean isAtOrBefore(BaseTime<?> that)
+    public boolean isAtOrBefore(T that)
     {
         return isLessThan(that);
     }
@@ -184,7 +154,7 @@ public abstract class BaseTime<T extends BaseTime<T>> extends BaseCount<T>
     /**
      * @return True if this time value is before the given value
      */
-    public boolean isBefore(BaseTime<?> that)
+    public boolean isBefore(T that)
     {
         return isLessThanOrEqualTo(that);
     }
@@ -195,72 +165,6 @@ public abstract class BaseTime<T extends BaseTime<T>> extends BaseCount<T>
     public boolean isLocal()
     {
         return false;
-    }
-
-    /**
-     * @return True if this time value is newer than the given {@link Duration}
-     */
-    public boolean isNewerThan(Duration duration)
-    {
-        return elapsedSince().isLessThan(duration);
-    }
-
-    /**
-     * @return True if this time value is newer than the given time value
-     */
-    public boolean isNewerThan(BaseTime<?> that)
-    {
-        return isGreaterThan(that);
-    }
-
-    /**
-     * @return True if this time value is newer than or equal to the given duration
-     */
-    public boolean isNewerThanOrEqual(Duration duration)
-    {
-        return elapsedSince().isLessThanOrEqualTo(duration);
-    }
-
-    /**
-     * @return True if this time value is newer than or equal to the given time value
-     */
-    public boolean isNewerThanOrEqualTo(BaseTime<?> that)
-    {
-        return isGreaterThanOrEqualTo(that);
-    }
-
-    /**
-     * True if this time is now older than the given duration.
-     *
-     * @param duration Amount of time to be considered old
-     * @return True if the time that has elapsed since this time is greater than the given duration
-     */
-    public boolean isOlderThan(Duration duration)
-    {
-        return elapsedSince().isGreaterThan(duration);
-    }
-
-    public boolean isOlderThan(BaseTime<?> that)
-    {
-        return isLessThan(that);
-    }
-
-    public boolean isOlderThanOrEqual(Duration duration)
-    {
-        return elapsedSince().isGreaterThanOrEqualTo(duration);
-    }
-
-    public boolean isOlderThanOrEqualTo(BaseTime<?> that)
-    {
-        return isLessThanOrEqualTo(that);
-    }
-
-    /**
-     * @return The amount of time left until the given amount of time has elapsed
-     */
-    public Duration leftUntil(Duration elapsed)
-    {
-        return elapsed.minus(elapsedSince());
     }
 
     public LocalTime localTime()
@@ -330,23 +234,6 @@ public abstract class BaseTime<T extends BaseTime<T>> extends BaseCount<T>
     public ZoneId timeZone()
     {
         return utcTimeZone();
-    }
-
-    public Duration until(Time that)
-    {
-        return that.elapsedSince(this);
-    }
-
-    /**
-     * Retrieves the <code>Duration</code> from now to this <code>Time</code> value. If this
-     * <code>Time</code> value is in the past, then the <code>Duration</code> returned will be
-     * negative. Otherwise, it will be the number of milliseconds from now to this <code>Time</code> .
-     *
-     * @return the <code>Duration</code> from now to this <code>Time</code> value
-     */
-    public Duration untilNow()
-    {
-        return until(Time.now());
     }
 
     protected long asUnits()

@@ -30,21 +30,27 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
  */
 @UmlClassDiagram(diagram = DiagramIo.class)
 @LexakaiJavadoc(complete = true)
-public interface Flushable
+public interface Flushable<T extends LengthOfTime<T>>
 {
     /**
      * Flushes the object waiting not more than the give duration for this to occur.
      *
      * @param maximumWaitTime The amount of time to wait before giving up on flushing. To achieve a blocking flush,
-     * simply pass in {@link LengthOfTime#MAXIMUM} as the wait time, or call {@link #flush()}.
+     * simply pass in a maximal length of time as the wait time, or call {@link #flush()}.
      */
-    void flush(LengthOfTime maximumWaitTime);
+    void flush(T maximumWaitTime);
 
     /**
      * Flush the object, waiting until finished doing so.
      */
     default void flush()
     {
-        flush(LengthOfTime.MAXIMUM);
+        flush(maximumWaitTime());
     }
+
+    /**
+     * @return The maximum time to wait when {@link #flush()} is called. Normally this is the largest duration possible,
+     * which for all practical purposes is "forever".
+     */
+    T maximumWaitTime();
 }

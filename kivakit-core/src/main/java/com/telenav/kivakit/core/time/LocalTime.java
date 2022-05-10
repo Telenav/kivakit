@@ -207,7 +207,7 @@ public class LocalTime extends Time
     }
 
     @Override
-    public Duration elapsedSince(BaseTime<?> thatTime)
+    public Duration elapsedSince(Time thatTime)
     {
         var that = inLocalZone(thatTime);
         return Duration.milliseconds(asMilliseconds() - that.asMilliseconds());

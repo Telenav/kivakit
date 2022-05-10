@@ -40,7 +40,6 @@ import com.telenav.kivakit.core.vm.ShutdownHook;
 import com.telenav.kivakit.interfaces.comparison.Filter;
 import com.telenav.kivakit.interfaces.lifecycle.Startable;
 import com.telenav.kivakit.interfaces.lifecycle.Stoppable;
-import com.telenav.kivakit.interfaces.time.LengthOfTime;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.ArrayList;
@@ -59,7 +58,10 @@ import static com.telenav.kivakit.core.vm.ShutdownHook.Order.LAST;
  */
 @SuppressWarnings("UseOfSystemOutOrSystemErr")
 @UmlClassDiagram(diagram = DiagramLogs.class)
-public abstract class BaseLog implements Startable, Stoppable, Log
+public abstract class BaseLog implements
+        Startable,
+        Stoppable<Duration>,
+        Log
 {
     private static volatile boolean isAsynchronous;
 
@@ -96,8 +98,6 @@ public abstract class BaseLog implements Startable, Stoppable, Log
     private final AtomicBoolean started = new AtomicBoolean();
 
     private RepeatingThread thread;
-
-    final StateWatcher<Boolean> queueEmpty = new StateWatcher<>(true);
 
     protected BaseLog()
     {
@@ -155,7 +155,7 @@ public abstract class BaseLog implements Startable, Stoppable, Log
     }
 
     @Override
-    public void flush(LengthOfTime maximumWaitTime)
+    public void flush(Duration maximumWaitTime)
     {
         if (thread != null)
         {
@@ -221,6 +221,12 @@ public abstract class BaseLog implements Startable, Stoppable, Log
                 }
             }
         }
+    }
+
+    @Override
+    public final Duration maximumWaitTime()
+    {
+        return Duration.MAXIMUM;
     }
 
     /**
@@ -305,7 +311,7 @@ public abstract class BaseLog implements Startable, Stoppable, Log
     }
 
     @Override
-    public void stop(LengthOfTime wait)
+    public void stop(Duration wait)
     {
         close();
         flush(wait);
@@ -383,4 +389,6 @@ public abstract class BaseLog implements Startable, Stoppable, Log
         }
         return success;
     }
+
+    final StateWatcher<Boolean> queueEmpty = new StateWatcher<>(true);
 }

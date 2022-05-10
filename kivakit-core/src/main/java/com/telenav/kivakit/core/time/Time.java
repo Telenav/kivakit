@@ -19,9 +19,9 @@
 package com.telenav.kivakit.core.time;
 
 import com.telenav.kivakit.core.lexakai.DiagramTime;
-import com.telenav.kivakit.interfaces.numeric.Quantizable;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
+import static com.telenav.kivakit.core.time.Duration.ZERO_DURATION;
 import static com.telenav.kivakit.core.time.Hour.militaryHour;
 import static com.telenav.kivakit.core.time.LocalTime.utcTimeZone;
 import static com.telenav.kivakit.core.time.Second.second;
@@ -38,7 +38,7 @@ import static com.telenav.kivakit.core.time.Second.second;
  */
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramTime.class)
-public class Time extends BaseTime<Time> implements Quantizable
+public class Time extends BaseTime<Time>
 {
     /** The beginning of UNIX time: January 1, 1970, 0:00 GMT. */
     public static final Time START_OF_UNIX_TIME = milliseconds(0);
@@ -128,6 +128,100 @@ public class Time extends BaseTime<Time> implements Quantizable
     {
     }
 
+    /**
+     * Calculates the amount of time that has elapsed since this <code>Time</code> value.
+     *
+     * @return the amount of time that has elapsed since this <code>Time</code> value
+     */
+    public Duration elapsedSince()
+    {
+        return elapsedSince(Time.now());
+    }
+
+    /**
+     * Subtract time from this and returns the difference as a <code>Duration</code> object.
+     *
+     * @param that The time to subtract
+     * @return The <code>Duration</code> between this and that time
+     */
+    public Duration elapsedSince(Time that)
+    {
+        // If this time is after the given time,
+        if (isAfter(that))
+        {
+            // then we can subtract to get the duration.
+            return Duration.milliseconds(asMilliseconds() - that.asUtc().asMilliseconds());
+        }
+
+        return ZERO_DURATION;
+    }
+
+    /**
+     * @return True if this time value is newer than the given {@link Duration}
+     */
+    public boolean isNewerThan(Duration duration)
+    {
+        return elapsedSince().isLessThan(duration);
+    }
+
+    /**
+     * @return True if this time value is newer than the given time value
+     */
+    public boolean isNewerThan(Time that)
+    {
+        return isGreaterThan(that);
+    }
+
+    /**
+     * @return True if this time value is newer than or equal to the given duration
+     */
+    public boolean isNewerThanOrEqual(Duration duration)
+    {
+        return elapsedSince().isLessThanOrEqualTo(duration);
+    }
+
+    /**
+     * @return True if this time value is newer than or equal to the given time value
+     */
+    public boolean isNewerThanOrEqualTo(Time that)
+    {
+        return isGreaterThanOrEqualTo(that);
+    }
+
+    /**
+     * True if this time is now older than the given duration.
+     *
+     * @param duration Amount of time to be considered old
+     * @return True if the time that has elapsed since this time is greater than the given duration
+     */
+    public boolean isOlderThan(Duration duration)
+    {
+        return elapsedSince().isGreaterThan(duration);
+    }
+
+    public boolean isOlderThan(Time that)
+    {
+        return isLessThan(that);
+    }
+
+    public boolean isOlderThanOrEqual(Duration duration)
+    {
+        return elapsedSince().isGreaterThanOrEqualTo(duration);
+    }
+
+    public boolean isOlderThanOrEqualTo(Time that)
+    {
+        return isLessThanOrEqualTo(that);
+    }
+
+    /**
+     * @return The amount of time left until the given amount of time has elapsed
+     */
+    public Duration leftUntil(Duration elapsed)
+    {
+        return elapsed.minus(elapsedSince());
+    }
+
     @Override
     public Time maximum()
     {
@@ -150,6 +244,23 @@ public class Time extends BaseTime<Time> implements Quantizable
     public String toString()
     {
         return localTime().toString();
+    }
+
+    public Duration until(Time that)
+    {
+        return that.elapsedSince(this);
+    }
+
+    /**
+     * Retrieves the <code>Duration</code> from now to this <code>Time</code> value. If this
+     * <code>Time</code> value is in the past, then the <code>Duration</code> returned will be
+     * negative. Otherwise, it will be the number of milliseconds from now to this <code>Time</code> .
+     *
+     * @return the <code>Duration</code> from now to this <code>Time</code> value
+     */
+    public Duration untilNow()
+    {
+        return until(Time.now());
     }
 
     public LocalTime utc()

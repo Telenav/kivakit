@@ -40,7 +40,7 @@ import java.util.Map;
 public class CacheMap<Key, Value> extends BaseMap<Key, Value>
 {
     /** The time that each entry was added or updated */
-    private final Map<Key, Time> age = new HashMap<>();
+    private final Map<Key, Time> updated = new HashMap<>();
 
     /** The maximum allowed age of an entry */
     private final Duration maximumEntryAge;
@@ -79,7 +79,7 @@ public class CacheMap<Key, Value> extends BaseMap<Key, Value>
     {
         if (expireOldEntries)
         {
-            var age = this.age.get(key);
+            var age = this.updated.get(key).elapsedSince();
             if (age != null && age.isGreaterThan(maximumEntryAge))
             {
                 remove(key);
@@ -94,7 +94,7 @@ public class CacheMap<Key, Value> extends BaseMap<Key, Value>
     {
         if (expireOldEntries)
         {
-            age.put(key, Time.now());
+            updated.put(key, Time.now());
         }
         return super.put(key, value);
     }
@@ -104,7 +104,7 @@ public class CacheMap<Key, Value> extends BaseMap<Key, Value>
     {
         if (expireOldEntries)
         {
-            age.remove(key);
+            updated.remove(key);
         }
         return super.remove(key);
     }

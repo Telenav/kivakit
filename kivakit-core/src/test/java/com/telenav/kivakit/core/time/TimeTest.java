@@ -69,7 +69,7 @@ public class TimeTest extends CoreUnitTest
     @Test
     public void testStartOfToday()
     {
-        Time startOfToday = Time.now().localTime().startOfDay();
+        var startOfToday = Time.now().localTime().startOfDay();
         ensure(Time.now().minus(startOfToday).isLessThanOrEqualTo(Duration.ONE_DAY));
     }
 }

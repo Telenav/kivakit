@@ -18,14 +18,14 @@
 
 package com.telenav.kivakit.core.logging.loggers;
 
-import com.telenav.kivakit.core.messaging.Message;
+import com.telenav.kivakit.core.lexakai.DiagramLogging;
 import com.telenav.kivakit.core.logging.LogEntry;
 import com.telenav.kivakit.core.logging.Logger;
 import com.telenav.kivakit.core.logging.LoggerCodeContext;
-import com.telenav.kivakit.core.lexakai.DiagramLogging;
-import com.telenav.kivakit.interfaces.comparison.Filter;
-import com.telenav.kivakit.interfaces.time.LengthOfTime;
+import com.telenav.kivakit.core.messaging.Message;
+import com.telenav.kivakit.core.time.Duration;
 import com.telenav.kivakit.core.time.Time;
+import com.telenav.kivakit.interfaces.comparison.Filter;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.List;
@@ -62,7 +62,7 @@ public class NullLogger implements Logger
     }
 
     @Override
-    public void flush(LengthOfTime maximumWaitTime)
+    public void flush(Duration maximumWaitTime)
     {
     }
 
@@ -74,6 +74,12 @@ public class NullLogger implements Logger
     @Override
     public void log(LoggerCodeContext context, Thread thread, Message message)
     {
+    }
+
+    @Override
+    public Duration maximumWaitTime()
+    {
+        return Duration.MAXIMUM;
     }
 
     @Override

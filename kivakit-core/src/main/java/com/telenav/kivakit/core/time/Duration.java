@@ -23,8 +23,6 @@ import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.test.NoTestRequired;
 import com.telenav.kivakit.core.test.Tested;
 import com.telenav.kivakit.core.value.level.Percent;
-import com.telenav.kivakit.interfaces.numeric.Quantizable;
-import com.telenav.kivakit.interfaces.string.Stringable;
 import com.telenav.kivakit.interfaces.time.LengthOfTime;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
@@ -81,10 +79,7 @@ import static java.util.regex.Pattern.CASE_INSENSITIVE;
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramTime.class)
 @Tested
-public class Duration implements
-        Stringable,
-        Quantizable,
-        LengthOfTime
+public class Duration implements LengthOfTime<Duration>
 {
     /** Constant for maximum duration. */
     public static final Duration MAXIMUM = milliseconds(Long.MAX_VALUE);
@@ -353,7 +348,7 @@ public class Duration implements
 
     @Override
     @Tested
-    public Duration dividedBy(int divisor)
+    public Duration dividedBy(double divisor)
     {
         return milliseconds(milliseconds / divisor);
     }
@@ -466,6 +461,12 @@ public class Duration implements
         return hours(Math.round(asHours()));
     }
 
+    @Override
+    public Duration newInstance(long milliseconds)
+    {
+        return milliseconds(milliseconds);
+    }
+
     @Tested
     public Percent percentageOf(Duration that)
     {
@@ -476,6 +477,12 @@ public class Duration implements
     public Duration plus(Duration that)
     {
         return milliseconds(milliseconds + that.milliseconds);
+    }
+
+    @Override
+    public long quantum()
+    {
+        return milliseconds();
     }
 
     @Tested

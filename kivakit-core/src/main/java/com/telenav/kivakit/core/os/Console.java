@@ -1,8 +1,8 @@
 package com.telenav.kivakit.core.os;
 
 import com.telenav.kivakit.core.string.Strings;
+import com.telenav.kivakit.core.time.Duration;
 import com.telenav.kivakit.interfaces.io.Flushable;
-import com.telenav.kivakit.interfaces.time.LengthOfTime;
 
 import java.io.PrintStream;
 import java.io.PrintWriter;
@@ -10,7 +10,7 @@ import java.io.PrintWriter;
 import static com.telenav.kivakit.core.os.Console.OutputType.ERROR;
 import static com.telenav.kivakit.core.os.Console.OutputType.NORMAL;
 
-public class Console implements Flushable
+public class Console implements Flushable<Duration>
 {
     public static Console get()
     {
@@ -54,9 +54,15 @@ public class Console implements Flushable
     }
 
     @Override
-    public void flush(LengthOfTime maximumWaitTime)
+    public void flush(Duration maximumWaitTime)
     {
         NORMAL.stream().flush();
         ERROR.stream().flush();
+    }
+
+    @Override
+    public Duration maximumWaitTime()
+    {
+        return Duration.MAXIMUM;
     }
 }
