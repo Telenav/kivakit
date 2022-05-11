@@ -13,7 +13,11 @@ import java.util.TimeZone;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.concurrent.TimeUnit;
-import java.util.concurrent.locks.Condition;
+
+import static com.telenav.kivakit.interfaces.time.WakeState.COMPLETED;
+import static com.telenav.kivakit.interfaces.time.WakeState.INTERRUPTED;
+import static com.telenav.kivakit.interfaces.time.WakeState.TERMINATED;
+import static com.telenav.kivakit.interfaces.time.WakeState.TIMED_OUT;
 
 /**
  * Interface to an object having a length of time, measured in nanoseconds.
@@ -69,7 +73,7 @@ import java.util.concurrent.locks.Condition;
  * <p><b>Operations</b></p>
  *
  * <ul>
- *     <li>{@link #await(Condition)}</li>
+ *     <li>{@link #await(Awaitable)}</li>
  *     <li>{@link #repeat(Callback)}</li>
  *     <li>{@link #sleep()}</li>
  *     <li>{@link #wait(Object)}</li>
@@ -150,20 +154,26 @@ public interface LengthOfTime<Duration extends LengthOfTime<Duration>> extends
     }
 
     /**
-     * Waits for the given {@link Condition} variable to be true
-     *
-     * @param condition The condition variable
+     * Wait for the given operation to complete or time out.
      */
-    default boolean await(Condition condition)
+    default WakeState await(Awaitable awaitable)
     {
         try
         {
-            return condition.await(nanoseconds(), TimeUnit.NANOSECONDS);
+            if (awaitable.await(nanoseconds(), TimeUnit.NANOSECONDS))
+            {
+                return COMPLETED;
+            }
+            return TIMED_OUT;
         }
-        catch (InterruptedException ignored)
+        catch (InterruptedException e)
         {
+            return INTERRUPTED;
         }
-        return false;
+        catch (Exception e)
+        {
+            return TERMINATED;
+        }
     }
 
     /**

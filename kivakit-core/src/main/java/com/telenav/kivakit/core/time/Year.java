@@ -1,21 +1,22 @@
 package com.telenav.kivakit.core.time;
 
 import static com.telenav.kivakit.core.ensure.Ensure.ensure;
-import static com.telenav.kivakit.core.ensure.Ensure.unsupported;
 import static com.telenav.kivakit.core.time.LocalTime.utcTimeZone;
 
 @SuppressWarnings("unused")
 public class Year extends BaseTime<Year>
 {
+    static final long nanosecondsPerYear = (long) (365.25 * Day.nanosecondsPerDay);
+
     public static Year year(int year)
     {
-        ensure(year >= 1970 && year < 3000);
+        ensure(year >= 1970 && year < 2038, "Invalid year: $", year);
         return new Year(year);
     }
 
     protected Year(int year)
     {
-        super(year);
+        super(year * nanosecondsPerYear);
     }
 
     public Time at(Month month)
@@ -38,7 +39,7 @@ public class Year extends BaseTime<Year>
     @Override
     public long nanosecondsPerUnit()
     {
-        return unsupported();
+        return nanosecondsPerYear;
     }
 
     @Override

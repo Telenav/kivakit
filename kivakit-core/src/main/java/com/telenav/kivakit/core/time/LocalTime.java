@@ -49,7 +49,7 @@ public class LocalTime extends Time
     public static LocalTime localTime(ZoneId zone, LocalDateTime dateTime)
     {
         var milliseconds = dateTime.atZone(zone).toInstant().toEpochMilli();
-        return localTime(zone, milliseconds(milliseconds));
+        return milliseconds(zone, milliseconds);
     }
 
     public static LocalTime localTime(ZoneId zone, BaseTime<?> time)
@@ -96,17 +96,17 @@ public class LocalTime extends Time
 
     public static LocalTime milliseconds(ZoneId zone, long milliseconds)
     {
-        return new LocalTime(zone, milliseconds);
+        return new LocalTime(zone, millisecondsToNanoseconds(milliseconds));
     }
 
     public static LocalTime now()
     {
-        return Time.now().localTime();
+        return Time.now().asLocalTime();
     }
 
     public static LocalTime seconds(ZoneId zone, long seconds)
     {
-        return new LocalTime(zone, seconds * 1_000);
+        return milliseconds(zone, seconds * 1_000);
     }
 
     public static ZoneId utcTimeZone()
@@ -120,9 +120,10 @@ public class LocalTime extends Time
     {
     }
 
-    protected LocalTime(ZoneId zone, long milliseconds)
+    protected LocalTime(ZoneId zone, long nanoseconds)
     {
-        super(milliseconds);
+        super(nanoseconds);
+
         timeZone = zone;
     }
 
@@ -132,7 +133,7 @@ public class LocalTime extends Time
      */
     protected LocalTime(ZoneId zone, Time time)
     {
-        this(zone, time.milliseconds());
+        this(zone, time.nanoseconds());
     }
 
     public String asDateString()

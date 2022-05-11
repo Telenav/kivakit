@@ -16,18 +16,15 @@
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-package com.telenav.kivakit.core.thread;
+package com.telenav.kivakit.interfaces.time;
 
-import com.telenav.kivakit.core.lexakai.DiagramThread;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
-import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 /**
  * The reason why a thread completed, either it was interrupted, it timed out or it succeeded.
  *
  * @author jonathanl (shibo)
  */
-@UmlClassDiagram(diagram = DiagramThread.class)
 @LexakaiJavadoc(complete = true)
 public enum WakeState
 {

@@ -106,7 +106,7 @@ public class Day extends BaseTime<Day>
     @NoTestRequired
     protected Day(Type type, Standard standard, int day)
     {
-        super(day);
+        super(day * nanosecondsPerDay);
 
         this.type = type;
         this.standard = standard;

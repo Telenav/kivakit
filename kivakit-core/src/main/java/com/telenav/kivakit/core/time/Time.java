@@ -53,6 +53,11 @@ public class Time extends BaseTime<Time>
     /** The end of time */
     public static final Time MAXIMUM = milliseconds(Long.MAX_VALUE);
 
+    protected static long millisecondsToNanoseconds(long milliseconds)
+    {
+        return milliseconds * 1_000_000;
+    }
+
     /**
      * Retrieves a <code>Time</code> instance based on the given milliseconds.
      *
@@ -61,7 +66,7 @@ public class Time extends BaseTime<Time>
      */
     public static Time milliseconds(long milliseconds)
     {
-        return new Time(milliseconds);
+        return nanoseconds(millisecondsToNanoseconds(milliseconds));
     }
 
     /**
@@ -72,7 +77,7 @@ public class Time extends BaseTime<Time>
      */
     public static Time nanoseconds(long nanoseconds)
     {
-        return new Time(nanoseconds / 1_000_000);
+        return new Time(nanoseconds);
     }
 
     /**
@@ -121,11 +126,11 @@ public class Time extends BaseTime<Time>
     /**
      * Private constructor forces use of static factory methods.
      *
-     * @param milliseconds the <code>Time</code> value in milliseconds since START_OF_UNIX_TIME
+     * @param nanoseconds the <code>Time</code> value in milliseconds since START_OF_UNIX_TIME
      */
-    protected Time(long milliseconds)
+    protected Time(long nanoseconds)
     {
-        super(milliseconds);
+        super(nanoseconds);
     }
 
     protected Time()
@@ -134,7 +139,7 @@ public class Time extends BaseTime<Time>
 
     public LocalTime asLocalTime()
     {
-        return inTimeZone(timeZone());
+        return inTimeZone(localTimeZone());
     }
 
     public Time asUtc()
@@ -249,11 +254,6 @@ public class Time extends BaseTime<Time>
         return elapsed.minus(elapsedSince());
     }
 
-    public LocalTime localTime()
-    {
-        return inTimeZone(localTimeZone());
-    }
-
     @Override
     public Time maximum()
     {
@@ -292,7 +292,7 @@ public class Time extends BaseTime<Time>
     @Override
     public String toString()
     {
-        return localTime().toString();
+        return asLocalTime().toString();
     }
 
     public Duration until(Time that)
@@ -314,6 +314,6 @@ public class Time extends BaseTime<Time>
 
     public LocalTime utc()
     {
-        return localTime().utc();
+        return asLocalTime().utc();
     }
 }

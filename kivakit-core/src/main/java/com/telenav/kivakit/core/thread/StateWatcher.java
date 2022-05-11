@@ -23,6 +23,7 @@ import com.telenav.kivakit.core.thread.locks.Lock;
 import com.telenav.kivakit.interfaces.code.Code;
 import com.telenav.kivakit.interfaces.time.LengthOfTime;
 import com.telenav.kivakit.core.time.Duration;
+import com.telenav.kivakit.interfaces.time.WakeState;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
@@ -32,9 +33,9 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.Condition;
 import java.util.function.Predicate;
 
-import static com.telenav.kivakit.core.thread.WakeState.COMPLETED;
-import static com.telenav.kivakit.core.thread.WakeState.INTERRUPTED;
-import static com.telenav.kivakit.core.thread.WakeState.TIMED_OUT;
+import static com.telenav.kivakit.interfaces.time.WakeState.COMPLETED;
+import static com.telenav.kivakit.interfaces.time.WakeState.INTERRUPTED;
+import static com.telenav.kivakit.interfaces.time.WakeState.TIMED_OUT;
 
 /**
  * Allows a thread to wait for a particular state or for predicate to be satisfied by some other thread calling {@link

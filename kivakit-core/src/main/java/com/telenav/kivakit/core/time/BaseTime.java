@@ -208,6 +208,12 @@ public abstract class BaseTime<T extends BaseTime<T>> implements PointInTime<T, 
         return newTime(nanoseconds() + unitsToNanoseconds(units));
     }
 
+    @Override
+    public String toString()
+    {
+        return Integer.toString(asUnits());
+    }
+
     /**
      * <b>Not public API</b>
      * <p>

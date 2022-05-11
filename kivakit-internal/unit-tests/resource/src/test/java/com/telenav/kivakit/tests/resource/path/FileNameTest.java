@@ -37,7 +37,7 @@ public class FileNameTest extends UnitTest
     public void localTimeTest()
     {
         var now = Time.now();
-        var local = now.localTime();
+        var local = now.asLocalTime();
         trace("local = ${debug}", local);
         var utc = now.utc();
         trace("utx = ${debug}", utc);

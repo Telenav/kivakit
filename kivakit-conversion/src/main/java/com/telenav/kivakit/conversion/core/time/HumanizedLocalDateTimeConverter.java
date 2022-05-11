@@ -122,7 +122,7 @@ public class HumanizedLocalDateTimeConverter extends BaseStringConverter<LocalTi
 
     private String humanizedDate(LocalTime time)
     {
-        var now = Time.now().localTime();
+        var now = Time.now().asLocalTime();
         var nowYear = now.year();
         var nowDayOfYear = now.dayOfYear();
 
