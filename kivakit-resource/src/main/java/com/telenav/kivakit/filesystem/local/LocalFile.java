@@ -84,7 +84,7 @@ public class LocalFile extends BaseWritableResource implements FileService
 
     public LocalFile(String path)
     {
-        this(FilePath.parseFilePath(Listener.console(), path));
+        this(FilePath.parseFilePath(Listener.consoleListener(), path));
     }
 
     @Override
@@ -194,7 +194,7 @@ public class LocalFile extends BaseWritableResource implements FileService
     @Override
     public boolean lastModified(Time time)
     {
-        return file.setLastModified(time.asMilliseconds());
+        return file.setLastModified(time.milliseconds());
     }
 
     @Override

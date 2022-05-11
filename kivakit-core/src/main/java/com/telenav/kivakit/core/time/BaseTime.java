@@ -1,243 +1,230 @@
 package com.telenav.kivakit.core.time;
 
-import com.telenav.kivakit.core.value.count.BaseCount;
+import com.telenav.kivakit.core.test.Tested;
+import com.telenav.kivakit.interfaces.time.LengthOfTime;
+import com.telenav.kivakit.interfaces.time.PointInTime;
 
-import java.time.Instant;
-import java.time.ZoneId;
-
-import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
-import static com.telenav.kivakit.core.ensure.Ensure.unsupported;
-import static com.telenav.kivakit.core.time.LocalTime.localTimeZone;
-import static com.telenav.kivakit.core.time.LocalTime.utcTimeZone;
+import java.util.Objects;
 
 /**
- * Base class for time values:
+ * Base class for values representing a {@link PointInTime}:
  *
  * <ul>
+ *     <li>{@link Time}</li>
+ *     <li>{@link LocalTime}</li>
  *     <li>{@link Year}</li>
  *     <li>{@link Week}</li>
  *     <li>{@link Day}</li>
+ *     <li>{@link DayOfWeek}</li>
  *     <li>{@link Hour}</li>
+ *     <li>{@link HourOfWeek}</li>
  *     <li>{@link Minute}</li>
  *     <li>{@link Second}</li>
  * </ul>
  *
- * <p><b>Milliseconds and Units</b></p>
- *
- * <p>
- * Each time value is represented as a count of milliseconds by the base class {@link BaseCount},
- * which provides basic arithmetic operations. The number of milliseconds per unit is defined by
- * subclasses with {@link #millisecondsPerUnit()}, and units can be retrieved by subclasses
- * with {@link #asUnits()}. For example, {@link Hour#asUnits()} will return the number of hours,
- * based on the number of milliseconds.
- * </p>
- *
- * <p><b>Conversions</b></p>
+ * <p><b>Measurement</b></p>
  *
  * <ul>
- *     <li>{@link #asWeeks()}</li>
- *     <li>{@link #asDays()}</li>
- *     <li>{@link #asHours()}</li>
- *     <li>{@link #asMinutes()}</li>
- *     <li>{@link #asSeconds()}</li>
- *     <li>{@link #asMilliseconds()}</li>
+ *     <li>{@link #nanoseconds()}</li>
+ *     <li>{@link #milliseconds()}</li>
  * </ul>
  *
+ * <p><b>Units</b></p>
+ *
+ * <p>
+ * Each time value is represented as a number of nanoseconds which can be converted to/from a number of units.
+ * The number of nanoseconds per unit is defined by subclasses by overriding {@link #nanosecondsPerUnit()},
+ * and units can be retrieved by subclasses with {@link #asUnits()}. For example, {@link Hour#asUnits()}
+ * will return the number of hours, based on the number of nanoseconds.
+ * </p>
+ *
+ * <ul>
+ *     <li>{@link #asUnits()}</li>
+ *     <li>{@link #nanosecondsPerUnit()}</li>
+ *     <li>{@link #nanosecondsToUnits(long)}</li>
+ *     <li>{@link #unitsToNanoseconds(int)}</li>
+ * </ul>
+ *
+ * <p><b>Conversion</b></p>
+ *
+ * <p>
+ * A length of time can be converted to specific time units by calling one of the following methods:
+ * </p>
+ *
+ * <ul>
+ *     <li>{@link #asUnits()}</li>
+ *     <li>{@link #asJavaInstant()}</li>
+ *     <li>{@link #asNanoseconds()}</li>
+ *     <li>{@link #asMicroseconds()}</li>
+ *     <li>{@link #asMilliseconds()}</li>
+ *     <li>{@link #asSeconds()}</li>
+ *     <li>{@link #asMinutes()}</li>
+ *     <li>{@link #asHours()}</li>
+ *     <li>{@link #asDays()}</li>
+ *     <li>{@link #asWeeks()}</li>
+ *     <li>{@link #asYears()}</li>
+ * </ul>
+ *
+ * <p><b>Arithmetic</b></p>
+ *
+ * <ul>
+ *     <li>{@link #minus(PointInTime)}</li>
+ *     <li>{@link #minus(LengthOfTime)}</li>
+ *     <li>{@link #minus(int)}</li>
+ *     <li>{@link #plus(LengthOfTime)}</li>
+ *     <li>{@link #plus(int)}</li>
+ *     <li>{@link #next()}</li>
+ *     <li>{@link #nearest(LengthOfTime)}</li>
+ *     <li>{@link #roundUp(LengthOfTime)}</li>
+ *     <li>{@link #roundDown(LengthOfTime)}</li>
+ * </ul>
+ *
+ * <p><b>Implementation</b></p>
+ *
+ * <ul>
+ *     <li>{@link #newDuration(long)}</li>
+ * </ul>
+ *
+ * @see Time
+ * @see LocalTime
  * @see Year
  * @see Week
  * @see Day
+ * @see DayOfWeek
  * @see Hour
+ * @see HourOfWeek
+ * @see Minute
  * @see Second
  */
 @SuppressWarnings("unused")
-public abstract class BaseTime<T extends BaseTime<T>> extends BaseCount<T>
+public abstract class BaseTime<T extends BaseTime<T>> implements PointInTime<T, Duration>
 {
+    /** The number of nanoseconds since start of UNIX time */
+    private long nanoseconds;
+
     public BaseTime()
     {
     }
 
-    public BaseTime(long count)
+    public BaseTime(long nanoseconds)
     {
-        super(count);
+        this.nanoseconds = nanoseconds;
     }
 
     /**
-     * @return The number of days for this time value
+     * @return This point in time in units
      */
-    public double asDays()
+    public int asUnits()
     {
-        return asHours() / 24;
+        return nanosecondsToUnits(nanoseconds());
     }
 
     /**
-     * @return The number of hours for this time value
+     * @return This time minus one unit
      */
-    public double asHours()
+    public T decremented()
     {
-        return asMinutes() / 60;
-    }
-
-    /**
-     * @return A Java {@link Instant} for this time value
-     */
-    public Instant asInstant()
-    {
-        return Instant.ofEpochMilli(asMilliseconds());
-    }
-
-    /**
-     * @return The number of milliseconds since the start of the UNIX epoch on January 1, 1970
-     */
-    public long asMilliseconds()
-    {
-        return asLong();
-    }
-
-    /**
-     * @return The number of minutes for this time value
-     */
-    public double asMinutes()
-    {
-        return asSeconds() / 60;
-    }
-
-    /**
-     * @return The number of seconds for this time value
-     */
-    public double asSeconds()
-    {
-        return asMilliseconds() / 1000.0;
-    }
-
-    public Time asUtc()
-    {
-        return inTimeZone(utcTimeZone());
-    }
-
-    /**
-     * @return The number of weeks for this time value
-     */
-    public double asWeeks()
-    {
-        return asDays() / 7;
-    }
-
-    public LocalTime inTimeZone(ZoneId zone)
-    {
-        return LocalTime.localTime(ensureNotNull(zone), this);
-    }
-
-    /**
-     * @return True if this time value is after the given value
-     */
-    public boolean isAfter(T that)
-    {
-        return isGreaterThan(that);
-    }
-
-    /**
-     * @return True if this time value is at or after the given value
-     */
-    public boolean isAtOrAfter(T that)
-    {
-        return isGreaterThanOrEqualTo(that);
-    }
-
-    /**
-     * @return True if this time value is at or before the given value
-     */
-    public boolean isAtOrBefore(T that)
-    {
-        return isLessThan(that);
-    }
-
-    /**
-     * @return True if this time value is before the given value
-     */
-    public boolean isBefore(T that)
-    {
-        return isLessThanOrEqualTo(that);
-    }
-
-    /**
-     * Returns true if this time has a time zone
-     */
-    public boolean isLocal()
-    {
-        return false;
-    }
-
-    public LocalTime localTime()
-    {
-        return inTimeZone(localTimeZone());
+        return minus(1);
     }
 
     @Override
-    @SuppressWarnings("unchecked")
-    public T maximum(T that)
+    @Tested
+    public boolean equals(final Object object)
     {
-        return isAfter(that) ? (T) this : that;
+        if (object instanceof Hour)
+        {
+            var that = (Hour) object;
+            return this.quantum() == that.quantum();
+        }
+        return false;
+    }
+
+    @Override
+    @Tested
+    public int hashCode()
+    {
+        return Objects.hash(quantum());
+    }
+
+    /**
+     * @return This time plus one unit
+     */
+    public T incremented()
+    {
+        return plus(1);
+    }
+
+    public boolean isBetweenExclusive(T minimum, T maximum)
+    {
+        return asUnits() >= minimum.asUnits() && asUnits() < maximum.asUnits();
+    }
+
+    public boolean isBetweenInclusive(T minimum, T maximum)
+    {
+        return asUnits() >= minimum.asUnits() && asUnits() <= maximum.asUnits();
+    }
+
+    /**
+     * @return This time minus the given number of units
+     */
+    public T minus(int units)
+    {
+        return newTime(nanoseconds() - unitsToNanoseconds(units));
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public long nanoseconds()
+    {
+        return nanoseconds;
     }
 
     /**
      * Returns the number of milliseconds per unit of time
      */
-    public long millisecondsPerUnit()
-    {
-        return unsupported();
-    }
+    public abstract long nanosecondsPerUnit();
 
     @Override
-    @SuppressWarnings("unchecked")
-    public T minimum(T that)
+    public Duration newDuration(long nanoseconds)
     {
-        return isBefore(that) ? (T) this : that;
+        return Duration.nanoseconds(nanoseconds);
     }
 
     /**
-     * Subtracts the given <code>Duration</code> from this <code>Time</code> object, moving the time into the past.
-     *
-     * @param duration the <code>Duration</code> to subtract
-     * @return this duration of time
+     * @return This time plus one unit
      */
-    public T minus(Duration duration)
+    public T next()
     {
-        return newInstance(asMilliseconds() - duration.milliseconds());
-    }
-
-    public T nearest(Duration unit)
-    {
-        return plus(unit.dividedBy(2)).roundDown(unit);
+        return plus(1);
     }
 
     /**
-     * Adds the given <code>Duration</code> to this <code>Time</code> object, moving the time into the future.
-     *
-     * @param duration the <code>Duration</code> to add
-     * @return this <code>Time</code> + <code>Duration</code>
+     * @return This time plus the given number of units
      */
-    public T plus(Duration duration)
+    public T plus(int units)
     {
-        return plus(duration.milliseconds());
+        return newTime(nanoseconds() + unitsToNanoseconds(units));
     }
 
-    public T roundDown(Duration unit)
+    /**
+     * <b>Not public API</b>
+     * <p>
+     * Converts the given number of nanoseconds to units
+     */
+    protected int nanosecondsToUnits(long nanoseconds)
     {
-        return newInstance(asMilliseconds() / unit.milliseconds() * unit.milliseconds());
+        return (int) (nanoseconds / nanosecondsPerUnit());
     }
 
-    public T roundUp(Duration unit)
+    /**
+     * <b>Not public API</b>
+     * <p>
+     * Converts the given number of units to nanoseconds
+     */
+    protected long unitsToNanoseconds(int units)
     {
-        return roundDown(unit).plus(unit);
-    }
-
-    public ZoneId timeZone()
-    {
-        return utcTimeZone();
-    }
-
-    protected long asUnits()
-    {
-        return asLong() / millisecondsPerUnit();
+        return units * nanosecondsPerUnit();
     }
 }

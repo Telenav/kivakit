@@ -3,27 +3,29 @@ package com.telenav.kivakit.core.time;
 import com.telenav.kivakit.core.language.primitive.Longs;
 
 import static com.telenav.kivakit.core.ensure.Ensure.ensure;
+import static com.telenav.kivakit.core.time.Day.nanosecondsPerDay;
+import static java.lang.Long.MAX_VALUE;
 
 @SuppressWarnings("unused")
 public class Week extends BaseTime<Week>
 {
-    private static final long millisecondsPer = 7 * 24 * 60 * 60 * 1_000;
+    private static final long nanosecondsPerWeek = nanosecondsPerDay * 7;
 
-    public static Week weeks(long weeks)
+    public static Week weeks(int weeks)
     {
         ensure(Longs.isBetweenInclusive(weeks, 0, 59));
         return new Week(weeks);
     }
 
-    protected Week(long weeks)
+    protected Week(int weeks)
     {
-        super(weeks * millisecondsPer);
+        super(weeks * nanosecondsPerWeek);
     }
 
     @Override
     public Week maximum()
     {
-        return weeks(Long.MAX_VALUE);
+        return weeks(nanosecondsToUnits(MAX_VALUE));
     }
 
     @Override
@@ -33,8 +35,14 @@ public class Week extends BaseTime<Week>
     }
 
     @Override
-    public Week newInstance(long milliseconds)
+    public long nanosecondsPerUnit()
     {
-        return weeks(milliseconds / millisecondsPer);
+        return nanosecondsPerWeek;
+    }
+
+    @Override
+    public Week newTime(long nanoseconds)
+    {
+        return weeks(nanosecondsToUnits(nanoseconds));
     }
 }

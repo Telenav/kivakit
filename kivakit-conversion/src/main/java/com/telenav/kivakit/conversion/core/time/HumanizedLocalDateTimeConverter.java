@@ -29,7 +29,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Pattern;
 
-import static com.telenav.kivakit.core.value.count.Count._7;
+import static com.telenav.kivakit.core.time.Duration.days;
 
 /**
  * @author jonathanl (shibo)
@@ -69,7 +69,7 @@ public class HumanizedLocalDateTimeConverter extends BaseStringConverter<LocalTi
     @Override
     protected String onToString(LocalTime time)
     {
-        return humanizedDate(time) + " " + new LocalTimeConverter(Listener.none(), time.timeZone()).unconvert(time);
+        return humanizedDate(time) + " " + new LocalTimeConverter(Listener.emptyListener(), time.timeZone()).unconvert(time);
     }
 
     @Override
@@ -78,7 +78,7 @@ public class HumanizedLocalDateTimeConverter extends BaseStringConverter<LocalTi
         var matcher = HUMANIZED_DATE.matcher(value);
         if (matcher.matches())
         {
-            var localTime = new LocalTimeConverter(Listener.none(), LocalTime.localTimeZone())
+            var localTime = new LocalTimeConverter(Listener.emptyListener(), LocalTime.localTimeZone())
                     .convert(matcher.group("time"));
             if (localTime != null)
             {
@@ -99,7 +99,7 @@ public class HumanizedLocalDateTimeConverter extends BaseStringConverter<LocalTi
                 if (day != null)
                 {
                     var dayOfWeek = dayOrdinal.get(day.toLowerCase());
-                    var nowDayOfWeek = now.dayOfWeek().asInt();
+                    var nowDayOfWeek = now.dayOfWeek().asUnits();
                     var daysAgo = nowDayOfWeek - dayOfWeek;
                     if (daysAgo < 0)
                     {
@@ -109,7 +109,7 @@ public class HumanizedLocalDateTimeConverter extends BaseStringConverter<LocalTi
                 }
                 if (date != null)
                 {
-                    var localDate = new LocalDateConverter(Listener.none()).convert(date);
+                    var localDate = new LocalDateConverter(Listener.emptyListener()).convert(date);
                     if (localDate != null)
                     {
                         return localTime.withUnixEpochDay(localDate.dayOfUnixEpoch());
@@ -136,12 +136,12 @@ public class HumanizedLocalDateTimeConverter extends BaseStringConverter<LocalTi
             {
                 return "Yesterday";
             }
-            if (nowDayOfYear.minus(time.dayOfYear()).isLessThanOrEqualTo(_7))
+            if (nowDayOfYear.minus(time.dayOfYear()).isLessThanOrEqualTo(days(7)))
             {
                 return time.dayOfWeek().toString();
             }
         }
 
-        return new LocalDateConverter(Listener.none()).unconvert(time);
+        return new LocalDateConverter(Listener.emptyListener()).unconvert(time);
     }
 }

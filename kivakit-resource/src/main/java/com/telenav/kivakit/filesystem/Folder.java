@@ -223,7 +223,7 @@ public class Folder extends BaseRepeater implements
     {
         try
         {
-            return parse(Listener.throwing(), new java.io.File(".").getCanonicalPath());
+            return parse(Listener.throwingListener(), new java.io.File(".").getCanonicalPath());
         }
         catch (IOException e)
         {
@@ -238,12 +238,12 @@ public class Folder extends BaseRepeater implements
 
     public static Folder folder(Path path)
     {
-        return parse(Listener.throwing(), path.toString());
+        return parse(Listener.throwingListener(), path.toString());
     }
 
     public static Folder folder(StringPath path)
     {
-        return parse(Listener.throwing(), path.toString());
+        return parse(Listener.throwingListener(), path.toString());
     }
 
     public static Folder folder(java.io.File file)
@@ -345,7 +345,7 @@ public class Folder extends BaseRepeater implements
 
     public static Folder of(FilePath path)
     {
-        return parse(Listener.throwing(), path.toString());
+        return parse(Listener.throwingListener(), path.toString());
     }
 
     // Note that this switch parser ensures that the folder exists
@@ -359,7 +359,7 @@ public class Folder extends BaseRepeater implements
 
     public static Folder parse(String path, Object... arguments)
     {
-        return parse(Listener.throwing(), path, arguments);
+        return parse(Listener.throwingListener(), path, arguments);
     }
 
     public static Folder parse(Listener listener, String path, Object... arguments)
@@ -404,7 +404,7 @@ public class Folder extends BaseRepeater implements
 
     public static Folder userHome()
     {
-        return Folder.parse(Listener.throwing(), System.getProperty("user.home"));
+        return Folder.parse(Listener.throwingListener(), System.getProperty("user.home"));
     }
 
     /**
@@ -517,7 +517,7 @@ public class Folder extends BaseRepeater implements
      */
     public Folder(FilePath path)
     {
-        this(Objects.requireNonNull(fileSystem(Listener.throwing(), path)).folderService(path));
+        this(Objects.requireNonNull(fileSystem(Listener.throwingListener(), path)).folderService(path));
     }
 
     /**
@@ -1223,7 +1223,7 @@ public class Folder extends BaseRepeater implements
 
     private @NotNull FileSystemService fileSystemService(FilePath path)
     {
-        return ensureNotNull(fileSystem(Listener.throwing(), path));
+        return ensureNotNull(fileSystem(Listener.throwingListener(), path));
     }
 
     private FolderService folder()

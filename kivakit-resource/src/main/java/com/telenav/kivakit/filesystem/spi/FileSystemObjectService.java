@@ -161,6 +161,6 @@ public interface FileSystemObjectService extends
 
     private FileSystemService fileSystemService(FilePath path)
     {
-        return FileSystemServiceLoader.fileSystem(Listener.throwing(), path);
+        return FileSystemServiceLoader.fileSystem(Listener.throwingListener(), path);
     }
 }

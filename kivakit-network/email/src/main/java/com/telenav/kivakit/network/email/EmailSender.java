@@ -31,7 +31,6 @@ import com.telenav.kivakit.interfaces.io.Closeable;
 import com.telenav.kivakit.interfaces.io.Flushable;
 import com.telenav.kivakit.interfaces.lifecycle.Startable;
 import com.telenav.kivakit.interfaces.lifecycle.Stoppable;
-import com.telenav.kivakit.interfaces.time.LengthOfTime;
 import com.telenav.kivakit.network.email.lexakai.DiagramEmail;
 import com.telenav.kivakit.network.email.senders.SmtpEmailSender;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
@@ -62,7 +61,11 @@ import java.util.Properties;
 @UmlRelation(label = "sends", referent = Email.class)
 @UmlRelation(label = "configured by", referent = EmailSender.Configuration.class)
 @LexakaiJavadoc(complete = true)
-public abstract class EmailSender extends BaseRepeater implements Startable, Stoppable, Flushable, Closeable
+public abstract class EmailSender extends BaseRepeater implements
+        Startable,
+        Stoppable<Duration>,
+        Flushable<Duration>,
+        Closeable
 {
     /**
      * Base configuration for all {@link EmailSender}s.
@@ -179,7 +182,7 @@ public abstract class EmailSender extends BaseRepeater implements Startable, Sto
     }
 
     @Override
-    public void flush(LengthOfTime maximumWaitTime)
+    public void flush(Duration maximumWaitTime)
     {
         trace("Flushing queue within ${debug}", maximumWaitTime);
         queueEmpty.waitForCompletion();
@@ -201,6 +204,12 @@ public abstract class EmailSender extends BaseRepeater implements Startable, Sto
     {
         this.maximumRetries = maximumRetries;
         return this;
+    }
+
+    @Override
+    public Duration maximumWaitTime()
+    {
+        return Duration.MAXIMUM;
     }
 
     public EmailSender retryPeriod(Duration durationBetweenRetries)
@@ -228,7 +237,7 @@ public abstract class EmailSender extends BaseRepeater implements Startable, Sto
     }
 
     @Override
-    public void stop(LengthOfTime maximumWaitTime)
+    public void stop(Duration maximumWaitTime)
     {
         // Don't accept any more entries
         close();

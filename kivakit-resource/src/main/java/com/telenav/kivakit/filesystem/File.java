@@ -60,7 +60,7 @@ import java.nio.file.attribute.PosixFilePermission;
 import static com.telenav.kivakit.core.collections.set.ObjectSet.objectSet;
 import static com.telenav.kivakit.core.ensure.Ensure.ensure;
 import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
-import static com.telenav.kivakit.core.messaging.Listener.none;
+import static com.telenav.kivakit.core.messaging.Listener.emptyListener;
 import static com.telenav.kivakit.filesystem.loader.FileSystemServiceLoader.fileSystem;
 
 /**
@@ -198,12 +198,12 @@ public class File extends BaseWritableResource implements FileSystemObject
 
     public static File file(java.io.File file)
     {
-        return parseFile(Listener.throwing(), file.getAbsolutePath());
+        return parseFile(Listener.throwingListener(), file.getAbsolutePath());
     }
 
     public static File file(FilePath path)
     {
-        var filesystem = fileSystem(Listener.throwing(), path);
+        var filesystem = fileSystem(Listener.throwingListener(), path);
         return new File(ensureNotNull(filesystem).fileService(path));
     }
 
@@ -323,7 +323,7 @@ public class File extends BaseWritableResource implements FileSystemObject
             {
                 return false;
             }
-            return fileSystem(none(), FilePath.parseFilePath(this, identifier.identifier())) != null;
+            return fileSystem(emptyListener(), FilePath.parseFilePath(this, identifier.identifier())) != null;
         }
 
         @Override

@@ -36,6 +36,6 @@ public interface Packaged
      */
     default Package _package()
     {
-        return new Package(Listener.throwing(), packagePath(getClass()));
+        return new Package(Listener.throwingListener(), packagePath(getClass()));
     }
 }

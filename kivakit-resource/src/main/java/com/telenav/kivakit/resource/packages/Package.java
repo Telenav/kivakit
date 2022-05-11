@@ -61,7 +61,7 @@ import java.util.zip.ZipInputStream;
 
 import static com.telenav.kivakit.core.ensure.Ensure.unsupported;
 import static com.telenav.kivakit.core.language.module.PackageReference.packageReference;
-import static com.telenav.kivakit.core.messaging.Listener.throwing;
+import static com.telenav.kivakit.core.messaging.Listener.throwingListener;
 import static com.telenav.kivakit.resource.ResourceList.resourceList;
 import static com.telenav.kivakit.resource.packages.PackagePath.packagePath;
 import static com.telenav.kivakit.resource.packages.PackagePath.parsePackagePath;
@@ -146,7 +146,7 @@ public class Package extends BaseRepeater implements ResourceFolder<Package>
         public Package resolve(ResourceFolderIdentifier identifier)
         {
             var filepath = FilePath.parseFilePath(this, Strip.leading(identifier.identifier(), SCHEME));
-            return packageForPath(throwing(), packagePath(filepath));
+            return packageForPath(throwingListener(), packagePath(filepath));
         }
     }
 

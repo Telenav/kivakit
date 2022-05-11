@@ -81,7 +81,7 @@ import static com.telenav.kivakit.resource.packages.Package.packageForPath;
 @UmlClassDiagram(diagram = DiagramResourcePath.class)
 public final class PackagePath extends ResourcePath
 {
-    public static final PackagePath TELENAV = parsePackagePath(Listener.none(), "com.telenav");
+    public static final PackagePath TELENAV = parsePackagePath(Listener.emptyListener(), "com.telenav");
 
     public static boolean isPackagePath(String path)
     {
@@ -117,7 +117,7 @@ public final class PackagePath extends ResourcePath
      */
     public static PackagePath packagePath(Class<?> type)
     {
-        return packagePath(type, parseStringPath(Listener.none(), type.getName(), null, "\\.").withoutLast());
+        return packagePath(type, parseStringPath(Listener.emptyListener(), type.getName(), null, "\\.").withoutLast());
     }
 
     /**
@@ -369,7 +369,7 @@ public final class PackagePath extends ResourcePath
     @Override
     public PackagePath withParent(String path)
     {
-        return (PackagePath) super.withParent(PackagePath.parsePackagePath(Listener.throwing(), path));
+        return (PackagePath) super.withParent(PackagePath.parsePackagePath(Listener.throwingListener(), path));
     }
 
     /**
@@ -476,8 +476,8 @@ public final class PackagePath extends ResourcePath
     {
         if (path.contains("/"))
         {
-            return parseStringPath(Listener.throwing(), path, "/");
+            return parseStringPath(Listener.throwingListener(), path, "/");
         }
-        return parseStringPath(Listener.throwing(), path, "\\.");
+        return parseStringPath(Listener.throwingListener(), path, "\\.");
     }
 }

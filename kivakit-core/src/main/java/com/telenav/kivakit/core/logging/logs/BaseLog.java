@@ -249,7 +249,7 @@ public abstract class BaseLog implements
     @Override
     public final boolean start()
     {
-        thread = new RepeatingThread(Listener.none(), name() + "-Log", CONTINUOUSLY)
+        thread = new RepeatingThread(Listener.emptyListener(), name() + "-Log", CONTINUOUSLY)
         {
             @Override
             protected void onRun()

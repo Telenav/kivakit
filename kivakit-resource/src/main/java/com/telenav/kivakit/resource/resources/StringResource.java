@@ -47,7 +47,7 @@ public class StringResource extends BaseReadableResource
 
     public StringResource(String value)
     {
-        this(ResourcePath.parseUnixResourcePath(Listener.console(), "/objects/String@" + Integer.toHexString(value.hashCode())), value);
+        this(ResourcePath.parseUnixResourcePath(Listener.consoleListener(), "/objects/String@" + Integer.toHexString(value.hashCode())), value);
     }
 
     public StringResource(ResourcePath path, String value)

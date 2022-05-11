@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.conversion.core.time;
 
-import com.telenav.kivakit.core.test.CoreUnitTest;
+import com.telenav.kivakit.core.test.support.CoreUnitTest;
 import com.telenav.kivakit.core.time.LocalTime;
 import org.junit.Test;
 
@@ -28,7 +28,6 @@ import static com.telenav.kivakit.core.time.Minute.minute;
 
 public class HumanizedLocalDateTimeConverterTest extends CoreUnitTest
 {
-
     @Test
     public void convert()
     {

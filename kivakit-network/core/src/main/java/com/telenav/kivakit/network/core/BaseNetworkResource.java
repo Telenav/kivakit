@@ -44,7 +44,7 @@ public abstract class BaseNetworkResource extends BaseReadableResource implement
 
     protected BaseNetworkResource(NetworkLocation location)
     {
-        super(ResourcePath.parseResourcePath(Listener.console(), location.toString()));
+        super(ResourcePath.parseResourcePath(Listener.consoleListener(), location.toString()));
     }
 
     public URI asUri()

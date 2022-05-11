@@ -302,7 +302,7 @@ public interface ResourceFolder<T extends ResourceFolder<T>> extends
      */
     default Resource resource(String name)
     {
-        return resource(parseResourcePath(Listener.throwing(), name));
+        return resource(parseResourcePath(Listener.throwingListener(), name));
     }
 
     /**

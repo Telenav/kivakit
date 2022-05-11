@@ -22,14 +22,14 @@ import com.telenav.kivakit.core.language.Hash;
 import com.telenav.kivakit.core.lexakai.DiagramTime;
 import com.telenav.kivakit.core.test.NoTestRequired;
 import com.telenav.kivakit.core.test.Tested;
-import com.telenav.kivakit.core.value.level.Percent;
-import com.telenav.kivakit.interfaces.numeric.Quantizable;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
+import java.util.List;
+
 import static com.telenav.kivakit.core.ensure.Ensure.ensureBetweenInclusive;
 import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
-import static com.telenav.kivakit.core.ensure.Ensure.unsupported;
+import static com.telenav.kivakit.core.time.Day.nanosecondsPerDay;
 import static com.telenav.kivakit.core.time.DayOfWeek.Standard.ISO;
 import static com.telenav.kivakit.core.time.DayOfWeek.Standard.JAVA;
 import static com.telenav.kivakit.core.time.Duration.days;
@@ -93,6 +93,11 @@ public class DayOfWeek extends BaseTime<DayOfWeek>
     public static DayOfWeek dayOfWeek(int dayOfWeek, Standard standard)
     {
         return new DayOfWeek(dayOfWeek, standard);
+    }
+
+    public static List<DayOfWeek> daysOfWeek()
+    {
+        return List.of(MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY, SUNDAY);
     }
 
     /**
@@ -185,13 +190,13 @@ public class DayOfWeek extends BaseTime<DayOfWeek>
     @Tested
     public int asIso()
     {
-        return standard.asIso(asInt());
+        return standard.asIso(asUnits());
     }
 
     @Tested
     public int asJava()
     {
-        return standard.asJava(asInt());
+        return standard.asJava(asUnits());
     }
 
     @Tested
@@ -218,13 +223,6 @@ public class DayOfWeek extends BaseTime<DayOfWeek>
     public HourOfWeek at(Hour hour)
     {
         return hourOfWeek(this, hour);
-    }
-
-    @Override
-    @NoTestRequired
-    public DayOfWeek dividedBy(long divisor)
-    {
-        return unsupported();
     }
 
     @Override
@@ -273,10 +271,21 @@ public class DayOfWeek extends BaseTime<DayOfWeek>
     }
 
     @Override
-    @NoTestRequired
-    public DayOfWeek newInstance(long ordinal)
+    public long nanosecondsPerUnit()
     {
-        return dayOfWeek((int) ordinal, standard);
+        return nanosecondsPerDay;
+    }
+
+    @Override
+    public Duration newDuration(long nanoseconds)
+    {
+        return Duration.nanoseconds(nanoseconds);
+    }
+
+    @Override
+    public DayOfWeek newTime(long nanoseconds)
+    {
+        return dayOfWeek((int) Duration.nanoseconds(nanoseconds).asDays(), standard);
     }
 
     @Override
@@ -286,35 +295,7 @@ public class DayOfWeek extends BaseTime<DayOfWeek>
         {
             return null;
         }
-        return super.next();
-    }
-
-    @Override
-    @NoTestRequired
-    public DayOfWeek percent(final Percent percentage)
-    {
-        return unsupported();
-    }
-
-    @Override
-    @NoTestRequired
-    public Percent percentOf(final Quantizable total)
-    {
-        return unsupported();
-    }
-
-    @Override
-    @NoTestRequired
-    public DayOfWeek times(long multiplier)
-    {
-        return unsupported();
-    }
-
-    @Override
-    @NoTestRequired
-    public DayOfWeek times(double multiplier)
-    {
-        return unsupported();
+        return dayOfWeek(asUnits() + 1, standard);
     }
 
     @Override

@@ -7,6 +7,8 @@ import static com.telenav.kivakit.core.ensure.Ensure.ensure;
 @SuppressWarnings("unused")
 public class Second extends BaseTime<Second>
 {
+    static final long nanosecondsPerSecond = (long) 1E9;
+
     public static Second second(long second)
     {
         ensure(Longs.isBetweenInclusive(second, 0, 59));
@@ -15,7 +17,7 @@ public class Second extends BaseTime<Second>
 
     protected Second(long second)
     {
-        super(second * 1_000L);
+        super(second * nanosecondsPerSecond);
     }
 
     @Override
@@ -31,10 +33,14 @@ public class Second extends BaseTime<Second>
     }
 
     @Override
-    public Second newInstance(long minute)
+    public long nanosecondsPerUnit()
     {
-        return second(minute);
+        return nanosecondsPerSecond;
+    }
+
+    @Override
+    public Second newTime(long nanoseconds)
+    {
+        return new Second(nanoseconds);
     }
 }
-
-

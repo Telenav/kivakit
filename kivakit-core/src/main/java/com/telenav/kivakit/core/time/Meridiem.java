@@ -65,7 +65,7 @@ public enum Meridiem
                 : militaryHour - 12;
     }
 
-    int asMilitaryHour(int meridiemHour)
+    public int asMilitaryHour(int meridiemHour)
     {
         ensure(Ints.isBetweenInclusive(meridiemHour, 1, 12));
 

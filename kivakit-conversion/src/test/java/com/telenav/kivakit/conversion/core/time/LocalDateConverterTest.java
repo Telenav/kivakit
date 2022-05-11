@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.conversion.core.time;
 
-import com.telenav.kivakit.core.test.CoreUnitTest;
+import com.telenav.kivakit.core.test.support.CoreUnitTest;
 import com.telenav.kivakit.core.time.LocalTime;
 import org.junit.Test;
 
@@ -38,6 +38,6 @@ public class LocalDateConverterTest extends CoreUnitTest
         // was converted to milliseconds.
         ensure(time != null);
         assert time != null;
-        ensureEqual(ChronoUnit.MILLIS.between(Instant.EPOCH, time.startOfDay().asInstant()), 1309910400000L);
+        ensureEqual(ChronoUnit.MILLIS.between(Instant.EPOCH, time.startOfDay().asJavaInstant()), 1309910400000L);
     }
 }

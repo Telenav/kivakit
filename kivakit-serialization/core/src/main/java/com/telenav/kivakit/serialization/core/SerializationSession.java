@@ -26,15 +26,16 @@ import com.telenav.kivakit.core.messaging.Repeater;
 import com.telenav.kivakit.core.progress.ProgressReporter;
 import com.telenav.kivakit.core.progress.reporters.ProgressiveInputStream;
 import com.telenav.kivakit.core.progress.reporters.ProgressiveOutputStream;
+import com.telenav.kivakit.core.time.Duration;
 import com.telenav.kivakit.core.version.Version;
 import com.telenav.kivakit.core.version.Versioned;
 import com.telenav.kivakit.core.version.VersionedObject;
 import com.telenav.kivakit.interfaces.io.Flushable;
 import com.telenav.kivakit.interfaces.naming.Named;
 import com.telenav.kivakit.resource.Resource;
-import com.telenav.kivakit.resource.writing.WritableResource;
 import com.telenav.kivakit.resource.serialization.ObjectSerializer;
 import com.telenav.kivakit.resource.serialization.SerializableObject;
+import com.telenav.kivakit.resource.writing.WritableResource;
 
 import java.io.Closeable;
 import java.io.IOException;
@@ -113,7 +114,7 @@ import static com.telenav.kivakit.serialization.core.SerializationSession.Sessio
 public interface SerializationSession extends
         Named,
         Closeable,
-        Flushable,
+        Flushable<Duration>,
         Versioned,
         Repeater,
         TryTrait
@@ -156,6 +157,12 @@ public interface SerializationSession extends
      * @return True if data is being written
      */
     boolean isWriting();
+
+    @Override
+    default Duration maximumWaitTime()
+    {
+        return Duration.MAXIMUM;
+    }
 
     /**
      * Ends a serialization session, flushing any pending output.

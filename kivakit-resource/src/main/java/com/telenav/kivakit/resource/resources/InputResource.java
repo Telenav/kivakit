@@ -49,7 +49,7 @@ public class InputResource extends BaseReadableResource
      */
     public InputResource(InputStream in)
     {
-        super(ResourcePath.parseUnixResourcePath(Listener.console(), "/objects/InputResource/" + Integer.toHexString(in.hashCode())));
+        super(ResourcePath.parseUnixResourcePath(Listener.consoleListener(), "/objects/InputResource/" + Integer.toHexString(in.hashCode())));
         this.in = in;
     }
 

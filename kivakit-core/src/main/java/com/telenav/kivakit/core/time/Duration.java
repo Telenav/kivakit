@@ -26,52 +26,54 @@ import com.telenav.kivakit.core.value.level.Percent;
 import com.telenav.kivakit.interfaces.time.LengthOfTime;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
+import java.lang.management.ManagementFactory;
+import java.lang.management.ThreadMXBean;
 import java.util.regex.Pattern;
 
 import static com.telenav.kivakit.core.string.Strings.isOneOf;
 import static com.telenav.kivakit.core.time.DayOfWeek.isoDayOfWeek;
-import static com.telenav.kivakit.core.time.Duration.Restriction.POSITIVE_ONLY;
+import static com.telenav.kivakit.core.time.Duration.Restriction.FORCE_POSITIVE;
+import static com.telenav.kivakit.core.time.Duration.Restriction.THROW_IF_NEGATIVE;
 import static java.util.regex.Pattern.CASE_INSENSITIVE;
 
 /**
- * A <code>Duration</code> is an immutable length of time stored as a number of milliseconds. Various factory and
- * conversion methods are available for convenience.
+ * A {@link Duration} is an immutable length of time stored as a number of milliseconds. Various factory and conversion
+ * methods are available for convenience.
+ *
+ * <p><b>Creation</b></p>
+ *
  * <p>
- * These static factory methods allow easy construction of value objects using either long values like
- * <code>seconds(30)</code> or <code>hours(3)</code>:
+ * These static factory methods allow easy construction of value objects:
+ * </p>
+ *
  * <ul>
- * <li><code>Duration.milliseconds(long)</code>
- * <li><code>Duration.seconds(int)</code>
- * <li><code>Duration.minutes(int)</code>
- * <li><code>Duration.hours(int)</code>
- * <li><code>Duration.days(int)</code>
+ *     <li>{@link #nanoseconds(long)} </li>
+ *     <li>{@link #microseconds(double)}</li>
+ *     <li>{@link #milliseconds(long)}</li>
+ *     <li>{@link #milliseconds(double)}</li>
+ *     <li>{@link #seconds(double)}</li>
+ *     <li>{@link #days(double)}</li>
+ *     <li>{@link #weeks(double)}</li>
+ *     <li>{@link #years(double)}</li>
  * </ul>
- * ...or double-precision floating point values like <code>days(3.2)</code>:
- * <ul>
- * <li><code>Duration.milliseconds(double)</code>
- * <li><code>Duration.seconds(double)</code>
- * <li><code>Duration.minutes(double)</code>
- * <li><code>Duration.hours(double)</code>
- * <li><code>Duration.days(double)</code>
- * </ul>
- * The precise number of milliseconds represented by a <code>Duration</code> object can be retrieved
- * by calling the <code>milliseconds</code> method. The value of a <code>Duration</code> object
+ *
+ * <p><b>Conversion</b></p>
+ *
+ * <p>
+ * The precise number of nanoseconds represented by a {@link Duration} object can be retrieved
+ * by calling the {@link #nanoseconds()} method. The value of a duration object
  * in a given unit like days or hours can be retrieved by calling one of the following unit methods,
  * each of which returns a double-precision floating point number:
  * <ul>
- * <li><code>{#asSeconds()}</code>
- * <li><code>{#asMinutes()}</code>
- * <li><code>{#asHours()}</code>
- * <li><code>{#asDays()}</code>
- * <li><code>{#asWeeks()}</code>
- * <li><code>{#asYears()}</code>
+ *     <li>{@link #asMicroseconds()}</li>
+ *     <li>{@link #asMilliseconds()}</li>
+ *     <li>{@link #asSeconds()}</li>
+ *     <li>{@link #asMinutes()}</li>
+ *     <li>{@link #asHours()}</li>
+ *     <li>{@link #asDays()}</li>
+ *     <li>{@link #asWeeks()}</li>
+ *     <li>{@link #asYears()}</li>
  * </ul>
- * <p>
- * Values can be added and subtracted using the <code>{#add(Duration)}</code> and
- * <code>#{subtract(Duration)}</code> methods, each of which returns a new immutable
- * <code>Duration</code> object.
- * <p>
- * Finally, the <code>sleep</code> method will sleep for the value of a <code>Duration</code>.
  *
  * @author Jonathan Locke
  * @see Time
@@ -82,10 +84,10 @@ import static java.util.regex.Pattern.CASE_INSENSITIVE;
 public class Duration implements LengthOfTime<Duration>
 {
     /** Constant for maximum duration. */
-    public static final Duration MAXIMUM = milliseconds(Long.MAX_VALUE);
+    public static final Duration MAXIMUM = nanoseconds(Long.MAX_VALUE);
 
     /** Constant for no duration. */
-    public static final Duration ZERO_DURATION = milliseconds(0);
+    public static final Duration ZERO_DURATION = nanoseconds(0);
 
     /** Constant for one day. */
     public static final Duration ONE_DAY = days(1);
@@ -115,18 +117,23 @@ public class Duration implements LengthOfTime<Duration>
     private static final Pattern PATTERN = Pattern.compile(
             "(?x) (?<quantity> [0-9]+ ([.,] [0-9]+)?) "
                     + "(\\s+ | - | _)?"
-                    + "(?<units> d | h | m | s | ms | ((millisecond | second | minute | hour | day | week | year) s?))", CASE_INSENSITIVE);
+                    + "(?<units> d | h | m | s | ms | us | ns | ((nanosecond | microsecond | millisecond | second | minute | hour | day | week | year) s?))", CASE_INSENSITIVE);
+
+    private static final ThreadMXBean cpu = ManagementFactory.getThreadMXBean();
+
+    public static Duration cpuTime()
+    {
+        if (!cpu.isThreadCpuTimeSupported() || !cpu.isThreadCpuTimeEnabled())
+        {
+            throw new UnsupportedOperationException();
+        }
+        return nanoseconds(cpu.getCurrentThreadCpuTime());
+    }
 
     @Tested
     public static Duration days(double days)
     {
         return hours(24.0 * days);
-    }
-
-    @Tested
-    public static Duration days(int days)
-    {
-        return hours(24 * days);
     }
 
     @Tested
@@ -136,9 +143,9 @@ public class Duration implements LengthOfTime<Duration>
     }
 
     @Tested
-    public static Duration hours(int hours)
+    public static Duration microseconds(double microseconds)
     {
-        return minutes(60 * hours);
+        return nanoseconds((long) (microseconds * 1E3));
     }
 
     @Tested
@@ -150,7 +157,7 @@ public class Duration implements LengthOfTime<Duration>
     @Tested
     public static Duration milliseconds(long milliseconds)
     {
-        return new Duration(milliseconds, POSITIVE_ONLY);
+        return nanoseconds(milliseconds * 1_000_000);
     }
 
     @Tested
@@ -160,21 +167,15 @@ public class Duration implements LengthOfTime<Duration>
     }
 
     @Tested
-    public static Duration minutes(int minutes)
-    {
-        return seconds(60 * minutes);
-    }
-
-    @Tested
     public static Duration nanoseconds(long nanoseconds)
     {
-        return milliseconds(nanoseconds / 1_000_000.0);
+        return new Duration(nanoseconds, THROW_IF_NEGATIVE);
     }
 
     @Tested
     public static Duration parseDuration(String value)
     {
-        return parseDuration(Listener.throwing(), value);
+        return parseDuration(Listener.throwingListener(), value);
     }
 
     @Tested
@@ -185,7 +186,15 @@ public class Duration implements LengthOfTime<Duration>
         {
             var quantity = Double.parseDouble(matcher.group("quantity"));
             var units = matcher.group("units");
-            if (isOneOf(units, "milliseconds", "millisecond", "ms"))
+            if (isOneOf(units, "nanoseconds", "nanosecond", "ns"))
+            {
+                return Duration.nanoseconds((long) quantity);
+            }
+            else if (isOneOf(units, "microseconds", "microsecond", "us"))
+            {
+                return Duration.microseconds(quantity);
+            }
+            else if (isOneOf(units, "milliseconds", "millisecond", "ms"))
             {
                 return Duration.milliseconds(quantity);
             }
@@ -229,13 +238,7 @@ public class Duration implements LengthOfTime<Duration>
     @Tested
     public static Duration seconds(double seconds)
     {
-        return milliseconds(seconds * 1000.0);
-    }
-
-    @Tested
-    public static Duration seconds(int seconds)
-    {
-        return milliseconds(seconds * 1000L);
+        return milliseconds(seconds * 1E3);
     }
 
     @Tested
@@ -267,11 +270,17 @@ public class Duration implements LengthOfTime<Duration>
      */
     public enum Restriction
     {
-        POSITIVE_ONLY,
+        /** Throw an exception if the duration is negative */
+        THROW_IF_NEGATIVE,
+
+        /** Force any negative duration to be positive */
+        FORCE_POSITIVE,
+
+        /** Allow positive or negative values */
         ALLOW_NEGATIVE
     }
 
-    private final long milliseconds;
+    private final long nanoseconds;
 
     /**
      * For reflective construction
@@ -279,23 +288,28 @@ public class Duration implements LengthOfTime<Duration>
     @NoTestRequired
     public Duration()
     {
-        milliseconds = 0;
+        nanoseconds = 0;
     }
 
     /**
      * Protected constructor forces use of static factory methods.
      *
-     * @param milliseconds Number of milliseconds in this <code>Duration</code>
+     * @param nanoseconds Number of nanoseconds in this <code>Duration</code>
      */
     @NoTestRequired
-    protected Duration(long milliseconds, Restriction restriction)
+    protected Duration(long nanoseconds, Restriction restriction)
     {
-        if (restriction == POSITIVE_ONLY && milliseconds < 0)
+        if (restriction == THROW_IF_NEGATIVE && nanoseconds < 0)
         {
             throw new IllegalArgumentException("Negative time not allowed");
         }
 
-        this.milliseconds = milliseconds;
+        if (restriction == FORCE_POSITIVE && nanoseconds < 0)
+        {
+            nanoseconds = 0;
+        }
+
+        this.nanoseconds = nanoseconds;
     }
 
     /**
@@ -304,7 +318,7 @@ public class Duration implements LengthOfTime<Duration>
     @Tested
     public Duration add(Duration that)
     {
-        return add(that, POSITIVE_ONLY);
+        return add(that, FORCE_POSITIVE);
     }
 
     /**
@@ -313,12 +327,7 @@ public class Duration implements LengthOfTime<Duration>
     @Tested
     public Duration add(Duration that, Restriction restriction)
     {
-        var sum = milliseconds() + that.milliseconds();
-        if (restriction == POSITIVE_ONLY && sum < 0)
-        {
-            return ZERO_DURATION;
-        }
-        return new Duration(sum, restriction);
+        return new Duration(nanoseconds() + that.nanoseconds(), restriction);
     }
 
     @NoTestRequired
@@ -343,14 +352,14 @@ public class Duration implements LengthOfTime<Duration>
     @Tested
     public double dividedBy(Duration that)
     {
-        return (double) milliseconds / that.milliseconds;
+        return (double) nanoseconds / that.nanoseconds;
     }
 
     @Override
     @Tested
     public Duration dividedBy(double divisor)
     {
-        return milliseconds(milliseconds / divisor);
+        return nanoseconds((long) (nanoseconds / divisor));
     }
 
     @Override
@@ -360,7 +369,7 @@ public class Duration implements LengthOfTime<Duration>
         if (object instanceof Duration)
         {
             var that = (Duration) object;
-            return milliseconds == that.milliseconds;
+            return nanoseconds == that.nanoseconds;
         }
         return false;
     }
@@ -390,7 +399,7 @@ public class Duration implements LengthOfTime<Duration>
     @Tested
     public int hashCode()
     {
-        return Long.toString(milliseconds).hashCode();
+        return Long.toString(nanoseconds).hashCode();
     }
 
     @Tested
@@ -402,20 +411,13 @@ public class Duration implements LengthOfTime<Duration>
     @Tested
     public Duration longerBy(Percent percentage)
     {
-        return milliseconds(milliseconds * (1.0 + percentage.asUnitValue()));
+        return nanoseconds((long) (nanoseconds * (1.0 + percentage.asUnitValue())));
     }
 
     @Tested
     public Duration maximum(Duration that)
     {
         return isGreaterThan(that) ? this : that;
-    }
-
-    @Override
-    @Tested
-    public long milliseconds()
-    {
-        return milliseconds;
     }
 
     @Tested
@@ -430,7 +432,7 @@ public class Duration implements LengthOfTime<Duration>
     @Tested
     public Duration minus(Duration that)
     {
-        return minus(that, POSITIVE_ONLY);
+        return minus(that, FORCE_POSITIVE);
     }
 
     /**
@@ -439,63 +441,50 @@ public class Duration implements LengthOfTime<Duration>
     @Tested
     public Duration minus(Duration that, Restriction restriction)
     {
-        if (restriction == POSITIVE_ONLY)
-        {
-            if (that.isGreaterThan(this))
-            {
-                return ZERO_DURATION;
-            }
-        }
-        return new Duration(milliseconds() - that.milliseconds(), restriction);
+        return new Duration(nanoseconds() - that.nanoseconds(), restriction);
     }
 
     @Tested
     public Duration modulus(Duration that)
     {
-        return milliseconds(milliseconds % that.milliseconds);
+        return newDuration(nanoseconds % that.nanoseconds);
+    }
+
+    @Override
+    @Tested
+    public long nanoseconds()
+    {
+        return nanoseconds;
     }
 
     @Tested
     public Duration nearestHour()
     {
-        return hours(Math.round(asHours()));
+        return nearest(hours(1));
+    }
+
+    @Tested
+    public Duration nearestMinute()
+    {
+        return nearest(minutes(1));
     }
 
     @Override
-    public Duration newInstance(long milliseconds)
+    public Duration newDuration(long nanoseconds)
     {
-        return milliseconds(milliseconds);
+        return nanoseconds(nanoseconds);
     }
 
     @Tested
     public Percent percentageOf(Duration that)
     {
-        return Percent.percent(100.0 * milliseconds / that.milliseconds);
-    }
-
-    @Tested
-    public Duration plus(Duration that)
-    {
-        return milliseconds(milliseconds + that.milliseconds);
-    }
-
-    @Override
-    public long quantum()
-    {
-        return milliseconds();
+        return Percent.percent(100.0 * nanoseconds / that.nanoseconds);
     }
 
     @Tested
     public Duration shorterBy(Percent percentage)
     {
-        return milliseconds(milliseconds * (1.0 - percentage.asUnitValue()));
-    }
-
-    @Tested
-    @Override
-    public Duration times(double multiplier)
-    {
-        return milliseconds(milliseconds * multiplier);
+        return newDuration((long) (nanoseconds * (1.0 - percentage.asUnitValue())));
     }
 
     @Override

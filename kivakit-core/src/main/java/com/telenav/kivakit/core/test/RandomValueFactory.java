@@ -25,7 +25,6 @@ import com.telenav.kivakit.core.lexakai.DiagramTest;
 import com.telenav.kivakit.core.logging.Logger;
 import com.telenav.kivakit.core.logging.LoggerFactory;
 import com.telenav.kivakit.core.messaging.Debug;
-import com.telenav.kivakit.core.test.CoreUnitTest.Repeats;
 import com.telenav.kivakit.core.value.count.BaseCount;
 import com.telenav.kivakit.core.value.count.Count;
 import com.telenav.kivakit.core.value.count.Range;
@@ -45,8 +44,8 @@ import java.util.function.Consumer;
 
 import static com.telenav.kivakit.core.ensure.Ensure.ensure;
 import static com.telenav.kivakit.core.language.primitive.Longs.inRangeInclusive;
-import static com.telenav.kivakit.core.test.CoreUnitTest.Repeats.ALLOW_REPEATS;
-import static com.telenav.kivakit.core.test.CoreUnitTest.Repeats.NO_REPEATS;
+import static com.telenav.kivakit.core.test.Repeats.ALLOW_REPEATS;
+import static com.telenav.kivakit.core.test.Repeats.NO_REPEATS;
 import static com.telenav.kivakit.core.value.count.Count._256;
 import static com.telenav.kivakit.core.value.count.Count._65_536;
 import static com.telenav.kivakit.core.value.count.Count.count;
@@ -54,8 +53,8 @@ import static com.telenav.kivakit.interfaces.code.FilteredLoopBody.FilterAction.
 import static com.telenav.kivakit.interfaces.code.FilteredLoopBody.FilterAction.REJECT;
 
 /**
- * Utility class for tests used to create random values. {@link CoreUnitTest} has a variety of methods for random
- * testing that use this class. Projects can subclass this to provide additional random values relevant to the project.
+ * Utility class for tests used to create random values. The UnitTest class has a variety of methods for random testing
+ * that use this class. Projects can subclass this to provide additional random values relevant to the project.
  *
  * <p><b>Seeding</b></p>
  *
@@ -87,7 +86,6 @@ import static com.telenav.kivakit.interfaces.code.FilteredLoopBody.FilterAction.
  * </ul>
  *
  * @author jonathanl (shibo)
- * @see CoreUnitTest
  */
 @UmlClassDiagram(diagram = DiagramTest.class)
 @LexakaiJavadoc(complete = true)
@@ -102,9 +100,6 @@ public class RandomValueFactory implements RandomNumeric
 
     /** Seed value when reproducing test failures */
     private long seed;
-
-    /** Random number generator */
-    protected Random random;
 
     public RandomValueFactory(long seed)
     {
@@ -654,4 +649,7 @@ public class RandomValueFactory implements RandomNumeric
         // seed values
         return Hash.knuth(++SALT + System.nanoTime());
     }
+
+    /** Random number generator */
+    protected Random random;
 }

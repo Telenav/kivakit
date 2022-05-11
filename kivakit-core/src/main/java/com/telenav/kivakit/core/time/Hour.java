@@ -4,12 +4,13 @@ import com.telenav.kivakit.core.language.primitive.Ints;
 import com.telenav.kivakit.core.test.NoTestRequired;
 import com.telenav.kivakit.core.test.Tested;
 
-import java.util.Objects;
+import java.util.ArrayList;
+import java.util.List;
 
 import static com.telenav.kivakit.core.ensure.Ensure.ensure;
 import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
 import static com.telenav.kivakit.core.ensure.Ensure.unsupported;
-import static com.telenav.kivakit.core.time.Hour.Type.HOUR;
+import static com.telenav.kivakit.core.time.Hour.Type.ABSOLUTE_HOUR;
 import static com.telenav.kivakit.core.time.Hour.Type.HOUR_OF_MERIDIEM;
 import static com.telenav.kivakit.core.time.Hour.Type.MILITARY_HOUR;
 import static com.telenav.kivakit.core.time.HourOfWeek.hourOfWeek;
@@ -17,6 +18,7 @@ import static com.telenav.kivakit.core.time.Meridiem.AM;
 import static com.telenav.kivakit.core.time.Meridiem.NO_MERIDIEM;
 import static com.telenav.kivakit.core.time.Meridiem.PM;
 import static com.telenav.kivakit.core.time.Meridiem.meridiemHour;
+import static com.telenav.kivakit.core.time.Minute.nanosecondsPerMinute;
 
 /**
  * Represents an hour of the day.
@@ -25,7 +27,7 @@ import static com.telenav.kivakit.core.time.Meridiem.meridiemHour;
  *
  * <ul>
  *     <li>{@link #am(int)} - A morning hour</li>
- *     <li>{@link #militaryHour(long)} - An hour of the day on a 24-hour clock</li>
+ *     <li>{@link #militaryHour(int)} - An hour of the day on a 24-hour clock</li>
  *     <li>{@link #hourOfDay(int, Meridiem)} - An hour of the day, AM or PM</li>
  *     <li>{@link #midnight()} - Hour zero</li>
  *     <li>{@link #noon()} - Hour twelve</li>
@@ -35,7 +37,7 @@ import static com.telenav.kivakit.core.time.Meridiem.meridiemHour;
  * <p><b>Accessors</b></p>
  *
  * <ul>
- *     <li>{@link #asInt()} - The hour</li>
+ *     <li>{@link #asUnits()} - The hour</li>
  *     <li>{@link #meridiem()} - AM, PM or 24-hour</li>
  * </ul>
  *
@@ -51,22 +53,22 @@ import static com.telenav.kivakit.core.time.Meridiem.meridiemHour;
 @SuppressWarnings("unused")
 public class Hour extends BaseTime<Hour>
 {
-    private static final long millisecondsPer = 60 * 60 * 1_000;
+    static final long nanosecondsPerHour = nanosecondsPerMinute * 60;
 
     @Tested
-    public static Hour am(long hour)
+    public static Hour am(int hour)
     {
         return hourOfDay(hour, AM);
     }
 
     @Tested
-    public static Hour hour(long hour)
+    public static Hour hour(int hour)
     {
-        return new Hour(HOUR, NO_MERIDIEM, hour);
+        return new Hour(ABSOLUTE_HOUR, NO_MERIDIEM, hour);
     }
 
     @Tested
-    public static Hour hourOfDay(long hour, Meridiem meridiem)
+    public static Hour hourOfDay(int hour, Meridiem meridiem)
     {
         return new Hour(HOUR_OF_MERIDIEM, meridiem, hour);
     }
@@ -78,9 +80,19 @@ public class Hour extends BaseTime<Hour>
     }
 
     @Tested
-    public static Hour militaryHour(long militaryHouor)
+    public static Hour militaryHour(int militaryHour)
     {
-        return new Hour(MILITARY_HOUR, NO_MERIDIEM, militaryHouor);
+        return new Hour(MILITARY_HOUR, NO_MERIDIEM, militaryHour);
+    }
+
+    public static List<Hour> militaryHours()
+    {
+        var hours = new ArrayList<Hour>();
+        for (int i = 0; i < 24; i++)
+        {
+            hours.add(militaryHour(i));
+        }
+        return hours;
     }
 
     @Tested
@@ -90,7 +102,7 @@ public class Hour extends BaseTime<Hour>
     }
 
     @Tested
-    public static Hour pm(long hour)
+    public static Hour pm(int hour)
     {
         return hourOfDay(hour, PM);
     }
@@ -98,14 +110,14 @@ public class Hour extends BaseTime<Hour>
     @NoTestRequired
     public enum Type
     {
-        HOUR(0, Integer.MAX_VALUE),
+        ABSOLUTE_HOUR(0, Integer.MAX_VALUE),
         HOUR_OF_WEEK(0, 7 * 24),
         MILITARY_HOUR(0, 24),
         HOUR_OF_MERIDIEM(1, 12 + 1);
 
-        private final int minimum;
-
         private final int maximumExclusive;
+
+        private final int minimum;
 
         @NoTestRequired
         Type(int minimum, int maximumExclusive)
@@ -138,9 +150,9 @@ public class Hour extends BaseTime<Hour>
     private final Type type;
 
     @Tested
-    protected Hour(Type type, Meridiem meridiem, long hour)
+    protected Hour(Type type, Meridiem meridiem, int hour)
     {
-        super(type.militaryHour(meridiem, (int) hour) * millisecondsPer);
+        super(type.militaryHour(meridiem, hour) * nanosecondsPerHour);
 
         this.type = ensureNotNull(type);
     }
@@ -166,34 +178,7 @@ public class Hour extends BaseTime<Hour>
     @Tested
     public int asMilitaryHour()
     {
-        return (int) (asLong() / millisecondsPer);
-    }
-
-    @Override
-    @Tested
-    public boolean equals(final Object object)
-    {
-        if (object instanceof Hour)
-        {
-            var that = (Hour) object;
-            return this.quantum() == that.quantum();
-        }
-        return false;
-    }
-
-    @Override
-    @Tested
-    public int hashCode()
-    {
-        return Objects.hash(quantum());
-    }
-
-    @Override
-    @Tested
-    public Hour inRangeInclusive(long value)
-    {
-        var rounded = (value + 24) % 24;
-        return super.inRangeInclusive(rounded + 1);
+        return (int) (nanoseconds() / nanosecondsPerHour);
     }
 
     @Tested
@@ -213,8 +198,8 @@ public class Hour extends BaseTime<Hour>
     {
         switch (type())
         {
-            case HOUR:
-                return newInstance(Long.MAX_VALUE);
+            case ABSOLUTE_HOUR:
+                return newTime(Long.MAX_VALUE);
 
             case MILITARY_HOUR:
                 return militaryHour(23);
@@ -241,7 +226,7 @@ public class Hour extends BaseTime<Hour>
             case MILITARY_HOUR:
                 return Meridiem.meridiem(asMilitaryHour());
 
-            case HOUR:
+            case ABSOLUTE_HOUR:
             case HOUR_OF_WEEK:
                 return NO_MERIDIEM;
 
@@ -251,27 +236,21 @@ public class Hour extends BaseTime<Hour>
     }
 
     @Override
-    public long millisecondsPerUnit()
-    {
-        return 60 * 60 * 1_000;
-    }
-
-    @Override
     public Hour minimum()
     {
         return militaryHour(0);
     }
 
     @Override
-    public Hour minus(long count)
+    public long nanosecondsPerUnit()
     {
-        return super.minus(hour(count));
+        return nanosecondsPerHour;
     }
 
     @Override
-    public Hour newInstance(long count)
+    public Hour newTime(long nanoseconds)
     {
-        return militaryHour((int) (count / millisecondsPer));
+        return militaryHour(nanosecondsToUnits(nanoseconds));
     }
 
     @Override
@@ -279,7 +258,7 @@ public class Hour extends BaseTime<Hour>
     {
         switch (type())
         {
-            case HOUR:
+            case ABSOLUTE_HOUR:
                 return super.next();
 
             case HOUR_OF_MERIDIEM:
@@ -297,30 +276,12 @@ public class Hour extends BaseTime<Hour>
     }
 
     @Override
-    public Hour offset(long offset)
-    {
-        return super.offset(offset);
-    }
-
-    @Override
-    public Hour plus(long count)
-    {
-        return super.plus(hour(count));
-    }
-
-    @Override
-    public long quantum()
-    {
-        return asMilitaryHour();
-    }
-
-    @Override
     @Tested
     public String toString()
     {
         switch (type())
         {
-            case HOUR:
+            case ABSOLUTE_HOUR:
             case HOUR_OF_WEEK:
                 return asSimpleString();
 

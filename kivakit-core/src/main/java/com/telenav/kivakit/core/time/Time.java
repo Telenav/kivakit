@@ -21,8 +21,12 @@ package com.telenav.kivakit.core.time;
 import com.telenav.kivakit.core.lexakai.DiagramTime;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
+import java.time.ZoneId;
+
+import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
 import static com.telenav.kivakit.core.time.Duration.ZERO_DURATION;
 import static com.telenav.kivakit.core.time.Hour.militaryHour;
+import static com.telenav.kivakit.core.time.LocalTime.localTimeZone;
 import static com.telenav.kivakit.core.time.LocalTime.utcTimeZone;
 import static com.telenav.kivakit.core.time.Second.second;
 
@@ -111,7 +115,7 @@ public class Time extends BaseTime<Time>
                                Minute minute,
                                Second second)
     {
-        return milliseconds(LocalTime.localTime(utcTimeZone(), year, month, dayOfMonth, hour, minute, second).asMilliseconds());
+        return nanoseconds(LocalTime.localTime(utcTimeZone(), year, month, dayOfMonth, hour, minute, second).nanoseconds());
     }
 
     /**
@@ -126,6 +130,16 @@ public class Time extends BaseTime<Time>
 
     protected Time()
     {
+    }
+
+    public LocalTime asLocalTime()
+    {
+        return inTimeZone(timeZone());
+    }
+
+    public Time asUtc()
+    {
+        return inTimeZone(utcTimeZone());
     }
 
     /**
@@ -154,6 +168,19 @@ public class Time extends BaseTime<Time>
         }
 
         return ZERO_DURATION;
+    }
+
+    public LocalTime inTimeZone(ZoneId zone)
+    {
+        return LocalTime.localTime(ensureNotNull(zone), this);
+    }
+
+    /**
+     * Returns true if this time has a time zone
+     */
+    public boolean isLocal()
+    {
+        return false;
     }
 
     /**
@@ -222,6 +249,11 @@ public class Time extends BaseTime<Time>
         return elapsed.minus(elapsedSince());
     }
 
+    public LocalTime localTime()
+    {
+        return inTimeZone(localTimeZone());
+    }
+
     @Override
     public Time maximum()
     {
@@ -235,9 +267,26 @@ public class Time extends BaseTime<Time>
     }
 
     @Override
-    public Time newInstance(long count)
+    public long nanosecondsPerUnit()
     {
-        return milliseconds(count);
+        return 1;
+    }
+
+    @Override
+    public Duration newDuration(long nanoseconds)
+    {
+        return Duration.nanoseconds(nanoseconds);
+    }
+
+    @Override
+    public Time newTime(long nanoseconds)
+    {
+        return Time.nanoseconds(nanoseconds);
+    }
+
+    public ZoneId timeZone()
+    {
+        return utcTimeZone();
     }
 
     @Override
@@ -254,7 +303,7 @@ public class Time extends BaseTime<Time>
     /**
      * Retrieves the <code>Duration</code> from now to this <code>Time</code> value. If this
      * <code>Time</code> value is in the past, then the <code>Duration</code> returned will be
-     * negative. Otherwise, it will be the number of milliseconds from now to this <code>Time</code> .
+     * negative. Otherwise, it will be duration from now to this <code>Time</code> .
      *
      * @return the <code>Duration</code> from now to this <code>Time</code> value
      */

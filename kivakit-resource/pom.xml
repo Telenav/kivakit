@@ -1,6 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <!--/////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
 <!--                                                                                                                 -->
-<!--  © 2011-2021 Telenav, Inc.                                                                                      -->
+<!--  © 2011-2022 Telenav, Inc.                                                                                      -->
 <!--  Licensed under Apache License, Version 2.0                                                                     -->
 <!--                                                                                                                 -->
 <!--/////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
@@ -11,10 +12,10 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.telenav.kivakit</groupId>
-        <artifactId>kivakit</artifactId>
+        <artifactId>superpom</artifactId>
         <version>1.5.1-SNAPSHOT</version>
+        <relativePath>../superpom</relativePath>
     </parent>
-
     <artifactId>kivakit-resource</artifactId>
     <packaging>jar</packaging>
 
@@ -30,7 +31,27 @@
             <groupId>com.telenav.kivakit</groupId>
             <artifactId>kivakit-commandline</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.telenav.kivakit</groupId>
+            <artifactId>kivakit-test-internal</artifactId>
+            <scope>test</scope>
+        </dependency>
 
     </dependencies>
-
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.2.2</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>test-jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>        
+        </plugins>
+    </build>
 </project>

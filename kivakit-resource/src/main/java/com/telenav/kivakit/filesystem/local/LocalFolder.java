@@ -91,7 +91,7 @@ public class LocalFolder extends BaseRepeater implements FolderService
 
     public LocalFolder(String path)
     {
-        this(FilePath.parseFilePath(Listener.console(), path));
+        this(FilePath.parseFilePath(Listener.consoleListener(), path));
     }
 
     public LocalFolder(URI uri)

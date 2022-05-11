@@ -91,7 +91,7 @@ import java.util.zip.ZipInputStream;
 @SuppressWarnings({ "unused", "DuplicatedCode" }) @UmlClassDiagram(diagram = DiagramPath.class)
 public final class PackageReference extends StringPath
 {
-    public static final PackageReference TELENAV = parsePackageReference(Listener.none(), "com.telenav");
+    public static final PackageReference TELENAV = parsePackageReference(Listener.emptyListener(), "com.telenav");
 
     public static boolean isPackageReference(String path)
     {
@@ -119,7 +119,7 @@ public final class PackageReference extends StringPath
      */
     public static PackageReference packageReference(Class<?> type)
     {
-        return packageReference(type, parseStringPath(Listener.none(), type.getName(), null, "\\.").withoutLast());
+        return packageReference(type, parseStringPath(Listener.emptyListener(), type.getName(), null, "\\.").withoutLast());
     }
 
     /**
@@ -442,7 +442,7 @@ public final class PackageReference extends StringPath
     @Override
     public PackageReference withParent(String path)
     {
-        return (PackageReference) super.withParent(PackageReference.parsePackageReference(Listener.throwing(), path));
+        return (PackageReference) super.withParent(PackageReference.parsePackageReference(Listener.throwingListener(), path));
     }
 
     /**
@@ -549,8 +549,8 @@ public final class PackageReference extends StringPath
     {
         if (path.contains("/"))
         {
-            return parseStringPath(Listener.throwing(), path, "/");
+            return parseStringPath(Listener.throwingListener(), path, "/");
         }
-        return parseStringPath(Listener.throwing(), path, "\\.");
+        return parseStringPath(Listener.throwingListener(), path, "\\.");
     }
 }

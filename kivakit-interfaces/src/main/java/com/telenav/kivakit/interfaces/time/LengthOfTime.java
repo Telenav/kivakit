@@ -6,9 +6,7 @@ import com.telenav.kivakit.interfaces.numeric.Quantizable;
 import com.telenav.kivakit.interfaces.numeric.QuantumComparable;
 import com.telenav.kivakit.interfaces.string.Stringable;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
-import org.jetbrains.annotations.NotNull;
 
-import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.TimeZone;
@@ -18,13 +16,24 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.Condition;
 
 /**
- * Interface to an object having a length of time, measured in milliseconds.
+ * Interface to an object having a length of time, measured in nanoseconds.
+ *
+ * <p><b>Measurement</b></p>
+ *
+ * <ul>
+ *     <li>{@link #nanoseconds()}</li>
+ *     <li>{@link #milliseconds()}</li>
+ * </ul>
  *
  * <p><b>Conversion</b></p>
  *
  * <p>
  * A length of time can be converted to specific time units by calling one of the following methods:
+ * </p>
+ *
  * <ul>
+ *     <li>{@link #asNanoseconds()}</li>
+ *     <li>{@link #asMicroseconds()}</li>
  *     <li>{@link #asMilliseconds()}</li>
  *     <li>{@link #asSeconds()}</li>
  *     <li>{@link #asMinutes()}</li>
@@ -32,6 +41,7 @@ import java.util.concurrent.locks.Condition;
  *     <li>{@link #asDays()}</li>
  *     <li>{@link #asWeeks()}</li>
  *     <li>{@link #asYears()}</li>
+ *     <li>{@link #asJavaDuration()}</li>
  * </ul>
  *
  * <p><b>Arithmetic</b></p>
@@ -56,74 +66,26 @@ import java.util.concurrent.locks.Condition;
  *     <li>{@link #isNonZero()}</li>
  * </ul>
  *
+ * <p><b>Operations</b></p>
+ *
+ * <ul>
+ *     <li>{@link #await(Condition)}</li>
+ *     <li>{@link #repeat(Callback)}</li>
+ *     <li>{@link #sleep()}</li>
+ *     <li>{@link #wait(Object)}</li>
+ *     <li>{@link #waitThen(Callback)}</li>
+ * </ul>
+ *
  * @author jonathanl (shibo)
  */
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramTime.class)
-public interface LengthOfTime<T extends LengthOfTime<T>> extends
-        Quantizable,
+public interface LengthOfTime<Duration extends LengthOfTime<Duration>> extends
         QuantumComparable<LengthOfTime<?>>,
         Comparable<LengthOfTime<?>>,
-        Stringable
+        Stringable,
+        TimeMeasurement
 {
-    double WEEKS_PER_YEAR = 52.177457;
-
-    /**
-     * Retrieves the number of days of the current Duration.
-     *
-     * @return Number of days of the current Duration
-     */
-    default double asDays()
-    {
-        return asHours() / 24.0;
-    }
-
-    /**
-     * Retrieves the number of hours of the current Duration.
-     *
-     * @return number of hours of the current Duration
-     */
-    default double asHours()
-    {
-        return asMinutes() / 60.0;
-    }
-
-    @NotNull
-    default String asHumanReadableString()
-    {
-        if (asMilliseconds() >= 0)
-        {
-            if (asYears() >= 1.0)
-            {
-                return unitString(asYears(), "year");
-            }
-            if (asWeeks() >= 1.0)
-            {
-                return unitString(asWeeks(), "week");
-            }
-            if (asDays() >= 1.0)
-            {
-                return unitString(asDays(), "day");
-            }
-            if (asHours() >= 1.0)
-            {
-                return unitString(asHours(), "hour");
-            }
-            if (asMinutes() >= 1.0)
-            {
-                return unitString(asMinutes(), "minute");
-            }
-            if (asSeconds() >= 1.0)
-            {
-                return unitString(asSeconds(), "second");
-            }
-            return asMilliseconds() + " millisecond" + (asMilliseconds() != 1 ? "s" : "");
-        }
-        else
-        {
-            return "N/A";
-        }
-    }
 
     /**
      * Returns a java.time.Duration object for the number of milliseconds
@@ -134,41 +96,10 @@ public interface LengthOfTime<T extends LengthOfTime<T>> extends
     }
 
     /**
-     * Returns the number of milliseconds
-     */
-    default double asMilliseconds()
-    {
-        return milliseconds();
-    }
-
-    /**
-     * Retrieves the number of minutes of the current Duration.
-     *
-     * @return number of minutes of the current Duration
-     */
-    default double asMinutes()
-    {
-        return asSeconds() / 60.0;
-    }
-
-    /**
-     * Retrieves the number of seconds of the current Duration.
-     *
-     * @return number of seconds of the current Duration
-     */
-    default double asSeconds()
-    {
-        return asMilliseconds() / 1000.0;
-    }
-
-    /**
-     * Retrieves the String representation of this Duration in days, hours, minutes, seconds or milliseconds, as
-     * appropriate.
-     *
-     * @return a String representation
+     * {@inheritDoc}
      */
     @Override
-    @SuppressWarnings("SpellCheckingInspection")
+    @SuppressWarnings({ "SpellCheckingInspection", "DuplicatedCode" })
     default String asString(Format format)
     {
         switch (format)
@@ -219,26 +150,6 @@ public interface LengthOfTime<T extends LengthOfTime<T>> extends
     }
 
     /**
-     * Retrieves the number of weeks of the current Duration.
-     *
-     * @return Number of weeks of the current Duration
-     */
-    default double asWeeks()
-    {
-        return asDays() / 7;
-    }
-
-    /**
-     * Retrieves the number of years of the current Duration.
-     *
-     * @return Number of years of the current Duration
-     */
-    default double asYears()
-    {
-        return asWeeks() / WEEKS_PER_YEAR;
-    }
-
-    /**
      * Waits for the given {@link Condition} variable to be true
      *
      * @param condition The condition variable
@@ -247,7 +158,7 @@ public interface LengthOfTime<T extends LengthOfTime<T>> extends
     {
         try
         {
-            return condition.await(milliseconds(), TimeUnit.MILLISECONDS);
+            return condition.await(nanoseconds(), TimeUnit.NANOSECONDS);
         }
         catch (InterruptedException ignored)
         {
@@ -261,38 +172,44 @@ public interface LengthOfTime<T extends LengthOfTime<T>> extends
     @Override
     default int compareTo(LengthOfTime<?> that)
     {
-        return Long.compare(milliseconds(), that.milliseconds());
-    }
-
-    default T dividedBy(double value)
-    {
-        return newInstance((long) (milliseconds() / value));
+        return Long.compare(nanoseconds(), that.nanoseconds());
     }
 
     /**
-     * @return Number of milliseconds in this duration
+     * @return This length of time divided by the given divisor
      */
-    long milliseconds();
-
-    default T minus(LengthOfTime<?> that)
+    default Duration dividedBy(double value)
     {
-        return newInstance(milliseconds() - that.milliseconds());
-    }
-
-    T newInstance(long milliseconds);
-
-    default T plus(LengthOfTime<?> that)
-    {
-        return newInstance(milliseconds() + that.milliseconds());
+        return newDuration((long) (nanoseconds() / value));
     }
 
     /**
-     * {@inheritDoc}
+     * @return This length of time minus the given length of time
      */
-    @Override
-    default long quantum()
+    default Duration minus(LengthOfTime<?> that)
     {
-        return milliseconds();
+        return newDuration(nanoseconds() - that.nanoseconds());
+    }
+
+    /**
+     * @return The nearest duration of the given unit
+     */
+    default Duration nearest(Duration unit)
+    {
+        return plus(unit.dividedBy(2)).roundDown(unit);
+    }
+
+    /**
+     * @return A new instance of the class implementing this interface
+     */
+    Duration newDuration(long nanoseconds);
+
+    /**
+     * @return This length of time plus the given length of time
+     */
+    default Duration plus(LengthOfTime<?> that)
+    {
+        return newDuration(nanoseconds() + that.nanoseconds());
     }
 
     /**
@@ -309,6 +226,22 @@ public interface LengthOfTime<T extends LengthOfTime<T>> extends
                 onTimer.callback(timer);
             }
         }, 0L, milliseconds());
+    }
+
+    /**
+     * @return This duration rounded down to the closest unit
+     */
+    default Duration roundDown(Duration unit)
+    {
+        return newDuration(nanoseconds() / unit.nanoseconds() * unit.nanoseconds());
+    }
+
+    /**
+     * @return This duration rounded up to the closest unit
+     */
+    default Duration roundUp(Duration unit)
+    {
+        return roundDown(unit).plus(unit);
     }
 
     /**
@@ -329,22 +262,12 @@ public interface LengthOfTime<T extends LengthOfTime<T>> extends
         }
     }
 
-    default T times(double value)
-    {
-        return newInstance((long) (milliseconds() * value));
-    }
-
     /**
-     * Converts a value to a unit-suffixed value, taking care of English singular/plural suffix.
-     *
-     * @param value a double value to format
-     * @param units the units to apply singular or plural suffix to
-     * @return a String representation
+     * @return This length of time multiplied by the given factor
      */
-    default String unitString(double value, String units)
+    default Duration times(double factor)
     {
-        var format = new DecimalFormat("###,###.##");
-        return format.format(value) + " " + units + (value > 1.0 ? "s" : "");
+        return newDuration((long) (nanoseconds() * factor));
     }
 
     /**
@@ -376,6 +299,9 @@ public interface LengthOfTime<T extends LengthOfTime<T>> extends
         }
     }
 
+    /**
+     * Waits for this length of time, then calls the callback method
+     */
     default void waitThen(Callback<Timer> onTimer)
     {
         var timer = new Timer();

@@ -160,7 +160,7 @@ public class PackageResource extends BaseReadableResource
             if (parent != null)
             {
                 var packagePath = PackagePath.packagePath(parent);
-                return packageResource(Listener.throwing(), packagePath, filepath.fileName());
+                return packageResource(Listener.throwingListener(), packagePath, filepath.fileName());
             }
             return null;
         }

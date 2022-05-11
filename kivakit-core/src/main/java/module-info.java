@@ -17,9 +17,6 @@ open module kivakit.core
     requires jdk.attach;
     requires java.management;
 
-    // Test
-    requires transitive junit;
-
     // Module exports
     exports com.telenav.kivakit.core.code;
     exports com.telenav.kivakit.core.collections.iteration;

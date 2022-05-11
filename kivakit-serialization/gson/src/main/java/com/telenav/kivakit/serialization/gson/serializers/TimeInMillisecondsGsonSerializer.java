@@ -44,6 +44,6 @@ public class TimeInMillisecondsGsonSerializer extends PrimitiveGsonSerializer<Ti
     @Override
     protected Long toPrimitive(Time time)
     {
-        return time.asMilliseconds();
+        return time.milliseconds();
     }
 }

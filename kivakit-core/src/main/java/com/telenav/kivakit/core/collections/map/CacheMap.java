@@ -39,14 +39,14 @@ import java.util.Map;
 @UmlClassDiagram(diagram = DiagramCollections.class)
 public class CacheMap<Key, Value> extends BaseMap<Key, Value>
 {
-    /** The time that each entry was added or updated */
-    private final Map<Key, Time> updated = new HashMap<>();
+    /** True if this map should expire old entries */
+    private final boolean expireOldEntries;
 
     /** The maximum allowed age of an entry */
     private final Duration maximumEntryAge;
 
-    /** True if this map should expire old entries */
-    private final boolean expireOldEntries;
+    /** The time that each entry was added or updated */
+    private final Map<Key, Time> updated = new HashMap<>();
 
     public CacheMap(Maximum cacheSize)
     {
@@ -79,8 +79,8 @@ public class CacheMap<Key, Value> extends BaseMap<Key, Value>
     {
         if (expireOldEntries)
         {
-            var age = this.updated.get(key).elapsedSince();
-            if (age != null && age.isGreaterThan(maximumEntryAge))
+            var updated = this.updated.get(key);
+            if (updated != null && updated.elapsedSince().isGreaterThan(maximumEntryAge))
             {
                 remove(key);
                 return null;

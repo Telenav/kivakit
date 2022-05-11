@@ -196,7 +196,7 @@ public abstract class BaseLogger implements Logger
             var levelName = System.getProperty("KIVAKIT_LOG_LEVEL");
             if (levelName != null)
             {
-                Message message = OperationMessage.parse(Listener.console(), levelName);
+                Message message = OperationMessage.parse(Listener.consoleListener(), levelName);
                 if (message != null)
                 {
                     level = message.severity();

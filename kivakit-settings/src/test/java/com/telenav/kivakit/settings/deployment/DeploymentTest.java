@@ -33,7 +33,7 @@ public class DeploymentTest extends UnitTest implements SettingsTrait
     {
         public China()
         {
-            super(Listener.throwing(),"china", "test china deployment");
+            super(Listener.throwingListener(),"china", "test china deployment");
 
             var settings = new ServerSettings();
             settings.timeout(Duration.ONE_MINUTE);
@@ -47,7 +47,7 @@ public class DeploymentTest extends UnitTest implements SettingsTrait
     {
         public Development()
         {
-            super(Listener.throwing(),"development", "test development deployment");
+            super(Listener.throwingListener(),"development", "test development deployment");
 
             var settings = new ServerSettings();
             settings.timeout(Duration.ONE_MINUTE);
@@ -61,7 +61,7 @@ public class DeploymentTest extends UnitTest implements SettingsTrait
     {
         public Production()
         {
-            super(Listener.throwing(),"production", "test production deployment");
+            super(Listener.throwingListener(),"production", "test production deployment");
 
             var settings = new ServerSettings();
             settings.timeout(Duration.ONE_MINUTE);

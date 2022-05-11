@@ -104,12 +104,6 @@ public class Frequency
     }
 
     @Tested
-    public static Frequency parseFrequency(String value)
-    {
-        return parseFrequency(Listener.throwing(), value);
-    }
-
-    @Tested
     public static Frequency parseFrequency(Listener listener, String value)
     {
         value = Strip.leading(value, "every").strip();

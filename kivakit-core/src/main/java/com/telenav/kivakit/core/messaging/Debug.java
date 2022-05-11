@@ -164,7 +164,7 @@ public final class Debug implements Transceiver
         {
             return (Listener) transceiver;
         }
-        return Listener.none();
+        return Listener.emptyListener();
     }
 
     @Override

@@ -3,10 +3,13 @@ package com.telenav.kivakit.core.time;
 import com.telenav.kivakit.core.language.primitive.Longs;
 
 import static com.telenav.kivakit.core.ensure.Ensure.ensure;
+import static com.telenav.kivakit.core.time.Second.nanosecondsPerSecond;
 
 @SuppressWarnings("unused")
 public class Minute extends BaseTime<Minute>
 {
+    static final long nanosecondsPerMinute = nanosecondsPerSecond * 60;
+
     public static Minute minute(long minute)
     {
         ensure(Longs.isBetweenInclusive(minute, 0, 59));
@@ -31,8 +34,14 @@ public class Minute extends BaseTime<Minute>
     }
 
     @Override
-    public Minute newInstance(long minute)
+    public long nanosecondsPerUnit()
     {
-        return minute(minute);
+        return nanosecondsPerMinute;
+    }
+
+    @Override
+    public Minute newTime(long nanoseconds)
+    {
+        return new Minute(nanoseconds);
     }
 }
