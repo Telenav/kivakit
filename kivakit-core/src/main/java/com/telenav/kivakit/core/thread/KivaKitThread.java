@@ -34,6 +34,7 @@ import com.telenav.kivakit.interfaces.lifecycle.Pausable;
 import com.telenav.kivakit.interfaces.lifecycle.Startable;
 import com.telenav.kivakit.interfaces.lifecycle.Stoppable;
 import com.telenav.kivakit.interfaces.naming.Named;
+import com.telenav.kivakit.interfaces.time.WakeState;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import org.jetbrains.annotations.MustBeInvokedByOverriders;
@@ -58,7 +59,7 @@ import static com.telenav.kivakit.core.thread.KivaKitThread.State.WAITING;
  * <p>
  * During the lifecycle of a KivaKit thread, it transitions from one {@link State} to another as code executes and
  * methods are called to control execution. These states are managed with a {@link StateMachine}, which enables state
- * transitions and allows specific states to be waited on. The method {@link #state()} gives access to the {@link
+ * transitions and allows specific states to be waited on. The method {@link #stateMachine()} gives access to the {@link
  * StateMachine} and the convenience methods {@link #waitFor(State)} or {@link #waitFor(State, Duration)} allow states
  * to be waited for. In lifecycle-order, thread states are:
  * </p>
@@ -83,7 +84,7 @@ import static com.telenav.kivakit.core.thread.KivaKitThread.State.WAITING;
  *     <li>{@link #initialDelay(Duration)} - Sets a delay that should pass before this thread starts to execute user code</li>
  *     <li>{@link #lowPriority()} - Makes this thread low priority</li>
  *     <li>{@link #startedAt()} - The time at which this thread transitioned to {@link State#RUNNING}</li>
- *     <li>{@link #state()} - The current state of the thread as a {@link StateMachine} that can be waited on</li>
+ *     <li>{@link #stateMachine()} - The current state of the thread as a {@link StateMachine} that can be waited on</li>
  *     <li>{@link #thread()} - The underlying Java thread object</li>
  * </ul>
  *
@@ -223,8 +224,6 @@ public class KivaKitThread extends BaseRepeater implements
     /** Any initial delay before the thread starts running */
     private Duration initialDelay = Duration.ZERO_DURATION;
 
-    private boolean initialized;
-
     /** The time at which this thread was started */
     private Time startedAt;
 
@@ -232,7 +231,7 @@ public class KivaKitThread extends BaseRepeater implements
     private transient final Thread thread;
 
     /** The current state of this thread */
-    private transient final StateMachine<State> state = listenTo(new StateMachine<>(CREATED, state -> trace(name() + ": " + state.name())));
+    private transient final StateMachine<State> stateMachine = listenTo(new StateMachine<>(CREATED, state -> trace(name() + ": " + state.name())));
 
     /**
      * Creates a daemon thread with the given name prefixed by "Kiva-" so it is easy to distinguish from other threads.
@@ -299,7 +298,7 @@ public class KivaKitThread extends BaseRepeater implements
      */
     public boolean is(State state)
     {
-        return state().is(state);
+        return stateMachine().is(state);
     }
 
     /**
@@ -412,7 +411,7 @@ public class KivaKitThread extends BaseRepeater implements
     public KivaKitThread startSynchronously()
     {
         start();
-        waitFor(RUNNING);
+        stateMachine().waitForNot(WAITING);
         return this;
     }
 
@@ -427,9 +426,9 @@ public class KivaKitThread extends BaseRepeater implements
     /**
      * @return The state that this thread is in
      */
-    public StateMachine<State> state()
+    public StateMachine<State> stateMachine()
     {
-        return state;
+        return stateMachine;
     }
 
     /**
@@ -452,10 +451,10 @@ public class KivaKitThread extends BaseRepeater implements
     /**
      * Wait for this thread to achieve the given states
      */
-    public void waitFor(State state)
+    public WakeState waitFor(State state)
     {
         trace("Wait for $", state);
-        state().waitFor(state);
+        return stateMachine().waitFor(state);
     }
 
     /**
@@ -464,7 +463,7 @@ public class KivaKitThread extends BaseRepeater implements
     public void waitFor(State state, Duration maximumWait)
     {
         trace("Wait for $", state);
-        state().waitFor(state, maximumWait);
+        stateMachine().waitFor(state, maximumWait);
     }
 
     /**
@@ -472,7 +471,7 @@ public class KivaKitThread extends BaseRepeater implements
      */
     public void whileLocked(Runnable code)
     {
-        state().whileLocked(code);
+        stateMachine().whileLocked(code);
     }
 
     /**
@@ -480,7 +479,7 @@ public class KivaKitThread extends BaseRepeater implements
      */
     public <T> T whileLocked(Code<T> code)
     {
-        return state().whileLocked(code);
+        return stateMachine().whileLocked(code);
     }
 
     /**
@@ -536,7 +535,7 @@ public class KivaKitThread extends BaseRepeater implements
 
     protected State transition(State to)
     {
-        return state().transitionTo(to);
+        return stateMachine().transitionTo(to);
     }
 
     /**
@@ -544,11 +543,7 @@ public class KivaKitThread extends BaseRepeater implements
      */
     protected void waitForInitialDelayPeriod()
     {
-        if (!initialized)
-        {
-            initialDelay.sleep();
-            initialized = true;
-        }
+        initialDelay.sleep();
     }
 
     private static String name(String name)

@@ -58,7 +58,7 @@ public class HourOfWeek extends BaseTime<HourOfWeek>
     @Tested
     public static HourOfWeek hourOfWeek(DayOfWeek dayOfWeek, Hour hourOfDay)
     {
-        return hourOfWeek((dayOfWeek.asIso() * 24 + hourOfDay.asUnits()));
+        return hourOfWeek((dayOfWeek.asIsoOrdinal() * 24 + hourOfDay.asUnits()));
     }
 
     /** The day of the week used to compute the hour of the week */
@@ -230,7 +230,7 @@ public class HourOfWeek extends BaseTime<HourOfWeek>
 
     private HourOfWeek offset(long offset)
     {
-        var maximum = this.maximum().asUnits() + 1;
-        return hourOfWeek((int) ((asUnits() + offset + maximum) % maximum));
+        var maximumExclusive = this.maximum().asUnits() + 1;
+        return hourOfWeek((int) ((asUnits() + offset + maximumExclusive) % maximumExclusive));
     }
 }

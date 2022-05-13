@@ -128,7 +128,7 @@ public class FileCache extends BaseRepeater
         // Start folder pruner
         var pruner = new FolderPruner(cacheFolder, EVERY_30_SECONDS);
         pruner.minimumUsableDiskSpace(Percent.percent(10));
-        pruner.minimumAge(Duration.days(30));
+        pruner.maximumAge(Duration.days(30));
         pruner.start();
     }
 }

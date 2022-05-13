@@ -9,6 +9,7 @@ import com.telenav.kivakit.core.test.Tested;
 import java.time.ZoneId;
 
 import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
+import static com.telenav.kivakit.core.time.HourOfWeek.hourOfWeek;
 
 /**
  * Represents a span of hours of the week in a local timezone. For example, monday at 3pm to tuesday at 1pm in the
@@ -95,7 +96,7 @@ public class HourOfWeekSpan
 
     @Override
     @Tested
-    public boolean equals(final Object object)
+    public boolean equals(Object object)
     {
         if (object instanceof HourOfWeekSpan)
         {
@@ -125,9 +126,8 @@ public class HourOfWeekSpan
         }
         else
         {
-            return !time.hourOfWeek().isBetweenInclusive(
-                    endHourOfWeek.incremented(),
-                    startHourOfWeek.decremented());
+            return time.hourOfWeek().isBetweenInclusive(startHourOfWeek(), hourOfWeek(0).maximum())
+                    || time.hourOfWeek().isBetweenInclusive(hourOfWeek(0), endHourOfWeek());
         }
     }
 
@@ -137,7 +137,7 @@ public class HourOfWeekSpan
      */
     public boolean includes(Time time)
     {
-        return includes(time.inTimeZone(zoneId()));
+        return includes(time.inTimeZone(TimeZones.utc()));
     }
 
     /**

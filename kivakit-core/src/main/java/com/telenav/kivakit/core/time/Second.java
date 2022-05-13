@@ -9,15 +9,15 @@ public class Second extends BaseTime<Second>
 {
     static final long nanosecondsPerSecond = (long) 1E9;
 
-    public static Second second(long second)
+    public static Second second(int second)
     {
         ensure(Longs.isBetweenInclusive(second, 0, 59));
-        return new Second(second);
+        return new Second(second * nanosecondsPerSecond);
     }
 
-    protected Second(long second)
+    protected Second(long nanoseconds)
     {
-        super(second * nanosecondsPerSecond);
+        super(nanoseconds);
     }
 
     @Override

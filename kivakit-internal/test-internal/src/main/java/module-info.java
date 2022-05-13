@@ -6,5 +6,5 @@ open module kivakit.test.internal
     // Test
     requires transitive junit;
 
-    exports com.telenav.kivakit.core.test.support;
+    exports com.telenav.kivakit.internal.test.support;
 }

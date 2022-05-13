@@ -54,7 +54,7 @@ public class LocalTime extends Time
 
     public static LocalTime localTime(ZoneId zone, BaseTime<?> time)
     {
-        return milliseconds(zone, time.milliseconds());
+        return nanoseconds(zone, time.nanoseconds());
     }
 
     public static LocalTime localTime(ZoneId zone, Year year, Month month, Day dayOfMonth, Hour hour)
@@ -96,7 +96,12 @@ public class LocalTime extends Time
 
     public static LocalTime milliseconds(ZoneId zone, long milliseconds)
     {
-        return new LocalTime(zone, millisecondsToNanoseconds(milliseconds));
+        return nanoseconds(zone, millisecondsToNanoseconds(milliseconds));
+    }
+
+    public static LocalTime nanoseconds(ZoneId zone, long nanoseconds)
+    {
+        return new LocalTime(zone, nanoseconds);
     }
 
     public static LocalTime now()
@@ -168,6 +173,16 @@ public class LocalTime extends Time
         return TimeFormats.KIVAKIT_TIME.format(asJavaInstant()) + "_" + TimeZones.shortDisplayName(zone);
     }
 
+    @Override
+    public Time asUtc()
+    {
+        if (TimeZones.isUtc(timeZone))
+        {
+            return this;
+        }
+        return inTimeZone(utcTimeZone());
+    }
+
     public long asZonedMilliseconds()
     {
         return javaLocalDateTime().atZone(timeZone()).toInstant().toEpochMilli();
@@ -196,7 +211,7 @@ public class LocalTime extends Time
      */
     public DayOfWeek dayOfWeek()
     {
-        return javaDayOfWeek(javaLocalDateTime().getDayOfWeek());
+        return javaDayOfWeek(javaLocalDateTime().getDayOfWeek().getValue());
     }
 
     /**
@@ -215,12 +230,13 @@ public class LocalTime extends Time
     }
 
     @Override
-    public boolean equals(Object object)
+    public boolean equals(final Object object)
     {
-        if (object instanceof LocalTime)
+        if (object instanceof Time)
         {
-            var that = (LocalTime) object;
-            return asZonedMilliseconds() == that.asZonedMilliseconds();
+            var utc = asUtc();
+            var that = ((Time) object).asUtc();
+            return utc.nanoseconds() == that.nanoseconds();
         }
         return false;
     }
@@ -230,13 +246,10 @@ public class LocalTime extends Time
         return month().fiscalQuarter();
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public int hashCode()
     {
-        return Objects.hashCode(asZonedMilliseconds());
+        return Objects.hash(asUtc().nanoseconds());
     }
 
     /**
@@ -249,7 +262,7 @@ public class LocalTime extends Time
 
     public HourOfWeek hourOfWeek()
     {
-        return HourOfWeek.hourOfWeek(dayOfWeek().asIso() * 24 + hourOfDay().asMilitaryHour());
+        return HourOfWeek.hourOfWeek(dayOfWeek().asIsoOrdinal() * 24 + hourOfDay().asMilitaryHour());
     }
 
     @Override
@@ -409,7 +422,7 @@ public class LocalTime extends Time
 
     public LocalTime withDayOfWeek(DayOfWeek day)
     {
-        return localTime(timeZone(), javaLocalDateTime().with(DAY_OF_WEEK, day.asJava()));
+        return localTime(timeZone(), javaLocalDateTime().with(DAY_OF_WEEK, day.asJavaOrdinal()));
     }
 
     public LocalTime withHourOfDay(Hour hour)

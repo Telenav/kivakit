@@ -38,5 +38,29 @@ public enum WakeState
     COMPLETED,
 
     /** The awaited operation failed due to an exception */
-    TERMINATED,
+    TERMINATED;
+
+    static WakeState terminated(Throwable thrown)
+    {
+        var wake = TERMINATED;
+        wake.thrown = thrown;
+        return wake;
+    }
+
+    private Throwable thrown;
+
+    public boolean completed()
+    {
+        return this == COMPLETED;
+    }
+
+    public boolean failed()
+    {
+        return !completed();
+    }
+
+    public Throwable thrown()
+    {
+        return thrown;
+    }
 }

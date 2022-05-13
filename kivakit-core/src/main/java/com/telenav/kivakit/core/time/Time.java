@@ -53,11 +53,6 @@ public class Time extends BaseTime<Time>
     /** The end of time */
     public static final Time MAXIMUM = milliseconds(Long.MAX_VALUE);
 
-    protected static long millisecondsToNanoseconds(long milliseconds)
-    {
-        return milliseconds * 1_000_000;
-    }
-
     /**
      * Retrieves a <code>Time</code> instance based on the given milliseconds.
      *
@@ -67,6 +62,11 @@ public class Time extends BaseTime<Time>
     public static Time milliseconds(long milliseconds)
     {
         return nanoseconds(millisecondsToNanoseconds(milliseconds));
+    }
+
+    protected static long millisecondsToNanoseconds(long milliseconds)
+    {
+        return milliseconds * 1_000_000;
     }
 
     /**
@@ -144,7 +144,7 @@ public class Time extends BaseTime<Time>
 
     public Time asUtc()
     {
-        return inTimeZone(utcTimeZone());
+        return this;
     }
 
     /**
@@ -166,7 +166,7 @@ public class Time extends BaseTime<Time>
     public Duration elapsedSince(Time that)
     {
         // If this time is after the given time,
-        if (isAfter(that))
+        if (isAtOrAfter(that))
         {
             // then we can subtract to get the duration.
             return Duration.milliseconds(asMilliseconds() - that.asUtc().asMilliseconds());

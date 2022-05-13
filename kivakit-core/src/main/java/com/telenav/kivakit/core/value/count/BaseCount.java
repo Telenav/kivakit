@@ -381,7 +381,15 @@ public abstract class BaseCount<SubClass extends BaseCount<SubClass>> implements
 
     public SubClass inRangeExclusive(long value)
     {
-        return inRangeInclusive(value - 1);
+        if (value >= maximum().asLong())
+        {
+            return null;
+        }
+        if (value < 0)
+        {
+            return null;
+        }
+        return newInstance(value);
     }
 
     public SubClass inRangeInclusive(long value)

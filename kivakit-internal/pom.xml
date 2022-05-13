@@ -10,8 +10,8 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>unit-tests</module>
         <module>test-internal</module>
+        <module>tests</module>
     </modules>
 
 </project>

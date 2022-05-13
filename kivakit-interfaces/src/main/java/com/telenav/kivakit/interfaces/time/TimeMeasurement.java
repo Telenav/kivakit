@@ -160,7 +160,7 @@ public interface TimeMeasurement extends Quantizable
      */
     default long milliseconds()
     {
-        return nanoseconds() / 1_000_000L;
+        return (nanoseconds() + 500_000L) / 1_000_000L;
     }
 
     /**

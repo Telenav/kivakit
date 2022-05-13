@@ -131,8 +131,6 @@
 
         <!-- Build -->
 
-        <java.version>11</java.version>
-
         <maven.version>3.8.1</maven.version>
         <maven-antrun-plugin.version>3.0.0</maven-antrun-plugin.version>
         <maven-compiler-plugin.version>3.10.1</maven-compiler-plugin.version>
@@ -145,6 +143,9 @@
         <maven-exec-plugin.version>3.0.0</maven-exec-plugin.version>
         <maven-protobuf-plugin.version>0.6.1</maven-protobuf-plugin.version>
         <maven-os-plugin.version>1.6.1</maven-os-plugin.version>
+
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
 
         <cactus.version>1.4.0</cactus.version>
         <cactus.download.version>${cactus.version}</cactus.download.version>
@@ -494,9 +495,9 @@
                     <artifactId>maven-compiler-plugin</artifactId>
                     <version>${maven-compiler-plugin.version}</version>
                     <configuration>
-                        <source>${java.version}</source>
-                        <target>${java.version}</target>
-                        <release>${java.version}</release>
+                        <source>${maven.compiler.source}</source>
+                        <target>${maven.compiler.target}</target>
+                        <release>${maven.compiler.target}</release>
                         <compilerArgs>
                             <compilerArg>-Xlint:unchecked</compilerArg>
                             <compilerArg>-Xlint:-requires-transitive-automatic</compilerArg>
@@ -509,7 +510,7 @@
 
                 <plugin>
                     <groupId>org.codehaus.mojo</groupId>
-                    <artifactId>build-helper-maven-plugin</artifactId>
+                    <artifactId>build-helper-mxaven-plugin</artifactId>
                     <version>3.2.0</version>
                 </plugin>
 

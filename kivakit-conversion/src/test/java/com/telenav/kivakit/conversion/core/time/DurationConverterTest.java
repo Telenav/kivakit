@@ -1,7 +1,7 @@
 package com.telenav.kivakit.conversion.core.time;
 
 import com.telenav.kivakit.core.messaging.Listener;
-import com.telenav.kivakit.core.test.support.CoreUnitTest;
+import com.telenav.kivakit.internal.test.support.CoreUnitTest;
 import com.telenav.kivakit.core.time.Duration;
 import org.junit.Test;
 

@@ -122,7 +122,7 @@ public interface PointInTime<Time extends PointInTime<Time, Duration>, Duration 
      */
     default boolean isAtOrBefore(Time that)
     {
-        return isLessThan(that);
+        return isLessThanOrEqualTo(that);
     }
 
     /**
@@ -130,7 +130,7 @@ public interface PointInTime<Time extends PointInTime<Time, Duration>, Duration 
      */
     default boolean isBefore(Time that)
     {
-        return isLessThanOrEqualTo(that);
+        return isLessThan(that);
     }
 
     /**

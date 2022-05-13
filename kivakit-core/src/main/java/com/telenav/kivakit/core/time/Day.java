@@ -3,7 +3,6 @@ package com.telenav.kivakit.core.time;
 import com.telenav.kivakit.core.language.primitive.Ints;
 import com.telenav.kivakit.core.test.NoTestRequired;
 import com.telenav.kivakit.core.test.Tested;
-import com.telenav.kivakit.core.time.DayOfWeek.Standard;
 
 import static com.telenav.kivakit.core.ensure.Ensure.ensure;
 import static com.telenav.kivakit.core.ensure.Ensure.unsupported;
@@ -12,10 +11,6 @@ import static com.telenav.kivakit.core.time.Day.Type.DAY_OF_MONTH;
 import static com.telenav.kivakit.core.time.Day.Type.DAY_OF_UNIX_EPOCH;
 import static com.telenav.kivakit.core.time.Day.Type.DAY_OF_WEEK;
 import static com.telenav.kivakit.core.time.Day.Type.DAY_OF_YEAR;
-import static com.telenav.kivakit.core.time.DayOfWeek.Standard.ISO;
-import static com.telenav.kivakit.core.time.DayOfWeek.Standard.JAVA;
-import static com.telenav.kivakit.core.time.DayOfWeek.isoDayOfWeek;
-import static com.telenav.kivakit.core.time.DayOfWeek.javaDayOfWeek;
 import static com.telenav.kivakit.core.time.Hour.nanosecondsPerHour;
 import static java.lang.Integer.MAX_VALUE;
 
@@ -36,7 +31,7 @@ public class Day extends BaseTime<Day>
     @Tested
     public static Day day(int day)
     {
-        return new Day(DAY, null, day);
+        return new Day(DAY, day);
     }
 
     /**
@@ -45,7 +40,7 @@ public class Day extends BaseTime<Day>
     @Tested
     public static Day dayOfMonth(int day)
     {
-        return new Day(DAY_OF_MONTH, null, day);
+        return new Day(DAY_OF_MONTH, day - 1);
     }
 
     /**
@@ -54,16 +49,16 @@ public class Day extends BaseTime<Day>
     @Tested
     public static Day dayOfUnixEpoch(int day)
     {
-        return new Day(DAY_OF_UNIX_EPOCH, null, day);
+        return new Day(DAY_OF_UNIX_EPOCH, day);
     }
 
     /**
-     * @return A day since the start of the week in the given day-of-week {@link Standard}
+     * @return A day since the start of the week as an ISO ordinal
      */
     @Tested
-    public static Day dayOfWeek(int day, Standard standard)
+    public static Day isoDayOfWeek(int day)
     {
-        return new Day(DAY_OF_WEEK, standard, day);
+        return new Day(DAY_OF_WEEK, day);
     }
 
     /**
@@ -72,7 +67,16 @@ public class Day extends BaseTime<Day>
     @Tested
     public static Day dayOfYear(int day)
     {
-        return new Day(DAY_OF_YEAR, null, day);
+        return new Day(DAY_OF_YEAR, day);
+    }
+
+    /**
+     * @return A day since the start of the week as a Java ordinal
+     */
+    @Tested
+    public static Day javaDayOfWeek(int day)
+    {
+        return new Day(DAY_OF_WEEK, day - 1);
     }
 
     /**
@@ -97,19 +101,19 @@ public class Day extends BaseTime<Day>
         DAY_OF_YEAR
     }
 
-    /** The standard for numbering days of the week */
-    private final Standard standard;
-
     /** The type of day this is */
     private final Type type;
 
+    /**
+     * @param type The type of day
+     * @param day A zero-based ordinal value
+     */
     @NoTestRequired
-    protected Day(Type type, Standard standard, int day)
+    protected Day(Type type, int day)
     {
         super(day * nanosecondsPerDay);
 
         this.type = type;
-        this.standard = standard;
 
         ensure(isValid());
     }
@@ -122,9 +126,7 @@ public class Day extends BaseTime<Day>
     {
         ensure(type() == DAY_OF_WEEK);
 
-        return standard == JAVA
-                ? javaDayOfWeek(asUnits())
-                : isoDayOfWeek(asUnits());
+        return DayOfWeek.isoDayOfWeek(asUnits());
     }
 
     /**
@@ -133,20 +135,24 @@ public class Day extends BaseTime<Day>
     @Tested
     public int asIndex()
     {
-        switch (type())
+        return super.asUnits();
+    }
+
+    @Override
+    public int asUnits()
+    {
+        var units = super.asUnits();
+
+        switch (type)
         {
             case DAY:
-            case DAY_OF_UNIX_EPOCH:
-            case DAY_OF_YEAR:
-                return asUnits();
-
             case DAY_OF_WEEK:
-                return standard == JAVA
-                        ? asUnits() - 1
-                        : asUnits();
+            case DAY_OF_YEAR:
+            case DAY_OF_UNIX_EPOCH:
+                return units;
 
             case DAY_OF_MONTH:
-                return asUnits() - 1;
+                return units + 1;
 
             default:
                 return unsupported();
@@ -169,15 +175,7 @@ public class Day extends BaseTime<Day>
                 return Ints.isBetweenInclusive(asUnits(), 1, 31);
 
             case DAY_OF_WEEK:
-                if (standard() == ISO)
-                {
-                    return Ints.isBetweenInclusive(asUnits(), 0, 6);
-                }
-                if (standard() == JAVA)
-                {
-                    return Ints.isBetweenInclusive(asUnits(), 1, 7);
-                }
-                return unsupported();
+                return Ints.isBetweenInclusive(asUnits(), 0, 6);
 
             case DAY_OF_YEAR:
                 return Ints.isBetweenInclusive(asUnits(), 0, 365);
@@ -196,7 +194,7 @@ public class Day extends BaseTime<Day>
         switch (type)
         {
             case DAY_OF_WEEK:
-                return dayOfWeek(6, ISO);
+                return isoDayOfWeek(6);
 
             case DAY_OF_UNIX_EPOCH:
                 return dayOfUnixEpoch(nanosecondsToUnits(MAX_VALUE));
@@ -226,13 +224,7 @@ public class Day extends BaseTime<Day>
     @Override
     public Day newTime(long nanoseconds)
     {
-        return new Day(type, standard, nanosecondsToUnits(nanoseconds));
-    }
-
-    @NoTestRequired
-    public Standard standard()
-    {
-        return standard;
+        return new Day(type, nanosecondsToUnits(nanoseconds));
     }
 
     @Tested

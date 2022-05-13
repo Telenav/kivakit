@@ -82,6 +82,8 @@ public class Hour extends BaseTime<Hour>
     @Tested
     public static Hour militaryHour(int militaryHour)
     {
+        ensure(militaryHour >= 0);
+        ensure(militaryHour <= 23);
         return new Hour(MILITARY_HOUR, NO_MERIDIEM, militaryHour);
     }
 

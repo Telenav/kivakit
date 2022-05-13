@@ -131,9 +131,9 @@ public abstract class BaseTime<T extends BaseTime<T>> implements PointInTime<T, 
     @Tested
     public boolean equals(final Object object)
     {
-        if (object instanceof Hour)
+        if (object instanceof BaseTime)
         {
-            var that = (Hour) object;
+            var that = (BaseTime<?>) object;
             return this.quantum() == that.quantum();
         }
         return false;
@@ -169,7 +169,12 @@ public abstract class BaseTime<T extends BaseTime<T>> implements PointInTime<T, 
      */
     public T minus(int units)
     {
-        return newTime(nanoseconds() - unitsToNanoseconds(units));
+        var difference = asUnits() - units;
+        if (difference < 0)
+        {
+            difference += 24;
+        }
+        return newTime(unitsToNanoseconds(difference));
     }
 
     /**
@@ -205,7 +210,12 @@ public abstract class BaseTime<T extends BaseTime<T>> implements PointInTime<T, 
      */
     public T plus(int units)
     {
-        return newTime(nanoseconds() + unitsToNanoseconds(units));
+        var sum = asUnits() + units;
+        if (sum > 23)
+        {
+            sum -= 24;
+        }
+        return newTime(unitsToNanoseconds(sum));
     }
 
     @Override

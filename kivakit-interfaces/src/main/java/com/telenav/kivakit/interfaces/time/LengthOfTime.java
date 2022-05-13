@@ -16,7 +16,6 @@ import java.util.concurrent.TimeUnit;
 
 import static com.telenav.kivakit.interfaces.time.WakeState.COMPLETED;
 import static com.telenav.kivakit.interfaces.time.WakeState.INTERRUPTED;
-import static com.telenav.kivakit.interfaces.time.WakeState.TERMINATED;
 import static com.telenav.kivakit.interfaces.time.WakeState.TIMED_OUT;
 
 /**
@@ -172,7 +171,7 @@ public interface LengthOfTime<Duration extends LengthOfTime<Duration>> extends
         }
         catch (Exception e)
         {
-            return TERMINATED;
+            return WakeState.terminated(e);
         }
     }
 

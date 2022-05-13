@@ -10,15 +10,17 @@ public class Minute extends BaseTime<Minute>
 {
     static final long nanosecondsPerMinute = nanosecondsPerSecond * 60;
 
-    public static Minute minute(long minute)
+    public static Minute minute(int minute)
     {
         ensure(Longs.isBetweenInclusive(minute, 0, 59));
-        return new Minute(minute);
+
+        return new Minute(minute * nanosecondsPerMinute);
     }
 
-    protected Minute(long minute)
+    protected Minute(long nanoseconds)
     {
-        super(minute * 60 * 1_000);
+        super(nanoseconds);
+
     }
 
     @Override
