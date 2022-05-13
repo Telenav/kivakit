@@ -18,7 +18,6 @@
 
 package com.telenav.kivakit.internal.tests.filesystem;
 
-import com.telenav.kivakit.core.os.Console;
 import com.telenav.kivakit.core.thread.latches.CompletionLatch;
 import com.telenav.kivakit.core.time.Duration;
 import com.telenav.kivakit.core.value.count.Bytes;
@@ -27,10 +26,12 @@ import com.telenav.kivakit.filesystem.File;
 import com.telenav.kivakit.filesystem.Folder;
 import com.telenav.kivakit.filesystem.FolderPruner;
 import com.telenav.kivakit.test.UnitTest;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import static com.telenav.kivakit.core.time.Duration.ZERO_DURATION;
 
+@Ignore
 public class FolderPrunerTest extends UnitTest
 {
     @Test
