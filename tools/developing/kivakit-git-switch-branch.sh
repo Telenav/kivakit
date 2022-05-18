@@ -9,12 +9,10 @@
 
 source kivakit-library-functions.sh
 
-help="[branch-name]"
-
 # shellcheck disable=SC2034
 branch=$1
 
-require_variable branch "$help"
+require_variable branch "[branch-name]"
 
 cd "$KIVAKIT_WORKSPACE" || exit
 
