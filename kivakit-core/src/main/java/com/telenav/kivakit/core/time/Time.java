@@ -155,10 +155,10 @@ public class Time extends BaseTime<Time>
     public Duration elapsedSince(Time that)
     {
         // If this time is after the given time,
-        if (isAtOrAfter(that))
+        if (asUtc().isAtOrAfter(that.asUtc()))
         {
-            // then we can subtract to get the duration.
-            return Duration.milliseconds(asMilliseconds() - that.asUtc().asMilliseconds());
+            // then we can subtract the UTC values to get the duration.
+            return Duration.milliseconds(asUtc().asMilliseconds() - that.asUtc().asMilliseconds());
         }
 
         return ZERO_DURATION;

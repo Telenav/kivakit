@@ -68,7 +68,7 @@ public class TimeTest extends CoreUnitTest
         var now = Time.now().roundDown(ONE_SECOND);
         var earlier = now.minus(ONE_SECOND);
 
-        ensureEqual(ONE_SECOND, earlier.plus(ONE_SECOND));
+        ensureEqual(now, earlier.plus(ONE_SECOND));
     }
 
     @Test

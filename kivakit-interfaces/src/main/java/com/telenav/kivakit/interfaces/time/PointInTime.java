@@ -1,7 +1,5 @@
 package com.telenav.kivakit.interfaces.time;
 
-import com.telenav.kivakit.interfaces.numeric.Quantizable;
-import com.telenav.kivakit.interfaces.numeric.QuantumComparable;
 import com.telenav.kivakit.interfaces.string.Stringable;
 
 import java.time.Instant;
@@ -56,11 +54,10 @@ import java.time.Instant;
  *
  * <ul>
  *     <li>{@link #compareTo(PointInTime)}</li>
- *     <li>{@link #isLessThan(Quantizable)}</li>
- *     <li>{@link #isLessThanOrEqualTo(Quantizable)}</li>
- *     <li>{@link #isGreaterThan(Quantizable)}</li>
- *     <li>{@link #isLessThanOrEqualTo(Quantizable)}</li>
- *     <li>{@link #isApproximately(Quantizable, Quantizable)}</li>
+ *     <li>{@link #isBefore(PointInTime)}</li>
+ *     <li>{@link #isAfter(PointInTime)}</li>
+ *     <li>{@link #isAtOrBefore(PointInTime)}</li>
+ *     <li>{@link #isAtOrAfter(PointInTime)}</li>
  *     <li>{@link #isZero()}</li>
  *     <li>{@link #isNonZero()}</li>
  *     <li>{@link #isAfter(PointInTime)}</li>
@@ -79,7 +76,6 @@ import java.time.Instant;
  * @author jonathanl (shibo)
  */
 public interface PointInTime<Time extends PointInTime<Time, Duration>, Duration extends LengthOfTime<Duration>> extends
-        QuantumComparable<PointInTime<?, ?>>,
         Comparable<PointInTime<?, ?>>,
         Stringable,
         TimeMeasurement
@@ -131,6 +127,38 @@ public interface PointInTime<Time extends PointInTime<Time, Duration>, Duration 
     default boolean isBefore(Time that)
     {
         return isLessThan(that);
+    }
+
+    /**
+     * @return True if this time value is after the given value
+     */
+    default boolean isGreaterThan(Time that)
+    {
+        return nanoseconds().isGreaterThan(that.nanoseconds());
+    }
+
+    /**
+     * @return True if this time value is at or after the given value
+     */
+    default boolean isGreaterThanOrEqualTo(Time that)
+    {
+        return nanoseconds().isGreaterThanOrEqualTo(that.nanoseconds());
+    }
+
+    /**
+     * @return True if this time value is before the given value
+     */
+    default boolean isLessThan(Time that)
+    {
+        return nanoseconds().isLessThan(that.nanoseconds());
+    }
+
+    /**
+     * @return True if this time value is at or before the given value
+     */
+    default boolean isLessThanOrEqualTo(Time that)
+    {
+        return nanoseconds().isLessThanOrEqualTo(that.nanoseconds());
     }
 
     default boolean isNegative()

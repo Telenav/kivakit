@@ -73,7 +73,7 @@ public class DurationTest extends CoreUnitTest
     public void testConstruction()
     {
         ensureEqual(60.0, milliseconds(60).asMilliseconds());
-        ensureEqual(1L, nanoseconds(600_000).milliseconds());
+        ensureEqual(0L, nanoseconds(600_000).milliseconds());
         ensureEqual(0.6, nanoseconds(600_000).asMilliseconds());
         ensureEqual(0.4, nanoseconds(400_000).asMilliseconds());
         ensureEqual(0L, nanoseconds(400_000).milliseconds());

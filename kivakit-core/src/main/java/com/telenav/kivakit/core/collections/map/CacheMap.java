@@ -79,7 +79,7 @@ public class CacheMap<Key, Value> extends BaseMap<Key, Value>
             updated.compute((Key) key, (ignored, value) ->
             {
                 // If the value's age is greater than the maximum age for an entry,
-                if (value.elapsedSince().isGreaterThan(maximumEntryAge))
+                if (value == null || value.elapsedSince().isGreaterThan(maximumEntryAge))
                 {
                     // returning null to compute, which causes it to remove this key.
                     return null;

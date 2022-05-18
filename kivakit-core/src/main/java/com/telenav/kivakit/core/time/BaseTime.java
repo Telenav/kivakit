@@ -237,7 +237,7 @@ public abstract class BaseTime<T extends BaseTime<T>> implements PointInTime<T, 
     @Override
     public String toString()
     {
-        return nanoseconds().toString();
+        return String.valueOf(asUnits());
     }
 
     protected Nanoseconds inRange(Nanoseconds nanoseconds)

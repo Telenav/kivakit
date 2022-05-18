@@ -6,7 +6,6 @@ import java.util.Objects;
 
 import static java.lang.Math.addExact;
 import static java.lang.Math.subtractExact;
-import static java.math.BigDecimal.valueOf;
 
 /**
  * Accurate model of a number of nanoseconds, represented as a number of seconds and a number of nanoseconds. This
@@ -37,7 +36,7 @@ public class Nanoseconds implements Comparable<Nanoseconds>
      */
     public static Nanoseconds milliseconds(double milliseconds)
     {
-        return nanoseconds(milliseconds * 1E9);
+        return nanoseconds(milliseconds * 1E6);
     }
 
     /**
@@ -71,7 +70,7 @@ public class Nanoseconds implements Comparable<Nanoseconds>
     public static Nanoseconds nanoseconds(BigDecimal nanoseconds)
     {
         return new Nanoseconds(
-                (long) nanoseconds.divide(valueOf(NANOSECONDS_PER_SECOND), RoundingMode.DOWN).doubleValue(),
+                (long) nanoseconds.divide(BigDecimal.valueOf(NANOSECONDS_PER_SECOND), RoundingMode.DOWN).doubleValue(),
                 nanoseconds.remainder(BigDecimal.valueOf(NANOSECONDS_PER_SECOND)).longValueExact());
     }
 
@@ -106,6 +105,14 @@ public class Nanoseconds implements Comparable<Nanoseconds>
     private final long seconds;
 
     /**
+     * For serialization
+     */
+    protected Nanoseconds()
+    {
+        this(0, 0);
+    }
+
+    /**
      * Constructs from a number of seconds and a number of nanoseconds, allowing large, precise values
      */
     private Nanoseconds(long seconds, long nanoseconds)
@@ -121,7 +128,9 @@ public class Nanoseconds implements Comparable<Nanoseconds>
      */
     public BigDecimal asBigDecimal()
     {
-        return valueOf(this.seconds * NANOSECONDS_PER_SECOND).add(valueOf(this.nanoseconds));
+        return BigDecimal.valueOf(this.seconds)
+                .multiply(BigDecimal.valueOf(NANOSECONDS_PER_SECOND))
+                .add(BigDecimal.valueOf(this.nanoseconds));
     }
 
     /**
@@ -178,7 +187,7 @@ public class Nanoseconds implements Comparable<Nanoseconds>
             return this;
         }
 
-        return nanoseconds(asBigDecimal().divide(valueOf(divisor), RoundingMode.HALF_DOWN));
+        return nanoseconds(asBigDecimal().divide(BigDecimal.valueOf(divisor), RoundingMode.HALF_DOWN));
     }
 
     @Override
@@ -331,14 +340,13 @@ public class Nanoseconds implements Comparable<Nanoseconds>
             return this;
         }
 
-        return nanoseconds(asBigDecimal().multiply(valueOf(factor)));
+        return nanoseconds(asBigDecimal().multiply(BigDecimal.valueOf(factor)));
     }
 
     public String toString()
     {
         return String.format("%d.%09d", seconds(), nanoseconds());
     }
-
 
     /**
      * @return The number of nanoseconds, not including any seconds
