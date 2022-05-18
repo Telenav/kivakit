@@ -23,7 +23,7 @@ import com.telenav.kivakit.conversion.core.time.SecondsConverter;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.messaging.listeners.MessageChecker;
 import com.telenav.kivakit.core.messaging.messages.status.Problem;
-import com.telenav.kivakit.core.test.support.CoreUnitTest;
+import com.telenav.kivakit.internal.test.support.CoreUnitTest;
 import com.telenav.kivakit.core.time.Duration;
 import org.junit.Test;
 
@@ -33,13 +33,13 @@ public class ConverterTest extends CoreUnitTest
     public void testBadInputs()
     {
         new MessageChecker().expect(Problem.class).check(() ->
-                ensureEqual(null, new SecondsConverter(Listener.none()).convert(null)));
+                ensureEqual(null, new SecondsConverter(Listener.emptyListener()).convert(null)));
 
         new MessageChecker().expect(Problem.class).check(() ->
-                ensureEqual(null, new SecondsConverter(Listener.none()).convert("")));
+                ensureEqual(null, new SecondsConverter(Listener.emptyListener()).convert("")));
 
         new MessageChecker().expect(Problem.class).check(() ->
-                ensureEqual(null, new SecondsConverter(Listener.none()).convert("x")));
+                ensureEqual(null, new SecondsConverter(Listener.emptyListener()).convert("x")));
     }
 
     @Test

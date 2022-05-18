@@ -22,6 +22,7 @@ import com.telenav.kivakit.commandline.ArgumentParser;
 import com.telenav.kivakit.commandline.SwitchParser;
 import com.telenav.kivakit.conversion.BaseStringConverter;
 import com.telenav.kivakit.core.collections.map.VariableMap;
+import com.telenav.kivakit.core.collections.set.ObjectSet;
 import com.telenav.kivakit.core.ensure.Ensure;
 import com.telenav.kivakit.core.logging.Logger;
 import com.telenav.kivakit.core.logging.LoggerFactory;
@@ -37,6 +38,7 @@ import com.telenav.kivakit.filesystem.spi.FileService;
 import com.telenav.kivakit.resource.CopyMode;
 import com.telenav.kivakit.resource.Extension;
 import com.telenav.kivakit.resource.Resource;
+import com.telenav.kivakit.resource.ResourceFolder;
 import com.telenav.kivakit.resource.ResourceIdentifier;
 import com.telenav.kivakit.resource.ResourcePath;
 import com.telenav.kivakit.resource.compression.Codec;
@@ -55,9 +57,10 @@ import java.net.URI;
 import java.nio.charset.Charset;
 import java.nio.file.attribute.PosixFilePermission;
 
+import static com.telenav.kivakit.core.collections.set.ObjectSet.objectSet;
 import static com.telenav.kivakit.core.ensure.Ensure.ensure;
 import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
-import static com.telenav.kivakit.core.messaging.Listener.none;
+import static com.telenav.kivakit.core.messaging.Listener.emptyListener;
 import static com.telenav.kivakit.filesystem.loader.FileSystemServiceLoader.fileSystem;
 
 /**
@@ -86,7 +89,7 @@ import static com.telenav.kivakit.filesystem.loader.FileSystemServiceLoader.file
  *     <li>{@link #absolute()}</li>
  *     <li>{@link #normalized()}</li>
  *     <li>{@link #messageSource()}</li>
- *     <li>{@link #relativeTo(Folder)}</li>
+ *     <li>{@link #relativeTo(ResourceFolder)}</li>
  *     <li>{@link #root()}</li>
  * </ul>
  *
@@ -94,7 +97,7 @@ import static com.telenav.kivakit.filesystem.loader.FileSystemServiceLoader.file
  *
  * <ul>
  *     <li>{@link #chmod(PosixFilePermission...)}</li>
- *     <li>{@link #renameTo(File)}</li>
+ *     <li>{@link #renameTo(Resource)}</li>
  *     <li>{@link #safeCopyFrom(Resource, CopyMode, ProgressReporter)}</li>
  * </ul>
  *
@@ -131,6 +134,7 @@ import static com.telenav.kivakit.filesystem.loader.FileSystemServiceLoader.file
  *
  * @author jonathanl (shibo)
  */
+@SuppressWarnings({ "SameParameterValue", "unused" })
 @UmlClassDiagram(diagram = DiagramFileSystemFile.class)
 @LexakaiJavadoc(complete = true)
 public class File extends BaseWritableResource implements FileSystemObject
@@ -194,12 +198,12 @@ public class File extends BaseWritableResource implements FileSystemObject
 
     public static File file(java.io.File file)
     {
-        return parseFile(Listener.throwing(), file.getAbsolutePath());
+        return parseFile(Listener.throwingListener(), file.getAbsolutePath());
     }
 
     public static File file(FilePath path)
     {
-        var filesystem = fileSystem(Listener.throwing(), path);
+        var filesystem = fileSystem(Listener.throwingListener(), path);
         return new File(ensureNotNull(filesystem).fileService(path));
     }
 
@@ -284,7 +288,7 @@ public class File extends BaseWritableResource implements FileSystemObject
         return File.file(FilePath.parseFilePath(listener, path));
     }
 
-    public static synchronized File temporary(Extension extension)
+    public static File temporary(Extension extension)
     {
         return Folder.kivakitTemporary().file("temp-" + temporaryFileNumber++ + extension);
     }
@@ -319,7 +323,7 @@ public class File extends BaseWritableResource implements FileSystemObject
             {
                 return false;
             }
-            return fileSystem(none(), FilePath.parseFilePath(this, identifier.identifier())) != null;
+            return fileSystem(emptyListener(), FilePath.parseFilePath(this, identifier.identifier())) != null;
         }
 
         @Override
@@ -362,7 +366,7 @@ public class File extends BaseWritableResource implements FileSystemObject
     @Override
     public Duration age()
     {
-        return created().elapsedSince();
+        return createdAt().elapsedSince();
     }
 
     /**
@@ -376,9 +380,16 @@ public class File extends BaseWritableResource implements FileSystemObject
     /**
      * @return This file as a {@link java.io.File}
      */
+    @Override
     public java.io.File asJavaFile()
     {
         return service.asJavaFile();
+    }
+
+    @Override
+    public ObjectSet<Can> can()
+    {
+        return objectSet(Can.RENAME);
     }
 
     /**
@@ -394,9 +405,9 @@ public class File extends BaseWritableResource implements FileSystemObject
     }
 
     @Override
-    public Time created()
+    public Time createdAt()
     {
-        return service.created();
+        return service.createdAt();
     }
 
     /**
@@ -495,7 +506,7 @@ public class File extends BaseWritableResource implements FileSystemObject
      */
     public boolean isNewerThan(File that)
     {
-        return service.lastModified().isAfter(that.service.lastModified());
+        return service.modifiedAt().isAfter(that.service.modifiedAt());
     }
 
     public boolean isNewerThan(Duration duration)
@@ -516,7 +527,7 @@ public class File extends BaseWritableResource implements FileSystemObject
      */
     public boolean isOlderThan(File that)
     {
-        return service.lastModified().isBefore(that.service.lastModified());
+        return service.modifiedAt().isBefore(that.service.modifiedAt());
     }
 
     public boolean isOlderThan(Duration duration)
@@ -549,17 +560,6 @@ public class File extends BaseWritableResource implements FileSystemObject
     public Boolean isWritable()
     {
         return service.isWritable();
-    }
-
-    /**
-     * @return The last time of modification of this file
-     */
-    @Override
-    public Time lastModified()
-    {
-        var lastModified = service.lastModified();
-        trace("Last modified time of $ is $", this, lastModified);
-        return lastModified;
     }
 
     /**
@@ -600,6 +600,17 @@ public class File extends BaseWritableResource implements FileSystemObject
         {
             return this;
         }
+    }
+
+    /**
+     * @return The last time of modification of this file
+     */
+    @Override
+    public Time modifiedAt()
+    {
+        var lastModified = service.modifiedAt();
+        trace("Last modified time of $ is $", this, lastModified);
+        return lastModified;
     }
 
     /**
@@ -653,12 +664,11 @@ public class File extends BaseWritableResource implements FileSystemObject
         return (File) super.println(text);
     }
 
-    /**
-     * @return This file with a path relative to the given folder
-     */
-    public File relativeTo(Folder folder)
+    @Override
+    public File relativeTo(final ResourceFolder<?> folder)
     {
-        return File.file(service.relativePath(folder.service()).withoutTrailingSlash());
+        var service = ((Folder) folder).service();
+        return File.file(this.service.relativePath(service).withoutTrailingSlash());
     }
 
     /**
@@ -666,11 +676,12 @@ public class File extends BaseWritableResource implements FileSystemObject
      *
      * @return True if this file was renamed to the given file
      */
+    @Override
     @SuppressWarnings("UnusedReturnValue")
-    public boolean renameTo(File that)
+    public boolean renameTo(Resource that)
     {
         trace("Rename $ to $", this, that);
-        return service.renameTo(that.service);
+        return service.renameTo(((File) that).service);
     }
 
     /**
@@ -745,7 +756,7 @@ public class File extends BaseWritableResource implements FileSystemObject
      */
     public File withExtension(Extension extension)
     {
-        return File.parseFile(this, path().toString() + extension);
+        return parseFile(this, path().toString() + extension);
     }
 
     /**
@@ -773,7 +784,7 @@ public class File extends BaseWritableResource implements FileSystemObject
             }
             if (dot > 0)
             {
-                return File.parseFile(this, pathString.substring(0, dot));
+                return parseFile(this, pathString.substring(0, dot));
             }
         }
         return this;
@@ -788,7 +799,7 @@ public class File extends BaseWritableResource implements FileSystemObject
         if (extension != null)
         {
             var withoutExtension = Paths.withoutOptionalSuffix(path().toString(), '.');
-            return File.parseFile(this, withoutExtension);
+            return parseFile(this, withoutExtension);
         }
         return this;
     }
@@ -808,7 +819,7 @@ public class File extends BaseWritableResource implements FileSystemObject
             {
                 if (file.fileName().endsWith(extension))
                 {
-                    file = File.parseFile(this, Strip.ending(path().toString(), extension.toString()));
+                    file = parseFile(this, Strip.ending(path().toString(), extension.toString()));
                     removedOne = true;
                 }
             }
@@ -826,7 +837,7 @@ public class File extends BaseWritableResource implements FileSystemObject
         var file = this;
         while (file.exists())
         {
-            file = File.parseFile(this, withoutExtension() + "-" + count + extension());
+            file = parseFile(this, withoutExtension() + "-" + count + extension());
             count++;
         }
         return file;

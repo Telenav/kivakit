@@ -32,6 +32,7 @@ import com.telenav.kivakit.resource.FileName;
 import com.telenav.kivakit.resource.Resource;
 import com.telenav.kivakit.resource.ResourceIdentifier;
 import com.telenav.kivakit.resource.ResourcePath;
+import com.telenav.kivakit.resource.ResourcePathed;
 import com.telenav.kivakit.resource.lexakai.DiagramResourceService;
 import com.telenav.kivakit.resource.lexakai.DiagramResourceType;
 import com.telenav.kivakit.resource.reading.BaseReadableResource;
@@ -59,7 +60,7 @@ import static com.telenav.kivakit.resource.packages.PackagePath.packagePath;
  *     <li>{@link #packageResource(Listener listener, Class, String)}</li>
  *     <li>{@link #packageResource(Listener listener, PackagePath, String)}</li>
  *     <li>{@link #packageResource(Listener, PackagePath, FileName)}</li>
- *     <li>{@link #packageResource(Listener, PackagePath, FilePath)}</li>
+ *     <li>{@link #packageResource(Listener, PackagePath, ResourcePathed)}</li>
  * </ul>
  * <p>
  * They can also be retrieved from a (KivaKit) {@link Package} with these methods:
@@ -110,8 +111,9 @@ public class PackageResource extends BaseReadableResource
     /**
      * @return A package resource for the resource at the given path relative to the given package
      */
-    public static PackageResource packageResource(Listener listener, PackagePath packagePath, FilePath path)
+    public static PackageResource packageResource(Listener listener, PackagePath packagePath, ResourcePathed relative)
     {
+        var path = relative.path();
         var resource = moduleResource(listener, packagePath.withChild(path));
         if (path.size() == 1)
         {
@@ -158,7 +160,7 @@ public class PackageResource extends BaseReadableResource
             if (parent != null)
             {
                 var packagePath = PackagePath.packagePath(parent);
-                return packageResource(Listener.throwing(), packagePath, filepath.fileName());
+                return packageResource(Listener.throwingListener(), packagePath, filepath.fileName());
             }
             return null;
         }
@@ -184,7 +186,7 @@ public class PackageResource extends BaseReadableResource
     }
 
     @Override
-    public Time created()
+    public Time createdAt()
     {
         return resource.created();
     }
@@ -216,7 +218,7 @@ public class PackageResource extends BaseReadableResource
      * {@inheritDoc}
      */
     @Override
-    public Time lastModified()
+    public Time modifiedAt()
     {
         return resource == null ? Time.now() : resource.lastModified();
     }

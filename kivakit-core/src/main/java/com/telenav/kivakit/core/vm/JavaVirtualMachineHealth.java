@@ -18,14 +18,14 @@
 
 package com.telenav.kivakit.core.vm;
 
-import com.telenav.kivakit.core.value.count.Bytes;
-import com.telenav.kivakit.core.value.count.Count;
 import com.telenav.kivakit.core.language.object.ObjectFormatter;
 import com.telenav.kivakit.core.language.reflection.property.KivaKitIncludeProperty;
-import com.telenav.kivakit.core.logging.LogEntry;
 import com.telenav.kivakit.core.lexakai.DiagramLanguage;
+import com.telenav.kivakit.core.logging.LogEntry;
 import com.telenav.kivakit.core.time.Duration;
 import com.telenav.kivakit.core.time.Time;
+import com.telenav.kivakit.core.value.count.Bytes;
+import com.telenav.kivakit.core.value.count.Count;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.Map;
@@ -36,6 +36,7 @@ import static com.telenav.kivakit.core.language.object.ObjectFormatter.Format.SI
 /**
  * @author jonathanl (shibo)
  */
+@SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramLanguage.class)
 public class JavaVirtualMachineHealth
 {
@@ -76,13 +77,13 @@ public class JavaVirtualMachineHealth
     @KivaKitIncludeProperty
     public Duration elapsed()
     {
-        return lastSnapshot == null ? Duration.NONE : snapshot.capturedAt().minus(lastSnapshot.capturedAt());
+        return lastSnapshot == null ? Duration.ZERO_DURATION : snapshot.capturedAt().elapsedSince(lastSnapshot.capturedAt());
     }
 
     @KivaKitIncludeProperty
     public Duration elapsedCpuTime()
     {
-        return lastSnapshot == null ? Duration.NONE : snapshot.totalCpuTime().minus(lastSnapshot.totalCpuTime());
+        return lastSnapshot == null ? Duration.ZERO_DURATION : snapshot.totalCpuTime().minus(lastSnapshot.totalCpuTime());
     }
 
     @KivaKitIncludeProperty

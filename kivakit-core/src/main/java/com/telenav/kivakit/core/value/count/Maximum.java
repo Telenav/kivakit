@@ -240,10 +240,4 @@ public class Maximum extends BaseCount<Maximum>
     {
         return maximum(count);
     }
-
-    @Override
-    public Maximum newInstance(Long count)
-    {
-        return newInstance(count.longValue());
-    }
 }

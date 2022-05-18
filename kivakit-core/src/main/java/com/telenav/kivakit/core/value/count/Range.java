@@ -28,7 +28,10 @@ import com.telenav.kivakit.interfaces.collection.NextValue;
 import com.telenav.kivakit.interfaces.numeric.IntegerNumeric;
 import com.telenav.kivakit.interfaces.numeric.Maximizable;
 import com.telenav.kivakit.interfaces.numeric.Minimizable;
+import com.telenav.kivakit.interfaces.numeric.QuantumComparable;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
+
+import java.util.function.Consumer;
 
 import static com.telenav.kivakit.core.value.count.Range.UpperBound.EXCLUSIVE;
 import static com.telenav.kivakit.core.value.count.Range.UpperBound.INCLUSIVE;
@@ -39,13 +42,13 @@ import static com.telenav.kivakit.core.value.count.Range.UpperBound.INCLUSIVE;
  * <p>Creation and Properties</p>
  *
  * <p>
- * Ranges can be created in two ways, as {@link #exclusive(Value, Value)} ranges which do not include their maximum
- * value, and as {@link #inclusive(Value, Value)} ranges which do.
+ * Ranges can be created in two ways, as {@link #rangeExclusive(Value, Value)} ranges which do not include their maximum
+ * value, and as {@link #rangeInclusive(Value, Value)} ranges which do.
  * </p>
  *
  * <ul>
- *     <li>{@link #inclusive(Value, Value)}</li>
- *     <li>{@link #exclusive(Value, Value)}</li>
+ *     <li>{@link #rangeInclusive(Value, Value)}</li>
+ *     <li>{@link #rangeExclusive(Value, Value)}</li>
  *     <li>{@link #upperBound()}</li>
  *     <li>{@link #isInclusive()}</li>
  *     <li>{@link #isExclusive()}</li>
@@ -79,8 +82,12 @@ import static com.telenav.kivakit.core.value.count.Range.UpperBound.INCLUSIVE;
  * @author jonathanl (shibo)
  * @see LoopBody
  */
+@SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramCount.class)
-public class Range<Value extends IntegerNumeric<Value>> implements Countable
+public class Range<Value extends IntegerNumeric<Value> & QuantumComparable<Countable> & Comparable<Countable> & Countable> implements
+        Comparable<Countable>,
+        QuantumComparable<Countable>,
+        Countable
 {
     /**
      * @return The range of all counts, from 0 to {@link Count#MAXIMUM}
@@ -94,7 +101,9 @@ public class Range<Value extends IntegerNumeric<Value>> implements Countable
      * Constructs a range that excludes the given maximum value.
      */
     @Tested
-    public static <Value extends IntegerNumeric<Value>> Range<Value> exclusive(Value minimum, Value exclusiveMaximum)
+    public static <Value extends IntegerNumeric<Value> & QuantumComparable<Countable> & Comparable<Countable> & Countable>
+    Range<Value> rangeExclusive(Value minimum,
+                                Value exclusiveMaximum)
     {
         return new Range<>(minimum, exclusiveMaximum, EXCLUSIVE);
     }
@@ -103,7 +112,9 @@ public class Range<Value extends IntegerNumeric<Value>> implements Countable
      * Constructs a range that includes the given maximum value.
      */
     @Tested
-    public static <Value extends IntegerNumeric<Value>> Range<Value> inclusive(Value minimum, Value inclusiveMaximum)
+    public static <Value extends IntegerNumeric<Value> & QuantumComparable<Countable> & Comparable<Countable> & Countable>
+    Range<Value> rangeInclusive(Value minimum,
+                                Value inclusiveMaximum)
     {
         return new Range<>(minimum, inclusiveMaximum, INCLUSIVE);
     }
@@ -134,6 +145,12 @@ public class Range<Value extends IntegerNumeric<Value>> implements Countable
         this.minimum = minimum;
         this.maximum = maximum;
         this.upperBound = upperBound;
+    }
+
+    @Override
+    public int compareTo(Countable that)
+    {
+        return Long.compare(quantum(), that.quantum());
     }
 
     /**
@@ -189,7 +206,19 @@ public class Range<Value extends IntegerNumeric<Value>> implements Countable
     @Tested
     public void forEach(LoopBody<Value> body)
     {
-        body.forEach(minimum(), exclusiveMaximum());
+        body.forEachInclusive(minimum(), inclusiveMaximum());
+    }
+
+    /**
+     * Calls the given {@link LoopBody} with each value from the minimum to the maximum (inclusive or exclusive,
+     * depending on construction of the range)
+     *
+     * @param body The loop body to invoke
+     */
+    @Tested
+    public void forEachInt(Consumer<Integer> body)
+    {
+        forEach(at -> body.accept(at.asInt()));
     }
 
     /**

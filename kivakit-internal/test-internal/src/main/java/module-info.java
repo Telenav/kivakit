@@ -1,6 +1,10 @@
-open module kivakit.test.internal {
+open module kivakit.test.internal
+{
+    // KivaKit
+    requires transitive kivakit.core;
+
     // Test
-    requires junit;
-    requires kivakit.core;
-    exports com.telenav.kivakit.core.test.support;    
+    requires transitive junit;
+
+    exports com.telenav.kivakit.internal.test.support;
 }

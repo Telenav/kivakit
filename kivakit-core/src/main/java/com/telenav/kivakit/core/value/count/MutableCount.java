@@ -21,6 +21,7 @@ package com.telenav.kivakit.core.value.count;
 import com.telenav.kivakit.core.lexakai.DiagramCount;
 import com.telenav.kivakit.core.value.level.Percent;
 import com.telenav.kivakit.interfaces.numeric.Quantizable;
+import com.telenav.kivakit.interfaces.numeric.QuantumComparable;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import static com.telenav.kivakit.core.ensure.Ensure.ensure;
@@ -35,7 +36,8 @@ import static com.telenav.kivakit.core.ensure.Ensure.ensure;
 @UmlClassDiagram(diagram = DiagramCount.class)
 public class MutableCount implements
         Countable,
-        Comparable<MutableCount>
+        Comparable<Countable>,
+        QuantumComparable<Countable>
 {
     private long count;
 
@@ -72,9 +74,9 @@ public class MutableCount implements
     }
 
     @Override
-    public int compareTo(MutableCount that)
+    public int compareTo(Countable that)
     {
-        return (int) (asLong() - that.asLong());
+        return (int) (quantum() - that.quantum());
     }
 
     @Override
@@ -117,16 +119,19 @@ public class MutableCount implements
         return count++;
     }
 
-    public boolean isGreaterThan(Quantizable that)
+    @Override
+    public boolean isGreaterThan(Countable that)
     {
         return asLong() > that.quantum();
     }
 
-    public boolean isLessThan(Quantizable that)
+    @Override
+    public boolean isLessThan(Countable that)
     {
         return asLong() < that.quantum();
     }
 
+    @Override
     public boolean isZero()
     {
         return asLong() == 0L;
@@ -145,7 +150,7 @@ public class MutableCount implements
         {
             return Percent._0;
         }
-        return Percent.of(asLong() * 100.0 / total.asLong());
+        return Percent.percent(asLong() * 100.0 / total.asLong());
     }
 
     public long plus(long that)

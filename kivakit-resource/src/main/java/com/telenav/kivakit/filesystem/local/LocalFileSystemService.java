@@ -96,7 +96,7 @@ public class LocalFileSystemService implements FileSystemService
     {
         if (path.startsWith("~"))
         {
-            return FilePath.parseFilePath(Listener.console(), Strings.replace(path.toString(), 0, 1,
+            return FilePath.parseFilePath(Listener.consoleListener(), Strings.replace(path.toString(), 0, 1,
                     Folder.userHome().toString())).withoutSchemes();
         }
         return path.withoutSchemes();

@@ -18,11 +18,11 @@
 
 package com.telenav.kivakit.core.thread;
 
-import com.telenav.kivakit.core.messaging.repeaters.BaseRepeater;
 import com.telenav.kivakit.core.lexakai.DiagramThread;
-import com.telenav.kivakit.interfaces.code.Code;
-import com.telenav.kivakit.interfaces.time.LengthOfTime;
+import com.telenav.kivakit.core.messaging.repeaters.BaseRepeater;
 import com.telenav.kivakit.core.time.Duration;
+import com.telenav.kivakit.interfaces.code.Code;
+import com.telenav.kivakit.interfaces.time.WakeState;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.Objects;
@@ -216,8 +216,7 @@ public final class StateMachine<State> extends BaseRepeater
             {
                 // then wait for the desired state to arrive.
                 trace("$ => $ (wait for $ for up to $)", from, to, waitFor, maximumWait);
-                waitFor(waitFor, maximumWait);
-                return true;
+                return waitFor(waitFor, maximumWait) == WakeState.COMPLETED;
             }
 
             // We were not in the 'from' state.
@@ -281,9 +280,9 @@ public final class StateMachine<State> extends BaseRepeater
      * Waits forever for the given state to be achieved
      *
      * @param state The state to wait for
-     * @return True if the state was achieved, false if the operation timed out
+     * @return The wake state of the wait operation
      */
-    public boolean waitFor(State state)
+    public WakeState waitFor(State state)
     {
         return waitFor(state, Duration.MAXIMUM);
     }
@@ -293,9 +292,9 @@ public final class StateMachine<State> extends BaseRepeater
      *
      * @param state The desired state
      * @param maximumWait The maximum amount of time to wait
-     * @return True if the state was achieved, false if the operation timed out
+     * @return The wake state of the wait operation
      */
-    public boolean waitFor(State state, LengthOfTime maximumWait)
+    public WakeState waitFor(State state, Duration maximumWait)
     {
         return waitFor(ignored -> is(state), maximumWait);
     }
@@ -303,9 +302,9 @@ public final class StateMachine<State> extends BaseRepeater
     /**
      * Waits until the given predicate is satisfied
      *
-     * @return True if the state was achieved, false if the operation timed out
+     * @return The wake state of the wait operation
      */
-    public boolean waitFor(Predicate<State> predicate)
+    public WakeState waitFor(Predicate<State> predicate)
     {
         return waitFor(predicate, Duration.MAXIMUM);
     }
@@ -315,9 +314,9 @@ public final class StateMachine<State> extends BaseRepeater
      *
      * @param predicate The desired state
      * @param maximumWait The maximum amount of time to wait
-     * @return True if the state was achieved, false if the operation timed out
+     * @return The wake state of the wait operation
      */
-    public boolean waitFor(Predicate<State> predicate, LengthOfTime maximumWait)
+    public WakeState waitFor(Predicate<State> predicate, Duration maximumWait)
     {
         return waitFor(predicate, maximumWait, () ->
         {
@@ -331,15 +330,14 @@ public final class StateMachine<State> extends BaseRepeater
      * @param maximumWait The maximum amount of time to wait
      * @param beforeWaiting Code to run after locking the state machine but before waiting for the predicate. This code
      * might interrupt another thread, for example.
-     * @return True if the state was achieved, false if the operation timed out
+     * @return The wake state of the wait operation
      */
-    public boolean waitFor(Predicate<State> predicate, LengthOfTime maximumWait, Runnable beforeWaiting)
+    public WakeState waitFor(Predicate<State> predicate, Duration maximumWait, Runnable beforeWaiting)
     {
         return whileLocked(() ->
         {
             beforeWaiting.run();
-            watcher.waitFor(predicate, maximumWait);
-            return predicate.test(at);
+            return watcher.waitFor(predicate, maximumWait);
         });
     }
 
@@ -347,9 +345,9 @@ public final class StateMachine<State> extends BaseRepeater
      * Waits until this state machine is NOT in the given state
      *
      * @param state The state this machine should NOT be in
-     * @return True if the desired state was achieved, false if the operation timed out
+     * @return The wake state of the wait operation
      */
-    public boolean waitForNot(State state)
+    public WakeState waitForNot(State state)
     {
         return waitForNot(state, Duration.MAXIMUM);
     }
@@ -359,9 +357,9 @@ public final class StateMachine<State> extends BaseRepeater
      *
      * @param state The state this machine should NOT be in
      * @param maximumWait The maximum amount of time to wait
-     * @return True if the desired state was achieved, false if the operation timed out
+     * @return The wake state of the wait operation
      */
-    public boolean waitForNot(State state, LengthOfTime maximumWait)
+    public WakeState waitForNot(State state, Duration maximumWait)
     {
         return waitFor(ignored -> !is(state), maximumWait);
     }

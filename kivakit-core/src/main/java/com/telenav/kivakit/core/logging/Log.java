@@ -23,6 +23,7 @@ import com.telenav.kivakit.core.logging.logs.text.ConsoleLog;
 import com.telenav.kivakit.core.messaging.messages.Severity;
 import com.telenav.kivakit.core.lexakai.DiagramLogging;
 import com.telenav.kivakit.core.lexakai.DiagramLogs;
+import com.telenav.kivakit.core.time.Duration;
 import com.telenav.kivakit.interfaces.comparison.Filtered;
 import com.telenav.kivakit.interfaces.io.Closeable;
 import com.telenav.kivakit.interfaces.io.Flushable;
@@ -71,7 +72,7 @@ public interface Log extends
         Named,
         Filtered<LogEntry>,
         Closeable,
-        Flushable
+        Flushable<Duration>
 {
     /**
      * Configures the log

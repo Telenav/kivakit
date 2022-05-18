@@ -1,9 +1,12 @@
 package com.telenav.kivakit.resource.serialization;
 
+import com.telenav.kivakit.core.collections.list.ObjectList;
 import com.telenav.kivakit.resource.Extension;
 
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
+
+import static com.telenav.kivakit.core.collections.list.ObjectList.objectList;
 
 /**
  * A map from {@link Extension} to {@link ObjectSerializer}. By default, serializers are available for
@@ -13,11 +16,7 @@ import java.util.Map;
  */
 public class ObjectSerializers
 {
-    private final Map<Extension, ObjectSerializer> serializers = new HashMap<>();
-
-    public ObjectSerializers()
-    {
-    }
+    private final Map<Extension, ObjectSerializer> serializers = new LinkedHashMap<>();
 
     public ObjectSerializers add(Extension extension, ObjectSerializer serializer)
     {
@@ -28,5 +27,10 @@ public class ObjectSerializers
     public ObjectSerializer serializer(Extension extension)
     {
         return serializers.get(extension);
+    }
+
+    public ObjectList<ObjectSerializer> serializers()
+    {
+        return objectList(serializers.values());
     }
 }

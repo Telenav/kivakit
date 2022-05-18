@@ -271,9 +271,9 @@ public class BitCount extends BaseCount<BitCount>
     }
 
     @Override
-    public BitCount newInstance(Long value)
+    public BitCount newInstance(long count)
     {
-        return newInstance(value.longValue());
+        return bitCount(count);
     }
 
     /**
@@ -282,11 +282,5 @@ public class BitCount extends BaseCount<BitCount>
     public long values()
     {
         return 1L << get();
-    }
-
-    @Override
-    public BitCount newInstance(long count)
-    {
-        return bitCount(count);
     }
 }

@@ -58,7 +58,7 @@ public interface Validator
      */
     default boolean validate()
     {
-        return validate(Listener.none());
+        return validate(Listener.emptyListener());
     }
 
     /**

@@ -39,14 +39,11 @@ import java.util.Map;
 @UmlClassDiagram(diagram = DiagramCollections.class)
 public class CacheMap<Key, Value> extends BaseMap<Key, Value>
 {
-    /** The time that each entry was added or updated */
-    private final Map<Key, Time> age = new HashMap<>();
-
     /** The maximum allowed age of an entry */
     private final Duration maximumEntryAge;
 
-    /** True if this map should expire old entries */
-    private final boolean expireOldEntries;
+    /** The time that each entry was added or updated */
+    private final Map<Key, Time> updated = new HashMap<>();
 
     public CacheMap(Maximum cacheSize)
     {
@@ -71,30 +68,37 @@ public class CacheMap<Key, Value> extends BaseMap<Key, Value>
         });
 
         this.maximumEntryAge = maximumEntryAge;
-        this.expireOldEntries = !maximumEntryAge.isMaximum();
     }
 
+    @SuppressWarnings("unchecked")
     @Override
     public Value get(final Object key)
     {
-        if (expireOldEntries)
+        if (expireOldEntries())
         {
-            var age = this.age.get(key);
-            if (age != null && age.isGreaterThan(maximumEntryAge))
+            updated.compute((Key) key, (ignored, value) ->
             {
-                remove(key);
-                return null;
-            }
+                // If the value's age is greater than the maximum age for an entry,
+                if (value == null || value.elapsedSince().isGreaterThan(maximumEntryAge))
+                {
+                    // returning null to compute, which causes it to remove this key.
+                    return null;
+                }
+
+                // Leave the value unchanged
+                return value;
+            });
         }
+
         return super.get(key);
     }
 
     @Override
     public Value put(final Key key, final Value value)
     {
-        if (expireOldEntries)
+        if (expireOldEntries())
         {
-            age.put(key, Time.now());
+            updated.put(key, Time.now());
         }
         return super.put(key, value);
     }
@@ -102,10 +106,15 @@ public class CacheMap<Key, Value> extends BaseMap<Key, Value>
     @Override
     public Value remove(final Object key)
     {
-        if (expireOldEntries)
+        if (expireOldEntries())
         {
-            age.remove(key);
+            updated.remove(key);
         }
         return super.remove(key);
+    }
+
+    private boolean expireOldEntries()
+    {
+        return !maximumEntryAge.isMaximum();
     }
 }

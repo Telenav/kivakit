@@ -19,13 +19,18 @@
 package com.telenav.kivakit.core.time;
 
 import com.telenav.kivakit.core.lexakai.DiagramTime;
-import com.telenav.kivakit.interfaces.numeric.Quantizable;
+import com.telenav.kivakit.interfaces.time.Nanoseconds;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
-import java.time.Instant;
 import java.time.ZoneId;
 
 import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
+import static com.telenav.kivakit.core.time.BaseTime.Topology.LINEAR;
+import static com.telenav.kivakit.core.time.Duration.ZERO_DURATION;
+import static com.telenav.kivakit.core.time.Hour.militaryHour;
+import static com.telenav.kivakit.core.time.LocalTime.localTimeZone;
+import static com.telenav.kivakit.core.time.LocalTime.utcTimeZone;
+import static com.telenav.kivakit.core.time.Second.second;
 
 /**
  * An immutable <code>Time</code> class that represents a specific point in UNIX time. The underlying representation is
@@ -37,8 +42,9 @@ import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
  * @author Jonathan Locke
  * @since 1.2.6
  */
+@SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramTime.class)
-public class Time implements Quantizable
+public class Time extends BaseTime<Time>
 {
     /** The beginning of UNIX time: January 1, 1970, 0:00 GMT. */
     public static final Time START_OF_UNIX_TIME = milliseconds(0);
@@ -57,7 +63,7 @@ public class Time implements Quantizable
      */
     public static Time milliseconds(long milliseconds)
     {
-        return new Time(milliseconds);
+        return new Time(Nanoseconds.milliseconds(milliseconds));
     }
 
     /**
@@ -66,9 +72,9 @@ public class Time implements Quantizable
      * @param nanoseconds the <code>Time</code> value in nanoseconds since START_OF_UNIX_TIME
      * @return a corresponding immutable <code>Time</code> object
      */
-    public static Time nanoseconds(long nanoseconds)
+    public static Time nanoseconds(Nanoseconds nanoseconds)
     {
-        return new Time(nanoseconds / 1_000_000);
+        return new Time(nanoseconds);
     }
 
     /**
@@ -81,55 +87,53 @@ public class Time implements Quantizable
         return milliseconds(System.currentTimeMillis());
     }
 
-    /**
-     * @return A <code>Time</code> object representing the given number of seconds since START_OF_UNIX_TIME
-     */
-    public static Time seconds(double seconds)
+    public static Time utcTime(Year year, Month month, Day dayOfMonth, Hour hour)
     {
-        return milliseconds((long) (seconds * 1000));
+        return utcTime(year, month, dayOfMonth, hour, Minute.minute(0), second(0));
     }
 
-    /** The number of milliseconds since start of UNIX time */
-    private long milliseconds;
+    public static Time utcTime(Year year, Month month, Day dayOfMonth)
+    {
+        return utcTime(year, month, dayOfMonth, militaryHour(0));
+    }
+
+    public static Time utcTime(Year year, Month month)
+    {
+        return utcTime(year, month, Day.dayOfMonth(1), militaryHour(0));
+    }
+
+    public static Time utcTime(Year year,
+                               Month month,
+                               Day dayOfMonth,
+                               Hour hour,
+                               Minute minute,
+                               Second second)
+    {
+        return nanoseconds(LocalTime.localTime(utcTimeZone(), year, month, dayOfMonth, hour, minute, second).nanoseconds());
+    }
 
     /**
      * Private constructor forces use of static factory methods.
      *
-     * @param milliseconds the <code>Time</code> value in milliseconds since START_OF_UNIX_TIME
+     * @param nanoseconds the <code>Time</code> value in milliseconds since START_OF_UNIX_TIME
      */
-    protected Time(long milliseconds)
+    protected Time(Nanoseconds nanoseconds)
     {
-        assert milliseconds >= 0;
-        this.milliseconds = milliseconds;
+        super(nanoseconds);
     }
 
     protected Time()
     {
     }
 
-    public Instant asInstant()
+    public LocalTime asLocalTime()
     {
-        return Instant.ofEpochMilli(asMilliseconds());
+        return inTimeZone(localTimeZone());
     }
 
-    /**
-     * Converts this time to a UNIX time stamp (milliseconds since the start of UNIX time on January 1, 1970)
-     *
-     * @return This time as milliseconds since 1970
-     */
-    public long asMilliseconds()
+    public Time asUtc()
     {
-        return milliseconds;
-    }
-
-    public int asSeconds()
-    {
-        return (int) (asMilliseconds() / 1000);
-    }
-
-    public int compareTo(Time that)
-    {
-        return Long.compare(asMilliseconds(), that.asMilliseconds());
+        return this;
     }
 
     /**
@@ -139,86 +143,67 @@ public class Time implements Quantizable
      */
     public Duration elapsedSince()
     {
-        var now = now();
-        if (isAfter(now))
-        {
-            return Duration.NONE;
-        }
-        return now.minus(this);
+        return elapsedSince(Time.now());
     }
 
-    @Override
-    public boolean equals(Object object)
+    /**
+     * Subtract time from this and returns the difference as a <code>Duration</code> object.
+     *
+     * @param that The time to subtract
+     * @return The <code>Duration</code> between this and that time
+     */
+    public Duration elapsedSince(Time that)
     {
-        if (object instanceof Time)
+        // If this time is after the given time,
+        if (asUtc().isAtOrAfter(that.asUtc()))
         {
-            var that = (Time) object;
-            return milliseconds == that.milliseconds;
+            // then we can subtract the UTC values to get the duration.
+            return Duration.milliseconds(asUtc().asMilliseconds() - that.asUtc().asMilliseconds());
         }
+
+        return ZERO_DURATION;
+    }
+
+    public LocalTime inTimeZone(ZoneId zone)
+    {
+        return LocalTime.localTime(ensureNotNull(zone), this);
+    }
+
+    /**
+     * Returns true if this time has a time zone
+     */
+    public boolean isLocal()
+    {
         return false;
     }
 
     /**
-     * Retrieves the <code>Duration</code> from now to this <code>Time</code> value. If this
-     * <code>Time</code> value is in the past, then the <code>Duration</code> returned will be
-     * negative. Otherwise, it will be the number of milliseconds from now to this <code>Time</code> .
-     *
-     * @return the <code>Duration</code> from now to this <code>Time</code> value
+     * @return True if this time value is newer than the given {@link Duration}
      */
-    public Duration fromNow()
-    {
-        var now = now();
-        if (isAfter(now))
-        {
-            return minus(now);
-        }
-        return Duration.NONE;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public int hashCode()
-    {
-        return Long.hashCode(milliseconds);
-    }
-
-    public boolean isAfter(Time that)
-    {
-        return milliseconds > that.milliseconds;
-    }
-
-    public boolean isAtOrAfter(Time that)
-    {
-        return milliseconds >= that.milliseconds;
-    }
-
-    public boolean isAtOrBefore(Time that)
-    {
-        return milliseconds <= that.milliseconds;
-    }
-
-    public boolean isBefore(Time that)
-    {
-        return milliseconds < that.milliseconds;
-    }
-
     public boolean isNewerThan(Duration duration)
     {
         return elapsedSince().isLessThan(duration);
     }
 
+    /**
+     * @return True if this time value is newer than the given time value
+     */
     public boolean isNewerThan(Time that)
     {
         return isGreaterThan(that);
     }
 
+    /**
+     * @return True if this time value is newer than or equal to the given duration
+     */
     public boolean isNewerThanOrEqual(Duration duration)
     {
         return elapsedSince().isLessThanOrEqualTo(duration);
     }
 
+    /**
+     * @return True if this time value is newer than or equal to the given time value
+     */
     public boolean isNewerThanOrEqualTo(Time that)
     {
         return isGreaterThanOrEqualTo(that);
@@ -258,93 +243,72 @@ public class Time implements Quantizable
         return elapsed.minus(elapsedSince());
     }
 
-    public LocalTime localTime()
+    @Override
+    public Time maximum()
     {
-        return new LocalTime(LocalTime.localTimeZone(), this);
-    }
-
-    public LocalTime localTime(String zone)
-    {
-        return localTime(ZoneId.of(ensureNotNull(zone)));
-    }
-
-    public LocalTime localTime(ZoneId zone)
-    {
-        return new LocalTime(ensureNotNull(zone), this);
-    }
-
-    public Time maximum(Time that)
-    {
-        return isAfter(that) ? this : that;
-    }
-
-    public Time minimum(Time that)
-    {
-        return isBefore(that) ? this : that;
-    }
-
-    /**
-     * Subtracts the given <code>Duration</code> from this <code>Time</code> object, moving the time into the past.
-     *
-     * @param duration the <code>Duration</code> to subtract
-     * @return this duration of time
-     */
-    public Time minus(Duration duration)
-    {
-        return milliseconds(milliseconds - duration.milliseconds());
-    }
-
-    /**
-     * Subtract time from this and returns the difference as a <code>Duration</code> object.
-     *
-     * @param that the time to subtract
-     * @return the <code>Duration</code> between this and that time
-     */
-    public Duration minus(Time that)
-    {
-        return Duration.milliseconds(milliseconds - that.milliseconds);
-    }
-
-    public Time nearest(Duration unit)
-    {
-        return plus(unit.dividedBy(2)).roundDown(unit);
-    }
-
-    /**
-     * Adds the given <code>Duration</code> to this <code>Time</code> object, moving the time into the future.
-     *
-     * @param duration the <code>Duration</code> to add
-     * @return this <code>Time</code> + <code>Duration</code>
-     */
-    public Time plus(Duration duration)
-    {
-        return milliseconds(milliseconds + duration.milliseconds());
+        return MAXIMUM;
     }
 
     @Override
-    public long quantum()
+    public Time minimum()
     {
-        return milliseconds;
+        return START_OF_UNIX_TIME;
     }
 
-    public Time roundDown(Duration unit)
+    @Override
+    public Nanoseconds nanosecondsPerUnit()
     {
-        return milliseconds(milliseconds / unit.milliseconds() * unit.milliseconds());
+        return Nanoseconds.ONE;
     }
 
-    public Time roundUp(Duration unit)
+    @Override
+    public Duration newDuration(Nanoseconds nanoseconds)
     {
-        return roundDown(unit).plus(unit);
+        return Duration.nanoseconds(nanoseconds);
+    }
+
+    @Override
+    public Time onNewTime(Nanoseconds nanoseconds)
+    {
+        return Time.nanoseconds(nanoseconds);
+    }
+
+    public ZoneId timeZone()
+    {
+        return utcTimeZone();
     }
 
     @Override
     public String toString()
     {
-        return localTime().toString();
+        return asLocalTime().toString();
+    }
+
+    public Duration until(Time that)
+    {
+        return that.elapsedSince(this);
+    }
+
+    /**
+     * Retrieves the <code>Duration</code> from now to this <code>Time</code> value. If this
+     * <code>Time</code> value is in the past, then the <code>Duration</code> returned will be
+     * negative. Otherwise, it will be duration from now to this <code>Time</code> .
+     *
+     * @return the <code>Duration</code> from now to this <code>Time</code> value
+     */
+    public Duration untilNow()
+    {
+        return until(Time.now());
     }
 
     public LocalTime utc()
     {
-        return localTime().utc();
+        return asLocalTime().utc();
+    }
+
+    @Override
+    protected Topology topology()
+    {
+        return LINEAR;
     }
 }

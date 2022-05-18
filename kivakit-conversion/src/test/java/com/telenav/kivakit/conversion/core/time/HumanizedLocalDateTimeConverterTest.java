@@ -18,15 +18,16 @@
 
 package com.telenav.kivakit.conversion.core.time;
 
-import com.telenav.kivakit.core.test.support.CoreUnitTest;
+import com.telenav.kivakit.internal.test.support.CoreUnitTest;
 import com.telenav.kivakit.core.time.LocalTime;
 import org.junit.Test;
 
+import static com.telenav.kivakit.core.time.Hour.hourOfDay;
 import static com.telenav.kivakit.core.time.Meridiem.PM;
+import static com.telenav.kivakit.core.time.Minute.minute;
 
 public class HumanizedLocalDateTimeConverterTest extends CoreUnitTest
 {
-
     @Test
     public void convert()
     {
@@ -34,7 +35,10 @@ public class HumanizedLocalDateTimeConverterTest extends CoreUnitTest
 
         var now = LocalTime.now();
 
-        var expected = now.startOfDay().withHourOfMeridiem(6, PM).withMinuteOfHour(15);
+        var expected = now.startOfDay()
+                .withHourOfDay(hourOfDay(6, PM))
+                .withMinute(minute(15));
+
         ensureEqual(converter.convert("Today 6.15pm"), expected);
         ensureEqual(converter.unconvert(expected), "Today 6.15PM");
     }

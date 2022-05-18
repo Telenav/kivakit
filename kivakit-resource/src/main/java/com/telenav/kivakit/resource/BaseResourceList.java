@@ -10,6 +10,7 @@ import java.security.NoSuchAlgorithmException;
 import java.util.HashSet;
 import java.util.Set;
 
+@SuppressWarnings("unused")
 public abstract class BaseResourceList<T extends Resource> extends ObjectList<T>
 {
     @Override
@@ -61,9 +62,9 @@ public abstract class BaseResourceList<T extends Resource> extends ObjectList<T>
                 builder.append("[")
                         .append(resource.path().absolute())
                         .append(":")
-                        .append(resource.created())
+                        .append(resource.createdAt())
                         .append(":")
-                        .append(resource.lastModified())
+                        .append(resource.modifiedAt())
                         .append(":")
                         .append(resource.sizeInBytes())
                         .append("]");

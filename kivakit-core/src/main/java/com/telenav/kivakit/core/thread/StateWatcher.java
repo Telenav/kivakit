@@ -20,21 +20,24 @@ package com.telenav.kivakit.core.thread;
 
 import com.telenav.kivakit.core.lexakai.DiagramThread;
 import com.telenav.kivakit.core.thread.locks.Lock;
-import com.telenav.kivakit.interfaces.code.Code;
-import com.telenav.kivakit.interfaces.time.LengthOfTime;
 import com.telenav.kivakit.core.time.Duration;
+import com.telenav.kivakit.core.time.Time;
+import com.telenav.kivakit.interfaces.code.Code;
+import com.telenav.kivakit.interfaces.time.WakeState;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.Condition;
 import java.util.function.Predicate;
 
-import static com.telenav.kivakit.core.thread.WakeState.COMPLETED;
-import static com.telenav.kivakit.core.thread.WakeState.INTERRUPTED;
-import static com.telenav.kivakit.core.thread.WakeState.TIMED_OUT;
+import static com.telenav.kivakit.core.time.Duration.seconds;
+import static com.telenav.kivakit.interfaces.time.WakeState.COMPLETED;
+import static com.telenav.kivakit.interfaces.time.WakeState.INTERRUPTED;
+import static com.telenav.kivakit.interfaces.time.WakeState.TERMINATED;
+import static com.telenav.kivakit.interfaces.time.WakeState.TIMED_OUT;
 
 /**
  * Allows a thread to wait for a particular state or for predicate to be satisfied by some other thread calling {@link
@@ -46,7 +49,7 @@ import static com.telenav.kivakit.core.thread.WakeState.TIMED_OUT;
  *
  * <ul>
  *     <li>{@link #waitFor(Object)}</li>
- *     <li>{@link #waitFor(Object, LengthOfTime)}</li>
+ *     <li>{@link #waitFor(Object, Duration)}</li>
  * </ul>
  *
  * <p>
@@ -55,7 +58,7 @@ import static com.telenav.kivakit.core.thread.WakeState.TIMED_OUT;
  *
  * <ul>
  *     <li>{@link #waitFor(Predicate)}</li>
- *     <li>{@link #waitFor(Predicate, LengthOfTime)}</li>
+ *     <li>{@link #waitFor(Predicate, Duration)}</li>
  * </ul>
  *
  * @author jonathanl (shibo)
@@ -70,27 +73,27 @@ public final class StateWatcher<State>
     @LexakaiJavadoc(complete = true)
     private class Waiter
     {
-        /** The predicate that must be satisfied */
-        final Predicate<State> predicate;
-
-        /** The condition variable to wait on and signal */
-        final Condition condition;
-
         private Waiter(Predicate<State> predicate, Condition condition)
         {
             this.predicate = predicate;
             this.condition = condition;
         }
+
+        /** The predicate that must be satisfied */
+        final Predicate<State> predicate;
+
+        /** The condition variable to wait on and signal */
+        final Condition condition;
     }
 
     /** The most recently reported state */
-    private State current;
+    private volatile State current;
 
     /** The re-entrant lock */
     private final Lock lock = new Lock();
 
     /** The clients waiting for a predicate to be satisfied */
-    private final List<Waiter> waiters = new ArrayList<>();
+    private final List<Waiter> waiters = Collections.synchronizedList(new ArrayList<>());
 
     public StateWatcher(State current)
     {
@@ -108,7 +111,7 @@ public final class StateWatcher<State>
             current = state;
 
             // go through the waiters
-            for (var watcher : waiters)
+            for (var watcher : new ArrayList<>(waiters))
             {
                 // and if the reported value satisfies the watcher's predicate,
                 if (watcher.predicate.test(state))
@@ -123,7 +126,7 @@ public final class StateWatcher<State>
     /**
      * Wait for the given boolean predicate to be true forever
      *
-     * @see #waitFor(Predicate, LengthOfTime)
+     * @see #waitFor(Predicate, Duration)
      */
     public WakeState waitFor(Predicate<State> predicate)
     {
@@ -137,9 +140,12 @@ public final class StateWatcher<State>
      * satisfied.
      */
     public WakeState waitFor(Predicate<State> predicate,
-                             LengthOfTime maximumWaitTime)
+                             Duration maximumWaitTime)
     {
-        return whileLocked(() ->
+        var started = Time.now();
+
+        Waiter waiter = null;
+        while (true)
         {
             // If the predicate is already satisfied,
             if (predicate.test(current))
@@ -149,26 +155,24 @@ public final class StateWatcher<State>
             }
 
             // otherwise, add ourselves as a waiter,
-            var waiter = new Waiter(predicate, lock.newCondition());
-            waiters.add(waiter);
+            if (waiter == null)
+            {
+                waiter = new Waiter(predicate, lock.newCondition());
+                waiters.add(waiter);
+            }
 
-            try
+            // and go to sleep until our condition is satisfied or half a second elapses
+            // (we wait only a short time as a defensive measure to avoid hangs)
+            var wake = seconds(0.5).await(waiter.condition::await);
+            if (wake == TERMINATED || wake == INTERRUPTED)
             {
-                // and go to sleep until our condition is satisfied
-                if (waiter.condition.await(maximumWaitTime.milliseconds(), TimeUnit.MILLISECONDS))
-                {
-                    return TIMED_OUT;
-                }
-                else
-                {
-                    return COMPLETED;
-                }
+                return wake;
             }
-            catch (InterruptedException e)
+            if (started.elapsedSince().isGreaterThan(maximumWaitTime))
             {
-                return INTERRUPTED;
+                return TIMED_OUT;
             }
-        });
+        }
     }
 
     /**
@@ -177,7 +181,7 @@ public final class StateWatcher<State>
      * @param desired The desired state
      * @param maximumWaitTime The maximum amount of time to wait
      */
-    public WakeState waitFor(State desired, LengthOfTime maximumWaitTime)
+    public WakeState waitFor(State desired, Duration maximumWaitTime)
     {
         return waitFor(desired::equals, maximumWaitTime);
     }

@@ -150,7 +150,7 @@ public class Email implements Validatable
     {
         if (lastRetry != null)
         {
-            lastRetry.plus(durationBetweenRetries).fromNow().sleep();
+            lastRetry.plus(durationBetweenRetries).untilNow().sleep();
         }
         lastRetry = Time.now();
         tries++;

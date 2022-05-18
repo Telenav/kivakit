@@ -135,7 +135,7 @@ public class Version
 
     public static Version parseVersion(String text)
     {
-        return parseVersion(Listener.throwing(), text);
+        return parseVersion(Listener.throwingListener(), text);
     }
 
     /**
@@ -178,7 +178,7 @@ public class Version
      */
     public static Version version(String text)
     {
-        return parseVersion(Listener.throwing(), text);
+        return parseVersion(Listener.throwingListener(), text);
     }
 
     private int major;

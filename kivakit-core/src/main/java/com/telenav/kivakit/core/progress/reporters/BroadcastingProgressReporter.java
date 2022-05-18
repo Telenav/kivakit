@@ -34,6 +34,8 @@ import com.telenav.kivakit.core.value.level.Percent;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import org.jetbrains.annotations.NotNull;
 
+import static com.telenav.kivakit.core.time.Duration.seconds;
+
 /**
  * A progress reporter that sends progress messages to a {@link Listener} as an operation proceeds.
  * BroadcastingProgressReporter reporting on an operation is started with {@link #start(String)}. At each step, {@link
@@ -57,7 +59,7 @@ import org.jetbrains.annotations.NotNull;
  * <pre>
  * progress.listener(percent -&gt; System.out.println("$ complete", percent);
  * </pre>
- * {@link BroadcastingProgressReporter} is not thread-safe. To report progress in a multithreaded operations, use {@link
+ * {@link BroadcastingProgressReporter} is not thread-safe. To report progress in a multi-threaded operations, use {@link
  * ConcurrentBroadcastingProgressReporter}.
  *
  * @author jonathanl (shibo)
@@ -65,13 +67,13 @@ import org.jetbrains.annotations.NotNull;
 @UmlClassDiagram(diagram = DiagramProgress.class)
 public class BroadcastingProgressReporter extends Multicaster implements ProgressReporter
 {
-    private static final Duration REPORT_SLOWEST = Duration.seconds(4);
+    private static final Duration REPORT_SLOWEST = seconds(4);
 
-    private static final Duration REPORT_FASTEST = Duration.seconds(0.25);
+    private static final Duration REPORT_FASTEST = seconds(0.25);
 
     public static BroadcastingProgressReporter create()
     {
-        return BroadcastingProgressReporter.create(Listener.none());
+        return BroadcastingProgressReporter.create(Listener.emptyListener());
     }
 
     public static BroadcastingProgressReporter create(Listener listener)
@@ -131,7 +133,7 @@ public class BroadcastingProgressReporter extends Multicaster implements Progres
 
     private String phase;
 
-    private long start = Time.now().asMilliseconds();
+    private long start = Time.now().milliseconds();
 
     private boolean started;
 
@@ -242,7 +244,7 @@ public class BroadcastingProgressReporter extends Multicaster implements Progres
     {
         started = false;
         ended = false;
-        start = Time.now().asMilliseconds();
+        start = Time.now().milliseconds();
         every = 10;
         at(0);
     }
@@ -255,7 +257,7 @@ public class BroadcastingProgressReporter extends Multicaster implements Progres
             started = true;
             at(0);
             feedback(AsciiArt.topLine(label + " " + itemName));
-            start = Time.now().asMilliseconds();
+            start = Time.now().milliseconds();
             if (listener != null)
             {
                 listener.at(Percent._0);
@@ -340,7 +342,7 @@ public class BroadcastingProgressReporter extends Multicaster implements Progres
     {
         if (steps().isNonZero())
         {
-            return Percent.of(100.0 * at() / steps().asLong());
+            return Percent.percent(100.0 * at() / steps().asLong());
         }
         return null;
     }
@@ -404,7 +406,7 @@ public class BroadcastingProgressReporter extends Multicaster implements Progres
         {
             builder.append(Count.count(steps));
             builder.append(" (");
-            builder.append(Percent.of(100.0 * count.get() / steps).asInt());
+            builder.append(Percent.percent(100.0 * count.get() / steps).asInt());
             builder.append("%)");
         }
         else

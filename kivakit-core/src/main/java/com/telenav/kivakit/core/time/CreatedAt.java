@@ -1,24 +1,51 @@
 package com.telenav.kivakit.core.time;
 
+import com.telenav.kivakit.core.test.NoTestRequired;
+
+import static com.telenav.kivakit.core.ensure.Ensure.unsupported;
+
+/**
+ * Accesses the creation time of an object, such as a resource.
+ *
+ * @author jonathanl (shibo)
+ */
+@SuppressWarnings("unused")
+@NoTestRequired
 public interface CreatedAt
 {
+    /**
+     * Returns the time that has elapsed since this object was created
+     */
+    @NoTestRequired
     default Duration age()
     {
-        return created().elapsedSince();
+        return createdAt().elapsedSince();
     }
 
-    default Time created()
+    /**
+     * Returns the time at which this object was created
+     */
+    @NoTestRequired
+    default Time createdAt()
     {
-        throw new UnsupportedOperationException("Cannot retrieve last modified time from: " + getClass());
+        return unsupported();
     }
 
+    /**
+     * Returns true if this object was created after the given one
+     */
+    @NoTestRequired
     default boolean wasCreatedAfter(CreatedAt that)
     {
-        return created().isAfter(that.created());
+        return createdAt().isAfter(that.createdAt());
     }
 
+    /**
+     * Returns true if this object was created before the given one
+     */
+    @NoTestRequired
     default boolean wasCreatedBefore(CreatedAt that)
     {
-        return created().isBefore(that.created());
+        return createdAt().isBefore(that.createdAt());
     }
 }

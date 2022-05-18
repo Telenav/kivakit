@@ -59,7 +59,7 @@ public class BaseFormattedLocalTimeConverter extends BaseFormattedConverter
     protected String onToString(LocalTime value)
     {
         var timeZone = value.timeZone();
-        return formatter().format(Instant.ofEpochMilli(value.asMilliseconds())
+        return formatter().format(Instant.ofEpochMilli(value.milliseconds())
                 .atZone(timeZone)) + (addTimeZone() ? "_" + TimeZones.shortDisplayName(timeZone) : "");
     }
 

@@ -23,6 +23,7 @@ import com.telenav.kivakit.core.messaging.Message;
 import com.telenav.kivakit.core.messaging.Repeater;
 import com.telenav.kivakit.core.lexakai.DiagramListenerType;
 import com.telenav.kivakit.core.lexakai.DiagramLogging;
+import com.telenav.kivakit.core.time.Duration;
 import com.telenav.kivakit.core.time.Time;
 import com.telenav.kivakit.interfaces.comparison.Filter;
 import com.telenav.kivakit.interfaces.comparison.Filtered;
@@ -85,7 +86,7 @@ import com.telenav.lexakai.annotations.visibility.UmlExcludeSuperTypes;
 public interface Logger extends
         Listener,
         Filtered<LogEntry>,
-        Flushable
+        Flushable<Duration>
 {
     /**
      * <b>Not public API</b>

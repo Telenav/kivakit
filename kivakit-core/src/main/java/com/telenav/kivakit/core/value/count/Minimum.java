@@ -240,10 +240,4 @@ public class Minimum extends BaseCount<Minimum>
     {
         return minimum(count);
     }
-
-    @Override
-    public Minimum newInstance(Long count)
-    {
-        return newInstance(count.longValue());
-    }
 }

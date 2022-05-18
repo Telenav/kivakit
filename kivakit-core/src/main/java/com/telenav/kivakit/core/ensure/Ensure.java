@@ -46,8 +46,8 @@ import java.util.function.Supplier;
  * <ul>
  *     <li><b>{@link FailureReporter#asserting()}</b> - Fails with a Java assertion</li>
  *     <li><b>{@link FailureReporter#logging()}</b> - Logs the failure</li>
- *     <li><b>{@link FailureReporter#none()}</b> - Does nothing</li>
- *     <li><b>{@link FailureReporter#throwing()}</b> - Throws an exception</li>
+ *     <li><b>{@link FailureReporter#emptyListener()}</b> - Does nothing</li>
+ *     <li><b>{@link FailureReporter#throwingListener()}</b> - Throws an exception</li>
  * </ul>
  *
  * <p><b>Default Reporting</b></p>

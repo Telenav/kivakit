@@ -63,8 +63,12 @@ import com.telenav.kivakit.filesystem.Folder;
 import com.telenav.kivakit.interfaces.naming.Named;
 import com.telenav.kivakit.interfaces.naming.NamedObject;
 import com.telenav.kivakit.properties.PropertyMap;
+import com.telenav.kivakit.resource.Extension;
 import com.telenav.kivakit.resource.Resource;
 import com.telenav.kivakit.resource.packages.PackageTrait;
+import com.telenav.kivakit.resource.serialization.ObjectSerializers;
+import com.telenav.kivakit.serialization.gson.GsonObjectSerializer;
+import com.telenav.kivakit.serialization.properties.PropertiesObjectSerializer;
 import com.telenav.kivakit.settings.Deployment;
 import com.telenav.kivakit.settings.DeploymentSet;
 import com.telenav.kivakit.settings.SettingsTrait;
@@ -88,7 +92,8 @@ import static com.telenav.kivakit.application.Application.State.READY;
 import static com.telenav.kivakit.application.Application.State.RUNNING;
 import static com.telenav.kivakit.application.Application.State.STOPPED;
 import static com.telenav.kivakit.application.Application.State.STOPPING;
-import static com.telenav.kivakit.commandline.Quantifier.*;
+import static com.telenav.kivakit.commandline.Quantifier.OPTIONAL;
+import static com.telenav.kivakit.commandline.Quantifier.REQUIRED;
 import static com.telenav.kivakit.commandline.SwitchParsers.booleanSwitchParser;
 import static com.telenav.kivakit.core.collections.set.ObjectSet.objectSet;
 import static com.telenav.kivakit.core.ensure.Ensure.ensure;
@@ -514,6 +519,9 @@ public abstract class Application extends BaseComponent implements
         // signal that we are initializing,
         state.transitionTo(INITIALIZING);
 
+        // register any object serializers,
+        onSerializationInitialize();
+
         // and we're running,
         onRunning();
 
@@ -713,6 +721,14 @@ public abstract class Application extends BaseComponent implements
     }
 
     /**
+     * Called to register object serializers
+     */
+    protected void onSerializationInitialize()
+    {
+        onRegisterObjectSerializers();
+    }
+
+    /**
      * Called after this application's project has been initialized
      */
     @UmlExcludeMember
@@ -734,6 +750,14 @@ public abstract class Application extends BaseComponent implements
     @UmlExcludeMember
     protected void onRan()
     {
+    }
+
+    protected void onRegisterObjectSerializers()
+    {
+        var serializers = new ObjectSerializers();
+        serializers.add(Extension.JSON, new GsonObjectSerializer());
+        serializers.add(Extension.PROPERTIES, new PropertiesObjectSerializer());
+        register(serializers);
     }
 
     /**

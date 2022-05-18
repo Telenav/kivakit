@@ -20,6 +20,7 @@ package com.telenav.kivakit.interfaces.collection;
 
 import com.telenav.kivakit.interfaces.numeric.Quantizable;
 import com.telenav.kivakit.interfaces.lexakai.DiagramCollection;
+import com.telenav.kivakit.interfaces.numeric.QuantumComparable;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
@@ -31,7 +32,9 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
  */
 @UmlClassDiagram(diagram = DiagramCollection.class)
 @LexakaiJavadoc(complete = true)
-public interface Indexed extends Quantizable
+public interface Indexed extends
+        Quantizable,
+        QuantumComparable<Indexed>
 {
     /**
      * @return The index

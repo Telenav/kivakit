@@ -40,7 +40,7 @@ public class NullResource extends BaseWritableResource
 {
     public NullResource()
     {
-        super(ResourcePath.parseUnixResourcePath(Listener.none(), "/objects/NullResource"));
+        super(ResourcePath.parseUnixResourcePath(Listener.emptyListener(), "/objects/NullResource"));
     }
 
     @Override

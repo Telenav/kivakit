@@ -18,14 +18,14 @@
 
 package com.telenav.kivakit.core.thread;
 
-import com.telenav.kivakit.core.ensure.Ensure;
 import com.telenav.kivakit.core.code.UncheckedCode;
+import com.telenav.kivakit.core.ensure.Ensure;
 import com.telenav.kivakit.core.language.reflection.Type;
+import com.telenav.kivakit.core.lexakai.DiagramThread;
 import com.telenav.kivakit.core.logging.Logger;
 import com.telenav.kivakit.core.logging.LoggerFactory;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.messaging.repeaters.BaseRepeater;
-import com.telenav.kivakit.core.lexakai.DiagramThread;
 import com.telenav.kivakit.core.time.Duration;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
@@ -67,7 +67,7 @@ public class Retry extends BaseRepeater
      */
     public Retry(Listener listener)
     {
-        this(listener, MAXIMUM_NUMBER_RETRIES, Duration.NONE, Throwable.class);
+        this(listener, MAXIMUM_NUMBER_RETRIES, Duration.ZERO_DURATION, Throwable.class);
     }
 
     /**

@@ -154,7 +154,7 @@ public interface Broadcaster extends Transceiver
     default void silence()
     {
         clearListeners();
-        addListener(Listener.none());
+        addListener(Listener.emptyListener());
     }
 
     /**

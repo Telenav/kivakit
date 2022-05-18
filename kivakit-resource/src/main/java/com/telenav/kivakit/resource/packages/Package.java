@@ -32,14 +32,19 @@ import com.telenav.kivakit.filesystem.Folder;
 import com.telenav.kivakit.interfaces.comparison.Matcher;
 import com.telenav.kivakit.properties.PropertyMap;
 import com.telenav.kivakit.resource.CopyMode;
+import com.telenav.kivakit.resource.Extension;
+import com.telenav.kivakit.resource.FileName;
 import com.telenav.kivakit.resource.Resource;
 import com.telenav.kivakit.resource.ResourceFolder;
 import com.telenav.kivakit.resource.ResourceFolderIdentifier;
 import com.telenav.kivakit.resource.ResourceIdentifier;
 import com.telenav.kivakit.resource.ResourceList;
+import com.telenav.kivakit.resource.ResourcePath;
+import com.telenav.kivakit.resource.ResourcePathed;
 import com.telenav.kivakit.resource.lexakai.DiagramResourceService;
 import com.telenav.kivakit.resource.lexakai.DiagramResourceType;
 import com.telenav.kivakit.resource.spi.ResourceFolderResolver;
+import com.telenav.kivakit.resource.writing.WritableResource;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
@@ -54,9 +59,9 @@ import java.util.stream.Collectors;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
-import static com.telenav.kivakit.core.ensure.Ensure.fail;
+import static com.telenav.kivakit.core.ensure.Ensure.unsupported;
 import static com.telenav.kivakit.core.language.module.PackageReference.packageReference;
-import static com.telenav.kivakit.core.messaging.Listener.throwing;
+import static com.telenav.kivakit.core.messaging.Listener.throwingListener;
 import static com.telenav.kivakit.resource.ResourceList.resourceList;
 import static com.telenav.kivakit.resource.packages.PackagePath.packagePath;
 import static com.telenav.kivakit.resource.packages.PackagePath.parsePackagePath;
@@ -84,8 +89,8 @@ import static com.telenav.kivakit.resource.packages.PackageResource.packageResou
  * <p>
  * Resources in a package can be obtained with {@link ResourceFolder#resources()} and {@link
  * ResourceFolder#resources(Matcher)}. A specific resource can be located with {@link ResourceFolder#resource(String)}.
- * The resources in a package can be copied to a {@link Folder} with {@link ResourceFolder#safeCopyTo(Folder, CopyMode,
- * ProgressReporter)}.
+ * The resources in a package can be copied to a {@link Folder} with {@link ResourceFolder#safeCopyTo(ResourceFolder,
+ * CopyMode, ProgressReporter)}.
  * </p>
  *
  * @author jonathanl (shibo)
@@ -141,7 +146,7 @@ public class Package extends BaseRepeater implements ResourceFolder<Package>
         public Package resolve(ResourceFolderIdentifier identifier)
         {
             var filepath = FilePath.parseFilePath(this, Strip.leading(identifier.identifier(), SCHEME));
-            return packageForPath(throwing(), packagePath(filepath));
+            return packageForPath(throwingListener(), packagePath(filepath));
         }
     }
 
@@ -164,6 +169,12 @@ public class Package extends BaseRepeater implements ResourceFolder<Package>
     }
 
     @Override
+    public boolean delete()
+    {
+        return unsupported();
+    }
+
+    @Override
     public boolean equals(Object object)
     {
         if (object instanceof Package)
@@ -172,6 +183,12 @@ public class Package extends BaseRepeater implements ResourceFolder<Package>
             return path().equals(that.path());
         }
         return false;
+    }
+
+    @Override
+    public boolean exists()
+    {
+        return unsupported();
     }
 
     @Override
@@ -219,9 +236,16 @@ public class Package extends BaseRepeater implements ResourceFolder<Package>
         return PropertyMap.localized(listener, path(), locale);
     }
 
+    @Override
+    public ResourceFolder<?> newFolder(ResourcePath relativePath)
+    {
+        return packageForPath(this, packagePath(relativePath));
+    }
+
     /**
      * @return The parent package of this package, or null if there is none
      */
+    @Override
     public Package parent()
     {
         var parent = packagePath.withoutLast();
@@ -242,25 +266,19 @@ public class Package extends BaseRepeater implements ResourceFolder<Package>
         return packageReference(path().packageType(), path());
     }
 
+    @Override
+    public boolean renameTo(final ResourceFolder<?> folder)
+    {
+        return unsupported();
+    }
+
     /**
      * @return The resource in this package with the given name
      */
     @Override
-    public PackageResource resource(String name)
+    public Resource resource(ResourcePathed pathed)
     {
-        if (name.contains("/"))
-        {
-            var path = FilePath.parseFilePath(LOGGER, name);
-            return folder(path.withoutLast().toString()).resource(path.last());
-        }
-        for (var resource : resources())
-        {
-            if (resource.fileName().name().equals(name))
-            {
-                return (PackageResource) resource;
-            }
-        }
-        return fail("Unable to find package resource $ in package $", name, path());
+        return packageResource(this, path(), pathed.path());
     }
 
     /**
@@ -291,6 +309,18 @@ public class Package extends BaseRepeater implements ResourceFolder<Package>
         directoryResources(matcher).forEach(addDeduplicated);
 
         return resourceList(resources);
+    }
+
+    @Override
+    public WritableResource temporary(final FileName baseName, final Extension extension)
+    {
+        return unsupported();
+    }
+
+    @Override
+    public ResourceFolder<?> temporaryFolder(final FileName baseName)
+    {
+        return unsupported();
     }
 
     @Override
@@ -332,7 +362,7 @@ public class Package extends BaseRepeater implements ResourceFolder<Package>
                 if (location != null && location.toString().endsWith("/"))
                 {
                     var filepath = packagePath.join("/") + "/";
-                    var directory = Folder.from(location.toURI()).folder(filepath);
+                    var directory = Folder.folder(location.toURI()).folder(filepath);
                     if (directory.exists())
                     {
                         for (var file : directory.files())

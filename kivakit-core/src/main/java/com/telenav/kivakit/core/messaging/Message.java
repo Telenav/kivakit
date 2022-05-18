@@ -19,6 +19,9 @@
 package com.telenav.kivakit.core.messaging;
 
 import com.telenav.kivakit.core.language.Classes;
+import com.telenav.kivakit.core.lexakai.DiagramBroadcaster;
+import com.telenav.kivakit.core.lexakai.DiagramListener;
+import com.telenav.kivakit.core.lexakai.DiagramMessaging;
 import com.telenav.kivakit.core.messaging.context.CodeContext;
 import com.telenav.kivakit.core.messaging.context.StackTrace;
 import com.telenav.kivakit.core.messaging.messages.Importance;
@@ -39,9 +42,6 @@ import com.telenav.kivakit.core.messaging.messages.status.activity.Activity;
 import com.telenav.kivakit.core.messaging.messages.status.activity.StepFailure;
 import com.telenav.kivakit.core.messaging.messages.status.activity.StepIncomplete;
 import com.telenav.kivakit.core.messaging.messages.status.activity.StepSuccess;
-import com.telenav.kivakit.core.lexakai.DiagramBroadcaster;
-import com.telenav.kivakit.core.lexakai.DiagramListener;
-import com.telenav.kivakit.core.lexakai.DiagramMessaging;
 import com.telenav.kivakit.core.string.Formatter;
 import com.telenav.kivakit.core.string.Strings;
 import com.telenav.kivakit.core.time.Frequency;
@@ -116,6 +116,7 @@ import static com.telenav.kivakit.core.string.Formatter.Format.WITH_EXCEPTION;
  *
  * @author jonathanl (shibo)
  */
+@SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramBroadcaster.class)
 @UmlClassDiagram(diagram = DiagramMessaging.class)
 @UmlClassDiagram(diagram = DiagramListener.class)
@@ -211,7 +212,7 @@ public interface Message extends Transmittable, Triaged, Stringable, Named
 
         public boolean failed()
         {
-            return this == FAILED;
+            return this == FAILED || this == PROBLEM;
         }
 
         /**
@@ -290,6 +291,11 @@ public interface Message extends Transmittable, Triaged, Stringable, Named
      */
     @UmlRelation(label = "message importance")
     Importance importance();
+
+    default boolean isFailure()
+    {
+        return status().failed() || operationStatus().failed();
+    }
 
     @UmlExcludeMember
     default boolean isMoreImportantThan(Class<? extends Message> type)

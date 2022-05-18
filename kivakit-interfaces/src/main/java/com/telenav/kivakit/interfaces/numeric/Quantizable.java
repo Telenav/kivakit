@@ -21,11 +21,10 @@ package com.telenav.kivakit.interfaces.numeric;
 import com.telenav.kivakit.interfaces.collection.Indexed;
 import com.telenav.kivakit.interfaces.collection.LongKeyed;
 import com.telenav.kivakit.interfaces.factory.MapFactory;
-import com.telenav.kivakit.interfaces.model.Identifiable;
 import com.telenav.kivakit.interfaces.lexakai.DiagramNumeric;
+import com.telenav.kivakit.interfaces.model.Identifiable;
+import com.telenav.kivakit.interfaces.string.Stringable;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
-
-import java.util.Collection;
 
 /**
  * A quantizable object can be turned into a quantum. A quantum is a discrete value and is represented by the Java
@@ -60,73 +59,42 @@ import java.util.Collection;
  *     }
  * }</pre>
  *
- * <p>
- * A collection of quantizable values can be converted to an int[] with {@link #toIntArray(Collection)} or a long[] with
- * {@link #toLongArray(Collection)}.
- * </p>
- *
  * @author jonathanl (shibo)
  */
+@SuppressWarnings("unused")
 @FunctionalInterface
 @UmlClassDiagram(diagram = DiagramNumeric.class)
-public interface Quantizable extends DoubleQuantizable
+public interface Quantizable extends
+        DoubleQuantizable,
+        Stringable
 {
-    static Quantizable quantizable(Integer value)
+    default String asCommaSeparatedString()
     {
-        return () -> value;
+        return String.format("%,d", quantum());
     }
 
-    static Quantizable quantizable(Long value)
+    default String asSimpleString()
     {
-        return () -> value;
+        return Long.toString(quantum());
     }
 
-    static int[] toIntArray(Collection<? extends Quantizable> values)
+    @SuppressWarnings("SwitchStatementWithTooFewBranches")
+    default String asString(Stringable.Format format)
     {
-        var array = new int[values.size()];
-        var index = 0;
-        for (Quantizable value : values)
+        switch (format)
         {
-            array[index++] = (int) value.quantum();
-        }
-        return array;
-    }
+            case PROGRAMMATIC:
+                return asSimpleString();
 
-    static long[] toLongArray(Collection<? extends Quantizable> values)
-    {
-        var array = new long[values.size()];
-        var index = 0;
-        for (Quantizable value : values)
-        {
-            array[index++] = value.quantum();
+            default:
+                return asCommaSeparatedString();
         }
-        return array;
     }
 
     @Override
     default double doubleQuantum()
     {
         return quantum();
-    }
-
-    default boolean isGreaterThan(Quantizable that)
-    {
-        return quantum() > that.quantum();
-    }
-
-    default boolean isGreaterThanOrEqualTo(Quantizable that)
-    {
-        return quantum() >= that.quantum();
-    }
-
-    default boolean isLessThan(Quantizable that)
-    {
-        return quantum() < that.quantum();
-    }
-
-    default boolean isLessThanOrEqualTo(Quantizable that)
-    {
-        return quantum() <= that.quantum();
     }
 
     default boolean isNonZero()
@@ -140,7 +108,7 @@ public interface Quantizable extends DoubleQuantizable
     }
 
     /**
-     * @return The discrete value for this object
+     * Returns the discrete value for this object
      */
     long quantum();
 }

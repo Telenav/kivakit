@@ -218,7 +218,7 @@ public class Extension implements
 
     public static Extension parseExtension(String value)
     {
-        return parseExtension(Listener.throwing(), value);
+        return parseExtension(Listener.throwingListener(), value);
     }
 
     private final String extension;

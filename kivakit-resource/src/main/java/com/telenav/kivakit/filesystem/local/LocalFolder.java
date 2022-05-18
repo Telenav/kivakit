@@ -54,6 +54,7 @@ import static com.telenav.kivakit.core.ensure.Ensure.fail;
  *
  * @author jonathanl (shibo)
  */
+@SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramFileSystemService.class)
 @UmlNotPublicApi
 @LexakaiJavadoc(complete = true)
@@ -90,7 +91,7 @@ public class LocalFolder extends BaseRepeater implements FolderService
 
     public LocalFolder(String path)
     {
-        this(FilePath.parseFilePath(Listener.console(), path));
+        this(FilePath.parseFilePath(Listener.consoleListener(), path));
     }
 
     public LocalFolder(URI uri)
@@ -106,6 +107,12 @@ public class LocalFolder extends BaseRepeater implements FolderService
     public LocalFolder asAbsolute()
     {
         return new LocalFolder(path().absolute());
+    }
+
+    @Override
+    public java.io.File asJavaFile()
+    {
+        return file;
     }
 
     public URI asUri()
@@ -156,7 +163,7 @@ public class LocalFolder extends BaseRepeater implements FolderService
     }
 
     @Override
-    public Time created()
+    public Time createdAt()
     {
         try
         {
@@ -376,18 +383,18 @@ public class LocalFolder extends BaseRepeater implements FolderService
         return file.canWrite();
     }
 
-    @Override
-    public Time lastModified()
-    {
-        return Time.milliseconds(file.lastModified());
-    }
-
     @SuppressWarnings("ResultOfMethodCallIgnored")
     @Override
     public LocalFolder mkdirs()
     {
         file.mkdirs();
         return this;
+    }
+
+    @Override
+    public Time modifiedAt()
+    {
+        return Time.milliseconds(file.lastModified());
     }
 
     @Override
@@ -492,10 +499,5 @@ public class LocalFolder extends BaseRepeater implements FolderService
     private static boolean isFolder(FilePath path)
     {
         return new java.io.File(path.join()).isDirectory();
-    }
-
-    java.io.File asJavaFile()
-    {
-        return file;
     }
 }

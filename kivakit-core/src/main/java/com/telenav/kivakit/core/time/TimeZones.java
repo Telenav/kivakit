@@ -63,7 +63,7 @@ public class TimeZones
      */
     public static boolean isValidShortDisplayName(String identifier)
     {
-        return parseShortDisplayName(Listener.none(), identifier) != null;
+        return parseShortDisplayName(Listener.emptyListener(), identifier) != null;
     }
 
     /**
@@ -71,7 +71,7 @@ public class TimeZones
      */
     public static boolean isValidZoneId(String identifier)
     {
-        return parseZoneId(Listener.none(), identifier) != null;
+        return parseZoneId(Listener.emptyListener(), identifier) != null;
     }
 
     /**
@@ -109,10 +109,10 @@ public class TimeZones
      */
     public static ZoneId parseZoneIdOrDisplayName(Listener listener, String identifier)
     {
-        var zone = parseShortDisplayName(Listener.none(), identifier);
+        var zone = parseShortDisplayName(Listener.emptyListener(), identifier);
         if (zone == null)
         {
-            zone = parseZoneId(Listener.none(), identifier);
+            zone = parseZoneId(Listener.emptyListener(), identifier);
         }
         if (zone == null)
         {

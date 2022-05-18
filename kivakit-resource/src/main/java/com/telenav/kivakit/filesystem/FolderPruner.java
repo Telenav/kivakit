@@ -37,9 +37,9 @@ import com.telenav.lexakai.annotations.associations.UmlRelation;
  * <p><b>Expiration Criteria</b></p>
  *
  * <p>
- * The minimum age of surviving files can be set with {@link #minimumAge(Duration)}. Files will also be pruned (from
- * oldest to newest) if disk space falls below {@link #minimumUsableDiskSpace(Percent)} or when the folder's total size
- * exceeds {@link #capacity(Bytes)}.
+ * The maximum age of files can be set with {@link #maximumAge(Duration)}. Files will also be pruned (from oldest to
+ * newest) if disk space falls below {@link #minimumUsableDiskSpace(Percent)} or when the folder's total size exceeds
+ * {@link #capacity(Bytes)}.
  * </p>
  *
  * @author jonathanl (shibo)
@@ -51,23 +51,23 @@ public class FolderPruner
 {
     private static final Logger LOGGER = LoggerFactory.newLogger();
 
-    /** Matcher to restrict files that can be pruned */
-    private volatile Matcher<File> matcher = Matcher.matchAll();
-
-    /** The minimum percentage of usable disk space that must be maintained on the folder's disk. */
-    private volatile Percent minimumUsableDiskSpace = Percent.of(15);
-
-    /** The minimum age for a file to be pruned */
-    private volatile Duration minimumAge = Duration.weeks(2);
-
     /** The maximum folder capacity */
     private volatile Bytes capacity = Bytes.MAXIMUM;
 
-    /** The pruner thread */
-    private final RepeatingThread thread;
+    /** Matcher to restrict files that can be pruned */
+    private volatile Matcher<File> matcher = Matcher.matchAll();
+
+    /** The maximum age at which a file will be pruned */
+    private volatile Duration maximumAge = Duration.weeks(2);
+
+    /** The minimum percentage of usable disk space that must be maintained on the folder's disk. */
+    private volatile Percent minimumUsableDiskSpace = Percent.percent(15);
 
     /** True if this pruner is running */
     private volatile boolean running;
+
+    /** The pruner thread */
+    private final RepeatingThread thread;
 
     public FolderPruner(Folder folder, Frequency frequency)
     {
@@ -93,13 +93,13 @@ public class FolderPruner
                                 || size.isGreaterThan(capacity()))
                         {
                             // and the file is old enough to remove and we can remove it
-                            if (age(file).isGreaterThan(minimumAge()) && canRemove(file, files))
+                            if (age(file).isGreaterThanOrEqualTo(maximumAge()) && canRemove(file, files))
                             {
                                 // then remove the file and adjust the folder size
-                                onFileRemoved(file);
                                 var length = file.sizeInBytes();
                                 file.delete();
                                 size = size.minus(length);
+                                onFileRemoved(file);
                             }
                         }
                     }
@@ -129,9 +129,9 @@ public class FolderPruner
         this.matcher = matcher;
     }
 
-    public void minimumAge(Duration minimumAge)
+    public void maximumAge(Duration maximumAge)
     {
-        this.minimumAge = minimumAge;
+        this.maximumAge = maximumAge;
     }
 
     public void minimumUsableDiskSpace(Percent minimumUsableDiskSpace)
@@ -157,7 +157,7 @@ public class FolderPruner
      */
     protected Duration age(File file)
     {
-        return file.lastModified().elapsedSince();
+        return file.createdAt().elapsedSince();
     }
 
     /**
@@ -181,9 +181,9 @@ public class FolderPruner
         return matcher;
     }
 
-    protected Duration minimumAge()
+    protected Duration maximumAge()
     {
-        return minimumAge;
+        return maximumAge;
     }
 
     protected Percent minimumUsableDiskSpace()

@@ -21,10 +21,10 @@ package com.telenav.kivakit.filesystem.local;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.time.Time;
 import com.telenav.kivakit.core.value.count.Bytes;
+import com.telenav.kivakit.filesystem.FilePath;
 import com.telenav.kivakit.filesystem.spi.DiskService;
 import com.telenav.kivakit.filesystem.spi.FileService;
 import com.telenav.kivakit.filesystem.spi.FolderService;
-import com.telenav.kivakit.filesystem.FilePath;
 import com.telenav.kivakit.resource.lexakai.DiagramFileSystemService;
 import com.telenav.kivakit.resource.writing.BaseWritableResource;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
@@ -84,7 +84,7 @@ public class LocalFile extends BaseWritableResource implements FileService
 
     public LocalFile(String path)
     {
-        this(FilePath.parseFilePath(Listener.console(), path));
+        this(FilePath.parseFilePath(Listener.consoleListener(), path));
     }
 
     @Override
@@ -108,7 +108,7 @@ public class LocalFile extends BaseWritableResource implements FileService
     }
 
     @Override
-    public Time created()
+    public Time createdAt()
     {
         try
         {
@@ -192,15 +192,15 @@ public class LocalFile extends BaseWritableResource implements FileService
     }
 
     @Override
-    public Time lastModified()
+    public boolean lastModified(Time time)
     {
-        return Time.milliseconds(file.lastModified());
+        return file.setLastModified(time.milliseconds());
     }
 
     @Override
-    public boolean lastModified(Time time)
+    public Time modifiedAt()
     {
-        return file.setLastModified(time.asMilliseconds());
+        return Time.milliseconds(file.lastModified());
     }
 
     @Override
