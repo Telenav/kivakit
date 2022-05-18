@@ -91,7 +91,7 @@ public interface TimeMeasurement extends Quantizable
                 return unitString(asMicroseconds(), "microseconds");
             }
 
-            return unitString(nanoseconds(), "nanoseconds");
+            return unitString(asNanoseconds(), "nanoseconds");
         }
         else
         {
@@ -104,7 +104,7 @@ public interface TimeMeasurement extends Quantizable
      */
     default double asMicroseconds()
     {
-        return nanoseconds() / 1E3;
+        return asNanoseconds() / 1E3;
     }
 
     /**
@@ -128,7 +128,7 @@ public interface TimeMeasurement extends Quantizable
      */
     default double asNanoseconds()
     {
-        return nanoseconds();
+        return nanoseconds().asDouble();
     }
 
     /**
@@ -160,13 +160,13 @@ public interface TimeMeasurement extends Quantizable
      */
     default long milliseconds()
     {
-        return (nanoseconds() + 500_000L) / 1_000_000L;
+        return (long) ((asNanoseconds() + 0.5E6) / 1E6);
     }
 
     /**
      * @return The number of nanoseconds for this measurement
      */
-    long nanoseconds();
+    Nanoseconds nanoseconds();
 
     /**
      * {@inheritDoc}
@@ -174,7 +174,7 @@ public interface TimeMeasurement extends Quantizable
     @Override
     default long quantum()
     {
-        return nanoseconds();
+        return milliseconds();
     }
 
     /**

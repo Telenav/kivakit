@@ -1,48 +1,52 @@
 package com.telenav.kivakit.core.time;
 
-import com.telenav.kivakit.core.language.primitive.Longs;
+import com.telenav.kivakit.interfaces.time.Nanoseconds;
 
-import static com.telenav.kivakit.core.ensure.Ensure.ensure;
+import static com.telenav.kivakit.core.time.BaseTime.Topology.LINEAR;
 import static com.telenav.kivakit.core.time.Day.nanosecondsPerDay;
-import static java.lang.Long.MAX_VALUE;
 
 @SuppressWarnings("unused")
 public class Week extends BaseTime<Week>
 {
-    private static final long nanosecondsPerWeek = nanosecondsPerDay * 7;
+    private static final Nanoseconds nanosecondsPerWeek = nanosecondsPerDay.times(7);
 
-    public static Week weeks(int weeks)
+    public static Week week(int week)
     {
-        ensure(Longs.isBetweenInclusive(weeks, 0, 59));
-        return new Week(weeks);
+        return new Week(week);
     }
 
-    protected Week(int weeks)
+    protected Week(int week)
     {
-        super(weeks * nanosecondsPerWeek);
+        super(nanosecondsPerWeek.times(week));
     }
 
     @Override
     public Week maximum()
     {
-        return weeks(nanosecondsToUnits(MAX_VALUE));
+        return week((int) 1E9);
     }
 
     @Override
     public Week minimum()
     {
-        return weeks(0);
+        return week(0);
     }
 
     @Override
-    public long nanosecondsPerUnit()
+    public Nanoseconds nanosecondsPerUnit()
     {
         return nanosecondsPerWeek;
     }
 
     @Override
-    public Week newTime(long nanoseconds)
+    public Week onNewTime(Nanoseconds nanoseconds)
     {
-        return weeks(nanosecondsToUnits(nanoseconds));
+        return week((int) nanosecondsToUnits(nanoseconds));
+    }
+
+    @Override
+    protected Topology topology()
+    {
+        return LINEAR;
     }
 }

@@ -2,9 +2,13 @@ package com.telenav.kivakit.core.time;
 
 import com.telenav.kivakit.core.test.Tested;
 import com.telenav.kivakit.interfaces.time.LengthOfTime;
+import com.telenav.kivakit.interfaces.time.Nanoseconds;
 import com.telenav.kivakit.interfaces.time.PointInTime;
 
 import java.util.Objects;
+
+import static com.telenav.kivakit.core.ensure.Ensure.ensure;
+import static com.telenav.kivakit.core.time.BaseTime.Topology.CYCLIC;
 
 /**
  * Base class for values representing a {@link PointInTime}:
@@ -41,8 +45,8 @@ import java.util.Objects;
  * <ul>
  *     <li>{@link #asUnits()}</li>
  *     <li>{@link #nanosecondsPerUnit()}</li>
- *     <li>{@link #nanosecondsToUnits(long)}</li>
- *     <li>{@link #unitsToNanoseconds(int)}</li>
+ *     <li>{@link #nanosecondsToUnits(Nanoseconds)}</li>
+ *     <li>{@link #unitsToNanoseconds(double)}</li>
  * </ul>
  *
  * <p><b>Conversion</b></p>
@@ -70,9 +74,9 @@ import java.util.Objects;
  * <ul>
  *     <li>{@link #minus(PointInTime)}</li>
  *     <li>{@link #minus(LengthOfTime)}</li>
- *     <li>{@link #minus(int)}</li>
+ *     <li>{@link #minusUnits(double)}</li>
  *     <li>{@link #plus(LengthOfTime)}</li>
- *     <li>{@link #plus(int)}</li>
+ *     <li>{@link #plusUnits(double)}</li>
  *     <li>{@link #next()}</li>
  *     <li>{@link #nearest(LengthOfTime)}</li>
  *     <li>{@link #roundUp(LengthOfTime)}</li>
@@ -82,7 +86,8 @@ import java.util.Objects;
  * <p><b>Implementation</b></p>
  *
  * <ul>
- *     <li>{@link #newDuration(long)}</li>
+ *     <li>{@link #newDuration(Nanoseconds)}</li>
+ *     <li>{@link #newTime(Nanoseconds)}</li>
  * </ul>
  *
  * @see Time
@@ -99,14 +104,20 @@ import java.util.Objects;
 @SuppressWarnings("unused")
 public abstract class BaseTime<T extends BaseTime<T>> implements PointInTime<T, Duration>
 {
+    public enum Topology
+    {
+        LINEAR,
+        CYCLIC
+    }
+
     /** The number of nanoseconds since start of UNIX time */
-    private long nanoseconds;
+    private Nanoseconds nanoseconds;
 
     public BaseTime()
     {
     }
 
-    public BaseTime(long nanoseconds)
+    public BaseTime(Nanoseconds nanoseconds)
     {
         this.nanoseconds = nanoseconds;
     }
@@ -114,9 +125,14 @@ public abstract class BaseTime<T extends BaseTime<T>> implements PointInTime<T, 
     /**
      * @return This point in time in units
      */
-    public int asUnits()
+    public double asPreciseUnits()
     {
         return nanosecondsToUnits(nanoseconds());
+    }
+
+    public int asUnits()
+    {
+        return (int) asPreciseUnits();
     }
 
     /**
@@ -124,7 +140,7 @@ public abstract class BaseTime<T extends BaseTime<T>> implements PointInTime<T, 
      */
     public T decremented()
     {
-        return minus(1);
+        return minusUnits(1);
     }
 
     @Override
@@ -134,7 +150,7 @@ public abstract class BaseTime<T extends BaseTime<T>> implements PointInTime<T, 
         if (object instanceof BaseTime)
         {
             var that = (BaseTime<?>) object;
-            return this.quantum() == that.quantum();
+            return this.nanoseconds().equals(that.nanoseconds());
         }
         return false;
     }
@@ -143,7 +159,7 @@ public abstract class BaseTime<T extends BaseTime<T>> implements PointInTime<T, 
     @Tested
     public int hashCode()
     {
-        return Objects.hash(quantum());
+        return Objects.hash(nanoseconds());
     }
 
     /**
@@ -151,37 +167,34 @@ public abstract class BaseTime<T extends BaseTime<T>> implements PointInTime<T, 
      */
     public T incremented()
     {
-        return plus(1);
+        return plusUnits(1);
     }
 
     public boolean isBetweenExclusive(T minimum, T maximum)
     {
-        return asUnits() >= minimum.asUnits() && asUnits() < maximum.asUnits();
+        return nanoseconds().isGreaterThanOrEqualTo(minimum.nanoseconds())
+                && nanoseconds().isLessThan(maximum.nanoseconds());
     }
 
     public boolean isBetweenInclusive(T minimum, T maximum)
     {
-        return asUnits() >= minimum.asUnits() && asUnits() <= maximum.asUnits();
+        return nanoseconds().isGreaterThanOrEqualTo(minimum.nanoseconds())
+                && nanoseconds().isLessThanOrEqualTo(maximum.nanoseconds());
     }
 
     /**
      * @return This time minus the given number of units
      */
-    public T minus(int units)
+    public T minusUnits(double units)
     {
-        var difference = asUnits() - units;
-        if (difference < 0)
-        {
-            difference += 24;
-        }
-        return newTime(unitsToNanoseconds(difference));
+        return minus(Duration.nanoseconds(unitsToNanoseconds(units)));
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public long nanoseconds()
+    public Nanoseconds nanoseconds()
     {
         return nanoseconds;
     }
@@ -189,12 +202,18 @@ public abstract class BaseTime<T extends BaseTime<T>> implements PointInTime<T, 
     /**
      * Returns the number of milliseconds per unit of time
      */
-    public abstract long nanosecondsPerUnit();
+    public abstract Nanoseconds nanosecondsPerUnit();
 
     @Override
-    public Duration newDuration(long nanoseconds)
+    public Duration newDuration(Nanoseconds nanoseconds)
     {
         return Duration.nanoseconds(nanoseconds);
+    }
+
+    @Override
+    public final T newTime(Nanoseconds nanoseconds)
+    {
+        return onNewTime(inRange(nanoseconds));
     }
 
     /**
@@ -202,26 +221,49 @@ public abstract class BaseTime<T extends BaseTime<T>> implements PointInTime<T, 
      */
     public T next()
     {
-        return plus(1);
+        return plusUnits(1);
     }
+
+    public abstract T onNewTime(Nanoseconds nanoseconds);
 
     /**
      * @return This time plus the given number of units
      */
-    public T plus(int units)
+    public T plusUnits(double units)
     {
-        var sum = asUnits() + units;
-        if (sum > 23)
-        {
-            sum -= 24;
-        }
-        return newTime(unitsToNanoseconds(sum));
+        return newTime(nanoseconds().plus(unitsToNanoseconds(units)));
     }
 
     @Override
     public String toString()
     {
-        return Integer.toString(asUnits());
+        return nanoseconds().toString();
+    }
+
+    protected Nanoseconds inRange(Nanoseconds nanoseconds)
+    {
+        if (topology() == CYCLIC)
+        {
+            var units = nanosecondsToUnits(nanoseconds);
+            var minimumUnits = minimum().asUnits();
+            var maximumUnits = maximum().asUnits();
+
+            var range = maximumUnits - minimumUnits + 1;
+            ensure(range > 0);
+
+            if (units < minimumUnits)
+            {
+                var distanceFromMinimum = minimumUnits - units;
+                return unitsToNanoseconds(minimumUnits + (maximumUnits + 1 - distanceFromMinimum) % range);
+            }
+
+            if (units > maximumUnits)
+            {
+                return unitsToNanoseconds(minimumUnits + (units % range));
+            }
+        }
+
+        return nanoseconds;
     }
 
     /**
@@ -229,18 +271,23 @@ public abstract class BaseTime<T extends BaseTime<T>> implements PointInTime<T, 
      * <p>
      * Converts the given number of nanoseconds to units
      */
-    protected int nanosecondsToUnits(long nanoseconds)
+    protected double nanosecondsToUnits(Nanoseconds nanoseconds)
     {
-        return (int) (nanoseconds / nanosecondsPerUnit());
+        return nanoseconds.dividedBy(nanosecondsPerUnit());
     }
+
+    /**
+     * @return The kind of time this is, either {@link Topology#LINEAR} or {@link Topology#CYCLIC}
+     */
+    protected abstract Topology topology();
 
     /**
      * <b>Not public API</b>
      * <p>
      * Converts the given number of units to nanoseconds
      */
-    protected long unitsToNanoseconds(int units)
+    protected Nanoseconds unitsToNanoseconds(double units)
     {
-        return units * nanosecondsPerUnit();
+        return nanosecondsPerUnit().times(units);
     }
 }

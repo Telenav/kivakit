@@ -161,7 +161,7 @@
 
         <!-- Cluster -->
 
-        <zookeeper.version>3.5.6</zookeeper.version>
+        <zookeeper.version>3.7.0</zookeeper.version>
 
         <!-- File Systems -->
 
@@ -183,9 +183,11 @@
         <kivakit.version>1.5.1-SNAPSHOT</kivakit.version>
 
         <!-- Merged JARs -->
-        <kivakit.merged.version>1.5.0</kivakit.merged.version>
+
+        <kivakit.merged.version>1.5.2</kivakit.merged.version>
 
         <!-- Parsing -->
+
         <antlr.version>4.7.2</antlr.version>
 
         <!-- Protocols -->

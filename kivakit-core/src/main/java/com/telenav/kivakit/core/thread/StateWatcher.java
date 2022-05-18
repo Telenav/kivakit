@@ -19,7 +19,6 @@
 package com.telenav.kivakit.core.thread;
 
 import com.telenav.kivakit.core.lexakai.DiagramThread;
-import com.telenav.kivakit.core.os.Console;
 import com.telenav.kivakit.core.thread.locks.Lock;
 import com.telenav.kivakit.core.time.Duration;
 import com.telenav.kivakit.core.time.Time;

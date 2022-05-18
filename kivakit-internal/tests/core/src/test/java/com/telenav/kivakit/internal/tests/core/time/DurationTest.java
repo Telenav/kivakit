@@ -56,9 +56,9 @@ public class DurationTest extends CoreUnitTest
     @Test
     public void testAdd()
     {
-        ensureEqual(seconds(2), ONE_SECOND.add(ONE_SECOND));
-        ensureEqual(seconds(2), ONE_SECOND.add(ONE_SECOND, FORCE_POSITIVE));
-        ensureEqual(seconds(2), ONE_SECOND.add(ONE_SECOND, ALLOW_NEGATIVE));
+        ensureEqual(seconds(2), ONE_SECOND.plus(ONE_SECOND));
+        ensureEqual(seconds(2), ONE_SECOND.plus(ONE_SECOND, FORCE_POSITIVE));
+        ensureEqual(seconds(2), ONE_SECOND.plus(ONE_SECOND, ALLOW_NEGATIVE));
     }
 
     @Test
@@ -104,7 +104,6 @@ public class DurationTest extends CoreUnitTest
     {
         ensure(ONE_SECOND.equals(ONE_SECOND));
         ensureFalse(ONE_SECOND.equals(seconds(1.01)));
-        ensureEqual(years(1.5), weeks(52 + 26));
         ensureEqual(weeks(1), days(7));
         ensureEqual(days(1.5), hours(36));
         ensureEqual(hours(1.5), minutes(90));
@@ -114,16 +113,6 @@ public class DurationTest extends CoreUnitTest
 
         rangeInclusive(_0, count(59)).forEachInt(at -> map.put(seconds(at), at));
         rangeInclusive(_0, count(59)).forEachInt(at -> ensureEqual(map.get(seconds(at)), at));
-    }
-
-    @Test
-    public void testFromStartOfWeekModuloWeekLength()
-    {
-        ensureEqual("MONDAY, 00:00", minutes(0).fromStartOfWeekModuloWeekLength());
-        ensureEqual("MONDAY, 00:00", minutes(10080).fromStartOfWeekModuloWeekLength());
-        ensureEqual("MONDAY, 02:40", minutes(160).fromStartOfWeekModuloWeekLength());
-        ensureEqual("WEDNESDAY, 02:40", minutes(160 + 2 * 1440).fromStartOfWeekModuloWeekLength());
-        ensureEqual("FRIDAY, 15:40", minutes(940 + 4 * 1440).fromStartOfWeekModuloWeekLength());
     }
 
     @Test
@@ -210,7 +199,7 @@ public class DurationTest extends CoreUnitTest
     @Test
     public void testModulus()
     {
-        ensureEqual(ONE_SECOND, ONE_MINUTE.add(ONE_SECOND).modulus(ONE_MINUTE));
+        ensureEqual(ONE_SECOND, ONE_MINUTE.plus(ONE_SECOND).modulus(ONE_MINUTE));
     }
 
     @Test

@@ -1,26 +1,32 @@
 package com.telenav.kivakit.core.time;
 
-import com.telenav.kivakit.core.language.primitive.Longs;
+import com.telenav.kivakit.core.language.primitive.Ints;
+import com.telenav.kivakit.interfaces.time.Nanoseconds;
 
 import static com.telenav.kivakit.core.ensure.Ensure.ensure;
+import static com.telenav.kivakit.core.time.BaseTime.Topology.CYCLIC;
 import static com.telenav.kivakit.core.time.Second.nanosecondsPerSecond;
 
+/**
+ * Represents a minute on a clock
+ *
+ * @author jonathanl (shibo)
+ */
 @SuppressWarnings("unused")
 public class Minute extends BaseTime<Minute>
 {
-    static final long nanosecondsPerMinute = nanosecondsPerSecond * 60;
+    static final Nanoseconds nanosecondsPerMinute = nanosecondsPerSecond.times(60);
 
     public static Minute minute(int minute)
     {
-        ensure(Longs.isBetweenInclusive(minute, 0, 59));
+        ensure(Ints.isBetweenInclusive(minute, 0, 59));
 
-        return new Minute(minute * nanosecondsPerMinute);
+        return new Minute(minute);
     }
 
-    protected Minute(long nanoseconds)
+    protected Minute(int minute)
     {
-        super(nanoseconds);
-
+        super(nanosecondsPerMinute.times(minute));
     }
 
     @Override
@@ -36,14 +42,20 @@ public class Minute extends BaseTime<Minute>
     }
 
     @Override
-    public long nanosecondsPerUnit()
+    public Nanoseconds nanosecondsPerUnit()
     {
         return nanosecondsPerMinute;
     }
 
     @Override
-    public Minute newTime(long nanoseconds)
+    public Minute onNewTime(Nanoseconds nanoseconds)
     {
-        return new Minute(nanoseconds);
+        return new Minute((int) nanosecondsToUnits(nanoseconds));
+    }
+
+    @Override
+    protected Topology topology()
+    {
+        return CYCLIC;
     }
 }

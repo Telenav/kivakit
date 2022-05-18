@@ -159,7 +159,7 @@ public interface LengthOfTime<Duration extends LengthOfTime<Duration>> extends
     {
         try
         {
-            if (awaitable.await(nanoseconds(), TimeUnit.NANOSECONDS))
+            if (awaitable.await(milliseconds(), TimeUnit.MILLISECONDS))
             {
                 return COMPLETED;
             }
@@ -181,7 +181,22 @@ public interface LengthOfTime<Duration extends LengthOfTime<Duration>> extends
     @Override
     default int compareTo(LengthOfTime<?> that)
     {
-        return Long.compare(nanoseconds(), that.nanoseconds());
+        return nanoseconds().compareTo(that.nanoseconds());
+    }
+
+    /**
+     * @return The positive difference between this length of time and that one
+     */
+    default Duration difference(Duration that)
+    {
+        if (isGreaterThan(that))
+        {
+            return minus(that);
+        }
+        else
+        {
+            return that.minus(this);
+        }
     }
 
     /**
@@ -189,7 +204,15 @@ public interface LengthOfTime<Duration extends LengthOfTime<Duration>> extends
      */
     default Duration dividedBy(double value)
     {
-        return newDuration((long) (nanoseconds() / value));
+        return newDuration(nanoseconds().dividedBy(value));
+    }
+
+    /**
+     * @return This length of time divided by the given divisor
+     */
+    default Duration dividedBy(long value)
+    {
+        return dividedBy((double) value);
     }
 
     /**
@@ -197,28 +220,33 @@ public interface LengthOfTime<Duration extends LengthOfTime<Duration>> extends
      */
     default Duration minus(LengthOfTime<?> that)
     {
-        return newDuration(nanoseconds() - that.nanoseconds());
+        return newDuration(nanoseconds().minus(that.nanoseconds()));
+    }
+
+    /**
+     * @return This length of time modulus the given length of time
+     */
+    default Duration modulus(Duration that)
+    {
+        return newDuration(nanoseconds().modulo(that.nanoseconds()));
     }
 
     /**
      * @return The nearest duration of the given unit
      */
-    default Duration nearest(Duration unit)
-    {
-        return plus(unit.dividedBy(2)).roundDown(unit);
-    }
+    Duration nearest(Duration unit);
 
     /**
      * @return A new instance of the class implementing this interface
      */
-    Duration newDuration(long nanoseconds);
+    Duration newDuration(Nanoseconds nanoseconds);
 
     /**
      * @return This length of time plus the given length of time
      */
     default Duration plus(LengthOfTime<?> that)
     {
-        return newDuration(nanoseconds() + that.nanoseconds());
+        return newDuration(nanoseconds().plus(that.nanoseconds()));
     }
 
     /**
@@ -242,7 +270,7 @@ public interface LengthOfTime<Duration extends LengthOfTime<Duration>> extends
      */
     default Duration roundDown(Duration unit)
     {
-        return newDuration(nanoseconds() / unit.nanoseconds() * unit.nanoseconds());
+        return newDuration(nanoseconds().roundDown(unit.nanoseconds()));
     }
 
     /**
@@ -250,7 +278,7 @@ public interface LengthOfTime<Duration extends LengthOfTime<Duration>> extends
      */
     default Duration roundUp(Duration unit)
     {
-        return roundDown(unit).plus(unit);
+        return newDuration(nanoseconds().roundUp(unit.nanoseconds()));
     }
 
     /**
@@ -276,7 +304,15 @@ public interface LengthOfTime<Duration extends LengthOfTime<Duration>> extends
      */
     default Duration times(double factor)
     {
-        return newDuration((long) (nanoseconds() * factor));
+        return newDuration(nanoseconds().times(factor));
+    }
+
+    /**
+     * @return This length of time multiplied by the given factor
+     */
+    default Duration times(int factor)
+    {
+        return times((double) factor);
     }
 
     /**

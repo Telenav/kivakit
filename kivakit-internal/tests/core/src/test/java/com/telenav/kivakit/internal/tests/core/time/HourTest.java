@@ -1,13 +1,12 @@
 package com.telenav.kivakit.internal.tests.core.time;
 
-import com.telenav.kivakit.internal.test.support.CoreUnitTest;
 import com.telenav.kivakit.core.time.Hour;
+import com.telenav.kivakit.internal.test.support.CoreUnitTest;
 import org.junit.Test;
 
 import java.util.HashMap;
 
 import static com.telenav.kivakit.core.time.Hour.am;
-import static com.telenav.kivakit.core.time.Hour.hour;
 import static com.telenav.kivakit.core.time.Hour.midnight;
 import static com.telenav.kivakit.core.time.Hour.militaryHour;
 import static com.telenav.kivakit.core.time.Hour.noon;
@@ -48,9 +47,6 @@ public class HourTest extends CoreUnitTest
     @Test
     public void testAsMeridiemHour()
     {
-        ensureThrows(() -> hour(24).asMeridiemHour());
-        ensureThrows(() -> hour(1024).asMeridiemHour());
-
         ensureEqual(am(12).asMeridiemHour(), 12);
         ensureEqual(am(1).asMeridiemHour(), 1);
         ensureEqual(am(2).asMeridiemHour(), 2);
@@ -173,35 +169,9 @@ public class HourTest extends CoreUnitTest
     }
 
     @Test
-    public void testHour()
-    {
-        ensureThrows(() -> hour(-1));
-
-        ensureEqual(hour(8000).asUnits(), 8000);
-    }
-
-    @Test
-    public void testIsMeridiem()
-    {
-        ensure(am(12).isMeridiem());
-        ensure(pm(11).isMeridiem());
-        ensure(!hour(27).isMeridiem());
-        ensure(!militaryHour(7).isMeridiem());
-    }
-
-    @Test
-    public void testIsMilitary()
-    {
-        ensure(!am(12).isMilitary());
-        ensure(!pm(11).isMilitary());
-        ensure(!hour(27).isMilitary());
-        ensure(militaryHour(7).isMilitary());
-    }
-
-    @Test
     public void testMaximum()
     {
-        ensureEqual(am(12).maximum(), militaryHour(12));
+        ensureEqual(am(12).maximum(), militaryHour(23));
         ensureEqual(militaryHour(12).maximum(), militaryHour(23));
     }
 
@@ -234,8 +204,8 @@ public class HourTest extends CoreUnitTest
     @Test
     public void testMinus()
     {
-        ensureEqual(pm(8).minus(7), pm(1));
-        ensureEqual(am(3).minus(6), pm(9));
+        ensureEqual(pm(8).minusUnits(7), pm(1));
+        ensureEqual(am(3).minusUnits(6), pm(9));
     }
 
     @Test
@@ -248,8 +218,8 @@ public class HourTest extends CoreUnitTest
     @Test
     public void testPlus()
     {
-        ensureEqual(am(8).plus(5), pm(1));
-        ensureEqual(pm(9).plus(6), am(3));
+        ensureEqual(am(8).plusUnits(5), pm(1));
+        ensureEqual(pm(9).plusUnits(6), am(3));
     }
 
     @Test

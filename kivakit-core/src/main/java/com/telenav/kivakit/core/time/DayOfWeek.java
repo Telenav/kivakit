@@ -22,12 +22,14 @@ import com.telenav.kivakit.core.language.Hash;
 import com.telenav.kivakit.core.lexakai.DiagramTime;
 import com.telenav.kivakit.core.test.NoTestRequired;
 import com.telenav.kivakit.core.test.Tested;
+import com.telenav.kivakit.interfaces.time.Nanoseconds;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.List;
 
 import static com.telenav.kivakit.core.ensure.Ensure.ensureBetweenInclusive;
+import static com.telenav.kivakit.core.time.BaseTime.Topology.CYCLIC;
 import static com.telenav.kivakit.core.time.Day.nanosecondsPerDay;
 import static com.telenav.kivakit.core.time.HourOfWeek.hourOfWeek;
 import static com.telenav.kivakit.interfaces.string.Stringable.Format.USER_LABEL;
@@ -119,7 +121,7 @@ public class DayOfWeek extends BaseTime<DayOfWeek>
     @NoTestRequired
     protected DayOfWeek(int day)
     {
-        super(day * nanosecondsPerDay);
+        super(nanosecondsPerDay.times(day));
 
         ensureBetweenInclusive(asIsoOrdinal(), 0, 6, "Invalid day of the week: " + this);
     }
@@ -204,21 +206,15 @@ public class DayOfWeek extends BaseTime<DayOfWeek>
     }
 
     @Override
-    public long nanosecondsPerUnit()
+    public Nanoseconds nanosecondsPerUnit()
     {
         return nanosecondsPerDay;
     }
 
     @Override
-    public Duration newDuration(long nanoseconds)
+    public Duration newDuration(Nanoseconds nanoseconds)
     {
         return Duration.nanoseconds(nanoseconds);
-    }
-
-    @Override
-    public DayOfWeek newTime(long nanoseconds)
-    {
-        return isoDayOfWeek(nanosecondsToUnits(nanoseconds));
     }
 
     @Override
@@ -232,9 +228,21 @@ public class DayOfWeek extends BaseTime<DayOfWeek>
     }
 
     @Override
+    public DayOfWeek onNewTime(Nanoseconds nanoseconds)
+    {
+        return isoDayOfWeek((int) nanosecondsToUnits(nanoseconds));
+    }
+
+    @Override
     @NoTestRequired
     public String toString()
     {
         return asString(USER_LABEL);
+    }
+
+    @Override
+    protected Topology topology()
+    {
+        return CYCLIC;
     }
 }

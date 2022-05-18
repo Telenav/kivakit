@@ -19,6 +19,7 @@
 package com.telenav.kivakit.core.time;
 
 import com.telenav.kivakit.core.lexakai.DiagramTime;
+import com.telenav.kivakit.interfaces.time.Nanoseconds;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.time.LocalDateTime;
@@ -48,8 +49,7 @@ public class LocalTime extends Time
 {
     public static LocalTime localTime(ZoneId zone, LocalDateTime dateTime)
     {
-        var milliseconds = dateTime.atZone(zone).toInstant().toEpochMilli();
-        return milliseconds(zone, milliseconds);
+        return milliseconds(zone, dateTime.atZone(zone).toInstant().toEpochMilli());
     }
 
     public static LocalTime localTime(ZoneId zone, BaseTime<?> time)
@@ -94,12 +94,17 @@ public class LocalTime extends Time
         return ZoneId.systemDefault();
     }
 
-    public static LocalTime milliseconds(ZoneId zone, long milliseconds)
+    public static LocalTime milliseconds(ZoneId zone, double milliseconds)
     {
-        return nanoseconds(zone, millisecondsToNanoseconds(milliseconds));
+        return nanoseconds(zone, Nanoseconds.milliseconds(milliseconds));
     }
 
-    public static LocalTime nanoseconds(ZoneId zone, long nanoseconds)
+    public static LocalTime milliseconds(ZoneId zone, long milliseconds)
+    {
+        return milliseconds(zone, (double) milliseconds);
+    }
+
+    public static LocalTime nanoseconds(ZoneId zone, Nanoseconds nanoseconds)
     {
         return new LocalTime(zone, nanoseconds);
     }
@@ -125,7 +130,7 @@ public class LocalTime extends Time
     {
     }
 
-    protected LocalTime(ZoneId zone, long nanoseconds)
+    protected LocalTime(ZoneId zone, Nanoseconds nanoseconds)
     {
         super(nanoseconds);
 
@@ -235,8 +240,8 @@ public class LocalTime extends Time
         if (object instanceof Time)
         {
             var utc = asUtc();
-            var that = ((Time) object).asUtc();
-            return utc.nanoseconds() == that.nanoseconds();
+            var thatUtc = ((Time) object).asUtc();
+            return utc.nanoseconds().equals(thatUtc.nanoseconds());
         }
         return false;
     }
@@ -384,7 +389,7 @@ public class LocalTime extends Time
     @Override
     public LocalTime utc()
     {
-        return milliseconds(ZoneId.of("UTC"), milliseconds());
+        return nanoseconds(ZoneId.of("UTC"), nanoseconds());
     }
 
     /**

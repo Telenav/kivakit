@@ -39,6 +39,7 @@ import static com.telenav.kivakit.settings.SettingsStore.AccessMode.DELETE;
 import static com.telenav.kivakit.settings.SettingsStore.AccessMode.INDEX;
 import static com.telenav.kivakit.settings.SettingsStore.AccessMode.LOAD;
 import static com.telenav.kivakit.settings.SettingsStore.AccessMode.UNLOAD;
+import static java.util.Collections.emptySet;
 
 /**
  * <p>
@@ -67,7 +68,7 @@ public class ResourceFolderSettingsStore extends BaseResourceSettingsStore
     private final ResourceFolder<?> folder;
 
     /**
-     * @param folder The folder containing .properties files specifying settings objects
+     * @param folder The folder containing files specifying settings objects
      */
     public ResourceFolderSettingsStore(Listener listener, ResourceFolder<?> folder)
     {
@@ -85,7 +86,7 @@ public class ResourceFolderSettingsStore extends BaseResourceSettingsStore
     @Override
     public String name()
     {
-        return "[FolderSettingsStore folder = " + folder.path() + "]";
+        return format("${class} $", folder.getClass(), folder.path());
     }
 
     /**
@@ -97,12 +98,18 @@ public class ResourceFolderSettingsStore extends BaseResourceSettingsStore
     {
         var objects = new ObjectSet<SettingsObject>();
 
+        var serializers = require(ObjectSerializers.class, ObjectSerializers::new);
+        if (serializers.serializers().isEmpty())
+        {
+            problem("Cannot load settings: no registered object serializers for $", this);
+            return emptySet();
+        }
+
         // Go through files in the folder
         for (var resource : folder.resources())
         {
             // get any serializer for the file extension,
-            var serializer = require(ObjectSerializers.class, ObjectSerializers::new)
-                    .serializer(resource.extension());
+            var serializer = serializers.serializer(resource.extension());
             if (serializer != null)
             {
                 objects.addIfNotNull(read(resource));

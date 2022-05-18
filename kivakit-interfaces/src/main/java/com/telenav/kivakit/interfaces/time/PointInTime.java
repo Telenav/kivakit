@@ -72,8 +72,8 @@ import java.time.Instant;
  * <p><b>Implementation</b></p>
  *
  * <ul>
- *     <li>{@link #newTime(long)}</li>
- *     <li>{@link #newDuration(long)}</li>
+ *     <li>{@link #newTime(Nanoseconds)}</li>
+ *     <li>{@link #newDuration(Nanoseconds)}</li>
  * </ul>
  *
  * @author jonathanl (shibo)
@@ -98,7 +98,7 @@ public interface PointInTime<Time extends PointInTime<Time, Duration>, Duration 
     @Override
     default int compareTo(PointInTime<?, ?> that)
     {
-        return Long.compare(nanoseconds(), that.nanoseconds());
+        return nanoseconds().compareTo(that.nanoseconds());
     }
 
     /**
@@ -131,6 +131,16 @@ public interface PointInTime<Time extends PointInTime<Time, Duration>, Duration 
     default boolean isBefore(Time that)
     {
         return isLessThan(that);
+    }
+
+    default boolean isNegative()
+    {
+        return nanoseconds().isNegative();
+    }
+
+    default boolean isZero()
+    {
+        return nanoseconds().isZero();
     }
 
     /**
@@ -166,7 +176,7 @@ public interface PointInTime<Time extends PointInTime<Time, Duration>, Duration 
      */
     default Time minus(Duration duration)
     {
-        return newTime(nanoseconds() - duration.nanoseconds());
+        return newTime(nanoseconds().minus(duration.nanoseconds()));
     }
 
     /**
@@ -174,7 +184,7 @@ public interface PointInTime<Time extends PointInTime<Time, Duration>, Duration 
      */
     default Duration minus(Time that)
     {
-        return newDuration(nanoseconds() - that.nanoseconds());
+        return newDuration(nanoseconds().minus(that.nanoseconds()));
     }
 
     /**
@@ -188,19 +198,19 @@ public interface PointInTime<Time extends PointInTime<Time, Duration>, Duration 
     /**
      * @return An instance of the class implementing LengthOfTime
      */
-    Duration newDuration(long nanoseconds);
+    Duration newDuration(Nanoseconds nanoseconds);
 
     /**
      * @return An instance of the class implementing PointInTime
      */
-    Time newTime(long nanoseconds);
+    Time newTime(Nanoseconds nanoseconds);
 
     /**
      * @return This point in time plus the given duration
      */
     default Time plus(Duration that)
     {
-        return newTime(nanoseconds() + that.nanoseconds());
+        return newTime(nanoseconds().plus(that.nanoseconds()));
     }
 
     /**
@@ -208,7 +218,7 @@ public interface PointInTime<Time extends PointInTime<Time, Duration>, Duration 
      */
     default Time roundDown(Duration unit)
     {
-        return newTime(nanoseconds() / unit.nanoseconds() * unit.nanoseconds());
+        return newTime(nanoseconds().roundDown(unit.nanoseconds()));
     }
 
     /**

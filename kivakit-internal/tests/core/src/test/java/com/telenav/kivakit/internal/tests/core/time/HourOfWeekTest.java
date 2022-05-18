@@ -140,17 +140,17 @@ public class HourOfWeekTest extends CoreUnitTest
     @Test
     public void testMinus()
     {
-        ensureEqual(hourOfWeek(7).minus(24).dayOfWeek(), SUNDAY);
-        ensureEqual(hourOfWeek(24 * 6).minus(7).dayOfWeek(), SATURDAY);
-        ensureEqual(hourOfWeek(24 * 6).minus(24 + 7).dayOfWeek(), FRIDAY);
+        ensureEqual(hourOfWeek(7).minusUnits(24).dayOfWeek(), SUNDAY);
+        ensureEqual(hourOfWeek(24 * 6).minusUnits(7).dayOfWeek(), SATURDAY);
+        ensureEqual(hourOfWeek(24 * 6).minusUnits(24 + 7).dayOfWeek(), FRIDAY);
     }
 
     @Test
     public void testPlus()
     {
-        ensureEqual(hourOfWeek(7).plus(24).dayOfWeek(), TUESDAY);
-        ensureEqual(hourOfWeek(24 * 6).plus(7).dayOfWeek(), SUNDAY);
-        ensureEqual(hourOfWeek(24 * 6).plus(24 + 7).dayOfWeek(), MONDAY);
+        ensureEqual(hourOfWeek(7).plusUnits(24).dayOfWeek(), TUESDAY);
+        ensureEqual(hourOfWeek(24 * 6).plusUnits(7).dayOfWeek(), SUNDAY);
+        ensureEqual(hourOfWeek(24 * 6).plusUnits(24 + 7).dayOfWeek(), MONDAY);
     }
 
     @Test

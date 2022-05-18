@@ -19,11 +19,13 @@
 package com.telenav.kivakit.core.time;
 
 import com.telenav.kivakit.core.lexakai.DiagramTime;
+import com.telenav.kivakit.interfaces.time.Nanoseconds;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.time.ZoneId;
 
 import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
+import static com.telenav.kivakit.core.time.BaseTime.Topology.LINEAR;
 import static com.telenav.kivakit.core.time.Duration.ZERO_DURATION;
 import static com.telenav.kivakit.core.time.Hour.militaryHour;
 import static com.telenav.kivakit.core.time.LocalTime.localTimeZone;
@@ -61,12 +63,7 @@ public class Time extends BaseTime<Time>
      */
     public static Time milliseconds(long milliseconds)
     {
-        return nanoseconds(millisecondsToNanoseconds(milliseconds));
-    }
-
-    protected static long millisecondsToNanoseconds(long milliseconds)
-    {
-        return milliseconds * 1_000_000;
+        return new Time(Nanoseconds.milliseconds(milliseconds));
     }
 
     /**
@@ -75,7 +72,7 @@ public class Time extends BaseTime<Time>
      * @param nanoseconds the <code>Time</code> value in nanoseconds since START_OF_UNIX_TIME
      * @return a corresponding immutable <code>Time</code> object
      */
-    public static Time nanoseconds(long nanoseconds)
+    public static Time nanoseconds(Nanoseconds nanoseconds)
     {
         return new Time(nanoseconds);
     }
@@ -88,14 +85,6 @@ public class Time extends BaseTime<Time>
     public static Time now()
     {
         return milliseconds(System.currentTimeMillis());
-    }
-
-    /**
-     * @return A <code>Time</code> object representing the given number of seconds since START_OF_UNIX_TIME
-     */
-    public static Time seconds(double seconds)
-    {
-        return milliseconds((long) (seconds * 1000));
     }
 
     public static Time utcTime(Year year, Month month, Day dayOfMonth, Hour hour)
@@ -128,7 +117,7 @@ public class Time extends BaseTime<Time>
      *
      * @param nanoseconds the <code>Time</code> value in milliseconds since START_OF_UNIX_TIME
      */
-    protected Time(long nanoseconds)
+    protected Time(Nanoseconds nanoseconds)
     {
         super(nanoseconds);
     }
@@ -267,19 +256,19 @@ public class Time extends BaseTime<Time>
     }
 
     @Override
-    public long nanosecondsPerUnit()
+    public Nanoseconds nanosecondsPerUnit()
     {
-        return 1;
+        return Nanoseconds.ONE;
     }
 
     @Override
-    public Duration newDuration(long nanoseconds)
+    public Duration newDuration(Nanoseconds nanoseconds)
     {
         return Duration.nanoseconds(nanoseconds);
     }
 
     @Override
-    public Time newTime(long nanoseconds)
+    public Time onNewTime(Nanoseconds nanoseconds)
     {
         return Time.nanoseconds(nanoseconds);
     }
@@ -315,5 +304,11 @@ public class Time extends BaseTime<Time>
     public LocalTime utc()
     {
         return asLocalTime().utc();
+    }
+
+    @Override
+    protected Topology topology()
+    {
+        return LINEAR;
     }
 }

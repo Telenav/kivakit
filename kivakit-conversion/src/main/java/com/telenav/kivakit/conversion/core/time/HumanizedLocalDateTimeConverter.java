@@ -105,7 +105,7 @@ public class HumanizedLocalDateTimeConverter extends BaseStringConverter<LocalTi
                     {
                         daysAgo += 7;
                     }
-                    return localTime.withUnixEpochDay(now.dayOfUnixEpoch().minus(daysAgo));
+                    return localTime.withUnixEpochDay(now.dayOfUnixEpoch().minusUnits(daysAgo));
                 }
                 if (date != null)
                 {

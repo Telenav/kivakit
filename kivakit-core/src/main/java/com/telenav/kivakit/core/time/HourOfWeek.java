@@ -3,12 +3,14 @@ package com.telenav.kivakit.core.time;
 import com.telenav.kivakit.core.test.NoTestRequired;
 import com.telenav.kivakit.core.test.Tested;
 import com.telenav.kivakit.core.value.count.BaseCount;
+import com.telenav.kivakit.interfaces.time.Nanoseconds;
 
 import java.time.ZoneId;
 import java.util.Objects;
 import java.util.TimeZone;
 
 import static com.telenav.kivakit.core.ensure.Ensure.ensureBetweenExclusive;
+import static com.telenav.kivakit.core.time.BaseTime.Topology.CYCLIC;
 import static com.telenav.kivakit.core.time.DayOfWeek.isoDayOfWeek;
 import static com.telenav.kivakit.core.time.Hour.nanosecondsPerHour;
 
@@ -75,7 +77,7 @@ public class HourOfWeek extends BaseTime<HourOfWeek>
     @NoTestRequired
     protected HourOfWeek(DayOfWeek dayOfWeek, Hour hourOfDay)
     {
-        super(dayOfWeek.nanoseconds() + hourOfDay.nanoseconds());
+        super(dayOfWeek.nanoseconds().plus(hourOfDay.nanoseconds()));
 
         this.dayOfWeek = dayOfWeek;
         this.hourOfDay = hourOfDay;
@@ -137,12 +139,6 @@ public class HourOfWeek extends BaseTime<HourOfWeek>
         return Objects.hash(dayOfWeek(), hourOfDay());
     }
 
-    @Override
-    public long nanosecondsPerUnit()
-    {
-        return nanosecondsPerHour;
-    }
-
     /**
      * @return The hour of the day
      */
@@ -167,9 +163,15 @@ public class HourOfWeek extends BaseTime<HourOfWeek>
 
     @Override
     @Tested
-    public HourOfWeek minus(int count)
+    public HourOfWeek minusUnits(double count)
     {
         return offset(-count);
+    }
+
+    @Override
+    public Nanoseconds nanosecondsPerUnit()
+    {
+        return nanosecondsPerHour;
     }
 
     /**
@@ -177,14 +179,14 @@ public class HourOfWeek extends BaseTime<HourOfWeek>
      */
     @Override
     @NoTestRequired
-    public HourOfWeek newTime(long nanoseconds)
+    public HourOfWeek onNewTime(Nanoseconds nanoseconds)
     {
-        return hourOfWeek(nanosecondsToUnits(nanoseconds));
+        return hourOfWeek((int) nanosecondsToUnits(nanoseconds));
     }
 
     @Override
     @Tested
-    public HourOfWeek plus(int count)
+    public HourOfWeek plusUnits(double count)
     {
         return offset(count);
     }
@@ -194,6 +196,12 @@ public class HourOfWeek extends BaseTime<HourOfWeek>
     public String toString()
     {
         return dayOfWeek() + " at " + hourOfDay();
+    }
+
+    @Override
+    protected Topology topology()
+    {
+        return CYCLIC;
     }
 
     /**
@@ -211,6 +219,12 @@ public class HourOfWeek extends BaseTime<HourOfWeek>
         return offset(offset);
     }
 
+    private HourOfWeek offset(double offset)
+    {
+        var maximumExclusive = this.maximum().asUnits() + 1;
+        return hourOfWeek((int) ((asUnits() + offset + maximumExclusive) % maximumExclusive));
+    }
+
     /**
      * @param zone The time zone identifier
      * @return The offset in hours of the identified time zone, using the present moment to determine any daylight
@@ -226,11 +240,5 @@ public class HourOfWeek extends BaseTime<HourOfWeek>
 
         // and convert the offset to hours.
         return (int) Math.round((double) offsetInMilliseconds / 1_000 / 60 / 60);
-    }
-
-    private HourOfWeek offset(long offset)
-    {
-        var maximumExclusive = this.maximum().asUnits() + 1;
-        return hourOfWeek((int) ((asUnits() + offset + maximumExclusive) % maximumExclusive));
     }
 }

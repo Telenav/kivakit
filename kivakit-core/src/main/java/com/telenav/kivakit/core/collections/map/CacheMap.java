@@ -39,9 +39,6 @@ import java.util.Map;
 @UmlClassDiagram(diagram = DiagramCollections.class)
 public class CacheMap<Key, Value> extends BaseMap<Key, Value>
 {
-    /** True if this map should expire old entries */
-    private final boolean expireOldEntries;
-
     /** The maximum allowed age of an entry */
     private final Duration maximumEntryAge;
 
@@ -71,28 +68,35 @@ public class CacheMap<Key, Value> extends BaseMap<Key, Value>
         });
 
         this.maximumEntryAge = maximumEntryAge;
-        this.expireOldEntries = !maximumEntryAge.isMaximum();
     }
 
+    @SuppressWarnings("unchecked")
     @Override
     public Value get(final Object key)
     {
-        if (expireOldEntries)
+        if (expireOldEntries())
         {
-            var updated = this.updated.get(key);
-            if (updated != null && updated.elapsedSince().isGreaterThan(maximumEntryAge))
+            updated.compute((Key) key, (ignored, value) ->
             {
-                remove(key);
-                return null;
-            }
+                // If the value's age is greater than the maximum age for an entry,
+                if (value.elapsedSince().isGreaterThan(maximumEntryAge))
+                {
+                    // returning null to compute, which causes it to remove this key.
+                    return null;
+                }
+
+                // Leave the value unchanged
+                return value;
+            });
         }
+
         return super.get(key);
     }
 
     @Override
     public Value put(final Key key, final Value value)
     {
-        if (expireOldEntries)
+        if (expireOldEntries())
         {
             updated.put(key, Time.now());
         }
@@ -102,10 +106,15 @@ public class CacheMap<Key, Value> extends BaseMap<Key, Value>
     @Override
     public Value remove(final Object key)
     {
-        if (expireOldEntries)
+        if (expireOldEntries())
         {
             updated.remove(key);
         }
         return super.remove(key);
+    }
+
+    private boolean expireOldEntries()
+    {
+        return !maximumEntryAge.isMaximum();
     }
 }

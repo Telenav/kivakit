@@ -3,9 +3,12 @@ package com.telenav.kivakit.core.time;
 import com.telenav.kivakit.core.language.primitive.Ints;
 import com.telenav.kivakit.core.test.NoTestRequired;
 import com.telenav.kivakit.core.test.Tested;
+import com.telenav.kivakit.interfaces.time.Nanoseconds;
 
 import static com.telenav.kivakit.core.ensure.Ensure.ensure;
 import static com.telenav.kivakit.core.ensure.Ensure.unsupported;
+import static com.telenav.kivakit.core.time.BaseTime.Topology.CYCLIC;
+import static com.telenav.kivakit.core.time.BaseTime.Topology.LINEAR;
 import static com.telenav.kivakit.core.time.Day.Type.DAY;
 import static com.telenav.kivakit.core.time.Day.Type.DAY_OF_MONTH;
 import static com.telenav.kivakit.core.time.Day.Type.DAY_OF_UNIX_EPOCH;
@@ -23,7 +26,7 @@ import static java.lang.Integer.MAX_VALUE;
 @Tested
 public class Day extends BaseTime<Day>
 {
-    static final long nanosecondsPerDay = nanosecondsPerHour * 24;
+    static final Nanoseconds nanosecondsPerDay = nanosecondsPerHour.times(24);
 
     /**
      * @return An absolute day from 0 to n
@@ -53,21 +56,21 @@ public class Day extends BaseTime<Day>
     }
 
     /**
-     * @return A day since the start of the week as an ISO ordinal
-     */
-    @Tested
-    public static Day isoDayOfWeek(int day)
-    {
-        return new Day(DAY_OF_WEEK, day);
-    }
-
-    /**
      * @return A day since the start of the year, from 0 to 365 (in leap years)
      */
     @Tested
     public static Day dayOfYear(int day)
     {
         return new Day(DAY_OF_YEAR, day);
+    }
+
+    /**
+     * @return A day since the start of the week as an ISO ordinal
+     */
+    @Tested
+    public static Day isoDayOfWeek(int day)
+    {
+        return new Day(DAY_OF_WEEK, day);
     }
 
     /**
@@ -111,7 +114,7 @@ public class Day extends BaseTime<Day>
     @NoTestRequired
     protected Day(Type type, int day)
     {
-        super(day * nanosecondsPerDay);
+        super(nanosecondsPerDay.times(day));
 
         this.type = type;
 
@@ -197,10 +200,8 @@ public class Day extends BaseTime<Day>
                 return isoDayOfWeek(6);
 
             case DAY_OF_UNIX_EPOCH:
-                return dayOfUnixEpoch(nanosecondsToUnits(MAX_VALUE));
-
             case DAY:
-                return day(nanosecondsToUnits(MAX_VALUE));
+                return dayOfUnixEpoch((int) 1E9);
 
             case DAY_OF_MONTH:
             case DAY_OF_YEAR:
@@ -216,20 +217,26 @@ public class Day extends BaseTime<Day>
     }
 
     @Override
-    public long nanosecondsPerUnit()
+    public Nanoseconds nanosecondsPerUnit()
     {
         return nanosecondsPerDay;
     }
 
     @Override
-    public Day newTime(long nanoseconds)
+    public Day onNewTime(Nanoseconds nanoseconds)
     {
-        return new Day(type, nanosecondsToUnits(nanoseconds));
+        return new Day(type, (int) nanosecondsToUnits(nanoseconds));
     }
 
     @Tested
     public Type type()
     {
         return type;
+    }
+
+    @Override
+    protected Topology topology()
+    {
+        return type() == DAY || type() == DAY_OF_UNIX_EPOCH ? LINEAR : CYCLIC;
     }
 }

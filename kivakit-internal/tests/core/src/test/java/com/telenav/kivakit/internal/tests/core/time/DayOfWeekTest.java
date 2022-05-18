@@ -48,8 +48,8 @@ public class DayOfWeekTest extends CoreUnitTest
     @Test
     public void testArithmetic()
     {
-        ensureEqual(TUESDAY, MONDAY.plus(1));
-        ensureEqual(MONDAY, TUESDAY.minus(1));
+        ensureEqual(TUESDAY, MONDAY.plusUnits(1));
+        ensureEqual(MONDAY, TUESDAY.minusUnits(1));
     }
 
     @Test
