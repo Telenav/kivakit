@@ -28,6 +28,7 @@ import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.locks.Condition;
 import java.util.function.Predicate;
@@ -92,7 +93,7 @@ public final class StateWatcher<State>
     private final Lock lock = new Lock();
 
     /** The clients waiting for a predicate to be satisfied */
-    private final List<Waiter> waiters = new ArrayList<>();
+    private final List<Waiter> waiters = Collections.synchronizedList(new ArrayList<>());
 
     public StateWatcher(State current)
     {
@@ -110,7 +111,7 @@ public final class StateWatcher<State>
             current = state;
 
             // go through the waiters
-            for (var watcher : waiters)
+            for (var watcher : new ArrayList<>(waiters))
             {
                 // and if the reported value satisfies the watcher's predicate,
                 if (watcher.predicate.test(state))
@@ -142,38 +143,36 @@ public final class StateWatcher<State>
                              Duration maximumWaitTime)
     {
         var started = Time.now();
-        return whileLocked(() ->
+
+        Waiter waiter = null;
+        while (true)
         {
-            Waiter waiter = null;
-            while (true)
+            // If the predicate is already satisfied,
+            if (predicate.test(current))
             {
-                // If the predicate is already satisfied,
-                if (predicate.test(current))
-                {
-                    // we're done.
-                    return COMPLETED;
-                }
-
-                // otherwise, add ourselves as a waiter,
-                if (waiter == null)
-                {
-                    waiter = new Waiter(predicate, lock.newCondition());
-                    waiters.add(waiter);
-                }
-
-                // and go to sleep until our condition is satisfied or half a second elapses
-                // (we wait only a short time as a defensive measure to avoid hangs)
-                var wake = seconds(0.5).await(waiter.condition::await);
-                if (wake == TERMINATED || wake == INTERRUPTED)
-                {
-                    return wake;
-                }
-                if (started.elapsedSince().isGreaterThan(maximumWaitTime))
-                {
-                    return TIMED_OUT;
-                }
+                // we're done.
+                return COMPLETED;
             }
-        });
+
+            // otherwise, add ourselves as a waiter,
+            if (waiter == null)
+            {
+                waiter = new Waiter(predicate, lock.newCondition());
+                waiters.add(waiter);
+            }
+
+            // and go to sleep until our condition is satisfied or half a second elapses
+            // (we wait only a short time as a defensive measure to avoid hangs)
+            var wake = seconds(0.5).await(waiter.condition::await);
+            if (wake == TERMINATED || wake == INTERRUPTED)
+            {
+                return wake;
+            }
+            if (started.elapsedSince().isGreaterThan(maximumWaitTime))
+            {
+                return TIMED_OUT;
+            }
+        }
     }
 
     /**
