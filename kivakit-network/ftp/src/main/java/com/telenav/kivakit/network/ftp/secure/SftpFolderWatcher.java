@@ -179,6 +179,6 @@ public class SftpFolderWatcher extends PeriodicCollectionChangeWatcher<NetworkPa
      */
     private Time getTimeLastModified(LsEntry file)
     {
-        return Time.milliseconds(file.getAttrs().getMTime());
+        return Time.epochMilliseconds(file.getAttrs().getMTime());
     }
 }

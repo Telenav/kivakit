@@ -47,21 +47,21 @@ import static com.telenav.kivakit.core.time.Second.second;
 public class Time extends BaseTime<Time>
 {
     /** The beginning of UNIX time: January 1, 1970, 0:00 GMT. */
-    public static final Time START_OF_UNIX_TIME = milliseconds(0);
+    public static final Time START_OF_UNIX_TIME = epochMilliseconds(0);
 
     /** The minimum time value is the start of UNIX time */
     public static final Time MINIMUM = START_OF_UNIX_TIME;
 
     /** The end of time */
-    public static final Time MAXIMUM = milliseconds(Long.MAX_VALUE);
+    public static final Time MAXIMUM = epochMilliseconds(Long.MAX_VALUE);
 
     /**
      * Retrieves a <code>Time</code> instance based on the given milliseconds.
      *
-     * @param milliseconds the <code>Time</code> value in milliseconds since START_OF_UNIX_TIME
+     * @param milliseconds the <code>Time</code> value in milliseconds
      * @return a corresponding immutable <code>Time</code> object
      */
-    public static Time milliseconds(long milliseconds)
+    public static Time epochMilliseconds(long milliseconds)
     {
         return new Time(Nanoseconds.milliseconds(milliseconds));
     }
@@ -72,7 +72,7 @@ public class Time extends BaseTime<Time>
      * @param nanoseconds the <code>Time</code> value in nanoseconds since START_OF_UNIX_TIME
      * @return a corresponding immutable <code>Time</code> object
      */
-    public static Time nanoseconds(Nanoseconds nanoseconds)
+    public static Time epochNanoseconds(Nanoseconds nanoseconds)
     {
         return new Time(nanoseconds);
     }
@@ -84,7 +84,7 @@ public class Time extends BaseTime<Time>
      */
     public static Time now()
     {
-        return milliseconds(System.currentTimeMillis());
+        return epochMilliseconds(System.currentTimeMillis());
     }
 
     public static Time utcTime(Year year, Month month, Day dayOfMonth, Hour hour)
@@ -109,13 +109,13 @@ public class Time extends BaseTime<Time>
                                Minute minute,
                                Second second)
     {
-        return nanoseconds(LocalTime.localTime(utcTimeZone(), year, month, dayOfMonth, hour, minute, second).nanoseconds());
+        return epochNanoseconds(LocalTime.localTime(utcTimeZone(), year, month, dayOfMonth, hour, minute, second).nanoseconds());
     }
 
     /**
      * Private constructor forces use of static factory methods.
      *
-     * @param nanoseconds the <code>Time</code> value in milliseconds since START_OF_UNIX_TIME
+     * @param nanoseconds the <code>Time</code> value in nanoseconds since START_OF_UNIX_TIME
      */
     protected Time(Nanoseconds nanoseconds)
     {
@@ -270,7 +270,7 @@ public class Time extends BaseTime<Time>
     @Override
     public Time onNewTime(Nanoseconds nanoseconds)
     {
-        return Time.nanoseconds(nanoseconds);
+        return Time.epochNanoseconds(nanoseconds);
     }
 
     public ZoneId timeZone()

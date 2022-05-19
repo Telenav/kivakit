@@ -85,7 +85,7 @@ public class HourOfWeek extends BaseTime<HourOfWeek>
 
     public Time asEpochTime()
     {
-        return Time.nanoseconds(nanoseconds());
+        return Time.epochNanoseconds(nanoseconds());
     }
 
     /**

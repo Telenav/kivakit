@@ -29,6 +29,10 @@
         </dependency>
         <dependency>
             <groupId>com.telenav.kivakit</groupId>
+            <artifactId>kivakit-extraction</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.telenav.kivakit</groupId>
             <artifactId>kivakit-test-internal</artifactId>
         </dependency>
 
@@ -41,13 +45,6 @@
         <dependency>
             <groupId>org.jetbrains</groupId>
             <artifactId>annotations</artifactId>
-        </dependency>
-
-        <!-- Testing -->
-
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
         </dependency>
 
     </dependencies>

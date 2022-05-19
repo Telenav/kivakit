@@ -15,7 +15,7 @@ body=$1
 require_variable title "[title] [body]"
 require_variable body "[title] [body]"
 
-    if git_flow_check_all_repositories; then
+if git_flow_check_all_repositories; then
 
     cd "$KIVAKIT_WORKSPACE" || exit
 

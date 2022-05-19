@@ -110,7 +110,7 @@ public abstract class BaseTime<T extends BaseTime<T>> implements PointInTime<T, 
         CYCLIC
     }
 
-    /** The number of nanoseconds since start of UNIX time */
+    /** The number of nanoseconds */
     private Nanoseconds nanoseconds;
 
     public BaseTime()

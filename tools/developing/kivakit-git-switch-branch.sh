@@ -26,3 +26,4 @@ else
 
 fi
 
+kivakit-git-pull.sh

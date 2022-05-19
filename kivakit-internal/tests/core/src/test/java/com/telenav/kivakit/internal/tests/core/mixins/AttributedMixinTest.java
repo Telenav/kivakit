@@ -1,5 +1,6 @@
-package com.telenav.kivakit.mixins;
+package com.telenav.kivakit.internal.tests.core.mixins;
 
+import com.telenav.kivakit.mixins.AttributesMixin;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;

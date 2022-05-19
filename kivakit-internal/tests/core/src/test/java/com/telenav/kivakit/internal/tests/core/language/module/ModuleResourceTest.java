@@ -48,7 +48,7 @@ public class ModuleResourceTest extends CoreUnitTest
     {
         try
         {
-            ensureEqual(a().lastModified(), Time.milliseconds(Files.getLastModifiedTime(packagePath().asJavaPath()).toMillis()));
+            ensureEqual(a().lastModified(), Time.epochMilliseconds(Files.getLastModifiedTime(packagePath().asJavaPath()).toMillis()));
         }
         catch (IOException ignored)
         {

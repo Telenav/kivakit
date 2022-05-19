@@ -1,13 +1,13 @@
-package com.telenav.kivakit.extraction;
+package com.telenav.kivakit.internal.tests.extraction;
 
 import com.telenav.kivakit.core.collections.list.ObjectList;
 import com.telenav.kivakit.core.collections.list.StringList;
 import com.telenav.kivakit.core.messaging.Listener;
+import com.telenav.kivakit.extraction.BaseExtractor;
+import com.telenav.kivakit.internal.test.support.CoreUnitTest;
 import org.junit.Test;
 
-import static com.telenav.kivakit.core.ensure.Ensure.ensureEqual;
-
-public class ExtractionTest
+public class ExtractionTest extends CoreUnitTest
 {
     static class TestExtractor extends BaseExtractor<Integer, String>
     {
