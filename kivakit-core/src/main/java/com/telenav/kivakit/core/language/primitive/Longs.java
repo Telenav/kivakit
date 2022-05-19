@@ -53,7 +53,7 @@ import java.util.Locale;
  * <p><b>Ranges</b></p>
  *
  * <ul>
- *     <li>{@link #inRange(long, long, long)} - Returns true if the given value is within the given range, inclusive</li>
+ *     <li>{@link #inRangeInclusive(long, long, long)} - Returns true if the given value is within the given range, inclusive</li>
  *     <li>{@link #isBetweenInclusive(long, long, long)} - Returns true if the given value is in the given range, inclusive</li>
  *     <li>{@link #isBetweenExclusive(long, long, long)} - Returns true if the given value is in the given range, exclusive</li>
  * </ul>
@@ -97,7 +97,7 @@ public class Longs
         return (int) (value >> 32);
     }
 
-    public static long inRange(long value, long min, long max)
+    public static long inRangeInclusive(long value, long min, long max)
     {
         return Math.min(Math.max(value, min), max);
     }

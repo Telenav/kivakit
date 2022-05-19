@@ -4,11 +4,12 @@ import com.telenav.kivakit.core.language.primitive.Ints;
 import com.telenav.kivakit.core.language.primitive.Longs;
 import com.telenav.kivakit.core.language.primitive.Primes;
 import com.telenav.kivakit.core.value.level.Percent;
-import com.telenav.kivakit.interfaces.code.LoopBody;
 import com.telenav.kivakit.interfaces.code.FilteredLoopBody;
 import com.telenav.kivakit.interfaces.code.FilteredLoopBody.FilterAction;
+import com.telenav.kivakit.interfaces.code.LoopBody;
 import com.telenav.kivakit.interfaces.numeric.IntegerNumeric;
 import com.telenav.kivakit.interfaces.numeric.Quantizable;
+import com.telenav.kivakit.interfaces.numeric.QuantumComparable;
 import com.telenav.kivakit.interfaces.value.Source;
 
 import java.util.function.Consumer;
@@ -95,7 +96,7 @@ import static com.telenav.kivakit.core.value.count.Estimate.estimate;
  * <p><b>Comparison</b></p>
  *
  * <ul>
- *     <li>{@link #compareTo(SubClass)} - {@link Comparable#compareTo(Object)} implementation</li>
+ *     <li>{@link #compareTo(Countable)} - {@link Comparable#compareTo(Object)} implementation</li>
  *     <li>{@link #isLessThan(Quantizable)} - True if this count is less than the given quantum</li>
  *     <li>{@link #isGreaterThan(Quantizable)} - True if this count is greater than the given quantum</li>
  *     <li>{@link #isLessThanOrEqualTo(Quantizable)} - True if this count is less than or equal to the given quantum</li>
@@ -200,9 +201,13 @@ import static com.telenav.kivakit.core.value.count.Estimate.estimate;
  * @see Maximum
  * @see Minimum
  */
+@SuppressWarnings("unused")
 public abstract class BaseCount<SubClass extends BaseCount<SubClass>> implements
         IntegerNumeric<SubClass>,
+        Quantizable,
         Countable,
+        Comparable<Countable>,
+        QuantumComparable<Countable>,
         Source<Long>
 {
     /** The underlying primitive cardinal number */
@@ -235,12 +240,14 @@ public abstract class BaseCount<SubClass extends BaseCount<SubClass>> implements
         return estimate(asLong());
     }
 
+    @Override
     public int asInt()
     {
         var value = asLong();
         return value > Integer.MAX_VALUE ? Integer.MAX_VALUE : (int) value;
     }
 
+    @Override
     public long asLong()
     {
         return count;
@@ -265,9 +272,9 @@ public abstract class BaseCount<SubClass extends BaseCount<SubClass>> implements
      * {@inheritDoc}
      */
     @Override
-    public int compareTo(SubClass that)
+    public int compareTo(Countable that)
     {
-        return Long.compare(asLong(), that.asLong());
+        return Long.compare(asLong(), that.size());
     }
 
     /**
@@ -279,6 +286,7 @@ public abstract class BaseCount<SubClass extends BaseCount<SubClass>> implements
         return Count.count(asLong());
     }
 
+    @Override
     public SubClass decremented()
     {
         return offset(-1);
@@ -297,7 +305,7 @@ public abstract class BaseCount<SubClass extends BaseCount<SubClass>> implements
 
     public SubClass dividedBy(long divisor)
     {
-        return inRange(asLong() / divisor);
+        return inRangeExclusive(asLong() / divisor);
     }
 
     public boolean dividesEvenlyBy(Quantizable value)
@@ -371,7 +379,20 @@ public abstract class BaseCount<SubClass extends BaseCount<SubClass>> implements
         return Long.hashCode(asLong());
     }
 
-    public SubClass inRange(long value)
+    public SubClass inRangeExclusive(long value)
+    {
+        if (value >= maximum().asLong())
+        {
+            return null;
+        }
+        if (value < 0)
+        {
+            return null;
+        }
+        return newInstance(value);
+    }
+
+    public SubClass inRangeInclusive(long value)
     {
         if (value > maximum().asLong())
         {
@@ -384,6 +405,7 @@ public abstract class BaseCount<SubClass extends BaseCount<SubClass>> implements
         return newInstance(value);
     }
 
+    @Override
     public SubClass incremented()
     {
         return offset(1);
@@ -397,26 +419,6 @@ public abstract class BaseCount<SubClass extends BaseCount<SubClass>> implements
     public boolean isBetweenInclusive(BaseCount<?> minimum, BaseCount<?> inclusiveMaximum)
     {
         return Longs.isBetweenInclusive(asLong(), minimum.asLong(), inclusiveMaximum.asLong());
-    }
-
-    public boolean isGreaterThan(Quantizable that)
-    {
-        return asLong() > that.quantum();
-    }
-
-    public boolean isGreaterThanOrEqualTo(Quantizable that)
-    {
-        return asLong() >= that.quantum();
-    }
-
-    public boolean isLessThan(Quantizable that)
-    {
-        return asLong() < that.quantum();
-    }
-
-    public boolean isLessThanOrEqualTo(Quantizable that)
-    {
-        return asLong() <= that.quantum();
     }
 
     public boolean isMaximum()
@@ -479,6 +481,11 @@ public abstract class BaseCount<SubClass extends BaseCount<SubClass>> implements
         }
     }
 
+    public void loopIndexes(Consumer<Integer> body)
+    {
+        count().loop((LoopBody<Count>) at -> body.accept(at.asInt()));
+    }
+
     /**
      * {@inheritDoc}
      */
@@ -528,7 +535,7 @@ public abstract class BaseCount<SubClass extends BaseCount<SubClass>> implements
     @Override
     public SubClass minimum()
     {
-        return inRange(0);
+        return inRangeExclusive(0);
     }
 
     @Override
@@ -544,7 +551,7 @@ public abstract class BaseCount<SubClass extends BaseCount<SubClass>> implements
 
     public SubClass minus(long count)
     {
-        return inRange(asLong() - count);
+        return inRangeExclusive(asLong() - count);
     }
 
     public byte[] newByteArray()
@@ -574,6 +581,12 @@ public abstract class BaseCount<SubClass extends BaseCount<SubClass>> implements
      * @return The new instance
      */
     public abstract SubClass newInstance(long count);
+
+    @Override
+    public final SubClass newInstance(Long count)
+    {
+        return newInstance(count.intValue());
+    }
 
     public int[] newIntArray()
     {
@@ -615,14 +628,23 @@ public abstract class BaseCount<SubClass extends BaseCount<SubClass>> implements
         return newInstance(Primes.primeAllocationSize(asInt()));
     }
 
+    /**
+     * Returns the next value, but wraps around to {@link #minimum()} when {@link #next()} returns null.
+     */
+    public SubClass nextWrap()
+    {
+        var next = next();
+        return next == null ? minimum() : next;
+    }
+
     public SubClass offset(long offset)
     {
-        return inRange(asLong() + offset);
+        return inRangeInclusive(asLong() + offset);
     }
 
     public SubClass percent(Percent percentage)
     {
-        return inRange((long) (asLong() * percentage.asUnitValue()));
+        return inRangeExclusive((long) (asLong() * percentage.asUnitValue()));
     }
 
     public Percent percentOf(Quantizable total)
@@ -631,7 +653,7 @@ public abstract class BaseCount<SubClass extends BaseCount<SubClass>> implements
         {
             return Percent._0;
         }
-        return Percent.of(asLong() * 100.0 / total.quantum());
+        return Percent.percent(asLong() * 100.0 / total.quantum());
     }
 
     @Override
@@ -647,7 +669,7 @@ public abstract class BaseCount<SubClass extends BaseCount<SubClass>> implements
 
     public SubClass plus(long count)
     {
-        return inRange(asLong() + count);
+        return inRangeExclusive(asLong() + count);
     }
 
     /**
@@ -658,7 +680,7 @@ public abstract class BaseCount<SubClass extends BaseCount<SubClass>> implements
      */
     public SubClass powerOfTenCeiling(int digits)
     {
-        return inRange((asLong() + Ints.powerOfTen(digits))
+        return inRangeExclusive((asLong() + Ints.powerOfTen(digits))
                 / Ints.powerOfTen(digits)
                 * Ints.powerOfTen(digits));
     }
@@ -671,7 +693,7 @@ public abstract class BaseCount<SubClass extends BaseCount<SubClass>> implements
      */
     public SubClass powerOfTenFloor(int digits)
     {
-        return inRange(asLong() / Ints.powerOfTen(digits) * Ints.powerOfTen(digits));
+        return inRangeExclusive(asLong() / Ints.powerOfTen(digits) * Ints.powerOfTen(digits));
     }
 
     /**
@@ -718,12 +740,12 @@ public abstract class BaseCount<SubClass extends BaseCount<SubClass>> implements
 
     public SubClass times(double multiplier)
     {
-        return inRange((long) (get() * multiplier));
+        return inRangeExclusive((long) (get() * multiplier));
     }
 
     public SubClass times(long multiplier)
     {
-        return inRange(asLong() * multiplier);
+        return inRangeExclusive(asLong() * multiplier);
     }
 
     public SubClass times(Percent percentage)
@@ -733,12 +755,12 @@ public abstract class BaseCount<SubClass extends BaseCount<SubClass>> implements
 
     public Range<SubClass> toExclusive(SubClass maximum)
     {
-        return Range.exclusive(asSubclassType(), maximum);
+        return Range.rangeExclusive(asSubclassType(), maximum);
     }
 
     public Range<SubClass> toInclusive(SubClass maximum)
     {
-        return Range.inclusive(asSubclassType(), maximum);
+        return Range.rangeInclusive(asSubclassType(), maximum);
     }
 
     @Override

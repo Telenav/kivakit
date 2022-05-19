@@ -84,7 +84,7 @@ import java.util.List;
 @LexakaiJavadoc(complete = true)
 public class Extension implements
         Named,
-        Matchable<Resource>
+        Matchable<ResourcePathed>
 {
     public static final Extension CLASS = parseExtension(".class");
 
@@ -218,7 +218,7 @@ public class Extension implements
 
     public static Extension parseExtension(String value)
     {
-        return parseExtension(Listener.throwing(), value);
+        return parseExtension(Listener.throwingListener(), value);
     }
 
     private final String extension;
@@ -316,11 +316,11 @@ public class Extension implements
 
     @Override
     @NotNull
-    public Matcher<Resource> matcher()
+    public Matcher<ResourcePathed> matcher()
     {
-        return resource ->
+        return pathed ->
         {
-            var extension = resource.compoundExtension();
+            var extension = pathed.path().compoundExtension();
             return extension != null && extension.endsWith(this);
         };
     }
@@ -328,9 +328,9 @@ public class Extension implements
     @NotNull
     public Matcher<File> fileMatcher()
     {
-        return resource ->
+        return pathed ->
         {
-            var extension = resource.compoundExtension();
+            var extension = pathed.path().compoundExtension();
             return extension != null && extension.endsWith(this);
         };
     }

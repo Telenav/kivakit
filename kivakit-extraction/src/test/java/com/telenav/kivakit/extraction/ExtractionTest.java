@@ -26,14 +26,14 @@ public class ExtractionTest
     @Test
     public void testArrayExtraction()
     {
-        var extractor = new TestExtractor(Listener.console());
+        var extractor = new TestExtractor(Listener.consoleListener());
         ensureEqual(extractor.extract(new String[] { "12", "13", "14" }), ObjectList.objectList(12, 13, 14));
     }
 
     @Test
     public void testExtraction()
     {
-        var extractor = new TestExtractor(Listener.none());
+        var extractor = new TestExtractor(Listener.emptyListener());
         ensureEqual(extractor.extract("12"), 12);
         ensureEqual(extractor.extract("12o"), null);
         ensureEqual(extractor.extract((String) null), null);
@@ -42,7 +42,7 @@ public class ExtractionTest
     @Test
     public void testListExtraction()
     {
-        var extractor = new TestExtractor(Listener.console());
+        var extractor = new TestExtractor(Listener.consoleListener());
         ensureEqual(extractor.extract(StringList.stringList("12", "13", "14")), ObjectList.objectList(12, 13, 14));
     }
 }

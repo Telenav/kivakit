@@ -11,7 +11,6 @@ import com.telenav.kivakit.interfaces.factory.MapFactory;
  */
 public interface IntegerNumeric<Value> extends
         Arithmetic<Value>,
-        Comparable<Value>,
         Maximizable<Value>,
         Minimizable<Value>,
         NextValue<Value>,

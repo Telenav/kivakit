@@ -19,8 +19,8 @@
 package com.telenav.kivakit.core.value.level;
 
 import com.telenav.kivakit.core.language.primitive.Doubles;
-import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.lexakai.DiagramCount;
+import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.string.Strip;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
@@ -29,7 +29,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Objects;
 
 /**
- * A percentage of any range (not only from 0 to 100%). A percent object can be created with {@link #of(double)},
+ * A percentage of any range (not only from 0 to 100%). A percent object can be created with {@link #percent(double)},
  * passing in a percentage, like 50 or 90 to get 50% or 90%.
  *
  * <p><b>Operations</b></p>
@@ -65,16 +65,16 @@ public final class Percent implements Comparable<Percent>
 
     public static final Percent _100 = new Percent(100);
 
-    public static Percent of(double percent)
-    {
-        return new Percent(percent);
-    }
-
     public static Percent parsePercent(Listener listener, String value)
     {
-        return Percent.of(Double.parseDouble(value.endsWith("%")
+        return Percent.percent(Double.parseDouble(value.endsWith("%")
                 ? Strip.ending(value, "%")
                 : value));
+    }
+
+    public static Percent percent(double percent)
+    {
+        return new Percent(percent);
     }
 
     private double value;

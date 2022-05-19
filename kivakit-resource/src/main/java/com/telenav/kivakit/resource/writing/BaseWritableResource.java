@@ -74,14 +74,6 @@ public abstract class BaseWritableResource extends BaseReadableResource implemen
     }
 
     /**
-     * @return True if this resource was deleted
-     */
-    public boolean delete()
-    {
-        return false;
-    }
-
-    /**
      * @return An {@link OutputStream} for this resource, or an exception is thrown
      */
     @Override

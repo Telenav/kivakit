@@ -30,18 +30,20 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
  */
 @UmlClassDiagram(diagram = DiagramLifeCycle.class)
 @LexakaiJavadoc(complete = true)
-public interface Stoppable extends Operation
+public interface Stoppable<T extends LengthOfTime<T>> extends Operation
 {
     /**
      * Stops this task, waiting no more than the given wait time before giving up.
      */
-    void stop(LengthOfTime wait);
+    void stop(T wait);
 
     /**
      * Stops this task, blocking until the operation is completed
      */
     default void stop()
     {
-        stop(LengthOfTime.MAXIMUM);
+        stop(maximumWaitTime());
     }
+
+    T maximumWaitTime();
 }

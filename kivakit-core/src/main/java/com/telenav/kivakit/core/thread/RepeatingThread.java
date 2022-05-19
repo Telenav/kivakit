@@ -106,7 +106,7 @@ public class RepeatingThread extends KivaKitThread implements Pausable
     public void pause()
     {
         trace("Pause requested");
-        state().transition(RUNNING, PAUSE_REQUESTED, PAUSED, this::interrupt);
+        stateMachine().transition(RUNNING, PAUSE_REQUESTED, PAUSED, this::interrupt);
         trace("Paused");
     }
 
@@ -119,7 +119,7 @@ public class RepeatingThread extends KivaKitThread implements Pausable
         }
         else
         {
-            state().transition(PAUSED, RESUME_REQUESTED, RUNNING, this::interrupt);
+            stateMachine().transition(PAUSED, RESUME_REQUESTED, RUNNING, this::interrupt);
         }
     }
 

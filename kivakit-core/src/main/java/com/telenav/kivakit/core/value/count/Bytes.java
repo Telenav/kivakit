@@ -337,12 +337,6 @@ public final class Bytes extends BaseCount<Bytes> implements ByteSized
     }
 
     @Override
-    public Bytes newInstance(Long value)
-    {
-        return newInstance(value.longValue());
-    }
-
-    @Override
     public Bytes sizeInBytes()
     {
         return this;

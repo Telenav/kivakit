@@ -18,8 +18,8 @@
 
 package com.telenav.kivakit.filesystem;
 
-import com.telenav.kivakit.core.time.LastModifiedAt;
 import com.telenav.kivakit.core.time.CreatedAt;
+import com.telenav.kivakit.core.time.ModifiedAt;
 import com.telenav.kivakit.resource.lexakai.DiagramFileSystemFile;
 import com.telenav.kivakit.resource.lexakai.DiagramFileSystemFolder;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
@@ -34,7 +34,7 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 @UmlClassDiagram(diagram = DiagramFileSystemFolder.class)
 @LexakaiJavadoc(complete = true)
 public interface FileSystemObject extends
-        LastModifiedAt,
+        ModifiedAt,
         CreatedAt
 {
 }

@@ -61,7 +61,7 @@ public interface Filter<Value> extends Matcher<Value>
 
     default Filter<Value> include(Predicate<Value> predicate)
     {
-        return filter(or(predicate));
+        return filter(asPredicate().or(predicate));
     }
 
     @Override
@@ -72,17 +72,11 @@ public interface Filter<Value> extends Matcher<Value>
 
     default Filter<Value> not()
     {
-        return filter(negate());
+        return filter(asPredicate().negate());
     }
 
     default Filter<Value> or(@NotNull Predicate<? super Value> predicate)
     {
         return filter(value -> accepts(value) || predicate.test(value));
-    }
-
-    @Override
-    default boolean test(Value value)
-    {
-        return accepts(value);
     }
 }

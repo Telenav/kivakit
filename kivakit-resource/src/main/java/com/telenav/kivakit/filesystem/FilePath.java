@@ -27,10 +27,10 @@ import com.telenav.kivakit.core.path.StringPath;
 import com.telenav.kivakit.core.string.Strings;
 import com.telenav.kivakit.core.string.Strip;
 import com.telenav.kivakit.interfaces.comparison.Matcher;
-import com.telenav.kivakit.resource.ResourcePath;
-import com.telenav.kivakit.resource.lexakai.DiagramResourcePath;
 import com.telenav.kivakit.resource.Extension;
 import com.telenav.kivakit.resource.FileName;
+import com.telenav.kivakit.resource.ResourcePath;
+import com.telenav.kivakit.resource.lexakai.DiagramResourcePath;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import org.jetbrains.annotations.NotNull;
@@ -330,17 +330,6 @@ public class FilePath extends ResourcePath
     }
 
     /**
-     * Determines if this path has a trailing slash. A trailing slash is represented by having a final path component
-     * that is empty ("").
-     *
-     * @return True if the last component of this path is the empty string.
-     */
-    public boolean hasTrailingSlash()
-    {
-        return size() > 0 && "".equals(get(size() - 1));
-    }
-
-    /**
      * {@inheritDoc}
      */
     @Override
@@ -494,7 +483,7 @@ public class FilePath extends ResourcePath
 
     public FilePath withPrefix(String prefix)
     {
-        return parseFilePath(Listener.none(), prefix + this);
+        return parseFilePath(Listener.emptyListener(), prefix + this);
     }
 
     /**
@@ -596,7 +585,7 @@ public class FilePath extends ResourcePath
 
     public FilePath withoutPrefix(String prefix)
     {
-        return parseFilePath(Listener.none(), Strip.leading(toString(), prefix));
+        return parseFilePath(Listener.emptyListener(), Strip.leading(toString(), prefix));
     }
 
     /**

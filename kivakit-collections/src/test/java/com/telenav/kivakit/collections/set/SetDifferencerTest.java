@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.collections.set;
 
-import com.telenav.kivakit.core.test.CoreUnitTest;
+import com.telenav.kivakit.internal.test.support.CoreUnitTest;
 import org.junit.Test;
 
 import java.util.Arrays;

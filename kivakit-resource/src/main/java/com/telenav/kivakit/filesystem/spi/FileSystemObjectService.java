@@ -21,12 +21,13 @@ package com.telenav.kivakit.filesystem.spi;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.messaging.Repeater;
 import com.telenav.kivakit.core.string.Strings;
-import com.telenav.kivakit.core.time.LastModifiedAt;
 import com.telenav.kivakit.core.time.CreatedAt;
 import com.telenav.kivakit.core.time.Modifiable;
+import com.telenav.kivakit.core.time.ModifiedAt;
 import com.telenav.kivakit.core.value.count.ByteSized;
 import com.telenav.kivakit.filesystem.FilePath;
 import com.telenav.kivakit.filesystem.loader.FileSystemServiceLoader;
+import com.telenav.kivakit.resource.Deletable;
 import com.telenav.kivakit.resource.ResourcePathed;
 import com.telenav.kivakit.resource.lexakai.DiagramFileSystemService;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
@@ -60,23 +61,16 @@ import static com.telenav.kivakit.core.ensure.Ensure.unsupported;
 public interface FileSystemObjectService extends
         Repeater,
         ByteSized,
-        LastModifiedAt,
+        ModifiedAt,
         CreatedAt,
         Modifiable,
-        ResourcePathed
+        ResourcePathed,
+        Deletable
 {
     /**
      * @return True if the permissions were changed
      */
     default boolean chmod(PosixFilePermission... permissions)
-    {
-        return unsupported();
-    }
-
-    /**
-     * Deletes this filesystem object
-     */
-    default boolean delete()
     {
         return unsupported();
     }
@@ -167,6 +161,6 @@ public interface FileSystemObjectService extends
 
     private FileSystemService fileSystemService(FilePath path)
     {
-        return FileSystemServiceLoader.fileSystem(Listener.throwing(), path);
+        return FileSystemServiceLoader.fileSystem(Listener.throwingListener(), path);
     }
 }

@@ -19,29 +19,53 @@
 package com.telenav.kivakit.core.time;
 
 import com.telenav.kivakit.core.math.Average;
+import com.telenav.kivakit.core.test.Tested;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
+
+import static com.telenav.kivakit.core.time.Duration.milliseconds;
 
 /**
  * Computes an average duration for a succession of samples.
  *
  * @author jonathanl (shibo)
  */
+@SuppressWarnings("unused")
 @LexakaiJavadoc(complete = true)
 public class AverageDuration extends Average
 {
+    @Tested
     public void add(Duration duration)
     {
         super.add(duration.asMilliseconds());
     }
 
+    @Tested
     public Duration averageDuration()
     {
-        return Duration.milliseconds(average());
+        return milliseconds(average());
+    }
+
+    @Tested
+    public Duration maximumDuration()
+    {
+        return milliseconds(super.maximum());
+    }
+
+    @Tested
+    public Duration minimumDuration()
+    {
+        return milliseconds(super.minimum());
     }
 
     @Override
     public String toString()
     {
         return averageDuration().toString();
+    }
+
+    @Tested
+    public Duration totalDuration()
+    {
+        return milliseconds(super.total());
     }
 }

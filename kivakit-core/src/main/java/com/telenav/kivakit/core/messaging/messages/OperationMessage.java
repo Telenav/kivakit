@@ -98,7 +98,7 @@ public abstract class OperationMessage implements Named, Message
 
     public static Message of(Class<? extends Message> type)
     {
-        return parse(Listener.throwing(), type.getSimpleName());
+        return parse(Listener.throwingListener(), type.getSimpleName());
     }
 
     public static Message parse(Listener listener, String name)

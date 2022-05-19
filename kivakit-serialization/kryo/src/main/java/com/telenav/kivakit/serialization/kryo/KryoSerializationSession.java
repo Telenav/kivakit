@@ -24,9 +24,9 @@ import com.esotericsoftware.kryo.io.Input;
 import com.esotericsoftware.kryo.io.Output;
 import com.telenav.kivakit.core.io.IO;
 import com.telenav.kivakit.core.messaging.repeaters.BaseRepeater;
+import com.telenav.kivakit.core.time.Duration;
 import com.telenav.kivakit.core.version.Version;
 import com.telenav.kivakit.interfaces.naming.Named;
-import com.telenav.kivakit.interfaces.time.LengthOfTime;
 import com.telenav.kivakit.resource.serialization.SerializableObject;
 import com.telenav.kivakit.serialization.core.SerializationSession;
 import com.telenav.kivakit.serialization.kryo.lexakai.DiagramKryo;
@@ -105,7 +105,7 @@ public final class KryoSerializationSession extends BaseRepeater implements
     }
 
     @Override
-    public void flush(LengthOfTime maximumWaitTime)
+    public void flush(Duration maximumWaitTime)
     {
         if (isWriting())
         {

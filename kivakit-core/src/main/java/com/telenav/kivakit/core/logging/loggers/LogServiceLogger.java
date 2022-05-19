@@ -159,7 +159,7 @@ public class LogServiceLogger extends BaseLogger
                 var message = configuration.asString("level");
                 if (message != null)
                 {
-                    log.level(OperationMessage.parse(Listener.console(), message).severity());
+                    log.level(OperationMessage.parse(Listener.consoleListener(), message).severity());
                 }
 
                 // and then let the log configure itself with the remaining properties

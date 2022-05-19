@@ -28,6 +28,7 @@ import com.telenav.kivakit.core.collections.list.ObjectList;
 import com.telenav.kivakit.network.core.NetworkAccessConstraints;
 import com.telenav.kivakit.network.core.NetworkLocation;
 import com.telenav.kivakit.network.ftp.lexakai.DiagramSecureFtp;
+import com.telenav.kivakit.resource.Resource;
 import com.telenav.kivakit.resource.writing.WritableResource;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
@@ -113,7 +114,7 @@ class SecureFtpConnector
     /**
      * Copy directly a file from SFTP to some destination
      */
-    public void get(NetworkLocation location, WritableResource destination)
+    public void get(NetworkLocation location, Resource destination)
     {
         // Make sure we are connected.
         connect(location);
@@ -121,7 +122,7 @@ class SecureFtpConnector
         var sourcePath = location.networkPath().join();
         try
         {
-            channel.get(sourcePath, destination.openForWriting());
+            channel.get(sourcePath, ((WritableResource)destination).openForWriting());
         }
         catch (SftpException e)
         {

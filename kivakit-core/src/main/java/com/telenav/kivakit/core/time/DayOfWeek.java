@@ -20,27 +20,48 @@ package com.telenav.kivakit.core.time;
 
 import com.telenav.kivakit.core.language.Hash;
 import com.telenav.kivakit.core.lexakai.DiagramTime;
-import com.telenav.kivakit.core.value.count.BaseCount;
+import com.telenav.kivakit.core.test.NoTestRequired;
+import com.telenav.kivakit.core.test.Tested;
+import com.telenav.kivakit.interfaces.time.Nanoseconds;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
+import java.util.List;
+
 import static com.telenav.kivakit.core.ensure.Ensure.ensureBetweenInclusive;
-import static com.telenav.kivakit.core.time.DayOfWeek.Standard.ISO;
-import static com.telenav.kivakit.core.time.DayOfWeek.Standard.JAVA;
+import static com.telenav.kivakit.core.time.BaseTime.Topology.CYCLIC;
+import static com.telenav.kivakit.core.time.Day.nanosecondsPerDay;
+import static com.telenav.kivakit.core.time.HourOfWeek.hourOfWeek;
 import static com.telenav.kivakit.interfaces.string.Stringable.Format.USER_LABEL;
 
 /**
- * Typesafe value for day of week. The value stored in the {@link BaseCount} superclass is the ISO day of the week
- * ordinal, where MONDAY is 0 and SUNDAY is 6. The Java day of the week (see java.time.{@link java.time.DayOfWeek}),
- * where MONDAY is 1 and SUNDAY is 7 also supported.
+ * Typesafe value for day of week. Supports both ISO and Java ordinals.
+ *
+ * <p><b>Creation</b></p>
+ *
+ * <ul>
+ *     <li>{@link #isoDayOfWeek(int)} - Constructs from an ISO day of the week (0-6)</li>
+ *     <li>{@link #javaDayOfWeek(int)} - Constructs from a Java day of the week (1-7)</li>
+ *     <li>{@link #javaDayOfWeek(java.time.DayOfWeek)} - Constructs from a Java day of the week</li>
+ * </ul>
+ *
+ * <p><b>Conversions</b></p>
+ *
+ * <ul>
+ *     <li>{@link #asDay()} - Converts to a {@link Day} object</li>
+ *     <li>{@link #asIsoOrdinal()} - The ISO number for this day of the week, from 0 to 6</li>
+ *     <li>{@link #asJavaOrdinal()} - The Java number for this day of the week, from 1 to 7</li>
+ *     <li>{@link #asJavaDayOfWeek()} - This day of the week as a Java day of the week object</li>
+ * </ul>
  *
  * @author jonathanl (shibo)
  * @author matthieun
  * @see java.time.DayOfWeek
  */
-@UmlClassDiagram(diagram = DiagramTime.class)
+@SuppressWarnings("unused") @UmlClassDiagram(diagram = DiagramTime.class)
 @LexakaiJavadoc(complete = true)
-public class DayOfWeek extends BaseCount<DayOfWeek>
+@Tested
+public class DayOfWeek extends BaseTime<DayOfWeek>
 {
     public static final DayOfWeek MONDAY = isoDayOfWeek(0);
 
@@ -56,154 +77,172 @@ public class DayOfWeek extends BaseCount<DayOfWeek>
 
     public static final DayOfWeek SUNDAY = isoDayOfWeek(6);
 
-    /**
-     * Returns the day of the week under the given standard
-     *
-     * @param dayOfWeek The day of the week
-     * @param standard The standard, either ISO or JAVA
-     * @return The day of the week
-     */
-    public static DayOfWeek dayOfWeek(int dayOfWeek, Standard standard)
+    public static List<DayOfWeek> daysOfWeek()
     {
-        return new DayOfWeek(dayOfWeek, standard);
+        return List.of(MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY, SUNDAY);
     }
 
     /**
-     * The day of the week for an ISO ordinal value from 0 to 6
+     * Retrieves the day of the week for an ISO ordinal from 0 to 6
      *
-     * @param dayOfWeek THe value from 0 to 6
+     * @param day The ordinal from 0 to 6
      * @return The day of the week
      */
-    public static DayOfWeek isoDayOfWeek(int dayOfWeek)
+    @Tested
+    public static DayOfWeek isoDayOfWeek(int day)
     {
-        return dayOfWeek(dayOfWeek, ISO);
+        return new DayOfWeek(day);
     }
 
     /**
-     * The day of the week for Java ordinal value from 1 to 7
+     * Retrieves the day of the week for Java ordinal value from 1 to 7
      *
-     * @param day THe value from 0 to 6
+     * @param day The ordinal from 1 to 7
      * @return The day of the week
      */
+    @Tested
     public static DayOfWeek javaDayOfWeek(java.time.DayOfWeek day)
     {
-        return dayOfWeek(day.getValue(), JAVA);
+        return javaDayOfWeek(day.getValue());
     }
 
     /**
      * The day of the week for Java ordinal value from 1 to 7
      *
-     * @param dayOfWeek THe value from 0 to 6
+     * @param day The value from 1 to 7
      * @return The day of the week
      */
-    public static DayOfWeek javaDayOfWeek(int dayOfWeek)
+    @Tested
+    public static DayOfWeek javaDayOfWeek(int day)
     {
-        return dayOfWeek(dayOfWeek, ISO);
+        return isoDayOfWeek(day - 1);
     }
 
-    public enum Standard
+    @NoTestRequired
+    protected DayOfWeek(int day)
     {
-        ISO,
-        JAVA
+        super(nanosecondsPerDay.times(day));
+
+        ensureBetweenInclusive(asIsoOrdinal(), 0, 6, "Invalid day of the week: " + this);
     }
 
-    private final Standard standard;
-
-    protected DayOfWeek(int dayOfWeek, Standard standard)
+    @NoTestRequired
+    public Day asDay()
     {
-        super(dayOfWeek);
+        return Day.isoDayOfWeek(asIsoOrdinal());
+    }
 
-        this.standard = standard;
-
-        ensureBetweenInclusive(asIso(), 0, 6, "Invalid day of the week: " + this);
+    @Tested
+    public HourOfWeek asHourOfWeek()
+    {
+        return hourOfWeek(asIsoOrdinal() * 24);
     }
 
     /**
      * @return This day of the week as an ISO-8601 ordinal value
      */
-    public int asIso()
+    @Tested
+    public int asIsoOrdinal()
     {
-        return isIso() ? asInt() : asInt() - 1;
+        return asUnits();
     }
 
-    public int asJava()
-    {
-        return isJava() ? asInt() : asInt() + 1;
-    }
-
+    @Tested
     public java.time.DayOfWeek asJavaDayOfWeek()
     {
-        return java.time.DayOfWeek.of(asJava());
+        return java.time.DayOfWeek.of(asJavaOrdinal());
+    }
+
+    @Tested
+    public int asJavaOrdinal()
+    {
+        return asIsoOrdinal() + 1;
     }
 
     @Override
     @SuppressWarnings("SwitchStatementWithTooFewBranches")
-    public String asString(final Format format)
+    @NoTestRequired
+    public String asString(Format format)
     {
-        switch (format)
-        {
-            case DEBUG:
-                return asJavaDayOfWeek().name() + " (" + standard + ")";
+        return asJavaDayOfWeek().name();
+    }
 
-            default:
-                return asJavaDayOfWeek().name();
-        }
+    public HourOfWeek at(Hour hour)
+    {
+        return hourOfWeek(this, hour);
     }
 
     @Override
-    public boolean equals(final Object object)
+    @Tested
+    public boolean equals(Object object)
     {
         if (object instanceof DayOfWeek)
         {
             DayOfWeek that = (DayOfWeek) object;
-            return this.asIso() == that.asIso();
+            return this.asIsoOrdinal() == that.asIsoOrdinal();
         }
         return false;
     }
 
     @Override
+    @Tested
     public int hashCode()
     {
-        return Hash.code(asIso());
-    }
-
-    public boolean isIso()
-    {
-        return standard == ISO;
-    }
-
-    public boolean isJava()
-    {
-        return standard == JAVA;
+        return Hash.code(asIsoOrdinal());
     }
 
     @Override
+    @NoTestRequired
     public DayOfWeek maximum()
     {
         return SUNDAY;
     }
 
     @Override
+    @NoTestRequired
     public DayOfWeek minimum()
     {
         return MONDAY;
     }
 
     @Override
-    public DayOfWeek newInstance(long ordinal)
+    public Nanoseconds nanosecondsPerUnit()
     {
-        return dayOfWeek(asInt(), standard);
+        return nanosecondsPerDay;
     }
 
     @Override
-    public DayOfWeek newInstance(Long javaOrdinal)
+    public Duration newDuration(Nanoseconds nanoseconds)
     {
-        return newInstance(javaOrdinal.longValue());
+        return Duration.nanoseconds(nanoseconds);
     }
 
     @Override
+    public DayOfWeek next()
+    {
+        if (this == SUNDAY)
+        {
+            return null;
+        }
+        return isoDayOfWeek(asUnits() + 1);
+    }
+
+    @Override
+    public DayOfWeek onNewTime(Nanoseconds nanoseconds)
+    {
+        return isoDayOfWeek((int) nanosecondsToUnits(nanoseconds));
+    }
+
+    @Override
+    @NoTestRequired
     public String toString()
     {
         return asString(USER_LABEL);
+    }
+
+    @Override
+    protected Topology topology()
+    {
+        return CYCLIC;
     }
 }

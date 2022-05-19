@@ -1,5 +1,6 @@
 package com.telenav.kivakit.core.time;
 
+@SuppressWarnings("unused")
 public class TimeSpan
 {
     public static TimeSpan all()
@@ -49,7 +50,7 @@ public class TimeSpan
 
     public Duration duration()
     {
-        return end.minus(start);
+        return end.elapsedSince(start);
     }
 
     public Time end()

@@ -19,8 +19,8 @@
 package com.telenav.kivakit.core.value.count;
 
 import com.telenav.kivakit.core.ensure.Ensure;
-import com.telenav.kivakit.core.value.level.Percent;
 import com.telenav.kivakit.core.lexakai.DiagramCount;
+import com.telenav.kivakit.core.value.level.Percent;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.concurrent.atomic.AtomicLong;
@@ -128,6 +128,7 @@ public class ConcurrentMutableCount implements Countable
         return asInt() < that.asInt();
     }
 
+    @Override
     public boolean isZero()
     {
         return asInt() == 0;
@@ -139,7 +140,7 @@ public class ConcurrentMutableCount implements Countable
         {
             return Percent._0;
         }
-        return Percent.of(asInt() * 100.0 / total.asInt());
+        return Percent.percent(asInt() * 100.0 / total.asInt());
     }
 
     public void set(long count)

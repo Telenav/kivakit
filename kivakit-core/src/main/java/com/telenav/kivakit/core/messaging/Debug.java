@@ -164,7 +164,7 @@ public final class Debug implements Transceiver
         {
             return (Listener) transceiver;
         }
-        return Listener.none();
+        return Listener.emptyListener();
     }
 
     @Override
@@ -241,7 +241,7 @@ public final class Debug implements Transceiver
                 initialized = true;
                 var debug = property("KIVAKIT_DEBUG");
                 var log = property("KIVAKIT_LOG");
-                var kivakitVersion = property("KIVAKIT_VERSION");
+                var kivakitVersion = resolveProject(KivaKit.class).kivakitVersion();
                 var title = "KivaKit " + kivakitVersion + " (" + resolveProject(KivaKit.class).build() + ")";
                 if (!StartUp.isEnabled(StartUp.Option.QUIET))
                 {

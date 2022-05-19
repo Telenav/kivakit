@@ -4,6 +4,8 @@ import com.telenav.kivakit.conversion.BaseStringConverter;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.time.Duration;
 
+import static com.telenav.kivakit.core.time.Duration.parseDuration;
+
 /**
  * Converts the given <code>String</code> to a new <code>Duration</code> object. The string can take the form of a
  * floating point number followed by a number of milliseconds, seconds, minutes, hours or days. For example "6 hours" or
@@ -15,6 +17,6 @@ public class DurationConverter extends BaseStringConverter<Duration>
 {
     public DurationConverter(Listener listener)
     {
-        super(listener, Duration::parseDuration);
+        super(listener, value -> parseDuration(listener, value));
     }
 }

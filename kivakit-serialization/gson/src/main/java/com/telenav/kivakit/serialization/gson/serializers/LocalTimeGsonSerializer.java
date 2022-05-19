@@ -40,7 +40,7 @@ public class LocalTimeGsonSerializer extends PrimitiveGsonSerializer<LocalTime, 
     @Override
     protected LocalTime toObject(String text)
     {
-        return new LocalDateTimeConverter(Listener.throwing(), LocalTime.localTimeZone()).convert(text);
+        return new LocalDateTimeConverter(Listener.throwingListener(), LocalTime.localTimeZone()).convert(text);
     }
 
     @Override

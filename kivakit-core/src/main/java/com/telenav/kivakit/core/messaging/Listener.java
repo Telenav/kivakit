@@ -18,13 +18,13 @@
 
 package com.telenav.kivakit.core.messaging;
 
-import com.telenav.kivakit.core.os.ConsoleWriter;
-import com.telenav.kivakit.core.logging.Logger;
-import com.telenav.kivakit.core.messaging.listeners.ThrowingListener;
-import com.telenav.kivakit.core.messaging.messages.status.Problem;
 import com.telenav.kivakit.core.lexakai.DiagramBroadcaster;
 import com.telenav.kivakit.core.lexakai.DiagramListener;
 import com.telenav.kivakit.core.lexakai.DiagramRepeater;
+import com.telenav.kivakit.core.logging.Logger;
+import com.telenav.kivakit.core.messaging.listeners.ThrowingListener;
+import com.telenav.kivakit.core.messaging.messages.status.Problem;
+import com.telenav.kivakit.core.os.ConsoleWriter;
 import com.telenav.kivakit.interfaces.messaging.Transmittable;
 import com.telenav.kivakit.interfaces.naming.NamedObject;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
@@ -115,7 +115,7 @@ public interface Listener extends Transceiver
     /**
      * @return A listener that writes the messages it hears to the console
      */
-    static Listener console()
+    static Listener consoleListener()
     {
         return new ConsoleWriter();
     }
@@ -123,7 +123,7 @@ public interface Listener extends Transceiver
     /**
      * @return A listener that does nothing with messages. Useful only when you want to discard output from something
      */
-    static Listener none()
+    static Listener emptyListener()
     {
         return ignored ->
         {
@@ -133,7 +133,7 @@ public interface Listener extends Transceiver
     /**
      * @return A listener that throws exceptions
      */
-    static Listener throwing()
+    static Listener throwingListener()
     {
         return new ThrowingListener();
     }

@@ -5,10 +5,15 @@ package com.telenav.kivakit.interfaces.comparison;
  *
  * @author jonathanl (shibo)
  */
-public interface Matchable<T>
+public interface Matchable<Value>
 {
     /**
      * @return The matcher
      */
-    Matcher<T> matcher();
+    Matcher<Value> matcher();
+
+    default boolean matches(Value value)
+    {
+        return matcher().matches(value);
+    }
 }

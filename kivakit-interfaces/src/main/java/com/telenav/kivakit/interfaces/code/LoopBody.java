@@ -19,29 +19,33 @@
 package com.telenav.kivakit.interfaces.code;
 
 import com.telenav.kivakit.interfaces.collection.NextValue;
+import com.telenav.kivakit.interfaces.collection.Sized;
 import com.telenav.kivakit.interfaces.lexakai.DiagramCode;
 import com.telenav.kivakit.interfaces.numeric.Maximizable;
 import com.telenav.kivakit.interfaces.numeric.Minimizable;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
+import static java.util.Objects.requireNonNull;
+
 /**
  * A piece of code that can be executed in a loop.
  *
  * <p>
- * Looping is implemented by {@link #forEach(Minimizable, Minimizable)}, which calls {@link #at(Value)} from the given
- * minimum value to the given maximum value (exclusive), by increments determined by {@link NextValue#next()}. The loop
- * can terminate before reaching (maximum - 1) if next returns null.
+ * Looping is implemented by {@link #forEachExclusive(Minimizable, Minimizable)}, which calls {@link #at(Value)} from
+ * the given minimum value to the given maximum value (exclusive), by increments determined by {@link NextValue#next()}.
+ * The loop can terminate before reaching (maximum - 1) if next returns null.
  * </p>
  *
  * @author jonathanl (shibo)
  * @see FilteredLoopBody
  */
+@SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramCode.class)
 @FunctionalInterface
 public interface LoopBody<Value extends Minimizable<Value>
         & Maximizable<Value>
-        & Comparable<Value>
-        & NextValue<Value>>
+        & NextValue<Value>
+        & Sized>
 {
     /**
      * Executes the target code for next value in a sequence
@@ -53,10 +57,29 @@ public interface LoopBody<Value extends Minimizable<Value>
     /**
      * Executes the loop for each value, <i>exclusive</i>
      */
-    default void forEach(Value minimum, Value exclusiveMaximum)
+    default void forEachExclusive(Value minimum, Value exclusiveMaximum)
     {
+        requireNonNull(minimum);
+        requireNonNull(exclusiveMaximum);
+
         // Loop through values from minimum to maximum, exclusive,
-        for (Value value = minimum; value != null && value.compareTo(exclusiveMaximum) < 0; value = value.next())
+        for (Value value = minimum; value != null && value.size() < exclusiveMaximum.size(); value = value.next())
+        {
+            // and call the body.
+            at(value);
+        }
+    }
+
+    /**
+     * Executes the loop for each value, <i>exclusive</i>
+     */
+    default void forEachInclusive(Value minimum, Value inclusiveMaximum)
+    {
+        requireNonNull(minimum);
+        requireNonNull(inclusiveMaximum);
+
+        // Loop through values from minimum to maximum, exclusive,
+        for (Value value = minimum; value != null && value.size() <= inclusiveMaximum.size(); value = value.next())
         {
             // and call the body.
             at(value);

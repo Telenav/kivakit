@@ -1,0 +1,38 @@
+#///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+#
+#  © 2021 Telenav, Inc.
+#  Licensed under Apache License, Version 2.0
+#
+#///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+#
+# GitHub action that builds code that is pushed into a feature branch
+#
+
+name: "Build Branch"
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ master, develop, release/**, feature/**, hotfix/** ]
+  pull_request:
+    branches: [ master, develop, release/** ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup Java
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+
+      - name: Build
+        run: mvn clean install

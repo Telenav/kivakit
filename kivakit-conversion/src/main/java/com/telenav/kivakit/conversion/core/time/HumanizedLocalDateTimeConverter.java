@@ -29,6 +29,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Pattern;
 
+import static com.telenav.kivakit.core.time.Duration.days;
+
 /**
  * @author jonathanl (shibo)
  */
@@ -67,7 +69,7 @@ public class HumanizedLocalDateTimeConverter extends BaseStringConverter<LocalTi
     @Override
     protected String onToString(LocalTime time)
     {
-        return humanizedDate(time) + " " + new LocalTimeConverter(Listener.none(), time.timeZone()).unconvert(time);
+        return humanizedDate(time) + " " + new LocalTimeConverter(Listener.emptyListener(), time.timeZone()).unconvert(time);
     }
 
     @Override
@@ -76,7 +78,7 @@ public class HumanizedLocalDateTimeConverter extends BaseStringConverter<LocalTi
         var matcher = HUMANIZED_DATE.matcher(value);
         if (matcher.matches())
         {
-            var localTime = new LocalTimeConverter(Listener.none(), LocalTime.localTimeZone())
+            var localTime = new LocalTimeConverter(Listener.emptyListener(), LocalTime.localTimeZone())
                     .convert(matcher.group("time"));
             if (localTime != null)
             {
@@ -88,29 +90,29 @@ public class HumanizedLocalDateTimeConverter extends BaseStringConverter<LocalTi
                 var now = LocalTime.now();
                 if (today != null)
                 {
-                    return localTime.withEpochDay(now.epochDay());
+                    return localTime.withUnixEpochDay(now.dayOfUnixEpoch());
                 }
                 if (yesterday != null)
                 {
-                    return localTime.withEpochDay(now.epochDay() - 1);
+                    return localTime.withUnixEpochDay(now.dayOfUnixEpoch().decremented());
                 }
                 if (day != null)
                 {
                     var dayOfWeek = dayOrdinal.get(day.toLowerCase());
-                    var nowDayOfWeek = now.dayOfWeek().asInt();
+                    var nowDayOfWeek = now.dayOfWeek().asUnits();
                     var daysAgo = nowDayOfWeek - dayOfWeek;
                     if (daysAgo < 0)
                     {
                         daysAgo += 7;
                     }
-                    return localTime.withEpochDay(now.epochDay() - daysAgo);
+                    return localTime.withUnixEpochDay(now.dayOfUnixEpoch().minusUnits(daysAgo));
                 }
                 if (date != null)
                 {
-                    var localDate = new LocalDateConverter(Listener.none()).convert(date);
+                    var localDate = new LocalDateConverter(Listener.emptyListener()).convert(date);
                     if (localDate != null)
                     {
-                        return localTime.withEpochDay(localDate.epochDay());
+                        return localTime.withUnixEpochDay(localDate.dayOfUnixEpoch());
                     }
                 }
             }
@@ -120,26 +122,26 @@ public class HumanizedLocalDateTimeConverter extends BaseStringConverter<LocalTi
 
     private String humanizedDate(LocalTime time)
     {
-        var now = Time.now().localTime();
+        var now = Time.now().asLocalTime();
         var nowYear = now.year();
         var nowDayOfYear = now.dayOfYear();
 
-        if (nowYear == time.year())
+        if (nowYear.equals(time.year()))
         {
-            if (nowDayOfYear == time.dayOfYear())
+            if (nowDayOfYear.equals(time.dayOfYear()))
             {
                 return "Today";
             }
-            if (nowDayOfYear == time.dayOfYear() + 1)
+            if (nowDayOfYear.equals(time.dayOfYear().incremented()))
             {
                 return "Yesterday";
             }
-            if (nowDayOfYear - time.dayOfYear() <= 7)
+            if (nowDayOfYear.minus(time.dayOfYear()).isLessThanOrEqualTo(days(7)))
             {
                 return time.dayOfWeek().toString();
             }
         }
 
-        return new LocalDateConverter(Listener.none()).unconvert(time);
+        return new LocalDateConverter(Listener.emptyListener()).unconvert(time);
     }
 }

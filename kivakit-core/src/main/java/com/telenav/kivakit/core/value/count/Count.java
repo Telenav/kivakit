@@ -366,7 +366,7 @@ public class Count extends BaseCount<Count>
 
     static
     {
-        CACHED = new Count[(int)CACHE_SIZE];
+        CACHED = new Count[(int) CACHE_SIZE];
         for (var i = 0; i < CACHED.length; i++)
         {
             CACHED[i] = new Count(i);
@@ -475,11 +475,5 @@ public class Count extends BaseCount<Count>
     public Count newInstance(long count)
     {
         return count(count);
-    }
-
-    @Override
-    public Count newInstance(Long count)
-    {
-        return newInstance(count.longValue());
     }
 }

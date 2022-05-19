@@ -18,8 +18,8 @@
 
 package com.telenav.kivakit.core.thread.latches;
 
-import com.telenav.kivakit.interfaces.time.LengthOfTime;
 import com.telenav.kivakit.core.lexakai.DiagramThread;
+import com.telenav.kivakit.core.time.Duration;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.concurrent.CountDownLatch;
@@ -27,7 +27,7 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * A latch that waits for the initialization of something by another thread. The latch is waited on by one thread with
- * {@link #await(LengthOfTime)} and it is signaled by another thread via {@link #ready()}.
+ * {@link #await(Duration)} and it is signaled by another thread via {@link #ready()}.
  *
  * @author jonathanl (shibo)
  */
@@ -38,10 +38,10 @@ public class InitializationLatch
 
     public boolean await()
     {
-        return await(LengthOfTime.MAXIMUM);
+        return await(Duration.MAXIMUM);
     }
 
-    public boolean await(LengthOfTime duration)
+    public boolean await(Duration duration)
     {
         try
         {

@@ -25,7 +25,6 @@ import com.telenav.kivakit.core.lexakai.DiagramTest;
 import com.telenav.kivakit.core.logging.Logger;
 import com.telenav.kivakit.core.logging.LoggerFactory;
 import com.telenav.kivakit.core.messaging.Debug;
-import com.telenav.kivakit.core.test.CoreUnitTest.Repeats;
 import com.telenav.kivakit.core.value.count.BaseCount;
 import com.telenav.kivakit.core.value.count.Count;
 import com.telenav.kivakit.core.value.count.Range;
@@ -44,8 +43,9 @@ import java.util.Random;
 import java.util.function.Consumer;
 
 import static com.telenav.kivakit.core.ensure.Ensure.ensure;
-import static com.telenav.kivakit.core.test.CoreUnitTest.Repeats.ALLOW_REPEATS;
-import static com.telenav.kivakit.core.test.CoreUnitTest.Repeats.NO_REPEATS;
+import static com.telenav.kivakit.core.language.primitive.Longs.inRangeInclusive;
+import static com.telenav.kivakit.core.test.Repeats.ALLOW_REPEATS;
+import static com.telenav.kivakit.core.test.Repeats.NO_REPEATS;
 import static com.telenav.kivakit.core.value.count.Count._256;
 import static com.telenav.kivakit.core.value.count.Count._65_536;
 import static com.telenav.kivakit.core.value.count.Count.count;
@@ -53,7 +53,7 @@ import static com.telenav.kivakit.interfaces.code.FilteredLoopBody.FilterAction.
 import static com.telenav.kivakit.interfaces.code.FilteredLoopBody.FilterAction.REJECT;
 
 /**
- * Utility class for tests used to create random values. {@link CoreUnitTest} has a variety of methods for random testing
+ * Utility class for tests used to create random values. The UnitTest class has a variety of methods for random testing
  * that use this class. Projects can subclass this to provide additional random values relevant to the project.
  *
  * <p><b>Seeding</b></p>
@@ -86,7 +86,6 @@ import static com.telenav.kivakit.interfaces.code.FilteredLoopBody.FilterAction.
  * </ul>
  *
  * @author jonathanl (shibo)
- * @see CoreUnitTest
  */
 @UmlClassDiagram(diagram = DiagramTest.class)
 @LexakaiJavadoc(complete = true)
@@ -364,12 +363,17 @@ public class RandomValueFactory implements RandomNumeric
         var randomMinimum = randomLongExclusive(minimum.asLong(), exclusiveMaximum.asLong() - randomWidth);
         var randomExclusiveMaximum = randomMinimum + randomWidth;
 
-        return Range.exclusive(minimum.newInstance(randomMinimum), minimum.newInstance(randomExclusiveMaximum));
+        return Range.rangeExclusive(minimum.newInstance(randomMinimum), minimum.newInstance(randomExclusiveMaximum));
     }
 
     public <T extends BaseCount<T>> Range<T> rangeExclusive(T minimum, T exclusiveMaximum)
     {
         return rangeInclusive(minimum, exclusiveMaximum.incremented(), 0);
+    }
+
+    public <T extends BaseCount<T>> Range<T> rangeInclusive(T minimum, T inclusiveMaximum)
+    {
+        return rangeInclusive(minimum, inclusiveMaximum, 0);
     }
 
     public Range<Count> rangeInclusive(long minimum, long inclusiveMaximum)
@@ -381,13 +385,14 @@ public class RandomValueFactory implements RandomNumeric
     {
         ensure(minimum.isLessThanOrEqualTo(inclusiveMaximum));
 
-        var width = inclusiveMaximum.minus(minimum).asLong() + 1;
+        var width = inclusiveMaximum.minus(minimum).asLong();
 
-        var randomWidth = randomLongInclusive(minimumWidth, width - 1);
+        var randomWidth = randomLongInclusive(minimumWidth, width);
         var randomMinimum = randomLongInclusive(minimum.asLong(), minimum.asLong() + randomWidth);
-        var randomInclusiveMaximum = randomMinimum + randomWidth;
+        var randomInclusiveMaximum = inRangeInclusive(randomMinimum + randomWidth, 0, inclusiveMaximum.asLong());
 
-        return Range.inclusive(minimum.newInstance(randomMinimum), minimum.newInstance(randomInclusiveMaximum));
+        return Range.rangeInclusive(minimum.newInstance(randomMinimum),
+                minimum.newInstance(randomInclusiveMaximum));
     }
 
     public Range<Count> rangeInclusive(long minimum, long inclusiveMaximum, long minimumWidth)
@@ -534,7 +539,7 @@ public class RandomValueFactory implements RandomNumeric
         else
         {
             // otherwise, we are allowing repeats, so things are simple.
-            Range.exclusive(count(0), count).forCount(count, at ->
+            Range.rangeExclusive(count(0), count).forCount(count, at ->
             {
                 var value = randomExclusive(minimum, exclusiveMaximum, type, include);
                 if (include.matches(value))

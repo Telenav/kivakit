@@ -51,6 +51,7 @@ import java.util.List;
  *
  * @author ericg
  */
+@SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramFtp.class)
 @LexakaiJavadoc(complete = true)
 public class FtpResource extends BaseNetworkResource
@@ -96,11 +97,11 @@ public class FtpResource extends BaseNetworkResource
         }
     }
 
+    private final FTPClient client = new FTPClient();
+
     private final NetworkAccessConstraints constraints;
 
     private final NetworkLocation networkLocation;
-
-    private final FTPClient client = new FTPClient();
 
     public FtpResource(NetworkLocation location, NetworkAccessConstraints constraints)
     {
@@ -127,7 +128,7 @@ public class FtpResource extends BaseNetworkResource
         try
         {
             var in = new BufferedInputStream(openBinaryFileForReading());
-            var out = new BufferedOutputStream(destination.openForWriting());
+            var out = new BufferedOutputStream(((WritableResource) destination).openForWriting());
             var buffer = new byte[1024];
             int readCount;
             reporter.start("Copying " + resource());

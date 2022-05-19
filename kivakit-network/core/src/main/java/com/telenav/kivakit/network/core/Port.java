@@ -58,7 +58,7 @@ public class Port
         var host = new Host(uri.getHost());
         var scheme = uri.getScheme();
         var port = uri.getPort();
-        var protocol = Protocol.parse(Listener.console(), scheme);
+        var protocol = Protocol.parse(Listener.consoleListener(), scheme);
         return new Port(host, protocol, port);
     }
 

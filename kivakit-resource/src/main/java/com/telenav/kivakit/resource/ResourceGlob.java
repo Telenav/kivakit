@@ -6,52 +6,104 @@ import com.telenav.kivakit.interfaces.comparison.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * A resource "glob" is similar to a file glob in UNIX. It matches resources by their paths, according to a pattern
- * created by calling various logical methods.
+ * A resource "glob" is similar to a file glob in UNIX. It matches resources, according to one or more patterns, which
+ * can be combined with logical operators.
+ *
+ * <p><br/><hr/><br/></p>
+ *
+ * <p><b>Patterns</b></p>
+ *
+ * <p>
+ * Glob patterns are case-sensitive Java regular expressions where just three symbols are re-defined:
+ * </p>
+ *
+ * <pre>
+ *     <b>**</b> - matches anything, including slashes
+ *      <b>*</b> - matches anything, except a slash
+ *      <b>.</b> - matches a literal dot</pre>
+ *
+ * <p>
+ * For example, "**&#47;target/**.class" would match each of these resources:
+ * </p>
+ *
+ * <ul>
+ *     <li>my-project/target/MyApp.class</li>
+ *     <li>my-project/my-sub-project/target/MyApp.class</li>
+ *     <li>my-project/my-sub-project/target/com/me/MyApp.class</li>
+ * </ul>
+ * </p>
+ *
+ * <p><br/><hr/><br/></p>
+ *
+ * <p><b>Creating Globs</b></p>
+ *
+ * <p>
+ * {@link ResourceGlob}s can be created with the <i>match*()</i> static factory methods:
+ * </p>
+ *
+ * <ul>
+ *     <li>{@link #match(Matcher)} - Creates a glob that matches resources with the given {@link Matcher}</li>
+ *     <li>{@link #match(Pattern)} - Creates a glob that matches resources with the given Java regular expression {@link Pattern}</li>
+ *     <li>{@link #match(String)} - Creates a glob that matches resources with the given <i>glob pattern</i> (as described above)</li>
+ *     <li>{@link #matchAll()} - Creates a glob that matches <i>all</i> resources</li>
+ *     <li>{@link #matchAllIn(ResourceFolder)} - Creates a glob that matches all resources directly in the given folder</li>
+ *     <li>{@link #matchAllUnder(ResourceFolder)} - Creates a glob that matches all resources in the given folder, and in all sub-folders, recursively</li>
+ * </ul>
+ *
+ * <p><br/><hr/><br/></p>
+ *
+ * <p><b>Logical Operations</b></p>
+ *
+ * <p>
+ * Boolean logical operators are provided for combining globs:
+ * </p>
+ *
+ * <ul>
+ *     <li>{@link #in(ResourceFolder)} - Matches what this matches, but only if it's in the given {@link ResourceFolder}</li>
+ *     <li>{@link #minus(Matchable)} - Matches what this glob matches, but without what the given {@link Matcher} matches</li>
+ *     <li>{@link #not()} - Matches everything this does not match</li>
+ *     <li>{@link #plus(Matchable)} - Matches what this matches, plus what the given {@link Matcher} matches</li>
+ *     <li>{@link #select(Matchable)} - Matches what this <i>and</i>> the given {@link Matcher} both match</li>
+ *     <li>{@link #under(ResourceFolder)} - Matches what this matches, but only if it's under the given {@link ResourceFolder}</li>
+ * </ul>
+ *
+ * <p><br/><hr/><br/></p>
  *
  * <p><b>Examples</b></p>
  *
  * <pre>
- * // Match all Java files
- * match(Extension.JAVA)
- * match(JAVA)
- * match("**.java")
+ * match(Extension.JAVA)                         // Match .java resources
+ * match(JAVA)                                   // Match .java resources
+ * match("**.java")                              // Match .java resources
+ * match(JAVA).not()                             // Match all but .java resources
+ * match(JAVA).plus(MARKDOWN)                    // Match .java and .md resources
+ * match(JAVA).minus(it -> it.endsWith("Test"))  // Match .java resources except tests
+ * match("**&#47;target/**").select(CLASS)           // Match class files under target
+ * match(CLASS).under(target)                    // Match class files under target
+ * matchAllUnder(target).select(CLASS)           // Match class files under target
+ * match(JAVA).plus(target)                      // Match .java and target files</pre>
  *
- * // Match all but Java files
- * match(JAVA).not()
- *
- * // Match all Java and markdown files
- * match(JAVA).or(MARKDOWN)
- *
- * // Match all Java files except tests
- * match(JAVA).not(resource -> resource.endsWith("Test"))
- *
- * // Match all class files in all target folders
- * match("**&#47;target/**").and(CLASS)
- * match(CLASS).under(targetFolder)
- * matchUnder(targetFolder).and(CLASS)
- * </pre>
+ * <p><br/><hr/><br/></p>
  *
  * @author jonathanl (shibo)
  */
-public class ResourceGlob<T extends Resource> implements Matcher<T>
+public class ResourceGlob implements Matcher<ResourcePathed>
 {
     /**
-     * Returns a glob that matches resources with {@link Matcher} for the given {@link Matchable}. For example, the
-     * {@link Extension} class is {@link Matchable<Resource>}, which allows it to be passed to this method to select
-     * resources:
+     * Returns a glob that matches resources with the {@link Matcher} provided by the given {@link Matchable}. For
+     * example, the {@link Extension} class is {@link Matchable<ResourcePathed>}, which allows it to be passed to this
+     * method to select resources:
      *
      * <pre>
      * match(Extension.JAVA)
-     * match(file.extension())
-     * </pre>
+     * match(file.extension())</pre>
      *
      * @param matchable The source of a matcher
      * @return The glob
      */
-    public static <T extends Resource> ResourceGlob<T> match(Matchable<T> matchable)
+    public static ResourceGlob match(Matchable<ResourcePathed> matchable)
     {
-        return match(resource -> matchable.matcher().matches(resource));
+        return match(matchable::matches);
     }
 
     /**
@@ -64,55 +116,64 @@ public class ResourceGlob<T extends Resource> implements Matcher<T>
      * @param pattern The pattern to match
      * @return The glob
      */
-    public static <T extends Resource> ResourceGlob<T> match(Pattern pattern)
+    public static ResourceGlob match(Pattern pattern)
     {
-        return match(resource -> pattern.matcher(resource.path().asString()).matches());
+        return match(it -> pattern.matcher(it.path().asString()).matches());
     }
 
     /**
      * Returns a glob that matches resources with the given pattern. The pattern is a regular expression, with these
      * differences applied:
      *
-     * <ul>
-     *     <li>** - matches anything, including slashes</li>
-     *     <li>* - matches anything, except a slash</li>
-     *     <li>. - matches a dot</li>
-     * </ul>
+     * <pre>
+     *  <b>**</b> - matches anything, including slashes
+     *   <b>*</b> - matches anything, except a slash
+     *   <b>.</b> - matches a literal dot</pre>
      *
      * <p>
      * Glob patterns are case-sensitive.
      * </p>
      *
-     * @param globPattern The pattern to match
+     * @param glob The pattern to match
      * @return The glob
      */
-    public static <T extends Resource> ResourceGlob<T> match(String globPattern)
+    public static ResourceGlob match(String glob)
     {
-        var pattern = globPattern
+
+        return match(Pattern.compile(glob
                 .replaceAll("\\*\\*", ".*")
                 .replaceAll("\\*", "[^/]*")
-                .replaceAll("\\.", "\\.");
-
-        return match(Pattern.compile(pattern));
+                .replaceAll("\\.", "\\.")));
     }
 
     /**
-     * Returns a glob for the given resource matcher
+     * Returns a glob for the given matcher
      *
      * @param matcher The matcher
      * @return The glob
      */
-    public static <T extends Resource> ResourceGlob<T> match(Matcher<T> matcher)
+    public static ResourceGlob match(Matcher<ResourcePathed> matcher)
     {
-        return new ResourceGlob<>(matcher);
+        return new ResourceGlob(matcher);
     }
 
     /**
-     * Returns a resource glob that will match anything
+     * Returns a resource glob that matches all resources
      */
-    public static <T extends Resource> ResourceGlob<T> matchAll()
+    public static ResourceGlob matchAll()
     {
-        return match(resource -> true);
+        return match(it -> true);
+    }
+
+    /**
+     * Returns a glob that matches all resources under the given folder
+     *
+     * @param folder The folder that resources must be under (recursively)
+     * @return The glob
+     */
+    public static ResourceGlob matchAllIn(ResourceFolder<?> folder)
+    {
+        return match(folder.matchAllIn());
     }
 
     /**
@@ -121,104 +182,76 @@ public class ResourceGlob<T extends Resource> implements Matcher<T>
      * @param folder The folder that resources must be under (recursively)
      * @return The glob
      */
-    public static <T extends Resource> ResourceGlob<T> matchAllIn(ResourceFolder<?> folder)
+    public static ResourceGlob matchAllUnder(ResourceFolder<?> folder)
     {
-        return match(resource -> folder.equals(resource.parent()));
+        return match(folder.matchAllUnder());
     }
+
+    /** The matcher for this glob */
+    private final Matcher<ResourcePathed> matcher;
 
     /**
-     * Returns a glob that matches resources under the given folder
-     *
-     * @param folder The folder that resources must be under (recursively)
-     * @return The glob
+     * <b>Not public API</b>
      */
-    public static <T extends Resource> ResourceGlob<T> matchAllUnder(ResourceFolder<?> folder)
-    {
-        return match(folder::contains);
-    }
-
-    private final Matcher<T> matcher;
-
-    public ResourceGlob(Matcher<T> matcher)
+    protected ResourceGlob(Matcher<ResourcePathed> matcher)
     {
         this.matcher = matcher;
     }
 
     /**
-     * Returns a glob that requires that resources match both this glob and the given glob
+     * Returns this glob, but with matches restricted to the given folder
      */
-    public ResourceGlob<T> and(Matcher<T> that)
+    public ResourceGlob in(ResourceFolder<?> folder)
     {
-        return match(resource -> matches(resource) && that.matches(resource));
+        return select(folder.matchAllIn());
     }
 
     /**
-     * Returns a glob that requires that resources match both this glob and the given glob
+     * {@inheritDoc}
      */
-    public ResourceGlob<T> and(Matchable<T> that)
-    {
-        return and(that.matcher());
-    }
-
-    /**
-     * Returns a glob that matches everything this glob does not
-     */
-    public ResourceGlob<T> in(ResourceFolder<?> folder)
-    {
-        return and(matchAllIn(folder));
-    }
-
     @Override
-    public boolean matches(T resource)
+    public boolean matches(ResourcePathed resource)
     {
         return matcher.matches(resource);
     }
 
     /**
-     * Returns a glob that matches everything this glob does not
+     * Returns a glob that matches this glob minus whatever matches the given {@link Matchable}
      */
-    public ResourceGlob<T> not()
+    public ResourceGlob minus(Matchable<ResourcePathed> that)
     {
-        return match(resource -> !matches(resource));
+        return match(it -> this.matches(it) && !that.matches(it));
     }
 
     /**
-     * Returns a glob that matches everything this glob does not
+     * Returns a glob that matches everything this glob doesn't match
      */
-    public ResourceGlob<T> not(Matchable<T> that)
+    public ResourceGlob not()
     {
-        return not(that.matcher());
+        return match(it -> !matches(it));
     }
 
     /**
-     * Returns a glob that matches everything this glob does not
+     * Returns a glob that matches this glob or the given {@link Matchable}
      */
-    public ResourceGlob<T> not(Matcher<T> that)
+    public ResourceGlob plus(Matchable<ResourcePathed> that)
     {
-        return match(resource -> matches(resource) && !that.matches(resource));
+        return match(it -> this.matches(it) || that.matches(it));
     }
 
     /**
-     * Returns a glob that matches this glob or the give glob
+     * Returns a glob that matches this glob, and all resources in or under the given {@link ResourceFolder}.
      */
-    public ResourceGlob<T> or(Matcher<T> that)
+    public ResourceGlob under(ResourceFolder<?> folder)
     {
-        return match(resource -> matches(resource) || that.matches(resource));
+        return select(folder.matchAllUnder());
     }
 
     /**
-     * Returns a glob that matches this glob or the give glob
+     * Returns a glob that matches only what this glob <i>and</i> the given {@link Matchable} both match
      */
-    public ResourceGlob<T> or(Matchable<T> that)
+    public ResourceGlob select(Matchable<ResourcePathed> that)
     {
-        return or(that.matcher());
-    }
-
-    /**
-     * Returns a glob that matches everything this glob does not
-     */
-    public ResourceGlob<T> under(ResourceFolder<?> folder)
-    {
-        return match(resource -> matches(resource) && folder.contains(resource));
+        return match(it -> this.matches(it) && that.matches(it));
     }
 }

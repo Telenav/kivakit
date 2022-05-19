@@ -18,8 +18,8 @@
 
 package com.telenav.kivakit.core.language.primitive;
 
-import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.lexakai.DiagramPrimitive;
+import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
@@ -54,7 +54,7 @@ import java.util.Locale;
  * <p><b>Ranges</b></p>
  *
  * <ul>
- *     <li>{@link #inRange(int, int, int)} - Returns true if the given value is within the given range, inclusive</li>
+ *     <li>{@link #inRangeInclusive(int, int, int)} - Returns true if the given value is within the given range, inclusive</li>
  *     <li>{@link #isBetweenInclusive(int, int, int)} - Returns true if the given value is in the given range, inclusive</li>
  *     <li>{@link #isBetweenExclusive(int, int, int)} - Returns true if the given value is in the given range, exclusive</li>
  * </ul>
@@ -73,7 +73,7 @@ import java.util.Locale;
  *
  * <p><br/><hr/><br/></p>
  *
- * <p><b>String Conversion</b></p>`
+ * <p><b>String Conversion</b></p>
  *
  * <ul>
  *     <li>{@link #commaSeparated(int)} - Converts the given value to a comma-separated string</li>
@@ -85,7 +85,7 @@ import java.util.Locale;
  *
  * @author jonathanl (shibo)
  */
-@UmlClassDiagram(diagram = DiagramPrimitive.class)
+@SuppressWarnings("unused") @UmlClassDiagram(diagram = DiagramPrimitive.class)
 @LexakaiJavadoc(complete = true)
 public class Ints
 {
@@ -135,21 +135,21 @@ public class Ints
      * @param maximum The maximum value, inclusive
      * @return The constrained value4
      */
-    public static int inRange(int value, int minimum, int maximum)
+    public static int inRangeInclusive(int value, int minimum, int maximum)
     {
         return Math.min(Math.max(value, minimum), maximum);
     }
 
     /**
-     * Returns true if the given value is in the given range, exclusive
+     * Returns true if the given value is in the given range, exclusive of the high value
      */
     public static boolean isBetweenExclusive(int value, int low, int high)
     {
-        return value > low && value < high;
+        return value >= low && value < high;
     }
 
     /**
-     * Returns true if the given value is in the given range, inclusive
+     * Returns true if the given value is in the given range, inclusive of the high value
      */
     public static boolean isBetweenInclusive(int value, int low, int high)
     {

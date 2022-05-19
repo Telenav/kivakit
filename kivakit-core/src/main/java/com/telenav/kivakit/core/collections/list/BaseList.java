@@ -112,6 +112,7 @@ import java.util.function.Function;
  * @see RandomAccess
  * @see Stringable
  */
+@SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramCollections.class, excludeAllSuperTypes = true)
 public abstract class BaseList<Element> implements
         Instantiable<BaseList<Element>>,

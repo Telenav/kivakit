@@ -13,7 +13,7 @@
     <name>superpom</name>
     <groupId>com.telenav.kivakit</groupId>
     <artifactId>superpom</artifactId>
-    <version>1.5.0</version>
+    <version>1.5.1-SNAPSHOT</version>
 
     <packaging>pom</packaging>
 
@@ -131,11 +131,9 @@
 
         <!-- Build -->
 
-        <java.version>11</java.version>
-
         <maven.version>3.8.1</maven.version>
         <maven-antrun-plugin.version>3.0.0</maven-antrun-plugin.version>
-        <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
+        <maven-compiler-plugin.version>3.10.1</maven-compiler-plugin.version>
         <maven-gpg-plugin.version>1.6</maven-gpg-plugin.version>
         <maven-jar-plugin.version>2.4</maven-jar-plugin.version>
         <maven-javadoc-plugin.version>3.3.1</maven-javadoc-plugin.version>
@@ -145,6 +143,9 @@
         <maven-exec-plugin.version>3.0.0</maven-exec-plugin.version>
         <maven-protobuf-plugin.version>0.6.1</maven-protobuf-plugin.version>
         <maven-os-plugin.version>1.6.1</maven-os-plugin.version>
+
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
 
         <cactus.version>1.4.0</cactus.version>
         <cactus.download.version>${cactus.version}</cactus.download.version>
@@ -160,7 +161,7 @@
 
         <!-- Cluster -->
 
-        <zookeeper.version>3.5.6</zookeeper.version>
+        <zookeeper.version>3.7.0</zookeeper.version>
 
         <!-- File Systems -->
 
@@ -179,12 +180,14 @@
 
         <!-- KivaKit Version -->
 
-        <kivakit.version>1.5.0</kivakit.version>
+        <kivakit.version>1.5.1-SNAPSHOT</kivakit.version>
 
         <!-- Merged JARs -->
-        <kivakit.merged.version>1.5.0</kivakit.merged.version>
+
+        <kivakit.merged.version>1.5.2</kivakit.merged.version>
 
         <!-- Parsing -->
+
         <antlr.version>4.7.2</antlr.version>
 
         <!-- Protocols -->
@@ -494,9 +497,9 @@
                     <artifactId>maven-compiler-plugin</artifactId>
                     <version>${maven-compiler-plugin.version}</version>
                     <configuration>
-                        <source>${java.version}</source>
-                        <target>${java.version}</target>
-                        <release>${java.version}</release>
+                        <source>${maven.compiler.source}</source>
+                        <target>${maven.compiler.target}</target>
+                        <release>${maven.compiler.target}</release>
                         <compilerArgs>
                             <compilerArg>-Xlint:unchecked</compilerArg>
                             <compilerArg>-Xlint:-requires-transitive-automatic</compilerArg>
@@ -509,7 +512,7 @@
 
                 <plugin>
                     <groupId>org.codehaus.mojo</groupId>
-                    <artifactId>build-helper-maven-plugin</artifactId>
+                    <artifactId>build-helper-mxaven-plugin</artifactId>
                     <version>3.2.0</version>
                 </plugin>
 
@@ -518,7 +521,7 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-surefire-plugin</artifactId>
-                    <version>3.0.0-M5</version>
+                    <version>3.0.0-M6</version>
                     <configuration>
                         <excludedGroups>${exclude.test.groups}</excludedGroups>
                         <systemPropertyVariables>
@@ -959,6 +962,21 @@
                 <artifactId>kivakit-mixins</artifactId>
                 <version>${kivakit.version}</version>
             </dependency>
+            <dependency>
+                <groupId>com.telenav.kivakit</groupId>
+                <artifactId>kivakit-test-internal</artifactId>
+                <version>${kivakit.version}</version>
+            </dependency>            
+            <dependency>
+                <groupId>com.telenav.kivakit</groupId>
+                <artifactId>kivakit-resource-tests</artifactId>
+                <version>${kivakit.version}</version>
+            </dependency>            
+            <dependency>
+                <groupId>com.telenav.kivakit</groupId>
+                <artifactId>kivakit-test</artifactId>
+                <version>${kivakit.version}</version>
+            </dependency>            
             <dependency>
                 <groupId>com.telenav.kivakit</groupId>
                 <artifactId>kivakit-conversion</artifactId>

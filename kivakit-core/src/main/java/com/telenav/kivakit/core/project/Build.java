@@ -73,7 +73,7 @@ public class Build implements Named
      */
     public LocalTime date()
     {
-        return LocalTime.of(LocalTime.utcTimeZone(), LocalDate.ofEpochDay(epochDay()).atTime(0, 0));
+        return LocalTime.localTime(LocalTime.utcTimeZone(), LocalDate.ofEpochDay(epochDay()).atTime(0, 0));
     }
 
     /**

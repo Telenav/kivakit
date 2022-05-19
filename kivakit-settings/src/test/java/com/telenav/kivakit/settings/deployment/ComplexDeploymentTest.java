@@ -38,7 +38,7 @@ public class ComplexDeploymentTest extends UnitTest
     {
         public Development()
         {
-            super(Listener.throwing(), "development", "test development deployment");
+            super(Listener.throwingListener(), "development", "test development deployment");
             registerSettingsObject(new Server1(), SERVER1);
             registerSettingsObject(new Server2(), SERVER2);
         }
@@ -48,7 +48,7 @@ public class ComplexDeploymentTest extends UnitTest
     {
         public Production()
         {
-            super(Listener.throwing(),"production", "test production deployment");
+            super(Listener.throwingListener(),"production", "test production deployment");
             registerSettingsObject(new Server3(), SERVER1);
             registerSettingsObject(new Server4(), SERVER2);
         }
