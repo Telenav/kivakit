@@ -9,4 +9,9 @@
 
 source kivakit-library-functions.sh
 
+cd "$KIVAKIT_WORKSPACE" || exit 1
+
+git pull
+
 repository_foreach 'git pull'
+
