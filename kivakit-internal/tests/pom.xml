@@ -13,6 +13,7 @@
     <modules>
         <module>core</module>
         <module>resource</module>
+        <module>kivakit-kyro-serialization-tests</module>
     </modules>
 
 </project>

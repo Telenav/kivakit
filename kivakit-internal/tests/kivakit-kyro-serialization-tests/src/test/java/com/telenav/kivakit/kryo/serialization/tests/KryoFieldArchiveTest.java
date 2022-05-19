@@ -16,19 +16,21 @@
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-package com.telenav.kivakit.serialization.kryo;
+package com.telenav.kivakit.kryo.serialization.tests;
 
 import com.telenav.kivakit.core.version.Version;
 import com.telenav.kivakit.filesystem.Folder;
 import com.telenav.kivakit.interfaces.naming.NamedObject;
 import com.telenav.kivakit.resource.compression.archive.FieldArchive;
 import com.telenav.kivakit.resource.compression.archive.KivaKitArchivedField;
+import com.telenav.kivakit.kryo.test.KryoUnitTest;
 import org.junit.Test;
 
 import java.io.Serializable;
 
 import static com.telenav.kivakit.resource.compression.archive.ZipArchive.Mode.READ;
 import static com.telenav.kivakit.resource.compression.archive.ZipArchive.Mode.WRITE;
+import com.telenav.kivakit.serialization.kryo.KryoObjectSerializer;
 
 public class KryoFieldArchiveTest extends KryoUnitTest
 {

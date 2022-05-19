@@ -1,4 +1,4 @@
-package com.telenav.kivakit.serialization.kryo;
+package com.telenav.kivakit.kryo.serialization.tests;
 
 import com.telenav.kivakit.core.messaging.messages.status.Problem;
 import com.telenav.kivakit.core.time.Duration;
@@ -8,9 +8,11 @@ import com.telenav.kivakit.core.version.Version;
 import com.telenav.kivakit.filesystem.File;
 import com.telenav.kivakit.resource.Extension;
 import com.telenav.kivakit.serialization.kryo.types.CoreKryoTypes;
+import com.telenav.kivakit.kryo.test.KryoUnitTest;
 import org.junit.Test;
 
 import static com.telenav.kivakit.core.version.Version.parseVersion;
+import com.telenav.kivakit.serialization.kryo.KryoSerializationSession;
 
 public class KryoSerializationSessionTest extends KryoUnitTest
 {
