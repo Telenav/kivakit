@@ -14,7 +14,7 @@
         <module>kryo</module>
         <module>properties</module>
         <module>gson</module>
-
+        <module>kivakit-kryo-tests</module>
     </modules>
 
 </project>

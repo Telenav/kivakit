@@ -1084,6 +1084,11 @@
             </dependency>
             <dependency>
                 <groupId>com.telenav.kivakit</groupId>
+                <artifactId>kivakit-kryo-tests</artifactId>
+                <version>${kivakit.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.telenav.kivakit</groupId>
                 <artifactId>kivakit-service-client</artifactId>
                 <version>${kivakit.version}</version>
             </dependency>

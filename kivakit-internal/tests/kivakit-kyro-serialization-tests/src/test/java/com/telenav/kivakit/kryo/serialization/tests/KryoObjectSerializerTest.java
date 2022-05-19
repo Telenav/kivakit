@@ -1,10 +1,11 @@
-package com.telenav.kivakit.serialization.kryo;
+package com.telenav.kivakit.kryo.serialization.tests;
 
 import com.telenav.kivakit.core.messaging.messages.status.Problem;
 import com.telenav.kivakit.core.time.Duration;
 import com.telenav.kivakit.core.time.Time;
 import com.telenav.kivakit.core.value.count.Bytes;
 import com.telenav.kivakit.core.version.Version;
+import com.telenav.kivakit.kryo.test.KryoUnitTest;
 import org.junit.Test;
 
 import java.util.ArrayList;

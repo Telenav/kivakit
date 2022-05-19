@@ -16,7 +16,7 @@
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-package com.telenav.kivakit.serialization.kryo;
+package com.telenav.kivakit.kryo.test;
 
 import com.telenav.kivakit.core.path.StringPath;
 import com.telenav.kivakit.core.value.count.Count;
@@ -36,6 +36,9 @@ import java.io.ByteArrayOutputStream;
 import static com.telenav.kivakit.core.version.Version.version;
 import static com.telenav.kivakit.resource.serialization.ObjectMetadata.VERSION;
 import static com.telenav.kivakit.serialization.core.SerializationSession.SessionType.RESOURCE;
+import com.telenav.kivakit.serialization.kryo.KryoObjectSerializer;
+import com.telenav.kivakit.serialization.kryo.KryoSerializationSession;
+import com.telenav.kivakit.serialization.kryo.KryoSerializationSessionFactory;
 
 /**
  * Adds Kryo serialization testing to the {@link UnitTest} base class. Serialization of objects can be tested with:
@@ -53,7 +56,7 @@ import static com.telenav.kivakit.serialization.core.SerializationSession.Sessio
  * @author jonathanl (shibo)
  */
 @LexakaiJavadoc(complete = true)
-public class KryoUnitTest extends UnitTest
+public abstract class KryoUnitTest extends UnitTest
 {
     private SerializationSessionFactory factory;
 
