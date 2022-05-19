@@ -9,12 +9,14 @@
 # GitHub action that builds code that is pushed into a feature branch
 #
 
-name: Build Feature Branch
+name: "Build Branch"
 
 on:
   workflow_dispatch:
   push:
-    branches: [ feature/* ]
+    branches: [ master, develop, release/**, feature/**, hotfix/** ]
+  pull_request:
+    branches: [ master, develop, release/** ]
 
 jobs:
   build:
@@ -24,14 +26,13 @@ jobs:
     steps:
 
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Setup Java
-        uses: actions/setup-java@v1
+        uses: actions/setup-java@v3
         with:
-          java-version: 16
+          java-version: '17'
+          distribution: 'temurin'
 
       - name: Build
-        run: |
-          perl ./.github/scripts/build.pl package
-        shell: bash
+        run: mvn clean install
