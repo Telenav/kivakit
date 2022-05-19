@@ -25,6 +25,8 @@ kivakit_build_all()
     export -f require_variable
 
     # shellcheck disable=SC2002
+    # shellcheck disable=SC2086
+    # shellcheck disable=SC2048
     build "$KIVAKIT_WORKSPACE" $*
 }
 
