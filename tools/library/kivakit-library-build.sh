@@ -7,6 +7,27 @@
 #
 #///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+BUILD_PROPERTIES="$KIVAKIT_HOME/kivakit-core/src/main/java/build.properties"
+
+kivakit_build_all()
+{
+    cd "$KIVAKIT_WORKSPACE" || exit
+
+    if [[ "$1" == "help" ]]; then
+
+        SCRIPT=$(basename -- "$0")
+        usage "$SCRIPT"
+
+    fi
+
+    export -f build
+    export -f addSwitch
+    export -f require_variable
+
+    # shellcheck disable=SC2002
+    build "$KIVAKIT_WORKSPACE" $*
+}
+
 usage() {
 
     SCRIPT=$1
@@ -14,60 +35,54 @@ usage() {
     echo " "
     echo "Usage: $SCRIPT [build-type] [build-modifiers]*"
     echo " "
-    echo "  Build types:"
+    echo "  BUILD TYPES"
     echo " "
-    echo "       [default] - compile, shade and run all tests"
+    echo "           [default] - compile, shade and run all tests"
     echo " "
-    echo "             all - clean-all, compile, shade, run tests, build tools and javadoc"
+    echo "                 all - clean-all, compile, shade, run tests, build tools and javadoc"
     echo " "
-    echo "         compile - compile and shade (no tests)"
+    echo "             compile - compile and shade (no tests)"
     echo " "
-    echo "    deploy-ossrh - clean-sparkling, compile, run tests, attach jars, build javadoc, sign artifacts and deploy to OSSRH"
+    echo "        deploy-ossrh - clean-sparkling, compile, run tests, attach jars, build javadoc, sign artifacts and deploy to OSSRH"
     echo " "
-    echo "    deploy-local - clean-sparkling, compile, run tests, attach jars, build javadoc, sign artifacts and deploy to local Maven repository"
+    echo "        deploy-local - clean-sparkling, compile, run tests, attach jars, build javadoc, sign artifacts and deploy to local Maven repository"
     echo " "
-    echo "           tools - compile, shade, run tests, build tools"
+    echo "               tools - compile, shade, run tests, build tools"
     echo " "
-    echo "             dmg - compile, shade, run tests, build tools, build dmg"
+    echo "                 dmg - compile, shade, run tests, build tools, build dmg"
     echo " "
-    echo "         javadoc - compile and build javadoc"
+    echo "             javadoc - compile and build javadoc"
     echo " "
-    echo "  Build modifiers:"
+    echo "  BUILD MODIFIERS"
     echo " "
-    echo "     attach-jars - attach source and javadoc jars to maven artifacts"
+    echo "         attach-jars - attach source and javadoc jars to maven artifacts"
     echo " "
-    echo "           clean - prompt to remove cached and temporary files"
+    echo "               clean - prompt to remove cached and temporary files"
     echo " "
-    echo "       clean-all - prompt to remove cached and temporary files and kivakit artifacts from ~/.m2"
+    echo "           clean-all - prompt to remove cached and temporary files and kivakit artifacts from ~/.m2"
     echo " "
-    echo " clean-sparkling - prompt to remove entire .m2 repository and all cached and temporary files"
+    echo "     clean-sparkling - prompt to remove entire .m2 repository and all cached and temporary files"
     echo " "
-    echo "           debug - turn maven debug mode on"
+    echo "               debug - turn maven debug mode on"
     echo " "
-    echo "     debug-tests - stop in debugger on surefire tests"
+    echo "         debug-tests - stop in debugger on surefire tests"
     echo " "
-    echo "         dry-run - show maven command line but don't build"
+    echo "             dry-run - show maven command line but don't build"
     echo " "
-    echo "      no-javadoc - do not build javadoc"
+    echo "          no-javadoc - do not build javadoc"
     echo " "
-    echo "        no-tests - do not run tests"
+    echo "            no-tests - do not run tests"
     echo " "
-    echo "     quick-tests - run only quick tests"
+    echo "         quick-tests - run only quick tests"
     echo " "
-    echo "           quiet - build with minimal output"
+    echo "               quiet - build with minimal output"
     echo " "
-    echo " single-threaded - build with only one thread"
+    echo "     single-threaded - build with only one thread"
     echo " "
-    echo "           tests - run all tests"
+    echo "               tests - run all tests"
     echo " "
     exit 1
 }
-
-if [[ "$1" == "help" ]]; then
-
-    SCRIPT=$(basename -- "$0")
-    usage "$SCRIPT"
-fi
 
 addSwitch() {
 
@@ -88,72 +103,76 @@ build() {
     SWITCHES=""
     BUILD_ARGUMENTS=""
 
+    require_variable M2_HOME "Must set M2_HOME"
+    require_variable JAVA_HOME "Must set JAVA_HOME"
+    require_variable KIVAKIT_HOME "Must set KIVAKIT_HOME"
+
     case "${BUILD_TYPE}" in
 
-    "all")
-        JAVADOC=true
-        BUILD_ARGUMENTS="clean install"
-        # shellcheck disable=SC2206
-        BUILD_MODIFIERS=(multi-threaded clean-all tests shade tools ${@:3})
-        ;;
+        "all")
+            JAVADOC=true
+            BUILD_ARGUMENTS="clean install"
+            # shellcheck disable=SC2206
+            BUILD_MODIFIERS=(multi-threaded clean-all tests shade tools ${@:3})
+            ;;
 
-    "compile")
-        BUILD_ARGUMENTS="clean compile"
-        # shellcheck disable=SC2206
-        BUILD_MODIFIERS=(multi-threaded no-tests shade no-javadoc quiet ${@:3})
-        ;;
+        "compile")
+            BUILD_ARGUMENTS="clean compile"
+            # shellcheck disable=SC2206
+            BUILD_MODIFIERS=(multi-threaded no-tests shade no-javadoc quiet ${@:3})
+            ;;
 
-    "deploy-ossrh")
-        BUILD_ARGUMENTS="clean deploy"
-        # shellcheck disable=SC2206
-        BUILD_MODIFIERS=(multi-threaded clean-sparkling tests attach-jars sign-artifacts ${@:3})
-        export BUILD_DOCUMENTATION=true
-        ;;
+        "deploy-ossrh")
+            BUILD_ARGUMENTS="clean deploy"
+            # shellcheck disable=SC2206
+            BUILD_MODIFIERS=(multi-threaded clean-sparkling tests attach-jars sign-artifacts ${@:3})
+            export BUILD_DOCUMENTATION=true
+            ;;
 
-    "deploy-local")
-        BUILD_ARGUMENTS="clean install"
-        # shellcheck disable=SC2206
-        BUILD_MODIFIERS=(multi-threaded no-javadoc clean-sparkling tests attach-jars sign-artifacts ${@:3})
-        export BUILD_DOCUMENTATION=true
-        ;;
+        "deploy-local")
+            BUILD_ARGUMENTS="clean install"
+            # shellcheck disable=SC2206
+            BUILD_MODIFIERS=(multi-threaded no-javadoc clean-sparkling tests attach-jars sign-artifacts ${@:3})
+            export BUILD_DOCUMENTATION=true
+            ;;
 
-    "javadoc")
-        JAVADOC="true"
-        BUILD_ARGUMENTS="clean install"
-        # shellcheck disable=SC2206
-        BUILD_MODIFIERS=(multi-threaded no-tests javadoc ${@:3})
-        ;;
+        "javadoc")
+            JAVADOC="true"
+            BUILD_ARGUMENTS="clean install"
+            # shellcheck disable=SC2206
+            BUILD_MODIFIERS=(multi-threaded no-tests javadoc ${@:3})
+            ;;
 
-    "setup")
-        BUILD_ARGUMENTS="clean install"
-        # shellcheck disable=SC2206
-        BUILD_MODIFIERS=(multi-threaded tests shade tools ${@:3})
-        ;;
+        "setup")
+            BUILD_ARGUMENTS="clean install"
+            # shellcheck disable=SC2206
+            BUILD_MODIFIERS=(multi-threaded tests shade tools ${@:3})
+            ;;
 
-    "test")
-        BUILD_ARGUMENTS="clean install"
-        # shellcheck disable=SC2206
-        BUILD_MODIFIERS=(single-threaded tests no-javadoc ${@:3})
-        ;;
+        "test")
+            BUILD_ARGUMENTS="clean install"
+            # shellcheck disable=SC2206
+            BUILD_MODIFIERS=(single-threaded tests no-javadoc ${@:3})
+            ;;
 
-    "tools")
-        BUILD_ARGUMENTS="clean install"
-        # shellcheck disable=SC2206
-        BUILD_MODIFIERS=(multi-threaded tests shade tools no-javadoc ${@:3})
-        ;;
+        "tools")
+            BUILD_ARGUMENTS="clean install"
+            # shellcheck disable=SC2206
+            BUILD_MODIFIERS=(multi-threaded tests shade tools no-javadoc ${@:3})
+            ;;
 
-    "dmg")
-        BUILD_ARGUMENTS="clean install"
-        # shellcheck disable=SC2206
-        BUILD_MODIFIERS=(multi-threaded tests shade tools dmg no-javadoc ${@:3})
-        ;;
+        "dmg")
+            BUILD_ARGUMENTS="clean install"
+            # shellcheck disable=SC2206
+            BUILD_MODIFIERS=(multi-threaded tests shade tools dmg no-javadoc ${@:3})
+            ;;
 
-    *)
-        BUILD_TYPE="default"
-        BUILD_ARGUMENTS="clean install"
-        # shellcheck disable=SC2206
-        BUILD_MODIFIERS=(multi-threaded tests shade no-javadoc ${@:2})
-        ;;
+        *)
+            BUILD_TYPE="default"
+            BUILD_ARGUMENTS="clean install"
+            # shellcheck disable=SC2206
+            BUILD_MODIFIERS=(multi-threaded tests shade no-javadoc ${@:2})
+            ;;
 
     esac
 
@@ -168,95 +187,95 @@ build() {
 
         case "$MODIFIER" in
 
-        "attach-jars")
-            # To attach jars, we have to build the javadoc for the jars
-            SWITCHES="${SWITCHES//-Dmaven.javadoc.skip=true/}"
-            BUILD_ARGUMENTS="$BUILD_ARGUMENTS -Pattach-jars"
-            ;;
+            "attach-jars")
+                # To attach jars, we have to build the javadoc for the jars
+                SWITCHES="${SWITCHES//-Dmaven.javadoc.skip=true/}"
+                BUILD_ARGUMENTS="$BUILD_ARGUMENTS -Pattach-jars"
+                ;;
 
-        "clean")
-            CLEAN_SCRIPT="kivakit-clean.sh"
-            ;;
+            "clean")
+                CLEAN_SCRIPT="kivakit-clean.sh"
+                ;;
 
-        "clean-all")
-            CLEAN_SCRIPT="kivakit-clean-all.sh"
-            ;;
+            "clean-all")
+                CLEAN_SCRIPT="kivakit-clean-all.sh"
+                ;;
 
-        "clean-sparkling")
-            CLEAN_SCRIPT="kivakit-clean-sparkling.sh"
-            ;;
+            "clean-sparkling")
+                CLEAN_SCRIPT="kivakit-clean-sparkling.sh"
+                ;;
 
-        "debug")
-            addSwitch "--debug"
-            ;;
+            "debug")
+                addSwitch "--debug"
+                ;;
 
-        "debug-tests")
-            addSwitch "-Dmaven.surefire.debug"
-            ;;
+            "debug-tests")
+                addSwitch "-Dmaven.surefire.debug"
+                ;;
 
-        "dmg")
-            addSwitch "-P dmg"
-            ;;
+            "dmg")
+                addSwitch "-P dmg"
+                ;;
 
-        "docker")
-            addSwitch "-P docker"
-            ;;
+            "docker")
+                addSwitch "-P docker"
+                ;;
 
-        "javadoc")
-            if [ -n "$JAVADOC" ]; then
+            "javadoc")
+                if [ -n "$JAVADOC" ]; then
 
-                BUILD_ARGUMENTS="$BUILD_ARGUMENTS javadoc:aggregate"
+                    BUILD_ARGUMENTS="$BUILD_ARGUMENTS javadoc:aggregate"
 
-            fi
-            ;;
+                fi
+                ;;
 
-        "multi-threaded")
-            THREADS=12
-            ;;
+            "multi-threaded")
+                THREADS=12
+                ;;
 
-        "no-javadoc")
-            addSwitch "-Dmaven.javadoc.skip=true"
-            ;;
+            "no-javadoc")
+                addSwitch "-Dmaven.javadoc.skip=true"
+                ;;
 
-        "no-tests")
-            addSwitch "-Dmaven.test.skip=true"
-            ;;
+            "no-tests")
+                addSwitch "-Dmaven.test.skip=true"
+                ;;
 
-        "quick-tests")
-            addSwitch "-P test-quick"
-            ;;
+            "quick-tests")
+                addSwitch "-P test-quick"
+                ;;
 
-        "quiet")
-            addSwitch "-q -Dsurefire.printSummary=false -DKIVAKIT_LOG_LEVEL=Warning"
-            ;;
+            "quiet")
+                addSwitch "-q -Dsurefire.printSummary=false -DKIVAKIT_LOG_LEVEL=Warning"
+                ;;
 
-        "shade")
-            addSwitch "-P shade"
-            ;;
+            "shade")
+                addSwitch "-P shade"
+                ;;
 
-        "dry-run")
-            DRY_RUN="true"
-            ;;
+            "dry-run")
+                DRY_RUN="true"
+                ;;
 
-        "sign-artifacts")
-            BUILD_ARGUMENTS="$BUILD_ARGUMENTS -P sign-artifacts"
-            ;;
+            "sign-artifacts")
+                BUILD_ARGUMENTS="$BUILD_ARGUMENTS -P sign-artifacts"
+                ;;
 
-        "single-threaded")
-            THREADS=1
-            ;;
+            "single-threaded")
+                THREADS=1
+                ;;
 
-        "tests") ;;
+            "tests") ;;
 
-        "tools")
-            addSwitch "-P tools"
-            ;;
+            "tools")
+                addSwitch "-P tools"
+                ;;
 
-        *)
-            echo " "
-            echo "Build modifier '$MODIFIER' is not recognized"
-            usage "$SCRIPT"
-            ;;
+            *)
+                echo " "
+                echo "Build modifier '$MODIFIER' is not recognized"
+                usage "$SCRIPT"
+                ;;
 
         esac
         shift
@@ -271,12 +290,12 @@ build() {
 
     BUILD_FOLDER="$PROJECT"
 
-    if [ -f "$KIVAKIT_HOME/build.properties" ]; then
+    if [ -f "$BUILD_PROPERTIES" ]; then
 
         # shellcheck disable=SC2002
-        KIVAKIT_BUILD_NAME=$(cat "$KIVAKIT_HOME"/build.properties | grep "build-name" | cut -d'=' -f2 | xargs echo)
+        KIVAKIT_BUILD_NAME=$(cat "$BUILD_PROPERTIES" | grep "build-name" | cut -d'=' -f2 | xargs echo)
         # shellcheck disable=SC2002
-        KIVAKIT_BUILD_DATE=$(cat "$KIVAKIT_HOME"/build.properties | grep "build-date" | cut -d'=' -f2 | xargs echo)
+        KIVAKIT_BUILD_DATE=$(cat "$BUILD_PROPERTIES" | grep "build-date" | cut -d'=' -f2 | xargs echo)
 
     fi
 
@@ -351,3 +370,5 @@ build() {
 
     fi
 }
+
+

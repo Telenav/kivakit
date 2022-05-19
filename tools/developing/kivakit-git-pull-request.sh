@@ -8,16 +8,22 @@
 #///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 source kivakit-library-functions.sh
-source kivakit-projects.sh
 
-help="[feature-name]"
+title=$1
+body=$1
 
-feature_name=$1
+require_variable title "[title] [body]"
+require_variable body "[title] [body]"
 
-require_variable feature_name "$help"
+    if git_flow_check_all_repositories; then
 
-for project_home in "${KIVAKIT_PROJECT_HOMES[@]}"; do
+    cd "$KIVAKIT_WORKSPACE" || exit
 
-    git_flow_feature_start "$project_home" "$feature_name"
+    gh auth login --hostname github.com --with-token < ~/token.txt
+    gh pr create --title "$title" --body "$body"
 
-done
+else
+
+    echo "Unable to create pull request"
+
+fi

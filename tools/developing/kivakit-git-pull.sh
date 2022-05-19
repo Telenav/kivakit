@@ -8,14 +8,5 @@
 #///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 source kivakit-library-functions.sh
-source kivakit-projects.sh
 
-help="[feature-name]"
-
-feature_name=$1
-
-require_variable feature_name "$help"
-
-bash kivakit-feature-start.sh "$feature_name"
-bash lexakai-feature-start.sh "$feature_name"
-bash mesakit-feature-start.sh "$feature_name"
+repository_foreach 'git pull'

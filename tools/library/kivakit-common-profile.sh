@@ -25,8 +25,6 @@ system_variable KIVAKIT_EXAMPLES_HOME "$KIVAKIT_WORKSPACE/kivakit-examples"
 system_variable KIVAKIT_CACHE_HOME "$HOME/.kivakit/$KIVAKIT_VERSION"
 system_variable KIVAKIT_AGENT_JAR "$KIVAKIT_TOOLS/agent/kivakit-agent.jar"
 
-source "$KIVAKIT_TOOLS"/library/kivakit-projects.sh
-
 source_project_profile "cactus-build"
 
 echo " "
@@ -54,7 +52,7 @@ source_project_profile "lexakai"
 
 date +setup-time=%Y.%m.%d-%I.%M%p > "$KIVAKIT_WORKSPACE"/kivakit/setup.properties
 
-cd "$KIVAKIT_WORKSPACE"
+cd "$KIVAKIT_WORKSPACE" || exit
 
 echo " "
 echo "┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫ System Environment ┣━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓"

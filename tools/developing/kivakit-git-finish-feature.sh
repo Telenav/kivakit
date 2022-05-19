@@ -7,12 +7,20 @@
 #
 #///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-source "$KIVAKIT_WORKSPACE"/kivakit/tools/library/kivakit-library-functions.sh
-source kivakit-projects.sh
+source kivakit-library-functions.sh
 
-for project_home in "${KIVAKIT_PROJECT_HOMES[@]}"; do
+# shellcheck disable=SC2034
+branch_name=$1
 
-    cd "$project_home" && echo "Updating $project_home" && git pull
+require_variable branch_name "[branch-name]"
 
-done
+if git_flow_check_all_repositories; then
 
+    # shellcheck disable=SC2016
+    repository_foreach 'git-flow feature finish $branch_name'
+
+else
+
+    echo "Unable to finish branch $branch_name"
+
+fi

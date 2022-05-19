@@ -10,12 +10,19 @@
 source kivakit-library-functions.sh
 
 # shellcheck disable=SC2034
-branch=$1
+branch_name=$1
 
-require_variable branch "[branch-name]"
+require_variable branch_name "[branch-name]"
 
-cd "$KIVAKIT_WORKSPACE" || exit
+if git_flow_check_all_repositories; then
 
-git submodule foreach "git checkout $branch || :"
-git submodule foreach "git checkout publish || :"
+    # shellcheck disable=SC2016
+    repository_foreach 'git checkout --quiet $branch_name'
+    repository_foreach 'git checkout --quiet publish'
+
+else
+
+    echo "Unable to switch to $branch_name branch"
+
+fi
 

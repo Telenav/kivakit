@@ -9,6 +9,7 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
 
 fi
 
+
 ################ PROJECT ################################################################################################
 
 property_value()
@@ -43,7 +44,7 @@ project_build()
 {
     project_home=$1
 
-    build_properties=$project_home/build.properties
+    build_properties="$KIVAKIT_HOME/kivakit-core/src/main/java/build.properties"
 
     if [ -e "$build_properties" ]; then
 
@@ -58,7 +59,28 @@ project_build()
     fi
 }
 
-showVersion()
+bracket()
+{
+    name=$1
+    shift
+
+    echo " " && echo "┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫ \$name && $*" && echo "┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━" && echo " "
+
+}
+
+repository_foreach()
+{
+    cd "$KIVAKIT_WORKSPACE" || exit
+    git submodule foreach --quiet "echo && echo ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫ \$name && $* && echo ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ && echo "
+}
+
+project_foreach()
+{
+    cd "$KIVAKIT_WORKSPACE" || exit
+    git submodule foreach ---recurse -quiet "echo && echo ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫ \$name && $* && echo ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ && echo "
+}
+
+show_version()
 {
     project_home=$1
     project_name=$(project_name "$project_home")
@@ -122,6 +144,19 @@ clean_maven_repository()
     fi
 }
 
+clean_maven_repository_telenav()
+{
+    if allow_cleaning; then
+
+        if yes_no "┋ Remove all Telenav artifacts from $HOME/.m2/repository"; then
+
+            rm -rf "$HOME/.m2/repository/com/telenav"
+
+        fi
+
+    fi
+}
+
 remove_maven_repository()
 {
     if allow_cleaning; then
@@ -176,7 +211,13 @@ require_variable()
 
     if [[ -z "${!variable}" ]]; then
 
-        usage "$argument_help"
+        if [[ "$argument_help" == *"["* ]]; then
+            usage "$argument_help"
+        else
+            echo "$argument_help"
+        fi
+
+        exit 1
 
     fi
 }
@@ -197,6 +238,15 @@ require_folder()
 ################ GIT ################################################################################################
 
 
+git_flow_check_all_repositories()
+{
+    export -f git_flow_check_changes
+    # shellcheck disable=SC2016
+    repository_foreach 'git_flow_check_changes $KIVAKIT_WORKSPACE $path && if [ $? -eq 0 ]; then
+        exit 1
+    fi'
+}
+
 git_flow_check_changes()
 {
     project_home=$1
@@ -205,9 +255,7 @@ git_flow_check_changes()
 
     # shellcheck disable=SC2006
     if [[  `git status --porcelain` ]]; then
-        echo " "
-        echo "Project contains changes that must be committed first: $project_home"
-        echo " "
+        echo "Uncommitted changes: $project_home"
         exit 1
     fi
 }

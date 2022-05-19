@@ -8,7 +8,6 @@
 #///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 source kivakit-library-functions.sh
-source kivakit-projects.sh
 
 echo " "
 echo "┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫ Building Lexakai Documentation ┣━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓"
@@ -19,12 +18,8 @@ echo "┋"
 echo "┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛"
 echo " "
 
-for project_home in "${KIVAKIT_PROJECT_HOMES[@]:1}"; do
+cd "$KIVAKIT_WORKSPACE" || exit
 
-    project_name=$(project_name "$project_home")
+# shellcheck disable=SC2154
+git submodule foreach "lexakai -project-version=$KIVAKIT_VERSION -output-folder=$KIVAKIT_ASSETS_HOME/docs/$KIVAKIT_VERSION/lexakai/$name $path || :"
 
-    OUTPUT_FOLDER="$KIVAKIT_ASSETS_HOME/docs/$KIVAKIT_VERSION/lexakai/$project_name"
-
-    lexakai -project-version="$KIVAKIT_VERSION" -output-folder="$OUTPUT_FOLDER" "$project_home"
-
-done

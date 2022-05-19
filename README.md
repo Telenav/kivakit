@@ -103,6 +103,25 @@ KivaKit helps you to:
 
 <img src="https://www.kivakit.org/images/horizontal-line-128.png" srcset="https://www.kivakit.org/images/horizontal-line-128-2x.png 2x"/>
 
+### KivaKit Reading List <a name = "kivakit-reading"></a> &nbsp; <img src="https://www.kivakit.org/images/books-32.png" srcset="https://www.kivakit.org/images/books-32-2x.png 2x"/>
+
+#### Key Articles (23 minutes):
+
+[Messaging (5 minutes)](https://medium.com/p/2badb679345e)  
+[Mixins in Java (4 minutes)](https://medium.com/p/d26f2a2c9b4)  
+[Microservices (4 minutes)](https://medium.com/p/b5067cd26b60)  
+[Components (3 minutes)](https://medium.com/p/7d946a10b353)  
+[Logging (4 minutes)](https://medium.com/p/703c5f09a708)  
+[Converters (3 minutes)](https://towardsdev.com/kivakit-type-conversion-a3ab264c2ac0)  
+
+####More Articles (35 minutes, optional):
+
+[Visualizing Kivakit (1 minute)](https://medium.com/@jonathanlocke/visualizing-kivakit-b60e7bb31a9f)  
+[In-depth (21 minutes)](https://towardsdev.com/the-kivakit-microservices-framework-3cd1d064107c)  
+[Monads (6 minutes, draft)](https://medium.com/@jonathanlocke/how-kivakit-makes-monads-easy-part-one-maybe-73c819f9ad3b)  
+[Docker Build (4 minutes)](https://towardsdev.com/kivakits-new-docker-build-environment-d2137e3e12a0)  
+[Object-Orientation (3 minutes)](https://medium.com/p/595c182d817c)
+
 ### Building KivaKit <a name = "building-kivakit"></a> &nbsp; <img src="https://www.kivakit.org/images/gears-32.png" srcset="https://www.kivakit.org/images/gears-32-2x.png 2x"/>
 
 [**Building**](documentation/building/index.md)  

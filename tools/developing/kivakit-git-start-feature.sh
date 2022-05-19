@@ -8,17 +8,20 @@
 #///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 source kivakit-library-functions.sh
-source kivakit-projects.sh
 
-help="[branch]"
+# shellcheck disable=SC2034
+branch_name=$1
 
-branch=$1
+require_variable branch_name "[branch-name]"
 
-require_variable branch "$help"
+if git_flow_check_all_repositories; then
 
-for project_home in "${KIVAKIT_PROJECT_HOMES[@]}"; do
+    # shellcheck disable=SC2016
+    repository_foreach 'git-flow feature start $branch_name'
 
-    cd "$project_home" && echo "Updating $project_home" && git checkout "$branch"
+else
 
-done
+    echo "Unable to start branch $branch_name"
+
+fi
 

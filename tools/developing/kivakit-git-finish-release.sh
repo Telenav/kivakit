@@ -8,16 +8,20 @@
 #///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 source kivakit-library-functions.sh
-source kivakit-projects.sh
 
-help="[feature-name]"
+# shellcheck disable=SC2034
+branch_name=$1
 
-feature_name=$1
+require_variable branch_name "[branch-name]"
 
-require_variable feature_name "$help"
+if git_flow_check_all_repositories; then
 
-for project_home in "${KIVAKIT_PROJECT_HOMES[@]}"; do
+    # shellcheck disable=SC2016
+    repository_foreach 'git-flow release finish $branch_name'
 
-    git_flow_feature_finish "$project_home" "$feature_name"
+else
 
-done
+    echo "Unable to finish branch $branch_name"
+
+fi
+

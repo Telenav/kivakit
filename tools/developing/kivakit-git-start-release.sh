@@ -9,24 +9,19 @@
 
 source kivakit-library-functions.sh
 
-help="[version]"
+# shellcheck disable=SC2034
+branch_name=$1
 
-version=$1
+require_variable branch_name "[branch-name]"
 
-require_variable version "$help"
+if git_flow_check_all_repositories; then
 
-for project_home in "${KIVAKIT_REPOSITORY_HOMES[@]}"; do
+    # shellcheck disable=SC2016
+    repository_foreach 'git-flow release start $branch_name'
 
-    if ! git_flow_init "$project_home"; then
+else
 
-        exit 1
+    echo "Unable to start branch $branch_name"
 
-    fi
+fi
 
-done
-
-for project_home in "${KIVAKIT_REPOSITORY_HOMES[@]}"; do
-
-    git_flow_release_start "$project_home" "$version"
-
-done

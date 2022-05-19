@@ -9,15 +9,9 @@
 
 source kivakit-library-functions.sh
 source kivakit-library-build.sh
-source kivakit-projects.sh
 
-export PREBUILD_SCRIPT=kivakit-prebuild.sh
-
-for project_home in "${KIVAKIT_PROJECT_HOMES[@]}"; do
-
-    build "$project_home" "$@"
-
-done
+# shellcheck disable=SC2068
+kivakit_build_all $@
 
 if [ -n "$BUILD_DOCUMENTATION" ]; then
 

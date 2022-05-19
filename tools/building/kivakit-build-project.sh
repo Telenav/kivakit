@@ -8,14 +8,15 @@
 #///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 source kivakit-library-functions.sh
-source kivakit-projects.sh
+source kivakit-library-build.sh
 
-help="[feature-name]"
+# shellcheck disable=SC2034
+project_home=$1
 
-feature_name=$1
+shift
 
-require_variable feature_name "$help"
+require_variable project_home "[project-home] [arguments]*"
 
-bash kivakit-feature-finish.sh $1
-bash lexakai-feature-finish.sh $1
-bash mesakit-feature-finish.sh $1
+echo "building $project_home: $@"
+
+build "$project_home" "$@"

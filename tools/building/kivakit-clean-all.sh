@@ -8,15 +8,8 @@
 #///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 source kivakit-library-functions.sh
-source kivakit-projects.sh
 
-for project_home in "${KIVAKIT_PROJECT_HOMES[@]}"; do
-
-    clean_maven_repository "$project_home"
-
-done
-
-bash kivakit-clean-merged-jars.sh
+clean_maven_repository_telenav
 
 bash kivakit-clean.sh
 

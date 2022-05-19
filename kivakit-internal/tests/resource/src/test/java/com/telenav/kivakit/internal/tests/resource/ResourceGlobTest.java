@@ -3,6 +3,7 @@ package com.telenav.kivakit.internal.tests.resource;
 import com.telenav.kivakit.test.UnitTest;
 import com.telenav.kivakit.core.vm.JavaTrait;
 import com.telenav.kivakit.resource.packages.PackageTrait;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import static com.telenav.kivakit.resource.ResourceGlob.match;
@@ -13,6 +14,7 @@ import static com.telenav.kivakit.resource.Extension.TXT;
  *
  * @author jonathanl (shibo)
  */
+@Ignore
 public class ResourceGlobTest extends UnitTest implements PackageTrait, JavaTrait
 {
     @Test

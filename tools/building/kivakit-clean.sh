@@ -10,6 +10,6 @@
 source "$KIVAKIT_WORKSPACE"/kivakit/tools/library/kivakit-library-functions.sh
 
 clean_cache "$KIVAKIT_CACHE_HOME"
-clean_temporary_files "$KIVAKIT_WORKSPACE"
+clean_cache "$MESAKIT_CACHE_HOME"
 
-bash kivakit-maven-setup.sh
+clean_temporary_files "$KIVAKIT_WORKSPACE"
