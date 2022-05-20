@@ -16,7 +16,7 @@ require_variable branch "[branch-name]"
 
 cd "$KIVAKIT_WORKSPACE" || exit
 
-git submodule foreach "[[ "$path" == *-assets* ]] || git checkout $branch || exit 1" || exit 1
-git submodule foreach "[[ ! "$path" == *-assets* ]] || git checkout publish || exit 1" || exit 1
+git submodule foreach "[[ "$path" == *-assets* ]] || git checkout $branch" || exit 1
+git submodule foreach "[[ ! "$path" == *-assets* ]] || git checkout publish" || exit 1
 
 
