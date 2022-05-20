@@ -120,8 +120,11 @@ public class Duration implements LengthOfTime<Duration>
     /** Constant for one hour. */
     public static final Duration ONE_HOUR = hours(1);
 
-    /** Constant for on minute. */
+    /** Constant for one minute. */
     public static final Duration ONE_MINUTE = minutes(1);
+    
+    /** Constant for one millisecond. */
+    public static final Duration ONE_MILLISECOND = milliseconds(1);
 
     /** Constant for one second. */
     public static final Duration ONE_SECOND = seconds(1);
