@@ -74,6 +74,12 @@ repository_foreach()
     git submodule foreach --quiet "echo && echo ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫ \$name && $* && echo ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ && echo "
 }
 
+repository_foreach_quiet()
+{
+    cd "$KIVAKIT_WORKSPACE" || exit
+    git submodule foreach --quiet $*
+}
+
 project_foreach()
 {
     cd "$KIVAKIT_WORKSPACE" || exit

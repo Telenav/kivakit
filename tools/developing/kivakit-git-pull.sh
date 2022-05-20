@@ -11,7 +11,6 @@ source kivakit-library-functions.sh
 
 cd "$KIVAKIT_WORKSPACE" || exit 1
 
-git pull
+git pull --quiet
 
-repository_foreach 'git pull'
-
+repository_foreach_quiet 'git pull --quiet'
