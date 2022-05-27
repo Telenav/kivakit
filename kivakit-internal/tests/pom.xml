@@ -3,9 +3,15 @@
          xsi:schemaLocation = "http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
     <modelVersion>4.0.0</modelVersion>
-    <groupId>com.telenav.kivakit</groupId>
-    <version>1.5.1-SNAPSHOT</version>
+
+    <parent>
+        <groupId>com.telenav.kivakit</groupId>
+        <artifactId>kivakit-internal</artifactId>
+        <version>1.5.1-SNAPSHOT</version>
+    </parent>
+
     <artifactId>kivakit-internal-tests</artifactId>
+    <version>1.5.1-SNAPSHOT</version>
     <description>Support for testing of core classes to avoid circular dependencies.</description>
     <packaging>pom</packaging>
 

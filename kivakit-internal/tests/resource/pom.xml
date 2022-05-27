@@ -12,11 +12,12 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.telenav.kivakit</groupId>
-        <artifactId>superpom</artifactId>
+        <artifactId>kivakit-internal-tests</artifactId>
         <version>1.5.1-SNAPSHOT</version>
-        <relativePath>../../../superpom</relativePath>
     </parent>
+
     <artifactId>kivakit-internal-tests-resource</artifactId>
+    <version>1.5.1-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <dependencies>
