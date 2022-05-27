@@ -133,7 +133,7 @@
 
         <maven.version>3.8.1</maven.version>
         <maven-antrun-plugin.version>3.0.0</maven-antrun-plugin.version>
-        <maven-compiler-plugin.version>3.10.1</maven-compiler-plugin.version>
+        <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
         <maven-gpg-plugin.version>1.6</maven-gpg-plugin.version>
         <maven-jar-plugin.version>3.2.2</maven-jar-plugin.version>
         <maven-javadoc-plugin.version>3.3.1</maven-javadoc-plugin.version>
@@ -558,6 +558,13 @@
                             </goals>
                         </execution>
                     </executions>
+                </plugin>
+                
+                <!-- Packaging -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-jar-plugin</artifactId>
+                    <version>3.2.2</version>                    
                 </plugin>
 
                 <!-- Publishing -->
@@ -1122,6 +1129,13 @@
                 <artifactId>kivakit-web-wicket</artifactId>
                 <version>${kivakit.version}</version>
             </dependency>
+            <dependency>
+                <groupId>com.telenav.kivakit</groupId>
+                <artifactId>kivakit-serialization-kryo-test</artifactId>
+                <version>${kivakit.version}</version>
+                <scope>test</scope>
+            </dependency>        
+            
 
             <!-- Jetty -->
 
