@@ -20,7 +20,7 @@ package com.telenav.kivakit.internal.tests.resource;
 
 import com.telenav.kivakit.properties.PropertyMap;
 import com.telenav.kivakit.resource.Resource;
-import com.telenav.kivakit.test.UnitTest;
+import com.telenav.kivakit.testing.UnitTest;
 import org.junit.Test;
 
 public class ResourceTest extends UnitTest

@@ -30,7 +30,7 @@ import com.telenav.kivakit.core.messaging.Message;
 import com.telenav.kivakit.core.messaging.listeners.MessageList;
 import com.telenav.kivakit.core.messaging.messages.status.Problem;
 import com.telenav.kivakit.core.messaging.repeaters.RepeaterMixin;
-import com.telenav.kivakit.core.test.Tested;
+import com.telenav.kivakit.core.testing.Tested;
 import com.telenav.kivakit.interfaces.code.Code;
 import com.telenav.kivakit.interfaces.function.BooleanFunction;
 import com.telenav.kivakit.interfaces.string.StringMapper;
@@ -51,7 +51,7 @@ import static com.telenav.kivakit.core.ensure.Ensure.unsupported;
  * the operation was successful and {@link #get()} provides the value of the operation. Note that a {@link Result} is a
  * subclass of {@link Maybe}. The list of methods inherited from {@link Maybe} are duplicated here for convenience.
  *
- * <p><br/><hr/><br/></p>
+ * <hr>
  *
  * <p><b>Construction</b></p>
  *
@@ -66,7 +66,7 @@ import static com.telenav.kivakit.core.ensure.Ensure.unsupported;
  *     <li>{@link #failure(Throwable, String, Object...)} - Creates a {@link Result} with the given failure message</li>
  * </ol>
  *
- * <p><br/><hr/><br/></p>
+ * <hr>
  *
  * <p><b>Validation</b></p>
  *
@@ -77,7 +77,7 @@ import static com.telenav.kivakit.core.ensure.Ensure.unsupported;
  *     <li>{@link #messages()} - Any captured error messages</li>
  * </ul>
  *
- * <p><br/><hr/><br/></p>
+ * <hr>
  *
  * <p><b>Terminal Operations</b></p>
  *
@@ -94,7 +94,7 @@ import static com.telenav.kivakit.core.ensure.Ensure.unsupported;
  *     <li>{@link #asStream()} - Converts this value to a stream with zero or one element(s)</li>
  * </ul>
  *
- * <p><br/><hr/><br/></p>
+ * <hr>
  *
  * <p><b>Functions</b></p>
  *
@@ -108,7 +108,7 @@ import static com.telenav.kivakit.core.ensure.Ensure.unsupported;
  *     <li>{@link #map(Function)} - Applies the given function to this value</li>
  * </ul>
  *
- * <p><br/><hr/><br/></p>
+ * <hr>
  *
  * <p><b>Conditionals</b></p>
  *
@@ -119,7 +119,7 @@ import static com.telenav.kivakit.core.ensure.Ensure.unsupported;
  *     <li>{@link #or(Code)} - If a value is present, returns this value, otherwise returns the {@link Maybe} supplied by the given {@link Code}</li>
  * </ul>
  *
- * <p><br/><hr/><br/></p>
+ * <hr>
  *
  * @author jonathanl (shibo)
  * @see Maybe

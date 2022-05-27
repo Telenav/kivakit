@@ -16,6 +16,7 @@
         <version>1.5.1-SNAPSHOT</version>
         <relativePath>../../superpom</relativePath>
     </parent>
+
     <artifactId>kivakit-serialization-core</artifactId>
     <packaging>jar</packaging>
 

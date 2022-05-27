@@ -1,8 +1,8 @@
 package com.telenav.kivakit.core.time;
 
 import com.telenav.kivakit.core.language.primitive.Ints;
-import com.telenav.kivakit.core.test.NoTestRequired;
-import com.telenav.kivakit.core.test.Tested;
+import com.telenav.kivakit.core.testing.NoTestRequired;
+import com.telenav.kivakit.core.testing.Tested;
 import com.telenav.kivakit.interfaces.time.Nanoseconds;
 
 import static com.telenav.kivakit.core.ensure.Ensure.ensure;

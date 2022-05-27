@@ -39,7 +39,7 @@
         </dependency>
         <dependency>
             <groupId>com.telenav.kivakit</groupId>
-            <artifactId>kivakit-test</artifactId>
+            <artifactId>kivakit-testing</artifactId>
             <scope>test</scope>
         </dependency>
 

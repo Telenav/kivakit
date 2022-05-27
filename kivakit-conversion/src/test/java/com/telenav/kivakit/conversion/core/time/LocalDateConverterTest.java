@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.conversion.core.time;
 
-import com.telenav.kivakit.internal.test.support.CoreUnitTest;
+import com.telenav.kivakit.internal.testing.CoreUnitTest;
 import com.telenav.kivakit.core.time.LocalTime;
 import org.junit.Test;
 

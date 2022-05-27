@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.internal.tests.core.string;
 
-import com.telenav.kivakit.core.collections.list.StringList;import com.telenav.kivakit.internal.test.support.CoreUnitTest;
+import com.telenav.kivakit.core.collections.list.StringList;import com.telenav.kivakit.internal.testing.CoreUnitTest;
 import com.telenav.kivakit.core.value.count.Maximum;
 import org.junit.Test;
 

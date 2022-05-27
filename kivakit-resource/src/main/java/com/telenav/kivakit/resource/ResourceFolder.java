@@ -59,8 +59,8 @@ import static com.telenav.kivakit.resource.ResourcePath.parseResourcePath;
  *     <li>{@link #nestedFolders(Matcher)} - All matching nested folders under this folder</li>
  *     <li>{@link #oldest()} - The oldest file in this folder</li>
  *     <li>{@link #oldest(Matcher)} - The oldest matching file in this folder</li>
- *     <li>{@link #temporary(FileName)} - A temporary file in this folder with the given name</li>
- *     <li>{@link #temporary(FileName, Extension)} - A temporary file in this folder with the given name and extension</li>
+ *     <li>{@link #temporaryFile(FileName)} - A temporary file in this folder with the given name</li>
+ *     <li>{@link #temporaryFile(FileName, Extension)} - A temporary file in this folder with the given name and extension</li>
  *     <li>{@link #temporaryFolder(FileName)} - A temporary sub-folder with the given name</li>
  * </ul>
  *
@@ -338,12 +338,12 @@ public interface ResourceFolder<T extends ResourceFolder<T>> extends
         }
     }
 
-    default WritableResource temporary(FileName baseName)
+    default WritableResource temporaryFile(FileName baseName)
     {
-        return temporary(baseName, Extension.TMP);
+        return temporaryFile(baseName, Extension.TMP);
     }
 
-    WritableResource temporary(FileName baseName, Extension extension);
+    WritableResource temporaryFile(FileName baseName, Extension extension);
 
     default ResourceFolder<?> temporaryFolder(FileName baseName)
     {

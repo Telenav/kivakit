@@ -3,10 +3,9 @@
  * will refuse to compile the tests (which contains the code that is actually
  * used).
  */
-open module kivakit.core.tests
+open module kivakit.internal.tests.core
 {
     requires kivakit.core;
-    requires kivakit.test.internal;
+    requires kivakit.internal.testing;
     requires junit;
 }
-

@@ -100,7 +100,8 @@
         <module>kivakit-commandline</module>
         <module>kivakit-application</module>
         <module>kivakit-internal</module>
-        <module>kivakit-test</module>
+        <module>kivakit-testing</module>
+
     </modules>
 
 </project>

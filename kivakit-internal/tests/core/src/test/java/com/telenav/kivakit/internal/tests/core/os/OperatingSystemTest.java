@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.internal.tests.core.os;
 import com.telenav.kivakit.core.os.OperatingSystem;
-import com.telenav.kivakit.internal.test.support.CoreUnitTest;
+import com.telenav.kivakit.internal.testing.CoreUnitTest;
 import org.junit.Test;
 
 public class OperatingSystemTest extends CoreUnitTest

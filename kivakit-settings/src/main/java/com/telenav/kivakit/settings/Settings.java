@@ -252,7 +252,7 @@ public class Settings extends MemorySettingsStore implements
             for (var path : settingsFolders.split(",\\s*"))
             {
                 // and install
-                var folder = Folder.parse(this, path);
+                var folder = Folder.parseFolder(this, path);
                 if (folder != null)
                 {
                     indexAll(new ResourceFolderSettingsStore(this, folder));

@@ -16,7 +16,7 @@
         <version>1.5.1-SNAPSHOT</version>
         <relativePath>../../../superpom</relativePath>
     </parent>
-    <artifactId>kivakit-core-tests</artifactId>
+    <artifactId>kivakit-internal-tests-core</artifactId>
     <packaging>jar</packaging>
 
     <dependencies>
@@ -33,7 +33,8 @@
         </dependency>
         <dependency>
             <groupId>com.telenav.kivakit</groupId>
-            <artifactId>kivakit-test-internal</artifactId>
+            <artifactId>kivakit-internal-testing</artifactId>
+            <version>${project.version}</version>
         </dependency>
 
         <!-- Annotations -->

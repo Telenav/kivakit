@@ -29,7 +29,7 @@
         </dependency>
         <dependency>
             <groupId>com.telenav.kivakit</groupId>
-            <artifactId>kivakit-test-internal</artifactId>
+            <artifactId>kivakit-internal-testing</artifactId>
             <scope>test</scope>
         </dependency>
     </dependencies>

@@ -20,7 +20,7 @@ package com.telenav.kivakit.internal.tests.core.language;
 
 import com.telenav.kivakit.core.language.Hash;
 import com.telenav.kivakit.core.language.Objects;
-import com.telenav.kivakit.core.language.primitive.Primitives;import com.telenav.kivakit.internal.test.support.CoreUnitTest;
+import com.telenav.kivakit.core.language.primitive.Primitives;import com.telenav.kivakit.internal.testing.CoreUnitTest;
 import org.junit.Test;
 
 public class ObjectsTest extends CoreUnitTest

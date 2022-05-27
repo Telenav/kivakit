@@ -19,7 +19,7 @@
 package com.telenav.kivakit.internal.tests.resource;
 
 import com.telenav.kivakit.resource.ResourcePath;
-import com.telenav.kivakit.test.UnitTest;
+import com.telenav.kivakit.testing.UnitTest;
 import org.jetbrains.annotations.NotNull;
 import org.junit.Test;
 

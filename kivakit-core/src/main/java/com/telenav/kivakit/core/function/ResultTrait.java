@@ -8,7 +8,7 @@ import com.telenav.kivakit.interfaces.code.Code;
 /**
  * Contains methods to facilitate working with {@link Result} monads.
  *
- * <p><br/><hr/><br/></p>
+ * <hr>
  *
  * <p><b>Results</b></p>
  *
@@ -22,7 +22,7 @@ import com.telenav.kivakit.interfaces.code.Code;
  *     <li>{@link #failure(Message)} - Creates a {@link Result} with the given failure message</li>
  * </ul>
  *
- * <p><br/><hr/><br/></p>
+ * <hr>
  *
  * @author jonathanl (shibo)
  * @see Maybe

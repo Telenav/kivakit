@@ -34,7 +34,7 @@ import com.telenav.lexakai.annotations.visibility.UmlExcludeSuperTypes;
 /**
  * Handles messages through {@link #onMessage(Message)}.
  *
- * <p><br/><hr/><br/></p>
+ * <hr>
  *
  * <p><b>Listening to Broadcasters</b></p>
  *
@@ -43,7 +43,7 @@ import com.telenav.lexakai.annotations.visibility.UmlExcludeSuperTypes;
  * can be added to a broadcaster with {@link Broadcaster#addListener(Listener)}. Both methods achieve the same result.
  * </p>
  *
- * <p><br/><hr/><br/></p>
+ * <hr>
  *
  * <p><b>Convenience Methods and Logging</b></p>
  *
@@ -56,7 +56,7 @@ import com.telenav.lexakai.annotations.visibility.UmlExcludeSuperTypes;
  * <pre>
  * problem("Unable to read $", file);</pre>
  *
- * <p><br/><hr/><br/></p>
+ * <hr>
  *
  * <p><b>Repeater Chains</b></p>
  *
@@ -99,7 +99,7 @@ import com.telenav.lexakai.annotations.visibility.UmlExcludeSuperTypes;
  * &nbsp;&nbsp;&nbsp;&nbsp;<b>EmployeeLoader ==> PayrollProcessor ==> Logger</b>
  * </p>
  *
- * <p><br/><hr/><br/></p>
+ * <hr>
  *
  * @author jonathanl (shibo)
  * @see Broadcaster

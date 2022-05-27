@@ -45,7 +45,7 @@ import java.util.function.Function;
  *     <li>{@link NamedObject} - Object naming</li>
  * </ul>
  *
- * <p><br/><hr/><br/></p>
+ * <hr>
  *
  * <p><b>Packaging</b></p>
  *
@@ -59,7 +59,7 @@ import java.util.function.Function;
  *     <li>{@link #relativePackage(String)} - Returns a KivaKit {@link Package} for the given path relative to the class implementing this interface</li>
  * </ul>
  *
- * <p><br/><hr/><br/></p>
+ * <hr>
  *
  * <p><b>Registry</b></p>
  *
@@ -77,7 +77,7 @@ import java.util.function.Function;
  *     <li>{@link #registry()} - Retrieves the lookup {@link Registry} for this component</li>
  * </ul>
  *
- * <p><br/><hr/><br/></p>
+ * <hr>
  *
  * <p><b>Language</b></p>
  *
@@ -113,7 +113,7 @@ import java.util.function.Function;
  *     <li>{@link #run(Code)} - Executes the given code, capturing any messages broadcast during execution in a {@link Result} object</li>
  * </ul>
  *
- * <p><br/><hr/><br/></p>
+ * <hr>
  *
  * <p><b>Settings</b></p>
  *
@@ -134,7 +134,7 @@ import java.util.function.Function;
  *     <li>{@link #registerSettingsIn(SettingsStore)} - Adds settings objects from the given settings store</li>
  * </ul>
  *
- * <p><br/><hr/><br/></p>
+ * <hr>
  *
  * <p><b>Repeater</b></p>
  *
@@ -150,7 +150,7 @@ import java.util.function.Function;
  *     <li>{@link #trace(String, Object...)} - Broadcasts a {@link Trace} message if {@link #isDebugOn()} is true for this component</li>
  * </ul>
  *
- * <p><br/><hr/><br/></p>
+ * <hr>
  *
  * @author jonathanl (shibo)
  * @see Repeater

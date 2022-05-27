@@ -21,6 +21,7 @@ package com.telenav.kivakit.interfaces.code;
 import com.telenav.kivakit.interfaces.collection.NextValue;
 import com.telenav.kivakit.interfaces.collection.Sized;
 import com.telenav.kivakit.interfaces.lexakai.DiagramCode;
+import com.telenav.kivakit.interfaces.numeric.IntegerNumeric;
 import com.telenav.kivakit.interfaces.numeric.Maximizable;
 import com.telenav.kivakit.interfaces.numeric.Minimizable;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
@@ -48,10 +49,7 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
  * @see LoopBody
  */
 @UmlClassDiagram(diagram = DiagramCode.class)
-public interface FilteredLoopBody<Value extends Minimizable<Value>
-        & Maximizable<Value>
-        & NextValue<Value>
-        & Sized>
+public interface FilteredLoopBody<Value extends IntegerNumeric<Value>>
 {
     /**
      * Used by forEach() to determine which values should be counted, and which should not.
@@ -80,7 +78,7 @@ public interface FilteredLoopBody<Value extends Minimizable<Value>
     {
         // Loop through values from the minimum until count values are accepted,
         long accepted = 0;
-        for (Value value = minimum; value != null && value.size() < exclusiveMaximum.size() && accepted < count; value = value.next())
+        for (Value value = minimum; value != null && value.asLong() < exclusiveMaximum.asLong() && accepted < count; value = value.next())
         {
             // call the body, and if it accepted the value,
             if (at(value) == FilterAction.ACCEPT)

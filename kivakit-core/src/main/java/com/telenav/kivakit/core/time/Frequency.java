@@ -21,8 +21,8 @@ package com.telenav.kivakit.core.time;
 import com.telenav.kivakit.core.lexakai.DiagramTime;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.string.Strip;
-import com.telenav.kivakit.core.test.NoTestRequired;
-import com.telenav.kivakit.core.test.Tested;
+import com.telenav.kivakit.core.testing.NoTestRequired;
+import com.telenav.kivakit.core.testing.Tested;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 

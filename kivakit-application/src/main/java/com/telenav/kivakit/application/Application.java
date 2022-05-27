@@ -128,7 +128,7 @@ import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
  *     <li>{@link NamedObject} - Provides component name</li>
  * </ul>
  *
- * <p><br/><hr/><br/></p>
+ * <hr>
  *
  * <p><b>Creating an Application</b></p>
  *
@@ -147,7 +147,7 @@ import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
  *     [...]
  * }</pre>
  *
- * <p><br/><hr/><br/></p>
+ * <hr>
  *
  * <p><b>Project Initialization</b></p>
  *
@@ -156,7 +156,7 @@ import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
  * ensure that all of the application's transitively dependent project(s) are initialized. See {@link Project} for details.
  * </p>
  *
- * <p><br/><hr/><br/></p>
+ * <hr>
  *
  * <p><b>Application Metadata</b></p>
  *
@@ -170,7 +170,7 @@ import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
  *     <li>{@link #identifier()} - A unique identifier for the application class</li>
  * </ul>
  *
- * <p><br/><hr/><br/></p>
+ * <hr>
  *
  * <p><b>Application Environment</b></p>
  *
@@ -183,7 +183,7 @@ import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
  *     <li>{@link #localizedProperties(Locale)} - Properties that are specific to the {@link Locale}</li>
  * </ul>
  *
- * <p><br/><hr/><br/></p>
+ * <hr>
  *
  * <p><b>Execution</b></p>
  *
@@ -215,7 +215,7 @@ import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
  * display the given message and show command line usage before exiting the application.
  * </p>
  *
- * <p><br/><hr/><br/></p>
+ * <hr>
  *
  * <p><b>Command Line Parsing</b></p>
  *
@@ -246,7 +246,7 @@ import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
  *     <li>{@link #argument(int, ArgumentParser)} - Gets the nth argument using the given argument parser</li>
  * </ul>
  *
- * <p><br/><hr/><br/></p>
+ * <hr>
  *
  * <p><b>Messaging and Logging</b></p>
  *
@@ -254,7 +254,7 @@ import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
  * This class extends {@link BaseRepeater} and has a {@link Logger} that listens for messages and logs them.
  * </p>
  *
- * <p><br/><hr/><br/></p>
+ * <hr>
  *
  * @author jonathanl (shibo)
  * @see BaseRepeater

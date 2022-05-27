@@ -9,14 +9,14 @@ import com.telenav.kivakit.interfaces.factory.MapFactory;
  * @param <Value> The integer type
  * @author jonathanl (shibo)
  */
-public interface IntegerNumeric<Value> extends
+public interface IntegerNumeric<Value extends Quantizable> extends
         Arithmetic<Value>,
         Maximizable<Value>,
         Minimizable<Value>,
         NextValue<Value>,
+        QuantumComparable<Value>,
         Castable,
-        MapFactory<Long, Value>,
-        Quantizable
+        MapFactory<Long, Value>
 {
     default Value decremented()
     {

@@ -2,7 +2,7 @@ package com.telenav.kivakit.internal.tests.core.function;
 
 import com.telenav.kivakit.core.function.Maybe;
 import com.telenav.kivakit.core.language.primitive.Ints;
-import com.telenav.kivakit.internal.test.support.CoreUnitTest;
+import com.telenav.kivakit.internal.testing.CoreUnitTest;
 import com.telenav.kivakit.core.value.mutable.MutableValue;
 import org.junit.Test;
 

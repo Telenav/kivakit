@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.internal.tests.core.path;
 import com.telenav.kivakit.core.path.StringPath;
-import com.telenav.kivakit.internal.test.support.CoreUnitTest;
+import com.telenav.kivakit.internal.testing.CoreUnitTest;
 import org.junit.Test;
 
 @SuppressWarnings("SameParameterValue")

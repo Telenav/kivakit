@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.internal.tests.core.string;
 import com.telenav.kivakit.core.string.IndentingStringBuilder;
-import com.telenav.kivakit.internal.test.support.CoreUnitTest;
+import com.telenav.kivakit.internal.testing.CoreUnitTest;
 import org.junit.Test;
 
 import static com.telenav.kivakit.core.string.IndentingStringBuilder.Indentation;

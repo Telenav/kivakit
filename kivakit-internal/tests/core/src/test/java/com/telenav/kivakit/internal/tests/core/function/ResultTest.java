@@ -2,7 +2,7 @@ package com.telenav.kivakit.internal.tests.core.function;
 
 import com.telenav.kivakit.core.function.Result;
 import com.telenav.kivakit.core.function.ResultTrait;
-import com.telenav.kivakit.core.messaging.repeaters.BaseRepeater;import com.telenav.kivakit.internal.test.support.CoreUnitTest;
+import com.telenav.kivakit.core.messaging.repeaters.BaseRepeater;import com.telenav.kivakit.internal.testing.CoreUnitTest;
 import com.telenav.kivakit.core.time.Time;
 import com.telenav.kivakit.interfaces.code.Code;
 import org.junit.Test;

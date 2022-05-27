@@ -135,7 +135,7 @@
         <maven-antrun-plugin.version>3.0.0</maven-antrun-plugin.version>
         <maven-compiler-plugin.version>3.10.1</maven-compiler-plugin.version>
         <maven-gpg-plugin.version>1.6</maven-gpg-plugin.version>
-        <maven-jar-plugin.version>2.4</maven-jar-plugin.version>
+        <maven-jar-plugin.version>3.2.2</maven-jar-plugin.version>
         <maven-javadoc-plugin.version>3.3.1</maven-javadoc-plugin.version>
         <maven-resources-plugin.version>2.7</maven-resources-plugin.version>
         <maven-shade-plugin.version>3.2.4</maven-shade-plugin.version>
@@ -964,7 +964,7 @@
             </dependency>
             <dependency>
                 <groupId>com.telenav.kivakit</groupId>
-                <artifactId>kivakit-test-internal</artifactId>
+                <artifactId>kivakit-internal-testing</artifactId>
                 <version>${kivakit.version}</version>
             </dependency>            
             <dependency>
@@ -974,7 +974,7 @@
             </dependency>            
             <dependency>
                 <groupId>com.telenav.kivakit</groupId>
-                <artifactId>kivakit-test</artifactId>
+                <artifactId>kivakit-testing</artifactId>
                 <version>${kivakit.version}</version>
             </dependency>            
             <dependency>
@@ -1080,11 +1080,6 @@
             <dependency>
                 <groupId>com.telenav.kivakit</groupId>
                 <artifactId>kivakit-serialization-kryo</artifactId>
-                <version>${kivakit.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.telenav.kivakit</groupId>
-                <artifactId>kivakit-kryo-tests</artifactId>
                 <version>${kivakit.version}</version>
             </dependency>
             <dependency>

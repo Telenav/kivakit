@@ -23,7 +23,7 @@ import com.telenav.kivakit.core.thread.KivaKitThread;
 import com.telenav.kivakit.core.time.Time;
 import com.telenav.kivakit.core.value.mutable.ConcurrentMutableValue;
 import com.telenav.kivakit.core.value.mutable.MutableValue;
-import com.telenav.kivakit.internal.test.support.CoreUnitTest;
+import com.telenav.kivakit.internal.testing.CoreUnitTest;
 import org.junit.Test;
 
 import static com.telenav.kivakit.core.thread.KivaKitThread.State.EXITED;

@@ -20,8 +20,8 @@ package com.telenav.kivakit.core.time;
 
 import com.telenav.kivakit.core.lexakai.DiagramTime;
 import com.telenav.kivakit.core.messaging.Listener;
-import com.telenav.kivakit.core.test.NoTestRequired;
-import com.telenav.kivakit.core.test.Tested;
+import com.telenav.kivakit.core.testing.NoTestRequired;
+import com.telenav.kivakit.core.testing.Tested;
 import com.telenav.kivakit.core.value.level.Percent;
 import com.telenav.kivakit.interfaces.time.LengthOfTime;
 import com.telenav.kivakit.interfaces.time.Nanoseconds;
@@ -137,7 +137,7 @@ public class Duration implements LengthOfTime<Duration>
 
     /** Pattern to match strings */
     private static final Pattern PATTERN = Pattern.compile(
-            "(?x) (?<quantity> [0-9]+ ([.,] [0-9]+)?) "
+            "(?x) (?<quantity> \\d+ ([.,] \\d+)?) "
                     + "(\\s+ | - | _)?"
                     + "(?<units> d | h | m | s | ms | us | ns | ((nanosecond | microsecond | millisecond | second | minute | hour | day | week | year) s?))", CASE_INSENSITIVE);
 
