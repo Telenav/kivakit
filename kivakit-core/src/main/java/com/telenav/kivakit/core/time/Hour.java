@@ -99,6 +99,10 @@ public class Hour extends BaseTime<Hour>
         return hourOfDay(hour, PM);
     }
 
+    protected Hour()
+    {
+    }
+
     @Tested
     protected Hour(int militaryHour)
     {

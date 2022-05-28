@@ -15,8 +15,8 @@ import static com.telenav.kivakit.core.time.DayOfWeek.isoDayOfWeek;
 import static com.telenav.kivakit.core.time.Hour.nanosecondsPerHour;
 
 /**
- * Represents an hour of the week, for example Thursday at 1pm. This class stores its count value in the fields {@link
- * #dayOfWeek()} and {@link #hourOfDay()}.
+ * Represents an hour of the week, for example Thursday at 1pm. This class stores its count value in the fields
+ * {@link #dayOfWeek()} and {@link #hourOfDay()}.
  *
  * @author jonathanl (shibo)
  */

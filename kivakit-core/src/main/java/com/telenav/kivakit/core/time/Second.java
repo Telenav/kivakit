@@ -23,6 +23,10 @@ public class Second extends BaseTime<Second>
         return new Second(second);
     }
 
+    protected Second()
+    {
+    }
+
     protected Second(int second)
     {
         super(nanosecondsPerSecond.times(second));

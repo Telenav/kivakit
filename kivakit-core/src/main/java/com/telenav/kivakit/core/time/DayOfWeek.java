@@ -118,6 +118,10 @@ public class DayOfWeek extends BaseTime<DayOfWeek>
         return isoDayOfWeek(day - 1);
     }
 
+    protected DayOfWeek()
+    {
+    }
+
     @NoTestRequired
     protected DayOfWeek(int day)
     {

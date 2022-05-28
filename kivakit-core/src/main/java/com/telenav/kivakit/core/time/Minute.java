@@ -24,6 +24,10 @@ public class Minute extends BaseTime<Minute>
         return new Minute(minute);
     }
 
+    protected Minute()
+    {
+    }
+
     protected Minute(int minute)
     {
         super(nanosecondsPerMinute.times(minute));
