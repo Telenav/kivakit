@@ -389,7 +389,7 @@ public class File extends BaseWritableResource implements FileSystemObject
     @Override
     public ObjectSet<Can> can()
     {
-        return objectSet(Can.RENAME);
+        return objectSet(Can.DELETE, Can.RENAME);
     }
 
     /**

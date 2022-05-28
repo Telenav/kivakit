@@ -105,7 +105,11 @@ public class Day extends BaseTime<Day>
     }
 
     /** The type of day this is */
-    private final Type type;
+    private Type type;
+
+    protected Day()
+    {
+    }
 
     /**
      * @param type The type of day
