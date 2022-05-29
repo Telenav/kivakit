@@ -1,25 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- ///////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
-<!--  -->
-<!-- © 2011-2022 Telenav, Inc. -->
-<!-- Licensed under Apache License, Version 2.0 -->
-<!--  -->
-<!-- ///////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
-<project
-         xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<!--
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//
+// © 2011-2022 Telenav, Inc.
+// Licensed under Apache License, Version 2.0
+//
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+-->
+
+<project xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance"
+         xmlns = "http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation = "http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>com.telenav.kivakit</groupId>
-        <artifactId>kivakit</artifactId>
+        <groupId>com.telenav</groupId>
+        <artifactId>telenav-superpom</artifactId>
         <version>1.5.1-SNAPSHOT</version>
-        <relativePath>../../pom.xml</relativePath>
     </parent>
+
+    <groupId>com.telenav.kivakit</groupId>
     <artifactId>kivakit-network-email</artifactId>
+    <version>1.5.1-SNAPSHOT</version>
+
     <dependencies>
-                <!-- KivaKit -->
+
+        <!-- KivaKit -->
+
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>kivakit-settings</artifactId>
@@ -28,7 +36,9 @@
             <groupId>${project.groupId}</groupId>
             <artifactId>kivakit-network-core</artifactId>
         </dependency>
+
         <!-- Mail -->
+
         <dependency>
             <groupId>com.sun.mail</groupId>
             <artifactId>javax.mail</artifactId>
@@ -37,10 +47,14 @@
             <groupId>com.sun.activation</groupId>
             <artifactId>javax.activation</artifactId>
         </dependency>
+
+        <!-- Testing -->
+
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>kivakit-testing</artifactId>
             <scope>test</scope>
         </dependency>
+
     </dependencies>
 </project>
