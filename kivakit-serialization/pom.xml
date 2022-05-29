@@ -15,7 +15,7 @@
         <module>properties</module>
         <module>kryo</module>
         <module>gson</module>
-        <module>kivakit-serialization-kryo-test</module>
+        <module>kryo-testing</module>
     </modules>
 
 </project>

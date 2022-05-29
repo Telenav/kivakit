@@ -21,7 +21,7 @@
     </parent>
 
     <groupId>com.telenav.kivakit</groupId>
-    <artifactId>kivakit-serialization-kryo-test</artifactId>
+    <artifactId>kivakit-serialization-kryo-testing</artifactId>
     <version>1.5.1-SNAPSHOT</version>
 
     <dependencies>
