@@ -21,7 +21,6 @@
         <relativePath>../pom.xml</relativePath>
     </parent>
 
-    <groupId>com.telenav.kivakit</groupId>
     <artifactId>kivakit-extraction</artifactId>
     <version>1.5.1-SNAPSHOT</version>
 
