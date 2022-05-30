@@ -1,3 +1,4 @@
+*.orig
 **/target/
 **/tools/downloads/**
 tools/applications/**
