@@ -22,3 +22,5 @@ setup.properties
 **/venv/
 /venv/**
 /kivakit-internal/tests/kivakit-kyro-serialization-tests/nbproject/
+nbproject/
+
