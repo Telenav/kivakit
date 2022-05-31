@@ -25,8 +25,10 @@ jobs:
 
     steps:
 
-      - name: Checkout
+      - name: Checkout kivakit-build
         uses: actions/checkout@v3
+        with:
+          - repository: kivakit-build
 
       - name: Setup Java
         uses: actions/setup-java@v3
@@ -34,5 +36,8 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
 
+      - name: Setup repositories
+        run: cd kivakit-build && ./setup.sh
+
       - name: Build
-        run: mvn clean install
+        run: cd kivakit-build && mvn clean install
