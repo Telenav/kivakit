@@ -4,7 +4,7 @@ open module kivakit.serialization.gson
     requires transitive kivakit.conversion;
 
     // JSON
-    requires gson;
+    requires com.google.gson;
     requires kivakit.core;
     requires kivakit.resource;
 
