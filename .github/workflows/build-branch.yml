@@ -38,7 +38,7 @@ jobs:
           distribution: 'temurin'
 
       - name: Setup repositories
-        run: cd kivakit-build && ./setup.sh
+        run: echo "Setting up" && cd kivakit-build && ./setup.sh $GITHUB_REF_NAME
 
       - name: Build
-        run: cd kivakit-build && mvn clean install
+        run: echo "Building" && cd kivakit-build && mvn clean install
