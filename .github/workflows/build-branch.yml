@@ -28,7 +28,7 @@ jobs:
       - name: Checkout kivakit-build
         uses: actions/checkout@v3
         with:
-          repository: kivakit-build
+          repository: Telenav/kivakit-build
           path: kivakit-build
 
       - name: Setup Java
