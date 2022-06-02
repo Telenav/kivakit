@@ -491,7 +491,7 @@ system_variable()
 {
     variable=$1
     value=$2
-    temporary="${TMPDIR%/}/export.txt"
+    temporary="${TMPDIR}export.txt"
 
     echo "export $variable=\"$value\"" >"$temporary"
     # shellcheck disable=SC1090
