@@ -25,11 +25,11 @@ jobs:
 
     steps:
 
-      - name: Checkout kivakit-build
+      - name: Checkout telenav-build
         uses: actions/checkout@v3
         with:
-          repository: Telenav/kivakit-build
-          path: kivakit-build
+          repository: Telenav/telenav-build
+          path: telenav-build
 
       - name: Setup Java
         uses: actions/setup-java@v3
@@ -38,7 +38,7 @@ jobs:
           distribution: 'temurin'
 
       - name: Setup repositories
-        run: echo "Setting up" && cd kivakit-build && ./setup.sh $GITHUB_REF_NAME
+        run: echo "Setting up" && cd telenav-build && ./setup.sh $GITHUB_REF_NAME
 
       - name: Build
-        run: echo "Building" && cd kivakit-build && mvn clean install
+        run: echo "Building" && cd telenav-build && mvn clean install
