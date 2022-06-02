@@ -38,7 +38,7 @@ jobs:
           distribution: 'temurin'
 
       - name: Setup repositories
-        run: echo "Setting up" && cd telenav-build && ./setup.sh $GITHUB_REF_NAME
+        run: echo "Setting up" && cd telenav-build && ./setup.sh $GITHUB_REF_NAME ci-build
 
       - name: Build
         run: echo "Building" && cd telenav-build && mvn clean install
