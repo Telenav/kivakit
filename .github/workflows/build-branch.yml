@@ -37,5 +37,10 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
 
+      - name: Set up Maven
+        uses: stCarolas/setup-maven@v4.3
+        with:
+          maven-version: 3.8.5
+
       - name: Build
         run: cd telenav-build && ./setup.sh $GITHUB_REF_NAME ci-build
