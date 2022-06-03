@@ -31,14 +31,11 @@ jobs:
           repository: Telenav/telenav-build
           path: telenav-build
 
-      - name: Setup Java
+      - name: Set up Java
         uses: actions/setup-java@v3
         with:
           java-version: '17'
           distribution: 'temurin'
 
-      - name: Setup repositories
-        run: echo "Setting up" && cd telenav-build && ./setup.sh $GITHUB_REF_NAME ci-build
-
       - name: Build
-        run: echo "Building" && cd telenav-build && mvn clean install
+        run: cd telenav-build && ./setup.sh $GITHUB_REF_NAME ci-build
