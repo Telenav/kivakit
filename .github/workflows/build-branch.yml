@@ -30,7 +30,7 @@ jobs:
         with:
           repository: Telenav/telenav-build
           path: telenav-build
-          branch: $GITHUB_REF_NAME
+          ref: $GITHUB_REF_NAME
 
       - name: Set up Java
         uses: actions/setup-java@v3
