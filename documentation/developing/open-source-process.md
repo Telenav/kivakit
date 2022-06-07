@@ -1,6 +1,6 @@
-## KivaKit - Open Source Process &nbsp; <img src="https://www.kivakit.org/images/world-32.png" srcset="https://www.kivakit.org/images/world-32-2x.png 2x"/>
+## KivaKit - Open Source Process &nbsp; <img src="https://telenav.github.io/telenav-assets/images/iconsworld-32.png" srcset="https://telenav.github.io/telenav-assets/images/iconsworld-32-2x.png 2x"/>
 
-### Overview &nbsp; <img src="https://www.kivakit.org/images/map-32.png" srcset="https://www.kivakit.org/images/map-32-2x.png 2x"/>
+### Overview &nbsp; <img src="https://telenav.github.io/telenav-assets/images/iconsmap-32.png" srcset="https://telenav.github.io/telenav-assets/images/iconsmap-32-2x.png 2x"/>
 
 KivaKit is open source software (OSS), and is distributed under [Apache License, Version 2.0](../../LICENSE)</sub>. As an open source project, you are free to use KivaKit and contribute to it. This guide explains how KivaKit is organized and maintained as an OSS project.
 
@@ -12,9 +12,9 @@ Please keep the following in mind as you work on KivaKit or any open source proj
 
 3. Always show respect and give thanks for work that other people do. Take that attitude with you when evangelizing your favorite open source project.
 
-<img src="https://www.kivakit.org/images/horizontal-line-128.png" srcset="https://www.kivakit.org/images/horizontal-line-128-2x.png 2x"/>
+<img src="https://telenav.github.io/telenav-assets/images/iconshorizontal-line-128.png" srcset="https://telenav.github.io/telenav-assets/png/separators/horizontal-line-128-2x.png 2x"/>
 
-### Setup &nbsp; <img src="https://www.kivakit.org/images/box-32.png" srcset="https://www.kivakit.org/images/box-32-2x.png 2x"/>
+### Setup &nbsp; <img src="https://telenav.github.io/telenav-assets/images/iconsbox-32.png" srcset="https://telenav.github.io/telenav-assets/images/iconsbox-32-2x.png 2x"/>
 
 This section describes the OSS setup requirements for users, developers and administrators.
 
@@ -47,9 +47,9 @@ Project administrators require some additional setup to publish snapshots and re
    *Sonatype [Open Source Software Repository Hosting](https://s01.oss.sonatype.org/)* (OSSRH)
    service, is required to inspect snapshots and builds that are staged for deployment to *Maven Central*.
 
-<img src="https://www.kivakit.org/images/horizontal-line-128.png" srcset="https://www.kivakit.org/images/horizontal-line-128-2x.png 2x"/>
+<img src="https://telenav.github.io/telenav-assets/images/iconshorizontal-line-128.png" srcset="https://telenav.github.io/telenav-assets/png/separators/horizontal-line-128-2x.png 2x"/>
 
-### Publishing Requirements &nbsp; <img src="https://www.kivakit.org/images/books-32.png" srcset="https://www.kivakit.org/images/books-32-2x.png 2x"/>
+### Publishing Requirements &nbsp; <img src="https://telenav.github.io/telenav-assets/images/iconsbooks-32.png" srcset="https://telenav.github.io/telenav-assets/images/iconsbooks-32-2x.png 2x"/>
 
 OSSRH and *Maven Central* have rigorous requirements for publishing artifacts. A new organization must claim a namespace (group id) on *Maven Central*, and artifacts that are published there must adhere to the requirements described below under in section entitled *Publishing a New Project*.
 
@@ -119,7 +119,7 @@ The artifacts in a staged build (or any build) should look like this:
 ![](graphics/staging-repository.png)
 
 
-<img src="https://www.kivakit.org/images/horizontal-line-128.png" srcset="https://www.kivakit.org/images/horizontal-line-128-2x.png 2x"/>
+<img src="https://telenav.github.io/telenav-assets/images/iconshorizontal-line-128.png" srcset="https://telenav.github.io/telenav-assets/png/separators/horizontal-line-128-2x.png 2x"/>
 
 ### GitHub Continuous Integration (CI) Builds
 
@@ -151,8 +151,3 @@ The scripts that perform these various functions are available in the *.github/w
 | build.yml | Performs an ordinary build |
 | publish-snapshot.yml | Builds and publishes to OSSRH snapshot repository |
 | publish-release | Builds and publishes to the OSSRH release staging repository |
-
-
-
-
-

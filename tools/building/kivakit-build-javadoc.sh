@@ -7,6 +7,10 @@
 #
 #///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+source kivakit-library-functions.sh
+
+KIVAKIT_VERSION=$(project_version "$KIVAKIT_HOME")
+
 OUTPUT_FOLDER="$KIVAKIT_ASSETS_HOME"/docs/"$KIVAKIT_VERSION"/javadoc/
 
 rm -rf "$OUTPUT_FOLDER"

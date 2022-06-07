@@ -15,6 +15,6 @@ kivakit_build_all $@
 
 if [ -n "$BUILD_DOCUMENTATION" ]; then
 
-    bash kivakit-build-documentation.sh
+    bash telenav-build-documentation.sh
 
 fi

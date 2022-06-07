@@ -4,11 +4,11 @@
 
 [//]: # (end-user-text)
 
-# kivakit-mixins &nbsp;&nbsp; <img src="https://www.kivakit.org/images/puzzle-32.png" srcset="https://www.kivakit.org/images/puzzle-32-2x.png 2x"/>
+# kivakit-mixins &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/puzzle-32.png" srcset="https://telenav.github.io/telenav-assets/images/icons/puzzle-32-2x.png 2x"/>
 
 This module provides stateful traits for Java.
 
-<img src="https://www.kivakit.org/images/horizontal-line-512.png" srcset="https://www.kivakit.org/images/horizontal-line-512-2x.png 2x"/>
+<img src="https://telenav.github.io/telenav-assets/images/iconshorizontal-line-512.png" srcset="https://telenav.github.io/telenav-assets/png/separators/horizontal-line-512-2x.png 2x"/>
 
 ### Index
 
@@ -16,21 +16,21 @@ This module provides stateful traits for Java.
 
 [**Dependencies**](#dependencies) | [**Class Diagrams**](#class-diagrams) | [**Package Diagrams**](#package-diagrams) | [**Javadoc**](#javadoc)
 
-<img src="https://www.kivakit.org/images/horizontal-line-512.png" srcset="https://www.kivakit.org/images/horizontal-line-512-2x.png 2x"/>
+<img src="https://telenav.github.io/telenav-assets/images/iconshorizontal-line-512.png" srcset="https://telenav.github.io/telenav-assets/png/separators/horizontal-line-512-2x.png 2x"/>
 
-### Dependencies <a name="dependencies"></a> &nbsp;&nbsp; <img src="https://www.kivakit.org/images/dependencies-32.png" srcset="https://www.kivakit.org/images/dependencies-32-2x.png 2x"/>
+### Dependencies <a name="dependencies"></a> &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/iconsdependencies-32.png" srcset="https://telenav.github.io/telenav-assets/images/iconsdependencies-32-2x.png 2x"/>
 
-[*Dependency Diagram*](https://www.kivakit.org/1.5.0/lexakai/kivakit/kivakit-mixins/documentation/diagrams/dependencies.svg)
+[*Dependency Diagram*](https://www.kivakit.org/1.5.1-SNAPSHOT/lexakai/kivakit/kivakit-mixins/documentation/diagrams/dependencies.svg)
 
 #### Maven Dependency
 
     <dependency>
         <groupId>com.telenav.kivakit</groupId>
         <artifactId>kivakit-mixins</artifactId>
-        <version>1.5.0</version>
+        <version>1.5.1-SNAPSHOT</version>
     </dependency>
 
-<img src="https://www.kivakit.org/images/horizontal-line-128.png" srcset="https://www.kivakit.org/images/horizontal-line-128-2x.png 2x"/>
+<img src="https://telenav.github.io/telenav-assets/images/iconshorizontal-line-128.png" srcset="https://telenav.github.io/telenav-assets/png/separators/horizontal-line-128-2x.png 2x"/>
 
 [//]: # (start-user-text)
 
@@ -38,37 +38,37 @@ This module provides stateful traits for Java.
 
 [//]: # (end-user-text)
 
-<img src="https://www.kivakit.org/images/horizontal-line-128.png" srcset="https://www.kivakit.org/images/horizontal-line-128-2x.png 2x"/>
+<img src="https://telenav.github.io/telenav-assets/images/iconshorizontal-line-128.png" srcset="https://telenav.github.io/telenav-assets/png/separators/horizontal-line-128-2x.png 2x"/>
 
-### Class Diagrams <a name="class-diagrams"></a> &nbsp; &nbsp; <img src="https://www.kivakit.org/images/diagram-40.png" srcset="https://www.kivakit.org/images/diagram-40-2x.png 2x"/>
+### Class Diagrams <a name="class-diagrams"></a> &nbsp; &nbsp; <img src="https://telenav.github.io/telenav-assets/images/iconsdiagram-40.png" srcset="https://telenav.github.io/telenav-assets/images/iconsdiagram-40-2x.png 2x"/>
 
-[*Mixins*](https://www.kivakit.org/1.5.0/lexakai/kivakit/kivakit-mixins/documentation/diagrams/diagram-mixin.svg)
+[*Mixins*](https://www.kivakit.org/1.5.1-SNAPSHOT/lexakai/kivakit/kivakit-mixins/documentation/diagrams/diagram-mixin.svg)
 
-<img src="https://www.kivakit.org/images/horizontal-line-128.png" srcset="https://www.kivakit.org/images/horizontal-line-128-2x.png 2x"/>
+<img src="https://telenav.github.io/telenav-assets/images/iconshorizontal-line-128.png" srcset="https://telenav.github.io/telenav-assets/png/separators/horizontal-line-128-2x.png 2x"/>
 
-### Package Diagrams <a name="package-diagrams"></a> &nbsp;&nbsp; <img src="https://www.kivakit.org/images/box-32.png" srcset="https://www.kivakit.org/images/box-32-2x.png 2x"/>
+### Package Diagrams <a name="package-diagrams"></a> &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/iconsbox-32.png" srcset="https://telenav.github.io/telenav-assets/images/iconsbox-32-2x.png 2x"/>
 
-[*com.telenav.kivakit.mixins*](https://www.kivakit.org/1.5.0/lexakai/kivakit/kivakit-mixins/documentation/diagrams/com.telenav.kivakit.mixins.svg)  
-[*com.telenav.kivakit.mixins.lexakai*](https://www.kivakit.org/1.5.0/lexakai/kivakit/kivakit-mixins/documentation/diagrams/com.telenav.kivakit.mixins.lexakai.svg)
+[*com.telenav.kivakit.mixins*](https://www.kivakit.org/1.5.1-SNAPSHOT/lexakai/kivakit/kivakit-mixins/documentation/diagrams/com.telenav.kivakit.mixins.svg)  
+[*com.telenav.kivakit.mixins.lexakai*](https://www.kivakit.org/1.5.1-SNAPSHOT/lexakai/kivakit/kivakit-mixins/documentation/diagrams/com.telenav.kivakit.mixins.lexakai.svg)
 
-<img src="https://www.kivakit.org/images/horizontal-line-128.png" srcset="https://www.kivakit.org/images/horizontal-line-128-2x.png 2x"/>
+<img src="https://telenav.github.io/telenav-assets/images/iconshorizontal-line-128.png" srcset="https://telenav.github.io/telenav-assets/png/separators/horizontal-line-128-2x.png 2x"/>
 
-### Javadoc <a name="javadoc"></a> &nbsp;&nbsp; <img src="https://www.kivakit.org/images/books-32.png" srcset="https://www.kivakit.org/images/books-32-2x.png 2x"/>
+### Javadoc <a name="javadoc"></a> &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/iconsbooks-32.png" srcset="https://telenav.github.io/telenav-assets/images/iconsbooks-32-2x.png 2x"/>
 
 Javadoc coverage for this project is 75.0%.  
   
-&nbsp; &nbsp; <img src="https://www.kivakit.org/images/meter-80-96.png" srcset="https://www.kivakit.org/images/meter-80-96-2x.png 2x"/>
+&nbsp; &nbsp; <img src="https://telenav.github.io/telenav-assets/meter-80-96.png" srcset="https://telenav.github.io/telenav-assets/meter-80-96-2x.png 2x"/>
 
 
 
 
 | Class | Documentation Sections |
 |---|---|
-| [*AttributesMixin*](https://www.kivakit.org/1.5.0/javadoc/kivakit/kivakit.mixins/com/telenav/kivakit/mixins/AttributesMixin.html) |  |  
-| [*DiagramMixin*](https://www.kivakit.org/1.5.0/javadoc/kivakit/kivakit.mixins/com/telenav/kivakit/mixins/lexakai/DiagramMixin.html) |  |  
-| [*Mixin*](https://www.kivakit.org/1.5.0/javadoc/kivakit/kivakit.mixins/com/telenav/kivakit/mixins/Mixin.html) | Performance Note |  
-| [*Mixins*](https://www.kivakit.org/1.5.0/javadoc/kivakit/kivakit.mixins/com/telenav/kivakit/mixins/Mixins.html) |  |  
-| [*Mixins.MixinKey*](https://www.kivakit.org/1.5.0/javadoc/kivakit/kivakit.mixins/com/telenav/kivakit/mixins/Mixins.MixinKey.html) |  |  
+| [*AttributesMixin*](https://www.kivakit.org/1.5.1-SNAPSHOT/javadoc/kivakit/kivakit.mixins///////////////////////////////////////////.html) |  |  
+| [*DiagramMixin*](https://www.kivakit.org/1.5.1-SNAPSHOT/javadoc/kivakit/kivakit.mixins////////////////////////////////////////////////.html) |  |  
+| [*Mixin*](https://www.kivakit.org/1.5.1-SNAPSHOT/javadoc/kivakit/kivakit.mixins/////////////////////////////////.html) | Performance Note |  
+| [*Mixins*](https://www.kivakit.org/1.5.1-SNAPSHOT/javadoc/kivakit/kivakit.mixins//////////////////////////////////.html) |  |  
+| [*Mixins.MixinKey*](https://www.kivakit.org/1.5.1-SNAPSHOT/javadoc/kivakit/kivakit.mixins///////////////////////////////////////////.html) |  |  
 
 [//]: # (start-user-text)
 
@@ -76,8 +76,7 @@ Javadoc coverage for this project is 75.0%.
 
 [//]: # (end-user-text)
 
-<img src="https://www.kivakit.org/images/horizontal-line-512.png" srcset="https://www.kivakit.org/images/horizontal-line-512-2x.png 2x"/>
+<img src="https://telenav.github.io/telenav-assets/images/iconshorizontal-line-512.png" srcset="https://telenav.github.io/telenav-assets/png/separators/horizontal-line-512-2x.png 2x"/>
 
 <sub>Copyright &#169; 2011-2021 [Telenav](https://telenav.com), Inc. Distributed under [Apache License, Version 2.0](LICENSE)</sub>  
 <sub>This documentation was generated by [Lexakai](https://lexakai.org). UML diagrams courtesy of [PlantUML](https://plantuml.com).</sub>
-

@@ -62,7 +62,7 @@ import static com.telenav.kivakit.resource.packages.PackageResource.packageResou
  * <ul>
  *     <li>{@link #create()} - Creates an empty property map</li>
  *     <li>{@link #propertyMap(VariableMap)} - Creates a property map from the given variable map</li>
- *     <li>{@link #load(Resource)} - Loads a property map from the given resource</li>
+ *     <li>{@link #load(Listener, Resource)} - Loads a property map from the given resource</li>
  *     <li>{@link #load(Listener, InputStream)} - Loads property map from the given input stream</li>
  *     <li>{@link #load(Listener, ResourceFolder, String)} - Loads property map from the given package path and relative path</li>
  *     <li>{@link #localized(Listener, PackagePath, Locale)} - Loads a property map from the given package with a relative path
@@ -116,18 +116,18 @@ public class PropertyMap extends VariableMap<String>
 
     public static PropertyMap load(Listener listener, InputStream input)
     {
-        return load(listener.listenTo(new InputResource(input)));
+        return load(listener, listener.listenTo(new InputResource(input)));
     }
 
     public static PropertyMap load(Listener listener, ResourceFolder<?> folder, String resourcePath)
     {
-        return load(listener.listenTo(folder.resource(resourcePath)));
+        return load(listener, listener.listenTo(folder.resource(resourcePath)));
     }
 
     /**
      * @return Loads the given .properties resource, interpolating system variables into each value
      */
-    public static PropertyMap load(Resource resource)
+    public static PropertyMap load(Listener listener, Resource resource)
     {
         var properties = new PropertyMap();
         var linePattern = Pattern.compile("(?<key>[^=]*?)\\s*=\\s*(?<value>[^=]*)");
@@ -146,7 +146,7 @@ public class PropertyMap extends VariableMap<String>
                 }
                 else
                 {
-                    Ensure.fail("Cannot parse line $:$: $", resource.fileName(), lineNumber, line);
+                    listener.problem("Cannot parse line $:$: $", resource.fileName(), lineNumber, line);
                 }
             }
             lineNumber++;
@@ -156,7 +156,7 @@ public class PropertyMap extends VariableMap<String>
 
     public static PropertyMap localized(Listener listener, PackagePath path, Locale locale)
     {
-        return PropertyMap.load(packageResource(listener, path, locale.path().join("/")));
+        return PropertyMap.load(listener, packageResource(listener, path, locale.path().join("/")));
     }
 
     public static PropertyMap propertyMap(VariableMap<String> variables)

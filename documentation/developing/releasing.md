@@ -1,6 +1,6 @@
-# KivaKit - Releasing KivaKit &nbsp; <img src="https://www.kivakit.org/images/rocket-32.png" srcset="https://www.kivakit.org/images/rocket-32-2x.png 2x"/>
+# KivaKit - Releasing KivaKit &nbsp; <img src="https://telenav.github.io/telenav-assets/images/iconsrocket-32.png" srcset="https://telenav.github.io/telenav-assets/images/iconsrocket-32-2x.png 2x"/>
 
-### Step-by-Step Instructions &nbsp; <img src="https://www.kivakit.org/images/footprints-32.png" srcset="https://www.kivakit.org/images/footprints-32-2x.png 2x"/>
+### Step-by-Step Instructions &nbsp; <img src="https://telenav.github.io/telenav-assets/images/iconsfootprints-32.png" srcset="https://telenav.github.io/telenav-assets/images/iconsfootprints-32-2x.png 2x"/>
 
 This section documents how to release a new version of KivaKit, step by step.
 
@@ -31,7 +31,7 @@ Cactus build needs to be released only if it has been changed.
 
 5. Sign in to [OSSRH](https://s01.oss.sonatype.org) and release to Maven Central
 
-### 1. Preparing the KivaKit Release Branch <img src="https://www.kivakit.org/images/branch-32.png" srcset="https://www.kivakit.org/images/branch-32-2x.png 2x"/>
+### 1. Preparing the KivaKit Release Branch <img src="https://telenav.github.io/telenav-assets/images/iconsbranch-32.png" srcset="https://telenav.github.io/telenav-assets/images/iconsbranch-32-2x.png 2x"/>
 
 #### 1.1 Create a release branch
 
@@ -76,7 +76,7 @@ This will build all kivakit artifacts from scratch (answer 'y' to the prompt to 
 
 Commit any final changes to the release branch.
 
-### 2. Publishing the Release &nbsp;  <img src="https://www.kivakit.org/images/stars-32.png" srcset="https://www.kivakit.org/images/stars-32-2x.png 2x"/>
+### 2. Publishing the Release &nbsp;  <img src="https://telenav.github.io/telenav-assets/images/iconsstars-32.png" srcset="https://telenav.github.io/telenav-assets/images/iconsstars-32-2x.png 2x"/>
 
 #### 2.0 Merge the release branch into master
 

@@ -7,11 +7,13 @@
 #
 #///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-BUILD_PROPERTIES="$KIVAKIT_HOME/kivakit-core/src/main/java/build.properties"
+BUILD_PROPERTIES="$KIVAKIT_HOME/kivakit-core/target/classes/build.properties"
 
 kivakit_build_all()
 {
     cd "$KIVAKIT_WORKSPACE" || exit
+
+    mvn com.telenav.cactus:cactus-build-maven-plugin:build-metadata || exit
 
     if [[ "$1" == "help" ]]; then
 
@@ -372,5 +374,3 @@ build() {
 
     fi
 }
-
-

@@ -18,10 +18,8 @@
 
 package com.telenav.kivakit.filesystem.loader;
 
-import com.telenav.kivakit.core.logging.Logger;
-import com.telenav.kivakit.core.logging.LoggerFactory;
-import com.telenav.kivakit.core.messaging.Debug;
 import com.telenav.kivakit.core.messaging.Listener;
+import com.telenav.kivakit.core.messaging.repeaters.BaseRepeater;
 import com.telenav.kivakit.filesystem.FilePath;
 import com.telenav.kivakit.filesystem.local.LocalFileSystemService;
 import com.telenav.kivakit.filesystem.spi.FileSystemService;
@@ -48,12 +46,8 @@ import java.util.ServiceLoader;
 @UmlClassDiagram(diagram = DiagramFileSystemService.class)
 @UmlNotPublicApi
 @LexakaiJavadoc(complete = true)
-public class FileSystemServiceLoader
+public class FileSystemServiceLoader extends BaseRepeater
 {
-    private static final Logger LOGGER = LoggerFactory.newLogger();
-
-    private static final Debug DEBUG = new Debug(LOGGER);
-
     private static final LocalFileSystemService LOCAL = new LocalFileSystemService();
 
     /** Loaded filesystem services */
@@ -69,7 +63,7 @@ public class FileSystemServiceLoader
         assert path != null;
 
         // For each loaded filesystem service
-        for (var service : services())
+        for (var service : services(listener))
         {
             // if it accepts the path,
             if (service.accepts(path))
@@ -91,14 +85,14 @@ public class FileSystemServiceLoader
         return null;
     }
 
-    private static synchronized List<FileSystemService> services()
+    private static synchronized List<FileSystemService> services(Listener listener)
     {
         if (services == null)
         {
             services = new ArrayList<>();
             for (var service : ServiceLoader.load(FileSystemService.class))
             {
-                DEBUG.trace("Loaded file system '${class}'", service.getClass());
+                listener.trace("Loaded file system '${class}'", service.getClass());
                 services.add(service);
             }
         }

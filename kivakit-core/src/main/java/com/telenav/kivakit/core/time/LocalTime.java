@@ -153,7 +153,9 @@ public class LocalTime extends Time
 
     public String asDateString(ZoneId zone)
     {
-        return TimeFormats.KIVAKIT_DATE.format(asJavaInstant()) + "_" + TimeZones.shortDisplayName(zone);
+        return TimeFormats.KIVAKIT_DATE
+                .withZone(zone)
+                .format(asJavaInstant());
     }
 
     public String asDateTimeString()
@@ -175,7 +177,9 @@ public class LocalTime extends Time
 
     public String asTimeString(ZoneId zone)
     {
-        return TimeFormats.KIVAKIT_TIME.format(asJavaInstant()) + "_" + TimeZones.shortDisplayName(zone);
+        return TimeFormats.KIVAKIT_TIME
+                .withZone(zone)
+                .format(asJavaInstant());
     }
 
     @Override

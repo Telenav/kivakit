@@ -24,11 +24,10 @@ property_value()
 project_version()
 {
     project_home=$1
-    project_properties=$project_home/project.properties
 
-    # shellcheck disable=SC2046
-    # shellcheck disable=SC2005
-    echo $(property_value "$project_properties" project-version)
+    pushd "$project_home" 1>/dev/null || exit 1
+    mvn -q -DforceStdout org.apache.maven.plugins:maven-help-plugin:3.2.0:evaluate -Dexpression=project.version || exit 1
+    popd 1>/dev/null || exit 1
 }
 
 project_name()
@@ -44,7 +43,7 @@ project_build()
 {
     project_home=$1
 
-    build_properties="$KIVAKIT_HOME/kivakit-core/src/main/java/build.properties"
+    build_properties="$KIVAKIT_HOME/kivakit-core/target/classes/build.properties"
 
     if [ -e "$build_properties" ]; then
 
@@ -515,8 +514,8 @@ is_mac()
 
 lexakai()
 {
-    lexakai_download_version="1.0.5"
-    lexakai_download_name="lexakai-1.0.5.jar"
+    lexakai_download_version="1.0.7"
+    lexakai_download_name="lexakai-1.0.7.jar"
 
     lexakai_downloads="$HOME/.lexakai/downloads"
 
@@ -544,10 +543,10 @@ lexakai()
     fi
 
     # -agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=1044
-    echo "java -jar $lexakai_jar -overwrite-resources=true -update-readme=true $*"
+    echo "java -jar $lexakai_jar $*"
 
     # shellcheck disable=SC2068
-    java -jar "$lexakai_jar" -overwrite-resources=true -update-readme=true $@
+    java -jar "$lexakai_jar" $@
 }
 
 yes_no()

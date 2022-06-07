@@ -1,4 +1,4 @@
-# KivaKit - System Properties   <img src="https://www.kivakit.org/images/gears-32.png" srcset="https://www.kivakit.org/images/gears-32-2x.png 2x"/>
+# KivaKit - System Properties   <img src="https://telenav.github.io/telenav-assets/images/iconsgears-32.png" srcset="https://telenav.github.io/telenav-assets/images/iconsgears-32-2x.png 2x"/>
 
 ### Summary
 
