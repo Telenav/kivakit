@@ -20,14 +20,14 @@ This module contains the KivaKit extraction mini-framework
 
 ### Dependencies <a name="dependencies"></a> &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/iconsdependencies-32.png" srcset="https://telenav.github.io/telenav-assets/images/iconsdependencies-32-2x.png 2x"/>
 
-[*Dependency Diagram*](https://www.kivakit.org/1.5.1-SNAPSHOT/lexakai/kivakit/kivakit-extraction/documentation/diagrams/dependencies.svg)
+[*Dependency Diagram*](https://www.kivakit.org/1.6.0/lexakai/kivakit/kivakit-extraction/documentation/diagrams/dependencies.svg)
 
 #### Maven Dependency
 
     <dependency>
         <groupId>com.telenav.kivakit</groupId>
         <artifactId>kivakit-extraction</artifactId>
-        <version>1.5.1-SNAPSHOT</version>
+        <version>1.6.0</version>
     </dependency>
 
 <img src="https://telenav.github.io/telenav-assets/images/iconshorizontal-line-128.png" srcset="https://telenav.github.io/telenav-assets/png/separators/horizontal-line-128-2x.png 2x"/>
@@ -42,14 +42,14 @@ This module contains the KivaKit extraction mini-framework
 
 ### Class Diagrams <a name="class-diagrams"></a> &nbsp; &nbsp; <img src="https://telenav.github.io/telenav-assets/images/iconsdiagram-40.png" srcset="https://telenav.github.io/telenav-assets/images/iconsdiagram-40-2x.png 2x"/>
 
-[*Extraction*](https://www.kivakit.org/1.5.1-SNAPSHOT/lexakai/kivakit/kivakit-extraction/documentation/diagrams/diagram-extraction.svg)
+[*Extraction*](https://www.kivakit.org/1.6.0/lexakai/kivakit/kivakit-extraction/documentation/diagrams/diagram-extraction.svg)
 
 <img src="https://telenav.github.io/telenav-assets/images/iconshorizontal-line-128.png" srcset="https://telenav.github.io/telenav-assets/png/separators/horizontal-line-128-2x.png 2x"/>
 
 ### Package Diagrams <a name="package-diagrams"></a> &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/iconsbox-32.png" srcset="https://telenav.github.io/telenav-assets/images/iconsbox-32-2x.png 2x"/>
 
-[*com.telenav.kivakit.extraction*](https://www.kivakit.org/1.5.1-SNAPSHOT/lexakai/kivakit/kivakit-extraction/documentation/diagrams/com.telenav.kivakit.extraction.svg)  
-[*com.telenav.kivakit.extraction.lexakai*](https://www.kivakit.org/1.5.1-SNAPSHOT/lexakai/kivakit/kivakit-extraction/documentation/diagrams/com.telenav.kivakit.extraction.lexakai.svg)
+[*com.telenav.kivakit.extraction*](https://www.kivakit.org/1.6.0/lexakai/kivakit/kivakit-extraction/documentation/diagrams/com.telenav.kivakit.extraction.svg)  
+[*com.telenav.kivakit.extraction.lexakai*](https://www.kivakit.org/1.6.0/lexakai/kivakit/kivakit-extraction/documentation/diagrams/com.telenav.kivakit.extraction.lexakai.svg)
 
 <img src="https://telenav.github.io/telenav-assets/images/iconshorizontal-line-128.png" srcset="https://telenav.github.io/telenav-assets/png/separators/horizontal-line-128-2x.png 2x"/>
 
@@ -64,9 +64,9 @@ Javadoc coverage for this project is 83.3%.
 
 | Class | Documentation Sections |
 |---|---|
-| [*BaseExtractor*](https://www.kivakit.org/1.5.1-SNAPSHOT/javadoc/kivakit/kivakit.extraction/////////////////////////////////////////////.html) |  |  
-| [*DiagramExtraction*](https://www.kivakit.org/1.5.1-SNAPSHOT/javadoc/kivakit/kivakit.extraction/////////////////////////////////////////////////////////.html) |  |  
-| [*Extractor*](https://www.kivakit.org/1.5.1-SNAPSHOT/javadoc/kivakit/kivakit.extraction/////////////////////////////////////////.html) | Object Extraction |  
+| [*BaseExtractor*](https://www.kivakit.org/1.6.0/javadoc/kivakit/kivakit.extraction/////////////////////////////////////////////.html) |  |  
+| [*DiagramExtraction*](https://www.kivakit.org/1.6.0/javadoc/kivakit/kivakit.extraction/////////////////////////////////////////////////////////.html) |  |  
+| [*Extractor*](https://www.kivakit.org/1.6.0/javadoc/kivakit/kivakit.extraction/////////////////////////////////////////.html) | Object Extraction |  
 
 [//]: # (start-user-text)
 

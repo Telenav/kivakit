@@ -30,14 +30,14 @@ This module defines core serialization abstractions.
 
 ### Dependencies <a name="dependencies"></a> &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/iconsdependencies-32.png" srcset="https://telenav.github.io/telenav-assets/images/iconsdependencies-32-2x.png 2x"/>
 
-[*Dependency Diagram*](https://www.kivakit.org/1.5.1-SNAPSHOT/lexakai/kivakit/kivakit-serialization/core/documentation/diagrams/dependencies.svg)
+[*Dependency Diagram*](https://www.kivakit.org/1.6.0/lexakai/kivakit/kivakit-serialization/core/documentation/diagrams/dependencies.svg)
 
 #### Maven Dependency
 
     <dependency>
         <groupId>com.telenav.kivakit</groupId>
         <artifactId>kivakit-serialization-core</artifactId>
-        <version>1.5.1-SNAPSHOT</version>
+        <version>1.6.0</version>
     </dependency>
 
 <img src="https://telenav.github.io/telenav-assets/images/iconshorizontal-line-128.png" srcset="https://telenav.github.io/telenav-assets/png/separators/horizontal-line-128-2x.png 2x"/>
@@ -60,7 +60,7 @@ None
 
 ### Package Diagrams <a name="package-diagrams"></a> &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/iconsbox-32.png" srcset="https://telenav.github.io/telenav-assets/images/iconsbox-32-2x.png 2x"/>
 
-[*com.telenav.kivakit.serialization.core*](https://www.kivakit.org/1.5.1-SNAPSHOT/lexakai/kivakit/kivakit-serialization/core/documentation/diagrams/com.telenav.kivakit.serialization.core.svg)
+[*com.telenav.kivakit.serialization.core*](https://www.kivakit.org/1.6.0/lexakai/kivakit/kivakit-serialization/core/documentation/diagrams/com.telenav.kivakit.serialization.core.svg)
 
 <img src="https://telenav.github.io/telenav-assets/images/iconshorizontal-line-128.png" srcset="https://telenav.github.io/telenav-assets/png/separators/horizontal-line-128-2x.png 2x"/>
 
@@ -75,12 +75,12 @@ Javadoc coverage for this project is 75.0%.
 
 | Class | Documentation Sections |
 |---|---|
-| [*SerializationSession*](https://www.kivakit.org/1.5.1-SNAPSHOT/javadoc/kivakit/kivakit.serialization.core////////////////////////////////////////////////////////////.html) | Creating a Session |  
+| [*SerializationSession*](https://www.kivakit.org/1.6.0/javadoc/kivakit/kivakit.serialization.core////////////////////////////////////////////////////////////.html) | Creating a Session |  
 | | Reading and Writing |  
 | | Opening a Session |  
 | | Example |  
-| [*SerializationSession.SessionType*](https://www.kivakit.org/1.5.1-SNAPSHOT/javadoc/kivakit/kivakit.serialization.core////////////////////////////////////////////////////////////////////////.html) |  |  
-| [*SerializationSessionFactory*](https://www.kivakit.org/1.5.1-SNAPSHOT/javadoc/kivakit/kivakit.serialization.core///////////////////////////////////////////////////////////////////.html) |  |  
+| [*SerializationSession.SessionType*](https://www.kivakit.org/1.6.0/javadoc/kivakit/kivakit.serialization.core////////////////////////////////////////////////////////////////////////.html) |  |  
+| [*SerializationSessionFactory*](https://www.kivakit.org/1.6.0/javadoc/kivakit/kivakit.serialization.core///////////////////////////////////////////////////////////////////.html) |  |  
 
 [//]: # (start-user-text)
 
