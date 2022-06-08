@@ -129,5 +129,33 @@
         </developer>
         
     </developers>
-    
+
+    <profiles>
+        <profile>
+            <id>release</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>com.telenav.cactus</groupId>
+                        <artifactId>cactus-build-maven-plugin</artifactId>
+                        <version>1.4.4</version>
+                        <executions>
+                            <execution>
+                                <id>lexakai</id>
+                                <phase>install</phase>
+                                <goals>
+                                    <goal>lexakai</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                        <configuration>
+                            <verbose>true</verbose>
+                            <overwrite-resources>true</overwrite-resources>
+                            <update-readme>true</update-readme>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>                        
 </project>
