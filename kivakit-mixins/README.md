@@ -4,7 +4,7 @@
 
 [//]: # (end-user-text)
 
-# kivakit-mixins &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons//puzzle-32.png" srcset="https://telenav.github.io/telenav-assets/images/icons//puzzle-32-2x.png 2x"/>
+# kivakit-mixins &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/puzzle-32.png" srcset="https://telenav.github.io/telenav-assets/images/icons/puzzle-32-2x.png 2x"/>
 
 This module provides stateful traits for Java.
 
@@ -57,7 +57,7 @@ This module provides stateful traits for Java.
 
 Javadoc coverage for this project is 75.0%.  
   
-&nbsp; &nbsp; <img src="https://telenav.github.io/telenav-assets/images/meter/meter-80-96.png" srcset="https://telenav.github.io/telenav-assets/images/meter/meter-80-96-2x.png 2x"/>
+&nbsp; &nbsp; <img src="https://telenav.github.io/telenav-assets/meters/meter-80-96.png" srcset="https://telenav.github.io/telenav-assets/meters/meter-80-96-2x.png 2x"/>
 
 
 

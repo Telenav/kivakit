@@ -14,7 +14,7 @@
 
 [//]: # (end-user-text)
 
-# kivakit-serialization kryo &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons//ice-32.png" srcset="https://telenav.github.io/telenav-assets/images/icons//ice-32-2x.png 2x"/>
+# kivakit-serialization kryo &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/ice-32.png" srcset="https://telenav.github.io/telenav-assets/images/icons/ice-32-2x.png 2x"/>
 
 This module provides integration of the Kryo serialization framework with KivaKit serialization.
 
@@ -70,7 +70,7 @@ This module is a serialization provider for the *kivakit-core-serialization-core
 
 Javadoc coverage for this project is 71.3%.  
   
-&nbsp; &nbsp; <img src="https://telenav.github.io/telenav-assets/images/meter/meter-70-96.png" srcset="https://telenav.github.io/telenav-assets/images/meter/meter-70-96-2x.png 2x"/>
+&nbsp; &nbsp; <img src="https://telenav.github.io/telenav-assets/meters/meter-70-96.png" srcset="https://telenav.github.io/telenav-assets/meters/meter-70-96-2x.png 2x"/>
 
 
 The following significant classes are undocumented:  

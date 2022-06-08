@@ -14,7 +14,7 @@
 
 [//]: # (end-user-text)
 
-# kivakit-commandline &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons//command-line-32.png" srcset="https://telenav.github.io/telenav-assets/images/icons//command-line-32-2x.png 2x"/>
+# kivakit-commandline &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/command-line-32.png" srcset="https://telenav.github.io/telenav-assets/images/icons/command-line-32-2x.png 2x"/>
 
 This project facilitates object-oriented parsing of command line arguments and switches.
 
@@ -75,7 +75,7 @@ arguments and switches is available in the Javadoc for the [*Application*](https
 
 Javadoc coverage for this project is 78.2%.  
   
-&nbsp; &nbsp; <img src="https://telenav.github.io/telenav-assets/images/meter/meter-80-96.png" srcset="https://telenav.github.io/telenav-assets/images/meter/meter-80-96-2x.png 2x"/>
+&nbsp; &nbsp; <img src="https://telenav.github.io/telenav-assets/meters/meter-80-96.png" srcset="https://telenav.github.io/telenav-assets/meters/meter-80-96-2x.png 2x"/>
 
 
 The following significant classes are undocumented:  

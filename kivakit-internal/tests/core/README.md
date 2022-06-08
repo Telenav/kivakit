@@ -4,7 +4,7 @@
 
 [//]: # (end-user-text)
 
-# kivakit-internal-tests-core &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons//box-32.png" srcset="https://telenav.github.io/telenav-assets/images/icons//box-32-2x.png 2x"/>
+# kivakit-internal-tests-core &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/box-32.png" srcset="https://telenav.github.io/telenav-assets/images/icons/box-32-2x.png 2x"/>
 
 This module contains internal tests for kivakit-core.
 
@@ -56,7 +56,7 @@ None
 
 Javadoc coverage for this project is 50.0%.  
   
-&nbsp; &nbsp; <img src="https://telenav.github.io/telenav-assets/images/meter/meter-50-96.png" srcset="https://telenav.github.io/telenav-assets/images/meter/meter-50-96-2x.png 2x"/>
+&nbsp; &nbsp; <img src="https://telenav.github.io/telenav-assets/meters/meter-50-96.png" srcset="https://telenav.github.io/telenav-assets/meters/meter-50-96-2x.png 2x"/>
 
 
 

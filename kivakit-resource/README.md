@@ -14,7 +14,7 @@
 
 [//]: # (end-user-text)
 
-# kivakit-resource &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons//water-32.png" srcset="https://telenav.github.io/telenav-assets/images/icons//water-32-2x.png 2x"/>
+# kivakit-resource &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/water-32.png" srcset="https://telenav.github.io/telenav-assets/images/icons/water-32-2x.png 2x"/>
 
 This module contains abstractions for accessing the filesystem and arbitrary resources.
 
@@ -267,7 +267,7 @@ A wide variety of other resources are available and new ones are easy to write. 
 
 Javadoc coverage for this project is 86.8%.  
   
-&nbsp; &nbsp; <img src="https://telenav.github.io/telenav-assets/images/meter/meter-90-96.png" srcset="https://telenav.github.io/telenav-assets/images/meter/meter-90-96-2x.png 2x"/>
+&nbsp; &nbsp; <img src="https://telenav.github.io/telenav-assets/meters/meter-90-96.png" srcset="https://telenav.github.io/telenav-assets/meters/meter-90-96-2x.png 2x"/>
 
 
 The following significant classes are undocumented:  

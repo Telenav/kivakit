@@ -14,7 +14,7 @@
 
 [//]: # (end-user-text)
 
-# kivakit-network core &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons//nucleus-32.png" srcset="https://telenav.github.io/telenav-assets/images/icons//nucleus-32-2x.png 2x"/>
+# kivakit-network core &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/nucleus-32.png" srcset="https://telenav.github.io/telenav-assets/images/icons/nucleus-32-2x.png 2x"/>
 
 This module provides classes that enhance the core networking features of the JDK. Other projects in  
 kivakit-core-network extend this base functionality.
@@ -133,7 +133,7 @@ project [*kivakit-network-core-email*](../email/README.md) makes use of this cla
 
 Javadoc coverage for this project is 83.3%.  
   
-&nbsp; &nbsp; <img src="https://telenav.github.io/telenav-assets/images/meter/meter-80-96.png" srcset="https://telenav.github.io/telenav-assets/images/meter/meter-80-96-2x.png 2x"/>
+&nbsp; &nbsp; <img src="https://telenav.github.io/telenav-assets/meters/meter-80-96.png" srcset="https://telenav.github.io/telenav-assets/meters/meter-80-96-2x.png 2x"/>
 
 
 

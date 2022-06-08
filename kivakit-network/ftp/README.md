@@ -14,7 +14,7 @@
 
 [//]: # (end-user-text)
 
-# kivakit-network ftp &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons//convert-32.png" srcset="https://telenav.github.io/telenav-assets/images/icons//convert-32-2x.png 2x"/>
+# kivakit-network ftp &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/convert-32.png" srcset="https://telenav.github.io/telenav-assets/images/icons/convert-32-2x.png 2x"/>
 
 This module provides FTP resources.
 
@@ -71,7 +71,7 @@ This module integrates FTP and secure FTP services with the KivaKi resource mini
 
 Javadoc coverage for this project is 77.6%.  
   
-&nbsp; &nbsp; <img src="https://telenav.github.io/telenav-assets/images/meter/meter-80-96.png" srcset="https://telenav.github.io/telenav-assets/images/meter/meter-80-96-2x.png 2x"/>
+&nbsp; &nbsp; <img src="https://telenav.github.io/telenav-assets/meters/meter-80-96.png" srcset="https://telenav.github.io/telenav-assets/meters/meter-80-96-2x.png 2x"/>
 
 
 

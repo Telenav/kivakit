@@ -14,7 +14,7 @@
 
 [//]: # (end-user-text)
 
-# kivakit-network email &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons//envelope-32.png" srcset="https://telenav.github.io/telenav-assets/images/icons//envelope-32-2x.png 2x"/>
+# kivakit-network email &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/envelope-32.png" srcset="https://telenav.github.io/telenav-assets/images/icons/envelope-32-2x.png 2x"/>
 
 This module enables easy composition and sending of emails.
 
@@ -110,7 +110,7 @@ it and enqueueing *Email* objects. No attempt is made to persist the queue of un
 
 Javadoc coverage for this project is 84.7%.  
   
-&nbsp; &nbsp; <img src="https://telenav.github.io/telenav-assets/images/meter/meter-80-96.png" srcset="https://telenav.github.io/telenav-assets/images/meter/meter-80-96-2x.png 2x"/>
+&nbsp; &nbsp; <img src="https://telenav.github.io/telenav-assets/meters/meter-80-96.png" srcset="https://telenav.github.io/telenav-assets/meters/meter-80-96-2x.png 2x"/>
 
 
 

@@ -14,7 +14,7 @@
 
 [//]: # (end-user-text)
 
-# kivakit-application &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons//window-32.png" srcset="https://telenav.github.io/telenav-assets/images/icons//window-32-2x.png 2x"/>
+# kivakit-application &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/window-32.png" srcset="https://telenav.github.io/telenav-assets/images/icons/window-32-2x.png 2x"/>
 
 This module contains base classes for applications and servers. It provides command line parsing and enables  
 configuration management and object registration and lookup.
@@ -84,7 +84,7 @@ browse the [**Javadoc**](#javadoc).
 
 Javadoc coverage for this project is 77.2%.  
   
-&nbsp; &nbsp; <img src="https://telenav.github.io/telenav-assets/images/meter/meter-80-96.png" srcset="https://telenav.github.io/telenav-assets/images/meter/meter-80-96-2x.png 2x"/>
+&nbsp; &nbsp; <img src="https://telenav.github.io/telenav-assets/meters/meter-80-96.png" srcset="https://telenav.github.io/telenav-assets/meters/meter-80-96-2x.png 2x"/>
 
 
 

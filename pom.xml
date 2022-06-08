@@ -11,7 +11,14 @@
     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     
     <modelVersion>4.0.0</modelVersion>
-    
+
+    <parent>
+        <groupId>com.telenav</groupId>
+        <artifactId>telenav-family-superpom</artifactId>
+        <version>1.0</version>
+        <relativePath/>
+    </parent>
+
     <groupId>com.telenav.kivakit</groupId>
     <artifactId>kivakit</artifactId>
     <version>1.6.0</version>
@@ -130,32 +137,4 @@
         
     </developers>
 
-    <profiles>
-        <profile>
-            <id>release</id>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>com.telenav.cactus</groupId>
-                        <artifactId>cactus-build-maven-plugin</artifactId>
-                        <version>1.4.4</version>
-                        <executions>
-                            <execution>
-                                <id>lexakai</id>
-                                <phase>install</phase>
-                                <goals>
-                                    <goal>lexakai</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                        <configuration>
-                            <verbose>true</verbose>
-                            <overwrite-resources>true</overwrite-resources>
-                            <update-readme>true</update-readme>
-                        </configuration>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-    </profiles>                        
 </project>
