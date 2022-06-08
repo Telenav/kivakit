@@ -85,7 +85,7 @@ a connection is made. Usage looks like this:
 
 Javadoc coverage for this project is 25.0%.  
   
-&nbsp; &nbsp; <img src="https://telenav.github.io/telenav-assets/meter-30-96.png" srcset="https://telenav.github.io/telenav-assets/meter-30-96-2x.png 2x"/>
+&nbsp; &nbsp; <img src="https://telenav.github.io/telenav-assets/images/meter/meter-30-96.png" srcset="https://telenav.github.io/telenav-assets/images/meter/meter-30-96-2x.png 2x"/>
 
 
 

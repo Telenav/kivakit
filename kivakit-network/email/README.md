@@ -110,7 +110,7 @@ it and enqueueing *Email* objects. No attempt is made to persist the queue of un
 
 Javadoc coverage for this project is 84.7%.  
   
-&nbsp; &nbsp; <img src="https://telenav.github.io/telenav-assets/meter-80-96.png" srcset="https://telenav.github.io/telenav-assets/meter-80-96-2x.png 2x"/>
+&nbsp; &nbsp; <img src="https://telenav.github.io/telenav-assets/images/meter/meter-80-96.png" srcset="https://telenav.github.io/telenav-assets/images/meter/meter-80-96-2x.png 2x"/>
 
 
 
