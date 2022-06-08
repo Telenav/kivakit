@@ -1,8 +1,8 @@
-# KivaKit - Host Build Setup   <img src="https://telenav.github.io/telenav-assets/images/iconsbox-32.png" srcset="https://telenav.github.io/telenav-assets/images/iconsbox-32-2x.png 2x"/>
+# KivaKit - Host Build Setup   <img src="https://telenav.github.io/telenav-assets/images/icons/box-32.png" srcset="https://telenav.github.io/telenav-assets/images/icons/box-32-2x.png 2x"/>
 
 Learn how to set up your host to build KivaKit.
 
-<img src="https://telenav.github.io/telenav-assets/images/iconshorizontal-line-512.png" srcset="https://telenav.github.io/telenav-assets/png/separators/horizontal-line-512-2x.png 2x"/>
+<img src="https://telenav.github.io/telenav-assets/images/icons/horizontal-line-512.png" srcset="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-512-2x.png 2x"/>
 
 ### Setting Up to Build KivaKit
 
@@ -30,9 +30,9 @@ You will need these products, or compatible products, set up to begin:
 
 3. Latest [Maven](https://maven.apache.org/download.cgi)
 
-<img src="https://telenav.github.io/telenav-assets/images/iconshorizontal-line-512.png" srcset="https://telenav.github.io/telenav-assets/png/separators/horizontal-line-512-2x.png 2x"/>
+<img src="https://telenav.github.io/telenav-assets/images/icons/horizontal-line-512.png" srcset="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-512-2x.png 2x"/>
 
-### 1. Checking Out the Project   <img src="https://telenav.github.io/telenav-assets/images/iconsdown-arrow-32.png" srcset="https://telenav.github.io/telenav-assets/images/iconsdown-arrow-32-2x.png 2x"/>
+### 1. Checking Out the Project   <img src="https://telenav.github.io/telenav-assets/images/icons/down-arrow-32.png" srcset="https://telenav.github.io/telenav-assets/images/icons/down-arrow-32-2x.png 2x"/>
 
 The KivaKit project will look roughly like this when we're done with the setup process:
 
@@ -68,15 +68,15 @@ To check out the *kivakit* project:
        cd Workspace 
        git clone https://github.com/Telenav/kivakit.git
 
-<img src="https://telenav.github.io/telenav-assets/images/iconshorizontal-line-512.png" srcset="https://telenav.github.io/telenav-assets/png/separators/horizontal-line-512-2x.png 2x"/>
+<img src="https://telenav.github.io/telenav-assets/images/icons/horizontal-line-512.png" srcset="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-512-2x.png 2x"/>
 
-### 2. Setting Up Your Environment   <img src="https://telenav.github.io/telenav-assets/images/iconsbox-32.png" srcset="https://telenav.github.io/telenav-assets/images/iconsbox-32-2x.png 2x"/>
+### 2. Setting Up Your Environment   <img src="https://telenav.github.io/telenav-assets/images/icons/box-32.png" srcset="https://telenav.github.io/telenav-assets/images/icons/box-32-2x.png 2x"/>
 
 To configure your environment, you will need several environment variables set.
 
 > Without the correct environment variables set, the setup script in Step 3 won't work.
 
-### MacOS and UNIX    <img src="https://telenav.github.io/telenav-assets/images/iconsbluebook-32.png" srcset="https://telenav.github.io/telenav-assets/images/iconsbluebook-32-2x.png 2x"/>
+### MacOS and UNIX    <img src="https://telenav.github.io/telenav-assets/images/icons/bluebook-32.png" srcset="https://telenav.github.io/telenav-assets/images/icons/bluebook-32-2x.png 2x"/>
 
 On macOS or UNIX, you can use a sample *.profile* from KivaKit to configure your shell environment.
 
@@ -100,7 +100,7 @@ On macOS or UNIX, you can use a sample *.profile* from KivaKit to configure your
 
 5. Restart the terminal program and open a new shell window
 
-### Windows &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/iconswindow-32.png" srcset="https://telenav.github.io/telenav-assets/images/iconswindow-32-2x.png 2x"/>
+### Windows &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/window-32.png" srcset="https://telenav.github.io/telenav-assets/images/icons/window-32-2x.png 2x"/>
 
 On Windows, a UNIX-like environment with *bash* is required. It is recommended to install [Git for Windows](https://gitforwindows.org/), which will install both git, and a bash shell.
 
@@ -128,27 +128,27 @@ On Windows, a UNIX-like environment with *bash* is required. It is recommended t
 
 6. Restart the terminal program and open a new shell window
 
-<img src="https://telenav.github.io/telenav-assets/images/iconshorizontal-line-512.png" srcset="https://telenav.github.io/telenav-assets/png/separators/horizontal-line-512-2x.png 2x"/>
+<img src="https://telenav.github.io/telenav-assets/images/icons/horizontal-line-512.png" srcset="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-512-2x.png 2x"/>
 
-### 3. Finishing the Job  <img src="https://telenav.github.io/telenav-assets/images/iconsstars-32.png" srcset="https://telenav.github.io/telenav-assets/images/iconsstars-32-2x.png 2x"/>
+### 3. Finishing the Job  <img src="https://telenav.github.io/telenav-assets/images/icons/stars-32.png" srcset="https://telenav.github.io/telenav-assets/images/icons/stars-32-2x.png 2x"/>
 
 Once you have cloned the project into your workspace and set up your environment, you can complete your set up with one final command:
 
     $KIVAKIT_HOME/setup/setup.sh
 
-<img src="https://telenav.github.io/telenav-assets/images/iconshorizontal-line-512.png" srcset="https://telenav.github.io/telenav-assets/png/separators/horizontal-line-512-2x.png 2x"/>
+<img src="https://telenav.github.io/telenav-assets/images/icons/horizontal-line-512.png" srcset="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-512-2x.png 2x"/>
 
-### Done!   <img src="https://telenav.github.io/telenav-assets/images/iconsrocket-32.png" srcset="https://telenav.github.io/telenav-assets/images/iconsrocket-32-2x.png 2x"/>
+### Done!   <img src="https://telenav.github.io/telenav-assets/images/icons/rocket-32.png" srcset="https://telenav.github.io/telenav-assets/images/icons/rocket-32-2x.png 2x"/>
 
 Congratulations! You're set up and ready to build or help to develop KivaKit.
 
-<img src="https://telenav.github.io/telenav-assets/images/iconshorizontal-line-512.png" srcset="https://telenav.github.io/telenav-assets/png/separators/horizontal-line-512-2x.png 2x"/>
+<img src="https://telenav.github.io/telenav-assets/images/icons/horizontal-line-512.png" srcset="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-512-2x.png 2x"/>
 
-### Next Steps &nbsp; &nbsp;  <img src="https://telenav.github.io/telenav-assets/images/iconsfootprints-32.png" srcset="https://telenav.github.io/telenav-assets/images/iconsfootprints-32-2x.png 2x"/>
+### Next Steps &nbsp; &nbsp;  <img src="https://telenav.github.io/telenav-assets/images/icons/footprints-32.png" srcset="https://telenav.github.io/telenav-assets/images/icons/footprints-32-2x.png 2x"/>
 
 [I want to build KivaKit](index.md)
 
 [I want to work on KivaKit](../developing/index.md)
 
 
-<img src="https://telenav.github.io/telenav-assets/images/iconshorizontal-line-512.png" srcset="https://telenav.github.io/telenav-assets/png/separators/horizontal-line-512-2x.png 2x"/>
+<img src="https://telenav.github.io/telenav-assets/images/icons/horizontal-line-512.png" srcset="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-512-2x.png 2x"/>

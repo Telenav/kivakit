@@ -1,6 +1,6 @@
-## KivaKit - Developer Setup &nbsp; &nbsp;  <img src="https://telenav.github.io/telenav-assets/images/iconscoffee-32.png" srcset="https://telenav.github.io/telenav-assets/images/iconscoffee-32-2x.png 2x"/>
+## KivaKit - Developer Setup &nbsp; &nbsp;  <img src="https://telenav.github.io/telenav-assets/images/icons/coffee-32.png" srcset="https://telenav.github.io/telenav-assets/images/icons/coffee-32-2x.png 2x"/>
 
-### Setting Up for Development &nbsp; <img src="https://telenav.github.io/telenav-assets/images/iconsbox-32.png" srcset="https://telenav.github.io/telenav-assets/images/iconsbox-32-2x.png 2x"/>
+### Setting Up for Development &nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/box-32.png" srcset="https://telenav.github.io/telenav-assets/images/icons/box-32-2x.png 2x"/>
 
 If you are helping to develop KivaKit this page will help you get set up.
 
@@ -36,6 +36,6 @@ Import the settings under *File / Manage IDE Settings*.
 
 You will find handy templates relevant to KivaKit that you can use with IDE completion.
 
-### Start Coding!  &nbsp;  <img src="https://telenav.github.io/telenav-assets/images/iconsrocket-32.png" srcset="https://telenav.github.io/telenav-assets/images/iconsrocket-32-2x.png 2x"/>
+### Start Coding!  &nbsp;  <img src="https://telenav.github.io/telenav-assets/images/icons/rocket-32.png" srcset="https://telenav.github.io/telenav-assets/images/icons/rocket-32-2x.png 2x"/>
 
 Houston, we have liftoff.

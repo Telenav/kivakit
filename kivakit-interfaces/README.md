@@ -4,11 +4,11 @@
 
 [//]: # (end-user-text)
 
-# kivakit-interfaces &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/puzzle-32.png" srcset="https://telenav.github.io/telenav-assets/images/icons/puzzle-32-2x.png 2x"/>
+# kivakit-interfaces &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons//puzzle-32.png" srcset="https://telenav.github.io/telenav-assets/images/icons//puzzle-32-2x.png 2x"/>
 
 This module provides an interface grammar for communicating with KivaKit.
 
-<img src="https://telenav.github.io/telenav-assets/images/iconshorizontal-line-512.png" srcset="https://telenav.github.io/telenav-assets/png/separators/horizontal-line-512-2x.png 2x"/>
+<img src="https://telenav.github.io/telenav-assets/images/icons/horizontal-line-512.png" srcset="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-512-2x.png 2x"/>
 
 ### Index
 
@@ -16,9 +16,9 @@ This module provides an interface grammar for communicating with KivaKit.
 
 [**Dependencies**](#dependencies) | [**Class Diagrams**](#class-diagrams) | [**Package Diagrams**](#package-diagrams) | [**Javadoc**](#javadoc)
 
-<img src="https://telenav.github.io/telenav-assets/images/iconshorizontal-line-512.png" srcset="https://telenav.github.io/telenav-assets/png/separators/horizontal-line-512-2x.png 2x"/>
+<img src="https://telenav.github.io/telenav-assets/images/icons/horizontal-line-512.png" srcset="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-512-2x.png 2x"/>
 
-### Dependencies <a name="dependencies"></a> &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/iconsdependencies-32.png" srcset="https://telenav.github.io/telenav-assets/images/iconsdependencies-32-2x.png 2x"/>
+### Dependencies <a name="dependencies"></a> &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/dependencies-32.png" srcset="https://telenav.github.io/telenav-assets/images/icons/dependencies-32-2x.png 2x"/>
 
 [*Dependency Diagram*](https://www.kivakit.org/1.6.0/lexakai/kivakit/kivakit-interfaces/documentation/diagrams/dependencies.svg)
 
@@ -30,7 +30,7 @@ This module provides an interface grammar for communicating with KivaKit.
         <version>1.6.0</version>
     </dependency>
 
-<img src="https://telenav.github.io/telenav-assets/images/iconshorizontal-line-128.png" srcset="https://telenav.github.io/telenav-assets/png/separators/horizontal-line-128-2x.png 2x"/>
+<img src="https://telenav.github.io/telenav-assets/images/icons/horizontal-line-128.png" srcset="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128-2x.png 2x"/>
 
 [//]: # (start-user-text)
 
@@ -38,9 +38,9 @@ This module provides an interface grammar for communicating with KivaKit.
 
 [//]: # (end-user-text)
 
-<img src="https://telenav.github.io/telenav-assets/images/iconshorizontal-line-128.png" srcset="https://telenav.github.io/telenav-assets/png/separators/horizontal-line-128-2x.png 2x"/>
+<img src="https://telenav.github.io/telenav-assets/images/icons/horizontal-line-128.png" srcset="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128-2x.png 2x"/>
 
-### Class Diagrams <a name="class-diagrams"></a> &nbsp; &nbsp; <img src="https://telenav.github.io/telenav-assets/images/iconsdiagram-40.png" srcset="https://telenav.github.io/telenav-assets/images/iconsdiagram-40-2x.png 2x"/>
+### Class Diagrams <a name="class-diagrams"></a> &nbsp; &nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/diagram-40.png" srcset="https://telenav.github.io/telenav-assets/images/icons/diagram-40-2x.png 2x"/>
 
 [*diagram-code*](https://www.kivakit.org/1.6.0/lexakai/kivakit/kivakit-interfaces/documentation/diagrams/diagram-code.svg)  
 [*diagram-collection*](https://www.kivakit.org/1.6.0/lexakai/kivakit/kivakit-interfaces/documentation/diagrams/diagram-collection.svg)  
@@ -58,9 +58,9 @@ This module provides an interface grammar for communicating with KivaKit.
 [*diagram-time*](https://www.kivakit.org/1.6.0/lexakai/kivakit/kivakit-interfaces/documentation/diagrams/diagram-time.svg)  
 [*diagram-value*](https://www.kivakit.org/1.6.0/lexakai/kivakit/kivakit-interfaces/documentation/diagrams/diagram-value.svg)
 
-<img src="https://telenav.github.io/telenav-assets/images/iconshorizontal-line-128.png" srcset="https://telenav.github.io/telenav-assets/png/separators/horizontal-line-128-2x.png 2x"/>
+<img src="https://telenav.github.io/telenav-assets/images/icons/horizontal-line-128.png" srcset="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128-2x.png 2x"/>
 
-### Package Diagrams <a name="package-diagrams"></a> &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/iconsbox-32.png" srcset="https://telenav.github.io/telenav-assets/images/iconsbox-32-2x.png 2x"/>
+### Package Diagrams <a name="package-diagrams"></a> &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/box-32.png" srcset="https://telenav.github.io/telenav-assets/images/icons/box-32-2x.png 2x"/>
 
 [*com.telenav.kivakit.interfaces.code*](https://www.kivakit.org/1.6.0/lexakai/kivakit/kivakit-interfaces/documentation/diagrams/com.telenav.kivakit.interfaces.code.svg)  
 [*com.telenav.kivakit.interfaces.collection*](https://www.kivakit.org/1.6.0/lexakai/kivakit/kivakit-interfaces/documentation/diagrams/com.telenav.kivakit.interfaces.collection.svg)  
@@ -81,9 +81,9 @@ This module provides an interface grammar for communicating with KivaKit.
 [*com.telenav.kivakit.interfaces.time*](https://www.kivakit.org/1.6.0/lexakai/kivakit/kivakit-interfaces/documentation/diagrams/com.telenav.kivakit.interfaces.time.svg)  
 [*com.telenav.kivakit.interfaces.value*](https://www.kivakit.org/1.6.0/lexakai/kivakit/kivakit-interfaces/documentation/diagrams/com.telenav.kivakit.interfaces.value.svg)
 
-<img src="https://telenav.github.io/telenav-assets/images/iconshorizontal-line-128.png" srcset="https://telenav.github.io/telenav-assets/png/separators/horizontal-line-128-2x.png 2x"/>
+<img src="https://telenav.github.io/telenav-assets/images/icons/horizontal-line-128.png" srcset="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128-2x.png 2x"/>
 
-### Javadoc <a name="javadoc"></a> &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/iconsbooks-32.png" srcset="https://telenav.github.io/telenav-assets/images/iconsbooks-32-2x.png 2x"/>
+### Javadoc <a name="javadoc"></a> &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/books-24.png" srcset="https://telenav.github.io/telenav-assets/images/icons/books-24-2x.png 2x"/>
 
 Javadoc coverage for this project is 75.5%.  
   
@@ -213,7 +213,7 @@ The following significant classes are undocumented:
 
 [//]: # (end-user-text)
 
-<img src="https://telenav.github.io/telenav-assets/images/iconshorizontal-line-512.png" srcset="https://telenav.github.io/telenav-assets/png/separators/horizontal-line-512-2x.png 2x"/>
+<img src="https://telenav.github.io/telenav-assets/images/icons/horizontal-line-512.png" srcset="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-512-2x.png 2x"/>
 
 <sub>Copyright &#169; 2011-2021 [Telenav](https://telenav.com), Inc. Distributed under [Apache License, Version 2.0](LICENSE)</sub>  
 <sub>This documentation was generated by [Lexakai](https://lexakai.org). UML diagrams courtesy of [PlantUML](https://plantuml.com).</sub>

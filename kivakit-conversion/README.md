@@ -4,11 +4,11 @@
 
 [//]: # (end-user-text)
 
-# kivakit-conversion &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/puzzle-32.png" srcset="https://telenav.github.io/telenav-assets/images/icons/puzzle-32-2x.png 2x"/>
+# kivakit-conversion &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons//puzzle-32.png" srcset="https://telenav.github.io/telenav-assets/images/icons//puzzle-32-2x.png 2x"/>
 
 This module contains the KivaKit conversion mini-framework
 
-<img src="https://telenav.github.io/telenav-assets/images/iconshorizontal-line-512.png" srcset="https://telenav.github.io/telenav-assets/png/separators/horizontal-line-512-2x.png 2x"/>
+<img src="https://telenav.github.io/telenav-assets/images/icons/horizontal-line-512.png" srcset="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-512-2x.png 2x"/>
 
 ### Index
 
@@ -16,9 +16,9 @@ This module contains the KivaKit conversion mini-framework
 
 [**Dependencies**](#dependencies) | [**Class Diagrams**](#class-diagrams) | [**Package Diagrams**](#package-diagrams) | [**Javadoc**](#javadoc)
 
-<img src="https://telenav.github.io/telenav-assets/images/iconshorizontal-line-512.png" srcset="https://telenav.github.io/telenav-assets/png/separators/horizontal-line-512-2x.png 2x"/>
+<img src="https://telenav.github.io/telenav-assets/images/icons/horizontal-line-512.png" srcset="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-512-2x.png 2x"/>
 
-### Dependencies <a name="dependencies"></a> &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/iconsdependencies-32.png" srcset="https://telenav.github.io/telenav-assets/images/iconsdependencies-32-2x.png 2x"/>
+### Dependencies <a name="dependencies"></a> &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/dependencies-32.png" srcset="https://telenav.github.io/telenav-assets/images/icons/dependencies-32-2x.png 2x"/>
 
 [*Dependency Diagram*](https://www.kivakit.org/1.6.0/lexakai/kivakit/kivakit-conversion/documentation/diagrams/dependencies.svg)
 
@@ -30,7 +30,7 @@ This module contains the KivaKit conversion mini-framework
         <version>1.6.0</version>
     </dependency>
 
-<img src="https://telenav.github.io/telenav-assets/images/iconshorizontal-line-128.png" srcset="https://telenav.github.io/telenav-assets/png/separators/horizontal-line-128-2x.png 2x"/>
+<img src="https://telenav.github.io/telenav-assets/images/icons/horizontal-line-128.png" srcset="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128-2x.png 2x"/>
 
 [//]: # (start-user-text)
 
@@ -38,9 +38,9 @@ This module contains the KivaKit conversion mini-framework
 
 [//]: # (end-user-text)
 
-<img src="https://telenav.github.io/telenav-assets/images/iconshorizontal-line-128.png" srcset="https://telenav.github.io/telenav-assets/png/separators/horizontal-line-128-2x.png 2x"/>
+<img src="https://telenav.github.io/telenav-assets/images/icons/horizontal-line-128.png" srcset="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128-2x.png 2x"/>
 
-### Class Diagrams <a name="class-diagrams"></a> &nbsp; &nbsp; <img src="https://telenav.github.io/telenav-assets/images/iconsdiagram-40.png" srcset="https://telenav.github.io/telenav-assets/images/iconsdiagram-40-2x.png 2x"/>
+### Class Diagrams <a name="class-diagrams"></a> &nbsp; &nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/diagram-40.png" srcset="https://telenav.github.io/telenav-assets/images/icons/diagram-40-2x.png 2x"/>
 
 [*Converters - Language*](https://www.kivakit.org/1.6.0/lexakai/kivakit/kivakit-conversion/documentation/diagrams/diagram-conversion-language.svg)  
 [*Converters - Other*](https://www.kivakit.org/1.6.0/lexakai/kivakit/kivakit-conversion/documentation/diagrams/diagram-conversion-other.svg)  
@@ -49,9 +49,9 @@ This module contains the KivaKit conversion mini-framework
 [*Converters - Value*](https://www.kivakit.org/1.6.0/lexakai/kivakit/kivakit-conversion/documentation/diagrams/diagram-conversion-value.svg)  
 [*Type Conversion*](https://www.kivakit.org/1.6.0/lexakai/kivakit/kivakit-conversion/documentation/diagrams/diagram-conversion.svg)
 
-<img src="https://telenav.github.io/telenav-assets/images/iconshorizontal-line-128.png" srcset="https://telenav.github.io/telenav-assets/png/separators/horizontal-line-128-2x.png 2x"/>
+<img src="https://telenav.github.io/telenav-assets/images/icons/horizontal-line-128.png" srcset="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128-2x.png 2x"/>
 
-### Package Diagrams <a name="package-diagrams"></a> &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/iconsbox-32.png" srcset="https://telenav.github.io/telenav-assets/images/iconsbox-32-2x.png 2x"/>
+### Package Diagrams <a name="package-diagrams"></a> &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/box-32.png" srcset="https://telenav.github.io/telenav-assets/images/icons/box-32-2x.png 2x"/>
 
 [*com.telenav.kivakit.conversion*](https://www.kivakit.org/1.6.0/lexakai/kivakit/kivakit-conversion/documentation/diagrams/com.telenav.kivakit.conversion.svg)  
 [*com.telenav.kivakit.conversion.core.collections.list*](https://www.kivakit.org/1.6.0/lexakai/kivakit/kivakit-conversion/documentation/diagrams/com.telenav.kivakit.conversion.core.collections.list.svg)  
@@ -65,9 +65,9 @@ This module contains the KivaKit conversion mini-framework
 [*com.telenav.kivakit.conversion.core.value*](https://www.kivakit.org/1.6.0/lexakai/kivakit/kivakit-conversion/documentation/diagrams/com.telenav.kivakit.conversion.core.value.svg)  
 [*com.telenav.kivakit.conversion.lexakai*](https://www.kivakit.org/1.6.0/lexakai/kivakit/kivakit-conversion/documentation/diagrams/com.telenav.kivakit.conversion.lexakai.svg)
 
-<img src="https://telenav.github.io/telenav-assets/images/iconshorizontal-line-128.png" srcset="https://telenav.github.io/telenav-assets/png/separators/horizontal-line-128-2x.png 2x"/>
+<img src="https://telenav.github.io/telenav-assets/images/icons/horizontal-line-128.png" srcset="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128-2x.png 2x"/>
 
-### Javadoc <a name="javadoc"></a> &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/iconsbooks-32.png" srcset="https://telenav.github.io/telenav-assets/images/iconsbooks-32-2x.png 2x"/>
+### Javadoc <a name="javadoc"></a> &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/books-24.png" srcset="https://telenav.github.io/telenav-assets/images/icons/books-24-2x.png 2x"/>
 
 Javadoc coverage for this project is 64.0%.  
   
@@ -152,7 +152,7 @@ The following significant classes are undocumented:
 
 [//]: # (end-user-text)
 
-<img src="https://telenav.github.io/telenav-assets/images/iconshorizontal-line-512.png" srcset="https://telenav.github.io/telenav-assets/png/separators/horizontal-line-512-2x.png 2x"/>
+<img src="https://telenav.github.io/telenav-assets/images/icons/horizontal-line-512.png" srcset="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-512-2x.png 2x"/>
 
 <sub>Copyright &#169; 2011-2021 [Telenav](https://telenav.com), Inc. Distributed under [Apache License, Version 2.0](LICENSE)</sub>  
 <sub>This documentation was generated by [Lexakai](https://lexakai.org). UML diagrams courtesy of [PlantUML](https://plantuml.com).</sub>

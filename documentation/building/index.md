@@ -1,8 +1,8 @@
-# KivaKit - Building   <img src="https://telenav.github.io/telenav-assets/images/iconsgears-32.png" srcset="https://telenav.github.io/telenav-assets/images/iconsgears-32-2x.png 2x"/>
+# KivaKit - Building   <img src="https://telenav.github.io/telenav-assets/images/icons/gears-32.png" srcset="https://telenav.github.io/telenav-assets/images/icons/gears-32-2x.png 2x"/>
 
 Whether you plan to use KivaKit or help develop it, this page can help get your build rolling.
 
-<img src="https://telenav.github.io/telenav-assets/images/iconshorizontal-line-512.png" srcset="https://telenav.github.io/telenav-assets/png/separators/horizontal-line-512-2x.png 2x"/>
+<img src="https://telenav.github.io/telenav-assets/images/icons/horizontal-line-512.png" srcset="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-512-2x.png 2x"/>
 
 ### Building KivaKit
 
@@ -16,7 +16,7 @@ KivaKit can be built by following these steps:
 
 3. Import the repositories *kivakit* and *kivakit-extensions* into [IntelliJ](https://www.jetbrains.com/idea/download/) as modules, refresh the Maven projects tab, and choose "Rebuild Project" from the "Build" menu.
 
-<img src="https://telenav.github.io/telenav-assets/images/iconshorizontal-line-128.png" srcset="https://telenav.github.io/telenav-assets/png/separators/horizontal-line-128-2x.png 2x"/>
+<img src="https://telenav.github.io/telenav-assets/images/icons/horizontal-line-128.png" srcset="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128-2x.png 2x"/>
 
 ### Key Build Scripts
 
@@ -30,7 +30,7 @@ KivaKit scripts are named so that you can easily discover them with command-line
 
 To see what scripts are available, type "kivakit-" and hit TAB.
 
-<img src="https://telenav.github.io/telenav-assets/images/iconshorizontal-line-128.png" srcset="https://telenav.github.io/telenav-assets/png/separators/horizontal-line-128-2x.png 2x"/>
+<img src="https://telenav.github.io/telenav-assets/images/icons/horizontal-line-128.png" srcset="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128-2x.png 2x"/>
 
 ### kivakit-build.sh
 
@@ -86,4 +86,4 @@ The *kivakit-build.sh* script takes a build-type parameter and zero or more buil
 
 <br/> 
 
-<img src="https://telenav.github.io/telenav-assets/images/iconshorizontal-line-512.png" srcset="https://telenav.github.io/telenav-assets/png/separators/horizontal-line-512-2x.png 2x"/>
+<img src="https://telenav.github.io/telenav-assets/images/icons/horizontal-line-512.png" srcset="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-512-2x.png 2x"/>
