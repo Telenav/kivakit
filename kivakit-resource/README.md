@@ -18,7 +18,7 @@
 
 This module contains abstractions for accessing the filesystem and arbitrary resources.
 
-<img src="https://telenav.github.io/telenav-assets/images/icons/horizontal-line-512.png" srcset="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-512-2x.png 2x"/>
+<img src="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-512.png" srcset="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-512-2x.png 2x"/>
 
 ### Index
 
@@ -32,7 +32,7 @@ This module contains abstractions for accessing the filesystem and arbitrary res
 
 [**Dependencies**](#dependencies) | [**Class Diagrams**](#class-diagrams) | [**Package Diagrams**](#package-diagrams) | [**Javadoc**](#javadoc)
 
-<img src="https://telenav.github.io/telenav-assets/images/icons/horizontal-line-512.png" srcset="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-512-2x.png 2x"/>
+<img src="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-512.png" srcset="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-512-2x.png 2x"/>
 
 ### Dependencies <a name="dependencies"></a> &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/dependencies-32.png" srcset="https://telenav.github.io/telenav-assets/images/icons/dependencies-32-2x.png 2x"/>
 
@@ -46,7 +46,7 @@ This module contains abstractions for accessing the filesystem and arbitrary res
         <version>1.6.0</version>
     </dependency>
 
-<img src="https://telenav.github.io/telenav-assets/images/icons/horizontal-line-128.png" srcset="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128-2x.png 2x"/>
+<img src="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128.png" srcset="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128-2x.png 2x"/>
 
 [//]: # (start-user-text)
 
@@ -56,7 +56,7 @@ This module pulls together everything that can stream together under a single ab
 providing an easy way to work with different kinds of resources without being tied to any
 of the details.
 
-<img src="https://telenav.github.io/telenav-assets/images/icons/horizontal-line-128.png" srcset="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128-2x.png 2x"/>
+<img src="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128.png" srcset="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128-2x.png 2x"/>
 
 ### Readable Resources <a name="readable-resources"></a> &nbsp; &nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/wand-32.png" srcset="https://telenav.github.io/telenav-assets/images/icons/wand-32-2x.png 2x"/>
 
@@ -75,7 +75,7 @@ interface. The most important methods are shown here in a simplified form:
         Bytes size();
     }
 
-<img src="https://telenav.github.io/telenav-assets/images/icons/horizontal-line-128.png" srcset="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128-2x.png 2x"/>
+<img src="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128.png" srcset="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128-2x.png 2x"/>
 
 ### Kinds of Resources <a name="kinds-of-resources"></a> &nbsp; &nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/diagram-40.png" srcset="https://telenav.github.io/telenav-assets/images/icons/diagram-40-2x.png 2x"/>
 
@@ -100,7 +100,7 @@ other resource and it works the same:
         return resource.reader().string(); 
     }
 
-<img src="https://telenav.github.io/telenav-assets/images/icons/horizontal-line-128.png" srcset="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128-2x.png 2x"/>
+<img src="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128.png" srcset="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128-2x.png 2x"/>
 
 ### Writable Resources <a name="writable-resources"></a> &nbsp; &nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/pencil-32.png" srcset="https://telenav.github.io/telenav-assets/images/icons/pencil-32-2x.png 2x"/>
 
@@ -113,7 +113,7 @@ The *WritableResource* interface extends the *Resource* interface to add output 
         ResourceWriter writer();
     }
 
-<img src="https://telenav.github.io/telenav-assets/images/icons/horizontal-line-128.png" srcset="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128-2x.png 2x"/>
+<img src="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128.png" srcset="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128-2x.png 2x"/>
 
 ### Files <a name="files"></a> &nbsp; &nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/folder-32.png" srcset="https://telenav.github.io/telenav-assets/images/icons/folder-32-2x.png 2x"/>
 
@@ -162,7 +162,7 @@ less flexible.
 | HDFS | *HdfsFileSystemService* |
 | S3 | *S3FileSystemService* |
 
-<img src="https://telenav.github.io/telenav-assets/images/icons/horizontal-line-128.png" srcset="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128-2x.png 2x"/>
+<img src="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128.png" srcset="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128-2x.png 2x"/>
 
 ### Launching Jar Resources <a name = "launching-jar-resources"></a>
 
@@ -182,7 +182,7 @@ location. Basic usage looks like this:
 
 Output in this case is redirected to a file in the ~/.kivakit/[kivakit-version]/temporary/launcher folder.
 
-<img src="https://telenav.github.io/telenav-assets/images/icons/horizontal-line-128.png" srcset="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128-2x.png 2x"/>
+<img src="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128.png" srcset="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128-2x.png 2x"/>
 
 ### Other Resources <a name="other-resources"></a>
 
@@ -224,7 +224,7 @@ A wide variety of other resources are available and new ones are easy to write. 
 
 [//]: # (end-user-text)
 
-<img src="https://telenav.github.io/telenav-assets/images/icons/horizontal-line-128.png" srcset="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128-2x.png 2x"/>
+<img src="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128.png" srcset="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128-2x.png 2x"/>
 
 ### Class Diagrams <a name="class-diagrams"></a> &nbsp; &nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/diagram-40.png" srcset="https://telenav.github.io/telenav-assets/images/icons/diagram-40-2x.png 2x"/>
 
@@ -239,7 +239,7 @@ A wide variety of other resources are available and new ones are easy to write. 
 [*Resources - Paths*](https://www.kivakit.org/1.6.0/lexakai/kivakit/kivakit-resource/documentation/diagrams/diagram-resource-path.svg)  
 [*Resources - Services*](https://www.kivakit.org/1.6.0/lexakai/kivakit/kivakit-resource/documentation/diagrams/diagram-resource-service.svg)
 
-<img src="https://telenav.github.io/telenav-assets/images/icons/horizontal-line-128.png" srcset="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128-2x.png 2x"/>
+<img src="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128.png" srcset="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128-2x.png 2x"/>
 
 ### Package Diagrams <a name="package-diagrams"></a> &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/box-32.png" srcset="https://telenav.github.io/telenav-assets/images/icons/box-32-2x.png 2x"/>
 
@@ -261,7 +261,7 @@ A wide variety of other resources are available and new ones are easy to write. 
 [*com.telenav.kivakit.resource.spi*](https://www.kivakit.org/1.6.0/lexakai/kivakit/kivakit-resource/documentation/diagrams/com.telenav.kivakit.resource.spi.svg)  
 [*com.telenav.kivakit.resource.writing*](https://www.kivakit.org/1.6.0/lexakai/kivakit/kivakit-resource/documentation/diagrams/com.telenav.kivakit.resource.writing.svg)
 
-<img src="https://telenav.github.io/telenav-assets/images/icons/horizontal-line-128.png" srcset="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128-2x.png 2x"/>
+<img src="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128.png" srcset="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128-2x.png 2x"/>
 
 ### Javadoc <a name="javadoc"></a> &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/books-24.png" srcset="https://telenav.github.io/telenav-assets/images/icons/books-24-2x.png 2x"/>
 
@@ -432,7 +432,7 @@ The following significant classes are undocumented:
 
 [//]: # (end-user-text)
 
-<img src="https://telenav.github.io/telenav-assets/images/icons/horizontal-line-512.png" srcset="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-512-2x.png 2x"/>
+<img src="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-512.png" srcset="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-512-2x.png 2x"/>
 
 <sub>Copyright &#169; 2011-2021 [Telenav](https://telenav.com), Inc. Distributed under [Apache License, Version 2.0](LICENSE)</sub>  
 <sub>This documentation was generated by [Lexakai](https://lexakai.org). UML diagrams courtesy of [PlantUML](https://plantuml.com).</sub>
