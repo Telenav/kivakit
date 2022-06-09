@@ -45,7 +45,6 @@ KivaKit (KEE-vah-KIT) is a set of integrated Java mini-frameworks that are poten
 [**Tutorial Articles**](https://state-of-the-art.org/)  
 [**Example Code**](https://github.com/Telenav/kivakit-examples)  
 [**Published Releases**](https://repo1.maven.org/maven2/com/telenav/kivakit/)  
-[**Docker Build Environment**](documentation/building/docker-build-environment.md)
 
 ### Index <a name = "index"></a>
 
@@ -119,13 +118,11 @@ KivaKit helps you to:
 [Visualizing Kivakit (1 minute)](https://medium.com/@jonathanlocke/visualizing-kivakit-b60e7bb31a9f)  
 [In-depth (21 minutes)](https://towardsdev.com/the-kivakit-microservices-framework-3cd1d064107c)  
 [Monads (6 minutes, draft)](https://medium.com/@jonathanlocke/how-kivakit-makes-monads-easy-part-one-maybe-73c819f9ad3b)  
-[Docker Build (4 minutes)](https://towardsdev.com/kivakits-new-docker-build-environment-d2137e3e12a0)  
 [Object-Orientation (3 minutes)](https://medium.com/p/595c182d817c)
 
 ### Building KivaKit <a name = "building-kivakit"></a> &nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/gears-32.png" srcset="https://telenav.github.io/telenav-assets/images/icons/gears-32-2x.png 2x"/>
 
 [**Building**](documentation/building/index.md)  
-[**Docker Build Environment**](documentation/building/docker-build-environment.md)  
 [**Host Build Environment**](documentation/building/host-build-environment.md)
 
 ### Downloads <a name = "downloads"></a>&nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/down-arrow-24.png" srcset="https://telenav.github.io/telenav-assets/images/icons/down-arrow-24-2x.png 2x"/>

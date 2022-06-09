@@ -9,7 +9,7 @@
 
 source kivakit-library-functions.sh
 
-cd "$KIVAKIT_WORKSPACE" || exit 1
+cd "$TELENAV_WORKSPACE" || exit 1
 
 git pull --quiet
 

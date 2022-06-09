@@ -39,9 +39,8 @@ echo "┋"
 echo "┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛"
 echo " "
 
-export KIVAKIT_WORKSPACE="$WORKSPACE"
+export TELENAV_WORKSPACE="$WORKSPACE"
 
 source "$HOME/.profile"
 
 $SHELL
-

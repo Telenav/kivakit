@@ -17,7 +17,7 @@ require_variable version "$help"
 
 if [ "$KIVAKIT_VERSION" = "$version" ]; then
 
-    docs="$KIVAKIT_WORKSPACE/kivakit-assets/docs/$KIVAKIT_VERSION"
+    docs="$TELENAV_WORKSPACE/kivakit-assets/docs/$KIVAKIT_VERSION"
 
     if [ ! -d "$docs/codeflowers" ]; then
 
@@ -28,7 +28,7 @@ if [ "$KIVAKIT_VERSION" = "$version" ]; then
         echo "┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛"
 
         mkdir -p "$docs"
-        cp -r "$KIVAKIT_WORKSPACE/kivakit-assets/docs/1.4.0/codeflowers" "$docs"
+        cp -r "$TELENAV_WORKSPACE/kivakit-assets/docs/1.4.0/codeflowers" "$docs"
         cd "$docs/codeflowers" || exit
         bash ./kivakit-build-codeflowers.sh
 
@@ -106,4 +106,3 @@ else
     fi
 
 fi
-

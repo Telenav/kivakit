@@ -18,7 +18,7 @@ echo " "
 
 
 docker run \
-    --volume "$KIVAKIT_WORKSPACE:/host/workspace" \
+    --volume "$TELENAV_WORKSPACE:/host/workspace" \
     --volume "$HOME/.m2:/host/.m2" \
     --volume "$HOME/.kivakit:/host/.kivakit" \
     --interactive --tty "jonathanlocke/kivakit:$IMAGE_VERSION" \

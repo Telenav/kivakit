@@ -8,9 +8,6 @@ Whether you plan to use KivaKit or help develop it, this page can help get your 
 
 KivaKit can be built by following these steps:
 
-1. [Launch a Docker build environment](docker-build-environment.md) or [set one up on your host](host-build-environment.md)
-
-
 2. Build KivaKit with *kivakit-build.sh*
 
 

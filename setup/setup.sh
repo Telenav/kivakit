@@ -12,10 +12,10 @@ echo "━━━━━━━━━━━━━━━━━━━━━━━━�
 echo " "
 
 #
-# Ensure KIVAKIT_WORKSPACE variable is set
+# Ensure TELENAV_WORKSPACE variable is set
 #
 
-if [ -z "$KIVAKIT_WORKSPACE" ]; then
+if [ -z "$TELENAV_WORKSPACE" ]; then
 
     echo " "
     echo "Please set up your .profile before setting up KivaKit."
@@ -29,7 +29,7 @@ fi
 # Ensure that KivaKit is on the develop branch
 #
 
-cd "$KIVAKIT_WORKSPACE"/kivakit || exit
+cd "$TELENAV_WORKSPACE"/kivakit || exit
 
 BRANCH="$(git rev-parse --abbrev-ref HEAD)"
 
@@ -46,9 +46,9 @@ fi
 # Make sure that the shell has been restarted
 #
 
-if [ ! -e "$KIVAKIT_WORKSPACE/kivakit/setup.properties" ]; then
+if [ ! -e "$TELENAV_WORKSPACE/kivakit/setup.properties" ]; then
     
-    date +setup-time=%Y.%m.%d-%I.%M%p > "$KIVAKIT_WORKSPACE"/kivakit/setup.properties
+    date +setup-time=%Y.%m.%d-%I.%M%p > "$TELENAV_WORKSPACE"/kivakit/setup.properties
 
     echo " "
     echo "Please exit your shell program and start it up again before continuing KivaKit setup."
@@ -66,7 +66,7 @@ echo " "
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫ Setting Up Repositories"
 echo " "
 
-"$KIVAKIT_WORKSPACE"/kivakit/setup/setup-repositories.sh
+"$TELENAV_WORKSPACE"/kivakit/setup/setup-repositories.sh
 
 #
 # Build
@@ -76,7 +76,7 @@ echo " "
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫ Building Projects"
 echo " "
 
-cd "$KIVAKIT_WORKSPACE"/kivakit || exit
+cd "$TELENAV_WORKSPACE"/kivakit || exit
 kivakit-build.sh setup "$1"
 
 echo " "

@@ -1,10 +1,10 @@
 
-source "$KIVAKIT_WORKSPACE"/kivakit/tools/library/kivakit-library-functions.sh
+source "$TELENAV_WORKSPACE"/kivakit/tools/library/kivakit-library-functions.sh
 
 export BASH_SILENCE_DEPRECATION_WARNING=1
 export MAVEN_OPTS="--add-opens=java.base/java.util=ALL-UNNAMED --add-opens=java.base/java.lang.reflect=ALL-UNNAMED --add-opens=java.base/java.text=ALL-UNNAMED --add-opens=java.desktop/java.awt.font=ALL-UNNAMED"
 
-system_variable KIVAKIT_HOME "$KIVAKIT_WORKSPACE/kivakit"
+system_variable KIVAKIT_HOME "$TELENAV_WORKSPACE/kivakit"
 system_variable KIVAKIT_VERSION "$(project_version "$KIVAKIT_HOME")"
 system_variable KIVAKIT_BUILD "$(project_build "$KIVAKIT_HOME")"
 system_variable KIVAKIT_TOOLS "$KIVAKIT_HOME/tools"
@@ -18,10 +18,10 @@ append_path "$KIVAKIT_TOOLS/developing"
 append_path "$KIVAKIT_TOOLS/library"
 append_path "$KIVAKIT_TOOLS/releasing"
 
-system_variable KIVAKIT_ASSETS_HOME "$KIVAKIT_WORKSPACE/kivakit-assets"
-system_variable KIVAKIT_EXTENSIONS_HOME "$KIVAKIT_WORKSPACE/kivakit-extensions"
-system_variable KIVAKIT_STUFF_HOME "$KIVAKIT_WORKSPACE/kivakit-stuff"
-system_variable KIVAKIT_EXAMPLES_HOME "$KIVAKIT_WORKSPACE/kivakit-examples"
+system_variable KIVAKIT_ASSETS_HOME "$TELENAV_WORKSPACE/kivakit-assets"
+system_variable KIVAKIT_EXTENSIONS_HOME "$TELENAV_WORKSPACE/kivakit-extensions"
+system_variable KIVAKIT_STUFF_HOME "$TELENAV_WORKSPACE/kivakit-stuff"
+system_variable KIVAKIT_EXAMPLES_HOME "$TELENAV_WORKSPACE/kivakit-examples"
 system_variable KIVAKIT_CACHE_HOME "$HOME/.kivakit/$KIVAKIT_VERSION"
 system_variable KIVAKIT_AGENT_JAR "$KIVAKIT_TOOLS/agent/kivakit-agent.jar"
 
@@ -30,7 +30,7 @@ source_project_profile "cactus-build"
 echo " "
 echo "┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫ KivaKit Environment ┣━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓"
 echo "┋"
-echo "┋        KIVAKIT_WORKSPACE: $KIVAKIT_WORKSPACE"
+echo "┋        TELENAV_WORKSPACE: $TELENAV_WORKSPACE"
 echo "┋             KIVAKIT_HOME: $KIVAKIT_HOME"
 echo "┋          KIVAKIT_VERSION: $KIVAKIT_VERSION"
 echo "┋            KIVAKIT_BUILD: $KIVAKIT_BUILD"
@@ -50,9 +50,9 @@ SHOW_SYSTEM_ENVIRONMENT=false
 source_project_profile "mesakit"
 source_project_profile "lexakai"
 
-date +setup-time=%Y.%m.%d-%I.%M%p > "$KIVAKIT_WORKSPACE"/kivakit/setup.properties
+date +setup-time=%Y.%m.%d-%I.%M%p > "$TELENAV_WORKSPACE"/kivakit/setup.properties
 
-cd "$KIVAKIT_WORKSPACE" || exit
+cd "$TELENAV_WORKSPACE" || exit
 
 echo " "
 echo "┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫ System Environment ┣━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓"
@@ -63,4 +63,3 @@ perl -e 'print "┋                     Path: " . join("\n┋                   
 echo "┋"
 echo "┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛"
 echo " "
-

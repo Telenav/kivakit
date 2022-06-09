@@ -20,7 +20,7 @@ echo "┋"
 echo "┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛"
 echo " "
 
-cd "$KIVAKIT_WORKSPACE" || exit
+cd "$TELENAV_WORKSPACE" || exit
 
 # shellcheck disable=SC2154
 git submodule foreach --quiet "[[ "\$path" == *-assets* ]] || [[ ! "\$path" == *kivakit* ]] || lexakai.sh -overwrite-resources=true -update-readme=true -output-folder=$KIVAKIT_ASSETS_HOME/docs/$KIVAKIT_VERSION/lexakai/\$name \$toplevel/\$path" || exit 1

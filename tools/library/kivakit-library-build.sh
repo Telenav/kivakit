@@ -11,7 +11,7 @@ BUILD_PROPERTIES="$KIVAKIT_HOME/kivakit-core/target/classes/build.properties"
 
 kivakit_build_all()
 {
-    cd "$KIVAKIT_WORKSPACE" || exit
+    cd "$TELENAV_WORKSPACE" || exit
 
     mvn com.telenav.cactus:cactus-build-maven-plugin:build-metadata || exit
 
@@ -29,7 +29,7 @@ kivakit_build_all()
     # shellcheck disable=SC2002
     # shellcheck disable=SC2086
     # shellcheck disable=SC2048
-    build "$KIVAKIT_WORKSPACE" $*
+    build "$TELENAV_WORKSPACE" $*
 }
 
 usage() {

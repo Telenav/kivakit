@@ -8,8 +8,6 @@ Learn how to set up your host to build KivaKit.
 
 Whether you plan to use KivaKit or help to develop it, the easiest way to build KivaKit is to use the KivaKit Docker build environment:
 
-> [Build KivaKit anywhere *fast* in the Docker build environment](docker-build-environment.md)
-
 If you want to set up a build environment on your host instead, this page will help you get a build rolling in 3 easy steps.
 
 ### Prerequisites

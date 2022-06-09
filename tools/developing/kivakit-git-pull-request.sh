@@ -17,7 +17,7 @@ require_variable body "[title] [body]"
 
 if git_flow_check_all_repositories; then
 
-    cd "$KIVAKIT_WORKSPACE" || exit
+    cd "$TELENAV_WORKSPACE" || exit
 
     gh auth login --hostname github.com --with-token < ~/token.txt
     gh pr create --title "$title" --body "$body"

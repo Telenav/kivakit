@@ -7,9 +7,9 @@
 #
 #///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-source "$KIVAKIT_WORKSPACE"/kivakit/tools/library/kivakit-library-functions.sh
+source "$TELENAV_WORKSPACE"/kivakit/tools/library/kivakit-library-functions.sh
 
 clean_cache "$KIVAKIT_CACHE_HOME"
 clean_cache "$MESAKIT_CACHE_HOME"
 
-clean_temporary_files "$KIVAKIT_WORKSPACE"
+clean_temporary_files "$TELENAV_WORKSPACE"
