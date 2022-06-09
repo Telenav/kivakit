@@ -112,7 +112,7 @@ KivaKit helps you to:
 [Monads (6 minutes, draft)](https://medium.com/@jonathanlocke/how-kivakit-makes-monads-easy-part-one-maybe-73c819f9ad3b)  
 [Object-Orientation (3 minutes)](https://medium.com/p/595c182d817c)
 
-### Setup and Build <a name = "setup-and-build"></a> &nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/gears-32.png" srcset="https://telenav.github.io/telenav-assets/images/icons/gears-32-2x.png 2x"/>
+### Setup and Build <a name = "setup-and-build"></a> &nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/box-24.png" srcset="https://telenav.github.io/telenav-assets/images/icons/box-24-2x.png 2x"/>
 
 [**Initial Setup**](../documentation/initial-setup.md)  
 [**Building**](../documentation/building.md)  
@@ -155,7 +155,7 @@ KivaKit helps you to:
 
 [//]: # (end-user-text)
 
-### Sub-Projects <a name = "projects"></a> &nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/gears-32.png" srcset="https://telenav.github.io/telenav-assets/images/icons/gears-32-2x.png 2x"/>
+### Sub-Projects <a name = "projects"></a> &nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/diagram-32.png" srcset="https://telenav.github.io/telenav-assets/images/icons/diagram-32-2x.png 2x"/>
 
 [**kivakit-application**](kivakit-application/README.md)  
 [**kivakit-collections**](kivakit-collections/README.md)  
