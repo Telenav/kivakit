@@ -18,7 +18,7 @@
     <parent>
         <groupId>com.telenav.kivakit</groupId>
         <artifactId>kivakit-superpom</artifactId>
-        <version>1.6.0</version>
+        <version>1.6.0</version> <!-- [version] -->
         <relativePath/>
     </parent>
 
@@ -51,4 +51,3 @@
     </dependencies>
 
 </project>
-
