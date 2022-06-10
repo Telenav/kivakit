@@ -1,8 +1,8 @@
-# kivakit-core-kernel messaging &nbsp; ![](../../../documentation/images/envelope-40.png)
+# kivakit-core-kernel messaging &nbsp; ![](https://telenav.github.io/telenav-assets/images/icons/envelope-40.png)
 
-![](../documentation/images/horizontal-line.png)
+![](https://telenav.github.io/telenav-assets/images/separators/horizontal-line.png)
 
-### Package &nbsp; ![](../../../documentation/images/box-32.png)
+### Package &nbsp; ![](https://telenav.github.io/telenav-assets/images/icons/box-24.png)
 
 *com.telenav.kivakit.core.kernel.messaging*
 
@@ -14,7 +14,7 @@
 [**Repeaters**](#repeaters)  
 [**Messages**](#messages)
 
-![](../documentation/images/horizontal-line.png)
+![](https://telenav.github.io/telenav-assets/images/separators/horizontal-line.png)
 
 ### Summary <a name="summary"></a>
 
@@ -33,7 +33,7 @@ A few examples of objects in KivaKit that transmit and receive messages:
 * Graph loaders
 * Data readers
 
-### Broadcasters <a name="broadcasters"></a> &nbsp; ![](../../../documentation/images/sonar-32.png)
+### Broadcasters <a name="broadcasters"></a> &nbsp; ![](https://telenav.github.io/telenav-assets/images/icons/sonar-32.png)
 
 A _Broadcaster_ transmits messages that implement the _Broadcastable_ tag interface to one or  
 more _Listeners_. This is the key method in the _Broadcaster_ interface:
@@ -45,7 +45,7 @@ more _Listeners_. This is the key method in the _Broadcaster_ interface:
 
 The method _transmit()_ sends the given message to all objects that are listening in.
 
-### Listeners <a name="listeners"></a> &nbsp; ![](../../../documentation/images/ear-32.png)
+### Listeners <a name="listeners"></a> &nbsp; ![](https://telenav.github.io/telenav-assets/images/icons/ear-32.png)
 
 A _Listener_ registers interest in a _Broadcaster_ with the _listenTo()_ method (or if it's more  
 convenient there is a method in _Broadcaster_, _broadcastTo()_ that accomplishes the same thing):
@@ -74,7 +74,7 @@ A base class, _BaseRepeater_, is commonly used to implement messaging functional
 In cases where an object is already extending some other object, a _BaseRepeater_ may be aggregated  
 in the object to implement the _Repeater_ interface.
 
-### Messages <a name="messages"></a> &nbsp; ![](../../../documentation/images/envelope-32.png)
+### Messages <a name="messages"></a> &nbsp; ![](https://telenav.github.io/telenav-assets/images/icons/envelope-32.png)
 
 A _Message_ is the most important kind of _Broadcastable_ and it is used in logging and for other purposes:
 
@@ -98,4 +98,4 @@ A few messages commonly used in logging include:
 
 <br/>
 
-![](../documentation/images/horizontal-line.png)
+![](https://telenav.github.io/telenav-assets/images/separators/horizontal-line.png)

@@ -1,8 +1,8 @@
-# kivakit-core-kernel language.strings &nbsp; ![](../../../documentation/images/string-64.png)
+# kivakit-core-kernel language.strings &nbsp; ![](https://telenav.github.io/telenav-assets/images/icons/string-64.png)
 
-![](../documentation/images/horizontal-line.png)
+![](https://telenav.github.io/telenav-assets/images/separators/horizontal-line.png)
 
-### Package &nbsp; ![](../../../documentation/images/box-32.png)
+### Package &nbsp; ![](https://telenav.github.io/telenav-assets/images/icons/box-24.png)
 
 *com.telenav.kivakit.core.kernel.language.strings*
 
@@ -13,7 +13,7 @@
 [**Formatting**](#formatting)  
 [**Conversion**](#conversion)
 
-![](../documentation/images/horizontal-line.png)
+![](https://telenav.github.io/telenav-assets/images/separators/horizontal-line.png)
 
 ### Summary <a name="summary"></a>
 
@@ -107,4 +107,4 @@ Several common formats are pre-defined (and new ones can always be defined):
 
 <br/>
 
-![](../documentation/images/horizontal-line.png)
+![](https://telenav.github.io/telenav-assets/images/separators/horizontal-line.png)

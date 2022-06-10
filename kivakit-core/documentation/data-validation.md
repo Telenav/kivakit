@@ -1,7 +1,7 @@
-## kivakit-core-kernel data.validation &nbsp; ![](../../../documentation/images/checkmark-40.png)
-![](../documentation/images/horizontal-line.png)
+## kivakit-core-kernel data.validation &nbsp; ![](https://telenav.github.io/telenav-assets/images/icons/checkmark-40.png)
+![](https://telenav.github.io/telenav-assets/images/separators/horizontal-line.png)
 
-### Package &nbsp; ![](../../../documentation/images/box-32.png)
+### Package &nbsp; ![](https://telenav.github.io/telenav-assets/images/icons/box-24.png)
 
 *com.telenav.kivakit.core.kernel.data.validation*
 
@@ -13,14 +13,14 @@
 [**Validatable**](#validatable)  
 [**Ensure**](#ensure)
 
-![](../documentation/images/horizontal-line.png)
+![](https://telenav.github.io/telenav-assets/images/separators/horizontal-line.png)
 
 ### Summary <a name="summary"></a>
 
 The data validation package provides a mini-framework for checking the correctness and consistency  
 of objects.
 
-### Class Diagrams <a name="class-diagrams"></a> &nbsp; &nbsp; ![](../../../documentation/images/diagram-48.png)
+### Class Diagrams <a name="class-diagrams"></a> &nbsp; &nbsp; ![](https://telenav.github.io/telenav-assets/images/icons/diagram-48.png)
 
 [**Data Validation**](diagrams/diagram-data-validation.svg)
 
@@ -101,4 +101,4 @@ Several subclasses of *BaseValidationReporter* provide different ways of handlin
 
 <br/>
 
-![](../documentation/images/horizontal-line.png)
+![](https://telenav.github.io/telenav-assets/images/separators/horizontal-line.png)

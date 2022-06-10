@@ -1,8 +1,8 @@
-# kivakit-core-kernel language.iteration &nbsp; ![](../../../documentation/images/footprints-40.png)
+# kivakit-core-kernel language.iteration &nbsp; ![](https://telenav.github.io/telenav-assets/images/icons/footprints-40.png)
 
-![](../documentation/images/horizontal-line.png)
+![](https://telenav.github.io/telenav-assets/images/separators/horizontal-line.png)
 
-### Package &nbsp; ![](../../../documentation/images/box-32.png)
+### Package &nbsp; ![](https://telenav.github.io/telenav-assets/images/icons/box-24.png)
 
 *com.telenav.kivakit.core.kernel.language.iteration*
 
@@ -12,7 +12,7 @@
 [**Implementing Iterators**](#implementing-iterators)  
 [**Implementing Iterables**](#implementing-iterables)
 
-![](../documentation/images/horizontal-line.png)
+![](https://telenav.github.io/telenav-assets/images/separators/horizontal-line.png)
 
 ### Summary <a name="summary"></a>
 
@@ -93,4 +93,4 @@ wraps an *Iterable* and applies a *Matcher* as an element filter. It looks like 
 
 <br/>
 
-![](../documentation/images/horizontal-line.png)
+![](https://telenav.github.io/telenav-assets/images/separators/horizontal-line.png)

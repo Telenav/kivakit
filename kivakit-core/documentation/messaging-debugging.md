@@ -1,8 +1,8 @@
-# kivakit-core-kernel debugging &nbsp; ![](../../../documentation/images/bug-40.png)
+# kivakit-core-kernel debugging &nbsp; ![](https://telenav.github.io/telenav-assets/images/icons/bug-40.png)
 
-![](../documentation/images/horizontal-line.png)
+![](https://telenav.github.io/telenav-assets/images/separators/horizontal-line.png)
 
-### Package &nbsp; ![](../../../documentation/images/box-32.png)
+### Package &nbsp; ![](https://telenav.github.io/telenav-assets/images/icons/box-24.png)
 
 *com.telenav.kivakit.core.kernel.messaging*
 
@@ -14,7 +14,7 @@
 [**Debugging Advertisements**](#debugging-advertisements)  
 [**Enabling Debugging at Runtime**](#enabling-debugging-at-runtime)
 
-![](../documentation/images/horizontal-line.png)
+![](https://telenav.github.io/telenav-assets/images/separators/horizontal-line.png)
 
 ### Summary <a name="summary"></a>
 
@@ -97,4 +97,4 @@ A few examples to demonstrate:
 
 <br/>
 
-![](../documentation/images/horizontal-line.png)
+![](https://telenav.github.io/telenav-assets/images/separators/horizontal-line.png)

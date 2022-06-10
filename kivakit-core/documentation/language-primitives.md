@@ -1,8 +1,8 @@
-# kivakit-core-kernel language.primitives &nbsp; ![](../../../documentation/images/bits-40.png)
+# kivakit-core-kernel language.primitives &nbsp; ![](https://telenav.github.io/telenav-assets/images/icons/bits-40.png)
 
-![](../documentation/images/horizontal-line.png)
+![](https://telenav.github.io/telenav-assets/images/separators/horizontal-line.png)
 
-### Package &nbsp; ![](../../../documentation/images/box-32.png)
+### Package &nbsp; ![](https://telenav.github.io/telenav-assets/images/icons/box-24.png)
 
 *com.telenav.kivakit.core.kernel.language.primitives*
 
@@ -15,7 +15,7 @@
 [**Ints**](#ints)  
 [**Longs**](#longs)
 
-![](../documentation/images/horizontal-line.png)
+![](https://telenav.github.io/telenav-assets/images/separators/horizontal-line.png)
 
 ### Summary <a name="summary"></a>
 
@@ -77,4 +77,4 @@ This package contains various utility methods for working with Java primitive an
 
 <br/>
 
-![](../documentation/images/horizontal-line.png)
+![](https://telenav.github.io/telenav-assets/images/separators/horizontal-line.png)

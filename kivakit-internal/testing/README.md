@@ -4,7 +4,7 @@
 
 [//]: # (end-user-text)
 
-# kivakit-internal-testing &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/box-32.png" srcset="https://telenav.github.io/telenav-assets/images/icons/box-32-2x.png 2x"/>
+# kivakit-internal-testing &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/box-24.png" srcset="https://telenav.github.io/telenav-assets/images/icons/box-24-2x.png 2x"/>
 
 This module contains internal code for testing.
 
@@ -46,7 +46,7 @@ This module contains internal code for testing.
 
 <img src="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128.png" srcset="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128-2x.png 2x"/>
 
-### Package Diagrams <a name="package-diagrams"></a> &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/box-32.png" srcset="https://telenav.github.io/telenav-assets/images/icons/box-32-2x.png 2x"/>
+### Package Diagrams <a name="package-diagrams"></a> &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/box-24.png" srcset="https://telenav.github.io/telenav-assets/images/icons/box-24-2x.png 2x"/>
 
 [*com.telenav.kivakit.internal.testing*](https://www.kivakit.org/1.6.0/lexakai/kivakit/kivakit-internal/testing/documentation/diagrams/com.telenav.kivakit.internal.testing.svg)  
 [*com.telenav.kivakit.internal.testing.lexakai*](https://www.kivakit.org/1.6.0/lexakai/kivakit/kivakit-internal/testing/documentation/diagrams/com.telenav.kivakit.internal.testing.lexakai.svg)

@@ -1,8 +1,8 @@
-# kivakit-core-kernel language.patterns &nbsp; ![](../../../documentation/images/pattern-48.png)
+# kivakit-core-kernel language.patterns &nbsp; ![](https://telenav.github.io/telenav-assets/images/icons/pattern-48.png)
 
-![](../documentation/images/horizontal-line.png)
+![](https://telenav.github.io/telenav-assets/images/separators/horizontal-line.png)
 
-### Package &nbsp; ![](../../../documentation/images/box-32.png)
+### Package &nbsp; ![](https://telenav.github.io/telenav-assets/images/icons/box-24.png)
 
 *com.telenav.kivakit.core.kernel.language.patterns*
 
@@ -11,7 +11,7 @@
 [**Summary**](#summary)  
 [**Pattern Composition**](#pattern-composition)
 
-![](../documentation/images/horizontal-line.png)
+![](https://telenav.github.io/telenav-assets/images/separators/horizontal-line.png)
 
 ### Summary <a name="summary"></a>
 
@@ -46,4 +46,4 @@ pattern produces a *Rectangle* object using the given rectangle converter on the
 
 <br/>
 
-![](../documentation/images/horizontal-line.png)
+![](https://telenav.github.io/telenav-assets/images/separators/horizontal-line.png)

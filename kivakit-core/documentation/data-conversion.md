@@ -1,7 +1,7 @@
-## kivakit-core-kernel data.conversion &nbsp; ![](../../../documentation/images/convert-32.png)
-![](../documentation/images/horizontal-line.png)
+## kivakit-core-kernel data.conversion &nbsp; ![](https://telenav.github.io/telenav-assets/images/icons/convert-32.png)
+![](https://telenav.github.io/telenav-assets/images/separators/horizontal-line.png)
 
-### Package &nbsp; ![](../../../documentation/images/box-32.png)
+### Package &nbsp; ![](https://telenav.github.io/telenav-assets/images/icons/box-24.png)
 
 *com.telenav.kivakit.core.kernel.data.conversion*
 
@@ -12,7 +12,7 @@
 [**Example 2**](#example-2)  
 [**Example 3**](#example-3)
 
-![](../documentation/images/horizontal-line.png)
+![](https://telenav.github.io/telenav-assets/images/separators/horizontal-line.png)
 
 ### Summary
 
@@ -60,4 +60,4 @@ sub-converter(s). Converters are also used throughout KivaKit by other mini-fram
 
 <br/>
 
-![](../documentation/images/horizontal-line.png)
+![](https://telenav.github.io/telenav-assets/images/separators/horizontal-line.png)

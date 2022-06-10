@@ -1,8 +1,8 @@
-# kivakit-core-kernel project &nbsp; ![](../../documentation/images/gears-40.png)
+# kivakit-core-kernel project &nbsp; ![](https://telenav.github.io/telenav-assets/images/icons/gears-40.png)
 
-![](../documentation/images/horizontal-line.png)
+![](https://telenav.github.io/telenav-assets/images/separators/horizontal-line.png)
 
-### Package &nbsp; ![](../../../documentation/images/box-32.png)
+### Package &nbsp; ![](https://telenav.github.io/telenav-assets/images/icons/box-24.png)
 
 *com.telenav.kivakit.core.kernel.project*
 
@@ -12,7 +12,7 @@
 [**Dependencies**](#dependencies)  
 [**Initialization**](#initialization)
 
-![](../documentation/images/horizontal-line.png)
+![](https://telenav.github.io/telenav-assets/images/separators/horizontal-line.png)
 
 ### Summary <a name="summary"></a>
 
@@ -27,7 +27,7 @@ Each such project subclasses _Project_ and overrides its abstract methods:
         public abstract void onRegister( Kryo kryo);
     }
 
-### Dependencies <a name="dependencies"></a> &nbsp; ![](../../documentation/images/dependencies-40.png)
+### Dependencies <a name="dependencies"></a> &nbsp; ![](https://telenav.github.io/telenav-assets/images/icons/dependencies-40.png)
 
 The *dependencies()* method returns the set of all projects that this project depends on.
 
@@ -55,7 +55,7 @@ This code produces the output:
           KivaMapMeasurements
             KivaCore
 
-### Initialization <a name="initialization"></a> &nbsp; &nbsp; ![](../../../documentation/images/wand-40.png)
+### Initialization <a name="initialization"></a> &nbsp; &nbsp; ![](https://telenav.github.io/telenav-assets/images/icons/wand-40.png)
 
 The *onInitialize()* method gives a project a chance to initialize when you call the *initialize()*  
 method to begin using the *Project*.
@@ -71,4 +71,4 @@ _Before using a KivaKit project, you must call the *initialize()* method on the 
 
 <br/>
 
-![](../documentation/images/horizontal-line.png)
+![](https://telenav.github.io/telenav-assets/images/separators/horizontal-line.png)

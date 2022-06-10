@@ -1,8 +1,8 @@
-# kivakit-core-kernel interfaces &nbsp; ![](../../documentation/images/gears-40.png)
+# kivakit-core-kernel interfaces &nbsp; ![](https://telenav.github.io/telenav-assets/images/icons/gears-40.png)
 
-![](../documentation/images/horizontal-line.png)
+![](https://telenav.github.io/telenav-assets/images/separators/horizontal-line.png)
 
-### Package &nbsp; ![](../../../documentation/images/box-32.png)
+### Package &nbsp; ![](https://telenav.github.io/telenav-assets/images/icons/box-24.png)
 
 *com.telenav.kivakit.core.kernel.interfaces*
 
@@ -12,7 +12,7 @@
 [**Advantages**](#advantages)  
 [**Example**](#example)
 
-![](../documentation/images/horizontal-line.png)
+![](https://telenav.github.io/telenav-assets/images/separators/horizontal-line.png)
 
 ### Summary <a name="summary"></a>
 
@@ -166,4 +166,4 @@ interface only contains a few abstract methods:
 
 <br/>
 
-![](../documentation/images/horizontal-line.png)
+![](https://telenav.github.io/telenav-assets/images/separators/horizontal-line.png)

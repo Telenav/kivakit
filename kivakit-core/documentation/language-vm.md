@@ -1,8 +1,8 @@
-# kivakit-core-kernel language.vm &nbsp; ![](../../../documentation/images/jvm-56.png)
+# kivakit-core-kernel language.vm &nbsp; ![](https://telenav.github.io/telenav-assets/images/icons/jvm-56.png)
 
-![](../documentation/images/horizontal-line.png)
+![](https://telenav.github.io/telenav-assets/images/separators/horizontal-line.png)
 
-### Package &nbsp; ![](../../../documentation/images/box-32.png)
+### Package &nbsp; ![](https://telenav.github.io/telenav-assets/images/icons/box-24.png)
 
 *com.telenav.kivakit.core.kernel.language.vm*
 
@@ -13,7 +13,7 @@
 [**The Operating System**](#the-operating-system)  
 [**Processes**](#processes)
 
-![](../documentation/images/horizontal-line.png)
+![](https://telenav.github.io/telenav-assets/images/separators/horizontal-line.png)
 
 ### Summary <a name="summary"></a>
 
@@ -46,4 +46,4 @@ The *Processes* class provides methods that redirect and capture process output.
 
 <br/>
 
-![](../documentation/images/horizontal-line.png)
+![](https://telenav.github.io/telenav-assets/images/separators/horizontal-line.png)
