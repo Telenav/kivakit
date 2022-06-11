@@ -19,6 +19,7 @@
 package com.telenav.kivakit.core.project;
 
 import com.telenav.cactus.build.metadata.BuildMetadata;
+import com.telenav.cactus.build.metadata.BuildName;
 import com.telenav.kivakit.core.collections.map.VariableMap;
 import com.telenav.kivakit.core.language.primitive.Ints;
 import com.telenav.kivakit.core.time.LocalTime;
@@ -81,7 +82,7 @@ public class Build implements Named
      */
     public int epochDay()
     {
-        return BuildMetadata.KIVAKIT_EPOCH_DAY + number();
+        return BuildName.TELENAV_EPOCH_DAY + number();
     }
 
     /**

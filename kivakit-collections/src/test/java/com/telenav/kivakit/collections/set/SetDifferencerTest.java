@@ -61,6 +61,8 @@ public class SetDifferencerTest extends CoreUnitTest
     @Test
     public void test()
     {
+        // random().seed(1900598128L);
+
         // -> 1234 = add 1, 2, 3, 4
         check(ids(), ids(1, 2, 3, 4), ids(1, 2, 3, 4), ids(), ids());
 
