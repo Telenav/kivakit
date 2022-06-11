@@ -23,6 +23,9 @@
     </parent>
 
     <artifactId>kivakit-internal-tests-core</artifactId>
+    <properties>
+        <maven.javadoc.skip>true</maven.javadoc.skip>
+    </properties>
 
     <dependencies>
 

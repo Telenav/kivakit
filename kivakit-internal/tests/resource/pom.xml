@@ -23,6 +23,10 @@
     </parent>
 
     <artifactId>kivakit-internal-tests-resource</artifactId>
+    
+    <properties>
+        <maven.javadoc.skip>true</maven.javadoc.skip>
+    </properties>
 
     <dependencies>
 
