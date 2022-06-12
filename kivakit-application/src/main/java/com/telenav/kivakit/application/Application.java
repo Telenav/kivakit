@@ -240,7 +240,7 @@ import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
  *
  * <p><i>Arguments</i></p>
  *
- * </ul>
+ * <ul>
  *     <li>{@link #argumentList()} - Gets command line arguments (excluding switches)</li>
  *     <li>{@link #argument(ArgumentParser)} - Gets the first command line argument (excluding switches)</li>
  *     <li>{@link #argument(int, ArgumentParser)} - Gets the nth argument using the given argument parser</li>

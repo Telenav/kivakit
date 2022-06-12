@@ -100,10 +100,12 @@ import static com.telenav.kivakit.settings.SettingsStore.AccessMode.LOAD;
  * objects from any Component (see the <i>kivakit-component</i> project). Settings are located according to this
  * series of steps:
  * <ol>
- *     <li>Look for the object in the resources in the (comma separated) sequence of folders specified by KIVAKIT_SETTINGS_FOLDERS</i>
+ *     <li>Look for the object in the resources in the (comma separated) sequence of folders specified by KIVAKIT_SETTINGS_FOLDERS</li>
  *     <li>Look for the object in the global lookup {@link Registry}</li>
  *     <li>Look for the object in the (usually global) {@link Settings}</li>
  * </ol>
+ *
+ * <p>
  * This sequence allows the command line, and explicit registration of an object, to override any settings loaded from
  * deployments or other settings stores. Note that if you use <i>require(Class)</i> instead of <i>requireSettings(Class)</i>,
  * the specified class will be looked up and found in the global {@link Registry}, and the steps above will not be followed.

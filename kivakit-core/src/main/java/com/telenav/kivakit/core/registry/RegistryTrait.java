@@ -1,6 +1,5 @@
 package com.telenav.kivakit.core.registry;
 
-import com.telenav.kivakit.core.ensure.Ensure;
 import com.telenav.kivakit.interfaces.factory.Factory;
 
 import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
@@ -9,8 +8,8 @@ import static com.telenav.kivakit.core.registry.InstanceIdentifier.SINGLETON;
 /**
  * <p>
  * A stateless trait for accessing the {@link Registry} for the implementing component. Includes methods to look up,
- * register and require settings objects. When there is more than one settings object of a given type, an {@link
- * InstanceIdentifier} can be given to distinguish between instances. Convenience methods are provided to create
+ * register and require settings objects. When there is more than one settings object of a given type, an
+ * {@link InstanceIdentifier} can be given to distinguish between instances. Convenience methods are provided to create
  * instance identifiers for {@link Enum}s and {@link String}s. The Component interface in kivakit-component uses this
  * trait to add easy access to registry methods to all components.
  * </p>
@@ -39,10 +38,14 @@ import static com.telenav.kivakit.core.registry.InstanceIdentifier.SINGLETON;
  * @author jonathanl (shibo)
  * @see Registry
  */
+@SuppressWarnings("unused")
 public interface RegistryTrait
 {
     /**
-     * Convenience method
+     * Convenience method to look up a singleton object
+     *
+     * @param type The type of object to look up
+     * @return The object
      */
     default <T> T lookup(Class<T> type)
     {
@@ -50,7 +53,11 @@ public interface RegistryTrait
     }
 
     /**
-     * Convenience method
+     * Convenience method to look up a particular instance of an object
+     *
+     * @param type The type of object to look up
+     * @param instance The instance to find
+     * @return The object
      */
     default <T> T lookup(Class<T> type, Enum<?> instance)
     {
@@ -59,6 +66,10 @@ public interface RegistryTrait
 
     /**
      * Convenience method
+     *
+     * @param type The type of object to look up
+     * @param instance The instance to find
+     * @return The object
      */
     default <T> T lookup(Class<T> type, String instance)
     {
@@ -66,7 +77,9 @@ public interface RegistryTrait
     }
 
     /**
-     * @return Any settings object of the given type and instance
+     * @param type The type of object to look up
+     * @param instance The instance to find
+     * @return The object
      */
     default <T> T lookup(Class<T> type, InstanceIdentifier instance)
     {
@@ -75,6 +88,9 @@ public interface RegistryTrait
 
     /**
      * Registers the given singleton object in the lookup
+     *
+     * @param object The object to register
+     * @return The object
      */
     default <T> T register(T object)
     {
@@ -88,6 +104,10 @@ public interface RegistryTrait
 
     /**
      * Registers the specified instance of the given object's type in the lookup
+     *
+     * @param object The object to register
+     * @param instance Which instance is being registered
+     * @return The object
      */
     default <T> T register(T object, String instance)
     {
@@ -96,6 +116,10 @@ public interface RegistryTrait
 
     /**
      * Registers the specified instance of the given object's type in the lookup
+     *
+     * @param object The object to register
+     * @param instance Which instance is being registered
+     * @return The object
      */
     default <T> T register(T object, Enum<?> instance)
     {
@@ -104,6 +128,10 @@ public interface RegistryTrait
 
     /**
      * Registers the specified instance of the given object's type in the lookup
+     *
+     * @param object The object to register
+     * @param instance Which instance is being registered
+     * @return The object
      */
     default <T> T register(T object, InstanceIdentifier instance)
     {
@@ -111,6 +139,8 @@ public interface RegistryTrait
     }
 
     /**
+     * Retrieves the registry for the component implementing this trait
+     *
      * @return The lookup registry for this component
      */
     default Registry registry()
@@ -139,7 +169,10 @@ public interface RegistryTrait
     }
 
     /**
-     * Convenience method
+     * Convenience method to look up the given object and fail if it isn't found
+     *
+     * @param type The object to find
+     * @return The object
      */
     default <T> T require(Class<T> type)
     {
@@ -147,7 +180,11 @@ public interface RegistryTrait
     }
 
     /**
-     * Convenience method
+     * Convenience method to look up the given object and fail if it isn't found
+     *
+     * @param type The object to find
+     * @param instance Which instance to find
+     * @return The object
      */
     default <T> T require(Class<T> type, Enum<?> instance)
     {
@@ -155,7 +192,11 @@ public interface RegistryTrait
     }
 
     /**
-     * Convenience method
+     * Convenience method to look up the given object and fail if it isn't found
+     *
+     * @param type The object to find
+     * @param instance Which instance to find
+     * @return The object
      */
     default <T> T require(Class<T> type, String instance)
     {
@@ -163,7 +204,11 @@ public interface RegistryTrait
     }
 
     /**
-     * @return The object of the given instance and type, or {@link Ensure#fail()} if there is no such object
+     * Convenience method to look up the given object and fail if it isn't found
+     *
+     * @param type The object to find
+     * @param instance Which instance to find
+     * @return The object
      */
     default <T> T require(Class<T> type, InstanceIdentifier instance)
     {
@@ -172,6 +217,8 @@ public interface RegistryTrait
 
     /**
      * Unregisters the given object
+     *
+     * @param object The object to unregister
      */
     default void unregister(Object object)
     {
@@ -180,6 +227,9 @@ public interface RegistryTrait
 
     /**
      * Unregisters the given instance of the given object
+     *
+     * @param object The object to unregister
+     * @param instance Which instance to unregister
      */
     default void unregister(Object object, InstanceIdentifier instance)
     {
@@ -188,6 +238,9 @@ public interface RegistryTrait
 
     /**
      * Unregisters the given instance of the given object
+     *
+     * @param object The object to unregister
+     * @param instance Which instance to unregister
      */
     default void unregister(Object object, Enum<?> instance)
     {
@@ -196,6 +249,9 @@ public interface RegistryTrait
 
     /**
      * Unregisters the given instance of the given object
+     *
+     * @param object The object to unregister
+     * @param instance Which instance to unregister
      */
     default void unregister(Object object, String instance)
     {

@@ -69,7 +69,7 @@ import static com.telenav.kivakit.core.ensure.Ensure.ensure;
  *
  *   [...]
  *
- * var batcher = Batcher.<T>create()
+ * var batcher = Batcher.create()
  *     .withName(qualifiedName())
  *     .withQueueSize(QUEUE_SIZE)
  *     .withBatchSize(BATCH_SIZE)

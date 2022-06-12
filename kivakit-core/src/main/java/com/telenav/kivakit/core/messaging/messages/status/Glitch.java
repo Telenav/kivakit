@@ -18,22 +18,23 @@
 
 package com.telenav.kivakit.core.messaging.messages.status;
 
+import com.telenav.kivakit.core.lexakai.DiagramMessageType;
 import com.telenav.kivakit.core.messaging.Message;
 import com.telenav.kivakit.core.messaging.messages.OperationStatusMessage;
 import com.telenav.kivakit.core.messaging.messages.Severity;
-import com.telenav.kivakit.core.lexakai.DiagramMessageType;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 /**
  * A glitch is an issue that represents a temporary problem where recovery will happen. Unlike a {@link Warning},
- * however, a glitch should be addressed because it is causing an invalid state and possibly data loss. The {@link
- * <i>ValidationIssues#isValid()</i> method returns false if it contains a {@link Problem} or a {@link Glitch} (or
+ * however, a glitch should be addressed because it is causing an invalid state and possibly data loss. The
+ * <i>ValidationIssues.isValid</i> method returns false if it contains a {@link Problem} or a {@link Glitch} (or
  * anything worse), but not if it contains a {@link Warning}. You can think of a glitch as a "stern warning" and an
  * indication that you are possibly losing data.
  *
  * <p>
  * {@link OperationStatusMessage }s in order of importance:
  * </p>
+ *
  * <ul>
  *     <li>Critical Alert - An operation failed and needs <i>immediate attention</i> from a human operator</li>
  *     <li>Alert - An operation failed and needs to be looked at by an operator soon</li>

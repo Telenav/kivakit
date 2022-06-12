@@ -72,8 +72,7 @@ import static com.telenav.kivakit.resource.packages.PackageResource.packageResou
  * <p><b>Conversions</b></p>
  *
  * <ul>
- *     <li>{@link #copy()} - A copy of this property map</li>
- *     properties with the values in this property map using {@link ObjectPopulator}</li>
+ *     <li>{@link #copy()} - A copy of this property map using {@link ObjectPopulator}</li>
  *     <li>{@link #asInt(String)} - The given value as an int</li>
  *     <li>{@link #asLong(String)} - The given value as a long</li>
  *     <li>{@link #asDouble(String)} - The given value as a double</li>
@@ -102,6 +101,7 @@ import static com.telenav.kivakit.resource.packages.PackageResource.packageResou
  * @author jonathanl (shibo)
  * @see Locale
  */
+@SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramResourceType.class)
 @LexakaiJavadoc(complete = true)
 public class PropertyMap extends VariableMap<String>

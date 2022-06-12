@@ -29,6 +29,7 @@ import com.telenav.kivakit.interfaces.code.Code;
  * @see Result
  * @see Code
  */
+@SuppressWarnings("unused")
 public interface ResultTrait extends Repeater
 {
     /**
@@ -41,14 +42,20 @@ public interface ResultTrait extends Repeater
 
     /**
      * Returns a {@link Result} with the given {@link Problem} message
+     *
+     * @param text The message to format
+     * @param arguments The arguments
+     * @return The result object
      */
-    default <T> Result<T> failure(String message, Object... arguments)
+    default <T> Result<T> failure(String text, Object... arguments)
     {
-        return listenTo(Result.failure(message, arguments));
+        return listenTo(Result.failure(text, arguments));
     }
 
     /**
      * Returns a {@link Result} with the given message
+     *
+     * @return The result object
      */
     default <T> Result<T> failure(Message message)
     {
@@ -57,16 +64,21 @@ public interface ResultTrait extends Repeater
 
     /**
      * Returns a {@link Result} with the given {@link Problem} message
+     *
+     * @param text The message to format
+     * @param arguments The arguments
+     * @return The result object
      */
-    default <T> Result<T> failure(Throwable throwable, String message, Object... arguments)
+    default <T> Result<T> failure(Throwable throwable, String text, Object... arguments)
     {
-        return listenTo(Result.failure(throwable, message, arguments));
+        return listenTo(Result.failure(throwable, text, arguments));
     }
 
     /**
      * Returns the result of executing the given {@link Code}. Captures any value, or any failure messages broadcast by
      * this object during the call, and returns a {@link Result}.
      *
+     * @param code The code to run
      * @return The {@link Result} of the call
      */
     default <T> Result<T> run(Code<T> code)
@@ -75,7 +87,10 @@ public interface ResultTrait extends Repeater
     }
 
     /**
-     * Returns a {@link Result} for the given value
+     * Returns a {@link Result} for the given optional value
+     *
+     * @param value The optional value
+     * @return The result object
      */
     default <T> Result<T> success(Maybe<T> value)
     {
@@ -84,6 +99,8 @@ public interface ResultTrait extends Repeater
 
     /**
      * Returns a {@link Result} for the given value
+     *
+     * @param value The value
      */
     default <T> Result<T> success(T value)
     {

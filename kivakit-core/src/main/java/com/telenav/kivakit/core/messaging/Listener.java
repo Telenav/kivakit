@@ -149,6 +149,9 @@ public interface Listener extends Transceiver
 
     /**
      * Registers this listener with the given broadcaster in being interested in transmitted messages
+     * @param broadcaster The broadcaster that should send to this listener
+     * @param filter The message filter to apply
+     * @return The broadcaster
      */
     default <T extends Broadcaster> T listenTo(T broadcaster, MessageFilter filter)
     {
@@ -158,6 +161,8 @@ public interface Listener extends Transceiver
 
     /**
      * Registers this listener with the given broadcaster in being interested in transmitted messages
+     * @param broadcaster The broadcaster that should send to this listener
+     * @return The broadcaster
      */
     default <T extends Broadcaster> T listenTo(T broadcaster)
     {

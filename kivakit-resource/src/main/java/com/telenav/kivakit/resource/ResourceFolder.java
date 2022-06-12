@@ -21,8 +21,6 @@ package com.telenav.kivakit.resource;
 import com.telenav.kivakit.conversion.BaseStringConverter;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.progress.ProgressReporter;
-import com.telenav.kivakit.filesystem.File;
-import com.telenav.kivakit.filesystem.FilePath;
 import com.telenav.kivakit.filesystem.Folder;
 import com.telenav.kivakit.interfaces.comparison.Matchable;
 import com.telenav.kivakit.interfaces.comparison.Matcher;
@@ -31,10 +29,8 @@ import com.telenav.kivakit.resource.spi.ResourceFolderResolverServiceLoader;
 import com.telenav.kivakit.resource.writing.WritableResource;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 
-import java.nio.file.attribute.PosixFilePermission;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.regex.Pattern;
 
 import static com.telenav.kivakit.core.ensure.Ensure.unsupported;
 import static com.telenav.kivakit.filesystem.Folder.Type.NORMAL;
@@ -43,22 +39,18 @@ import static com.telenav.kivakit.resource.ResourcePath.parseResourcePath;
 
 /**
  * A resource container is an abstraction that provides access to hierarchical resources, independent of implementation.
- * {@link Folder} is a {@link ResourceFolder}, but {@link Package is also a resource folder.
+ * {@link Folder} is a {@link ResourceFolder}, but {@link Package} is also a resource folder.
  *
  * <p><b>Contents</b></p>
  *
  * <ul>
  *     <li>{@link #resources()} - The resources in this folder</li>
- *     <li>{@link #files(Pattern)} - The files in this folder matching the given pattern</li>
- *     <li>{@link #files(Matcher)} - The matching files in this folder</li>
- *     <li>{@link #files(Matcher, Folder.Traversal)} - The matching files in this folder found with the given {@link Folder.Traversal} type</li>
+ *     <li>{@link #resources(Matcher)} - The matching files in this folder</li>
  *     <li>{@link #folders()} - The folders in this folder</li>
- *     <li>{@link #folders(Matcher)} - The matching folders in this folder</li>
- *     <li>{@link #nestedFiles()} - All nested files in this folder</li>
- *     <li>{@link #nestedFiles(Matcher)} - All matching nested files in this folder</li>
+ *     <li>{@link #resources(Matcher)} - The matching folders in this folder</li>
+ *     <li>{@link #nestedResources(Matcher)} ()} - All nested files in this folder</li>
+ *     <li>{@link #nestedResources(Matcher)} - All matching nested files in this folder</li>
  *     <li>{@link #nestedFolders(Matcher)} - All matching nested folders under this folder</li>
- *     <li>{@link #oldest()} - The oldest file in this folder</li>
- *     <li>{@link #oldest(Matcher)} - The oldest matching file in this folder</li>
  *     <li>{@link #temporaryFile(FileName)} - A temporary file in this folder with the given name</li>
  *     <li>{@link #temporaryFile(FileName, Extension)} - A temporary file in this folder with the given name and extension</li>
  *     <li>{@link #temporaryFolder(FileName)} - A temporary sub-folder with the given name</li>
@@ -71,42 +63,23 @@ import static com.telenav.kivakit.resource.ResourcePath.parseResourcePath;
  *     <li>{@link #path()} - The path to this folder</li>
  *     <li>{@link #parent()} - The parent folder, or null if there is none</li>
  *     <li>{@link #relativeTo(ResourceFolder)} - This folder with a path relative to the given folder</li>
- *     <li>{@link #relativePath(ResourceFolder)} - The relative of this path with respect to the given folder</li>
- *     <li>{@link #root()} - The root folder of this folder</li>
- *     <li>{@link #file(File)} - The given file relative to this folder</li>
- *     <li>{@link #file(String, Object...)} - The file with the given name in this folder</li>
- *     <li>{@link #file(FileName)} - The file with the given name in this folder</li>
- *     <li>{@link #file(FilePath)} - The file with the given relative path to this folder</li>
- *     <li>{@link #folder(Folder)} - The folder relative to this folder</li>
+ *     <li>{@link #resource(FileName)} - The file with the given name in this folder</li>
  *     <li>{@link #folder(String)} - The folder with the given name in this folder</li>
- *     <li>{@link #from(FileName)} - The folder in this folder with the given filename </li>
- *     <li>{@link #Folder(FilePath)} - The folder with the given relative path to this folder</li>
  * </ul>
  *
  * <p><b>Operations</b></p>
  *
  * <ul>
- *     <li>{@link #chmod(PosixFilePermission...)} - Changes the access permissions of this folder</li>
- *     <li>{@link #chmodNested(PosixFilePermission...)} - Recursively changes the access permissions of this folder</li>
- *     <li>{@link #clearAll()} - Removes everything in this folder</li>
- *     <li>{@link #clearAllAndDelete()} - Removes everything in this folder and then deletes it</li>
- *     <li>{@link #copyTo(Folder, CopyMode, ProgressReporter)} - Copies this folder to the given folder</li>
- *     <li>{@link #copyTo(Folder, CopyMode, Matcher, ProgressReporter)} - Copies the matching files in this folder to the given folder</li>
  *     <li>{@link #delete()} - Deletes this folder if it is empty</li>
  *     <li>{@link #mkdirs()} - Creates this folder and any required parent folders</li>
  *     <li>{@link #renameTo(ResourceFolder)} - Renames this folder to the given folder</li>
- *     <li>{@link #scheduleCleanUpOnExit()} - Schedules this folder to be removed when the VM exits</li>
  * </ul>
  *
  * <p><b>Checks</b></p>
  *
  * <ul>
- *     <li>{@link #ensureExists()} - Ensures this folder exists or fails</li>
  *     <li>{@link #exists()} - True if this folder exists</li>
- *     <li>{@link #isFolder()} - True if this is a folder and not a file</li>
  *     <li>{@link #isEmpty()} - True if this folder is empty</li>
- *     <li>{@link #isRemote()} - True if this folder is on a remote filesystem</li>
- *     <li>{@link #isLocal()} - True if this folder is on the local filesystem</li>
  *     <li>{@link #isMaterialized()} - True if this folder exists locally</li>
  *     <li>{@link #isWritable()} - True if this folder can be written to</li>
  * </ul>
@@ -115,10 +88,8 @@ import static com.telenav.kivakit.resource.ResourcePath.parseResourcePath;
  *
  * <ul>
  *     <li>{@link #asJavaFile()} - This folder as a {@link java.io.File}</li>
- *     <li>{@link #asUri()} - This folder as a URI</li>
- *     <li>{@link #asUrl()} - This folder as a URL</li>
  *     <li>{@link #absolute()} - This folder with an absolute path</li>
- * </ul> *
+ * </ul>
  *
  * @author jonathanl (shibo)
  */

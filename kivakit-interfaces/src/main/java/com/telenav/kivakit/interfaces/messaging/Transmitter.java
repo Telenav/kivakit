@@ -51,6 +51,8 @@ public interface Transmitter
 
     /**
      * Method that transmits a message
+     *
+     * @param message The message
      */
     default void onTransmit(Transmittable message)
     {
@@ -62,8 +64,12 @@ public interface Transmitter
      * <p>
      * If this transmitter is enabled, passes the message to {@link #onTransmit(Transmittable)}
      * </p>
+     *
+     * @param message The message
+     * @param <MessageType> The type of message
+     * @return The message
      */
-    default <M extends Transmittable> M transmit(M message)
+    default <MessageType extends Transmittable> MessageType transmit(MessageType message)
     {
         if (isTransmitting())
         {
@@ -74,6 +80,10 @@ public interface Transmitter
 
     /**
      * Executes the given code with transmitting turned off
+     *
+     * @param code The code
+     * @param <T> The code return value
+     * @return The code's return value
      */
     default <T> T withoutTransmitting(Code<T> code)
     {

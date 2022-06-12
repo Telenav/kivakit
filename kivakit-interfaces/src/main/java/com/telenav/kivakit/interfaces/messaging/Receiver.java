@@ -51,6 +51,8 @@ public interface Receiver
 
     /**
      * Method that receives a message
+     *
+     * @param message The message
      */
     void onReceive(Transmittable message);
 
@@ -60,8 +62,12 @@ public interface Receiver
      * <p>
      * If this transceiver is enabled, passes the message to {@link #onReceive(Transmittable)}
      * </p>
+     *
+     * @param message The message
+     * @return The message
+     * @param <MessageType> The type of message
      */
-    default <M extends Transmittable> M receive(M message)
+    default <MessageType extends Transmittable> MessageType receive(MessageType message)
     {
         if (isReceiving())
         {

@@ -31,7 +31,6 @@ import java.util.regex.Pattern;
  *     <li>my-project/my-sub-project/target/MyApp.class</li>
  *     <li>my-project/my-sub-project/target/com/me/MyApp.class</li>
  * </ul>
- * </p>
  *
  * <hr>
  *

@@ -72,7 +72,7 @@ import java.util.function.Consumer;
  *
  * <p>
  * Although {@link Count} objects are convenient and make method signatures clear and type-safe, as always, the
- * best approach is to simply use {@link Count} objects until a clear inefficiency shows up in a profiler like YourKit.</li>
+ * best approach is to simply use {@link Count} objects until a clear inefficiency shows up in a profiler like YourKit.
  * </p>
  *
  * <hr>
@@ -119,7 +119,7 @@ import java.util.function.Consumer;
  * <p><b>Comparison</b></p>
  *
  * <ul>
- *     <li>{@link #compareTo(Count)}  - {@link Comparable#compareTo(Object)} implementation</li>
+ *     <li>{@link #compareTo(Countable)}  - {@link Comparable#compareTo(Object)} implementation</li>
  *     <li>{@link #isLessThan(Quantizable)} - True if this count is less than the given quantum</li>
  *     <li>{@link #isGreaterThan(Quantizable)} - True if this count is greater than the given quantum</li>
  *     <li>{@link #isLessThanOrEqualTo(Quantizable)} - True if this count is less than or equal to the given quantum</li>
@@ -143,8 +143,6 @@ import java.util.function.Consumer;
  *     <li>{@link #isMinimum()} - True if this count is zero</li>
  *     <li>{@link #asMaximum()} - Converts this count to a {@link Maximum}</li>
  *     <li>{@link #asMinimum()} - Converts this count to a {@link Minimum}</li>
- *     <li>{@link #maximum(Count)} - Returns the maximum of this count and the given count</li>
- *     <li>{@link #minimum(Count)} - Returns the minimum of this count and the given count</li>
  * </ul>
  *
  * <hr>
@@ -229,6 +227,7 @@ import java.util.function.Consumer;
  * @see Maximum
  * @see Minimum
  */
+@SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramCount.class)
 public class Count extends BaseCount<Count>
 {

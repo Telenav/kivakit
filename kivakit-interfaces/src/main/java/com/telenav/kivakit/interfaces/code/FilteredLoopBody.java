@@ -19,11 +19,8 @@
 package com.telenav.kivakit.interfaces.code;
 
 import com.telenav.kivakit.interfaces.collection.NextValue;
-import com.telenav.kivakit.interfaces.collection.Sized;
 import com.telenav.kivakit.interfaces.lexakai.DiagramCode;
 import com.telenav.kivakit.interfaces.numeric.IntegerNumeric;
-import com.telenav.kivakit.interfaces.numeric.Maximizable;
-import com.telenav.kivakit.interfaces.numeric.Minimizable;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 /**
@@ -39,10 +36,10 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
  * <p><b>Filtering</b></p>
  *
  * <p>
- * Values presented to {@link #at(Minimizable)} can be rejected by returning {@link FilterAction#REJECT}. In this case,
- * the value is skipped, and does not count towards the requested number of values. This allows the implementation of
- * at() to filter out values while still obtaining the requested count. <i>See RandomValueFactory in kivakit-core for an
- * example of this.</i>
+ * Values presented to  {@link #at(IntegerNumeric)} can be rejected by returning {@link FilterAction#REJECT}. In this
+ * case, the value is skipped, and does not count towards the requested number of values. This allows the implementation
+ * of at() to filter out values while still obtaining the requested count. <i>See RandomValueFactory in kivakit-core for
+ * an example of this.</i>
  * </p>
  *
  * @author jonathanl (shibo)

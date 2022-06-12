@@ -28,6 +28,7 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
  *
  * @author jonathanl (shibo)
  */
+@SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramNaming.class)
 public interface NamedObject
 {
@@ -58,6 +59,7 @@ public interface NamedObject
 
     /**
      * Sets the name of this object
+     * @param name The object's new name
      */
     default void objectName(String name)
     {

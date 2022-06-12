@@ -43,13 +43,13 @@ import static com.telenav.kivakit.core.value.count.Range.UpperBound.INCLUSIVE;
  * <p>Creation and Properties</p>
  *
  * <p>
- * Ranges can be created in two ways, as {@link #rangeExclusive(Value, Value)} ranges which do not include their maximum
- * value, and as {@link #rangeInclusive(Value, Value)} ranges which do.
+ * Ranges can be created in two ways, as {@link #rangeExclusive(IntegerNumeric, IntegerNumeric)} ranges which do not
+ * include their maximum value, and as {@link #rangeInclusive(IntegerNumeric, IntegerNumeric)} ranges which do.
  * </p>
  *
  * <ul>
- *     <li>{@link #rangeInclusive(Value, Value)}</li>
- *     <li>{@link #rangeExclusive(Value, Value)}</li>
+ *     <li>{@link #rangeInclusive(IntegerNumeric, IntegerNumeric)}</li>
+ *     <li>{@link #rangeExclusive(IntegerNumeric, IntegerNumeric)}</li>
  *     <li>{@link #upperBound()}</li>
  *     <li>{@link #isInclusive()}</li>
  *     <li>{@link #isExclusive()}</li>

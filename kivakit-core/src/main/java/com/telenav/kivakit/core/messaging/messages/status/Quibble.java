@@ -43,7 +43,7 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
  *     <li>Information - Commonly useful information that doesn't represent any problem</li>
  *     <li>Trace - Diagnostic information for use when debugging</li>
  * </ul>
- * <p>
+ *
  *  @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramMessageType.class)

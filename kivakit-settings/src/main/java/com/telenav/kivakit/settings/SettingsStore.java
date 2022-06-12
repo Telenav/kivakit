@@ -29,15 +29,15 @@ import java.util.Set;
  *
  * <p><b>Hash/Equals Contract</b></p>
  *
- * </p>
- * Note that it is not necessary for settings {@link Object}s to implement the {@link #hashCode()} / {@link
- * #equals(Object)} contract. The {@link SettingsObject.Identifier} class implements this contract, allowing {@link
- * SettingsObject}s to be accessed in maps and stored in sets.
+ * <p>
+ * Note that it is not necessary for settings {@link Object}s to implement the {@link Object#hashCode()} /
+ * {@link Object#equals(Object)} contract. The {@link SettingsObject.Identifier} class implements this contract,
+ * allowing {@link SettingsObject}s to be accessed in maps and stored in sets.
  * </p>
  *
  * @author jonathanl (shibo)
  */
-@SuppressWarnings("UnusedReturnValue")
+@SuppressWarnings({ "UnusedReturnValue", "unused" })
 public interface SettingsStore extends
         RegistryTrait,
         Repeater,
