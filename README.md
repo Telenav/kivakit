@@ -42,6 +42,8 @@ KivaKit (KEE-vah-KIT) is a set of integrated Java mini-frameworks that are poten
 [**About KivaKit**](#about)  
 [**Tutorial Articles**](https://state-of-the-art.org/)  
 [**Example Code**](https://github.com/Telenav/kivakit-examples)  
+[**How to Build This Project**](https://github.com/Telenav/telenav-build/blob/develop/documentation/building.md) <!-- [branch-name] --> 
+
 
 ### Index <a name = "index"></a>
 
