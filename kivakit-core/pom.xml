@@ -30,7 +30,7 @@
 
         <dependency>
             <groupId>com.telenav.cactus</groupId>
-            <artifactId>cactus-build-metadata</artifactId>
+            <artifactId>cactus-metadata</artifactId>
         </dependency>
 
         <!-- KivaKit -->
