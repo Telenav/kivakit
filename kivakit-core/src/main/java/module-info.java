@@ -6,7 +6,7 @@ open module kivakit.core
     uses Log;
 
     // Cactus
-    requires transitive cactus.build.metadata;
+    requires transitive cactus.metadata;
 
     // KivaKit
     requires transitive kivakit.interfaces;
