@@ -43,5 +43,5 @@ jobs:
           maven-version: 3.8.5
 
       - name: Build
-        run: cd telenav-build && ./setup.sh $GITHUB_REF_NAME ci-build
-        shell: bash
+        uses: jcblw/bash@master
+        args: [ "cd telenav-build && ./setup.sh $GITHUB_REF_NAME ci-build" ]
