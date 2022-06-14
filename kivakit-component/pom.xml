@@ -23,6 +23,7 @@
     </parent>
 
     <artifactId>kivakit-component</artifactId>
+    <version>1.6.0</version>
 
     <dependencies>
 
