@@ -18,6 +18,10 @@ on:
   pull_request:
     branches: [ master, develop, release/**, feature/**, hotfix/** ]
 
+defaults:
+  run:
+    shell: bash
+
 jobs:
   build:
 
