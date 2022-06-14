@@ -44,4 +44,4 @@ jobs:
 
       - name: Build
         uses: jcblw/bash@v1
-        args: [ "cd telenav-build && ./setup.sh $GITHUB_REF_NAME ci-build" ]
+        args: cd telenav-build && ./setup.sh $GITHUB_REF_NAME ci-build
