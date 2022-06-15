@@ -30,6 +30,7 @@ jobs:
         with:
           repository: Telenav/telenav-build
           path: telenav-build
+          ref: develop
 
       - name: Set up Java
         uses: actions/setup-java@v3
