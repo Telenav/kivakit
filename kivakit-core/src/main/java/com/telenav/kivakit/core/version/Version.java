@@ -24,6 +24,7 @@ import com.telenav.kivakit.core.messaging.Listener;
 import java.util.Objects;
 import java.util.regex.Pattern;
 
+import static com.telenav.kivakit.core.ensure.Ensure.ensure;
 import static com.telenav.kivakit.core.ensure.Ensure.fail;
 import static java.util.regex.Pattern.CASE_INSENSITIVE;
 
@@ -144,6 +145,8 @@ public class Version
      */
     public static Version parseVersion(Listener listener, String text)
     {
+        ensure(text != null);
+
         // If the text matches the version pattern,
         var matcher = PATTERN.matcher(text);
         if (matcher.matches())

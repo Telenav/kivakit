@@ -1,19 +1,32 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<project xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance" xmlns = "http://maven.apache.org/POM/4.0.0"
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//
+// © 2011-2022 Telenav, Inc.
+// Licensed under Apache License, Version 2.0
+//
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+-->
+
+<project xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance"
+         xmlns = "http://maven.apache.org/POM/4.0.0"
          xsi:schemaLocation = "http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
     <modelVersion>4.0.0</modelVersion>
+
     <groupId>com.telenav.kivakit</groupId>
-    <version>1.5.1-SNAPSHOT</version>
     <artifactId>kivakit-network</artifactId>
+    <version>1.6.0</version>
+
     <packaging>pom</packaging>
 
     <modules>
+
         <module>core</module>
         <module>socket</module>
         <module>http</module>
         <module>ftp</module>
         <module>email</module>
-    </modules>
 
+    </modules>
 </project>

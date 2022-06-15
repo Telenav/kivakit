@@ -86,7 +86,7 @@ public class FolderList implements List<Folder>
             var folders = new FolderList();
             for (var path : value.split(","))
             {
-                var folder = Folder.parse(this, path);
+                var folder = Folder.parseFolder(this, path);
                 folders.add(folder);
             }
             return folders;

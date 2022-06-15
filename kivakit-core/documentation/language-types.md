@@ -1,8 +1,8 @@
-# kivakit-core-kernel language.types &nbsp; ![](../../../documentation/images/diagram-48.png)
+# kivakit-core-kernel language.types &nbsp; ![](https://telenav.github.io/telenav-assets/images/icons/diagram-48.png)
 
-![](../documentation/images/horizontal-line.png)
+![](https://telenav.github.io/telenav-assets/images/separators/horizontal-line.png)
 
-### Package &nbsp; ![](../../../documentation/images/box-32.png)
+### Package &nbsp; ![](https://telenav.github.io/telenav-assets/images/icons/box-24.png)
 
 *com.telenav.kivakit.core.kernel.language.types*
 
@@ -10,7 +10,7 @@
 
 [**Summary**](#summary)
 
-![](../documentation/images/horizontal-line.png)
+![](https://telenav.github.io/telenav-assets/images/separators/horizontal-line.png)
 
 ### Summary <a name="summary"></a>
 
@@ -19,4 +19,4 @@ object provides utility methods that load classes and resources.
 
 <br/>
 
-![](../documentation/images/horizontal-line.png)
+![](https://telenav.github.io/telenav-assets/images/separators/horizontal-line.png)

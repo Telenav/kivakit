@@ -7,7 +7,7 @@ import com.telenav.kivakit.core.function.arities.TriFunction;
 import com.telenav.kivakit.core.language.trait.SilentTryTrait;
 import com.telenav.kivakit.core.messaging.Repeater;
 import com.telenav.kivakit.core.messaging.messages.status.Problem;
-import com.telenav.kivakit.core.test.Tested;
+import com.telenav.kivakit.core.testing.Tested;
 import com.telenav.kivakit.interfaces.function.BooleanFunction;
 import com.telenav.kivakit.interfaces.monads.Presence;
 import com.telenav.kivakit.interfaces.value.Source;
@@ -24,7 +24,7 @@ import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
 /**
  * A substitute for {@link Optional} that adds functionality and integrates with {@link Repeater}
  *
- * <p><br/><hr/><br/></p>
+ * <hr>
  *
  * <p><b>Construction</b></p>
  *
@@ -37,7 +37,7 @@ import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
  *     <li>{@link #present(Object)} - Creates a {@link Maybe} whose value is always non-null</li>
  * </ol>
  *
- * <p><br/><hr/><br/></p>
+ * <hr>
  *
  * <p><b>Terminal Operations</b></p>
  *
@@ -54,7 +54,7 @@ import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
  *     <li>{@link #asStream()} - Converts this value to a stream with zero or one element(s)</li>
  * </ul>
  *
- * <p><br/><hr/><br/></p>
+ * <hr>
  *
  * <p><b>Functions</b></p>
  *
@@ -68,7 +68,7 @@ import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
  *     <li>{@link #map(Function)} - Applies the given function to this value</li>
  * </ul>
  *
- * <p><br/><hr/><br/></p>
+ * <hr>
  *
  * <p><b>Conditionals</b></p>
  *
@@ -79,7 +79,7 @@ import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
  *     <li>{@link #ifPresentOr(Consumer, UncheckedVoidCode)} - Calls the given consumer if a value is present, otherwise calls the given code</li>
  * </ul>
  *
- * <p><br/><hr/><br/></p>
+ * <hr>
  *
  * @author jonathanl (shibo)
  * @author viniciusluisr

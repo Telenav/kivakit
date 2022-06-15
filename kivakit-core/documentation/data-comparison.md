@@ -1,14 +1,14 @@
-# kivakit-core-kernel data.comparison &nbsp; ![](../../../documentation/images/bits-40.png)
+# kivakit-core-kernel data.comparison &nbsp; ![](https://telenav.github.io/telenav-assets/images/icons/bits-40.png)
 
-### Package &nbsp; ![](../../../documentation/images/box-32.png)
+### Package &nbsp; ![](https://telenav.github.io/telenav-assets/images/icons/box-24.png)
 
 *com.telenav.kivakit.core.kernel.data.comparison*
 
-![](../documentation/images/horizontal-line.png)
+![](https://telenav.github.io/telenav-assets/images/separators/horizontal-line.png)
 
 ### Summary
 
 The *Differences* class tracks the differences between two data sources by comparing values.  
 The number of differences as well as descriptions of each difference can be retrieved.
 
-![](../documentation/images/horizontal-line.png)
+![](https://telenav.github.io/telenav-assets/images/separators/horizontal-line.png)

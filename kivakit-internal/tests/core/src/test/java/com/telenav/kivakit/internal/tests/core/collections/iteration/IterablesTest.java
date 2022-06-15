@@ -19,7 +19,7 @@
 package com.telenav.kivakit.internal.tests.core.collections.iteration;
 import com.telenav.kivakit.core.collections.iteration.BaseIterator;
 import com.telenav.kivakit.core.collections.iteration.Iterables;
-import com.telenav.kivakit.internal.test.support.CoreUnitTest;
+import com.telenav.kivakit.internal.testing.CoreUnitTest;
 import org.jetbrains.annotations.NotNull;
 import org.junit.Test;
 

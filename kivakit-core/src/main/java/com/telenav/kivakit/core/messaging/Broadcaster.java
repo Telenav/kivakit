@@ -18,10 +18,10 @@
 
 package com.telenav.kivakit.core.messaging;
 
+import com.telenav.kivakit.core.lexakai.DiagramBroadcaster;
 import com.telenav.kivakit.core.lexakai.DiagramRepeater;
 import com.telenav.kivakit.interfaces.comparison.Filter;
 import com.telenav.kivakit.interfaces.messaging.Transmittable;
-import com.telenav.kivakit.core.lexakai.DiagramBroadcaster;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
 
@@ -49,14 +49,15 @@ import java.util.List;
  * @see Message
  * @see <a href="https://state-of-the-art.org#broadcaster">State(Art) Blog Article</a>
  */
+@SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramBroadcaster.class)
 @UmlClassDiagram(diagram = DiagramRepeater.class)
 @UmlRelation(label = "transmits", referent = Listener.class, refereeCardinality = "1", referentCardinality = "*")
 public interface Broadcaster extends Transceiver
 {
     /**
-     * Adds a listener to this broadcaster that wants to receive future messages. This is the mirror method of {@link
-     * Listener#listenTo(Broadcaster)} as both methods achieve the same thing.
+     * Adds a listener to this broadcaster that wants to receive future messages. This is the mirror method of
+     * {@link Listener#listenTo(Broadcaster)} as both methods achieve the same thing.
      *
      * <p>
      * <i>Note: adding the same listener two or more times will not replace the original listener. To do that, call
@@ -64,6 +65,7 @@ public interface Broadcaster extends Transceiver
      * </p>
      *
      * @param listener Listener to broadcast to. Implementations should ignore null listeners.
+     * @param filter The filter to apply
      */
     void addListener(Listener listener, Filter<Transmittable> filter);
 
@@ -131,6 +133,7 @@ public interface Broadcaster extends Transceiver
 
     /**
      * Allows subclass to process a message after it is transmitted
+     * @param message The message
      */
     default void onTransmitted(Transmittable message)
     {

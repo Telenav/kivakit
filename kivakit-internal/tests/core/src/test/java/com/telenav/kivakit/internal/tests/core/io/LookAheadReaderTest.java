@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.internal.tests.core.io;
 import com.telenav.kivakit.core.io.LookAheadReader;
-import com.telenav.kivakit.internal.test.support.CoreUnitTest;
+import com.telenav.kivakit.internal.testing.CoreUnitTest;
 import org.junit.Test;
 
 import java.io.IOException;

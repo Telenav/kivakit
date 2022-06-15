@@ -18,10 +18,10 @@
 
 package com.telenav.kivakit.core.value.count;
 
+import com.telenav.kivakit.core.language.primitive.Longs;
 import com.telenav.kivakit.core.lexakai.DiagramCount;
 import com.telenav.kivakit.core.string.Formatter;
-import com.telenav.kivakit.core.test.RandomValueFactory;
-import com.telenav.kivakit.core.test.Tested;
+import com.telenav.kivakit.core.testing.Tested;
 import com.telenav.kivakit.interfaces.code.FilteredLoopBody;
 import com.telenav.kivakit.interfaces.code.LoopBody;
 import com.telenav.kivakit.interfaces.collection.NextValue;
@@ -31,6 +31,7 @@ import com.telenav.kivakit.interfaces.numeric.Minimizable;
 import com.telenav.kivakit.interfaces.numeric.QuantumComparable;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
+import java.util.Random;
 import java.util.function.Consumer;
 
 import static com.telenav.kivakit.core.value.count.Range.UpperBound.EXCLUSIVE;
@@ -42,13 +43,13 @@ import static com.telenav.kivakit.core.value.count.Range.UpperBound.INCLUSIVE;
  * <p>Creation and Properties</p>
  *
  * <p>
- * Ranges can be created in two ways, as {@link #rangeExclusive(Value, Value)} ranges which do not include their maximum
- * value, and as {@link #rangeInclusive(Value, Value)} ranges which do.
+ * Ranges can be created in two ways, as {@link #rangeExclusive(IntegerNumeric, IntegerNumeric)} ranges which do not
+ * include their maximum value, and as {@link #rangeInclusive(IntegerNumeric, IntegerNumeric)} ranges which do.
  * </p>
  *
  * <ul>
- *     <li>{@link #rangeInclusive(Value, Value)}</li>
- *     <li>{@link #rangeExclusive(Value, Value)}</li>
+ *     <li>{@link #rangeInclusive(IntegerNumeric, IntegerNumeric)}</li>
+ *     <li>{@link #rangeExclusive(IntegerNumeric, IntegerNumeric)}</li>
  *     <li>{@link #upperBound()}</li>
  *     <li>{@link #isInclusive()}</li>
  *     <li>{@link #isExclusive()}</li>
@@ -74,7 +75,7 @@ import static com.telenav.kivakit.core.value.count.Range.UpperBound.INCLUSIVE;
  * <ul>
  *     <li>{@link #constrain(Value)}</li>
  *     <li>{@link #contains(Value)}</li>
- *     <li>{@link #randomValue()}</li>
+ *     <li>{@link #randomValue(Random)}</li>
  * </ul>
  *
  * @param <Value> A value that is {@link IntegerNumeric}, which includes {@link Minimizable}, {@link Maximizable},
@@ -84,24 +85,16 @@ import static com.telenav.kivakit.core.value.count.Range.UpperBound.INCLUSIVE;
  */
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramCount.class)
-public class Range<Value extends IntegerNumeric<Value> & QuantumComparable<Countable> & Comparable<Countable> & Countable> implements
+public class Range<Value extends IntegerNumeric<Value>> implements
         Comparable<Countable>,
         QuantumComparable<Countable>,
         Countable
 {
     /**
-     * @return The range of all counts, from 0 to {@link Count#MAXIMUM}
-     */
-    public static Range<Count> allCounts()
-    {
-        return new Range<>(Count.count(0), Count.MAXIMUM, INCLUSIVE);
-    }
-
-    /**
      * Constructs a range that excludes the given maximum value.
      */
     @Tested
-    public static <Value extends IntegerNumeric<Value> & QuantumComparable<Countable> & Comparable<Countable> & Countable>
+    public static <Value extends IntegerNumeric<Value>>
     Range<Value> rangeExclusive(Value minimum,
                                 Value exclusiveMaximum)
     {
@@ -112,7 +105,7 @@ public class Range<Value extends IntegerNumeric<Value> & QuantumComparable<Count
      * Constructs a range that includes the given maximum value.
      */
     @Tested
-    public static <Value extends IntegerNumeric<Value> & QuantumComparable<Countable> & Comparable<Countable> & Countable>
+    public static <Value extends IntegerNumeric<Value>>
     Range<Value> rangeInclusive(Value minimum,
                                 Value inclusiveMaximum)
     {
@@ -273,13 +266,9 @@ public class Range<Value extends IntegerNumeric<Value> & QuantumComparable<Count
      * Returns a random value in this range
      */
     @Tested
-    public Value randomValue()
+    public Value randomValue(Random random)
     {
-        var valueAsLong = new RandomValueFactory().randomLongExclusive(
-                minimum().asLong(),
-                exclusiveMaximum().asLong());
-
-        return minimum.newInstance(valueAsLong);
+        return minimum.newInstance(Longs.random(random, minimum().asLong(), exclusiveMaximum().asLong()));
     }
 
     /**

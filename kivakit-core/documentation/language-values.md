@@ -1,8 +1,8 @@
-# kivakit-core-kernel language.values &nbsp; ![](../../../documentation/images/value-48.png)
+# kivakit-core-kernel language.values &nbsp; ![](https://telenav.github.io/telenav-assets/images/icons/value-48.png)
 
-![](../documentation/images/horizontal-line.png)
+![](https://telenav.github.io/telenav-assets/images/separators/horizontal-line.png)
 
-### Package &nbsp; ![](../../../documentation/images/box-32.png)
+### Package &nbsp; ![](https://telenav.github.io/telenav-assets/images/icons/box-24.png)
 
 *com.telenav.kivakit.core.kernel.language.values*
 
@@ -15,7 +15,7 @@
 [**Mutable Values**](#mutable-values)  
 [**Versions**](#versions)
 
-![](../documentation/images/horizontal-line.png)
+![](https://telenav.github.io/telenav-assets/images/separators/horizontal-line.png)
 
 ### Summary <a name="summary"></a>
 
@@ -78,4 +78,4 @@ compatibility with serialized data.
 
 <br/>
 
-![](../documentation/images/horizontal-line.png)
+![](https://telenav.github.io/telenav-assets/images/separators/horizontal-line.png)

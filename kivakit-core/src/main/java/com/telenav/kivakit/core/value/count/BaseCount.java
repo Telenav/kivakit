@@ -9,7 +9,6 @@ import com.telenav.kivakit.interfaces.code.FilteredLoopBody.FilterAction;
 import com.telenav.kivakit.interfaces.code.LoopBody;
 import com.telenav.kivakit.interfaces.numeric.IntegerNumeric;
 import com.telenav.kivakit.interfaces.numeric.Quantizable;
-import com.telenav.kivakit.interfaces.numeric.QuantumComparable;
 import com.telenav.kivakit.interfaces.value.Source;
 
 import java.util.function.Consumer;
@@ -25,6 +24,7 @@ import static com.telenav.kivakit.core.value.count.Estimate.estimate;
  *
  * <p>
  * Counts have useful properties that primitive values like <i>long</i> and <i>int</i> do not have:
+ * </p>
  *
  * <ol>
  *     <li>Counts are guaranteed to be positive values, so it is not possible to have a {@link Count} of -1</li>
@@ -41,8 +41,6 @@ import static com.telenav.kivakit.core.value.count.Estimate.estimate;
  *     <li>Counts implement the {@link Quantizable} interface, which makes them interoperable with methods that consume {@link Quantizable}s.</li>
  *     <li>Counts provide a more readable, comma-separated String representation by default</li>
  * </ol>
- *
- * <p><br/><hr/><br/></p>
  *
  * <p><b>Efficiency</b></p>
  *
@@ -62,10 +60,10 @@ import static com.telenav.kivakit.core.value.count.Estimate.estimate;
  *
  * <p>
  * Although {@link Count} objects are convenient and make method signatures clear and type-safe, as always, the
- * best approach is to simply use {@link Count} objects until a clear inefficiency shows up in a profiler like YourKit.</li>
+ * best approach is to simply use {@link Count} objects until a clear inefficiency shows up in a profiler like YourKit.
  * </p>
  *
- * <p><br/><hr/><br/></p>
+ * <hr>
  *
  * <p><b>Conversion</b></p>
  *
@@ -81,7 +79,7 @@ import static com.telenav.kivakit.core.value.count.Estimate.estimate;
  *     <li>{@link #quantum()} - This count as a quantum <i>long</i> value ({@link Quantizable#quantum()})</li>
  * </ul>
  *
- * <p><br/><hr/><br/></p>
+ * <hr>
  *
  * <p><b>String Representations</b></p>
  *
@@ -91,7 +89,7 @@ import static com.telenav.kivakit.core.value.count.Estimate.estimate;
  *     <li>{@link #asSimpleString()} - This count as a simple string, like 65536</li>
  * </ul>
  *
- * <p><br/><hr/><br/></p>
+ * <hr>
  *
  * <p><b>Comparison</b></p>
  *
@@ -105,7 +103,7 @@ import static com.telenav.kivakit.core.value.count.Estimate.estimate;
  *     <li>{@link #isNonZero()} - True if this count is not zero</li>
  * </ul>
  *
- * <p><br/><hr/><br/></p>
+ * <hr>
  *
  * <p><b>Minima and Maxima</b></p>
  *
@@ -118,7 +116,7 @@ import static com.telenav.kivakit.core.value.count.Estimate.estimate;
  *     <li>{@link #minimum(SubClass)} - Returns the minimum of this count and the given count</li>
  * </ul>
  *
- * <p><br/><hr/><br/></p>
+ * <hr>
  *
  * <p><b>Arithmetic</b></p>
  *
@@ -137,7 +135,7 @@ import static com.telenav.kivakit.core.value.count.Estimate.estimate;
  *     <li>{@link #times(Percent)} - This count times the given percentage</li>
  * </ul>
  *
- * <p><br/><hr/><br/></p>
+ * <hr>
  *
  * <p><b>Mathematics</b></p>
  *
@@ -152,7 +150,7 @@ import static com.telenav.kivakit.core.value.count.Estimate.estimate;
  *     <li>{@link #powerOfTwoCeiling()} - The next power of two above this count</li>
  * </ul>
  *
- * <p><br/><hr/><br/></p>
+ * <hr>
  *
  * <p><b>Looping</b></p>
  *
@@ -161,7 +159,7 @@ import static com.telenav.kivakit.core.value.count.Estimate.estimate;
  *     <li>{@link #loop(LoopBody)} - Runs the given code block {@link #count()} times, passing the iteration number to the code</li>
  * </ul>
  *
- * <p><br/><hr/><br/></p>
+ * <hr>
  *
  * <p><b>Iteration</b></p>
  *
@@ -172,7 +170,7 @@ import static com.telenav.kivakit.core.value.count.Estimate.estimate;
  *     <li>{@link #forEachShort(Consumer)} - Passes to the given consumer, each byte from 0 to the smaller of this count or {@link Short#MAX_VALUE}, exclusive</li>
  * </ul>
  *
- * <p><br/><hr/><br/></p>
+ * <hr>
  *
  * <p><b>Array Allocation</b></p>
  *
@@ -190,7 +188,7 @@ import static com.telenav.kivakit.core.value.count.Estimate.estimate;
  * <p>
  * {@link Count} objects implement the {@link #hashCode()} / {@link #equals(Object)} contract and are {@link Comparable}.
  *
- * <p><br/><hr/><br/></p>
+ * <hr>
  *
  * @param <SubClass> The subclass type
  * @author jonathanl (shibo)
@@ -201,13 +199,11 @@ import static com.telenav.kivakit.core.value.count.Estimate.estimate;
  * @see Maximum
  * @see Minimum
  */
-@SuppressWarnings("unused")
+@SuppressWarnings({ "unused", "unchecked" })
 public abstract class BaseCount<SubClass extends BaseCount<SubClass>> implements
         IntegerNumeric<SubClass>,
-        Quantizable,
         Countable,
         Comparable<Countable>,
-        QuantumComparable<Countable>,
         Source<Long>
 {
     /** The underlying primitive cardinal number */
@@ -457,7 +453,6 @@ public abstract class BaseCount<SubClass extends BaseCount<SubClass>> implements
         var maximum = this;
         for (var at = minimum(); at.isLessThan(maximum); at = at.next())
         {
-
             if (body.at(at) == FilterAction.REJECT)
             {
                 maximum = maximum.incremented();

@@ -24,11 +24,12 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.text.NumberFormat;
 import java.util.Locale;
+import java.util.Random;
 
 /**
  * Utility methods for <i>int</i> values.
  *
- * <p><br/><hr/><br/></p>
+ * <hr>
  *
  * <p><b>Parsing</b></p>
  *
@@ -38,7 +39,7 @@ import java.util.Locale;
  *     <li>{@link #parseFastNaturalNumber(String)} - Parses a natural number, returning {@link #INVALID} if parsing fails</li>
  * </ul>
  *
- * <p><br/><hr/><br/></p>
+ * <hr>
  *
  * <p><b>Words</b></p>
  *
@@ -48,7 +49,7 @@ import java.util.Locale;
  *     <li>{@link #forHighLow(int, int)} - Returns the two 32 bit words combined into a <i>long</i></li>
  * </ul>
  *
- * <p><br/><hr/><br/></p>
+ * <hr>
  *
  * <p><b>Ranges</b></p>
  *
@@ -58,7 +59,7 @@ import java.util.Locale;
  *     <li>{@link #isBetweenExclusive(long, long, long)} - Returns true if the given value is in the given range, exclusive</li>
  * </ul>
  *
- * <p><br/><hr/><br/></p>
+ * <hr>
  *
  * <p><b>String Conversion</b></p>
  *
@@ -68,7 +69,7 @@ import java.util.Locale;
  *     <li>{@link #toHex(long, long)} - Converts the given value to a hexadecimal string of the given length</li>
  * </ul>
  *
- * <p><br/><hr/><br/></p>
+ * <hr>
  *
  * @author jonathanl (shibo)
  */
@@ -129,8 +130,8 @@ public class Longs
     }
 
     /**
-     * Yes, it turns out that {@link Long#parseLong(String)} is a major hotspot due to the fact that it throws a {@link
-     * NumberFormatException} instead of returning a signal value.
+     * Yes, it turns out that {@link Long#parseLong(String)} is a major hotspot due to the fact that it throws a
+     * {@link NumberFormatException} instead of returning a signal value.
      *
      * @return An integer value or the specified invalid value if the string is not a valid integer
      */
@@ -200,6 +201,53 @@ public class Longs
             }
         }
         return INVALID;
+    }
+
+    /**
+     * NOTE: This (poorly documented) method is verbatim from java.util.Random.java. It is being used because the task
+     * of finding a random long between two longs involves complex overflow issues and this code has been tested.
+     * <p>
+     * The form of nextLong used by LongStream Spliterators.  If origin is greater than bound, acts as unbounded form of
+     * nextLong, else as bounded form.
+     *
+     * @param minimum the least value, unless greater than bound
+     * @param maximumExclusive the upper bound (exclusive), must not equal origin
+     * @return a pseudorandom value
+     */
+    @SuppressWarnings("StatementWithEmptyBody")
+    public static long random(Random random, long minimum, long maximumExclusive)
+    {
+        if (minimum == maximumExclusive)
+        {
+            return minimum;
+        }
+        var r = random.nextLong();
+        if (minimum < maximumExclusive)
+        {
+            var n = maximumExclusive - minimum;
+            var m = n - 1;
+            if ((n & m) == 0L)  // power of two
+            {
+                r = (r & m) + minimum;
+            }
+            else if (n > 0L)
+            {  // reject over-represented candidates
+                for (var u = r >>> 1;            // ensure non-negative
+                     u + m - (r = u % n) < 0L;    // rejection check
+                     u = random.nextLong() >>> 1) // retry
+                {
+                }
+                r += minimum;
+            }
+            else
+            {              // range not representable as long
+                while (r < minimum || r >= maximumExclusive)
+                {
+                    r = random.nextLong();
+                }
+            }
+        }
+        return r;
     }
 
     /**

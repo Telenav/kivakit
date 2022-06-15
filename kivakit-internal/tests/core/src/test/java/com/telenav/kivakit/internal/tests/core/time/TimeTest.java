@@ -20,7 +20,7 @@ package com.telenav.kivakit.internal.tests.core.time;
 
 import com.telenav.kivakit.core.time.Duration;
 import com.telenav.kivakit.core.time.Time;
-import com.telenav.kivakit.internal.test.support.CoreUnitTest;
+import com.telenav.kivakit.internal.testing.CoreUnitTest;
 import org.junit.Test;
 
 import static com.telenav.kivakit.core.time.Duration.ONE_SECOND;

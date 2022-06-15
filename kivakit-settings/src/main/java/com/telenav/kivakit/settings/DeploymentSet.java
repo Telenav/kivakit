@@ -185,7 +185,7 @@ public class DeploymentSet extends BaseRepeater implements RegistryTrait
     private String description(Resource resource)
     {
         var description = "'" + resource.fileName().name() + "' deployment";
-        var deploymentProperties = PropertyMap.load(resource);
+        var deploymentProperties = PropertyMap.load(this, resource);
         if (deploymentProperties.containsKey("description"))
         {
             description = deploymentProperties.get("description");

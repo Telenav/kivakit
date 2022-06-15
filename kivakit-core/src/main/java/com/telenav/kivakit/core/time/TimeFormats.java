@@ -28,10 +28,11 @@ import java.time.temporal.ChronoField;
 /**
  * @author jonathanl (shibo)
  */
+@SuppressWarnings("SpellCheckingInspection")
 @UmlClassDiagram(diagram = DiagramTime.class)
 public class TimeFormats
 {
-    public static final DateTimeFormatter KIVAKIT_DATE = builder("yyy.MM.dd")
+    public static final DateTimeFormatter KIVAKIT_DATE = builder("yyyy.MM.dd")
             .parseDefaulting(ChronoField.HOUR_OF_DAY, 0)
             .parseDefaulting(ChronoField.MINUTE_OF_HOUR, 0)
             .parseDefaulting(ChronoField.SECOND_OF_MINUTE, 0)

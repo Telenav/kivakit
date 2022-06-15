@@ -9,7 +9,7 @@ import java.util.regex.Pattern;
  * A resource "glob" is similar to a file glob in UNIX. It matches resources, according to one or more patterns, which
  * can be combined with logical operators.
  *
- * <p><br/><hr/><br/></p>
+ * <hr>
  *
  * <p><b>Patterns</b></p>
  *
@@ -31,9 +31,8 @@ import java.util.regex.Pattern;
  *     <li>my-project/my-sub-project/target/MyApp.class</li>
  *     <li>my-project/my-sub-project/target/com/me/MyApp.class</li>
  * </ul>
- * </p>
  *
- * <p><br/><hr/><br/></p>
+ * <hr>
  *
  * <p><b>Creating Globs</b></p>
  *
@@ -50,7 +49,7 @@ import java.util.regex.Pattern;
  *     <li>{@link #matchAllUnder(ResourceFolder)} - Creates a glob that matches all resources in the given folder, and in all sub-folders, recursively</li>
  * </ul>
  *
- * <p><br/><hr/><br/></p>
+ * <hr>
  *
  * <p><b>Logical Operations</b></p>
  *
@@ -67,7 +66,7 @@ import java.util.regex.Pattern;
  *     <li>{@link #under(ResourceFolder)} - Matches what this matches, but only if it's under the given {@link ResourceFolder}</li>
  * </ul>
  *
- * <p><br/><hr/><br/></p>
+ * <hr>
  *
  * <p><b>Examples</b></p>
  *
@@ -83,7 +82,7 @@ import java.util.regex.Pattern;
  * matchAllUnder(target).select(CLASS)           // Match class files under target
  * match(JAVA).plus(target)                      // Match .java and target files</pre>
  *
- * <p><br/><hr/><br/></p>
+ * <hr>
  *
  * @author jonathanl (shibo)
  */

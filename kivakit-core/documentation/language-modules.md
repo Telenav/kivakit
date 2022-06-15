@@ -1,12 +1,12 @@
-# kivakit-core-kernel language.modules &nbsp; ![](../../../documentation/images/stars-48.png)
+# kivakit-core-kernel language.modules &nbsp; ![](https://telenav.github.io/telenav-assets/images/icons/stars-48.png)
 
-![](../documentation/images/horizontal-line.png)
+![](https://telenav.github.io/telenav-assets/images/separators/horizontal-line.png)
 
-### Package &nbsp; ![](../../../documentation/images/box-32.png)
+### Package &nbsp; ![](https://telenav.github.io/telenav-assets/images/icons/box-24.png)
 
 *com.telenav.kivakit.core.kernel.language.modules*
 
-![](../documentation/images/horizontal-line.png)
+![](https://telenav.github.io/telenav-assets/images/separators/horizontal-line.png)
 
 ### Summary
 
@@ -27,4 +27,4 @@ The key properties that *ModuleResource* provides are:
 
 <br/>
 
-![](../documentation/images/horizontal-line.png)
+![](https://telenav.github.io/telenav-assets/images/separators/horizontal-line.png)

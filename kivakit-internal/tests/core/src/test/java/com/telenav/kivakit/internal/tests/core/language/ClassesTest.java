@@ -19,7 +19,7 @@
 package com.telenav.kivakit.internal.tests.core.language;
 
 import com.telenav.kivakit.core.language.Classes;
-import com.telenav.kivakit.core.language.primitive.Primitives;import com.telenav.kivakit.internal.test.support.CoreUnitTest;
+import com.telenav.kivakit.core.language.primitive.Primitives;import com.telenav.kivakit.internal.testing.CoreUnitTest;
 import org.junit.Test;
 
 public class ClassesTest extends CoreUnitTest

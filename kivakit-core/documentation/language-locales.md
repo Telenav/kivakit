@@ -1,12 +1,12 @@
-# kivakit-core-kernel language.locales &nbsp; ![](../../../documentation/images/world-40.png)
+# kivakit-core-kernel language.locales &nbsp; ![](https://telenav.github.io/telenav-assets/images/icons/world-40.png)
 
-![](../documentation/images/horizontal-line.png)
+![](https://telenav.github.io/telenav-assets/images/separators/horizontal-line.png)
 
-### Package &nbsp; ![](../../../documentation/images/box-32.png)
+### Package &nbsp; ![](https://telenav.github.io/telenav-assets/images/icons/box-24.png)
 
 *com.telenav.kivakit.core.kernel.language.locales*
 
-![](../documentation/images/horizontal-line.png)
+![](https://telenav.github.io/telenav-assets/images/separators/horizontal-line.png)
 
 ### Summary
 
@@ -27,4 +27,4 @@ classes like *Application*, *Package* and *PropertyMap*.
 
 <br/>
 
-![](../documentation/images/horizontal-line.png)
+![](https://telenav.github.io/telenav-assets/images/separators/horizontal-line.png)

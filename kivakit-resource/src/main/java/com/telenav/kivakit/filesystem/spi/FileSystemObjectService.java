@@ -88,6 +88,11 @@ public interface FileSystemObjectService extends
      */
     boolean exists();
 
+    default FileSystemService fileSystemService(FilePath path)
+    {
+        return FileSystemServiceLoader.fileSystem(Listener.throwingListener(), path);
+    }
+
     /**
      * @return The service provider for folders
      */
@@ -158,9 +163,4 @@ public interface FileSystemObjectService extends
      * @return The root folder containing this object
      */
     FolderService root();
-
-    private FileSystemService fileSystemService(FilePath path)
-    {
-        return FileSystemServiceLoader.fileSystem(Listener.throwingListener(), path);
-    }
 }

@@ -29,7 +29,7 @@ import java.util.Locale;
 /**
  * Utility methods for <i>int</i> values.
  *
- * <p><br/><hr/><br/></p>
+ * <hr>
  *
  * <p><b>Parsing</b></p>
  *
@@ -39,7 +39,7 @@ import java.util.Locale;
  *     <li>{@link #parseFastNaturalNumber(String)} - Parses a natural number, returning {@link #INVALID} if parsing fails</li>
  * </ul>
  *
- * <p><br/><hr/><br/></p>
+ * <hr>
  *
  * <p><b>Words</b></p>
  *
@@ -49,7 +49,7 @@ import java.util.Locale;
  *     <li>{@link #forHighLow(int, int)} - Returns the two 16 bit words combined into an <i>int</i></li>
  * </ul>
  *
- * <p><br/><hr/><br/></p>
+ * <hr>
  *
  * <p><b>Ranges</b></p>
  *
@@ -59,7 +59,7 @@ import java.util.Locale;
  *     <li>{@link #isBetweenExclusive(int, int, int)} - Returns true if the given value is in the given range, exclusive</li>
  * </ul>
  *
- * <p><br/><hr/><br/></p>
+ * <hr>
  *
  * <p><b>Math</b></p>
  *
@@ -71,7 +71,7 @@ import java.util.Locale;
  *     <li>{@link #rounded(double)} - Returns the given value rounded to the nearest <i>int</i></li>
  * </ul>
  *
- * <p><br/><hr/><br/></p>
+ * <hr>
  *
  * <p><b>String Conversion</b></p>
  *
@@ -81,7 +81,7 @@ import java.util.Locale;
  *     <li>{@link #toHex(int, int)} - Converts the given value to a hexadecimal string of the given length</li>
  * </ul>
  *
- * <p><br/><hr/><br/></p>
+ * <hr>
  *
  * @author jonathanl (shibo)
  */

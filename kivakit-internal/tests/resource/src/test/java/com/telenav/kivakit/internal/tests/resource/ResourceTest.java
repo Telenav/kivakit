@@ -20,7 +20,7 @@ package com.telenav.kivakit.internal.tests.resource;
 
 import com.telenav.kivakit.properties.PropertyMap;
 import com.telenav.kivakit.resource.Resource;
-import com.telenav.kivakit.test.UnitTest;
+import com.telenav.kivakit.testing.UnitTest;
 import org.junit.Test;
 
 public class ResourceTest extends UnitTest
@@ -29,6 +29,6 @@ public class ResourceTest extends UnitTest
     public void testResolution()
     {
         var properties = Resource.resolve(this, "classpath:com/telenav/kivakit/internal/tests/resource/ResourceTest.properties");
-        ensureEqual("b", PropertyMap.load(properties).get("a"));
+        ensureEqual("b", PropertyMap.load(this, properties).get("a"));
     }
 }

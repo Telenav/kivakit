@@ -1,8 +1,8 @@
-# kivakit-core-kernel language.progress &nbsp; ![](../../../documentation/images/progress-48.png)
+# kivakit-core-kernel language.progress &nbsp; ![](https://telenav.github.io/telenav-assets/images/icons/progress-48.png)
 
-![](../documentation/images/horizontal-line.png)
+![](https://telenav.github.io/telenav-assets/images/separators/horizontal-line.png)
 
-### Package &nbsp; ![](../../../documentation/images/box-32.png)
+### Package &nbsp; ![](https://telenav.github.io/telenav-assets/images/icons/box-24.png)
 
 *com.telenav.kivakit.core.kernel.language.progress*
 
@@ -12,13 +12,13 @@
 [**Reporting Progress**](#reporting-progress)  
 [**Listening to Progress**](#listening-to-progress)
 
-![](../documentation/images/horizontal-line.png)
+![](https://telenav.github.io/telenav-assets/images/separators/horizontal-line.png)
 
 ### Summary <a name="summary"></a>
 
 This package defines how the progress of long-running operations is reported and displayed.
 
-### Reporting Progress <a name="reporting-progress"></a> &nbsp;  ![](../../../documentation/images/sonar-32.png)
+### Reporting Progress <a name="reporting-progress"></a> &nbsp;  ![](https://telenav.github.io/telenav-assets/images/icons/sonar-32.png)
 
 A *ProgressReporter* is used by an operation to report its progress as the operation proceeds.  
 Methods are provided to:
@@ -65,7 +65,7 @@ progresses:
         [...]
     }
 
-### Listening To Progress <a name="listening-to-progress"></a>  &nbsp;  ![](../../../documentation/images/ear-32.png)
+### Listening To Progress <a name="listening-to-progress"></a>  &nbsp;  ![](https://telenav.github.io/telenav-assets/images/icons/ear-32.png)
 
 Any normal *Listener* can listen to and display progress from a *Progress* object like this:
 
@@ -89,4 +89,4 @@ in addition to a message *Listener*, like this:
 
 <br/>
 
-![](../documentation/images/horizontal-line.png)
+![](https://telenav.github.io/telenav-assets/images/separators/horizontal-line.png)

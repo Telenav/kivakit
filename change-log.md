@@ -2,6 +2,58 @@
 
 -----------------------------------------------------------------------------------------------------------------------
 
+## Version 1.6.0 (2022.06.15) "purple toaster"
+
+### Build
+
+ - Renamed cactus-build -> cactus
+ - Added cactus-maven-plugin with mojos to support new build process
+   - Added new Maven "mojos" for Lexakai and CodeFlowers
+   - Moved most script logic into mojos
+   - Added mojos for consistency checks and git operations
+   - Introduced project families to allow builds of subsets of projects
+   - Added cactus-maven-model project
+ - Removed old scripts and centralized in telenav-build/bin
+ - Refactored scripts to support new build process
+ - Restructured superpom hierarchy and documented
+ - Rewrote documentation for new build process
+ - Changed maven plugin to write project and build properties to target folder
+ - Cleaned up build output to improve readability
+
+### Documentation
+
+ - Moved all graphic assets from individual projects into telenav-assets and fixed links
+ - Wrote documentation for new build processes
+ - Fixed javadoc warnings
+
+### Core
+
+ - Refactored time classes
+ - Bug fixes for Hour, Duration, Day, DayOfWeek, HourOfWeek
+ - Extracted BaseTime superclass and removed dependency on Count
+ - Added additional tests for time
+ - Fixed potential locking bug in StateWatcher
+ - Fixed null value bug in VariableMap
+ - Improvements and fixes to Range
+ - Fixed timezone bug in Time.elapsedSince()
+ - Fixed potential CacheMap expiration bug
+ - Fixed bug in KivaKitThread.startSynchronously()
+ - KivaKitThread.waitFor() now returns WakeState
+ - Changed resolution of time classes to nanoseconds and removed PreciseDuration
+ - Added or*() methods to Maybe monad, added tests 
+ - Improved serialization initialization
+ - Added SetDifferencerTest and SetOperationTest
+
+### Resources
+
+ - Improved use of ResourceFolder
+ - Added ResourceGlob
+
+### Testing 
+
+ - Moved all test code out of src/main/java into new test-scoped projects
+ - Added tests
+
 ## Version 1.5.0 (2022.03.30) "cobalt penguin"
 
 ### Application
@@ -486,4 +538,3 @@ _kivakit-stuff_, according to the principles described in the Medium article [*O
 ## Version 1.0.3 (2021.08.27) "puffy mouse"
 
 Initial release of KivaKit.
-

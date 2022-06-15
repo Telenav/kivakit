@@ -35,6 +35,10 @@ public class Year extends BaseTime<Year>
         return new Year(year);
     }
 
+    protected Year()
+    {
+    }
+
     protected Year(int year)
     {
         super(nanosecondsPerYear.times(year));

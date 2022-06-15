@@ -13,5 +13,4 @@ more (35 minutes, optional):
 visualizing kivakit (1 minute): https://medium.com/@jonathanlocke/visualizing-kivakit-b60e7bb31a9f 
 in-depth (21 minutes): https://towardsdev.com/the-kivakit-microservices-framework-3cd1d064107c 
 monads (6 minutes, draft): https://medium.com/@jonathanlocke/how-kivakit-makes-monads-easy-part-one-maybe-73c819f9ad3b
-docker build (4 minutes): https://towardsdev.com/kivakits-new-docker-build-environment-d2137e3e12a0 
-object-orientation (3 minutes): https://medium.com/p/595c182d817c 
+object-orientation (3 minutes): https://medium.com/p/595c182d817c

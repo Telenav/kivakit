@@ -1,25 +1,25 @@
 [//]: # (start-user-text)
 
 <a href="https://www.kivakit.org">
-<img src="https://www.kivakit.org/images/web-32.png" srcset="https://www.kivakit.org/images/web-32-2x.png 2x"/>
+<img src="https://telenav.github.io/telenav-assets/images/icons/web-32.png" srcset="https://telenav.github.io/telenav-assets/images/icons/web-32-2x.png 2x"/>
 </a>
 &nbsp;
 <a href="https://twitter.com/openkivakit">
-<img src="https://www.kivakit.org/images/twitter-32.png" srcset="https://www.kivakit.org/images/twitter-32-2x.png 2x"/>
+<img src="https://telenav.github.io/telenav-assets/images/logos/twitter/twitter-32.png" srcset="https://telenav.github.io/telenav-assets/images/logos/twitter/twitter-32-2x.png 2x"/>
 </a>
 &nbsp;
 <a href="https://kivakit.zulipchat.com">
-<img src="https://www.kivakit.org/images/zulip-32.png" srcset="https://www.kivakit.org/images/zulip-32-2x.png 2x"/>
+<img src="https://telenav.github.io/telenav-assets/images/logos/zulip/zulip-32.png" srcset="https://telenav.github.io/telenav-assets/images/logos/zulip/zulip-32-2x.png 2x"/>
 </a>
 
 [//]: # (end-user-text)
 
-# kivakit-application &nbsp;&nbsp; <img src="https://www.kivakit.org/images/window-32.png" srcset="https://www.kivakit.org/images/window-32-2x.png 2x"/>
+# kivakit-application &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/window-32.png" srcset="https://telenav.github.io/telenav-assets/images/icons/window-32-2x.png 2x"/>
 
 This module contains base classes for applications and servers. It provides command line parsing and enables  
 configuration management and object registration and lookup.
 
-<img src="https://www.kivakit.org/images/horizontal-line-512.png" srcset="https://www.kivakit.org/images/horizontal-line-512-2x.png 2x"/>
+<img src="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-512.png" srcset="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-512-2x.png 2x"/>
 
 ### Index
 
@@ -28,21 +28,21 @@ configuration management and object registration and lookup.
 
 [**Dependencies**](#dependencies) | [**Class Diagrams**](#class-diagrams) | [**Package Diagrams**](#package-diagrams) | [**Javadoc**](#javadoc)
 
-<img src="https://www.kivakit.org/images/horizontal-line-512.png" srcset="https://www.kivakit.org/images/horizontal-line-512-2x.png 2x"/>
+<img src="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-512.png" srcset="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-512-2x.png 2x"/>
 
-### Dependencies <a name="dependencies"></a> &nbsp;&nbsp; <img src="https://www.kivakit.org/images/dependencies-32.png" srcset="https://www.kivakit.org/images/dependencies-32-2x.png 2x"/>
+### Dependencies <a name="dependencies"></a> &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/dependencies-32.png" srcset="https://telenav.github.io/telenav-assets/images/icons/dependencies-32-2x.png 2x"/>
 
-[*Dependency Diagram*](https://www.kivakit.org/1.5.0/lexakai/kivakit/kivakit-application/documentation/diagrams/dependencies.svg)
+[*Dependency Diagram*](https://www.kivakit.org/1.6.0/lexakai/kivakit/kivakit-application/documentation/diagrams/dependencies.svg)
 
 #### Maven Dependency
 
     <dependency>
         <groupId>com.telenav.kivakit</groupId>
         <artifactId>kivakit-application</artifactId>
-        <version>1.5.0</version>
+        <version>1.6.0</version>
     </dependency>
 
-<img src="https://www.kivakit.org/images/horizontal-line-128.png" srcset="https://www.kivakit.org/images/horizontal-line-128-2x.png 2x"/>
+<img src="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128.png" srcset="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128-2x.png 2x"/>
 
 [//]: # (start-user-text)
 
@@ -65,53 +65,53 @@ browse the [**Javadoc**](#javadoc).
 
 [//]: # (end-user-text)
 
-<img src="https://www.kivakit.org/images/horizontal-line-128.png" srcset="https://www.kivakit.org/images/horizontal-line-128-2x.png 2x"/>
+<img src="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128.png" srcset="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128-2x.png 2x"/>
 
-### Class Diagrams <a name="class-diagrams"></a> &nbsp; &nbsp; <img src="https://www.kivakit.org/images/diagram-40.png" srcset="https://www.kivakit.org/images/diagram-40-2x.png 2x"/>
+### Class Diagrams <a name="class-diagrams"></a> &nbsp; &nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/diagram-40.png" srcset="https://telenav.github.io/telenav-assets/images/icons/diagram-40-2x.png 2x"/>
 
-[*Applications*](https://www.kivakit.org/1.5.0/lexakai/kivakit/kivakit-application/documentation/diagrams/diagram-application.svg)
+[*Applications*](https://www.kivakit.org/1.6.0/lexakai/kivakit/kivakit-application/documentation/diagrams/diagram-application.svg)
 
-<img src="https://www.kivakit.org/images/horizontal-line-128.png" srcset="https://www.kivakit.org/images/horizontal-line-128-2x.png 2x"/>
+<img src="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128.png" srcset="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128-2x.png 2x"/>
 
-### Package Diagrams <a name="package-diagrams"></a> &nbsp;&nbsp; <img src="https://www.kivakit.org/images/box-32.png" srcset="https://www.kivakit.org/images/box-32-2x.png 2x"/>
+### Package Diagrams <a name="package-diagrams"></a> &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/box-24.png" srcset="https://telenav.github.io/telenav-assets/images/icons/box-24-2x.png 2x"/>
 
-[*com.telenav.kivakit.application*](https://www.kivakit.org/1.5.0/lexakai/kivakit/kivakit-application/documentation/diagrams/com.telenav.kivakit.application.svg)  
-[*com.telenav.kivakit.application.lexakai*](https://www.kivakit.org/1.5.0/lexakai/kivakit/kivakit-application/documentation/diagrams/com.telenav.kivakit.application.lexakai.svg)
+[*com.telenav.kivakit.application*](https://www.kivakit.org/1.6.0/lexakai/kivakit/kivakit-application/documentation/diagrams/com.telenav.kivakit.application.svg)  
+[*com.telenav.kivakit.application.lexakai*](https://www.kivakit.org/1.6.0/lexakai/kivakit/kivakit-application/documentation/diagrams/com.telenav.kivakit.application.lexakai.svg)
 
-<img src="https://www.kivakit.org/images/horizontal-line-128.png" srcset="https://www.kivakit.org/images/horizontal-line-128-2x.png 2x"/>
+<img src="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128.png" srcset="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128-2x.png 2x"/>
 
-### Javadoc <a name="javadoc"></a> &nbsp;&nbsp; <img src="https://www.kivakit.org/images/books-32.png" srcset="https://www.kivakit.org/images/books-32-2x.png 2x"/>
+### Javadoc <a name="javadoc"></a> &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/books-24.png" srcset="https://telenav.github.io/telenav-assets/images/icons/books-24-2x.png 2x"/>
 
-Javadoc coverage for this project is 78.5%.  
+Javadoc coverage for this project is 77.2%.  
   
-&nbsp; &nbsp; <img src="https://www.kivakit.org/images/meter-80-96.png" srcset="https://www.kivakit.org/images/meter-80-96-2x.png 2x"/>
+&nbsp; &nbsp; <img src="https://telenav.github.io/telenav-assets/images/meter/meter-80-96.png" srcset="https://telenav.github.io/telenav-assets/images/meter/meter-80-96-2x.png 2x"/>
 
 
 
 
 | Class | Documentation Sections |
 |---|---|
-| [*Application*](https://www.kivakit.org/1.5.0/javadoc/kivakit/kivakit.application/com/telenav/kivakit/application/Application.html) | Application Metadata |  
+| [*Application*](https://www.kivakit.org/1.6.0/javadoc/kivakit/kivakit.application////////////////////////////////////////////.html) | Application Metadata |  
 | | Application Environment |  
 | | Project Initialization |  
 | | Execution |  
 | | Messaging and Logging |  
 | | Creating an Application |  
 | | Command Line Parsing |  
-| [*Application.Identifier*](https://www.kivakit.org/1.5.0/javadoc/kivakit/kivakit.application/com/telenav/kivakit/application/Application.Identifier.html) |  |  
-| [*Application.State*](https://www.kivakit.org/1.5.0/javadoc/kivakit/kivakit.application/com/telenav/kivakit/application/Application.State.html) |  |  
-| [*DiagramApplication*](https://www.kivakit.org/1.5.0/javadoc/kivakit/kivakit.application/com/telenav/kivakit/application/lexakai/DiagramApplication.html) |  |  
-| [*Server*](https://www.kivakit.org/1.5.0/javadoc/kivakit/kivakit.application/com/telenav/kivakit/application/Server.html) |  |  
+| [*Application.Identifier*](https://www.kivakit.org/1.6.0/javadoc/kivakit/kivakit.application///////////////////////////////////////////////////////.html) |  |  
+| [*Application.State*](https://www.kivakit.org/1.6.0/javadoc/kivakit/kivakit.application//////////////////////////////////////////////////.html) |  |  
+| [*DiagramApplication*](https://www.kivakit.org/1.6.0/javadoc/kivakit/kivakit.application///////////////////////////////////////////////////////////.html) |  |  
+| [*Server*](https://www.kivakit.org/1.6.0/javadoc/kivakit/kivakit.application///////////////////////////////////////.html) |  |  
 
 [//]: # (start-user-text)
 
-<img src="https://www.kivakit.org/images/horizontal-line-128.png" srcset="https://www.kivakit.org/images/horizontal-line-128-2x.png 2x"/>
+<img src="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128.png" srcset="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128-2x.png 2x"/>
 
 ### How to Create an Application <a name="how-to-create-an-application"></a>
 
 This section shows how to build a basic KivaKit application that counts lines in a text file in three simple steps.
 
-#### 1. Create the Application Class &nbsp; &nbsp; <img src="https://www.kivakit.org/images/wand-32.png" srcset="https://www.kivakit.org/images/wand-32-2x.png 2x"/>
+#### 1. Create the Application Class &nbsp; &nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/wand-32.png" srcset="https://telenav.github.io/telenav-assets/images/icons/wand-32-2x.png 2x"/>
 
 KivaKit applications extend _Application_, which provides base services to application subclasses.
 The application must pass the name of a _Project_ to the _Application_ constructor. This ensures
@@ -136,7 +136,7 @@ were received from the JVM in _main()._
         [...]
     }
 
-#### 2. Add Command Line Parsers to the Application Class &nbsp; &nbsp; <img src="https://www.kivakit.org/images/command-line-32.png" srcset="https://www.kivakit.org/images/command-line-32-2x.png 2x"/>
+#### 2. Add Command Line Parsers to the Application Class &nbsp; &nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/command-line-32.png" srcset="https://telenav.github.io/telenav-assets/images/icons/command-line-32-2x.png 2x"/>
 
 Here we add two fields, one is an argument parser for the input file, and the other
 is a switch parser for the *-show-file-size* switch (if this switch is true, we will show
@@ -179,7 +179,7 @@ and _SwitchParser_ both parse objects from the command line, not strings.
 
         [...]
 
-#### 2. Create the Application Entrypoint &nbsp; &nbsp; <img src="https://www.kivakit.org/images/rocket-32.png" srcset="https://www.kivakit.org/images/rocket-32-2x.png 2x"/>
+#### 2. Create the Application Entrypoint &nbsp; &nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/rocket-32.png" srcset="https://telenav.github.io/telenav-assets/images/icons/rocket-32-2x.png 2x"/>
 
 The method onRun() is called once command line switches are parsed. At this point
 many convenient methods in the _Application_ base class will work. See _Application.java_
@@ -210,8 +210,7 @@ useful methods for broadcasting and listening to messages.
 
 [//]: # (end-user-text)
 
-<img src="https://www.kivakit.org/images/horizontal-line-512.png" srcset="https://www.kivakit.org/images/horizontal-line-512-2x.png 2x"/>
+<img src="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-512.png" srcset="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-512-2x.png 2x"/>
 
 <sub>Copyright &#169; 2011-2021 [Telenav](https://telenav.com), Inc. Distributed under [Apache License, Version 2.0](LICENSE)</sub>  
 <sub>This documentation was generated by [Lexakai](https://lexakai.org). UML diagrams courtesy of [PlantUML](https://plantuml.com).</sub>
-

@@ -130,8 +130,8 @@ public class ModuleResource
         {
             var path = Path.of(uri);
             size = Bytes.bytes(Files.size(path));
-            lastModified = Time.milliseconds(Files.getLastModifiedTime(path).toMillis());
-            created = Time.milliseconds(Files.readAttributes(path, BasicFileAttributes.class).creationTime().toMillis());
+            lastModified = Time.epochMilliseconds(Files.getLastModifiedTime(path).toMillis());
+            created = Time.epochMilliseconds(Files.readAttributes(path, BasicFileAttributes.class).creationTime().toMillis());
         }
         catch (IOException ignored)
         {

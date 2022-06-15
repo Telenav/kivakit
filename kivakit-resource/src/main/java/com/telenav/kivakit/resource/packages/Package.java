@@ -312,7 +312,7 @@ public class Package extends BaseRepeater implements ResourceFolder<Package>
     }
 
     @Override
-    public WritableResource temporary(final FileName baseName, final Extension extension)
+    public WritableResource temporaryFile(final FileName baseName, final Extension extension)
     {
         return unsupported();
     }

@@ -20,6 +20,6 @@ public class DateTimeConverter extends BaseStringConverter<Time>
     @Override
     protected Time onToValue(String dateTimeString)
     {
-        return Time.milliseconds(Instant.from(formatter.parse(dateTimeString)).toEpochMilli());
+        return Time.epochMilliseconds(Instant.from(formatter.parse(dateTimeString)).toEpochMilli());
     }
 }

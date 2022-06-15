@@ -128,7 +128,7 @@ import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
  *     <li>{@link NamedObject} - Provides component name</li>
  * </ul>
  *
- * <p><br/><hr/><br/></p>
+ * <hr>
  *
  * <p><b>Creating an Application</b></p>
  *
@@ -147,7 +147,7 @@ import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
  *     [...]
  * }</pre>
  *
- * <p><br/><hr/><br/></p>
+ * <hr>
  *
  * <p><b>Project Initialization</b></p>
  *
@@ -156,7 +156,7 @@ import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
  * ensure that all of the application's transitively dependent project(s) are initialized. See {@link Project} for details.
  * </p>
  *
- * <p><br/><hr/><br/></p>
+ * <hr>
  *
  * <p><b>Application Metadata</b></p>
  *
@@ -170,7 +170,7 @@ import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
  *     <li>{@link #identifier()} - A unique identifier for the application class</li>
  * </ul>
  *
- * <p><br/><hr/><br/></p>
+ * <hr>
  *
  * <p><b>Application Environment</b></p>
  *
@@ -183,7 +183,7 @@ import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
  *     <li>{@link #localizedProperties(Locale)} - Properties that are specific to the {@link Locale}</li>
  * </ul>
  *
- * <p><br/><hr/><br/></p>
+ * <hr>
  *
  * <p><b>Execution</b></p>
  *
@@ -215,7 +215,7 @@ import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
  * display the given message and show command line usage before exiting the application.
  * </p>
  *
- * <p><br/><hr/><br/></p>
+ * <hr>
  *
  * <p><b>Command Line Parsing</b></p>
  *
@@ -240,13 +240,13 @@ import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
  *
  * <p><i>Arguments</i></p>
  *
- * </ul>
+ * <ul>
  *     <li>{@link #argumentList()} - Gets command line arguments (excluding switches)</li>
  *     <li>{@link #argument(ArgumentParser)} - Gets the first command line argument (excluding switches)</li>
  *     <li>{@link #argument(int, ArgumentParser)} - Gets the nth argument using the given argument parser</li>
  * </ul>
  *
- * <p><br/><hr/><br/></p>
+ * <hr>
  *
  * <p><b>Messaging and Logging</b></p>
  *
@@ -254,7 +254,7 @@ import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
  * This class extends {@link BaseRepeater} and has a {@link Logger} that listens for messages and logs them.
  * </p>
  *
- * <p><br/><hr/><br/></p>
+ * <hr>
  *
  * @author jonathanl (shibo)
  * @see BaseRepeater
@@ -546,7 +546,7 @@ public abstract class Application extends BaseComponent implements
                 // then load properties from the resource
                 var resourceIdentifier = Strip.leading(argument, "-switches=");
                 var resource = Resource.resolve(this, resourceIdentifier);
-                var properties = PropertyMap.load(resource);
+                var properties = PropertyMap.load(this, resource);
 
                 // and add those properties to the argument list
                 for (var key : properties.keySet())

@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.internal.tests.core.collections.map;
 import com.telenav.kivakit.core.collections.map.CountMap;
-import com.telenav.kivakit.internal.test.support.CoreUnitTest;
+import com.telenav.kivakit.internal.testing.CoreUnitTest;
 import org.junit.Test;
 
 public class CountMapTest extends CoreUnitTest

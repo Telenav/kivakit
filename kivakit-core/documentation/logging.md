@@ -1,8 +1,8 @@
-# kivakit-core-kernel logging &nbsp; ![](../../../documentation/images/log-40.png)
+# kivakit-core-kernel logging &nbsp; ![](https://telenav.github.io/telenav-assets/images/icons/log-40.png)
 
-![](../documentation/images/horizontal-line.png)
+![](https://telenav.github.io/telenav-assets/images/separators/horizontal-line.png)
 
-### Package &nbsp; ![](../../../documentation/images/box-32.png)
+### Package &nbsp; ![](https://telenav.github.io/telenav-assets/images/icons/box-24.png)
 
 *com.telenav.kivakit.core.kernel.logging*
 
@@ -20,7 +20,7 @@
 [**Creating New Logs**](#creating-new-logs)  
 [**Log Viewer**](#log-viewer)
 
-![](../documentation/images/horizontal-line.png)
+![](https://telenav.github.io/telenav-assets/images/separators/horizontal-line.png)
 
 ### Summary <a name="summary"></a>
 
@@ -243,10 +243,10 @@ If you want to see your logging output in a Swing searchable popup window, start
 
 The server will queue up log entries, which you can view with KivaKit log viewer:
 
-### Download Log Viewer &nbsp; ![](../../../documentation/images/down-arrow-32.png)
+### Download Log Viewer &nbsp; ![](https://telenav.github.io/telenav-assets/images/icons/down-arrow-32.png)
 
 [**KivaKit Log Viewer**](http://telenav-kivakit.mypna.com/0.9.0-SNAPSHOT/bin/kivakit-log-viewer-0.9.0-SNAPSHOT.jar)
 
 <br/>
 
-![](../documentation/images/horizontal-line.png)
+![](https://telenav.github.io/telenav-assets/images/separators/horizontal-line.png)

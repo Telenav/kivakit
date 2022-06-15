@@ -120,13 +120,13 @@ public class MutableCount implements
     }
 
     @Override
-    public boolean isGreaterThan(Countable that)
+    public boolean isGreaterThan(Quantizable that)
     {
         return asLong() > that.quantum();
     }
 
     @Override
-    public boolean isLessThan(Countable that)
+    public boolean isLessThan(Quantizable that)
     {
         return asLong() < that.quantum();
     }

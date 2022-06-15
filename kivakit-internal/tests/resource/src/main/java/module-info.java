@@ -3,9 +3,9 @@
  * will refuse to compile the tests (which contains the version that is actually
  * used).
  */
-open module kivakit.resource.tests {
+open module kivakit.internal.tests.resource
+{
     requires kivakit.core;
-    requires kivakit.test.internal;
-    requires kivakit.test;
+    requires kivakit.internal.testing;
     requires kivakit.resource;
 }

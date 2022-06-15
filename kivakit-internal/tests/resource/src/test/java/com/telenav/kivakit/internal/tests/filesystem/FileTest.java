@@ -22,7 +22,7 @@ import com.telenav.kivakit.core.collections.map.VariableMap;
 import com.telenav.kivakit.filesystem.File;
 import com.telenav.kivakit.filesystem.Folder;
 import com.telenav.kivakit.resource.Resource;
-import com.telenav.kivakit.test.UnitTest;
+import com.telenav.kivakit.testing.UnitTest;
 import org.junit.Test;
 
 import java.net.URISyntaxException;
@@ -61,7 +61,7 @@ public class FileTest extends UnitTest
     @Test
     public void testWithoutCompoundExtension()
     {
-        ensureEqual(Objects.requireNonNull(Folder.parse(this, ".")).file("World"), File.parseFile(this, "./World.osm.pbf").withoutCompoundExtension());
+        ensureEqual(Objects.requireNonNull(Folder.parseFolder(this, ".")).file("World"), File.parseFile(this, "./World.osm.pbf").withoutCompoundExtension());
         ensureEqual("World", File.parseFile(this, "World.osm.pbf").withoutCompoundExtension().toString());
         ensureEqual("World", File.parseFile(this, "World").withoutCompoundExtension().toString());
         ensureEqual("World", File.parseFile(this, "World.txt").withoutCompoundExtension().toString());

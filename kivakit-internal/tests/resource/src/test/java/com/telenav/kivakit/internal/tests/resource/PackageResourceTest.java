@@ -22,7 +22,7 @@ import com.telenav.kivakit.core.time.Time;
 import com.telenav.kivakit.core.value.count.Bytes;
 import com.telenav.kivakit.resource.packages.PackageResource;
 import com.telenav.kivakit.resource.packages.PackageTrait;
-import com.telenav.kivakit.test.UnitTest;
+import com.telenav.kivakit.testing.UnitTest;
 import org.junit.Test;
 
 /**

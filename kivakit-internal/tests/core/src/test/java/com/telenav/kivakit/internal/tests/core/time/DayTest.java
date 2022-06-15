@@ -1,7 +1,7 @@
 package com.telenav.kivakit.internal.tests.core.time;
 
 import com.telenav.kivakit.core.time.Day;
-import com.telenav.kivakit.internal.test.support.CoreUnitTest;
+import com.telenav.kivakit.internal.testing.CoreUnitTest;
 import org.junit.Test;
 
 import java.util.HashMap;

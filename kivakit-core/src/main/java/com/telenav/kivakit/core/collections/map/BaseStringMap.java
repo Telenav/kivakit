@@ -51,6 +51,7 @@ import java.util.function.Function;
  *
  * @author jonathanl (shibo)
  */
+@SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramCollections.class)
 public abstract class BaseStringMap<Value> extends BaseMap<String, Value> implements
         RepeaterMixin,

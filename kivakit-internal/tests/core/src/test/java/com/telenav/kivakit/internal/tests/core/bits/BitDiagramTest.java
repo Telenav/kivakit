@@ -19,7 +19,7 @@
 package com.telenav.kivakit.internal.tests.core.bits;
 
 import com.telenav.kivakit.core.bits.BitDiagram;
-import com.telenav.kivakit.core.bits.BitDiagram.BitField;import com.telenav.kivakit.internal.test.support.CoreUnitTest;
+import com.telenav.kivakit.core.bits.BitDiagram.BitField;import com.telenav.kivakit.internal.testing.CoreUnitTest;
 import org.junit.Test;
 
 public class BitDiagramTest extends CoreUnitTest

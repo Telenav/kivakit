@@ -1,12 +1,12 @@
-# kivakit-core-kernel language.math &nbsp; ![](../../../documentation/images/math-40.png)
+# kivakit-core-kernel language.math &nbsp; ![](https://telenav.github.io/telenav-assets/images/icons/math-40.png)
 
-![](../documentation/images/horizontal-line.png)
+![](https://telenav.github.io/telenav-assets/images/separators/horizontal-line.png)
 
-### Package &nbsp; ![](../../../documentation/images/box-32.png)
+### Package &nbsp; ![](https://telenav.github.io/telenav-assets/images/icons/box-24.png)
 
 *com.telenav.kivakit.core.kernel.language.math*
 
-![](../documentation/images/horizontal-line.png)
+![](https://telenav.github.io/telenav-assets/images/separators/horizontal-line.png)
 
 ### Summary
 
@@ -29,4 +29,4 @@ that is greater than the given argument.
 
 <br/>
 
-![](../documentation/images/horizontal-line.png)
+![](https://telenav.github.io/telenav-assets/images/separators/horizontal-line.png)

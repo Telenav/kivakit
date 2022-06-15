@@ -18,6 +18,9 @@
 
 package com.telenav.kivakit.core.messaging;
 
+import com.telenav.kivakit.core.lexakai.DiagramBroadcaster;
+import com.telenav.kivakit.core.lexakai.DiagramListener;
+import com.telenav.kivakit.core.lexakai.DiagramLogging;
 import com.telenav.kivakit.core.messaging.context.CodeContext;
 import com.telenav.kivakit.core.messaging.messages.lifecycle.OperationHalted;
 import com.telenav.kivakit.core.messaging.messages.status.Announcement;
@@ -30,9 +33,6 @@ import com.telenav.kivakit.core.messaging.messages.status.Quibble;
 import com.telenav.kivakit.core.messaging.messages.status.Trace;
 import com.telenav.kivakit.core.messaging.messages.status.Warning;
 import com.telenav.kivakit.core.messaging.repeaters.BaseRepeater;
-import com.telenav.kivakit.core.lexakai.DiagramBroadcaster;
-import com.telenav.kivakit.core.lexakai.DiagramListener;
-import com.telenav.kivakit.core.lexakai.DiagramLogging;
 import com.telenav.kivakit.core.time.Frequency;
 import com.telenav.kivakit.interfaces.messaging.Receiver;
 import com.telenav.kivakit.interfaces.messaging.Transmittable;
@@ -47,9 +47,9 @@ import com.telenav.lexakai.annotations.visibility.UmlExcludeSuperTypes;
 /**
  * Functionality that is common to {@link Broadcaster}s, {@link Listener}s, {@link Repeater}s and potentially other
  * classes that are involved in handling messages. The {@link #isTransmitting()} method returns true if transmitting is
- * enabled. The {@link #isReceiving()} method returns true if receiving is enabled. When enabled, the {@link
- * #receive(Transmittable)} method calls {@link #onReceive(Transmittable)} (Transmittable)} to allow the subclass to
- * handle the message.
+ * enabled. The {@link #isReceiving()} method returns true if receiving is enabled. When enabled, the
+ * {@link #receive(Transmittable)} method calls {@link #onReceive(Transmittable)} (Transmittable)} to allow the subclass
+ * to handle the message.
  *
  * <p><b>Convenience Methods</b></p>
  * <p>
@@ -108,7 +108,7 @@ import com.telenav.lexakai.annotations.visibility.UmlExcludeSuperTypes;
  * @see Problem
  * @see OperationHalted
  */
-@UmlClassDiagram(diagram = DiagramLogging.class)
+@SuppressWarnings({ "unused", "UnusedReturnValue" }) @UmlClassDiagram(diagram = DiagramLogging.class)
 @UmlClassDiagram(diagram = DiagramBroadcaster.class)
 @UmlClassDiagram(diagram = DiagramListener.class)
 @UmlRelation(label = "delegates to", referent = Debug.class)
@@ -119,6 +119,8 @@ public interface Transceiver extends NamedObject, Receiver, Transmitter
     /**
      * Sends a formatted {@link Announcement} message to this {@link Transceiver}
      *
+     * @param text The message to format
+     * @param arguments The arguments
      * @return The message
      */
     default Announcement announce(String text, Object... arguments)
@@ -166,6 +168,10 @@ public interface Transceiver extends NamedObject, Receiver, Transmitter
 
     /**
      * Throws a formatted {@link FatalProblem} message as an {@link IllegalStateException}
+     *
+     * @param text The message to format
+     * @param arguments The arguments
+     * @return The message
      */
     default <T> T fatal(String text, Object... arguments)
     {
@@ -177,6 +183,12 @@ public interface Transceiver extends NamedObject, Receiver, Transmitter
 
     /**
      * Throws a formatted {@link FatalProblem} message as an {@link IllegalStateException}
+     *
+     * @param cause The cause of the fatal problem
+     * @param text The message to format
+     * @param arguments The arguments
+     * @param <T> The type of message
+     * @return The message
      */
     default <T> T fatal(Throwable cause, String text, Object... arguments)
     {
@@ -189,6 +201,9 @@ public interface Transceiver extends NamedObject, Receiver, Transmitter
     /**
      * Sends a formatted {@link Glitch} message to this {@link Transceiver}
      *
+     * @param maximumFrequency The maximum frequency at which this message should be appear
+     * @param text The message to format
+     * @param arguments The arguments
      * @return The message
      */
     default Glitch glitch(Frequency maximumFrequency, String text, Object... arguments)
@@ -199,6 +214,10 @@ public interface Transceiver extends NamedObject, Receiver, Transmitter
     /**
      * Sends a formatted {@link Glitch} message to this {@link Transceiver}
      *
+     * @param maximumFrequency The maximum frequency at which this message should be logged
+     * @param cause The cause of the fatal problem
+     * @param text The message to format
+     * @param arguments The arguments
      * @return The message
      */
     default Glitch glitch(Frequency maximumFrequency, Throwable cause, String text,
@@ -210,6 +229,8 @@ public interface Transceiver extends NamedObject, Receiver, Transmitter
     /**
      * Sends a formatted {@link Glitch} message to this {@link Transceiver}
      *
+     * @param text The message to format
+     * @param arguments The arguments
      * @return The message
      */
     default Glitch glitch(String text, Object... arguments)
@@ -220,6 +241,9 @@ public interface Transceiver extends NamedObject, Receiver, Transmitter
     /**
      * Sends a formatted {@link Glitch} message to this {@link Transceiver}
      *
+     * @param cause The cause of the fatal problem
+     * @param text The message to format
+     * @param arguments The arguments
      * @return The message
      */
     default Glitch glitch(Throwable cause, String text, Object... arguments)
@@ -234,6 +258,8 @@ public interface Transceiver extends NamedObject, Receiver, Transmitter
     /**
      * Sends a formatted {@link OperationHalted} message to this {@link Transceiver}
      *
+     * @param text The message to format
+     * @param arguments The arguments
      * @return The message
      */
     default OperationHalted halted(String text, Object... arguments)
@@ -244,6 +270,9 @@ public interface Transceiver extends NamedObject, Receiver, Transmitter
     /**
      * Sends a formatted {@link OperationHalted} message to this {@link Transceiver}
      *
+     * @param cause The cause of the fatal problem
+     * @param text The message to format
+     * @param arguments The arguments
      * @return The message
      */
     default OperationHalted halted(Throwable cause, String text, Object... arguments)
@@ -253,6 +282,8 @@ public interface Transceiver extends NamedObject, Receiver, Transmitter
 
     /**
      * Runs the given code if debug is turned on for this {@link Transceiver}
+     *
+     * @param code The code to run if debug is off
      */
     default void ifDebug(Runnable code)
     {
@@ -264,10 +295,15 @@ public interface Transceiver extends NamedObject, Receiver, Transmitter
 
     /**
      * Throws an {@link IllegalArgumentException} with the given formatted message
+     *
+     * @param text The message to format
+     * @param arguments The arguments
+     * @param <T> The type of message
+     * @return Return value is null because the compiler cannot determine that an exception is thrown
      */
-    default <T> T illegalArgument(String message, Object... arguments)
+    default <T> T illegalArgument(String text, Object... arguments)
     {
-        var problem = new Problem(message, arguments);
+        var problem = new Problem(text, arguments);
         receive(problem);
         problem.throwAsIllegalArgumentException();
         return null;
@@ -275,6 +311,9 @@ public interface Transceiver extends NamedObject, Receiver, Transmitter
 
     /**
      * Throws an {@link IllegalStateException} with the given formatted message
+     *
+     * @param <T> The type of message
+     * @return Return value is null because the compiler cannot determine that an exception is thrown
      */
     default <T> T illegalState(String message, Object... arguments)
     {
@@ -286,10 +325,15 @@ public interface Transceiver extends NamedObject, Receiver, Transmitter
 
     /**
      * Throws an {@link IllegalStateException} with the given exception and formatted message
+     *
+     * @param cause The cause of the fatal problem
+     * @param text The message to format
+     * @param arguments The arguments
+     * @return Return value is null because the compiler cannot determine that an exception is thrown
      */
-    default <T> T illegalState(Throwable e, String text, Object... arguments)
+    default <T> T illegalState(Throwable cause, String text, Object... arguments)
     {
-        var problem = new Problem(e, text, arguments);
+        var problem = new Problem(cause, text, arguments);
         receive(problem);
         problem.throwAsIllegalStateException();
         return null;
@@ -298,6 +342,8 @@ public interface Transceiver extends NamedObject, Receiver, Transmitter
     /**
      * Sends a formatted {@link Information} message to this {@link Transceiver}
      *
+     * @param text The message to format
+     * @param arguments The arguments
      * @return The message
      */
     default Information information(String text, Object... arguments)
@@ -316,6 +362,8 @@ public interface Transceiver extends NamedObject, Receiver, Transmitter
     /**
      * Sends a formatted {@link Narration} message to this {@link Transceiver}
      *
+     * @param text The message to format
+     * @param arguments The arguments
      * @return The message
      */
     default Narration narrate(String text, Object... arguments)
@@ -344,6 +392,9 @@ public interface Transceiver extends NamedObject, Receiver, Transmitter
     /**
      * Sends a formatted {@link Problem} message to this {@link Transceiver}
      *
+     * @param maximumFrequency The maximum frequency at which this message should be logged
+     * @param text The message to format
+     * @param arguments The arguments
      * @return The message
      */
     default Problem problem(Frequency maximumFrequency, String text, Object... arguments)
@@ -354,6 +405,10 @@ public interface Transceiver extends NamedObject, Receiver, Transmitter
     /**
      * Sends a formatted {@link Problem} message to this {@link Transceiver}
      *
+     * @param maximumFrequency The maximum frequency at which this message should be logged
+     * @param cause The cause of the fatal problem
+     * @param text The message to format
+     * @param arguments The arguments
      * @return The message
      */
     default Problem problem(Frequency maximumFrequency, Throwable cause, String text,
@@ -365,6 +420,9 @@ public interface Transceiver extends NamedObject, Receiver, Transmitter
     /**
      * Sends a formatted {@link Problem} message to this {@link Transceiver}
      *
+     * @param cause The cause of the fatal problem
+     * @param text The message to format
+     * @param arguments The arguments
      * @return The message
      */
     default Problem problem(Throwable cause, String text, Object... arguments)
@@ -372,6 +430,14 @@ public interface Transceiver extends NamedObject, Receiver, Transmitter
         return receive(new Problem(cause, text, arguments));
     }
 
+    /**
+     * Broadcasts a problem if the given value is null
+     *
+     * @param value The value to check
+     * @param text The message to format
+     * @param arguments The arguments
+     * @return The value
+     */
     default <T> T problemIfNull(T value, String text, Object... arguments)
     {
         if (value == null)
@@ -384,6 +450,9 @@ public interface Transceiver extends NamedObject, Receiver, Transmitter
     /**
      * Sends a formatted {@link Quibble} message to this {@link Transceiver}
      *
+     * @param maximumFrequency The maximum frequency at which this message should be logged
+     * @param text The message to format
+     * @param arguments The arguments
      * @return The message
      */
     default Quibble quibble(Frequency maximumFrequency, String text, Object... arguments)
@@ -394,6 +463,10 @@ public interface Transceiver extends NamedObject, Receiver, Transmitter
     /**
      * Sends a formatted {@link Quibble} message to this {@link Transceiver}
      *
+     * @param maximumFrequency The maximum frequency at which this message should be logged
+     * @param cause The cause of the fatal problem
+     * @param text The message to format
+     * @param arguments The arguments
      * @return The message
      */
     default Quibble quibble(Frequency maximumFrequency, Throwable cause, String text,
@@ -405,6 +478,8 @@ public interface Transceiver extends NamedObject, Receiver, Transmitter
     /**
      * Sends a formatted {@link Quibble} message to this {@link Transceiver}
      *
+     * @param text The message to format
+     * @param arguments The arguments
      * @return The message
      */
     default Quibble quibble(String text, Object... arguments)
@@ -415,6 +490,9 @@ public interface Transceiver extends NamedObject, Receiver, Transmitter
     /**
      * Sends a formatted {@link Quibble} message to this {@link Transceiver}
      *
+     * @param cause The cause of the fatal problem
+     * @param text The message to format
+     * @param arguments The arguments
      * @return The message
      */
     default Quibble quibble(Throwable cause, String text, Object... arguments)
@@ -429,6 +507,8 @@ public interface Transceiver extends NamedObject, Receiver, Transmitter
     /**
      * Sends a formatted {@link Trace} message to this {@link Transceiver}
      *
+     * @param text The message to format
+     * @param arguments The arguments
      * @return The message
      */
     default Trace trace(String text, Object... arguments)
@@ -443,6 +523,9 @@ public interface Transceiver extends NamedObject, Receiver, Transmitter
     /**
      * Sends a formatted {@link Trace} message to this {@link Transceiver}
      *
+     * @param cause The cause of the fatal problem
+     * @param text The message to format
+     * @param arguments The arguments
      * @return The message
      */
     default Trace trace(Throwable cause, String text, Object... arguments)
@@ -457,6 +540,9 @@ public interface Transceiver extends NamedObject, Receiver, Transmitter
     /**
      * Sends a formatted {@link Trace} message to this {@link Transceiver}
      *
+     * @param maximumFrequency The maximum frequency at which this message should be logged
+     * @param text The message to format
+     * @param arguments The arguments
      * @return The message
      */
     default Trace trace(Frequency maximumFrequency, String text, Object... arguments)
@@ -471,6 +557,10 @@ public interface Transceiver extends NamedObject, Receiver, Transmitter
     /**
      * Sends a formatted {@link Trace} message to this {@link Transceiver}
      *
+     * @param maximumFrequency The maximum frequency at which this message should be logged
+     * @param cause The cause of the fatal problem
+     * @param text The message to format
+     * @param arguments The arguments
      * @return The message
      */
     default Trace trace(Frequency maximumFrequency, Throwable cause, String text,
@@ -486,6 +576,9 @@ public interface Transceiver extends NamedObject, Receiver, Transmitter
     /**
      * Sends a formatted {@link Warning} message to this {@link Transceiver}
      *
+     * @param maximumFrequency The maximum frequency at which this message should be logged
+     * @param text The message to format
+     * @param arguments The arguments
      * @return The message
      */
     default Warning warning(Frequency maximumFrequency, String text, Object... arguments)
@@ -496,6 +589,10 @@ public interface Transceiver extends NamedObject, Receiver, Transmitter
     /**
      * Sends a formatted {@link Warning} message to this {@link Transceiver}
      *
+     * @param maximumFrequency The maximum frequency at which this message should be logged
+     * @param cause The cause of the fatal problem
+     * @param text The message to format
+     * @param arguments The arguments
      * @return The message
      */
     default Warning warning(Frequency maximumFrequency, Throwable cause, String text,
@@ -507,6 +604,8 @@ public interface Transceiver extends NamedObject, Receiver, Transmitter
     /**
      * Sends a formatted {@link Warning} message to this {@link Transceiver}
      *
+     * @param text The message to format
+     * @param arguments The arguments
      * @return The message
      */
     default Warning warning(String text, Object... arguments)
@@ -517,6 +616,9 @@ public interface Transceiver extends NamedObject, Receiver, Transmitter
     /**
      * Sends a formatted {@link Warning} message to this {@link Transceiver}
      *
+     * @param cause The cause of the fatal problem
+     * @param text The message to format
+     * @param arguments The arguments
      * @return The message
      */
     default Warning warning(Throwable cause, String text, Object... arguments)

@@ -197,7 +197,10 @@ public class VariableMap<Value> extends BaseStringMap<Value> implements Property
         for (var key : new HashSet<>(keySet()))
         {
             var value = get(key);
-            expanded.put(key, expand(value.toString()));
+            if (value != null)
+            {
+                expanded.put(key, expand(value.toString()));
+            }
         }
         return expanded;
     }

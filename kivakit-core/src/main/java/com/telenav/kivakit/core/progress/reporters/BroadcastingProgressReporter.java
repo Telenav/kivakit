@@ -173,7 +173,7 @@ public class BroadcastingProgressReporter extends Multicaster implements Progres
             ended = true;
             report(at());
             var formatted = Strings.format(message, arguments);
-            feedback(AsciiArt.bottomLine("$ $ in $", formatted, itemName, Time.milliseconds(start).elapsedSince()));
+            feedback(AsciiArt.bottomLine("$ $ in $", formatted, itemName, Time.epochMilliseconds(start).elapsedSince()));
         }
     }
 
@@ -413,7 +413,7 @@ public class BroadcastingProgressReporter extends Multicaster implements Progres
         {
             builder.append("?");
         }
-        var elapsed = Time.milliseconds(start).elapsedSince();
+        var elapsed = Time.epochMilliseconds(start).elapsedSince();
         if (itemName != null)
         {
             builder.append(" ");

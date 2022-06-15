@@ -25,7 +25,7 @@ import com.telenav.kivakit.core.value.level.Percent;
 import com.telenav.kivakit.filesystem.File;
 import com.telenav.kivakit.filesystem.Folder;
 import com.telenav.kivakit.filesystem.FolderPruner;
-import com.telenav.kivakit.test.UnitTest;
+import com.telenav.kivakit.testing.UnitTest;
 import org.junit.Ignore;
 import org.junit.Test;
 
