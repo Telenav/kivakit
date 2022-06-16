@@ -42,6 +42,7 @@ jobs:
           cd telenav-build && \
           git submodule init && \
           git submodule update --init --recursive --depth 1 && \
+          echo " ------> $GITHUB_REF_NAME" && \
           git checkout $GITHUB_REF_NAME --recurse-submodules && \
           mvn clean install || exit 1
         shell: bash
