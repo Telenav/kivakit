@@ -37,5 +37,11 @@ jobs:
           maven-version: 3.8.5
 
       - name: Build
-        run: git clone https://github.com/Telenav/telenav-build.git && cd telenav-build && git checkout $GITHUB_REF_NAME && mvn clean install
+        run: |
+          git clone https://github.com/Telenav/telenav-build.git && \
+          cd telenav-build && \
+          git submodule init && \
+          git submodule update --init --recursive --depth 1 && \
+          git checkout $GITHUB_REF_NAME --recurse-submodules && \
+          mvn clean install || exit 1
         shell: bash
