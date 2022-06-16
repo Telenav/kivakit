@@ -25,13 +25,6 @@ jobs:
 
     steps:
 
-      - name: Checkout telenav-build
-        uses: actions/checkout@v3
-        with:
-          repository: Telenav/telenav-build
-          path: telenav-build
-          ref: develop
-
       - name: Set up Java
         uses: actions/setup-java@v3
         with:
@@ -44,5 +37,5 @@ jobs:
           maven-version: 3.8.5
 
       - name: Build
-        run: cd telenav-build && git checkout $GITHUB_REF_NAME && ./setup.sh $GITHUB_REF_NAME ci-build
+        run: git clone https://github.com/Telenav/telenav-build.git && cd telenav-build && git checkout $GITHUB_REF_NAME && mvn clean install
         shell: bash
