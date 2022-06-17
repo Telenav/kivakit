@@ -27,6 +27,7 @@
 
     <properties>
         <maven.javadoc.skip>true</maven.javadoc.skip>
+        <do.not.publish>true</do.not.publish>
     </properties>
 
     <dependencies>
