@@ -39,4 +39,24 @@
         </dependency>
     </dependencies>
 
+    <build>
+        <plugins>
+            <plugin>
+
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>${maven-jar-plugin.version}</version>
+                <configuration>
+                    <archive>
+                        <!-- This is absolutely unnecessary, and the maven javadoc plugin
+                             fails without it. -->
+                        <manifestEntries>
+                            <Automatic-Module-Name>kivakit.interfaces</Automatic-Module-Name>
+                        </manifestEntries>
+                    </archive>
+                </configuration>
+
+            </plugin>            
+        </plugins>
+    </build>
 </project>
