@@ -20,7 +20,7 @@ package com.telenav.kivakit.internal.tests.resource.path;
 
 import com.telenav.kivakit.core.collections.list.StringList;
 import com.telenav.kivakit.core.os.OperatingSystem;
-import com.telenav.kivakit.test.UnitTest;
+import com.telenav.kivakit.testing.UnitTest;
 import com.telenav.kivakit.filesystem.FilePath;
 import com.telenav.kivakit.filesystem.Folder;
 import com.telenav.kivakit.resource.ResourcePath;
@@ -175,7 +175,7 @@ public class FilePathTest extends UnitTest
         {
             var rawPath = "C:\\this\\is\\a\\test\\path";
             var path = FilePath.parseFilePath(this, rawPath);
-            var root = Objects.requireNonNull(Folder.parse(this, "C:\\")).path().absolute();
+            var root = Objects.requireNonNull(Folder.parseFolder(this, "C:\\")).path().absolute();
             var root2 = path.root().absolute();
             ensureEqual(root, root2);
         }

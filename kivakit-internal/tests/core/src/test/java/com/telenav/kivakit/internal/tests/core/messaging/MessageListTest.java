@@ -22,7 +22,7 @@ import com.telenav.kivakit.core.messaging.Repeater;
 import com.telenav.kivakit.core.messaging.listeners.MessageList;
 import com.telenav.kivakit.core.messaging.messages.status.Information;
 import com.telenav.kivakit.core.messaging.repeaters.BaseRepeater;
-import com.telenav.kivakit.core.string.Formatter;import com.telenav.kivakit.internal.test.support.CoreUnitTest;
+import com.telenav.kivakit.core.string.Formatter;import com.telenav.kivakit.internal.testing.CoreUnitTest;
 import com.telenav.kivakit.core.value.count.MutableCount;
 import com.telenav.kivakit.interfaces.comparison.Matcher;
 import org.junit.Test;

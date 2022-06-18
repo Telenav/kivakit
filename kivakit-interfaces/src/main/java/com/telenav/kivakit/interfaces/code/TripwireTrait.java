@@ -9,6 +9,7 @@ import java.util.Map;
  *
  * @author jonathanl (shibo)
  */
+@SuppressWarnings("unused")
 public interface TripwireTrait
 {
     /** Map from this trait's implementing class to the current method invocation count */

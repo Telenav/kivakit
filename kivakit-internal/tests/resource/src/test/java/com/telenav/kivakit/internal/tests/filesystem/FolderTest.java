@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.internal.tests.filesystem;
 
-import com.telenav.kivakit.test.UnitTest;
+import com.telenav.kivakit.testing.UnitTest;
 import com.telenav.kivakit.core.time.Duration;
 import com.telenav.kivakit.filesystem.Folder;
 import com.telenav.kivakit.resource.FileName;
@@ -39,7 +39,7 @@ public class FolderTest extends UnitTest
     @Test
     public void testAsAbsolute()
     {
-        Folder foo = Folder.parse(this, "~/foo");
+        Folder foo = Folder.parseFolder(this, "~/foo");
         assert foo != null;
         ensureEqual(Folder.userHome().folder("foo").withTrailingSlash(), foo.absolute());
     }

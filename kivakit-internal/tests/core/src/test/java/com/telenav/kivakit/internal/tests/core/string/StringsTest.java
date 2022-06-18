@@ -29,7 +29,7 @@ import com.telenav.kivakit.core.string.Split;
 import com.telenav.kivakit.core.string.StringSimilarity;
 import com.telenav.kivakit.core.string.StringTo;
 import com.telenav.kivakit.core.string.Strings;
-import com.telenav.kivakit.internal.test.support.CoreUnitTest;
+import com.telenav.kivakit.internal.testing.CoreUnitTest;
 import org.junit.Test;
 
 @SuppressWarnings("SpellCheckingInspection")

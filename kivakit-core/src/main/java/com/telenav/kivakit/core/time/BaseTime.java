@@ -1,6 +1,6 @@
 package com.telenav.kivakit.core.time;
 
-import com.telenav.kivakit.core.test.Tested;
+import com.telenav.kivakit.core.testing.Tested;
 import com.telenav.kivakit.interfaces.time.LengthOfTime;
 import com.telenav.kivakit.interfaces.time.Nanoseconds;
 import com.telenav.kivakit.interfaces.time.PointInTime;
@@ -110,7 +110,7 @@ public abstract class BaseTime<T extends BaseTime<T>> implements PointInTime<T, 
         CYCLIC
     }
 
-    /** The number of nanoseconds since start of UNIX time */
+    /** The number of nanoseconds */
     private Nanoseconds nanoseconds;
 
     public BaseTime()

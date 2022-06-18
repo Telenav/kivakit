@@ -399,7 +399,7 @@ public interface Resource extends
         if (mode.canCopy(this, destination))
         {
             // then copy to a temporary file
-            var temporary = destination.parent().temporary(destination.fileName());
+            var temporary = destination.parent().temporaryFile(destination.fileName());
             ensure(destination.can(DELETE));
             ensure(temporary.can(RENAME));
             copyTo(temporary, mode, reporter);

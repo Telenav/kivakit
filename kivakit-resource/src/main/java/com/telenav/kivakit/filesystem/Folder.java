@@ -95,7 +95,7 @@ import static com.telenav.kivakit.resource.ResourceList.resourceList;
  * <p><b>Factory Methods</b></p>
  *
  * <ul>
- *     <li>{@link #parse(Listener, String, Object...)} - A folder for the given string</li>
+ *     <li>{@link #parseFolder(Listener, String, Object...)} - A folder for the given string</li>
  *     <li>{@link #folder(URI)} - A folder for the given URI</li>
  *     <li>{@link #folder(URL)} - A folder for the given URL</li>
  *     <li>{@link #folder(java.io.File)} - A folder for the given Java file</li>
@@ -137,8 +137,8 @@ import static com.telenav.kivakit.resource.ResourceList.resourceList;
  *     <li>{@link #nestedFolders(Matcher)} - All matching nested folders under this folder</li>
  *     <li>{@link #oldest()} - The oldest file in this folder</li>
  *     <li>{@link #oldest(Matcher)} - The oldest matching file in this folder</li>
- *     <li>{@link #temporary(FileName)} - A temporary file in this folder with the given name</li>
- *     <li>{@link #temporary(FileName, Extension)} - A temporary file in this folder with the given name and extension</li>
+ *     <li>{@link #temporaryFile(FileName)} - A temporary file in this folder with the given name</li>
+ *     <li>{@link #temporaryFile(FileName, Extension)} - A temporary file in this folder with the given name and extension</li>
  *     <li>{@link #temporaryFolder(FileName)} - A temporary sub-folder with the given name</li>
  * </ul>
  *
@@ -223,7 +223,7 @@ public class Folder extends BaseRepeater implements
     {
         try
         {
-            return parse(Listener.throwingListener(), new java.io.File(".").getCanonicalPath());
+            return parseFolder(Listener.throwingListener(), new java.io.File(".").getCanonicalPath());
         }
         catch (IOException e)
         {
@@ -238,12 +238,12 @@ public class Folder extends BaseRepeater implements
 
     public static Folder folder(Path path)
     {
-        return parse(Listener.throwingListener(), path.toString());
+        return parseFolder(Listener.throwingListener(), path.toString());
     }
 
     public static Folder folder(StringPath path)
     {
-        return parse(Listener.throwingListener(), path.toString());
+        return parseFolder(Listener.throwingListener(), path.toString());
     }
 
     public static Folder folder(java.io.File file)
@@ -345,7 +345,7 @@ public class Folder extends BaseRepeater implements
 
     public static Folder of(FilePath path)
     {
-        return parse(Listener.throwingListener(), path.toString());
+        return parseFolder(Listener.throwingListener(), path.toString());
     }
 
     // Note that this switch parser ensures that the folder exists
@@ -357,12 +357,12 @@ public class Folder extends BaseRepeater implements
                 .description("Output folder to write to");
     }
 
-    public static Folder parse(String path, Object... arguments)
+    public static Folder parseFolder(String path, Object... arguments)
     {
-        return parse(Listener.throwingListener(), path, arguments);
+        return parseFolder(Listener.throwingListener(), path, arguments);
     }
 
-    public static Folder parse(Listener listener, String path, Object... arguments)
+    public static Folder parseFolder(Listener listener, String path, Object... arguments)
     {
         if (Strings.isEmpty(path))
         {
@@ -404,7 +404,7 @@ public class Folder extends BaseRepeater implements
 
     public static Folder userHome()
     {
-        return Folder.parse(Listener.throwingListener(), System.getProperty("user.home"));
+        return Folder.parseFolder(Listener.throwingListener(), System.getProperty("user.home"));
     }
 
     /**
@@ -473,13 +473,13 @@ public class Folder extends BaseRepeater implements
         @Override
         public boolean accepts(ResourceFolderIdentifier identifier)
         {
-            return Folder.parse(this, identifier.identifier()) != null;
+            return Folder.parseFolder(this, identifier.identifier()) != null;
         }
 
         @Override
         public Folder resolve(ResourceFolderIdentifier identifier)
         {
-            return Folder.parse(this, identifier.identifier());
+            return Folder.parseFolder(this, identifier.identifier());
         }
     }
 
@@ -825,7 +825,7 @@ public class Folder extends BaseRepeater implements
         {
             return this;
         }
-        var childFolder = Folder.parse(this, child);
+        var childFolder = Folder.parseFolder(this, child);
         return childFolder == null ? null : folder(childFolder);
     }
 
@@ -947,7 +947,7 @@ public class Folder extends BaseRepeater implements
 
     public Folder last()
     {
-        return Folder.parse(withoutTrailingSlash(), path().last());
+        return Folder.parseFolder(withoutTrailingSlash(), path().last());
     }
 
     @Override
@@ -1138,13 +1138,13 @@ public class Folder extends BaseRepeater implements
     }
 
     @Override
-    public File temporary(FileName baseName)
+    public File temporaryFile(FileName baseName)
     {
-        return temporary(baseName, TMP);
+        return temporaryFile(baseName, TMP);
     }
 
     @Override
-    public File temporary(FileName baseName, Extension extension)
+    public File temporaryFile(FileName baseName, Extension extension)
     {
         synchronized (temporaryLock)
         {

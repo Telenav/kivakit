@@ -276,7 +276,13 @@ public class ResourcePath extends StringPath implements
     @Override
     public ResourcePath path()
     {
-        return this;
+        return asFilePath();
+    }
+
+    @Override
+    public java.io.File asJavaFile()
+    {
+        return new java.io.File(asString());
     }
 
     public ResourcePath relativeTo(ResourcePath path)

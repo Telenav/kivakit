@@ -1,15 +1,34 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<project xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance" xmlns = "http://maven.apache.org/POM/4.0.0"
-         xsi:schemaLocation = "http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//
+// © 2011-2022 Telenav, Inc.
+// Licensed under Apache License, Version 2.0
+//
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+-->
+<project
+        xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance"
+        xmlns = "http://maven.apache.org/POM/4.0.0"
+        xsi:schemaLocation = "http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
     <modelVersion>4.0.0</modelVersion>
-    <groupId>com.telenav.kivakit</groupId>
-    <version>1.5.1-SNAPSHOT</version>
-    <artifactId>kivakit-tests</artifactId>
-    <description>Unit-test-only projects for cases where test-support classes that depend on
-                 that project would create a circular dependency.</description>
-    <packaging>pom</packaging>
 
+    <parent>
+        <groupId>com.telenav</groupId>
+        <artifactId>telenav-superpom-project-family</artifactId>
+        <version>2.0.0</version>
+        <relativePath/>
+    </parent>
+
+    <groupId>com.telenav.kivakit</groupId>
+    <artifactId>kivakit-internal-tests</artifactId>
+    <version>1.6.0</version>
+
+    <packaging>pom</packaging>
+    <description>
+        Support for testing of core classes to avoid circular dependencies.
+    </description>
     <modules>
         <module>core</module>
         <module>resource</module>

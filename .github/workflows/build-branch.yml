@@ -16,7 +16,7 @@ on:
   push:
     branches: [ master, develop, release/**, feature/**, hotfix/** ]
   pull_request:
-    branches: [ master, develop, release/** ]
+    branches: [ master, develop, release/**, feature/**, hotfix/** ]
 
 jobs:
   build:
@@ -25,14 +25,24 @@ jobs:
 
     steps:
 
-      - name: Checkout
-        uses: actions/checkout@v3
-
-      - name: Setup Java
+      - name: Set up Java
         uses: actions/setup-java@v3
         with:
           java-version: '17'
           distribution: 'temurin'
 
+      - name: Set up Maven
+        uses: stCarolas/setup-maven@v4.3
+        with:
+          maven-version: 3.8.5
+
       - name: Build
-        run: mvn clean install
+        run: |
+          git clone https://github.com/Telenav/telenav-build.git && \
+          cd telenav-build && \
+          git submodule init && \
+          git submodule update --init --recursive --depth 1 && \
+          rm -rf *-assets && \
+          git submodule foreach git checkout $GITHUB_REF_NAME && \
+          mvn --no-transfer-progress --quiet clean install || exit 1
+        shell: bash

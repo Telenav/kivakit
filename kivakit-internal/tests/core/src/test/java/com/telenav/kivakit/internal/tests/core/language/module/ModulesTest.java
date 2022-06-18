@@ -19,7 +19,7 @@
 package com.telenav.kivakit.internal.tests.core.language.module;
 import com.telenav.kivakit.core.language.module.Modules;
 import com.telenav.kivakit.core.language.module.PackageReference;
-import com.telenav.kivakit.internal.test.support.CoreUnitTest;
+import com.telenav.kivakit.internal.testing.CoreUnitTest;
 import com.telenav.kivakit.core.value.count.Bytes;
 import org.junit.Test;
 

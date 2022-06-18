@@ -52,7 +52,7 @@ import java.util.function.Consumer;
  *     <li>Counts provide a more readable, comma-separated String representation by default</li>
  * </ol>
  *
- * <p><br/><hr/><br/></p>
+ * <hr>
  *
  * <p><b>Efficiency</b></p>
  *
@@ -72,10 +72,10 @@ import java.util.function.Consumer;
  *
  * <p>
  * Although {@link Count} objects are convenient and make method signatures clear and type-safe, as always, the
- * best approach is to simply use {@link Count} objects until a clear inefficiency shows up in a profiler like YourKit.</li>
+ * best approach is to simply use {@link Count} objects until a clear inefficiency shows up in a profiler like YourKit.
  * </p>
  *
- * <p><br/><hr/><br/></p>
+ * <hr>
  *
  * <p><b>Creation</b></p>
  *
@@ -88,7 +88,7 @@ import java.util.function.Consumer;
  *    <li>{@link #count(Collection)} - Returns the {@link Count} of items in the given {@link Collection}</li>
  * </ul>
  *
- * <p><br/><hr/><br/></p>
+ * <hr>
  *
  * <p><b>Conversion</b></p>
  *
@@ -104,7 +104,7 @@ import java.util.function.Consumer;
  *     <li>{@link #quantum()} - This count as a quantum <i>long</i> value ({@link Quantizable#quantum()})</li>
  * </ul>
  *
- * <p><br/><hr/><br/></p>
+ * <hr>
  *
  * <p><b>String Representations</b></p>
  *
@@ -114,12 +114,12 @@ import java.util.function.Consumer;
  *     <li>{@link #asSimpleString()} - This count as a simple string, like 65536</li>
  * </ul>
  *
- * <p><br/><hr/><br/></p>
+ * <hr>
  *
  * <p><b>Comparison</b></p>
  *
  * <ul>
- *     <li>{@link #compareTo(Count)}  - {@link Comparable#compareTo(Object)} implementation</li>
+ *     <li>{@link #compareTo(Countable)}  - {@link Comparable#compareTo(Object)} implementation</li>
  *     <li>{@link #isLessThan(Quantizable)} - True if this count is less than the given quantum</li>
  *     <li>{@link #isGreaterThan(Quantizable)} - True if this count is greater than the given quantum</li>
  *     <li>{@link #isLessThanOrEqualTo(Quantizable)} - True if this count is less than or equal to the given quantum</li>
@@ -128,7 +128,7 @@ import java.util.function.Consumer;
  *     <li>{@link #isNonZero()} - True if this count is not zero</li>
  * </ul>
  *
- * <p><br/><hr/><br/></p>
+ * <hr>
  *
  * <p><b>Minima and Maxima</b></p>
  *
@@ -143,11 +143,9 @@ import java.util.function.Consumer;
  *     <li>{@link #isMinimum()} - True if this count is zero</li>
  *     <li>{@link #asMaximum()} - Converts this count to a {@link Maximum}</li>
  *     <li>{@link #asMinimum()} - Converts this count to a {@link Minimum}</li>
- *     <li>{@link #maximum(Count)} - Returns the maximum of this count and the given count</li>
- *     <li>{@link #minimum(Count)} - Returns the minimum of this count and the given count</li>
  * </ul>
  *
- * <p><br/><hr/><br/></p>
+ * <hr>
  *
  * <p><b>Arithmetic</b></p>
  *
@@ -166,7 +164,7 @@ import java.util.function.Consumer;
  *     <li>{@link #times(Percent)} - This count times the given percentage</li>
  * </ul>
  *
- * <p><br/><hr/><br/></p>
+ * <hr>
  *
  * <p><b>Mathematics</b></p>
  *
@@ -181,7 +179,7 @@ import java.util.function.Consumer;
  *     <li>{@link #powerOfTwoCeiling()} - The next power of two above this count</li>
  * </ul>
  *
- * <p><br/><hr/><br/></p>
+ * <hr>
  *
  * <p><b>Looping</b></p>
  *
@@ -190,7 +188,7 @@ import java.util.function.Consumer;
  *     <li>{@link #loop(LoopBody)} - Runs the given code block {@link #count()} times, passing the iteration number to the code</li>
  * </ul>
  *
- * <p><br/><hr/><br/></p>
+ * <hr>
  *
  * <p><b>Iteration</b></p>
  *
@@ -201,7 +199,7 @@ import java.util.function.Consumer;
  *     <li>{@link #forEachShort(Consumer)} - Passes to the given consumer, each byte from 0 to the smaller of this count or {@link #MAXIMUM_SHORT_VALUE}, exclusive</li>
  * </ul>
  *
- * <p><br/><hr/><br/></p>
+ * <hr>
  *
  * <p><b>Array Allocation</b></p>
  *
@@ -219,7 +217,7 @@ import java.util.function.Consumer;
  * <p>
  * {@link Count} objects implement the {@link #hashCode()} / {@link #equals(Object)} contract and are {@link Comparable}.
  *
- * <p><br/><hr/><br/></p>
+ * <hr>
  *
  * @author jonathanl (shibo)
  * @see Quantizable
@@ -229,6 +227,7 @@ import java.util.function.Consumer;
  * @see Maximum
  * @see Minimum
  */
+@SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramCount.class)
 public class Count extends BaseCount<Count>
 {

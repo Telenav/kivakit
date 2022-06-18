@@ -1,8 +1,8 @@
-# kivakit-core-kernel language.objects &nbsp; ![](../../../documentation/images/set-40.png)
+# kivakit-core-kernel language.objects &nbsp; ![](https://telenav.github.io/telenav-assets/images/icons/set-40.png)
 
-![](../documentation/images/horizontal-line.png)
+![](https://telenav.github.io/telenav-assets/images/separators/horizontal-line.png)
 
-### Package &nbsp; ![](../../../documentation/images/box-32.png)
+### Package &nbsp; ![](https://telenav.github.io/telenav-assets/images/icons/box-24.png)
 
 *com.telenav.kivakit.core.kernel.language.objects*
 
@@ -14,7 +14,7 @@
 [**Pairs**](#pairs)  
 [**References**](#references)
 
-![](../documentation/images/horizontal-line.png)
+![](https://telenav.github.io/telenav-assets/images/separators/horizontal-line.png)
 
 ### Summary <a name="summary"></a>
 
@@ -56,4 +56,4 @@ that have not been recently used to be "softened" (i.e., demoted from a normal r
 
 <br/>
 
-![](../documentation/images/horizontal-line.png)
+![](https://telenav.github.io/telenav-assets/images/separators/horizontal-line.png)

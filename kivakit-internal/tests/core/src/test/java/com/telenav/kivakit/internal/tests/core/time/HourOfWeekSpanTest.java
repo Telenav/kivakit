@@ -3,7 +3,7 @@ package com.telenav.kivakit.internal.tests.core.time;
 import com.telenav.kivakit.core.time.HourOfWeek;
 import com.telenav.kivakit.core.time.HourOfWeekSpan;
 import com.telenav.kivakit.core.time.LocalTime;
-import com.telenav.kivakit.internal.test.support.CoreUnitTest;
+import com.telenav.kivakit.internal.testing.CoreUnitTest;
 import org.jetbrains.annotations.NotNull;
 import org.junit.Test;
 

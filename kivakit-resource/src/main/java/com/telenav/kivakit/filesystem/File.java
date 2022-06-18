@@ -386,10 +386,15 @@ public class File extends BaseWritableResource implements FileSystemObject
         return service.asJavaFile();
     }
 
+    public java.nio.file.Path asJavaPath()
+    {
+        return asJavaFile().toPath();
+    }
+
     @Override
     public ObjectSet<Can> can()
     {
-        return objectSet(Can.RENAME);
+        return objectSet(Can.DELETE, Can.RENAME);
     }
 
     /**

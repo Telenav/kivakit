@@ -19,7 +19,7 @@
 package com.telenav.kivakit.core.time;
 
 import com.telenav.kivakit.core.math.Average;
-import com.telenav.kivakit.core.test.Tested;
+import com.telenav.kivakit.core.testing.Tested;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 
 import static com.telenav.kivakit.core.time.Duration.milliseconds;

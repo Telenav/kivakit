@@ -6,7 +6,7 @@ open module kivakit.core
     uses Log;
 
     // Cactus
-    requires transitive cactus.build.metadata;
+    requires transitive cactus.metadata;
 
     // KivaKit
     requires transitive kivakit.interfaces;
@@ -55,10 +55,10 @@ open module kivakit.core
     exports com.telenav.kivakit.core.project;
     exports com.telenav.kivakit.core.registry;
     exports com.telenav.kivakit.core.string;
-    exports com.telenav.kivakit.core.test;
     exports com.telenav.kivakit.core.thread.latches;
     exports com.telenav.kivakit.core.thread.locks;
     exports com.telenav.kivakit.core.thread;
+    exports com.telenav.kivakit.core.testing;
     exports com.telenav.kivakit.core.time;
     exports com.telenav.kivakit.core.value.count;
     exports com.telenav.kivakit.core.value.identifier;

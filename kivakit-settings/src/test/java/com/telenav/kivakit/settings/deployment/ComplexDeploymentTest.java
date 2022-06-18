@@ -20,7 +20,7 @@ package com.telenav.kivakit.settings.deployment;
 
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.registry.InstanceIdentifier;
-import com.telenav.kivakit.test.UnitTest;
+import com.telenav.kivakit.testing.UnitTest;
 import com.telenav.kivakit.core.time.Duration;
 import com.telenav.kivakit.settings.Deployment;
 import com.telenav.kivakit.settings.ServerSettings;

@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.internal.tests.resource.reading;
 
-import com.telenav.kivakit.test.UnitTest;
+import com.telenav.kivakit.testing.UnitTest;
 import org.junit.Test;
 
 public class LineReaderTest extends UnitTest

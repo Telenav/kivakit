@@ -1,7 +1,7 @@
 package com.telenav.kivakit.core.time;
 
-import com.telenav.kivakit.core.test.NoTestRequired;
-import com.telenav.kivakit.core.test.Tested;
+import com.telenav.kivakit.core.testing.NoTestRequired;
+import com.telenav.kivakit.core.testing.Tested;
 import com.telenav.kivakit.interfaces.time.Nanoseconds;
 
 import java.util.ArrayList;
@@ -97,6 +97,10 @@ public class Hour extends BaseTime<Hour>
     public static Hour pm(int hour)
     {
         return hourOfDay(hour, PM);
+    }
+
+    protected Hour()
+    {
     }
 
     @Tested

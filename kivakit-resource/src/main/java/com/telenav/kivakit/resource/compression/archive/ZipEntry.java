@@ -77,7 +77,7 @@ public class ZipEntry extends BaseWritableResource implements AutoCloseable
     @Override
     public Time createdAt()
     {
-        return UncheckedCode.of(() -> Time.milliseconds(Files.readAttributes(path, BasicFileAttributes.class)
+        return UncheckedCode.of(() -> Time.epochMilliseconds(Files.readAttributes(path, BasicFileAttributes.class)
                 .creationTime().toMillis())).orNull();
     }
 
@@ -91,7 +91,7 @@ public class ZipEntry extends BaseWritableResource implements AutoCloseable
     @Override
     public Time modifiedAt()
     {
-        return UncheckedCode.of(() -> Time.milliseconds(Files.getLastModifiedTime(path).toMillis())).orNull();
+        return UncheckedCode.of(() -> Time.epochMilliseconds(Files.getLastModifiedTime(path).toMillis())).orNull();
     }
 
     @Override

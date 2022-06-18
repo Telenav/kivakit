@@ -17,7 +17,7 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.telenav.kivakit.internal.tests.core.value.mutable;
-import com.telenav.kivakit.internal.test.support.CoreUnitTest;
+import com.telenav.kivakit.internal.testing.CoreUnitTest;
 import com.telenav.kivakit.core.value.count.Count;
 import com.telenav.kivakit.core.value.count.MutableCount;
 import org.junit.Test;

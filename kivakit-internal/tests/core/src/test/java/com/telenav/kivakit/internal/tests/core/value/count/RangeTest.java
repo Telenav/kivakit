@@ -1,6 +1,6 @@
 package com.telenav.kivakit.internal.tests.core.value.count;
 
-import com.telenav.kivakit.internal.test.support.CoreUnitTest;
+import com.telenav.kivakit.internal.testing.CoreUnitTest;
 import com.telenav.kivakit.core.value.count.MutableCount;
 import com.telenav.kivakit.core.value.count.Range;
 import org.junit.Test;
@@ -128,8 +128,8 @@ public class RangeTest extends CoreUnitTest
 
         random().loop(() ->
         {
-            var value = exclusiveRange.randomValue();
-            ensure(exclusiveRange.randomValue().isBetweenExclusive(count(0), count(100)));
+            var value = exclusiveRange.randomValue(random().random());
+            ensure(exclusiveRange.randomValue(random().random()).isBetweenExclusive(count(0), count(100)));
             ensureBetweenExclusive(value.asLong(), 0, 100);
         });
 
@@ -137,7 +137,7 @@ public class RangeTest extends CoreUnitTest
 
         random().loop(() ->
         {
-            var value = inclusiveRange.randomValue();
+            var value = inclusiveRange.randomValue(random().random());
             ensure(value.isBetweenInclusive(count(0), count(100)));
             ensureBetweenInclusive(value.asLong(), 0, 100);
         });

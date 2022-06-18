@@ -15,6 +15,10 @@ public class Week extends BaseTime<Week>
         return new Week(week);
     }
 
+    protected Week()
+    {
+    }
+
     protected Week(int week)
     {
         super(nanosecondsPerWeek.times(week));

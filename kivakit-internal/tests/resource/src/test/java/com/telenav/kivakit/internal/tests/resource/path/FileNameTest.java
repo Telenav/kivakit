@@ -24,7 +24,7 @@ import com.telenav.kivakit.core.messaging.listeners.ThrowingListener;
 import com.telenav.kivakit.core.time.DayOfWeek;
 import com.telenav.kivakit.core.time.LocalTime;
 import com.telenav.kivakit.core.time.Time;
-import com.telenav.kivakit.test.UnitTest;
+import com.telenav.kivakit.testing.UnitTest;
 import org.junit.Assert;
 import org.junit.Test;
 

@@ -317,8 +317,8 @@ public interface LengthOfTime<Duration extends LengthOfTime<Duration>> extends
 
     /**
      * Wait for this duration on the given monitor. Note that a duration of NONE is considered to be a wait time of zero
-     * milliseconds, whereas the underlying Java {@link #wait(long)} considers zero milliseconds to be infinite wait
-     * time.
+     * milliseconds, whereas the underlying Java {@link Object#wait(long)} considers zero milliseconds to be infinite
+     * wait time.
      *
      * @param monitor The monitor to wait on
      * @return True if the thread waited, false if it was interrupted

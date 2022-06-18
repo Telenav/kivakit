@@ -19,7 +19,7 @@
 package com.telenav.kivakit.internal.tests.core.messaging;
 
 import com.telenav.kivakit.core.collections.map.VariableMap;
-import com.telenav.kivakit.core.language.reflection.property.KivaKitIncludeProperty;import com.telenav.kivakit.internal.test.support.CoreUnitTest;
+import com.telenav.kivakit.core.language.reflection.property.KivaKitIncludeProperty;import com.telenav.kivakit.internal.testing.CoreUnitTest;
 import com.telenav.kivakit.interfaces.string.Stringable;
 import org.junit.Assert;
 import org.junit.Test;

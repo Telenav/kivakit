@@ -30,7 +30,7 @@ import java.util.Iterator;
  * <p>
  * Provides a default implementation of {@link Iterable} and {@link Iterator} accessible through {@link #asIterable()}
  * and {@link #asIterator()} as well as equals and hashcode accessible through {@link #isEqualTo(Indexable)} and {@link
- * #hashCode()}.
+ * Object#hashCode()}.
  *
  * @author jonathanl (shibo)
  */

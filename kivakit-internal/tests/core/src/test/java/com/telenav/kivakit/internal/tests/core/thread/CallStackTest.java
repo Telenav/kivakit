@@ -19,7 +19,7 @@
 package com.telenav.kivakit.internal.tests.core.thread;
 
 import com.telenav.kivakit.core.messaging.context.CallStack;
-import com.telenav.kivakit.core.messaging.context.CallStack.Matching;import com.telenav.kivakit.internal.test.support.CoreUnitTest;
+import com.telenav.kivakit.core.messaging.context.CallStack.Matching;import com.telenav.kivakit.internal.testing.CoreUnitTest;
 import org.junit.Assert;
 import org.junit.Test;
 

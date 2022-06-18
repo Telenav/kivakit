@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.internal.tests.core.collections.list;
 import com.telenav.kivakit.core.collections.list.ObjectList;
-import com.telenav.kivakit.internal.test.support.CoreUnitTest;
+import com.telenav.kivakit.internal.testing.CoreUnitTest;
 import com.telenav.kivakit.core.value.count.Count;
 import org.junit.Assert;
 import org.junit.Test;

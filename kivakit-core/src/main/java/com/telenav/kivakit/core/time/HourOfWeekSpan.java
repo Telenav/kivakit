@@ -3,8 +3,8 @@ package com.telenav.kivakit.core.time;
 import com.telenav.kivakit.core.language.Hash;
 import com.telenav.kivakit.core.language.Objects;
 import com.telenav.kivakit.core.string.Formatter;
-import com.telenav.kivakit.core.test.NoTestRequired;
-import com.telenav.kivakit.core.test.Tested;
+import com.telenav.kivakit.core.testing.NoTestRequired;
+import com.telenav.kivakit.core.testing.Tested;
 
 import java.time.ZoneId;
 

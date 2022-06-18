@@ -17,7 +17,7 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.telenav.kivakit.internal.tests.core.time;
-import com.telenav.kivakit.internal.test.support.CoreUnitTest;
+import com.telenav.kivakit.internal.testing.CoreUnitTest;
 import com.telenav.kivakit.core.time.Rate;
 import org.junit.Test;
 

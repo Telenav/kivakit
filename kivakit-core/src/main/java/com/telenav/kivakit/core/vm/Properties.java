@@ -1,6 +1,6 @@
 package com.telenav.kivakit.core.vm;
 
-import com.telenav.cactus.build.metadata.BuildMetadata;
+import com.telenav.cactus.metadata.BuildMetadata;
 import com.telenav.kivakit.core.collections.map.VariableMap;
 import com.telenav.kivakit.core.language.primitive.Booleans;
 import com.telenav.kivakit.core.os.OperatingSystem;

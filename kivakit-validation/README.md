@@ -4,11 +4,11 @@
 
 [//]: # (end-user-text)
 
-# kivakit-validation &nbsp;&nbsp; <img src="https://www.kivakit.org/images/puzzle-32.png" srcset="https://www.kivakit.org/images/puzzle-32-2x.png 2x"/>
+# kivakit-validation &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/puzzle-32.png" srcset="https://telenav.github.io/telenav-assets/images/icons/puzzle-32-2x.png 2x"/>
 
 This module contains the KivaKit validation mini-framework
 
-<img src="https://www.kivakit.org/images/horizontal-line-512.png" srcset="https://www.kivakit.org/images/horizontal-line-512-2x.png 2x"/>
+<img src="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-512.png" srcset="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-512-2x.png 2x"/>
 
 ### Index
 
@@ -16,21 +16,21 @@ This module contains the KivaKit validation mini-framework
 
 [**Dependencies**](#dependencies) | [**Class Diagrams**](#class-diagrams) | [**Package Diagrams**](#package-diagrams) | [**Javadoc**](#javadoc)
 
-<img src="https://www.kivakit.org/images/horizontal-line-512.png" srcset="https://www.kivakit.org/images/horizontal-line-512-2x.png 2x"/>
+<img src="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-512.png" srcset="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-512-2x.png 2x"/>
 
-### Dependencies <a name="dependencies"></a> &nbsp;&nbsp; <img src="https://www.kivakit.org/images/dependencies-32.png" srcset="https://www.kivakit.org/images/dependencies-32-2x.png 2x"/>
+### Dependencies <a name="dependencies"></a> &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/dependencies-32.png" srcset="https://telenav.github.io/telenav-assets/images/icons/dependencies-32-2x.png 2x"/>
 
-[*Dependency Diagram*](https://www.kivakit.org/1.5.0/lexakai/kivakit/kivakit-validation/documentation/diagrams/dependencies.svg)
+[*Dependency Diagram*](https://www.kivakit.org/1.6.0/lexakai/kivakit/kivakit-validation/documentation/diagrams/dependencies.svg)
 
 #### Maven Dependency
 
     <dependency>
         <groupId>com.telenav.kivakit</groupId>
         <artifactId>kivakit-validation</artifactId>
-        <version>1.5.0</version>
+        <version>1.6.0</version>
     </dependency>
 
-<img src="https://www.kivakit.org/images/horizontal-line-128.png" srcset="https://www.kivakit.org/images/horizontal-line-128-2x.png 2x"/>
+<img src="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128.png" srcset="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128-2x.png 2x"/>
 
 [//]: # (start-user-text)
 
@@ -38,38 +38,38 @@ This module contains the KivaKit validation mini-framework
 
 [//]: # (end-user-text)
 
-<img src="https://www.kivakit.org/images/horizontal-line-128.png" srcset="https://www.kivakit.org/images/horizontal-line-128-2x.png 2x"/>
+<img src="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128.png" srcset="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128-2x.png 2x"/>
 
-### Class Diagrams <a name="class-diagrams"></a> &nbsp; &nbsp; <img src="https://www.kivakit.org/images/diagram-40.png" srcset="https://www.kivakit.org/images/diagram-40-2x.png 2x"/>
+### Class Diagrams <a name="class-diagrams"></a> &nbsp; &nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/diagram-40.png" srcset="https://telenav.github.io/telenav-assets/images/icons/diagram-40-2x.png 2x"/>
 
-[*Validation*](https://www.kivakit.org/1.5.0/lexakai/kivakit/kivakit-validation/documentation/diagrams/diagram-validation.svg)
+[*Validation*](https://www.kivakit.org/1.6.0/lexakai/kivakit/kivakit-validation/documentation/diagrams/diagram-validation.svg)
 
-<img src="https://www.kivakit.org/images/horizontal-line-128.png" srcset="https://www.kivakit.org/images/horizontal-line-128-2x.png 2x"/>
+<img src="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128.png" srcset="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128-2x.png 2x"/>
 
-### Package Diagrams <a name="package-diagrams"></a> &nbsp;&nbsp; <img src="https://www.kivakit.org/images/box-32.png" srcset="https://www.kivakit.org/images/box-32-2x.png 2x"/>
+### Package Diagrams <a name="package-diagrams"></a> &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/box-24.png" srcset="https://telenav.github.io/telenav-assets/images/icons/box-24-2x.png 2x"/>
 
-[*com.telenav.kivakit.validation*](https://www.kivakit.org/1.5.0/lexakai/kivakit/kivakit-validation/documentation/diagrams/com.telenav.kivakit.validation.svg)  
-[*com.telenav.kivakit.validation.lexakai*](https://www.kivakit.org/1.5.0/lexakai/kivakit/kivakit-validation/documentation/diagrams/com.telenav.kivakit.validation.lexakai.svg)
+[*com.telenav.kivakit.validation*](https://www.kivakit.org/1.6.0/lexakai/kivakit/kivakit-validation/documentation/diagrams/com.telenav.kivakit.validation.svg)  
+[*com.telenav.kivakit.validation.lexakai*](https://www.kivakit.org/1.6.0/lexakai/kivakit/kivakit-validation/documentation/diagrams/com.telenav.kivakit.validation.lexakai.svg)
 
-<img src="https://www.kivakit.org/images/horizontal-line-128.png" srcset="https://www.kivakit.org/images/horizontal-line-128-2x.png 2x"/>
+<img src="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128.png" srcset="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128-2x.png 2x"/>
 
-### Javadoc <a name="javadoc"></a> &nbsp;&nbsp; <img src="https://www.kivakit.org/images/books-32.png" srcset="https://www.kivakit.org/images/books-32-2x.png 2x"/>
+### Javadoc <a name="javadoc"></a> &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/books-24.png" srcset="https://telenav.github.io/telenav-assets/images/icons/books-24-2x.png 2x"/>
 
 Javadoc coverage for this project is 90.2%.  
   
-&nbsp; &nbsp; <img src="https://www.kivakit.org/images/meter-90-96.png" srcset="https://www.kivakit.org/images/meter-90-96-2x.png 2x"/>
+&nbsp; &nbsp; <img src="https://telenav.github.io/telenav-assets/meters/meter-90-96.png" srcset="https://telenav.github.io/telenav-assets/meters/meter-90-96-2x.png 2x"/>
 
 
 
 
 | Class | Documentation Sections |
 |---|---|
-| [*BaseValidator*](https://www.kivakit.org/1.5.0/javadoc/kivakit/kivakit.validation/com/telenav/kivakit/validation/BaseValidator.html) |  |  
-| [*DiagramValidation*](https://www.kivakit.org/1.5.0/javadoc/kivakit/kivakit.validation/com/telenav/kivakit/validation/lexakai/DiagramValidation.html) |  |  
-| [*Validatable*](https://www.kivakit.org/1.5.0/javadoc/kivakit/kivakit.validation/com/telenav/kivakit/validation/Validatable.html) |  |  
-| [*ValidationIssues*](https://www.kivakit.org/1.5.0/javadoc/kivakit/kivakit.validation/com/telenav/kivakit/validation/ValidationIssues.html) |  |  
-| [*ValidationType*](https://www.kivakit.org/1.5.0/javadoc/kivakit/kivakit.validation/com/telenav/kivakit/validation/ValidationType.html) |  |  
-| [*Validator*](https://www.kivakit.org/1.5.0/javadoc/kivakit/kivakit.validation/com/telenav/kivakit/validation/Validator.html) |  |  
+| [*BaseValidator*](https://www.kivakit.org/1.6.0/javadoc/kivakit/kivakit.validation/////////////////////////////////////////////.html) |  |  
+| [*DiagramValidation*](https://www.kivakit.org/1.6.0/javadoc/kivakit/kivakit.validation/////////////////////////////////////////////////////////.html) |  |  
+| [*Validatable*](https://www.kivakit.org/1.6.0/javadoc/kivakit/kivakit.validation///////////////////////////////////////////.html) |  |  
+| [*ValidationIssues*](https://www.kivakit.org/1.6.0/javadoc/kivakit/kivakit.validation////////////////////////////////////////////////.html) |  |  
+| [*ValidationType*](https://www.kivakit.org/1.6.0/javadoc/kivakit/kivakit.validation//////////////////////////////////////////////.html) |  |  
+| [*Validator*](https://www.kivakit.org/1.6.0/javadoc/kivakit/kivakit.validation/////////////////////////////////////////.html) |  |  
 
 [//]: # (start-user-text)
 
@@ -77,8 +77,7 @@ Javadoc coverage for this project is 90.2%.
 
 [//]: # (end-user-text)
 
-<img src="https://www.kivakit.org/images/horizontal-line-512.png" srcset="https://www.kivakit.org/images/horizontal-line-512-2x.png 2x"/>
+<img src="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-512.png" srcset="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-512-2x.png 2x"/>
 
 <sub>Copyright &#169; 2011-2021 [Telenav](https://telenav.com), Inc. Distributed under [Apache License, Version 2.0](LICENSE)</sub>  
 <sub>This documentation was generated by [Lexakai](https://lexakai.org). UML diagrams courtesy of [PlantUML](https://plantuml.com).</sub>
-

@@ -113,7 +113,7 @@ public class LocalFile extends BaseWritableResource implements FileService
         try
         {
             FileTime creationTime = (FileTime) Files.getAttribute(path().asJavaPath(), "creationTime");
-            return Time.milliseconds(creationTime.toMillis());
+            return Time.epochMilliseconds(creationTime.toMillis());
         }
         catch (IOException e)
         {
@@ -200,7 +200,7 @@ public class LocalFile extends BaseWritableResource implements FileService
     @Override
     public Time modifiedAt()
     {
-        return Time.milliseconds(file.lastModified());
+        return Time.epochMilliseconds(file.lastModified());
     }
 
     @Override

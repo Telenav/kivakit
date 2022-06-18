@@ -1,12 +1,12 @@
-# kivakit-core-kernel language.io &nbsp; ![](../../../documentation/images/convert-32.png)
+# kivakit-core-kernel language.io &nbsp; ![](https://telenav.github.io/telenav-assets/images/icons/convert-32.png)
 
-![](../documentation/images/horizontal-line.png)
+![](https://telenav.github.io/telenav-assets/images/separators/horizontal-line.png)
 
-### Package &nbsp; ![](../../../documentation/images/box-32.png)
+### Package &nbsp; ![](https://telenav.github.io/telenav-assets/images/icons/box-24.png)
 
 *com.telenav.kivakit.core.kernel.language.io*
 
-![](../documentation/images/horizontal-line.png)
+![](https://telenav.github.io/telenav-assets/images/separators/horizontal-line.png)
 
 ### Summary
 
@@ -32,4 +32,4 @@ each byte that is read or written
 
 <br/>
 
-![](../documentation/images/horizontal-line.png)
+![](https://telenav.github.io/telenav-assets/images/separators/horizontal-line.png)

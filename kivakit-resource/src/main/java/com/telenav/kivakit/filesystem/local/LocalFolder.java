@@ -167,7 +167,7 @@ public class LocalFolder extends BaseRepeater implements FolderService
     {
         try
         {
-            return Time.milliseconds(Files.readAttributes(path().asJavaPath(), BasicFileAttributes.class)
+            return Time.epochMilliseconds(Files.readAttributes(path().asJavaPath(), BasicFileAttributes.class)
                     .creationTime()
                     .toMillis());
         }
@@ -394,7 +394,7 @@ public class LocalFolder extends BaseRepeater implements FolderService
     @Override
     public Time modifiedAt()
     {
-        return Time.milliseconds(file.lastModified());
+        return Time.epochMilliseconds(file.lastModified());
     }
 
     @Override
