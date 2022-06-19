@@ -4,7 +4,7 @@
 
 [//]: # (end-user-text)
 
-# kivakit-interfaces &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/puzzle-32.png" srcset="https://telenav.github.io/telenav-assets/images/icons/puzzle-32-2x.png 2x"/>
+# kivakit-interfaces &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/puzzle-48.png" srcset="https://telenav.github.io/telenav-assets/images/icons/puzzle-48-2x.png 2x"/>
 
 This module provides an interface grammar for communicating with KivaKit.
 
@@ -87,7 +87,7 @@ This module provides an interface grammar for communicating with KivaKit.
 
 Javadoc coverage for this project is 75.5%.  
   
-&nbsp; &nbsp; <img src="https://telenav.github.io/telenav-assets/meters/meter-80-96.png" srcset="https://telenav.github.io/telenav-assets/meters/meter-80-96-2x.png 2x"/>
+&nbsp; &nbsp; <img src="https://telenav.github.io/telenav-assets/images/meters/meter-80-96.png" srcset="https://telenav.github.io/telenav-assets/images/meters/meter-80-96-2x.png 2x"/>
 
 
 The following significant classes are undocumented:  

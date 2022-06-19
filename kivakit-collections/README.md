@@ -14,7 +14,7 @@
 
 [//]: # (end-user-text)
 
-# kivakit-collections &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/set-32.png" srcset="https://telenav.github.io/telenav-assets/images/icons/set-32-2x.png 2x"/>
+# kivakit-collections &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/set-48.png" srcset="https://telenav.github.io/telenav-assets/images/icons/set-48-2x.png 2x"/>
 
 This module provides collections, iteration support, stacks, collection observation and bit I/O.
 
@@ -153,7 +153,7 @@ more methods in *CollectionChangeListener* is called with information about what
 
 Javadoc coverage for this project is 69.4%.  
   
-&nbsp; &nbsp; <img src="https://telenav.github.io/telenav-assets/meters/meter-70-96.png" srcset="https://telenav.github.io/telenav-assets/meters/meter-70-96-2x.png 2x"/>
+&nbsp; &nbsp; <img src="https://telenav.github.io/telenav-assets/images/meters/meter-70-96.png" srcset="https://telenav.github.io/telenav-assets/images/meters/meter-70-96-2x.png 2x"/>
 
 
 

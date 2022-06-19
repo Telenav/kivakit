@@ -16,12 +16,20 @@
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+<<<<<<<< HEAD:kivakit-internal/test-internal/src/main/java/com/telenav/kivakit/internal/test/support/JUnitFailureReporter.java
+package com.telenav.kivakit.internal.test.support;
+========
 package com.telenav.kivakit.internal.testing;
+>>>>>>>> origin/release/1.6.0:kivakit-internal/testing/src/main/java/com/telenav/kivakit/internal/testing/JUnitFailureReporter.java
 
 import com.telenav.kivakit.core.ensure.Ensure;
 import com.telenav.kivakit.core.ensure.FailureReporter;
 import com.telenav.kivakit.core.messaging.Message;
+<<<<<<<< HEAD:kivakit-internal/test-internal/src/main/java/com/telenav/kivakit/internal/test/support/JUnitFailureReporter.java
+import com.telenav.kivakit.internal.test.support.lexakai.DiagramTest;
+========
 import com.telenav.kivakit.internal.testing.lexakai.DiagramTest;
+>>>>>>>> origin/release/1.6.0:kivakit-internal/testing/src/main/java/com/telenav/kivakit/internal/testing/JUnitFailureReporter.java
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import org.junit.Assert;

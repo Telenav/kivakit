@@ -16,7 +16,11 @@
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+<<<<<<<< HEAD:kivakit-internal/test-internal/src/main/java/com/telenav/kivakit/internal/test/support/lexakai/DiagramTest.java
+package com.telenav.kivakit.internal.test.support.lexakai;
+========
 package com.telenav.kivakit.internal.testing.lexakai;
+>>>>>>>> origin/release/1.6.0:kivakit-internal/testing/src/main/java/com/telenav/kivakit/internal/testing/lexakai/DiagramTest.java
 
 import com.telenav.lexakai.annotations.diagrams.UmlDiagramIdentifier;
 

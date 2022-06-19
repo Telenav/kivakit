@@ -16,7 +16,11 @@
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+<<<<<<<< HEAD:kivakit-internal/test-internal/src/main/java/com/telenav/kivakit/internal/test/support/CoreUnitTest.java
+package com.telenav.kivakit.internal.test.support;
+========
 package com.telenav.kivakit.internal.testing;
+>>>>>>>> origin/release/1.6.0:kivakit-internal/testing/src/main/java/com/telenav/kivakit/internal/testing/CoreUnitTest.java
 
 import com.telenav.kivakit.core.ensure.Ensure;
 import com.telenav.kivakit.core.ensure.Failure;
@@ -34,13 +38,18 @@ import com.telenav.kivakit.core.os.OperatingSystem;
 import com.telenav.kivakit.core.project.Project;
 import com.telenav.kivakit.core.project.ProjectTrait;
 import com.telenav.kivakit.core.registry.RegistryTrait;
+import com.telenav.kivakit.core.test.RandomValueFactory;
+import com.telenav.kivakit.internal.test.support.lexakai.DiagramTest;
 import com.telenav.kivakit.core.time.Duration;
 import com.telenav.kivakit.core.value.count.Count;
 import com.telenav.kivakit.core.value.count.Maximum;
 import com.telenav.kivakit.core.value.count.Minimum;
 import com.telenav.kivakit.core.vm.JavaTrait;
 import com.telenav.kivakit.interfaces.naming.NamedObject;
+<<<<<<<< HEAD:kivakit-internal/test-internal/src/main/java/com/telenav/kivakit/internal/test/support/CoreUnitTest.java
+========
 import com.telenav.kivakit.internal.testing.lexakai.DiagramTest;
+>>>>>>>> origin/release/1.6.0:kivakit-internal/testing/src/main/java/com/telenav/kivakit/internal/testing/CoreUnitTest.java
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
 import org.junit.Before;

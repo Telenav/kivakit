@@ -16,9 +16,15 @@
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+<<<<<<<< HEAD:kivakit-internal/test-internal/src/main/java/com/telenav/kivakit/internal/test/support/UnitTestWatcher.java
+package com.telenav.kivakit.internal.test.support;
+
+import com.telenav.kivakit.internal.test.support.lexakai.DiagramTest;
+========
 package com.telenav.kivakit.internal.testing;
 
 import com.telenav.kivakit.internal.testing.lexakai.DiagramTest;
+>>>>>>>> origin/release/1.6.0:kivakit-internal/testing/src/main/java/com/telenav/kivakit/internal/testing/UnitTestWatcher.java
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlAggregation;

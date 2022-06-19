@@ -4,7 +4,7 @@
 
 [//]: # (end-user-text)
 
-# kivakit-component &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/puzzle-32.png" srcset="https://telenav.github.io/telenav-assets/images/icons/puzzle-32-2x.png 2x"/>
+# kivakit-component &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/puzzle-48.png" srcset="https://telenav.github.io/telenav-assets/images/icons/puzzle-48-2x.png 2x"/>
 
 This module defines KivaKit lightweight components.
 
@@ -66,7 +66,7 @@ This module defines KivaKit lightweight components.
 
 Javadoc coverage for this project is 75.0%.  
   
-&nbsp; &nbsp; <img src="https://telenav.github.io/telenav-assets/meters/meter-80-96.png" srcset="https://telenav.github.io/telenav-assets/meters/meter-80-96-2x.png 2x"/>
+&nbsp; &nbsp; <img src="https://telenav.github.io/telenav-assets/images/meters/meter-80-96.png" srcset="https://telenav.github.io/telenav-assets/images/meters/meter-80-96-2x.png 2x"/>
 
 
 
