@@ -147,7 +147,7 @@ KivaKit helps you to:
 | *License*           | [Apache License, Version 2.0](LICENSE)                                                                                                                                               |
 | *Related Projects*  | [kivakit-examples](https://github.com/Telenav/kivakit-examples), [kivakit-extensions](https://github.com/Telenav/kivakit), [kivakit-stuff](https://github.com/Telenav/kivakit-stuff) |
 | *Javadoc Coverage*  | <img src="https://telenav.github.io/telenav-assets/images/meters/meter-90-96.png" srcset="https://telenav.github.io/telenav-assets/images/meters/meter-90-96-2x.png 2x"/>            |
-| *Setup*             | [Step-by-step setup instructions](https://github.com/Telenav/telenav-build/blob/develop/documentation/initial-setup.md) <!-- [branch-name] -->                                       |
+| *Setup*             | [Step-by-step setup instructions](https://github.com/Telenav/telenav-build/blob/develop/documentation/initial-setup-instructions.md) <!-- [branch-name] -->                          |
 | *GitHub*            | [GitHub project home page](https://github.com/Telenav/kivakit)                                                                                                                       |
 | *Code*              | `git clone https://github.com/Telenav/kivakit.git`                                                                                                                                   |
 | *Project Lead*      | Jonathan Locke (Luo, Shibo) <br/> [jonathanl@telenav.com](mailto:jonathanl@telenav.com)                                                                                              |
