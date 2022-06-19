@@ -118,7 +118,7 @@ KivaKit helps you to:
 
 ### Setup and Build <a name = "setup-and-build"></a> &nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/box-24.png" srcset="https://telenav.github.io/telenav-assets/images/icons/box-24-2x.png 2x"/>
 
-[**Initial Setup**](https://github.com/Telenav/telenav-build/blob/master/documentation/initial-setup.md)  <!-- [branch-name] -->  
+[**Initial Setup**](https://github.com/Telenav/telenav-build/blob/master/documentation/initial-setup-instructions.md)  <!-- [branch-name] -->  
 [**Building**](https://github.com/Telenav/telenav-build/blob/master/documentation/building.md)  <!-- [branch-name] -->  
 
 ### Development <a name = "development"></a> &nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/gears-32.png" srcset="https://telenav.github.io/telenav-assets/images/icons/gears-32-2x.png 2x"/>
