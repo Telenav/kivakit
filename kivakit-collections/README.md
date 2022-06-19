@@ -14,7 +14,7 @@
 
 [//]: # (end-user-text)
 
-# kivakit-collections &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/set-32.png" srcset="https://telenav.github.io/telenav-assets/images/icons/set-32-2x.png 2x"/>
+# kivakit-collections &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/set-48.png" srcset="https://telenav.github.io/telenav-assets/images/icons/set-48-2x.png 2x"/>
 
 This module provides collections, iteration support, stacks, collection observation and bit I/O.
 

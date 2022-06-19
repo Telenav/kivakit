@@ -4,7 +4,7 @@
 
 [//]: # (end-user-text)
 
-# kivakit-extraction &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/puzzle-32.png" srcset="https://telenav.github.io/telenav-assets/images/icons/puzzle-32-2x.png 2x"/>
+# kivakit-extraction &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/puzzle-48.png" srcset="https://telenav.github.io/telenav-assets/images/icons/puzzle-48-2x.png 2x"/>
 
 This module contains the KivaKit extraction mini-framework
 

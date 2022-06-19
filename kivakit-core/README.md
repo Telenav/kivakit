@@ -14,7 +14,7 @@
 
 [//]: # (end-user-text)
 
-# kivakit-core &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/nucleus-32.png" srcset="https://telenav.github.io/telenav-assets/images/icons/nucleus-32-2x.png 2x"/>
+# kivakit-core &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/nucleus-48.png" srcset="https://telenav.github.io/telenav-assets/images/icons/nucleus-48-2x.png 2x"/>
 
 This module provides extensions to the JDK and other packages for everyday Java development.
 

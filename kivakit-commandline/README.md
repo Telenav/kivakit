@@ -14,7 +14,7 @@
 
 [//]: # (end-user-text)
 
-# kivakit-commandline &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/command-line-32.png" srcset="https://telenav.github.io/telenav-assets/images/icons/command-line-32-2x.png 2x"/>
+# kivakit-commandline &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/command-line-48.png" srcset="https://telenav.github.io/telenav-assets/images/icons/command-line-48-2x.png 2x"/>
 
 This project facilitates object-oriented parsing of command line arguments and switches.
 
