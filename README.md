@@ -118,8 +118,8 @@ KivaKit helps you to:
 
 ### Setup and Build <a name = "setup-and-build"></a> &nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/box-24.png" srcset="https://telenav.github.io/telenav-assets/images/icons/box-24-2x.png 2x"/>
 
-[**Initial Setup**](https://github.com/Telenav/telenav-build/blob/master/documentation/initial-setup.md)  <!-- [branch-name] -->
-[**Building**](https://github.com/Telenav/telenav-build/blob/master/documentation/building.md)  <!-- [branch-name] -->
+[**Initial Setup**](https://github.com/Telenav/telenav-build/blob/master/documentation/initial-setup.md)  <!-- [branch-name] -->  
+[**Building**](https://github.com/Telenav/telenav-build/blob/master/documentation/building.md)  <!-- [branch-name] -->  
 
 ### Development <a name = "development"></a> &nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/gears-32.png" srcset="https://telenav.github.io/telenav-assets/images/icons/gears-32-2x.png 2x"/>
 
@@ -136,26 +136,26 @@ KivaKit helps you to:
 
 [**Javadoc**](https://www.kivakit.org/1.6.0/javadoc/kivakit)  
 [**CodeFlowers**](https://www.kivakit.org/1.6.0/codeflowers/site/index.html)  
-[**KivaKit System Properties**](documentation/markdown/kivakit-system-properties.md)
+[**System Properties**](documentation/markdown/kivakit-system-properties.md)
 
 ### Project Resources <a name = "project-resources"></a> &nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/water-24.png" srcset="https://telenav.github.io/telenav-assets/images/icons/water-24-2x.png 2x"/>
 
-| Resource            | Description                                                                                                                                                                          |
-|---------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| *Project Name*      | KivaKit                                                                                                                                                                              |
-| *Summary*           | A collection of mini-frameworks that extend and simplify the JDK and other common APIs                                                                                               |
-| *License*           | [Apache License, Version 2.0](LICENSE)                                                                                                                                               |
-| *Related Projects*  | [kivakit-examples](https://github.com/Telenav/kivakit-examples), [kivakit-extensions](https://github.com/Telenav/kivakit), [kivakit-stuff](https://github.com/Telenav/kivakit-stuff) |
-| *Javadoc Coverage*  | <img src="https://telenav.github.io/telenav-assets/images/meters/meter-90-96.png" srcset="https://telenav.github.io/telenav-assets/images/meters/meter-90-96-2x.png 2x"/>            |
-| *Setup*             | [Step-by-step setup instructions](https://github.com/Telenav/telenav-build/blob/master/documentation/initial-setup-instructions.md) <!-- [branch-name] -->                          |
-| *GitHub*            | [GitHub project home page](https://github.com/Telenav/kivakit)                                                                                                                       |
-| *Code*              | `git clone https://github.com/Telenav/kivakit.git`                                                                                                                                   |
-| *Project Lead*      | Jonathan Locke (Luo, Shibo) <br/> [jonathanl@telenav.com](mailto:jonathanl@telenav.com)                                                                                              |
-| *Administrator*     | Jonathan Locke (Luo, Shibo) <br/> [jonathanl@telenav.com](mailto:jonathanl@telenav.com)                                                                                              |
-| *Email*             | [kivakit@telenav.com](mailto:kivakit@telenav.com)                                                                                                                                    |
-| *Chat*              | [Zulip](https://kivakit.zulip.com)                                                                                                                                                   |
-| *Twitter*           | [@OpenKivaKit](https://twitter.com/openkivakit)                                                                                                                                      |
-| *Issues*            | [GitHub Issues](https://github.com/Telenav/kivakit/issues)                                                                                                                           |
+| Resource            | Description                                                                                                                                                                           |
+|---------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| *Project Name*      | KivaKit                                                                                                                                                                               |
+| *Summary*           | A collection of mini-frameworks that extend and simplify the JDK and other common APIs                                                                                                |
+| *License*           | [Apache License, Version 2.0](LICENSE)                                                                                                                                                |
+| *Related Projects*  | [kivakit-examples](https://github.com/Telenav/kivakit-examples), [kivakit-extensions](https://github.com/Telenav/kivakit), [kivakit-stuff](https://github.com/Telenav/kivakit-stuff)  |
+| *Javadoc Coverage*  | <img src="https://telenav.github.io/telenav-assets/images/meters/meter-90-96.png" srcset="https://telenav.github.io/telenav-assets/images/meters/meter-90-96-2x.png 2x"/>             |
+| *Setup*             | [Step-by-step setup instructions](https://github.com/Telenav/telenav-build/blob/master/documentation/initial-setup-instructions.md) <!-- [branch-name] -->                            |
+| *GitHub*            | [GitHub project home page](https://github.com/Telenav/kivakit)                                                                                                                        |
+| *Code*              | `git clone https://github.com/Telenav/kivakit.git`                                                                                                                                    |
+| *Project Lead*      | Jonathan Locke (Luo, Shibo) <br/> [jonathanl@telenav.com](mailto:jonathanl@telenav.com)                                                                                               |
+| *Administrator*     | Jonathan Locke (Luo, Shibo) <br/> [jonathanl@telenav.com](mailto:jonathanl@telenav.com)                                                                                               |
+| *Email*             | [kivakit@telenav.com](mailto:kivakit@telenav.com)                                                                                                                                     |
+| *Chat*              | [Zulip](https://kivakit.zulip.com)                                                                                                                                                    |
+| *Twitter*           | [@OpenKivaKit](https://twitter.com/openkivakit)                                                                                                                                       |
+| *Issues*            | [GitHub Issues](https://github.com/Telenav/kivakit/issues)                                                                                                                            |
 
 [//]: # (end-user-text)
 
