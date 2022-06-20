@@ -330,6 +330,13 @@ public abstract class Application extends BaseComponent implements
     /** State machine for application lifecycle */
     private final StateMachine<State> state = new StateMachine<>(CONSTRUCTING);
 
+    @UmlExcludeMember
+    protected final SwitchParser<Boolean> QUIET =
+            booleanSwitchParser(this, "quiet", "Minimize output")
+                    .optional()
+                    .defaultValue(false)
+                    .build();
+
     protected Application()
     {
         register(this);
@@ -513,104 +520,111 @@ public abstract class Application extends BaseComponent implements
      */
     public final void run(String[] arguments)
     {
-        // Enable start-up options,
-        startupOptions().forEach(StartUp::enable);
-
-        // signal that we are initializing,
-        state.transitionTo(INITIALIZING);
-
-        // register any object serializers,
-        onSerializationInitialize();
-
-        // and we're running,
-        onRunning();
-
-        // set up temporary listener,
-        LOGGER.listenTo(this);
-
-        // initialize this application's project
-        onProjectsInitializing();
-        initializeProjects();
-        onProjectsInitialized();
-
-        // load deployments,
-        deployments = DeploymentSet.load(this, getClass());
-
-        // then through arguments
-        var argumentList = new StringList();
-        for (var argument : arguments)
-        {
-            // and if the argument is -switches=[resource]
-            if (argument.startsWith("-switches="))
-            {
-                // then load properties from the resource
-                var resourceIdentifier = Strip.leading(argument, "-switches=");
-                var resource = Resource.resolve(this, resourceIdentifier);
-                var properties = PropertyMap.load(this, resource);
-
-                // and add those properties to the argument list
-                for (var key : properties.keySet())
-                {
-                    var value = properties.get(key);
-                    argumentList.add(key + "=" + value);
-                }
-            }
-            else
-            {
-                // otherwise, add the argument
-                argumentList.add(argument);
-            }
-        }
-
-        // then parse the command line arguments.
-        commandLine = new CommandLineParser(this)
-                .addSwitchParsers(internalSwitchParsers())
-                .addArgumentParsers(argumentParsers())
-                .parse(argumentList.asStringArray());
-
-        // Remove temporary logger and allow subclass to configure output streams,
-        clearListeners();
-        onConfigureListeners();
-
-        // and if a deployment was specified,
-        if (deploymentSpecified())
-        {
-            // install it in the global settings registry.
-            registerSettingsIn(get(DEPLOYMENT));
-        }
-
-        if (!StartUp.isEnabled(Option.QUIET))
-        {
-            showStartupInformation();
-        }
-
         try
         {
-            // Run the application's code
-            state.transitionTo(RUNNING);
-            onRun();
+            // Enable start-up options,
+            startupOptions().forEach(StartUp::enable);
+
+            // signal that we are initializing,
+            state.transitionTo(INITIALIZING);
+
+            // register any object serializers,
+            onSerializationInitialize();
+
+            // and we're running,
+            onRunning();
+
+            // set up temporary listener,
+            LOGGER.listenTo(this);
+
+            // initialize this application's project
+            onProjectsInitializing();
+            initializeProjects();
+            onProjectsInitialized();
+
+            // load deployments,
+            deployments = DeploymentSet.load(this, getClass());
+
+            // then through arguments
+            var argumentList = new StringList();
+            for (var argument : arguments)
+            {
+                // and if the argument is -switches=[resource]
+                if (argument.startsWith("-switches="))
+                {
+                    // then load properties from the resource
+                    var resourceIdentifier = Strip.leading(argument, "-switches=");
+                    var resource = Resource.resolve(this, resourceIdentifier);
+                    var properties = PropertyMap.load(this, resource);
+
+                    // and add those properties to the argument list
+                    for (var key : properties.keySet())
+                    {
+                        var value = properties.get(key);
+                        argumentList.add(key + "=" + value);
+                    }
+                }
+                else
+                {
+                    // otherwise, add the argument
+                    argumentList.add(argument);
+                }
+            }
+
+            // then parse the command line arguments.
+            commandLine = new CommandLineParser(this)
+                    .addSwitchParsers(internalSwitchParsers())
+                    .addArgumentParsers(argumentParsers())
+                    .parse(argumentList.asStringArray());
+
+            // Remove temporary logger and allow subclass to configure output streams,
+            clearListeners();
+            onConfigureListeners();
+
+            // and if a deployment was specified,
+            if (deploymentSpecified())
+            {
+                // install it in the global settings registry.
+                registerSettingsIn(get(DEPLOYMENT));
+            }
+
+            if (!StartUp.isEnabled(Option.QUIET))
+            {
+                showStartupInformation();
+            }
+
+            try
+            {
+                // Run the application's code
+                state.transitionTo(RUNNING);
+                onRun();
+            }
+            catch (Exception e)
+            {
+                problem(e, "Application.onRun() $ failed with exception", name());
+            }
+            finally
+            {
+                state.transitionTo(STOPPING);
+            }
+
+            BaseLog.logs().forEach(BaseLog::flush);
+
+            for (var log : BaseLog.logs())
+            {
+                if (log.messageCounts().size() > 0)
+                {
+                    information(AsciiArt.textBox(log.name() + " Log Messages", "$", log.messageCounts().toString("\n")));
+                }
+            }
+
+            onRan();
+            state.transitionTo(STOPPED);
         }
         catch (Exception e)
         {
             problem(e, "Application $ failed with exception", name());
         }
-        finally
-        {
-            state.transitionTo(STOPPING);
-        }
-
-        BaseLog.logs().forEach(BaseLog::flush);
-
-        for (var log : BaseLog.logs())
-        {
-            if (log.messageCounts().size() > 0)
-            {
-                information(AsciiArt.textBox(log.name() + " Log Messages", "$", log.messageCounts().toString("\n")));
-            }
-        }
-
-        onRan();
-        state.transitionTo(STOPPED);
     }
 
     @UmlExcludeMember
@@ -701,8 +715,8 @@ public abstract class Application extends BaseComponent implements
     }
 
     /**
-     * If a project is <i>not</i> passed to the constructor, then this method can be overridden to provide a {@link
-     * Project} dynamically.
+     * If a project is <i>not</i> passed to the constructor, then this method can be overridden to provide a
+     * {@link Project} dynamically.
      *
      * @return The {@link Project} for this application
      */
@@ -718,14 +732,6 @@ public abstract class Application extends BaseComponent implements
     protected void onConfigureListeners()
     {
         configureLogging();
-    }
-
-    /**
-     * Called to register object serializers
-     */
-    protected void onSerializationInitialize()
-    {
-        onRegisterObjectSerializers();
     }
 
     /**
@@ -771,6 +777,14 @@ public abstract class Application extends BaseComponent implements
     @UmlExcludeMember
     protected void onRunning()
     {
+    }
+
+    /**
+     * Called to register object serializers
+     */
+    protected void onSerializationInitialize()
+    {
+        onRegisterObjectSerializers();
     }
 
     /**
@@ -865,11 +879,4 @@ public abstract class Application extends BaseComponent implements
 
         return parsers;
     }
-
-    @UmlExcludeMember
-    protected final SwitchParser<Boolean> QUIET =
-            booleanSwitchParser(this, "quiet", "Minimize output")
-                    .optional()
-                    .defaultValue(false)
-                    .build();
 }
