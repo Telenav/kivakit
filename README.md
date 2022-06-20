@@ -24,7 +24,7 @@
 
 [//]: # (end-user-text)
 
-# kivakit 1.6.0 &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/logos/kivakit/kivakit-64.png" srcset="https://telenav.github.io/telenav-assets/images/logos/kivakit/kivakit-64-2x.png 2x"/>
+# kivakit 1.6.1 &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/logos/kivakit/kivakit-64.png" srcset="https://telenav.github.io/telenav-assets/images/logos/kivakit/kivakit-64-2x.png 2x"/>
 
 KivaKit (KEE-vah-KIT) is a set of integrated Java mini-frameworks that are potentially needed by any application or server.
 
