@@ -42,4 +42,9 @@
 
     </dependencies>
     <name>kivakit-test-internal</name>
+
+    <properties>
+        <cactus.lexakai.skip>true</cactus.lexakai.skip>
+    </properties>
+
 </project>
