@@ -124,6 +124,7 @@ public class KryoObjectSerializer implements
     {
         var kryo = new Kryo();
         types.registerWith(kryo);
+        kryo.setReferences(true);
         return kryo;
     }
 }

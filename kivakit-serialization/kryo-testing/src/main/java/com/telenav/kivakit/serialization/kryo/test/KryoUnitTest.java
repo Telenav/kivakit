@@ -24,6 +24,9 @@ import com.telenav.kivakit.core.version.Version;
 import com.telenav.kivakit.resource.serialization.SerializableObject;
 import com.telenav.kivakit.serialization.core.SerializationSession;
 import com.telenav.kivakit.serialization.core.SerializationSessionFactory;
+import com.telenav.kivakit.serialization.kryo.KryoObjectSerializer;
+import com.telenav.kivakit.serialization.kryo.KryoSerializationSession;
+import com.telenav.kivakit.serialization.kryo.KryoSerializationSessionFactory;
 import com.telenav.kivakit.serialization.kryo.types.CoreKryoTypes;
 import com.telenav.kivakit.serialization.kryo.types.KryoTypes;
 import com.telenav.kivakit.serialization.kryo.types.ResourceKryoTypes;
@@ -36,9 +39,6 @@ import java.io.ByteArrayOutputStream;
 import static com.telenav.kivakit.core.version.Version.version;
 import static com.telenav.kivakit.resource.serialization.ObjectMetadata.VERSION;
 import static com.telenav.kivakit.serialization.core.SerializationSession.SessionType.RESOURCE;
-import com.telenav.kivakit.serialization.kryo.KryoObjectSerializer;
-import com.telenav.kivakit.serialization.kryo.KryoSerializationSession;
-import com.telenav.kivakit.serialization.kryo.KryoSerializationSessionFactory;
 
 /**
  * Adds Kryo serialization testing to the {@link UnitTest} base class. Serialization of objects can be tested with:
@@ -55,6 +55,7 @@ import com.telenav.kivakit.serialization.kryo.KryoSerializationSessionFactory;
  *
  * @author jonathanl (shibo)
  */
+@SuppressWarnings("unused")
 @LexakaiJavadoc(complete = true)
 public abstract class KryoUnitTest extends UnitTest
 {
