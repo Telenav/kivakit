@@ -19,6 +19,7 @@ open module kivakit.core
     
     // Mastfrog
     requires transitive com.mastfrog.shutdown.hooks;
+    requires transitive com.mastfrog.function;
 
     // Module exports
     exports com.telenav.kivakit.core.code;
