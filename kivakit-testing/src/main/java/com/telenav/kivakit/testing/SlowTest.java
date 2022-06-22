@@ -16,11 +16,7 @@
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-<<<<<<<< HEAD:kivakit-test/src/main/java/com/telenav/kivakit/test/SlowTest.java
-package com.telenav.kivakit.test;
-========
 package com.telenav.kivakit.testing;
->>>>>>>> origin/release/1.6.0:kivakit-testing/src/main/java/com/telenav/kivakit/testing/SlowTest.java
 
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 

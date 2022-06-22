@@ -48,7 +48,7 @@ public abstract class BaseSerializer<Value> extends Serializer<Value>
      * @return The value
      */
     @Override
-    public final Value read(Kryo kryo, Input input, Class<Value> type)
+    public Value read(Kryo kryo, Input input, Class<? extends Value> type)
     {
         return onRead(KryoSerializationSession.session(kryo));
     }

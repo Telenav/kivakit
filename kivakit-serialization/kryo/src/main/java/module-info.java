@@ -5,8 +5,8 @@ open module kivakit.serialization.kryo
     requires kivakit.serialization.core;
 
     // Kryo
-    requires transitive kryo;
-    requires minlog;
+    requires transitive com.esotericsoftware.kryo;
+    requires transitive com.esotericsoftware.minlog;
 
     // Module exports
     exports com.telenav.kivakit.serialization.kryo;
