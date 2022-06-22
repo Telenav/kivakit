@@ -16,6 +16,9 @@ open module kivakit.core
     requires java.instrument;
     requires jdk.attach;
     requires java.management;
+    
+    // Mastfrog
+    requires transitive com.mastfrog.shutdown.hooks;
 
     // Module exports
     exports com.telenav.kivakit.core.code;

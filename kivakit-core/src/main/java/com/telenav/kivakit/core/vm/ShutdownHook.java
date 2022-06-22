@@ -18,13 +18,14 @@
 
 package com.telenav.kivakit.core.vm;
 
+import com.mastfrog.shutdown.hooks.ShutdownHookRegistry;
+import com.mastfrog.shutdown.hooks.ShutdownHooks;
 import com.telenav.kivakit.core.lexakai.DiagramLanguage;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
+import java.util.concurrent.ExecutorService;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
+
 
 /**
  * Adds order-of-execution to {@link Runtime#addShutdownHook(Thread)}. Hooks can request that they be run {@link
@@ -36,29 +37,52 @@ import java.util.List;
 @UmlClassDiagram(diagram = DiagramLanguage.class)
 public class ShutdownHook
 {
-    private static final LinkedList<ShutdownHook> queue = new LinkedList<>();
-
-    static
-    {
-        var shutdown = new Thread(() ->
-        {
-            List<ShutdownHook> copy;
-            synchronized (queue)
-            {
-                copy = new ArrayList<>(queue);
-            }
-            for (var hook : copy)
-            {
-                hook.execute();
-            }
-        });
-        shutdown.setName("KivaKit Shutdown");
-        Runtime.getRuntime().addShutdownHook(shutdown);
-    }
+    private static final int MILLISECONDS_TO_WAIT = 1200000;
+    private static final ShutdownHooks REGISTRY
+            = ShutdownHookRegistry.get(MILLISECONDS_TO_WAIT);
 
     public static void register(Order order, Runnable code)
     {
-        new ShutdownHook(order, code);
+        // Pending:  ShutdownHooks has a much richer API for adding
+        // things, with specific handling for AutoCloseables, Timers, and much more,
+        // and support for adding things only held by a weak reference, so
+        // shutdown tasks do not become a source of memory leaks.
+        //
+        // We can decide as we go what other things are usefully exposed here.
+        switch(order) {
+            case FIRST :
+                REGISTRY.add(code);
+                break;
+            case LAST :
+                REGISTRY.addLast(code);
+        }
+    }
+    
+    /**
+     * Register an ExecutorService to wait for on exit; all executors
+     * share a timeout.  ExecutorServices will be weakly referenced.
+     * 
+     * @param order The order to add in
+     * @param threadPool The thread pool to await shutdown on
+     */
+    public static void register(Order order, ExecutorService threadPool)
+    {
+        switch(order) {
+            case FIRST :
+                REGISTRY.add(threadPool);
+                break;
+            case LAST :
+                REGISTRY.addLast(threadPool);
+        }
+    }
+    
+    /**
+     * Explicitly invoke shutdown logic - this is useful from a test harness
+     * or isolating classloader before closing it.  Once run, the shutdown
+     * hook tasks are cleared and any registered JVM shutdown hook deregistered.
+     */
+    public static void shutdown() {
+        REGISTRY.shutdown();
     }
 
     /**
@@ -73,31 +97,5 @@ public class ShutdownHook
 
         /** The hook should be run after hooks that are marked as FIRST */
         LAST
-    }
-
-    private final Runnable code;
-
-    private ShutdownHook(Order order, Runnable code)
-    {
-        synchronized (queue)
-        {
-            switch (order)
-            {
-                case FIRST:
-                    queue.addFirst(this);
-                    break;
-
-                case LAST:
-                    queue.add(this);
-                    break;
-            }
-        }
-
-        this.code = code;
-    }
-
-    private void execute()
-    {
-        code.run();
     }
 }
