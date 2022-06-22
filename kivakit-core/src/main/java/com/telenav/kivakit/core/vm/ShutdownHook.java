@@ -21,6 +21,7 @@ import com.mastfrog.function.throwing.ThrowingRunnable;
 import com.mastfrog.shutdown.hooks.ShutdownHookRegistry;
 import com.mastfrog.shutdown.hooks.ShutdownHooks;
 import com.telenav.kivakit.core.lexakai.DiagramLanguage;
+import com.telenav.kivakit.core.time.Duration;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import java.util.Timer;
@@ -39,9 +40,11 @@ import java.util.concurrent.ExecutorService;
 @UmlClassDiagram(diagram = DiagramLanguage.class)
 public class ShutdownHook
 {
-    private static final int MILLISECONDS_TO_WAIT = 1200000;
+    // Pending - what do we actually think is reasonable here?
+    private static final Duration TIME_TO_WAIT = Duration.ONE_HOUR.times(2);
+
     private static final ShutdownHooks REGISTRY
-            = ShutdownHookRegistry.get(MILLISECONDS_TO_WAIT);
+            = ShutdownHookRegistry.get(TIME_TO_WAIT.asJavaDuration());
 
     /**
      * Register a Runnable to run on VM shutdown or when <code>shutdown()</code>
