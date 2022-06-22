@@ -18,7 +18,6 @@
 package com.telenav.kivakit.core.vm;
 
 import com.mastfrog.function.throwing.ThrowingRunnable;
-import com.mastfrog.shutdown.hooks.ShutdownHookRegistry;
 import com.mastfrog.shutdown.hooks.ShutdownHooks;
 import com.telenav.kivakit.core.lexakai.DiagramLanguage;
 import com.telenav.kivakit.core.time.Duration;
@@ -27,6 +26,8 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 import java.util.Timer;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutorService;
+
+import static com.mastfrog.shutdown.hooks.ShutdownHookRegistry.shutdownHookRegistry;
 
 /**
  * Adds order-of-execution to {@link Runtime#addShutdownHook(Thread)}. Hooks can
@@ -44,7 +45,7 @@ public class ShutdownHook
     private static final Duration TIME_TO_WAIT = Duration.ONE_HOUR.times(2);
 
     private static final ShutdownHooks REGISTRY
-            = ShutdownHookRegistry.get(TIME_TO_WAIT.asJavaDuration());
+            = shutdownHookRegistry(TIME_TO_WAIT.asJavaDuration());
 
     /**
      * Register a Runnable to run on VM shutdown or when <code>shutdown()</code>
