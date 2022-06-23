@@ -18,6 +18,8 @@
 
 package com.telenav.kivakit.serialization.kryo.types;
 
+import com.telenav.kivakit.core.collections.list.ObjectList;
+import com.telenav.kivakit.core.collections.set.ObjectSet;
 import com.telenav.kivakit.core.logging.LogEntry;
 import com.telenav.kivakit.core.logging.LoggerCodeContext;
 import com.telenav.kivakit.core.messaging.context.CodeContext;
@@ -35,11 +37,24 @@ import com.telenav.kivakit.core.messaging.messages.status.Problem;
 import com.telenav.kivakit.core.messaging.messages.status.Trace;
 import com.telenav.kivakit.core.messaging.messages.status.Warning;
 import com.telenav.kivakit.core.messaging.messages.status.activity.Activity;
+import com.telenav.kivakit.core.time.Day;
+import com.telenav.kivakit.core.time.DayOfWeek;
 import com.telenav.kivakit.core.time.Duration;
 import com.telenav.kivakit.core.time.Frequency;
+import com.telenav.kivakit.core.time.Hour;
+import com.telenav.kivakit.core.time.HourOfWeek;
+import com.telenav.kivakit.core.time.HourOfWeekSpan;
 import com.telenav.kivakit.core.time.LocalTime;
 import com.telenav.kivakit.core.time.Meridiem;
+import com.telenav.kivakit.core.time.Minute;
+import com.telenav.kivakit.core.time.Month;
+import com.telenav.kivakit.core.time.Quarter;
+import com.telenav.kivakit.core.time.Rate;
+import com.telenav.kivakit.core.time.Second;
 import com.telenav.kivakit.core.time.Time;
+import com.telenav.kivakit.core.time.TimeSpan;
+import com.telenav.kivakit.core.time.Week;
+import com.telenav.kivakit.core.time.Year;
 import com.telenav.kivakit.core.value.count.BitCount;
 import com.telenav.kivakit.core.value.count.Bytes;
 import com.telenav.kivakit.core.value.count.Count;
@@ -54,6 +69,7 @@ import com.telenav.kivakit.core.version.Release;
 import com.telenav.kivakit.core.version.Version;
 import com.telenav.kivakit.core.vm.JavaVirtualMachineHealth;
 import com.telenav.kivakit.core.vm.ThreadStatus;
+import com.telenav.kivakit.interfaces.time.Nanoseconds;
 import com.telenav.kivakit.serialization.kryo.lexakai.DiagramKryo;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
@@ -88,7 +104,6 @@ public class CoreKryoTypes extends KryoTypes
             register(long[].class);
             register(char[].class);
             register(Object[].class);
-            register(Class.class);
         });
 
         group("scalars", () ->
@@ -113,6 +128,8 @@ public class CoreKryoTypes extends KryoTypes
             register(HashSet.class);
             register(ArrayList.class);
             register(LinkedList.class);
+            register(ObjectList.class);
+            register(ObjectSet.class);
         });
 
         group("language", () ->
@@ -123,6 +140,7 @@ public class CoreKryoTypes extends KryoTypes
             register(JavaVirtualMachineHealth.class);
             register(ThreadStatus.class);
             register(Thread.State.class);
+            register(Class.class);
         });
 
         group("time", () ->
@@ -133,6 +151,21 @@ public class CoreKryoTypes extends KryoTypes
             register(Meridiem.class);
             register(Frequency.class);
             register(ZoneId.class);
+            register(Day.class);
+            register(Day.Type.class);
+            register(DayOfWeek.class);
+            register(Hour.class);
+            register(HourOfWeek.class);
+            register(HourOfWeekSpan.class);
+            register(Minute.class);
+            register(Month.class);
+            register(Quarter.class);
+            register(Rate.class);
+            register(Second.class);
+            register(TimeSpan.class);
+            register(Week.class);
+            register(Year.class);
+            register(Nanoseconds.class);
         });
 
         group("messages", () ->
