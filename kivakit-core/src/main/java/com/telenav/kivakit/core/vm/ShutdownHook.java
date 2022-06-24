@@ -46,6 +46,13 @@ import static com.telenav.kivakit.interfaces.time.WakeState.TIMED_OUT;
  * order, from {@link Order#FIRST} to {@link Order#LAST}.
  * </p>
  *
+ * <i><b>NOTE:</b></i>
+ * <p>
+ * This class simply allows pre-registered shutdown hooks to be run in a defined order during VM shutdown. For more
+ * complex shutdown hook requirements, see <a
+ * href="https://mvnrepository.com/artifact/com.mastfrog/shutdown-hooks">com.mastfrog:shutdown-hooks</a>.
+ * </p>
+ *
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramLanguage.class)
