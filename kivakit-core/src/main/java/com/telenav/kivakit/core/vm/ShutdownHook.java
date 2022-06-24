@@ -62,7 +62,7 @@ public class ShutdownHook implements Comparable<ShutdownHook>
     private static final Logger LOGGER = new ConsoleLogger();
 
     /** A priority queue of shutdown hooks sorted in an assigned {@link Order} */
-    private static final PriorityQueue<ShutdownHook> hooks = new PriorityQueue<>();
+    private static PriorityQueue<ShutdownHook> hooks;
 
     /** True when shutdown is in process */
     private static boolean shuttingDown = false;
@@ -71,16 +71,16 @@ public class ShutdownHook implements Comparable<ShutdownHook>
     {
         Runtime.getRuntime().addShutdownHook(new Thread(() ->
         {
-            synchronized (hooks)
+            synchronized (hooks())
             {
                 // Start shutting down,
                 shuttingDown = true;
 
                 // and while there are more hooks to execute,
-                while (!hooks.isEmpty())
+                while (!hooks().isEmpty())
                 {
                     // take a hook out of the queue,
-                    var hook = hooks.remove();
+                    var hook = hooks().remove();
 
                     // and run it to completion or timeout, whichever comes first.
                     var thread = new KivaKitThread("ShutdownHook-" + hook.name, hook.code);
@@ -126,7 +126,7 @@ public class ShutdownHook implements Comparable<ShutdownHook>
      */
     public static void register(String name, Order order, Duration maximumWait, Runnable code)
     {
-        synchronized (hooks)
+        synchronized (hooks())
         {
             // Do not allow registration of further hooks during shutdown
             if (shuttingDown)
@@ -135,7 +135,7 @@ public class ShutdownHook implements Comparable<ShutdownHook>
             }
 
             // Add a shutdown hook for the given code that will execute in the given order.
-            hooks.add(new ShutdownHook(order, code, maximumWait, name));
+            hooks().add(new ShutdownHook(order, code, maximumWait, name));
         }
     }
 
@@ -182,5 +182,14 @@ public class ShutdownHook implements Comparable<ShutdownHook>
     public String toString()
     {
         return Strings.format("[${class} name = $, order = $]", getClass(), name, order);
+    }
+
+    private static synchronized PriorityQueue<ShutdownHook> hooks()
+    {
+        if (hooks == null)
+        {
+            hooks = new PriorityQueue<>();
+        }
+        return hooks;
     }
 }
