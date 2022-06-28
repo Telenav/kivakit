@@ -50,18 +50,18 @@ import static com.telenav.kivakit.core.thread.KivaKitThread.State.STOP_REQUESTED
 import static com.telenav.kivakit.core.thread.KivaKitThread.State.WAITING;
 
 /**
- * A thread with methods to start, pause, resume and stop (pause and resume are implemented only in {@link
- * RepeatingThread}). KivaKit threads have a uniform naming convention with each thread name prefixed with "KivaKit-".
- * {@link KivaKitThread}s are {@link Repeater}s and can broadcast messages to interested {@link Listener}s.
+ * A thread with methods to start, pause, resume and stop (pause and resume are implemented only in
+ * {@link RepeatingThread}). KivaKit threads have a uniform naming convention with each thread name prefixed with
+ * "KivaKit-". {@link KivaKitThread}s are {@link Repeater}s and can broadcast messages to interested {@link Listener}s.
  *
  * <p><b>Thread Lifecycle States</b></p>
  *
  * <p>
  * During the lifecycle of a KivaKit thread, it transitions from one {@link State} to another as code executes and
  * methods are called to control execution. These states are managed with a {@link StateMachine}, which enables state
- * transitions and allows specific states to be waited on. The method {@link #stateMachine()} gives access to the {@link
- * StateMachine} and the convenience methods {@link #waitFor(State)} or {@link #waitFor(State, Duration)} allow states
- * to be waited for. In lifecycle-order, thread states are:
+ * transitions and allows specific states to be waited on. The method {@link #stateMachine()} gives access to the
+ * {@link StateMachine} and the convenience methods {@link #waitFor(State)} or {@link #waitFor(State, Duration)} allow
+ * states to be waited for. In lifecycle-order, thread states are:
  * </p>
  *
  * <ul>
@@ -464,10 +464,10 @@ public class KivaKitThread extends BaseRepeater implements
     /**
      * Wait for this thread to achieve the given states
      */
-    public void waitFor(State state, Duration maximumWait)
+    public WakeState waitFor(State state, Duration maximumWait)
     {
         trace("Wait for $", state);
-        stateMachine().waitFor(state, maximumWait);
+        return stateMachine().waitFor(state, maximumWait);
     }
 
     /**

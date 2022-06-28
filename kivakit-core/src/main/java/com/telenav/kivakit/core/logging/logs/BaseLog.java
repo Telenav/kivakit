@@ -99,6 +99,8 @@ public abstract class BaseLog implements
 
     private RepeatingThread thread;
 
+    final StateWatcher<Boolean> queueEmpty = new StateWatcher<>(true);
+
     protected BaseLog()
     {
         logs.add(this);
@@ -107,7 +109,7 @@ public abstract class BaseLog implements
         if (isAsynchronous())
         {
             // when the VM shuts down
-            ShutdownHook.register(LAST, () ->
+            ShutdownHook.register(getClass().getSimpleName() + ".flush()", LAST, () ->
             {
                 // flush asynchronous entries for up to one minute
                 flush(Duration.ONE_MINUTE);
@@ -389,6 +391,4 @@ public abstract class BaseLog implements
         }
         return success;
     }
-
-    final StateWatcher<Boolean> queueEmpty = new StateWatcher<>(true);
 }
