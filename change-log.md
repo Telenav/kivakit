@@ -364,7 +364,7 @@ _kivakit-stuff_, according to the principles described in the Medium article [*O
 
 ### source control
 
-* Added tagging to gitflow finish scripts
+* Added tagging to git-flow finish scripts
 
 ### microservices
 
