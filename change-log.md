@@ -2,6 +2,24 @@
 
 -----------------------------------------------------------------------------------------------------------------------
 
+## Version 1.6.1 (2022.06.30) "purple diorama"
+
+### Build
+
+ - New cactus version with new maven plugin
+ - Updated build scripts for new cactus version
+ - Updated superpoms
+
+### Documentation
+
+ - Fixed image links and improved documentation
+
+### Core
+
+ - Fixed bugs in ShutdownHook
+
+-----------------------------------------------------------------------------------------------------------------------
+
 ## Version 1.6.0 (2022.06.15) "purple toaster"
 
 ### Build
