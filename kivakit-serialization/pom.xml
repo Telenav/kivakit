@@ -16,6 +16,10 @@
     <version>1.6.0</version>
 
     <packaging>pom</packaging>
+    
+    <properties>
+        <maven.javadoc.skip>true</maven.javadoc.skip>
+    </properties>
 
     <modules>
         <module>core</module>
