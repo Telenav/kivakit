@@ -59,9 +59,9 @@ import static com.telenav.kivakit.core.ensure.Ensure.fail;
  * <p><b>Parser Builders</b></p>
  *
  * <p>
- * New switches can be created with the switch parser {@link Builder}, which can be accessed through {@link
- * #builder(Class)}. The type parameter is the type of the switch being built. For example, a float switch would be of
- * type Float.class. The builder then allows attributes of the switch parser to be specified:
+ * New switches can be created with the switch parser {@link Builder}, which can be accessed through
+ * {@link #builder(Class)}. The type parameter is the type of the switch being built. For example, a float switch would
+ * be of type Float.class. The builder then allows attributes of the switch parser to be specified:
  * <ul>
  *     <li>{@link Builder#name(String)} - The name of the switch on the command line, like "input"</li>
  *     <li>{@link Builder#description(String)} - A description of what the switch does</li>
@@ -317,7 +317,7 @@ public class SwitchParser<T> implements
         {
             return value;
         }
-        parent.exit("Invalid value $ for switch -$ ", _switch.value(), _switch.name());
+        exit("Invalid value $ for switch -$ ", _switch.value(), _switch.name());
         return null;
     }
 
@@ -359,7 +359,7 @@ public class SwitchParser<T> implements
         {
             return value;
         }
-        parent.exit("Invalid value $ for switch -$ ", _switch.value(), _switch.name());
+        exit("Invalid value $ for switch -$ ", _switch.value(), _switch.name());
         return null;
     }
 
@@ -386,7 +386,7 @@ public class SwitchParser<T> implements
         {
             return value;
         }
-        parent.exit("Invalid value $ for switch -$ ", _switch.value(), _switch.name());
+        exit("Invalid value $ for switch -$ ", _switch.value(), _switch.name());
         return null;
     }
 
@@ -420,18 +420,20 @@ public class SwitchParser<T> implements
     }
 
     /**
-     * @return The command line parser that owns this switch parser
-     */
-    CommandLineParser parent()
-    {
-        return parent;
-    }
-
-    /**
      * @param parent The parent command-line parser that owns this switch parser
      */
     void parent(CommandLineParser parent)
     {
         this.parent = parent;
+    }
+
+    @SuppressWarnings("SameParameterValue")
+    private void exit(String message, Object... arguments)
+    {
+        if (parent != null)
+        {
+            parent.exit(message, arguments);
+        }
+        fail("Switch parser was not added in Application.switchParsers(): $", this);
     }
 }
