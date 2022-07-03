@@ -30,16 +30,6 @@
         developing Java software.
     </description>
     
-    <!-- Licensing -->
-    
-    <licenses>
-        <license>
-            <name>Apache License, Version 2.0</name>
-            <url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
-            <distribution>repo</distribution>
-        </license>
-    </licenses>
-    
     <!-- Modules -->
     
     <modules>
@@ -81,60 +71,5 @@
         <system>GitHub</system>
         <url>https://github.com/Telenav/kivakit/issues</url>
     </issueManagement>
-    
-    <inceptionYear>2011</inceptionYear>
-    
-    <organization>
-        <name>Telenav</name>
-        <url>https://www.telenav.com</url>
-    </organization>
-    
-    <!-- Contributors -->
-    
-    <developers>
-        
-        <developer>
-            
-            <id>jonathanl</id>
-            <name>Jonathan Locke (Luo Shibo)</name>
-            <email>jonathanl@telenav.com</email>
-            <organization>Telenav</organization>
-            <organizationUrl>https://www.telenav.com/</organizationUrl>
-            <roles>
-                <role>lead</role>
-                <role>administrator</role>
-            </roles>
-            
-        </developer>
-        
-        <developer>
-            
-            <id>haifeng</id>
-            <name>Haifeng Zhu</name>
-            <email>hfzhu@telenav.com</email>
-            <organization>Telenav</organization>
-            <organizationUrl>https://www.telenav.com/</organizationUrl>
-            <roles>
-                <role>developer</role>
-                <role>administrator</role>
-            </roles>
-            
-        </developer>
-        
-        <developer>
-            
-            <id>timboudreau</id>
-            <name>Tim Boudreau</name>
-            <email>tim@timboudreau.com</email>
-            <organization>Telenav</organization>
-            <organizationUrl>https://www.telenav.com/</organizationUrl>
-            <roles>
-                <role>developer</role>
-                <role>administrator</role>
-            </roles>
-            
-        </developer>
-        
-    </developers>
 
 </project>
