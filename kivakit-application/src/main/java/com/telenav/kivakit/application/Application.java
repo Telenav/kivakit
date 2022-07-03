@@ -31,12 +31,14 @@ import com.telenav.kivakit.core.collections.list.ObjectList;
 import com.telenav.kivakit.core.collections.list.StringList;
 import com.telenav.kivakit.core.collections.set.IdentitySet;
 import com.telenav.kivakit.core.collections.set.ObjectSet;
+import com.telenav.kivakit.core.function.Result;
 import com.telenav.kivakit.core.language.Classes;
 import com.telenav.kivakit.core.language.trait.LanguageTrait;
 import com.telenav.kivakit.core.locale.Locale;
 import com.telenav.kivakit.core.logging.Logger;
 import com.telenav.kivakit.core.logging.LoggerFactory;
 import com.telenav.kivakit.core.logging.logs.BaseLog;
+import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.messaging.Message;
 import com.telenav.kivakit.core.messaging.Repeater;
 import com.telenav.kivakit.core.messaging.filters.AllMessages;
@@ -92,6 +94,8 @@ import static com.telenav.kivakit.application.Application.State.READY;
 import static com.telenav.kivakit.application.Application.State.RUNNING;
 import static com.telenav.kivakit.application.Application.State.STOPPED;
 import static com.telenav.kivakit.application.Application.State.STOPPING;
+import static com.telenav.kivakit.application.ExitCode.FAILED;
+import static com.telenav.kivakit.application.ExitCode.SUCCEEDED;
 import static com.telenav.kivakit.commandline.Quantifier.OPTIONAL;
 import static com.telenav.kivakit.commandline.Quantifier.REQUIRED;
 import static com.telenav.kivakit.commandline.SwitchParsers.booleanSwitchParser;
@@ -141,7 +145,7 @@ import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
  * {
  *     public static void main(String[] arguments)
  *     {
- *         new MyApplication().run(arguments);
+ *         run(MyApplication.class, arguments);
  *     }
  *
  *     [...]
@@ -281,6 +285,49 @@ public abstract class Application extends BaseComponent implements
     public static Application get()
     {
         return instance;
+    }
+
+    /**
+     * Executes the given application with the given arguments
+     *
+     * @param applicationType The type of the application
+     * @param arguments The arguments to pass to the application
+     * @param <T> The application type
+     * @return The result of running the application
+     */
+    public static <T extends Application> Result<ApplicationExit> run(Class<T> applicationType, String[] arguments)
+    {
+        return run(LOGGER, applicationType, arguments);
+    }
+
+    /**
+     * Constructs the given application instance, attaches the given listener to it, and runs it with the given
+     * arguments.
+     *
+     * @param listener The application listener
+     * @param applicationType The class of the application
+     * @param arguments The application arguments
+     * @param <T> The application type
+     * @return The result of running the application
+     */
+    public static <T extends Application> Result<ApplicationExit> run(Listener listener,
+                                                                      Class<T> applicationType,
+                                                                      String[] arguments)
+    {
+        ensureNotNull(listener);
+        ensureNotNull(applicationType);
+        ensureNotNull(arguments);
+
+        try
+        {
+            var application = Classes.newInstance(applicationType);
+            listener.listenTo(application);
+            return application.run(arguments);
+        }
+        catch (Exception e)
+        {
+            return Result.failure(new ApplicationExit(FAILED, e), "Application failed");
+        }
     }
 
     public enum State
@@ -518,10 +565,20 @@ public abstract class Application extends BaseComponent implements
      *
      * @param arguments Command line arguments to parse
      */
-    public final void run(String[] arguments)
+    public final Result<ApplicationExit> run(String[] arguments)
     {
+        var exitCode = FAILED;
+        Exception exception = null;
+
         try
         {
+            // If there is no listener,
+            if (listeners().isEmpty())
+            {
+                // add a default listener
+                LOGGER.listenTo(this);
+            }
+
             // Enable start-up options,
             startupOptions().forEach(StartUp::enable);
 
@@ -533,9 +590,6 @@ public abstract class Application extends BaseComponent implements
 
             // and we're running,
             onRunning();
-
-            // set up temporary listener,
-            LOGGER.listenTo(this);
 
             // initialize this application's project
             onProjectsInitializing();
@@ -602,6 +656,7 @@ public abstract class Application extends BaseComponent implements
             catch (Exception e)
             {
                 problem(e, "Application.onRun() $ failed with exception", name());
+                exception = e;
             }
             finally
             {
@@ -620,11 +675,18 @@ public abstract class Application extends BaseComponent implements
 
             onRan();
             state.transitionTo(STOPPED);
+            exitCode = SUCCEEDED;
         }
         catch (Exception e)
         {
             problem(e, "Application $ failed with exception", name());
+            exception = e;
         }
+
+        // Return the application result.
+        return exitCode == SUCCEEDED
+                ? Result.success(ApplicationExit.SUCCESS)
+                : Result.failure(new ApplicationExit(exitCode, exception), "Application failed");
     }
 
     @UmlExcludeMember
