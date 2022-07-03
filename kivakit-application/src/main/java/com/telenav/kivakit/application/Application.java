@@ -365,6 +365,7 @@ public abstract class Application extends BaseComponent implements
      */
     public <T> T argument(int index, ArgumentParser<T> parser)
     {
+        ensureIsRunning();
         return commandLine.argument(index, parser);
     }
 
@@ -373,6 +374,7 @@ public abstract class Application extends BaseComponent implements
      */
     public <T> T argument(ArgumentParser<T> parser)
     {
+        ensureIsRunning();
         return commandLine.argument(parser);
     }
 
@@ -381,6 +383,7 @@ public abstract class Application extends BaseComponent implements
      */
     public ArgumentList argumentList()
     {
+        ensureIsRunning();
         return commandLine.arguments();
     }
 
@@ -389,6 +392,7 @@ public abstract class Application extends BaseComponent implements
      */
     public <T> ObjectList<T> arguments(ArgumentParser<T> parser)
     {
+        ensureIsRunning();
         var arguments = new ObjectList<T>();
         for (int i = 0; i < argumentList().size(); i++)
         {
@@ -414,6 +418,7 @@ public abstract class Application extends BaseComponent implements
     @UmlRelation(label = "parses arguments into")
     public CommandLine commandLine()
     {
+        ensureIsRunning();
         return commandLine;
     }
 
@@ -434,6 +439,7 @@ public abstract class Application extends BaseComponent implements
      */
     public void exit(String message, Object... arguments)
     {
+        ensureIsRunning();
         commandLine.exit(message, arguments);
     }
 
@@ -445,6 +451,7 @@ public abstract class Application extends BaseComponent implements
     {
         ensureNotNull(parser);
 
+        ensureIsRunning();
         return commandLine.get(parser);
     }
 
@@ -456,6 +463,7 @@ public abstract class Application extends BaseComponent implements
     {
         ensureNotNull(parser);
 
+        ensureIsRunning();
         return commandLine.get(parser, defaultValue);
     }
 
@@ -466,6 +474,7 @@ public abstract class Application extends BaseComponent implements
     {
         ensureNotNull(parser);
 
+        ensureIsRunning();
         return commandLine.has(parser);
     }
 
@@ -485,6 +494,7 @@ public abstract class Application extends BaseComponent implements
      */
     public Set<Project> projects()
     {
+        ensureIsRunning();
         return projects;
     }
 
@@ -630,6 +640,7 @@ public abstract class Application extends BaseComponent implements
     @UmlExcludeMember
     public void showStartupInformation()
     {
+        ensureIsRunning();
         announce(startupInformation(name()));
     }
 
@@ -638,6 +649,8 @@ public abstract class Application extends BaseComponent implements
      */
     public String startupInformation(String title)
     {
+        ensureIsRunning();
+
         var box = new StringList();
         int number = 1;
 
@@ -821,6 +834,11 @@ public abstract class Application extends BaseComponent implements
     private boolean deploymentSpecified()
     {
         return !ignoreDeployments() && has(DEPLOYMENT);
+    }
+
+    private void ensureIsRunning()
+    {
+        ensure(state.is(RUNNING), "Not valid during application initialization");
     }
 
     private void initializeProject(IdentitySet<Project> uninitialized, Project project)
