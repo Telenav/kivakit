@@ -35,14 +35,15 @@ import java.util.List;
 
 /**
  * A list of {@link Argument}s passed on a command line and retrieved with {@link CommandLine#arguments()} after command
- * line parsing with {@link CommandLineParser}. Individual arguments values can be retrieved as typed values with {@link
- * Argument#get(ArgumentParser)}. If the arguments are all the same type they can be retrieved as a list with {@link
- * #argumentValues(ArgumentParser)}.
+ * line parsing with {@link CommandLineParser}. Individual arguments values can be retrieved as typed values with
+ * {@link Argument#get(ArgumentParser)}. If the arguments are all the same type they can be retrieved as a list with
+ * {@link #argumentValues(ArgumentParser)}.
  *
  * @author jonathanl (shibo)
  * @see CommandLine
  * @see Argument
  */
+@SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramArgument.class)
 @UmlClassDiagram(diagram = DiagramValidation.class)
 @UmlClassDiagram(diagram = DiagramCommandLine.class)
@@ -121,5 +122,11 @@ public class ArgumentList implements Iterable<Argument>, Stringable, Sized
     public int size()
     {
         return arguments.size();
+    }
+
+    @Override
+    public String toString()
+    {
+        return asString();
     }
 }
