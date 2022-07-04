@@ -53,9 +53,9 @@ import static com.telenav.kivakit.core.string.IndentingStringBuilder.Style.TEXT;
  * to a multicaster with {@link #addListener(Listener)} and can be cleared with {@link #clearListeners()}. Messages can
  * be broadcast to all listeners with {@link #transmit(Transmittable)}.
  * <p>
- * If a class is already extending some other base class (and since Java does not support mix-ins) an instance of {@link
- * Multicaster} can be aggregated and its methods delegated to implement the {@link Broadcaster} interface This is not
- * automatic in Java, but requires a minimal amount of code:
+ * If a class is already extending some other base class (and since Java does not support mix-ins) an instance of
+ * {@link Multicaster} can be aggregated and its methods delegated to implement the {@link Broadcaster} interface This
+ * is not automatic in Java, but requires a minimal amount of code:
  * <pre>
  * public class A extends B implements Repeater&lt;Message&gt;
  * {
@@ -320,7 +320,7 @@ public class Multicaster implements Broadcaster
             if (!audience.isEmpty())
             {
                 // Add this broadcaster's context to the message
-                if (message instanceof Message)
+                if (message instanceof OperationMessage)
                 {
                     ((OperationMessage) message).context(debugCodeContext);
                 }
