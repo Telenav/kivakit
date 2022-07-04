@@ -157,7 +157,7 @@ public class Result<Value> extends Maybe<Value> implements RepeaterMixin
     }
 
     /**
-     * Returns a result with the given {@link Problem}
+     * Returns a failure result with the given {@link Problem}
      */
     public static <T> Result<T> failure(Throwable cause, String message, Object... arguments)
     {
@@ -165,7 +165,7 @@ public class Result<Value> extends Maybe<Value> implements RepeaterMixin
     }
 
     /**
-     * Returns a result with the given {@link Problem}
+     * Returns a failure result with the given {@link Problem}
      */
     public static <T> Result<T> failure(String message, Object... arguments)
     {
@@ -173,7 +173,7 @@ public class Result<Value> extends Maybe<Value> implements RepeaterMixin
     }
 
     /**
-     * Returns a result with the given {@link Problem}
+     * Returns a failure result with the given {@link Problem}
      */
     public static <T> Result<T> failure(Result<T> result, String message, Object... arguments)
     {
@@ -181,12 +181,22 @@ public class Result<Value> extends Maybe<Value> implements RepeaterMixin
     }
 
     /**
-     * Returns a result with the given message
+     * Returns a failure result with the given message
      */
     public static <T> Result<T> failure(Message message)
     {
         var result = new Result<T>();
         result.receive(message);
+        return result;
+    }
+
+    /**
+     * Returns a failure result with the given value
+     */
+    public static <T> Result<T> failure(T value, String message, Object... arguments)
+    {
+        var result = new Result<>(value);
+        result.receive(new Problem(message, arguments));
         return result;
     }
 

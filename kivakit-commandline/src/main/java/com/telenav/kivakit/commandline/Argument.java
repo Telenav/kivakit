@@ -22,6 +22,8 @@ import com.telenav.kivakit.commandline.lexakai.DiagramArgument;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
 
+import static com.telenav.kivakit.core.ensure.Ensure.fail;
+
 /**
  * The string value of a single argument in a command line. The string value of the argument can be retrieved with
  * {@link #value()} and it can be retrieved as a typed value with {@link #get(ArgumentParser)}.
@@ -52,7 +54,15 @@ public class Argument
         var value = parser.get(this);
         if (value == null)
         {
-            parser.parent().exit("Unable to parse argument: " + this.value);
+            var parent = parser.parent();
+            if (parent != null)
+            {
+                parent.exit("Unable to parse argument: " + this.value);
+            }
+            else
+            {
+                fail("Argument parser was not added in Application.argumentParsers(): $", parser);
+            }
         }
         return value;
     }
