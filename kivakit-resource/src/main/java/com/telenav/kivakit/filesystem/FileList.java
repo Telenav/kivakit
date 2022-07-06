@@ -107,7 +107,7 @@ public class FileList extends BaseResourceList<File> implements Iterable<File>
                 var file = File.parseFile(this, path);
                 if (file.isFolder())
                 {
-                    files.addAll(file.asFolder().nestedFiles(extension.fileMatcher()));
+                    files.addAll(file.asFolder().nestedFiles(extension::matches));
                 }
                 else
                 {
@@ -141,7 +141,6 @@ public class FileList extends BaseResourceList<File> implements Iterable<File>
         forEach(file -> files.add(file.asJavaFile()));
         return files;
     }
-
 
     @Override
     public File largest()

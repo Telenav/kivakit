@@ -28,7 +28,6 @@ import com.telenav.kivakit.core.string.Paths;
 import com.telenav.kivakit.core.string.Strings;
 import com.telenav.kivakit.core.string.Strip;
 import com.telenav.kivakit.core.time.LocalTime;
-import com.telenav.kivakit.filesystem.File;
 import com.telenav.kivakit.filesystem.FilePath;
 import com.telenav.kivakit.interfaces.comparison.Matcher;
 import com.telenav.kivakit.interfaces.naming.Named;
@@ -60,8 +59,8 @@ import java.util.regex.Pattern;
  * <p><b>Matching</b></p>
  *
  * <ul>
- *     <li>{@link #fileMatcher()} - A matcher that matches resources with exactly this file name</li>
- *     <li>{@link #matcher()} - A matcher for this file name</li>
+ *     <li>{@link #matcher()} - A matcher that matches resources with exactly this file name</li>
+ *     <li>{@link #fileNameMatcher()} - A matcher for this file name</li>
  *     <li>{@link #matches(Pattern)} - True if this filename matches the given {@link Pattern}</li>
  * </ul>
  *
@@ -89,6 +88,7 @@ import java.util.regex.Pattern;
  *
  * @author jonathanl (shibo)
  */
+@SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramResourcePath.class)
 @LexakaiJavadoc(complete = true)
 public class FileName implements Named, Comparable<FileName>
@@ -245,11 +245,11 @@ public class FileName implements Named, Comparable<FileName>
     }
 
     /**
-     * @return A matcher for files with this filename
+     * @return A matcher for this filename
      */
-    public Matcher<File> fileMatcher()
+    public Matcher<FileName> fileNameMatcher()
     {
-        return file -> name().equals(file.fileName().name());
+        return fileName -> name().equals(fileName.name());
     }
 
     @Override
@@ -281,11 +281,11 @@ public class FileName implements Named, Comparable<FileName>
     }
 
     /**
-     * @return A matcher for this filename
+     * @return A matcher for files with this filename
      */
-    public Matcher<FileName> matcher()
+    public Matcher<Resource> matcher()
     {
-        return fileName -> name().equals(fileName.name());
+        return file -> name().equals(file.fileName().name());
     }
 
     /**

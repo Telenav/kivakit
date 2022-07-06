@@ -20,7 +20,6 @@ package com.telenav.kivakit.resource;
 
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.value.count.Count;
-import com.telenav.kivakit.filesystem.File;
 import com.telenav.kivakit.interfaces.comparison.Matchable;
 import com.telenav.kivakit.interfaces.comparison.Matcher;
 import com.telenav.kivakit.interfaces.naming.Named;
@@ -40,8 +39,8 @@ import java.util.List;
  * A {@link FileName} extension, such as ".txt" or ".jar".
  *
  * <p>
- * Common extensions are provided as static constants. An extension can also be constructed with {@link
- * #parseExtension(Listener listener, String)}, with or without a dot prefix:
+ * Common extensions are provided as static constants. An extension can also be constructed with
+ * {@link #parseExtension(Listener listener, String)}, with or without a dot prefix:
  * </p>
  *
  * <pre>
@@ -318,19 +317,9 @@ public class Extension implements
     @NotNull
     public Matcher<ResourcePathed> matcher()
     {
-        return pathed ->
+        return resource ->
         {
-            var extension = pathed.path().compoundExtension();
-            return extension != null && extension.endsWith(this);
-        };
-    }
-
-    @NotNull
-    public Matcher<File> fileMatcher()
-    {
-        return pathed ->
-        {
-            var extension = pathed.path().compoundExtension();
+            var extension = resource.path().compoundExtension();
             return extension != null && extension.endsWith(this);
         };
     }

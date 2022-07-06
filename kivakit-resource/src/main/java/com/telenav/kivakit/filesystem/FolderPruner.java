@@ -26,6 +26,7 @@ import com.telenav.kivakit.core.time.Frequency;
 import com.telenav.kivakit.core.value.count.Bytes;
 import com.telenav.kivakit.core.value.level.Percent;
 import com.telenav.kivakit.interfaces.comparison.Matcher;
+import com.telenav.kivakit.resource.ResourcePathed;
 import com.telenav.kivakit.resource.lexakai.DiagramFileSystemFolder;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
@@ -55,7 +56,7 @@ public class FolderPruner
     private volatile Bytes capacity = Bytes.MAXIMUM;
 
     /** Matcher to restrict files that can be pruned */
-    private volatile Matcher<File> matcher = Matcher.matchAll();
+    private volatile Matcher<ResourcePathed> matcher = Matcher.matchAll();
 
     /** The maximum age at which a file will be pruned */
     private volatile Duration maximumAge = Duration.weeks(2);
@@ -124,7 +125,7 @@ public class FolderPruner
         return running;
     }
 
-    public void matcher(Matcher<File> matcher)
+    public void matcher(Matcher<ResourcePathed> matcher)
     {
         this.matcher = matcher;
     }
@@ -165,7 +166,7 @@ public class FolderPruner
      * @param files All files in the repository
      * @return True if the candidate file can be removed
      */
-    @SuppressWarnings({ "SameReturnValue" })
+    @SuppressWarnings({ "SameReturnValue", "unused" })
     protected boolean canRemove(File candidate, FileList files)
     {
         return true;
@@ -176,7 +177,7 @@ public class FolderPruner
         return capacity;
     }
 
-    protected Matcher<File> matcher()
+    protected Matcher<ResourcePathed> matcher()
     {
         return matcher;
     }

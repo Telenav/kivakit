@@ -1,12 +1,11 @@
 package com.telenav.kivakit.internal.tests.resource;
 
-import com.telenav.kivakit.testing.UnitTest;
 import com.telenav.kivakit.core.vm.JavaTrait;
 import com.telenav.kivakit.resource.packages.PackageTrait;
+import com.telenav.kivakit.testing.UnitTest;
 import org.junit.Ignore;
 import org.junit.Test;
 
-import static com.telenav.kivakit.resource.ResourceGlob.match;
 import static com.telenav.kivakit.resource.Extension.TXT;
 
 /**
@@ -21,10 +20,9 @@ public class ResourceGlobTest extends UnitTest implements PackageTrait, JavaTrai
     public void test()
     {
         var here = thisPackage();
-        for (var at : here.resources(match(TXT)))
+        for (var at : here.resources(TXT::matches))
         {
             println("at = $", at);
         }
-
     }
 }

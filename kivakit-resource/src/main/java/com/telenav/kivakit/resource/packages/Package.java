@@ -71,10 +71,10 @@ import static com.telenav.kivakit.resource.packages.PackageResource.packageResou
  * An abstraction for locating and copying {@link Resource}s in Java packages.
  *
  * <p>
- * A package object can be constructed with {@link #packageForPath(Listener, PackagePath)} or {@link
- * #parsePackage(Listener listener, Class, String)}. It implements the {@link ResourceFolder} interface because it
- * contains resources, just as {@link Folder} does. This means, of course, that methods that accept {@link
- * ResourceFolder} can accept either {@link Folder}s or {@link Package}s.
+ * A package object can be constructed with {@link #packageForPath(Listener, PackagePath)} or
+ * {@link #parsePackage(Listener listener, Class, String)}. It implements the {@link ResourceFolder} interface because
+ * it contains resources, just as {@link Folder} does. This means, of course, that methods that accept
+ * {@link ResourceFolder} can accept either {@link Folder}s or {@link Package}s.
  * </p>
  *
  * <p><b>Hierarchy</b></p>
@@ -87,10 +87,10 @@ import static com.telenav.kivakit.resource.packages.PackageResource.packageResou
  * <p><b>Resources</b></p>
  *
  * <p>
- * Resources in a package can be obtained with {@link ResourceFolder#resources()} and {@link
- * ResourceFolder#resources(Matcher)}. A specific resource can be located with {@link ResourceFolder#resource(String)}.
- * The resources in a package can be copied to a {@link Folder} with {@link ResourceFolder#safeCopyTo(ResourceFolder,
- * CopyMode, ProgressReporter)}.
+ * Resources in a package can be obtained with {@link ResourceFolder#resources()} and
+ * {@link ResourceFolder#resources(Matcher)}. A specific resource can be located with
+ * {@link ResourceFolder#resource(String)}. The resources in a package can be copied to a {@link Folder} with
+ * {@link ResourceFolder#safeCopyTo(ResourceFolder, CopyMode, ProgressReporter)}.
  * </p>
  *
  * @author jonathanl (shibo)
@@ -276,6 +276,7 @@ public class Package extends BaseRepeater implements ResourceFolder<Package>
      * @return The resource in this package with the given name
      */
     @Override
+    @SuppressWarnings("SpellCheckingInspection")
     public Resource resource(ResourcePathed pathed)
     {
         return packageResource(this, path(), pathed.path());
@@ -285,7 +286,7 @@ public class Package extends BaseRepeater implements ResourceFolder<Package>
      * @return The resources in this package folder
      */
     @Override
-    public ResourceList resources(Matcher<? super Resource> matcher)
+    public ResourceList resources(Matcher<ResourcePathed> matcher)
     {
         var resources = packagePath
                 .asPackageReference()

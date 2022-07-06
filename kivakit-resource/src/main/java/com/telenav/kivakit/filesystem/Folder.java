@@ -742,7 +742,7 @@ public class Folder extends BaseRepeater implements
         return files(Filter.all());
     }
 
-    public FileList files(Matcher<File> matcher, Traversal recurse)
+    public FileList files(Matcher<ResourcePathed> matcher, Traversal recurse)
     {
         return recurse == RECURSE ? nestedFiles(matcher) : files(matcher);
     }
@@ -754,10 +754,10 @@ public class Folder extends BaseRepeater implements
 
     public FileList files(Extension extension)
     {
-        return files(extension.fileMatcher());
+        return files(extension::matches);
     }
 
-    public FileList files(Matcher<File> matcher)
+    public FileList files(Matcher<ResourcePathed> matcher)
     {
         var files = new FileList();
         if (exists())
@@ -943,7 +943,7 @@ public class Folder extends BaseRepeater implements
     /**
      * @return Any matching files that are recursively contained in this folder
      */
-    public FileList nestedFiles(Matcher<File> matcher)
+    public FileList nestedFiles(Matcher<ResourcePathed> matcher)
     {
         var files = FileList.forServices(folder().nestedFiles(path -> matcher.matches((path.asFile()))));
         trace("Nested files in $: $", this, files);
@@ -1025,7 +1025,7 @@ public class Folder extends BaseRepeater implements
     }
 
     @Override
-    public ResourceList resources(Matcher<? super Resource> matcher)
+    public ResourceList resources(Matcher<ResourcePathed> matcher)
     {
         return resourceList(files()
                 .stream()
@@ -1040,7 +1040,7 @@ public class Folder extends BaseRepeater implements
 
     public void safeCopyTo(ResourceFolder<?> destination,
                            CopyMode mode,
-                           Matcher<File> matcher,
+                           Matcher<ResourcePathed> matcher,
                            ProgressReporter reporter)
     {
         if (mode == CopyMode.DO_NOT_OVERWRITE && destination.exists() && !destination.isEmpty())

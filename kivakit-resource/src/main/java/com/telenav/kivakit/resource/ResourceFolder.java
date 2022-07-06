@@ -156,7 +156,7 @@ public interface ResourceFolder<T extends ResourceFolder<T>> extends
      */
     default void copyTo(Folder destination,
                         CopyMode mode,
-                        Matcher<Resource> matcher,
+                        Matcher<ResourcePathed> matcher,
                         ProgressReporter reporter)
     {
         var start = Time.now();
@@ -281,7 +281,7 @@ public interface ResourceFolder<T extends ResourceFolder<T>> extends
     /**
      * @return Any matching files that are recursively contained in this folder
      */
-    default ResourceList nestedResources(Matcher<Resource> matcher)
+    default ResourceList nestedResources(Matcher<ResourcePathed> matcher)
     {
         var list = new ResourceList();
         list.addAll(resources());
@@ -328,7 +328,7 @@ public interface ResourceFolder<T extends ResourceFolder<T>> extends
     /**
      * @return The resources in this folder matching the given matcher
      */
-    ResourceList resources(Matcher<Resource> matcher);
+    ResourceList resources(Matcher<ResourcePathed> matcher);
 
     /**
      * @return The resources in this folder
@@ -351,7 +351,7 @@ public interface ResourceFolder<T extends ResourceFolder<T>> extends
      */
     default void safeCopyTo(ResourceFolder<?> folder,
                             CopyMode mode,
-                            Matcher<Resource> matcher,
+                            Matcher<ResourcePathed> matcher,
                             ProgressReporter reporter)
     {
         for (var at : resources(matcher))
