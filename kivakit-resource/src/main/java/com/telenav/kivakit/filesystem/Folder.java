@@ -631,45 +631,6 @@ public class Folder extends BaseRepeater implements
         return name().compareTo(that.name());
     }
 
-    /**
-     * Copies all nested files matching the given matcher from this folder to the destination folder.
-     */
-    public void copyTo(Folder destination,
-                       CopyMode mode,
-                       Matcher<File> matcher,
-                       ProgressReporter reporter)
-    {
-        var start = Time.now();
-
-        // Ensure the destination folder exists,
-        information("Copying $ to $", this, destination);
-        destination.ensureExists();
-
-        // then for each nested file,
-        for (var file : nestedFiles(matcher))
-        {
-            // make relative target file,
-            var target = destination.file(file.relativeTo(this));
-
-            // and if we can copy to it,
-            if (mode.canCopy(file, target))
-            {
-                // then copy the file and update its last modified timestamp to the source timestamp
-                file.copyTo(target.ensureWritable(), mode, reporter);
-                target.lastModified(file.modifiedAt());
-            }
-        }
-        information("Copy completed in $", start.elapsedSince());
-    }
-
-    /**
-     * Copies all nested files from this folder to the destination folder
-     */
-    public void copyTo(Folder destination, CopyMode mode, ProgressReporter reporter)
-    {
-        copyTo(destination, mode, Filter.all(), reporter);
-    }
-
     @Override
     public Time createdAt()
     {
@@ -749,6 +710,7 @@ public class Folder extends BaseRepeater implements
         return new File(folder().file(name));
     }
 
+    @SuppressWarnings("SpellCheckingInspection")
     public File file(ResourcePathed pathed)
     {
         var child = pathed.path().withoutRoot();
@@ -951,6 +913,7 @@ public class Folder extends BaseRepeater implements
     }
 
     @Override
+    @SuppressWarnings("SpellCheckingInspection")
     public Folder mkdirs()
     {
         if (!exists())
