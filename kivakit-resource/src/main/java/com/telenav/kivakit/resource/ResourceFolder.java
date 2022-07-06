@@ -24,7 +24,6 @@ import com.telenav.kivakit.core.messaging.Repeater;
 import com.telenav.kivakit.core.progress.ProgressReporter;
 import com.telenav.kivakit.core.time.Time;
 import com.telenav.kivakit.filesystem.Folder;
-import com.telenav.kivakit.interfaces.comparison.Filter;
 import com.telenav.kivakit.interfaces.comparison.Matchable;
 import com.telenav.kivakit.interfaces.comparison.Matcher;
 import com.telenav.kivakit.resource.packages.Package;
@@ -37,6 +36,7 @@ import java.util.List;
 
 import static com.telenav.kivakit.core.ensure.Ensure.unsupported;
 import static com.telenav.kivakit.filesystem.Folder.Type.NORMAL;
+import static com.telenav.kivakit.interfaces.comparison.Matcher.matchAll;
 import static com.telenav.kivakit.resource.CopyMode.OVERWRITE;
 import static com.telenav.kivakit.resource.ResourcePath.parseResourcePath;
 
@@ -152,11 +152,11 @@ public interface ResourceFolder<T extends ResourceFolder<T>> extends
     }
 
     /**
-     * Copies all nested files matching the given matcher from this folder to the destination folder.
+     * Copies all nested resources matching the given matcher from this folder to the destination folder.
      */
     default void copyTo(Folder destination,
                         CopyMode mode,
-                        Matcher<T> matcher,
+                        Matcher<Resource> matcher,
                         ProgressReporter reporter)
     {
         var start = Time.now();
@@ -187,7 +187,7 @@ public interface ResourceFolder<T extends ResourceFolder<T>> extends
      */
     default void copyTo(Folder destination, CopyMode mode, ProgressReporter reporter)
     {
-        copyTo(destination, mode, Filter.all(), reporter);
+        copyTo(destination, mode, matchAll(), reporter);
     }
 
     boolean delete();
@@ -281,7 +281,7 @@ public interface ResourceFolder<T extends ResourceFolder<T>> extends
     /**
      * @return Any matching files that are recursively contained in this folder
      */
-    default ResourceList nestedResources(Matcher<T> matcher)
+    default ResourceList nestedResources(Matcher<Resource> matcher)
     {
         var list = new ResourceList();
         list.addAll(resources());
@@ -328,14 +328,14 @@ public interface ResourceFolder<T extends ResourceFolder<T>> extends
     /**
      * @return The resources in this folder matching the given matcher
      */
-    ResourceList resources(Matcher<? super Resource> matcher);
+    ResourceList resources(Matcher<Resource> matcher);
 
     /**
      * @return The resources in this folder
      */
     default ResourceList resources()
     {
-        return resources(Matcher.matchAll());
+        return resources(matchAll());
     }
 
     /**
@@ -343,7 +343,18 @@ public interface ResourceFolder<T extends ResourceFolder<T>> extends
      */
     default void safeCopyTo(ResourceFolder<?> folder, CopyMode mode, ProgressReporter reporter)
     {
-        for (var at : resources())
+        safeCopyTo(folder, mode, matchAll(), reporter);
+    }
+
+    /**
+     * Copy the resources in this package to the given folder
+     */
+    default void safeCopyTo(ResourceFolder<?> folder,
+                            CopyMode mode,
+                            Matcher<Resource> matcher,
+                            ProgressReporter reporter)
+    {
+        for (var at : resources(matcher))
         {
             var destination = folder.mkdirs().resource(at.fileName());
             if (mode.canCopy(at, destination))
