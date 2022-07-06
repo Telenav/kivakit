@@ -20,8 +20,11 @@ package com.telenav.kivakit.resource;
 
 import com.telenav.kivakit.conversion.BaseStringConverter;
 import com.telenav.kivakit.core.messaging.Listener;
+import com.telenav.kivakit.core.messaging.Repeater;
 import com.telenav.kivakit.core.progress.ProgressReporter;
+import com.telenav.kivakit.core.time.Time;
 import com.telenav.kivakit.filesystem.Folder;
+import com.telenav.kivakit.interfaces.comparison.Filter;
 import com.telenav.kivakit.interfaces.comparison.Matchable;
 import com.telenav.kivakit.interfaces.comparison.Matcher;
 import com.telenav.kivakit.resource.packages.Package;
@@ -95,6 +98,7 @@ import static com.telenav.kivakit.resource.ResourcePath.parseResourcePath;
  */
 @SuppressWarnings("unused")
 public interface ResourceFolder<T extends ResourceFolder<T>> extends
+        Repeater,
         UriIdentified,
         ResourcePathed,
         Matchable<ResourcePathed>
@@ -145,6 +149,45 @@ public interface ResourceFolder<T extends ResourceFolder<T>> extends
     default boolean contains(ResourcePathed that)
     {
         return that.path().startsWith(path());
+    }
+
+    /**
+     * Copies all nested files matching the given matcher from this folder to the destination folder.
+     */
+    default void copyTo(Folder destination,
+                        CopyMode mode,
+                        Matcher<T> matcher,
+                        ProgressReporter reporter)
+    {
+        var start = Time.now();
+
+        // Ensure the destination folder exists,
+        information("Copying $ to $", this, destination);
+        destination.ensureExists();
+
+        // then for each nested file,
+        for (var file : nestedResources(matcher))
+        {
+            // make relative target file,
+            var target = destination.file(file.relativeTo(this));
+
+            // and if we can copy to it,
+            if (mode.canCopy(file, target))
+            {
+                // then copy the file and update its last modified timestamp to the source timestamp
+                file.copyTo(target.ensureWritable(), mode, reporter);
+                target.lastModified(file.modifiedAt());
+            }
+        }
+        information("Copy completed in $", start.elapsedSince());
+    }
+
+    /**
+     * Copies all nested files from this folder to the destination folder
+     */
+    default void copyTo(Folder destination, CopyMode mode, ProgressReporter reporter)
+    {
+        copyTo(destination, mode, Filter.all(), reporter);
     }
 
     boolean delete();
@@ -212,6 +255,7 @@ public interface ResourceFolder<T extends ResourceFolder<T>> extends
         return folder;
     }
 
+    @SuppressWarnings("SpellCheckingInspection")
     default ResourceFolder<?> mkdirs()
     {
         unsupported();
