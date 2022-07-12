@@ -20,7 +20,6 @@ package com.telenav.kivakit.core.logging.loggers;
 
 import com.telenav.kivakit.core.collections.map.VariableMap;
 import com.telenav.kivakit.core.collections.set.ObjectSet;
-import com.telenav.kivakit.core.ensure.Ensure;
 import com.telenav.kivakit.core.lexakai.DiagramLogging;
 import com.telenav.kivakit.core.logging.Log;
 import com.telenav.kivakit.core.logging.LoggerCodeContext;
@@ -37,12 +36,13 @@ import com.telenav.lexakai.annotations.visibility.UmlExcludeMember;
 import java.util.regex.Pattern;
 
 import static com.telenav.kivakit.core.collections.set.ObjectSet.objectSet;
+import static com.telenav.kivakit.core.ensure.Ensure.fail;
 
 /**
  * A Java Services logger that creates loggers by inspecting the KIVAKIT_LOG and KIVAKIT_LOG_LEVEL environment
- * variables. Log providers specified by comma separated descriptors in the KIVAKIT_LOG variable are loaded by {@link
- * LogServiceLoader} as services. They are then configured and added to the list of logs. Configuration properties are
- * specified as key value pairs.
+ * variables. Log providers specified by comma separated descriptors in the KIVAKIT_LOG variable are loaded by
+ * {@link LogServiceLoader} as services. They are then configured and added to the list of logs. Configuration
+ * properties are specified as key value pairs.
  * <pre>
  * -DKIVAKIT_LOG="console level=warning,file level=information file=log.txt"
  * </pre>
@@ -118,7 +118,7 @@ public class LogServiceLogger extends BaseLogger
     {
         // If the descriptor matches "<log-name> <key>=<value> ..."
         var descriptorMatcher = Pattern
-                .compile("(?<log>\\w+)\\s*(?<arguments>.*)", Pattern.CASE_INSENSITIVE)
+                .compile("(?<log>\\w+)(?<arguments>.*)", Pattern.CASE_INSENSITIVE)
                 .matcher(descriptor);
 
         if (descriptorMatcher.matches())
@@ -133,7 +133,7 @@ public class LogServiceLogger extends BaseLogger
             {
                 var propertyPattern = Pattern.compile("\\s*(?<key>[\\w+-]+)\\s*=\\s*(?<value>\\S+)\\s*",
                         Pattern.CASE_INSENSITIVE);
-                var properties = arguments.split(" ");
+                var properties = arguments.trim().split(" ");
                 for (var property : properties)
                 {
                     if (!Strings.isEmpty(property))
@@ -145,7 +145,7 @@ public class LogServiceLogger extends BaseLogger
                         }
                         else
                         {
-                            Ensure.fail("Didn't understand property '$' of log '$", property, logName);
+                            fail("Didn't understand property '$' of log '$", property, logName);
                         }
                     }
                 }
@@ -168,6 +168,11 @@ public class LogServiceLogger extends BaseLogger
                 return log;
             }
         }
+        else
+        {
+            fail("Descriptor does not match \"<log-name> <key>=<value> ...\": $", descriptor);
+        }
+
         return null;
     }
 }
