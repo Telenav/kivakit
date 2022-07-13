@@ -44,7 +44,7 @@ KivaKit (KEE-vah-KIT) is a set of integrated Java mini-frameworks that are poten
 [**About KivaKit**](#about)  
 [**Tutorial Articles**](https://state-of-the-art.org/)  
 [**Example Code**](https://github.com/Telenav/kivakit-examples)  
-[**How to Build This Project**](https://github.com/Telenav/telenav-build/blob/develop/documentation/building.md) <!-- [cactus.replacement-branch-name] --> 
+[**How to Build This Project**](https://github.com/Telenav/telenav-build/blob/release/1.6.1/documentation/building.md) <!-- [cactus.replacement-branch-name] --> 
 
 
 ### Index <a name = "index"></a>
@@ -118,13 +118,13 @@ KivaKit helps you to:
 
 ### Setup and Build <a name = "setup-and-build"></a> &nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/box-24.png" srcset="https://telenav.github.io/telenav-assets/images/icons/box-24-2x.png 2x"/>
 
-[**Initial Setup**](https://github.com/Telenav/telenav-build/blob/develop/documentation/initial-setup-instructions.md)  <!-- [cactus.replacement-branch-name] -->  
-[**Building**](https://github.com/Telenav/telenav-build/blob/develop/documentation/building.md)  <!-- [cactus.replacement-branch-name] -->  
+[**Initial Setup**](https://github.com/Telenav/telenav-build/blob/release/1.6.1/documentation/initial-setup-instructions.md)  <!-- [cactus.replacement-branch-name] -->  
+[**Building**](https://github.com/Telenav/telenav-build/blob/release/1.6.1/documentation/building.md)  <!-- [cactus.replacement-branch-name] -->  
 
 ### Development <a name = "development"></a> &nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/gears-32.png" srcset="https://telenav.github.io/telenav-assets/images/icons/gears-32-2x.png 2x"/>
 
-[**Developing**](https://github.com/Telenav/telenav-build/blob/develop/documentation/developing.md) <!-- [cactus.replacement-branch-name] -->  
-[**Releasing**](https://github.com/Telenav/telenav-build/blob/develop/documentation/releasing.md) <!-- [cactus.replacement-branch-name] -->
+[**Developing**](https://github.com/Telenav/telenav-build/blob/release/1.6.1/documentation/developing.md) <!-- [cactus.replacement-branch-name] -->  
+[**Releasing**](https://github.com/Telenav/telenav-build/blob/release/1.6.1/documentation/releasing.md) <!-- [cactus.replacement-branch-name] -->
 
 ### Downloads <a name = "downloads"></a>&nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/down-arrow-24.png" srcset="https://telenav.github.io/telenav-assets/images/icons/down-arrow-24-2x.png 2x"/>
 
@@ -147,7 +147,7 @@ KivaKit helps you to:
 | *License*           | [Apache License, Version 2.0](LICENSE)                                                                                                                                               |
 | *Related Projects*  | [kivakit-examples](https://github.com/Telenav/kivakit-examples), [kivakit-extensions](https://github.com/Telenav/kivakit), [kivakit-stuff](https://github.com/Telenav/kivakit-stuff) |
 | *Javadoc Coverage*  | <img src="https://telenav.github.io/telenav-assets/images/meters/meter-90-96.png" srcset="https://telenav.github.io/telenav-assets/images/meters/meter-90-96-2x.png 2x"/>            |
-| *Setup*             | [Step-by-step setup instructions](https://github.com/Telenav/telenav-build/blob/develop/documentation/initial-setup-instructions.md) <!-- [cactus.replacement-branch-name] -->                  |
+| *Setup*             | [Step-by-step setup instructions](https://github.com/Telenav/telenav-build/blob/release/1.6.1/documentation/initial-setup-instructions.md) <!-- [cactus.replacement-branch-name] -->                  |
 | *GitHub*            | [GitHub project home page](https://github.com/Telenav/kivakit)                                                                                                                       |
 | *Code*              | `git clone https://github.com/Telenav/kivakit.git`                                                                                                                                   |
 | *Project Lead*      | Jonathan Locke (Luo, Shibo) <br/> [jonathanl@telenav.com](mailto:jonathanl@telenav.com)                                                                                              |
@@ -243,7 +243,7 @@ KivaKit helps you to:
 [**Change Log**](change-log.md) | 
 [**Published Releases**](https://repo1.maven.org/maven2/com/telenav/kivakit/) | 
 [**Javadoc Coverage**](#javadoc-coverage) | 
-[**Java 17+ Migration Notes**](https://github.com/Telenav/telenav-build/blob/develop/documentation/java-migration-notes.md)  <!-- [cactus.replacement-branch-name] --> | 
+[**Java 17+ Migration Notes**](https://github.com/Telenav/telenav-build/blob/release/1.6.1/documentation/java-migration-notes.md)  <!-- [cactus.replacement-branch-name] --> | 
 [**Downloads**](#downloads)
 
 [//]: # (end-user-text)
