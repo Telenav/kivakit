@@ -4,7 +4,7 @@
 
 [//]: # (end-user-text)
 
-# kivakit-serialization properties &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/communicate-32.png" srcset="https://telenav.github.io/telenav-assets/images/icons/communicate-32-2x.png 2x"/>
+# kivakit-serialization properties &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/communicate-64.png" srcset="https://telenav.github.io/telenav-assets/images/icons/communicate-64-2x.png 2x"/>
 
 This project contains support for serializing to .properties files.
 
@@ -20,14 +20,14 @@ This project contains support for serializing to .properties files.
 
 ### Dependencies <a name="dependencies"></a> &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/dependencies-32.png" srcset="https://telenav.github.io/telenav-assets/images/icons/dependencies-32-2x.png 2x"/>
 
-[*Dependency Diagram*](https://www.kivakit.org/1.6.0/lexakai/kivakit/kivakit-serialization/properties/documentation/diagrams/dependencies.svg)
+[*Dependency Diagram*](https://www.kivakit.org/1.6.1/lexakai/kivakit/kivakit-serialization/properties/documentation/diagrams/dependencies.svg)
 
 #### Maven Dependency
 
     <dependency>
         <groupId>com.telenav.kivakit</groupId>
         <artifactId>kivakit-serialization-properties</artifactId>
-        <version>1.6.0</version>
+        <version>1.6.1</version>
     </dependency>
 
 <img src="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128.png" srcset="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128-2x.png 2x"/>
@@ -48,7 +48,7 @@ None
 
 ### Package Diagrams <a name="package-diagrams"></a> &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/box-24.png" srcset="https://telenav.github.io/telenav-assets/images/icons/box-24-2x.png 2x"/>
 
-[*com.telenav.kivakit.serialization.properties*](https://www.kivakit.org/1.6.0/lexakai/kivakit/kivakit-serialization/properties/documentation/diagrams/com.telenav.kivakit.serialization.properties.svg)
+[*com.telenav.kivakit.serialization.properties*](https://www.kivakit.org/1.6.1/lexakai/kivakit/kivakit-serialization/properties/documentation/diagrams/com.telenav.kivakit.serialization.properties.svg)
 
 <img src="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128.png" srcset="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128-2x.png 2x"/>
 
@@ -63,8 +63,8 @@ Javadoc coverage for this project is 87.5%.
 
 | Class | Documentation Sections |
 |---|---|
-| [*PropertiesObjectSerializer*](https://www.kivakit.org/1.6.0/javadoc/kivakit/kivakit.serialization.properties////////////////////////////////////////////////////////////////////////.html) |  |  
-| [*PropertiesSerializationProject*](https://www.kivakit.org/1.6.0/javadoc/kivakit/kivakit.serialization.properties////////////////////////////////////////////////////////////////////////////.html) |  |  
+| [*PropertiesObjectSerializer*](https://www.kivakit.org/1.6.1/javadoc/kivakit/kivakit.serialization.properties////////////////////////////////////////////////////////////////////////.html) |  |  
+| [*PropertiesSerializationProject*](https://www.kivakit.org/1.6.1/javadoc/kivakit/kivakit.serialization.properties////////////////////////////////////////////////////////////////////////////.html) |  |  
 
 [//]: # (start-user-text)
 
