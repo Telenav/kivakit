@@ -59,6 +59,7 @@ import java.util.stream.Collectors;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
+import static com.telenav.kivakit.core.ensure.Ensure.fail;
 import static com.telenav.kivakit.core.ensure.Ensure.unsupported;
 import static com.telenav.kivakit.core.language.module.PackageReference.packageReference;
 import static com.telenav.kivakit.core.messaging.Listener.throwingListener;
@@ -264,6 +265,20 @@ public class Package extends BaseRepeater implements ResourceFolder<Package>
     public PackageReference reference()
     {
         return packageReference(path().packageType(), path());
+    }
+
+    @Override
+    public ResourceFolder<?> relativeTo(ResourceFolder<?> folder)
+    {
+        if (folder instanceof Package)
+        {
+            var relativeTo = (Package) folder;
+            return Package.packageForPath(this, (PackagePath) packagePath.relativeTo(relativeTo.packagePath));
+        }
+        else
+        {
+            return fail("Package can only be relative to another package");
+        }
     }
 
     @Override

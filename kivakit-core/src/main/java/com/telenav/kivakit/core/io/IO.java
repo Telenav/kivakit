@@ -41,6 +41,7 @@ import java.io.Writer;
 import java.util.stream.Collectors;
 import java.util.zip.ZipFile;
 
+import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
 import static com.telenav.kivakit.core.io.IO.CopyStyle.BUFFERED;
 
 /**
@@ -219,6 +220,9 @@ public class IO
     public static boolean copyAndClose(InputStream input,
                                        OutputStream output)
     {
+        ensureNotNull(input);
+        ensureNotNull(output);
+        
         try
         {
             return copy(input, output);

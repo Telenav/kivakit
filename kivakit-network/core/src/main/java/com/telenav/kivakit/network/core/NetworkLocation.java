@@ -43,29 +43,42 @@ import java.net.URLDecoder;
 import java.nio.charset.StandardCharsets;
 
 /**
- * A network location with a {@link Port}, {@link NetworkPath}, {@link NetworkAccessConstraints} and optional {@link
- * QueryParameters}.
+ * A network location with a {@link Port}, {@link NetworkPath}, {@link NetworkAccessConstraints} and optional
+ * {@link QueryParameters}.
  *
  * @author jonathanl (shibo)
  */
+@SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramNetworkLocation.class)
 @LexakaiJavadoc(complete = true)
 public class NetworkLocation implements Stringable, Comparable<NetworkLocation>
 {
     private static final Logger LOGGER = LoggerFactory.newLogger();
 
-    public static NetworkLocation parseNetworkLocation(Listener listener, String value)
+    public static NetworkLocation networkLocation(Listener listener, URI uri)
     {
         try
         {
-            var uri = new URI(value);
             var location = new NetworkLocation(NetworkPath.networkPath(listener, uri));
             location.queryParameters(new QueryParameters(uri.getQuery()));
             var url = uri.toURL();
             location.reference(url.getRef());
             return location;
         }
-        catch (URISyntaxException | MalformedURLException e)
+        catch (Exception e)
+        {
+            listener.problem("Could not convert URI to NetworkLocation: $", uri);
+            return null;
+        }
+    }
+
+    public static NetworkLocation parseNetworkLocation(Listener listener, String value)
+    {
+        try
+        {
+            return networkLocation(listener, new URI(value));
+        }
+        catch (URISyntaxException e)
         {
             listener.problem(e, "Bad network location ${debug}", value);
             return null;

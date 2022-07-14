@@ -23,8 +23,6 @@ import com.telenav.kivakit.network.core.NetworkLocation;
 import com.telenav.kivakit.network.http.lexakai.DiagramHttp;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.client.methods.HttpUriRequest;
 
 import static com.telenav.kivakit.core.ensure.Ensure.ensure;
 
@@ -41,23 +39,5 @@ public class HttpGetResource extends BaseHttpResource
     {
         super(location, constraints);
         ensure(location.port().isHttp());
-    }
-
-    @Override
-    protected HttpUriRequest newRequest()
-    {
-        var uri = asUri();
-        var request = new HttpGet(uri);
-        onInitialize(request);
-        return request;
-    }
-
-    /**
-     * Method to allow super classes to add parameters / headers.
-     *
-     * @param get The get to be sent.
-     */
-    protected void onInitialize(HttpGet get)
-    {
     }
 }

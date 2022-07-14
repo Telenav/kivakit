@@ -8,8 +8,7 @@ open module kivakit.network.http
             with com.telenav.kivakit.network.http.HttpGetResourceResolver;
 
     // HTTP
-    requires org.apache.httpcomponents.httpclient;
-    requires org.apache.httpcomponents.httpcore;
+    requires java.net.http;
 
     // Module exports
     exports com.telenav.kivakit.network.http;

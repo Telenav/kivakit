@@ -27,6 +27,7 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
  * @param <Model> The type of object to initialize
  * @author jonathanl (shibo)
  */
+@SuppressWarnings("unused")
 @FunctionalInterface
 @UmlClassDiagram(diagram = DiagramModel.class)
 public interface Initializer<Model>

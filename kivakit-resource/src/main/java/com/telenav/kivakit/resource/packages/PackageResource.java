@@ -30,6 +30,7 @@ import com.telenav.kivakit.filesystem.FilePath;
 import com.telenav.kivakit.interfaces.comparison.Matcher;
 import com.telenav.kivakit.resource.FileName;
 import com.telenav.kivakit.resource.Resource;
+import com.telenav.kivakit.resource.ResourceFolder;
 import com.telenav.kivakit.resource.ResourceIdentifier;
 import com.telenav.kivakit.resource.ResourcePath;
 import com.telenav.kivakit.resource.ResourcePathed;
@@ -200,6 +201,13 @@ public class PackageResource extends BaseReadableResource
             return Objects.equalPairs(packagePath, that.packagePath, name, that.name);
         }
         return false;
+    }
+
+    @Override
+    public Resource relativeTo(ResourceFolder<?> folder)
+    {
+        var relativePath = packagePath.relativeTo(folder.path());
+        return PackageResource.packageResource(this, (PackagePath) relativePath, fileName());
     }
 
     @Override

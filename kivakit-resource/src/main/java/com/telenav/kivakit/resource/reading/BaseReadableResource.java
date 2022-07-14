@@ -40,6 +40,7 @@ import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.io.InputStream;
+import java.io.OutputStream;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.util.Objects;
@@ -149,7 +150,9 @@ public abstract class BaseReadableResource extends BaseRepeater implements Resou
         if (mode.canCopy(this, destination))
         {
             // copy the resource stream (which might involve compression or decompression or both).
-            if (!IO.copyAndClose(openForReading(reporter), destination.openForWriting()))
+            var input = openForReading(reporter);
+            var output = destination.openForWriting();
+            if (!IO.copyAndClose(input, output))
             {
                 throw new IllegalStateException("Unable to copy " + this + " to " + destination);
             }

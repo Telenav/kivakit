@@ -670,7 +670,7 @@ public class File extends BaseWritableResource implements FileSystemObject
     }
 
     @Override
-    public File relativeTo(final ResourceFolder<?> folder)
+    public File relativeTo(ResourceFolder<?> folder)
     {
         var service = ((Folder) folder).service();
         return File.file(this.service.relativePath(service).withoutTrailingSlash());

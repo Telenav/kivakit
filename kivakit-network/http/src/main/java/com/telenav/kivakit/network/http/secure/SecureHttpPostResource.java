@@ -24,20 +24,18 @@ import com.telenav.kivakit.network.http.HttpPostResource;
 import com.telenav.kivakit.network.http.lexakai.DiagramHttps;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
-import org.apache.http.impl.client.DefaultHttpClient;
+
+import static com.telenav.kivakit.network.core.NetworkAccessConstraints.DEFAULT;
 
 /**
  * A resource accessed by HTTPS POST at the given network location using the given access constraints.
  *
  * @author jonathanl (shibo)
  */
-@SuppressWarnings("deprecation")
 @UmlClassDiagram(diagram = DiagramHttps.class)
 @LexakaiJavadoc(complete = true)
 public class SecureHttpPostResource extends HttpPostResource
 {
-    private boolean ignoreInvalidCertificates;
-
     public SecureHttpPostResource(NetworkLocation networkLocation, NetworkAccessConstraints constraints)
     {
         super(networkLocation, constraints);
@@ -48,14 +46,8 @@ public class SecureHttpPostResource extends HttpPostResource
         }
     }
 
-    public void ignoreInvalidCertificates(boolean ignore)
+    public SecureHttpPostResource(final SecureHttpNetworkLocation location)
     {
-        ignoreInvalidCertificates = ignore;
-    }
-
-    @Override
-    protected DefaultHttpClient newClient()
-    {
-        return ignoreInvalidCertificates ? new InvalidCertificateTrustingHttpClient() : new DefaultHttpClient();
+        super(location, DEFAULT);
     }
 }

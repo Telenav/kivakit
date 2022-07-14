@@ -23,7 +23,8 @@ import com.telenav.kivakit.network.core.NetworkLocation;
 import com.telenav.kivakit.network.http.lexakai.DiagramHttp;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
-import org.apache.http.client.methods.HttpPost;
+
+import java.net.http.HttpRequest;
 
 /**
  * A resource accessed by HTTP POST at the given network location using the given access constraints.
@@ -37,22 +38,5 @@ public class HttpPostResource extends BaseHttpResource
     public HttpPostResource(NetworkLocation networkLocation, NetworkAccessConstraints constraints)
     {
         super(networkLocation, constraints);
-    }
-
-    @Override
-    protected HttpPost newRequest()
-    {
-        var request = new HttpPost(asUri());
-        onInitialize(request);
-        return request;
-    }
-
-    /**
-     * Method to allow super classes to add parameters / headers.
-     *
-     * @param post The post to be sent.
-     */
-    protected void onInitialize(HttpPost post)
-    {
     }
 }

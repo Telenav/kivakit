@@ -21,6 +21,7 @@ package com.telenav.kivakit.network.http.secure;
 import com.telenav.kivakit.network.core.NetworkPath;
 import com.telenav.kivakit.network.http.HttpGetResource;
 import com.telenav.kivakit.network.http.HttpNetworkLocation;
+import com.telenav.kivakit.network.http.HttpPostResource;
 import com.telenav.kivakit.network.http.lexakai.DiagramHttps;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
@@ -50,5 +51,11 @@ public class SecureHttpNetworkLocation extends HttpNetworkLocation
     public HttpGetResource get()
     {
         return new SecureHttpGetResource(this);
+    }
+
+    @Override
+    public HttpPostResource post()
+    {
+        return new SecureHttpPostResource(this);
     }
 }
