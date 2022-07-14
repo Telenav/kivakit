@@ -268,6 +268,7 @@ public abstract class BaseReadableResource extends BaseRepeater implements Resou
         var in = onOpenForReading();
         if (in == null)
         {
+            problem("Unable to open: $", this);
             return null;
         }
 

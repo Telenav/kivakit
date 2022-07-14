@@ -19,7 +19,6 @@
 package com.telenav.kivakit.network.http;
 
 import com.telenav.kivakit.core.collections.map.VariableMap;
-import com.telenav.kivakit.core.io.StringInputStream;
 import com.telenav.kivakit.core.messaging.messages.status.Problem;
 import com.telenav.kivakit.network.core.BaseNetworkResource;
 import com.telenav.kivakit.network.core.NetworkAccessConstraints;
@@ -39,6 +38,7 @@ import java.net.http.HttpResponse;
 import java.util.Objects;
 
 import static java.net.http.HttpRequest.BodyPublishers.noBody;
+import static java.net.http.HttpResponse.BodyHandlers.ofInputStream;
 import static java.net.http.HttpResponse.BodyHandlers.ofString;
 
 /**
@@ -73,7 +73,7 @@ public abstract class BaseHttpResource extends BaseNetworkResource implements Ht
     @UmlAggregation
     private final NetworkLocation networkLocation;
 
-    private HttpResponse<String> response;
+    private HttpResponse<InputStream> response;
 
     private final VariableMap<String> responseHeader = new VariableMap<>();
 
@@ -190,13 +190,17 @@ public abstract class BaseHttpResource extends BaseNetworkResource implements Ht
     {
         try
         {
+            // Send HTTP request
             send(newRequest());
 
+            // check if the status is okay,
             if (status().isOkay())
             {
+                // then get the content encoding
                 contentEncoding = response.headers().firstValue("Content-Encoding").orElse(null);
-                var body = response.body();
-                return new StringInputStream(response.body());
+
+                // and return the body as an input stream.
+                return response.body();
             }
             else
             {
@@ -281,7 +285,7 @@ public abstract class BaseHttpResource extends BaseNetworkResource implements Ht
         {
             try
             {
-                response = newClient().send(httpRequest, ofString());
+                response = newClient().send(httpRequest, ofInputStream());
                 statusCode = response.statusCode();
                 if (responseHeader != null)
                 {

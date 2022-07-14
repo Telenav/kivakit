@@ -163,7 +163,7 @@ public final class PackagePath extends ResourcePath
 
     public PackageReference asPackageReference()
     {
-        return packageReference(this);
+        return packageReference(packageType, this);
     }
 
     /**
