@@ -57,6 +57,12 @@ jobs:
       - name: Set up MAVEN_OPTS
         run: echo "MAVEN_OPTS=\"-XX:+UseG1GC -Dmaven.repo.local=$MAVEN_REPO --add-opens=java.base/java.util=ALL-UNNAMED --add-opens=java.base/java.lang.reflect=ALL-UNNAMED --add-opens=java.base/java.text=ALL-UNNAMED --add-opens=java.desktop/java.awt.font=ALL-UNNAMED\"" >> $GITHUB_ENV
 
+      # We need this because we will create a commit in order to ensure that when
+      # The build runs, there are no local changes (cactus may check this, so a
+      # consistent state is good to have)
+      - name: Configure Git
+        run: git config --global user.email "nobody@nowhere.com" && git config --global user.name "Nobody"
+
       - name: Set up Java
         uses: actions/setup-java@v3
         with:
@@ -74,6 +80,9 @@ jobs:
       - name: Init Submodules
         run: cd $GITHUB_WORKSPACE/telenav-build && git submodule init
 
+      # Delete the assets submodules before we do anything, since we
+      # do not need them and they are huge and will slow down the job
+      # considerably.
       - name: Remove Cactus Assets Before Updating Submodules
         run: cd $GITHUB_WORKSPACE/telenav-build && git rm -f cactus-assets
 
@@ -86,14 +95,18 @@ jobs:
       - name: Remove Mesakit Assets Before Updating Submodules
         run: cd $GITHUB_WORKSPACE/telenav-build && git rm -f mesakit-assets
 
+      # For consistency, ensure nothing we run (such as cactus tests) will
+      # detect that they are running in a modified repository
       - name: Ensure No Local Changes
         run: cd $GITHUB_WORKSPACE/telenav-build && git commit -m "----remove-assets----"
 
+      # Now we are ready to pull git submodules
       - name: Update Submodules
         run: cd $GITHUB_WORKSPACE/telenav-build && git submodule upadte
 
+      # This will fail over to the develop branch
       - name: Checkout Branch
-        run: cd $GITHUB_WORKSPACE/telenav-build && mvn -Dcactus.scope=all-project-families -Dcactus.create-branches=true -Dcactus.target-branch=$GITHUB_REF_NAME -Dcactus.permit-local-changes=false -Dcactus.update-root=false -Dpush=false com.telenav.cactus:cactus-maven-plugin:$CACTUS_V:checkout
+        run: cd $GITHUB_WORKSPACE/telenav-build && mvn -Dcactus.base-branch=develop -Dcactus.fetch-first=false -Dcactus.scope=all-project-families -Dcactus.create-branches=true -Dcactus.target-branch=$GITHUB_REF_NAME -Dcactus.permit-local-changes=false -Dcactus.update-root=false -Dpush=false com.telenav.cactus:cactus-maven-plugin:$CACTUS_V:checkout
 
       - name: Move Project to Target Ref
         run: cd $GITHUB_WORKSPACE/telenav-build/$PROJECT && git checkout $GITHUB_REF
