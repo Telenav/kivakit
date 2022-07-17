@@ -102,7 +102,7 @@ jobs:
 
       # Now we are ready to pull git submodules
       - name: Update Submodules
-        run: cd $GITHUB_WORKSPACE/telenav-build && git submodule upadte
+        run: cd $GITHUB_WORKSPACE/telenav-build && git submodule update
 
       # This will fail over to the develop branch
       - name: Checkout Branch
