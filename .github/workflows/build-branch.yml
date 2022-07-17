@@ -1,22 +1,42 @@
 #///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 #
-#  © 2021 Telenav, Inc.
+#  © 2022 Telenav, Inc.
 #  Licensed under Apache License, Version 2.0
 #
 #///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 #
-# GitHub action that builds code that is pushed into a feature branch
+# GitHub action that builds code on push or pull request.
 #
+
+defaults:
+  run:
+    shell: bash
+
+env:
+    CACTUS_V: 1.5.18
 
 name: "Build Branch"
 
 on:
   workflow_dispatch:
   push:
-    branches: [ master, develop, release/**, feature/**, hotfix/** ]
+    paths-ignore:
+        - 'documentation/**'
+        - '**/*.md'
+    branches:
+      - develop
+      - 'release/**'
+      - feature/**'
+      - 'hotfix/**'
+      - '!*-wip'
   pull_request:
-    branches: [ master, develop, release/**, feature/**, hotfix/** ]
+    branches:
+      - develop
+      - 'release/**'
+      - feature/**'
+      - 'hotfix/**'
+      - '!*-wip'
 
 jobs:
   build:
@@ -24,6 +44,18 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+
+      # Use an env var for the project name, so this workflow can be reused
+      # for everything. Eventually we can make it a shared workflow once it's
+      # sufficiently robust.
+      - name: Set up PROJECT Environment
+        run: echo "PROJECT=$(basename $GITHUB_REPOSITORY)" >> $GITHUB_ENV
+
+      - name: Set up Maven Environment
+        run: WHEN=$(date '+%s') echo "MAVEN_REPO=/tmp/mr-$WHEN" >> $GITHUB_ENV
+
+      - name: Set up MAVEN_OPTS
+        run: echo "MAVEN_OPTS=\"-XX:+UseG1GC -Dmaven.repo.local=$MAVEN_REPO --add-opens=java.base/java.util=ALL-UNNAMED --add-opens=java.base/java.lang.reflect=ALL-UNNAMED --add-opens=java.base/java.text=ALL-UNNAMED --add-opens=java.desktop/java.awt.font=ALL-UNNAMED\"" >> $GITHUB_ENV
 
       - name: Set up Java
         uses: actions/setup-java@v3
@@ -36,13 +68,41 @@ jobs:
         with:
           maven-version: 3.8.5
 
-      - name: Build
-        run: |
-          git clone https://github.com/Telenav/telenav-build.git && \
-          cd telenav-build && \
-          git submodule init && \
-          git submodule update --init --recursive --depth 1 && \
-          rm -rf *-assets && \
-          git submodule foreach git checkout $GITHUB_REF_NAME && \
-          mvn --no-transfer-progress --quiet clean install || exit 1
-        shell: bash
+      - name: Clone Telenav-Build
+        run: git clone https://github.com/Telenav/telenav-build.git
+
+      - name: Init Submodules
+        run: cd $GITHUB_WORKSPACE/telenav-build && git submodule init
+
+      - name: Remove Cactus Assets Before Updating Submodules
+        run: cd $GITHUB_WORKSPACE/telenav-build && git rm -f cactus-assets
+
+      - name: Remove Kivakit Assets Before Updating Submodules
+        run: cd $GITHUB_WORKSPACE/telenav-build && git rm -f kivakit-assets
+
+      - name: Remove Lexakai Assets Before Updating Submodules
+        run: cd $GITHUB_WORKSPACE/telenav-build && git rm -f lexakai-assets
+
+      - name: Remove Mesakit Assets Before Updating Submodules
+        run: cd $GITHUB_WORKSPACE/telenav-build && git rm -f mesakit-assets
+
+      - name: Ensure No Local Changes
+        run: cd $GITHUB_WORKSPACE/telenav-build && git commit -m "----remove-assets----"
+
+      - name: Update Submodules
+        run: cd $GITHUB_WORKSPACE/telenav-build && git submodule upadte
+
+      - name: Checkout Branch
+        run: cd $GITHUB_WORKSPACE/telenav-build && mvn -Dcactus.scope=all-project-families -Dcactus.create-branches=true -Dcactus.target-branch=$GITHUB_REF_NAME -Dcactus.permit-local-changes=false -Dcactus.update-root=false -Dpush=false com.telenav.cactus:cactus-maven-plugin:$CACTUS_V:checkout
+
+      - name: Move Project to Target Ref
+        run: cd $GITHUB_WORKSPACE/telenav-build/$PROJECT && git checkout $GITHUB_REF
+
+      - name: Build Superpoms
+        run: cd $GITHUB_WORKSPACE/telenav-build && mvn --no-transfer-progress -f telenav-superpom/pom.xml
+
+      - name: Build Target Commit
+        run: cd $GITHUB_WORKSPACE/telenav-build && mvn --no-transfer-progress install
+        
+      - name: Clean up Maven Repo
+        run: rm -Rf $MAVEN_REPO
