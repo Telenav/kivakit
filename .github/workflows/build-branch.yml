@@ -31,12 +31,14 @@ on:
       - 'hotfix/**'
       - '!*-wip'
   pull_request:
+    paths-ignore:
+        - 'documentation/**'
+        - '**/*.md'
     branches:
       - develop
       - 'release/**'
       - feature/**'
       - 'hotfix/**'
-      - '!*-wip'
 
 jobs:
   build:
@@ -112,7 +114,7 @@ jobs:
       # See: https://www.baeldung.com/maven-logging for a summary of logging
       # options
       - name: Write Maven JVM Options Config File
-        run: echo "-XX:+UseG1GC -Dcactus-maven-plugin.version=$CACTUS_V -Dorg.slf4j.simpleLogger.defaultLogLevel=error -Dmaven.repo.local=$MAVEN_REPO --add-opens=java.base/java.util=ALL-UNNAMED --add-opens=java.base/java.lang.reflect=ALL-UNNAMED --add-opens=java.base/java.text=ALL-UNNAMED --add-opens=java.desktop/java.awt.font=ALL-UNNAMED" >> $GITHUB_WORKSPACE/telenav-build/.mvn/jvm.config
+        run: echo "-XX:+UseG1GC -Dcactus-maven-plugin.version=$CACTUS_V -Dorg.slf4j.simpleLogger.defaultLogLevel=warn -Dmaven.repo.local=$MAVEN_REPO --add-opens=java.base/java.util=ALL-UNNAMED --add-opens=java.base/java.lang.reflect=ALL-UNNAMED --add-opens=java.base/java.text=ALL-UNNAMED --add-opens=java.desktop/java.awt.font=ALL-UNNAMED" >> $GITHUB_WORKSPACE/telenav-build/.mvn/jvm.config
 
       # Maven arguments we want for everything.
       # RESIST the temptation to add --quiet here - it will suppress critical
