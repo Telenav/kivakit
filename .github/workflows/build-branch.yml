@@ -50,9 +50,12 @@ jobs:
       # sufficiently robust.
       - name: Set up PROJECT Environment
         run: echo "PROJECT=$(basename $GITHUB_REPOSITORY)" >> $GITHUB_ENV
+        
+      - name: Collect Timestamp for Maven Repo
+        run: echo "WHEN=$(date '+%s')" >> $GITHUB_ENV
 
       - name: Set up Maven Environment
-        run: WHEN=`date '+%s'` echo "MAVEN_REPO=/tmp/mr-$WHEN" >> $GITHUB_ENV
+        run: echo "MAVEN_REPO=/tmp/mr-${WHEN}" >> $GITHUB_ENV
 
       - name: Set up MAVEN_OPTS
         run: echo "MAVEN_OPTS=\"-XX:+UseG1GC -Dmaven.repo.local=$MAVEN_REPO --add-opens=java.base/java.util=ALL-UNNAMED --add-opens=java.base/java.lang.reflect=ALL-UNNAMED --add-opens=java.base/java.text=ALL-UNNAMED --add-opens=java.desktop/java.awt.font=ALL-UNNAMED\"" >> $GITHUB_ENV
@@ -62,7 +65,7 @@ jobs:
         run: echo $MAVEN_OPTS
         
       # Debug some more - quoting issues
-      - name: Print MAVEN_OPTS
+      - name: Print Environment
         run: cat $GITHUB_ENV
 
       # We need this because we will create a commit in order to ensure that when
