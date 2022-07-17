@@ -109,12 +109,23 @@ jobs:
       - name: Ignore Maven Config Dir
         run: echo ".mvn/" >> $GITHUB_WORKSPACE/telenav-build/.gitignore
 
-      - name: Write Maven JVM Config Dir
-        run: echo "-XX:+UseG1GC -Dmaven.repo.local=$MAVEN_REPO --add-opens=java.base/java.util=ALL-UNNAMED --add-opens=java.base/java.lang.reflect=ALL-UNNAMED --add-opens=java.base/java.text=ALL-UNNAMED --add-opens=java.desktop/java.awt.font=ALL-UNNAMED" >> $GITHUB_WORKSPACE/telenav-build/.mvn/jvm.config
+      # See: https://www.baeldung.com/maven-logging for a summary of logging
+      # options
+      - name: Write Maven JVM Options Config File
+        run: echo "-XX:+UseG1GC -Dcactus-maven-plugin.version=$CACTUS_V -Dorg.slf4j.simpleLogger.defaultLogLevel=error -Dmaven.repo.local=$MAVEN_REPO --add-opens=java.base/java.util=ALL-UNNAMED --add-opens=java.base/java.lang.reflect=ALL-UNNAMED --add-opens=java.base/java.text=ALL-UNNAMED --add-opens=java.desktop/java.awt.font=ALL-UNNAMED" >> $GITHUB_WORKSPACE/telenav-build/.mvn/jvm.config
+
+      # Maven arguments we want for everything.
+      # RESIST the temptation to add --quiet here - it will suppress critical
+      # diagnostics when there are build file or plugin problems.  Also
+      # do not add -T / --threads here - it is faster but hit-or-miss you're
+      # relying on every plugin author whose code might run actually being good
+      # at concurrent programming.
+      - name: Write Maven Config File
+        run: echo "--no-transfer-progress --batch-mode" >> $GITHUB_WORKSPACE/telenav-build/.mvn/maven.config
         
       # For consistency, ensure nothing we run (such as cactus tests) will
       # detect that they are running in a modified repository
-      - name: Ensure No Local Changes
+      - name: Ensure No Apparent Local Changes
         run: cd $GITHUB_WORKSPACE/telenav-build && git add -A && git commit -m "----remove-assets----"
 
       # Now we are ready to pull git submodules
@@ -123,16 +134,22 @@ jobs:
 
       # This will fail over to the develop branch
       - name: Checkout Branch
-        run: cd $GITHUB_WORKSPACE/telenav-build && mvn --no-transfer-progress -Dcactus.permit-local-changes=true -Dcactus.base-branch=develop -Dcactus.fetch-first=false -Dcactus.scope=all-project-families -Dcactus.create-branches=true -Dcactus.target-branch=$GITHUB_REF_NAME -Dcactus.permit-local-changes=false -Dcactus.update-root=false -Dpush=false com.telenav.cactus:cactus-maven-plugin:$CACTUS_V:checkout
+        run: cd $GITHUB_WORKSPACE/telenav-build && mvn -Dcactus.permit-local-changes=true -Dcactus.base-branch=develop -Dcactus.fetch-first=false -Dcactus.scope=all-project-families -Dcactus.create-branches=true -Dcactus.target-branch=$GITHUB_REF_NAME -Dcactus.permit-local-changes=false -Dcactus.update-root=false -Dpush=false com.telenav.cactus:cactus-maven-plugin:$CACTUS_V:checkout
 
+      # Check out the pull request branch or commit that we
+      # want to test
       - name: Move Project to Target Ref
         run: cd $GITHUB_WORKSPACE/telenav-build/$PROJECT && git checkout $GITHUB_REF
 
+      # Need to build superpoms, as they may be unpublished
       - name: Build Superpoms
-        run: cd $GITHUB_WORKSPACE/telenav-build && mvn --no-transfer-progress -f telenav-superpom/pom.xml install
+        run: cd $GITHUB_WORKSPACE/telenav-build && mvn -f telenav-superpom/pom.xml install
 
+      # Now build the real thing
       - name: Build Target Commit
-        run: cd $GITHUB_WORKSPACE/telenav-build && mvn --no-transfer-progress install
+        run: cd $GITHUB_WORKSPACE/telenav-build && mvn install
 
+      # And *always* delete the local repo
       - name: Clean Up Local Maven Repo
+        if: always()
         run: rm -Rf $MAVEN_REPO
