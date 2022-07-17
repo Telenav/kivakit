@@ -50,21 +50,14 @@ jobs:
       # sufficiently robust.
       - name: Set up PROJECT Environment
         run: echo "PROJECT=$(basename $GITHUB_REPOSITORY)" >> $GITHUB_ENV
-        
+
       - name: Collect Timestamp for Maven Repo
         run: echo "WHEN=$(date '+%s')" >> $GITHUB_ENV
 
-      - name: Set up Maven Environment
+      - name: Set Up Empty Local Maven Repository
         run: echo "MAVEN_REPO=/tmp/mr-${WHEN}" >> $GITHUB_ENV
 
-      - name: Set up MAVEN_OPTS
-        run: echo "MAVEN_OPTS=\"-XX:+UseG1GC -Dmaven.repo.local=$MAVEN_REPO --add-opens=java.base/java.util=ALL-UNNAMED --add-opens=java.base/java.lang.reflect=ALL-UNNAMED --add-opens=java.base/java.text=ALL-UNNAMED --add-opens=java.desktop/java.awt.font=ALL-UNNAMED\"" >> $GITHUB_ENV
-        
-      # Debug shell-quoting issues
-      - name: Print MAVEN_OPTS
-        run: echo $MAVEN_OPTS
-        
-      # Debug some more - quoting issues
+      # Debug shell quoting
       - name: Print Environment
         run: cat $GITHUB_ENV
 
@@ -74,13 +67,13 @@ jobs:
       - name: Configure Git
         run: git config --global user.email "nobody@nowhere.com" && git config --global user.name "Nobody"
 
-      - name: Set up Java
+      - name: Set Up Java
         uses: actions/setup-java@v3
         with:
           java-version: '17'
           distribution: 'temurin'
 
-      - name: Set up Maven
+      - name: Set Up Maven
         uses: stCarolas/setup-maven@v4.3
         with:
           maven-version: 3.8.5
@@ -105,11 +98,24 @@ jobs:
 
       - name: Remove Mesakit Assets Before Updating Submodules
         run: cd $GITHUB_WORKSPACE/telenav-build && git rm -f mesakit-assets
+        
+      # If we use MAVEN_OPTS, we wind up in a shell-quoting war between yaml
+      # and bash that ends in NoClassDefFoundError:-XX:+UseG1GC - so instead,
+      # we write .mvn/jvm.config instead, and make sure that it won't get
+      # picked up as a local change by the branch switch mojo by ignoring it
+      - name: Set Up Maven JVM Config Dir
+        run: mkdir -p $GITHUB_WORKSPACE/telenav-build/.mvn
 
+      - name: Ignore Maven Config Dir
+        run: echo ".mvn/" >> $GITHUB_WORKSPACE/telenav-build/.gitignore
+
+      - name: Write Maven JVM Config Dir
+        run: echo "-XX:+UseG1GC -Dmaven.repo.local=$MAVEN_REPO --add-opens=java.base/java.util=ALL-UNNAMED --add-opens=java.base/java.lang.reflect=ALL-UNNAMED --add-opens=java.base/java.text=ALL-UNNAMED --add-opens=java.desktop/java.awt.font=ALL-UNNAMED" >> $GITHUB_WORKSPACE/telenav-build/.mvn/jvm.config
+        
       # For consistency, ensure nothing we run (such as cactus tests) will
       # detect that they are running in a modified repository
       - name: Ensure No Local Changes
-        run: cd $GITHUB_WORKSPACE/telenav-build && git commit -m "----remove-assets----"
+        run: cd $GITHUB_WORKSPACE/telenav-build && git add -A && git commit -m "----remove-assets----"
 
       # Now we are ready to pull git submodules
       - name: Update Submodules
@@ -117,7 +123,7 @@ jobs:
 
       # This will fail over to the develop branch
       - name: Checkout Branch
-        run: cd $GITHUB_WORKSPACE/telenav-build && mvn -Dcactus.base-branch=develop -Dcactus.fetch-first=false -Dcactus.scope=all-project-families -Dcactus.create-branches=true -Dcactus.target-branch=$GITHUB_REF_NAME -Dcactus.permit-local-changes=false -Dcactus.update-root=false -Dpush=false com.telenav.cactus:cactus-maven-plugin:$CACTUS_V:checkout
+        run: cd $GITHUB_WORKSPACE/telenav-build && mvn -Dcactus.permit-local-changes=true -Dcactus.base-branch=develop -Dcactus.fetch-first=false -Dcactus.scope=all-project-families -Dcactus.create-branches=true -Dcactus.target-branch=$GITHUB_REF_NAME -Dcactus.permit-local-changes=false -Dcactus.update-root=false -Dpush=false com.telenav.cactus:cactus-maven-plugin:$CACTUS_V:checkout
 
       - name: Move Project to Target Ref
         run: cd $GITHUB_WORKSPACE/telenav-build/$PROJECT && git checkout $GITHUB_REF
@@ -127,6 +133,6 @@ jobs:
 
       - name: Build Target Commit
         run: cd $GITHUB_WORKSPACE/telenav-build && mvn --no-transfer-progress install
-        
-      - name: Clean up Maven Repo
+
+      - name: Clean Up Local Maven Repo
         run: rm -Rf $MAVEN_REPO
