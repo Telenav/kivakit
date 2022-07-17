@@ -55,7 +55,7 @@ jobs:
         run: WHEN=$(date '+%s') echo "MAVEN_REPO=/tmp/mr-$WHEN" >> $GITHUB_ENV
 
       - name: Set up MAVEN_OPTS
-        run: echo "MAVEN_OPTS=\"-XX:+UseG1GC -Dmaven.repo.local=$MAVEN_REPO --add-opens=java.base/java.util=ALL-UNNAMED --add-opens=java.base/java.lang.reflect=ALL-UNNAMED --add-opens=java.base/java.text=ALL-UNNAMED --add-opens=java.desktop/java.awt.font=ALL-UNNAMED\"" >> $GITHUB_ENV
+        run: echo "MAVEN_OPTS=\'-XX:+UseG1GC -Dmaven.repo.local=$MAVEN_REPO --add-opens=java.base/java.util=ALL-UNNAMED --add-opens=java.base/java.lang.reflect=ALL-UNNAMED --add-opens=java.base/java.text=ALL-UNNAMED --add-opens=java.desktop/java.awt.font=ALL-UNNAMED\'" >> $GITHUB_ENV
 
       # We need this because we will create a commit in order to ensure that when
       # The build runs, there are no local changes (cactus may check this, so a
