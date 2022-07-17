@@ -123,13 +123,13 @@ jobs:
 
       # This will fail over to the develop branch
       - name: Checkout Branch
-        run: cd $GITHUB_WORKSPACE/telenav-build && mvn -Dcactus.permit-local-changes=true -Dcactus.base-branch=develop -Dcactus.fetch-first=false -Dcactus.scope=all-project-families -Dcactus.create-branches=true -Dcactus.target-branch=$GITHUB_REF_NAME -Dcactus.permit-local-changes=false -Dcactus.update-root=false -Dpush=false com.telenav.cactus:cactus-maven-plugin:$CACTUS_V:checkout
+        run: cd $GITHUB_WORKSPACE/telenav-build && mvn --no-transfer-progress -Dcactus.permit-local-changes=true -Dcactus.base-branch=develop -Dcactus.fetch-first=false -Dcactus.scope=all-project-families -Dcactus.create-branches=true -Dcactus.target-branch=$GITHUB_REF_NAME -Dcactus.permit-local-changes=false -Dcactus.update-root=false -Dpush=false com.telenav.cactus:cactus-maven-plugin:$CACTUS_V:checkout
 
       - name: Move Project to Target Ref
         run: cd $GITHUB_WORKSPACE/telenav-build/$PROJECT && git checkout $GITHUB_REF
 
       - name: Build Superpoms
-        run: cd $GITHUB_WORKSPACE/telenav-build && mvn --no-transfer-progress -f telenav-superpom/pom.xml
+        run: cd $GITHUB_WORKSPACE/telenav-build && mvn --no-transfer-progress -f telenav-superpom/pom.xml install
 
       - name: Build Target Commit
         run: cd $GITHUB_WORKSPACE/telenav-build && mvn --no-transfer-progress install
