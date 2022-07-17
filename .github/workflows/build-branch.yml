@@ -56,6 +56,14 @@ jobs:
 
       - name: Set up MAVEN_OPTS
         run: echo "MAVEN_OPTS=\"-XX:+UseG1GC -Dmaven.repo.local=$MAVEN_REPO --add-opens=java.base/java.util=ALL-UNNAMED --add-opens=java.base/java.lang.reflect=ALL-UNNAMED --add-opens=java.base/java.text=ALL-UNNAMED --add-opens=java.desktop/java.awt.font=ALL-UNNAMED\"" >> $GITHUB_ENV
+        
+      # Debug shell-quoting issues
+      - name: Print MAVEN_OPTS
+        run: echo $MAVEN_OPTS
+        
+      # Debug some more - quoting issues
+      - name: Print MAVEN_OPTS
+        run: cat $GITHUB_ENV
 
       # We need this because we will create a commit in order to ensure that when
       # The build runs, there are no local changes (cactus may check this, so a
