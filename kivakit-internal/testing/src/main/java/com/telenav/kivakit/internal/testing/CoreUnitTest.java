@@ -371,7 +371,6 @@ public abstract class CoreUnitTest extends TestWatcher implements
 
     protected <T extends Project> void initializeProject(Class<T> project)
     {
-
         Listener.emptyListener().listenTo(resolveProject(project)).initialize();
     }
 

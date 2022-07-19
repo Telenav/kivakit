@@ -100,7 +100,7 @@ public abstract class Project extends BaseRepeater implements
      * @return The singleton project object
      */
     @SuppressWarnings("unchecked")
-    public static <T extends Project> T resolveProject(Class<T> type)
+    public static synchronized <T extends Project> T resolveProject(Class<T> type)
     {
         return (T) projects.get(type);
     }
