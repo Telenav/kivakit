@@ -143,7 +143,7 @@ public class Time extends BaseTime<Time>
      */
     public Duration elapsedSince()
     {
-        return elapsedSince(Time.now());
+        return Time.now().elapsedSince(this);
     }
 
     /**
