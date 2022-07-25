@@ -19,10 +19,11 @@
 package com.telenav.kivakit.core.logging.logs.text;
 
 import com.telenav.kivakit.core.collections.map.VariableMap;
-import com.telenav.kivakit.core.logging.logs.text.formatters.ColumnarLogFormatter;
+import com.telenav.kivakit.core.lexakai.DiagramLogs;
 import com.telenav.kivakit.core.logging.LogEntry;
 import com.telenav.kivakit.core.logging.logs.BaseLog;
-import com.telenav.kivakit.core.lexakai.DiagramLogs;
+import com.telenav.kivakit.core.logging.logs.text.formatters.BaseColumnarFormatter;
+import com.telenav.kivakit.core.logging.logs.text.formatters.NarrowLogFormatter;
 import com.telenav.kivakit.core.string.Formatter;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
@@ -43,12 +44,13 @@ public abstract class BaseTextLog extends BaseLog
     public enum Format
     {
         FORMATTED,
+        @SuppressWarnings("SpellCheckingInspection")
         UNFORMATTED,
     }
 
     private Format format = Format.FORMATTED;
 
-    private LogFormatter formatter = ColumnarLogFormatter.DEFAULT;
+    private LogFormatter formatter = BaseColumnarFormatter.get();
 
     @Override
     @UmlExcludeMember
@@ -83,6 +85,7 @@ public abstract class BaseTextLog extends BaseLog
         }
     }
 
+    @SuppressWarnings("SameParameterValue")
     private String format(LogEntry entry, Formatter.Format format)
     {
         return entry.format(formatter, format);
