@@ -26,75 +26,55 @@
 
 # kivakit 1.6.1 &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/logos/kivakit/kivakit-64.png" srcset="https://telenav.github.io/telenav-assets/images/logos/kivakit/kivakit-64-2x.png 2x"/>
 
-KivaKit (KEE-vah-KIT) is a set of integrated Java mini-frameworks that are potentially needed by any application or server.
+KivaKit is a new vision for Java coding that makes development faster and easier.
 
 <img src="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-512.png" srcset="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-512-2x.png 2x"/>
 
 [//]: # (start-user-text)
 
-<img src="https://telenav.github.io/telenav-assets/images/diagrams/mini-frameworks.svg" width="702"/>  
-
-<br/> 
-<br/>
-
-<img src="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-512.png" srcset="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-512-2x.png 2x"/>
-
 ### Quick Start <a name = "quick-start"></a>&nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/rocket-32.png" srcset="https://telenav.github.io/telenav-assets/images/icons/rocket-32-2x.png 2x"/>
 
-[**About KivaKit**](#about)  
+[**The KivaKit Manifesto**](https://medium.com/@jonathanlocke/kivakit-a-new-vision-for-java-66e7f6b18ae6)  
+[**KivaKit Articles**](#kivakit-reading-list)  
 [**Tutorial Articles**](https://state-of-the-art.org/)  
 [**Example Code**](https://github.com/Telenav/kivakit-examples)  
 [**How to Build This Project**](https://github.com/Telenav/telenav-build/blob/release/1.6.2/documentation/building.md) <!-- [cactus.replacement-branch-name] --> 
 
-
 ### Index <a name = "index"></a>
 
 [**Welcome!**](#welcome)  
+[**KivaKit Articles**](#kivakit-reading-list)  
 [**About KivaKit**](#about-kivakit)  
 [**Setup and Build**](#setup-and-build)  
-[**Reference**](#reference)  
-[**Project Resources**](#project-resources)  
 [**Development**](#development)  
+[**Downloads**](#downloads)  
+[**Reference**](#reference)  
+[**Change Log**](change-log.md)  
+[**Project Resources**](#project-resources)  
+[**Sub-Projects**](#sub-projects)  
+[**Javadoc Coverage**](#javadoc-coverage)
 
 <img src="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128.png" srcset="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128-2x.png 2x"/>
 
-### Welcome <a name = "welcome"></a>! <a name = "welcome"></a> &nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/stars-32.png" srcset="https://telenav.github.io/telenav-assets/images/icons/stars-32-2x.png 2x"/>
+### Welcome <a name = "welcome"></a>! &nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/stars-32.png" srcset="https://telenav.github.io/telenav-assets/images/icons/stars-32-2x.png 2x"/>
 
 *Perfection is achieved, not when there is nothing more to add, but when there is nothing left to take away.*
 
 &nbsp; &nbsp; &nbsp; &nbsp; &mdash; Antoine de Saint-Exup&eacute;ry
 
-> *The mission of KivaKit is to accelerate the development of Java software through the use of integrated, modular, object-oriented design.*
+> The mission of KivaKit is to provide a new vision for the development of Java  
+> software by providing a design system that takes code reuse to a new level.
 
-KivaKit extends the JDK to provide quick and easy solutions to common everyday software problems. It does this by providing new abstractions and APIs, and by simplifying existing APIs.
+KivaKit is more than an application framework. It's a new way to think about Java coding. 
 
-KivaKit is composed of a number of nested sub-projects that are Java 11+ modules. These modules address different areas of concern in developing Java applications. The resources below will help you to get started.
+KivaKit uses several key patterns to make coding easier, more consistent and more modular:
 
-<a name = "about"></a>
-<img src="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-512.png" srcset="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-512-2x.png 2x"/>
+ - Consistent object composition and behavior
+ - Components that are easy to build, discover and use
+ - Components that unify major JDK functionality
 
-### About KivaKit <a name = "about-kivakit"></a>
+The resources below will help you to get started.
 
-KivaKit is designed for use in everyday software development. KivaKit APIs work together through a set of common interfaces and components to provide a consistent and powerful development experience. Documentation and examples are provided, but much of KivaKit's functionality can also be discovered with class searching and autocomplete, because it was designed to be used in that way.
-
-#### What is it?
-
-KivaKit is a collection of bite-sized Java development mini-frameworks that play well together. Using one part of KivaKit makes using other parts easier. Work with just the parts you need.
-
-#### Why use it?
-
-KivaKit accelerates development and makes code simpler, safer and clearer. KivaKit increases modularity and code reuse.
-
-#### What can it do?
-
-KivaKit helps you to:
-
-- *Discover and connect* components and services
-- *Encapsulate* components and decrease tight coupling
-- *Configure* components, applications and web servers
-- *Access* local and network resources uniformly
-- *Convert* arguments, switches and textual data into objects
-- *Validate, serialize and log* data of all kinds
 
 <img src="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128.png" srcset="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128-2x.png 2x"/>
 
@@ -134,28 +114,33 @@ KivaKit helps you to:
 
 ### Reference <a name = "reference"></a>&nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/books-24.png" srcset="https://telenav.github.io/telenav-assets/images/icons/books-24-2x.png 2x"/>
 
-[**Javadoc**](https://www.kivakit.org/1.6.0/javadoc/kivakit)  
-[**CodeFlowers**](https://www.kivakit.org/1.6.0/codeflowers/site/index.html)  
+[**Javadoc**](https://www.kivakit.org/1.6.2/javadoc/kivakit)  <!-- [cactus.replacement-version] -->   
+[**CodeFlowers**](https://www.kivakit.org/1.6.2/codeflowers/site/index.html)  <!-- [cactus.replacement-version] -->  
 [**System Properties**](documentation/markdown/kivakit-system-properties.md)
+
+<img src="https://telenav.github.io/telenav-assets/images/diagrams/mini-frameworks.svg" width="702"/>  
+
+<img src="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-512.png" srcset="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-512-2x.png 2x"/>
+
 
 ### Project Resources <a name = "project-resources"></a> &nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/water-24.png" srcset="https://telenav.github.io/telenav-assets/images/icons/water-24-2x.png 2x"/>
 
-| Resource            | Description                                                                                                                                                                          |
-|---------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| *Project Name*      | KivaKit                                                                                                                                                                              |
-| *Summary*           | A collection of mini-frameworks that extend and simplify the JDK and other common APIs                                                                                               |
-| *License*           | [Apache License, Version 2.0](LICENSE)                                                                                                                                               |
-| *Related Projects*  | [kivakit-examples](https://github.com/Telenav/kivakit-examples), [kivakit-extensions](https://github.com/Telenav/kivakit), [kivakit-stuff](https://github.com/Telenav/kivakit-stuff) |
-| *Javadoc Coverage*  | <img src="https://telenav.github.io/telenav-assets/images/meters/meter-90-96.png" srcset="https://telenav.github.io/telenav-assets/images/meters/meter-90-96-2x.png 2x"/>            |
-| *Setup*             | [Step-by-step setup instructions](https://github.com/Telenav/telenav-build/blob/release/1.6.2/documentation/initial-setup-instructions.md) <!-- [cactus.replacement-branch-name] -->                  |
-| *GitHub*            | [GitHub project home page](https://github.com/Telenav/kivakit)                                                                                                                       |
-| *Code*              | `git clone https://github.com/Telenav/kivakit.git`                                                                                                                                   |
-| *Project Lead*      | Jonathan Locke (Luo, Shibo) <br/> [jonathanl@telenav.com](mailto:jonathanl@telenav.com)                                                                                              |
-| *Administrator*     | Jonathan Locke (Luo, Shibo) <br/> [jonathanl@telenav.com](mailto:jonathanl@telenav.com)                                                                                              |
-| *Email*             | [kivakit@telenav.com](mailto:kivakit@telenav.com)                                                                                                                                    |
-| *Chat*              | [Zulip](https://kivakit.zulip.com)                                                                                                                                                   |
-| *Twitter*           | [@OpenKivaKit](https://twitter.com/openkivakit)                                                                                                                                      |
-| *Issues*            | [GitHub Issues](https://github.com/Telenav/kivakit/issues)                                                                                                                           |
+| Resource             | Description                                                                                                                                                                          |
+|----------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| *Project Name*       | KivaKit                                                                                                                                                                              |
+| *Summary*            | A collection of mini-frameworks that extend and simplify the JDK and other common APIs                                                                                               |
+| *License*            | [Apache License, Version 2.0](LICENSE)                                                                                                                                               |
+| *Related Projects*   | [kivakit-examples](https://github.com/Telenav/kivakit-examples), [kivakit-extensions](https://github.com/Telenav/kivakit), [kivakit-stuff](https://github.com/Telenav/kivakit-stuff) |
+| *Javadoc Coverage*   | <img src="https://telenav.github.io/telenav-assets/images/meters/meter-90-96.png" srcset="https://telenav.github.io/telenav-assets/images/meters/meter-90-96-2x.png 2x"/>            |
+| *Setup*              | [Step-by-step setup instructions](https://github.com/Telenav/telenav-build/blob/release/1.6.2/documentation/initial-setup-instructions.md) <!-- [cactus.replacement-branch-name] --> |
+| *GitHub*             | [GitHub project home page](https://github.com/Telenav/kivakit)                                                                                                                       |
+| *Code*               | `git clone https://github.com/Telenav/kivakit.git`                                                                                                                                   |
+| *Project Lead*       | Jonathan Locke (Luo, Shibo) <br/> [jonathanl@telenav.com](mailto:jonathanl@telenav.com)                                                                                              |
+| *Administrator*      | Jonathan Locke (Luo, Shibo) <br/> [jonathanl@telenav.com](mailto:jonathanl@telenav.com)                                                                                              |
+| *Email*              | [kivakit@telenav.com](mailto:kivakit@telenav.com)                                                                                                                                    |
+| *Chat*               | [Zulip](https://kivakit.zulip.com)                                                                                                                                                   |
+| *Twitter*            | [@OpenKivaKit](https://twitter.com/openkivakit)                                                                                                                                      |
+| *Issues*             | [GitHub Issues](https://github.com/Telenav/kivakit/issues)                                                                                                                           |
 
 [//]: # (end-user-text)
 
