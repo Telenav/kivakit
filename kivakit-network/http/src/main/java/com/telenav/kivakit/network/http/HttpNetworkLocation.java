@@ -130,9 +130,9 @@ public class HttpNetworkLocation extends NetworkLocation implements Resourceful
         return withPath(networkPath().withChild(child));
     }
 
-    public String content()
+    public String content(Listener listener)
     {
-        return get().asString();
+        return listener.listenTo(get()).asString();
     }
 
     public HttpGetResource get()

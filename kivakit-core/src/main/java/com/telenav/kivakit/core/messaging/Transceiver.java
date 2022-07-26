@@ -114,7 +114,10 @@ import com.telenav.lexakai.annotations.visibility.UmlExcludeSuperTypes;
 @UmlRelation(label = "delegates to", referent = Debug.class)
 @UmlExcludeSuperTypes({ NamedObject.class })
 @UmlNote(text = "Functionality common to transmitters and receivers")
-public interface Transceiver extends NamedObject, Receiver, Transmitter
+public interface Transceiver extends
+        NamedObject,
+        Receiver,
+        Transmitter
 {
     /**
      * Sends a formatted {@link Announcement} message to this {@link Transceiver}

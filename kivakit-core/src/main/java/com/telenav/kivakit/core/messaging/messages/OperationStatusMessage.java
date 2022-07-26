@@ -18,8 +18,8 @@
 
 package com.telenav.kivakit.core.messaging.messages;
 
-import com.telenav.kivakit.core.messaging.Message;
 import com.telenav.kivakit.core.lexakai.DiagramMessageType;
+import com.telenav.kivakit.core.messaging.Message;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 /**
@@ -46,9 +46,7 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 @UmlClassDiagram(diagram = DiagramMessageType.class)
 public abstract class OperationStatusMessage extends OperationMessage
 {
-    /**
-     * A hierarchical error code per IETF RFC 7807. For example, "errors/authentication/incorrect-password".
-     */
+    /** A hierarchical error code per IETF RFC 7807. */
     public String code;
 
     protected OperationStatusMessage()
@@ -61,11 +59,19 @@ public abstract class OperationStatusMessage extends OperationMessage
         arguments(arguments);
     }
 
+    /**
+     * @return A hierarchical error code per IETF RFC 7807. For example,
+     * "errors/authentication/incorrect-password".
+     */
     public String code()
     {
         return code;
     }
 
+    /**
+     * @param code A hierarchical error code per IETF RFC 7807. For example,
+     * "errors/authentication/incorrect-password".
+     */
     public OperationStatusMessage code(String code)
     {
         this.code = code;

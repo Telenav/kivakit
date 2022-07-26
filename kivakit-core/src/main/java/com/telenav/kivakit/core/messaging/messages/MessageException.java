@@ -7,6 +7,7 @@ import com.telenav.kivakit.core.messaging.Message;
  *
  * @author jonathanl (shibo)
  */
+@SuppressWarnings("unused")
 public class MessageException extends RuntimeException
 {
     private final Message message;
@@ -20,5 +21,10 @@ public class MessageException extends RuntimeException
     {
         return message;
     }
-}
 
+    @Override
+    public String toString()
+    {
+        return message.toString();
+    }
+}

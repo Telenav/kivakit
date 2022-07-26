@@ -130,6 +130,7 @@ import static com.telenav.kivakit.core.ensure.Ensure.unsupported;
  * @see Code
  * @see Source
  */
+@SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramMessaging.class)
 @UmlRelation(label = "failure reason", referent = Message.class)
 public class Result<Value> extends Maybe<Value> implements RepeaterMixin
@@ -149,7 +150,7 @@ public class Result<Value> extends Maybe<Value> implements RepeaterMixin
     }
 
     /**
-     * Returns a result with the given value
+     * Returns a result that captures messages from the given broadcaster
      */
     public static <T> Result<T> capture(Broadcaster value)
     {
@@ -203,6 +204,7 @@ public class Result<Value> extends Maybe<Value> implements RepeaterMixin
     /**
      * Returns a result with the given value
      */
+    @SuppressWarnings("unused")
     public static <T> Result<T> present(T value)
     {
         return unsupported("Call Result.success(), not Result.present()");
@@ -274,7 +276,8 @@ public class Result<Value> extends Maybe<Value> implements RepeaterMixin
     protected Result(Broadcaster broadcaster)
     {
         messages = new MessageList();
-        messages.listenTo(broadcaster);
+        listenTo(broadcaster);
+        messages.listenTo(this);
         this.broadcaster = broadcaster;
     }
 
