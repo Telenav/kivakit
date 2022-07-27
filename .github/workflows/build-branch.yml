@@ -81,7 +81,7 @@ jobs:
           maven-version: 3.8.5
 
       - name: Clone Telenav-Build
-        run: git clone https://github.com/Telenav/telenav-build.git
+        run: git clone https://github.com/Telenav/telenav-build.git -b develop
 
       - name: Init Submodules
         run: cd $GITHUB_WORKSPACE/telenav-build && git submodule init
