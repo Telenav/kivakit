@@ -134,7 +134,14 @@ jobs:
       - name: Update Submodules
         run: cd $GITHUB_WORKSPACE/telenav-build && git submodule update
 
-      # This will fail over to the develop branch
+      # We need findable superpoms to be able to run the plugin to check out the
+      # target branch at all, so build them once even though we will probably
+      # clobber them with a different version momentarily
+      - name: Build Local Superpoms
+        run: cd $GITHUB_WORKSPACE/telenav-build/telenav-superpom && mvn install
+
+      # This will fail over to the develop branch if the target branch does not
+      # exist.
       - name: Checkout Branch
         run: cd $GITHUB_WORKSPACE/telenav-build && mvn -Dcactus.permit-local-changes=true -Dcactus.base-branch=develop -Dcactus.fetch-first=false -Dcactus.scope=all-project-families -Dcactus.create-branches=true -Dcactus.target-branch=$GITHUB_REF_NAME -Dcactus.permit-local-changes=false -Dcactus.update-root=false -Dpush=false com.telenav.cactus:cactus-maven-plugin:$CACTUS_V:checkout
 
