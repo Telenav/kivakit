@@ -257,27 +257,29 @@ public class Result<Value> extends Maybe<Value> implements RepeaterMixin
     private Broadcaster broadcaster;
 
     /** Any messages this result has captured */
-    private MessageList messages;
+    private final MessageList messages = new MessageList();
 
     protected Result()
     {
+        messages.listenTo(this);
     }
 
     protected Result(Maybe<Value> maybe)
     {
         super(maybe);
+        messages.listenTo(this);
     }
 
     protected Result(Value value)
     {
         super(value);
+        messages.listenTo(this);
     }
 
     protected Result(Broadcaster broadcaster)
     {
-        messages = new MessageList();
-        listenTo(broadcaster);
         messages.listenTo(this);
+        listenTo(broadcaster);
         this.broadcaster = broadcaster;
     }
 
