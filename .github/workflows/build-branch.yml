@@ -104,7 +104,7 @@ jobs:
       # If we use MAVEN_OPTS, we wind up in a shell-quoting war between yaml
       # and bash that ends in NoClassDefFoundError:-XX:+UseG1GC - so instead,
       # we write .mvn/jvm.config instead, and make sure that it won't get
-      # picked up as a local change by the branch switch mojo by ignoring it
+      # picked up as a local change by the branch switch mojo by ignoring it.
       - name: Set Up Maven JVM Config Dir
         run: mkdir -p $GITHUB_WORKSPACE/telenav-build/.mvn
 
