@@ -156,7 +156,7 @@ jobs:
 
       # Now build the real thing
       - name: Build Target Commit
-        run: cd $GITHUB_WORKSPACE/telenav-build && mvn install
+        run: cd $GITHUB_WORKSPACE/telenav-build && mvn -X install
 
       # And *always* delete the local repo
       - name: Clean Up Local Maven Repo
