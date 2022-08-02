@@ -14,7 +14,7 @@ defaults:
     shell: bash
 
 env:
-    CACTUS_V: 1.5.18
+    CACTUS_VERSION: 1.5.18
 
 name: "Build Branch"
 
@@ -114,7 +114,7 @@ jobs:
       # See: https://www.baeldung.com/maven-logging for a summary of logging
       # options
       - name: Write Maven JVM Options Config File
-        run: echo "-XX:+UseG1GC -Dcactus-maven-plugin.version=$CACTUS_V -Dorg.slf4j.simpleLogger.defaultLogLevel=warn -Dmaven.repo.local=$MAVEN_REPO --add-opens=java.base/java.util=ALL-UNNAMED --add-opens=java.base/java.lang.reflect=ALL-UNNAMED --add-opens=java.base/java.text=ALL-UNNAMED --add-opens=java.desktop/java.awt.font=ALL-UNNAMED" >> $GITHUB_WORKSPACE/telenav-build/.mvn/jvm.config
+        run: echo "-XX:+UseG1GC -Dcactus-maven-plugin.version=$CACTUS_VERSION -Dorg.slf4j.simpleLogger.defaultLogLevel=warn -Dmaven.repo.local=$MAVEN_REPO --add-opens=java.base/java.util=ALL-UNNAMED --add-opens=java.base/java.lang.reflect=ALL-UNNAMED --add-opens=java.base/java.text=ALL-UNNAMED --add-opens=java.desktop/java.awt.font=ALL-UNNAMED" >> $GITHUB_WORKSPACE/telenav-build/.mvn/jvm.config
 
       # Maven arguments we want for everything.
       # RESIST the temptation to add --quiet here - it will suppress critical
@@ -143,7 +143,7 @@ jobs:
       # This will fail over to the develop branch if the target branch does not
       # exist.
       - name: Checkout Branch
-        run: cd $GITHUB_WORKSPACE/telenav-build && mvn -Dcactus.permit-local-changes=true -Dcactus.base-branch=develop -Dcactus.fetch-first=false -Dcactus.scope=all-project-families -Dcactus.create-branches=true -Dcactus.target-branch=$GITHUB_REF_NAME -Dcactus.permit-local-changes=false -Dcactus.update-root=false -Dpush=false com.telenav.cactus:cactus-maven-plugin:$CACTUS_V:checkout
+        run: cd $GITHUB_WORKSPACE/telenav-build && mvn -Dcactus.permit-local-changes=true -Dcactus.base-branch=develop -Dcactus.fetch-first=false -Dcactus.scope=all-project-families -Dcactus.create-branches=true -Dcactus.target-branch=$GITHUB_REF_NAME -Dcactus.permit-local-changes=false -Dcactus.update-root=false -Dpush=false com.telenav.cactus:cactus-maven-plugin:$CACTUS_VERSION:checkout
 
       # Check out the pull request branch or commit that we
       # want to test
