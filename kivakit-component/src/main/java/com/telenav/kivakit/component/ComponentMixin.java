@@ -7,7 +7,8 @@ import com.telenav.kivakit.mixins.Mixin;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 /**
- * A mixin for {@link Component} which can be implemented by a class that already extends another base class.
+ * A mixin for {@link Component} which can be implemented by a class that
+ * already extends another base class.
  *
  * @author jonathanl (shibo)
  * @see Component

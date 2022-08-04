@@ -111,7 +111,7 @@ import static com.telenav.kivakit.core.thread.KivaKitThread.State.WAITING;
  * <p><b>Overrides</b></p>
  *
  * <ul>
- *     <li>{@link #onWaiting()} - Called when a thread is started and is in {@link State#WAITING}</li>
+ *     <li>{@link #onWaiting()} - Called when a thread is started and is in the {@link State#WAITING} state</li>
  *     <li>{@link #onRun()} - Overridden to provide user code to execute if {@link #KivaKitThread(String, Runnable)}
  *     was not called to provide user code</li>
  *     <li>{@link #onRunning()} - Called when a thread transitions to {@link State#RUNNING}</li>

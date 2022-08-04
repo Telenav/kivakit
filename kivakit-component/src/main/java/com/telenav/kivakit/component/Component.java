@@ -86,7 +86,7 @@ import java.util.function.Function;
  * <p><i>Functions</i></p>
  * <ul>
  *     <li>{@link #ifNonNullApply(Object, Function)} - Null-safe version of Function.apply()</li>
- *     <li>{@link #ifNullDefault(Object, Object)} - The given value if it is non-null, the default value otherwise.</li>
+ *     <li>{@link #ifNullDefault(Object, Object)} - Returns the given value if it is non-null, and the default value otherwise.</li>
  * </ul>
  *
  * <p><i>Validation</i></p>

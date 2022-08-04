@@ -32,7 +32,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * A map from key to an {@link ObjectList} of values. Values can be added with {@link #add(Object, Object)} and {@link
+ * A map from key to an {@link ObjectList} of values. Values can be added using {@link #add(Object, Object)} and {@link
  * #addAll(Object, Collection)}. A flat list of all values in the map can be retrieved with {@link #flatValues()}. The
  * {@link ObjectList} for a key can be retrieved with {@link #get(Object)} or {@link #list(Object)}. If the list for the
  * given key does not yet exist, {@link #list(Object)} will create a new one.
