@@ -36,10 +36,10 @@ import com.telenav.kivakit.core.version.VersionedObject;
 import com.telenav.kivakit.filesystem.File;
 import com.telenav.kivakit.interfaces.code.Callback;
 import com.telenav.kivakit.resource.Resource;
-import com.telenav.kivakit.resource.serialization.SerializableObject;
 import com.telenav.kivakit.resource.lexakai.DiagramResourceArchive;
 import com.telenav.kivakit.resource.serialization.ObjectReader;
 import com.telenav.kivakit.resource.serialization.ObjectWriter;
+import com.telenav.kivakit.resource.serialization.SerializableObject;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
@@ -63,11 +63,11 @@ import static com.telenav.kivakit.resource.serialization.ObjectMetadata.TYPE;
 import static com.telenav.kivakit.resource.serialization.ObjectMetadata.VERSION;
 
 /**
- * A wrapper around the JDK zip filesystem that makes it easier to use. A {@link ZipArchive} can be created with {@link
- * #open(Listener, File, Mode)}, which returns the open zip archive or null if the operation fails. Adds the ability to
- * save and load objects into zip entries using an {@link ObjectWriter}, and {@link ObjectReader}, respectively. A zip
- * archive contains entries wrapped by {@link ZipEntry} and a {@link ZipArchive} is {@link Iterable} to make it easy to
- * enumerate zip entries:
+ * A wrapper around the JDK zip filesystem that makes it easier to use. A {@link ZipArchive} can be created with
+ * {@link #open(Listener, File, Mode)}, which returns the open zip archive or null if the operation fails. Adds the
+ * ability to save and load objects into zip entries using an {@link ObjectWriter}, and {@link ObjectReader},
+ * respectively. A zip archive contains entries wrapped by {@link ZipEntry} and a {@link ZipArchive} is {@link Iterable}
+ * to make it easy to enumerate zip entries:
  * <pre>
  * var archive = new ZipArchive("test.zip");
  * for (var entry : archive)
@@ -390,7 +390,14 @@ public final class ZipArchive extends BaseRepeater implements
                     {
                         return filesystem;
                     }
-                    return UncheckedCode.of(() -> FileSystems.newFileSystem(uri, new VariableMap<>())).orNull();
+                    try
+                    {
+                        return FileSystems.newFileSystem(uri, new VariableMap<>());
+                    }
+                    catch (Exception e)
+                    {
+                        listener.problem(e, "Could not create zip filesystem: $", uri);
+                    }
                 }
                 return null;
             }

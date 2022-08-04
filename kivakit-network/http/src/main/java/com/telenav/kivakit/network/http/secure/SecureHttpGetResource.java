@@ -23,7 +23,6 @@ import com.telenav.kivakit.network.http.HttpGetResource;
 import com.telenav.kivakit.network.http.lexakai.DiagramHttps;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
-import org.apache.http.impl.client.DefaultHttpClient;
 
 import static com.telenav.kivakit.network.core.NetworkAccessConstraints.DEFAULT;
 
@@ -32,13 +31,10 @@ import static com.telenav.kivakit.network.core.NetworkAccessConstraints.DEFAULT;
  *
  * @author jonathanl (shibo)
  */
-@SuppressWarnings("deprecation")
 @UmlClassDiagram(diagram = DiagramHttps.class)
 @LexakaiJavadoc(complete = true)
 public class SecureHttpGetResource extends HttpGetResource
 {
-    private boolean ignoreInvalidCertificates;
-
     public SecureHttpGetResource(SecureHttpNetworkLocation location, NetworkAccessConstraints constraints)
     {
         super(location, constraints);
@@ -47,16 +43,5 @@ public class SecureHttpGetResource extends HttpGetResource
     public SecureHttpGetResource(final SecureHttpNetworkLocation location)
     {
         super(location, DEFAULT);
-    }
-
-    public void ignoreInvalidCertificates(final boolean ignore)
-    {
-        ignoreInvalidCertificates = ignore;
-    }
-
-    @Override
-    protected DefaultHttpClient newClient()
-    {
-        return ignoreInvalidCertificates ? new InvalidCertificateTrustingHttpClient() : new DefaultHttpClient();
     }
 }

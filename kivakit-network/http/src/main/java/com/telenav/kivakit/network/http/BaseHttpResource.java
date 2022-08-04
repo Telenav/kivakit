@@ -28,18 +28,18 @@ import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlAggregation;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
-import org.apache.http.HttpResponse;
-import org.apache.http.auth.AuthScope;
-import org.apache.http.auth.UsernamePasswordCredentials;
-import org.apache.http.client.methods.HttpHead;
-import org.apache.http.client.methods.HttpUriRequest;
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.params.HttpConnectionParams;
-import org.apache.http.util.EntityUtils;
 
-import java.io.IOException;
 import java.io.InputStream;
+import java.net.Authenticator;
+import java.net.PasswordAuthentication;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
 import java.util.Objects;
+
+import static java.net.http.HttpRequest.BodyPublishers.noBody;
+import static java.net.http.HttpResponse.BodyHandlers.ofInputStream;
+import static java.net.http.HttpResponse.BodyHandlers.ofString;
 
 /**
  * A network resource accessible via HTTP.
@@ -61,10 +61,9 @@ import java.util.Objects;
  *
  * @author jonathanl (shibo)
  */
-@SuppressWarnings("deprecation")
-@UmlClassDiagram(diagram = DiagramHttp.class)
+@SuppressWarnings("unused") @UmlClassDiagram(diagram = DiagramHttp.class)
 @LexakaiJavadoc(complete = true)
-public abstract class BaseHttpResource extends BaseNetworkResource
+public abstract class BaseHttpResource extends BaseNetworkResource implements HttpRequestFactory
 {
     @UmlAggregation
     private final NetworkAccessConstraints constraints;
@@ -74,7 +73,7 @@ public abstract class BaseHttpResource extends BaseNetworkResource
     @UmlAggregation
     private final NetworkLocation networkLocation;
 
-    private HttpResponse response;
+    private HttpResponse<InputStream> response;
 
     private final VariableMap<String> responseHeader = new VariableMap<>();
 
@@ -147,19 +146,20 @@ public abstract class BaseHttpResource extends BaseNetworkResource
     public String httpHeadRequestHeaderField(String fieldName)
     {
         var client = newClient();
-        var head = new HttpHead(asUri());
+        var head = HttpRequest.newBuilder()
+                .uri(asUri())
+                .method("HEAD", noBody())
+                .build();
         try
         {
-            HttpResponse response = client.execute(head);
-            var value = response.getFirstHeader(fieldName).getValue();
-            EntityUtils.consume(response.getEntity());
-            return value;
+            var response = client.send(head, ofString());
+            return response.headers().firstValue(fieldName).orElse("");
         }
-        catch (IOException e)
+        catch (Exception e)
         {
-            e.printStackTrace();
+            problem(e, "Could not get header field '$'", fieldName);
+            return null;
         }
-        return null;
     }
 
     /**
@@ -190,24 +190,17 @@ public abstract class BaseHttpResource extends BaseNetworkResource
     {
         try
         {
-            executeRequest(newRequest());
+            // Send HTTP request
+            send(newRequest());
 
+            // check if the status is okay,
             if (status().isOkay())
             {
-                var entity = response.getEntity();
-                if (entity != null)
-                {
-                    var contentEncoding = entity.getContentEncoding();
-                    if (contentEncoding != null)
-                    {
-                        this.contentEncoding = contentEncoding.getValue();
-                    }
-                    return entity.getContent();
-                }
-                else
-                {
-                    throw new Problem("No entity found for: $", this).asException();
-                }
+                // then get the content encoding
+                contentEncoding = response.headers().firstValue("Content-Encoding").orElse(null);
+
+                // and return the body as an input stream.
+                return response.body();
             }
             else
             {
@@ -225,7 +218,7 @@ public abstract class BaseHttpResource extends BaseNetworkResource
      */
     public VariableMap<String> responseHeader()
     {
-        executeRequest(newRequest());
+        send(newRequest());
         return responseHeader;
     }
 
@@ -237,7 +230,7 @@ public abstract class BaseHttpResource extends BaseNetworkResource
     @UmlRelation(label = "yields")
     public HttpStatus status()
     {
-        executeRequest(newRequest());
+        send(newRequest());
         return new HttpStatus(statusCode);
     }
 
@@ -250,15 +243,10 @@ public abstract class BaseHttpResource extends BaseNetworkResource
     /**
      * @return A configured HTTP client
      */
-    protected DefaultHttpClient newClient()
+    protected HttpClient newClient()
     {
-        var client = new DefaultHttpClient();
-
-        // Set timeouts
-        var httpParameters = client.getParams();
-        HttpConnectionParams.setConnectionTimeout(httpParameters,
-                (int) constraints.timeout().asMilliseconds());
-        HttpConnectionParams.setSoTimeout(httpParameters, (int) constraints.timeout().asMilliseconds());
+        var builder = HttpClient.newBuilder()
+                .connectTimeout(constraints.timeout().asJavaDuration());
 
         // add any credentials
         if (constraints instanceof HttpAccessConstraints)
@@ -267,38 +255,44 @@ public abstract class BaseHttpResource extends BaseNetworkResource
             var credentials = httpConstraints.httpBasicCredentials();
             if (credentials != null)
             {
-                client.getCredentialsProvider().setCredentials(
-                        new AuthScope(AuthScope.ANY_HOST, AuthScope.ANY_PORT), new UsernamePasswordCredentials(
-                                credentials.userName().toString(), credentials.password().toString()));
+                builder = builder.authenticator(new Authenticator()
+                {
+                    @Override
+                    protected PasswordAuthentication getPasswordAuthentication()
+                    {
+                        return new PasswordAuthentication(credentials.userName().name(), credentials.password().toString().toCharArray());
+                    }
+                });
             }
         }
 
-        return client;
+        return builder.build();
     }
 
-    /**
-     * @return The subclass' request object
-     */
-    protected abstract HttpUriRequest newRequest();
+    protected HttpRequest newRequest()
+    {
+        return build(asUri());
+    }
 
     /**
      * Executes the given request, reads the status code and header map
      *
      * @param httpRequest The HTTP request to execute
      */
-    private void executeRequest(HttpUriRequest httpRequest)
+    private void send(HttpRequest httpRequest)
     {
         if (response == null)
         {
             try
             {
-                response = newClient().execute(httpRequest);
-                statusCode = response.getStatusLine().getStatusCode();
+                response = newClient().send(httpRequest, ofInputStream());
+                statusCode = response.statusCode();
                 if (responseHeader != null)
                 {
-                    for (var header : response.getAllHeaders())
+                    var map = response.headers().map();
+                    for (var name : map.keySet())
                     {
-                        responseHeader.put(header.getName(), header.getValue());
+                        responseHeader.put(name, map.get(name).get(0));
                     }
                 }
             }

@@ -21,7 +21,6 @@ package com.telenav.kivakit.network.http;
 import com.telenav.kivakit.conversion.BaseStringConverter;
 import com.telenav.kivakit.core.collections.map.VariableMap;
 import com.telenav.kivakit.core.messaging.Listener;
-import com.telenav.kivakit.interfaces.model.Initializer;
 import com.telenav.kivakit.network.core.NetworkAccessConstraints;
 import com.telenav.kivakit.network.core.NetworkLocation;
 import com.telenav.kivakit.network.core.NetworkPath;
@@ -32,15 +31,12 @@ import com.telenav.kivakit.resource.Resourceful;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.client.methods.HttpPut;
-import org.apache.http.entity.StringEntity;
 
-import java.io.UnsupportedEncodingException;
 import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.net.http.HttpRequest;
+import java.util.List;
 
 import static com.telenav.kivakit.core.ensure.Ensure.ensure;
 
@@ -60,12 +56,12 @@ import static com.telenav.kivakit.core.ensure.Ensure.ensure;
  *     <li>{@link #get(NetworkAccessConstraints)} - A {@link HttpGetResource}  with the given access constraints</li>
  *     <li>{@link #get(NetworkAccessConstraints, String)} - A {@link HttpGetResource} with the given content type and access constraints</li>
  *     <li>{@link #post()} - A {@link HttpPostResource} with default content type and access constraints</li>
- *     <li>{@link #post(String)} - A {@link HttpPostResource} with the given value to post</li>
- *     <li>{@link #post(String, String)} - A {@link HttpPostResource} with the given content and value to post</li>
+ *     <li>{@link #post(String)} - A {@link HttpPostResource} with the given content to post</li>
+ *     <li>{@link #post(String, String)} - A {@link HttpPostResource} with the given content and content to post</li>
  *     <li>{@link #post(NetworkAccessConstraints)} - A {@link HttpPostResource} with the given constraints</li>
- *     <li>{@link #post(NetworkAccessConstraints, String, String)} - A {@link HttpPostResource} with the given constrains, content type and value to post</li>
- *     <li>{@link #put(String, String)} - A {@link HttpPutResource} with the given content type and value to put</li>
- *     <li>{@link #put(NetworkAccessConstraints, String, String)} - A {@link HttpPutResource} with the given access constraints, content type and value to put</li>
+ *     <li>{@link #post(NetworkAccessConstraints, String, String)} - A {@link HttpPostResource} with the given constraints, content type and content to post</li>
+ *     <li>{@link #put(String, String)} - A {@link HttpPutResource} with the given content type and content to put</li>
+ *     <li>{@link #put(NetworkAccessConstraints, String, String)} - A {@link HttpPutResource} with the given access constraints, content type and content to put</li>
  * </ul>
  *
  * @author jonathanl (shibo)
@@ -147,24 +143,22 @@ public class HttpNetworkLocation extends NetworkLocation implements Resourceful
     @UmlRelation(label = "creates")
     public HttpGetResource get(NetworkAccessConstraints constraints)
     {
-        return new HttpGetResource(this, constraints);
-    }
-
-    public HttpGetResource get(NetworkAccessConstraints constraints, Initializer<HttpGet> initializer)
-    {
-        return new HttpGetResource(this, constraints)
-        {
-            @Override
-            protected void onInitialize(HttpGet get)
-            {
-                initializer.initialize(get);
-            }
-        };
+        return get(constraints, null);
     }
 
     public HttpGetResource get(NetworkAccessConstraints constraints, String contentType)
     {
-        return get(constraints, get -> get.setHeader("Accept", contentType));
+        return new HttpGetResource(this, constraints)
+        {
+            @Override
+            public void onInitialize(HttpRequest request)
+            {
+                if (contentType != null)
+                {
+                    request.headers().map().put("Accept", List.of(contentType));
+                }
+            }
+        };
     }
 
     public HttpGetResource get(String contentType)
@@ -193,65 +187,63 @@ public class HttpNetworkLocation extends NetworkLocation implements Resourceful
         return post(constraints, null, content);
     }
 
-    public HttpPostResource post(NetworkAccessConstraints constraints, String contentType,
-                                 String value)
+    public HttpPostResource post(NetworkAccessConstraints constraints,
+                                 String contentType,
+                                 String content)
     {
         return new HttpPostResource(this, constraints)
         {
             @Override
-            protected void onInitialize(HttpPost post)
+            public void onInitialize(HttpRequest.Builder builder)
             {
-                try
+                builder.POST(HttpRequest.BodyPublishers.ofString(content));
+            }
+
+            @Override
+            public void onInitialize(HttpRequest request)
+            {
+                if (contentType != null)
                 {
-                    if (contentType != null)
-                    {
-                        post.setHeader("Content-CheckType", contentType);
-                    }
-                    post.setEntity(new StringEntity(value));
-                }
-                catch (UnsupportedEncodingException e)
-                {
-                    e.printStackTrace();
+                    header(request, "Content-CheckType", contentType);
                 }
             }
         };
     }
 
-    public HttpPostResource post(String value)
+    public HttpPostResource post(String content)
     {
-        return post(NetworkAccessConstraints.DEFAULT, value);
+        return post(NetworkAccessConstraints.DEFAULT, content);
     }
 
-    public HttpPostResource post(String contentType, String value)
+    public HttpPostResource post(String contentType, String content)
     {
-        return post(NetworkAccessConstraints.DEFAULT, contentType, value);
+        return post(NetworkAccessConstraints.DEFAULT, contentType, content);
     }
 
-    public HttpPutResource put(NetworkAccessConstraints constraints, String contentType,
+    public HttpPutResource put(NetworkAccessConstraints constraints,
+                               String contentType,
                                String content)
     {
         return new HttpPutResource(this, constraints)
         {
             @Override
-            protected void onInitialize(HttpPut put)
+            public void onInitialize(HttpRequest.Builder builder)
             {
-                try
-                {
-                    put.setHeader("Content-CheckType", contentType);
-                    put.setEntity(new StringEntity(content));
-                }
-                catch (UnsupportedEncodingException e)
-                {
-                    e.printStackTrace();
-                }
+                builder.PUT(HttpRequest.BodyPublishers.ofString(content));
+            }
+
+            @Override
+            public void onInitialize(HttpRequest request)
+            {
+                header(request, "Content-CheckType", contentType);
             }
         };
     }
 
     @UmlRelation(label = "creates")
-    public HttpPutResource put(String contentType, String value)
+    public HttpPutResource put(String contentType, String content)
     {
-        return put(NetworkAccessConstraints.DEFAULT, contentType, value);
+        return put(NetworkAccessConstraints.DEFAULT, contentType, content);
     }
 
     @Override

@@ -166,17 +166,18 @@ public interface ResourceFolder<T extends ResourceFolder<T>> extends
         destination.ensureExists();
 
         // then for each nested file,
-        for (var file : nestedResources(matcher))
+        for (var resource : nestedResources(matcher))
         {
-            // make relative target file,
-            var target = destination.file(file.relativeTo(this));
+            // make relative target resource,
+            var target = destination.file(resource.relativeTo(this));
 
             // and if we can copy to it,
-            if (mode.canCopy(file, target))
+            if (mode.canCopy(resource, target))
             {
-                // then copy the file and update its last modified timestamp to the source timestamp
-                file.copyTo(target.ensureWritable(), mode, reporter);
-                target.lastModified(file.modifiedAt());
+                // then copy the resource and update its last modified timestamp to the source timestamp
+                information("Copying $ to $", resource, target);
+                resource.copyTo(target.ensureWritable(), mode, reporter);
+                target.lastModified(resource.modifiedAt());
             }
         }
         information("Copy completed in $", start.elapsedSince());

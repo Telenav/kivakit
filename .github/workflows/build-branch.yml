@@ -1,48 +1,45 @@
 #///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 #
-#  © 2021 Telenav, Inc.
+#  © 2022 Telenav, Inc.
 #  Licensed under Apache License, Version 2.0
 #
 #///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 #
-# GitHub action that builds code that is pushed into a feature branch
+# GitHub action that builds code on push or pull request.
 #
+
+defaults:
+  run:
+    shell: bash
+
+env:
+    CACTUS_VERSION: 1.5.18
 
 name: "Build Branch"
 
 on:
   workflow_dispatch:
   push:
-    branches: [ master, develop, release/**, feature/**, hotfix/** ]
+    paths-ignore:
+        - 'documentation/**'
+        - '**/*.md'
+    branches:
+      - develop
+      - 'release/**'
+      - 'feature/**'
+      - 'hotfix/**'
   pull_request:
-    branches: [ master, develop, release/**, feature/**, hotfix/** ]
+    paths-ignore:
+        - 'documentation/**'
+        - '**/*.md'
+    branches:
+      - develop
+      - 'release/**'
+      - 'feature/**'
+      - 'hotfix/**'
 
 jobs:
   build:
+    uses: Telenav/telenav-github/.github/workflows/build-branch.yml@main
 
-    runs-on: ubuntu-latest
-
-    steps:
-
-      - name: Set up Java
-        uses: actions/setup-java@v3
-        with:
-          java-version: '17'
-          distribution: 'temurin'
-
-      - name: Set up Maven
-        uses: stCarolas/setup-maven@v4.3
-        with:
-          maven-version: 3.8.5
-
-      - name: Build
-        run: |
-          git clone https://github.com/Telenav/telenav-build.git && \
-          cd telenav-build && \
-          git submodule init && \
-          git submodule update --init --recursive --depth 1 && \
-          rm -rf *-assets && \
-          git submodule foreach git checkout $GITHUB_REF_NAME && \
-          mvn --no-transfer-progress --quiet clean install || exit 1
-        shell: bash
