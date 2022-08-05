@@ -169,7 +169,6 @@ public interface Component extends
         RegistryTrait,
         LanguageTrait,
         SettingsTrait,
-        Repeater,
-        NamedObject
+        Repeater
 {
 }

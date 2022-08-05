@@ -63,7 +63,7 @@ KivaKit is a new vision for Java coding that makes development faster and easier
 &nbsp; &nbsp; &nbsp; &nbsp; &mdash; Antoine de Saint-Exup&eacute;ry
 
 > The mission of KivaKit is to provide a new vision for the development of Java  
-> software by providing a design system that takes code reuse to a new level.
+> software that takes code reuse to a new level.
 
 KivaKit is more than an application framework. It's a new way to think about Java coding. 
 
