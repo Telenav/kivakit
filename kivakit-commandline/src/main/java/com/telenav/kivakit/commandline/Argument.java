@@ -25,7 +25,7 @@ import com.telenav.lexakai.annotations.associations.UmlRelation;
 import static com.telenav.kivakit.core.ensure.Ensure.fail;
 
 /**
- * The string value of a single argument in a command line. The string value of the argument can be retrieved with
+ * The string value of a single command-line argument. The string value of the argument can be retrieved with
  * {@link #value()} and it can be retrieved as a typed value with {@link #get(ArgumentParser)}.
  *
  * @author jonathanl (shibo)

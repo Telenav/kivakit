@@ -273,7 +273,7 @@ public abstract class Application extends BaseComponent implements
         Named,
         ApplicationMetadata
 {
-    /** The one and only application running in this process */
+    /** The one and only Application running in this process */
     private static Application instance;
 
     /** The default final destination for messages that bubble up to the application level */

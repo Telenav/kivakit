@@ -52,7 +52,7 @@ import java.util.Objects;
  * </p>
  *
  * <p>
- * An application can then specify a deployment with the command line switch:
+ * An application can then specify a deployment with a command line switch:
  * </p>
  *
  * <pre>

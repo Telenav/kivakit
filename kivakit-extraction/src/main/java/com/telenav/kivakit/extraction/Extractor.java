@@ -32,7 +32,7 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
  * <p><b>Object Extraction</b></p>
  *
  * <p>
- * An extractor implements {@link BaseExtractor#onExtract(Object)} to extract a value from the source. In the following
+ * An extractor implements {@link BaseExtractor#onExtract(Object)} to extract a value from a source object. In the following
  * code, a {@link Count} is extracted from a PbfWay:
  * </p>
  * <pre>

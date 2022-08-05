@@ -47,7 +47,7 @@ import static java.net.http.HttpResponse.BodyHandlers.ofString;
  * <p><b>Content</b></p>
  *
  * <p>
- * The content of an HTTP resource can be accessed using any of the methods inherited by all resources. An HTTP resource
+ * The content of an HTTP resource can be accessed using any of the methods inherited by from Resource or BaseNetworkResource. An HTTP resource
  * also has:
  * </p>
  *

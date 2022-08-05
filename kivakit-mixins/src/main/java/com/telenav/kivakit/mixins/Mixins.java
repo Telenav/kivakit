@@ -22,7 +22,7 @@ import java.util.concurrent.ConcurrentHashMap;
 @UmlClassDiagram(diagram = DiagramMixin.class)
 public class Mixins
 {
-    /** Map from an object and mixin type to the attached mixin state */
+    /** Maps an object and mixin type to the attached mixin state */
     private static final Map<MixinKey, Object> mixin = new ConcurrentHashMap<>();
 
     /** Map from mixin state to the object that owns it */

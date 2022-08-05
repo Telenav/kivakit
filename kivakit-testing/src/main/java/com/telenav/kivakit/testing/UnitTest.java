@@ -40,7 +40,7 @@ import java.util.function.Supplier;
  *
  * <p>
  * If the system property "testQuick" is set to "true", only unit tests that override {@link #isQuickTest()} to return
- * true will be executed. Alternatively, quick tests can be labeled with the QuickTest annotation.
+ * true will be executed. Alternatively, quick tests can be marked as such with the QuickTest annotation.
  *
  * <p><b>Test Methods</b></p>
  *
