@@ -14,9 +14,7 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
  * @see Repeater
  */
 @UmlClassDiagram(diagram = DiagramComponent.class)
-public class BaseComponent extends BaseRepeater implements
-        Component,
-        NamedObject
+public class BaseComponent extends BaseRepeater implements Component
 {
     /** The name of this object for debugging purposes */
     private String objectName = NamedObject.syntheticName(this);

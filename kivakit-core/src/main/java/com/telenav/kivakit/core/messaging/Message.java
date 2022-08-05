@@ -122,7 +122,11 @@ import static com.telenav.kivakit.core.string.Formatter.Format.WITH_EXCEPTION;
 @UmlClassDiagram(diagram = DiagramListener.class)
 @UmlExcludeSuperTypes({ Stringable.class })
 @UmlRelation(label = "formats with", diagram = DiagramMessaging.class, referent = Formatter.class)
-public interface Message extends Transmittable, Triaged, Stringable, Named
+public interface Message extends
+        Transmittable,
+        Triaged,
+        Stringable,
+        Named
 {
     /**
      * @return The given string with single quotes escaped

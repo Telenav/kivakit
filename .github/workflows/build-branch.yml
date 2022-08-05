@@ -8,7 +8,6 @@
 #
 # GitHub action that builds code on push or pull request.
 #
-
 defaults:
   run:
     shell: bash
@@ -42,4 +41,3 @@ on:
 jobs:
   build:
     uses: Telenav/telenav-github/.github/workflows/build-branch.yml@main
-
