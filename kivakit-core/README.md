@@ -1,4 +1,4 @@
-[//]: # (start-user-text)
+[//]: # (start-user-text) 
 
 <a href="https://www.kivakit.org">
 <img src="https://telenav.github.io/telenav-assets/images/icons/web-32.png" srcset="https://telenav.github.io/telenav-assets/images/icons/web-32-2x.png 2x"/>
