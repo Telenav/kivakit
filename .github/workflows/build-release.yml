@@ -13,28 +13,24 @@ defaults:
     shell: bash
 
 env:
-    CACTUS_VERSION: 1.5.18
+  CACTUS_VERSION: 1.5.18
 
-name: "Build Feature, Hotfix or Bugfix"
+name: "Build Release"
 
 on:
   workflow_dispatch:
   push:
     paths-ignore:
-        - 'documentation/**'
-        - '**/*.md'
+      - 'documentation/**'
+      - '**/*.md'
     branches:
-      - 'feature/**'
-      - 'hotfix/**'
-      - 'bugfix/**'
+      - 'release/**'
   pull_request:
     paths-ignore:
-        - 'documentation/**'
-        - '**/*.md'
+      - 'documentation/**'
+      - '**/*.md'
     branches:
-      - 'feature/**'
-      - 'hotfix/**'
-      - 'bugfix/**'
+      - 'release/**'
 
 jobs:
   build:

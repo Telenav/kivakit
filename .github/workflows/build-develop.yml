@@ -15,7 +15,7 @@ defaults:
 env:
     CACTUS_VERSION: 1.5.18
 
-name: "Build Feature, Hotfix or Bugfix"
+name: "Build Develop"
 
 on:
   workflow_dispatch:
@@ -24,17 +24,13 @@ on:
         - 'documentation/**'
         - '**/*.md'
     branches:
-      - 'feature/**'
-      - 'hotfix/**'
-      - 'bugfix/**'
+      - develop
   pull_request:
     paths-ignore:
         - 'documentation/**'
         - '**/*.md'
     branches:
-      - 'feature/**'
-      - 'hotfix/**'
-      - 'bugfix/**'
+      - develop
 
 jobs:
   build:
