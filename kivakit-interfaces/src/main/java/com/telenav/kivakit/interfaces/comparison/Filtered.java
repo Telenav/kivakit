@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.interfaces.comparison;
 
-import com.telenav.kivakit.interfaces.lexakai.DiagramComparison;
+import com.telenav.kivakit.interfaces.internal.lexakai.DiagramComparison;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlRelation;

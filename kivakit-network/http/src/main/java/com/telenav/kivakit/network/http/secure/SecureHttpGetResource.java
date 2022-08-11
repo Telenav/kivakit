@@ -20,7 +20,7 @@ package com.telenav.kivakit.network.http.secure;
 
 import com.telenav.kivakit.network.core.NetworkAccessConstraints;
 import com.telenav.kivakit.network.http.HttpGetResource;
-import com.telenav.kivakit.network.http.lexakai.DiagramHttps;
+import com.telenav.kivakit.network.http.internal.lexakai.DiagramHttps;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 

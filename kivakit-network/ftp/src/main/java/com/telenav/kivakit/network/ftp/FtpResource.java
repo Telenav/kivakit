@@ -28,7 +28,7 @@ import com.telenav.kivakit.network.core.NetworkAccessConstraints;
 import com.telenav.kivakit.network.core.NetworkLocation;
 import com.telenav.kivakit.network.core.NetworkPath;
 import com.telenav.kivakit.network.core.Protocol;
-import com.telenav.kivakit.network.ftp.lexakai.DiagramFtp;
+import com.telenav.kivakit.network.ftp.internal.lexakai.DiagramFtp;
 import com.telenav.kivakit.resource.CopyMode;
 import com.telenav.kivakit.resource.writing.WritableResource;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;

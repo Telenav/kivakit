@@ -19,9 +19,9 @@
 package com.telenav.kivakit.core.messaging;
 
 import com.telenav.kivakit.core.language.Classes;
-import com.telenav.kivakit.core.lexakai.DiagramBroadcaster;
-import com.telenav.kivakit.core.lexakai.DiagramListener;
-import com.telenav.kivakit.core.lexakai.DiagramMessaging;
+import com.telenav.kivakit.core.internal.lexakai.DiagramBroadcaster;
+import com.telenav.kivakit.core.internal.lexakai.DiagramListener;
+import com.telenav.kivakit.core.internal.lexakai.DiagramMessaging;
 import com.telenav.kivakit.core.messaging.context.CodeContext;
 import com.telenav.kivakit.core.messaging.context.StackTrace;
 import com.telenav.kivakit.core.messaging.messages.Importance;

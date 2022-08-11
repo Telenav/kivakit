@@ -19,7 +19,7 @@
 package com.telenav.kivakit.core.logging.logs.text;
 
 import com.telenav.kivakit.core.logging.LogEntry;
-import com.telenav.kivakit.core.lexakai.DiagramLogs;
+import com.telenav.kivakit.core.internal.lexakai.DiagramLogs;
 import com.telenav.kivakit.core.string.Formatter;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 

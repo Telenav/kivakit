@@ -25,7 +25,7 @@ import com.telenav.kivakit.core.collections.map.VariableMap;
 import com.telenav.kivakit.core.language.primitive.Primitives;
 import com.telenav.kivakit.core.language.reflection.Field;
 import com.telenav.kivakit.core.language.reflection.Type;
-import com.telenav.kivakit.core.lexakai.DiagramLanguage;
+import com.telenav.kivakit.core.internal.lexakai.DiagramLanguage;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.messaging.repeaters.BaseRepeater;
 import com.telenav.kivakit.core.object.Lazy;

@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.core.value.count;
 
-import com.telenav.kivakit.core.lexakai.DiagramCount;
+import com.telenav.kivakit.core.internal.lexakai.DiagramCount;
 import com.telenav.kivakit.core.value.level.Percent;
 import com.telenav.kivakit.interfaces.numeric.Quantizable;
 import com.telenav.kivakit.interfaces.numeric.QuantumComparable;

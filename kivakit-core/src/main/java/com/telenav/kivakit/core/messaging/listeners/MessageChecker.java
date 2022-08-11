@@ -23,7 +23,7 @@ import com.telenav.kivakit.core.ensure.Ensure;
 import com.telenav.kivakit.core.messaging.Message;
 import com.telenav.kivakit.core.messaging.repeaters.BaseRepeater;
 import com.telenav.kivakit.core.messaging.messages.status.Problem;
-import com.telenav.kivakit.core.lexakai.DiagramListenerType;
+import com.telenav.kivakit.core.internal.lexakai.DiagramListenerType;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.HashMap;

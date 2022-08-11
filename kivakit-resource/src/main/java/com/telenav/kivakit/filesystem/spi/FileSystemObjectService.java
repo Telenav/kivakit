@@ -29,7 +29,7 @@ import com.telenav.kivakit.filesystem.FilePath;
 import com.telenav.kivakit.filesystem.loader.FileSystemServiceLoader;
 import com.telenav.kivakit.resource.Deletable;
 import com.telenav.kivakit.resource.ResourcePathed;
-import com.telenav.kivakit.resource.lexakai.DiagramFileSystemService;
+import com.telenav.kivakit.resource.internal.lexakai.DiagramFileSystemService;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeSuperTypes;

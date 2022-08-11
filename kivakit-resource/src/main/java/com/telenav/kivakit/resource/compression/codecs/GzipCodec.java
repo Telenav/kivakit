@@ -20,7 +20,7 @@ package com.telenav.kivakit.resource.compression.codecs;
 
 import com.telenav.kivakit.core.messaging.messages.status.Problem;
 import com.telenav.kivakit.resource.compression.Codec;
-import com.telenav.kivakit.resource.lexakai.DiagramResourceCompression;
+import com.telenav.kivakit.resource.internal.lexakai.DiagramResourceCompression;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 

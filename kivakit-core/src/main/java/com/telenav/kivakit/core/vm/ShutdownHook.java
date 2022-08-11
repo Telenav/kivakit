@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.core.vm;
 
-import com.telenav.kivakit.core.lexakai.DiagramLanguage;
+import com.telenav.kivakit.core.internal.lexakai.DiagramLanguage;
 import com.telenav.kivakit.core.logging.Logger;
 import com.telenav.kivakit.core.logging.loggers.ConsoleLogger;
 import com.telenav.kivakit.core.string.Strings;

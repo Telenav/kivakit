@@ -19,7 +19,7 @@
 package com.telenav.kivakit.core.thread;
 
 import com.telenav.kivakit.core.messaging.Listener;
-import com.telenav.kivakit.core.lexakai.DiagramThread;
+import com.telenav.kivakit.core.internal.lexakai.DiagramThread;
 import com.telenav.kivakit.interfaces.lifecycle.Pausable;
 import com.telenav.kivakit.core.time.Frequency;
 import com.telenav.lexakai.annotations.UmlClassDiagram;

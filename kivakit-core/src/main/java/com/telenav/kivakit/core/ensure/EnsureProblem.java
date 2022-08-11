@@ -19,7 +19,7 @@
 package com.telenav.kivakit.core.ensure;
 
 import com.telenav.kivakit.core.messaging.messages.status.Problem;
-import com.telenav.kivakit.core.lexakai.DiagramEnsure;
+import com.telenav.kivakit.core.internal.lexakai.DiagramEnsure;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 /**

@@ -19,7 +19,7 @@
 package com.telenav.kivakit.interfaces.value;
 
 import com.telenav.kivakit.interfaces.naming.Named;
-import com.telenav.kivakit.interfaces.lexakai.DiagramNaming;
+import com.telenav.kivakit.interfaces.internal.lexakai.DiagramNaming;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 /**

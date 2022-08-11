@@ -19,7 +19,7 @@
 package com.telenav.kivakit.conversion.core.value;
 
 import com.telenav.kivakit.conversion.BaseStringConverter;
-import com.telenav.kivakit.conversion.lexakai.DiagramConversionOther;
+import com.telenav.kivakit.conversion.internal.lexakai.DiagramConversionOther;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.version.Version;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;

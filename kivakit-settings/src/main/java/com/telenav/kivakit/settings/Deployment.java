@@ -24,7 +24,7 @@ import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.registry.InstanceIdentifier;
 import com.telenav.kivakit.interfaces.naming.Named;
 import com.telenav.kivakit.resource.ResourceFolder;
-import com.telenav.kivakit.settings.lexakai.DiagramSettings;
+import com.telenav.kivakit.settings.internal.lexakai.DiagramSettings;
 import com.telenav.kivakit.settings.stores.MemorySettingsStore;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;

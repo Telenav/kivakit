@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.core.collections.iteration;
 
-import com.telenav.kivakit.core.lexakai.DiagramCollections;
+import com.telenav.kivakit.core.internal.lexakai.DiagramCollections;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.ArrayList;

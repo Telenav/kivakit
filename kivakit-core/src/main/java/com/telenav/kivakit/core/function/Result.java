@@ -23,7 +23,7 @@ import com.telenav.kivakit.core.function.arities.PentaFunction;
 import com.telenav.kivakit.core.function.arities.TetraFunction;
 import com.telenav.kivakit.core.function.arities.TriFunction;
 import com.telenav.kivakit.core.language.Classes;
-import com.telenav.kivakit.core.lexakai.DiagramMessaging;
+import com.telenav.kivakit.core.internal.lexakai.DiagramMessaging;
 import com.telenav.kivakit.core.messaging.Broadcaster;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.messaging.Message;

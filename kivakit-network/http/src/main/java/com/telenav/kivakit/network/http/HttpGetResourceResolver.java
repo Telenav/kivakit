@@ -3,7 +3,7 @@ package com.telenav.kivakit.network.http;
 import com.telenav.kivakit.network.http.secure.SecureHttpNetworkLocation;
 import com.telenav.kivakit.resource.Resource;
 import com.telenav.kivakit.resource.ResourceIdentifier;
-import com.telenav.kivakit.resource.lexakai.DiagramResourceService;
+import com.telenav.kivakit.resource.internal.lexakai.DiagramResourceService;
 import com.telenav.kivakit.resource.spi.ResourceResolver;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;

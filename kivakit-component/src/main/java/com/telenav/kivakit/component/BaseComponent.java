@@ -1,6 +1,6 @@
 package com.telenav.kivakit.component;
 
-import com.telenav.kivakit.component.lexakai.DiagramComponent;
+import com.telenav.kivakit.component.internal.lexakai.DiagramComponent;
 import com.telenav.kivakit.core.messaging.Repeater;
 import com.telenav.kivakit.core.messaging.repeaters.BaseRepeater;
 import com.telenav.kivakit.interfaces.naming.NamedObject;

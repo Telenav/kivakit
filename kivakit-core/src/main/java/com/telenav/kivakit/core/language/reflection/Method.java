@@ -19,7 +19,7 @@
 package com.telenav.kivakit.core.language.reflection;
 
 import com.telenav.kivakit.core.collections.list.ObjectList;
-import com.telenav.kivakit.core.lexakai.DiagramReflection;
+import com.telenav.kivakit.core.internal.lexakai.DiagramReflection;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.lang.reflect.ParameterizedType;

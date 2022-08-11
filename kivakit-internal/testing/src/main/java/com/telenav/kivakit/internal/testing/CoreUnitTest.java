@@ -40,7 +40,7 @@ import com.telenav.kivakit.core.value.count.Maximum;
 import com.telenav.kivakit.core.value.count.Minimum;
 import com.telenav.kivakit.core.vm.JavaTrait;
 import com.telenav.kivakit.interfaces.naming.NamedObject;
-import com.telenav.kivakit.internal.testing.lexakai.DiagramTest;
+import com.telenav.kivakit.internal.testing.internal.lexakai.DiagramTest;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
 import org.junit.Before;

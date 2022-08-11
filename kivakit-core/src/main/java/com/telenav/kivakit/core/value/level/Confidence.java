@@ -19,7 +19,7 @@
 package com.telenav.kivakit.core.value.level;
 
 import com.telenav.kivakit.core.messaging.Listener;
-import com.telenav.kivakit.core.lexakai.DiagramCount;
+import com.telenav.kivakit.core.internal.lexakai.DiagramCount;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 

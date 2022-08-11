@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.core.string;
 
-import com.telenav.kivakit.core.lexakai.DiagramString;
+import com.telenav.kivakit.core.internal.lexakai.DiagramString;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
@@ -83,16 +83,6 @@ public class Strip
             return text.substring(leading.length());
         }
         return text;
-    }
-
-    public static String packagePrefix(String type)
-    {
-        var list = Split.split(type, "\\.")
-                .stream()
-                .filter(Strings::isLowerCase)
-                .collect(Collectors.toList());
-
-        return Join.join(list, ".");
     }
 
     public static String quotes(String text)

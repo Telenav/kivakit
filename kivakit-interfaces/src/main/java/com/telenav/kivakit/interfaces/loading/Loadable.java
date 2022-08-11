@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.interfaces.loading;
 
-import com.telenav.kivakit.interfaces.lexakai.DiagramLoading;
+import com.telenav.kivakit.interfaces.internal.lexakai.DiagramLoading;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 /**

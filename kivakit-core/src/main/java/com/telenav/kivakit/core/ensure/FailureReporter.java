@@ -21,7 +21,7 @@ package com.telenav.kivakit.core.ensure;
 import com.telenav.kivakit.core.logging.Logger;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.messaging.Message;
-import com.telenav.kivakit.core.lexakai.DiagramFailureReporter;
+import com.telenav.kivakit.core.internal.lexakai.DiagramFailureReporter;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import static com.telenav.kivakit.core.string.Formatter.Format.WITH_EXCEPTION;

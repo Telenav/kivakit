@@ -19,7 +19,7 @@
 package com.telenav.kivakit.commandline.parsing;
 
 import com.telenav.kivakit.commandline.ArgumentList;
-import com.telenav.kivakit.commandline.lexakai.DiagramValidation;
+import com.telenav.kivakit.commandline.internal.lexakai.DiagramValidation;
 import com.telenav.kivakit.validation.BaseValidator;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlAggregation;

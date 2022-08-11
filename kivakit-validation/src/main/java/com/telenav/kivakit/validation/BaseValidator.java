@@ -31,7 +31,7 @@ import com.telenav.kivakit.core.string.Strings;
 import com.telenav.kivakit.core.thread.ReentrancyTracker;
 import com.telenav.kivakit.core.value.count.Count;
 import com.telenav.kivakit.core.value.name.Name;
-import com.telenav.kivakit.validation.lexakai.DiagramValidation;
+import com.telenav.kivakit.validation.internal.lexakai.DiagramValidation;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.Collection;

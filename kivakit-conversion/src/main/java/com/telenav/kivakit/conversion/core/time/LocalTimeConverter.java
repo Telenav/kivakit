@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.conversion.core.time;
 
-import com.telenav.kivakit.conversion.lexakai.DiagramConversionTime;
+import com.telenav.kivakit.conversion.internal.lexakai.DiagramConversionTime;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.time.LocalTime;
 import com.telenav.kivakit.core.time.TimeFormats;

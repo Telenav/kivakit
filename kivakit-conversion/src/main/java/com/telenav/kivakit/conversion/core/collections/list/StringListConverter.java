@@ -1,7 +1,7 @@
 package com.telenav.kivakit.conversion.core.collections.list;
 
 import com.telenav.kivakit.conversion.BaseStringConverter;
-import com.telenav.kivakit.conversion.lexakai.DiagramConversionOther;
+import com.telenav.kivakit.conversion.internal.lexakai.DiagramConversionOther;
 import com.telenav.kivakit.core.collections.list.StringList;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.value.identifier.Identifier;

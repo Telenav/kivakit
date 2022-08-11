@@ -21,7 +21,7 @@ package com.telenav.kivakit.network.email;
 import com.telenav.kivakit.core.time.Duration;
 import com.telenav.kivakit.core.time.Time;
 import com.telenav.kivakit.interfaces.io.Closeable;
-import com.telenav.kivakit.network.email.lexakai.DiagramEmail;
+import com.telenav.kivakit.network.email.internal.lexakai.DiagramEmail;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 

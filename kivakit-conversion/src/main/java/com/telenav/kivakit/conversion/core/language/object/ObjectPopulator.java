@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.conversion.core.language.object;
 
-import com.telenav.kivakit.conversion.lexakai.DiagramConversionLanguage;
+import com.telenav.kivakit.conversion.internal.lexakai.DiagramConversionLanguage;
 import com.telenav.kivakit.core.ensure.Ensure;
 import com.telenav.kivakit.core.language.reflection.Type;
 import com.telenav.kivakit.core.language.reflection.property.PropertyFilter;

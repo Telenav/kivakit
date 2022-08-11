@@ -21,7 +21,7 @@ package com.telenav.kivakit.core.collections.map;
 import com.telenav.kivakit.core.collections.list.StringList;
 import com.telenav.kivakit.core.language.primitive.Booleans;
 import com.telenav.kivakit.core.language.trait.TryTrait;
-import com.telenav.kivakit.core.lexakai.DiagramCollections;
+import com.telenav.kivakit.core.internal.lexakai.DiagramCollections;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.messaging.messages.status.Problem;
 import com.telenav.kivakit.core.messaging.repeaters.RepeaterMixin;

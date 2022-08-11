@@ -33,14 +33,13 @@ import com.telenav.kivakit.resource.Resource;
 import com.telenav.kivakit.resource.ResourcePath;
 import com.telenav.kivakit.resource.compression.Codec;
 import com.telenav.kivakit.resource.compression.codecs.NullCodec;
-import com.telenav.kivakit.resource.lexakai.DiagramFileSystemFile;
-import com.telenav.kivakit.resource.lexakai.DiagramResource;
+import com.telenav.kivakit.resource.internal.lexakai.DiagramFileSystemFile;
+import com.telenav.kivakit.resource.internal.lexakai.DiagramResource;
 import com.telenav.kivakit.resource.writing.WritableResource;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.io.InputStream;
-import java.io.OutputStream;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.util.Objects;

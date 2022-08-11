@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.resource.resources;
 
-import com.telenav.kivakit.resource.lexakai.DiagramResourceType;
+import com.telenav.kivakit.resource.internal.lexakai.DiagramResourceType;
 import com.telenav.kivakit.resource.writing.BaseWritableResource;
 import com.telenav.kivakit.resource.writing.WritableResource;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;

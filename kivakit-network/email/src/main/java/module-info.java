@@ -10,6 +10,5 @@ open module kivakit.network.email
     // Module exports
     exports com.telenav.kivakit.network.email;
     exports com.telenav.kivakit.network.email.senders;
-    exports com.telenav.kivakit.network.email.lexakai;
     exports com.telenav.kivakit.network.email.converters;
 }
