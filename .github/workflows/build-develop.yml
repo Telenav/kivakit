@@ -13,7 +13,7 @@ defaults:
     shell: bash
 
 env:
-    CACTUS_VERSION: 1.5.18
+    CACTUS_VERSION: 1.5.22
 
 name: "Build Develop"
 
