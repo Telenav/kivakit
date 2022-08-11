@@ -18,7 +18,7 @@
         <version>2.0.0</version>
         <relativePath/>
     </parent>
-    <!-- PR logic test - deleteme -->
+
     <groupId>com.telenav.kivakit</groupId>
     <artifactId>kivakit</artifactId>
     <version>1.6.3-SNAPSHOT</version>
