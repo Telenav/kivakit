@@ -58,16 +58,16 @@ KivaKit is a new vision for Java coding that makes development faster and easier
 
 ### Build Status <a name = "quick-start"></a>&nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/gears-32.png" srcset="https://telenav.github.io/telenav-assets/images/icons/gears-32-2x.png 2x"/>
 
-| Repository and Branch        | Build Status                                                                                             |
-|------------------------------|----------------------------------------------------------------------------------------------------------|
-| `kivakit develop`            | <img src="https://github.com/Telenav/kivakit/actions/workflows/build-develop.yml/badge.svg"/>            |
-| `kivakit release/current`    | <img src="https://github.com/Telenav/kivakit/actions/workflows/build-release.yml/badge.svg"/>            |
-| `kivakit-extensions develop` | <img src="https://github.com/Telenav/kivakit-extensions/actions/workflows/build-develop.yml/badge.svg"/> |
-| `kivakit-extensions release` | <img src="https://github.com/Telenav/kivakit-extensions/actions/workflows/build-release.yml/badge.svg"/> |
-| `kivakit-stuff develop`      | <img src="https://github.com/Telenav/kivakit-stuff/actions/workflows/build-develop.yml/badge.svg"/>      |
-| `kivakit-stuff release`      | <img src="https://github.com/Telenav/kivakit-stuff/actions/workflows/build-release.yml/badge.svg"/>      |
-| `kivakit-examples develop`   | <img src="https://github.com/Telenav/kivakit-examples/actions/workflows/build-develop.yml/badge.svg"/>   |
-| `kivakit-examples release`   | <img src="https://github.com/Telenav/kivakit-examples/actions/workflows/build-release.yml/badge.svg"/>   |
+| Repository and Branch                | Build Status                                                                                             |
+|--------------------------------------|----------------------------------------------------------------------------------------------------------|
+| `kivakit develop`                    | <img src="https://github.com/Telenav/kivakit/actions/workflows/build-develop.yml/badge.svg"/>            |
+| `kivakit release/current`            | <img src="https://github.com/Telenav/kivakit/actions/workflows/build-release.yml/badge.svg"/>            |
+| `kivakit-extensions develop`         | <img src="https://github.com/Telenav/kivakit-extensions/actions/workflows/build-develop.yml/badge.svg"/> |
+| `kivakit-extensions release/current` | <img src="https://github.com/Telenav/kivakit-extensions/actions/workflows/build-release.yml/badge.svg"/> |
+| `kivakit-stuff develop`              | <img src="https://github.com/Telenav/kivakit-stuff/actions/workflows/build-develop.yml/badge.svg"/>      |
+| `kivakit-stuff release/current`      | <img src="https://github.com/Telenav/kivakit-stuff/actions/workflows/build-release.yml/badge.svg"/>      |
+| `kivakit-examples develop`           | <img src="https://github.com/Telenav/kivakit-examples/actions/workflows/build-develop.yml/badge.svg"/>   |
+| `kivakit-examples release/current`   | <img src="https://github.com/Telenav/kivakit-examples/actions/workflows/build-release.yml/badge.svg"/>   |
 
 <br/>
 
