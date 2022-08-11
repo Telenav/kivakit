@@ -193,6 +193,23 @@ The resources below will help you to get started.
 
 [//]: # (start-user-text)
 
+<img src="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128.png" srcset="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128-2x.png 2x"/>
+
+### Build Status
+
+| Repository and Branch      | Build Status                                                                                             |
+|----------------------------|----------------------------------------------------------------------------------------------------------|
+| kivakit/develop            | <img src="https://github.com/Telenav/kivakit/actions/workflows/build-develop.yml/badge.svg"/>            |
+| kivakit/release/current    | <img src="https://github.com/Telenav/kivakit/actions/workflows/build-release.yml/badge.svg"/>            |
+| kivakit-extensions/develop | <img src="https://github.com/Telenav/kivakit-extensions/actions/workflows/build-develop.yml/badge.svg"/> |
+| kivakit-extensions/release | <img src="https://github.com/Telenav/kivakit-extensions/actions/workflows/build-release.yml/badge.svg"/> |
+| kivakit-stuff/develop      | <img src="https://github.com/Telenav/kivakit-stuff/actions/workflows/build-develop.yml/badge.svg"/>      |
+| kivakit-stuff/release      | <img src="https://github.com/Telenav/kivakit-stuff/actions/workflows/build-release.yml/badge.svg"/>      |
+| kivakit-examples/develop   | <img src="https://github.com/Telenav/kivakit-examples/actions/workflows/build-develop.yml/badge.svg"/>   |
+| kivakit-examples/release   | <img src="https://github.com/Telenav/kivakit-examples/actions/workflows/build-release.yml/badge.svg"/>   |
+
+<br/>
+
 <img src="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-512.png" srcset="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-512-2x.png 2x"/>
 
 [**Issues**](https://github.com/Telenav/kivakit/issues) |
