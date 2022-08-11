@@ -21,7 +21,7 @@ package com.telenav.kivakit.core.thread;
 import com.telenav.kivakit.core.code.UncheckedCode;
 import com.telenav.kivakit.core.ensure.Ensure;
 import com.telenav.kivakit.core.language.reflection.Type;
-import com.telenav.kivakit.core.lexakai.DiagramThread;
+import com.telenav.kivakit.core.internal.lexakai.DiagramThread;
 import com.telenav.kivakit.core.logging.Logger;
 import com.telenav.kivakit.core.logging.LoggerFactory;
 import com.telenav.kivakit.core.messaging.Listener;

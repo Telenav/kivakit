@@ -18,8 +18,8 @@
 
 package com.telenav.kivakit.commandline;
 
-import com.telenav.kivakit.commandline.lexakai.DiagramCommandLine;
-import com.telenav.kivakit.commandline.lexakai.DiagramSwitch;
+import com.telenav.kivakit.commandline.internal.lexakai.DiagramCommandLine;
+import com.telenav.kivakit.commandline.internal.lexakai.DiagramSwitch;
 import com.telenav.kivakit.conversion.BaseStringConverter;
 import com.telenav.kivakit.conversion.Converter;
 import com.telenav.kivakit.conversion.StringConverter;

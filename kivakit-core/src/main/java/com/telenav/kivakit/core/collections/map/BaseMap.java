@@ -22,7 +22,7 @@ import com.telenav.kivakit.core.collections.list.StringList;
 import com.telenav.kivakit.core.value.count.Maximum;
 import com.telenav.kivakit.core.ensure.Ensure;
 import com.telenav.kivakit.core.language.Hash;
-import com.telenav.kivakit.core.lexakai.DiagramCollections;
+import com.telenav.kivakit.core.internal.lexakai.DiagramCollections;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.Collection;

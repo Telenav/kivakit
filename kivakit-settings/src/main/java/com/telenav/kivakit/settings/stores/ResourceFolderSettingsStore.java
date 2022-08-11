@@ -28,7 +28,7 @@ import com.telenav.kivakit.resource.serialization.ObjectSerializers;
 import com.telenav.kivakit.settings.Settings;
 import com.telenav.kivakit.settings.SettingsObject;
 import com.telenav.kivakit.settings.SettingsStore;
-import com.telenav.kivakit.settings.lexakai.DiagramSettings;
+import com.telenav.kivakit.settings.internal.lexakai.DiagramSettings;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeMember;
 

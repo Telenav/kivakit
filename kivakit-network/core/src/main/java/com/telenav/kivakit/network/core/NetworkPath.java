@@ -27,7 +27,7 @@ import com.telenav.kivakit.core.logging.LoggerFactory;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.path.Path;
 import com.telenav.kivakit.core.path.StringPath;
-import com.telenav.kivakit.network.core.lexakai.DiagramNetworkLocation;
+import com.telenav.kivakit.network.core.internal.lexakai.DiagramNetworkLocation;
 import com.telenav.kivakit.resource.Extension;
 import com.telenav.kivakit.resource.FileName;
 import com.telenav.kivakit.filesystem.FilePath;

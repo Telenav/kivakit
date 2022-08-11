@@ -1,6 +1,7 @@
 package com.telenav.kivakit.core.string;
 
 import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 import static com.telenav.kivakit.core.string.Join.join;
 import static com.telenav.kivakit.core.string.Split.split;
@@ -8,6 +9,7 @@ import static com.telenav.kivakit.core.string.Split.split;
 /**
  * @author jonathanl (shibo)
  */
+@SuppressWarnings("unused")
 public class Packages
 {
     /**
@@ -33,5 +35,15 @@ public class Packages
         }
 
         return join(path, "/") + "/" + join(type, ".");
+    }
+
+    public static String packagePrefix(String type)
+    {
+        var list = Split.split(type, "\\.")
+                .stream()
+                .filter(Strings::isLowerCase)
+                .collect(Collectors.toList());
+
+        return Join.join(list, ".");
     }
 }

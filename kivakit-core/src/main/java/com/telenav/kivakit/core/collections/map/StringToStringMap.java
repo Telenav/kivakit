@@ -23,7 +23,7 @@ import com.telenav.kivakit.core.value.count.Maximum;
 import com.telenav.kivakit.core.language.primitive.Ints;
 import com.telenav.kivakit.core.logging.Logger;
 import com.telenav.kivakit.core.logging.LoggerFactory;
-import com.telenav.kivakit.core.lexakai.DiagramCollections;
+import com.telenav.kivakit.core.internal.lexakai.DiagramCollections;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 /**

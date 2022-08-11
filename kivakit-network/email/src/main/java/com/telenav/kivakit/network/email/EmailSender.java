@@ -31,7 +31,7 @@ import com.telenav.kivakit.interfaces.io.Closeable;
 import com.telenav.kivakit.interfaces.io.Flushable;
 import com.telenav.kivakit.interfaces.lifecycle.Startable;
 import com.telenav.kivakit.interfaces.lifecycle.Stoppable;
-import com.telenav.kivakit.network.email.lexakai.DiagramEmail;
+import com.telenav.kivakit.network.email.internal.lexakai.DiagramEmail;
 import com.telenav.kivakit.network.email.senders.SmtpEmailSender;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;

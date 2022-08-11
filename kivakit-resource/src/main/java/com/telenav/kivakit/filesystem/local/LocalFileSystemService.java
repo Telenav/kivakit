@@ -26,7 +26,7 @@ import com.telenav.kivakit.filesystem.spi.DiskService;
 import com.telenav.kivakit.filesystem.spi.FileService;
 import com.telenav.kivakit.filesystem.spi.FileSystemService;
 import com.telenav.kivakit.filesystem.spi.FolderService;
-import com.telenav.kivakit.resource.lexakai.DiagramFileSystemService;
+import com.telenav.kivakit.resource.internal.lexakai.DiagramFileSystemService;
 import com.telenav.kivakit.filesystem.FilePath;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;

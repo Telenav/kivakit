@@ -1,6 +1,6 @@
 package com.telenav.kivakit.component;
 
-import com.telenav.kivakit.component.lexakai.DiagramComponent;
+import com.telenav.kivakit.component.internal.lexakai.DiagramComponent;
 import com.telenav.kivakit.core.code.UncheckedCode;
 import com.telenav.kivakit.core.code.UncheckedVoidCode;
 import com.telenav.kivakit.core.function.Result;

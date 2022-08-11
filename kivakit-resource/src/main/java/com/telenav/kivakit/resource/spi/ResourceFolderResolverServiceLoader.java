@@ -21,7 +21,7 @@ package com.telenav.kivakit.resource.spi;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.resource.ResourceFolder;
 import com.telenav.kivakit.resource.ResourceFolderIdentifier;
-import com.telenav.kivakit.resource.lexakai.DiagramResourceService;
+import com.telenav.kivakit.resource.internal.lexakai.DiagramResourceService;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlAggregation;

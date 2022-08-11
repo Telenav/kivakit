@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.core.time;
 
-import com.telenav.kivakit.core.lexakai.DiagramTime;
+import com.telenav.kivakit.core.internal.lexakai.DiagramTime;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.time.format.DateTimeFormatter;

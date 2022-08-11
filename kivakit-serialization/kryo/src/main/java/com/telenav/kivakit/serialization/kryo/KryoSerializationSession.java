@@ -29,7 +29,7 @@ import com.telenav.kivakit.core.version.Version;
 import com.telenav.kivakit.interfaces.naming.Named;
 import com.telenav.kivakit.resource.serialization.SerializableObject;
 import com.telenav.kivakit.serialization.core.SerializationSession;
-import com.telenav.kivakit.serialization.kryo.lexakai.DiagramKryo;
+import com.telenav.kivakit.serialization.kryo.internal.lexakai.DiagramKryo;
 import com.telenav.kivakit.serialization.kryo.types.KryoTypes;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;

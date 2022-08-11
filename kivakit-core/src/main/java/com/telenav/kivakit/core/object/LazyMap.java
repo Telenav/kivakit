@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.core.object;
 
-import com.telenav.kivakit.core.lexakai.DiagramObject;
+import com.telenav.kivakit.core.internal.lexakai.DiagramObject;
 import com.telenav.kivakit.interfaces.factory.MapFactory;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 

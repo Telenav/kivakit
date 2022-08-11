@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.conversion;
 
-import com.telenav.kivakit.conversion.lexakai.DiagramConversion;
+import com.telenav.kivakit.conversion.internal.lexakai.DiagramConversion;
 import com.telenav.kivakit.core.collections.list.ObjectList;
 import com.telenav.kivakit.core.collections.list.StringList;
 import com.telenav.kivakit.core.collections.set.ObjectSet;

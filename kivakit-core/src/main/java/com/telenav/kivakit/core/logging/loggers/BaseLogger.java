@@ -21,7 +21,7 @@ package com.telenav.kivakit.core.logging.loggers;
 import com.telenav.kivakit.core.collections.map.ConcurrentObjectMap;
 import com.telenav.kivakit.core.collections.set.ObjectSet;
 import com.telenav.kivakit.core.ensure.Ensure;
-import com.telenav.kivakit.core.lexakai.DiagramLogging;
+import com.telenav.kivakit.core.internal.lexakai.DiagramLogging;
 import com.telenav.kivakit.core.logging.Log;
 import com.telenav.kivakit.core.logging.LogEntry;
 import com.telenav.kivakit.core.logging.Logger;

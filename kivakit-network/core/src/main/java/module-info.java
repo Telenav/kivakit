@@ -7,7 +7,6 @@ open module kivakit.network.core
 
     // Module exports
     exports com.telenav.kivakit.network.core;
-    exports com.telenav.kivakit.network.core.lexakai;
     exports com.telenav.kivakit.network.core.authentication;
     exports com.telenav.kivakit.network.core.authentication.passwords;
 }

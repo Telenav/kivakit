@@ -22,7 +22,7 @@ import com.telenav.kivakit.core.language.Classes;
 import com.telenav.kivakit.core.collections.list.ObjectList;
 import com.telenav.kivakit.core.ensure.Ensure;
 import com.telenav.kivakit.core.language.Hash;
-import com.telenav.kivakit.core.lexakai.DiagramReflection;
+import com.telenav.kivakit.core.internal.lexakai.DiagramReflection;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.lang.annotation.Annotation;

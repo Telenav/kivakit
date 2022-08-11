@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.core.progress.reporters;
 
-import com.telenav.kivakit.core.lexakai.DiagramProgress;
+import com.telenav.kivakit.core.internal.lexakai.DiagramProgress;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.messaging.broadcasters.Multicaster;
 import com.telenav.kivakit.core.progress.ProgressListener;

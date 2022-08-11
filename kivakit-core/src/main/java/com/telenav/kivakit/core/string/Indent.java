@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.core.string;
 
-import com.telenav.kivakit.core.lexakai.DiagramString;
+import com.telenav.kivakit.core.internal.lexakai.DiagramString;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 /**

@@ -21,7 +21,7 @@ package com.telenav.kivakit.interfaces.comparison;
 import com.telenav.kivakit.interfaces.comparison.matchers.Anything;
 import com.telenav.kivakit.interfaces.comparison.matchers.Nothing;
 import com.telenav.kivakit.interfaces.comparison.matchers.PatternMatcher;
-import com.telenav.kivakit.interfaces.lexakai.DiagramComparison;
+import com.telenav.kivakit.interfaces.internal.lexakai.DiagramComparison;
 import com.telenav.kivakit.interfaces.naming.Named;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 

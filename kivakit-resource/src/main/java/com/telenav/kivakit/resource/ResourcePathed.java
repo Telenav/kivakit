@@ -20,8 +20,8 @@ package com.telenav.kivakit.resource;
 
 import com.telenav.kivakit.core.messaging.messages.status.Problem;
 import com.telenav.kivakit.interfaces.comparison.Matcher;
-import com.telenav.kivakit.resource.lexakai.DiagramResource;
-import com.telenav.kivakit.resource.lexakai.DiagramResourcePath;
+import com.telenav.kivakit.resource.internal.lexakai.DiagramResource;
+import com.telenav.kivakit.resource.internal.lexakai.DiagramResourcePath;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlRelation;

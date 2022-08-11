@@ -26,7 +26,7 @@ import com.telenav.kivakit.interfaces.comparison.Matcher;
 import com.telenav.kivakit.resource.BaseResourceList;
 import com.telenav.kivakit.resource.Extension;
 import com.telenav.kivakit.resource.ResourcePath;
-import com.telenav.kivakit.resource.lexakai.DiagramFileSystemFile;
+import com.telenav.kivakit.resource.internal.lexakai.DiagramFileSystemFile;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeMember;

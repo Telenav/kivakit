@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.collections.map;
 
-import com.telenav.kivakit.collections.lexakai.DiagramMap;
+import com.telenav.kivakit.collections.internal.lexakai.DiagramMap;
 import com.telenav.kivakit.core.collections.map.BaseMap;
 import com.telenav.kivakit.core.collections.map.LinkedMap;
 import com.telenav.kivakit.core.value.count.Maximum;

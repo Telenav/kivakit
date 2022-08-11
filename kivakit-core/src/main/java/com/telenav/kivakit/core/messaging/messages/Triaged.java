@@ -18,8 +18,8 @@
 
 package com.telenav.kivakit.core.messaging.messages;
 
-import com.telenav.kivakit.core.lexakai.DiagramLogging;
-import com.telenav.kivakit.core.lexakai.DiagramMessaging;
+import com.telenav.kivakit.core.internal.lexakai.DiagramLogging;
+import com.telenav.kivakit.core.internal.lexakai.DiagramMessaging;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
@@ -40,4 +40,3 @@ public interface Triaged
     @UmlRelation(label = "has")
     Severity severity();
 }
-

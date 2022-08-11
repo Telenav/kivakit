@@ -27,7 +27,7 @@ import com.jcraft.jsch.SftpException;
 import com.telenav.kivakit.core.collections.list.ObjectList;
 import com.telenav.kivakit.network.core.NetworkAccessConstraints;
 import com.telenav.kivakit.network.core.NetworkLocation;
-import com.telenav.kivakit.network.ftp.lexakai.DiagramSecureFtp;
+import com.telenav.kivakit.network.ftp.internal.lexakai.DiagramSecureFtp;
 import com.telenav.kivakit.resource.Resource;
 import com.telenav.kivakit.resource.writing.WritableResource;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;

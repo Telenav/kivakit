@@ -21,7 +21,7 @@ package com.telenav.kivakit.interfaces.numeric;
 import com.telenav.kivakit.interfaces.collection.Indexed;
 import com.telenav.kivakit.interfaces.collection.LongKeyed;
 import com.telenav.kivakit.interfaces.factory.MapFactory;
-import com.telenav.kivakit.interfaces.lexakai.DiagramNumeric;
+import com.telenav.kivakit.interfaces.internal.lexakai.DiagramNumeric;
 import com.telenav.kivakit.interfaces.model.Identifiable;
 import com.telenav.kivakit.interfaces.string.Stringable;
 import com.telenav.lexakai.annotations.UmlClassDiagram;

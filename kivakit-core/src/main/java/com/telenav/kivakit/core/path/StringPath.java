@@ -21,7 +21,7 @@ package com.telenav.kivakit.core.path;
 import com.telenav.kivakit.core.KivaKit;
 import com.telenav.kivakit.core.collections.list.StringList;
 import com.telenav.kivakit.core.language.reflection.property.KivaKitIncludeProperty;
-import com.telenav.kivakit.core.lexakai.DiagramPath;
+import com.telenav.kivakit.core.internal.lexakai.DiagramPath;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.string.Strings;
 import com.telenav.lexakai.annotations.UmlClassDiagram;

@@ -19,7 +19,7 @@
 package com.telenav.kivakit.core.messaging.broadcasters;
 
 import com.telenav.kivakit.core.language.Classes;
-import com.telenav.kivakit.core.lexakai.DiagramRepeater;
+import com.telenav.kivakit.core.internal.lexakai.DiagramRepeater;
 import com.telenav.kivakit.core.logging.Logger;
 import com.telenav.kivakit.core.logging.loggers.ConsoleLogger;
 import com.telenav.kivakit.core.messaging.Broadcaster;

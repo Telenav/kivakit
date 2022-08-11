@@ -27,7 +27,7 @@ import com.telenav.kivakit.core.language.reflection.property.KivaKitExcludePrope
 import com.telenav.kivakit.core.language.reflection.property.KivaKitIncludeProperty;
 import com.telenav.kivakit.core.language.reflection.property.PropertyFilter;
 import com.telenav.kivakit.core.language.reflection.property.PropertyMembers;
-import com.telenav.kivakit.core.lexakai.DiagramReflection;
+import com.telenav.kivakit.core.internal.lexakai.DiagramReflection;
 import com.telenav.kivakit.interfaces.string.Stringable;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
