@@ -12,9 +12,6 @@ defaults:
   run:
     shell: bash
 
-env:
-    CACTUS_VERSION: 1.5.22
-
 name: "Build Feature, Hotfix or Bugfix"
 
 on:
