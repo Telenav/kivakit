@@ -34,3 +34,4 @@ jobs:
     uses: Telenav/telenav-github/.github/workflows/build-branch.yml@main
     with:
       project: fonk
+    secrets: inherit
