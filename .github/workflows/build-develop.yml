@@ -34,5 +34,3 @@ jobs:
     uses: Telenav/telenav-github/.github/workflows/build-branch.yml@main
     with:
       project: fonk
-    secrets:
-      zulip_api_key: ${{ secrets.ZULIP_API_KEY }}
