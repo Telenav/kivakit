@@ -33,7 +33,6 @@ jobs:
   build:
     uses: Telenav/telenav-github/.github/workflows/build-branch.yml@main
     with:
-      PROJECT: ${{ PROJECT }}
-      GITHUB_WORKFLOW: "$GITHUB_WORKFLOW"
+      PROJECT: ${{ env.PROJECT }}
     secrets:
       ZULIP_API_KEY: ${{ secrets.ZULIP_API_KEY }}
