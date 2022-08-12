@@ -35,4 +35,4 @@ jobs:
     with:
       project: fonk
     secrets:
-      ZULIP_API_KEY: ${{ secrets.ZULIP_API_KEY }}
+      zulip_api_key: ${{ secrets.ZULIP_API_KEY }}
