@@ -32,3 +32,4 @@ on:
 jobs:
   build:
     uses: Telenav/telenav-github/.github/workflows/build-branch.yml@main
+    secrets: inherit
