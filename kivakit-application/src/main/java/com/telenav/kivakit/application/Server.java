@@ -26,6 +26,7 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
  * Subclass of {@link Application} for use by servers.
  *
  * @author jonathanl (shibo)
+ * @see Application
  */
 @UmlClassDiagram(diagram = DiagramApplication.class)
 @LexakaiJavadoc(complete = true)
