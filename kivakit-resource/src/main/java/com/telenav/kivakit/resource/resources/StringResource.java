@@ -23,7 +23,7 @@ import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.time.Time;
 import com.telenav.kivakit.core.value.count.Bytes;
 import com.telenav.kivakit.resource.ResourcePath;
-import com.telenav.kivakit.resource.lexakai.DiagramResourceType;
+import com.telenav.kivakit.resource.internal.lexakai.DiagramResourceType;
 import com.telenav.kivakit.resource.reading.BaseReadableResource;
 import com.telenav.kivakit.resource.reading.ReadableResource;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;

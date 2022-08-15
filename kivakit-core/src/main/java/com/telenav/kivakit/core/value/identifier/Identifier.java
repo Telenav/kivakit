@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.core.value.identifier;
 
-import com.telenav.kivakit.core.lexakai.DiagramIdentifier;
+import com.telenav.kivakit.core.internal.lexakai.DiagramIdentifier;
 import com.telenav.kivakit.core.value.count.BitCount;
 import com.telenav.kivakit.interfaces.collection.LongKeyed;
 import com.telenav.kivakit.interfaces.model.Identifiable;

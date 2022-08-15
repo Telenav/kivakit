@@ -310,7 +310,7 @@ _kivakit-stuff_, according to the principles described in the Medium article [*O
 ### build
 
 * Added docker build environment
-* Added setup-repositories.sh
+* Added setup-repositories script
 
 ### dependencies
 

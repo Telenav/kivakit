@@ -19,7 +19,7 @@
 package com.telenav.kivakit.core.thread;
 
 import com.telenav.kivakit.core.code.UncheckedCode;
-import com.telenav.kivakit.core.lexakai.DiagramThread;
+import com.telenav.kivakit.core.internal.lexakai.DiagramThread;
 import com.telenav.kivakit.core.messaging.repeaters.BaseRepeater;
 import com.telenav.kivakit.core.time.Time;
 import com.telenav.kivakit.core.value.count.BaseCount;

@@ -27,7 +27,7 @@ import com.telenav.kivakit.core.messaging.messages.OperationMessage;
 import com.telenav.kivakit.core.messaging.messages.status.Problem;
 import com.telenav.kivakit.core.messaging.messages.status.Quibble;
 import com.telenav.kivakit.core.messaging.messages.status.Warning;
-import com.telenav.kivakit.core.lexakai.DiagramListenerType;
+import com.telenav.kivakit.core.internal.lexakai.DiagramListenerType;
 import com.telenav.kivakit.core.string.Align;
 import com.telenav.kivakit.core.string.Plural;
 import com.telenav.lexakai.annotations.UmlClassDiagram;

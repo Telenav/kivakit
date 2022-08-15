@@ -21,7 +21,7 @@ package com.telenav.kivakit.core.messaging;
 import com.telenav.kivakit.core.KivaKit;
 import com.telenav.kivakit.core.ensure.Ensure;
 import com.telenav.kivakit.core.language.Patterns;
-import com.telenav.kivakit.core.lexakai.DiagramBroadcaster;
+import com.telenav.kivakit.core.internal.lexakai.DiagramBroadcaster;
 import com.telenav.kivakit.core.logging.Logger;
 import com.telenav.kivakit.core.logging.LoggerFactory;
 import com.telenav.kivakit.core.messaging.context.CallStack;

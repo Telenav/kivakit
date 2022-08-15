@@ -19,9 +19,9 @@
 package com.telenav.kivakit.core.messaging;
 
 import com.telenav.kivakit.core.language.Classes;
-import com.telenav.kivakit.core.lexakai.DiagramBroadcaster;
-import com.telenav.kivakit.core.lexakai.DiagramListener;
-import com.telenav.kivakit.core.lexakai.DiagramMessaging;
+import com.telenav.kivakit.core.internal.lexakai.DiagramBroadcaster;
+import com.telenav.kivakit.core.internal.lexakai.DiagramListener;
+import com.telenav.kivakit.core.internal.lexakai.DiagramMessaging;
 import com.telenav.kivakit.core.messaging.context.CodeContext;
 import com.telenav.kivakit.core.messaging.context.StackTrace;
 import com.telenav.kivakit.core.messaging.messages.Importance;
@@ -122,7 +122,11 @@ import static com.telenav.kivakit.core.string.Formatter.Format.WITH_EXCEPTION;
 @UmlClassDiagram(diagram = DiagramListener.class)
 @UmlExcludeSuperTypes({ Stringable.class })
 @UmlRelation(label = "formats with", diagram = DiagramMessaging.class, referent = Formatter.class)
-public interface Message extends Transmittable, Triaged, Stringable, Named
+public interface Message extends
+        Transmittable,
+        Triaged,
+        Stringable,
+        Named
 {
     /**
      * @return The given string with single quotes escaped

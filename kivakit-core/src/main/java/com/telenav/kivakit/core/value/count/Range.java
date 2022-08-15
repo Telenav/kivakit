@@ -19,7 +19,7 @@
 package com.telenav.kivakit.core.value.count;
 
 import com.telenav.kivakit.core.language.primitive.Longs;
-import com.telenav.kivakit.core.lexakai.DiagramCount;
+import com.telenav.kivakit.core.internal.lexakai.DiagramCount;
 import com.telenav.kivakit.core.string.Formatter;
 import com.telenav.kivakit.core.testing.Tested;
 import com.telenav.kivakit.interfaces.code.FilteredLoopBody;

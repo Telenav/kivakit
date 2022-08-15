@@ -23,8 +23,8 @@ import com.telenav.kivakit.core.progress.ProgressReporter;
 import com.telenav.kivakit.resource.CopyMode;
 import com.telenav.kivakit.resource.Resource;
 import com.telenav.kivakit.resource.ResourcePath;
-import com.telenav.kivakit.resource.lexakai.DiagramFileSystemFile;
-import com.telenav.kivakit.resource.lexakai.DiagramResource;
+import com.telenav.kivakit.resource.internal.lexakai.DiagramFileSystemFile;
+import com.telenav.kivakit.resource.internal.lexakai.DiagramResource;
 import com.telenav.kivakit.resource.reading.BaseReadableResource;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 

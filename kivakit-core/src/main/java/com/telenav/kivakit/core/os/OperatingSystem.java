@@ -19,7 +19,7 @@
 package com.telenav.kivakit.core.os;
 
 import com.telenav.kivakit.core.collections.map.VariableMap;
-import com.telenav.kivakit.core.lexakai.DiagramOs;
+import com.telenav.kivakit.core.internal.lexakai.DiagramOs;
 import com.telenav.kivakit.interfaces.naming.Named;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 

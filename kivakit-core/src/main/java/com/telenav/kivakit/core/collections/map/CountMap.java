@@ -19,7 +19,7 @@
 package com.telenav.kivakit.core.collections.map;
 
 import com.telenav.kivakit.core.collections.list.StringList;
-import com.telenav.kivakit.core.lexakai.DiagramCollections;
+import com.telenav.kivakit.core.internal.lexakai.DiagramCollections;
 import com.telenav.kivakit.core.value.count.Count;
 import com.telenav.kivakit.core.value.count.Countable;
 import com.telenav.kivakit.core.value.count.Maximum;

@@ -33,7 +33,7 @@ import com.telenav.kivakit.core.value.level.Confidence;
 import com.telenav.kivakit.interfaces.comparison.Filter;
 import com.telenav.kivakit.interfaces.comparison.Matcher;
 import com.telenav.kivakit.interfaces.numeric.RandomNumeric;
-import com.telenav.kivakit.internal.testing.lexakai.DiagramTest;
+import com.telenav.kivakit.internal.testing.internal.lexakai.DiagramTest;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 

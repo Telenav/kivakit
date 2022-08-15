@@ -18,9 +18,9 @@
 
 package com.telenav.kivakit.commandline;
 
-import com.telenav.kivakit.commandline.lexakai.DiagramArgument;
-import com.telenav.kivakit.commandline.lexakai.DiagramCommandLine;
-import com.telenav.kivakit.commandline.lexakai.DiagramValidation;
+import com.telenav.kivakit.commandline.internal.lexakai.DiagramArgument;
+import com.telenav.kivakit.commandline.internal.lexakai.DiagramCommandLine;
+import com.telenav.kivakit.commandline.internal.lexakai.DiagramValidation;
 import com.telenav.kivakit.core.collections.list.ObjectList;
 import com.telenav.kivakit.interfaces.collection.Sized;
 import com.telenav.kivakit.interfaces.string.Stringable;

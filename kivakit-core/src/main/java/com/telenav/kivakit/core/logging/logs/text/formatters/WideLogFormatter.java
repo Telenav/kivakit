@@ -19,7 +19,7 @@
 package com.telenav.kivakit.core.logging.logs.text.formatters;
 
 import com.telenav.kivakit.core.logging.LogEntry;
-import com.telenav.kivakit.core.lexakai.DiagramLogs;
+import com.telenav.kivakit.core.internal.lexakai.DiagramLogs;
 import com.telenav.kivakit.core.string.Formatter;
 import com.telenav.kivakit.interfaces.string.Stringable;
 import com.telenav.kivakit.core.time.Time;

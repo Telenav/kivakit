@@ -18,9 +18,9 @@
 
 package com.telenav.kivakit.core.messaging;
 
-import com.telenav.kivakit.core.lexakai.DiagramBroadcaster;
-import com.telenav.kivakit.core.lexakai.DiagramListener;
-import com.telenav.kivakit.core.lexakai.DiagramRepeater;
+import com.telenav.kivakit.core.internal.lexakai.DiagramBroadcaster;
+import com.telenav.kivakit.core.internal.lexakai.DiagramListener;
+import com.telenav.kivakit.core.internal.lexakai.DiagramRepeater;
 import com.telenav.kivakit.core.logging.Logger;
 import com.telenav.kivakit.core.messaging.listeners.ThrowingListener;
 import com.telenav.kivakit.core.messaging.messages.status.Problem;

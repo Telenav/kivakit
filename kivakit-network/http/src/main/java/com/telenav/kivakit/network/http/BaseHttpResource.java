@@ -19,11 +19,10 @@
 package com.telenav.kivakit.network.http;
 
 import com.telenav.kivakit.core.collections.map.VariableMap;
-import com.telenav.kivakit.core.messaging.messages.status.Problem;
 import com.telenav.kivakit.network.core.BaseNetworkResource;
 import com.telenav.kivakit.network.core.NetworkAccessConstraints;
 import com.telenav.kivakit.network.core.NetworkLocation;
-import com.telenav.kivakit.network.http.lexakai.DiagramHttp;
+import com.telenav.kivakit.network.http.internal.lexakai.DiagramHttp;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlAggregation;
@@ -77,7 +76,7 @@ public abstract class BaseHttpResource extends BaseNetworkResource implements Ht
 
     private final VariableMap<String> responseHeader = new VariableMap<>();
 
-    private int statusCode;
+    private HttpStatus status = HttpStatus.OK;
 
     /**
      * Constructs a resource accessible via HTTP
@@ -194,7 +193,7 @@ public abstract class BaseHttpResource extends BaseNetworkResource implements Ht
             send(newRequest());
 
             // check if the status is okay,
-            if (status().isOkay())
+            if (status().isSuccess())
             {
                 // then get the content encoding
                 contentEncoding = response.headers().firstValue("Content-Encoding").orElse(null);
@@ -204,12 +203,12 @@ public abstract class BaseHttpResource extends BaseNetworkResource implements Ht
             }
             else
             {
-                throw new Problem("Request failed (HTTP status code $): $", status(), this).asException();
+                throw problem("Request failed (HTTP status code $): $", status(), this).asException();
             }
         }
         catch (Exception e)
         {
-            throw new Problem(e, "Cannot open: $", this).asException();
+            throw problem(e, "Cannot open: $", this).asException();
         }
     }
 
@@ -231,7 +230,7 @@ public abstract class BaseHttpResource extends BaseNetworkResource implements Ht
     public HttpStatus status()
     {
         send(newRequest());
-        return new HttpStatus(statusCode);
+        return status;
     }
 
     @Override
@@ -286,7 +285,7 @@ public abstract class BaseHttpResource extends BaseNetworkResource implements Ht
             try
             {
                 response = newClient().send(httpRequest, ofInputStream());
-                statusCode = response.statusCode();
+                status = HttpStatus.httpStatus(response.statusCode());
                 if (responseHeader != null)
                 {
                     var map = response.headers().map();

@@ -19,7 +19,7 @@
 package com.telenav.kivakit.interfaces.code;
 
 import com.telenav.kivakit.interfaces.collection.NextValue;
-import com.telenav.kivakit.interfaces.lexakai.DiagramCode;
+import com.telenav.kivakit.interfaces.internal.lexakai.DiagramCode;
 import com.telenav.kivakit.interfaces.numeric.IntegerNumeric;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 

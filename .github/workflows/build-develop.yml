@@ -1,0 +1,34 @@
+#///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+#
+#  © 2022 Telenav, Inc.
+#  Licensed under Apache License, Version 2.0
+#
+#///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+#
+# GitHub action that builds code on push or pull request.
+#
+defaults:
+  run:
+    shell: bash
+
+name: "Build Develop"
+
+on:
+  workflow_dispatch:
+  push:
+    paths-ignore:
+        - 'documentation/**'
+        - '**/*.md'
+    branches:
+      - develop
+  pull_request:
+    paths-ignore:
+        - 'documentation/**'
+        - '**/*.md'
+    branches:
+      - develop
+
+jobs:
+  build:
+    uses: Telenav/telenav-github/.github/workflows/build-branch.yml@main

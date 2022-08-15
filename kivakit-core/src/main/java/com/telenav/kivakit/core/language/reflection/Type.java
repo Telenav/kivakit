@@ -31,7 +31,7 @@ import com.telenav.kivakit.core.language.reflection.property.Property;
 import com.telenav.kivakit.core.language.reflection.property.PropertyFilter;
 import com.telenav.kivakit.core.language.reflection.property.PropertyNamingConvention;
 import com.telenav.kivakit.core.language.module.PackageReference;
-import com.telenav.kivakit.core.lexakai.DiagramReflection;
+import com.telenav.kivakit.core.internal.lexakai.DiagramReflection;
 import com.telenav.kivakit.core.string.Strings;
 import com.telenav.kivakit.interfaces.comparison.Filter;
 import com.telenav.kivakit.interfaces.naming.Named;

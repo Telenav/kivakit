@@ -32,7 +32,7 @@ import com.telenav.kivakit.core.messaging.messages.status.activity.Activity;
 import com.telenav.kivakit.core.messaging.messages.status.activity.StepFailure;
 import com.telenav.kivakit.core.messaging.messages.status.activity.StepIncomplete;
 import com.telenav.kivakit.core.messaging.messages.status.activity.StepSuccess;
-import com.telenav.kivakit.core.lexakai.DiagramMessaging;
+import com.telenav.kivakit.core.internal.lexakai.DiagramMessaging;
 import com.telenav.kivakit.core.value.level.Level;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;

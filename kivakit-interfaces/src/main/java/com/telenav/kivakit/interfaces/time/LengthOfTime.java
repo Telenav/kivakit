@@ -1,7 +1,7 @@
 package com.telenav.kivakit.interfaces.time;
 
 import com.telenav.kivakit.interfaces.code.Callback;
-import com.telenav.kivakit.interfaces.lexakai.DiagramTime;
+import com.telenav.kivakit.interfaces.internal.lexakai.DiagramTime;
 import com.telenav.kivakit.interfaces.numeric.Quantizable;
 import com.telenav.kivakit.interfaces.numeric.QuantumComparable;
 import com.telenav.kivakit.interfaces.string.Stringable;

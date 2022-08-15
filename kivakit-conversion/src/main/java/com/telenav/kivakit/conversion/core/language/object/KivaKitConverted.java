@@ -20,7 +20,7 @@ package com.telenav.kivakit.conversion.core.language.object;
 
 import com.telenav.kivakit.conversion.Converter;
 import com.telenav.kivakit.conversion.core.language.IdentityConverter;
-import com.telenav.kivakit.conversion.lexakai.DiagramConversion;
+import com.telenav.kivakit.conversion.internal.lexakai.DiagramConversion;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.lang.annotation.ElementType;

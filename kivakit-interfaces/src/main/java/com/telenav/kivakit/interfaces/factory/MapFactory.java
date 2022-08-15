@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.interfaces.factory;
 
-import com.telenav.kivakit.interfaces.lexakai.DiagramFactory;
+import com.telenav.kivakit.interfaces.internal.lexakai.DiagramFactory;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 /**

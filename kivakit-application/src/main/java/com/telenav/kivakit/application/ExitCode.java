@@ -10,7 +10,7 @@ public enum ExitCode
     SUCCEEDED(0),
     FAILED(1);
 
-    private int code;
+    private final int code;
 
     ExitCode(int code)
     {

@@ -19,9 +19,9 @@
 package com.telenav.kivakit.commandline.parsing;
 
 import com.telenav.kivakit.commandline.ArgumentParser;
-import com.telenav.kivakit.commandline.lexakai.DiagramArgument;
-import com.telenav.kivakit.commandline.lexakai.DiagramCommandLine;
-import com.telenav.kivakit.commandline.lexakai.DiagramValidation;
+import com.telenav.kivakit.commandline.internal.lexakai.DiagramArgument;
+import com.telenav.kivakit.commandline.internal.lexakai.DiagramCommandLine;
+import com.telenav.kivakit.commandline.internal.lexakai.DiagramValidation;
 import com.telenav.kivakit.core.collections.list.ObjectList;
 import com.telenav.kivakit.core.collections.list.StringList;
 import com.telenav.lexakai.annotations.UmlClassDiagram;

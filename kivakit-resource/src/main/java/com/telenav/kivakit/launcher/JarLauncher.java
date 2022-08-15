@@ -29,7 +29,7 @@ import com.telenav.kivakit.filesystem.Folder;
 import com.telenav.kivakit.resource.Extension;
 import com.telenav.kivakit.properties.PropertyMap;
 import com.telenav.kivakit.resource.Resourceful;
-import com.telenav.kivakit.resource.lexakai.DiagramJarLauncher;
+import com.telenav.kivakit.resource.internal.lexakai.DiagramJarLauncher;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlAggregation;

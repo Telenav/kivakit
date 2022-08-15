@@ -4,6 +4,7 @@ import com.telenav.kivakit.core.language.primitive.Booleans;
 import com.telenav.kivakit.core.os.Console;
 import com.telenav.kivakit.core.string.Formatter;
 
+@SuppressWarnings("unused")
 public interface JavaTrait
 {
     default String format(String message, Object... arguments)

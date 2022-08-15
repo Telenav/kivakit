@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.interfaces.collection;
 
-import com.telenav.kivakit.interfaces.lexakai.DiagramCollection;
+import com.telenav.kivakit.interfaces.internal.lexakai.DiagramCollection;
 import com.telenav.kivakit.interfaces.numeric.Quantizable;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 

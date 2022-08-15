@@ -26,8 +26,8 @@ import com.telenav.kivakit.core.path.Path;
 import com.telenav.kivakit.core.path.StringPath;
 import com.telenav.kivakit.core.string.Strip;
 import com.telenav.kivakit.resource.ResourcePath;
-import com.telenav.kivakit.resource.lexakai.DiagramResource;
-import com.telenav.kivakit.resource.lexakai.DiagramResourcePath;
+import com.telenav.kivakit.resource.internal.lexakai.DiagramResource;
+import com.telenav.kivakit.resource.internal.lexakai.DiagramResourcePath;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import org.jetbrains.annotations.NotNull;
 

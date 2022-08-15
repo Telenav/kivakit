@@ -1,6 +1,6 @@
 package com.telenav.kivakit.core.ensure;
 
-import com.telenav.kivakit.core.lexakai.DiagramEnsure;
+import com.telenav.kivakit.core.internal.lexakai.DiagramEnsure;
 import com.telenav.kivakit.core.logging.Logger;
 import com.telenav.kivakit.core.messaging.Broadcaster;
 import com.telenav.kivakit.core.messaging.listeners.MessageList;

@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.core.value.count;
 
-import com.telenav.kivakit.core.lexakai.DiagramCount;
+import com.telenav.kivakit.core.internal.lexakai.DiagramCount;
 import com.telenav.kivakit.interfaces.collection.Contains;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 

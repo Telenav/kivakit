@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.collections.set.operations;
 
-import com.telenav.kivakit.collections.lexakai.DiagramSet;
+import com.telenav.kivakit.collections.internal.lexakai.DiagramSet;
 import com.telenav.kivakit.collections.set.LogicalSet;
 import com.telenav.kivakit.core.collections.iteration.BaseIterator;
 import com.telenav.kivakit.core.language.Hash;
