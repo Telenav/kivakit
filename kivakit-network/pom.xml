@@ -29,10 +29,10 @@
 
     <modules>
 
-        <module>core</module>
-        <module>socket</module>
-        <module>http</module>
         <module>ftp</module>
+        <module>core</module>
+        <module>http</module>
+        <module>socket</module>
         <module>email</module>
 
     </modules>

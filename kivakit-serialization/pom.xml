@@ -28,11 +28,11 @@
     <packaging>pom</packaging>
     
     <modules>
-        <module>core</module>
-        <module>properties</module>
         <module>kryo</module>
-        <module>gson</module>
         <module>kryo-testing</module>
+        <module>core</module>
+        <module>gson</module>
+        <module>properties</module>
     </modules>
 
 </project>
