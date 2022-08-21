@@ -30,8 +30,8 @@
         Support for testing of core classes to avoid circular dependencies.
     </description>
     <modules>
-        <module>core</module>
         <module>resource</module>
+        <module>core</module>
     </modules>
 
 </project>
