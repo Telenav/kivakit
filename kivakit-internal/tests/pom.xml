@@ -17,7 +17,7 @@
     <parent>
         <groupId>com.telenav</groupId>
         <artifactId>telenav-superpom-intermediate-bom</artifactId>
-        <version>2.0.0</version>
+        <version>2.0.1</version>
         <relativePath/>
     </parent>
 
@@ -30,8 +30,8 @@
         Support for testing of core classes to avoid circular dependencies.
     </description>
     <modules>
-        <module>core</module>
         <module>resource</module>
+        <module>core</module>
     </modules>
 
 </project>
