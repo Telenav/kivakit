@@ -32,3 +32,5 @@ on:
 jobs:
   build:
     uses: Telenav/telenav-github/.github/workflows/build-branch.yml@main
+    secrets:
+      ZULIP_API_KEY: ${{ secrets.ZULIP_API_KEY }}
