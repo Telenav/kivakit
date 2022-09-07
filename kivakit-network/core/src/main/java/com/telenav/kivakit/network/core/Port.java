@@ -157,7 +157,7 @@ public class Port implements AsString
         switch (format)
         {
             case PROGRAMMATIC:
-                return protocol() + "://" + host() + ":" + portNumber();
+                return protocol() + "://" + host().name() + ":" + portNumber();
 
             default:
                 return toString();
