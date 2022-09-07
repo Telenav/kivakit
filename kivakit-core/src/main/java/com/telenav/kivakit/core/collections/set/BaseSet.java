@@ -24,6 +24,7 @@ import com.telenav.kivakit.core.value.count.Count;
 import com.telenav.kivakit.core.value.count.Countable;
 import com.telenav.kivakit.core.value.count.Maximum;
 import com.telenav.kivakit.interfaces.collection.Addable;
+import com.telenav.kivakit.interfaces.collection.Joinable;
 import com.telenav.kivakit.interfaces.comparison.Matcher;
 import com.telenav.kivakit.interfaces.string.Stringable;
 import com.telenav.kivakit.interfaces.value.Instantiable;
@@ -47,6 +48,7 @@ public abstract class BaseSet<Element> implements
         Instantiable<BaseSet<Element>>,
         Countable,
         Addable<Element>,
+        Joinable<Element>,
         Stringable
 {
     private boolean outOfRoom;
