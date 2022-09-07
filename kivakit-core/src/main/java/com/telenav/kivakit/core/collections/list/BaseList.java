@@ -45,6 +45,7 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
@@ -409,7 +410,7 @@ public abstract class BaseList<Element> implements
     @Override
     public boolean containsAll(@NotNull Collection<?> collection)
     {
-        return list.containsAll(collection);
+        return new HashSet<>(list).containsAll(collection);
     }
 
     /**
