@@ -263,6 +263,7 @@ public class Port implements AsString
     {
         try
         {
+            //noinspection resource
             return socket().getInputStream();
         }
         catch (IOException e)
