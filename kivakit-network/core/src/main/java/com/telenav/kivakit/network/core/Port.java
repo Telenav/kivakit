@@ -24,6 +24,7 @@ import com.telenav.kivakit.conversion.core.language.primitive.IntegerConverter;
 import com.telenav.kivakit.core.language.Hash;
 import com.telenav.kivakit.core.language.reflection.property.KivaKitIncludeProperty;
 import com.telenav.kivakit.core.messaging.Listener;
+import com.telenav.kivakit.core.string.AsString;
 import com.telenav.kivakit.network.core.internal.lexakai.DiagramPort;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
@@ -47,8 +48,9 @@ import static com.telenav.kivakit.network.core.Protocol.HTTPS;
  *
  * @author jonathanl (shibo)
  */
+@SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramPort.class)
-public class Port
+public class Port implements AsString
 {
     /**
      * @return A port object from the given {@link URI}
@@ -146,6 +148,20 @@ public class Port
 
     protected Port()
     {
+    }
+
+    @Override
+    @SuppressWarnings("SwitchStatementWithTooFewBranches")
+    public String asString(Format format)
+    {
+        switch (format)
+        {
+            case PROGRAMMATIC:
+                return protocol() + "://" + host() + ":" + portNumber();
+
+            default:
+                return toString();
+        }
     }
 
     /**
@@ -262,6 +278,11 @@ public class Port
     public NetworkPath path(Listener listener, String path)
     {
         return NetworkPath.networkPath(listener, this, path);
+    }
+
+    public int portNumber()
+    {
+        return port;
     }
 
     /**
