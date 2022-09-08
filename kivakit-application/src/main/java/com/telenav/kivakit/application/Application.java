@@ -412,8 +412,7 @@ public abstract class Application extends BaseComponent implements
      */
     public <T> T argument(int index, ArgumentParser<T> parser)
     {
-        ensureNotInitializing();
-        return commandLine.argument(index, parser);
+        return commandLine().argument(index, parser);
     }
 
     /**
@@ -421,8 +420,7 @@ public abstract class Application extends BaseComponent implements
      */
     public <T> T argument(ArgumentParser<T> parser)
     {
-        ensureNotInitializing();
-        return commandLine.argument(parser);
+        return commandLine().argument(parser);
     }
 
     /**
@@ -430,8 +428,7 @@ public abstract class Application extends BaseComponent implements
      */
     public ArgumentList argumentList()
     {
-        ensureNotInitializing();
-        return commandLine.arguments();
+        return commandLine().arguments();
     }
 
     /**
@@ -465,7 +462,7 @@ public abstract class Application extends BaseComponent implements
     @UmlRelation(label = "parses arguments into")
     public CommandLine commandLine()
     {
-        ensureNotInitializing();
+        ensureNotNull(commandLine, "Cannot access command line during initialization");
         return commandLine;
     }
 
@@ -487,7 +484,7 @@ public abstract class Application extends BaseComponent implements
     public void exit(String message, Object... arguments)
     {
         ensureNotInitializing();
-        commandLine.exit(message, arguments);
+        commandLine().exit(message, arguments);
     }
 
     /**
@@ -496,10 +493,7 @@ public abstract class Application extends BaseComponent implements
 
     public <T> T get(SwitchParser<T> parser)
     {
-        ensureNotNull(parser);
-
-        ensureNotInitializing();
-        return commandLine.get(parser);
+        return commandLine().get(ensureNotNull(parser));
     }
 
     /**
@@ -508,10 +502,7 @@ public abstract class Application extends BaseComponent implements
      */
     public <T> T get(SwitchParser<T> parser, T defaultValue)
     {
-        ensureNotNull(parser);
-
-        ensureNotInitializing();
-        return commandLine.get(parser, defaultValue);
+        return commandLine().get(ensureNotNull(parser), defaultValue);
     }
 
     /**
@@ -519,10 +510,7 @@ public abstract class Application extends BaseComponent implements
      */
     public <T> boolean has(SwitchParser<T> parser)
     {
-        ensureNotNull(parser);
-
-        ensureNotInitializing();
-        return commandLine.has(parser);
+        return commandLine().has(ensureNotNull(parser));
     }
 
     @UmlRelation(label = "identified by")
@@ -541,7 +529,6 @@ public abstract class Application extends BaseComponent implements
      */
     public Set<Project> projects()
     {
-        ensureNotInitializing();
         return projects;
     }
 
@@ -702,7 +689,6 @@ public abstract class Application extends BaseComponent implements
     @UmlExcludeMember
     public void showStartupInformation()
     {
-        ensureNotInitializing();
         announce(startupInformation(name()));
     }
 
@@ -711,8 +697,6 @@ public abstract class Application extends BaseComponent implements
      */
     public String startupInformation(String title)
     {
-        ensureNotInitializing();
-
         var box = new StringList();
         int number = 1;
 
@@ -836,8 +820,8 @@ public abstract class Application extends BaseComponent implements
     protected void onRegisterObjectSerializers()
     {
         var serializers = new ObjectSerializers();
-        serializers.add(Extension.JSON, new GsonObjectSerializer());
-        serializers.add(Extension.PROPERTIES, new PropertiesObjectSerializer());
+        tryCatch(() -> serializers.add(Extension.JSON, new GsonObjectSerializer()));
+        tryCatch(() -> serializers.add(Extension.PROPERTIES, new PropertiesObjectSerializer()));
         register(serializers);
     }
 
