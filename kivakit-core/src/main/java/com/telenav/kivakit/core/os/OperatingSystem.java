@@ -94,7 +94,7 @@ public class OperatingSystem implements Named
 
     public String java()
     {
-        return ensureNotNull(javaHome()) + "/bin/java";
+        return ensureNotNull(javaHome(), "JAVA_HOME must be set") + "/bin/java";
     }
 
     public String javaHome()

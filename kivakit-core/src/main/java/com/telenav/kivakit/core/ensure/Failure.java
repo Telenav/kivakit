@@ -10,6 +10,7 @@ import com.telenav.kivakit.interfaces.factory.MapFactory;
 import java.util.HashMap;
 import java.util.Map;
 
+@SuppressWarnings("unused")
 public class Failure
 {
     private static final Logger LOGGER = LoggerFactory.newLogger();
@@ -35,19 +36,12 @@ public class Failure
                                String text,
                                Object... arguments)
     {
-        try
-        {
-            var message = (OperationMessage) Classes.newInstance(type);
-            message.cause(e);
-            message.message(text);
-            message.arguments(arguments);
-            reporter(type).report(message);
-            return null;
-        }
-        catch (Exception ignored)
-        {
-            return null;
-        }
+        var message = (OperationMessage) Classes.newInstance(type);
+        message.cause(e);
+        message.message(text);
+        message.arguments(arguments);
+        reporter(type).report(message);
+        return null;
     }
 
     public static FailureReporter reporter(Class<? extends Message> type)
