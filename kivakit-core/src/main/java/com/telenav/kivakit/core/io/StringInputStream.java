@@ -19,6 +19,8 @@ package com.telenav.kivakit.core.io;
 
 import com.telenav.kivakit.core.internal.lexakai.DiagramIo;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
+import org.jetbrains.annotations.NotNull;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -39,7 +41,7 @@ import static java.nio.charset.StandardCharsets.UTF_8;
  *
  * @author matthieun
  */
-@UmlClassDiagram(diagram = DiagramIo.class)
+@SuppressWarnings("UnusedReturnValue") @UmlClassDiagram(diagram = DiagramIo.class)
 public class StringInputStream extends InputStream
 {
     private final CharsetEncoder encoder;
@@ -55,7 +57,7 @@ public class StringInputStream extends InputStream
      *
      * @param toRead A string
      */
-    public StringInputStream(String toRead)
+    public StringInputStream(CharSequence toRead)
     {
         this(toRead, null);
     }
@@ -66,7 +68,7 @@ public class StringInputStream extends InputStream
      * @param toRead A string
      * @param encoding An encoding
      */
-    public StringInputStream(String toRead, Charset encoding)
+    public StringInputStream(CharSequence toRead, Charset encoding)
     {
         this(toRead, encoding, -1);
     }
@@ -82,7 +84,7 @@ public class StringInputStream extends InputStream
      * based on the character set's average bytes per character to accommodate
      * the entire string
      */
-    public StringInputStream(String toRead, Charset encoding, int outBufferSize)
+    public StringInputStream(CharSequence toRead, Charset encoding, int outBufferSize)
     {
         this(toRead, encoding, outBufferSize,
                 EncodingErrorBehavior.REPLACE);
@@ -102,7 +104,7 @@ public class StringInputStream extends InputStream
      * - omit them, use a substitute character, or throw an
      * IllegalStateException to wrap the original CoderResult's exception
      */
-    public StringInputStream(String toRead, Charset encoding, int outBufferSize,
+    public StringInputStream(CharSequence toRead, Charset encoding, int outBufferSize,
             EncodingErrorBehavior errorBehavior)
     {
         // This should not involve a copy, since the returned buffer is read-only
@@ -156,7 +158,7 @@ public class StringInputStream extends InputStream
     }
 
     @Override
-    public synchronized int read(byte[] b, int off, int len) throws IOException
+    public synchronized int read(byte @NotNull [] b, int off, int len) throws IOException
     {
         if (len <= 0)
         {
