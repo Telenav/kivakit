@@ -19,7 +19,7 @@
 package com.telenav.kivakit.resource;
 
 import com.telenav.kivakit.core.messaging.Listener;
-import com.telenav.kivakit.resource.lexakai.DiagramResourceService;
+import com.telenav.kivakit.resource.internal.lexakai.DiagramResourceService;
 import com.telenav.kivakit.resource.spi.ResourceResolver;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;

@@ -19,7 +19,7 @@
 package com.telenav.kivakit.core.messaging.messages.status.activity;
 
 import com.telenav.kivakit.core.messaging.messages.Severity;
-import com.telenav.kivakit.core.lexakai.DiagramMessageType;
+import com.telenav.kivakit.core.internal.lexakai.DiagramMessageType;
 import com.telenav.kivakit.core.messaging.messages.OperationStatusMessage;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;

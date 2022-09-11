@@ -20,7 +20,7 @@ package com.telenav.kivakit.core.os;
 
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.messaging.Message;
-import com.telenav.kivakit.core.lexakai.DiagramOs;
+import com.telenav.kivakit.core.internal.lexakai.DiagramOs;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 /**

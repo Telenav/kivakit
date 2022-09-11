@@ -23,7 +23,7 @@ import com.telenav.kivakit.core.messaging.messages.lifecycle.OperationFailed;
 import com.telenav.kivakit.core.messaging.messages.lifecycle.OperationHalted;
 import com.telenav.kivakit.core.messaging.messages.lifecycle.OperationStarted;
 import com.telenav.kivakit.core.messaging.messages.lifecycle.OperationSucceeded;
-import com.telenav.kivakit.core.lexakai.DiagramMessageType;
+import com.telenav.kivakit.core.internal.lexakai.DiagramMessageType;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 /**

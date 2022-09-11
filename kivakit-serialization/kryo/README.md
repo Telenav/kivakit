@@ -30,14 +30,14 @@ This module provides integration of the Kryo serialization framework with KivaKi
 
 ### Dependencies <a name="dependencies"></a> &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/dependencies-32.png" srcset="https://telenav.github.io/telenav-assets/images/icons/dependencies-32-2x.png 2x"/>
 
-[*Dependency Diagram*](https://www.kivakit.org/1.6.1/lexakai/kivakit/kivakit-serialization/kryo/documentation/diagrams/dependencies.svg)
+[*Dependency Diagram*](https://www.kivakit.org/1.7.0/lexakai/kivakit/kivakit-serialization/kryo/documentation/diagrams/dependencies.svg)
 
 #### Maven Dependency
 
     <dependency>
         <groupId>com.telenav.kivakit</groupId>
         <artifactId>kivakit-serialization-kryo</artifactId>
-        <version>1.6.1</version>
+        <version>1.7.0</version>
     </dependency>
 
 <img src="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128.png" srcset="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128-2x.png 2x"/>
@@ -54,15 +54,15 @@ This module is a serialization provider for the *kivakit-core-serialization-core
 
 ### Class Diagrams <a name="class-diagrams"></a> &nbsp; &nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/diagram-40.png" srcset="https://telenav.github.io/telenav-assets/images/icons/diagram-40-2x.png 2x"/>
 
-[*diagram-kryo*](https://www.kivakit.org/1.6.1/lexakai/kivakit/kivakit-serialization/kryo/documentation/diagrams/diagram-kryo.svg)
+[*diagram-kryo*](https://www.kivakit.org/1.7.0/lexakai/kivakit/kivakit-serialization/kryo/documentation/diagrams/diagram-kryo.svg)
 
 <img src="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128.png" srcset="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128-2x.png 2x"/>
 
 ### Package Diagrams <a name="package-diagrams"></a> &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/box-24.png" srcset="https://telenav.github.io/telenav-assets/images/icons/box-24-2x.png 2x"/>
 
-[*com.telenav.kivakit.serialization.kryo*](https://www.kivakit.org/1.6.1/lexakai/kivakit/kivakit-serialization/kryo/documentation/diagrams/com.telenav.kivakit.serialization.kryo.svg)  
-[*com.telenav.kivakit.serialization.kryo.lexakai*](https://www.kivakit.org/1.6.1/lexakai/kivakit/kivakit-serialization/kryo/documentation/diagrams/com.telenav.kivakit.serialization.kryo.lexakai.svg)  
-[*com.telenav.kivakit.serialization.kryo.types*](https://www.kivakit.org/1.6.1/lexakai/kivakit/kivakit-serialization/kryo/documentation/diagrams/com.telenav.kivakit.serialization.kryo.types.svg)
+[*com.telenav.kivakit.serialization.kryo*](https://www.kivakit.org/1.7.0/lexakai/kivakit/kivakit-serialization/kryo/documentation/diagrams/com.telenav.kivakit.serialization.kryo.svg)  
+[*com.telenav.kivakit.serialization.kryo.internal.lexakai*](https://www.kivakit.org/1.7.0/lexakai/kivakit/kivakit-serialization/kryo/documentation/diagrams/com.telenav.kivakit.serialization.kryo.internal.lexakai.svg)  
+[*com.telenav.kivakit.serialization.kryo.types*](https://www.kivakit.org/1.7.0/lexakai/kivakit/kivakit-serialization/kryo/documentation/diagrams/com.telenav.kivakit.serialization.kryo.types.svg)
 
 <img src="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128.png" srcset="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128-2x.png 2x"/>
 
@@ -75,23 +75,23 @@ Javadoc coverage for this project is 71.3%.
 
 The following significant classes are undocumented:  
 
-- com.telenav.kivakit.serialization.kryo
+- com.telenav.kivakit.serialization.kryo.KryoObjectSerializer
 
 | Class | Documentation Sections |
 |---|---|
-| [*BaseSerializer*](https://www.kivakit.org/1.6.1/javadoc/kivakit/kivakit.serialization.kryo//////////////////////////////////////////////////////.html) |  |  
-| [*CoreKryoTypes*](https://www.kivakit.org/1.6.1/javadoc/kivakit/kivakit.serialization.kryo///////////////////////////////////////////////////////////.html) |  |  
-| [*DebugKryo*](https://www.kivakit.org/1.6.1/javadoc/kivakit/kivakit.serialization.kryo/////////////////////////////////////////////////.html) |  |  
-| [*DiagramKryo*](https://www.kivakit.org/1.6.1/javadoc/kivakit/kivakit.serialization.kryo///////////////////////////////////////////////////////////.html) |  |  
-| [*KryoObjectSerializer*](https://www.kivakit.org/1.6.1/javadoc/kivakit/kivakit.serialization.kryo////////////////////////////////////////////////////////////.html) |  |  
-| [*KryoSerializationSession*](https://www.kivakit.org/1.6.1/javadoc/kivakit/kivakit.serialization.kryo////////////////////////////////////////////////////////////////.html) |  |  
-| [*KryoSerializationSessionFactory*](https://www.kivakit.org/1.6.1/javadoc/kivakit/kivakit.serialization.kryo///////////////////////////////////////////////////////////////////////.html) |  |  
-| [*KryoTypeEntry*](https://www.kivakit.org/1.6.1/javadoc/kivakit/kivakit.serialization.kryo///////////////////////////////////////////////////////////.html) |  |  
-| [*KryoTypes*](https://www.kivakit.org/1.6.1/javadoc/kivakit/kivakit.serialization.kryo///////////////////////////////////////////////////////.html) | Kryo Serialization Identifiers |  
+| [*BaseSerializer*](https://www.kivakit.org/1.7.0/javadoc/kivakit/kivakit.serialization.kryo//////////////////////////////////////////////////////.html) |  |  
+| [*CoreKryoTypes*](https://www.kivakit.org/1.7.0/javadoc/kivakit/kivakit.serialization.kryo///////////////////////////////////////////////////////////.html) |  |  
+| [*DebugKryo*](https://www.kivakit.org/1.7.0/javadoc/kivakit/kivakit.serialization.kryo/////////////////////////////////////////////////.html) |  |  
+| [*DiagramKryo*](https://www.kivakit.org/1.7.0/javadoc/kivakit/kivakit.serialization.kryo////////////////////////////////////////////////////////////////////.html) |  |  
+| [*KryoObjectSerializer*](https://www.kivakit.org/1.7.0/javadoc/kivakit/kivakit.serialization.kryo////////////////////////////////////////////////////////////.html) |  |  
+| [*KryoSerializationSession*](https://www.kivakit.org/1.7.0/javadoc/kivakit/kivakit.serialization.kryo////////////////////////////////////////////////////////////////.html) |  |  
+| [*KryoSerializationSessionFactory*](https://www.kivakit.org/1.7.0/javadoc/kivakit/kivakit.serialization.kryo///////////////////////////////////////////////////////////////////////.html) |  |  
+| [*KryoTypeEntry*](https://www.kivakit.org/1.7.0/javadoc/kivakit/kivakit.serialization.kryo///////////////////////////////////////////////////////////.html) |  |  
+| [*KryoTypes*](https://www.kivakit.org/1.7.0/javadoc/kivakit/kivakit.serialization.kryo///////////////////////////////////////////////////////.html) | Kryo Serialization Identifiers |  
 | | Serialization |  
 | | Backwards Compatibility |  
 | | Important Note |  
-| [*ResourceKryoTypes*](https://www.kivakit.org/1.6.1/javadoc/kivakit/kivakit.serialization.kryo///////////////////////////////////////////////////////////////.html) |  |  
+| [*ResourceKryoTypes*](https://www.kivakit.org/1.7.0/javadoc/kivakit/kivakit.serialization.kryo///////////////////////////////////////////////////////////////.html) |  |  
 
 [//]: # (start-user-text)
 

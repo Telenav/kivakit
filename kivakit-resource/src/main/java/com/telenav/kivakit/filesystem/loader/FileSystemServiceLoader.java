@@ -23,7 +23,7 @@ import com.telenav.kivakit.core.messaging.repeaters.BaseRepeater;
 import com.telenav.kivakit.filesystem.FilePath;
 import com.telenav.kivakit.filesystem.local.LocalFileSystemService;
 import com.telenav.kivakit.filesystem.spi.FileSystemService;
-import com.telenav.kivakit.resource.lexakai.DiagramFileSystemService;
+import com.telenav.kivakit.resource.internal.lexakai.DiagramFileSystemService;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlAggregation;

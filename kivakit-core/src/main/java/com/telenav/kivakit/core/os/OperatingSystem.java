@@ -19,7 +19,7 @@
 package com.telenav.kivakit.core.os;
 
 import com.telenav.kivakit.core.collections.map.VariableMap;
-import com.telenav.kivakit.core.lexakai.DiagramOs;
+import com.telenav.kivakit.core.internal.lexakai.DiagramOs;
 import com.telenav.kivakit.interfaces.naming.Named;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
@@ -94,7 +94,7 @@ public class OperatingSystem implements Named
 
     public String java()
     {
-        return ensureNotNull(javaHome()) + "/bin/java";
+        return ensureNotNull(javaHome(), "JAVA_HOME must be set") + "/bin/java";
     }
 
     public String javaHome()

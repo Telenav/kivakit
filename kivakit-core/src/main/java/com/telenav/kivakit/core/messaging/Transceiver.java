@@ -18,9 +18,9 @@
 
 package com.telenav.kivakit.core.messaging;
 
-import com.telenav.kivakit.core.lexakai.DiagramBroadcaster;
-import com.telenav.kivakit.core.lexakai.DiagramListener;
-import com.telenav.kivakit.core.lexakai.DiagramLogging;
+import com.telenav.kivakit.core.internal.lexakai.DiagramBroadcaster;
+import com.telenav.kivakit.core.internal.lexakai.DiagramListener;
+import com.telenav.kivakit.core.internal.lexakai.DiagramLogging;
 import com.telenav.kivakit.core.messaging.context.CodeContext;
 import com.telenav.kivakit.core.messaging.messages.lifecycle.OperationHalted;
 import com.telenav.kivakit.core.messaging.messages.status.Announcement;
@@ -114,7 +114,10 @@ import com.telenav.lexakai.annotations.visibility.UmlExcludeSuperTypes;
 @UmlRelation(label = "delegates to", referent = Debug.class)
 @UmlExcludeSuperTypes({ NamedObject.class })
 @UmlNote(text = "Functionality common to transmitters and receivers")
-public interface Transceiver extends NamedObject, Receiver, Transmitter
+public interface Transceiver extends
+        NamedObject,
+        Receiver,
+        Transmitter
 {
     /**
      * Sends a formatted {@link Announcement} message to this {@link Transceiver}

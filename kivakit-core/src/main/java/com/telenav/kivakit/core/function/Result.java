@@ -23,7 +23,7 @@ import com.telenav.kivakit.core.function.arities.PentaFunction;
 import com.telenav.kivakit.core.function.arities.TetraFunction;
 import com.telenav.kivakit.core.function.arities.TriFunction;
 import com.telenav.kivakit.core.language.Classes;
-import com.telenav.kivakit.core.lexakai.DiagramMessaging;
+import com.telenav.kivakit.core.internal.lexakai.DiagramMessaging;
 import com.telenav.kivakit.core.messaging.Broadcaster;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.messaging.Message;
@@ -130,6 +130,7 @@ import static com.telenav.kivakit.core.ensure.Ensure.unsupported;
  * @see Code
  * @see Source
  */
+@SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramMessaging.class)
 @UmlRelation(label = "failure reason", referent = Message.class)
 public class Result<Value> extends Maybe<Value> implements RepeaterMixin
@@ -149,7 +150,7 @@ public class Result<Value> extends Maybe<Value> implements RepeaterMixin
     }
 
     /**
-     * Returns a result with the given value
+     * Returns a result that captures messages from the given broadcaster
      */
     public static <T> Result<T> capture(Broadcaster value)
     {
@@ -203,6 +204,7 @@ public class Result<Value> extends Maybe<Value> implements RepeaterMixin
     /**
      * Returns a result with the given value
      */
+    @SuppressWarnings("unused")
     public static <T> Result<T> present(T value)
     {
         return unsupported("Call Result.success(), not Result.present()");
@@ -255,26 +257,29 @@ public class Result<Value> extends Maybe<Value> implements RepeaterMixin
     private Broadcaster broadcaster;
 
     /** Any messages this result has captured */
-    private MessageList messages;
+    private final MessageList messages = new MessageList();
 
     protected Result()
     {
+        messages.listenTo(this);
     }
 
     protected Result(Maybe<Value> maybe)
     {
         super(maybe);
+        messages.listenTo(this);
     }
 
     protected Result(Value value)
     {
         super(value);
+        messages.listenTo(this);
     }
 
     protected Result(Broadcaster broadcaster)
     {
-        messages = new MessageList();
-        messages.listenTo(broadcaster);
+        messages.listenTo(this);
+        listenTo(broadcaster);
         this.broadcaster = broadcaster;
     }
 

@@ -18,8 +18,8 @@
 
 package com.telenav.kivakit.resource.writing;
 
-import com.telenav.kivakit.resource.lexakai.DiagramFileSystemFile;
-import com.telenav.kivakit.resource.lexakai.DiagramResource;
+import com.telenav.kivakit.resource.internal.lexakai.DiagramFileSystemFile;
+import com.telenav.kivakit.resource.internal.lexakai.DiagramResource;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 

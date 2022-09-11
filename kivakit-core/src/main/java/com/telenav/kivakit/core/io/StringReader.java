@@ -18,8 +18,8 @@
 
 package com.telenav.kivakit.core.io;
 
+import com.telenav.kivakit.core.internal.lexakai.DiagramIo;
 import com.telenav.kivakit.core.progress.ProgressReporter;
-import com.telenav.kivakit.core.lexakai.DiagramIo;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.io.IOException;
@@ -27,11 +27,12 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
 import java.io.UnsupportedEncodingException;
+import java.nio.charset.Charset;
 
 /**
  * Reads string values from an {@link InputStream} (in a given encoding, if desired) or from a {@link Reader}. Since
- * this may be used for long strings like HTML pages or large text files, the method {@link
- * #readString(ProgressReporter)} takes a {@link ProgressReporter} to report progress as the string is read.
+ * this may be used for long strings like HTML pages or large text files, the method
+ * {@link #readString(ProgressReporter)} takes a {@link ProgressReporter} to report progress as the string is read.
  *
  * @author jonathanl (shibo)
  */
@@ -43,6 +44,11 @@ public class StringReader
     public StringReader(InputStream in)
     {
         this.in = new InputStreamReader(in);
+    }
+
+    public StringReader(InputStream in, Charset encoding)
+    {
+        this.in = new InputStreamReader(in, encoding);
     }
 
     public StringReader(InputStream in, String encoding)

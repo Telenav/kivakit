@@ -21,7 +21,7 @@ package com.telenav.kivakit.network.ftp.secure;
 import com.telenav.kivakit.core.io.IO;
 import com.telenav.kivakit.core.value.count.Bytes;
 import com.telenav.kivakit.network.core.NetworkLocation;
-import com.telenav.kivakit.network.ftp.lexakai.DiagramSecureFtp;
+import com.telenav.kivakit.network.ftp.internal.lexakai.DiagramSecureFtp;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlAggregation;

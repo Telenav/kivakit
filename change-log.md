@@ -2,6 +2,62 @@
 
 -----------------------------------------------------------------------------------------------------------------------
 
+## Version 1.7.0 (2022.09.07) "yellow gorilla"
+
+### Build
+
+ - Major rework of the build system using Cactus
+ - Rewrite of setup, development and release scripts
+ - Added Zulip notifications of github operations, including builds
+
+### Bugs
+
+ - Invalid response JSON when response is null #141
+ - KivaKit build fails due to Hadoop shading bug #125
+ - Exception in kivakit merged gRPC #110
+ - Failure gets dropped on floor during app initialization #108
+ - NPE in CommandLineParser.exit() #107
+ - Response is not a valid json #41
+
+### Documentation
+
+ - Moved all `Diagram*` lexakai annotations into `internal.lexakai` packages
+
+### Core
+
+ - Factored out `Joinable` interface
+ - Added narrow log formatting (default) with `KIVAKIT_LOG_FORMATTER=wide` for wide logging format
+
+### Network
+
+ - Added `HttpMethod` enum
+ - Added `PROGRAMMATIC` `asString(Format)` method to `Port`
+
+### Web
+
+ - Added cross-origin request (CORS) support to `JettyServer`
+
+### Filesystems
+
+ - Added `module-info.java` generation
+
+### Microservice
+
+ - Added cross-origin request (CORS) support
+ - Switched to network `HttpMethod` enum
+ - Renamed `Microservlet*` REST classes to `Rest*`
+ - `MicroservletRequestHandler.prepareResponse()` -> `onPrepareResponse()`
+ - `MicroservletResponse.prepareResponse()` -> `onPrepareResponse()`
+ - `MicroservletResponse.endResponse()` -> `onEndResponse()`
+ - Improvements to problem/status reporting
+ - Fixed invalid JSON bracketing problem
+ - Added `HttpStatus` to `MicroservletError`
+ - Factored out `RestRequestCycle` interface
+ - Factored out `RestRequestThread`
+ - Return 200 when reporting errors rather than 500
+
+-----------------------------------------------------------------------------------------------------------------------
+
 ## Version 1.6.1 (2022.06.30) "purple diorama"
 
 ### Build
@@ -310,7 +366,7 @@ _kivakit-stuff_, according to the principles described in the Medium article [*O
 ### build
 
 * Added docker build environment
-* Added setup-repositories.sh
+* Added setup-repositories script
 
 ### dependencies
 

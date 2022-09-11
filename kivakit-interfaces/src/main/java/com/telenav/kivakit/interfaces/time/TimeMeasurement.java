@@ -84,14 +84,14 @@ public interface TimeMeasurement extends Quantizable
             }
             if (asMilliseconds() >= 1.0)
             {
-                return unitString(asMilliseconds(), "milliseconds");
+                return unitString(asMilliseconds(), "millisecond");
             }
             if (asMicroseconds() >= 1.0)
             {
-                return unitString(asMicroseconds(), "microseconds");
+                return unitString(asMicroseconds(), "microsecond");
             }
 
-            return unitString(asNanoseconds(), "nanoseconds");
+            return unitString(asNanoseconds(), "nanosecond");
         }
         else
         {

@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.filesystem.spi;
 
-import com.telenav.kivakit.resource.lexakai.DiagramFileSystemService;
+import com.telenav.kivakit.resource.internal.lexakai.DiagramFileSystemService;
 import com.telenav.kivakit.filesystem.FilePath;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;

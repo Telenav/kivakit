@@ -21,7 +21,7 @@ package com.telenav.kivakit.core.messaging.context;
 import com.telenav.kivakit.core.collections.list.ObjectList;
 import com.telenav.kivakit.core.language.reflection.Method;
 import com.telenav.kivakit.core.messaging.Debug;
-import com.telenav.kivakit.core.lexakai.DiagramContext;
+import com.telenav.kivakit.core.internal.lexakai.DiagramContext;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.List;

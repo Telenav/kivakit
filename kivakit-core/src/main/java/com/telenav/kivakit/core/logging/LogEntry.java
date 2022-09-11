@@ -22,13 +22,13 @@ import com.telenav.kivakit.core.language.Classes;
 import com.telenav.kivakit.core.language.Objects;
 import com.telenav.kivakit.core.language.reflection.property.KivaKitIncludeProperty;
 import com.telenav.kivakit.core.logging.logs.text.LogFormatter;
-import com.telenav.kivakit.core.logging.logs.text.formatters.ColumnarLogFormatter;
+import com.telenav.kivakit.core.logging.logs.text.formatters.NarrowLogFormatter;
 import com.telenav.kivakit.core.messaging.Message;
 import com.telenav.kivakit.core.messaging.context.CodeContext;
 import com.telenav.kivakit.core.messaging.context.StackTrace;
 import com.telenav.kivakit.core.messaging.messages.Severity;
 import com.telenav.kivakit.core.messaging.messages.Triaged;
-import com.telenav.kivakit.core.lexakai.DiagramLogging;
+import com.telenav.kivakit.core.internal.lexakai.DiagramLogging;
 import com.telenav.kivakit.core.string.Formatter;
 import com.telenav.kivakit.core.time.Time;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
@@ -118,7 +118,7 @@ public class LogEntry implements Triaged
             lastFormatter = formatter;
             return formattedEntry;
         }
-        return ColumnarLogFormatter.DEFAULT.format(this, format);
+        return NarrowLogFormatter.INSTANCE.format(this, format);
     }
 
     /**

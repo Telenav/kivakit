@@ -20,7 +20,7 @@ package com.telenav.kivakit.core.collections.list;
 
 import com.telenav.kivakit.core.collections.iteration.BaseIterator;
 import com.telenav.kivakit.core.ensure.Ensure;
-import com.telenav.kivakit.core.lexakai.DiagramCollections;
+import com.telenav.kivakit.core.internal.lexakai.DiagramCollections;
 import com.telenav.kivakit.core.string.AsciiArt;
 import com.telenav.kivakit.core.string.StringTo;
 import com.telenav.kivakit.core.value.count.Count;
@@ -45,6 +45,7 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
@@ -409,7 +410,7 @@ public abstract class BaseList<Element> implements
     @Override
     public boolean containsAll(@NotNull Collection<?> collection)
     {
-        return list.containsAll(collection);
+        return new HashSet<>(list).containsAll(collection);
     }
 
     /**

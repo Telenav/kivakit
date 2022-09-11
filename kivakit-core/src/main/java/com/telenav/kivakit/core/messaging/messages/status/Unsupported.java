@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.core.messaging.messages.status;
 
-import com.telenav.kivakit.core.lexakai.DiagramMessageType;
+import com.telenav.kivakit.core.internal.lexakai.DiagramMessageType;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 

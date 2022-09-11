@@ -29,7 +29,7 @@ import com.telenav.kivakit.core.language.reflection.MethodGetter;
 import com.telenav.kivakit.core.language.reflection.ReflectionProblem;
 import com.telenav.kivakit.core.language.reflection.Setter;
 import com.telenav.kivakit.core.language.reflection.Type;
-import com.telenav.kivakit.core.lexakai.DiagramReflection;
+import com.telenav.kivakit.core.internal.lexakai.DiagramReflection;
 import com.telenav.kivakit.interfaces.naming.Named;
 import com.telenav.kivakit.interfaces.value.Source;
 import com.telenav.lexakai.annotations.UmlClassDiagram;

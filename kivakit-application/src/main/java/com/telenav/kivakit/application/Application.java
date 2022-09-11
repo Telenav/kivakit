@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.application;
 
-import com.telenav.kivakit.application.lexakai.DiagramApplication;
+import com.telenav.kivakit.application.internal.lexakai.DiagramApplication;
 import com.telenav.kivakit.commandline.ApplicationMetadata;
 import com.telenav.kivakit.commandline.ArgumentList;
 import com.telenav.kivakit.commandline.ArgumentParser;
@@ -412,8 +412,7 @@ public abstract class Application extends BaseComponent implements
      */
     public <T> T argument(int index, ArgumentParser<T> parser)
     {
-        ensureIsRunning();
-        return commandLine.argument(index, parser);
+        return commandLine().argument(index, parser);
     }
 
     /**
@@ -421,8 +420,7 @@ public abstract class Application extends BaseComponent implements
      */
     public <T> T argument(ArgumentParser<T> parser)
     {
-        ensureIsRunning();
-        return commandLine.argument(parser);
+        return commandLine().argument(parser);
     }
 
     /**
@@ -430,8 +428,7 @@ public abstract class Application extends BaseComponent implements
      */
     public ArgumentList argumentList()
     {
-        ensureIsRunning();
-        return commandLine.arguments();
+        return commandLine().arguments();
     }
 
     /**
@@ -439,7 +436,7 @@ public abstract class Application extends BaseComponent implements
      */
     public <T> ObjectList<T> arguments(ArgumentParser<T> parser)
     {
-        ensureIsRunning();
+        ensureNotInitializing();
         var arguments = new ObjectList<T>();
         for (int i = 0; i < argumentList().size(); i++)
         {
@@ -465,7 +462,7 @@ public abstract class Application extends BaseComponent implements
     @UmlRelation(label = "parses arguments into")
     public CommandLine commandLine()
     {
-        ensureIsRunning();
+        ensureNotNull(commandLine, "Cannot access command line during initialization");
         return commandLine;
     }
 
@@ -486,8 +483,8 @@ public abstract class Application extends BaseComponent implements
      */
     public void exit(String message, Object... arguments)
     {
-        ensureIsRunning();
-        commandLine.exit(message, arguments);
+        ensureNotInitializing();
+        commandLine().exit(message, arguments);
     }
 
     /**
@@ -496,10 +493,7 @@ public abstract class Application extends BaseComponent implements
 
     public <T> T get(SwitchParser<T> parser)
     {
-        ensureNotNull(parser);
-
-        ensureIsRunning();
-        return commandLine.get(parser);
+        return commandLine().get(ensureNotNull(parser));
     }
 
     /**
@@ -508,10 +502,7 @@ public abstract class Application extends BaseComponent implements
      */
     public <T> T get(SwitchParser<T> parser, T defaultValue)
     {
-        ensureNotNull(parser);
-
-        ensureIsRunning();
-        return commandLine.get(parser, defaultValue);
+        return commandLine().get(ensureNotNull(parser), defaultValue);
     }
 
     /**
@@ -519,10 +510,7 @@ public abstract class Application extends BaseComponent implements
      */
     public <T> boolean has(SwitchParser<T> parser)
     {
-        ensureNotNull(parser);
-
-        ensureIsRunning();
-        return commandLine.has(parser);
+        return commandLine().has(ensureNotNull(parser));
     }
 
     @UmlRelation(label = "identified by")
@@ -541,7 +529,6 @@ public abstract class Application extends BaseComponent implements
      */
     public Set<Project> projects()
     {
-        ensureIsRunning();
         return projects;
     }
 
@@ -702,7 +689,6 @@ public abstract class Application extends BaseComponent implements
     @UmlExcludeMember
     public void showStartupInformation()
     {
-        ensureIsRunning();
         announce(startupInformation(name()));
     }
 
@@ -711,8 +697,6 @@ public abstract class Application extends BaseComponent implements
      */
     public String startupInformation(String title)
     {
-        ensureIsRunning();
-
         var box = new StringList();
         int number = 1;
 
@@ -836,8 +820,8 @@ public abstract class Application extends BaseComponent implements
     protected void onRegisterObjectSerializers()
     {
         var serializers = new ObjectSerializers();
-        serializers.add(Extension.JSON, new GsonObjectSerializer());
-        serializers.add(Extension.PROPERTIES, new PropertiesObjectSerializer());
+        tryCatch(() -> serializers.add(Extension.JSON, new GsonObjectSerializer()));
+        tryCatch(() -> serializers.add(Extension.PROPERTIES, new PropertiesObjectSerializer()));
         register(serializers);
     }
 
@@ -898,9 +882,10 @@ public abstract class Application extends BaseComponent implements
         return !ignoreDeployments() && has(DEPLOYMENT);
     }
 
-    private void ensureIsRunning()
+    private void ensureNotInitializing()
     {
-        ensure(state.is(RUNNING), "Not valid during application initialization");
+        ensure(!state.is(CONSTRUCTING), "Not valid during application construction");
+        ensure(!state.is(INITIALIZING), "Not valid during application initialization");
     }
 
     private void initializeProject(IdentitySet<Project> uninitialized, Project project)

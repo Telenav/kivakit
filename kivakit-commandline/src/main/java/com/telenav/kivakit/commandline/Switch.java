@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.commandline;
 
-import com.telenav.kivakit.commandline.lexakai.DiagramSwitch;
+import com.telenav.kivakit.commandline.internal.lexakai.DiagramSwitch;
 import com.telenav.kivakit.core.language.Hash;
 import com.telenav.kivakit.interfaces.naming.Named;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;

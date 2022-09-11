@@ -20,7 +20,7 @@ package com.telenav.kivakit.core.locale;
 
 import com.telenav.kivakit.core.language.Objects;
 import com.telenav.kivakit.core.path.StringPath;
-import com.telenav.kivakit.core.lexakai.DiagramLocale;
+import com.telenav.kivakit.core.internal.lexakai.DiagramLocale;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlAggregation;
 

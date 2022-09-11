@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.collections.set;
 
-import com.telenav.kivakit.collections.lexakai.DiagramSet;
+import com.telenav.kivakit.collections.internal.lexakai.DiagramSet;
 import com.telenav.kivakit.core.collections.set.ConcurrentHashSet;
 import com.telenav.kivakit.interfaces.comparison.Equality;
 import com.telenav.lexakai.annotations.UmlClassDiagram;

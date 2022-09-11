@@ -20,11 +20,9 @@ package com.telenav.kivakit.network.http;
 
 import com.telenav.kivakit.network.core.NetworkAccessConstraints;
 import com.telenav.kivakit.network.core.NetworkLocation;
-import com.telenav.kivakit.network.http.lexakai.DiagramHttp;
+import com.telenav.kivakit.network.http.internal.lexakai.DiagramHttp;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
-
-import java.net.http.HttpRequest;
 
 /**
  * A resource accessed by HTTP POST at the given network location using the given access constraints.

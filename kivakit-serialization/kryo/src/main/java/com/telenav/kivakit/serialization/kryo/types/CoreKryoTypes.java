@@ -70,7 +70,7 @@ import com.telenav.kivakit.core.version.Version;
 import com.telenav.kivakit.core.vm.JavaVirtualMachineHealth;
 import com.telenav.kivakit.core.vm.ThreadStatus;
 import com.telenav.kivakit.interfaces.time.Nanoseconds;
-import com.telenav.kivakit.serialization.kryo.lexakai.DiagramKryo;
+import com.telenav.kivakit.serialization.kryo.internal.lexakai.DiagramKryo;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 

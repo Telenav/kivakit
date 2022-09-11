@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.core.thread.latches;
 
-import com.telenav.kivakit.core.lexakai.DiagramThread;
+import com.telenav.kivakit.core.internal.lexakai.DiagramThread;
 import com.telenav.kivakit.core.time.Duration;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 

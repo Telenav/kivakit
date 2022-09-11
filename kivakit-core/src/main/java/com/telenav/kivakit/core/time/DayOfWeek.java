@@ -19,7 +19,7 @@
 package com.telenav.kivakit.core.time;
 
 import com.telenav.kivakit.core.language.Hash;
-import com.telenav.kivakit.core.lexakai.DiagramTime;
+import com.telenav.kivakit.core.internal.lexakai.DiagramTime;
 import com.telenav.kivakit.core.testing.NoTestRequired;
 import com.telenav.kivakit.core.testing.Tested;
 import com.telenav.kivakit.interfaces.time.Nanoseconds;

@@ -1,6 +1,6 @@
 package com.telenav.kivakit.core.language.reflection.property;
 
-import com.telenav.kivakit.core.lexakai.DiagramReflection;
+import com.telenav.kivakit.core.internal.lexakai.DiagramReflection;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 /**
