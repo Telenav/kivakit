@@ -20,14 +20,14 @@ This module provides stateful traits for Java.
 
 ### Dependencies <a name="dependencies"></a> &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/dependencies-32.png" srcset="https://telenav.github.io/telenav-assets/images/icons/dependencies-32-2x.png 2x"/>
 
-[*Dependency Diagram*](https://www.kivakit.org/1.6.1/lexakai/kivakit/kivakit-mixins/documentation/diagrams/dependencies.svg)
+[*Dependency Diagram*](https://www.kivakit.org/1.7.0/lexakai/kivakit/kivakit-mixins/documentation/diagrams/dependencies.svg)
 
 #### Maven Dependency
 
     <dependency>
         <groupId>com.telenav.kivakit</groupId>
         <artifactId>kivakit-mixins</artifactId>
-        <version>1.6.1</version>
+        <version>1.7.0</version>
     </dependency>
 
 <img src="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128.png" srcset="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128-2x.png 2x"/>
@@ -42,14 +42,14 @@ This module provides stateful traits for Java.
 
 ### Class Diagrams <a name="class-diagrams"></a> &nbsp; &nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/diagram-40.png" srcset="https://telenav.github.io/telenav-assets/images/icons/diagram-40-2x.png 2x"/>
 
-[*Mixins*](https://www.kivakit.org/1.6.1/lexakai/kivakit/kivakit-mixins/documentation/diagrams/diagram-mixin.svg)
+[*Mixins*](https://www.kivakit.org/1.7.0/lexakai/kivakit/kivakit-mixins/documentation/diagrams/diagram-mixin.svg)
 
 <img src="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128.png" srcset="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128-2x.png 2x"/>
 
 ### Package Diagrams <a name="package-diagrams"></a> &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/box-24.png" srcset="https://telenav.github.io/telenav-assets/images/icons/box-24-2x.png 2x"/>
 
-[*com.telenav.kivakit.mixins*](https://www.kivakit.org/1.6.1/lexakai/kivakit/kivakit-mixins/documentation/diagrams/com.telenav.kivakit.mixins.svg)  
-[*com.telenav.kivakit.mixins.lexakai*](https://www.kivakit.org/1.6.1/lexakai/kivakit/kivakit-mixins/documentation/diagrams/com.telenav.kivakit.mixins.lexakai.svg)
+[*com.telenav.kivakit.mixins*](https://www.kivakit.org/1.7.0/lexakai/kivakit/kivakit-mixins/documentation/diagrams/com.telenav.kivakit.mixins.svg)  
+[*com.telenav.kivakit.mixins.internal.lexakai*](https://www.kivakit.org/1.7.0/lexakai/kivakit/kivakit-mixins/documentation/diagrams/com.telenav.kivakit.mixins.internal.lexakai.svg)
 
 <img src="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128.png" srcset="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128-2x.png 2x"/>
 
@@ -64,11 +64,11 @@ Javadoc coverage for this project is 75.0%.
 
 | Class | Documentation Sections |
 |---|---|
-| [*AttributesMixin*](https://www.kivakit.org/1.6.1/javadoc/kivakit/kivakit.mixins///////////////////////////////////////////.html) |  |  
-| [*DiagramMixin*](https://www.kivakit.org/1.6.1/javadoc/kivakit/kivakit.mixins////////////////////////////////////////////////.html) |  |  
-| [*Mixin*](https://www.kivakit.org/1.6.1/javadoc/kivakit/kivakit.mixins/////////////////////////////////.html) | Performance Note |  
-| [*Mixins*](https://www.kivakit.org/1.6.1/javadoc/kivakit/kivakit.mixins//////////////////////////////////.html) |  |  
-| [*Mixins.MixinKey*](https://www.kivakit.org/1.6.1/javadoc/kivakit/kivakit.mixins///////////////////////////////////////////.html) |  |  
+| [*AttributesMixin*](https://www.kivakit.org/1.7.0/javadoc/kivakit/kivakit.mixins///////////////////////////////////////////.html) |  |  
+| [*DiagramMixin*](https://www.kivakit.org/1.7.0/javadoc/kivakit/kivakit.mixins/////////////////////////////////////////////////////////.html) |  |  
+| [*Mixin*](https://www.kivakit.org/1.7.0/javadoc/kivakit/kivakit.mixins/////////////////////////////////.html) | Performance Note |  
+| [*Mixins*](https://www.kivakit.org/1.7.0/javadoc/kivakit/kivakit.mixins//////////////////////////////////.html) |  |  
+| [*Mixins.MixinKey*](https://www.kivakit.org/1.7.0/javadoc/kivakit/kivakit.mixins///////////////////////////////////////////.html) |  |  
 
 [//]: # (start-user-text)
 

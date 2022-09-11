@@ -34,14 +34,14 @@ kivakit-core-network extend this base functionality.
 
 ### Dependencies <a name="dependencies"></a> &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/dependencies-32.png" srcset="https://telenav.github.io/telenav-assets/images/icons/dependencies-32-2x.png 2x"/>
 
-[*Dependency Diagram*](https://www.kivakit.org/1.6.1/lexakai/kivakit/kivakit-network/core/documentation/diagrams/dependencies.svg)
+[*Dependency Diagram*](https://www.kivakit.org/1.7.0/lexakai/kivakit/kivakit-network/core/documentation/diagrams/dependencies.svg)
 
 #### Maven Dependency
 
     <dependency>
         <groupId>com.telenav.kivakit</groupId>
         <artifactId>kivakit-network-core</artifactId>
-        <version>1.6.1</version>
+        <version>1.7.0</version>
     </dependency>
 
 <img src="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128.png" srcset="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128-2x.png 2x"/>
@@ -114,24 +114,24 @@ project [*kivakit-network-core-email*](../email/README.md) makes use of this cla
 
 ### Class Diagrams <a name="class-diagrams"></a> &nbsp; &nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/diagram-40.png" srcset="https://telenav.github.io/telenav-assets/images/icons/diagram-40-2x.png 2x"/>
 
-[*Hosts, Ports and Protocols*](https://www.kivakit.org/1.6.1/lexakai/kivakit/kivakit-network/core/documentation/diagrams/diagram-port.svg)  
-[*Network Locations*](https://www.kivakit.org/1.6.1/lexakai/kivakit/kivakit-network/core/documentation/diagrams/diagram-network-location.svg)  
-[*diagram-authentication*](https://www.kivakit.org/1.6.1/lexakai/kivakit/kivakit-network/core/documentation/diagrams/diagram-authentication.svg)
+[*Hosts, Ports and Protocols*](https://www.kivakit.org/1.7.0/lexakai/kivakit/kivakit-network/core/documentation/diagrams/diagram-port.svg)  
+[*Network Locations*](https://www.kivakit.org/1.7.0/lexakai/kivakit/kivakit-network/core/documentation/diagrams/diagram-network-location.svg)  
+[*diagram-authentication*](https://www.kivakit.org/1.7.0/lexakai/kivakit/kivakit-network/core/documentation/diagrams/diagram-authentication.svg)
 
 <img src="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128.png" srcset="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128-2x.png 2x"/>
 
 ### Package Diagrams <a name="package-diagrams"></a> &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/box-24.png" srcset="https://telenav.github.io/telenav-assets/images/icons/box-24-2x.png 2x"/>
 
-[*com.telenav.kivakit.network.core*](https://www.kivakit.org/1.6.1/lexakai/kivakit/kivakit-network/core/documentation/diagrams/com.telenav.kivakit.network.core.svg)  
-[*com.telenav.kivakit.network.core.authentication*](https://www.kivakit.org/1.6.1/lexakai/kivakit/kivakit-network/core/documentation/diagrams/com.telenav.kivakit.network.core.authentication.svg)  
-[*com.telenav.kivakit.network.core.authentication.passwords*](https://www.kivakit.org/1.6.1/lexakai/kivakit/kivakit-network/core/documentation/diagrams/com.telenav.kivakit.network.core.authentication.passwords.svg)  
-[*com.telenav.kivakit.network.core.lexakai*](https://www.kivakit.org/1.6.1/lexakai/kivakit/kivakit-network/core/documentation/diagrams/com.telenav.kivakit.network.core.lexakai.svg)
+[*com.telenav.kivakit.network.core*](https://www.kivakit.org/1.7.0/lexakai/kivakit/kivakit-network/core/documentation/diagrams/com.telenav.kivakit.network.core.svg)  
+[*com.telenav.kivakit.network.core.authentication*](https://www.kivakit.org/1.7.0/lexakai/kivakit/kivakit-network/core/documentation/diagrams/com.telenav.kivakit.network.core.authentication.svg)  
+[*com.telenav.kivakit.network.core.authentication.passwords*](https://www.kivakit.org/1.7.0/lexakai/kivakit/kivakit-network/core/documentation/diagrams/com.telenav.kivakit.network.core.authentication.passwords.svg)  
+[*com.telenav.kivakit.network.core.internal.lexakai*](https://www.kivakit.org/1.7.0/lexakai/kivakit/kivakit-network/core/documentation/diagrams/com.telenav.kivakit.network.core.internal.lexakai.svg)
 
 <img src="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128.png" srcset="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128-2x.png 2x"/>
 
 ### Javadoc <a name="javadoc"></a> &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/books-24.png" srcset="https://telenav.github.io/telenav-assets/images/icons/books-24-2x.png 2x"/>
 
-Javadoc coverage for this project is 83.3%.  
+Javadoc coverage for this project is 82.9%.  
   
 &nbsp; &nbsp; <img src="https://telenav.github.io/telenav-assets/images/meters/meter-80-96.png" srcset="https://telenav.github.io/telenav-assets/images/meters/meter-80-96-2x.png 2x"/>
 
@@ -140,34 +140,34 @@ Javadoc coverage for this project is 83.3%.
 
 | Class | Documentation Sections |
 |---|---|
-| [*BaseNetworkResource*](https://www.kivakit.org/1.6.1/javadoc/kivakit/kivakit.network.core/////////////////////////////////////////////////////.html) |  |  
-| [*DiagramAuthentication*](https://www.kivakit.org/1.6.1/javadoc/kivakit/kivakit.network.core///////////////////////////////////////////////////////////////.html) |  |  
-| [*DiagramNetworkLocation*](https://www.kivakit.org/1.6.1/javadoc/kivakit/kivakit.network.core////////////////////////////////////////////////////////////////.html) |  |  
-| [*DiagramPort*](https://www.kivakit.org/1.6.1/javadoc/kivakit/kivakit.network.core/////////////////////////////////////////////////////.html) |  |  
-| [*DigestPassword*](https://www.kivakit.org/1.6.1/javadoc/kivakit/kivakit.network.core/////////////////////////////////////////////////////////////////////////.html) |  |  
-| [*EmailAddress*](https://www.kivakit.org/1.6.1/javadoc/kivakit/kivakit.network.core//////////////////////////////////////////////.html) |  |  
-| [*EmailAddress.Converter*](https://www.kivakit.org/1.6.1/javadoc/kivakit/kivakit.network.core////////////////////////////////////////////////////////.html) |  |  
-| [*Host*](https://www.kivakit.org/1.6.1/javadoc/kivakit/kivakit.network.core//////////////////////////////////////.html) | Attributes |  
+| [*BaseNetworkResource*](https://www.kivakit.org/1.7.0/javadoc/kivakit/kivakit.network.core/////////////////////////////////////////////////////.html) |  |  
+| [*DiagramAuthentication*](https://www.kivakit.org/1.7.0/javadoc/kivakit/kivakit.network.core////////////////////////////////////////////////////////////////////////.html) |  |  
+| [*DiagramNetworkLocation*](https://www.kivakit.org/1.7.0/javadoc/kivakit/kivakit.network.core/////////////////////////////////////////////////////////////////////////.html) |  |  
+| [*DiagramPort*](https://www.kivakit.org/1.7.0/javadoc/kivakit/kivakit.network.core//////////////////////////////////////////////////////////////.html) |  |  
+| [*DigestPassword*](https://www.kivakit.org/1.7.0/javadoc/kivakit/kivakit.network.core/////////////////////////////////////////////////////////////////////////.html) |  |  
+| [*EmailAddress*](https://www.kivakit.org/1.7.0/javadoc/kivakit/kivakit.network.core//////////////////////////////////////////////.html) |  |  
+| [*EmailAddress.Converter*](https://www.kivakit.org/1.7.0/javadoc/kivakit/kivakit.network.core////////////////////////////////////////////////////////.html) |  |  
+| [*Host*](https://www.kivakit.org/1.7.0/javadoc/kivakit/kivakit.network.core//////////////////////////////////////.html) | Attributes |  
 | | Ports |  
-| [*Host.Converter*](https://www.kivakit.org/1.6.1/javadoc/kivakit/kivakit.network.core////////////////////////////////////////////////.html) |  |  
-| [*LocalHost*](https://www.kivakit.org/1.6.1/javadoc/kivakit/kivakit.network.core///////////////////////////////////////////.html) |  |  
-| [*Loopback*](https://www.kivakit.org/1.6.1/javadoc/kivakit/kivakit.network.core//////////////////////////////////////////.html) |  |  
-| [*NetworkAccessConstraints*](https://www.kivakit.org/1.6.1/javadoc/kivakit/kivakit.network.core//////////////////////////////////////////////////////////.html) |  |  
-| [*NetworkLocation*](https://www.kivakit.org/1.6.1/javadoc/kivakit/kivakit.network.core/////////////////////////////////////////////////.html) |  |  
-| [*NetworkLocation.Converter*](https://www.kivakit.org/1.6.1/javadoc/kivakit/kivakit.network.core///////////////////////////////////////////////////////////.html) |  |  
-| [*NetworkPath*](https://www.kivakit.org/1.6.1/javadoc/kivakit/kivakit.network.core/////////////////////////////////////////////.html) | Path Parsing Methods |  
+| [*Host.Converter*](https://www.kivakit.org/1.7.0/javadoc/kivakit/kivakit.network.core////////////////////////////////////////////////.html) |  |  
+| [*LocalHost*](https://www.kivakit.org/1.7.0/javadoc/kivakit/kivakit.network.core///////////////////////////////////////////.html) |  |  
+| [*Loopback*](https://www.kivakit.org/1.7.0/javadoc/kivakit/kivakit.network.core//////////////////////////////////////////.html) |  |  
+| [*NetworkAccessConstraints*](https://www.kivakit.org/1.7.0/javadoc/kivakit/kivakit.network.core//////////////////////////////////////////////////////////.html) |  |  
+| [*NetworkLocation*](https://www.kivakit.org/1.7.0/javadoc/kivakit/kivakit.network.core/////////////////////////////////////////////////.html) |  |  
+| [*NetworkLocation.Converter*](https://www.kivakit.org/1.7.0/javadoc/kivakit/kivakit.network.core///////////////////////////////////////////////////////////.html) |  |  
+| [*NetworkPath*](https://www.kivakit.org/1.7.0/javadoc/kivakit/kivakit.network.core/////////////////////////////////////////////.html) | Path Parsing Methods |  
 | | Path Factory Methods |  
-| [*NetworkPath.Converter*](https://www.kivakit.org/1.6.1/javadoc/kivakit/kivakit.network.core///////////////////////////////////////////////////////.html) |  |  
-| [*NetworkResource*](https://www.kivakit.org/1.6.1/javadoc/kivakit/kivakit.network.core/////////////////////////////////////////////////.html) |  |  
-| [*Password*](https://www.kivakit.org/1.6.1/javadoc/kivakit/kivakit.network.core/////////////////////////////////////////////////////////.html) |  |  
-| [*PlainTextPassword*](https://www.kivakit.org/1.6.1/javadoc/kivakit/kivakit.network.core////////////////////////////////////////////////////////////////////////////.html) |  |  
-| [*PlainTextPassword.Converter*](https://www.kivakit.org/1.6.1/javadoc/kivakit/kivakit.network.core//////////////////////////////////////////////////////////////////////////////////////.html) |  |  
-| [*Port*](https://www.kivakit.org/1.6.1/javadoc/kivakit/kivakit.network.core//////////////////////////////////////.html) |  |  
-| [*Port.Converter*](https://www.kivakit.org/1.6.1/javadoc/kivakit/kivakit.network.core////////////////////////////////////////////////.html) |  |  
-| [*Protocol*](https://www.kivakit.org/1.6.1/javadoc/kivakit/kivakit.network.core//////////////////////////////////////////.html) |  |  
-| [*QueryParameters*](https://www.kivakit.org/1.6.1/javadoc/kivakit/kivakit.network.core/////////////////////////////////////////////////.html) |  |  
-| [*UserName*](https://www.kivakit.org/1.6.1/javadoc/kivakit/kivakit.network.core/////////////////////////////////////////////////////////.html) |  |  
-| [*UserName.Converter*](https://www.kivakit.org/1.6.1/javadoc/kivakit/kivakit.network.core///////////////////////////////////////////////////////////////////.html) |  |  
+| [*NetworkPath.Converter*](https://www.kivakit.org/1.7.0/javadoc/kivakit/kivakit.network.core///////////////////////////////////////////////////////.html) |  |  
+| [*NetworkResource*](https://www.kivakit.org/1.7.0/javadoc/kivakit/kivakit.network.core/////////////////////////////////////////////////.html) |  |  
+| [*Password*](https://www.kivakit.org/1.7.0/javadoc/kivakit/kivakit.network.core/////////////////////////////////////////////////////////.html) |  |  
+| [*PlainTextPassword*](https://www.kivakit.org/1.7.0/javadoc/kivakit/kivakit.network.core////////////////////////////////////////////////////////////////////////////.html) |  |  
+| [*PlainTextPassword.Converter*](https://www.kivakit.org/1.7.0/javadoc/kivakit/kivakit.network.core//////////////////////////////////////////////////////////////////////////////////////.html) |  |  
+| [*Port*](https://www.kivakit.org/1.7.0/javadoc/kivakit/kivakit.network.core//////////////////////////////////////.html) |  |  
+| [*Port.Converter*](https://www.kivakit.org/1.7.0/javadoc/kivakit/kivakit.network.core////////////////////////////////////////////////.html) |  |  
+| [*Protocol*](https://www.kivakit.org/1.7.0/javadoc/kivakit/kivakit.network.core//////////////////////////////////////////.html) |  |  
+| [*QueryParameters*](https://www.kivakit.org/1.7.0/javadoc/kivakit/kivakit.network.core/////////////////////////////////////////////////.html) |  |  
+| [*UserName*](https://www.kivakit.org/1.7.0/javadoc/kivakit/kivakit.network.core/////////////////////////////////////////////////////////.html) |  |  
+| [*UserName.Converter*](https://www.kivakit.org/1.7.0/javadoc/kivakit/kivakit.network.core///////////////////////////////////////////////////////////////////.html) |  |  
 
 [//]: # (start-user-text)
 
