@@ -29,6 +29,7 @@ import java.util.regex.Pattern;
  *
  * @author jonathanl (shibo)
  */
+@SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramString.class)
 @LexakaiJavadoc(complete = true)
 public class Strings
