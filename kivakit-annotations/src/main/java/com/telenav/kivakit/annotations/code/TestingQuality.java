@@ -8,5 +8,6 @@ public enum TestingQuality
 {
     SUFFICIENT,
     INSUFFICIENT,
+    UNNECESSARY,
     UNEVALUATED
 }
