@@ -7,7 +7,8 @@ package com.telenav.kivakit.annotations.code;
 public enum TestingQuality
 {
     SUFFICIENT,
-    INSUFFICIENT,
     UNNECESSARY,
+    INSUFFICIENT,
+    NONE,
     UNEVALUATED
 }

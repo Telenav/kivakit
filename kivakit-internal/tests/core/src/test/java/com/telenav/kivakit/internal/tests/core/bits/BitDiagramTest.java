@@ -22,6 +22,11 @@ import com.telenav.kivakit.core.bits.BitDiagram;
 import com.telenav.kivakit.core.bits.BitDiagram.BitField;import com.telenav.kivakit.internal.testing.CoreUnitTest;
 import org.junit.Test;
 
+/**
+ * Test access to bit fields
+ *
+ * @author jonathanl (shibo)
+ */
 public class BitDiagramTest extends CoreUnitTest
 {
     @SuppressWarnings("SpellCheckingInspection")
