@@ -30,7 +30,8 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.INSUFFICIENT;
 /**
  * A {@link BitDiagram} is a character string that visually depicts one or more bit fields of a primitive value such as
  * an int or a long. Given a {@link BitDiagram}, each depicted field can be retrieved through a {@link BitField}
- * accessor object by calling {@link #field(char)}.
+ * accessor object by calling {@link #field(char)}. For bit positions that are not associated with any bit field, the
+ * character '?' can be used.
  *
  * <p><b>Example</b></p>
  *
