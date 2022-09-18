@@ -18,26 +18,43 @@
 
 package com.telenav.kivakit.core.bits;
 
+import com.telenav.kivakit.annotations.code.CodeQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramBits;
-import com.telenav.kivakit.core.value.count.BaseCount;
+import com.telenav.kivakit.core.value.count.Countable;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.NONE;
+
 /**
- * Utility methods for manipulating bits
+ * Utility methods for manipulating bits.
+ *
+ * <p><b>Functions</b></p>
+ *
+ * <ul>
+ *     <li>{@link #oneBits(Countable)} - Composes a long value with the given number of one bits</li>
+ * </ul>
+ *
+ * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramBits.class)
 @LexakaiJavadoc(complete = true)
+@CodeQuality(stability = STABLE,
+             testing = NONE,
+             documentation = COMPLETE)
 public class Bits
 {
     /**
-     * @return The given number of one bits
+     * @return A long value containting the given number of one bits, starting from the least-significant bit.
+     * For example, if count is 5, the return value would be 0b11111.
      */
-    public static long oneBits(BaseCount<?> count)
+    public static long oneBits(Countable count)
     {
         var one = 1L;
         var value = 0L;
-        for (var i = 0L; i < count.asInt(); i++)
+        for (var i = 0L; i < count.count().asLong(); i++)
         {
             value |= one;
             one <<= 1;
