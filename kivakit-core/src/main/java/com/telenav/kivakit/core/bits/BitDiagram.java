@@ -18,43 +18,68 @@
 
 package com.telenav.kivakit.core.bits;
 
+import com.telenav.kivakit.annotations.code.CodeQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramBits;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.INSUFFICIENT;
+
 /**
  * A {@link BitDiagram} is a character string that visually depicts one or more bit fields of a primitive value such as
  * an int or a long. Given a {@link BitDiagram}, each depicted field can be retrieved through a {@link BitField}
- * accessor object by calling {@link #field(char)}.
+ * accessor object by calling {@link #field(char)}. For bit positions that are not associated with any bit field, the
+ * character '?' can be used.
  *
  * <p><b>Example</b></p>
  *
  * <pre>
- * private static BitDiagram COLOR = new BitDiagram(
- *     &quot;AAAAAAAA RRRRRRRR GGGGGGGG BBBBBBBB&quot;);
+ * // <b>Define a BitDiagram for color values specified as Alpha, Red, Green, and Blue.</b>
+ * BitDiagram COLOR = new BitDiagram(&quot;AAAAAAAA RRRRRRRR GGGGGGGG BBBBBBBB&quot;);
  *
- * private static BitField ALPHA = COLOR.field('A');
- * private static BitField RED = COLOR.field('R');
- * private static BitField GREEN = COLOR.field('G');
- * private static BitField BLUE = COLOR.field('B');
+ * // <b>Define a BitField for each field in the bit diagram</b>
+ * BitField ALPHA = COLOR.field('A');
+ * BitField RED = COLOR.field('R');
+ * BitField GREEN = COLOR.field('G');
+ * BitField BLUE = COLOR.field('B');
  *
- * int rgb = 0xff00ff;
+ * // <b>Start with an initial <i>int</i> ARGB value</b>
+ * int rgb = 0xffff80ff;
  *
- * System.out.println(&quot;Red = &quot; + RED.getInt(rgb));
- * System.out.println(&quot;Green = &quot; + GREEN.getInt(rgb));
- * System.out.println(&quot;Blue = &quot; + BLUE.getInt(rgb));
- * </pre>
+ * // <b>Show ALPHA, RED, GREEN, and BLUE values from the <i>int</i> variable <i>rgb</i></b>
+ * System.out.println(&quot;Alpha = &quot; + ALPHA.getInt(rgb));   // 255
+ * System.out.println(&quot;Red = &quot; + RED.getInt(rgb));       // 255
+ * System.out.println(&quot;Green = &quot; + GREEN.getInt(rgb));   // 128
+ * System.out.println(&quot;Blue = &quot; + BLUE.getInt(rgb));     // 255
+ *
+ * // <b>Set new ALPHA, RED, GREEN, and BLUE values into the <i>int</i> variable <i>rgb</i></b>
+ * rgb = ALPHA.setInt(rgb, 0x80);
+ * rgb = RED.setInt(rgb, 0x80);
+ * rgb = GREEN.setInt(rgb, 0x80);
+ * rgb = BLUE.setInt(rgb, 0x80);
+ *
+ * // <b>Show ALPHA, RED, GREEN, and BLUE values from the <i>int</i> variable <i>rgb</i></b>
+ * System.out.println(&quot;Alpha = &quot; + ALPHA.getInt(rgb));   // 128
+ * System.out.println(&quot;Red = &quot; + RED.getInt(rgb));       // 128
+ * System.out.println(&quot;Green = &quot; + GREEN.getInt(rgb));   // 128
+ * System.out.println(&quot;Blue = &quot; + BLUE.getInt(rgb));     // 128 </pre>
  *
  * @author jonathanl (shibo)
  */
 @SuppressWarnings("SpellCheckingInspection")
 @UmlClassDiagram(diagram = DiagramBits.class)
 @LexakaiJavadoc(complete = true)
+@CodeQuality(stability = STABLE,
+             testing = INSUFFICIENT,
+             documentation = COMPLETE)
 public class BitDiagram
 {
     /**
      * The bit field for a given character in a bit diagram
      */
+    @SuppressWarnings("unused")
     @LexakaiJavadoc(complete = true)
     public static class BitField
     {

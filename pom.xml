@@ -33,7 +33,8 @@
     <!-- Modules -->
     
     <modules>
-        
+
+        <module>kivakit-annotations</module>
         <module>kivakit-interfaces</module>
         <module>kivakit-testing</module>
         <module>kivakit-internal</module>
