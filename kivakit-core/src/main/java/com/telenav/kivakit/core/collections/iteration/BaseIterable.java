@@ -18,13 +18,19 @@
 
 package com.telenav.kivakit.core.collections.iteration;
 
+import com.telenav.kivakit.annotations.code.ApiStability;
+import com.telenav.kivakit.annotations.code.CodeQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramIteration;
 import com.telenav.kivakit.interfaces.collection.NextValue;
+import com.telenav.kivakit.interfaces.comparison.Matcher;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Iterator;
+
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.NONE;
 
 /**
  * Implements the {@link Iterable} interface by using a {@link NextValue} object to find the next value when iterating.
@@ -32,8 +38,23 @@ import java.util.Iterator;
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramIteration.class)
+@CodeQuality(stability = ApiStability.STABLE,
+             testing = NONE,
+             documentation = COMPLETE)
 public abstract class BaseIterable<T> implements Iterable<T>
 {
+    /** A filter to restrict values in the sequence */
+    private Matcher<T> matcher = Matcher.matchAll();
+
+    /**
+     * @param filter The filter to apply to this sequence
+     */
+    public BaseIterable<T> matching(Matcher<T> filter)
+    {
+        this.matcher = filter;
+        return this;
+    }
+
     @Override
     public final @NotNull Iterator<T> iterator()
     {
@@ -44,7 +65,14 @@ public abstract class BaseIterable<T> implements Iterable<T>
             @Override
             protected T onNext()
             {
-                return next.next();
+                for (var at = next.next(); at != null; at = next.next())
+                {
+                    if (matcher.matches(at))
+                    {
+                        return at;
+                    }
+                }
+                return null;
             }
         };
     }

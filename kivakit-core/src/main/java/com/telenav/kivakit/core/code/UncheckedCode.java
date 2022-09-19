@@ -1,9 +1,14 @@
 package com.telenav.kivakit.core.code;
 
+import com.telenav.kivakit.annotations.code.ApiStability;
+import com.telenav.kivakit.annotations.code.CodeQuality;
 import com.telenav.kivakit.core.logging.Logger;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.messaging.repeaters.RepeaterMixin;
 import com.telenav.kivakit.interfaces.value.Source;
+
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.NONE;
 
 /**
  * Removes exception handling from code that can throw a checked (or unchecked) {@link Exception}.
@@ -25,6 +30,9 @@ import com.telenav.kivakit.interfaces.value.Source;
  * @author jonathanl (shibo)
  */
 @FunctionalInterface
+@CodeQuality(stability = ApiStability.STABLE,
+             testing = NONE,
+             documentation = COMPLETE)
 public interface UncheckedCode<Value> extends RepeaterMixin
 {
     static <T> UncheckedCode<T> of(UncheckedCode<T> code)

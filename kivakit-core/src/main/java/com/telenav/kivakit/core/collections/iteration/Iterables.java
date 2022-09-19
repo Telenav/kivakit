@@ -18,6 +18,8 @@
 
 package com.telenav.kivakit.core.collections.iteration;
 
+import com.telenav.kivakit.annotations.code.ApiStability;
+import com.telenav.kivakit.annotations.code.CodeQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramIteration;
 import com.telenav.kivakit.interfaces.collection.NextValue;
 import com.telenav.kivakit.interfaces.factory.Factory;
@@ -27,6 +29,9 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 import java.util.Set;
+
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.NONE;
 
 /**
  * Utility methods that operate on {@link Iterable}s. The method {@link #iterable(Factory)} can be used to implement the
@@ -47,7 +52,11 @@ import java.util.Set;
  * @author jonathanl (shibo)
  * @see NextValue
  */
+@SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramIteration.class)
+@CodeQuality(stability = ApiStability.STABLE,
+             testing = NONE,
+             documentation = COMPLETE)
 public class Iterables
 {
     public static <T> void addAll(Iterable<T> iterable, Collection<? super T> collection)

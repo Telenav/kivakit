@@ -18,6 +18,8 @@
 
 package com.telenav.kivakit.core.collections.iteration;
 
+import com.telenav.kivakit.annotations.code.ApiStability;
+import com.telenav.kivakit.annotations.code.CodeQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramIteration;
 import com.telenav.kivakit.interfaces.collection.NextValue;
 import com.telenav.kivakit.interfaces.comparison.Matcher;
@@ -25,12 +27,18 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.Iterator;
 
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.NONE;
+
 /**
  * An iterable that does matching during iteration.
  *
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramIteration.class)
+@CodeQuality(stability = ApiStability.STABLE,
+             testing = NONE,
+             documentation = COMPLETE)
 public abstract class Matching<T> extends BaseIterable<T>
 {
     private final Matcher<T> matcher;
@@ -40,6 +48,9 @@ public abstract class Matching<T> extends BaseIterable<T>
         this.matcher = matcher;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected NextValue<T> newNext()
     {
@@ -63,5 +74,8 @@ public abstract class Matching<T> extends BaseIterable<T>
         };
     }
 
+    /**
+     * @return Iterator over values
+     */
     protected abstract Iterator<T> values();
 }

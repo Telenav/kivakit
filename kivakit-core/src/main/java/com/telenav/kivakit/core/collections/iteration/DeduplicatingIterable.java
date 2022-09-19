@@ -18,10 +18,15 @@
 
 package com.telenav.kivakit.core.collections.iteration;
 
+import com.telenav.kivakit.annotations.code.ApiStability;
+import com.telenav.kivakit.annotations.code.CodeQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramIteration;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.Iterator;
+
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.NONE;
 
 /**
  * An {@link Iterable} that wraps another iterable, removing duplicate values. The iterated values must correctly
@@ -33,6 +38,9 @@ import java.util.Iterator;
  */
 @SuppressWarnings("SpellCheckingInspection")
 @UmlClassDiagram(diagram = DiagramIteration.class)
+@CodeQuality(stability = ApiStability.STABLE,
+             testing = NONE,
+             documentation = COMPLETE)
 public class DeduplicatingIterable<Element> implements Iterable<Element>
 {
     private final Iterable<Element> iterable;

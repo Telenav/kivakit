@@ -298,6 +298,10 @@ public abstract class CoreUnitTest extends TestWatcher implements
     {
         Ensure.ensureEqualArray(a, b);
     }
+    protected void ensureEqualArray(byte[] a, byte[] b, String message, Object... arguments)
+    {
+        Ensure.ensureEqualArray(a, b);
+    }
 
     protected <T> void ensureEqualArray(T[] a, T[] b)
     {

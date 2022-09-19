@@ -18,12 +18,17 @@
 
 package com.telenav.kivakit.core.collections.iteration;
 
+import com.telenav.kivakit.annotations.code.ApiStability;
+import com.telenav.kivakit.annotations.code.CodeQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramCollections;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
+
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.NONE;
 
 /**
  * This class implements an iterator which can deduplicate the objects returned by the wrapped iterator. Each element
@@ -37,6 +42,9 @@ import java.util.Set;
  */
 @SuppressWarnings("SpellCheckingInspection")
 @UmlClassDiagram(diagram = DiagramCollections.class)
+@CodeQuality(stability = ApiStability.STABLE,
+             testing = NONE,
+             documentation = COMPLETE)
 public class DeduplicatingIterator<Element> extends BaseIterator<Element>
 {
     private final Iterator<Element> iterator;

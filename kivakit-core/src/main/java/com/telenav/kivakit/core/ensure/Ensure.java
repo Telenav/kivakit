@@ -160,7 +160,7 @@ import java.util.function.Supplier;
  * @see Warning
  * @see Formatter
  */
-@UmlClassDiagram(diagram = DiagramEnsure.class)
+@SuppressWarnings("unused") @UmlClassDiagram(diagram = DiagramEnsure.class)
 @UmlRelation(label = "reports", referent = EnsureProblem.class)
 public class Ensure
 {
@@ -320,6 +320,12 @@ public class Ensure
     {
         ensure(Arrays.equals(a, b));
         ensure(Arrays.equals(b, a));
+    }
+
+    public static void ensureEqualArray(byte[] a, byte[] b, String message, Object... arguments)
+    {
+        ensure(Arrays.equals(a, b), message, arguments);
+        ensure(Arrays.equals(b, a), message, arguments);
     }
 
     public static <T> void ensureEqualArray(T[] a, T[] b)

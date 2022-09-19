@@ -18,6 +18,8 @@
 
 package com.telenav.kivakit.core.collections.iteration;
 
+import com.telenav.kivakit.annotations.code.ApiStability;
+import com.telenav.kivakit.annotations.code.CodeQuality;
 import com.telenav.kivakit.interfaces.comparison.Matcher;
 import com.telenav.kivakit.core.ensure.Ensure;
 import com.telenav.kivakit.core.internal.lexakai.DiagramIteration;
@@ -26,6 +28,9 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.NONE;
+
 /**
  * An implementation of {@link Iterator} that takes care of the basic logic of an iterator. Subclasses only need to
  * implement {@link #onNext()} by returning the next value, or null if there is not any next value.
@@ -33,28 +38,23 @@ import java.util.NoSuchElementException;
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramIteration.class)
+@CodeQuality(stability = ApiStability.STABLE,
+             testing = NONE,
+             documentation = COMPLETE)
 public abstract class BaseIterator<T> implements Iterator<T>
 {
     /** The next value in the sequence, if any */
     private T next;
 
     /** A filter to restrict values in the sequence */
-    private Matcher<T> filter;
+    private Matcher<T> matcher;
 
     /**
-     * @return The match filter
+     * @param matcher The filter to apply to this sequence
      */
-    public Matcher<T> filter()
+    public BaseIterator<T> matching(Matcher<T> matcher)
     {
-        return filter;
-    }
-
-    /**
-     * @param filter The filter to apply to this sequence
-     */
-    public BaseIterator<T> filter(Matcher<T> filter)
-    {
-        this.filter = filter;
+        this.matcher = matcher;
         return this;
     }
 
@@ -111,7 +111,7 @@ public abstract class BaseIterator<T> implements Iterator<T>
             }
 
             // otherwise, return the element if there's no filter or the element matches the filter
-            if (filter == null || filter.matches(next))
+            if (matcher == null || matcher.matches(next))
             {
                 return next;
             }

@@ -18,6 +18,8 @@
 
 package com.telenav.kivakit.core.collections.iteration;
 
+import com.telenav.kivakit.annotations.code.ApiStability;
+import com.telenav.kivakit.annotations.code.CodeQuality;
 import com.telenav.kivakit.core.language.Hash;
 import com.telenav.kivakit.core.internal.lexakai.DiagramIteration;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
@@ -27,13 +29,18 @@ import java.util.Iterator;
 import java.util.Objects;
 import java.util.function.Supplier;
 
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.NONE;
+
 /**
  * Utility methods that operate on {@link Iterator}s.
  *
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramIteration.class)
-@LexakaiJavadoc(complete = true)
+@CodeQuality(stability = ApiStability.STABLE,
+             testing = NONE,
+             documentation = COMPLETE)
 public class Iterators
 {
     public static <T> Iterator<T> empty()

@@ -18,6 +18,8 @@
 
 package com.telenav.kivakit.core.collections.iteration;
 
+import com.telenav.kivakit.annotations.code.ApiStability;
+import com.telenav.kivakit.annotations.code.CodeQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramCollections;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
@@ -27,6 +29,9 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.NONE;
+
 /**
  * An {@link Iterator} that wraps and iterates through a sequence of {@link Iterator}s in the order they are added,
  * either by constructor or with {@link #add(Iterator)}.
@@ -35,6 +40,9 @@ import java.util.List;
  * @see BaseIterator
  */
 @UmlClassDiagram(diagram = DiagramCollections.class)
+@CodeQuality(stability = ApiStability.STABLE,
+             testing = NONE,
+             documentation = COMPLETE)
 public class CompoundIterator<Element> extends BaseIterator<Element>
 {
     final List<Iterator<Element>> iterators = new ArrayList<>();

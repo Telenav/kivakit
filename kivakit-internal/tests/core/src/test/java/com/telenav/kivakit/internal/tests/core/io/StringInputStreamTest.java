@@ -15,21 +15,23 @@
 // limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-package com.telenav.kivakit.core.io;
+package com.telenav.kivakit.internal.tests.core.io;
 
+import com.telenav.kivakit.core.io.StringInputStream;
 import com.telenav.kivakit.core.io.StringInputStream.EncodingErrorBehavior;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.charset.UnmappableCharacterException;
-import org.junit.jupiter.api.Test;
+
+import com.telenav.kivakit.internal.testing.CoreUnitTest;
+import org.junit.Test;
 
 import static java.lang.Math.min;
 import static java.nio.charset.StandardCharsets.US_ASCII;
 import static java.nio.charset.StandardCharsets.UTF_16BE;
 import static java.nio.charset.StandardCharsets.UTF_16LE;
 import static java.nio.charset.StandardCharsets.UTF_8;
-import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Exhaustive test of StringInputStream, since this is that sort o fthing that
@@ -37,7 +39,7 @@ import static org.junit.jupiter.api.Assertions.*;
  *
  * @author Tim Boudreau
  */
-public class StringInputStreamTest
+public class StringInputStreamTest extends CoreUnitTest
 {
     private static final Charset[] CHARSETS = new Charset[]
     {
@@ -83,19 +85,21 @@ public class StringInputStreamTest
     public void testUnencodableCharactersAreElided() throws IOException
     {
         String target = "Hello Тогда же пресс-служба Goodbye";
-        StringInputStream sis = new StringInputStream(target, US_ASCII);
-        byte[] bytes = sis.readAllBytes();
-        String got = new String(bytes, US_ASCII);
-
-        assertEquals(target.length(), got.length(),
-                "Differing lengths:\n" + target + "\n" + got);
-        assertTrue(got.startsWith("Hello "));
-        assertTrue(got.endsWith(" Goodbye"));
-        for (int i = 0; i < target.length(); i++)
+        try (StringInputStream sis = new StringInputStream(target, US_ASCII))
         {
-            if (' ' == target.charAt(i))
+            byte[] bytes = sis.readAllBytes();
+            String got = new String(bytes, US_ASCII);
+
+            ensureEqual(target.length(), got.length(),
+                    "Differing lengths:\n" + target + "\n" + got);
+            ensure(got.startsWith("Hello "));
+            ensure(got.endsWith(" Goodbye"));
+            for (int i = 0; i < target.length(); i++)
             {
-                assertEquals(' ', got.charAt(i), "Spaces should be encoded");
+                if (' ' == target.charAt(i))
+                {
+                    ensureEqual(' ', got.charAt(i), "Spaces should be encoded");
+                }
             }
         }
     }
@@ -104,27 +108,32 @@ public class StringInputStreamTest
     public void testOmittingBehavior() throws IOException
     {
         String target = "Hello Тогда же пресс-служба Goodbye";
-        StringInputStream sis = new StringInputStream(target, US_ASCII, 12,
-                EncodingErrorBehavior.OMIT);
-        byte[] bytes = sis.readAllBytes();
-        String got = new String(bytes, US_ASCII);
-        assertEquals("Hello   - Goodbye", got);
+        try (StringInputStream sis = new StringInputStream(target, US_ASCII, 12,
+                EncodingErrorBehavior.OMIT))
+        {
+            byte[] bytes = sis.readAllBytes();
+            String got = new String(bytes, US_ASCII);
+            ensureEqual("Hello   - Goodbye", got);
+        }
     }
 
     @Test
+    @SuppressWarnings("unused")
     public void testThrowingBehavior() throws IOException
     {
         String target = "Hello Тогда же пресс-служба Goodbye";
-        StringInputStream sis = new StringInputStream(target, US_ASCII, 12,
-                EncodingErrorBehavior.THROW);
-        try
+        try (var input = new StringInputStream(target, US_ASCII, 12,
+                EncodingErrorBehavior.THROW))
         {
-            byte[] bytes = sis.readAllBytes();
-            fail("Exception should have been thrown");
-        }
-        catch (UnmappableCharacterException ex)
-        {
-            // ok
+            try
+            {
+                input.readAllBytes();
+                fail("Exception should have been thrown");
+            }
+            catch (UnmappableCharacterException ex)
+            {
+                // ok
+            }
         }
     }
 
@@ -151,17 +160,17 @@ public class StringInputStreamTest
         }
     }
 
+    @SuppressWarnings("ResultOfMethodCallIgnored")
     private void assertUnaltered(String what, Charset encoding, int bufferSize)
             throws IOException
     {
         StringInputStream theStream;
-        try ( StringInputStream in = new StringInputStream(what, encoding,
-                bufferSize))
+        try (var in = new StringInputStream(what, encoding, bufferSize))
         {
             theStream = in;
             // First, test simply reading all the bytes the simple way
             byte[] bytes = in.readAllBytes();
-            assertArrayEquals(what.getBytes(encoding), bytes,
+            ensureEqualArray(what.getBytes(encoding), bytes,
                     "Byte stream was altered.  Buffer size " + bufferSize
                     + " encoding " + encoding.displayName() + ". Expected:\n" + what
                     + "\nGot:\n" + new String(bytes, encoding));
@@ -173,7 +182,7 @@ public class StringInputStreamTest
             })
             {
                 bytes = readBytesByBuffers(size, in);
-                assertArrayEquals(what.getBytes(encoding), bytes,
+                ensureEqualArray(what.getBytes(encoding), bytes,
                         "Got " + bytes.length + " for read buffer size "
                         + size + " and total size " + expectedLength
                         + ", byte stream was altered.  Buffer size " + bufferSize
@@ -182,26 +191,26 @@ public class StringInputStreamTest
             }
             // Test read(byte[], int, int)
             bytes = readBytesByBuffersInPortions(expectedLength, in);
-            assertArrayEquals(what.getBytes(encoding), bytes,
+            ensureEqualArray(what.getBytes(encoding), bytes,
                     "Subdivided read was altered.  Buffer size " + bufferSize
                     + " encoding " + encoding.displayName() + ". Expected:\n" + what
                     + "\nGot:\n" + new String(bytes, encoding));
             // Test read()
             bytes = readBytesByteOverByte(in);
-            assertArrayEquals(what.getBytes(encoding), bytes,
+            ensureEqualArray(what.getBytes(encoding), bytes,
                     "Byte-over-byte read was altered.  Buffer size " + bufferSize
                     + " encoding " + encoding.displayName() + ". Expected:\n" + what
                     + "\nGot:\n" + new String(bytes, encoding));
 
             // Test transferTo()
             bytes = readBytesViaTransferTo(in, expectedLength);
-            assertArrayEquals(what.getBytes(encoding), bytes,
+            ensureEqualArray(what.getBytes(encoding), bytes,
                     "TransferTo read was altered.  Buffer size " + bufferSize
                     + " encoding " + encoding.displayName() + ". Expected:\n" + what
                     + "\nGot:\n" + new String(bytes, encoding));
 
         }
-        assertEquals(0,
+        ensureEqual(0,
                 theStream.available(),
                 "Stream should show no available characters after it is closed");
         try
@@ -211,7 +220,7 @@ public class StringInputStreamTest
         }
         catch (IOException ex)
         {
-            assertEquals("Stream is closed.", ex.getMessage());
+            ensureEqual("Stream is closed.", ex.getMessage());
         }
         try
         {
@@ -220,7 +229,7 @@ public class StringInputStreamTest
         }
         catch (IOException ex)
         {
-            assertEquals("Stream is closed.", ex.getMessage());
+            ensureEqual("Stream is closed.", ex.getMessage());
         }
         try
         {
@@ -229,7 +238,7 @@ public class StringInputStreamTest
         }
         catch (IOException ex)
         {
-            assertEquals("Stream is closed.", ex.getMessage());
+            ensureEqual("Stream is closed.", ex.getMessage());
         }
         try
         {
@@ -238,7 +247,7 @@ public class StringInputStreamTest
         }
         catch (IOException ex)
         {
-            assertEquals("Stream is closed.", ex.getMessage());
+            ensureEqual("Stream is closed.", ex.getMessage());
         }
         // This should reopen the stream
         theStream.rewind();
@@ -284,7 +293,6 @@ public class StringInputStreamTest
     {
         in.rewind();
         ByteArrayOutputStream out = new ByteArrayOutputStream();
-        int ct = 0;
         for (int read = in.read(); read != -1; read = in.read())
         {
             out.write((byte) read);
@@ -299,7 +307,7 @@ public class StringInputStreamTest
         try ( ByteArrayOutputStream out = new ByteArrayOutputStream())
         {
             long read = in.transferTo(out);
-            assertEquals(expectedLength, read,
+            ensureEqual(expectedLength, read,
                     "Different number of bytes read than expected from " + in);
             return out.toByteArray();
         }

@@ -18,12 +18,17 @@
 
 package com.telenav.kivakit.core.collections.iteration;
 
+import com.telenav.kivakit.annotations.code.ApiStability;
+import com.telenav.kivakit.annotations.code.CodeQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramCollections;
 import com.telenav.kivakit.interfaces.comparison.Filter;
 import com.telenav.kivakit.interfaces.comparison.Matcher;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.Iterator;
+
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.NONE;
 
 /**
  * An {@link Iterator} that wraps and filters the values of another {@link Iterator}.
@@ -33,6 +38,9 @@ import java.util.Iterator;
  * @see Filter
  */
 @UmlClassDiagram(diagram = DiagramCollections.class)
+@CodeQuality(stability = ApiStability.STABLE,
+             testing = NONE,
+             documentation = COMPLETE)
 public class FilteredIterator<Element> extends BaseIterator<Element>
 {
     private final Iterator<Element> iterator;

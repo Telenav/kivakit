@@ -18,6 +18,8 @@
 
 package com.telenav.kivakit.core.collections.iteration;
 
+import com.telenav.kivakit.annotations.code.ApiStability;
+import com.telenav.kivakit.annotations.code.CodeQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramCollections;
 import com.telenav.kivakit.interfaces.collection.NextValue;
 import com.telenav.kivakit.interfaces.comparison.Filter;
@@ -25,6 +27,9 @@ import com.telenav.kivakit.interfaces.comparison.Matcher;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.Iterator;
+
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.NONE;
 
 /**
  * An {@link Iterable} that wraps and filters the elements of another {@link Iterable} producing only elements that
@@ -35,6 +40,9 @@ import java.util.Iterator;
  * @see Filter
  */
 @UmlClassDiagram(diagram = DiagramCollections.class)
+@CodeQuality(stability = ApiStability.STABLE,
+             testing = NONE,
+             documentation = COMPLETE)
 public class FilteredIterable<Element> extends BaseIterable<Element>
 {
     private final Matcher<Element> filter;
