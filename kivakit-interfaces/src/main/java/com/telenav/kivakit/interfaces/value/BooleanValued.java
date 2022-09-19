@@ -18,9 +18,13 @@
 
 package com.telenav.kivakit.interfaces.value;
 
+import com.telenav.kivakit.annotations.code.CodeQuality;
 import com.telenav.kivakit.interfaces.internal.lexakai.DiagramValue;
-import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
+
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNNECESSARY;
 
 /**
  * Interface to an object that has a boolean value
@@ -29,7 +33,9 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
  */
 @FunctionalInterface
 @UmlClassDiagram(diagram = DiagramValue.class)
-@LexakaiJavadoc(complete = true)
+@CodeQuality(stability = STABLE,
+             testing = UNNECESSARY,
+             documentation = COMPLETE)
 public interface BooleanValued
 {
     /**

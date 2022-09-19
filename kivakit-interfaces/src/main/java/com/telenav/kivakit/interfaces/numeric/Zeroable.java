@@ -7,20 +7,25 @@ import static com.telenav.kivakit.annotations.code.DocumentationQuality.COMPLETE
 import static com.telenav.kivakit.annotations.code.TestingQuality.UNNECESSARY;
 
 /**
- * Interface for performing basic arithmetic
+ * Interface to an object that can logically be zero or non-zero.
  *
  * @author jonathanl (shibo)
  */
 @CodeQuality(stability = STABLE,
              testing = UNNECESSARY,
              documentation = COMPLETE)
-public interface Arithmetic<Value>
+public interface Zeroable
 {
-    Value dividedBy(Value value);
+    /**
+     * @return True if this object is not zero
+     */
+    default boolean isNonZero()
+    {
+        return !isZero();
+    }
 
-    Value minus(Value value);
-
-    Value plus(Value value);
-
-    Value times(Value value);
+    /**
+     * @return True if this object is zero
+     */
+    boolean isZero();
 }

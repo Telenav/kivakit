@@ -194,7 +194,7 @@ public class Modules
     {
         return allNestedModuleResources(listener, packageReference)
                 .stream()
-                .filter(matcher.asPredicate())
+                .filter(matcher)
                 .collect(Collectors.toList());
     }
 

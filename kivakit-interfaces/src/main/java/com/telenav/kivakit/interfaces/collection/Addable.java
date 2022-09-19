@@ -18,10 +18,16 @@
 
 package com.telenav.kivakit.interfaces.collection;
 
+import com.telenav.kivakit.annotations.code.CodeQuality;
 import com.telenav.kivakit.interfaces.internal.lexakai.DiagramCollection;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.Iterator;
+
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.NONE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNNECESSARY;
 
 /**
  * An object, often a collection or related type, to which objects can be added. Provides default implementations for
@@ -30,8 +36,12 @@ import java.util.Iterator;
  *
  * @author jonathanl (shibo)
  */
+@SuppressWarnings("unused")
 @FunctionalInterface
 @UmlClassDiagram(diagram = DiagramCollection.class)
+@CodeQuality(stability = STABLE,
+             testing = UNNECESSARY,
+             documentation = COMPLETE)
 public interface Addable<Value>
 {
     /**

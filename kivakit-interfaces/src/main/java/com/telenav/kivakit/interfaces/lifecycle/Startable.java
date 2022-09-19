@@ -18,9 +18,13 @@
 
 package com.telenav.kivakit.interfaces.lifecycle;
 
+import com.telenav.kivakit.annotations.code.CodeQuality;
 import com.telenav.kivakit.interfaces.internal.lexakai.DiagramLifeCycle;
-import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
+
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNNECESSARY;
 
 /**
  * An operation that can be started or restarted.
@@ -29,7 +33,9 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
  * @see Operation
  */
 @UmlClassDiagram(diagram = DiagramLifeCycle.class)
-@LexakaiJavadoc(complete = true)
+@CodeQuality(stability = STABLE,
+             testing = UNNECESSARY,
+             documentation = COMPLETE)
 public interface Startable extends Operation
 {
     /**

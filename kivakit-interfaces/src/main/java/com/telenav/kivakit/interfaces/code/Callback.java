@@ -18,8 +18,13 @@
 
 package com.telenav.kivakit.interfaces.code;
 
+import com.telenav.kivakit.annotations.code.CodeQuality;
 import com.telenav.kivakit.interfaces.internal.lexakai.DiagramCode;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
+
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNNECESSARY;
 
 /**
  * A simple callback interface. There are other similar interfaces, but sometimes the best name is callback.
@@ -29,6 +34,9 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
  */
 @FunctionalInterface
 @UmlClassDiagram(diagram = DiagramCode.class)
+@CodeQuality(stability = STABLE,
+             testing = UNNECESSARY,
+             documentation = COMPLETE)
 public interface Callback<Value>
 {
     default void callback(Value value)

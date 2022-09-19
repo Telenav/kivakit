@@ -61,7 +61,7 @@ public class Console implements Flushable<Duration>
     }
 
     @Override
-    public Duration maximumWaitTime()
+    public Duration maximumFlushTime()
     {
         return Duration.MAXIMUM;
     }

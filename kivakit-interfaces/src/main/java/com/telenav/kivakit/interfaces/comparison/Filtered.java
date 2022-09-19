@@ -18,12 +18,16 @@
 
 package com.telenav.kivakit.interfaces.comparison;
 
+import com.telenav.kivakit.annotations.code.CodeQuality;
 import com.telenav.kivakit.interfaces.internal.lexakai.DiagramComparison;
-import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
 
 import java.util.List;
+
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNNECESSARY;
 
 /**
  * A filtered object has a list of filters to apply.
@@ -31,12 +35,14 @@ import java.util.List;
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramComparison.class)
-@LexakaiJavadoc(complete = true)
-public interface Filtered<T>
+@CodeQuality(stability = STABLE,
+             testing = UNNECESSARY,
+             documentation = COMPLETE)
+public interface Filtered<Value>
 {
     /**
-     * @return The filters for this object
+     * @return A list of filters that can be used to filter this object
      */
     @UmlRelation(label = "has", referentCardinality = "*")
-    List<Filter<T>> filters();
+    List<Filter<Value>> filters();
 }

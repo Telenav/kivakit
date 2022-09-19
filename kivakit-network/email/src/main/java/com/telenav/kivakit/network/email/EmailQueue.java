@@ -20,7 +20,6 @@ package com.telenav.kivakit.network.email;
 
 import com.telenav.kivakit.core.time.Duration;
 import com.telenav.kivakit.core.time.Time;
-import com.telenav.kivakit.interfaces.io.Closeable;
 import com.telenav.kivakit.network.email.internal.lexakai.DiagramEmail;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
@@ -35,7 +34,7 @@ import java.util.concurrent.TimeUnit;
  */
 @UmlClassDiagram(diagram = DiagramEmail.class)
 @LexakaiJavadoc(complete = true)
-class EmailQueue implements Closeable
+class EmailQueue
 {
     private volatile boolean closed;
 
@@ -44,7 +43,6 @@ class EmailQueue implements Closeable
     /**
      * Closes the queue to new entries
      */
-    @Override
     public void close()
     {
         closed = true;
@@ -60,6 +58,7 @@ class EmailQueue implements Closeable
         return queue.isEmpty();
     }
 
+    @SuppressWarnings("BooleanMethodIsAlwaysInverted")
     public boolean offer(Email email, Duration maximumWait)
     {
         if (!closed)

@@ -1,10 +1,19 @@
 package com.telenav.kivakit.interfaces.numeric;
 
+import com.telenav.kivakit.annotations.code.CodeQuality;
+
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNNECESSARY;
+
 /**
- * Utility methods to cast numbers
+ * Utility methods to cast numbers, and to discover the minimum and maximum values for the type of number
  *
  * @author jonathanl (shibo)
  */
+@CodeQuality(stability = STABLE,
+             testing = UNNECESSARY,
+             documentation = COMPLETE)
 public interface CastTrait
 {
     /**

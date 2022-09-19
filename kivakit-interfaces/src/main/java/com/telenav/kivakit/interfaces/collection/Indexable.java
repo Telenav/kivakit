@@ -18,10 +18,16 @@
 
 package com.telenav.kivakit.interfaces.collection;
 
+import com.telenav.kivakit.annotations.code.CodeQuality;
 import com.telenav.kivakit.interfaces.internal.lexakai.DiagramCollection;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.Iterator;
+
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.NONE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNNECESSARY;
 
 /**
  * A sequence that has a known size and can be indexed, like a list, although not necessarily a collection. For example,
@@ -29,12 +35,15 @@ import java.util.Iterator;
  * the file.
  * <p>
  * Provides a default implementation of {@link Iterable} and {@link Iterator} accessible through {@link #asIterable()}
- * and {@link #asIterator()} as well as equals and hashcode accessible through {@link #isEqualTo(Indexable)} and {@link
- * Object#hashCode()}.
+ * and {@link #asIterator()} as well as equals and hashcode accessible through {@link #isEqualTo(Indexable)} and
+ * {@link Object#hashCode()}.
  *
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramCollection.class)
+@CodeQuality(stability = STABLE,
+             testing = NONE,
+             documentation = COMPLETE)
 public interface Indexable<Element> extends
         Sized,
         Sequence<Element>

@@ -18,8 +18,13 @@
 
 package com.telenav.kivakit.interfaces.comparison;
 
+import com.telenav.kivakit.annotations.code.CodeQuality;
 import com.telenav.kivakit.interfaces.internal.lexakai.DiagramComparison;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
+
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNNECESSARY;
 
 /**
  * Determines if two objects are equal. Unlike the {@link Object#equals(Object)} method, this interface is typesafe.
@@ -27,6 +32,9 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramComparison.class)
+@CodeQuality(stability = STABLE,
+             testing = UNNECESSARY,
+             documentation = COMPLETE)
 public interface Equality<Value>
 {
     /**

@@ -241,7 +241,7 @@ public class KivaKitThread extends BaseRepeater implements
      */
     public KivaKitThread(String name, Runnable code)
     {
-        super(name("Kiva-" + name));
+        super(threadName("Kiva-" + name));
 
         thread = new Thread(this, objectName());
         thread.setDaemon(true);
@@ -338,7 +338,7 @@ public class KivaKitThread extends BaseRepeater implements
     }
 
     @Override
-    public Duration maximumWaitTime()
+    public Duration maximumStopTime()
     {
         return Duration.MAXIMUM;
     }
@@ -550,7 +550,7 @@ public class KivaKitThread extends BaseRepeater implements
         initialDelay.sleep();
     }
 
-    private static String name(String name)
+    private static String threadName(String name)
     {
         int number = 1;
         while (names.contains(name))

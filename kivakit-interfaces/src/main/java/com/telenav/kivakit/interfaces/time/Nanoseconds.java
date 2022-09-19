@@ -1,9 +1,16 @@
 package com.telenav.kivakit.interfaces.time;
 
+import com.telenav.kivakit.annotations.code.CodeQuality;
+import com.telenav.kivakit.interfaces.numeric.Zeroable;
+
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.Objects;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.NONE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNNECESSARY;
 import static java.lang.Math.addExact;
 import static java.lang.Math.subtractExact;
 
@@ -14,7 +21,12 @@ import static java.lang.Math.subtractExact;
  * @author jonathanl (shibo)
  */
 @SuppressWarnings("DuplicatedCode")
-public class Nanoseconds implements Comparable<Nanoseconds>
+@CodeQuality(stability = STABLE,
+             testing = NONE,
+             documentation = COMPLETE)
+public class Nanoseconds implements
+        Comparable<Nanoseconds>,
+        Zeroable
 {
     /** The number of nanoseconds in a second */
     private static final long NANOSECONDS_PER_SECOND = (long) 1E9;
@@ -235,6 +247,7 @@ public class Nanoseconds implements Comparable<Nanoseconds>
     /**
      * @return True if this is zero nanoseconds
      */
+    @Override
     public boolean isZero()
     {
         return equals(ZERO);

@@ -79,7 +79,7 @@ public interface Broadcaster extends Transceiver
      */
     default void addListener(Listener listener)
     {
-        addListener(listener, Filter.all());
+        addListener(listener, Filter.acceptingAll());
     }
 
     /**

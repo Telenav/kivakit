@@ -566,8 +566,8 @@ public class Folder extends BaseRepeater implements
 
     public void chmodNested(PosixFilePermission... permissions)
     {
-        nestedFolders(Filter.all()).forEach(folder -> folder().chmod(permissions));
-        nestedFiles(Filter.all()).forEach(file -> file.chmod(permissions));
+        nestedFolders(Filter.acceptingAll()).forEach(folder -> folder().chmod(permissions));
+        nestedFiles(Filter.acceptingAll()).forEach(file -> file.chmod(permissions));
     }
 
     /**
@@ -739,7 +739,7 @@ public class Folder extends BaseRepeater implements
 
     public FileList files()
     {
-        return files(Filter.all());
+        return files(Filter.acceptingAll());
     }
 
     public FileList files(Matcher<ResourcePathed> matcher, Traversal recurse)
@@ -969,7 +969,7 @@ public class Folder extends BaseRepeater implements
 
     public File oldest()
     {
-        return oldest(Filter.all());
+        return oldest(Filter.acceptingAll());
     }
 
     public File oldest(Matcher<File> matcher)
@@ -1029,7 +1029,7 @@ public class Folder extends BaseRepeater implements
     {
         return resourceList(files()
                 .stream()
-                .filter(matcher.asPredicate())
+                .filter(matcher)
                 .collect(Collectors.toList()));
     }
 
@@ -1068,7 +1068,7 @@ public class Folder extends BaseRepeater implements
     @Override
     public void safeCopyTo(ResourceFolder<?> destination, CopyMode mode, ProgressReporter reporter)
     {
-        safeCopyTo(destination, mode, Filter.all(), reporter);
+        safeCopyTo(destination, mode, Filter.acceptingAll(), reporter);
     }
 
     @SuppressWarnings("UnusedReturnValue")

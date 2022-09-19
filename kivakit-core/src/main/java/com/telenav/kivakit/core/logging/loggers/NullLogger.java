@@ -77,7 +77,7 @@ public class NullLogger implements Logger
     }
 
     @Override
-    public Duration maximumWaitTime()
+    public Duration maximumFlushTime()
     {
         return Duration.MAXIMUM;
     }

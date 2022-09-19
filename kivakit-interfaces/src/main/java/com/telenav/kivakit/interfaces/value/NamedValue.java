@@ -18,21 +18,29 @@
 
 package com.telenav.kivakit.interfaces.value;
 
-import com.telenav.kivakit.interfaces.naming.Named;
+import com.telenav.kivakit.annotations.code.CodeQuality;
 import com.telenav.kivakit.interfaces.internal.lexakai.DiagramNaming;
+import com.telenav.kivakit.interfaces.naming.Named;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
+
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNNECESSARY;
 
 /**
  * A {@link Named} object that has a value, retrievable through {@link Valued#value()}.
  *
- * @param <T> The type of value
+ * @param <Value> The type of value
  * @author jonathanl (shibo)
  * @see Named
  * @see Valued
  */
 @UmlClassDiagram(diagram = DiagramNaming.class)
-public interface NamedValue<T> extends
+@CodeQuality(stability = STABLE,
+             testing = UNNECESSARY,
+             documentation = COMPLETE)
+public interface NamedValue<Value> extends
         Named,
-        Valued<T>
+        Valued<Value>
 {
 }

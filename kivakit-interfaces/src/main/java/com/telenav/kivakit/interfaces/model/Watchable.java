@@ -18,8 +18,13 @@
 
 package com.telenav.kivakit.interfaces.model;
 
+import com.telenav.kivakit.annotations.code.CodeQuality;
 import com.telenav.kivakit.interfaces.internal.lexakai.DiagramModel;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
+
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNNECESSARY;
 
 /**
  * A value that can be watched. Calling {@link #observe()} on a model object that implements {@link Watchable} will
@@ -27,8 +32,12 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
  *
  * @author jonathanl (shibo)
  */
+@SuppressWarnings("unused")
 @FunctionalInterface
 @UmlClassDiagram(diagram = DiagramModel.class)
+@CodeQuality(stability = STABLE,
+             testing = UNNECESSARY,
+             documentation = COMPLETE)
 public interface Watchable<Value>
 {
     /**
