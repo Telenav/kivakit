@@ -28,7 +28,7 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.Iterator;
 
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.COMPLETE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.SUFFICIENT;
 import static com.telenav.kivakit.annotations.code.TestingQuality.NONE;
 
 /**
@@ -42,7 +42,7 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.NONE;
 @UmlClassDiagram(diagram = DiagramCollections.class)
 @CodeQuality(stability = ApiStability.STABLE,
              testing = NONE,
-             documentation = COMPLETE)
+             documentation = SUFFICIENT)
 public class FilteredIterable<Element> extends BaseIterable<Element>
 {
     private final Matcher<Element> filter;

@@ -110,7 +110,7 @@ import com.telenav.lexakai.annotations.visibility.UmlExcludeSuperTypes;
 @UmlClassDiagram(diagram = DiagramListener.class)
 @UmlExcludeSuperTypes({ NamedObject.class })
 @FunctionalInterface
-public interface Listener extends Transceiver
+public interface Listener extends MessageTransceiver
 {
     /**
      * @return A listener that writes the messages it hears to the console

@@ -29,7 +29,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.Iterator;
 
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.COMPLETE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.SUFFICIENT;
 import static com.telenav.kivakit.annotations.code.TestingQuality.NONE;
 
 /**
@@ -40,7 +40,7 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.NONE;
 @UmlClassDiagram(diagram = DiagramIteration.class)
 @CodeQuality(stability = ApiStability.STABLE,
              testing = NONE,
-             documentation = COMPLETE)
+             documentation = SUFFICIENT)
 public abstract class BaseIterable<T> implements Iterable<T>
 {
     /** A filter to restrict values in the sequence */

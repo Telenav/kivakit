@@ -9,7 +9,15 @@ package com.telenav.kivakit.annotations.code;
 @SuppressWarnings("unused")
 public enum ApiStability
 {
+    /** The API is not expected to change */
     STABLE,
+
+    /** The API is not expected to change, except that new default methods may be added */
+    STABLE_DEFAULT_EXPANDABLE,
+
+    /** The API may be changed */
     UNSTABLE,
+
+    /** The API has not been evaluated for stability */
     UNEVALUATED
 }

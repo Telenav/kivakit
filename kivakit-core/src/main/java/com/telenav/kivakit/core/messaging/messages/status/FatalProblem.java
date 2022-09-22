@@ -60,7 +60,7 @@ public class FatalProblem extends Problem
 
     public FatalProblem(Throwable cause, String message, Object... arguments)
     {
-        super(message + ": " + Message.escape(cause.getMessage()));
+        super(message + ": " + Message.escapeMessageText(cause.getMessage()));
         cause(cause);
         arguments(arguments);
     }

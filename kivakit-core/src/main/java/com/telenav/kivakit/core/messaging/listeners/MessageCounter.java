@@ -62,7 +62,7 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
  * <pre>
  * var statistics = statistics(Warning.class, Problem.class)</pre>
  *
- * <p><b>Counting Messages by Status</b></p>
+ * <p><b>Counting MessageTransceiver by Status</b></p>
  *
  * <p>
  * The {@link #count(Message.Status)} method returns the number of messages of a given {@link Message.Status} type it

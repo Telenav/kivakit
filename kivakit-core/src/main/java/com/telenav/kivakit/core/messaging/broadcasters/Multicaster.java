@@ -50,7 +50,7 @@ import static com.telenav.kivakit.core.string.IndentingStringBuilder.Style.TEXT;
 
 /**
  * A multicaster is a broadcaster which can have more than one listener. As with any broadcaster, listeners can be added
- * to a multicaster with {@link #addListener(Listener)} and can be cleared with {@link #clearListeners()}. Messages can
+ * to a multicaster with {@link #addListener(Listener)} and can be cleared with {@link #clearListeners()}. MessageTransceiver can
  * be broadcast to all listeners with {@link #transmit(Transmittable)}.
  * <p>
  * If a class is already extending some other base class (and since Java does not support mix-ins) an instance of

@@ -44,9 +44,9 @@ public interface RepeaterMixin extends Repeater, Mixin
      * {@inheritDoc}
      */
     @Override
-    default void copyListeners(Broadcaster broadcaster)
+    default void copyListenersFrom(Broadcaster broadcaster)
     {
-        repeater().copyListeners(broadcaster);
+        repeater().copyListenersFrom(broadcaster);
     }
 
     /**

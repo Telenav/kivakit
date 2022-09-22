@@ -8,7 +8,7 @@ package com.telenav.kivakit.annotations.code;
  */
 public enum DocumentationQuality
 {
-    COMPLETE,
-    INCOMPLETE,
+    SUFFICIENT,
+    INSUFFICIENT,
     UNEVALUATED
 }

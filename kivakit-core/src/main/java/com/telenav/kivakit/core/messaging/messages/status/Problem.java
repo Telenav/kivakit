@@ -59,7 +59,7 @@ public class Problem extends OperationStatusMessage
 
     public Problem(Throwable cause, String message, Object... arguments)
     {
-        super(message + (cause == null ? "" : ": " + Message.escape(
+        super(message + (cause == null ? "" : ": " + Message.escapeMessageText(
                 cause.getMessage() == null
                         ? cause.getClass().toString()
                         : cause.getMessage())));

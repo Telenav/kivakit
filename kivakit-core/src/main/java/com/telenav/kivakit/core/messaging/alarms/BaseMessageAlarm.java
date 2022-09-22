@@ -42,7 +42,7 @@ import static com.telenav.kivakit.core.time.Duration.ONE_MINUTE;
  * To implement an alarm, override {@link #onTrigger(Rate)} and implement the alarm action. By default, the alarm will
  * be triggered when {@link #shouldTrigger()} returns true. By default, {@link #shouldTrigger()} returns true if the
  * current error {@link #rate()} exceeds {@link #triggerRate()}. The current error {@link #rate()} is computed with a
- * {@link RateCalculator} that automatically resets once a minute. Messages are categorized as errors (or not) by {@link
+ * {@link RateCalculator} that automatically resets once a minute. MessageTransceiver are categorized as errors (or not) by {@link
  * #isError(Message)}, which returns true if the message status is worse-than-or-equal-to {@link Problem} by default.
  * </p>
  *

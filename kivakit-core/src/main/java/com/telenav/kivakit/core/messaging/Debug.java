@@ -76,8 +76,9 @@ import static com.telenav.kivakit.core.project.Project.resolveProject;
  * @author jonathanl (shibo)
  * @see <a href="https://tinyurl.com/2xycuvph">KivaKit Debugging Documentation</a>
  */
+@SuppressWarnings("SpellCheckingInspection")
 @UmlClassDiagram(diagram = DiagramBroadcaster.class)
-public final class Debug implements Transceiver
+public final class Debug implements DebugTransceiver
 {
     private static final Logger LOGGER = LoggerFactory.newLogger();
 
@@ -226,7 +227,7 @@ public final class Debug implements Transceiver
     }
 
     /**
-     * @return Boolean.TRUE if the class is enabled for debugging, Boolean.FALSE if it is explicitly disabled and null
+     * @return {@link Boolean#TRUE} if the class is enabled for debugging, {@link Boolean#FALSE} if it is explicitly disabled and null
      * if the class is simply available for enabling.
      */
     private static boolean isDebugOn(Class<?> type)
@@ -254,7 +255,7 @@ public final class Debug implements Transceiver
                 }
             }
 
-            // Get the enable state for the type parameter
+            // Get enable state for the type parameter
             var enabled = debugEnableState(type);
 
             // and pick a description of the state
@@ -272,7 +273,7 @@ public final class Debug implements Transceiver
                 state = "disabled";
             }
 
-            // then show the enable state to the user
+            // then show enable state to the user
             if (debugging == Boolean.TRUE)
             {
                 LOGGER.information("Debug output is $ for $ ($)", state, type.getSimpleName(), type.getPackage().getName());

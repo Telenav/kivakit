@@ -666,7 +666,7 @@ public abstract class Application extends BaseComponent implements
             {
                 if (log.messageCounts().size() > 0)
                 {
-                    information(AsciiArt.textBox(log.name() + " Log Messages", "$", log.messageCounts().toString("\n")));
+                    information(AsciiArt.textBox(log.name() + " Log MessageTransceiver", "$", log.messageCounts().toString("\n")));
                 }
             }
 

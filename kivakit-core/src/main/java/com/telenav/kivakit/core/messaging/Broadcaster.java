@@ -53,7 +53,7 @@ import java.util.List;
 @UmlClassDiagram(diagram = DiagramBroadcaster.class)
 @UmlClassDiagram(diagram = DiagramRepeater.class)
 @UmlRelation(label = "transmits", referent = Listener.class, refereeCardinality = "1", referentCardinality = "*")
-public interface Broadcaster extends Transceiver
+public interface Broadcaster extends MessageTransceiver
 {
     /**
      * Adds a listener to this broadcaster that wants to receive future messages. This is the mirror method of
@@ -90,7 +90,7 @@ public interface Broadcaster extends Transceiver
     /**
      * Copies the listeners of another broadcaster
      */
-    default void copyListeners(Broadcaster that)
+    default void copyListenersFrom(Broadcaster that)
     {
         that.listeners().forEach(this::addListener);
     }

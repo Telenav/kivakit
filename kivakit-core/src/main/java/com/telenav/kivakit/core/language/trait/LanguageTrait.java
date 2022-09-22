@@ -1,16 +1,19 @@
 package com.telenav.kivakit.core.language.trait;
 
+import com.telenav.kivakit.annotations.code.CodeQuality;
 import com.telenav.kivakit.core.function.Functions;
-import com.telenav.kivakit.core.function.ResultTrait;
 import com.telenav.kivakit.core.language.Objects;
 import com.telenav.kivakit.core.messaging.Repeater;
 import com.telenav.kivakit.core.messaging.messages.status.Problem;
-import com.telenav.kivakit.interfaces.code.TripwireTrait;
 
 import java.util.function.Function;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_DEFAULT_EXPANDABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.SUFFICIENT;
+import static com.telenav.kivakit.annotations.code.TestingQuality.NONE;
+
 /**
- * Contains methods that substitute-for, or extend Java language features.
+ * <p>Adds methods that help in general to extend KivaKit's expressive capabilities in the Java language</p>
  *
  * <p><b>Functions</b></p>
  *
@@ -58,11 +61,11 @@ import java.util.function.Function;
  *
  * @author jonathanl (shibo)
  */
-public interface LanguageTrait extends
-        TryTrait,
-        TripwireTrait,
-        ResultTrait,
-        Repeater
+@SuppressWarnings("unused")
+@CodeQuality(stability = STABLE_DEFAULT_EXPANDABLE,
+             documentation = SUFFICIENT,
+             testing = NONE)
+public interface LanguageTrait extends Repeater
 {
     /**
      * <p>

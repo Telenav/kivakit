@@ -24,7 +24,7 @@ import com.telenav.kivakit.core.internal.lexakai.DiagramOs;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 /**
- * Writes messages to the console. Messages that represent success are written to {@link System#out}, while messages
+ * Writes messages to the console. MessageTransceiver that represent success are written to {@link System#out}, while messages
  * that represent failure are written to {@link System#err}.
  *
  * @author jonathanl (shibo)

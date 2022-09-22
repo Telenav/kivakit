@@ -42,7 +42,7 @@ public class StepFailure extends OperationStatusMessage
 
     public StepFailure(Throwable cause, String message, Object... arguments)
     {
-        super(message + ": " + Message.escape(cause.getMessage()));
+        super(message + ": " + Message.escapeMessageText(cause.getMessage()));
         cause(cause);
         arguments(arguments);
     }

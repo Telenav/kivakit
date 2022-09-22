@@ -57,7 +57,7 @@ public class Quibble extends OperationStatusMessage
 
     public Quibble(Throwable cause, String message, Object... arguments)
     {
-        super(message + ": " + Message.escape(cause.getMessage()));
+        super(message + ": " + Message.escapeMessageText(cause.getMessage()));
         cause(cause);
         arguments(arguments);
     }

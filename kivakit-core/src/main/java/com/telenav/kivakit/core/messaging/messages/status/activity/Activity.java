@@ -47,7 +47,7 @@ public class Activity extends OperationStatusMessage
     {
         super(message + (cause == null
                 ? ""
-                :  ": " + Message.escape(cause.getMessage())));
+                :  ": " + Message.escapeMessageText(cause.getMessage())));
         cause(cause);
         arguments(arguments);
     }

@@ -75,11 +75,11 @@ import static com.telenav.kivakit.core.string.Formatter.Format.WITH_EXCEPTION;
  *     <li>{@link #status()} - The status of a step in an ongoing operation that the message relates to, if any</li>
  * </ul>
  * <p>
- * <b>Types of Messages</b>
+ * <b>Types of MessageTransceiver</b>
  * <p>
- * Different types of messages relate to different aspects of a running program. Messages relating to a larger goal
+ * Different types of messages relate to different aspects of a running program. MessageTransceiver relating to a larger goal
  * of the program, such as converting a file or computing a route are <i>operation lifecycle</i> messages and extend
- * {@link OperationLifecycleMessage}. Messages that relate to the smaller steps required to achieve an operation are
+ * {@link OperationLifecycleMessage}. MessageTransceiver that relate to the smaller steps required to achieve an operation are
  * <i>status</i> messages and extend {@link OperationStatusMessage}. If the {@link #operationStatus()} method returns a non-null
  * value, the message relates to the operation lifecycle. If the {@link #status()} method returns a non-null value the
  * message relates to the most recent step in the current operation.
@@ -90,7 +90,7 @@ import static com.telenav.kivakit.core.string.Formatter.Format.WITH_EXCEPTION;
  * even if it did so imperfectly. Inspection of message classes will reveal what their meaning is with respect to
  * operations and the steps used to complete them.
  * <p>
- * <b>Operation Lifecycle Messages</b>
+ * <b>Operation Lifecycle MessageTransceiver</b>
  * <p>
  * An {@link OperationStatus} lifecycle message relates to a state change in the status of an operation. Operations start,
  * run and then complete with some kind of result:
@@ -102,7 +102,7 @@ import static com.telenav.kivakit.core.string.Formatter.Format.WITH_EXCEPTION;
  *     <li>{@link OperationStatus#HALTED} - The operation was unable to complete</li>
  * </ul>
  * <p>
- * <b>Operation Status Messages</b>
+ * <b>Operation Status MessageTransceiver</b>
  * <p>
  * A {@link Status} message relates to the result of executing a step in a larger operation:
  * <ul>
@@ -129,9 +129,9 @@ public interface Message extends
         Named
 {
     /**
-     * @return The given string with single quotes escaped
+     * @return The given string with message markers escaped
      */
-    static String escape(String text)
+    static String escapeMessageText(String text)
     {
         return Strings.replaceAll(text, "$", "$$");
     }

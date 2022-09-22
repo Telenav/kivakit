@@ -13,6 +13,10 @@ import static com.telenav.kivakit.core.registry.InstanceIdentifier.SINGLETON;
 /**
  * <p>
  * A stateless trait for accessing the {@link Settings} for the implementing component.
+ * Settings for a component can be retrieved with {@link #settingsRegistry()}. This
+ * provides a simplified interface to load settings objects specified by the user while
+ * also allowing for default settings when they are not specified. See
+ * {@link Settings} for details.
  * </p>
  *
  * <p>
@@ -49,6 +53,7 @@ import static com.telenav.kivakit.core.registry.InstanceIdentifier.SINGLETON;
  * @author jonathanl (shibo)
  * @see Settings
  */
+@SuppressWarnings("unused")
 public interface SettingsTrait extends Repeater
 {
     /**

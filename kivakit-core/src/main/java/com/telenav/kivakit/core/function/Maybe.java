@@ -4,7 +4,7 @@ import com.telenav.kivakit.core.code.UncheckedVoidCode;
 import com.telenav.kivakit.core.function.arities.PentaFunction;
 import com.telenav.kivakit.core.function.arities.TetraFunction;
 import com.telenav.kivakit.core.function.arities.TriFunction;
-import com.telenav.kivakit.core.language.trait.SilentTryTrait;
+import com.telenav.kivakit.core.language.trait.TryCatchTrait;
 import com.telenav.kivakit.core.messaging.Repeater;
 import com.telenav.kivakit.core.messaging.messages.status.Problem;
 import com.telenav.kivakit.core.testing.Tested;
@@ -87,7 +87,7 @@ import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
  */
 public class Maybe<Value> implements
         Presence,
-        SilentTryTrait
+        TryCatchTrait
 {
     /**
      * @return Maybe value for null
@@ -183,10 +183,10 @@ public class Maybe<Value> implements
      * <p><b>Important Note</b></p>
      *
      * <p>
-     * Notice that the first sentence of the description for this method is exactly the same as that provided for {@link
-     * #map(Function)}. The difference between the two methods is that the function passed to this method produces
-     * Maybe&lt;ResultType&gt; directly (which allows function nesting), while the function passed to {@link
-     * #map(Function)} just maps the value to the ResultType type, which is then wrapped in a {@link Maybe}.
+     * Notice that the first sentence of the description for this method is exactly the same as that provided for
+     * {@link #map(Function)}. The difference between the two methods is that the function passed to this method
+     * produces Maybe&lt;ResultType&gt; directly (which allows function nesting), while the function passed to
+     * {@link #map(Function)} just maps the value to the ResultType type, which is then wrapped in a {@link Maybe}.
      * </p>
      *
      * @param function A function mapping from Value to Maybe&lt;ResultType&gt;
@@ -322,10 +322,11 @@ public class Maybe<Value> implements
      * <p><b>Important Note</b></p>
      *
      * <p>
-     * Notice that the first sentence of the description for this method is exactly the same as that provided for {@link
-     * #apply(Function)}. The difference between the two methods is that the function passed to {@link #apply(Function)}
-     * produces Maybe&lt;ResultType&gt; directly (which allows function nesting), while the function passed to this
-     * method just maps the value to the ResultType type, which is then wrapped in a {@link Maybe}.
+     * Notice that the first sentence of the description for this method is exactly the same as that provided for
+     * {@link #apply(Function)}. The difference between the two methods is that the function passed to
+     * {@link #apply(Function)} produces Maybe&lt;ResultType&gt; directly (which allows function nesting), while the
+     * function passed to this method just maps the value to the ResultType type, which is then wrapped in a
+     * {@link Maybe}.
      * </p>
      *
      * @param mapper A function mapping from Value to ResultType

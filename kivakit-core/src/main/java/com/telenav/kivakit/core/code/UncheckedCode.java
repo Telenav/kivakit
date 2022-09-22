@@ -7,7 +7,7 @@ import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.messaging.repeaters.RepeaterMixin;
 import com.telenav.kivakit.interfaces.value.Source;
 
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.COMPLETE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.SUFFICIENT;
 import static com.telenav.kivakit.annotations.code.TestingQuality.NONE;
 
 /**
@@ -32,7 +32,7 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.NONE;
 @FunctionalInterface
 @CodeQuality(stability = ApiStability.STABLE,
              testing = NONE,
-             documentation = COMPLETE)
+             documentation = SUFFICIENT)
 public interface UncheckedCode<Value> extends RepeaterMixin
 {
     static <T> UncheckedCode<T> of(UncheckedCode<T> code)

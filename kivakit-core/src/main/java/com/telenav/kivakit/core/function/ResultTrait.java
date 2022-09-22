@@ -1,14 +1,23 @@
 package com.telenav.kivakit.core.function;
 
+import com.telenav.kivakit.annotations.code.CodeQuality;
 import com.telenav.kivakit.core.messaging.Message;
 import com.telenav.kivakit.core.messaging.Repeater;
 import com.telenav.kivakit.core.messaging.messages.status.Problem;
 import com.telenav.kivakit.interfaces.code.Code;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_DEFAULT_EXPANDABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.SUFFICIENT;
+import static com.telenav.kivakit.annotations.code.TestingQuality.NONE;
+
 /**
  * Contains methods to facilitate working with {@link Result} monads.
  *
- * <hr>
+ * <p><b>Execution</b></p>
+ *
+ * <ul>
+ *     <li>{@link #run(Code)} - Runs the given code and returns a {@link Result}. If the code failed, the result it will contain one or more {@link Message}s</li>
+ * </ul>
  *
  * <p><b>Results</b></p>
  *
@@ -16,13 +25,10 @@ import com.telenav.kivakit.interfaces.code.Code;
  *     <li>{@link #absent()} - Returns a {@link Result} that represents a missing value</li>
  *     <li>{@link #success(Object)} - Returns a {@link Result} for the given value</li>
  *     <li>{@link #success(Maybe)} - Returns a {@link Result} for the given value</li>
- *     <li>{@link #run(Code)} - Runs the given code and returns a {@link Result}. If the code failed, the result it will contain one or more {@link Message}s</li>
  *     <li>{@link #failure(String, Object...)} - Creates a {@link Result} with the given failure message</li>
  *     <li>{@link #failure(Throwable, String, Object...)} - Creates a {@link Result} with the given failure message</li>
  *     <li>{@link #failure(Message)} - Creates a {@link Result} with the given failure message</li>
  * </ul>
- *
- * <hr>
  *
  * @author jonathanl (shibo)
  * @see Maybe
@@ -30,6 +36,9 @@ import com.telenav.kivakit.interfaces.code.Code;
  * @see Code
  */
 @SuppressWarnings("unused")
+@CodeQuality(stability = STABLE_DEFAULT_EXPANDABLE,
+             documentation = SUFFICIENT,
+             testing = NONE)
 public interface ResultTrait extends Repeater
 {
     /**

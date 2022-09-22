@@ -22,14 +22,13 @@ import com.telenav.kivakit.annotations.code.ApiStability;
 import com.telenav.kivakit.annotations.code.CodeQuality;
 import com.telenav.kivakit.core.language.Hash;
 import com.telenav.kivakit.core.internal.lexakai.DiagramIteration;
-import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.Iterator;
 import java.util.Objects;
 import java.util.function.Supplier;
 
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.COMPLETE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.SUFFICIENT;
 import static com.telenav.kivakit.annotations.code.TestingQuality.NONE;
 
 /**
@@ -40,7 +39,7 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.NONE;
 @UmlClassDiagram(diagram = DiagramIteration.class)
 @CodeQuality(stability = ApiStability.STABLE,
              testing = NONE,
-             documentation = COMPLETE)
+             documentation = SUFFICIENT)
 public class Iterators
 {
     public static <T> Iterator<T> empty()

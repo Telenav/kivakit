@@ -30,7 +30,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Set;
 
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.COMPLETE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.SUFFICIENT;
 import static com.telenav.kivakit.annotations.code.TestingQuality.NONE;
 
 /**
@@ -56,7 +56,7 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.NONE;
 @UmlClassDiagram(diagram = DiagramIteration.class)
 @CodeQuality(stability = ApiStability.STABLE,
              testing = NONE,
-             documentation = COMPLETE)
+             documentation = SUFFICIENT)
 public class Iterables
 {
     public static <T> void addAll(Iterable<T> iterable, Collection<? super T> collection)

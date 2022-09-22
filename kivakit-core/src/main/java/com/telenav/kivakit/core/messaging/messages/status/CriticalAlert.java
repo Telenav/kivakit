@@ -59,7 +59,7 @@ public class CriticalAlert extends Alert
 
     public CriticalAlert(String solution, Throwable cause, String message, Object... arguments)
     {
-        super(solution, message + ": " + Message.escape(cause.getMessage()), arguments);
+        super(solution, message + ": " + Message.escapeMessageText(cause.getMessage()), arguments);
         cause(cause);
         arguments(arguments);
     }
