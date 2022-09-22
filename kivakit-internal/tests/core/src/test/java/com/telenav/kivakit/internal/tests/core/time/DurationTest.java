@@ -199,7 +199,7 @@ public class DurationTest extends CoreUnitTest
     @Test
     public void testModulus()
     {
-        ensureEqual(ONE_SECOND, ONE_MINUTE.plus(ONE_SECOND).modulus(ONE_MINUTE));
+        ensureEqual(ONE_SECOND, ONE_MINUTE.plus(ONE_SECOND).modulo(ONE_MINUTE));
     }
 
     @Test

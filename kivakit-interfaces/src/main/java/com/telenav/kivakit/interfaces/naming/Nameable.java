@@ -18,18 +18,26 @@
 
 package com.telenav.kivakit.interfaces.naming;
 
-import com.telenav.lexakai.annotations.LexakaiJavadoc;
+import com.telenav.kivakit.annotations.code.CodeQuality;
+
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNNECESSARY;
 
 /**
  * An object that can be assigned a name.
  *
  * @author jonathanl (shibo)
  */
-@LexakaiJavadoc(complete = true)
+@CodeQuality(stability = STABLE,
+             testing = UNNECESSARY,
+             documentation = COMPLETE)
 public interface Nameable
 {
     /**
-     * @param name The name to assign
+     * @param name The name to assign. The default implementation ignores calls.
      */
-    void name(String name);
+    default void assignName(String name)
+    {
+    }
 }

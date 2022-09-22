@@ -18,6 +18,7 @@
 
 package com.telenav.kivakit.interfaces.collection;
 
+import com.telenav.kivakit.annotations.code.CodeQuality;
 import com.telenav.kivakit.interfaces.comparison.Matcher;
 import com.telenav.kivakit.interfaces.internal.lexakai.DiagramCollection;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
@@ -29,6 +30,11 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 import java.util.function.Function;
+
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.NONE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNNECESSARY;
 
 /**
  * A sequence of values returned by {@link #asIterator()} and {@link #asIterator(Matcher)}.
@@ -93,6 +99,9 @@ import java.util.function.Function;
  */
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramCollection.class)
+@CodeQuality(stability = STABLE,
+             testing = NONE,
+             documentation = COMPLETE)
 public interface Sequence<Element> extends Iterable<Element>, Joinable<Element>
 {
     /**

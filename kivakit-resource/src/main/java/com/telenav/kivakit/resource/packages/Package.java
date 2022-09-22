@@ -308,7 +308,7 @@ public class Package extends BaseRepeater implements ResourceFolder<Package>
                 .moduleResources(this)
                 .stream()
                 .map(moduleResource -> packageResource(this, moduleResource))
-                .filter(matcher.asPredicate())
+                .filter(matcher)
                 .collect(Collectors.toList());
 
         var existing = new HashSet<>(resources);

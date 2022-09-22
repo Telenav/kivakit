@@ -1,9 +1,16 @@
 package com.telenav.kivakit.interfaces.numeric;
 
+import com.telenav.kivakit.annotations.code.CodeQuality;
 import com.telenav.kivakit.interfaces.comparison.Filter;
 import com.telenav.kivakit.interfaces.comparison.Matcher;
 
 import java.util.Objects;
+
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.COMPLETE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.INCOMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.NONE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNNECESSARY;
 
 /**
  * Provides convenient random number methods given an implementation of {@link #randomLongExclusive(long, long)}, and
@@ -12,11 +19,15 @@ import java.util.Objects;
  *
  * @author jonathanl (shibo)
  */
-@SuppressWarnings("unused") public interface RandomNumeric extends CastTrait
+@SuppressWarnings("unused")
+@CodeQuality(stability = STABLE,
+             testing = NONE,
+             documentation = INCOMPLETE)
+public interface RandomNumeric extends CastTrait
 {
     default <T extends Number> T random(Class<T> type)
     {
-        return random(type, Filter.all());
+        return random(type, Filter.acceptingAll());
     }
 
     default <T extends Number> T random(Class<T> type, Matcher<T> filter)
@@ -89,7 +100,7 @@ import java.util.Objects;
 
     default <T extends Number> T randomExclusive(long minimum, long maximum, Class<T> type)
     {
-        return randomExclusive(minimum, maximum, type, Filter.all());
+        return randomExclusive(minimum, maximum, type, Filter.acceptingAll());
     }
 
     default float randomFloat()
@@ -108,7 +119,7 @@ import java.util.Objects;
 
     default <T extends Number> T randomInclusive(long minimum, long maximum, Class<T> type)
     {
-        return randomInclusive(minimum, maximum, type, Filter.all());
+        return randomInclusive(minimum, maximum, type, Filter.acceptingAll());
     }
 
     default int randomIndex(int maximum)

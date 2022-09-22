@@ -18,11 +18,16 @@
 
 package com.telenav.kivakit.interfaces.code;
 
+import com.telenav.kivakit.annotations.code.CodeQuality;
 import com.telenav.kivakit.interfaces.collection.NextValue;
 import com.telenav.kivakit.interfaces.internal.lexakai.DiagramCode;
 import com.telenav.kivakit.interfaces.numeric.IntegerNumeric;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.NONE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNNECESSARY;
 import static java.util.Objects.requireNonNull;
 
 /**
@@ -40,6 +45,9 @@ import static java.util.Objects.requireNonNull;
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramCode.class)
 @FunctionalInterface
+@CodeQuality(stability = STABLE,
+             testing = NONE,
+             documentation = COMPLETE)
 public interface LoopBody<Value extends IntegerNumeric<Value>>
 {
     /**

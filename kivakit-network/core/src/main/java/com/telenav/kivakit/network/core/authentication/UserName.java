@@ -30,6 +30,7 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
  *
  * @author jonathanl (shibo)
  */
+@SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramAuthentication.class)
 @LexakaiJavadoc(complete = true)
 public class UserName extends Name
@@ -55,7 +56,7 @@ public class UserName extends Name
         @Override
         protected UserName onToValue(String value)
         {
-            return parse(this, value);
+            return UserName.parse(this, value);
         }
     }
 

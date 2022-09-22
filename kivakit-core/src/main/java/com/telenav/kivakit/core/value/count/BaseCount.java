@@ -85,8 +85,8 @@ import static com.telenav.kivakit.core.value.count.Estimate.estimate;
  *
  * <ul>
  *     <li>{@link #asString(Format)} - This count formatted in the given format</li>
- *     <li>{@link #asCommaSeparatedString()} - This count as a comma-separated string, like 65,536</li>
- *     <li>{@link #asSimpleString()} - This count as a simple string, like 65536</li>
+ *     <li>{@link #quantumAsCommaSeparatedString()} - This count as a comma-separated string, like 65,536</li>
+ *     <li>{@link #quantumAsSimpleString()} - This count as a simple string, like 65536</li>
  * </ul>
  *
  * <hr>
@@ -761,7 +761,7 @@ public abstract class BaseCount<SubClass extends BaseCount<SubClass>> implements
     @Override
     public String toString()
     {
-        return asCommaSeparatedString();
+        return quantumAsCommaSeparatedString();
     }
 
     @SuppressWarnings("unchecked")

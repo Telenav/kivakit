@@ -18,15 +18,25 @@
 
 package com.telenav.kivakit.interfaces.naming;
 
+import com.telenav.kivakit.annotations.code.CodeQuality;
+
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNNECESSARY;
+
 /**
  * An object with a name. The default implementation returns the name of the class and the hashcode of the object.
  *
  * @author jonathanl (shibo)
  */
+@CodeQuality(stability = STABLE,
+             testing = UNNECESSARY,
+             documentation = COMPLETE)
 public interface Named
 {
     /**
-     * @return The name of this object
+     * @return The name of this object. If this method is not overridden, the simple name of the class of the object
+     * implementing this interface is used.
      */
     default String name()
     {

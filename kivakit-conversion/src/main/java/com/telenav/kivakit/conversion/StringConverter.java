@@ -22,7 +22,7 @@ import com.telenav.kivakit.conversion.internal.lexakai.DiagramConversion;
 import com.telenav.kivakit.core.collections.list.ObjectList;
 import com.telenav.kivakit.core.collections.list.StringList;
 import com.telenav.kivakit.core.collections.set.ObjectSet;
-import com.telenav.kivakit.interfaces.string.StringMapper;
+import com.telenav.kivakit.interfaces.string.Parsable;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 /**
@@ -34,10 +34,11 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
  * @author jonathanl (shibo)
  * @see BaseStringConverter
  */
+@SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramConversion.class)
 public interface StringConverter<Value> extends
         TwoWayConverter<String, Value>,
-        StringMapper<Value>
+        Parsable<Value>
 {
     /**
      * Converts the given delimited string to a list
@@ -112,7 +113,7 @@ public interface StringConverter<Value> extends
     }
 
     @Override
-    default Value map(String text)
+    default Value parse(String text)
     {
         return convert(text);
     }

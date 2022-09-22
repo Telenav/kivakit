@@ -19,10 +19,10 @@
 package com.telenav.kivakit.core.logging;
 
 import com.telenav.kivakit.core.collections.map.VariableMap;
-import com.telenav.kivakit.core.logging.logs.text.ConsoleLog;
-import com.telenav.kivakit.core.messaging.messages.Severity;
 import com.telenav.kivakit.core.internal.lexakai.DiagramLogging;
 import com.telenav.kivakit.core.internal.lexakai.DiagramLogs;
+import com.telenav.kivakit.core.logging.logs.text.ConsoleLog;
+import com.telenav.kivakit.core.messaging.messages.Severity;
 import com.telenav.kivakit.core.time.Duration;
 import com.telenav.kivakit.interfaces.comparison.Filtered;
 import com.telenav.kivakit.interfaces.io.Closeable;
@@ -33,11 +33,11 @@ import com.telenav.lexakai.annotations.associations.UmlRelation;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeSuperTypes;
 
 /**
- * Accepts log entries for some purpose, such as writing them to a file or displaying them in a terminal window. {@link
- * Logger} implementations write log entries to one or more {@link Log}s via {@link #log(LogEntry)}. Which log entries
- * are logged can be controlled with filters returned from {@link Filtered#filters()} and by setting a minimum severity
- * level with {@link #level(Severity)}. Some logs are configurable with a string-to-string property map via {@link
- * #configure(VariableMap)}. Logs are also {@link Closeable}, {@link Flushable} and {@link Named}.
+ * Accepts log entries for some purpose, such as writing them to a file or displaying them in a terminal window.
+ * {@link Logger} implementations write log entries to one or more {@link Log}s via {@link #log(LogEntry)}. Which log
+ * entries are logged can be controlled with filters returned from {@link Filtered#filters()} and by setting a minimum
+ * severity level with {@link #level(Severity)}. Some logs are configurable with a string-to-string property map via
+ * {@link #configure(VariableMap)}. Logs are also {@link Closeable}, {@link Flushable} and {@link Named}.
  * <p>
  * <b>Wiki Documentation</b>
  * <p>
@@ -92,4 +92,10 @@ public interface Log extends
      * Logs the given entry
      */
     void log(LogEntry entry);
+
+    @Override
+    default Duration maximumFlushTime()
+    {
+        return Duration.seconds(30);
+    }
 }

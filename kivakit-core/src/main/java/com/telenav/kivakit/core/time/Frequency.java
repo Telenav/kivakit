@@ -159,7 +159,7 @@ public class Frequency
 
             // The duration to wait before the next cycle is the cycle length minus
             // the elapsed time (modulus the cycle length to handle skipped cycles)
-            return cycleLength.minus(start.elapsedSince().modulus(cycleLength));
+            return cycleLength.minus(start.elapsedSince().modulo(cycleLength));
         }
     }
 
