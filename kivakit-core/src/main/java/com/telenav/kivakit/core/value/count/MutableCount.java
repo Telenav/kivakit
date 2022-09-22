@@ -180,6 +180,6 @@ public class MutableCount implements
     @Override
     public String toString()
     {
-        return asCount().asCommaSeparatedString();
+        return asCount().quantumAsCommaSeparatedString();
     }
 }

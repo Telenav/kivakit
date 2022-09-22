@@ -114,7 +114,7 @@ public class Rate implements
     }
 
     @Override
-    public double doubleQuantum()
+    public double quantumDouble()
     {
         return perSecond().count();
     }

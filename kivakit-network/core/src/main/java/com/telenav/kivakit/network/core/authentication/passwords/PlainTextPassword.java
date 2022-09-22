@@ -33,6 +33,7 @@ import com.telenav.lexakai.annotations.visibility.UmlExcludeSuperTypes;
  *
  * @author jonathanl (shibo)
  */
+@SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramAuthentication.class)
 @UmlExcludeSuperTypes({ Stringable.class })
 @LexakaiJavadoc(complete = true)
@@ -59,7 +60,7 @@ public class PlainTextPassword implements Password, Stringable
         @Override
         protected Password onToValue(String value)
         {
-            return parse(this, value);
+            return PlainTextPassword.parse(this, value);
         }
     }
 

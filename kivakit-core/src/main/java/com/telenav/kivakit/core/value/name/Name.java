@@ -114,7 +114,7 @@ public class Name implements
     }
 
     @Override
-    public void name(final String name)
+    public void assignName(final String name)
     {
         this.name = name;
     }

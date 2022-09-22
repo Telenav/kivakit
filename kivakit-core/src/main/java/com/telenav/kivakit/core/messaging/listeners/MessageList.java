@@ -78,7 +78,7 @@ public class MessageList extends ObjectList<Message> implements MessageCounter
 
     public MessageList()
     {
-        this(Filter.all());
+        this(Filter.acceptingAll());
     }
 
     public MessageList(Maximum maximumSize, Matcher<Message> filter)

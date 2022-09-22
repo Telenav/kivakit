@@ -18,8 +18,13 @@
 
 package com.telenav.kivakit.interfaces.model;
 
+import com.telenav.kivakit.annotations.code.CodeQuality;
 import com.telenav.kivakit.interfaces.internal.lexakai.DiagramModel;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
+
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNNECESSARY;
 
 /**
  * An algorithm (strategy) that initializes some object.
@@ -30,18 +35,11 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 @SuppressWarnings("unused")
 @FunctionalInterface
 @UmlClassDiagram(diagram = DiagramModel.class)
+@CodeQuality(stability = STABLE,
+             testing = UNNECESSARY,
+             documentation = COMPLETE)
 public interface Initializer<Model>
 {
-    /**
-     * An initializer that does nothing
-     */
-    static <T> Initializer<T> nullInitializer()
-    {
-        return value ->
-        {
-        };
-    }
-
     /**
      * Initializes the value and returns it for call chaining
      */

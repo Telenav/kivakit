@@ -18,11 +18,16 @@
 
 package com.telenav.kivakit.interfaces.messaging;
 
+import com.telenav.kivakit.annotations.code.CodeQuality;
 import com.telenav.kivakit.interfaces.internal.lexakai.DiagramMessaging;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
 
 import java.util.function.Consumer;
+
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNNECESSARY;
 
 /**
  * A receiver of  {@link Transmittable} messages with similar function to a {@link Consumer}, a sink, a callback or a
@@ -39,6 +44,9 @@ import java.util.function.Consumer;
 @UmlClassDiagram(diagram = DiagramMessaging.class)
 @UmlRelation(label = "receives", referent = Transmittable.class)
 @FunctionalInterface
+@CodeQuality(stability = STABLE,
+             testing = UNNECESSARY,
+             documentation = COMPLETE)
 public interface Receiver
 {
     /**
@@ -64,8 +72,8 @@ public interface Receiver
      * </p>
      *
      * @param message The message
-     * @return The message
      * @param <MessageType> The type of message
+     * @return The message
      */
     default <MessageType extends Transmittable> MessageType receive(MessageType message)
     {

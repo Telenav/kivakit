@@ -159,7 +159,7 @@ public interface SerializationSession extends
     boolean isWriting();
 
     @Override
-    default Duration maximumWaitTime()
+    default Duration maximumFlushTime()
     {
         return Duration.MAXIMUM;
     }

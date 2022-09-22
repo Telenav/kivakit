@@ -101,7 +101,7 @@ public class Sets
     public static <T> Set<T> matching(Set<T> values, Matcher<T> matcher)
     {
         return values.stream()
-                .filter(matcher.asPredicate())
+                .filter(matcher)
                 .collect(Collectors.toSet());
     }
 

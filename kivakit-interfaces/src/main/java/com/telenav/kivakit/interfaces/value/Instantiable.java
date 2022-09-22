@@ -18,14 +18,22 @@
 
 package com.telenav.kivakit.interfaces.value;
 
+import com.telenav.kivakit.annotations.code.CodeQuality;
 import com.telenav.kivakit.interfaces.factory.Factory;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNNECESSARY;
+
 /**
- * Interface implemented by subclassed objects which need to operate on instances created by the subclass. Unlike {@link
- * Factory}, this interface does not subclass {@link Source}.
+ * Interface implemented by subclassed objects which need to operate on instances created by the subclass. Unlike
+ * {@link Factory}, this interface does not subclass {@link Source}.
  *
  * @author jonathanl (shibo)
  */
+@CodeQuality(stability = STABLE,
+             testing = UNNECESSARY,
+             documentation = COMPLETE)
 public interface Instantiable<T>
 {
     /**

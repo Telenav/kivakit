@@ -226,7 +226,7 @@ public abstract class BaseLog implements
     }
 
     @Override
-    public final Duration maximumWaitTime()
+    public final Duration maximumStopTime()
     {
         return Duration.MAXIMUM;
     }
