@@ -9,6 +9,7 @@ open module kivakit.core
     requires transitive cactus.metadata;
 
     // KivaKit
+    requires transitive kivakit.annotations;
     requires transitive kivakit.interfaces;
     requires transitive kivakit.mixins;
 

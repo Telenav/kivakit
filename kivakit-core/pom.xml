@@ -37,6 +37,11 @@
         <!-- KivaKit -->
 
         <dependency>
+            <groupId>com.telenav.kivakit</groupId>
+            <artifactId>kivakit-annotations</artifactId>
+            <version>1.7.1-SNAPSHOT</version>
+        </dependency>
+        <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>kivakit-interfaces</artifactId>
         </dependency>

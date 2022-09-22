@@ -19,13 +19,19 @@
 package com.telenav.kivakit.internal.tests.core.bits;
 
 import com.telenav.kivakit.core.bits.BitDiagram;
-import com.telenav.kivakit.core.bits.BitDiagram.BitField;import com.telenav.kivakit.internal.testing.CoreUnitTest;
+import com.telenav.kivakit.core.bits.BitDiagram.BitField;
+import com.telenav.kivakit.internal.testing.CoreUnitTest;
 import org.junit.Test;
 
+/**
+ * Test access to bit fields.
+ *
+ * @author jonathanl (shibo)
+ */
 public class BitDiagramTest extends CoreUnitTest
 {
     @SuppressWarnings("SpellCheckingInspection")
-    private final BitDiagram DIAGRAM = new BitDiagram("AAAABBBBC");
+    private final BitDiagram DIAGRAM = new BitDiagram("AAAA BBBB ?? C");
 
     private final BitField A = DIAGRAM.field('A');
 
@@ -34,9 +40,10 @@ public class BitDiagramTest extends CoreUnitTest
     private final BitField C = DIAGRAM.field('C');
 
     @Test
-    public void testExtract()
+    public void testGet()
     {
-        var value = binary("100110011");
+                                    // AAAABBBB??C
+        var value = binary("10011001001");
 
         ensureEqual(9, A.getInt(value));
         ensureEqual(9, B.getInt(value));
@@ -46,9 +53,11 @@ public class BitDiagramTest extends CoreUnitTest
     @Test
     public void testSet()
     {
-        var value = binary("000010010");
+                                    // AAAABBBB??C
+        var value = binary("00001001000");
         var field = binary("0110");
-        var result = binary("000001100");
+                                     // AAAABBBB??C
+        var result = binary("00000110000");
 
         ensureEqual(result, B.set(value, field));
     }
