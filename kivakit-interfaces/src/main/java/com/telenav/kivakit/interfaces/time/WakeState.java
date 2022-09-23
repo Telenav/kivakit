@@ -18,14 +18,20 @@
 
 package com.telenav.kivakit.interfaces.time;
 
-import com.telenav.lexakai.annotations.LexakaiJavadoc;
+import com.telenav.kivakit.annotations.code.CodeQuality;
+
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNNECESSARY;
 
 /**
  * The reason why a thread completed, either it was interrupted, it timed out or it succeeded.
  *
  * @author jonathanl (shibo)
  */
-@LexakaiJavadoc(complete = true)
+@CodeQuality(stability = STABLE,
+             testing = UNNECESSARY,
+             documentation = COMPLETE)
 public enum WakeState
 {
     /** Waiting was interrupted */
@@ -40,6 +46,9 @@ public enum WakeState
     /** The awaited operation failed due to an exception */
     TERMINATED;
 
+    /**
+     * @return A wake state with the given thrown exception
+     */
     static WakeState terminated(Throwable thrown)
     {
         var wake = TERMINATED;
@@ -47,18 +56,28 @@ public enum WakeState
         return wake;
     }
 
+    /** Any exception that was thrown */
     private Throwable thrown;
 
+    /**
+     * @return True if the operation was completed
+     */
     public boolean completed()
     {
         return this == COMPLETED;
     }
 
+    /**
+     * @return True if the operation did not complete
+     */
     public boolean failed()
     {
         return !completed();
     }
 
+    /**
+     * @return Any exception that was thrown
+     */
     public Throwable thrown()
     {
         return thrown;

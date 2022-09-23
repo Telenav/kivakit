@@ -18,25 +18,28 @@
 
 package com.telenav.kivakit.interfaces.string;
 
+import com.telenav.kivakit.annotations.code.CodeQuality;
 import com.telenav.kivakit.interfaces.internal.lexakai.DiagramString;
 import com.telenav.kivakit.interfaces.value.Source;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNNECESSARY;
+
 /**
- * Sadly, the only reason for this class is Java type erasures. Because you cannot implement more than one {@link
- * Source} interface on an object at a time due to type erasure collisions, creating an interface like this one is the
- * only work-around.
+ * Sadly, the only reason for this class is Java type erasures. Because you cannot implement more than one
+ * {@link Source} interface on an object at a time due to type erasure collisions, creating an interface like this one
+ * is the only work-around.
  *
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramString.class)
+@CodeQuality(stability = STABLE,
+             testing = UNNECESSARY,
+             documentation = COMPLETE)
 public interface StringSource
 {
-    static StringSource of(String string)
-    {
-        return () -> string;
-    }
-
     /**
      * @return The string value
      */

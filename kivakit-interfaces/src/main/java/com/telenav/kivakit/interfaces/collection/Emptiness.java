@@ -1,4 +1,4 @@
-package com.telenav.kivakit.interfaces.numeric;
+package com.telenav.kivakit.interfaces.collection;
 
 import com.telenav.kivakit.annotations.code.CodeQuality;
 
@@ -7,20 +7,17 @@ import static com.telenav.kivakit.annotations.code.DocumentationQuality.COMPLETE
 import static com.telenav.kivakit.annotations.code.TestingQuality.UNNECESSARY;
 
 /**
- * Interface for performing basic arithmetic
- *
- * @author jonathanl (shibo)
+ * Identifies whether an object, such as a collection, is empty or non-empty.
  */
 @CodeQuality(stability = STABLE,
              testing = UNNECESSARY,
              documentation = COMPLETE)
-public interface Arithmetic<Value>
+public interface Emptiness
 {
-    Value dividedBy(Value value);
+    boolean isEmpty();
 
-    Value minus(Value value);
-
-    Value plus(Value value);
-
-    Value times(Value value);
+    default boolean isNonEmpty()
+    {
+        return !isEmpty();
+    }
 }

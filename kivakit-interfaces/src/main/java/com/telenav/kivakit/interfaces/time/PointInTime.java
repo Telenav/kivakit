@@ -1,8 +1,7 @@
 package com.telenav.kivakit.interfaces.time;
 
-import com.telenav.kivakit.interfaces.string.StringFormattable;
-
 import java.time.Instant;
+import com.telenav.kivakit.interfaces.string.StringFormattable;
 
 /**
  * Interface to an object having a length of time, measured in milliseconds.
@@ -75,6 +74,9 @@ import java.time.Instant;
  *
  * @author jonathanl (shibo)
  */
+@CodeQuality(stability = STABLE,
+             testing = UNNECESSARY,
+             documentation = SUFFICIENT)
 public interface PointInTime<Time extends PointInTime<Time, Duration>, Duration extends LengthOfTime<Duration>> extends
         Comparable<PointInTime<?, ?>>,
         StringFormattable,

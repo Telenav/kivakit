@@ -18,6 +18,12 @@
 
 package com.telenav.kivakit.interfaces.collection;
 
+import com.telenav.kivakit.annotations.code.CodeQuality;
+
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNNECESSARY;
+
 /**
  * An object which can retrieve a value given a key.
  *
@@ -25,6 +31,10 @@ package com.telenav.kivakit.interfaces.collection;
  * @param <Value> The type of value
  * @author jonathanl (shibo)
  */
+@FunctionalInterface
+@CodeQuality(stability = STABLE,
+             testing = UNNECESSARY,
+             documentation = COMPLETE)
 public interface Keyed<Key, Value>
 {
     /**

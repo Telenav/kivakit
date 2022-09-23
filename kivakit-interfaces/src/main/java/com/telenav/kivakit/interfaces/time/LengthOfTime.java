@@ -1,5 +1,6 @@
 package com.telenav.kivakit.interfaces.time;
 
+import com.telenav.kivakit.annotations.code.CodeQuality;
 import com.telenav.kivakit.interfaces.code.Callback;
 import com.telenav.kivakit.interfaces.internal.lexakai.DiagramTime;
 import com.telenav.kivakit.interfaces.numeric.Quantizable;
@@ -14,6 +15,10 @@ import java.util.Timer;
 import java.util.TimerTask;
 import java.util.concurrent.TimeUnit;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.NONE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNNECESSARY;
 import static com.telenav.kivakit.interfaces.time.WakeState.COMPLETED;
 import static com.telenav.kivakit.interfaces.time.WakeState.INTERRUPTED;
 import static com.telenav.kivakit.interfaces.time.WakeState.TIMED_OUT;
@@ -83,6 +88,9 @@ import static com.telenav.kivakit.interfaces.time.WakeState.TIMED_OUT;
  */
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramTime.class)
+@CodeQuality(stability = STABLE,
+             testing = NONE,
+             documentation = COMPLETE)
 public interface LengthOfTime<Duration extends LengthOfTime<Duration>> extends
         QuantumComparable<LengthOfTime<?>>,
         Comparable<LengthOfTime<?>>,
@@ -226,7 +234,7 @@ public interface LengthOfTime<Duration extends LengthOfTime<Duration>> extends
     /**
      * @return This length of time modulus the given length of time
      */
-    default Duration modulus(Duration that)
+    default Duration modulo(Duration that)
     {
         return newDuration(nanoseconds().modulo(that.nanoseconds()));
     }

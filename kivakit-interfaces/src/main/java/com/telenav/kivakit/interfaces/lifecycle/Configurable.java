@@ -18,18 +18,24 @@
 
 package com.telenav.kivakit.interfaces.lifecycle;
 
-import com.telenav.lexakai.annotations.LexakaiJavadoc;
+import com.telenav.kivakit.annotations.code.CodeQuality;
+
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNNECESSARY;
 
 /**
  * Interface to an object that is configured by a certain kind of configuration object.
  *
  * @author jonathanl (shibo)
  */
-@LexakaiJavadoc(complete = true)
-public interface Configured<T>
+@CodeQuality(stability = STABLE,
+             testing = UNNECESSARY,
+             documentation = COMPLETE)
+public interface Configurable<Configuration>
 {
     /**
      * Configures this object with the given configuration
      */
-    void configure(T configuration);
+    void configure(Configuration configuration);
 }

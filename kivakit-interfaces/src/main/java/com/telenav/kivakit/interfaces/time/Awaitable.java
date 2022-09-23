@@ -1,10 +1,17 @@
 package com.telenav.kivakit.interfaces.time;
 
+import com.telenav.kivakit.annotations.code.CodeQuality;
+
 import java.util.concurrent.TimeUnit;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNNECESSARY;
+
 /**
- * Interface to a JDK method that takes a duration and time unit. This allows integration with {@link
- * LengthOfTime#await(Awaitable)}. The result (using the Duration subclass of {@link LengthOfTime}) looks like this:
+ * Interface to a JDK method that takes a duration and time unit. This allows integration with
+ * {@link LengthOfTime#await(Awaitable)}. The result (using the Duration subclass of {@link LengthOfTime}) looks like
+ * this:
  *
  * <pre>
  * Condition condition = [...];
@@ -17,6 +24,9 @@ import java.util.concurrent.TimeUnit;
  * @see LengthOfTime
  */
 @FunctionalInterface
+@CodeQuality(stability = STABLE,
+             testing = UNNECESSARY,
+             documentation = COMPLETE)
 public interface Awaitable
 {
     /**

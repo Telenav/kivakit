@@ -129,7 +129,7 @@ public abstract class BaseLogger implements Logger
     }
 
     @Override
-    public Duration maximumWaitTime()
+    public Duration maximumFlushTime()
     {
         return Duration.MAXIMUM;
     }

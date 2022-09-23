@@ -18,7 +18,6 @@
 
 package com.telenav.kivakit.core.string;
 
-import com.telenav.kivakit.core.language.object.ObjectFormatter;
 import com.telenav.kivakit.interfaces.string.StringFormattable;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
 
@@ -27,9 +26,9 @@ import com.telenav.lexakai.annotations.associations.UmlRelation;
  * when the {@link Object#toString()} method is already being used or when other kinds of strings are needed for
  * specific purposes.
  * <p>
- * The {@link Format} enum defines different kinds of string representations which can be retrieved with {@link
- * #asString(Format)}. The object can override this method to provide multiple string representations for specific
- * purposes.
+ * The {@link Format} enum defines different kinds of string representations which can be retrieved with
+ * {@link #asString(Format)}. The object can override this method to provide multiple string representations for
+ * specific purposes.
  *
  * @author jonathanl (shibo)
  */
@@ -41,14 +40,6 @@ public interface AsString extends StringFormattable
      */
     default String asString(Format format)
     {
-        switch (format)
-        {
-            case DEBUG:
-            case LOG:
-                return new ObjectFormatter(this).toString();
-
-            default:
-                return toString();
-        }
+        return toString();
     }
 }

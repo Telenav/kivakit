@@ -18,10 +18,14 @@
 
 package com.telenav.kivakit.interfaces.value;
 
+import com.telenav.kivakit.annotations.code.CodeQuality;
 import com.telenav.kivakit.interfaces.factory.Factory;
-import com.telenav.lexakai.annotations.LexakaiJavadoc;
 
 import java.util.function.Supplier;
+
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNNECESSARY;
 
 /**
  * A source of values.
@@ -31,7 +35,9 @@ import java.util.function.Supplier;
  * @see Factory
  */
 @FunctionalInterface
-@LexakaiJavadoc(complete = true)
+@CodeQuality(stability = STABLE,
+             testing = UNNECESSARY,
+             documentation = COMPLETE)
 public interface Source<Value> extends Supplier<Value>
 {
 }

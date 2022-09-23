@@ -18,6 +18,7 @@
 
 package com.telenav.kivakit.interfaces.messaging;
 
+import com.telenav.kivakit.annotations.code.CodeQuality;
 import com.telenav.kivakit.interfaces.code.Code;
 import com.telenav.kivakit.interfaces.internal.lexakai.DiagramMessaging;
 import com.telenav.kivakit.interfaces.value.Source;
@@ -25,6 +26,10 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
 
 import java.util.function.Supplier;
+
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNNECESSARY;
 
 /**
  * A transmitter of values with similar function to a {@link Source}, or a {@link Supplier}.
@@ -39,6 +44,9 @@ import java.util.function.Supplier;
  */
 @UmlClassDiagram(diagram = DiagramMessaging.class)
 @UmlRelation(label = "transmits", referent = Transmittable.class)
+@CodeQuality(stability = STABLE,
+             testing = UNNECESSARY,
+             documentation = COMPLETE)
 public interface Transmitter
 {
     /**

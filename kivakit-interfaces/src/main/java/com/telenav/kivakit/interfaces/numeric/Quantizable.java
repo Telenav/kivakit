@@ -18,6 +18,7 @@
 
 package com.telenav.kivakit.interfaces.numeric;
 
+import com.telenav.kivakit.annotations.code.CodeQuality;
 import com.telenav.kivakit.interfaces.collection.Indexed;
 import com.telenav.kivakit.interfaces.collection.LongKeyed;
 import com.telenav.kivakit.interfaces.factory.MapFactory;
@@ -25,6 +26,10 @@ import com.telenav.kivakit.interfaces.internal.lexakai.DiagramNumeric;
 import com.telenav.kivakit.interfaces.model.Identifiable;
 import com.telenav.kivakit.interfaces.string.StringFormattable;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
+
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNNECESSARY;
 
 /**
  * A quantizable object can be turned into a quantum. A quantum is a discrete value and is represented by the Java
@@ -45,9 +50,9 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
  * </p>
  *
  * <p>
- * Clients may extend <i>QuantizableConverter</i> (see <i>kivakit-core</i>) to quickly create a converter for any {@link
- * Quantizable} value. For example, EdgeIdentifier provides a converter between String values and EdgeIdentifiers like
- * this:
+ * Clients may extend <i>QuantizableConverter</i> (see <i>kivakit-core</i>) to quickly create a converter for any
+ * {@link Quantizable} value. For example, EdgeIdentifier provides a converter between String values and EdgeIdentifiers
+ * like this:
  * </p>
  *
  * <pre>
@@ -64,44 +69,33 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 @SuppressWarnings("unused")
 @FunctionalInterface
 @UmlClassDiagram(diagram = DiagramNumeric.class)
+@CodeQuality(stability = STABLE,
+             testing = UNNECESSARY,
+             documentation = COMPLETE)
 public interface Quantizable extends
         DoubleQuantizable,
         StringFormattable
 {
-    default String asCommaSeparatedString()
-    {
-        return String.format("%,d", quantum());
-    }
-
-    default String asSimpleString()
-    {
-        return Long.toString(quantum());
-    }
-
     @SuppressWarnings("SwitchStatementWithTooFewBranches")
     default String asString(StringFormattable.Format format)
     {
         switch (format)
         {
             case PROGRAMMATIC:
-                return asSimpleString();
+                return quantumAsSimpleString();
 
             default:
-                return asCommaSeparatedString();
+                return quantumAsCommaSeparatedString();
         }
     }
 
     @Override
-    default double doubleQuantum()
+    default double quantumDouble()
     {
         return quantum();
     }
 
-    default boolean isNonZero()
-    {
-        return quantum() != 0;
-    }
-
+    @Override
     default boolean isZero()
     {
         return quantum() == 0;
@@ -111,4 +105,14 @@ public interface Quantizable extends
      * Returns the discrete value for this object
      */
     long quantum();
+
+    default String quantumAsCommaSeparatedString()
+    {
+        return String.format("%,d", quantum());
+    }
+
+    default String quantumAsSimpleString()
+    {
+        return Long.toString(quantum());
+    }
 }

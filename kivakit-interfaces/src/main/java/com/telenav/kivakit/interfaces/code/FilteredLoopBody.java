@@ -18,18 +18,24 @@
 
 package com.telenav.kivakit.interfaces.code;
 
+import com.telenav.kivakit.annotations.code.CodeQuality;
 import com.telenav.kivakit.interfaces.collection.NextValue;
 import com.telenav.kivakit.interfaces.internal.lexakai.DiagramCode;
 import com.telenav.kivakit.interfaces.numeric.IntegerNumeric;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.NONE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNNECESSARY;
+
 /**
  * A piece of code that can be executed in a loop, and can filter out values.
  *
  * <p>
- * Looping is implemented by {@link #forCount(Value, Value, long)}, which calls {@link #at(Value)} starting at the given
- * minimum value until the required number of values are accepted. The next value for each iteration of the loop is
- * determined by {@link NextValue#next()}. The loop can terminate before reaching the requested count of values if
+ * Looping is implemented by {@link #forCount(Value, Value, Value)}, which calls {@link #at(Value)} starting at the
+ * given minimum value until the required number of values are accepted. The next value for each iteration of the loop
+ * is determined by {@link NextValue#next()}. The loop can terminate before reaching the requested count of values if
  * next() returns null. T
  * </p>
  *
@@ -46,6 +52,9 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
  * @see LoopBody
  */
 @UmlClassDiagram(diagram = DiagramCode.class)
+@CodeQuality(stability = STABLE,
+             testing = NONE,
+             documentation = COMPLETE)
 public interface FilteredLoopBody<Value extends IntegerNumeric<Value>>
 {
     /**

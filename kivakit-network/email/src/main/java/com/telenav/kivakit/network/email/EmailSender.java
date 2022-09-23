@@ -57,7 +57,7 @@ import java.util.Properties;
  * @author jonathanl (shibo)
  * @see SmtpEmailSender
  */
-@UmlClassDiagram(diagram = DiagramEmail.class)
+@SuppressWarnings("unused") @UmlClassDiagram(diagram = DiagramEmail.class)
 @UmlRelation(label = "sends", referent = Email.class)
 @UmlRelation(label = "configured by", referent = EmailSender.Configuration.class)
 @LexakaiJavadoc(complete = true)
@@ -207,7 +207,13 @@ public abstract class EmailSender extends BaseRepeater implements
     }
 
     @Override
-    public Duration maximumWaitTime()
+    public Duration maximumStopTime()
+    {
+        return Duration.MAXIMUM;
+    }
+
+    @Override
+    public Duration maximumFlushTime()
     {
         return Duration.MAXIMUM;
     }

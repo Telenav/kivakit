@@ -156,7 +156,7 @@ public interface MessageCounter extends Listener
         for (var status : statuses)
         {
             statistics.append(Align.right(status.name(), 24, ' '))
-                    .append(": ").append(count(status).asCommaSeparatedString());
+                    .append(": ").append(count(status).quantumAsCommaSeparatedString());
         }
         return statistics;
     }
@@ -177,7 +177,7 @@ public interface MessageCounter extends Listener
             if (count != null)
             {
                 statistics.append(Align.right(Plural.pluralize(Classes.simpleName(type)), 24, ' ')
-                        + ": " + count.asCommaSeparatedString());
+                        + ": " + count.quantumAsCommaSeparatedString());
             }
         }
         return statistics;

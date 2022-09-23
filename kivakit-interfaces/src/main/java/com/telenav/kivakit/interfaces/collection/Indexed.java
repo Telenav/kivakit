@@ -18,11 +18,16 @@
 
 package com.telenav.kivakit.interfaces.collection;
 
+import com.telenav.kivakit.annotations.code.CodeQuality;
 import com.telenav.kivakit.interfaces.numeric.Quantizable;
 import com.telenav.kivakit.interfaces.internal.lexakai.DiagramCollection;
 import com.telenav.kivakit.interfaces.numeric.QuantumComparable;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
+
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNNECESSARY;
 
 /**
  * An object which has an index and is also {@link Quantizable} as are many objects.
@@ -31,7 +36,9 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
  * @see Quantizable
  */
 @UmlClassDiagram(diagram = DiagramCollection.class)
-@LexakaiJavadoc(complete = true)
+@CodeQuality(stability = STABLE,
+             testing = UNNECESSARY,
+             documentation = COMPLETE)
 public interface Indexed extends
         Quantizable,
         QuantumComparable<Indexed>

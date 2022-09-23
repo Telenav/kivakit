@@ -18,10 +18,16 @@
 
 package com.telenav.kivakit.interfaces.string;
 
+import com.telenav.kivakit.annotations.code.CodeQuality;
 import com.telenav.kivakit.interfaces.internal.lexakai.DiagramString;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeSuperTypes;
+
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.COMPLETE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.INCOMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNNECESSARY;
 
 /**
  * Interface to an object that can produce one or more different kinds of string representations. This can be useful
@@ -34,6 +40,10 @@ import com.telenav.lexakai.annotations.visibility.UmlExcludeSuperTypes;
 @UmlRelation(label = "formats with", referent = StringFormattable.Format.class)
 @UmlClassDiagram(diagram = DiagramString.class)
 public interface StringFormattable extends StringSource
+@CodeQuality(stability = STABLE,
+             testing = UNNECESSARY,
+             documentation = INCOMPLETE)
+public interface Stringable extends StringSource
 {
     /**
      * The type of format for a string returned by {@link StringFormattable#asString(Format)}
@@ -41,16 +51,37 @@ public interface StringFormattable extends StringSource
     @UmlClassDiagram(diagram = DiagramString.class)
     @UmlExcludeSuperTypes enum Format
     {
+        /** A format suitable for debug tracing */
         DEBUG,
+
+        /** A format with only characters valid across filesystems */
         FILESYSTEM,
+
+        /** A format for display in a browser */
         HTML,
+
+        /** A format most useful for programmatic use */
         PROGRAMMATIC,
+
+        /** A generic text format */
         TEXT,
+
+        /** The format produced by calling toString() */
         TO_STRING,
+
+        /** A format suitable for user presentation, allowing for multiple lines */
         USER_MULTILINE,
+
+        /** A format suitable for user presentation, allowing only single lines */
         USER_SINGLE_LINE,
+
+        /** A format suitable for display with a UI label */
         USER_LABEL,
+
+        /** A compact format */
         COMPACT,
+
+        /** A format suitable for log output */
         LOG;
 
         public boolean isHtml()
