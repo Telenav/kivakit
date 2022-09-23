@@ -23,7 +23,7 @@ import com.telenav.kivakit.interfaces.internal.lexakai.DiagramValue;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import static com.telenav.kivakit.annotations.code.ApiStability.STABLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.COMPLETE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.SUFFICIENT;
 import static com.telenav.kivakit.annotations.code.TestingQuality.UNNECESSARY;
 
 /**
@@ -35,7 +35,7 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.UNNECESSARY;
 @UmlClassDiagram(diagram = DiagramValue.class)
 @CodeQuality(stability = STABLE,
              testing = UNNECESSARY,
-             documentation = COMPLETE)
+             documentation = SUFFICIENT)
 public interface Valued<Value>
 {
     /**

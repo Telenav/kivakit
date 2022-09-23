@@ -16,6 +16,9 @@ public enum ApiStability
     /** The API is not expected to change, except that new default methods may be added */
     STABLE_DEFAULT_EXPANDABLE,
 
+    /** The API is not expected to change, except that new enum values may be added */
+    STABLE_ENUM_EXPANDABLE,
+
     /** The API may be changed */
     UNSTABLE,
 

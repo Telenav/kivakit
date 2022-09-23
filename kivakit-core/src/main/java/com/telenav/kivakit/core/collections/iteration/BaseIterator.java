@@ -58,6 +58,11 @@ public abstract class BaseIterator<T> implements Iterator<T>
         return this;
     }
 
+    public Matcher<T> matcher()
+    {
+        return matcher;
+    }
+
     @Override
     public final boolean hasNext()
     {

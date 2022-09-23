@@ -78,7 +78,7 @@ import static com.telenav.kivakit.core.project.Project.resolveProject;
  */
 @SuppressWarnings("SpellCheckingInspection")
 @UmlClassDiagram(diagram = DiagramBroadcaster.class)
-public final class Debug implements DebugTransceiver
+public final class Debug implements MessageTransceiver
 {
     private static final Logger LOGGER = LoggerFactory.newLogger();
 

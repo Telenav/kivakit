@@ -24,9 +24,9 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeSuperTypes;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.STABLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.COMPLETE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.INCOMPLETE;
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_DEFAULT_EXPANDABLE;
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_ENUM_EXPANDABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.SUFFICIENT;
 import static com.telenav.kivakit.annotations.code.TestingQuality.UNNECESSARY;
 
 /**
@@ -39,16 +39,18 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.UNNECESSARY;
 @SuppressWarnings("SpellCheckingInspection")
 @UmlRelation(label = "formats with", referent = StringFormattable.Format.class)
 @UmlClassDiagram(diagram = DiagramString.class)
-public interface StringFormattable extends StringSource
-@CodeQuality(stability = STABLE,
+@CodeQuality(stability = STABLE_DEFAULT_EXPANDABLE,
              testing = UNNECESSARY,
-             documentation = INCOMPLETE)
-public interface Stringable extends StringSource
+             documentation = SUFFICIENT)
+public interface StringFormattable extends StringSource
 {
     /**
      * The type of format for a string returned by {@link StringFormattable#asString(Format)}
      */
     @UmlClassDiagram(diagram = DiagramString.class)
+    @CodeQuality(stability = STABLE_ENUM_EXPANDABLE,
+                 testing = UNNECESSARY,
+                 documentation = SUFFICIENT)
     @UmlExcludeSuperTypes enum Format
     {
         /** A format suitable for debug tracing */

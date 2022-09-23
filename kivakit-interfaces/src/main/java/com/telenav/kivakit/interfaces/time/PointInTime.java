@@ -1,7 +1,13 @@
 package com.telenav.kivakit.interfaces.time;
 
 import java.time.Instant;
+
+import com.telenav.kivakit.annotations.code.CodeQuality;
 import com.telenav.kivakit.interfaces.string.StringFormattable;
+
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.SUFFICIENT;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNNECESSARY;
 
 /**
  * Interface to an object having a length of time, measured in milliseconds.

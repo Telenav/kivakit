@@ -25,9 +25,8 @@ import com.telenav.kivakit.interfaces.numeric.IntegerNumeric;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import static com.telenav.kivakit.annotations.code.ApiStability.STABLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.COMPLETE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.SUFFICIENT;
 import static com.telenav.kivakit.annotations.code.TestingQuality.NONE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.UNNECESSARY;
 import static java.util.Objects.requireNonNull;
 
 /**
@@ -47,7 +46,7 @@ import static java.util.Objects.requireNonNull;
 @FunctionalInterface
 @CodeQuality(stability = STABLE,
              testing = NONE,
-             documentation = COMPLETE)
+             documentation = SUFFICIENT)
 public interface LoopBody<Value extends IntegerNumeric<Value>>
 {
     /**

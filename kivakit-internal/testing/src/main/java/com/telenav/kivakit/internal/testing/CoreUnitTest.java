@@ -20,6 +20,7 @@ package com.telenav.kivakit.internal.testing;
 
 import com.telenav.kivakit.core.ensure.Ensure;
 import com.telenav.kivakit.core.ensure.Failure;
+import com.telenav.kivakit.core.function.ResultTrait;
 import com.telenav.kivakit.core.language.primitive.Booleans;
 import com.telenav.kivakit.core.language.trait.LanguageTrait;
 import com.telenav.kivakit.core.logging.Logger;
@@ -157,6 +158,7 @@ import static com.telenav.kivakit.core.project.Project.resolveProject;
 @UmlRelation(label = "reports validation failures with", referent = JUnitFailureReporter.class)
 public abstract class CoreUnitTest extends TestWatcher implements
         RepeaterMixin,
+        ResultTrait,
         JavaTrait,
         ProjectTrait,
         RegistryTrait,

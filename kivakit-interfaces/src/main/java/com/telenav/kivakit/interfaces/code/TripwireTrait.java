@@ -6,7 +6,7 @@ import java.util.IdentityHashMap;
 import java.util.Map;
 
 import static com.telenav.kivakit.annotations.code.ApiStability.STABLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.COMPLETE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.SUFFICIENT;
 import static com.telenav.kivakit.annotations.code.TestingQuality.UNNECESSARY;
 
 /**
@@ -19,7 +19,7 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.UNNECESSARY;
 @SuppressWarnings("unused")
 @CodeQuality(stability = STABLE,
              testing = UNNECESSARY,
-             documentation = COMPLETE)
+             documentation = SUFFICIENT)
 public interface TripwireTrait
 {
     /** Map from this trait's implementing class to the current method invocation count */

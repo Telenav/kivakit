@@ -129,6 +129,7 @@ public interface Broadcaster extends MessageTransceiver
      */
     default void onTransmit(Transmittable message)
     {
+        receive(message);
     }
 
     /**

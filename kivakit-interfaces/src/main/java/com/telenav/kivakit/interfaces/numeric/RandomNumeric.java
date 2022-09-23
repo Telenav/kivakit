@@ -7,10 +7,8 @@ import com.telenav.kivakit.interfaces.comparison.Matcher;
 import java.util.Objects;
 
 import static com.telenav.kivakit.annotations.code.ApiStability.STABLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.COMPLETE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.INCOMPLETE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.INSUFFICIENT;
 import static com.telenav.kivakit.annotations.code.TestingQuality.NONE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.UNNECESSARY;
 
 /**
  * Provides convenient random number methods given an implementation of {@link #randomLongExclusive(long, long)}, and
@@ -22,7 +20,7 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.UNNECESSARY;
 @SuppressWarnings("unused")
 @CodeQuality(stability = STABLE,
              testing = NONE,
-             documentation = INCOMPLETE)
+             documentation = INSUFFICIENT)
 public interface RandomNumeric extends CastTrait
 {
     default <T extends Number> T random(Class<T> type)

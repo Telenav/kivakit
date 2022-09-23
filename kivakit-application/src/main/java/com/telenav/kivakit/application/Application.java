@@ -27,6 +27,7 @@ import com.telenav.kivakit.commandline.CommandLineParser;
 import com.telenav.kivakit.commandline.SwitchParser;
 import com.telenav.kivakit.component.BaseComponent;
 import com.telenav.kivakit.component.Component;
+import com.telenav.kivakit.core.code.UncheckedVoidCode;
 import com.telenav.kivakit.core.collections.list.ObjectList;
 import com.telenav.kivakit.core.collections.list.StringList;
 import com.telenav.kivakit.core.collections.set.IdentitySet;
@@ -48,6 +49,7 @@ import com.telenav.kivakit.core.messaging.messages.status.Glitch;
 import com.telenav.kivakit.core.messaging.repeaters.BaseRepeater;
 import com.telenav.kivakit.core.project.Build;
 import com.telenav.kivakit.core.project.Project;
+import com.telenav.kivakit.core.project.ProjectTrait;
 import com.telenav.kivakit.core.project.StartUp;
 import com.telenav.kivakit.core.project.StartUp.Option;
 import com.telenav.kivakit.core.registry.Registry;
@@ -270,6 +272,9 @@ import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
 @UmlClassDiagram(diagram = DiagramApplication.class)
 @LexakaiJavadoc(complete = true)
 public abstract class Application extends BaseComponent implements
+        PackageTrait,
+        ProjectTrait,
+        SettingsTrait,
         Named,
         ApplicationMetadata
 {
@@ -943,5 +948,21 @@ public abstract class Application extends BaseComponent implements
         parsers.addAll(switchParsers());
 
         return parsers;
+    }
+
+    /**
+     * Runs the given code catching all exceptions, including checked exceptions.
+     *
+     * @param code The code to run
+     */
+    private void tryCatch(UncheckedVoidCode code)
+    {
+        try
+        {
+            code.run();
+        }
+        catch (Exception ignored)
+        {
+        }
     }
 }

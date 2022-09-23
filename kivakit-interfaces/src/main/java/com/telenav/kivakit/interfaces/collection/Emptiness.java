@@ -3,7 +3,7 @@ package com.telenav.kivakit.interfaces.collection;
 import com.telenav.kivakit.annotations.code.CodeQuality;
 
 import static com.telenav.kivakit.annotations.code.ApiStability.STABLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.COMPLETE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.SUFFICIENT;
 import static com.telenav.kivakit.annotations.code.TestingQuality.UNNECESSARY;
 
 /**
@@ -11,7 +11,7 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.UNNECESSARY;
  */
 @CodeQuality(stability = STABLE,
              testing = UNNECESSARY,
-             documentation = COMPLETE)
+             documentation = SUFFICIENT)
 public interface Emptiness
 {
     boolean isEmpty();

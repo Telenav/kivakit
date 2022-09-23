@@ -20,7 +20,9 @@ import java.util.List;
  * @see Mixin
  */
 @LexakaiJavadoc(complete = true)
-public interface RepeaterMixin extends Repeater, Mixin
+public interface RepeaterMixin extends
+        Repeater,
+        Mixin
 {
     /**
      * {@inheritDoc}
