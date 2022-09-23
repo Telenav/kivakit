@@ -21,14 +21,12 @@ package com.telenav.kivakit.core.time;
 import com.telenav.kivakit.core.internal.lexakai.DiagramTime;
 import com.telenav.kivakit.interfaces.numeric.Maximizable;
 import com.telenav.kivakit.interfaces.numeric.Minimizable;
-import com.telenav.kivakit.interfaces.numeric.Quantizable;
-import com.telenav.kivakit.interfaces.numeric.QuantumComparable;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 /**
- * An abstract rate in <i>count</i> per {@link Duration}. Rates can be constructed as a count per Duration with {@link
- * #Rate(double, Duration)} or with static factory methods:
+ * An abstract rate in <i>count</i> per {@link Duration}. Rates can be constructed as a count per Duration with
+ * {@link #Rate(double, Duration)} or with static factory methods:
  *
  * <ul>
  *     <li>{@link #perDay(double)}</li>
@@ -47,12 +45,11 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
  *
  * @author jonathanl (shibo)
  */
+@SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramTime.class)
 @LexakaiJavadoc(complete = true)
 public class Rate implements
-        Quantizable,
         Comparable<Rate>,
-        QuantumComparable<Rate>,
         Maximizable<Rate>,
         Minimizable<Rate>
 {
@@ -114,12 +111,6 @@ public class Rate implements
     }
 
     @Override
-    public double quantumDouble()
-    {
-        return perSecond().count();
-    }
-
-    @Override
     public boolean equals(Object object)
     {
         if (object instanceof Rate)
@@ -149,7 +140,7 @@ public class Rate implements
     @Override
     public Rate maximum(Rate that)
     {
-        return isGreaterThan(that) ? this : that;
+        return count > that.count ? this : that;
     }
 
     @Override
@@ -161,7 +152,7 @@ public class Rate implements
     @Override
     public Rate minimum(Rate that)
     {
-        return isGreaterThan(that) ? this : that;
+        return count < that.count ? this : that;
     }
 
     @Override
@@ -198,12 +189,6 @@ public class Rate implements
     public Rate plus(Rate that)
     {
         return Rate.perDay(perDay().count() + that.perDay().count());
-    }
-
-    @Override
-    public long quantum()
-    {
-        return (long) perSecond().count();
     }
 
     public void throttle(Rate maximumRate)

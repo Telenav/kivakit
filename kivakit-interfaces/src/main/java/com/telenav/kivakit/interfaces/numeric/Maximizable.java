@@ -19,7 +19,9 @@
 package com.telenav.kivakit.interfaces.numeric;
 
 import com.telenav.kivakit.annotations.code.CodeQuality;
+import com.telenav.kivakit.interfaces.factory.MapFactory;
 import com.telenav.kivakit.interfaces.internal.lexakai.DiagramNumeric;
+import com.telenav.kivakit.interfaces.value.LongValued;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import static com.telenav.kivakit.annotations.code.ApiStability.STABLE;
@@ -40,12 +42,20 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.UNNECESSARY;
 @CodeQuality(stability = STABLE,
              testing = UNNECESSARY,
              documentation = SUFFICIENT)
-public interface Maximizable<Value>
+public interface Maximizable<Value> extends
+        LongValued,
+        MapFactory<Long, Value>
+
 {
-    /**
-     * @return The maximum of this value and the given value.
-     */
-    Value maximum(Value value);
+    default Value maximum(long value)
+    {
+        return newInstance(Math.max(longValue(), value));
+    }
+
+    default Value maximum(LongValued value)
+    {
+        return maximum(value.longValue());
+    }
 
     /**
      * Returns the maximum possible Value

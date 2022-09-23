@@ -26,7 +26,7 @@ import com.telenav.kivakit.core.value.count.Maximum;
 import com.telenav.kivakit.interfaces.comparison.Matcher;
 import com.telenav.kivakit.interfaces.factory.IntMapFactory;
 import com.telenav.kivakit.interfaces.factory.LongMapFactory;
-import com.telenav.kivakit.interfaces.numeric.Quantizable;
+import com.telenav.kivakit.interfaces.value.LongValued;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.Arrays;
@@ -36,9 +36,9 @@ import java.util.Iterator;
 import java.util.function.Function;
 
 /**
- * A bounded list of objects with overrides of methods from {@link BaseList} to downcast return values to {@link
- * ObjectList} for convenience. New instances of {@link ObjectList} are created by {@link BaseList} by calling {@link
- * #onNewInstance()}, allowing functional logic to reside in the base class.
+ * A bounded list of objects with overrides of methods from {@link BaseList} to downcast return values to
+ * {@link ObjectList} for convenience. New instances of {@link ObjectList} are created by {@link BaseList} by calling
+ * {@link #onNewInstance()}, allowing functional logic to reside in the base class.
  *
  * <p><b>Partitioning</b></p>
  *
@@ -50,14 +50,13 @@ import java.util.function.Function;
  * The methods {@link #objectList(Object[])} and {@link #objectList(Maximum, Object[])} can be used to construct constant lists.
  * The factory methods {@link #objectListFromInts(IntMapFactory, int...)} and {@link #objectListFromLongs(LongMapFactory, long...)}
  * construct lists of objects from integer and long values using the given map factories to convert the values into
- * objects. The method {@link #objectList(Iterable, LongMapFactory)} iterates through the given {@link Quantizable}
+ * objects. The method {@link #objectList(Iterable, LongMapFactory)} iterates through the given {@link LongValued} object
  * values, passing each quantum to the given primitive map factory and adding the resulting object to a new object list.
  * </p>
  *
  * @param <Element> The object type
  * @author jonathanl (shibo)
  * @see BaseList
- * @see Quantizable
  * @see LongMapFactory
  * @see LongMapFactory
  * @see IntMapFactory
@@ -85,12 +84,12 @@ public class ObjectList<Element> extends BaseList<Element>
     /**
      * @return A list of elements from the given integers created using the given map factory
      */
-    public static <T> ObjectList<T> objectList(Iterable<Quantizable> values, LongMapFactory<T> factory)
+    public static <T> ObjectList<T> objectList(Iterable<LongValued> values, LongMapFactory<T> factory)
     {
         var objects = new ObjectList<T>();
         for (var value : values)
         {
-            objects.add(factory.newInstance(value.quantum()));
+            objects.add(factory.newInstance(value.longValue()));
         }
         return objects;
     }

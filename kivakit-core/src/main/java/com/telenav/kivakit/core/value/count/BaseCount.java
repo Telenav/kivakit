@@ -4,11 +4,10 @@ import com.telenav.kivakit.core.language.primitive.Ints;
 import com.telenav.kivakit.core.language.primitive.Longs;
 import com.telenav.kivakit.core.language.primitive.Primes;
 import com.telenav.kivakit.core.value.level.Percent;
-import com.telenav.kivakit.interfaces.code.FilteredLoopBody;
-import com.telenav.kivakit.interfaces.code.FilteredLoopBody.FilterAction;
-import com.telenav.kivakit.interfaces.code.LoopBody;
-import com.telenav.kivakit.interfaces.numeric.IntegerNumeric;
-import com.telenav.kivakit.interfaces.numeric.Quantizable;
+import com.telenav.kivakit.interfaces.numeric.Numeric;
+import com.telenav.kivakit.interfaces.string.StringFormattable.Format;
+import com.telenav.kivakit.interfaces.value.FormattedLongValued;
+import com.telenav.kivakit.interfaces.value.LongValued;
 import com.telenav.kivakit.interfaces.value.Source;
 
 import java.util.function.Consumer;
@@ -38,7 +37,7 @@ import static com.telenav.kivakit.core.value.count.Estimate.estimate;
  *         <li>Array allocation</li>
  *     </ul>
  *     </li>
- *     <li>Counts implement the {@link Quantizable} interface, which makes them interoperable with methods that consume {@link Quantizable}s.</li>
+ *     <li>Counts implement the {@link LongValued} interface, which makes them interoperable with methods that consume {@link LongValued} objects.</li>
  *     <li>Counts provide a more readable, comma-separated String representation by default</li>
  * </ol>
  *
@@ -76,7 +75,6 @@ import static com.telenav.kivakit.core.value.count.Estimate.estimate;
  *     <li>{@link #asEstimate()} - This count as an {@link Estimate}</li>
  *     <li>{@link #asMaximum()} - This count as a {@link Maximum}</li>
  *     <li>{@link #asMinimum()} - This count as a {@link Minimum}</li>
- *     <li>{@link #quantum()} - This count as a quantum <i>long</i> value ({@link Quantizable#quantum()})</li>
  * </ul>
  *
  * <hr>
@@ -85,8 +83,6 @@ import static com.telenav.kivakit.core.value.count.Estimate.estimate;
  *
  * <ul>
  *     <li>{@link #asString(Format)} - This count formatted in the given format</li>
- *     <li>{@link #quantumAsCommaSeparatedString()} - This count as a comma-separated string, like 65,536</li>
- *     <li>{@link #quantumAsSimpleString()} - This count as a simple string, like 65536</li>
  * </ul>
  *
  * <hr>
@@ -95,10 +91,10 @@ import static com.telenav.kivakit.core.value.count.Estimate.estimate;
  *
  * <ul>
  *     <li>{@link #compareTo(Countable)} - {@link Comparable#compareTo(Object)} implementation</li>
- *     <li>{@link #isLessThan(Quantizable)} - True if this count is less than the given quantum</li>
- *     <li>{@link #isGreaterThan(Quantizable)} - True if this count is greater than the given quantum</li>
- *     <li>{@link #isLessThanOrEqualTo(Quantizable)} - True if this count is less than or equal to the given quantum</li>
- *     <li>{@link #isGreaterThanOrEqualTo(Quantizable) - True if this count is greater than or equal to the given quantum}</li>
+ *     <li>{@link #isLessThan(LongValued)} - True if this count is less than the given quantum</li>
+ *     <li>{@link #isGreaterThan(LongValued)} - True if this count is greater than the given quantum</li>
+ *     <li>{@link #isLessThanOrEqualTo(LongValued)} - True if this count is less than or equal to the given quantum</li>
+ *     <li>{@link #isGreaterThanOrEqualTo(LongValued) - True if this count is greater than or equal to the given quantum}</li>
  *     <li>{@link #isZero()} - True if this count is zero</li>
  *     <li>{@link #isNonZero()} - True if this count is not zero</li>
  * </ul>
@@ -112,8 +108,8 @@ import static com.telenav.kivakit.core.value.count.Estimate.estimate;
  *     <li>{@link #isMinimum()} - True if this count is zero</li>
  *     <li>{@link #asMaximum()} - Converts this count to a {@link Maximum}</li>
  *     <li>{@link #asMinimum()} - Converts this count to a {@link Minimum}</li>
- *     <li>{@link #maximum(SubClass)} - Returns the maximum of this count and the given count</li>
- *     <li>{@link #minimum(SubClass)} - Returns the minimum of this count and the given count</li>
+ *     <li>{@link #maximum(LongValued)} - Returns the maximum of this count and the given count</li>
+ *     <li>{@link #minimum(LongValued)} - Returns the minimum of this count and the given count</li>
  * </ul>
  *
  * <hr>
@@ -123,13 +119,13 @@ import static com.telenav.kivakit.core.value.count.Estimate.estimate;
  * <ul>
  *     <li>{@link #decremented()} - This count minus one</li>
  *     <li>{@link #incremented()} - This count plus one</li>
- *     <li>{@link #plus(Quantizable)} - This count plus the given count</li>
+ *     <li>{@link #plus(LongValued)} - This count plus the given count</li>
  *     <li>{@link #plus(long)} - This count plus the given value</li>
- *     <li>{@link #minus(Quantizable)} - This count minus the given count</li>
+ *     <li>{@link #minus(LongValued)} - This count minus the given count</li>
  *     <li>{@link #minus(long)} - This count minus the given value</li>
- *     <li>{@link #dividedBy(Quantizable)} - This count divided by the given count, using integer division without rounding</li>
+ *     <li>{@link #dividedBy(LongValued)} - This count divided by the given count, using integer division without rounding</li>
  *     <li>{@link #dividedBy(long)} - This count divided by the given value, using integer division without rounding</li>
- *     <li>{@link #times(Quantizable)} - This count times the given count</li>
+ *     <li>{@link #times(LongValued)} - This count times the given count</li>
  *     <li>{@link #times(long)} - This count times the given value</li>
  *     <li>{@link #times(double)} - This count times the given value, cast to a long value</li>
  *     <li>{@link #times(Percent)} - This count times the given percentage</li>
@@ -141,8 +137,8 @@ import static com.telenav.kivakit.core.value.count.Estimate.estimate;
  *
  * <ul>
  *     <li>{@link #percent(Percent)} - The given percentage of this count</li>
- *     <li>{@link #percentOf(Quantizable)} - This count as a percentage of the given count</li>
- *     <li>{@link #dividesEvenlyBy(Quantizable)} - True if there is no remainder when dividing this count by the given count</li>
+ *     <li>{@link #percentOf(LongValued)} - This count as a percentage of the given count</li>
+ *     <li>{@link #dividesEvenlyBy(LongValued)} - True if there is no remainder when dividing this count by the given count</li>
  *     <li>{@link #powerOfTenCeiling(int)} - The maximum value of this count taking on the given number of digits</li>
  *     <li>{@link #powerOfTenFloor(int)} - The minimum value of this count taking on the given number of digits</li>
  *     <li>{@link #nextPrime()} - The next prime value from a limited table of primes, useful in allocating linear hashmaps</li>
@@ -156,7 +152,6 @@ import static com.telenav.kivakit.core.value.count.Estimate.estimate;
  *
  * <ul>
  *     <li>{@link #loop(Runnable)} - Runs the given code block {@link #count()} times</li>
- *     <li>{@link #loop(LoopBody)} - Runs the given code block {@link #count()} times, passing the iteration number to the code</li>
  * </ul>
  *
  * <hr>
@@ -192,7 +187,7 @@ import static com.telenav.kivakit.core.value.count.Estimate.estimate;
  *
  * @param <SubClass> The subclass type
  * @author jonathanl (shibo)
- * @see Quantizable
+ * @see LongValued
  * @see Countable
  * @see Comparable
  * @see Estimate
@@ -201,7 +196,8 @@ import static com.telenav.kivakit.core.value.count.Estimate.estimate;
  */
 @SuppressWarnings({ "unused", "unchecked" })
 public abstract class BaseCount<SubClass extends BaseCount<SubClass>> implements
-        IntegerNumeric<SubClass>,
+        FormattedLongValued,
+        Numeric<SubClass>,
         Countable,
         Comparable<Countable>,
         Source<Long>
@@ -243,12 +239,6 @@ public abstract class BaseCount<SubClass extends BaseCount<SubClass>> implements
         return value > Integer.MAX_VALUE ? Integer.MAX_VALUE : (int) value;
     }
 
-    @Override
-    public long asLong()
-    {
-        return count;
-    }
-
     public Maximum asMaximum()
     {
         return Maximum.maximum(asLong());
@@ -270,7 +260,7 @@ public abstract class BaseCount<SubClass extends BaseCount<SubClass>> implements
     @Override
     public int compareTo(Countable that)
     {
-        return Long.compare(asLong(), that.size());
+        return Long.compare(longValue(), that.count().longValue());
     }
 
     /**
@@ -289,24 +279,20 @@ public abstract class BaseCount<SubClass extends BaseCount<SubClass>> implements
     }
 
     @Override
-    public SubClass dividedBy(SubClass divisor)
+    public SubClass dividedBy(LongValued divisor)
     {
-        return dividedBy(divisor.asLong());
+        return dividedBy(divisor.longValue());
     }
 
-    public SubClass dividedBy(Quantizable divisor)
-    {
-        return dividedBy(divisor.quantum());
-    }
-
+    @Override
     public SubClass dividedBy(long divisor)
     {
         return inRangeExclusive(asLong() / divisor);
     }
 
-    public boolean dividesEvenlyBy(Quantizable value)
+    public boolean dividesEvenlyBy(LongValued value)
     {
-        return asLong() % value.quantum() == 0;
+        return asLong() % value.longValue() == 0;
     }
 
     @Override
@@ -318,14 +304,6 @@ public abstract class BaseCount<SubClass extends BaseCount<SubClass>> implements
             return asLong() == that.asLong();
         }
         return false;
-    }
-
-    public void forEach(Consumer<SubClass> consumer)
-    {
-        for (var value = minimum(); value.isLessThan(this); value = value.next())
-        {
-            consumer.accept(value);
-        }
     }
 
     public void forEachByte(Consumer<Byte> consumer)
@@ -439,25 +417,13 @@ public abstract class BaseCount<SubClass extends BaseCount<SubClass>> implements
         return asLong() == 0;
     }
 
-    public void loop(LoopBody<SubClass> body)
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public long longValue()
     {
-        var maximum = this;
-        for (var at = minimum(); at.isLessThan(maximum); at = at.next())
-        {
-            body.at(at);
-        }
-    }
-
-    public void loop(FilteredLoopBody<SubClass> body)
-    {
-        var maximum = this;
-        for (var at = minimum(); at.isLessThan(maximum); at = at.next())
-        {
-            if (body.at(at) == FilterAction.REJECT)
-            {
-                maximum = maximum.incremented();
-            }
-        }
+        return count;
     }
 
     public void loop(Runnable code)
@@ -465,36 +431,6 @@ public abstract class BaseCount<SubClass extends BaseCount<SubClass>> implements
         for (var iteration = 0; iteration < asLong(); iteration++)
         {
             code.run();
-        }
-    }
-
-    public void loopInclusive(LoopBody<SubClass> code)
-    {
-        for (var at = minimum(); at.isLessThanOrEqualTo(this); at = at.next())
-        {
-            code.at(at);
-        }
-    }
-
-    public void loopIndexes(Consumer<Integer> body)
-    {
-        count().loop((LoopBody<Count>) at -> body.accept(at.asInt()));
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @SuppressWarnings("unchecked")
-    @Override
-    public SubClass maximum(SubClass that)
-    {
-        if (asLong() > that.asLong())
-        {
-            return (SubClass) this;
-        }
-        else
-        {
-            return that;
         }
     }
 
@@ -511,39 +447,18 @@ public abstract class BaseCount<SubClass extends BaseCount<SubClass>> implements
      * {@inheritDoc}
      */
     @Override
-    @SuppressWarnings("unchecked")
-    public SubClass minimum(SubClass that)
-    {
-        if (asLong() < that.asLong())
-        {
-            return (SubClass) this;
-        }
-        else
-        {
-            return that;
-        }
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
     public SubClass minimum()
     {
         return inRangeExclusive(0);
     }
 
     @Override
-    public SubClass minus(SubClass count)
+    public SubClass minus(LongValued count)
     {
-        return minus(count.asLong());
+        return minus(count.longValue());
     }
 
-    public SubClass minus(Quantizable count)
-    {
-        return minus(count.quantum());
-    }
-
+    @Override
     public SubClass minus(long count)
     {
         return inRangeExclusive(asLong() - count);
@@ -642,26 +557,31 @@ public abstract class BaseCount<SubClass extends BaseCount<SubClass>> implements
         return inRangeExclusive((long) (asLong() * percentage.asUnitValue()));
     }
 
-    public Percent percentOf(Quantizable total)
+    public Percent percentOf(LongValued total)
     {
         if (total.isZero())
         {
             return Percent._0;
         }
-        return Percent.percent(asLong() * 100.0 / total.quantum());
+        return Percent.percent(asLong() * 100.0 / total.longValue());
+    }
+
+    public Percent percentOf(long total)
+    {
+        if (total == 0)
+        {
+            return Percent._0;
+        }
+        return Percent.percent(asLong() * 100.0 / total);
     }
 
     @Override
-    public SubClass plus(SubClass count)
+    public SubClass plus(LongValued count)
     {
-        return plus(count.asLong());
+        return plus(count.longValue());
     }
 
-    public SubClass plus(Quantizable count)
-    {
-        return plus(count.quantum());
-    }
-
+    @Override
     public SubClass plus(long count)
     {
         return inRangeExclusive(asLong() + count);
@@ -704,33 +624,10 @@ public abstract class BaseCount<SubClass extends BaseCount<SubClass>> implements
         return newInstance(rounded);
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
-    public long quantum()
+    public SubClass times(LongValued count)
     {
-        return asLong();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public int size()
-    {
-        return asInt();
-    }
-
-    @Override
-    public SubClass times(SubClass count)
-    {
-        return times(count.asLong());
-    }
-
-    public SubClass times(Quantizable count)
-    {
-        return times(count.quantum());
+        return times(count.longValue());
     }
 
     public SubClass times(double multiplier)
@@ -738,6 +635,7 @@ public abstract class BaseCount<SubClass extends BaseCount<SubClass>> implements
         return inRangeExclusive((long) (get() * multiplier));
     }
 
+    @Override
     public SubClass times(long multiplier)
     {
         return inRangeExclusive(asLong() * multiplier);
@@ -748,20 +646,10 @@ public abstract class BaseCount<SubClass extends BaseCount<SubClass>> implements
         return times(percentage.asUnitValue());
     }
 
-    public Range<SubClass> toExclusive(SubClass maximum)
-    {
-        return Range.rangeExclusive(asSubclassType(), maximum);
-    }
-
-    public Range<SubClass> toInclusive(SubClass maximum)
-    {
-        return Range.rangeInclusive(asSubclassType(), maximum);
-    }
-
     @Override
     public String toString()
     {
-        return quantumAsCommaSeparatedString();
+        return asCommaSeparatedString();
     }
 
     @SuppressWarnings("unchecked")

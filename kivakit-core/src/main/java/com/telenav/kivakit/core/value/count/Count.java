@@ -18,12 +18,11 @@
 
 package com.telenav.kivakit.core.value.count;
 
-import com.telenav.kivakit.core.language.primitive.Longs;
 import com.telenav.kivakit.core.internal.lexakai.DiagramCount;
+import com.telenav.kivakit.core.language.primitive.Longs;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.value.level.Percent;
-import com.telenav.kivakit.interfaces.code.LoopBody;
-import com.telenav.kivakit.interfaces.numeric.Quantizable;
+import com.telenav.kivakit.interfaces.value.LongValued;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.Collection;
@@ -48,7 +47,7 @@ import java.util.function.Consumer;
  *         <li>Array allocation</li>
  *     </ul>
  *     </li>
- *     <li>Counts implement the {@link Quantizable} interface, which makes them interoperable with methods that consume {@link Quantizable}s.</li>
+ *     <li>Counts implement the {@link LongValued} interface, which makes them interoperable with methods that consume {@link LongValued} objects.</li>
  *     <li>Counts provide a more readable, comma-separated String representation by default</li>
  * </ol>
  *
@@ -93,6 +92,7 @@ import java.util.function.Consumer;
  * <p><b>Conversion</b></p>
  *
  * <ul>
+ *     <li>{@link #longValue()} - This count as a <i>long</i> value</li>
  *     <li>{@link #asInt()} - This count cast to an <i>int</i> value</li>
  *     <li>{@link #asLong()} - This count as a <i>long</i></li>
  *     <li>{@link #get()} - This count as a <i>long</i></li>
@@ -101,7 +101,6 @@ import java.util.function.Consumer;
  *     <li>{@link #asEstimate()} - This count as an {@link Estimate}</li>
  *     <li>{@link #asMaximum()} - This count as a {@link Maximum}</li>
  *     <li>{@link #asMinimum()} - This count as a {@link Minimum}</li>
- *     <li>{@link #quantum()} - This count as a quantum <i>long</i> value ({@link Quantizable#quantum()})</li>
  * </ul>
  *
  * <hr>
@@ -120,10 +119,10 @@ import java.util.function.Consumer;
  *
  * <ul>
  *     <li>{@link #compareTo(Countable)}  - {@link Comparable#compareTo(Object)} implementation</li>
- *     <li>{@link #isLessThan(Quantizable)} - True if this count is less than the given quantum</li>
- *     <li>{@link #isGreaterThan(Quantizable)} - True if this count is greater than the given quantum</li>
- *     <li>{@link #isLessThanOrEqualTo(Quantizable)} - True if this count is less than or equal to the given quantum</li>
- *     <li>{@link #isGreaterThanOrEqualTo(Quantizable) - True if this count is greater than or equal to the given quantum}</li>
+ *     <li>{@link #isLessThan(LongValued)} - True if this count is less than the given quantum</li>
+ *     <li>{@link #isGreaterThan(LongValued)} - True if this count is greater than the given quantum</li>
+ *     <li>{@link #isLessThanOrEqualTo(LongValued)} - True if this count is less than or equal to the given quantum</li>
+ *     <li>{@link #isGreaterThanOrEqualTo(LongValued) - True if this count is greater than or equal to the given quantum}</li>
  *     <li>{@link #isZero()} - True if this count is zero</li>
  *     <li>{@link #isNonZero()} - True if this count is not zero</li>
  * </ul>
@@ -152,13 +151,13 @@ import java.util.function.Consumer;
  * <ul>
  *     <li>{@link #decremented()} - This count minus one</li>
  *     <li>{@link #incremented()} - This count plus one</li>
- *     <li>{@link #plus(Quantizable)} - This count plus the given count</li>
+ *     <li>{@link #plus(LongValued)} - This count plus the given count</li>
  *     <li>{@link #plus(long)} - This count plus the given value</li>
- *     <li>{@link #minus(Quantizable)} - This count minus the given count</li>
+ *     <li>{@link #minus(LongValued)} - This count minus the given count</li>
  *     <li>{@link #minus(long)} - This count minus the given value</li>
- *     <li>{@link #dividedBy(Quantizable)} - This count divided by the given count, using integer division without rounding</li>
+ *     <li>{@link #dividedBy(LongValued)} - This count divided by the given count, using integer division without rounding</li>
  *     <li>{@link #dividedBy(long)} - This count divided by the given value, using integer division without rounding</li>
- *     <li>{@link #times(Quantizable)} - This count times the given count</li>
+ *     <li>{@link #times(LongValued)} - This count times the given count</li>
  *     <li>{@link #times(long)} - This count times the given value</li>
  *     <li>{@link #times(double)} - This count times the given value, cast to a long value</li>
  *     <li>{@link #times(Percent)} - This count times the given percentage</li>
@@ -170,8 +169,8 @@ import java.util.function.Consumer;
  *
  * <ul>
  *     <li>{@link #percent(Percent)} - The given percentage of this count</li>
- *     <li>{@link #percentOf(Quantizable)} - This count as a percentage of the given count</li>
- *     <li>{@link #dividesEvenlyBy(Quantizable)} - True if there is no remainder when dividing this count by the given count</li>
+ *     <li>{@link #percentOf(LongValued)} - This count as a percentage of the given count</li>
+ *     <li>{@link #dividesEvenlyBy(LongValued)} - True if there is no remainder when dividing this count by the given count</li>
  *     <li>{@link #powerOfTenCeiling(int)} - The maximum value of this count taking on the given number of digits</li>
  *     <li>{@link #powerOfTenFloor(int)} - The minimum value of this count taking on the given number of digits</li>
  *     <li>{@link #nextPrime()} - The next prime value from a limited table of primes, useful in allocating linear hashmaps</li>
@@ -185,7 +184,6 @@ import java.util.function.Consumer;
  *
  * <ul>
  *     <li>{@link #loop(Runnable)} - Runs the given code block {@link #count()} times</li>
- *     <li>{@link #loop(LoopBody)} - Runs the given code block {@link #count()} times, passing the iteration number to the code</li>
  * </ul>
  *
  * <hr>
@@ -220,7 +218,7 @@ import java.util.function.Consumer;
  * <hr>
  *
  * @author jonathanl (shibo)
- * @see Quantizable
+ * @see LongValued
  * @see Countable
  * @see Comparable
  * @see Estimate

@@ -19,7 +19,9 @@
 package com.telenav.kivakit.interfaces.numeric;
 
 import com.telenav.kivakit.annotations.code.CodeQuality;
+import com.telenav.kivakit.interfaces.factory.MapFactory;
 import com.telenav.kivakit.interfaces.internal.lexakai.DiagramNumeric;
+import com.telenav.kivakit.interfaces.value.LongValued;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import static com.telenav.kivakit.annotations.code.ApiStability.STABLE;
@@ -40,12 +42,20 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.UNNECESSARY;
 @CodeQuality(stability = STABLE,
              testing = UNNECESSARY,
              documentation = SUFFICIENT)
-public interface Minimizable<Value>
+public interface Minimizable<Value> extends
+        LongValued,
+        MapFactory<Long, Value>
+
 {
-    /**
-     * @return The minimum of this value and the given value.
-     */
-    Value minimum(Value value);
+    default Value minimum(long value)
+    {
+        return newInstance(Math.min(longValue(), value));
+    }
+
+    default Value minimum(LongValued value)
+    {
+        return minimum(value.longValue());
+    }
 
     /**
      * Returns The minimum possible value

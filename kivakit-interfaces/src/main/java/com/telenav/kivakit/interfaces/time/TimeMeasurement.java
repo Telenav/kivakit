@@ -1,8 +1,7 @@
 package com.telenav.kivakit.interfaces.time;
 
 import com.telenav.kivakit.annotations.code.CodeQuality;
-import com.telenav.kivakit.interfaces.numeric.Quantizable;
-import com.telenav.kivakit.interfaces.time.Nanoseconds;
+import com.telenav.kivakit.interfaces.value.LongValued;
 import org.jetbrains.annotations.NotNull;
 
 import java.text.DecimalFormat;
@@ -44,7 +43,7 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.UNNECESSARY;
 @CodeQuality(stability = STABLE,
              testing = UNNECESSARY,
              documentation = SUFFICIENT)
-public interface TimeMeasurement extends Quantizable
+public interface TimeMeasurement extends LongValued
 {
     /**
      * @return The number of days for this time measurement
@@ -165,6 +164,15 @@ public interface TimeMeasurement extends Quantizable
     }
 
     /**
+     * {@inheritDoc}
+     */
+    @Override
+    default long longValue()
+    {
+        return milliseconds();
+    }
+
+    /**
      * @return The number of milliseconds for this time measurement
      */
     default long milliseconds()
@@ -176,15 +184,6 @@ public interface TimeMeasurement extends Quantizable
      * @return The number of nanoseconds for this measurement
      */
     Nanoseconds nanoseconds();
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    default long quantum()
-    {
-        return milliseconds();
-    }
 
     /**
      * Converts a value to a unit-suffixed value, taking care of English singular/plural suffix.

@@ -20,9 +20,8 @@ package com.telenav.kivakit.core.value.identifier;
 
 import com.telenav.kivakit.core.internal.lexakai.DiagramIdentifier;
 import com.telenav.kivakit.core.value.count.BitCount;
-import com.telenav.kivakit.interfaces.collection.LongKeyed;
 import com.telenav.kivakit.interfaces.model.Identifiable;
-import com.telenav.kivakit.interfaces.numeric.Quantizable;
+import com.telenav.kivakit.interfaces.value.LongValued;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
@@ -30,15 +29,15 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
  * Base class for *long* identifiers
  *
  * @author jonathanl (shibo)
- * @see Quantizable
+ * @see LongValued
  * @see Comparable
  * @see Identifiable
  */
+@SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramIdentifier.class)
 @LexakaiJavadoc(complete = true)
 public class Identifier implements
         Identifiable,
-        LongKeyed,
         Comparable<Identifier>
 {
     private final long value;
@@ -88,13 +87,7 @@ public class Identifier implements
     }
 
     @Override
-    public long key()
-    {
-        return value;
-    }
-
-    @Override
-    public long quantum()
+    public long longValue()
     {
         return value;
     }

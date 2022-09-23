@@ -1,6 +1,7 @@
 package com.telenav.kivakit.interfaces.numeric;
 
 import com.telenav.kivakit.annotations.code.CodeQuality;
+import com.telenav.kivakit.interfaces.value.LongValued;
 
 import static com.telenav.kivakit.annotations.code.ApiStability.STABLE;
 import static com.telenav.kivakit.annotations.code.DocumentationQuality.SUFFICIENT;
@@ -50,7 +51,7 @@ public interface CastTrait
     /**
      * Returns the given number cast to the given number type
      */
-    default <T extends Number> T cast(Castable number, Class<T> type)
+    default <T extends Number> T cast(LongValued number, Class<T> type)
     {
         return cast(number.asLong(), type);
     }

@@ -25,6 +25,7 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 import java.util.Iterator;
 
 import static com.telenav.kivakit.annotations.code.ApiStability.STABLE;
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_DEFAULT_EXPANDABLE;
 import static com.telenav.kivakit.annotations.code.DocumentationQuality.SUFFICIENT;
 import static com.telenav.kivakit.annotations.code.TestingQuality.UNNECESSARY;
 
@@ -37,7 +38,7 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.UNNECESSARY;
  */
 @FunctionalInterface
 @UmlClassDiagram(diagram = DiagramCollection.class)
-@CodeQuality(stability = STABLE,
+@CodeQuality(stability = STABLE_DEFAULT_EXPANDABLE,
              testing = UNNECESSARY,
              documentation = SUFFICIENT)
 public interface Appendable<T>

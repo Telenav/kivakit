@@ -1,9 +1,8 @@
 package com.telenav.kivakit.interfaces.time;
 
-import java.time.Instant;
-
 import com.telenav.kivakit.annotations.code.CodeQuality;
-import com.telenav.kivakit.interfaces.string.StringFormattable;
+
+import java.time.Instant;
 
 import static com.telenav.kivakit.annotations.code.ApiStability.STABLE;
 import static com.telenav.kivakit.annotations.code.DocumentationQuality.SUFFICIENT;
@@ -85,7 +84,6 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.UNNECESSARY;
              documentation = SUFFICIENT)
 public interface PointInTime<Time extends PointInTime<Time, Duration>, Duration extends LengthOfTime<Duration>> extends
         Comparable<PointInTime<?, ?>>,
-        StringFormattable,
         TimeMeasurement
 {
     /**
@@ -185,7 +183,7 @@ public interface PointInTime<Time extends PointInTime<Time, Duration>, Duration 
     Time maximum();
 
     /**
-     * @return The larger of this point in time and the given point in time
+     * @return The largest of this point in time and the given point in time
      */
     @SuppressWarnings("unchecked")
     default Time maximum(Time that)
@@ -199,7 +197,7 @@ public interface PointInTime<Time extends PointInTime<Time, Duration>, Duration 
     Time minimum();
 
     /**
-     * @return The smaller of this point in time and the given point in time
+     * @return The smallest of this point in time and the given point in time
      */
     @SuppressWarnings("unchecked")
     default Time minimum(Time that)

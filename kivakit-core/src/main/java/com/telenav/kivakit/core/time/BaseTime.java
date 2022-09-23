@@ -1,6 +1,7 @@
 package com.telenav.kivakit.core.time;
 
 import com.telenav.kivakit.core.testing.Tested;
+import com.telenav.kivakit.interfaces.string.StringFormattable;
 import com.telenav.kivakit.interfaces.time.LengthOfTime;
 import com.telenav.kivakit.interfaces.time.Nanoseconds;
 import com.telenav.kivakit.interfaces.time.PointInTime;
@@ -102,7 +103,9 @@ import static com.telenav.kivakit.core.time.BaseTime.Topology.CYCLIC;
  * @see Second
  */
 @SuppressWarnings("unused")
-public abstract class BaseTime<T extends BaseTime<T>> implements PointInTime<T, Duration>
+public abstract class BaseTime<T extends BaseTime<T>> implements
+        PointInTime<T, Duration>,
+        StringFormattable
 {
     public enum Topology
     {
@@ -130,6 +133,12 @@ public abstract class BaseTime<T extends BaseTime<T>> implements PointInTime<T, 
         return nanosecondsToUnits(nanoseconds());
     }
 
+    @Override
+    public String asString(Format format)
+    {
+        return toString();
+    }
+
     public int asUnits()
     {
         return (int) asPreciseUnits();
@@ -145,7 +154,7 @@ public abstract class BaseTime<T extends BaseTime<T>> implements PointInTime<T, 
 
     @Override
     @Tested
-    public boolean equals(final Object object)
+    public boolean equals(Object object)
     {
         if (object instanceof BaseTime)
         {

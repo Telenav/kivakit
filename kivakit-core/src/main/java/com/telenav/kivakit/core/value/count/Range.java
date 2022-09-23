@@ -22,13 +22,10 @@ import com.telenav.kivakit.core.language.primitive.Longs;
 import com.telenav.kivakit.core.internal.lexakai.DiagramCount;
 import com.telenav.kivakit.core.string.Formatter;
 import com.telenav.kivakit.core.testing.Tested;
-import com.telenav.kivakit.interfaces.code.FilteredLoopBody;
-import com.telenav.kivakit.interfaces.code.LoopBody;
 import com.telenav.kivakit.interfaces.collection.NextValue;
-import com.telenav.kivakit.interfaces.numeric.IntegerNumeric;
+import com.telenav.kivakit.interfaces.numeric.Numeric;
 import com.telenav.kivakit.interfaces.numeric.Maximizable;
 import com.telenav.kivakit.interfaces.numeric.Minimizable;
-import com.telenav.kivakit.interfaces.numeric.QuantumComparable;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.Random;
@@ -43,13 +40,13 @@ import static com.telenav.kivakit.core.value.count.Range.UpperBound.INCLUSIVE;
  * <p>Creation and Properties</p>
  *
  * <p>
- * Ranges can be created in two ways, as {@link #rangeExclusive(IntegerNumeric, IntegerNumeric)} ranges which do not
- * include their maximum value, and as {@link #rangeInclusive(IntegerNumeric, IntegerNumeric)} ranges which do.
+ * Ranges can be created in two ways, as {@link #rangeExclusive(Numeric, Numeric)} ranges which do not
+ * include their maximum value, and as {@link #rangeInclusive(Numeric, Numeric)} ranges which do.
  * </p>
  *
  * <ul>
- *     <li>{@link #rangeInclusive(IntegerNumeric, IntegerNumeric)}</li>
- *     <li>{@link #rangeExclusive(IntegerNumeric, IntegerNumeric)}</li>
+ *     <li>{@link #rangeInclusive(Numeric, Numeric)}</li>
+ *     <li>{@link #rangeExclusive(Numeric, Numeric)}</li>
  *     <li>{@link #upperBound()}</li>
  *     <li>{@link #isInclusive()}</li>
  *     <li>{@link #isExclusive()}</li>
@@ -78,23 +75,22 @@ import static com.telenav.kivakit.core.value.count.Range.UpperBound.INCLUSIVE;
  *     <li>{@link #randomValue(Random)}</li>
  * </ul>
  *
- * @param <Value> A value that is {@link IntegerNumeric}, which includes {@link Minimizable}, {@link Maximizable},
+ * @param <Value> A value that is {@link Numeric}, which includes {@link Minimizable}, {@link Maximizable},
  * {@link Comparable}, and {@link NextValue}.
  * @author jonathanl (shibo)
  * @see LoopBody
  */
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramCount.class)
-public class Range<Value extends IntegerNumeric<Value>> implements
+public class Range<Value extends Numeric<Value>> implements
         Comparable<Countable>,
-        QuantumComparable<Countable>,
         Countable
 {
     /**
      * Constructs a range that excludes the given maximum value.
      */
     @Tested
-    public static <Value extends IntegerNumeric<Value>>
+    public static <Value extends Numeric<Value>>
     Range<Value> rangeExclusive(Value minimum,
                                 Value exclusiveMaximum)
     {
@@ -105,7 +101,7 @@ public class Range<Value extends IntegerNumeric<Value>> implements
      * Constructs a range that includes the given maximum value.
      */
     @Tested
-    public static <Value extends IntegerNumeric<Value>>
+    public static <Value extends Numeric<Value>>
     Range<Value> rangeInclusive(Value minimum,
                                 Value inclusiveMaximum)
     {
@@ -178,40 +174,17 @@ public class Range<Value extends IntegerNumeric<Value>> implements
                 : maximum.incremented();
     }
 
-    /**
-     * Executes the loop starting at the minimum value, calling the {@link FilteredLoopBody} until the given number of
-     * values are accepted.
-     *
-     * @param body The loop body to invoke
-     */
-    @Tested
-    public void forCount(Count count, FilteredLoopBody<Value> body)
-    {
-        body.forCount(minimum(), exclusiveMaximum(), count.asLong());
-    }
 
     /**
-     * Calls the given {@link LoopBody} with each value from the minimum to the maximum (inclusive or exclusive,
+     * Calls the given {@link Consumer} with each value from the minimum to the maximum (inclusive or exclusive,
      * depending on construction of the range)
      *
      * @param body The loop body to invoke
      */
     @Tested
-    public void forEach(LoopBody<Value> body)
+    public void forEach(Consumer<Integer> body)
     {
-        body.forEachInclusive(minimum(), inclusiveMaximum());
-    }
-
-    /**
-     * Calls the given {@link LoopBody} with each value from the minimum to the maximum (inclusive or exclusive,
-     * depending on construction of the range)
-     *
-     * @param body The loop body to invoke
-     */
-    @Tested
-    public void forEachInt(Consumer<Integer> body)
-    {
-        forEach(at -> body.accept(at.asInt()));
+        forEachInt(at -> body.accept(at));
     }
 
     /**

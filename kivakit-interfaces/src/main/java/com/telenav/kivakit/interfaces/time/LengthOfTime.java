@@ -3,9 +3,8 @@ package com.telenav.kivakit.interfaces.time;
 import com.telenav.kivakit.annotations.code.CodeQuality;
 import com.telenav.kivakit.interfaces.code.Callback;
 import com.telenav.kivakit.interfaces.internal.lexakai.DiagramTime;
-import com.telenav.kivakit.interfaces.numeric.Quantizable;
-import com.telenav.kivakit.interfaces.numeric.QuantumComparable;
 import com.telenav.kivakit.interfaces.string.StringFormattable;
+import com.telenav.kivakit.interfaces.value.LongValued;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.text.SimpleDateFormat;
@@ -18,7 +17,6 @@ import java.util.concurrent.TimeUnit;
 import static com.telenav.kivakit.annotations.code.ApiStability.STABLE;
 import static com.telenav.kivakit.annotations.code.DocumentationQuality.SUFFICIENT;
 import static com.telenav.kivakit.annotations.code.TestingQuality.NONE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.UNNECESSARY;
 import static com.telenav.kivakit.interfaces.time.WakeState.COMPLETED;
 import static com.telenav.kivakit.interfaces.time.WakeState.INTERRUPTED;
 import static com.telenav.kivakit.interfaces.time.WakeState.TIMED_OUT;
@@ -65,11 +63,11 @@ import static com.telenav.kivakit.interfaces.time.WakeState.TIMED_OUT;
  *
  * <ul>
  *     <li>{@link #compareTo(LengthOfTime)}</li>
- *     <li>{@link #isLessThan(Quantizable)}</li>
- *     <li>{@link #isLessThanOrEqualTo(Quantizable)}</li>
- *     <li>{@link #isGreaterThan(Quantizable)}</li>
- *     <li>{@link #isLessThanOrEqualTo(Quantizable)}</li>
- *     <li>{@link #isApproximately(Quantizable, Quantizable)}</li>
+ *     <li>{@link #isLessThan(Duration)}</li>
+ *     <li>{@link #isLessThanOrEqualTo(Duration)}</li>
+ *     <li>{@link #isGreaterThan(Duration)}</li>
+ *     <li>{@link #isLessThanOrEqualTo(Duration)}</li>
+ *     <li>{@link #isApproximately(Duration, Duration)}</li>
  *     <li>{@link #isZero()}</li>
  *     <li>{@link #isNonZero()}</li>
  * </ul>
@@ -91,8 +89,8 @@ import static com.telenav.kivakit.interfaces.time.WakeState.TIMED_OUT;
 @CodeQuality(stability = STABLE,
              testing = NONE,
              documentation = SUFFICIENT)
-public interface LengthOfTime<Duration extends LengthOfTime<Duration>> extends
-        QuantumComparable<LengthOfTime<?>>,
+public interface LengthOfTime<Duration extends LongValued & LengthOfTime<Duration>> extends
+        LongValued,
         Comparable<LengthOfTime<?>>,
         StringFormattable,
         TimeMeasurement
@@ -221,6 +219,12 @@ public interface LengthOfTime<Duration extends LengthOfTime<Duration>> extends
     default Duration dividedBy(long value)
     {
         return dividedBy((double) value);
+    }
+
+    @Override
+    default long longValue()
+    {
+        return milliseconds();
     }
 
     /**

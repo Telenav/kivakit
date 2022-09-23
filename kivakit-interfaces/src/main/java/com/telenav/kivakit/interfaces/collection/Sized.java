@@ -20,7 +20,6 @@ package com.telenav.kivakit.interfaces.collection;
 
 import com.telenav.kivakit.annotations.code.CodeQuality;
 import com.telenav.kivakit.interfaces.internal.lexakai.DiagramNumeric;
-import com.telenav.kivakit.interfaces.numeric.Quantizable;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import static com.telenav.kivakit.annotations.code.ApiStability.STABLE;
@@ -37,7 +36,7 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.UNNECESSARY;
 @CodeQuality(stability = STABLE,
              testing = UNNECESSARY,
              documentation = SUFFICIENT)
-public interface Sized extends Quantizable, Emptiness
+public interface Sized extends Emptiness
 {
     /**
      * Returns true if the {@link #size()} of this object is zero
@@ -47,12 +46,6 @@ public interface Sized extends Quantizable, Emptiness
     default boolean isEmpty()
     {
         return size() == 0;
-    }
-
-    @Override
-    default long quantum()
-    {
-        return size();
     }
 
     /**

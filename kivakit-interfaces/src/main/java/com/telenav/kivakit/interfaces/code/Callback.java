@@ -39,6 +39,11 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.UNNECESSARY;
              documentation = SUFFICIENT)
 public interface Callback<Value>
 {
+    /**
+     * Calls this callback with the given value
+     *
+     * @param value The value
+     */
     default void callback(Value value)
     {
         onCallback(value);

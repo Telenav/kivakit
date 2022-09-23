@@ -10,7 +10,6 @@ import java.util.Objects;
 import static com.telenav.kivakit.annotations.code.ApiStability.STABLE;
 import static com.telenav.kivakit.annotations.code.DocumentationQuality.SUFFICIENT;
 import static com.telenav.kivakit.annotations.code.TestingQuality.NONE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.UNNECESSARY;
 import static java.lang.Math.addExact;
 import static java.lang.Math.subtractExact;
 
@@ -203,7 +202,7 @@ public class Nanoseconds implements
     }
 
     @Override
-    public boolean equals(final Object object)
+    public boolean equals(Object object)
     {
         if (object instanceof Nanoseconds)
         {

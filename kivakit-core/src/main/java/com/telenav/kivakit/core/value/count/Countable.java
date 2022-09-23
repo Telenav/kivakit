@@ -18,7 +18,6 @@
 
 package com.telenav.kivakit.core.value.count;
 
-import com.telenav.kivakit.interfaces.collection.Sized;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 
 /**
@@ -28,15 +27,10 @@ import com.telenav.lexakai.annotations.LexakaiJavadoc;
  * @see Count
  */
 @LexakaiJavadoc(complete = true)
-public interface Countable extends Sized
+public interface Countable
 {
     /**
-     * The size of this object as a {@link Count}
-     *
-     * @return This object's size as a {@link Count}
+     * @return The count for this object
      */
-    default Count count()
-    {
-        return Count.count(size());
-    }
+    Count count();
 }

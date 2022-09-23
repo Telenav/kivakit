@@ -4,7 +4,7 @@ import com.telenav.kivakit.annotations.code.CodeQuality;
 
 import java.util.function.Function;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.STABLE;
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_DEFAULT_EXPANDABLE;
 import static com.telenav.kivakit.annotations.code.DocumentationQuality.SUFFICIENT;
 import static com.telenav.kivakit.annotations.code.TestingQuality.UNNECESSARY;
 
@@ -25,8 +25,8 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.UNNECESSARY;
  *
  * @author jonathanl (shibo)
  */
-@SuppressWarnings("unused")
-@CodeQuality(stability = STABLE,
+@SuppressWarnings({ "unused", "SpellCheckingInspection" })
+@CodeQuality(stability = STABLE_DEFAULT_EXPANDABLE,
              testing = UNNECESSARY,
              documentation = SUFFICIENT)
 public interface Joinable<Element> extends Iterable<Element>

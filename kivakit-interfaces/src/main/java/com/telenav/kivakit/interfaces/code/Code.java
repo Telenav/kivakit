@@ -35,17 +35,8 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.UNNECESSARY;
              documentation = SUFFICIENT)
 public interface Code<Value>
 {
-    static <T> Code<T> of(Runnable code)
-    {
-        return () ->
-        {
-            code.run();
-            return null;
-        };
-    }
-
     /**
-     * @return Executes the code
+     * @return The value returned by the code
      */
     Value run();
 }

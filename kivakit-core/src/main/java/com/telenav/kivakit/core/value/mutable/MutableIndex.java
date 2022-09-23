@@ -30,6 +30,7 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
  *
  * @author jonathanl (shibo)
  */
+@SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramValue.class)
 @LexakaiJavadoc(complete = true)
 public class MutableIndex
@@ -100,6 +101,6 @@ public class MutableIndex
     @Override
     public String toString()
     {
-        return Count.count(index).quantumAsCommaSeparatedString();
+        return Count.count(index).asCommaSeparatedString();
     }
 }

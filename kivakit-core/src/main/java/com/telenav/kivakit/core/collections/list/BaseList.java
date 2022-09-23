@@ -33,7 +33,6 @@ import com.telenav.kivakit.interfaces.collection.Prependable;
 import com.telenav.kivakit.interfaces.collection.Sequence;
 import com.telenav.kivakit.interfaces.collection.Sized;
 import com.telenav.kivakit.interfaces.comparison.Matcher;
-import com.telenav.kivakit.interfaces.numeric.Quantizable;
 import com.telenav.kivakit.interfaces.string.StringFormattable;
 import com.telenav.kivakit.interfaces.value.Instantiable;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
@@ -55,8 +54,8 @@ import java.util.function.Function;
 
 /**
  * A base class for bounded lists which adds a number of convenient methods as well as support for various KivaKit
- * interfaces, including {@link Indexable}, {@link Sequence}, {@link Addable}, {@link java.lang.Appendable},and {@link
- * Sized}}. Some added convenience methods include:
+ * interfaces, including {@link Indexable}, {@link Sequence}, {@link Addable}, {@link java.lang.Appendable},and
+ * {@link Sized}}. Some added convenience methods include:
  *
  * <p><b>Bounds</b></p>
  *
@@ -423,6 +422,12 @@ public abstract class BaseList<Element> implements
         return copy;
     }
 
+    @Override
+    public Count count()
+    {
+        return Count.count(size());
+    }
+
     /**
      * @return True if this list ends with the given list
      */
@@ -643,20 +648,6 @@ public abstract class BaseList<Element> implements
     }
 
     /**
-     * @return This list of elements as quantized values or a cast exception if the elements are not {@link Quantizable}
-     */
-    public long[] quantized()
-    {
-        var quantized = new long[size()];
-        var i = 0;
-        for (var object : this)
-        {
-            quantized[i++] = ((Quantizable) object).quantum();
-        }
-        return quantized;
-    }
-
-    /**
      * {@inheritDoc}
      */
     @Override
@@ -702,7 +693,7 @@ public abstract class BaseList<Element> implements
      * @param element The element to replace
      * @param replacement The element to substitute
      */
-    public boolean replaceAll(final Element element, final Element replacement)
+    public boolean replaceAll(Element element, Element replacement)
     {
         return Collections.replaceAll(list, element, replacement);
     }

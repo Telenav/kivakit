@@ -20,8 +20,7 @@ package com.telenav.kivakit.core.value.count;
 
 import com.telenav.kivakit.core.internal.lexakai.DiagramCount;
 import com.telenav.kivakit.core.value.level.Percent;
-import com.telenav.kivakit.interfaces.numeric.Quantizable;
-import com.telenav.kivakit.interfaces.numeric.QuantumComparable;
+import com.telenav.kivakit.interfaces.value.LongValued;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import static com.telenav.kivakit.core.ensure.Ensure.ensure;
@@ -33,11 +32,11 @@ import static com.telenav.kivakit.core.ensure.Ensure.ensure;
  *
  * @author jonathanl (shibo)
  */
-@UmlClassDiagram(diagram = DiagramCount.class)
+@SuppressWarnings("unused") @UmlClassDiagram(diagram = DiagramCount.class)
 public class MutableCount implements
         Countable,
-        Comparable<Countable>,
-        QuantumComparable<Countable>
+        LongValued,
+        Comparable<Countable>
 {
     private long count;
 
@@ -76,7 +75,7 @@ public class MutableCount implements
     @Override
     public int compareTo(Countable that)
     {
-        return (int) (quantum() - that.quantum());
+        return (int) (longValue() - that.count().longValue());
     }
 
     @Override
@@ -120,21 +119,15 @@ public class MutableCount implements
     }
 
     @Override
-    public boolean isGreaterThan(Quantizable that)
-    {
-        return asLong() > that.quantum();
-    }
-
-    @Override
-    public boolean isLessThan(Quantizable that)
-    {
-        return asLong() < that.quantum();
-    }
-
-    @Override
     public boolean isZero()
     {
         return asLong() == 0L;
+    }
+
+    @Override
+    public long longValue()
+    {
+        return count;
     }
 
     public long minus(long that)
@@ -160,9 +153,9 @@ public class MutableCount implements
         return count;
     }
 
-    public long plus(Quantizable that)
+    public long plus(LongValued that)
     {
-        return plus(that.quantum());
+        return plus(that.longValue());
     }
 
     public void set(long count)
@@ -172,14 +165,8 @@ public class MutableCount implements
     }
 
     @Override
-    public int size()
-    {
-        return asInt();
-    }
-
-    @Override
     public String toString()
     {
-        return asCount().quantumAsCommaSeparatedString();
+        return asCount().toString();
     }
 }

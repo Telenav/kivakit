@@ -189,13 +189,6 @@ public class ObjectListTest extends CoreUnitTest
     }
 
     @Test
-    public void testQuantized()
-    {
-        ensure(Arrays.equals(ObjectList.objectList(Count._1, Count._5, Count._7).quantized(),
-                new long[] { 1L, 5L, 7L }));
-    }
-
-    @Test
     public void testRemoveLast()
     {
         var list = ObjectList.objectList(1, 2, 3, 4, 5);

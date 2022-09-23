@@ -25,6 +25,7 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 import java.util.Iterator;
 
 import static com.telenav.kivakit.annotations.code.ApiStability.STABLE;
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_DEFAULT_EXPANDABLE;
 import static com.telenav.kivakit.annotations.code.DocumentationQuality.SUFFICIENT;
 import static com.telenav.kivakit.annotations.code.TestingQuality.NONE;
 import static com.telenav.kivakit.annotations.code.TestingQuality.UNNECESSARY;
@@ -41,7 +42,7 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.UNNECESSARY;
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramCollection.class)
-@CodeQuality(stability = STABLE,
+@CodeQuality(stability = STABLE_DEFAULT_EXPANDABLE,
              testing = NONE,
              documentation = SUFFICIENT)
 public interface Indexable<Element> extends

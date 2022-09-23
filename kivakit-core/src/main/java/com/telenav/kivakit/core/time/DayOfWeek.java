@@ -22,6 +22,7 @@ import com.telenav.kivakit.core.language.Hash;
 import com.telenav.kivakit.core.internal.lexakai.DiagramTime;
 import com.telenav.kivakit.core.testing.NoTestRequired;
 import com.telenav.kivakit.core.testing.Tested;
+import com.telenav.kivakit.interfaces.string.StringFormattable;
 import com.telenav.kivakit.interfaces.time.Nanoseconds;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
@@ -164,9 +165,8 @@ public class DayOfWeek extends BaseTime<DayOfWeek>
     }
 
     @Override
-    @SuppressWarnings("SwitchStatementWithTooFewBranches")
     @NoTestRequired
-    public String asString(Format format)
+    public String asString(StringFormattable.Format format)
     {
         return asJavaDayOfWeek().name();
     }

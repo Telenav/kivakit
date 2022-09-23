@@ -1,7 +1,7 @@
 package com.telenav.kivakit.interfaces.numeric;
 
 import com.telenav.kivakit.interfaces.collection.NextValue;
-import com.telenav.kivakit.interfaces.factory.MapFactory;
+import com.telenav.kivakit.interfaces.value.LongValued;
 
 /**
  * Interface for common operations on integers (in the math sense, not in the sense of {@link Integer}).
@@ -9,22 +9,15 @@ import com.telenav.kivakit.interfaces.factory.MapFactory;
  * @param <Value> The integer type
  * @author jonathanl (shibo)
  */
-public interface IntegerNumeric<Value extends Quantizable> extends
+public interface Numeric<Value extends LongValued> extends
         Arithmetic<Value>,
         Maximizable<Value>,
         Minimizable<Value>,
-        NextValue<Value>,
-        QuantumComparable<Value>,
-        Castable,
-        MapFactory<Long, Value>
+        NextValue<Value>
 {
-    default Value decremented()
+    @Override
+    default Value next()
     {
-        return minus(newInstance(1L));
-    }
-
-    default Value incremented()
-    {
-        return plus(newInstance(1L));
+        return plus(1);
     }
 }

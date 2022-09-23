@@ -74,6 +74,7 @@ import java.util.regex.Pattern;
  *
  * @author Jonathan Locke
  */
+@SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramCount.class)
 public final class Bytes extends BaseCount<Bytes> implements ByteSized
 {

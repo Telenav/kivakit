@@ -19,7 +19,7 @@
 package com.telenav.kivakit.core.language;
 
 import com.telenav.kivakit.core.internal.lexakai.DiagramPrimitive;
-import com.telenav.kivakit.interfaces.numeric.Quantizable;
+import com.telenav.kivakit.interfaces.value.LongValued;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
@@ -75,24 +75,24 @@ public class Arrays
         return false;
     }
 
-    static int[] intArray(Collection<? extends Quantizable> values)
+    static int[] intArray(Collection<? extends LongValued> values)
     {
         var array = new int[values.size()];
         var index = 0;
-        for (Quantizable value : values)
+        for (var value : values)
         {
-            array[index++] = (int) value.quantum();
+            array[index++] = (int) value.longValue();
         }
         return array;
     }
 
-    static long[] longArray(Collection<? extends Quantizable> values)
+    static long[] longArray(Collection<? extends LongValued> values)
     {
         var array = new long[values.size()];
         var index = 0;
-        for (Quantizable value : values)
+        for (var value : values)
         {
-            array[index++] = value.quantum();
+            array[index++] = value.longValue();
         }
         return array;
     }
