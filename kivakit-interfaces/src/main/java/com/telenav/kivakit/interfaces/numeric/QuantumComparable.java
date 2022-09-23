@@ -1,5 +1,10 @@
 package com.telenav.kivakit.interfaces.numeric;
 
+/**
+ * Allows the comparizon of two {@link Quantizable} objects
+ *
+ * @author jonathanl (shibo)
+ */
 public interface QuantumComparable<Value extends Quantizable> extends Quantizable
 {
     default boolean isApproximately(Quantizable that, Quantizable within)

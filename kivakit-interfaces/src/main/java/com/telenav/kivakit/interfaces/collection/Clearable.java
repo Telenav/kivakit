@@ -18,12 +18,29 @@
 
 package com.telenav.kivakit.interfaces.collection;
 
+import com.telenav.kivakit.annotations.code.CodeQuality;
+import com.telenav.kivakit.interfaces.internal.lexakai.DiagramCollection;
+import com.telenav.lexakai.annotations.UmlClassDiagram;
+
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNNECESSARY;
+
 /**
  * Interface to an object that can be cleared
  *
  * @author jonathanl (shibo)
  */
+@FunctionalInterface
+@UmlClassDiagram(diagram = DiagramCollection.class)
+@CodeQuality(stability = STABLE,
+             testing = UNNECESSARY,
+             documentation = COMPLETE)
 public interface Clearable
 {
+    /**
+     * Clears this object. Typically an object implementing this interfaced has a collection to be cleared, but other
+     * values might also be affected, such as indexes or buffers.
+     */
     void clear();
 }

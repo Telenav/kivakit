@@ -32,8 +32,7 @@ import com.telenav.kivakit.core.messaging.messages.status.Problem;
 import com.telenav.kivakit.core.messaging.repeaters.RepeaterMixin;
 import com.telenav.kivakit.core.testing.Tested;
 import com.telenav.kivakit.interfaces.code.Code;
-import com.telenav.kivakit.interfaces.function.BooleanFunction;
-import com.telenav.kivakit.interfaces.string.StringMapper;
+import com.telenav.kivakit.interfaces.string.Parsable;
 import com.telenav.kivakit.interfaces.value.Source;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
@@ -113,7 +112,7 @@ import static com.telenav.kivakit.core.ensure.Ensure.unsupported;
  * <p><b>Conditionals</b></p>
  *
  * <ul>
- *     <li>{@link #presentIf(BooleanFunction)} - Applies the given function to this value, returning this value if it is true, or {@link #absent()} if it is false</li>
+ *     <li>{@link #presentIf(Function)} - Applies the given function to this value, returning this value if it is true, or {@link #absent()} if it is false</li>
  *     <li>{@link #ifPresent(Consumer)} - Calls the given consumer if a value is present</li>
  *     <li>{@link #ifPresentOr(Consumer, UncheckedVoidCode)} - Calls the given consumer if a value is present, otherwise calls the given code</li>
  *     <li>{@link #or(Code)} - If a value is present, returns this value, otherwise returns the {@link Maybe} supplied by the given {@link Code}</li>
@@ -295,15 +294,15 @@ public class Result<Value> extends Maybe<Value> implements RepeaterMixin
     }
 
     /**
-     * If a value is present, converts it to a string and then applies the given {@link StringMapper} class to convert
-     * it to a value. The {@link StringMapper} must have a public constructor that takes a {@link Listener}. String
-     * converters in the <i>kivakit-converter</i> mini-framework are such {@link StringMapper}s.
+     * If a value is present, converts it to a string and then applies the given {@link Parsable} class to convert
+     * it to a value. The {@link Parsable} must have a public constructor that takes a {@link Listener}. String
+     * converters in the <i>kivakit-converter</i> mini-framework are such {@link Parsable}s.
      *
-     * @param mapperType The {@link StringMapper} class
+     * @param mapperType The {@link Parsable} class
      * @return A {@link Maybe} object with the mapped value, or {@link #absent()} if the mapping failed
      */
     @Tested
-    public <Output, Mapper extends StringMapper<? extends Output>> Maybe<Output> convert(Class<Mapper> mapperType)
+    public <Output, Mapper extends Parsable<? extends Output>> Maybe<Output> convert(Class<Mapper> mapperType)
     {
         var outer = this;
         return tryCatchDefault(() ->
@@ -311,7 +310,7 @@ public class Result<Value> extends Maybe<Value> implements RepeaterMixin
             if (isPresent())
             {
                 var mapper = Classes.newInstance(mapperType, Listener.class, outer);
-                return newMaybe(ensureNotNull(mapper).map(get().toString()));
+                return newMaybe(ensureNotNull(mapper).parse(get().toString()));
             }
             else
             {
@@ -549,7 +548,7 @@ public class Result<Value> extends Maybe<Value> implements RepeaterMixin
      * {@inheritDoc}
      */
     @Tested
-    public Result<Value> presentIf(BooleanFunction<Value> predicate)
+    public Result<Value> presentIf(Function<Value, Boolean> predicate)
     {
         return (Result<Value>) super.presentIf(predicate);
     }

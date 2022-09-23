@@ -18,20 +18,26 @@
 
 package com.telenav.kivakit.interfaces.collection;
 
+import com.telenav.kivakit.annotations.code.CodeQuality;
 import com.telenav.kivakit.interfaces.internal.lexakai.DiagramNumeric;
 import com.telenav.kivakit.interfaces.numeric.Quantizable;
-import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNNECESSARY;
+
 /**
- * An object (usually some sort of collection or store of values) which has a {@link #size()}. The object can be {@link
- * #isEmpty()} if the size is zero or {@link #isNonEmpty()} if the size is non-zero.
+ * An object (usually some sort of collection or store of values) which has a {@link #size()}. The object can be
+ * {@link #isEmpty()} if the size is zero or {@link #isNonEmpty()} if the size is non-zero.
  *
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramNumeric.class)
-@LexakaiJavadoc(complete = true)
-public interface Sized extends Quantizable
+@CodeQuality(stability = STABLE,
+             testing = UNNECESSARY,
+             documentation = COMPLETE)
+public interface Sized extends Quantizable, Emptiness
 {
     /**
      * Returns true if the {@link #size()} of this object is zero
@@ -41,16 +47,6 @@ public interface Sized extends Quantizable
     default boolean isEmpty()
     {
         return size() == 0;
-    }
-
-    /**
-     * Returns true if the size of this object is non-zero.
-     *
-     * @return True if this object has a non-zero {@link #size()}
-     */
-    default boolean isNonEmpty()
-    {
-        return !isEmpty();
     }
 
     @Override

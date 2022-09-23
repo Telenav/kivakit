@@ -1,4 +1,4 @@
-package com.telenav.kivakit.interfaces.numeric;
+package com.telenav.kivakit.interfaces.string;
 
 import com.telenav.kivakit.annotations.code.CodeQuality;
 
@@ -7,20 +7,21 @@ import static com.telenav.kivakit.annotations.code.DocumentationQuality.COMPLETE
 import static com.telenav.kivakit.annotations.code.TestingQuality.UNNECESSARY;
 
 /**
- * Interface for performing basic arithmetic
+ * Interface to code that maps from a string to a value
  *
  * @author jonathanl (shibo)
  */
+@FunctionalInterface
 @CodeQuality(stability = STABLE,
              testing = UNNECESSARY,
              documentation = COMPLETE)
-public interface Arithmetic<Value>
+public interface Parsable<Value>
 {
-    Value dividedBy(Value value);
-
-    Value minus(Value value);
-
-    Value plus(Value value);
-
-    Value times(Value value);
+    /**
+     * Maps the given text to a value
+     *
+     * @param text The text
+     * @return The value
+     */
+    Value parse(String text);
 }
