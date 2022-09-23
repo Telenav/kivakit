@@ -1,6 +1,6 @@
 package com.telenav.kivakit.core.language.trait;
 
-import com.telenav.kivakit.annotations.code.CodeQuality;
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.function.Functions;
 import com.telenav.kivakit.core.language.Objects;
 import com.telenav.kivakit.core.messaging.Repeater;
@@ -62,9 +62,9 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.NONE;
  * @author jonathanl (shibo)
  */
 @SuppressWarnings("unused")
-@CodeQuality(stability = STABLE_DEFAULT_EXPANDABLE,
-             documentation = SUFFICIENT,
-             testing = NONE)
+@ApiQuality(stability = STABLE_DEFAULT_EXPANDABLE,
+            documentation = SUFFICIENT,
+            testing = NONE)
 public interface LanguageTrait extends Repeater
 {
     /**

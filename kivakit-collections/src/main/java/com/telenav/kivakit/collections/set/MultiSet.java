@@ -24,7 +24,7 @@ import com.telenav.kivakit.core.collections.map.BaseMap;
 import com.telenav.kivakit.core.collections.set.ObjectSet;
 import com.telenav.kivakit.core.value.count.Count;
 import com.telenav.kivakit.core.value.count.Maximum;
-import com.telenav.kivakit.interfaces.collection.NextValue;
+import com.telenav.kivakit.interfaces.collection.NextIterable;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
@@ -85,7 +85,7 @@ public class MultiSet<Key, Value> extends BaseMap<Key, ObjectSet<Value>>
 
     public Iterable<Value> flatValues()
     {
-        return Iterables.iterable(() -> new NextValue<>()
+        return Iterables.iterable(() -> new NextIterable<>()
         {
             private final Iterator<ObjectSet<Value>> sets = values().iterator();
 

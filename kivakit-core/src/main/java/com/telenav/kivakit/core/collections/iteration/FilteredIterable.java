@@ -19,9 +19,9 @@
 package com.telenav.kivakit.core.collections.iteration;
 
 import com.telenav.kivakit.annotations.code.ApiStability;
-import com.telenav.kivakit.annotations.code.CodeQuality;
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramCollections;
-import com.telenav.kivakit.interfaces.collection.NextValue;
+import com.telenav.kivakit.interfaces.collection.NextIterable;
 import com.telenav.kivakit.interfaces.comparison.Filter;
 import com.telenav.kivakit.interfaces.comparison.Matcher;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
@@ -40,9 +40,9 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.NONE;
  * @see Filter
  */
 @UmlClassDiagram(diagram = DiagramCollections.class)
-@CodeQuality(stability = ApiStability.STABLE,
-             testing = NONE,
-             documentation = SUFFICIENT)
+@ApiQuality(stability = ApiStability.STABLE,
+            testing = NONE,
+            documentation = SUFFICIENT)
 public class FilteredIterable<Element> extends BaseIterable<Element>
 {
     private final Matcher<Element> filter;
@@ -56,9 +56,9 @@ public class FilteredIterable<Element> extends BaseIterable<Element>
     }
 
     @Override
-    protected NextValue<Element> newNext()
+    protected NextIterable<Element> newNext()
     {
-        return new NextValue<>()
+        return new NextIterable<>()
         {
             private final Iterator<Element> iterator = iterable.iterator();
 

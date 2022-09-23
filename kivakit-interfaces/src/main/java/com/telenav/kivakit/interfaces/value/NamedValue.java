@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.interfaces.value;
 
-import com.telenav.kivakit.annotations.code.CodeQuality;
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.interfaces.internal.lexakai.DiagramNaming;
 import com.telenav.kivakit.interfaces.naming.Named;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
@@ -36,9 +36,9 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.UNNECESSARY;
  * @see Valued
  */
 @UmlClassDiagram(diagram = DiagramNaming.class)
-@CodeQuality(stability = STABLE,
-             testing = UNNECESSARY,
-             documentation = SUFFICIENT)
+@ApiQuality(stability = STABLE,
+            testing = UNNECESSARY,
+            documentation = SUFFICIENT)
 public interface NamedValue<Value> extends
         Named,
         Valued<Value>

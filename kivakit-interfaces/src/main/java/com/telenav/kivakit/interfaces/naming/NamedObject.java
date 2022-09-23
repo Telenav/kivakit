@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.interfaces.naming;
 
-import com.telenav.kivakit.annotations.code.CodeQuality;
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.interfaces.internal.lexakai.DiagramNaming;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
@@ -38,9 +38,9 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.UNNECESSARY;
  */
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramNaming.class)
-@CodeQuality(stability = STABLE,
-             testing = UNNECESSARY,
-             documentation = SUFFICIENT)
+@ApiQuality(stability = STABLE,
+            testing = UNNECESSARY,
+            documentation = SUFFICIENT)
 public interface NamedObject extends Nameable
 {
     /**

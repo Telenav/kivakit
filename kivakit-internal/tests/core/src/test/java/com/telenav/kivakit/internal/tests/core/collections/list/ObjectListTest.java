@@ -23,7 +23,6 @@ import com.telenav.kivakit.core.value.count.Count;
 import org.junit.Assert;
 import org.junit.Test;
 
-import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 
@@ -87,7 +86,7 @@ public class ObjectListTest extends CoreUnitTest
     @Test
     public void testFind()
     {
-        ensureEqual(ObjectList.objectList(1, 2, 3, 4, 5).find(value -> value == 3), 3);
+        ensureEqual(ObjectList.objectList(1, 2, 3, 4, 5).findFirst(value -> value == 3), 3);
     }
 
     @Test

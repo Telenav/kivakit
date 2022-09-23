@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.interfaces.io;
 
-import com.telenav.kivakit.annotations.code.CodeQuality;
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.interfaces.internal.lexakai.DiagramIo;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeMember;
@@ -35,9 +35,9 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.UNNECESSARY;
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramIo.class)
-@CodeQuality(stability = STABLE,
-             testing = UNNECESSARY,
-             documentation = SUFFICIENT)
+@ApiQuality(stability = STABLE,
+            testing = UNNECESSARY,
+            documentation = SUFFICIENT)
 public interface Closeable extends AutoCloseable
 {
     /**

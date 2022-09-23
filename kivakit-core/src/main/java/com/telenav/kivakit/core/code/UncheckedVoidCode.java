@@ -1,7 +1,7 @@
 package com.telenav.kivakit.core.code;
 
 import com.telenav.kivakit.annotations.code.ApiStability;
-import com.telenav.kivakit.annotations.code.CodeQuality;
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.messaging.repeaters.RepeaterMixin;
 import com.telenav.kivakit.core.time.Duration;
@@ -15,9 +15,9 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.NONE;
  * @author jonathanl (shibo)
  */
 @FunctionalInterface
-@CodeQuality(stability = ApiStability.STABLE,
-             testing = NONE,
-             documentation = SUFFICIENT)
+@ApiQuality(stability = ApiStability.STABLE,
+            testing = NONE,
+            documentation = SUFFICIENT)
 public interface UncheckedVoidCode extends RepeaterMixin
 {
     static UncheckedVoidCode of(UncheckedVoidCode code)

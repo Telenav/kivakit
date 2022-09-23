@@ -18,16 +18,20 @@
 
 package com.telenav.kivakit.core.value.count;
 
-import com.telenav.kivakit.core.language.primitive.Longs;
+import com.telenav.kivakit.core.collections.iteration.BaseIterator;
 import com.telenav.kivakit.core.internal.lexakai.DiagramCount;
+import com.telenav.kivakit.core.language.primitive.Longs;
 import com.telenav.kivakit.core.string.Formatter;
 import com.telenav.kivakit.core.testing.Tested;
-import com.telenav.kivakit.interfaces.collection.NextValue;
-import com.telenav.kivakit.interfaces.numeric.Numeric;
+import com.telenav.kivakit.interfaces.collection.NextIterable;
+import com.telenav.kivakit.interfaces.factory.MapFactory;
 import com.telenav.kivakit.interfaces.numeric.Maximizable;
 import com.telenav.kivakit.interfaces.numeric.Minimizable;
+import com.telenav.kivakit.interfaces.numeric.Numeric;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
+import org.jetbrains.annotations.NotNull;
 
+import java.util.Iterator;
 import java.util.Random;
 import java.util.function.Consumer;
 
@@ -40,8 +44,8 @@ import static com.telenav.kivakit.core.value.count.Range.UpperBound.INCLUSIVE;
  * <p>Creation and Properties</p>
  *
  * <p>
- * Ranges can be created in two ways, as {@link #rangeExclusive(Numeric, Numeric)} ranges which do not
- * include their maximum value, and as {@link #rangeInclusive(Numeric, Numeric)} ranges which do.
+ * Ranges can be created in two ways, as {@link #rangeExclusive(Numeric, Numeric)} ranges which do not include their
+ * maximum value, and as {@link #rangeInclusive(Numeric, Numeric)} ranges which do.
  * </p>
  *
  * <ul>
@@ -62,8 +66,6 @@ import static com.telenav.kivakit.core.value.count.Range.UpperBound.INCLUSIVE;
  * </p>
  *
  * <ul>
- *     <li>{@link #forEach(LoopBody)}</li>
- *     <li>{@link #forCount(Count, FilteredLoopBody)} </li>
  *     <li>{@link #loop(Runnable)}</li>
  * </ul>
  *
@@ -76,15 +78,16 @@ import static com.telenav.kivakit.core.value.count.Range.UpperBound.INCLUSIVE;
  * </ul>
  *
  * @param <Value> A value that is {@link Numeric}, which includes {@link Minimizable}, {@link Maximizable},
- * {@link Comparable}, and {@link NextValue}.
+ * {@link Comparable}, and {@link NextIterable}.
  * @author jonathanl (shibo)
- * @see LoopBody
  */
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramCount.class)
 public class Range<Value extends Numeric<Value>> implements
         Comparable<Countable>,
-        Countable
+        Countable,
+        Iterable<Value>,
+        MapFactory<Long, Value>
 {
     /**
      * Constructs a range that excludes the given maximum value.
@@ -139,7 +142,7 @@ public class Range<Value extends Numeric<Value>> implements
     @Override
     public int compareTo(Countable that)
     {
-        return Long.compare(quantum(), that.quantum());
+        return Long.compare(count().longValue(), that.count().longValue());
     }
 
     /**
@@ -162,6 +165,12 @@ public class Range<Value extends Numeric<Value>> implements
                 value.isLessThanOrEqualTo(inclusiveMaximum());
     }
 
+    @Override
+    public Count count()
+    {
+        return Count.count(size());
+    }
+
     /**
      * Returns the exclusive maximum for this range, even if it was constructed as inclusive (for example, inclusive
      * range of 0 to 9 is the same as an exclusive range of 0-10).
@@ -174,7 +183,6 @@ public class Range<Value extends Numeric<Value>> implements
                 : maximum.incremented();
     }
 
-
     /**
      * Calls the given {@link Consumer} with each value from the minimum to the maximum (inclusive or exclusive,
      * depending on construction of the range)
@@ -184,6 +192,7 @@ public class Range<Value extends Numeric<Value>> implements
     @Tested
     public void forEach(Consumer<Integer> body)
     {
+        for (var at : )
         forEachInt(at -> body.accept(at));
     }
 
@@ -217,6 +226,27 @@ public class Range<Value extends Numeric<Value>> implements
         return upperBound == INCLUSIVE;
     }
 
+    @NotNull
+    @Override
+    public Iterator<Value> iterator()
+    {
+        return new BaseIterator<>()
+        {
+            long at = minimum.longValue();
+
+            @Override
+            protected Value onNext()
+            {
+                if (at < exclusiveMaximum().longValue())
+                {
+                    at++;
+                    return newInstance
+                }
+                return null;
+            }
+        };
+    }
+
     /**
      * Executes the given code body once for each value in this range
      */
@@ -233,6 +263,12 @@ public class Range<Value extends Numeric<Value>> implements
     public Value minimum()
     {
         return minimum;
+    }
+
+    @Override
+    public Value newInstance(final Long value)
+    {
+        return null;
     }
 
     /**

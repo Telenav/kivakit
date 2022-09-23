@@ -18,17 +18,15 @@
 
 package com.telenav.kivakit.interfaces.collection;
 
-import com.telenav.kivakit.annotations.code.CodeQuality;
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.interfaces.internal.lexakai.DiagramCollection;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.Iterator;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.STABLE;
 import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_DEFAULT_EXPANDABLE;
 import static com.telenav.kivakit.annotations.code.DocumentationQuality.SUFFICIENT;
 import static com.telenav.kivakit.annotations.code.TestingQuality.NONE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.UNNECESSARY;
 
 /**
  * A sequence that has a known size and can be indexed, like a list, although not necessarily a collection. For example,
@@ -42,13 +40,22 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.UNNECESSARY;
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramCollection.class)
-@CodeQuality(stability = STABLE_DEFAULT_EXPANDABLE,
-             testing = NONE,
-             documentation = SUFFICIENT)
+@ApiQuality(stability = STABLE_DEFAULT_EXPANDABLE,
+            testing = NONE,
+            documentation = SUFFICIENT)
 public interface Indexable<Element> extends
         Sized,
         Sequence<Element>
 {
+    /**
+     * @return The first item in this indexable object, or null if there is none
+     */
+    @Override
+    default Element first()
+    {
+        return isEmpty() ? null : get(0);
+    }
+
     /**
      * @return The value for the given index
      */

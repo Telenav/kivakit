@@ -18,9 +18,11 @@
 
 package com.telenav.kivakit.interfaces.code;
 
-import com.telenav.kivakit.annotations.code.CodeQuality;
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.interfaces.internal.lexakai.DiagramCode;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
+
+import java.util.function.Consumer;
 
 import static com.telenav.kivakit.annotations.code.ApiStability.STABLE;
 import static com.telenav.kivakit.annotations.code.DocumentationQuality.SUFFICIENT;
@@ -32,27 +34,19 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.UNNECESSARY;
  * @param <Value> The type of object to be passed to the callback
  * @author jonathanl (shibo)
  */
-@FunctionalInterface
 @UmlClassDiagram(diagram = DiagramCode.class)
-@CodeQuality(stability = STABLE,
-             testing = UNNECESSARY,
-             documentation = SUFFICIENT)
-public interface Callback<Value>
+@ApiQuality(stability = STABLE,
+            testing = UNNECESSARY,
+            documentation = SUFFICIENT)
+public interface Callback<Value> extends Consumer<Value>
 {
     /**
      * Calls this callback with the given value
      *
      * @param value The value
      */
-    default void callback(Value value)
+    default void call(Value value)
     {
-        onCallback(value);
+        accept(value);
     }
-
-    /**
-     * The callback implementation
-     *
-     * @param value The value passed to the callback code
-     */
-    void onCallback(Value value);
 }

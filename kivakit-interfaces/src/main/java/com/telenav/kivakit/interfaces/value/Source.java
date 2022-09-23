@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.interfaces.value;
 
-import com.telenav.kivakit.annotations.code.CodeQuality;
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.interfaces.factory.Factory;
 
 import java.util.function.Supplier;
@@ -28,16 +28,17 @@ import static com.telenav.kivakit.annotations.code.DocumentationQuality.SUFFICIE
 import static com.telenav.kivakit.annotations.code.TestingQuality.UNNECESSARY;
 
 /**
- * A source of values.
+ * A source of values. This interface trivially extends {@link Supplier} to provide a better name for some
+ * applications.
  *
  * @param <Value> The object type
  * @author jonathanl (shibo)
  * @see Factory
  */
 @FunctionalInterface
-@CodeQuality(stability = STABLE,
-             testing = UNNECESSARY,
-             documentation = SUFFICIENT)
+@ApiQuality(stability = STABLE,
+            testing = UNNECESSARY,
+            documentation = SUFFICIENT)
 public interface Source<Value> extends Supplier<Value>
 {
 }

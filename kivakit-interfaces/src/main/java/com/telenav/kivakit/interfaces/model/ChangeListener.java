@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.interfaces.model;
 
-import com.telenav.kivakit.annotations.code.CodeQuality;
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.interfaces.internal.lexakai.DiagramModel;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
@@ -34,15 +34,15 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.UNNECESSARY;
 @SuppressWarnings("unused")
 @FunctionalInterface
 @UmlClassDiagram(diagram = DiagramModel.class)
-@CodeQuality(stability = STABLE,
-             testing = UNNECESSARY,
-             documentation = SUFFICIENT)
-public interface ModelListener<Model>
+@ApiQuality(stability = STABLE,
+            testing = UNNECESSARY,
+            documentation = SUFFICIENT)
+public interface ChangeListener<Model>
 {
     /**
-     * Called when a model changes
+     * Called when a value changes
      *
      * @param model The model
      */
-    void modelChanged(Model model);
+    void onChanged(Model model);
 }

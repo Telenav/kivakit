@@ -1,6 +1,6 @@
 package com.telenav.kivakit.core.function;
 
-import com.telenav.kivakit.annotations.code.CodeQuality;
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.messaging.Message;
 import com.telenav.kivakit.core.messaging.Repeater;
 import com.telenav.kivakit.core.messaging.messages.status.Problem;
@@ -36,9 +36,9 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.NONE;
  * @see Code
  */
 @SuppressWarnings("unused")
-@CodeQuality(stability = STABLE_DEFAULT_EXPANDABLE,
-             documentation = SUFFICIENT,
-             testing = NONE)
+@ApiQuality(stability = STABLE_DEFAULT_EXPANDABLE,
+            documentation = SUFFICIENT,
+            testing = NONE)
 public interface ResultTrait extends Repeater
 {
     /**

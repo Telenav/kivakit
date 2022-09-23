@@ -18,12 +18,11 @@
 
 package com.telenav.kivakit.interfaces.collection;
 
-import com.telenav.kivakit.annotations.code.CodeQuality;
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.interfaces.internal.lexakai.DiagramCollection;
-import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.STABLE;
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_DEFAULT_EXPANDABLE;
 import static com.telenav.kivakit.annotations.code.DocumentationQuality.SUFFICIENT;
 import static com.telenav.kivakit.annotations.code.TestingQuality.UNNECESSARY;
 
@@ -32,15 +31,48 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.UNNECESSARY;
  *
  * @author jonathanl (shibo)
  */
+@SuppressWarnings("unused")
 @FunctionalInterface
 @UmlClassDiagram(diagram = DiagramCollection.class)
-@CodeQuality(stability = STABLE,
-             testing = UNNECESSARY,
-             documentation = SUFFICIENT)
-public interface Contains<T>
+@ApiQuality(stability = STABLE_DEFAULT_EXPANDABLE,
+            testing = UNNECESSARY,
+            documentation = SUFFICIENT)
+public interface Contains<Value>
 {
     /**
      * @return True if the given value is contained in this object
      */
-    boolean contains(T value);
+    boolean contains(Value value);
+
+    /**
+     * @param values The values to check
+     * @return True if all values are contained by this object
+     */
+    default boolean containsAll(Iterable<Value> values)
+    {
+        for (var value : values)
+        {
+            if (!contains(value))
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    /**
+     * @param values The values to check
+     * @return True if none of the given values are contained by this object
+     */
+    default boolean containsNone(Iterable<Value> values)
+    {
+        for (var value : values)
+        {
+            if (contains(value))
+            {
+                return false;
+            }
+        }
+        return true;
+    }
 }

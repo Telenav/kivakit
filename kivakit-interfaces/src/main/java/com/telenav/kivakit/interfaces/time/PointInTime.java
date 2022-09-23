@@ -1,10 +1,10 @@
 package com.telenav.kivakit.interfaces.time;
 
-import com.telenav.kivakit.annotations.code.CodeQuality;
+import com.telenav.kivakit.annotations.code.ApiQuality;
 
 import java.time.Instant;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.STABLE;
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_DEFAULT_EXPANDABLE;
 import static com.telenav.kivakit.annotations.code.DocumentationQuality.SUFFICIENT;
 import static com.telenav.kivakit.annotations.code.TestingQuality.UNNECESSARY;
 
@@ -79,9 +79,9 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.UNNECESSARY;
  *
  * @author jonathanl (shibo)
  */
-@CodeQuality(stability = STABLE,
-             testing = UNNECESSARY,
-             documentation = SUFFICIENT)
+@ApiQuality(stability = STABLE_DEFAULT_EXPANDABLE,
+            testing = UNNECESSARY,
+            documentation = SUFFICIENT)
 public interface PointInTime<Time extends PointInTime<Time, Duration>, Duration extends LengthOfTime<Duration>> extends
         Comparable<PointInTime<?, ?>>,
         TimeMeasurement
@@ -167,11 +167,17 @@ public interface PointInTime<Time extends PointInTime<Time, Duration>, Duration 
         return nanoseconds().isLessThanOrEqualTo(that.nanoseconds());
     }
 
+    /**
+     * @return True if this is a negative point in time
+     */
     default boolean isNegative()
     {
         return nanoseconds().isNegative();
     }
 
+    /**
+     * @return True if this is time zero
+     */
     default boolean isZero()
     {
         return nanoseconds().isZero();

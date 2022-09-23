@@ -1,6 +1,6 @@
 package com.telenav.kivakit.core.language.trait;
 
-import com.telenav.kivakit.annotations.code.CodeQuality;
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.code.UncheckedCode;
 import com.telenav.kivakit.core.code.UncheckedVoidCode;
 import com.telenav.kivakit.core.messaging.Broadcaster;
@@ -44,9 +44,9 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.NONE;
  * @see TryCatchTrait
  */
 @SuppressWarnings("unused")
-@CodeQuality(stability = STABLE_DEFAULT_EXPANDABLE,
-             documentation = SUFFICIENT,
-             testing = NONE)
+@ApiQuality(stability = STABLE_DEFAULT_EXPANDABLE,
+            documentation = SUFFICIENT,
+            testing = NONE)
 public interface TryTrait extends
         Broadcaster,
         TryCatchTrait

@@ -18,13 +18,12 @@
 
 package com.telenav.kivakit.interfaces.collection;
 
-import com.telenav.kivakit.annotations.code.CodeQuality;
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.interfaces.internal.lexakai.DiagramCollection;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.Iterator;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.STABLE;
 import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_DEFAULT_EXPANDABLE;
 import static com.telenav.kivakit.annotations.code.DocumentationQuality.SUFFICIENT;
 import static com.telenav.kivakit.annotations.code.TestingQuality.UNNECESSARY;
@@ -38,22 +37,22 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.UNNECESSARY;
  */
 @FunctionalInterface
 @UmlClassDiagram(diagram = DiagramCollection.class)
-@CodeQuality(stability = STABLE_DEFAULT_EXPANDABLE,
-             testing = UNNECESSARY,
-             documentation = SUFFICIENT)
-public interface Appendable<T>
+@ApiQuality(stability = STABLE_DEFAULT_EXPANDABLE,
+            testing = UNNECESSARY,
+            documentation = SUFFICIENT)
+public interface Appendable<Value>
 {
     /**
      * Adds the given value
      *
      * @return Self reference for chaining of append calls
      */
-    Appendable<T> append(T value);
+    Appendable<Value> append(Value value);
 
     /**
      * @param values A sequence of values to add
      */
-    default Appendable<T> appendAll(Iterator<? extends T> values)
+    default Appendable<Value> appendAll(Iterator<Value> values)
     {
         while (values.hasNext())
         {
@@ -65,12 +64,8 @@ public interface Appendable<T>
     /**
      * @param values A sequence of values to add
      */
-    default Appendable<T> appendAll(Iterable<? extends T> values)
+    default Appendable<Value> appendAll(Iterable<Value> values)
     {
-        for (T value : values)
-        {
-            append(value);
-        }
-        return this;
+        return appendAll(values.iterator());
     }
 }

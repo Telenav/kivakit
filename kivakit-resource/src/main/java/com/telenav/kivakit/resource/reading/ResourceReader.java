@@ -24,8 +24,8 @@ import com.telenav.kivakit.core.collections.list.StringList;
 import com.telenav.kivakit.core.io.IO;
 import com.telenav.kivakit.core.io.StringReader;
 import com.telenav.kivakit.core.progress.ProgressReporter;
-import com.telenav.kivakit.interfaces.collection.NextValue;
-import com.telenav.kivakit.interfaces.string.StringSource;
+import com.telenav.kivakit.interfaces.collection.NextIterable;
+import com.telenav.kivakit.interfaces.string.AsString;
 import com.telenav.kivakit.resource.Resource;
 import com.telenav.kivakit.resource.internal.lexakai.DiagramFileSystemFile;
 import com.telenav.kivakit.resource.internal.lexakai.DiagramResource;
@@ -59,7 +59,7 @@ import static com.telenav.kivakit.core.ensure.Ensure.fail;
 @UmlClassDiagram(diagram = DiagramResource.class)
 @UmlExcludeSuperTypes
 @LexakaiJavadoc(complete = true)
-public class ResourceReader implements StringSource
+public class ResourceReader implements AsString
 {
     private final Charset charset;
 
@@ -154,7 +154,7 @@ public class ResourceReader implements StringSource
      */
     public <T> Iterable<T> objects(Converter<String, T> converter, ProgressReporter reporter)
     {
-        return Iterables.iterable(() -> new NextValue<>()
+        return Iterables.iterable(() -> new NextIterable<>()
         {
             private final Iterator<String> lines = lines(reporter).iterator();
 

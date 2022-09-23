@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.interfaces.comparison;
 
-import com.telenav.kivakit.annotations.code.CodeQuality;
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.interfaces.internal.lexakai.DiagramComparison;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
@@ -32,9 +32,9 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.UNNECESSARY;
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramComparison.class)
-@CodeQuality(stability = STABLE,
-             testing = UNNECESSARY,
-             documentation = SUFFICIENT)
+@ApiQuality(stability = STABLE,
+            testing = UNNECESSARY,
+            documentation = SUFFICIENT)
 public interface Equality<Value>
 {
     /**

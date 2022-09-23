@@ -1,12 +1,12 @@
 package com.telenav.kivakit.interfaces.collection;
 
-import com.telenav.kivakit.annotations.code.CodeQuality;
+import com.telenav.kivakit.annotations.code.ApiQuality;
 
 import java.util.function.Function;
 
 import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_DEFAULT_EXPANDABLE;
 import static com.telenav.kivakit.annotations.code.DocumentationQuality.SUFFICIENT;
-import static com.telenav.kivakit.annotations.code.TestingQuality.UNNECESSARY;
+import static com.telenav.kivakit.annotations.code.TestingQuality.NONE;
 
 /**
  * An object that is {@link Joinable} is {@link Iterable}. Objects are iterated through and joined by separator values
@@ -26,9 +26,9 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.UNNECESSARY;
  * @author jonathanl (shibo)
  */
 @SuppressWarnings({ "unused", "SpellCheckingInspection" })
-@CodeQuality(stability = STABLE_DEFAULT_EXPANDABLE,
-             testing = UNNECESSARY,
-             documentation = SUFFICIENT)
+@ApiQuality(stability = STABLE_DEFAULT_EXPANDABLE,
+            testing = NONE,
+            documentation = SUFFICIENT)
 public interface Joinable<Element> extends Iterable<Element>
 {
     /**

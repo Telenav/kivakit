@@ -18,8 +18,7 @@
 
 package com.telenav.kivakit.interfaces.messaging;
 
-import com.telenav.kivakit.annotations.code.CodeQuality;
-import com.telenav.kivakit.interfaces.code.Code;
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.interfaces.internal.lexakai.DiagramMessaging;
 import com.telenav.kivakit.interfaces.value.Source;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
@@ -44,9 +43,9 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.UNNECESSARY;
  */
 @UmlClassDiagram(diagram = DiagramMessaging.class)
 @UmlRelation(label = "transmits", referent = Transmittable.class)
-@CodeQuality(stability = STABLE,
-             testing = UNNECESSARY,
-             documentation = SUFFICIENT)
+@ApiQuality(stability = STABLE,
+            testing = UNNECESSARY,
+            documentation = SUFFICIENT)
 public interface Transmitter
 {
     /**
@@ -84,17 +83,5 @@ public interface Transmitter
             onTransmit(message);
         }
         return message;
-    }
-
-    /**
-     * Executes the given code with transmitting turned off
-     *
-     * @param code The code
-     * @param <T> The code return value
-     * @return The code's return value
-     */
-    default <T> T withoutTransmitting(Code<T> code)
-    {
-        throw new UnsupportedOperationException();
     }
 }

@@ -1,13 +1,13 @@
 package com.telenav.kivakit.interfaces.code;
 
-import com.telenav.kivakit.annotations.code.CodeQuality;
+import com.telenav.kivakit.annotations.code.ApiQuality;
 
 import java.util.IdentityHashMap;
 import java.util.Map;
 
 import static com.telenav.kivakit.annotations.code.ApiStability.STABLE;
 import static com.telenav.kivakit.annotations.code.DocumentationQuality.SUFFICIENT;
-import static com.telenav.kivakit.annotations.code.TestingQuality.UNNECESSARY;
+import static com.telenav.kivakit.annotations.code.TestingQuality.NONE;
 
 /**
  * Quick hack to debug code to see how often it is being executed. The {@link #tripwireTripEvery(int)} method can be
@@ -17,9 +17,9 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.UNNECESSARY;
  * @author jonathanl (shibo)
  */
 @SuppressWarnings("unused")
-@CodeQuality(stability = STABLE,
-             testing = UNNECESSARY,
-             documentation = SUFFICIENT)
+@ApiQuality(stability = STABLE,
+            testing = NONE,
+            documentation = SUFFICIENT)
 public interface TripwireTrait
 {
     /** Map from this trait's implementing class to the current method invocation count */

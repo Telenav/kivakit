@@ -19,7 +19,7 @@
 package com.telenav.kivakit.core.collections.iteration;
 
 import com.telenav.kivakit.annotations.code.ApiStability;
-import com.telenav.kivakit.annotations.code.CodeQuality;
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.language.Hash;
 import com.telenav.kivakit.core.internal.lexakai.DiagramIteration;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
@@ -37,9 +37,9 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.NONE;
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramIteration.class)
-@CodeQuality(stability = ApiStability.STABLE,
-             testing = NONE,
-             documentation = SUFFICIENT)
+@ApiQuality(stability = ApiStability.STABLE,
+            testing = NONE,
+            documentation = SUFFICIENT)
 public class Iterators
 {
     public static <T> Iterator<T> empty()

@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.interfaces.numeric;
 
-import com.telenav.kivakit.annotations.code.CodeQuality;
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.interfaces.factory.MapFactory;
 import com.telenav.kivakit.interfaces.internal.lexakai.DiagramNumeric;
 import com.telenav.kivakit.interfaces.value.LongValued;
@@ -39,9 +39,9 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.UNNECESSARY;
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramNumeric.class)
-@CodeQuality(stability = STABLE,
-             testing = UNNECESSARY,
-             documentation = SUFFICIENT)
+@ApiQuality(stability = STABLE,
+            testing = UNNECESSARY,
+            documentation = SUFFICIENT)
 public interface Minimizable<Value> extends
         LongValued,
         MapFactory<Long, Value>

@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.interfaces.collection;
 
-import com.telenav.kivakit.annotations.code.CodeQuality;
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.interfaces.internal.lexakai.DiagramCollection;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
@@ -38,9 +38,9 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.UNNECESSARY;
 @SuppressWarnings("unused")
 @FunctionalInterface
 @UmlClassDiagram(diagram = DiagramCollection.class)
-@CodeQuality(stability = STABLE_DEFAULT_EXPANDABLE,
-             testing = UNNECESSARY,
-             documentation = SUFFICIENT)
+@ApiQuality(stability = STABLE_DEFAULT_EXPANDABLE,
+            testing = UNNECESSARY,
+            documentation = SUFFICIENT)
 public interface Addable<Value>
 {
     /**
@@ -53,7 +53,7 @@ public interface Addable<Value>
     /**
      * @param values A sequence of values to add
      */
-    default boolean addAll(Iterable<? extends Value> values)
+    default boolean addAll(Iterable<Value> values)
     {
         for (Value value : values)
         {
@@ -68,7 +68,7 @@ public interface Addable<Value>
     /**
      * @param values A sequence of values to add
      */
-    default boolean addAll(Iterator<? extends Value> values)
+    default boolean addAll(Iterator<Value> values)
     {
         while (values.hasNext())
         {

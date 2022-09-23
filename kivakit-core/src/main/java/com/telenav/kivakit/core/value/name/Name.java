@@ -23,7 +23,7 @@ import com.telenav.kivakit.core.internal.lexakai.DiagramValue;
 import com.telenav.kivakit.interfaces.naming.Nameable;
 import com.telenav.kivakit.interfaces.naming.Named;
 import com.telenav.kivakit.interfaces.naming.NamedObject;
-import com.telenav.kivakit.interfaces.string.StringSource;
+import com.telenav.kivakit.interfaces.string.AsString;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
@@ -37,7 +37,7 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 public class Name implements
         Named,
         Nameable,
-        StringSource
+        AsString
 {
     /**
      * Extracts a name for the given object by trying the following in order:

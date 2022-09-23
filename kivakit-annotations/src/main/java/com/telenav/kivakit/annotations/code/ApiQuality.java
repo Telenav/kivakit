@@ -13,7 +13,7 @@ import java.lang.annotation.Target;
 @SuppressWarnings("unused")
 @Retention(RetentionPolicy.SOURCE)
 @Target({ ElementType.TYPE })
-public @interface CodeQuality
+public @interface ApiQuality
 {
     /**
      * @return The subjective documentation quality, as evaluated by a developer

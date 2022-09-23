@@ -19,9 +19,9 @@
 package com.telenav.kivakit.core.collections.iteration;
 
 import com.telenav.kivakit.annotations.code.ApiStability;
-import com.telenav.kivakit.annotations.code.CodeQuality;
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramIteration;
-import com.telenav.kivakit.interfaces.collection.NextValue;
+import com.telenav.kivakit.interfaces.collection.NextIterable;
 import com.telenav.kivakit.interfaces.comparison.Matcher;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
@@ -33,14 +33,14 @@ import static com.telenav.kivakit.annotations.code.DocumentationQuality.SUFFICIE
 import static com.telenav.kivakit.annotations.code.TestingQuality.NONE;
 
 /**
- * Implements the {@link Iterable} interface by using a {@link NextValue} object to find the next value when iterating.
+ * Implements the {@link Iterable} interface by using a {@link NextIterable} object to find the next value when iterating.
  *
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramIteration.class)
-@CodeQuality(stability = ApiStability.STABLE,
-             testing = NONE,
-             documentation = SUFFICIENT)
+@ApiQuality(stability = ApiStability.STABLE,
+            testing = NONE,
+            documentation = SUFFICIENT)
 public abstract class BaseIterable<T> implements Iterable<T>
 {
     /** A filter to restrict values in the sequence */
@@ -60,7 +60,7 @@ public abstract class BaseIterable<T> implements Iterable<T>
     {
         return new BaseIterator<>()
         {
-            private final NextValue<T> next = newNext();
+            private final NextIterable<T> next = newNext();
 
             @Override
             protected T onNext()
@@ -78,8 +78,8 @@ public abstract class BaseIterable<T> implements Iterable<T>
     }
 
     /**
-     * @return A new {@link NextValue} implementation for finding the next value in a sequence
+     * @return A new {@link NextIterable} implementation for finding the next value in a sequence
      */
     @UmlRelation(label = "creates")
-    protected abstract NextValue<T> newNext();
+    protected abstract NextIterable<T> newNext();
 }

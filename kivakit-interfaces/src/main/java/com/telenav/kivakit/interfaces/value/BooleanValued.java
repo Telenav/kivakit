@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.interfaces.value;
 
-import com.telenav.kivakit.annotations.code.CodeQuality;
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.interfaces.internal.lexakai.DiagramValue;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
@@ -33,9 +33,9 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.UNNECESSARY;
  */
 @FunctionalInterface
 @UmlClassDiagram(diagram = DiagramValue.class)
-@CodeQuality(stability = STABLE,
-             testing = UNNECESSARY,
-             documentation = SUFFICIENT)
+@ApiQuality(stability = STABLE,
+            testing = UNNECESSARY,
+            documentation = SUFFICIENT)
 public interface BooleanValued
 {
     /**

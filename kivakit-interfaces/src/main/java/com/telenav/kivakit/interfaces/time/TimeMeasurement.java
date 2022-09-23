@@ -1,12 +1,12 @@
 package com.telenav.kivakit.interfaces.time;
 
-import com.telenav.kivakit.annotations.code.CodeQuality;
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.interfaces.value.LongValued;
 import org.jetbrains.annotations.NotNull;
 
 import java.text.DecimalFormat;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.STABLE;
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_DEFAULT_EXPANDABLE;
 import static com.telenav.kivakit.annotations.code.DocumentationQuality.SUFFICIENT;
 import static com.telenav.kivakit.annotations.code.TestingQuality.UNNECESSARY;
 
@@ -40,9 +40,9 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.UNNECESSARY;
  *
  * @author jonathanl (shibo)
  */
-@CodeQuality(stability = STABLE,
-             testing = UNNECESSARY,
-             documentation = SUFFICIENT)
+@ApiQuality(stability = STABLE_DEFAULT_EXPANDABLE,
+            testing = UNNECESSARY,
+            documentation = SUFFICIENT)
 public interface TimeMeasurement extends LongValued
 {
     /**

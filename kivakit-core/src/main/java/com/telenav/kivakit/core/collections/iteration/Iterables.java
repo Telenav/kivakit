@@ -19,9 +19,9 @@
 package com.telenav.kivakit.core.collections.iteration;
 
 import com.telenav.kivakit.annotations.code.ApiStability;
-import com.telenav.kivakit.annotations.code.CodeQuality;
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramIteration;
-import com.telenav.kivakit.interfaces.collection.NextValue;
+import com.telenav.kivakit.interfaces.collection.NextIterable;
 import com.telenav.kivakit.interfaces.factory.Factory;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
@@ -35,10 +35,10 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.NONE;
 
 /**
  * Utility methods that operate on {@link Iterable}s. The method {@link #iterable(Factory)} can be used to implement the
- * {@link Iterable} interface with a minimum of code. The implementation of the {@link NextValue} interface provides
+ * {@link Iterable} interface with a minimum of code. The implementation of the {@link NextIterable} interface provides
  * either the next value in an iteration of the sequence or null if there is none.
  * <pre>
- * var iterable = Iterables.of(() -&gt; new NextValue&lt;Integer&gt;()
+ * var iterable = Iterables.of(() -&gt; new NextIterable&lt;Integer&gt;()
  * {
  *     int next;
  *
@@ -50,13 +50,13 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.NONE;
  * </pre>
  *
  * @author jonathanl (shibo)
- * @see NextValue
+ * @see NextIterable
  */
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramIteration.class)
-@CodeQuality(stability = ApiStability.STABLE,
-             testing = NONE,
-             documentation = SUFFICIENT)
+@ApiQuality(stability = ApiStability.STABLE,
+            testing = NONE,
+            documentation = SUFFICIENT)
 public class Iterables
 {
     public static <T> void addAll(Iterable<T> iterable, Collection<? super T> collection)
@@ -130,14 +130,14 @@ public class Iterables
     }
 
     /**
-     * @return An iterable for the given {@link NextValue} factory
+     * @return An iterable for the given {@link NextIterable} factory
      */
-    public static <T> Iterable<T> iterable(Factory<NextValue<T>> factory)
+    public static <T> Iterable<T> iterable(Factory<NextIterable<T>> factory)
     {
         return new BaseIterable<>()
         {
             @Override
-            protected NextValue<T> newNext()
+            protected NextIterable<T> newNext()
             {
                 return factory.newInstance();
             }

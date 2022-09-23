@@ -1,6 +1,6 @@
 package com.telenav.kivakit.resource.packages;
 
-import com.telenav.kivakit.annotations.code.CodeQuality;
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.messaging.Repeater;
 import com.telenav.kivakit.resource.Resource;
 
@@ -39,9 +39,9 @@ import static com.telenav.kivakit.resource.packages.Package.parsePackage;
  * @author jonathanl (shibo)
  */
 @SuppressWarnings("unused")
-@CodeQuality(stability = STABLE_DEFAULT_EXPANDABLE,
-             documentation = SUFFICIENT,
-             testing = NONE)
+@ApiQuality(stability = STABLE_DEFAULT_EXPANDABLE,
+            documentation = SUFFICIENT,
+            testing = NONE)
 public interface PackageTrait extends Repeater
 {
     /**

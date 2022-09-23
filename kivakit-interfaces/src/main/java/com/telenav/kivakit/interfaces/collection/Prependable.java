@@ -18,31 +18,59 @@
 
 package com.telenav.kivakit.interfaces.collection;
 
-import com.telenav.kivakit.annotations.code.CodeQuality;
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.interfaces.internal.lexakai.DiagramCollection;
-import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.STABLE;
+import java.util.Iterator;
+import java.util.LinkedList;
+
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_DEFAULT_EXPANDABLE;
 import static com.telenav.kivakit.annotations.code.DocumentationQuality.SUFFICIENT;
-import static com.telenav.kivakit.annotations.code.TestingQuality.UNNECESSARY;
+import static com.telenav.kivakit.annotations.code.TestingQuality.NONE;
 
 /**
  * An object, often a collection or related type, to which objects can be prepended.
  *
  * @author jonathanl (shibo)
  */
+@SuppressWarnings({ "SpellCheckingInspection", "unused" })
 @FunctionalInterface
 @UmlClassDiagram(diagram = DiagramCollection.class)
-@CodeQuality(stability = STABLE,
-             testing = UNNECESSARY,
-             documentation = SUFFICIENT)
-public interface Prependable<T>
+@ApiQuality(stability = STABLE_DEFAULT_EXPANDABLE,
+            testing = NONE,
+            documentation = SUFFICIENT)
+public interface Prependable<Value>
 {
     /**
      * Adds the given value
      *
      * @return Self reference for chaining of append calls
      */
-    Prependable<T> prepend(T value);
+    Prependable<Value> prepend(Value value);
+
+    /**
+     * @param values A sequence of values to prepend, in order
+     */
+    default Prependable<Value> prependAll(Iterator<Value> values)
+    {
+        var reversed = new LinkedList<Value>();
+        while (values.hasNext())
+        {
+            reversed.add(0, values.next());
+        }
+        for (var value : reversed)
+        {
+            prepend(value);
+        }
+        return this;
+    }
+
+    /**
+     * @param values A sequence of values to prepend, in order
+     */
+    default Prependable<Value> prependAll(Iterable<Value> values)
+    {
+        return prependAll(values.iterator());
+    }
 }

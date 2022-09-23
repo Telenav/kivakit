@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.interfaces.comparison;
 
-import com.telenav.kivakit.annotations.code.CodeQuality;
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.interfaces.internal.lexakai.DiagramComparison;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import org.jetbrains.annotations.NotNull;
@@ -26,9 +26,9 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Collection;
 import java.util.function.Predicate;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.STABLE;
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_DEFAULT_EXPANDABLE;
 import static com.telenav.kivakit.annotations.code.DocumentationQuality.SUFFICIENT;
-import static com.telenav.kivakit.annotations.code.TestingQuality.UNNECESSARY;
+import static com.telenav.kivakit.annotations.code.TestingQuality.NONE;
 
 /**
  * A filter which matches values allowing for boolean expressions. All {@link Filter}s are {@link Matcher}s and
@@ -63,9 +63,9 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.UNNECESSARY;
  */
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramComparison.class)
-@CodeQuality(stability = STABLE,
-             testing = UNNECESSARY,
-             documentation = SUFFICIENT)
+@ApiQuality(stability = STABLE_DEFAULT_EXPANDABLE,
+            testing = NONE,
+            documentation = SUFFICIENT)
 public interface Filter<Value> extends Matcher<Value>
 {
     /**
@@ -115,6 +115,7 @@ public interface Filter<Value> extends Matcher<Value>
      * Note: All {@link Matcher}s and {@link Filter}s are {@link Predicate}s).
      * </p>
      */
+    @Override
     default Filter<Value> and(@NotNull Predicate<? super Value> predicate)
     {
         return value -> accepts(value) && predicate.test(value);
@@ -162,6 +163,7 @@ public interface Filter<Value> extends Matcher<Value>
      * Note: All {@link Matcher}s and {@link Filter}s are {@link Predicate}s).
      * </p>
      */
+    @Override
     default Filter<Value> or(@NotNull Predicate<? super Value> predicate)
     {
         return value -> accepts(value) || predicate.test(value);

@@ -30,7 +30,7 @@ import com.telenav.kivakit.core.time.Modifiable;
 import com.telenav.kivakit.core.time.ModifiedAt;
 import com.telenav.kivakit.core.value.count.ByteSized;
 import com.telenav.kivakit.filesystem.File;
-import com.telenav.kivakit.interfaces.string.StringSource;
+import com.telenav.kivakit.interfaces.string.AsString;
 import com.telenav.kivakit.resource.compression.Codec;
 import com.telenav.kivakit.resource.compression.archive.ZipEntry;
 import com.telenav.kivakit.resource.internal.lexakai.DiagramFileSystemFile;
@@ -114,7 +114,7 @@ public interface Resource extends
         CreatedAt,
         Deletable,
         ByteSized,
-        StringSource,
+        AsString,
         ReadableResource,
         Repeater,
         Resourceful,

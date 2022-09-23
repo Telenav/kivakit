@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.core.bits;
 
-import com.telenav.kivakit.annotations.code.CodeQuality;
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramBits;
 import com.telenav.kivakit.core.value.count.Countable;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
@@ -41,9 +41,9 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.NONE;
  */
 @UmlClassDiagram(diagram = DiagramBits.class)
 @LexakaiJavadoc(complete = true)
-@CodeQuality(stability = STABLE,
-             testing = NONE,
-             documentation = SUFFICIENT)
+@ApiQuality(stability = STABLE,
+            testing = NONE,
+            documentation = SUFFICIENT)
 public class Bits
 {
     /**

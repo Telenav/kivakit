@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.core.bits;
 
-import com.telenav.kivakit.annotations.code.CodeQuality;
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramBits;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
@@ -71,9 +71,9 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.INSUFFICIENT;
 @SuppressWarnings("SpellCheckingInspection")
 @UmlClassDiagram(diagram = DiagramBits.class)
 @LexakaiJavadoc(complete = true)
-@CodeQuality(stability = STABLE,
-             testing = INSUFFICIENT,
-             documentation = SUFFICIENT)
+@ApiQuality(stability = STABLE,
+            testing = INSUFFICIENT,
+            documentation = SUFFICIENT)
 public class BitDiagram
 {
     /**

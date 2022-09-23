@@ -1,10 +1,11 @@
 package com.telenav.kivakit.interfaces.numeric;
 
-import com.telenav.kivakit.annotations.code.CodeQuality;
+import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.interfaces.collection.NextIterable;
 import com.telenav.kivakit.interfaces.factory.MapFactory;
 import com.telenav.kivakit.interfaces.value.LongValued;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.STABLE;
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_DEFAULT_EXPANDABLE;
 import static com.telenav.kivakit.annotations.code.DocumentationQuality.SUFFICIENT;
 import static com.telenav.kivakit.annotations.code.TestingQuality.UNNECESSARY;
 
@@ -14,11 +15,12 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.UNNECESSARY;
  * @author jonathanl (shibo)
  */
 @SuppressWarnings("unused")
-@CodeQuality(stability = STABLE,
-             testing = UNNECESSARY,
-             documentation = SUFFICIENT)
+@ApiQuality(stability = STABLE_DEFAULT_EXPANDABLE,
+            testing = UNNECESSARY,
+            documentation = SUFFICIENT)
 public interface Arithmetic<Value> extends
         LongValued,
+        NextIterable<Value>,
         MapFactory<Long, Value>
 {
     default Value decremented()
@@ -64,6 +66,11 @@ public interface Arithmetic<Value> extends
     default Value plus(long value)
     {
         return newInstance(longValue() + value);
+    }
+
+    default Value next()
+    {
+        return plus(1);
     }
 
     default Value plus(LongValued value)

@@ -1,6 +1,6 @@
 package com.telenav.kivakit.interfaces.time;
 
-import com.telenav.kivakit.annotations.code.CodeQuality;
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.interfaces.code.Callback;
 import com.telenav.kivakit.interfaces.internal.lexakai.DiagramTime;
 import com.telenav.kivakit.interfaces.string.StringFormattable;
@@ -38,6 +38,8 @@ import static com.telenav.kivakit.interfaces.time.WakeState.TIMED_OUT;
  * </p>
  *
  * <ul>
+ *     <li>{@link #asString()}</li>
+ *     <li>{@link #asString(Format)}</li>
  *     <li>{@link #asNanoseconds()}</li>
  *     <li>{@link #asMicroseconds()}</li>
  *     <li>{@link #asMilliseconds()}</li>
@@ -86,9 +88,9 @@ import static com.telenav.kivakit.interfaces.time.WakeState.TIMED_OUT;
  */
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramTime.class)
-@CodeQuality(stability = STABLE,
-             testing = NONE,
-             documentation = SUFFICIENT)
+@ApiQuality(stability = STABLE,
+            testing = NONE,
+            documentation = SUFFICIENT)
 public interface LengthOfTime<Duration extends LongValued & LengthOfTime<Duration>> extends
         LongValued,
         Comparable<LengthOfTime<?>>,
@@ -221,6 +223,9 @@ public interface LengthOfTime<Duration extends LongValued & LengthOfTime<Duratio
         return dividedBy((double) value);
     }
 
+    /**
+     * @return The number of milliseconds
+     */
     @Override
     default long longValue()
     {
@@ -272,7 +277,7 @@ public interface LengthOfTime<Duration extends LongValued & LengthOfTime<Duratio
             @Override
             public void run()
             {
-                onTimer.callback(timer);
+                onTimer.call(timer);
             }
         }, 0L, milliseconds());
     }
@@ -367,7 +372,7 @@ public interface LengthOfTime<Duration extends LongValued & LengthOfTime<Duratio
             @Override
             public void run()
             {
-                onTimer.callback(timer);
+                onTimer.call(timer);
             }
         }, milliseconds());
     }

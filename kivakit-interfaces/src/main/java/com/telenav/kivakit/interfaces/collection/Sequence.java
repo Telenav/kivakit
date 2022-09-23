@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.interfaces.collection;
 
-import com.telenav.kivakit.annotations.code.CodeQuality;
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.interfaces.comparison.Matcher;
 import com.telenav.kivakit.interfaces.internal.lexakai.DiagramCollection;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
@@ -31,10 +31,9 @@ import java.util.List;
 import java.util.Set;
 import java.util.function.Function;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.STABLE;
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_DEFAULT_EXPANDABLE;
 import static com.telenav.kivakit.annotations.code.DocumentationQuality.SUFFICIENT;
 import static com.telenav.kivakit.annotations.code.TestingQuality.NONE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.UNNECESSARY;
 
 /**
  * A sequence of values returned by {@link #asIterator()} and {@link #asIterator(Matcher)}.
@@ -57,7 +56,7 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.UNNECESSARY;
  * <p><b>Finding Elements and Subsequences</b></p>
  *
  * <ul>
- *     <li>{@link #find(Matcher)} - The first matching element in this sequence</li>
+ *     <li>{@link #findFirst(Matcher)} - The first matching element in this sequence</li>
  *     <li>{@link #first()} - The first element in the sequence, or null if there is none</li>
  *     <li>{@link #head()} - The same as first()</li>
  *     <li>{@link #tail()} - All elements in the sequence except the first one as a list</li>
@@ -99,10 +98,12 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.UNNECESSARY;
  */
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramCollection.class)
-@CodeQuality(stability = STABLE,
-             testing = NONE,
-             documentation = SUFFICIENT)
-public interface Sequence<Element> extends Iterable<Element>, Joinable<Element>
+@ApiQuality(stability = STABLE_DEFAULT_EXPANDABLE,
+            testing = NONE,
+            documentation = SUFFICIENT)
+public interface Sequence<Element> extends
+        Iterable<Element>,
+        Joinable<Element>
 {
     /**
      * @return True if all elements in this sequence match the given matcher
@@ -124,7 +125,7 @@ public interface Sequence<Element> extends Iterable<Element>, Joinable<Element>
      */
     default boolean anyMatch(Matcher<Element> matcher)
     {
-        return find(matcher) != null;
+        return findFirst(matcher) != null;
     }
 
     /**
@@ -192,15 +193,19 @@ public interface Sequence<Element> extends Iterable<Element>, Joinable<Element>
         return list;
     }
 
-    default Element find(Class<? extends Element> type)
+    /**
+     * @param type The type to search for
+     * @return The first element of the given type
+     */
+    default Element findFirst(Class<? extends Element> type)
     {
-        return find(at -> type.isAssignableFrom(at.getClass()));
+        return findFirst(at -> type.isAssignableFrom(at.getClass()));
     }
 
     /**
      * @return The first value that matches the matcher
      */
-    default Element find(Matcher<Element> matcher)
+    default Element findFirst(Matcher<Element> matcher)
     {
         for (var element : this)
         {
@@ -299,7 +304,7 @@ public interface Sequence<Element> extends Iterable<Element>, Joinable<Element>
      */
     default boolean noneMatch(Matcher<Element> matcher)
     {
-        return find(matcher) == null;
+        return findFirst(matcher) == null;
     }
 
     /**

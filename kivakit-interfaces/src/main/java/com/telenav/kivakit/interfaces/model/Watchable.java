@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.interfaces.model;
 
-import com.telenav.kivakit.annotations.code.CodeQuality;
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.interfaces.internal.lexakai.DiagramModel;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
@@ -35,9 +35,9 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.UNNECESSARY;
 @SuppressWarnings("unused")
 @FunctionalInterface
 @UmlClassDiagram(diagram = DiagramModel.class)
-@CodeQuality(stability = STABLE,
-             testing = UNNECESSARY,
-             documentation = SUFFICIENT)
+@ApiQuality(stability = STABLE,
+            testing = UNNECESSARY,
+            documentation = SUFFICIENT)
 public interface Watchable<Value>
 {
     /**

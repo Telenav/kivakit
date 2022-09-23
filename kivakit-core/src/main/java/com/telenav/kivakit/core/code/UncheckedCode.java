@@ -1,7 +1,7 @@
 package com.telenav.kivakit.core.code;
 
 import com.telenav.kivakit.annotations.code.ApiStability;
-import com.telenav.kivakit.annotations.code.CodeQuality;
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.logging.Logger;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.messaging.repeaters.RepeaterMixin;
@@ -30,9 +30,9 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.NONE;
  * @author jonathanl (shibo)
  */
 @FunctionalInterface
-@CodeQuality(stability = ApiStability.STABLE,
-             testing = NONE,
-             documentation = SUFFICIENT)
+@ApiQuality(stability = ApiStability.STABLE,
+            testing = NONE,
+            documentation = SUFFICIENT)
 public interface UncheckedCode<Value> extends RepeaterMixin
 {
     static <T> UncheckedCode<T> of(UncheckedCode<T> code)
