@@ -26,6 +26,7 @@ import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.string.Strings;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
+import java.io.File;
 import java.net.URI;
 import java.util.HashMap;
 import java.util.List;
@@ -71,6 +72,7 @@ import static com.telenav.kivakit.core.project.Project.resolveProject;
  *
  * @author jonathanl (shibo)
  */
+@SuppressWarnings({ "SpellCheckingInspection", "SwitchStatementWithTooFewBranches" })
 @UmlClassDiagram(diagram = DiagramPath.class)
 public class StringPath extends Path<String>
 {
@@ -82,6 +84,7 @@ public class StringPath extends Path<String>
      * @param separatorPattern The Java regular expression used to split path elements
      * @return A string path for the given string, root pattern and separator pattern
      */
+    @SuppressWarnings("unused")
     public static StringPath parseStringPath(Listener listener,
                                              String path,
                                              String rootPattern,
@@ -282,6 +285,19 @@ public class StringPath extends Path<String>
     public String join()
     {
         return join(separator());
+    }
+
+    @Override
+    public String asString(final Format format)
+    {
+        switch (format)
+        {
+            case FILESYSTEM:
+                return join(File.separator);
+
+            default:
+                return join();
+        }
     }
 
     /**
@@ -494,10 +510,7 @@ public class StringPath extends Path<String>
 
     private static List<String> substituteSystemVariables(List<String> elements)
     {
-        for (int i = 0; i < elements.size(); i++)
-        {
-            elements.set(i, resolveProject(KivaKit.class).properties().expand(elements.get(i)));
-        }
+        elements.replaceAll(text -> resolveProject(KivaKit.class).properties().expand(text));
         return elements;
     }
 }

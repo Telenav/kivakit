@@ -34,7 +34,7 @@ import java.util.Iterator;
  */
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramCount.class)
-public class Estimate extends BaseCount<Estimate> implements StringFormattable
+public class Estimate extends BaseCount<Estimate>
 {
     public static final Estimate _0 = new Estimate(0);
 

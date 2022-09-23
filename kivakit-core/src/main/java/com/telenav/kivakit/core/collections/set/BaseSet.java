@@ -20,6 +20,7 @@ package com.telenav.kivakit.core.collections.set;
 
 import com.telenav.kivakit.core.collections.iteration.Matching;
 import com.telenav.kivakit.core.ensure.Ensure;
+import com.telenav.kivakit.core.string.StringTo;
 import com.telenav.kivakit.core.value.count.Count;
 import com.telenav.kivakit.core.value.count.Countable;
 import com.telenav.kivakit.core.value.count.Maximum;
@@ -134,6 +135,23 @@ public abstract class BaseSet<Element> implements
                 add(at);
             }
         });
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @SuppressWarnings("SwitchStatementWithTooFewBranches")
+    @Override
+    public String asString(Format format)
+    {
+        switch (format)
+        {
+            case DEBUG:
+                return join(", ", StringTo::debug);
+
+            default:
+                return toString();
+        }
     }
 
     @Override

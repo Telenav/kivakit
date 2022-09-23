@@ -32,7 +32,7 @@ import java.util.concurrent.atomic.AtomicLong;
  *
  * @author jonathanl (shibo)
  */
-@UmlClassDiagram(diagram = DiagramCount.class)
+@SuppressWarnings("unused") @UmlClassDiagram(diagram = DiagramCount.class)
 public class ConcurrentMutableCount implements Countable
 {
     private final AtomicLong count;
@@ -149,14 +149,8 @@ public class ConcurrentMutableCount implements Countable
     }
 
     @Override
-    public int size()
-    {
-        return asInt();
-    }
-
-    @Override
     public String toString()
     {
-        return asCount().quantumAsCommaSeparatedString();
+        return asCount().asCommaSeparatedString();
     }
 }

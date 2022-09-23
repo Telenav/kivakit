@@ -189,7 +189,7 @@ public class SwitchParsers
 
     public static SwitchParser<Count> threadCountSwitchParser(Listener listener, Count maximum)
     {
-        var defaultThreads = maximum.minimum(JavaVirtualMachine.local().processors());
+        var defaultThreads = maximum.minimize(JavaVirtualMachine.local().processors());
         return countSwitchParser(listener, "threads", "Number of threads to use (default is " + defaultThreads + ")")
                 .optional()
                 .defaultValue(defaultThreads)

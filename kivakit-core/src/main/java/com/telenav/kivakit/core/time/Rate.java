@@ -138,9 +138,9 @@ public class Rate implements
     }
 
     @Override
-    public Rate maximum(Rate that)
+    public long longValue()
     {
-        return count > that.count ? this : that;
+        return perDay().longValue();
     }
 
     @Override
@@ -150,15 +150,15 @@ public class Rate implements
     }
 
     @Override
-    public Rate minimum(Rate that)
-    {
-        return count < that.count ? this : that;
-    }
-
-    @Override
     public Rate minimum()
     {
         return Rate.perYear(0);
+    }
+
+    @Override
+    public Rate newInstance(Long value)
+    {
+        return perDay(value);
     }
 
     public Rate perDay()

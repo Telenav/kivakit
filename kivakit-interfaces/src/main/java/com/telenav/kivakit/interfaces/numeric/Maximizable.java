@@ -47,14 +47,14 @@ public interface Maximizable<Value> extends
         MapFactory<Long, Value>
 
 {
-    default Value maximum(long value)
+    default Value maximize(long value)
     {
         return newInstance(Math.max(longValue(), value));
     }
 
-    default Value maximum(LongValued value)
+    default Value maximize(LongValued value)
     {
-        return maximum(value.longValue());
+        return maximize(value.longValue());
     }
 
     /**

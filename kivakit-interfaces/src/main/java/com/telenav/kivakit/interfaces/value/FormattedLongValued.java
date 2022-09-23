@@ -5,7 +5,9 @@ import com.telenav.kivakit.interfaces.string.StringFormattable;
 /**
  * @author jonathanl (shibo)
  */
-public interface FormattedLongValued extends LongValued
+public interface FormattedLongValued extends
+        LongValued,
+        StringFormattable
 {
     default String asCommaSeparatedString()
     {

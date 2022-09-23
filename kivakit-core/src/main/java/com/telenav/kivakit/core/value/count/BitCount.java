@@ -204,7 +204,7 @@ public class BitCount extends BaseCount<BitCount>
 
     public static BitCount bitsToRepresent(long value)
     {
-        return BitCount.bitCount(Long.SIZE - Long.numberOfLeadingZeros(value)).maximum(BitCount._1);
+        return BitCount.bitCount(Long.SIZE - Long.numberOfLeadingZeros(value)).maximize(BitCount._1);
     }
 
     public static BitCount perByte()

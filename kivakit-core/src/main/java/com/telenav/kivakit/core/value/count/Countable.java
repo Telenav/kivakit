@@ -18,6 +18,7 @@
 
 package com.telenav.kivakit.core.value.count;
 
+import com.telenav.kivakit.interfaces.numeric.Zeroable;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 
 /**
@@ -27,10 +28,16 @@ import com.telenav.lexakai.annotations.LexakaiJavadoc;
  * @see Count
  */
 @LexakaiJavadoc(complete = true)
-public interface Countable
+public interface Countable extends Zeroable
 {
     /**
      * @return The count for this object
      */
     Count count();
+
+    @Override
+    default boolean isZero()
+    {
+        return count().isZero();
+    }
 }

@@ -183,7 +183,7 @@ public class RandomValueFactory implements RandomNumeric
 
     public void indexes(long maximum, Consumer<Integer> consumer)
     {
-        sequence(ALLOW_REPEATS, iterations().minimum(randomCount(maximum - 1)), 0, maximum - 1, Integer.class, consumer);
+        sequence(ALLOW_REPEATS, iterations().minimize(randomCount(maximum - 1)), 0, maximum - 1, Integer.class, consumer);
     }
 
     public void intSequence(Consumer<Integer> consumer)

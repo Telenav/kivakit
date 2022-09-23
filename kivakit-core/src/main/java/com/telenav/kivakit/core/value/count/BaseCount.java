@@ -5,7 +5,6 @@ import com.telenav.kivakit.core.language.primitive.Longs;
 import com.telenav.kivakit.core.language.primitive.Primes;
 import com.telenav.kivakit.core.value.level.Percent;
 import com.telenav.kivakit.interfaces.numeric.Numeric;
-import com.telenav.kivakit.interfaces.string.StringFormattable.Format;
 import com.telenav.kivakit.interfaces.value.FormattedLongValued;
 import com.telenav.kivakit.interfaces.value.LongValued;
 import com.telenav.kivakit.interfaces.value.Source;
@@ -108,8 +107,8 @@ import static com.telenav.kivakit.core.value.count.Estimate.estimate;
  *     <li>{@link #isMinimum()} - True if this count is zero</li>
  *     <li>{@link #asMaximum()} - Converts this count to a {@link Maximum}</li>
  *     <li>{@link #asMinimum()} - Converts this count to a {@link Minimum}</li>
- *     <li>{@link #maximum(LongValued)} - Returns the maximum of this count and the given count</li>
- *     <li>{@link #minimum(LongValued)} - Returns the minimum of this count and the given count</li>
+ *     <li>{@link #maximize(LongValued)} - Returns the maximum of this count and the given count</li>
+ *     <li>{@link #minimize(LongValued)} - Returns the minimum of this count and the given count</li>
  * </ul>
  *
  * <hr>

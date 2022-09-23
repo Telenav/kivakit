@@ -38,9 +38,9 @@ import static com.telenav.kivakit.core.time.Duration.seconds;
 
 /**
  * A progress reporter that sends progress messages to a {@link Listener} as an operation proceeds.
- * BroadcastingProgressReporter reporting on an operation is started with {@link #start(String)}. At each step, {@link
- * #next()} or {@link #next(long)} should be called to report progress. When the operation is over {@link #end(String,
- * Object...)} should be called.
+ * BroadcastingProgressReporter reporting on an operation is started with {@link #start(String)}. At each step,
+ * {@link #next()} or {@link #next(long)} should be called to report progress. When the operation is over
+ * {@link #end(String, Object...)} should be called.
  * <p>
  * <b>Example - Broadcasting Progress of an Operation</b>
  * <pre>
@@ -59,11 +59,12 @@ import static com.telenav.kivakit.core.time.Duration.seconds;
  * <pre>
  * progress.listener(percent -&gt; System.out.println("$ complete", percent);
  * </pre>
- * {@link BroadcastingProgressReporter} is not thread-safe. To report progress in a multi-threaded operations, use {@link
- * ConcurrentBroadcastingProgressReporter}.
+ * {@link BroadcastingProgressReporter} is not thread-safe. To report progress in a multithreaded operations, use
+ * {@link ConcurrentBroadcastingProgressReporter}.
  *
  * @author jonathanl (shibo)
  */
+@SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramProgress.class)
 public class BroadcastingProgressReporter extends Multicaster implements ProgressReporter
 {

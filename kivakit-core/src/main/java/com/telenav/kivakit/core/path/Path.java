@@ -20,14 +20,16 @@ package com.telenav.kivakit.core.path;
 
 import com.telenav.kivakit.core.collections.list.ObjectList;
 import com.telenav.kivakit.core.ensure.Ensure;
-import com.telenav.kivakit.core.language.Streams;
+import com.telenav.kivakit.core.internal.lexakai.DiagramPath;
 import com.telenav.kivakit.core.language.Hash;
 import com.telenav.kivakit.core.language.Objects;
-import com.telenav.kivakit.core.internal.lexakai.DiagramPath;
+import com.telenav.kivakit.core.language.Streams;
 import com.telenav.kivakit.interfaces.collection.Sized;
+import com.telenav.kivakit.interfaces.string.StringFormattable;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import org.jetbrains.annotations.NotNull;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -108,11 +110,13 @@ import java.util.stream.Stream;
  *
  * @author jonathanl (shibo)
  */
+@SuppressWarnings({ "UnusedReturnValue", "SpellCheckingInspection", "SwitchStatementWithTooFewBranches" })
 @UmlClassDiagram(diagram = DiagramPath.class)
 public abstract class Path<Element extends Comparable<Element>> implements
         Iterable<Element>,
         Comparable<Path<Element>>,
-        Sized
+        Sized,
+        StringFormattable
 {
     /** The list of elements */
     private ObjectList<Element> elements = new ObjectList<>();
@@ -136,6 +140,19 @@ public abstract class Path<Element extends Comparable<Element>> implements
     protected Path(Path<Element> that)
     {
         this(that.root, that.elements);
+    }
+
+    @Override
+    public String asString(Format format)
+    {
+        switch (format)
+        {
+            case FILESYSTEM:
+                return elements.join(File.separator);
+
+            default:
+                return elements.join("/");
+        }
     }
 
     @Override

@@ -47,14 +47,14 @@ public interface Minimizable<Value> extends
         MapFactory<Long, Value>
 
 {
-    default Value minimum(long value)
+    default Value minimize(long value)
     {
         return newInstance(Math.min(longValue(), value));
     }
 
-    default Value minimum(LongValued value)
+    default Value minimize(LongValued value)
     {
-        return minimum(value.longValue());
+        return minimize(value.longValue());
     }
 
     /**

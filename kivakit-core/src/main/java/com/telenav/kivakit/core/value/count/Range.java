@@ -148,8 +148,8 @@ public class Range<Value extends Numeric<Value>> implements
     @Tested
     public Value constrain(Value value)
     {
-        var constrainedToMinimum = minimum().maximum(value);
-        return inclusiveMaximum().minimum(constrainedToMinimum);
+        var constrainedToMinimum = minimum().maximize(value);
+        return inclusiveMaximum().minimize(constrainedToMinimum);
     }
 
     /**
