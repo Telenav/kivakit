@@ -1,6 +1,5 @@
 package com.telenav.kivakit.core.time;
 
-import com.telenav.kivakit.core.testing.Tested;
 import com.telenav.kivakit.interfaces.string.StringFormattable;
 import com.telenav.kivakit.interfaces.time.LengthOfTime;
 import com.telenav.kivakit.interfaces.time.Nanoseconds;
@@ -153,7 +152,6 @@ public abstract class BaseTime<T extends BaseTime<T>> implements
     }
 
     @Override
-    @Tested
     public boolean equals(Object object)
     {
         if (object instanceof BaseTime)
@@ -165,7 +163,6 @@ public abstract class BaseTime<T extends BaseTime<T>> implements
     }
 
     @Override
-    @Tested
     public int hashCode()
     {
         return Objects.hash(nanoseconds());

@@ -27,8 +27,8 @@ import java.util.function.Predicate;
 import java.util.regex.Pattern;
 
 import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_DEFAULT_EXPANDABLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.SUFFICIENT;
-import static com.telenav.kivakit.annotations.code.TestingQuality.UNNECESSARY;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_REQUIRED;
 
 /**
  * A matcher implements {@link Predicate}, but adds some KivaKit-specific functionality.
@@ -59,8 +59,8 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.UNNECESSARY;
 @FunctionalInterface
 @UmlClassDiagram(diagram = DiagramComparison.class)
 @ApiQuality(stability = STABLE_DEFAULT_EXPANDABLE,
-            testing = UNNECESSARY,
-            documentation = SUFFICIENT)
+            testing = TESTING_NOT_REQUIRED,
+            documentation = DOCUMENTED)
 public interface Matcher<Value> extends
         Matchable<Value>,
         Predicate<Value>

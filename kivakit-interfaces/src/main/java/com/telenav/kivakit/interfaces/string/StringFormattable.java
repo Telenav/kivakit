@@ -26,8 +26,8 @@ import com.telenav.lexakai.annotations.visibility.UmlExcludeSuperTypes;
 
 import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_DEFAULT_EXPANDABLE;
 import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_ENUM_EXPANDABLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.SUFFICIENT;
-import static com.telenav.kivakit.annotations.code.TestingQuality.UNNECESSARY;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_REQUIRED;
 
 /**
  * Interface to an object that can produce one or more different kinds of string representations. This can be useful
@@ -40,8 +40,8 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.UNNECESSARY;
 @UmlRelation(label = "formats with", referent = StringFormattable.Format.class)
 @UmlClassDiagram(diagram = DiagramString.class)
 @ApiQuality(stability = STABLE_DEFAULT_EXPANDABLE,
-            testing = UNNECESSARY,
-            documentation = SUFFICIENT)
+            testing = TESTING_NOT_REQUIRED,
+            documentation = DOCUMENTED)
 public interface StringFormattable extends AsString
 {
     /**
@@ -49,8 +49,8 @@ public interface StringFormattable extends AsString
      */
     @UmlClassDiagram(diagram = DiagramString.class)
     @ApiQuality(stability = STABLE_ENUM_EXPANDABLE,
-                testing = UNNECESSARY,
-                documentation = SUFFICIENT)
+                testing = TESTING_NOT_REQUIRED,
+                documentation = DOCUMENTED)
     @UmlExcludeSuperTypes enum Format
     {
         /** A format suitable for debug tracing */

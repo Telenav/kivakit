@@ -5,8 +5,8 @@ import com.telenav.kivakit.core.code.UncheckedCode;
 import com.telenav.kivakit.core.code.UncheckedVoidCode;
 
 import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_DEFAULT_EXPANDABLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.SUFFICIENT;
-import static com.telenav.kivakit.annotations.code.TestingQuality.NONE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.NOT_TESTED;
 
 /**
  * Provides methods that execute code, stripping off checked exceptions. {@link TryTrait} extends
@@ -36,8 +36,8 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.NONE;
  */
 @SuppressWarnings("unused")
 @ApiQuality(stability = STABLE_DEFAULT_EXPANDABLE,
-            documentation = SUFFICIENT,
-            testing = NONE)
+            documentation = DOCUMENTED,
+            testing = NOT_TESTED)
 public interface TryCatchTrait
 {
     /**

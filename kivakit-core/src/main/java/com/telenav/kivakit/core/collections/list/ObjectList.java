@@ -32,7 +32,6 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Comparator;
-import java.util.Iterator;
 import java.util.function.Function;
 
 /**
@@ -78,7 +77,9 @@ public class ObjectList<Element> extends BaseList<Element>
      */
     public static <T> ObjectList<T> objectList(Iterable<T> values)
     {
-        return new ObjectList<T>().appendAll(values);
+        var list = new ObjectList<T>();
+        list.appendAll(values);
+        return list;
     }
 
     /**
@@ -181,46 +182,6 @@ public class ObjectList<Element> extends BaseList<Element>
         super(collection);
     }
 
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public ObjectList<Element> append(Element element)
-    {
-        super.append(element);
-        return this;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public ObjectList<Element> appendAll(Iterable<? extends Element> objects)
-    {
-        super.appendAll(objects);
-        return this;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public ObjectList<Element> appendAll(Iterator<? extends Element> objects)
-    {
-        super.appendAll(objects);
-        return this;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public ObjectList<Element> appendAll(Element[] objects)
-    {
-        super.appendAll(objects);
-        return this;
-    }
-
     @Override
     public StringList asStringList()
     {
@@ -248,6 +209,12 @@ public class ObjectList<Element> extends BaseList<Element>
     public ObjectList<Element> first(int count)
     {
         return (ObjectList<Element>) super.first(count);
+    }
+
+    @Override
+    public ObjectList<Element> last(int count)
+    {
+        return (ObjectList<Element>) super.last(count);
     }
 
     @Override
@@ -281,6 +248,15 @@ public class ObjectList<Element> extends BaseList<Element>
     }
 
     /**
+     * {@inheritDoc}
+     */
+    @Override
+    public boolean onAppend(Element element)
+    {
+        return super.add(element);
+    }
+
+    /**
      * Creates an empty new list. Subclasses can return a subclass list type.
      *
      * @return The new list
@@ -310,12 +286,6 @@ public class ObjectList<Element> extends BaseList<Element>
             lists.get(list).add(object);
         }
         return lists;
-    }
-
-    @Override
-    public ObjectList<Element> prepend(Element element)
-    {
-        return (ObjectList<Element>) super.prepend(element);
     }
 
     @Override

@@ -8,7 +8,15 @@ package com.telenav.kivakit.annotations.code;
  */
 public enum DocumentationQuality
 {
-    SUFFICIENT,
-    INSUFFICIENT,
+    /** Documentation is complete */
+    DOCUMENTED,
+
+    /** Some documentation is available, but more is required */
+    MORE_DOCUMENTATION_REQUIRED,
+
+    /** No documentation is available */
+    UNDOCUMENTED,
+
+    /** Documentation status has not been evaluated */
     UNEVALUATED
 }

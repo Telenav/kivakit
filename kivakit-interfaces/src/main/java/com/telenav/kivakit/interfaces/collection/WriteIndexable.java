@@ -16,30 +16,30 @@
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-package com.telenav.kivakit.interfaces.value;
+package com.telenav.kivakit.interfaces.collection;
 
 import com.telenav.kivakit.annotations.code.ApiQuality;
-import com.telenav.kivakit.interfaces.internal.lexakai.DiagramValue;
+import com.telenav.kivakit.interfaces.internal.lexakai.DiagramCollection;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.STABLE;
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_DEFAULT_EXPANDABLE;
 import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTED;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_REQUIRED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.NOT_TESTED;
 
 /**
- * Interface to an object that has a boolean value
+ * An indexable object is {@link Indexable}, but also supports setting values.
  *
  * @author jonathanl (shibo)
+ * @see Indexable
  */
-@FunctionalInterface
-@UmlClassDiagram(diagram = DiagramValue.class)
-@ApiQuality(stability = STABLE,
-            testing = TESTING_NOT_REQUIRED,
+@UmlClassDiagram(diagram = DiagramCollection.class)
+@ApiQuality(stability = STABLE_DEFAULT_EXPANDABLE,
+            testing = NOT_TESTED,
             documentation = DOCUMENTED)
-public interface BooleanValued
+public interface WriteIndexable<Value> extends Indexable<Value>
 {
     /**
-     * @return True if this expression is true
+     * @return The value for the given index
      */
-    boolean isTrue();
+    Value set(int index, Value value);
 }

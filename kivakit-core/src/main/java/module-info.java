@@ -1,6 +1,5 @@
 import com.telenav.kivakit.core.logging.Log;
 
-@SuppressWarnings("JavaRequiresAutoModule")
 open module kivakit.core
 {
     uses Log;
@@ -59,7 +58,6 @@ open module kivakit.core
     exports com.telenav.kivakit.core.thread.latches;
     exports com.telenav.kivakit.core.thread.locks;
     exports com.telenav.kivakit.core.thread;
-    exports com.telenav.kivakit.core.testing;
     exports com.telenav.kivakit.core.time;
     exports com.telenav.kivakit.core.value.count;
     exports com.telenav.kivakit.core.value.identifier;

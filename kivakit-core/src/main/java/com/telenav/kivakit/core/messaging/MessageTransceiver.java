@@ -226,6 +226,23 @@ public interface MessageTransceiver extends Transceiver
     }
 
     /**
+     * Broadcasts a problem if the given value is null
+     *
+     * @param value The value to check
+     * @param text The message to format
+     * @param arguments The arguments
+     * @return The value
+     */
+    default <T> T problemIfNull(T value, String text, Object... arguments)
+    {
+        if (value == null)
+        {
+            problem(text, arguments);
+        }
+        return value;
+    }
+
+    /**
      * Sends a formatted {@link Quibble} message to this {@link Transceiver}
      *
      * @param text The message to format
@@ -252,6 +269,23 @@ public interface MessageTransceiver extends Transceiver
             return transmit(new Quibble(cause, text, arguments));
         }
         return null;
+    }
+
+    /**
+     * Broadcasts a quibble if the given value is null
+     *
+     * @param value The value to check
+     * @param text The message to format
+     * @param arguments The arguments
+     * @return The value
+     */
+    default <T> T quibbleIfNull(T value, String text, Object... arguments)
+    {
+        if (value == null)
+        {
+            quibble(text, arguments);
+        }
+        return value;
     }
 
     /**
@@ -310,5 +344,22 @@ public interface MessageTransceiver extends Transceiver
     default Warning warning(Throwable cause, String text, Object... arguments)
     {
         return transmit(new Warning(cause, text, arguments));
+    }
+
+    /**
+     * Broadcasts a warning if the given value is null
+     *
+     * @param value The value to check
+     * @param text The message to format
+     * @param arguments The arguments
+     * @return The value
+     */
+    default <T> T warningIfNull(T value, String text, Object... arguments)
+    {
+        if (value == null)
+        {
+            warning(text, arguments);
+        }
+        return value;
     }
 }

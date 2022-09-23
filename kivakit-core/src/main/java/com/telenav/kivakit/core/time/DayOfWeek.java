@@ -20,8 +20,6 @@ package com.telenav.kivakit.core.time;
 
 import com.telenav.kivakit.core.language.Hash;
 import com.telenav.kivakit.core.internal.lexakai.DiagramTime;
-import com.telenav.kivakit.core.testing.NoTestRequired;
-import com.telenav.kivakit.core.testing.Tested;
 import com.telenav.kivakit.interfaces.string.StringFormattable;
 import com.telenav.kivakit.interfaces.time.Nanoseconds;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
@@ -61,7 +59,6 @@ import static com.telenav.kivakit.interfaces.string.StringFormattable.Format.USE
  */
 @SuppressWarnings("unused") @UmlClassDiagram(diagram = DiagramTime.class)
 @LexakaiJavadoc(complete = true)
-@Tested
 public class DayOfWeek extends BaseTime<DayOfWeek>
 {
     public static final DayOfWeek MONDAY = isoDayOfWeek(0);
@@ -89,7 +86,6 @@ public class DayOfWeek extends BaseTime<DayOfWeek>
      * @param day The ordinal from 0 to 6
      * @return The day of the week
      */
-    @Tested
     public static DayOfWeek isoDayOfWeek(int day)
     {
         return new DayOfWeek(day);
@@ -101,7 +97,6 @@ public class DayOfWeek extends BaseTime<DayOfWeek>
      * @param day The ordinal from 1 to 7
      * @return The day of the week
      */
-    @Tested
     public static DayOfWeek javaDayOfWeek(java.time.DayOfWeek day)
     {
         return javaDayOfWeek(day.getValue());
@@ -113,7 +108,6 @@ public class DayOfWeek extends BaseTime<DayOfWeek>
      * @param day The value from 1 to 7
      * @return The day of the week
      */
-    @Tested
     public static DayOfWeek javaDayOfWeek(int day)
     {
         return isoDayOfWeek(day - 1);
@@ -123,7 +117,6 @@ public class DayOfWeek extends BaseTime<DayOfWeek>
     {
     }
 
-    @NoTestRequired
     protected DayOfWeek(int day)
     {
         super(nanosecondsPerDay.times(day));
@@ -131,13 +124,11 @@ public class DayOfWeek extends BaseTime<DayOfWeek>
         ensureBetweenInclusive(asIsoOrdinal(), 0, 6, "Invalid day of the week: " + this);
     }
 
-    @NoTestRequired
     public Day asDay()
     {
         return Day.isoDayOfWeek(asIsoOrdinal());
     }
 
-    @Tested
     public HourOfWeek asHourOfWeek()
     {
         return hourOfWeek(asIsoOrdinal() * 24);
@@ -146,26 +137,22 @@ public class DayOfWeek extends BaseTime<DayOfWeek>
     /**
      * @return This day of the week as an ISO-8601 ordinal value
      */
-    @Tested
     public int asIsoOrdinal()
     {
         return asUnits();
     }
 
-    @Tested
     public java.time.DayOfWeek asJavaDayOfWeek()
     {
         return java.time.DayOfWeek.of(asJavaOrdinal());
     }
 
-    @Tested
     public int asJavaOrdinal()
     {
         return asIsoOrdinal() + 1;
     }
 
     @Override
-    @NoTestRequired
     public String asString(StringFormattable.Format format)
     {
         return asJavaDayOfWeek().name();
@@ -177,7 +164,6 @@ public class DayOfWeek extends BaseTime<DayOfWeek>
     }
 
     @Override
-    @Tested
     public boolean equals(Object object)
     {
         if (object instanceof DayOfWeek)
@@ -189,21 +175,18 @@ public class DayOfWeek extends BaseTime<DayOfWeek>
     }
 
     @Override
-    @Tested
     public int hashCode()
     {
         return Hash.code(asIsoOrdinal());
     }
 
     @Override
-    @NoTestRequired
     public DayOfWeek maximum()
     {
         return SUNDAY;
     }
 
     @Override
-    @NoTestRequired
     public DayOfWeek minimum()
     {
         return MONDAY;
@@ -238,7 +221,6 @@ public class DayOfWeek extends BaseTime<DayOfWeek>
     }
 
     @Override
-    @NoTestRequired
     public String toString()
     {
         return asString(USER_LABEL);

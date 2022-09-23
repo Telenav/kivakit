@@ -5,8 +5,8 @@ import com.telenav.kivakit.annotations.code.ApiQuality;
 import java.util.function.Function;
 
 import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_DEFAULT_EXPANDABLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.SUFFICIENT;
-import static com.telenav.kivakit.annotations.code.TestingQuality.NONE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.NOT_TESTED;
 
 /**
  * An object that is {@link Joinable} is {@link Iterable}. Objects are iterated through and joined by separator values
@@ -27,10 +27,15 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.NONE;
  */
 @SuppressWarnings({ "unused", "SpellCheckingInspection" })
 @ApiQuality(stability = STABLE_DEFAULT_EXPANDABLE,
-            testing = NONE,
-            documentation = SUFFICIENT)
+            testing = NOT_TESTED,
+            documentation = DOCUMENTED)
 public interface Joinable<Element> extends Iterable<Element>
 {
+    default String join()
+    {
+        return join(separator());
+    }
+
     /**
      * @return The elements in this sequence joined as a string with the given separator
      */
@@ -76,5 +81,10 @@ public interface Joinable<Element> extends Iterable<Element>
             return defaultValue;
         }
         return join(separator, Object::toString);
+    }
+
+    default String separator()
+    {
+        return ", ";
     }
 }

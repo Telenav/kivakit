@@ -27,8 +27,8 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.Iterator;
 
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.SUFFICIENT;
-import static com.telenav.kivakit.annotations.code.TestingQuality.NONE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.NOT_TESTED;
 
 /**
  * An {@link Iterator} that wraps and filters the values of another {@link Iterator}.
@@ -39,8 +39,8 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.NONE;
  */
 @UmlClassDiagram(diagram = DiagramCollections.class)
 @ApiQuality(stability = ApiStability.STABLE,
-            testing = NONE,
-            documentation = SUFFICIENT)
+            testing = NOT_TESTED,
+            documentation = DOCUMENTED)
 public class FilteredIterator<Element> extends BaseIterator<Element>
 {
     private final Iterator<Element> iterator;

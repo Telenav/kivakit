@@ -27,8 +27,8 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.Iterator;
 
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.SUFFICIENT;
-import static com.telenav.kivakit.annotations.code.TestingQuality.NONE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.NOT_TESTED;
 
 /**
  * An iterable that does matching during iteration.
@@ -37,8 +37,8 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.NONE;
  */
 @UmlClassDiagram(diagram = DiagramIteration.class)
 @ApiQuality(stability = ApiStability.STABLE,
-            testing = NONE,
-            documentation = SUFFICIENT)
+            testing = NOT_TESTED,
+            documentation = DOCUMENTED)
 public abstract class Matching<T> extends BaseIterable<T>
 {
     private final Matcher<T> matcher;

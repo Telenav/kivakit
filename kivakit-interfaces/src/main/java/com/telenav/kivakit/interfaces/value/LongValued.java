@@ -4,8 +4,8 @@ import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.interfaces.numeric.Zeroable;
 
 import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_DEFAULT_EXPANDABLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.SUFFICIENT;
-import static com.telenav.kivakit.annotations.code.TestingQuality.UNNECESSARY;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_REQUIRED;
 
 /**
  * An object that has a long representation
@@ -15,10 +15,18 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.UNNECESSARY;
 @FunctionalInterface
 @SuppressWarnings("unused")
 @ApiQuality(stability = STABLE_DEFAULT_EXPANDABLE,
-            testing = UNNECESSARY,
-            documentation = SUFFICIENT)
+            testing = TESTING_NOT_REQUIRED,
+            documentation = DOCUMENTED)
 public interface LongValued extends Zeroable
 {
+    /**
+     * @return The absolute difference between this long value and that long value
+     */
+    default long absoluteDifference(LongValued that)
+    {
+        return Math.abs(longValue() - that.longValue());
+    }
+
     /**
      * @return This long value cast to a byte
      */
@@ -76,21 +84,13 @@ public interface LongValued extends Zeroable
     }
 
     /**
-     * @return The absolute difference between this long value and that long value
-     */
-    default long difference(LongValued that)
-    {
-        return Math.abs(longValue() - that.longValue());
-    }
-
-    /**
      * @param that The value to compare with
      * @param within The tolerance
      * @return True if the difference between this value and that value is within the given tolerance
      */
     default boolean isApproximately(LongValued that, LongValued within)
     {
-        return difference(that) <= within.longValue();
+        return absoluteDifference(that) <= within.longValue();
     }
 
     /**

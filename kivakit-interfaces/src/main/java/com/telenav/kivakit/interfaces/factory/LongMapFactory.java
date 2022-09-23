@@ -23,8 +23,8 @@ import com.telenav.kivakit.interfaces.internal.lexakai.DiagramFactory;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import static com.telenav.kivakit.annotations.code.ApiStability.STABLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.SUFFICIENT;
-import static com.telenav.kivakit.annotations.code.TestingQuality.UNNECESSARY;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_REQUIRED;
 
 /**
  * A {@link MapFactory} that maps a primitive long value to an object.
@@ -35,8 +35,8 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.UNNECESSARY;
 @FunctionalInterface
 @UmlClassDiagram(diagram = DiagramFactory.class)
 @ApiQuality(stability = STABLE,
-            testing = UNNECESSARY,
-            documentation = SUFFICIENT)
+            testing = TESTING_NOT_REQUIRED,
+            documentation = DOCUMENTED)
 public interface LongMapFactory<Value>
 {
     /**

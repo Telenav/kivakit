@@ -27,8 +27,8 @@ import com.telenav.kivakit.core.value.count.Maximum;
 import com.telenav.kivakit.interfaces.collection.Addable;
 import com.telenav.kivakit.interfaces.collection.Joinable;
 import com.telenav.kivakit.interfaces.comparison.Matcher;
+import com.telenav.kivakit.interfaces.factory.Factory;
 import com.telenav.kivakit.interfaces.string.StringFormattable;
-import com.telenav.kivakit.interfaces.value.Instantiable;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import org.jetbrains.annotations.NotNull;
 
@@ -46,7 +46,7 @@ import java.util.Set;
 @LexakaiJavadoc(complete = true)
 public abstract class BaseSet<Element> implements
         Set<Element>,
-        Instantiable<BaseSet<Element>>,
+        Factory<BaseSet<Element>>,
         Countable,
         Addable<Element>,
         Joinable<Element>,
@@ -102,28 +102,6 @@ public abstract class BaseSet<Element> implements
             }
         }
         return success;
-    }
-
-    @Override
-    public boolean addAll(Iterable<? extends Element> objects)
-    {
-        var success = true;
-        for (Element object : objects)
-        {
-            if (!add(object))
-            {
-                success = false;
-            }
-        }
-        return success;
-    }
-
-    public void addAll(Element[] objects)
-    {
-        for (var object : objects)
-        {
-            add(object);
-        }
     }
 
     public void addAllMatching(Collection<Element> values, Matcher<Element> matcher)

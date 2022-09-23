@@ -21,8 +21,6 @@ package com.telenav.kivakit.core.time;
 import com.telenav.kivakit.core.internal.lexakai.DiagramTime;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.string.Strip;
-import com.telenav.kivakit.core.testing.NoTestRequired;
-import com.telenav.kivakit.core.testing.Tested;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
@@ -48,7 +46,6 @@ import static com.telenav.kivakit.core.time.Duration.parseDuration;
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramTime.class)
 @LexakaiJavadoc(complete = true)
-@Tested
 public class Frequency
 {
     public static final Frequency ONCE = every(Duration.MAXIMUM);
@@ -73,37 +70,31 @@ public class Frequency
 
     public static final Frequency CONTINUOUSLY = every(ZERO_DURATION);
 
-    @Tested
     public static Frequency cyclesPerDay(int times)
     {
         return every(Duration.ONE_DAY.dividedBy(times));
     }
 
-    @Tested
     public static Frequency cyclesPerHour(int times)
     {
         return every(Duration.ONE_HOUR.dividedBy(times));
     }
 
-    @Tested
     public static Frequency cyclesPerMinute(int times)
     {
         return every(Duration.ONE_MINUTE.dividedBy(times));
     }
 
-    @Tested
     public static Frequency cyclesPerSecond(int times)
     {
         return every(Duration.ONE_SECOND.dividedBy(times));
     }
 
-    @Tested
     public static Frequency every(Duration duration)
     {
         return new Frequency(duration);
     }
 
-    @Tested
     public static Frequency parseFrequency(Listener listener, String value)
     {
         value = Strip.leading(value, "every").strip();
@@ -130,25 +121,21 @@ public class Frequency
      * The start time of a cycle
      */
     @LexakaiJavadoc(complete = true)
-    @Tested
     public class Cycle
     {
         private final Time start;
 
-        @NoTestRequired
-        public Cycle(Time start)
+            public Cycle(Time start)
         {
             this.start = start;
         }
 
-        @Tested
-        public Time next()
+            public Time next()
         {
             return Time.now().plus(waitTimeBeforeNextCycle());
         }
 
-        @Tested
-        public Duration waitTimeBeforeNextCycle()
+            public Duration waitTimeBeforeNextCycle()
         {
             // If there is no cycle length,
             if (cycleLength.isZero())
@@ -166,7 +153,6 @@ public class Frequency
     /** The cycle length of this frequency */
     private final Duration cycleLength;
 
-    @NoTestRequired
     protected Frequency(Duration cycleLength)
     {
         this.cycleLength = Objects.requireNonNull(cycleLength);
@@ -175,14 +161,12 @@ public class Frequency
     /**
      * @return The duration of one cycle
      */
-    @NoTestRequired
     public Duration cycleLength()
     {
         return cycleLength;
     }
 
     @Override
-    @Tested
     public boolean equals(final Object object)
     {
         if (object instanceof Frequency)
@@ -194,7 +178,6 @@ public class Frequency
     }
 
     @Override
-    @Tested
     public int hashCode()
     {
         return Objects.hash(cycleLength);
@@ -204,7 +187,6 @@ public class Frequency
      * @param start The time this frequency object started
      * @return A {@link Cycle} object which provides the wait time until the next cycle
      */
-    @Tested
     public Cycle start(Time start)
     {
         return new Cycle(start);
@@ -213,14 +195,12 @@ public class Frequency
     /**
      * @return A {@link Cycle} object which provides the wait time until the next cycle
      */
-    @NoTestRequired
     public Cycle start()
     {
         return start(Time.now());
     }
 
     @Override
-    @Tested
     public String toString()
     {
         return "every " + cycleLength;

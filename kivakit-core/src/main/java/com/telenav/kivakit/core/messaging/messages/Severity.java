@@ -19,9 +19,9 @@
 package com.telenav.kivakit.core.messaging.messages;
 
 import com.telenav.kivakit.core.internal.lexakai.DiagramMessaging;
-import com.telenav.kivakit.interfaces.naming.Named;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.value.level.Level;
+import com.telenav.kivakit.interfaces.naming.Named;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
@@ -33,6 +33,7 @@ import java.util.Map;
  *
  * @author jonathanl (shibo)
  */
+@SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramMessaging.class)
 @LexakaiJavadoc(complete = true)
 public final class Severity extends Level implements Named

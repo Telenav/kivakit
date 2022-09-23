@@ -1,7 +1,5 @@
 package com.telenav.kivakit.core.time;
 
-import com.telenav.kivakit.core.testing.NoTestRequired;
-import com.telenav.kivakit.core.testing.Tested;
 import com.telenav.kivakit.interfaces.time.Nanoseconds;
 
 import java.util.ArrayList;
@@ -50,25 +48,21 @@ public class Hour extends BaseTime<Hour>
 {
     static final Nanoseconds nanosecondsPerHour = nanosecondsPerMinute.times(60);
 
-    @Tested
     public static Hour am(int hour)
     {
         return hourOfDay(hour, AM);
     }
 
-    @Tested
     public static Hour hourOfDay(int hour, Meridiem meridiem)
     {
         return new Hour(meridiem.asMilitaryHour(hour));
     }
 
-    @Tested
     public static Hour midnight()
     {
         return am(12);
     }
 
-    @Tested
     public static Hour militaryHour(int militaryHour)
     {
         ensure(militaryHour >= 0);
@@ -87,13 +81,11 @@ public class Hour extends BaseTime<Hour>
         return hours;
     }
 
-    @Tested
     public static Hour noon()
     {
         return pm(12);
     }
 
-    @Tested
     public static Hour pm(int hour)
     {
         return hourOfDay(hour, PM);
@@ -103,13 +95,11 @@ public class Hour extends BaseTime<Hour>
     {
     }
 
-    @Tested
     protected Hour(int militaryHour)
     {
         super(nanosecondsPerHour.times(militaryHour));
     }
 
-    @NoTestRequired
     public HourOfWeek asHourOfWeek()
     {
         return hourOfWeek(asMilitaryHour());
@@ -118,7 +108,6 @@ public class Hour extends BaseTime<Hour>
     /**
      * Returns this hour of the day on a 12-hour AM/PM clock
      */
-    @Tested
     public int asMeridiemHour()
     {
         return meridiemHour(asMilitaryHour());
@@ -127,7 +116,6 @@ public class Hour extends BaseTime<Hour>
     /**
      * Returns this hour of the day on a 24-hour clock
      */
-    @Tested
     public int asMilitaryHour()
     {
         return (int) nanoseconds().dividedBy(nanosecondsPerHour);
@@ -166,7 +154,6 @@ public class Hour extends BaseTime<Hour>
     }
 
     @Override
-    @Tested
     public String toString()
     {
         return asMeridiemHour() + meridiem().name().toLowerCase();

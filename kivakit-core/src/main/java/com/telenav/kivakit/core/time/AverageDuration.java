@@ -19,7 +19,6 @@
 package com.telenav.kivakit.core.time;
 
 import com.telenav.kivakit.core.math.Average;
-import com.telenav.kivakit.core.testing.Tested;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 
 import static com.telenav.kivakit.core.time.Duration.milliseconds;
@@ -33,25 +32,21 @@ import static com.telenav.kivakit.core.time.Duration.milliseconds;
 @LexakaiJavadoc(complete = true)
 public class AverageDuration extends Average
 {
-    @Tested
     public void add(Duration duration)
     {
         super.add(duration.asMilliseconds());
     }
 
-    @Tested
     public Duration averageDuration()
     {
         return milliseconds(average());
     }
 
-    @Tested
     public Duration maximumDuration()
     {
         return milliseconds(super.maximum());
     }
 
-    @Tested
     public Duration minimumDuration()
     {
         return milliseconds(super.minimum());
@@ -63,7 +58,6 @@ public class AverageDuration extends Average
         return averageDuration().toString();
     }
 
-    @Tested
     public Duration totalDuration()
     {
         return milliseconds(super.total());

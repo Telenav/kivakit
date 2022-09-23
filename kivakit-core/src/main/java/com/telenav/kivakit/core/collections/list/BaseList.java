@@ -18,6 +18,7 @@
 
 package com.telenav.kivakit.core.collections.list;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.collections.iteration.BaseIterator;
 import com.telenav.kivakit.core.ensure.Ensure;
 import com.telenav.kivakit.core.internal.lexakai.DiagramCollections;
@@ -30,17 +31,18 @@ import com.telenav.kivakit.interfaces.collection.Addable;
 import com.telenav.kivakit.interfaces.collection.Appendable;
 import com.telenav.kivakit.interfaces.collection.Indexable;
 import com.telenav.kivakit.interfaces.collection.Prependable;
+import com.telenav.kivakit.interfaces.collection.Sectionable;
 import com.telenav.kivakit.interfaces.collection.Sequence;
 import com.telenav.kivakit.interfaces.collection.Sized;
+import com.telenav.kivakit.interfaces.collection.WriteIndexable;
 import com.telenav.kivakit.interfaces.comparison.Matcher;
+import com.telenav.kivakit.interfaces.factory.Factory;
 import com.telenav.kivakit.interfaces.string.StringFormattable;
-import com.telenav.kivakit.interfaces.value.Instantiable;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import org.jetbrains.annotations.NotNull;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
@@ -52,6 +54,11 @@ import java.util.Random;
 import java.util.RandomAccess;
 import java.util.function.Function;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_DEFAULT_EXPANDABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.MORE_TESTING_REQUIRED;
+import static com.telenav.kivakit.interfaces.string.StringFormattable.Format.TO_STRING;
+
 /**
  * A base class for bounded lists which adds a number of convenient methods as well as support for various KivaKit
  * interfaces, including {@link Indexable}, {@link Sequence}, {@link Addable}, {@link java.lang.Appendable},and
@@ -61,15 +68,15 @@ import java.util.function.Function;
  *
  * <ul>
  *     <li>{@link #maximumSize()} - The maximum size of this list</li>
- *     <li>{@link #checkSizeIncrease(int)} - For use by subclasses to check their size</li>
+ *     <li>{@link #hasRoomFor(int)} - For use by subclasses to check their size</li>
  *     <li>{@link #onOutOfRoom()} - Implemented by subclasses to respond when the list is out of space</li>
  * </ul>
  *
  * <p><b>Checks</b></p>
  *
  * <ul>
- *     <li>{@link #endsWith(BaseList)} - True if this list ends with the same elements as the given list</li>
- *     <li>{@link #startsWith(BaseList)} - True if this list starts with the same elements as the given list</li>
+ *     <li>{@link #endsWith(Indexable)} - True if this list ends with the same elements as the given list</li>
+ *     <li>{@link #startsWith(Indexable)} - True if this list starts with the same elements as the given list</li>
  * </ul>
  *
  * <p><b>Conversions</b></p>
@@ -94,6 +101,8 @@ import java.util.function.Function;
  *     <li>{@link #without(Matcher)} - This list without the matching elements</li>
  *     <li>{@link #first(int)} - A new list with the first n elements in it</li>
  *     <li>{@link #first(Count)} - A new list with the first n elements in it</li>
+ *     <li>{@link #last(int)} - A new list with the first n elements in it</li>
+ *     <li>{@link #last(Count)} - A new list with the first n elements in it</li>
  *     <li>{@link #leftOf(int)} - The elements in this list to the left on the given index, exclusive</li>
  *     <li>{@link #rightOf(int)} - The elements in this list to the right on the given index, exclusive</li>
  *     <li>{@link #matching(Matcher)} - A copy of this list filtered to matching elements</li>
@@ -104,29 +113,37 @@ import java.util.function.Function;
  * </ul>
  *
  * @author jonathanl (shibo)
- * @see Instantiable
+ * @see Factory
  * @see List
  * @see Indexable
+ * @see WriteIndexable
+ * @see Sectionable
  * @see Addable
- * @see java.lang.Appendable
+ * @see Appendable
+ * @see Prependable
  * @see RandomAccess
+ * @see Countable
  * @see StringFormattable
  */
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramCollections.class, excludeAllSuperTypes = true)
-public abstract class BaseList<Element> implements
-        Instantiable<BaseList<Element>>,
-        List<Element>,
-        Indexable<Element>,
-        Addable<Element>,
-        Appendable<Element>,
-        Prependable<Element>,
+@ApiQuality(stability = STABLE_DEFAULT_EXPANDABLE,
+            testing = MORE_TESTING_REQUIRED,
+            documentation = DOCUMENTED)
+public abstract class BaseList<Value> implements
+        Factory<BaseList<Value>>,
+        List<Value>,
+        WriteIndexable<Value>,
+        Sectionable<Value, BaseList<Value>>,
+        Addable<Value>,
+        Appendable<Value>,
+        Prependable<Value>,
         RandomAccess,
         Countable,
         StringFormattable
 {
     /** Initial list implementation while mutable */
-    private final List<Element> list;
+    private final List<Value> list;
 
     /** The maximum size of this bounded list */
     private int maximumSize;
@@ -146,18 +163,18 @@ public abstract class BaseList<Element> implements
      * @param maximumSize The maximum size of this list
      * @param list The list implementation to use
      */
-    protected BaseList(Maximum maximumSize, Collection<Element> list)
+    protected BaseList(Maximum maximumSize, Collection<Value> list)
     {
         this.maximumSize = maximumSize.asInt();
         if (list instanceof List)
         {
-            this.list = (List<Element>) list;
+            this.list = (List<Value>) list;
         }
         else
         {
             this.list = new ArrayList<>(list);
         }
-        checkSizeIncrease(0);
+        hasRoomFor(0);
     }
 
     /**
@@ -171,7 +188,7 @@ public abstract class BaseList<Element> implements
     /**
      * An unbounded list with the given list implementation
      */
-    protected BaseList(Collection<Element> collection)
+    protected BaseList(Collection<Value> collection)
     {
         this(Maximum.MAXIMUM, collection);
     }
@@ -180,11 +197,11 @@ public abstract class BaseList<Element> implements
      * {@inheritDoc}
      */
     @Override
-    public void add(int index, Element element)
+    public void add(int index, Value value)
     {
-        if (checkSizeIncrease(1))
+        if (hasRoomFor(1))
         {
-            list.add(index, element);
+            list.add(index, value);
         }
     }
 
@@ -192,22 +209,18 @@ public abstract class BaseList<Element> implements
      * {@inheritDoc}
      */
     @Override
-    public boolean add(Element element)
+    public boolean add(Value value)
     {
-        if (checkSizeIncrease(1))
-        {
-            return list.add(element);
-        }
-        return false;
+        return hasRoomFor(1) && onAdd(value);
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public boolean addAll(Collection<? extends Element> elements)
+    public boolean addAll(Collection<? extends Value> elements)
     {
-        if (checkSizeIncrease(elements.size()))
+        if (hasRoomFor(elements.size()))
         {
             return list.addAll(elements);
         }
@@ -218,9 +231,9 @@ public abstract class BaseList<Element> implements
      * {@inheritDoc}
      */
     @Override
-    public boolean addAll(int index, Collection<? extends Element> collection)
+    public boolean addAll(int index, Collection<? extends Value> collection)
     {
-        if (checkSizeIncrease(collection.size()))
+        if (hasRoomFor(collection.size()))
         {
             return list.addAll(index, collection);
         }
@@ -228,78 +241,28 @@ public abstract class BaseList<Element> implements
     }
 
     /**
-     * Adds the given elements to this bounded list
-     */
-    public boolean addAll(Element[] elements)
-    {
-        if (checkSizeIncrease(elements.length))
-        {
-            list.addAll(Arrays.asList(elements));
-            return true;
-        }
-        return false;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public BaseList<Element> append(Element element)
-    {
-        add(element);
-        return this;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public BaseList<Element> appendAll(Iterable<? extends Element> elements)
-    {
-        addAll(elements);
-        return this;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public BaseList<Element> appendAll(Iterator<? extends Element> elements)
-    {
-        while (elements.hasNext())
-        {
-            add(elements.next());
-        }
-        return this;
-    }
-
-    public BaseList<Element> appendAll(Element[] elements)
-    {
-        addAll(elements);
-        return this;
-    }
-
-    /**
      * @return This list as an array
      */
     @SuppressWarnings({ "unchecked" })
-    public Element[] asArray(Class<Element> type)
+    public Value[] asArray(Class<Value> type)
     {
-        var array = (Element[]) Array.newInstance(type, size());
+        var array = (Value[]) Array.newInstance(type, size());
         toArray(array);
         return array;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public @NotNull
-    Iterator<Element> asIterator(Matcher<Element> matcher)
+    public @NotNull Iterator<Value> asIterator(Matcher<Value> matcher)
     {
         return new BaseIterator<>()
         {
             int index = 0;
 
             @Override
-            protected Element onNext()
+            protected Value onNext()
             {
                 while (index < size())
                 {
@@ -316,22 +279,9 @@ public abstract class BaseList<Element> implements
 
     @Override
     public @NotNull
-    Iterator<Element> asIterator()
+    Iterator<Value> asIterator()
     {
-        return new BaseIterator<>()
-        {
-            int index = 0;
-
-            @Override
-            protected Element onNext()
-            {
-                if (index < size())
-                {
-                    return get(index++);
-                }
-                return null;
-            }
-        };
+        return asIterator(Matcher.matchAll());
     }
 
     /**
@@ -347,7 +297,7 @@ public abstract class BaseList<Element> implements
                 return join(separator(), StringTo::debug);
 
             default:
-                return toString();
+                return join();
         }
     }
 
@@ -359,11 +309,17 @@ public abstract class BaseList<Element> implements
         return new StringList(maximumSize(), this);
     }
 
+    /**
+     * @return This list with braces around it indented by 4 spaces
+     */
     public String bracketed()
     {
         return bracketed(4);
     }
 
+    /**
+     * @return This list with braces around it indented by the given number of spaces
+     */
     public String bracketed(int indent)
     {
         return "\n{\n" + bulleted(indent) + "\n}";
@@ -415,25 +371,20 @@ public abstract class BaseList<Element> implements
     /**
      * @return A copy of this list
      */
-    public BaseList<Element> copy()
+    public BaseList<Value> copy()
     {
         var copy = newInstance();
         copy.addAll(this);
         return copy;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Count count()
     {
         return Count.count(size());
-    }
-
-    /**
-     * @return True if this list ends with the given list
-     */
-    public boolean endsWith(BaseList<Element> that)
-    {
-        return that != null && reversed().startsWith(that.reversed());
     }
 
     /**
@@ -464,35 +415,56 @@ public abstract class BaseList<Element> implements
     }
 
     /**
-     * @return The first n elements in this list
+     * {@inheritDoc}
      */
-    public BaseList<Element> first(Count count)
+    @Override
+    public BaseList<Value> first(int count)
     {
-        return first(count.asInt());
+        return (BaseList<Value>) Sectionable.super.first(count);
     }
 
     /**
-     * @return The first n elements in this list
+     * @return The first count elements of this list
      */
-    public BaseList<Element> first(int count)
+    public BaseList<Value> first(Count count)
     {
-        var list = newInstance();
-        for (var i = 0; i < Math.min(count, size()); i++)
-        {
-            list.add(get(i));
-        }
-        return list;
+        return first(count.asInt());
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public Element get(int index)
+    public Value get(int index)
     {
         return list.get(index);
     }
 
+    /**
+     * @return True if the given size increase is acceptable, false if not
+     */
+    @Override
+    public boolean hasRoomFor(int increase)
+    {
+        if (size() + increase > maximumSize)
+        {
+            if (!outOfRoom)
+            {
+                onOutOfRoom();
+                outOfRoom = true;
+            }
+            return false;
+        }
+        else
+        {
+            outOfRoom = false;
+            return true;
+        }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public int hashCode()
     {
@@ -521,17 +493,26 @@ public abstract class BaseList<Element> implements
      * {@inheritDoc}
      */
     @Override
-    public Iterator<Element> iterator()
+    public Iterator<Value> iterator()
     {
         return list.iterator();
     }
 
     /**
-     * @return This bounded list joined as a string with the list {@link #separator()}
+     * {@inheritDoc}
      */
-    public final String join()
+    @Override
+    public BaseList<Value> last(int count)
     {
-        return join(separator());
+        return (BaseList<Value>) Sectionable.super.last(count);
+    }
+
+    /**
+     * @return The last count values of this list
+     */
+    public BaseList<Value> last(Count count)
+    {
+        return last(count.asInt());
     }
 
     /**
@@ -543,22 +524,15 @@ public abstract class BaseList<Element> implements
         return list.lastIndexOf(element);
     }
 
-    /**
-     * @return The elements in this list to the left of the index, exclusive
-     */
-    public BaseList<Element> leftOf(int index)
+    @Override
+    public BaseList<Value> leftOf(int index)
     {
-        var left = newInstance();
-        for (var i = 0; i < index; i++)
-        {
-            left.add(get(i));
-        }
-        return left;
+        return (BaseList<Value>) Sectionable.super.leftOf(index);
     }
 
     @NotNull
     @Override
-    public ListIterator<Element> listIterator()
+    public ListIterator<Value> listIterator()
     {
         return list.listIterator();
     }
@@ -567,7 +541,7 @@ public abstract class BaseList<Element> implements
      * {@inheritDoc}
      */
     @Override
-    public ListIterator<Element> listIterator(int index)
+    public ListIterator<Value> listIterator(int index)
     {
         return list.listIterator(index);
     }
@@ -576,7 +550,7 @@ public abstract class BaseList<Element> implements
      * @return This bounded list with all elements mapped by the given mapper to the mapper's target type
      */
     @SuppressWarnings("unchecked")
-    public <Target> BaseList<Target> mapped(Function<Element, Target> mapper)
+    public <Target> BaseList<Target> mapped(Function<Value, Target> mapper)
     {
         var filtered = (BaseList<Target>) newInstance();
         for (var element : this)
@@ -589,11 +563,10 @@ public abstract class BaseList<Element> implements
     /**
      * @return This bounded list filtered to only the elements that match the given matcher
      */
-    public BaseList<Element> matching(Matcher<Element> matcher)
+    @Override
+    public BaseList<Value> matching(Matcher<Value> matcher)
     {
-        var filtered = newInstance();
-        filtered.addAll(asIterable(matcher));
-        return filtered;
+        return (BaseList<Value>) Sectionable.super.matching(matcher);
     }
 
     /**
@@ -607,51 +580,60 @@ public abstract class BaseList<Element> implements
     /**
      * @return This list reversed if reverse is true, or the list itself if it is false
      */
-    public BaseList<Element> maybeReversed(boolean reverse)
+    public BaseList<Value> maybeReversed(boolean reverse)
     {
         return reverse ? reversed() : this;
     }
 
     @Override
-    public BaseList<Element> newInstance()
+    public BaseList<Value> newInstance()
     {
         var instance = onNewInstance();
         instance.maximumSize = maximumSize;
         return instance;
     }
 
-    public Element pop()
-    {
-        return removeLast();
-    }
-
     /**
-     * Prepends the given element to the front of this list
+     * {@inheritDoc}
      */
     @Override
-    public BaseList<Element> prepend(Element element)
+    public boolean onAdd(Value value)
     {
-        if (isEmpty())
-        {
-            add(element);
-        }
-        else
-        {
-            add(0, element);
-        }
-        return this;
-    }
-
-    public void push(Element element)
-    {
-        append(element);
+        return list.add(value);
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public Element remove(int index)
+    public boolean onAppend(Value value)
+    {
+        return onAdd(value);
+    }
+
+    /**
+     * Prepends the given value to the front of this list
+     */
+    @Override
+    public boolean onPrepend(Value value)
+    {
+        list.add(0, value);
+        return true;
+    }
+
+    /**
+     * @return The last value in this list, after removing it
+     */
+    public Value pop()
+    {
+        return removeLast();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Value remove(int index)
     {
         return list.remove(index);
     }
@@ -678,7 +660,7 @@ public abstract class BaseList<Element> implements
     /**
      * @return Removes the last element in this list
      */
-    public Element removeLast()
+    public Value removeLast()
     {
         if (!isEmpty())
         {
@@ -688,14 +670,14 @@ public abstract class BaseList<Element> implements
     }
 
     /**
-     * Replace all occurrences of the given element with the given replacement
+     * Replace all occurrences of the given value with the given replacement
      *
-     * @param element The element to replace
-     * @param replacement The element to substitute
+     * @param value The value to replace
+     * @param replacement The value to substitute
      */
-    public boolean replaceAll(Element element, Element replacement)
+    public boolean replaceAll(Value value, Value replacement)
     {
-        return Collections.replaceAll(list, element, replacement);
+        return Collections.replaceAll(list, value, replacement);
     }
 
     /**
@@ -719,40 +701,50 @@ public abstract class BaseList<Element> implements
     /**
      * @return This list reversed
      */
-    public BaseList<Element> reversed()
+    public BaseList<Value> reversed()
     {
         var copy = copy();
         copy.reverse();
         return copy;
     }
 
-    /**
-     * @return The elements in this list to the right of the index, exclusive
-     */
-    public BaseList<Element> rightOf(int index)
+    @Override
+    public BaseList<Value> rightOf(int index)
     {
-        var right = newInstance();
-        for (var i = index + 1; i < size(); i++)
-        {
-            right.add(get(i));
-        }
-        return right;
+        return (BaseList<Value>) Sectionable.super.rightOf(index);
+    }
+
+    /**
+     * @return The separator to use when joining this list
+     */
+    @Override
+    public String separator()
+    {
+        return ", ";
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public Element set(int index, Element element)
+    public Value set(int index, Value value)
     {
-        return list.set(index, element);
+        return list.set(index, value);
     }
 
+    /**
+     * Shuffles this list into a random ordering
+     */
     public void shuffle()
     {
         shuffle(new Random());
     }
 
+    /**
+     * Shuffles this list using the given {@link Random} number generator
+     *
+     * @param random The random number generator
+     */
     public void shuffle(Random random)
     {
         Collections.shuffle(list, random);
@@ -771,7 +763,7 @@ public abstract class BaseList<Element> implements
      * {@inheritDoc}
      */
     @Override
-    public void sort(Comparator<? super Element> comparator)
+    public void sort(Comparator<? super Value> comparator)
     {
         list.sort(comparator);
     }
@@ -781,15 +773,15 @@ public abstract class BaseList<Element> implements
      * comparable, an exception will be thrown.
      */
     @SuppressWarnings("unchecked")
-    public BaseList<Element> sorted()
+    public BaseList<Value> sorted()
     {
-        return sorted((Element a, Element b) -> ((Comparable<Element>) a).compareTo(b));
+        return sorted((Value a, Value b) -> ((Comparable<Value>) a).compareTo(b));
     }
 
     /**
      * @return A copy of this list sorted by the given comparator
      */
-    public BaseList<Element> sorted(Comparator<Element> comparator)
+    public BaseList<Value> sorted(Comparator<Value> comparator)
     {
         var sorted = newInstance();
         sorted.addAll(this);
@@ -798,32 +790,10 @@ public abstract class BaseList<Element> implements
     }
 
     /**
-     * @return True if this list starts with the given list
-     */
-    public boolean startsWith(BaseList<Element> that)
-    {
-        if (that == null || that.size() > size())
-        {
-            return false;
-        }
-        else
-        {
-            for (var i = 0; i < that.size(); i++)
-            {
-                if (!get(i).equals(that.get(i)))
-                {
-                    return false;
-                }
-            }
-            return true;
-        }
-    }
-
-    /**
      * {@inheritDoc}
      */
     @Override
-    public List<Element> subList(int fromIndex, int toIndex)
+    public List<Value> subList(int fromIndex, int toIndex)
     {
         return list.subList(fromIndex, toIndex);
     }
@@ -853,14 +823,14 @@ public abstract class BaseList<Element> implements
     @Override
     public String toString()
     {
-        return join();
+        return asString(TO_STRING);
     }
 
     /**
      * @return A copy of this list with only unique elements in it
      */
     @SuppressWarnings("SpellCheckingInspection")
-    public BaseList<Element> uniqued()
+    public BaseList<Value> uniqued()
     {
         var list = newInstance();
         list.addAll(asSet());
@@ -870,40 +840,10 @@ public abstract class BaseList<Element> implements
     /**
      * @return This list without the matching elements
      */
-    public BaseList<Element> without(Matcher<Element> matcher)
+    @Override
+    public BaseList<Value> without(Matcher<Value> matcher)
     {
-        var iterator = iterator();
-        var without = newInstance();
-        while (iterator.hasNext())
-        {
-            var element = iterator.next();
-            if (!matcher.matches(element))
-            {
-                without.add(element);
-            }
-        }
-        return without;
-    }
-
-    /**
-     * @return True if the given size increase is acceptable, false if not
-     */
-    protected boolean checkSizeIncrease(int increase)
-    {
-        if (size() + increase > maximumSize)
-        {
-            if (!outOfRoom)
-            {
-                onOutOfRoom();
-                outOfRoom = true;
-            }
-            return false;
-        }
-        else
-        {
-            outOfRoom = false;
-            return true;
-        }
+        return (BaseList<Value>) Sectionable.super.without(matcher);
     }
 
     /**
@@ -915,20 +855,12 @@ public abstract class BaseList<Element> implements
     }
 
     /**
-     * @return The separator to use when joining this list
-     */
-    protected String separator()
-    {
-        return ", ";
-    }
-
-    /**
      * Convert the given value to a string
      *
      * @param value The value
      * @return A string corresponding to the value
      */
-    protected String toString(Element value)
+    protected String toString(Value value)
     {
         return StringTo.string(value);
     }

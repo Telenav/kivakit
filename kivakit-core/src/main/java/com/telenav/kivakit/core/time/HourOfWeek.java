@@ -1,7 +1,5 @@
 package com.telenav.kivakit.core.time;
 
-import com.telenav.kivakit.core.testing.NoTestRequired;
-import com.telenav.kivakit.core.testing.Tested;
 import com.telenav.kivakit.core.value.count.BaseCount;
 import com.telenav.kivakit.interfaces.time.Nanoseconds;
 
@@ -28,7 +26,6 @@ public class HourOfWeek extends BaseTime<HourOfWeek>
      *
      * @param hourOfWeek The hour of the week from 0 to 7 * 24 (168), exclusive.
      */
-    @Tested
     public static HourOfWeek hourOfWeek(int hourOfWeek)
     {
         ensureBetweenExclusive(hourOfWeek, 0, 24 * 7, "Hour of week $ is out of range", hourOfWeek);
@@ -44,7 +41,6 @@ public class HourOfWeek extends BaseTime<HourOfWeek>
      *
      * @param hourOfWeek The hour of the week from 0 to 7 * 24 (168), exclusive.
      */
-    @Tested
     public static HourOfWeek hourOfWeek(BaseCount<?> hourOfWeek)
     {
         return hourOfWeek(hourOfWeek.asInt());
@@ -57,7 +53,6 @@ public class HourOfWeek extends BaseTime<HourOfWeek>
      * @param hourOfDay The hour of the day
      * @return The hour of the week
      */
-    @Tested
     public static HourOfWeek hourOfWeek(DayOfWeek dayOfWeek, Hour hourOfDay)
     {
         return hourOfWeek((dayOfWeek.asIsoOrdinal() * 24 + hourOfDay.asUnits()));
@@ -69,12 +64,10 @@ public class HourOfWeek extends BaseTime<HourOfWeek>
     /** The hour of the day used to compute the hour of the week */
     private Hour hourOfDay;
 
-    @NoTestRequired
     protected HourOfWeek()
     {
     }
 
-    @NoTestRequired
     protected HourOfWeek(DayOfWeek dayOfWeek, Hour hourOfDay)
     {
         super(dayOfWeek.nanoseconds().plus(hourOfDay.nanoseconds()));
@@ -94,7 +87,6 @@ public class HourOfWeek extends BaseTime<HourOfWeek>
      * @param zone The time zone to offset by
      * @return The hour of the week in the given time zone
      */
-    @Tested
     public HourOfWeek asLocalTime(ZoneId zone)
     {
         return offset(zone, false);
@@ -106,7 +98,6 @@ public class HourOfWeek extends BaseTime<HourOfWeek>
      * @param localZone The time zone for this hour of the week
      * @return The hour of the week in UTC time
      */
-    @Tested
     public HourOfWeek asUtc(ZoneId localZone)
     {
         return offset(localZone, true);
@@ -115,7 +106,6 @@ public class HourOfWeek extends BaseTime<HourOfWeek>
     /**
      * @return The day of the week
      */
-    @Tested
     public DayOfWeek dayOfWeek()
     {
         return dayOfWeek;
@@ -142,14 +132,12 @@ public class HourOfWeek extends BaseTime<HourOfWeek>
     /**
      * @return The hour of the day
      */
-    @Tested
     public Hour hourOfDay()
     {
         return hourOfDay;
     }
 
     @Override
-    @Tested
     public HourOfWeek maximum()
     {
         return hourOfWeek(7 * 24 - 1);
@@ -162,7 +150,6 @@ public class HourOfWeek extends BaseTime<HourOfWeek>
     }
 
     @Override
-    @Tested
     public HourOfWeek minusUnits(double count)
     {
         return offset(-count);
@@ -178,21 +165,18 @@ public class HourOfWeek extends BaseTime<HourOfWeek>
      * {@inheritDoc}
      */
     @Override
-    @NoTestRequired
     public HourOfWeek onNewTime(Nanoseconds nanoseconds)
     {
         return hourOfWeek((int) nanosecondsToUnits(nanoseconds));
     }
 
     @Override
-    @Tested
     public HourOfWeek plusUnits(double count)
     {
         return offset(count);
     }
 
     @Override
-    @NoTestRequired
     public String toString()
     {
         return dayOfWeek() + " at " + hourOfDay();

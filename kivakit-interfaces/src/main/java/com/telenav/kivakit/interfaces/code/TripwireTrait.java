@@ -6,8 +6,8 @@ import java.util.IdentityHashMap;
 import java.util.Map;
 
 import static com.telenav.kivakit.annotations.code.ApiStability.STABLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.SUFFICIENT;
-import static com.telenav.kivakit.annotations.code.TestingQuality.NONE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.NOT_TESTED;
 
 /**
  * Quick hack to debug code to see how often it is being executed. The {@link #tripwireTripEvery(int)} method can be
@@ -18,8 +18,8 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.NONE;
  */
 @SuppressWarnings("unused")
 @ApiQuality(stability = STABLE,
-            testing = NONE,
-            documentation = SUFFICIENT)
+            testing = NOT_TESTED,
+            documentation = DOCUMENTED)
 public interface TripwireTrait
 {
     /** Map from this trait's implementing class to the current method invocation count */

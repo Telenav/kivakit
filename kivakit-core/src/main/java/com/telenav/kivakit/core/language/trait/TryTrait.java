@@ -6,8 +6,8 @@ import com.telenav.kivakit.core.code.UncheckedVoidCode;
 import com.telenav.kivakit.core.messaging.Broadcaster;
 
 import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_DEFAULT_EXPANDABLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.SUFFICIENT;
-import static com.telenav.kivakit.annotations.code.TestingQuality.NONE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.NOT_TESTED;
 
 /**
  * Provides methods that execute code, stripping off checked exceptions. This interface extends {@link Broadcaster} as
@@ -45,8 +45,8 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.NONE;
  */
 @SuppressWarnings("unused")
 @ApiQuality(stability = STABLE_DEFAULT_EXPANDABLE,
-            documentation = SUFFICIENT,
-            testing = NONE)
+            documentation = DOCUMENTED,
+            testing = NOT_TESTED)
 public interface TryTrait extends
         Broadcaster,
         TryCatchTrait

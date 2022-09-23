@@ -30,7 +30,6 @@ import com.telenav.kivakit.core.messaging.Message;
 import com.telenav.kivakit.core.messaging.listeners.MessageList;
 import com.telenav.kivakit.core.messaging.messages.status.Problem;
 import com.telenav.kivakit.core.messaging.repeaters.RepeaterMixin;
-import com.telenav.kivakit.core.testing.Tested;
 import com.telenav.kivakit.interfaces.code.Code;
 import com.telenav.kivakit.interfaces.string.Parsable;
 import com.telenav.kivakit.interfaces.value.Source;
@@ -215,7 +214,6 @@ public class Result<Value> extends Maybe<Value> implements RepeaterMixin
      *
      * @return The {@link Result} of the call
      */
-    @Tested
     public static <T> Result<T> run(Broadcaster broadcaster, Code<T> code)
     {
         // Create an empty result that captures messages from this object,
@@ -287,7 +285,6 @@ public class Result<Value> extends Maybe<Value> implements RepeaterMixin
      * <p>
      * {@inheritDoc}
      */
-    @Tested
     public <Mapped> Result<Mapped> apply(Function<? super Value, ? extends Maybe<? extends Mapped>> function)
     {
         return (Result<Mapped>) super.apply(function);
@@ -301,7 +298,6 @@ public class Result<Value> extends Maybe<Value> implements RepeaterMixin
      * @param mapperType The {@link Parsable} class
      * @return A {@link Maybe} object with the mapped value, or {@link #absent()} if the mapping failed
      */
-    @Tested
     public <Output, Mapper extends Parsable<? extends Output>> Maybe<Output> convert(Class<Mapper> mapperType)
     {
         var outer = this;
@@ -336,7 +332,6 @@ public class Result<Value> extends Maybe<Value> implements RepeaterMixin
     /**
      * Returns true if this result represents a failure
      */
-    @Tested
     public boolean failed()
     {
         return messages != null && messages().failed();
@@ -356,7 +351,6 @@ public class Result<Value> extends Maybe<Value> implements RepeaterMixin
      * <p>
      * {@inheritDoc}
      */
-    @Tested
     public Result<Value> ifPresent(Consumer<Value> consumer)
     {
         return (Result<Value>) super.ifPresent(consumer);
@@ -367,7 +361,6 @@ public class Result<Value> extends Maybe<Value> implements RepeaterMixin
      * <p>
      * {@inheritDoc}
      */
-    @Tested
     public Result<Value> ifPresentOr(Consumer<Value> consumer, UncheckedVoidCode runnable)
     {
         return (Result<Value>) super.ifPresentOr(consumer, runnable);
@@ -391,7 +384,6 @@ public class Result<Value> extends Maybe<Value> implements RepeaterMixin
      * {@inheritDoc}
      */
     @SuppressWarnings("unchecked")
-    @Tested
     public <Output> Result<Output> map(Function<? super Value, ? extends Output> mapper)
     {
         return (Result<Output>) super.map(mapper);
@@ -402,7 +394,6 @@ public class Result<Value> extends Maybe<Value> implements RepeaterMixin
      * <p>
      * {@inheritDoc}
      */
-    @Tested
     public <Argument2, R> Result<R> map(BiFunction<Value, Argument2, R> function, Argument2 argument2)
     {
         return (Result<R>) super.map(function, argument2);
@@ -414,7 +405,6 @@ public class Result<Value> extends Maybe<Value> implements RepeaterMixin
      * {@inheritDoc}
      */
     @Override
-    @Tested
     public <Argument2, Argument3, ResultType> Result<ResultType> map(
             final TriFunction<Value, Argument2, Argument3, ResultType> function, final Argument2 argument2,
             final Argument3 argument3)
@@ -428,7 +418,6 @@ public class Result<Value> extends Maybe<Value> implements RepeaterMixin
      * {@inheritDoc}
      */
     @Override
-    @Tested
     public <Argument2, Argument3, Argument4, ResultType> Result<ResultType> map(
             final TetraFunction<Value, Argument2, Argument3, Argument4, ResultType> function, final Argument2 argument2,
             final Argument3 argument3, final Argument4 argument4)
@@ -442,7 +431,6 @@ public class Result<Value> extends Maybe<Value> implements RepeaterMixin
      * {@inheritDoc}
      */
     @Override
-    @Tested
     public <Argument2, Argument3, Argument4, Argument5, ResultType> Result<ResultType> map(
             final PentaFunction<Value, Argument2, Argument3, Argument4, Argument5, ResultType> function,
             final Argument2 argument2,
@@ -454,7 +442,6 @@ public class Result<Value> extends Maybe<Value> implements RepeaterMixin
     /**
      * Returns any messages captured in this result
      */
-    @Tested
     public MessageList messages()
     {
         // If we were not constructed with a Broadcaster,
@@ -473,7 +460,6 @@ public class Result<Value> extends Maybe<Value> implements RepeaterMixin
      *
      * @return The {@link Result} of the call
      */
-    @Tested
     public Result<Value> or(Code<Value> code)
     {
         // If this result failed,
@@ -508,7 +494,6 @@ public class Result<Value> extends Maybe<Value> implements RepeaterMixin
      * {@inheritDoc}
      */
     @Override
-    @Tested
     public Result<Value> orMaybe(final Value value)
     {
         return (Result<Value>) super.orMaybe(value);
@@ -520,7 +505,6 @@ public class Result<Value> extends Maybe<Value> implements RepeaterMixin
      * {@inheritDoc}
      */
     @Override
-    @Tested
     public Result<Value> orMaybe(final Source<Value> source)
     {
         return (Result<Value>) super.orMaybe(source);
@@ -531,7 +515,6 @@ public class Result<Value> extends Maybe<Value> implements RepeaterMixin
      *
      * @return Any value that might be present
      */
-    @Tested
     public Value orProblem(String message, Object... arguments)
     {
         if (isAbsent())
@@ -547,7 +530,6 @@ public class Result<Value> extends Maybe<Value> implements RepeaterMixin
      * <p>
      * {@inheritDoc}
      */
-    @Tested
     public Result<Value> presentIf(Function<Value, Boolean> predicate)
     {
         return (Result<Value>) super.presentIf(predicate);
@@ -556,7 +538,6 @@ public class Result<Value> extends Maybe<Value> implements RepeaterMixin
     /**
      * Returns true if this result represents success
      */
-    @Tested
     public boolean succeeded()
     {
         return messages == null || messages().succeeded();
@@ -567,7 +548,6 @@ public class Result<Value> extends Maybe<Value> implements RepeaterMixin
      * <p>
      * {@inheritDoc}
      */
-    @Tested
     public Result<Value> then(Function<Value, Value> function)
     {
         return (Result<Value>) super.then(function);

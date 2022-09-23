@@ -25,8 +25,8 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 import java.util.Iterator;
 
 import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_DEFAULT_EXPANDABLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.SUFFICIENT;
-import static com.telenav.kivakit.annotations.code.TestingQuality.NONE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.NOT_TESTED;
 
 /**
  * A sequence that has a known size and can be indexed, like a list, although not necessarily a collection. For example,
@@ -41,17 +41,39 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.NONE;
  */
 @UmlClassDiagram(diagram = DiagramCollection.class)
 @ApiQuality(stability = STABLE_DEFAULT_EXPANDABLE,
-            testing = NONE,
-            documentation = SUFFICIENT)
-public interface Indexable<Element> extends
+            testing = NOT_TESTED,
+            documentation = DOCUMENTED)
+public interface Indexable<Value> extends
         Sized,
-        Sequence<Element>
+        Sequence<Value>
 {
+    /**
+     * @return True if this list starts with the given list
+     */
+    default boolean endsWith(Indexable<Value> that)
+    {
+        if (that == null || that.size() > size())
+        {
+            return false;
+        }
+        else
+        {
+            for (var i = that.size() - 1; i >= 0; i--)
+            {
+                if (!get(i).equals(that.get(i)))
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+    }
+
     /**
      * @return The first item in this indexable object, or null if there is none
      */
     @Override
-    default Element first()
+    default Value first()
     {
         return isEmpty() ? null : get(0);
     }
@@ -59,12 +81,12 @@ public interface Indexable<Element> extends
     /**
      * @return The value for the given index
      */
-    Element get(int index);
+    Value get(int index);
 
     /**
      * @return The value at the given index or the default value if that index does not exist
      */
-    default Element getOrDefault(int index, Element defaultValue)
+    default Value getOrDefault(int index, Value defaultValue)
     {
         return index < size() ? get(index) : defaultValue;
     }
@@ -72,7 +94,7 @@ public interface Indexable<Element> extends
     /**
      * @return True if this indexable object and that indexable object have all the same values
      */
-    default boolean isEqualTo(Indexable<Element> that)
+    default boolean isEqualTo(Indexable<Value> that)
     {
         if (size() == that.size())
         {
@@ -91,8 +113,30 @@ public interface Indexable<Element> extends
     /**
      * @return The last item in this indexable object, or null if there is none
      */
-    default Element last()
+    default Value last()
     {
         return isEmpty() ? null : get(size() - 1);
+    }
+
+    /**
+     * @return True if this list starts with the given list
+     */
+    default boolean startsWith(Indexable<Value> that)
+    {
+        if (that == null || that.size() > size())
+        {
+            return false;
+        }
+        else
+        {
+            for (var i = 0; i < that.size(); i++)
+            {
+                if (!get(i).equals(that.get(i)))
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
     }
 }

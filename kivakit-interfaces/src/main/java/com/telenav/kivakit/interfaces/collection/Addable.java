@@ -19,14 +19,18 @@
 package com.telenav.kivakit.interfaces.collection;
 
 import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.interfaces.comparison.Matcher;
 import com.telenav.kivakit.interfaces.internal.lexakai.DiagramCollection;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
+import java.util.Arrays;
+import java.util.Collection;
 import java.util.Iterator;
 
 import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_DEFAULT_EXPANDABLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.SUFFICIENT;
-import static com.telenav.kivakit.annotations.code.TestingQuality.UNNECESSARY;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_REQUIRED;
+import static com.telenav.kivakit.interfaces.comparison.Matcher.matchAll;
 
 /**
  * An object, often a collection or related type, to which objects can be added. Provides default implementations for
@@ -39,45 +43,127 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.UNNECESSARY;
 @FunctionalInterface
 @UmlClassDiagram(diagram = DiagramCollection.class)
 @ApiQuality(stability = STABLE_DEFAULT_EXPANDABLE,
-            testing = UNNECESSARY,
-            documentation = SUFFICIENT)
-public interface Addable<Value>
+            testing = TESTING_NOT_REQUIRED,
+            documentation = DOCUMENTED)
+public interface Addable<Value> extends SpaceLimited
 {
     /**
      * Adds the given value
      *
      * @return True if the value was added
      */
-    boolean add(Value value);
-
-    /**
-     * @param values A sequence of values to add
-     */
-    default boolean addAll(Iterable<Value> values)
+    default boolean add(Value value)
     {
-        for (Value value : values)
-        {
-            if (!add(value))
-            {
-                return false;
-            }
-        }
-        return true;
+        return hasRoomFor(1) && onAdd(value);
     }
 
     /**
+     * Adds the given values
+     *
      * @param values A sequence of values to add
+     * @return True if all values were added, false otherwise
      */
-    default boolean addAll(Iterator<Value> values)
+    default boolean addAll(Iterable<? extends Value> values)
     {
+        return addAll(values.iterator());
+    }
+
+    /**
+     * Adds the given values
+     *
+     * @param values A sequence of values to add
+     * @return True if all values were added, false otherwise
+     */
+    default boolean addAll(Iterator<? extends Value> values)
+    {
+        return addAllMatching(values, matchAll()) > 0;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    default boolean addAll(Collection<? extends Value> elements)
+    {
+        if (hasRoomFor(elements.size()))
+        {
+            return addAll(elements.iterator());
+        }
+        return false;
+    }
+
+    /**
+     * Adds the given values
+     *
+     * @param values The values to add
+     * @return True if all values were added, false otherwise
+     */
+    default boolean addAll(Value[] values)
+    {
+        return addAllMatching(values, matchAll()) >= 0;
+    }
+
+    /**
+     * Adds the given values
+     *
+     * @param values A sequence of values to add
+     * @return The number of values added, or -1 if not all values could be added
+     */
+    default int addAllMatching(Iterable<? extends Value> values, Matcher<Value> matcher)
+    {
+        return addAllMatching(values.iterator(), matcher);
+    }
+
+    /**
+     * Adds the given values
+     *
+     * @param values A sequence of values to add
+     * @return The number of values added, or -1 if not all values could be added
+     */
+    default int addAllMatching(Collection<? extends Value> values, Matcher<Value> matcher)
+    {
+        if (hasRoomFor(values.size()))
+        {
+            return addAllMatching(values.iterator(), matcher);
+        }
+        return -1;
+    }
+
+    /**
+     * Adds the given values
+     *
+     * @param values A sequence of values to add
+     * @return The number of values added, or -1 if not all values could be added
+     */
+    default int addAllMatching(Iterator<? extends Value> values, Matcher<Value> matcher)
+    {
+        var added = 0;
         while (values.hasNext())
         {
-            if (!add(values.next()))
+            var value = values.next();
+            if (matcher.matches(value))
             {
-                return false;
+                if (!add(values.next()))
+                {
+                    return -1;
+                }
             }
         }
-        return true;
+        return added;
+    }
+
+    /**
+     * Adds the given values
+     *
+     * @param values The values to add
+     * @return The number of values added, or -1 if not all values could be added
+     */
+    default int addAllMatching(Value[] values, Matcher<Value> matcher)
+    {
+        if (hasRoomFor(values.length))
+        {
+            return addAllMatching(Arrays.asList(values), matcher);
+        }
+        return -1;
     }
 
     /**
@@ -94,4 +180,12 @@ public interface Addable<Value>
         }
         return false;
     }
+
+    /**
+     * Adds the given value
+     *
+     * @param value The value to add
+     * @return True if the value was added
+     */
+    boolean onAdd(Value value);
 }

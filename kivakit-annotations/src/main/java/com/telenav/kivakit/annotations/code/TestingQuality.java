@@ -6,9 +6,18 @@ package com.telenav.kivakit.annotations.code;
  */
 public enum TestingQuality
 {
-    SUFFICIENT,
-    INSUFFICIENT,
-    UNNECESSARY,
-    NONE,
+    /** All needed tests are implemented */
+    TESTED,
+
+    /** No tests are needed */
+    TESTING_NOT_REQUIRED,
+
+    /** Some tests are implemented, but more are required */
+    MORE_TESTING_REQUIRED,
+
+    /** No tests have been implemented */
+    NOT_TESTED,
+
+    /** Testing status has not been evaluated */
     UNEVALUATED
 }

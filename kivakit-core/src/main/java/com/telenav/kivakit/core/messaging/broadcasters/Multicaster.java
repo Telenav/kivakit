@@ -18,8 +18,8 @@
 
 package com.telenav.kivakit.core.messaging.broadcasters;
 
-import com.telenav.kivakit.core.language.Classes;
 import com.telenav.kivakit.core.internal.lexakai.DiagramRepeater;
+import com.telenav.kivakit.core.language.Classes;
 import com.telenav.kivakit.core.logging.Logger;
 import com.telenav.kivakit.core.logging.loggers.ConsoleLogger;
 import com.telenav.kivakit.core.messaging.Broadcaster;
@@ -31,7 +31,6 @@ import com.telenav.kivakit.core.string.IndentingStringBuilder;
 import com.telenav.kivakit.core.string.IndentingStringBuilder.Indentation;
 import com.telenav.kivakit.core.thread.locks.ReadWriteLock;
 import com.telenav.kivakit.core.vm.Properties;
-import com.telenav.kivakit.interfaces.code.Code;
 import com.telenav.kivakit.interfaces.comparison.Filter;
 import com.telenav.kivakit.interfaces.messaging.Transmittable;
 import com.telenav.kivakit.interfaces.naming.NamedObject;
@@ -50,8 +49,8 @@ import static com.telenav.kivakit.core.string.IndentingStringBuilder.Style.TEXT;
 
 /**
  * A multicaster is a broadcaster which can have more than one listener. As with any broadcaster, listeners can be added
- * to a multicaster with {@link #addListener(Listener)} and can be cleared with {@link #clearListeners()}. MessageTransceiver can
- * be broadcast to all listeners with {@link #transmit(Transmittable)}.
+ * to a multicaster with {@link #addListener(Listener)} and can be cleared with {@link #clearListeners()}.
+ * MessageTransceiver can be broadcast to all listeners with {@link #transmit(Transmittable)}.
  * <p>
  * If a class is already extending some other base class (and since Java does not support mix-ins) an instance of
  * {@link Multicaster} can be aggregated and its methods delegated to implement the {@link Broadcaster} interface This
@@ -87,6 +86,7 @@ import static com.telenav.kivakit.core.string.IndentingStringBuilder.Style.TEXT;
  * @see Broadcaster
  * @see Listener
  */
+@SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramRepeater.class)
 public class Multicaster implements Broadcaster
 {
@@ -361,20 +361,6 @@ public class Multicaster implements Broadcaster
         });
 
         return message;
-    }
-
-    @Override
-    public <T> T withoutTransmitting(Code<T> code)
-    {
-        transmitting = false;
-        try
-        {
-            return code.run();
-        }
-        finally
-        {
-            transmitting = true;
-        }
     }
 
     private void listenerTree(IndentingStringBuilder builder)

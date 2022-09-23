@@ -6,8 +6,8 @@ import com.telenav.kivakit.interfaces.comparison.Matcher;
 import java.util.Objects;
 
 import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_DEFAULT_EXPANDABLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.SUFFICIENT;
-import static com.telenav.kivakit.annotations.code.TestingQuality.NONE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.NOT_TESTED;
 import static com.telenav.kivakit.interfaces.comparison.Matcher.matchAll;
 
 /**
@@ -19,8 +19,8 @@ import static com.telenav.kivakit.interfaces.comparison.Matcher.matchAll;
  */
 @SuppressWarnings("unused")
 @ApiQuality(stability = STABLE_DEFAULT_EXPANDABLE,
-            testing = NONE,
-            documentation = SUFFICIENT)
+            testing = NOT_TESTED,
+            documentation = DOCUMENTED)
 public interface RandomNumeric extends CastTrait
 {
     /**

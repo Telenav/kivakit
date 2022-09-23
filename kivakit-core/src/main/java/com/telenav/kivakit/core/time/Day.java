@@ -1,8 +1,6 @@
 package com.telenav.kivakit.core.time;
 
 import com.telenav.kivakit.core.language.primitive.Ints;
-import com.telenav.kivakit.core.testing.NoTestRequired;
-import com.telenav.kivakit.core.testing.Tested;
 import com.telenav.kivakit.interfaces.time.Nanoseconds;
 
 import static com.telenav.kivakit.core.ensure.Ensure.ensure;
@@ -23,7 +21,6 @@ import static java.lang.Integer.MAX_VALUE;
  * @author jonathanl (shibo)
  */
 @SuppressWarnings("unused")
-@Tested
 public class Day extends BaseTime<Day>
 {
     static final Nanoseconds nanosecondsPerDay = nanosecondsPerHour.times(24);
@@ -31,7 +28,6 @@ public class Day extends BaseTime<Day>
     /**
      * @return An absolute day from 0 to n
      */
-    @Tested
     public static Day day(int day)
     {
         return new Day(DAY, day);
@@ -40,7 +36,6 @@ public class Day extends BaseTime<Day>
     /**
      * @return A day since the start of a month, from 1 to 31
      */
-    @Tested
     public static Day dayOfMonth(int day)
     {
         return new Day(DAY_OF_MONTH, day - 1);
@@ -49,7 +44,6 @@ public class Day extends BaseTime<Day>
     /**
      * @return A day since the start of the UNIX epoch, from 0 to n
      */
-    @Tested
     public static Day dayOfUnixEpoch(int day)
     {
         return new Day(DAY_OF_UNIX_EPOCH, day);
@@ -58,7 +52,6 @@ public class Day extends BaseTime<Day>
     /**
      * @return A day since the start of the year, from 0 to 365 (in leap years)
      */
-    @Tested
     public static Day dayOfYear(int day)
     {
         return new Day(DAY_OF_YEAR, day);
@@ -67,7 +60,6 @@ public class Day extends BaseTime<Day>
     /**
      * @return A day since the start of the week as an ISO ordinal
      */
-    @Tested
     public static Day isoDayOfWeek(int day)
     {
         return new Day(DAY_OF_WEEK, day);
@@ -76,7 +68,6 @@ public class Day extends BaseTime<Day>
     /**
      * @return A day since the start of the week as a Java ordinal
      */
-    @Tested
     public static Day javaDayOfWeek(int day)
     {
         return new Day(DAY_OF_WEEK, day - 1);
@@ -85,7 +76,6 @@ public class Day extends BaseTime<Day>
     /**
      * The type of day
      */
-    @NoTestRequired
     public enum Type
     {
         /** A number of days */
@@ -115,7 +105,6 @@ public class Day extends BaseTime<Day>
      * @param type The type of day
      * @param day A zero-based ordinal value
      */
-    @NoTestRequired
     protected Day(Type type, int day)
     {
         super(nanosecondsPerDay.times(day));
@@ -128,7 +117,6 @@ public class Day extends BaseTime<Day>
     /**
      * @return This day as a day of the week if it is a day of the week, otherwise, an exception will be thrown.
      */
-    @Tested
     public DayOfWeek asDayOfWeek()
     {
         ensure(type() == DAY_OF_WEEK);
@@ -139,7 +127,6 @@ public class Day extends BaseTime<Day>
     /**
      * @return This day as a zero-based index
      */
-    @Tested
     public int asIndex()
     {
         return super.asUnits();
@@ -170,7 +157,6 @@ public class Day extends BaseTime<Day>
      * @return False if this day is invalid, true if it might be valid. If true is returned, the day might still be
      * invalid in some context, for example, the 31st day of the month doesn't exist for all months.
      */
-    @Tested
     public boolean isValid()
     {
         switch (type)
@@ -232,7 +218,6 @@ public class Day extends BaseTime<Day>
         return new Day(type, (int) nanosecondsToUnits(nanoseconds));
     }
 
-    @Tested
     public Type type()
     {
         return type;

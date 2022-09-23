@@ -30,8 +30,8 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Set;
 
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.SUFFICIENT;
-import static com.telenav.kivakit.annotations.code.TestingQuality.NONE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.NOT_TESTED;
 
 /**
  * Utility methods that operate on {@link Iterable}s. The method {@link #iterable(Factory)} can be used to implement the
@@ -55,8 +55,8 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.NONE;
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramIteration.class)
 @ApiQuality(stability = ApiStability.STABLE,
-            testing = NONE,
-            documentation = SUFFICIENT)
+            testing = NOT_TESTED,
+            documentation = DOCUMENTED)
 public class Iterables
 {
     public static <T> void addAll(Iterable<T> iterable, Collection<? super T> collection)

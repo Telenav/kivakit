@@ -15,8 +15,8 @@ import java.util.TimerTask;
 import java.util.concurrent.TimeUnit;
 
 import static com.telenav.kivakit.annotations.code.ApiStability.STABLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.SUFFICIENT;
-import static com.telenav.kivakit.annotations.code.TestingQuality.NONE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.NOT_TESTED;
 import static com.telenav.kivakit.interfaces.time.WakeState.COMPLETED;
 import static com.telenav.kivakit.interfaces.time.WakeState.INTERRUPTED;
 import static com.telenav.kivakit.interfaces.time.WakeState.TIMED_OUT;
@@ -89,8 +89,8 @@ import static com.telenav.kivakit.interfaces.time.WakeState.TIMED_OUT;
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramTime.class)
 @ApiQuality(stability = STABLE,
-            testing = NONE,
-            documentation = SUFFICIENT)
+            testing = NOT_TESTED,
+            documentation = DOCUMENTED)
 public interface LengthOfTime<Duration extends LongValued & LengthOfTime<Duration>> extends
         LongValued,
         Comparable<LengthOfTime<?>>,

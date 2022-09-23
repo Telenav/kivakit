@@ -20,8 +20,6 @@ package com.telenav.kivakit.core.time;
 
 import com.telenav.kivakit.core.internal.lexakai.DiagramTime;
 import com.telenav.kivakit.core.messaging.Listener;
-import com.telenav.kivakit.core.testing.NoTestRequired;
-import com.telenav.kivakit.core.testing.Tested;
 import com.telenav.kivakit.core.value.level.Percent;
 import com.telenav.kivakit.interfaces.time.LengthOfTime;
 import com.telenav.kivakit.interfaces.time.Nanoseconds;
@@ -99,7 +97,6 @@ import static java.util.regex.Pattern.CASE_INSENSITIVE;
  */
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramTime.class)
-@Tested
 public class Duration implements LengthOfTime<Duration>
 {
     /** Constant for maximum duration. */
@@ -152,97 +149,81 @@ public class Duration implements LengthOfTime<Duration>
         return nanoseconds(cpu.getCurrentThreadCpuTime());
     }
 
-    @Tested
     public static Duration days(double days)
     {
         return days(days, THROW_IF_NEGATIVE);
     }
 
-    @Tested
     public static Duration days(double days, Restriction restriction)
     {
         return hours(days * 24, restriction);
     }
 
-    @Tested
     public static Duration hours(double hours)
     {
         return hours(hours, THROW_IF_NEGATIVE);
     }
 
-    @Tested
     public static Duration hours(double hours, Restriction restriction)
     {
         return minutes(hours * 60, restriction);
     }
 
-    @Tested
     public static Duration microseconds(double microseconds, Restriction restriction)
     {
         return nanoseconds(microseconds * 1E3, restriction);
     }
 
-    @Tested
     public static Duration microseconds(double microseconds)
     {
         return microseconds(microseconds, THROW_IF_NEGATIVE);
     }
 
-    @Tested
     public static Duration milliseconds(double milliseconds, Restriction restriction)
     {
         return microseconds(milliseconds * 1E3, restriction);
     }
 
-    @Tested
     public static Duration milliseconds(double milliseconds)
     {
         return milliseconds(milliseconds, THROW_IF_NEGATIVE);
     }
 
-    @Tested
     public static Duration minutes(double minutes)
     {
         return minutes(minutes, THROW_IF_NEGATIVE);
     }
 
-    @Tested
     public static Duration minutes(double minutes, Restriction restriction)
     {
         return seconds(minutes * 60, restriction);
     }
 
-    @Tested
     public static Duration nanoseconds(double nanoseconds, Restriction restriction)
     {
         return nanoseconds(Nanoseconds.nanoseconds(nanoseconds), restriction);
     }
 
-    @Tested
     public static Duration nanoseconds(Nanoseconds nanoseconds, Restriction restriction)
     {
         return new Duration(nanoseconds, restriction);
     }
 
-    @Tested
     public static Duration nanoseconds(Nanoseconds nanoseconds)
     {
         return nanoseconds(nanoseconds, THROW_IF_NEGATIVE);
     }
 
-    @Tested
     public static Duration nanoseconds(double nanoseconds)
     {
         return nanoseconds(nanoseconds, THROW_IF_NEGATIVE);
     }
 
-    @Tested
     public static Duration parseDuration(String value)
     {
         return parseDuration(Listener.throwingListener(), value);
     }
 
-    @Tested
     public static Duration parseDuration(Listener listener, String value)
     {
         var matcher = PATTERN.matcher(value);
@@ -299,19 +280,16 @@ public class Duration implements LengthOfTime<Duration>
         }
     }
 
-    @Tested
     public static Duration seconds(double seconds, Restriction restriction)
     {
         return milliseconds(seconds * 1E3, restriction);
     }
 
-    @Tested
     public static Duration seconds(double seconds)
     {
         return seconds(seconds, THROW_IF_NEGATIVE);
     }
 
-    @Tested
     public static Duration untilNextSecond()
     {
         var now = Time.now();
@@ -319,7 +297,6 @@ public class Duration implements LengthOfTime<Duration>
         return now.until(then);
     }
 
-    @Tested
     public static Duration weeks(double weeks)
     {
         return days(7 * weeks);
@@ -330,13 +307,11 @@ public class Duration implements LengthOfTime<Duration>
         return days(7 * weeks);
     }
 
-    @Tested
     public static Duration years(double years, Restriction restriction)
     {
         return days(365.25 * years);
     }
 
-    @Tested
     public static Duration years(double years)
     {
         return years(years, THROW_IF_NEGATIVE);
@@ -368,7 +343,6 @@ public class Duration implements LengthOfTime<Duration>
      *
      * @param nanoseconds The underlying duration in nanoseconds
      */
-    @NoTestRequired
     protected Duration(Nanoseconds nanoseconds, Restriction restriction)
     {
         if (nanoseconds.isNegative())
@@ -389,26 +363,22 @@ public class Duration implements LengthOfTime<Duration>
     /**
      * For reflective construction
      */
-    @NoTestRequired
     private Duration()
     {
         nanoseconds = Nanoseconds.ZERO;
     }
 
-    @NoTestRequired
     public Frequency asFrequency()
     {
         return Frequency.every(this);
     }
 
-    @Tested
     public double dividedBy(Duration that)
     {
         return nanoseconds().dividedBy(that.nanoseconds());
     }
 
     @Override
-    @Tested
     public boolean equals(Object object)
     {
         if (object instanceof Duration)
@@ -420,31 +390,26 @@ public class Duration implements LengthOfTime<Duration>
     }
 
     @Override
-    @Tested
     public int hashCode()
     {
         return nanoseconds().hashCode();
     }
 
-    @Tested
     public boolean isMaximum()
     {
         return equals(Duration.MAXIMUM);
     }
 
-    @Tested
     public Duration longerBy(Percent percentage)
     {
         return nanoseconds(nanoseconds().times(1.0 + percentage.asUnitValue()));
     }
 
-    @Tested
     public Duration maximum(Duration that)
     {
         return isGreaterThan(that) ? this : that;
     }
 
-    @Tested
     public Duration minimum(Duration that)
     {
         return isLessThan(that) ? this : that;
@@ -453,7 +418,6 @@ public class Duration implements LengthOfTime<Duration>
     /**
      * @return This duration minus that duration, but never a negative value
      */
-    @Tested
     public Duration minus(Duration that)
     {
         return minus(that, FORCE_POSITIVE);
@@ -462,14 +426,12 @@ public class Duration implements LengthOfTime<Duration>
     /**
      * @return This duration minus that duration, but restricted to the given range
      */
-    @Tested
     public Duration minus(Duration that, Restriction restriction)
     {
         return nanoseconds(nanoseconds().minus(that.nanoseconds()), restriction);
     }
 
     @Override
-    @Tested
     public Nanoseconds nanoseconds()
     {
         return nanoseconds;
@@ -481,13 +443,11 @@ public class Duration implements LengthOfTime<Duration>
         return unit.times((long) (units + 0.5));
     }
 
-    @Tested
     public Duration nearestHour()
     {
         return nearest(hours(1));
     }
 
-    @Tested
     public Duration nearestMinute()
     {
         return nearest(minutes(1));
@@ -499,7 +459,6 @@ public class Duration implements LengthOfTime<Duration>
         return new Duration(nanoseconds, Restriction.ALLOW_NEGATIVE);
     }
 
-    @Tested
     public Percent percentageOf(Duration that)
     {
         return Percent.percent(nanoseconds()
@@ -510,7 +469,6 @@ public class Duration implements LengthOfTime<Duration>
     /**
      * @return The sum of this duration and that one, but never a negative value.
      */
-    @Tested
     public Duration plus(Duration that)
     {
         return plus(that, FORCE_POSITIVE);
@@ -519,20 +477,17 @@ public class Duration implements LengthOfTime<Duration>
     /**
      * @return The sum of this duration and that duration, but restricted to the given range
      */
-    @Tested
     public Duration plus(Duration that, Restriction restriction)
     {
         return new Duration(nanoseconds().plus(that.nanoseconds()), restriction);
     }
 
-    @Tested
     public Duration shorterBy(Percent percentage)
     {
         return nanoseconds(nanoseconds.times(1.0 - percentage.asUnitValue()));
     }
 
     @Override
-    @NoTestRequired
     public String toString()
     {
         return asString();

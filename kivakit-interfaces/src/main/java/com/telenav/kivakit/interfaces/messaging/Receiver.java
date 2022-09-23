@@ -26,8 +26,8 @@ import com.telenav.lexakai.annotations.associations.UmlRelation;
 import java.util.function.Consumer;
 
 import static com.telenav.kivakit.annotations.code.ApiStability.STABLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.SUFFICIENT;
-import static com.telenav.kivakit.annotations.code.TestingQuality.UNNECESSARY;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_REQUIRED;
 
 /**
  * A receiver of  {@link Transmittable} messages with similar function to a {@link Consumer}, a sink, a callback or a
@@ -45,8 +45,8 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.UNNECESSARY;
 @UmlRelation(label = "receives", referent = Transmittable.class)
 @FunctionalInterface
 @ApiQuality(stability = STABLE,
-            testing = UNNECESSARY,
-            documentation = SUFFICIENT)
+            testing = TESTING_NOT_REQUIRED,
+            documentation = DOCUMENTED)
 public interface Receiver
 {
     /**

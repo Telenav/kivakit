@@ -22,7 +22,6 @@ import com.telenav.kivakit.core.collections.iteration.BaseIterator;
 import com.telenav.kivakit.core.internal.lexakai.DiagramCount;
 import com.telenav.kivakit.core.language.primitive.Longs;
 import com.telenav.kivakit.core.string.Formatter;
-import com.telenav.kivakit.core.testing.Tested;
 import com.telenav.kivakit.interfaces.collection.NextIterable;
 import com.telenav.kivakit.interfaces.factory.MapFactory;
 import com.telenav.kivakit.interfaces.numeric.Maximizable;
@@ -33,7 +32,6 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.Iterator;
 import java.util.Random;
-import java.util.function.Consumer;
 
 import static com.telenav.kivakit.core.value.count.Range.UpperBound.EXCLUSIVE;
 import static com.telenav.kivakit.core.value.count.Range.UpperBound.INCLUSIVE;
@@ -92,7 +90,6 @@ public class Range<Value extends Numeric<Value>> implements
     /**
      * Constructs a range that excludes the given maximum value.
      */
-    @Tested
     public static <Value extends Numeric<Value>>
     Range<Value> rangeExclusive(Value minimum,
                                 Value exclusiveMaximum)
@@ -103,7 +100,6 @@ public class Range<Value extends Numeric<Value>> implements
     /**
      * Constructs a range that includes the given maximum value.
      */
-    @Tested
     public static <Value extends Numeric<Value>>
     Range<Value> rangeInclusive(Value minimum,
                                 Value inclusiveMaximum)
@@ -148,7 +144,6 @@ public class Range<Value extends Numeric<Value>> implements
     /**
      * Forces the given value into this range
      */
-    @Tested
     public Value constrain(Value value)
     {
         var constrainedToMinimum = minimum().maximize(value);
@@ -158,7 +153,6 @@ public class Range<Value extends Numeric<Value>> implements
     /**
      * True if this range contains the given value
      */
-    @Tested
     public boolean contains(Value value)
     {
         return value.isGreaterThanOrEqualTo(minimum()) &&
@@ -175,7 +169,6 @@ public class Range<Value extends Numeric<Value>> implements
      * Returns the exclusive maximum for this range, even if it was constructed as inclusive (for example, inclusive
      * range of 0 to 9 is the same as an exclusive range of 0-10).
      */
-    @Tested
     public Value exclusiveMaximum()
     {
         return isExclusive()
@@ -184,23 +177,9 @@ public class Range<Value extends Numeric<Value>> implements
     }
 
     /**
-     * Calls the given {@link Consumer} with each value from the minimum to the maximum (inclusive or exclusive,
-     * depending on construction of the range)
-     *
-     * @param body The loop body to invoke
-     */
-    @Tested
-    public void forEach(Consumer<Integer> body)
-    {
-        for (var at : )
-        forEachInt(at -> body.accept(at));
-    }
-
-    /**
      * Returns the inclusive maximum for this range, even if it was constructed as exclusive (for example, an exclusive
      * range of 0-10 is the same as an inclusive range of 0 to 9).
      */
-    @Tested
     public Value inclusiveMaximum()
     {
         return isInclusive()
@@ -211,7 +190,6 @@ public class Range<Value extends Numeric<Value>> implements
     /**
      * @return True if this is an exclusive range
      */
-    @Tested
     public boolean isExclusive()
     {
         return upperBound == EXCLUSIVE;
@@ -220,7 +198,6 @@ public class Range<Value extends Numeric<Value>> implements
     /**
      * @return True if this is an inclusive range
      */
-    @Tested
     public boolean isInclusive()
     {
         return upperBound == INCLUSIVE;
@@ -240,7 +217,7 @@ public class Range<Value extends Numeric<Value>> implements
                 if (at < exclusiveMaximum().longValue())
                 {
                     at++;
-                    return newInstance
+                    return newInstance(at);
                 }
                 return null;
             }
@@ -250,7 +227,6 @@ public class Range<Value extends Numeric<Value>> implements
     /**
      * Executes the given code body once for each value in this range
      */
-    @Tested
     public void loop(Runnable body)
     {
         forEach(ignored -> body.run());
@@ -259,14 +235,13 @@ public class Range<Value extends Numeric<Value>> implements
     /**
      * Returns the minimum value in this range.
      */
-    @Tested
     public Value minimum()
     {
         return minimum;
     }
 
     @Override
-    public Value newInstance(final Long value)
+    public Value newInstance(Long value)
     {
         return null;
     }
@@ -274,7 +249,6 @@ public class Range<Value extends Numeric<Value>> implements
     /**
      * Returns a random value in this range
      */
-    @Tested
     public Value randomValue(Random random)
     {
         return minimum.newInstance(Longs.random(random, minimum().asLong(), exclusiveMaximum().asLong()));
@@ -283,8 +257,6 @@ public class Range<Value extends Numeric<Value>> implements
     /**
      * Returns the size of this range in values
      */
-    @Override
-    @Tested
     public int size()
     {
         return exclusiveMaximum().minus(minimum()).asInt();
@@ -305,7 +277,6 @@ public class Range<Value extends Numeric<Value>> implements
     /**
      * Returns the kind of {@link UpperBound} that was used to construct this range.
      */
-    @Tested
     public UpperBound upperBound()
     {
         return upperBound;

@@ -11,18 +11,24 @@ import java.lang.annotation.Target;
  * <p><b>Example</b></p>
  *
  * <pre>
- * {@literal @}ApiChange(
- *     change = ADDED,
- *     method = "void newMethod(int value)",
- *     version = "1.8.0"
- * )
- * </pre>
+ * {@literal @}ApiChange(change = REMOVED,
+ *             method = "void myOldMethod(int value)",
+ *             version = "1.8.0")
+ * class MyClass
+ * {
+ *    {@literal @}ApiChange(change = ADDED, version = "1.8.0")
+ *     default myNewMethod()
+ *     {
+ *         [...]
+ *     }
+ *
+ * }</pre>
  *
  * @author jonathanl (shibo)
  */
 @SuppressWarnings("unused")
 @Retention(RetentionPolicy.SOURCE)
-@Target({ ElementType.TYPE })
+@Target({ ElementType.TYPE, ElementType.METHOD })
 public @interface ApiChange
 {
     /**
@@ -44,7 +50,7 @@ public @interface ApiChange
     /**
      * @return The changed method
      */
-    String method();
+    String method() default "";
 
     /**
      * @return The API version when the change occurred

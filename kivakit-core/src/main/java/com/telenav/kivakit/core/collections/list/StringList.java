@@ -20,6 +20,7 @@ package com.telenav.kivakit.core.collections.list;
 
 import com.telenav.kivakit.core.collections.map.VariableMap;
 import com.telenav.kivakit.core.internal.lexakai.DiagramString;
+import com.telenav.kivakit.core.os.Console;
 import com.telenav.kivakit.core.string.AsciiArt;
 import com.telenav.kivakit.core.string.StringTo;
 import com.telenav.kivakit.core.string.Strings;
@@ -73,7 +74,7 @@ import java.util.function.Function;
  *     <li>{@link #titledBox(String)} - This string list in a titled box</li>
  * </ul>
  */
-@UmlClassDiagram(diagram = DiagramString.class)
+@SuppressWarnings("unused") @UmlClassDiagram(diagram = DiagramString.class)
 public class StringList extends ObjectList<String>
 {
     /**
@@ -90,8 +91,8 @@ public class StringList extends ObjectList<String>
     }
 
     /**
-     * @return The list of strings resulting from splitting the given string on a delimiter character. The {@link
-     * StringList} is unbounded for backwards compatibility.
+     * @return The list of strings resulting from splitting the given string on a delimiter character. The
+     * {@link StringList} is unbounded for backwards compatibility.
      */
     public static StringList split(String string, char delimiter)
     {
@@ -99,8 +100,8 @@ public class StringList extends ObjectList<String>
     }
 
     /**
-     * @return The list of strings resulting from splitting the given string on a delimiter string. The {@link
-     * StringList} is unbounded for backwards compatibility.
+     * @return The list of strings resulting from splitting the given string on a delimiter string. The
+     * {@link StringList} is unbounded for backwards compatibility.
      */
     public static StringList split(String string, String delimiter)
     {
@@ -299,30 +300,6 @@ public class StringList extends ObjectList<String>
         return this;
     }
 
-    @Override
-    public StringList append(String s)
-    {
-        return (StringList) super.append(s);
-    }
-
-    @Override
-    public StringList appendAll(Iterable<? extends String> objects)
-    {
-        return (StringList) super.appendAll(objects);
-    }
-
-    @Override
-    public StringList appendAll(Iterator<? extends String> objects)
-    {
-        return (StringList) super.appendAll(objects);
-    }
-
-    @Override
-    public StringList appendAll(String[] objects)
-    {
-        return (StringList) super.appendAll(objects);
-    }
-
     public String[] asStringArray()
     {
         return toArray(new String[size()]);
@@ -494,20 +471,11 @@ public class StringList extends ObjectList<String>
     }
 
     /**
-     * {@inheritDoc}
-     */
-    @Override
-    public StringList prepend(String element)
-    {
-        return (StringList) super.prepend(element);
-    }
-
-    /**
-     * Prints the values in this string list to the console
+     * Prints the values in this string list to the console, separated by newlines
      */
     public StringList println()
     {
-        System.out.println(join("\n"));
+        Console.println(join("\n"));
         return this;
     }
 
