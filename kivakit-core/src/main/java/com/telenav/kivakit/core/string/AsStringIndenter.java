@@ -26,7 +26,7 @@ import com.telenav.kivakit.core.language.reflection.property.PropertyFilter;
 import com.telenav.kivakit.core.internal.lexakai.DiagramString;
 import com.telenav.kivakit.core.string.IndentingStringBuilder.Style;
 import com.telenav.kivakit.core.value.count.Maximum;
-import com.telenav.kivakit.interfaces.string.Stringable;
+import com.telenav.kivakit.interfaces.string.StringFormattable;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.Collection;
@@ -54,7 +54,7 @@ import static com.telenav.kivakit.core.string.IndentingStringBuilder.Indentation
  *
  * @author jonathanl (shibo)
  * @see AsIndentedString
- * @see Stringable
+ * @see StringFormattable
  * @see IndentingStringBuilder
  * @see KivaKitIncludeProperty
  * @see Property
@@ -67,7 +67,7 @@ public class AsStringIndenter
     /** Property filter to use to determine which properties and fields to include */
     private final PropertyFilter filter;
 
-    private final Stringable.Format format;
+    private final StringFormattable.Format format;
 
     /** String indenter */
     private final IndentingStringBuilder indenter;
@@ -84,7 +84,7 @@ public class AsStringIndenter
     /**
      * By default, an indenter includes all properties and fields explicitly marked with {@link KivaKitIncludeProperty}
      */
-    public AsStringIndenter(Stringable.Format format)
+    public AsStringIndenter(StringFormattable.Format format)
     {
         this(format, 0);
     }
@@ -92,7 +92,7 @@ public class AsStringIndenter
     /**
      * By default, an indenter includes all properties and fields explicitly marked with {@link KivaKitIncludeProperty}
      */
-    public AsStringIndenter(Stringable.Format format, int level)
+    public AsStringIndenter(StringFormattable.Format format, int level)
     {
         this(format, level, PropertyFilter.kivakitProperties(INCLUDED_FIELDS_AND_METHODS, INCLUDED_FIELDS));
     }
@@ -100,12 +100,12 @@ public class AsStringIndenter
     /**
      * @param filter The filter to determine what properties to include
      */
-    public AsStringIndenter(Stringable.Format format, int level, PropertyFilter filter)
+    public AsStringIndenter(StringFormattable.Format format, int level, PropertyFilter filter)
     {
         this.format = format;
         this.filter = filter;
 
-        if (format == Stringable.Format.HTML)
+        if (format == StringFormattable.Format.HTML)
         {
             indenter = new IndentingStringBuilder(Style.HTML, Indentation.of(12));
         }

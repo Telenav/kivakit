@@ -28,7 +28,7 @@ import com.telenav.kivakit.core.language.reflection.property.KivaKitIncludePrope
 import com.telenav.kivakit.core.language.reflection.property.PropertyFilter;
 import com.telenav.kivakit.core.language.reflection.property.PropertyMembers;
 import com.telenav.kivakit.core.internal.lexakai.DiagramReflection;
-import com.telenav.kivakit.interfaces.string.Stringable;
+import com.telenav.kivakit.interfaces.string.StringFormattable;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.Collection;
@@ -146,16 +146,16 @@ public class ObjectFormatter
                 default:
                 {
                     Ensure.ensureNotNull(format, "@KivaKitFormatProperty(\"" + format + "\") is not a known format");
-                    return ((Stringable) value).asString(format);
+                    return ((StringFormattable) value).asString(format);
                 }
             }
         }
 
         // If the value supports debug string generation
-        if (value instanceof Stringable)
+        if (value instanceof StringFormattable)
         {
             // get the debug string
-            value = ((Stringable) value).asString();
+            value = ((StringFormattable) value).asString();
         }
         else if (value instanceof Enum<?>)
         {

@@ -32,7 +32,7 @@ import static com.telenav.kivakit.core.ensure.Ensure.ensureBetweenInclusive;
 import static com.telenav.kivakit.core.time.BaseTime.Topology.CYCLIC;
 import static com.telenav.kivakit.core.time.Day.nanosecondsPerDay;
 import static com.telenav.kivakit.core.time.HourOfWeek.hourOfWeek;
-import static com.telenav.kivakit.interfaces.string.Stringable.Format.USER_LABEL;
+import static com.telenav.kivakit.interfaces.string.StringFormattable.Format.USER_LABEL;
 
 /**
  * Typesafe value for day of week. Supports both ISO and Java ordinals.

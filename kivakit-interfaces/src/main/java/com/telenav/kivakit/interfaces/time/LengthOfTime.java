@@ -4,7 +4,7 @@ import com.telenav.kivakit.interfaces.code.Callback;
 import com.telenav.kivakit.interfaces.internal.lexakai.DiagramTime;
 import com.telenav.kivakit.interfaces.numeric.Quantizable;
 import com.telenav.kivakit.interfaces.numeric.QuantumComparable;
-import com.telenav.kivakit.interfaces.string.Stringable;
+import com.telenav.kivakit.interfaces.string.StringFormattable;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.text.SimpleDateFormat;
@@ -86,7 +86,7 @@ import static com.telenav.kivakit.interfaces.time.WakeState.TIMED_OUT;
 public interface LengthOfTime<Duration extends LengthOfTime<Duration>> extends
         QuantumComparable<LengthOfTime<?>>,
         Comparable<LengthOfTime<?>>,
-        Stringable,
+        StringFormattable,
         TimeMeasurement
 {
 

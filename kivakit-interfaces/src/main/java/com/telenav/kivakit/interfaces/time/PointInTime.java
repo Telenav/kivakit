@@ -1,6 +1,6 @@
 package com.telenav.kivakit.interfaces.time;
 
-import com.telenav.kivakit.interfaces.string.Stringable;
+import com.telenav.kivakit.interfaces.string.StringFormattable;
 
 import java.time.Instant;
 
@@ -77,7 +77,7 @@ import java.time.Instant;
  */
 public interface PointInTime<Time extends PointInTime<Time, Duration>, Duration extends LengthOfTime<Duration>> extends
         Comparable<PointInTime<?, ?>>,
-        Stringable,
+        StringFormattable,
         TimeMeasurement
 {
     /**

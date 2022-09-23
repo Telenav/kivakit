@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.core.string;
 
-import com.telenav.kivakit.interfaces.string.Stringable;
+import com.telenav.kivakit.interfaces.string.StringFormattable;
 import com.telenav.kivakit.interfaces.value.Source;
 import com.telenav.kivakit.core.internal.lexakai.DiagramString;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
@@ -50,7 +50,7 @@ public class StringTo
 
     /**
      * Converts the given object to a debug string. If the object supports the AsString interface, the {@link
-     * Stringable#asString(Stringable.Format)} method is called with {@link Stringable.Format#DEBUG}. If it does not,
+     * StringFormattable#asString(StringFormattable.Format)} method is called with {@link StringFormattable.Format#DEBUG}. If it does not,
      * the toString() method is called.
      *
      * @param object The object
@@ -58,9 +58,9 @@ public class StringTo
      */
     public static String debug(Object object)
     {
-        if (object instanceof Stringable)
+        if (object instanceof StringFormattable)
         {
-            return ((Stringable) object).asString(Stringable.Format.DEBUG);
+            return ((StringFormattable) object).asString(StringFormattable.Format.DEBUG);
         }
         return string(object);
     }

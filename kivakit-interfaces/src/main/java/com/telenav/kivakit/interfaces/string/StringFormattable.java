@@ -30,12 +30,13 @@ import com.telenav.lexakai.annotations.visibility.UmlExcludeSuperTypes;
  *
  * @author jonathanl (shibo)
  */
-@UmlRelation(label = "formats with", referent = Stringable.Format.class)
+@SuppressWarnings("SpellCheckingInspection")
+@UmlRelation(label = "formats with", referent = StringFormattable.Format.class)
 @UmlClassDiagram(diagram = DiagramString.class)
-public interface Stringable extends StringSource
+public interface StringFormattable extends StringSource
 {
     /**
-     * The type of format for a string returned by {@link Stringable#asString(Format)}
+     * The type of format for a string returned by {@link StringFormattable#asString(Format)}
      */
     @UmlClassDiagram(diagram = DiagramString.class)
     @UmlExcludeSuperTypes enum Format

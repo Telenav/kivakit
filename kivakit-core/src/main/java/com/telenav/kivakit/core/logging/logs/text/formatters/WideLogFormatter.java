@@ -21,7 +21,7 @@ package com.telenav.kivakit.core.logging.logs.text.formatters;
 import com.telenav.kivakit.core.logging.LogEntry;
 import com.telenav.kivakit.core.internal.lexakai.DiagramLogs;
 import com.telenav.kivakit.core.string.Formatter;
-import com.telenav.kivakit.interfaces.string.Stringable;
+import com.telenav.kivakit.interfaces.string.StringFormattable;
 import com.telenav.kivakit.core.time.Time;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
@@ -70,7 +70,7 @@ public class WideLogFormatter extends BaseColumnarFormatter
         line.add(sequenceNumberColumn, String.valueOf(entry.sequenceNumber()));
         if (timeType == TimeType.ELAPSED)
         {
-            line.add(durationColumn, start.elapsedSince().asString(Stringable.Format.USER_LABEL));
+            line.add(durationColumn, start.elapsedSince().asString(StringFormattable.Format.USER_LABEL));
         }
         else
         {

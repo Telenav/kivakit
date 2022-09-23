@@ -28,7 +28,7 @@ import com.telenav.kivakit.core.logging.Logger;
 import com.telenav.kivakit.core.logging.LoggerFactory;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.string.Strings;
-import com.telenav.kivakit.interfaces.string.Stringable;
+import com.telenav.kivakit.interfaces.string.StringFormattable;
 import com.telenav.kivakit.network.core.internal.lexakai.DiagramNetworkLocation;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
@@ -51,7 +51,7 @@ import java.nio.charset.StandardCharsets;
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramNetworkLocation.class)
 @LexakaiJavadoc(complete = true)
-public class NetworkLocation implements Stringable, Comparable<NetworkLocation>
+public class NetworkLocation implements StringFormattable, Comparable<NetworkLocation>
 {
     private static final Logger LOGGER = LoggerFactory.newLogger();
 

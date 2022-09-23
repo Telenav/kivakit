@@ -19,7 +19,7 @@
 package com.telenav.kivakit.core.language.object;
 
 import com.telenav.kivakit.core.internal.lexakai.DiagramString;
-import com.telenav.kivakit.interfaces.string.Stringable;
+import com.telenav.kivakit.interfaces.string.StringFormattable;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.lang.annotation.ElementType;
@@ -27,7 +27,7 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-import static com.telenav.kivakit.interfaces.string.Stringable.Format.TEXT;
+import static com.telenav.kivakit.interfaces.string.StringFormattable.Format.TEXT;
 
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ ElementType.FIELD, ElementType.METHOD })
@@ -37,7 +37,7 @@ public @interface KivaKitFormatProperty
     /**
      * The format to use for the annotated property. If "toString()" is specified then the {@link #toString()} method is
      * called, otherwise, the format value is used to convert the object to a string using {@link
-     * Stringable#asString(Stringable.Format)}, where the purpose is case-insensitive.
+     * StringFormattable#asString(StringFormattable.Format)}, where the purpose is case-insensitive.
      */
-    Stringable.Format format() default TEXT;
+    StringFormattable.Format format() default TEXT;
 }

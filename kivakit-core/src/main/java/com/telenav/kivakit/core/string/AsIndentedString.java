@@ -23,13 +23,13 @@ import com.telenav.kivakit.core.language.reflection.property.KivaKitIncludePrope
 import com.telenav.kivakit.core.language.reflection.property.Property;
 import com.telenav.kivakit.core.internal.lexakai.DiagramString;
 import com.telenav.kivakit.core.value.count.Maximum;
-import com.telenav.kivakit.interfaces.string.Stringable;
+import com.telenav.kivakit.interfaces.string.StringFormattable;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
-import static com.telenav.kivakit.interfaces.string.Stringable.Format.TEXT;
+import static com.telenav.kivakit.interfaces.string.StringFormattable.Format.TEXT;
 
 /**
- * An {@link Stringable} sub-interface that traverses a tree of objects, adding information to an {@link
+ * An {@link StringFormattable} sub-interface that traverses a tree of objects, adding information to an {@link
  * AsStringIndenter} object as it goes. An {@link AsStringIndenter} handles string indenting, directs recursion and
  * performs reflection on fields and methods that are tagged with the annotation {@literal @}{@link
  * KivaKitIncludeProperty}.
@@ -41,14 +41,14 @@ import static com.telenav.kivakit.interfaces.string.Stringable.Format.TEXT;
  * When the traversal is complete, the {@link AsStringIndenter} object yields an indented debug string.
  *
  * @author jonathanl (shibo)
- * @see Stringable
+ * @see StringFormattable
  * @see AsStringIndenter
  * @see KivaKitIncludeProperty
  * @see Property
  * @see Type
  */
 @UmlClassDiagram(diagram = DiagramString.class)
-public interface AsIndentedString extends Stringable
+public interface AsIndentedString extends StringFormattable
 {
     /**
      * Adds structured information about this object to the given {@link AsStringIndenter} object

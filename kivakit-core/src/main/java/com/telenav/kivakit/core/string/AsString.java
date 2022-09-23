@@ -19,7 +19,7 @@
 package com.telenav.kivakit.core.string;
 
 import com.telenav.kivakit.core.language.object.ObjectFormatter;
-import com.telenav.kivakit.interfaces.string.Stringable;
+import com.telenav.kivakit.interfaces.string.StringFormattable;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
 
 /**
@@ -33,8 +33,8 @@ import com.telenav.lexakai.annotations.associations.UmlRelation;
  *
  * @author jonathanl (shibo)
  */
-@UmlRelation(label = "formats with", referent = Stringable.Format.class)
-public interface AsString extends Stringable
+@UmlRelation(label = "formats with", referent = StringFormattable.Format.class)
+public interface AsString extends StringFormattable
 {
     /**
      * @return A string representation of this object that is suitable for the given purpose

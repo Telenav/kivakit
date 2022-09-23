@@ -26,7 +26,7 @@ import com.telenav.kivakit.core.value.count.Maximum;
 import com.telenav.kivakit.interfaces.collection.Addable;
 import com.telenav.kivakit.interfaces.collection.Joinable;
 import com.telenav.kivakit.interfaces.comparison.Matcher;
-import com.telenav.kivakit.interfaces.string.Stringable;
+import com.telenav.kivakit.interfaces.string.StringFormattable;
 import com.telenav.kivakit.interfaces.value.Instantiable;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import org.jetbrains.annotations.NotNull;
@@ -49,7 +49,7 @@ public abstract class BaseSet<Element> implements
         Countable,
         Addable<Element>,
         Joinable<Element>,
-        Stringable
+        StringFormattable
 {
     private boolean outOfRoom;
 

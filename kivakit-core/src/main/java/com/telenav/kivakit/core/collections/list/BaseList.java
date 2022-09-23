@@ -34,7 +34,7 @@ import com.telenav.kivakit.interfaces.collection.Sequence;
 import com.telenav.kivakit.interfaces.collection.Sized;
 import com.telenav.kivakit.interfaces.comparison.Matcher;
 import com.telenav.kivakit.interfaces.numeric.Quantizable;
-import com.telenav.kivakit.interfaces.string.Stringable;
+import com.telenav.kivakit.interfaces.string.StringFormattable;
 import com.telenav.kivakit.interfaces.value.Instantiable;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import org.jetbrains.annotations.NotNull;
@@ -111,7 +111,7 @@ import java.util.function.Function;
  * @see Addable
  * @see java.lang.Appendable
  * @see RandomAccess
- * @see Stringable
+ * @see StringFormattable
  */
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramCollections.class, excludeAllSuperTypes = true)
@@ -124,7 +124,7 @@ public abstract class BaseList<Element> implements
         Prependable<Element>,
         RandomAccess,
         Countable,
-        Stringable
+        StringFormattable
 {
     /** Initial list implementation while mutable */
     private final List<Element> list;

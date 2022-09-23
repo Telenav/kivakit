@@ -29,7 +29,7 @@ import com.telenav.kivakit.core.messaging.repeaters.BaseRepeater;
 import com.telenav.kivakit.core.time.Duration;
 import com.telenav.kivakit.core.value.count.Maximum;
 import com.telenav.kivakit.interfaces.naming.Named;
-import com.telenav.kivakit.interfaces.string.Stringable;
+import com.telenav.kivakit.interfaces.string.StringFormattable;
 import com.telenav.kivakit.network.core.internal.lexakai.DiagramPort;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
@@ -92,7 +92,7 @@ import static com.telenav.kivakit.network.core.Protocol.UNKNOWN;
 @LexakaiJavadoc(complete = true)
 public class Host extends BaseRepeater implements
         Named,
-        Stringable,
+        StringFormattable,
         Comparable<Host>
 {
     private static final CacheMap<String, InetAddress> resolvedHostNames =

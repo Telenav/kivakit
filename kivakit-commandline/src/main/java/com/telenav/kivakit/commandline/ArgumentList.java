@@ -23,7 +23,7 @@ import com.telenav.kivakit.commandline.internal.lexakai.DiagramCommandLine;
 import com.telenav.kivakit.commandline.internal.lexakai.DiagramValidation;
 import com.telenav.kivakit.core.collections.list.ObjectList;
 import com.telenav.kivakit.interfaces.collection.Sized;
-import com.telenav.kivakit.interfaces.string.Stringable;
+import com.telenav.kivakit.interfaces.string.StringFormattable;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlAggregation;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeMember;
@@ -48,7 +48,7 @@ import java.util.List;
 @UmlClassDiagram(diagram = DiagramValidation.class)
 @UmlClassDiagram(diagram = DiagramCommandLine.class)
 @UmlExcludeSuperTypes
-public class ArgumentList implements Iterable<Argument>, Stringable, Sized
+public class ArgumentList implements Iterable<Argument>, StringFormattable, Sized
 {
     /** The arguments */
     @UmlAggregation

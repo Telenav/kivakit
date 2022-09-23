@@ -21,7 +21,7 @@ package com.telenav.kivakit.core.value.count;
 import com.telenav.kivakit.core.internal.lexakai.DiagramCount;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.string.Strings;
-import com.telenav.kivakit.interfaces.string.Stringable;
+import com.telenav.kivakit.interfaces.string.StringFormattable;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.Collection;
@@ -33,7 +33,7 @@ import java.util.Iterator;
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramCount.class)
-public class Estimate extends BaseCount<Estimate> implements Stringable
+public class Estimate extends BaseCount<Estimate> implements StringFormattable
 {
     public static final Estimate _0 = new Estimate(0);
 

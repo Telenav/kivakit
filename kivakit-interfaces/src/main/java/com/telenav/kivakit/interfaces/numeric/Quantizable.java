@@ -23,7 +23,7 @@ import com.telenav.kivakit.interfaces.collection.LongKeyed;
 import com.telenav.kivakit.interfaces.factory.MapFactory;
 import com.telenav.kivakit.interfaces.internal.lexakai.DiagramNumeric;
 import com.telenav.kivakit.interfaces.model.Identifiable;
-import com.telenav.kivakit.interfaces.string.Stringable;
+import com.telenav.kivakit.interfaces.string.StringFormattable;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 /**
@@ -66,7 +66,7 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 @UmlClassDiagram(diagram = DiagramNumeric.class)
 public interface Quantizable extends
         DoubleQuantizable,
-        Stringable
+        StringFormattable
 {
     default String asCommaSeparatedString()
     {
@@ -79,7 +79,7 @@ public interface Quantizable extends
     }
 
     @SuppressWarnings("SwitchStatementWithTooFewBranches")
-    default String asString(Stringable.Format format)
+    default String asString(StringFormattable.Format format)
     {
         switch (format)
         {

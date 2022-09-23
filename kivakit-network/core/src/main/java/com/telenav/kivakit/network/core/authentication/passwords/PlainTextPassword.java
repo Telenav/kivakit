@@ -21,7 +21,7 @@ package com.telenav.kivakit.network.core.authentication.passwords;
 import com.telenav.kivakit.conversion.BaseStringConverter;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.string.AsciiArt;
-import com.telenav.kivakit.interfaces.string.Stringable;
+import com.telenav.kivakit.interfaces.string.StringFormattable;
 import com.telenav.kivakit.network.core.authentication.Password;
 import com.telenav.kivakit.network.core.internal.lexakai.DiagramAuthentication;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
@@ -34,9 +34,9 @@ import com.telenav.lexakai.annotations.visibility.UmlExcludeSuperTypes;
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramAuthentication.class)
-@UmlExcludeSuperTypes({ Stringable.class })
+@UmlExcludeSuperTypes({ StringFormattable.class })
 @LexakaiJavadoc(complete = true)
-public class PlainTextPassword implements Password, Stringable
+public class PlainTextPassword implements Password, StringFormattable
 {
     public static PlainTextPassword parse(Listener listener, String password)
     {

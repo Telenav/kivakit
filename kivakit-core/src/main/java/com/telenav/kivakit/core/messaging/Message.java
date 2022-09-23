@@ -48,7 +48,7 @@ import com.telenav.kivakit.core.time.Frequency;
 import com.telenav.kivakit.core.time.Time;
 import com.telenav.kivakit.interfaces.messaging.Transmittable;
 import com.telenav.kivakit.interfaces.naming.Named;
-import com.telenav.kivakit.interfaces.string.Stringable;
+import com.telenav.kivakit.interfaces.string.StringFormattable;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeMember;
@@ -120,12 +120,12 @@ import static com.telenav.kivakit.core.string.Formatter.Format.WITH_EXCEPTION;
 @UmlClassDiagram(diagram = DiagramBroadcaster.class)
 @UmlClassDiagram(diagram = DiagramMessaging.class)
 @UmlClassDiagram(diagram = DiagramListener.class)
-@UmlExcludeSuperTypes({ Stringable.class })
+@UmlExcludeSuperTypes({ StringFormattable.class })
 @UmlRelation(label = "formats with", diagram = DiagramMessaging.class, referent = Formatter.class)
 public interface Message extends
         Transmittable,
         Triaged,
-        Stringable,
+        StringFormattable,
         Named
 {
     /**

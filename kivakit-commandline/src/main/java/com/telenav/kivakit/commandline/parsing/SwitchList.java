@@ -26,7 +26,7 @@ import com.telenav.kivakit.commandline.internal.lexakai.DiagramValidation;
 import com.telenav.kivakit.core.collections.list.ObjectList;
 import com.telenav.kivakit.core.language.reflection.property.Property;
 import com.telenav.kivakit.core.language.reflection.property.PropertyValues;
-import com.telenav.kivakit.interfaces.string.Stringable;
+import com.telenav.kivakit.interfaces.string.StringFormattable;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlAggregation;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeSuperTypes;
@@ -51,7 +51,7 @@ import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
 @UmlNotPublicApi
 public class SwitchList implements
         Iterable<Switch>,
-        Stringable,
+        StringFormattable,
         PropertyValues
 {
     /** The switches */

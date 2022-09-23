@@ -20,13 +20,13 @@ package com.telenav.kivakit.internal.tests.core.messaging;
 
 import com.telenav.kivakit.core.collections.map.VariableMap;
 import com.telenav.kivakit.core.language.reflection.property.KivaKitIncludeProperty;import com.telenav.kivakit.internal.testing.CoreUnitTest;
-import com.telenav.kivakit.interfaces.string.Stringable;
+import com.telenav.kivakit.interfaces.string.StringFormattable;
 import org.junit.Assert;
 import org.junit.Test;
 
 public class MessageFormatterTest extends CoreUnitTest
 {
-    private static class Bean implements Stringable
+    private static class Bean implements StringFormattable
     {
         @KivaKitIncludeProperty
         final

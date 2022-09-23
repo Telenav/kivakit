@@ -25,7 +25,7 @@ import com.telenav.kivakit.core.language.object.ObjectFormatter;
 import com.telenav.kivakit.core.language.reflection.property.KivaKitIncludeProperty;
 import com.telenav.kivakit.core.string.AsciiArt;
 import com.telenav.kivakit.core.string.Strings;
-import com.telenav.kivakit.interfaces.string.Stringable;
+import com.telenav.kivakit.interfaces.string.StringFormattable;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.UmlNote;
 import com.telenav.lexakai.annotations.associations.UmlAggregation;
@@ -64,9 +64,9 @@ import static com.telenav.lexakai.annotations.UmlNote.Align.TOP;
  */
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramCommandLine.class)
-@UmlExcludeSuperTypes({ Stringable.class })
+@UmlExcludeSuperTypes({ StringFormattable.class })
 @UmlNote(text = "See Application for easy access to switches and arguments", align = TOP)
-public class CommandLine implements Stringable, Iterable<Argument>
+public class CommandLine implements StringFormattable, Iterable<Argument>
 {
     /**
      * The pattern for switches, such as "-x=9" ( note that the equal sign is always required)
