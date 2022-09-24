@@ -29,8 +29,8 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTED;
-import static com.telenav.kivakit.annotations.code.TestingQuality.NOT_TESTED;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
 
 /**
  * An {@link Iterator} that wraps and iterates through a sequence of {@link Iterator}s in the order they are added,
@@ -41,8 +41,8 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.NOT_TESTED;
  */
 @UmlClassDiagram(diagram = DiagramCollections.class)
 @ApiQuality(stability = ApiStability.STABLE,
-            testing = NOT_TESTED,
-            documentation = DOCUMENTED)
+            testing = UNTESTED,
+            documentation = FULLY_DOCUMENTED)
 public class CompoundIterator<Element> extends BaseIterator<Element>
 {
     final List<Iterator<Element>> iterators = new ArrayList<>();

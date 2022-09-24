@@ -20,8 +20,9 @@ package com.telenav.kivakit.interfaces.collection;
 
 import com.telenav.kivakit.annotations.code.ApiQuality;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.MORE_EVALUATION_NEEDED;
 import static com.telenav.kivakit.annotations.code.ApiStability.STABLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_REQUIRED;
 
 /**
@@ -31,14 +32,28 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_RE
  * @param <Value> The type of value
  * @author jonathanl (shibo)
  */
+@SuppressWarnings("unused")
 @FunctionalInterface
-@ApiQuality(stability = STABLE,
+@ApiQuality(stability = MORE_EVALUATION_NEEDED,
             testing = TESTING_NOT_REQUIRED,
-            documentation = DOCUMENTED)
+            documentation = FULLY_DOCUMENTED,
+            reviews = 1,
+            reviewers = "shibo")
 public interface Keyed<Key, Value>
 {
     /**
      * @return The value for the given key
      */
     Value get(Key key);
+
+    /**
+     * @param key The key to access
+     * @param defaultValue The default value to use if there is no value for the key
+     * @return The value for the given key, or if it is null, the default value
+     */
+    default Value getOrDefault(Key key, Value defaultValue)
+    {
+        var value = get(key);
+        return value == null ? defaultValue : value;
+    }
 }

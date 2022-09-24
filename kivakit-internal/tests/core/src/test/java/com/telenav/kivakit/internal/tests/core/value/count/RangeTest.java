@@ -7,8 +7,6 @@ import org.junit.Test;
 
 import static com.telenav.kivakit.core.value.count.Range.rangeExclusive;
 import static com.telenav.kivakit.core.value.count.Range.rangeInclusive;
-import static com.telenav.kivakit.interfaces.code.FilteredLoopBody.FilterAction.ACCEPT;
-import static com.telenav.kivakit.interfaces.code.FilteredLoopBody.FilterAction.REJECT;
 
 /**
  * Unit test for {@link Range}
@@ -59,37 +57,7 @@ public class RangeTest extends CoreUnitTest
         ensureEqual(range.inclusiveMaximum(), count(9));
         ensureEqual(range.exclusiveMaximum(), count(10));
     }
-
-    @Test
-    public void testForCount()
-    {
-        var exclusiveRange = rangeExclusive(count(0), count(10));
-        var counter = new MutableCount();
-        exclusiveRange.forCount(count(6), value ->
-        {
-            var acceptable = value.asInt() % 2 == 0;
-            if (acceptable)
-            {
-                counter.increment();
-            }
-            return acceptable ? ACCEPT : REJECT;
-        });
-        ensureEqual(counter.asCount(), count(5));
-
-        var inclusiveRange = rangeInclusive(count(0), count(10));
-        counter.set(0);
-        inclusiveRange.forCount(count(6), value ->
-        {
-            var acceptable = value.asInt() % 2 == 0;
-            if (acceptable)
-            {
-                counter.increment();
-            }
-            return acceptable ? ACCEPT : REJECT;
-        });
-        ensureEqual(counter.asCount(), count(6));
-    }
-
+    
     @Test
     public void testForEach()
     {

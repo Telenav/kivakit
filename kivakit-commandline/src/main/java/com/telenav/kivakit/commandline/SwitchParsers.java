@@ -15,7 +15,6 @@ import com.telenav.kivakit.conversion.core.value.CountConverter;
 import com.telenav.kivakit.conversion.core.value.MaximumConverter;
 import com.telenav.kivakit.conversion.core.value.MinimumConverter;
 import com.telenav.kivakit.conversion.core.value.PercentConverter;
-import com.telenav.kivakit.conversion.core.value.QuantizableConverter;
 import com.telenav.kivakit.conversion.core.value.VersionConverter;
 import com.telenav.kivakit.core.collections.list.StringList;
 import com.telenav.kivakit.core.messaging.Listener;
@@ -29,13 +28,12 @@ import com.telenav.kivakit.core.value.count.Minimum;
 import com.telenav.kivakit.core.value.level.Percent;
 import com.telenav.kivakit.core.version.Version;
 import com.telenav.kivakit.core.vm.JavaVirtualMachine;
-import com.telenav.kivakit.interfaces.factory.MapFactory;
-import com.telenav.kivakit.interfaces.numeric.Quantizable;
 
 import java.util.regex.Pattern;
 
 import static com.telenav.kivakit.core.ensure.Ensure.illegalArgument;
 
+@SuppressWarnings("unused")
 public class SwitchParsers
 {
     public static SwitchParser.Builder<Boolean> booleanSwitchParser(Listener listener, String name, String description)
@@ -165,18 +163,6 @@ public class SwitchParsers
                 .name(name)
                 .converter(new PercentConverter(listener))
                 .description(description);
-    }
-
-    public static <T extends Quantizable> SwitchParser.Builder<T> quantizableSwitchParser(Listener listener,
-                                                                                          String name,
-                                                                                          String description,
-                                                                                          Class<T> type,
-                                                                                          MapFactory<Long, T> factory)
-    {
-        return SwitchParser.builder(type)
-                .name(name)
-                .description(description)
-                .converter(new QuantizableConverter<>(listener, factory));
     }
 
     public static SwitchParser.Builder<String> stringSwitchParser(Listener listener, String name, String description)

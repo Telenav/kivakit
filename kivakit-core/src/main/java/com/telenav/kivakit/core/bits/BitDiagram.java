@@ -24,7 +24,7 @@ import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import static com.telenav.kivakit.annotations.code.ApiStability.STABLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.TestingQuality.MORE_TESTING_REQUIRED;
 
 /**
@@ -73,7 +73,7 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.MORE_TESTING_R
 @LexakaiJavadoc(complete = true)
 @ApiQuality(stability = STABLE,
             testing = MORE_TESTING_REQUIRED,
-            documentation = DOCUMENTED)
+            documentation = FULLY_DOCUMENTED)
 public class BitDiagram
 {
     /**

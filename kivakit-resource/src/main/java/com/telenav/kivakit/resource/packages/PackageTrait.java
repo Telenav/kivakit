@@ -5,8 +5,8 @@ import com.telenav.kivakit.core.messaging.Repeater;
 import com.telenav.kivakit.resource.Resource;
 
 import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_DEFAULT_EXPANDABLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTED;
-import static com.telenav.kivakit.annotations.code.TestingQuality.NOT_TESTED;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
 import static com.telenav.kivakit.resource.packages.Package.parsePackage;
 
 /**
@@ -40,8 +40,8 @@ import static com.telenav.kivakit.resource.packages.Package.parsePackage;
  */
 @SuppressWarnings("unused")
 @ApiQuality(stability = STABLE_DEFAULT_EXPANDABLE,
-            documentation = DOCUMENTED,
-            testing = NOT_TESTED)
+            documentation = FULLY_DOCUMENTED,
+            testing = UNTESTED)
 public interface PackageTrait extends Repeater
 {
     /**

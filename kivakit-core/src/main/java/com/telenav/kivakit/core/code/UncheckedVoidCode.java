@@ -6,8 +6,8 @@ import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.messaging.repeaters.RepeaterMixin;
 import com.telenav.kivakit.core.time.Duration;
 
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTED;
-import static com.telenav.kivakit.annotations.code.TestingQuality.NOT_TESTED;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
 
 /**
  * {@link UncheckedCode} for void methods
@@ -16,8 +16,8 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.NOT_TESTED;
  */
 @FunctionalInterface
 @ApiQuality(stability = ApiStability.STABLE,
-            testing = NOT_TESTED,
-            documentation = DOCUMENTED)
+            testing = UNTESTED,
+            documentation = FULLY_DOCUMENTED)
 public interface UncheckedVoidCode extends RepeaterMixin
 {
     static UncheckedVoidCode of(UncheckedVoidCode code)

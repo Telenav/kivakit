@@ -5,7 +5,7 @@ import com.telenav.kivakit.annotations.code.ApiQuality;
 import java.time.Instant;
 
 import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_DEFAULT_EXPANDABLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_REQUIRED;
 
 /**
@@ -81,7 +81,7 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_RE
  */
 @ApiQuality(stability = STABLE_DEFAULT_EXPANDABLE,
             testing = TESTING_NOT_REQUIRED,
-            documentation = DOCUMENTED)
+            documentation = FULLY_DOCUMENTED)
 public interface PointInTime<Time extends PointInTime<Time, Duration>, Duration extends LengthOfTime<Duration>> extends
         Comparable<PointInTime<?, ?>>,
         TimeMeasurement

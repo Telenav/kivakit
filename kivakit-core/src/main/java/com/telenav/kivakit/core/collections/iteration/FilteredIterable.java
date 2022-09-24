@@ -28,8 +28,8 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.Iterator;
 
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTED;
-import static com.telenav.kivakit.annotations.code.TestingQuality.NOT_TESTED;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
 
 /**
  * An {@link Iterable} that wraps and filters the elements of another {@link Iterable} producing only elements that
@@ -41,8 +41,8 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.NOT_TESTED;
  */
 @UmlClassDiagram(diagram = DiagramCollections.class)
 @ApiQuality(stability = ApiStability.STABLE,
-            testing = NOT_TESTED,
-            documentation = DOCUMENTED)
+            testing = UNTESTED,
+            documentation = FULLY_DOCUMENTED)
 public class FilteredIterable<Element> extends BaseIterable<Element>
 {
     private final Matcher<Element> filter;

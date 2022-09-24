@@ -8,8 +8,8 @@ import java.math.RoundingMode;
 import java.util.Objects;
 
 import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_DEFAULT_EXPANDABLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTED;
-import static com.telenav.kivakit.annotations.code.TestingQuality.NOT_TESTED;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
 import static java.lang.Math.addExact;
 import static java.lang.Math.subtractExact;
 
@@ -21,8 +21,8 @@ import static java.lang.Math.subtractExact;
  */
 @SuppressWarnings("DuplicatedCode")
 @ApiQuality(stability = STABLE_DEFAULT_EXPANDABLE,
-            testing = NOT_TESTED,
-            documentation = DOCUMENTED)
+            testing = UNTESTED,
+            documentation = FULLY_DOCUMENTED)
 public class Nanoseconds implements
         Comparable<Nanoseconds>,
         Zeroable

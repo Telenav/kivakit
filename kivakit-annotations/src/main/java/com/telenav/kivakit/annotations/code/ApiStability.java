@@ -1,5 +1,9 @@
 package com.telenav.kivakit.annotations.code;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.*;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_REQUIRED;
+
 /**
  * The level of API stability for a class, as evaluated by a developer. This is different from a measure of past source
  * code change because it is future-looking. It is based on the <i>anticipated</i> level of <i>incompatible</i> change
@@ -8,6 +12,11 @@ package com.telenav.kivakit.annotations.code;
  * @author jonathanl (shibo)
  */
 @SuppressWarnings("unused")
+@ApiQuality(stability = MORE_EVALUATION_NEEDED,
+            testing = TESTING_NOT_REQUIRED,
+            documentation = FULLY_DOCUMENTED,
+            reviews = 1,
+            reviewers = "shibo")
 public enum ApiStability
 {
     /** The API is not expected to change */
@@ -21,6 +30,9 @@ public enum ApiStability
 
     /** The API may be changed */
     UNSTABLE,
+
+    /** Requires more evaluation */
+    MORE_EVALUATION_NEEDED,
 
     /** The API has not been evaluated for stability */
     UNEVALUATED

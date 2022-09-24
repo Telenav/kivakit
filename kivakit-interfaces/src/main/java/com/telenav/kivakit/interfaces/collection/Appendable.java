@@ -25,8 +25,8 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 import java.util.Collection;
 import java.util.Iterator;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_DEFAULT_EXPANDABLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.ApiStability.MORE_EVALUATION_NEEDED;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_REQUIRED;
 
 /**
@@ -36,11 +36,13 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_RE
  *
  * @author jonathanl (shibo)
  */
-@SuppressWarnings("unused") @FunctionalInterface
+@SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramCollection.class)
-@ApiQuality(stability = STABLE_DEFAULT_EXPANDABLE,
+@ApiQuality(stability = MORE_EVALUATION_NEEDED,
             testing = TESTING_NOT_REQUIRED,
-            documentation = DOCUMENTED)
+            documentation = FULLY_DOCUMENTED,
+            reviews = 1,
+            reviewers = "shibo")
 public interface Appendable<Value> extends SpaceLimited
 {
     /**
@@ -128,6 +130,42 @@ public interface Appendable<Value> extends SpaceLimited
             return append(value);
         }
         return true;
+    }
+
+    /**
+     * Variant of appendAll that can be chained
+     *
+     * @param values The values to append
+     * @return This object, for chaining
+     */
+    default Appendable<Value> appendThen(Iterable<? extends Value> values)
+    {
+        appendAll(values);
+        return this;
+    }
+
+    /**
+     * Variant of appendAll that can be chained
+     *
+     * @param values The values to append
+     * @return This object, for chaining
+     */
+    default Appendable<Value> appendThen(Iterator<? extends Value> values)
+    {
+        appendAll(values);
+        return this;
+    }
+
+    /**
+     * Variant of append that can be chained
+     *
+     * @param value The value to append
+     * @return This object, for chaining
+     */
+    default Appendable<Value> appendThen(Value value)
+    {
+        append(value);
+        return this;
     }
 
     /**

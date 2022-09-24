@@ -29,6 +29,7 @@ import com.telenav.kivakit.core.value.count.Countable;
 import com.telenav.kivakit.core.value.count.Maximum;
 import com.telenav.kivakit.interfaces.collection.Addable;
 import com.telenav.kivakit.interfaces.collection.Appendable;
+import com.telenav.kivakit.interfaces.collection.Copyable;
 import com.telenav.kivakit.interfaces.collection.Indexable;
 import com.telenav.kivakit.interfaces.collection.Prependable;
 import com.telenav.kivakit.interfaces.collection.Sectionable;
@@ -55,7 +56,7 @@ import java.util.RandomAccess;
 import java.util.function.Function;
 
 import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_DEFAULT_EXPANDABLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.TestingQuality.MORE_TESTING_REQUIRED;
 import static com.telenav.kivakit.interfaces.string.StringFormattable.Format.TO_STRING;
 
@@ -69,7 +70,7 @@ import static com.telenav.kivakit.interfaces.string.StringFormattable.Format.TO_
  * <ul>
  *     <li>{@link #maximumSize()} - The maximum size of this list</li>
  *     <li>{@link #hasRoomFor(int)} - For use by subclasses to check their size</li>
- *     <li>{@link #onOutOfRoom()} - Implemented by subclasses to respond when the list is out of space</li>
+ *     <li>{@link #onOutOfRoom(int)} - Responds with a warning when the list is out of space</li>
  * </ul>
  *
  * <p><b>Checks</b></p>
@@ -129,11 +130,13 @@ import static com.telenav.kivakit.interfaces.string.StringFormattable.Format.TO_
 @UmlClassDiagram(diagram = DiagramCollections.class, excludeAllSuperTypes = true)
 @ApiQuality(stability = STABLE_DEFAULT_EXPANDABLE,
             testing = MORE_TESTING_REQUIRED,
-            documentation = DOCUMENTED)
+            documentation = FULLY_DOCUMENTED)
 public abstract class BaseList<Value> implements
         Factory<BaseList<Value>>,
         List<Value>,
+        Copyable<Value, BaseList<Value>>,
         WriteIndexable<Value>,
+        Sequence<Value>,
         Sectionable<Value, BaseList<Value>>,
         Addable<Value>,
         Appendable<Value>,
@@ -145,11 +148,11 @@ public abstract class BaseList<Value> implements
     /** Initial list implementation while mutable */
     private final List<Value> list;
 
-    /** The maximum size of this bounded list */
+    /** The maximum number of values that can be stored in this list */
     private int maximumSize;
 
-    /** True if the list has run out of room */
-    private boolean outOfRoom;
+    /** True if this set ran out of room, and we've already warned about it */
+    private boolean warnedAboutOutOfRoom;
 
     /**
      * @param maximumSize The maximum size of this list
@@ -165,16 +168,30 @@ public abstract class BaseList<Value> implements
      */
     protected BaseList(Maximum maximumSize, Collection<Value> list)
     {
-        this.maximumSize = maximumSize.asInt();
-        if (list instanceof List)
+        // If we have room for the list
+        if (hasRoomFor(list.size()))
         {
-            this.list = (List<Value>) list;
+            // save the maximum size,
+            this.maximumSize = maximumSize.asInt();
+
+            // and the list.
+            if (list instanceof List)
+            {
+                this.list = (List<Value>) list;
+            }
+            else
+            {
+                this.list = new ArrayList<>(list);
+            }
         }
         else
         {
-            this.list = new ArrayList<>(list);
+            // otherwise, signal that the list is out of room,
+            onOutOfRoom(list.size());
+
+            // and leave the list empty.
+            this.list = new ArrayList<>();
         }
-        hasRoomFor(0);
     }
 
     /**
@@ -238,6 +255,24 @@ public abstract class BaseList<Value> implements
             return list.addAll(index, collection);
         }
         return false;
+    }
+
+    @Override
+    public BaseList<Value> appendThen(Value value)
+    {
+        return (BaseList<Value>) Appendable.super.appendThen(value);
+    }
+
+    @Override
+    public BaseList<Value> appendThen(Iterable<? extends Value> values)
+    {
+        return (BaseList<Value>) Appendable.super.appendThen(values);
+    }
+
+    @Override
+    public BaseList<Value> appendThen(Iterator<? extends Value> values)
+    {
+        return (BaseList<Value>) Appendable.super.appendThen(values);
     }
 
     /**
@@ -369,16 +404,6 @@ public abstract class BaseList<Value> implements
     }
 
     /**
-     * @return A copy of this list
-     */
-    public BaseList<Value> copy()
-    {
-        var copy = newInstance();
-        copy.addAll(this);
-        return copy;
-    }
-
-    /**
      * {@inheritDoc}
      */
     @Override
@@ -420,7 +445,7 @@ public abstract class BaseList<Value> implements
     @Override
     public BaseList<Value> first(int count)
     {
-        return (BaseList<Value>) Sectionable.super.first(count);
+        return Sectionable.super.first(count);
     }
 
     /**
@@ -438,28 +463,6 @@ public abstract class BaseList<Value> implements
     public Value get(int index)
     {
         return list.get(index);
-    }
-
-    /**
-     * @return True if the given size increase is acceptable, false if not
-     */
-    @Override
-    public boolean hasRoomFor(int increase)
-    {
-        if (size() + increase > maximumSize)
-        {
-            if (!outOfRoom)
-            {
-                onOutOfRoom();
-                outOfRoom = true;
-            }
-            return false;
-        }
-        else
-        {
-            outOfRoom = false;
-            return true;
-        }
     }
 
     /**
@@ -504,7 +507,7 @@ public abstract class BaseList<Value> implements
     @Override
     public BaseList<Value> last(int count)
     {
-        return (BaseList<Value>) Sectionable.super.last(count);
+        return Sectionable.super.last(count);
     }
 
     /**
@@ -527,7 +530,7 @@ public abstract class BaseList<Value> implements
     @Override
     public BaseList<Value> leftOf(int index)
     {
-        return (BaseList<Value>) Sectionable.super.leftOf(index);
+        return Sectionable.super.leftOf(index);
     }
 
     @NotNull
@@ -558,15 +561,6 @@ public abstract class BaseList<Value> implements
             filtered.add(mapper.apply(element));
         }
         return filtered;
-    }
-
-    /**
-     * @return This bounded list filtered to only the elements that match the given matcher
-     */
-    @Override
-    public BaseList<Value> matching(Matcher<Value> matcher)
-    {
-        return (BaseList<Value>) Sectionable.super.matching(matcher);
     }
 
     /**
@@ -609,6 +603,19 @@ public abstract class BaseList<Value> implements
     public boolean onAppend(Value value)
     {
         return onAdd(value);
+    }
+
+    /**
+     * Called when a bounded list runs out of room
+     */
+    @Override
+    public void onOutOfRoom(int values)
+    {
+        if (!warnedAboutOutOfRoom)
+        {
+            warnedAboutOutOfRoom = true;
+            Ensure.warning(new Throwable(), "Adding $ values, would exceed maximum size of $. Ignoring operation.", values, totalRoom());
+        }
     }
 
     /**
@@ -711,7 +718,7 @@ public abstract class BaseList<Value> implements
     @Override
     public BaseList<Value> rightOf(int index)
     {
-        return (BaseList<Value>) Sectionable.super.rightOf(index);
+        return Sectionable.super.rightOf(index);
     }
 
     /**
@@ -826,6 +833,12 @@ public abstract class BaseList<Value> implements
         return asString(TO_STRING);
     }
 
+    @Override
+    public int totalRoom()
+    {
+        return maximumSize;
+    }
+
     /**
      * @return A copy of this list with only unique elements in it
      */
@@ -835,23 +848,6 @@ public abstract class BaseList<Value> implements
         var list = newInstance();
         list.addAll(asSet());
         return list;
-    }
-
-    /**
-     * @return This list without the matching elements
-     */
-    @Override
-    public BaseList<Value> without(Matcher<Value> matcher)
-    {
-        return (BaseList<Value>) Sectionable.super.without(matcher);
-    }
-
-    /**
-     * Called when a bounded list runs out of room
-     */
-    protected void onOutOfRoom()
-    {
-        Ensure.warning("Maximum size of " + maximumSize + " elements would have been exceeded. Ignoring operation: " + new Throwable());
     }
 
     /**

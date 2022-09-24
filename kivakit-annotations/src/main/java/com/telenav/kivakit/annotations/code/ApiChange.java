@@ -5,15 +5,18 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.MORE_EVALUATION_NEEDED;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_REQUIRED;
+
 /**
  * Indicates an incompatible API change.
  *
  * <p><b>Example</b></p>
  *
- * <pre>
- * {@literal @}ApiChange(change = REMOVED,
- *             method = "void myOldMethod(int value)",
- *             version = "1.8.0")
+ * <pre> {@literal @}ApiChange(change = REMOVED,
+ *            method = "void myOldMethod(int value)",
+ *            version = "1.8.0")
  * class MyClass
  * {
  *    {@literal @}ApiChange(change = ADDED, version = "1.8.0")
@@ -29,6 +32,11 @@ import java.lang.annotation.Target;
 @SuppressWarnings("unused")
 @Retention(RetentionPolicy.SOURCE)
 @Target({ ElementType.TYPE, ElementType.METHOD })
+@ApiQuality(stability = MORE_EVALUATION_NEEDED,
+            testing = TESTING_NOT_REQUIRED,
+            documentation = FULLY_DOCUMENTED,
+            reviews = 1,
+            reviewers = "shibo")
 public @interface ApiChange
 {
     /**

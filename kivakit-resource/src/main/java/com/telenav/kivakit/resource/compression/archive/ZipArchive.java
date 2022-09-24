@@ -189,6 +189,7 @@ public final class ZipArchive extends BaseRepeater implements
     /**
      * Adds the given list of files to this archive, calling the progress reporter as the operation proceeds
      */
+    @SuppressWarnings("resource")
     public void add(List<File> files, ProgressReporter reporter)
     {
         for (var file : files)
@@ -264,6 +265,7 @@ public final class ZipArchive extends BaseRepeater implements
     /**
      * @return The versioned object loaded from the given archive entry using the given serialization
      */
+    @SuppressWarnings("resource")
     public synchronized <T> VersionedObject<T> load(ObjectReader reader, String entryName)
     {
         try
@@ -340,7 +342,7 @@ public final class ZipArchive extends BaseRepeater implements
             {
                 try (var output = entry.openForWriting())
                 {
-                    onWrite.onCallback(output);
+                    onWrite.call(output);
                 }
                 entry.close();
             }

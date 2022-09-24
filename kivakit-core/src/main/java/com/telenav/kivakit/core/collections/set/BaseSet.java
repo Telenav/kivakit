@@ -18,6 +18,7 @@
 
 package com.telenav.kivakit.core.collections.set;
 
+import com.telenav.kivakit.core.collections.iteration.BaseIterator;
 import com.telenav.kivakit.core.collections.iteration.Matching;
 import com.telenav.kivakit.core.ensure.Ensure;
 import com.telenav.kivakit.core.string.StringTo;
@@ -25,7 +26,9 @@ import com.telenav.kivakit.core.value.count.Count;
 import com.telenav.kivakit.core.value.count.Countable;
 import com.telenav.kivakit.core.value.count.Maximum;
 import com.telenav.kivakit.interfaces.collection.Addable;
+import com.telenav.kivakit.interfaces.collection.Copyable;
 import com.telenav.kivakit.interfaces.collection.Joinable;
+import com.telenav.kivakit.interfaces.collection.Sequence;
 import com.telenav.kivakit.interfaces.comparison.Matcher;
 import com.telenav.kivakit.interfaces.factory.Factory;
 import com.telenav.kivakit.interfaces.string.StringFormattable;
@@ -37,6 +40,8 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 
+import static com.telenav.kivakit.core.value.count.Maximum.maximum;
+
 /**
  * A set with a maximum size. Adds the methods {@link #matchingAsIterable(Matcher)} and {@link #first()} to the usual
  * {@link Set} operations.
@@ -44,33 +49,63 @@ import java.util.Set;
  * @author jonathanl (shibo)
  */
 @LexakaiJavadoc(complete = true)
-public abstract class BaseSet<Element> implements
-        Set<Element>,
-        Factory<BaseSet<Element>>,
+public abstract class BaseSet<Value> implements
+        Set<Value>,
+        Sequence<Value>,
+        Addable<Value>,
+        Factory<BaseSet<Value>>,
+        Copyable<Value, BaseSet<Value>>,
         Countable,
-        Addable<Element>,
-        Joinable<Element>,
+        Joinable<Value>,
         StringFormattable
 {
-    private boolean outOfRoom;
+    /** True if this set ran out of room, and we've already warned about it */
+    private boolean warnedAboutOutOfRoom;
 
-    private final Set<Element> set;
+    /** The backing set */
+    private final Set<Value> set;
 
-    protected Maximum maximumSize;
+    /** The maximum number of values that can be stored in this set */
+    protected int maximumSize;
 
     public BaseSet(Maximum maximumSize)
     {
         this(maximumSize, new HashSet<>());
     }
 
-    public BaseSet(Maximum maximumSize, Set<Element> set)
+    /**
+     * @param maximumSize The maximum size of this set
+     * @param values The initial values for this set
+     */
+    public BaseSet(Maximum maximumSize, Collection<Value> values)
     {
-        this.set = set;
-        checkSize(0);
-        this.maximumSize = maximumSize;
+        // If there is room for the initial values,
+        if (hasRoomFor(values.size()))
+        {
+            // save the maximum size
+            this.maximumSize = maximumSize.asInt();
+
+            // and the set.
+            if (values instanceof Set)
+            {
+                this.set = (Set<Value>) values;
+            }
+            else
+            {
+                this.set = new HashSet<>(values);
+            }
+        }
+        else
+        {
+            // otherwise, signal that we're out of
+            onOutOfRoom(values.size());
+
+            // and leave the set empty.
+            this.set = new HashSet<>();
+        }
     }
 
-    public BaseSet(Set<Element> set)
+    public BaseSet(Set<Value> set)
     {
         this(Maximum.MAXIMUM, set);
     }
@@ -81,38 +116,40 @@ public abstract class BaseSet<Element> implements
     }
 
     @Override
-    public boolean add(Element element)
+    public boolean add(Value value)
     {
-        if (checkSize(1))
-        {
-            return set.add(element);
-        }
-        return false;
+        return onAdd(value);
     }
 
     @Override
-    public boolean addAll(Collection<? extends Element> objects)
+    public boolean addAll(@NotNull Collection<? extends Value> values)
     {
-        var success = true;
-        for (Element object : objects)
-        {
-            if (!add(object))
-            {
-                success = false;
-            }
-        }
-        return success;
+        return Addable.super.addAll(values);
     }
 
-    public void addAllMatching(Collection<Element> values, Matcher<Element> matcher)
+    @Override
+    public @NotNull Iterator<Value> asIterator(Matcher<Value> matcher)
     {
-        values.forEach(at ->
+        return new BaseIterator<>()
         {
-            if (matcher.matches(at))
+            private final Iterator<Value> iterator = set.iterator();
+
+            @Override
+            protected Value onNext()
             {
-                add(at);
+                if (iterator.hasNext())
+                {
+                    return iterator.next();
+                }
+                return null;
             }
-        });
+        };
+    }
+
+    @Override
+    public @NotNull Iterator<Value> asIterator()
+    {
+        return Copyable.super.asIterator();
     }
 
     /**
@@ -135,6 +172,7 @@ public abstract class BaseSet<Element> implements
     @Override
     public void clear()
     {
+        set.clear();
     }
 
     @Override
@@ -150,7 +188,8 @@ public abstract class BaseSet<Element> implements
         return set.containsAll(collection);
     }
 
-    public BaseSet<Element> copy()
+    @Override
+    public BaseSet<Value> copy()
     {
         var set = newInstance();
         set.addAll(this);
@@ -174,7 +213,8 @@ public abstract class BaseSet<Element> implements
         return false;
     }
 
-    public Element first()
+    @Override
+    public Value first()
     {
         return iterator().next();
     }
@@ -192,24 +232,25 @@ public abstract class BaseSet<Element> implements
     }
 
     @Override
-    public Iterator<Element> iterator()
+    public Iterator<Value> iterator()
     {
         return set.iterator();
     }
 
-    public BaseSet<Element> matching(Matcher<Element> matcher)
+    @Override
+    public BaseSet<Value> matching(Matcher<Value> matcher)
     {
         var matches = newInstance();
         matches.addAllMatching(this, matcher);
         return matches;
     }
 
-    public Iterable<Element> matchingAsIterable(Matcher<Element> matcher)
+    public Iterable<Value> matchingAsIterable(Matcher<Value> matcher)
     {
         return new Matching<>(matcher)
         {
             @Override
-            protected Iterator<Element> values()
+            protected Iterator<Value> values()
             {
                 return set.iterator();
             }
@@ -218,7 +259,26 @@ public abstract class BaseSet<Element> implements
 
     public Maximum maximumSize()
     {
-        return maximumSize;
+        return maximum(maximumSize);
+    }
+
+    @Override
+    public boolean onAdd(Value value)
+    {
+        return set.add(value);
+    }
+
+    @Override
+    public abstract BaseSet<Value> onNewInstance();
+
+    @Override
+    public void onOutOfRoom(int values)
+    {
+        if (!warnedAboutOutOfRoom)
+        {
+            warnedAboutOutOfRoom = true;
+            Ensure.warning(new Throwable(), "Adding $ values, would exceed maximum size of $. Ignoring operation.", values, totalRoom());
+        }
     }
 
     @Override
@@ -266,29 +326,10 @@ public abstract class BaseSet<Element> implements
         return set.toString();
     }
 
-    public BaseSet<Element> with(Collection<Element> that)
+    public BaseSet<Value> with(Collection<Value> that)
     {
         var set = copy();
         set.addAll(that);
         return set;
-    }
-
-    protected boolean checkSize(int increase)
-    {
-        var maximumSize = maximumSize();
-        if (maximumSize != null && size() + increase > maximumSize.asInt())
-        {
-            if (!outOfRoom)
-            {
-                Ensure.warning(new Throwable(), "Maximum size of " + maximumSize + " elements would have been exceeded. Ignoring operation (this is not an exception, just a warning)");
-                outOfRoom = true;
-            }
-            return false;
-        }
-        else
-        {
-            outOfRoom = false;
-        }
-        return true;
     }
 }

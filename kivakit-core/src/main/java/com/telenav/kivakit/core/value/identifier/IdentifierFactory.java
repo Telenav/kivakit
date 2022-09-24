@@ -45,7 +45,7 @@ public class IdentifierFactory implements Factory<Identifier>
     }
 
     @Override
-    public Identifier newInstance()
+    public Identifier onNewInstance()
     {
         return new Identifier(next.incrementAndGet());
     }

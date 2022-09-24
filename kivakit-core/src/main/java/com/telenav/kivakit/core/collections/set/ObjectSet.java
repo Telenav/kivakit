@@ -70,6 +70,7 @@ public class ObjectSet<T> extends BaseSet<T>
         this(Maximum.MAXIMUM);
     }
 
+    @Override
     public boolean addIfNotNull(T object)
     {
         if (object != null)
@@ -80,13 +81,19 @@ public class ObjectSet<T> extends BaseSet<T>
     }
 
     @Override
+    public ObjectList<T> asList()
+    {
+        return (ObjectList<T>) super.asList();
+    }
+
+    @Override
     public ObjectSet<T> copy()
     {
         return (ObjectSet<T>) super.copy();
     }
 
     @Override
-    public ObjectSet<T> matching(final Matcher<T> matcher)
+    public ObjectSet<T> matching(Matcher<T> matcher)
     {
         return (ObjectSet<T>) super.matching(matcher);
     }

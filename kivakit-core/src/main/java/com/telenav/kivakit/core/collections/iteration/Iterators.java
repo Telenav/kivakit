@@ -28,8 +28,8 @@ import java.util.Iterator;
 import java.util.Objects;
 import java.util.function.Supplier;
 
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTED;
-import static com.telenav.kivakit.annotations.code.TestingQuality.NOT_TESTED;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
 
 /**
  * Utility methods that operate on {@link Iterator}s.
@@ -38,8 +38,8 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.NOT_TESTED;
  */
 @UmlClassDiagram(diagram = DiagramIteration.class)
 @ApiQuality(stability = ApiStability.STABLE,
-            testing = NOT_TESTED,
-            documentation = DOCUMENTED)
+            testing = UNTESTED,
+            documentation = FULLY_DOCUMENTED)
 public class Iterators
 {
     public static <T> Iterator<T> empty()

@@ -48,18 +48,18 @@ import static com.telenav.kivakit.core.ensure.Ensure.ensureFalse;
 import static com.telenav.kivakit.serialization.core.SerializationSession.SessionType.RESOURCE;
 
 /**
- * A high-level abstraction for serialization. This interface allows the serialization of a sequence of {@link
- * SerializableObject}s using an {@link ObjectSerializer} during a bracketed session associated with an {@link
- * InputStream} or {@link OutputStream}. This design provides ease-of-use while ensuring that the stream is always
- * assigned a version and the input or output stream is managed correctly.
+ * A high-level abstraction for serialization. This interface allows the serialization of a sequence of
+ * {@link SerializableObject}s using an {@link ObjectSerializer} during a bracketed session associated with an
+ * {@link InputStream} or {@link OutputStream}. This design provides ease-of-use while ensuring that the stream is
+ * always assigned a version and the input or output stream is managed correctly.
  *
  * <p><b>Creating a Session</b></p>
  *
  * <p>
- * The method {@link SerializationSessionFactory#newSession(Listener)} can be called to obtain a {@link
- * SerializationSession} instance. Providers of serialization will provide a {@link SerializationSessionFactory} that
- * produces <i>thread-safe</i> {@link SerializationSession}s. Alternatively a session can be created by constructing an
- * implementation instance.
+ * The method {@link SerializationSessionFactory#newSession(Listener)} can be called to obtain a
+ * {@link SerializationSession} instance. Providers of serialization will provide a {@link SerializationSessionFactory}
+ * that produces <i>thread-safe</i> {@link SerializationSession}s. Alternatively a session can be created by
+ * constructing an implementation instance.
  * </p>
  *
  * <p><b>Opening a Session</b></p>
@@ -111,6 +111,7 @@ import static com.telenav.kivakit.serialization.core.SerializationSession.Sessio
  * @see SerializableObject
  * @see Version
  */
+@SuppressWarnings("unused")
 public interface SerializationSession extends
         Named,
         Closeable,
@@ -170,9 +171,9 @@ public interface SerializationSession extends
     void onClose();
 
     /**
-     * @return Opens the given socket for reading and writing. Version handshaking is performed automatically for {@link
-     * SessionType#SERVER}s and {@link SessionType#CLIENT}s with the version of the connected endpoint returned to the
-     * caller.
+     * @return Opens the given socket for reading and writing. Version handshaking is performed automatically for
+     * {@link SessionType#SERVER}s and {@link SessionType#CLIENT}s with the version of the connected endpoint returned
+     * to the caller.
      */
     default Version open(Socket socket,
                          SessionType sessionType,
@@ -261,7 +262,7 @@ public interface SerializationSession extends
         {
             return (T) object;
         }
-        return illegalState("Expected object of type $, not $", type, object.getClass());
+        throw new IllegalStateException("Expected object of type " + type + ", not " + object.getClass());
     }
 
     /**

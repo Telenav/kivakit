@@ -108,7 +108,7 @@ public class FtpResource extends BaseNetworkResource
         super(location);
         if (!location.protocol().equals(Protocol.FTP))
         {
-            illegalArgument("FTP location must use FTP protocol:  " + location);
+            throw new IllegalArgumentException("FTP location must use FTP protocol:  " + location);
         }
         networkLocation = location;
         this.constraints = constraints;
@@ -128,7 +128,7 @@ public class FtpResource extends BaseNetworkResource
         try
         {
             var in = new BufferedInputStream(openBinaryFileForReading());
-            var out = new BufferedOutputStream(((WritableResource) destination).openForWriting());
+            var out = new BufferedOutputStream(destination.openForWriting());
             var buffer = new byte[1024];
             int readCount;
             reporter.start("Copying " + resource());
@@ -144,7 +144,7 @@ public class FtpResource extends BaseNetworkResource
         }
         catch (IOException e)
         {
-            illegalState("Unable to download file to " + destination, e);
+            throw new IllegalStateException("Unable to download file to " + destination, e);
         }
     }
 

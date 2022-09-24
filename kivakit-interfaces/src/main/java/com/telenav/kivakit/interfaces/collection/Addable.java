@@ -27,8 +27,8 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Iterator;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_DEFAULT_EXPANDABLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.ApiStability.MORE_EVALUATION_NEEDED;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_REQUIRED;
 import static com.telenav.kivakit.interfaces.comparison.Matcher.matchAll;
 
@@ -40,12 +40,15 @@ import static com.telenav.kivakit.interfaces.comparison.Matcher.matchAll;
  * @author jonathanl (shibo)
  */
 @SuppressWarnings("unused")
-@FunctionalInterface
 @UmlClassDiagram(diagram = DiagramCollection.class)
-@ApiQuality(stability = STABLE_DEFAULT_EXPANDABLE,
+@ApiQuality(stability = MORE_EVALUATION_NEEDED,
             testing = TESTING_NOT_REQUIRED,
-            documentation = DOCUMENTED)
-public interface Addable<Value> extends SpaceLimited
+            documentation = FULLY_DOCUMENTED,
+            reviews = 1,
+            reviewers = "shibo")
+public interface Addable<Value> extends
+        Sequence<Value>,
+        SpaceLimited
 {
     /**
      * Adds the given value

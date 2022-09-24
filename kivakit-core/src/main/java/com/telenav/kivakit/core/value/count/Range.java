@@ -22,6 +22,7 @@ import com.telenav.kivakit.core.collections.iteration.BaseIterator;
 import com.telenav.kivakit.core.internal.lexakai.DiagramCount;
 import com.telenav.kivakit.core.language.primitive.Longs;
 import com.telenav.kivakit.core.string.Formatter;
+import com.telenav.kivakit.interfaces.code.Callback;
 import com.telenav.kivakit.interfaces.collection.NextIterable;
 import com.telenav.kivakit.interfaces.factory.MapFactory;
 import com.telenav.kivakit.interfaces.numeric.Maximizable;
@@ -174,6 +175,19 @@ public class Range<Value extends Numeric<Value>> implements
         return isExclusive()
                 ? maximum
                 : maximum.incremented();
+    }
+
+    /**
+     * Calls the callback with each int in this range
+     *
+     * @param callback The callback to call
+     */
+    public void forEachInt(Callback<Integer> callback)
+    {
+        for (var at = 0; at < exclusiveMaximum().asInt(); at++)
+        {
+            callback.call(at);
+        }
     }
 
     /**

@@ -23,7 +23,7 @@ import com.telenav.kivakit.interfaces.internal.lexakai.DiagramCollection;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import static com.telenav.kivakit.annotations.code.ApiStability.STABLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_REQUIRED;
 
 /**
@@ -35,11 +35,13 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_RE
 @UmlClassDiagram(diagram = DiagramCollection.class)
 @ApiQuality(stability = STABLE,
             testing = TESTING_NOT_REQUIRED,
-            documentation = DOCUMENTED)
+            documentation = FULLY_DOCUMENTED,
+            reviews = 1,
+            reviewers = "shibo")
 public interface Clearable
 {
     /**
-     * Clears this object. Typically an object implementing this interfaced has a collection to be cleared, but other
+     * Clears this object. Typically, an object implementing this interfaced has a collection to be cleared, but other
      * values might also be affected, such as indexes or buffers.
      */
     void clear();

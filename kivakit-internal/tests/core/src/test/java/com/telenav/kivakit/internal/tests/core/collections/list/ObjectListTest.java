@@ -51,7 +51,7 @@ public class ObjectListTest extends CoreUnitTest
     @Test
     public void testAppend()
     {
-        ensureEqual(ObjectList.objectList(1, 2, 3, 4, 5).append(7).append(8), ObjectList.objectList(1, 2, 3, 4, 5, 7, 8));
+        ensureEqual(ObjectList.objectList(1, 2, 3, 4, 5).with(7).with(8), ObjectList.objectList(1, 2, 3, 4, 5, 7, 8));
         ensureEqual(ObjectList.objectList(1, 2, 3, 4, 5).appendAll(List.of(7, 8)), ObjectList.objectList(1, 2, 3, 4, 5, 7, 8));
     }
 
@@ -61,7 +61,6 @@ public class ObjectListTest extends CoreUnitTest
         ensureEqual(ObjectList.objectList(1, 2, 3, 4, 5).copy(), ObjectList.objectList(1, 2, 3, 4, 5));
     }
 
-    @SuppressWarnings("CollectionAddedToSelf")
     @Test
     public void testEndsWith()
     {
@@ -236,7 +235,6 @@ public class ObjectListTest extends CoreUnitTest
         ensureEqual(ObjectList.objectList(5, 4, 2, 1, 3).sorted(Comparator.reverseOrder()), ObjectList.objectList(5, 4, 3, 2, 1));
     }
 
-    @SuppressWarnings("CollectionAddedToSelf")
     @Test
     public void testStartsWith()
     {

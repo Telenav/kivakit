@@ -58,7 +58,7 @@ public class ResourceSection extends BaseReadableResource
         this.endOffset = endOffset;
         if (startOffset > endOffset)
         {
-            illegalArgument("Start index of " + startOffset + " must be less than end index of " + endOffset);
+            throw new IllegalArgumentException("Start index of " + startOffset + " must be less than end index of " + endOffset);
         }
     }
 

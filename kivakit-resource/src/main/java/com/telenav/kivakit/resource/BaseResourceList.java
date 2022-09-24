@@ -1,14 +1,15 @@
 package com.telenav.kivakit.resource;
 
 import com.telenav.kivakit.core.collections.list.ObjectList;
+import com.telenav.kivakit.core.collections.set.ObjectSet;
 import com.telenav.kivakit.core.value.count.Bytes;
 import com.telenav.kivakit.core.value.count.Count;
 import com.telenav.kivakit.interfaces.comparison.Matcher;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.util.HashSet;
-import java.util.Set;
+
+import static com.telenav.kivakit.core.collections.set.ObjectSet.objectSet;
 
 @SuppressWarnings("unused")
 public abstract class BaseResourceList<T extends Resource> extends ObjectList<T>
@@ -33,9 +34,9 @@ public abstract class BaseResourceList<T extends Resource> extends ObjectList<T>
     }
 
     @Override
-    public Set<T> asSet()
+    public ObjectSet<T> asSet()
     {
-        return new HashSet<>(this);
+        return objectSet(this);
     }
 
     @Override

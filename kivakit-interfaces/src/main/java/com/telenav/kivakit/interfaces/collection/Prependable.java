@@ -27,9 +27,9 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.LinkedList;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_DEFAULT_EXPANDABLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTED;
-import static com.telenav.kivakit.annotations.code.TestingQuality.NOT_TESTED;
+import static com.telenav.kivakit.annotations.code.ApiStability.MORE_EVALUATION_NEEDED;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
 
 /**
  * An object, often a collection or related type, to which objects can be prepended.
@@ -37,11 +37,12 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.NOT_TESTED;
  * @author jonathanl (shibo)
  */
 @SuppressWarnings({ "SpellCheckingInspection", "unused" })
-@FunctionalInterface
 @UmlClassDiagram(diagram = DiagramCollection.class)
-@ApiQuality(stability = STABLE_DEFAULT_EXPANDABLE,
-            testing = NOT_TESTED,
-            documentation = DOCUMENTED)
+@ApiQuality(stability = MORE_EVALUATION_NEEDED,
+            testing = UNTESTED,
+            documentation = FULLY_DOCUMENTED,
+            reviews = 1,
+            reviewers = "shibo")
 public interface Prependable<Value> extends SpaceLimited
 {
     /**

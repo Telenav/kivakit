@@ -22,16 +22,16 @@ import com.sun.tools.attach.VirtualMachine;
 import com.telenav.kivakit.core.KivaKit;
 import com.telenav.kivakit.core.collections.Sets;
 import com.telenav.kivakit.core.collections.map.VariableMap;
+import com.telenav.kivakit.core.internal.lexakai.DiagramLanguage;
 import com.telenav.kivakit.core.language.primitive.Primitives;
 import com.telenav.kivakit.core.language.reflection.Field;
 import com.telenav.kivakit.core.language.reflection.Type;
-import com.telenav.kivakit.core.internal.lexakai.DiagramLanguage;
 import com.telenav.kivakit.core.messaging.Listener;
+import com.telenav.kivakit.core.messaging.messages.status.Warning;
 import com.telenav.kivakit.core.messaging.repeaters.BaseRepeater;
 import com.telenav.kivakit.core.object.Lazy;
 import com.telenav.kivakit.core.os.OperatingSystem;
 import com.telenav.kivakit.core.string.AsciiArt;
-import com.telenav.kivakit.core.time.Frequency;
 import com.telenav.kivakit.core.time.Time;
 import com.telenav.kivakit.core.value.count.Bytes;
 import com.telenav.kivakit.core.value.count.Count;
@@ -51,6 +51,7 @@ import java.nio.file.Path;
 import java.util.Set;
 
 import static com.telenav.kivakit.core.project.Project.resolveProject;
+import static com.telenav.kivakit.core.time.Frequency.ONCE;
 
 /**
  * An object for working with a Java virtual machine, including getting properties, instrumentation and determining the
@@ -58,7 +59,7 @@ import static com.telenav.kivakit.core.project.Project.resolveProject;
  *
  * @author jonathanl (shibo)
  */
-@UmlClassDiagram(diagram = DiagramLanguage.class)
+@SuppressWarnings("unused") @UmlClassDiagram(diagram = DiagramLanguage.class)
 public class JavaVirtualMachine extends BaseRepeater
 {
     private static final boolean DETAILED_DEBUG = true;
@@ -211,9 +212,10 @@ public class JavaVirtualMachine extends BaseRepeater
             information("Instrumentation agent: $", agentJar);
             if (agentJar == null || !new java.io.File(agentJar).exists())
             {
-                warning(Frequency.ONCE, "Unable to instrument JavaVirtualMachine: Must set KIVAKIT_AGENT_JAR to point to kivakit-agent.jar\n"
+                transmit(new Warning("Unable to instrument JavaVirtualMachine: Must set KIVAKIT_AGENT_JAR to point to kivakit-agent.jar\n"
                         + "or KIVAKIT_HOME must be set and kivakit-agent.jar must be in kivakit/tools/agent\n"
-                        + "Consider adding this command to your .profile: launchctl setenv KIVAKIT_HOME $$KIVAKIT_HOME");
+                        + "Consider adding this command to your .profile: launchctl setenv KIVAKIT_HOME $$KIVAKIT_HOME")
+                        .maximumFrequency(ONCE));
                 return false;
             }
             try

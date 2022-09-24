@@ -300,6 +300,24 @@ public class StringList extends ObjectList<String>
         return this;
     }
 
+    @Override
+    public StringList appendThen(String value)
+    {
+        return (StringList) super.appendThen(value);
+    }
+
+    @Override
+    public StringList appendThen(Iterable<? extends String> values)
+    {
+        return (StringList) super.appendThen(values);
+    }
+
+    @Override
+    public StringList appendThen(final Iterator<? extends String> values)
+    {
+        return (StringList) super.appendThen(values);
+    }
+
     public String[] asStringArray()
     {
         return toArray(new String[size()]);
@@ -545,6 +563,18 @@ public class StringList extends ObjectList<String>
     public StringList uniqued()
     {
         return (StringList) super.uniqued();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public StringList with(String value)
+    {
+        var copy = new StringList();
+        copy.addAll(this);
+        copy.add(value);
+        return copy;
     }
 
     /**

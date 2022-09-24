@@ -80,6 +80,7 @@ import java.util.regex.Pattern;
  *
  * @author jonathanl (shibo)
  */
+@SuppressWarnings({ "unused", "JavadocLinkAsPlainText" })
 @UmlClassDiagram(diagram = DiagramResourcePath.class)
 @LexakaiJavadoc(complete = true)
 public class FilePath extends ResourcePath

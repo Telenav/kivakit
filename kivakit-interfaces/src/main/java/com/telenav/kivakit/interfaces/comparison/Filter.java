@@ -27,8 +27,8 @@ import java.util.Collection;
 import java.util.function.Predicate;
 
 import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_DEFAULT_EXPANDABLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTED;
-import static com.telenav.kivakit.annotations.code.TestingQuality.NOT_TESTED;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
 
 /**
  * A filter which matches values allowing for boolean expressions. All {@link Filter}s are {@link Matcher}s and
@@ -64,8 +64,8 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.NOT_TESTED;
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramComparison.class)
 @ApiQuality(stability = STABLE_DEFAULT_EXPANDABLE,
-            testing = NOT_TESTED,
-            documentation = DOCUMENTED)
+            testing = UNTESTED,
+            documentation = FULLY_DOCUMENTED)
 public interface Filter<Value> extends Matcher<Value>
 {
     /**

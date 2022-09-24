@@ -19,6 +19,7 @@
 package com.telenav.kivakit.interfaces.messaging;
 
 import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.interfaces.code.Code;
 import com.telenav.kivakit.interfaces.internal.lexakai.DiagramMessaging;
 import com.telenav.kivakit.interfaces.value.Source;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
@@ -27,7 +28,7 @@ import com.telenav.lexakai.annotations.associations.UmlRelation;
 import java.util.function.Supplier;
 
 import static com.telenav.kivakit.annotations.code.ApiStability.STABLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_REQUIRED;
 
 /**
@@ -41,11 +42,12 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_RE
  * @author jonathanl (shibo)
  * @see Transmittable
  */
+@SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramMessaging.class)
 @UmlRelation(label = "transmits", referent = Transmittable.class)
 @ApiQuality(stability = STABLE,
             testing = TESTING_NOT_REQUIRED,
-            documentation = DOCUMENTED)
+            documentation = FULLY_DOCUMENTED)
 public interface Transmitter
 {
     /**
@@ -83,5 +85,29 @@ public interface Transmitter
             onTransmit(message);
         }
         return message;
+    }
+
+    /**
+     * Turns this transmitter on/off
+     *
+     * @param enable True to enable this transmitter, false to disable it
+     */
+    default void transmitting(boolean enable)
+    {
+    }
+
+    default <T> T withoutTransmitting(Code<T> code)
+    {
+        var original = isTransmitting();
+        transmitting(false);
+        try
+        {
+            return code.run();
+        }
+        finally
+        {
+
+            transmitting(original);
+        }
     }
 }

@@ -18,6 +18,7 @@
 
 package com.telenav.kivakit.core.collections.list;
 
+import com.telenav.kivakit.core.collections.set.ObjectSet;
 import com.telenav.kivakit.core.internal.lexakai.DiagramCollections;
 import com.telenav.kivakit.core.string.AsciiArt;
 import com.telenav.kivakit.core.string.Formatter;
@@ -32,6 +33,7 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Comparator;
+import java.util.Iterator;
 import java.util.function.Function;
 
 /**
@@ -53,7 +55,7 @@ import java.util.function.Function;
  * values, passing each quantum to the given primitive map factory and adding the resulting object to a new object list.
  * </p>
  *
- * @param <Element> The object type
+ * @param <Value> The object type
  * @author jonathanl (shibo)
  * @see BaseList
  * @see LongMapFactory
@@ -62,7 +64,7 @@ import java.util.function.Function;
  */
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramCollections.class)
-public class ObjectList<Element> extends BaseList<Element>
+public class ObjectList<Value> extends BaseList<Value>
 {
     /**
      * @return An empty object list
@@ -177,9 +179,33 @@ public class ObjectList<Element> extends BaseList<Element>
     /**
      * A list of objects with the given upper bound
      */
-    public ObjectList(Collection<Element> collection)
+    public ObjectList(Collection<Value> collection)
     {
         super(collection);
+    }
+
+    @Override
+    public ObjectList<Value> appendThen(Value value)
+    {
+        return (ObjectList<Value>) super.appendThen(value);
+    }
+
+    @Override
+    public ObjectList<Value>  appendThen(Iterable<? extends Value> values)
+    {
+        return (ObjectList<Value>) super.appendThen(values);
+    }
+
+    @Override
+    public ObjectList<Value> appendThen(final Iterator<? extends Value> values)
+    {
+        return (ObjectList<Value>) super.appendThen(values);
+    }
+
+    @Override
+    public ObjectSet<Value> asSet()
+    {
+        return (ObjectSet<Value>) super.asSet();
     }
 
     @Override
@@ -194,37 +220,37 @@ public class ObjectList<Element> extends BaseList<Element>
      * @return The copy
      */
     @Override
-    public ObjectList<Element> copy()
+    public ObjectList<Value> copy()
     {
-        return (ObjectList<Element>) super.copy();
+        return (ObjectList<Value>) super.copy();
     }
 
     @Override
-    public ObjectList<Element> first(Count count)
+    public ObjectList<Value> first(Count count)
     {
-        return (ObjectList<Element>) super.first(count);
+        return (ObjectList<Value>) super.first(count);
     }
 
     @Override
-    public ObjectList<Element> first(int count)
+    public ObjectList<Value> first(int count)
     {
-        return (ObjectList<Element>) super.first(count);
+        return (ObjectList<Value>) super.first(count);
     }
 
     @Override
-    public ObjectList<Element> last(int count)
+    public ObjectList<Value> last(int count)
     {
-        return (ObjectList<Element>) super.last(count);
+        return (ObjectList<Value>) super.last(count);
     }
 
     @Override
-    public ObjectList<Element> leftOf(int index)
+    public ObjectList<Value> leftOf(int index)
     {
-        return (ObjectList<Element>) super.leftOf(index);
+        return (ObjectList<Value>) super.leftOf(index);
     }
 
     @Override
-    public <To> ObjectList<To> mapped(Function<Element, To> mapper)
+    public <To> ObjectList<To> mapped(Function<Value, To> mapper)
     {
         return (ObjectList<To>) super.mapped(mapper);
     }
@@ -236,24 +262,24 @@ public class ObjectList<Element> extends BaseList<Element>
      * @return The list of elements matching the matcher
      */
     @Override
-    public ObjectList<Element> matching(Matcher<Element> matcher)
+    public ObjectList<Value> matching(Matcher<Value> matcher)
     {
-        return (ObjectList<Element>) super.matching(matcher);
+        return (ObjectList<Value>) super.matching(matcher);
     }
 
     @Override
-    public ObjectList<Element> maybeReversed(boolean reverse)
+    public ObjectList<Value> maybeReversed(boolean reverse)
     {
-        return (ObjectList<Element>) super.maybeReversed(reverse);
+        return (ObjectList<Value>) super.maybeReversed(reverse);
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public boolean onAppend(Element element)
+    public boolean onAppend(Value value)
     {
-        return super.add(element);
+        return super.add(value);
     }
 
     /**
@@ -262,7 +288,7 @@ public class ObjectList<Element> extends BaseList<Element>
      * @return The new list
      */
     @Override
-    public ObjectList<Element> onNewInstance()
+    public ObjectList<Value> onNewInstance()
     {
         return new ObjectList<>();
     }
@@ -270,9 +296,9 @@ public class ObjectList<Element> extends BaseList<Element>
     /**
      * @return This object list partitioned in to n object lists
      */
-    public ObjectList<ObjectList<Element>> partition(Count partitions)
+    public ObjectList<ObjectList<Value>> partition(Count partitions)
     {
-        var lists = new ObjectList<ObjectList<Element>>(maximumSize());
+        var lists = new ObjectList<ObjectList<Value>>(maximumSize());
         var i = 0;
         var list = -1;
         var every = (int) Math.round((double) size() / (double) partitions.asInt());
@@ -289,27 +315,27 @@ public class ObjectList<Element> extends BaseList<Element>
     }
 
     @Override
-    public ObjectList<Element> reversed()
+    public ObjectList<Value> reversed()
     {
-        return (ObjectList<Element>) super.reversed();
+        return (ObjectList<Value>) super.reversed();
     }
 
     @Override
-    public ObjectList<Element> rightOf(int index)
+    public ObjectList<Value> rightOf(int index)
     {
-        return (ObjectList<Element>) super.rightOf(index);
+        return (ObjectList<Value>) super.rightOf(index);
     }
 
     @Override
-    public ObjectList<Element> sorted()
+    public ObjectList<Value> sorted()
     {
-        return (ObjectList<Element>) super.sorted();
+        return (ObjectList<Value>) super.sorted();
     }
 
     @Override
-    public ObjectList<Element> sorted(Comparator<Element> comparator)
+    public ObjectList<Value> sorted(Comparator<Value> comparator)
     {
-        return (ObjectList<Element>) super.sorted(comparator);
+        return (ObjectList<Value>) super.sorted(comparator);
     }
 
     /**
@@ -335,13 +361,16 @@ public class ObjectList<Element> extends BaseList<Element>
      */
     @Override
     @SuppressWarnings("SpellCheckingInspection")
-    public ObjectList<Element> uniqued()
+    public ObjectList<Value> uniqued()
     {
-        return (ObjectList<Element>) super.uniqued();
+        return (ObjectList<Value>) super.uniqued();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @SuppressWarnings({ "unchecked", "rawtypes" })
-    public <T> ObjectList<T> with(T value)
+    public ObjectList<Value> with(Value value)
     {
         var copy = new ObjectList();
         copy.addAll(this);
@@ -349,9 +378,12 @@ public class ObjectList<Element> extends BaseList<Element>
         return copy;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public ObjectList<Element> without(Matcher<Element> matcher)
+    public ObjectList<Value> without(Matcher<Value> matcher)
     {
-        return (ObjectList<Element>) super.without(matcher);
+        return (ObjectList<Value>) super.without(matcher);
     }
 }

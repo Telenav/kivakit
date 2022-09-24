@@ -26,7 +26,7 @@ import com.telenav.lexakai.annotations.visibility.UmlExcludeMember;
 import java.io.IOException;
 
 import static com.telenav.kivakit.annotations.code.ApiStability.STABLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_REQUIRED;
 
 /**
@@ -37,7 +37,7 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_RE
 @UmlClassDiagram(diagram = DiagramIo.class)
 @ApiQuality(stability = STABLE,
             testing = TESTING_NOT_REQUIRED,
-            documentation = DOCUMENTED)
+            documentation = FULLY_DOCUMENTED)
 public interface Closeable extends AutoCloseable
 {
     /**

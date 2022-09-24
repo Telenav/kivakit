@@ -21,8 +21,8 @@ package com.telenav.kivakit.conversion;
 import com.telenav.kivakit.conversion.internal.lexakai.DiagramConversion;
 import com.telenav.kivakit.core.messaging.Broadcaster;
 import com.telenav.kivakit.core.messaging.Listener;
+import com.telenav.kivakit.core.messaging.MessageTransceiver;
 import com.telenav.kivakit.core.messaging.Repeater;
-import com.telenav.kivakit.core.messaging.Transceiver;
 import com.telenav.kivakit.core.messaging.messages.status.Glitch;
 import com.telenav.kivakit.core.messaging.messages.status.Problem;
 import com.telenav.kivakit.core.messaging.messages.status.Warning;
@@ -33,8 +33,8 @@ import com.telenav.lexakai.annotations.visibility.UmlExcludeMember;
 
 /**
  * Base class for implementing converters. The inherited {@link Converter#convert(Object)} method converts from the
- * 'From' type to the To type. Whether the conversion allows null values or not can be specified with {@link
- * #allowNull(boolean)}. Converters are used extensively in KivaKit for tasks as diverse as switch parsing and
+ * 'From' type to the To type. Whether the conversion allows null values or not can be specified with
+ * {@link #allowNull(boolean)}. Converters are used extensively in KivaKit for tasks as diverse as switch parsing and
  * populating objects from properties files.
  *
  * <p>
@@ -43,10 +43,10 @@ import com.telenav.lexakai.annotations.visibility.UmlExcludeMember;
  * </p>
  *
  * <p>
- * For example, if there is a problem with a conversion, {@link Transceiver#problem(String, Object...)} (which {@link
- * Repeater} indirectly extends) can broadcast a {@link Problem} message to any clients of the converter. Similarly
- * {@link Warning} and {@link Glitch} messages can be broadcast with {@link #warning(String, Object...)} and {@link
- * #glitch(String, Object...)}.
+ * For example, if there is a problem with a conversion, {@link MessageTransceiver#problem(String, Object...)} (which
+ * {@link Repeater} indirectly extends) can broadcast a {@link Problem} message to any clients of the converter.
+ * Similarly {@link Warning} and {@link Glitch} messages can be broadcast with {@link #warning(String, Object...)} and
+ * {@link #glitch(String, Object...)}.
  * </p>
  *
  * @param <From> The type to convert from
@@ -104,7 +104,7 @@ public abstract class BaseConverter<From, To> extends BaseRepeater implements Co
             if (!allowsNull())
             {
                 // then broadcast a problem
-                problem(problemBroadcastFrequency(), "${class}: Cannot convert null value", subclass());
+                transmit(new Problem("${class}: Cannot convert null value", subclass()).maximumFrequency(problemBroadcastFrequency()));
             }
 
             return null;
@@ -118,7 +118,7 @@ public abstract class BaseConverter<From, To> extends BaseRepeater implements Co
         catch (Exception e)
         {
             // and if an exception occurs, broadcast a problem
-            problem(problemBroadcastFrequency(), e, "${class}: Cannot convert ${debug}", subclass(), from);
+            transmit(new Problem("${class}: Cannot convert ${debug}", subclass(), from).maximumFrequency(problemBroadcastFrequency()));
 
             // and return null.
             return null;

@@ -22,11 +22,10 @@ import com.telenav.kivakit.core.collections.iteration.BaseIterator;
 import com.telenav.kivakit.core.collections.iteration.CompoundIterator;
 import com.telenav.kivakit.core.collections.iteration.DeduplicatingIterator;
 import com.telenav.kivakit.core.collections.iteration.Iterables;
-import com.telenav.kivakit.core.collections.list.BaseList;
 import com.telenav.kivakit.core.collections.list.ObjectList;
+import com.telenav.kivakit.core.value.count.Maximum;
 import com.telenav.kivakit.interfaces.collection.NextIterable;
 import com.telenav.kivakit.internal.testing.CoreUnitTest;
-import com.telenav.kivakit.core.value.count.Maximum;
 import org.junit.Test;
 
 import java.util.Collections;
@@ -98,7 +97,8 @@ public class IteratorTest extends CoreUnitTest
     {
         var values = values(2, 3, 2, 5, 2, 7, 2);
         var iterator = new DeduplicatingIterator<>(values.iterator());
-        BaseList<Integer> deduplicated = new ObjectList<Integer>(Maximum.MAXIMUM).appendAll(iterator);
+        var deduplicated = new ObjectList<Integer>(Maximum.MAXIMUM);
+        deduplicated.appendAll(iterator);
         ensureEqual(values(2, 3, 5, 7), deduplicated);
     }
 

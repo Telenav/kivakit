@@ -4,9 +4,9 @@ import com.telenav.kivakit.annotations.code.ApiQuality;
 
 import java.util.function.Function;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_DEFAULT_EXPANDABLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTED;
-import static com.telenav.kivakit.annotations.code.TestingQuality.NOT_TESTED;
+import static com.telenav.kivakit.annotations.code.ApiStability.MORE_EVALUATION_NEEDED;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
 
 /**
  * An object that is {@link Joinable} is {@link Iterable}. Objects are iterated through and joined by separator values
@@ -26,9 +26,11 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.NOT_TESTED;
  * @author jonathanl (shibo)
  */
 @SuppressWarnings({ "unused", "SpellCheckingInspection" })
-@ApiQuality(stability = STABLE_DEFAULT_EXPANDABLE,
-            testing = NOT_TESTED,
-            documentation = DOCUMENTED)
+@ApiQuality(stability = MORE_EVALUATION_NEEDED,
+            testing = UNTESTED,
+            documentation = FULLY_DOCUMENTED,
+            reviews = 1,
+            reviewers = "shibo")
 public interface Joinable<Element> extends Iterable<Element>
 {
     default String join()

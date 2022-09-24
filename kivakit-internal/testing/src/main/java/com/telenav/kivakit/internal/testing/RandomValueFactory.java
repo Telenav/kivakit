@@ -48,8 +48,6 @@ import static com.telenav.kivakit.core.language.primitive.Longs.inRangeInclusive
 import static com.telenav.kivakit.core.value.count.Count._256;
 import static com.telenav.kivakit.core.value.count.Count._65_536;
 import static com.telenav.kivakit.core.value.count.Count.count;
-import static com.telenav.kivakit.interfaces.code.FilteredLoopBody.FilterAction.ACCEPT;
-import static com.telenav.kivakit.interfaces.code.FilteredLoopBody.FilterAction.REJECT;
 import static com.telenav.kivakit.internal.testing.Repeats.ALLOW_REPEATS;
 import static com.telenav.kivakit.internal.testing.Repeats.NO_REPEATS;
 
@@ -508,16 +506,15 @@ public class RandomValueFactory implements RandomNumeric
             var values = new ObjectSet<T>();
             if (count.isLessThanOrEqualTo(_65_536))
             {
-                count.loop(at ->
+                var added = 0;
+                for (var at = 0; added < count.asInt(); at++)
                 {
                     var value = cast(at, type);
-                    if (include.matches(value))
+                    while (include.matches(value))
                     {
                         values.add(value);
-                        return ACCEPT;
                     }
-                    return REJECT;
-                });
+                }
             }
             else
             {
@@ -548,16 +545,14 @@ public class RandomValueFactory implements RandomNumeric
         else
         {
             // otherwise, we are allowing repeats, so things are simple.
-            Range.rangeExclusive(count(0), count).forCount(count, at ->
+            for (var at = 0; at < count.asInt(); at++)
             {
                 var value = randomExclusive(minimum, exclusiveMaximum, type, include);
                 if (include.matches(value))
                 {
                     consumer.accept(value);
-                    return ACCEPT;
                 }
-                return REJECT;
-            });
+            }
         }
     }
 

@@ -363,6 +363,12 @@ public class Multicaster implements Broadcaster
         return message;
     }
 
+    @Override
+    public void transmitting(boolean transmitting)
+    {
+        this.transmitting = transmitting;
+    }
+
     private void listenerTree(IndentingStringBuilder builder)
     {
         lock().read(() ->

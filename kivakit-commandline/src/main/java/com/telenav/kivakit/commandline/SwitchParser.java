@@ -262,7 +262,7 @@ public class SwitchParser<T> implements
 
     private final Type<T> type;
 
-    private final Set<T> validValues;
+    private final ObjectSet<T> validValues;
 
     /**
      * Construct.
@@ -288,7 +288,7 @@ public class SwitchParser<T> implements
         this.name = name;
         this.quantifier = quantifier;
         this.defaultValue = defaultValue;
-        this.validValues = validValues;
+        this.validValues = ObjectSet.objectSet(validValues);
         this.converter = converter;
         this.delimiter = delimiter;
         this.type = type;
@@ -334,7 +334,7 @@ public class SwitchParser<T> implements
         }
         return this + "=" + type.simpleName()
                 + " (" + specifics.join() + ") : " + description
-                + (validValues != null ? "\n\n" + new ObjectList<>().appendAll(validValues).bulleted(4) : "");
+                + (validValues != null ? "\n\n" + validValues.asList().bulleted(4) : "");
     }
 
     /**

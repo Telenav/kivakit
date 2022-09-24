@@ -9,8 +9,8 @@ import com.telenav.kivakit.core.messaging.messages.status.Problem;
 import java.util.function.Function;
 
 import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_DEFAULT_EXPANDABLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTED;
-import static com.telenav.kivakit.annotations.code.TestingQuality.NOT_TESTED;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
 
 /**
  * <p>Adds methods that help in general to extend KivaKit's expressive capabilities in the Java language</p>
@@ -63,8 +63,8 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.NOT_TESTED;
  */
 @SuppressWarnings("unused")
 @ApiQuality(stability = STABLE_DEFAULT_EXPANDABLE,
-            documentation = DOCUMENTED,
-            testing = NOT_TESTED)
+            documentation = FULLY_DOCUMENTED,
+            testing = UNTESTED)
 public interface LanguageTrait extends Repeater
 {
     /**

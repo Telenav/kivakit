@@ -19,17 +19,21 @@
 package com.telenav.kivakit.core.thread;
 
 import com.telenav.kivakit.core.code.UncheckedCode;
+import com.telenav.kivakit.core.collections.iteration.BaseIterator;
 import com.telenav.kivakit.core.internal.lexakai.DiagramThread;
 import com.telenav.kivakit.core.messaging.repeaters.BaseRepeater;
 import com.telenav.kivakit.core.time.Time;
 import com.telenav.kivakit.core.value.count.BaseCount;
 import com.telenav.kivakit.core.value.count.Count;
 import com.telenav.kivakit.interfaces.collection.Addable;
+import com.telenav.kivakit.interfaces.comparison.Matcher;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Set;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.ExecutorService;
@@ -45,19 +49,19 @@ import static com.telenav.kivakit.core.ensure.Ensure.ensure;
  *
  * <p>
  * New elements are added via a {@link BatchAdder} object that is <i>not</i> thread-safe and should be kept only in a
- * local variable or on a per-thread basis using {@link ThreadLocal}. A batch adder is created by a call to {@link
- * #adder()} and objects are added to the adder with {@link BatchAdder#add(Object)}. When the batch adder's batch is
- * full, the batch is added to the queue and a new batch is started.
+ * local variable or on a per-thread basis using {@link ThreadLocal}. A batch adder is created by a call to
+ * {@link #adder()} and objects are added to the adder with {@link BatchAdder#add(Object)}. When the batch adder's batch
+ * is full, the batch is added to the queue and a new batch is started.
  * </p>
  *
  * <p><b>Processing Elements</b></p>
  *
  * <p>
  * A batcher has a set of worker threads that are started with {@link #start(Count)}, passing in the desired number of
- * threads. Worker threads pull batches out of the queue and call {@link Batch#process()} which calls {@link
- * #onBatch(Batch)} to let the subclass process the batch of elements. When the thread(s) that are adding elements to
- * the batcher are done, they must call {@link #stop()}, to shut down the batcher and wait until the processing of all
- * batches is complete.
+ * threads. Worker threads pull batches out of the queue and call {@link Batch#process()} which calls
+ * {@link #onBatch(Batch)} to let the subclass process the batch of elements. When the thread(s) that are adding
+ * elements to the batcher are done, they must call {@link #stop()}, to shut down the batcher and wait until the
+ * processing of all batches is complete.
  * </p>
  *
  * <p><b>Example</b></p>
@@ -91,7 +95,7 @@ import static com.telenav.kivakit.core.ensure.Ensure.ensure;
  *
  * @author jonathanl (shibo)
  */
-@SuppressWarnings("SpellCheckingInspection")
+@SuppressWarnings({ "SpellCheckingInspection", "unused" })
 @UmlClassDiagram(diagram = DiagramThread.class)
 public class Batcher<Element> extends BaseRepeater
 {
@@ -157,11 +161,30 @@ public class Batcher<Element> extends BaseRepeater
         /** The batch to fill with elements */
         private Batch batch = new Batch();
 
+        @Override
+        public @NotNull Iterator<Element> asIterator(Matcher<Element> matcher)
+        {
+            return new BaseIterator<>()
+            {
+                private final Iterator<Element> iterator = batch.iterator();
+
+                @Override
+                protected Element onNext()
+                {
+                    if (iterator.hasNext())
+                    {
+                        return iterator.next();
+                    }
+                    return null;
+                }
+            };
+        }
+
         /**
          * Adds the given item to a batch and enqueues the batch if it is full
          */
         @Override
-        public boolean add(Element item)
+        public boolean onAdd(Element item)
         {
             var outer = Batcher.this;
 
@@ -178,6 +201,12 @@ public class Batcher<Element> extends BaseRepeater
                 enqueue();
             }
             return true;
+        }
+
+        @Override
+        public int size()
+        {
+            return batch.size();
         }
 
         /**

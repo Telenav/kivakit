@@ -279,7 +279,8 @@ public class File extends BaseWritableResource implements FileSystemObject
             var filePath = FilePath.parseFilePath(listener, Paths.tail(path, ":"));
 
             // then prepend the KivaKit scheme to the list of schemes in the parsed FilePath,
-            var schemes = filePath.schemes().copy().prepend(scheme);
+            var schemes = filePath.schemes().copy();
+            schemes.prepend(scheme);
 
             // and create the file.
             return File.file(filePath.withSchemes(schemes));

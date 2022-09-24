@@ -78,7 +78,7 @@ public class ArgumentList implements Iterable<Argument>, StringFormattable, Size
 
     @Override
     @UmlExcludeMember
-    public String asString()
+    public String asString(Format format)
     {
         return arguments.join();
     }
