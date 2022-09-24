@@ -2,6 +2,7 @@ package com.telenav.kivakit.interfaces.value;
 
 import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.interfaces.numeric.Zeroable;
+import org.jetbrains.annotations.NotNull;
 
 import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_DEFAULT_EXPANDABLE;
 import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
@@ -17,7 +18,9 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_RE
 @ApiQuality(stability = STABLE_DEFAULT_EXPANDABLE,
             testing = TESTING_NOT_REQUIRED,
             documentation = FULLY_DOCUMENTED)
-public interface LongValued extends Zeroable
+public interface LongValued extends
+        Zeroable,
+        Comparable<LongValued>
 {
     /**
      * @return The absolute difference between this long value and that long value
@@ -81,6 +84,12 @@ public interface LongValued extends Zeroable
     default short asShort()
     {
         return (short) longValue();
+    }
+
+    @Override
+    default int compareTo(@NotNull LongValued that)
+    {
+        return Long.compare(longValue(), that.longValue());
     }
 
     /**

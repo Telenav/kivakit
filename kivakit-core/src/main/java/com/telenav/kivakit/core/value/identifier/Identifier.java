@@ -47,6 +47,7 @@ public class Identifier implements
         this.value = value;
     }
 
+    @Override
     public long asLong()
     {
         return value;
