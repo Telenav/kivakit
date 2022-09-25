@@ -231,7 +231,7 @@ public final class ZipArchive extends BaseRepeater implements
      */
     public synchronized ZipEntry entry(String pathname)
     {
-        var path = UncheckedCode.of(() -> filesystem.getPath(pathname)).orNull();
+        var path = UncheckedCode.unchecked(() -> filesystem.getPath(pathname)).orNull();
         if (path != null)
         {
             return new ZipEntry(filesystem, path);
@@ -255,7 +255,7 @@ public final class ZipArchive extends BaseRepeater implements
     @Override
     public Iterator<ZipEntry> iterator()
     {
-        var files = UncheckedCode.of(() -> Files.walk(filesystem.getPath("/"))).orNull();
+        var files = UncheckedCode.unchecked(() -> Files.walk(filesystem.getPath("/"))).orNull();
         return files == null ? null : files
                 .filter(path -> !Files.isDirectory(path))
                 .map(path -> new ZipEntry(filesystem, path))
@@ -380,14 +380,14 @@ public final class ZipArchive extends BaseRepeater implements
             {
                 var environment = new VariableMap<String>();
                 environment.put("create", "true");
-                return UncheckedCode.of(() -> Nio.filesystem(listener, uri, environment)).orNull();
+                return UncheckedCode.unchecked(() -> Nio.filesystem(listener, uri, environment)).orNull();
             }
 
             case READ:
             {
                 if (file.exists())
                 {
-                    var filesystem = UncheckedCode.of(() -> FileSystems.getFileSystem(uri)).orNull();
+                    var filesystem = UncheckedCode.unchecked(() -> FileSystems.getFileSystem(uri)).orNull();
                     if (filesystem != null)
                     {
                         return filesystem;

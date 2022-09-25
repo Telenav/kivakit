@@ -17,7 +17,7 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_RE
             documentation = FULLY_DOCUMENTED,
             reviews = 1,
             reviewers = "shibo")
-public interface NextIterable<Value>
+public interface NextIterator<Value>
 {
     /**
      * @return The next Value or null if there is none

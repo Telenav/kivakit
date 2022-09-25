@@ -25,7 +25,7 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import static com.telenav.kivakit.annotations.code.ApiStability.STABLE;
 import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
-import static com.telenav.kivakit.annotations.code.TestingQuality.MORE_TESTING_REQUIRED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.MORE_TESTING_NEEDED;
 
 /**
  * A {@link BitDiagram} is a character string that visually depicts one or more bit fields of a primitive value such as
@@ -72,7 +72,7 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.MORE_TESTING_R
 @UmlClassDiagram(diagram = DiagramBits.class)
 @LexakaiJavadoc(complete = true)
 @ApiQuality(stability = STABLE,
-            testing = MORE_TESTING_REQUIRED,
+            testing = MORE_TESTING_NEEDED,
             documentation = FULLY_DOCUMENTED)
 public class BitDiagram
 {

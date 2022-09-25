@@ -67,7 +67,7 @@ public class Threads
 
     public static void await(ExecutorService executor)
     {
-        UncheckedCode.of(() -> executor.awaitTermination(Long.MAX_VALUE, MILLISECONDS)).orNull();
+        UncheckedCode.unchecked(() -> executor.awaitTermination(Long.MAX_VALUE, MILLISECONDS)).orNull();
     }
 
     public static ThreadGroup rootGroup()

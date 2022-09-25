@@ -18,13 +18,13 @@
 
 package com.telenav.kivakit.core.collections.iteration;
 
-import com.telenav.kivakit.annotations.code.ApiStability;
 import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramIteration;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.Iterator;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE;
 import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
 
@@ -38,20 +38,27 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
  */
 @SuppressWarnings("SpellCheckingInspection")
 @UmlClassDiagram(diagram = DiagramIteration.class)
-@ApiQuality(stability = ApiStability.STABLE,
+@ApiQuality(stability = STABLE,
             testing = UNTESTED,
             documentation = FULLY_DOCUMENTED)
-public class DeduplicatingIterable<Element> implements Iterable<Element>
+public class DeduplicatingIterable<Value> implements Iterable<Value>
 {
-    private final Iterable<Element> iterable;
+    /** The underlying iterable */
+    private final Iterable<Value> iterable;
 
-    public DeduplicatingIterable(Iterable<Element> iterable)
+    /**
+     * @param iterable The iterable to deduplicate
+     */
+    public DeduplicatingIterable(Iterable<Value> iterable)
     {
         this.iterable = iterable;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public Iterator<Element> iterator()
+    public Iterator<Value> iterator()
     {
         return new DeduplicatingIterator<>(iterable.iterator());
     }

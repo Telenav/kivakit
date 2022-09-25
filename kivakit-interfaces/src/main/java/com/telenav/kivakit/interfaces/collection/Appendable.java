@@ -145,18 +145,6 @@ public interface Appendable<Value> extends SpaceLimited
     }
 
     /**
-     * Variant of appendAll that can be chained
-     *
-     * @param values The values to append
-     * @return This object, for chaining
-     */
-    default Appendable<Value> appendThen(Iterator<? extends Value> values)
-    {
-        appendAll(values);
-        return this;
-    }
-
-    /**
      * Variant of append that can be chained
      *
      * @param value The value to append

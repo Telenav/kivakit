@@ -18,10 +18,9 @@
 
 package com.telenav.kivakit.core.collections.iteration;
 
-import com.telenav.kivakit.annotations.code.ApiStability;
 import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramIteration;
-import com.telenav.kivakit.interfaces.collection.NextIterable;
+import com.telenav.kivakit.interfaces.collection.NextIterator;
 import com.telenav.kivakit.interfaces.comparison.Matcher;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
@@ -29,41 +28,38 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.Iterator;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE;
 import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
 
 /**
- * Implements the {@link Iterable} interface by using a {@link NextIterable} object to find the next value when iterating.
+ * Implements the {@link Iterable} interface by using a {@link NextIterator} object to find the next value when
+ * iterating. The sequence of objects returned can be filtered to only those objects matching a {@link Matcher}
+ * specified by {@link #matching(Matcher)}.
  *
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramIteration.class)
-@ApiQuality(stability = ApiStability.STABLE,
+@ApiQuality(stability = STABLE,
             testing = UNTESTED,
             documentation = FULLY_DOCUMENTED)
-public abstract class BaseIterable<T> implements Iterable<T>
+public abstract class BaseIterable<Value> implements Iterable<Value>
 {
     /** A filter to restrict values in the sequence */
-    private Matcher<T> matcher = Matcher.matchAll();
+    private Matcher<Value> matcher = Matcher.matchAll();
 
     /**
-     * @param filter The filter to apply to this sequence
+     * {@inheritDoc}
      */
-    public BaseIterable<T> matching(Matcher<T> filter)
-    {
-        this.matcher = filter;
-        return this;
-    }
-
     @Override
-    public final @NotNull Iterator<T> iterator()
+    public final @NotNull Iterator<Value> iterator()
     {
         return new BaseIterator<>()
         {
-            private final NextIterable<T> next = newNext();
+            private final NextIterator<Value> next = newNextIterator();
 
             @Override
-            protected T onNext()
+            protected Value onNext()
             {
                 for (var at = next.next(); at != null; at = next.next())
                 {
@@ -78,8 +74,25 @@ public abstract class BaseIterable<T> implements Iterable<T>
     }
 
     /**
-     * @return A new {@link NextIterable} implementation for finding the next value in a sequence
+     * @return The matcher that must be satisfied for each object iterated
+     */
+    public Matcher<Value> matcher()
+    {
+        return matcher;
+    }
+
+    /**
+     * @param matcher The matcher to apply to this sequence
+     */
+    public BaseIterable<Value> matching(Matcher<Value> matcher)
+    {
+        this.matcher = matcher;
+        return this;
+    }
+
+    /**
+     * @return A new {@link NextIterator} implementation for finding the next value in a sequence
      */
     @UmlRelation(label = "creates")
-    protected abstract NextIterable<T> newNext();
+    protected abstract NextIterator<Value> newNextIterator();
 }

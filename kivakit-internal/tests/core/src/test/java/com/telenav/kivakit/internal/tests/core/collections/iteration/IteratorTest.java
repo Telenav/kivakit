@@ -24,7 +24,7 @@ import com.telenav.kivakit.core.collections.iteration.DeduplicatingIterator;
 import com.telenav.kivakit.core.collections.iteration.Iterables;
 import com.telenav.kivakit.core.collections.list.ObjectList;
 import com.telenav.kivakit.core.value.count.Maximum;
-import com.telenav.kivakit.interfaces.collection.NextIterable;
+import com.telenav.kivakit.interfaces.collection.NextIterator;
 import com.telenav.kivakit.internal.testing.CoreUnitTest;
 import org.junit.Test;
 
@@ -36,7 +36,7 @@ public class IteratorTest extends CoreUnitTest
     public void abstractIterableTest()
     {
         var iterable = Iterables.iterable(() -> new
-                NextIterable<Integer>()
+                NextIterator<Integer>()
                 {
                     int i;
 

@@ -37,7 +37,7 @@ import java.util.function.Function;
 /**
  * A list of strings, adding useful string operations to {@link ObjectList}. Inherited methods that return lists are
  * overridden with down-casting methods for convenience. String lists can be constructed using the constructors, but
- * also using factory methods:
+ * also using factory methods. Inherited methods are documented in {@link ObjectList} and {@link BaseList}.
  *
  * <p><b>Factory Methods</b></p>
  *
@@ -61,6 +61,7 @@ import java.util.function.Function;
  *
  * <ul>
  *     <li>{@link #asStringArray()} - This string list as a string array</li>
+ *     <li>{@link #asVariableMap()}</li>
  * </ul>
  *
  * <p><b>String Operations</b></p>
@@ -72,6 +73,7 @@ import java.util.function.Function;
  *     <li>{@link #prefixedWith(String)} - This string list with each element prefixed with the given string</li>
  *     <li>{@link #singleQuoted()} - This string list with all strings in single quotes</li>
  *     <li>{@link #titledBox(String)} - This string list in a titled box</li>
+ *     <li>{@link #println()} - Prints this list, separated by newlines</li>
  * </ul>
  */
 @SuppressWarnings("unused") @UmlClassDiagram(diagram = DiagramString.class)
@@ -308,12 +310,6 @@ public class StringList extends ObjectList<String>
 
     @Override
     public StringList appendThen(Iterable<? extends String> values)
-    {
-        return (StringList) super.appendThen(values);
-    }
-
-    @Override
-    public StringList appendThen(final Iterator<? extends String> values)
     {
         return (StringList) super.appendThen(values);
     }

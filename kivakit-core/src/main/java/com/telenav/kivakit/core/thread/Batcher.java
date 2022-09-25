@@ -416,6 +416,6 @@ public class Batcher<Element> extends BaseRepeater
      */
     private Batch nextBatch()
     {
-        return UncheckedCode.of(() -> queue.take()).orDefault(Batch::new);
+        return UncheckedCode.unchecked(() -> queue.take()).orDefault(Batch::new);
     }
 }

@@ -1,7 +1,7 @@
 package com.telenav.kivakit.interfaces.numeric;
 
 import com.telenav.kivakit.annotations.code.ApiQuality;
-import com.telenav.kivakit.interfaces.collection.NextIterable;
+import com.telenav.kivakit.interfaces.collection.NextIterator;
 import com.telenav.kivakit.interfaces.factory.MapFactory;
 import com.telenav.kivakit.interfaces.value.LongValued;
 
@@ -20,7 +20,7 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_RE
             documentation = FULLY_DOCUMENTED)
 public interface Arithmetic<Value> extends
         LongValued,
-        NextIterable<Value>,
+        NextIterator<Value>,
         MapFactory<Long, Value>
 {
     default Value decremented()

@@ -20,7 +20,7 @@ package com.telenav.kivakit.collections.set;
 
 import com.telenav.kivakit.collections.internal.lexakai.DiagramSet;
 import com.telenav.kivakit.core.collections.iteration.CompoundIterator;
-import com.telenav.kivakit.core.collections.iteration.Matching;
+import com.telenav.kivakit.core.collections.iteration.FilteredIterable;
 import com.telenav.kivakit.interfaces.comparison.Matcher;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import org.jetbrains.annotations.NotNull;
@@ -132,14 +132,7 @@ public class CompoundSet<Element> implements Set<Element>
 
     public Iterable<Element> matching(Matcher<Element> matcher)
     {
-        return new Matching<>(matcher)
-        {
-            @Override
-            protected Iterator<Element> values()
-            {
-                return CompoundSet.this.iterator();
-            }
-        };
+        return new FilteredIterable<>(this, matcher);
     }
 
     @Override

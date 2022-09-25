@@ -24,7 +24,7 @@ import com.telenav.kivakit.core.collections.list.StringList;
 import com.telenav.kivakit.core.io.IO;
 import com.telenav.kivakit.core.io.StringReader;
 import com.telenav.kivakit.core.progress.ProgressReporter;
-import com.telenav.kivakit.interfaces.collection.NextIterable;
+import com.telenav.kivakit.interfaces.collection.NextIterator;
 import com.telenav.kivakit.interfaces.string.AsString;
 import com.telenav.kivakit.resource.Resource;
 import com.telenav.kivakit.resource.internal.lexakai.DiagramFileSystemFile;
@@ -154,7 +154,7 @@ public class ResourceReader implements AsString
      */
     public <T> Iterable<T> objects(Converter<String, T> converter, ProgressReporter reporter)
     {
-        return Iterables.iterable(() -> new NextIterable<>()
+        return Iterables.iterable(() -> new NextIterator<>()
         {
             private final Iterator<String> lines = lines(reporter).iterator();
 

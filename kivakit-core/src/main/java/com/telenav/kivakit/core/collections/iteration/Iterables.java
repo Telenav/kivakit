@@ -18,27 +18,51 @@
 
 package com.telenav.kivakit.core.collections.iteration;
 
-import com.telenav.kivakit.annotations.code.ApiStability;
 import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramIteration;
-import com.telenav.kivakit.interfaces.collection.NextIterable;
+import com.telenav.kivakit.interfaces.collection.NextIterator;
 import com.telenav.kivakit.interfaces.factory.Factory;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.List;
-import java.util.Set;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_STATIC_EXPANDABLE;
 import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
 
 /**
- * Utility methods that operate on {@link Iterable}s. The method {@link #iterable(Factory)} can be used to implement the
- * {@link Iterable} interface with a minimum of code. The implementation of the {@link NextIterable} interface provides
+ * Utility methods that operate on {@link Iterable}s.
+ *
+ * <p><b>Hash/Equals</b></p>
+ *
+ * <ul>
+ *     <li>{@link #hashCode(Iterable)}</li>
+ *     <li>{@link #equals(Iterable, Iterable)}</li>
+ * </ul>
+ *
+ * <p><b>Size</b></p>
+ *
+ * <ul>
+ *     <li>{@link #size(Iterable)}</li>
+ *     <li>{@link #isEmpty(Iterable)}</li>
+ * </ul>
+ *
+ * <p><b>Construction</b></p>
+ *
+ * <ul>
+ *     <li>{@link #iterable(Factory)}</li>
+ *     <li>{@link #iterable(Object[])}</li>
+ *     <li>{@link #emptyIterable()}</li>
+ *     <li>{@link #singletonIterable(Object)}</li>
+ * </ul>
+ * <p>
+ * The method {@link #iterable(Factory)} can be used to implement the
+ * {@link Iterable} interface with a minimum of code. The implementation of the {@link NextIterator} interface provides
  * either the next value in an iteration of the sequence or null if there is none.
  * <pre>
- * var iterable = Iterables.of(() -&gt; new NextIterable&lt;Integer&gt;()
+ * var iterable = Iterables.iterable(() -&gt; new NextIterator&lt;Integer&gt;()
  * {
  *     int next;
  *
@@ -46,49 +70,24 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
  *     {
  *         [...]
  *     }
- * }
- * </pre>
+ * }</pre>
  *
  * @author jonathanl (shibo)
- * @see NextIterable
+ * @see NextIterator
  */
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramIteration.class)
-@ApiQuality(stability = ApiStability.STABLE,
+@ApiQuality(stability = STABLE_STATIC_EXPANDABLE,
             testing = UNTESTED,
             documentation = FULLY_DOCUMENTED)
 public class Iterables
 {
-    public static <T> void addAll(Iterable<T> iterable, Collection<? super T> collection)
+    /**
+     * Returns an empty iterator
+     */
+    public static <T> Iterable<T> emptyIterable()
     {
-        for (var value : iterable)
-        {
-            collection.add(value);
-        }
-    }
-
-    public static <T> boolean contains(Iterable<T> iterable, T value)
-    {
-        for (var next : iterable)
-        {
-            if (next.equals(value))
-            {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public static <T> boolean containsAny(Iterable<T> iterable, Set<T> values)
-    {
-        for (var next : iterable)
-        {
-            if (values.contains(next))
-            {
-                return true;
-            }
-        }
-        return false;
+        return Iterators::emptyIterator;
     }
 
     /**
@@ -111,33 +110,31 @@ public class Iterables
         return Iterators.hashCode(iterable.iterator());
     }
 
-    public static boolean isEmpty(Iterable<?> iterable)
+    /**
+     * @return True if the given iterable has no values
+     */
+    public static boolean isEmpty(@NotNull Iterable<?> iterable)
     {
-        if (iterable == null)
-        {
-            return true;
-        }
-        if (iterable instanceof Collection)
-        {
-            return ((Collection<?>) iterable).isEmpty();
-        }
         return !iterable.iterator().hasNext();
     }
 
+    /**
+     * @return An iterable for the given array of values
+     */
     public static <T> Iterable<T> iterable(T[] values)
     {
         return Arrays.asList(values);
     }
 
     /**
-     * @return An iterable for the given {@link NextIterable} factory
+     * @return An iterable for the given {@link NextIterator} factory
      */
-    public static <T> Iterable<T> iterable(Factory<NextIterable<T>> factory)
+    public static <T> Iterable<T> iterable(Factory<NextIterator<T>> factory)
     {
         return new BaseIterable<>()
         {
             @Override
-            protected NextIterable<T> newNext()
+            protected NextIterator<T> newNextIterator()
             {
                 return factory.newInstance();
             }
@@ -145,14 +142,24 @@ public class Iterables
     }
 
     /**
+     * Returns an iterator that provides the given value as the only value in the sequence
+     *
+     * @param value The singleton value
+     */
+    public static <T> Iterable<T> singletonIterable(T value)
+    {
+        return () -> Iterators.singletonIterator(value);
+    }
+
+    /**
      * @param iterable An iterable
      * @return The number of items in this iterable
      */
-    public static <T> int size(Iterable<T> iterable)
+    public static int size(Iterable<?> iterable)
     {
-        if (iterable instanceof List)
+        if (iterable instanceof Collection)
         {
-            return ((List<T>) iterable).size();
+            return ((Collection<?>) iterable).size();
         }
         var counter = 0;
         for (var ignored : iterable)

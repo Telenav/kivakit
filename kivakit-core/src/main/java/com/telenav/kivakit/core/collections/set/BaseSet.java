@@ -19,7 +19,7 @@
 package com.telenav.kivakit.core.collections.set;
 
 import com.telenav.kivakit.core.collections.iteration.BaseIterator;
-import com.telenav.kivakit.core.collections.iteration.Matching;
+import com.telenav.kivakit.core.collections.iteration.FilteredIterable;
 import com.telenav.kivakit.core.ensure.Ensure;
 import com.telenav.kivakit.core.string.StringTo;
 import com.telenav.kivakit.core.value.count.Count;
@@ -247,14 +247,7 @@ public abstract class BaseSet<Value> implements
 
     public Iterable<Value> matchingAsIterable(Matcher<Value> matcher)
     {
-        return new Matching<>(matcher)
-        {
-            @Override
-            protected Iterator<Value> values()
-            {
-                return set.iterator();
-            }
-        };
+        return new FilteredIterable<>(set, matcher);
     }
 
     public Maximum maximumSize()

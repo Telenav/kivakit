@@ -18,7 +18,6 @@
 
 package com.telenav.kivakit.core.collections.iteration;
 
-import com.telenav.kivakit.annotations.code.ApiStability;
 import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramCollections;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
@@ -27,14 +26,15 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE;
 import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
 
 /**
  * This class implements an iterator which can deduplicate the objects returned by the wrapped iterator. Each element
  * returned by the wrapped iterator is kept in a {@link Set} and only values that have not been seen before are produced
- * as part of the sequence for the caller. The iterated values must correctly implement the {@link #hashCode()} / {@link
- * #equals(Object)} contract.
+ * as part of the sequence for the caller. The iterated values must correctly implement the {@link #hashCode()} /
+ * {@link #equals(Object)} contract.
  *
  * @author Junwei
  * @author jonathanl (shibo)
@@ -42,29 +42,37 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
  */
 @SuppressWarnings("SpellCheckingInspection")
 @UmlClassDiagram(diagram = DiagramCollections.class)
-@ApiQuality(stability = ApiStability.STABLE,
+@ApiQuality(stability = STABLE,
             testing = UNTESTED,
             documentation = FULLY_DOCUMENTED)
-public class DeduplicatingIterator<Element> extends BaseIterator<Element>
+public class DeduplicatingIterator<Value> extends BaseIterator<Value>
 {
-    private final Iterator<Element> iterator;
+    /** The iterator to deduplicate */
+    private final Iterator<Value> iterator;
 
-    private final Set<Element> existing = new HashSet<>();
+    /** The set of values already seen */
+    private final Set<Value> seen = new HashSet<>();
 
-    public DeduplicatingIterator(Iterator<Element> iterator)
+    /**
+     * @param iterator The iterator to deduplicate
+     */
+    public DeduplicatingIterator(Iterator<Value> iterator)
     {
         this.iterator = iterator;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    protected Element onNext()
+    protected Value onNext()
     {
         if (iterator.hasNext())
         {
             var next = iterator.next();
-            if (!existing.contains(next))
+            if (!seen.contains(next))
             {
-                existing.add(next);
+                seen.add(next);
                 return next;
             }
             else

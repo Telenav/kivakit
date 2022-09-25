@@ -18,10 +18,8 @@
 
 package com.telenav.kivakit.core.collections.list;
 
-import com.telenav.kivakit.core.collections.set.ObjectSet;
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramCollections;
-import com.telenav.kivakit.core.string.AsciiArt;
-import com.telenav.kivakit.core.string.Formatter;
 import com.telenav.kivakit.core.value.count.Count;
 import com.telenav.kivakit.core.value.count.Maximum;
 import com.telenav.kivakit.interfaces.comparison.Matcher;
@@ -33,13 +31,17 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Comparator;
-import java.util.Iterator;
 import java.util.function.Function;
+
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXPANDABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.MORE_TESTING_NEEDED;
 
 /**
  * A bounded list of objects with overrides of methods from {@link BaseList} to downcast return values to
  * {@link ObjectList} for convenience. New instances of {@link ObjectList} are created by {@link BaseList} by calling
- * {@link #onNewInstance()}, allowing functional logic to reside in the base class.
+ * {@link #onNewInstance()}, allowing functional logic to reside in the base class. For details on the methods inherited
+ * from {@link BaseList}, see that class.
  *
  * <p><b>Partitioning</b></p>
  *
@@ -64,12 +66,15 @@ import java.util.function.Function;
  */
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramCollections.class)
+@ApiQuality(stability = STABLE_EXPANDABLE,
+            testing = MORE_TESTING_NEEDED,
+            documentation = FULLY_DOCUMENTED)
 public class ObjectList<Value> extends BaseList<Value>
 {
     /**
      * @return An empty object list
      */
-    public static <T> ObjectList<T> emptyList()
+    public static <T> ObjectList<T> emptyObjectList()
     {
         return new ObjectList<>(Maximum._0);
     }
@@ -184,34 +189,22 @@ public class ObjectList<Value> extends BaseList<Value>
         super(collection);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ObjectList<Value> appendThen(Value value)
     {
         return (ObjectList<Value>) super.appendThen(value);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public ObjectList<Value>  appendThen(Iterable<? extends Value> values)
+    public ObjectList<Value> appendThen(Iterable<? extends Value> values)
     {
         return (ObjectList<Value>) super.appendThen(values);
-    }
-
-    @Override
-    public ObjectList<Value> appendThen(final Iterator<? extends Value> values)
-    {
-        return (ObjectList<Value>) super.appendThen(values);
-    }
-
-    @Override
-    public ObjectSet<Value> asSet()
-    {
-        return (ObjectSet<Value>) super.asSet();
-    }
-
-    @Override
-    public StringList asStringList()
-    {
-        return StringList.stringList(this);
     }
 
     /**
@@ -225,30 +218,45 @@ public class ObjectList<Value> extends BaseList<Value>
         return (ObjectList<Value>) super.copy();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ObjectList<Value> first(Count count)
     {
         return (ObjectList<Value>) super.first(count);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ObjectList<Value> first(int count)
     {
         return (ObjectList<Value>) super.first(count);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ObjectList<Value> last(int count)
     {
         return (ObjectList<Value>) super.last(count);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ObjectList<Value> leftOf(int index)
     {
         return (ObjectList<Value>) super.leftOf(index);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public <To> ObjectList<To> mapped(Function<Value, To> mapper)
     {
@@ -267,6 +275,9 @@ public class ObjectList<Value> extends BaseList<Value>
         return (ObjectList<Value>) super.matching(matcher);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ObjectList<Value> maybeReversed(boolean reverse)
     {
@@ -314,44 +325,40 @@ public class ObjectList<Value> extends BaseList<Value>
         return lists;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ObjectList<Value> reversed()
     {
         return (ObjectList<Value>) super.reversed();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ObjectList<Value> rightOf(int index)
     {
         return (ObjectList<Value>) super.rightOf(index);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ObjectList<Value> sorted()
     {
         return (ObjectList<Value>) super.sorted();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ObjectList<Value> sorted(Comparator<Value> comparator)
     {
         return (ObjectList<Value>) super.sorted(comparator);
-    }
-
-    /**
-     * @return This list of objects as an ASCII art text box with the given title
-     */
-    public String titledBox(String title)
-    {
-        return AsciiArt.textBox(title, join("\n"));
-    }
-
-    /**
-     * @return This list of objects as an ASCII art text box with the given title
-     */
-    public String titledBox(String title, Object... arguments)
-    {
-        return titledBox(Formatter.format(title, arguments));
     }
 
     /**
@@ -369,13 +376,10 @@ public class ObjectList<Value> extends BaseList<Value>
     /**
      * {@inheritDoc}
      */
-    @SuppressWarnings({ "unchecked", "rawtypes" })
+    @Override
     public ObjectList<Value> with(Value value)
     {
-        var copy = new ObjectList();
-        copy.addAll(this);
-        copy.add(value);
-        return copy;
+        return (ObjectList<Value>) super.with(value);
     }
 
     /**

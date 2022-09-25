@@ -22,7 +22,7 @@ public enum TestingQuality
     TESTING_NOT_REQUIRED,
 
     /** Some tests are implemented, but more are required */
-    MORE_TESTING_REQUIRED,
+    MORE_TESTING_NEEDED,
 
     /** No tests have been implemented */
     UNTESTED,

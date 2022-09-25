@@ -842,7 +842,7 @@ public class Folder extends BaseRepeater implements
         // then create and save a new digest,
         var digest = nestedFiles().digest();
         node.putByteArray("digest", digest);
-        if (tryCatch(UncheckedVoidCode.of(node::flush), "Failed to flush preferences"))
+        if (tryCatch(UncheckedVoidCode.unchecked(node::flush), "Failed to flush preferences"))
         {
             // and if there is a previous digest,
             if (previousDigest != null)

@@ -18,60 +18,63 @@
 
 package com.telenav.kivakit.core.collections.iteration;
 
-import com.telenav.kivakit.annotations.code.ApiStability;
 import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramCollections;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE;
 import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
 
 /**
- * An {@link Iterator} that wraps and iterates through a sequence of {@link Iterator}s in the order they are added,
- * either by constructor or with {@link #add(Iterator)}.
+ * An {@link Iterator} that wraps and iterates through all objects in each of a sequence of {@link Iterator}s in the
+ * order they are added with {@link #add(Iterator)} or {@link #addAll(Collection)}.
  *
  * @author jonathanl (shibo)
  * @see BaseIterator
  */
 @UmlClassDiagram(diagram = DiagramCollections.class)
-@ApiQuality(stability = ApiStability.STABLE,
+@ApiQuality(stability = STABLE,
             testing = UNTESTED,
             documentation = FULLY_DOCUMENTED)
-public class CompoundIterator<Element> extends BaseIterator<Element>
+public class CompoundIterator<Value> extends BaseIterator<Value>
 {
-    final List<Iterator<Element>> iterators = new ArrayList<>();
+    /** The iterators to use */
+    final List<Iterator<Value>> iterators = new ArrayList<>();
 
+    /** Which iterator is being used */
     private int index;
 
-    public CompoundIterator()
-    {
-    }
-
-    @SafeVarargs
-    public CompoundIterator(Iterator<Element> iterator, Iterator<Element>... iterators)
-    {
-        add(iterator);
-        Collections.addAll(this.iterators, iterators);
-    }
-
-    public void add(Iterator<Element> iterator)
+    /**
+     * Adds the given sub-iterator to this compound iterator
+     *
+     * @param iterator The iterator to add
+     */
+    public void add(Iterator<Value> iterator)
     {
         iterators.add(iterator);
     }
 
-    public void addAll(Collection<Iterator<Element>> iterators)
+    /**
+     * Adds the given sub-iterators to this compound iterator
+     *
+     * @param iterators The iterators to add
+     */
+    public void addAll(Collection<Iterator<Value>> iterators)
     {
         this.iterators.addAll(iterators);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    protected Element onNext()
+    protected Value onNext()
     {
         if (index < iterators.size())
         {

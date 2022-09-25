@@ -23,7 +23,7 @@ import com.telenav.kivakit.core.internal.lexakai.DiagramCount;
 import com.telenav.kivakit.core.language.primitive.Longs;
 import com.telenav.kivakit.core.string.Formatter;
 import com.telenav.kivakit.interfaces.code.Callback;
-import com.telenav.kivakit.interfaces.collection.NextIterable;
+import com.telenav.kivakit.interfaces.collection.NextIterator;
 import com.telenav.kivakit.interfaces.factory.MapFactory;
 import com.telenav.kivakit.interfaces.numeric.Maximizable;
 import com.telenav.kivakit.interfaces.numeric.Minimizable;
@@ -77,7 +77,7 @@ import static com.telenav.kivakit.core.value.count.Range.UpperBound.INCLUSIVE;
  * </ul>
  *
  * @param <Value> A value that is {@link Numeric}, which includes {@link Minimizable}, {@link Maximizable},
- * {@link Comparable}, and {@link NextIterable}.
+ * {@link Comparable}, and {@link NextIterator}.
  * @author jonathanl (shibo)
  */
 @SuppressWarnings("unused")

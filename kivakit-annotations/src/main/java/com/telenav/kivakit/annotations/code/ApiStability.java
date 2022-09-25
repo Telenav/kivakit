@@ -1,6 +1,6 @@
 package com.telenav.kivakit.annotations.code;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.*;
+import static com.telenav.kivakit.annotations.code.ApiStability.MORE_EVALUATION_NEEDED;
 import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_REQUIRED;
 
@@ -21,6 +21,12 @@ public enum ApiStability
 {
     /** The API is not expected to change */
     STABLE,
+
+    /** The API is not expected to change, except that new methods may be added */
+    STABLE_EXPANDABLE,
+
+    /** The API is not expected to change, except that new static methods may be added */
+    STABLE_STATIC_EXPANDABLE,
 
     /** The API is not expected to change, except that new default methods may be added */
     STABLE_DEFAULT_EXPANDABLE,

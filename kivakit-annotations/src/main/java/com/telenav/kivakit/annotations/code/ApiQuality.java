@@ -40,12 +40,12 @@ public @interface ApiQuality
     /**
      * @return The subjective documentation quality, as evaluated by a developer
      */
-    DocumentationQuality documentation() default DocumentationQuality.UNEVALUATED;
+    DocumentationQuality[] documentation() default DocumentationQuality.UNEVALUATED;
 
     /**
      * @return A comma-separated list of reviewers
      */
-    String reviewers() default "";
+    String[] reviewers() default "";
 
     /**
      * @return The number of reviews of this class or interface
@@ -55,10 +55,10 @@ public @interface ApiQuality
     /**
      * @return The subjective likelihood of future API stability, as evaluated by a developer
      */
-    ApiStability stability() default UNEVALUATED;
+    ApiStability[] stability() default UNEVALUATED;
 
     /**
      * @return The level of testing provided based versus the level needed, as evaluated by a developer
      */
-    TestingQuality testing() default TestingQuality.UNEVALUATED;
+    TestingQuality[] testing() default TestingQuality.UNEVALUATED;
 }

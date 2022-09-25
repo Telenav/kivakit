@@ -23,6 +23,7 @@ import com.telenav.kivakit.core.collections.iteration.BaseIterator;
 import com.telenav.kivakit.core.ensure.Ensure;
 import com.telenav.kivakit.core.internal.lexakai.DiagramCollections;
 import com.telenav.kivakit.core.string.AsciiArt;
+import com.telenav.kivakit.core.string.Formatter;
 import com.telenav.kivakit.core.string.StringTo;
 import com.telenav.kivakit.core.value.count.Count;
 import com.telenav.kivakit.core.value.count.Countable;
@@ -34,7 +35,6 @@ import com.telenav.kivakit.interfaces.collection.Indexable;
 import com.telenav.kivakit.interfaces.collection.Prependable;
 import com.telenav.kivakit.interfaces.collection.Sectionable;
 import com.telenav.kivakit.interfaces.collection.Sequence;
-import com.telenav.kivakit.interfaces.collection.Sized;
 import com.telenav.kivakit.interfaces.collection.WriteIndexable;
 import com.telenav.kivakit.interfaces.comparison.Matcher;
 import com.telenav.kivakit.interfaces.factory.Factory;
@@ -54,26 +54,134 @@ import java.util.ListIterator;
 import java.util.Random;
 import java.util.RandomAccess;
 import java.util.function.Function;
+import java.util.function.Predicate;
+import java.util.function.UnaryOperator;
 
 import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_DEFAULT_EXPANDABLE;
 import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
-import static com.telenav.kivakit.annotations.code.TestingQuality.MORE_TESTING_REQUIRED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.MORE_TESTING_NEEDED;
 import static com.telenav.kivakit.interfaces.string.StringFormattable.Format.TO_STRING;
 
 /**
- * A base class for bounded lists which adds a number of convenient methods as well as support for various KivaKit
- * interfaces, including {@link Indexable}, {@link Sequence}, {@link Addable}, {@link java.lang.Appendable},and
- * {@link Sized}}. Some added convenience methods include:
+ * A base class for bounded lists which adds convenient methods as well as support for various KivaKit interfaces:
+ *
+ * <ul>
+ *     <li>{@link List}</li>
+ *     <li>{@link Copyable}</li>
+ *     <li>{@link WriteIndexable}</li>
+ *     <li>{@link Sequence}</li>
+ *     <li>{@link Sectionable}</li>
+ *     <li>{@link Addable}</li>
+ *     <li>{@link Prependable}</li>
+ *     <li>{@link RandomAccess}</li>
+ *     <li>{@link Countable}</li>
+ *     <li>{@link StringFormattable}</li>
+ * </ul>
+ *
+ * <p><b>Functional Methods</b></p>
+ *
+ * <p>
+ * Some methods are functional and return a new list. The method {@link #newInstance()} is used to create lists.
+ * Subclasses create the subclass list type by overriding {@link #onNewInstance()}.
+ * </p>
+ *
+ * <p><b>Adding</b></p>
+ *
+ * <ul>
+ *     <li>{@link #add(Object)}</li>
+ *     <li>{@link #addIfNotNull(Object)}</li>
+ *     <li>{@link #add(int, Object)}</li>
+ *     <li>{@link #addAll(Collection)}</li>
+ *     <li>{@link #addAll(int, Collection)}</li>
+ *     <li>{@link #addAll(Object[])}</li>
+ *     <li>{@link #addAll(Iterable)}</li>
+ *     <li>{@link #addAll(Iterator)}</li>
+ *     <li>{@link #addAllMatching(Object[], Matcher)}</li>
+ *     <li>{@link #addAllMatching(Iterable, Matcher)}</li>
+ *     <li>{@link #addAllMatching(Iterable, Matcher)}</li>
+ *     <li>{@link #addAllMatching(Collection, Matcher)}</li>
+ *     <li>{@link #append(Object)}</li>
+ *     <li>{@link #appendIfNotNull(Object)}</li>
+ *     <li>{@link #appendAll(Collection)}</li>
+ *     <li>{@link #appendAll(Iterable)}</li>
+ *     <li>{@link #appendAll(Iterator)}</li>
+ *     <li>{@link #appendAll(Object[])}</li>
+ *     <li>{@link #appendThen(Object)}</li>
+ *     <li>{@link #appendThen(Iterable)}</li>
+ *     <li>{@link #prepend(Object)}</li>
+ *     <li>{@link #prependIfNotNull(Object)}</li>
+ *     <li>{@link #prependAll(Collection)}</li>
+ *     <li>{@link #prependAll(Iterable)}</li>
+ *     <li>{@link #prependAll(Object[])}</li>
+ *     <li>{@link #push(Object)}</li>
+ * </ul>
+ *
+ * <p><b>Access</b></p>
+ *
+ * <ul>
+ *     <li>{@link #copy()}</li>
+ *     <li>{@link #first()}</li>
+ *     <li>{@link #first(Count)}</li>
+ *     <li>{@link #first(int)}</li>
+ *     <li>{@link #get(int)}</li>
+ *     <li>{@link #last()}</li>
+ *     <li>{@link #last(Count)}</li>
+ *     <li>{@link #last(int)}</li>
+ *     <li>{@link #leftOf(int)}</li>
+ *     <li>{@link #mapped(Function)}</li>
+ *     <li>{@link #pop()}</li>
+ *     <li>{@link #rightOf(int)}</li>
+ *     <li>{@link #set(int, Object)}</li>
+ *     <li>{@link #subList(int, int)}</li>
+ * </ul>
+ *
+ * <p><b>Membership</b></p>
+ *
+ * <ul>
+ *     <li>{@link #contains(Object)}</li>
+ *     <li>{@link #containsAll(Collection)}</li>
+ * </ul>
+ *
+ * <p><b>Size</b></p>
+ *
+ * <ul>
+ *     <li>{@link #size()}</li>
+ *     <li>{@link #count()}</li>
+ *     <li>{@link #isEmpty()}</li>
+ *     <li>{@link #isNonEmpty()}</li>
+ * </ul>
  *
  * <p><b>Bounds</b></p>
  *
  * <ul>
  *     <li>{@link #maximumSize()} - The maximum size of this list</li>
+ *     <li>{@link #totalRoom()} - The maximum size of this list</li>
  *     <li>{@link #hasRoomFor(int)} - For use by subclasses to check their size</li>
  *     <li>{@link #onOutOfRoom(int)} - Responds with a warning when the list is out of space</li>
  * </ul>
  *
- * <p><b>Checks</b></p>
+ * <p><b>Removing</b></p>
+ *
+ * <ul>
+ *     <li>{@link #clear()}</li>
+ *     <li>{@link #remove(int)}</li>
+ *     <li>{@link #remove(Object)}</li>
+ *     <li>{@link #removeLast()}</li>
+ *     <li>{@link #removeAll(Collection)}</li>
+ *     <li>{@link #removeIf(Predicate)}</li>
+ *     <li>{@link #removeAllMatching(Matcher)}</li>
+ * </ul>
+ *
+ * <p><b>Search/Replace</b></p>
+ *
+ * <ul>
+ *     <li>{@link #indexOf(Object)}</li>
+ *     <li>{@link #lastIndexOf(Object)}</li>
+ *     <li>{@link #replaceAll(Object, Object)}</li>
+ *     <li>{@link #replaceAll(UnaryOperator)}</li>
+ * </ul>
+ *
+ * <p><b>Tests</b></p>
  *
  * <ul>
  *     <li>{@link #endsWith(Indexable)} - True if this list ends with the same elements as the given list</li>
@@ -84,15 +192,37 @@ import static com.telenav.kivakit.interfaces.string.StringFormattable.Format.TO_
  *
  * <ul>
  *     <li>{@link #asArray(Class)} - This list as an array of the given type</li>
+ *     <li>{@link #asIterable()}</li>
+ *     <li>{@link #asIterable(Matcher)}</li>
+ *     <li>{@link #asIterator()}</li>
+ *     <li>{@link #asIterator(Matcher)}</li>
+ *     <li>{@link #asSet()}</li>
+ *     <li>{@link #asString(Format)}</li>
+ *     <li>{@link #asStringList()}</li>
  * </ul>
  *
  * <p><b>String Conversions</b></p>
  *
  * <ul>
+ *     <li>{@link #bracketed()}</li>
+ *     <li>{@link #bracketed(int)}</li>
  *     <li>{@link #bulleted()} - The elements in this list as a bulleted string, with on element to a line</li>
  *     <li>{@link #bulleted(int)} - An indented bullet list of the elements in this list</li>
  *     <li>{@link #join()} - This list joined by the list {@link #separator()}</li>
  *     <li>{@link #separator()} - The separator used when joining this list into a string</li>
+ *     <li>{@link #titledBox(String)}</li>
+ *     <li>{@link #titledBox(String, Object...)}</li>
+ * </ul>
+ *
+ * <p><b>Operations</b></p>
+ *
+ * <ul>
+ *     <li>{@link #shuffle()}</li>
+ *     <li>{@link #shuffle(Random)}</li>
+ *     <li>{@link #sort(Comparator)}</li>
+ *     <li>{@link #sorted()}</li>
+ *     <li>{@link #sorted(Comparator)}</li>
+ *     <li>{@link #uniqued()}</li>
  * </ul>
  *
  * <p><b>Functional Methods</b></p>
@@ -108,9 +238,13 @@ import static com.telenav.kivakit.interfaces.string.StringFormattable.Format.TO_
  *     <li>{@link #rightOf(int)} - The elements in this list to the right on the given index, exclusive</li>
  *     <li>{@link #matching(Matcher)} - A copy of this list filtered to matching elements</li>
  *     <li>{@link #mapped(Function)} - A copy of this list with elements mapped to another type</li>
- *     <li>{@link #sorted(Comparator)} - A copy of this list sorted by the given comparator</li>
+ *     <li>{@link #sorted()}</li>
+ *     <li>{@link #sorted(Comparator)}</li>
  *     <li>{@link #reversed()} - This list reversed</li>
  *     <li>{@link #maybeReversed(boolean)} - This list reversed if the given boolean is true</li>
+ *     <li>{@link #uniqued()}</li>
+ *     <li>{@link #with(Object)}</li>
+ *     <li>{@link #without(Matcher)}</li>
  * </ul>
  *
  * @author jonathanl (shibo)
@@ -129,7 +263,7 @@ import static com.telenav.kivakit.interfaces.string.StringFormattable.Format.TO_
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramCollections.class, excludeAllSuperTypes = true)
 @ApiQuality(stability = STABLE_DEFAULT_EXPANDABLE,
-            testing = MORE_TESTING_REQUIRED,
+            testing = MORE_TESTING_NEEDED,
             documentation = FULLY_DOCUMENTED)
 public abstract class BaseList<Value> implements
         Factory<BaseList<Value>>,
@@ -265,12 +399,6 @@ public abstract class BaseList<Value> implements
 
     @Override
     public BaseList<Value> appendThen(Iterable<? extends Value> values)
-    {
-        return (BaseList<Value>) Appendable.super.appendThen(values);
-    }
-
-    @Override
-    public BaseList<Value> appendThen(Iterator<? extends Value> values)
     {
         return (BaseList<Value>) Appendable.super.appendThen(values);
     }
@@ -527,12 +655,18 @@ public abstract class BaseList<Value> implements
         return list.lastIndexOf(element);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public BaseList<Value> leftOf(int index)
     {
         return Sectionable.super.leftOf(index);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @NotNull
     @Override
     public ListIterator<Value> listIterator()
@@ -579,6 +713,9 @@ public abstract class BaseList<Value> implements
         return reverse ? reversed() : this;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public BaseList<Value> newInstance()
     {
@@ -633,7 +770,7 @@ public abstract class BaseList<Value> implements
      */
     public Value pop()
     {
-        return removeLast();
+        return isEmpty() ? null : removeLast();
     }
 
     /**
@@ -662,6 +799,14 @@ public abstract class BaseList<Value> implements
     public boolean removeAll(Collection<?> collection)
     {
         return list.removeAll(collection);
+    }
+
+    /**
+     * Removes all values matching the given matcher
+     */
+    public boolean removeAllMatching(Matcher<Value> matcher)
+    {
+        return removeIf(matcher);
     }
 
     /**
@@ -806,6 +951,22 @@ public abstract class BaseList<Value> implements
     }
 
     /**
+     * @return This list of objects as an ASCII art text box with the given title
+     */
+    public String titledBox(String title)
+    {
+        return AsciiArt.textBox(title, join("\n"));
+    }
+
+    /**
+     * @return This list of objects as an ASCII art text box with the given title
+     */
+    public String titledBox(String title, Object... arguments)
+    {
+        return titledBox(Formatter.format(title, arguments));
+    }
+
+    /**
      * {@inheritDoc}
      */
     @Override
@@ -833,6 +994,9 @@ public abstract class BaseList<Value> implements
         return asString(TO_STRING);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public int totalRoom()
     {
@@ -847,6 +1011,24 @@ public abstract class BaseList<Value> implements
     {
         var list = newInstance();
         list.addAll(asSet());
+        return list;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public BaseList<Value> with(Value value)
+    {
+        var copy = copy();
+        copy.add(value);
+        return copy;
+    }
+
+    /**
+     * @return The backing list
+     */
+    protected List<Value> list()
+    {
         return list;
     }
 

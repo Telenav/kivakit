@@ -24,7 +24,7 @@ import com.telenav.kivakit.core.value.count.Countable;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.STABLE;
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_STATIC_EXPANDABLE;
 import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
 
@@ -41,14 +41,14 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
  */
 @UmlClassDiagram(diagram = DiagramBits.class)
 @LexakaiJavadoc(complete = true)
-@ApiQuality(stability = STABLE,
+@ApiQuality(stability = STABLE_STATIC_EXPANDABLE,
             testing = UNTESTED,
             documentation = FULLY_DOCUMENTED)
 public class Bits
 {
     /**
-     * @return A long value containting the given number of one bits, starting from the least-significant bit.
-     * For example, if count is 5, the return value would be 0b11111.
+     * @return A long value containing the given number of 1 bits, starting from the least-significant bit. For
+     * example, if count is 5, the return value would be 0b11111.
      */
     public static long oneBits(Countable count)
     {
