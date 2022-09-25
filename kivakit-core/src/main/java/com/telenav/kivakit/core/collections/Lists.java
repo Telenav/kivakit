@@ -18,16 +18,24 @@
 
 package com.telenav.kivakit.core.collections;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramLanguage;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_STATIC_EXPANDABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_REQUIRED;
+
 /**
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramLanguage.class)
+@ApiQuality(stability = STABLE_STATIC_EXPANDABLE,
+            testing = TESTING_NOT_REQUIRED,
+            documentation = FULLY_DOCUMENTED)
 public class Lists
 {
     @SafeVarargs

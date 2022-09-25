@@ -1,7 +1,13 @@
 package com.telenav.kivakit.core.function.arities;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
+
 import java.util.function.BiFunction;
 import java.util.function.Function;
+
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_REQUIRED;
 
 /**
  * Represents a function that accepts two arguments and produces a result. This is the five-arity specialization of
@@ -18,7 +24,11 @@ import java.util.function.Function;
  * @param <Result> the type of the result of the function
  * @see BiFunction
  */
+@SuppressWarnings("SpellCheckingInspection")
 @FunctionalInterface
+@ApiQuality(stability = STABLE,
+            testing = TESTING_NOT_REQUIRED,
+            documentation = FULLY_DOCUMENTED)
 public interface PentaFunction<Argument1, Argument2, Argument3, Argument4, Argument5, Result>
 {
     /**

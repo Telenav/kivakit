@@ -35,6 +35,7 @@ import java.util.Set;
  *
  * @author jonathanl (shibo)
  */
+@SuppressWarnings("UnusedReturnValue")
 @UmlClassDiagram(diagram = DiagramCollections.class)
 public class BaseMap<Key, Value> implements Map<Key, Value>
 {
