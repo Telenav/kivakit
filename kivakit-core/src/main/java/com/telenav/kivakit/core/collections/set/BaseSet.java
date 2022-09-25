@@ -20,35 +20,165 @@ package com.telenav.kivakit.core.collections.set;
 
 import com.telenav.kivakit.core.collections.iteration.BaseIterator;
 import com.telenav.kivakit.core.collections.iteration.FilteredIterable;
+import com.telenav.kivakit.core.collections.list.StringList;
 import com.telenav.kivakit.core.ensure.Ensure;
 import com.telenav.kivakit.core.string.StringTo;
 import com.telenav.kivakit.core.value.count.Count;
 import com.telenav.kivakit.core.value.count.Countable;
 import com.telenav.kivakit.core.value.count.Maximum;
 import com.telenav.kivakit.interfaces.collection.Addable;
+import com.telenav.kivakit.interfaces.collection.Appendable;
 import com.telenav.kivakit.interfaces.collection.Copyable;
+import com.telenav.kivakit.interfaces.collection.Indexable;
 import com.telenav.kivakit.interfaces.collection.Joinable;
+import com.telenav.kivakit.interfaces.collection.Prependable;
+import com.telenav.kivakit.interfaces.collection.Sectionable;
 import com.telenav.kivakit.interfaces.collection.Sequence;
+import com.telenav.kivakit.interfaces.collection.WriteIndexable;
 import com.telenav.kivakit.interfaces.comparison.Matcher;
 import com.telenav.kivakit.interfaces.factory.Factory;
 import com.telenav.kivakit.interfaces.string.StringFormattable;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import org.jetbrains.annotations.NotNull;
 
+import java.lang.reflect.Array;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.List;
+import java.util.RandomAccess;
 import java.util.Set;
+import java.util.function.Function;
+import java.util.function.Predicate;
 
 import static com.telenav.kivakit.core.value.count.Maximum.maximum;
 
 /**
- * A set with a maximum size. Adds the methods {@link #matchingAsIterable(Matcher)} and {@link #first()} to the usual
- * {@link Set} operations.
+ * A set with a maximum size. Adds useful methods to the usual {@link Set} operations, as well as implementing:
+ *
+ * <ul>
+ *     <li>{@link Set}</li>
+ *     <li>{@link Sequence}</li>
+ *     <li>{@link Addable}</li>
+ *     <li>{@link Copyable}</li>
+ *     <li>{@link Countable}</li>
+ *     <li>{@link Joinable}</li>
+ *     <li>{@link StringFormattable}</li>
+ * </ul>
+ *
+ *  <p><b>Adding</b></p>
+ *
+ * <ul>
+ *     <li>{@link #add(Object)}</li>
+ *     <li>{@link #addIfNotNull(Object)}</li>
+ *     <li>{@link #addAll(Collection)}</li>
+ *     <li>{@link #addAll(Object[])}</li>
+ *     <li>{@link #addAll(Iterable)}</li>
+ *     <li>{@link #addAll(Iterator)}</li>
+ *     <li>{@link #addAllMatching(Object[], Matcher)}</li>
+ *     <li>{@link #addAllMatching(Iterable, Matcher)}</li>
+ *     <li>{@link #addAllMatching(Iterable, Matcher)}</li>
+ *     <li>{@link #addAllMatching(Collection, Matcher)}</li>
+ * </ul>
+ *
+ * <p><b>Conversion</b></p>
+ *
+ * <ul>
+ *     <li>{@link #asSet()}</li>
+ *     <li>{@link #asIterable(Matcher)}</li>
+ *     <li>{@link #asIterator(Matcher)}</li>
+ *     <li>{@link #asString(Format)}</li>
+ * </ul>
+ *
+ * <p><b>Access</b></p>
+ *
+ * <ul>
+ *     <li>{@link #copy()}</li>
+ *     <li>{@link #first()}</li>
+ *     <li>{@link #matching(Matcher)}</li>
+ *     <li>{@link #mapped(Function)}</li>
+ * </ul>
+ *
+ * <p><b>Membership</b></p>
+ *
+ * <ul>
+ *     <li>{@link #contains(Object)}</li>
+ *     <li>{@link #containsAll(Collection)}</li>
+ * </ul>
+ *
+ * <p><b>Size</b></p>
+ *
+ * <ul>
+ *     <li>{@link #size()}</li>
+ *     <li>{@link #count()}</li>
+ *     <li>{@link #isEmpty()}</li>
+ *     <li>{@link #isNonEmpty()}</li>
+ * </ul>
+ *
+ * <p><b>Bounds</b></p>
+ *
+ * <ul>
+ *     <li>{@link #maximumSize()} - The maximum size of this list</li>
+ *     <li>{@link #totalRoom()} - The maximum size of this list</li>
+ *     <li>{@link #hasRoomFor(int)} - For use by subclasses to check their size</li>
+ *     <li>{@link #onOutOfRoom(int)} - Responds with a warning when the list is out of space</li>
+ * </ul>
+ *
+ * <p><b>Removing</b></p>
+ *
+ * <ul>
+ *     <li>{@link #clear()}</li>
+ *     <li>{@link #remove(Object)}</li>
+ *     <li>{@link #removeAll(Collection)}</li>
+ *     <li>{@link #removeIf(Predicate)}</li>
+ *     <li>{@link #removeAllMatching(Matcher)}</li>
+ * </ul>
+ *
+ * <p><b>Conversions</b></p>
+ *
+ * <ul>
+ *     <li>{@link #asArray(Class)} - This list as an array of the given type</li>
+ *     <li>{@link #asIterable()}</li>
+ *     <li>{@link #asIterable(Matcher)}</li>
+ *     <li>{@link #asIterator()}</li>
+ *     <li>{@link #asIterator(Matcher)}</li>
+ *     <li>{@link #asSet()}</li>
+ *     <li>{@link #asString(Format)}</li>
+ *     <li>{@link #asStringList()}</li>
+ * </ul>
+ *
+ * <p><b>String Conversions</b></p>
+ *
+ * <ul>
+ *     <li>{@link #join()} - This list joined by the list {@link #separator()}</li>
+ *     <li>{@link #separator()} - The separator used when joining this list into a string</li>
+ * </ul>
+ *
+ * <p><b>Functional Methods</b></p>
+ *
+ * <ul>
+ *     <li>{@link #copy()} - A copy of this list</li>
+ *     <li>{@link #mapped(Function)}</li>
+ *     <li>{@link #matching(Matcher)} - A copy of this list filtered to matching elements</li>
+ *     <li>{@link #with(Object)}</li>
+ *     <li>{@link #without(Matcher)} - This list without the matching elements</li>
+ * </ul>
  *
  * @author jonathanl (shibo)
+ * @see Addable
+ * @see Appendable
+ * @see Countable
+ * @see Factory
+ * @see Indexable
+ * @see Joinable
+ * @see List
+ * @see Prependable
+ * @see RandomAccess
+ * @see Sectionable
+ * @see StringFormattable
+ * @see WriteIndexable
  */
-@LexakaiJavadoc(complete = true)
+@SuppressWarnings("unused") @LexakaiJavadoc(complete = true)
 public abstract class BaseSet<Value> implements
         Set<Value>,
         Sequence<Value>,
@@ -127,6 +257,17 @@ public abstract class BaseSet<Value> implements
         return Addable.super.addAll(values);
     }
 
+    /**
+     * @return This list as an array
+     */
+    @SuppressWarnings({ "unchecked" })
+    public Value[] asArray(Class<Value> type)
+    {
+        var array = (Value[]) Array.newInstance(type, size());
+        toArray(array);
+        return array;
+    }
+
     @Override
     public @NotNull Iterator<Value> asIterator(Matcher<Value> matcher)
     {
@@ -167,6 +308,14 @@ public abstract class BaseSet<Value> implements
             default:
                 return toString();
         }
+    }
+
+    /**
+     * @return This list as a string list
+     */
+    public StringList asStringList()
+    {
+        return new StringList(maximumSize(), this);
     }
 
     @Override
@@ -237,6 +386,20 @@ public abstract class BaseSet<Value> implements
         return set.iterator();
     }
 
+    /**
+     * @return This bounded list with all elements mapped by the given mapper to the mapper's target type
+     */
+    @SuppressWarnings("unchecked")
+    public <Target> BaseSet<Target> mapped(Function<Value, Target> mapper)
+    {
+        var filtered = (BaseSet<Target>) newInstance();
+        for (var element : this)
+        {
+            filtered.add(mapper.apply(element));
+        }
+        return filtered;
+    }
+
     @Override
     public BaseSet<Value> matching(Matcher<Value> matcher)
     {
@@ -287,6 +450,14 @@ public abstract class BaseSet<Value> implements
         return set.removeAll(collection);
     }
 
+    /**
+     * Removes all values matching the given matcher
+     */
+    public boolean removeAllMatching(Matcher<Value> matcher)
+    {
+        return removeIf(matcher);
+    }
+
     @SuppressWarnings("NullableProblems")
     @Override
     public boolean retainAll(Collection<?> collection)
@@ -319,6 +490,19 @@ public abstract class BaseSet<Value> implements
         return set.toString();
     }
 
+    /**
+     * Returns this list with the given value
+     */
+    public BaseSet<Value> with(Value value)
+    {
+        var copy = copy();
+        copy.add(value);
+        return copy;
+    }
+
+    /**
+     * Returns this list with the given values
+     */
     public BaseSet<Value> with(Collection<Value> that)
     {
         var set = copy();
