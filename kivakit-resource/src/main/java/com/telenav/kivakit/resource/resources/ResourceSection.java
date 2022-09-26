@@ -72,7 +72,7 @@ public class ResourceSection extends BaseReadableResource
     public InputStream onOpenForReading()
     {
         InputStream in = parent.openForReading();
-        IO.skip(in, startOffset);
+        IO.skip(this, in, startOffset);
         return new InputStream()
         {
             private long offset = startOffset;
@@ -80,7 +80,7 @@ public class ResourceSection extends BaseReadableResource
             @Override
             public void close()
             {
-                IO.close(in);
+                IO.close(ResourceSection.this, in);
             }
 
             @Override

@@ -22,7 +22,8 @@ import com.telenav.kivakit.conversion.Converter;
 import com.telenav.kivakit.core.collections.iteration.Iterables;
 import com.telenav.kivakit.core.collections.list.StringList;
 import com.telenav.kivakit.core.io.IO;
-import com.telenav.kivakit.core.io.StringReader;
+import com.telenav.kivakit.core.io.ProgressiveStringReader;
+import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.progress.ProgressReporter;
 import com.telenav.kivakit.interfaces.collection.NextIterator;
 import com.telenav.kivakit.interfaces.string.AsString;
@@ -45,13 +46,14 @@ import java.util.List;
 import java.util.Set;
 
 import static com.telenav.kivakit.core.ensure.Ensure.fail;
+import static com.telenav.kivakit.core.messaging.Listener.throwingListener;
 
 /**
- * Resource reader provides a variety of convenient ways of reading a resource, including as an array of bytes ({@link
- * #bytes()}), as a single string ({@link #asString()}), as lines ({@link #linesAsStringList()}), and as objects with
- * ({@link #objectList(Converter, ProgressReporter)}, {@link #objectSet(Converter, ProgressReporter)}, and {@link
- * #objects(Converter, ProgressReporter)}). To read the resource as text, a {@link java.io.Reader} can be retrieved with
- * {@link #textReader()}.
+ * Resource reader provides a variety of convenient ways of reading a resource, including as an array of bytes
+ * ({@link #bytes(Listener)}), as a single string ({@link #asString()}), as lines ({@link #linesAsStringList()}), and as
+ * objects with ({@link #objectList(Converter, ProgressReporter)}, {@link #objectSet(Converter, ProgressReporter)}, and
+ * {@link #objects(Converter, ProgressReporter)}). To read the resource as text, a {@link java.io.Reader} can be
+ * retrieved with {@link #textReader()}.
  *
  * @author jonathanl (shibo)
  */
@@ -83,22 +85,27 @@ public class ResourceReader implements AsString
     @Override
     public String asString()
     {
-        return string(ProgressReporter.none());
+        return asString(throwingListener());
+    }
+
+    public String asString(Listener listener)
+    {
+        return string(listener, ProgressReporter.none());
     }
 
     /**
      * @return The bytes in the resource being read
      */
-    public byte[] bytes()
+    public byte[] bytes(Listener listener)
     {
         var in = open();
         try
         {
-            return IO.readBytes(in);
+            return IO.readBytes(listener, in);
         }
         finally
         {
-            IO.close(in);
+            IO.close(listener, in);
         }
     }
 
@@ -170,11 +177,11 @@ public class ResourceReader implements AsString
         });
     }
 
-    public String string(ProgressReporter reporter)
+    public String string(Listener listener, ProgressReporter reporter)
     {
         if (value == null)
         {
-            var reader = new StringReader(textReader());
+            var reader = new ProgressiveStringReader(listener, textReader());
             try
             {
                 value = reader.readString(reporter);

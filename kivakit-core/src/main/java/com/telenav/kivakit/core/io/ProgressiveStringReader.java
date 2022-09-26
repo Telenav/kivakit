@@ -18,7 +18,9 @@
 
 package com.telenav.kivakit.core.io;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramIo;
+import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.progress.ProgressReporter;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
@@ -29,6 +31,10 @@ import java.io.Reader;
 import java.io.UnsupportedEncodingException;
 import java.nio.charset.Charset;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
+
 /**
  * Reads string values from an {@link InputStream} (in a given encoding, if desired) or from a {@link Reader}. Since
  * this may be used for long strings like HTML pages or large text files, the method
@@ -36,43 +42,60 @@ import java.nio.charset.Charset;
  *
  * @author jonathanl (shibo)
  */
-@UmlClassDiagram(diagram = DiagramIo.class)
-public class StringReader
+@SuppressWarnings("unused") @UmlClassDiagram(diagram = DiagramIo.class)
+@ApiQuality(stability = STABLE,
+            testing = UNTESTED ,
+            documentation = FULLY_DOCUMENTED)
+public class ProgressiveStringReader
 {
+    /** The listener to call with problems */
+    private final Listener listener;
+
+    /** The underlying reader */
     private final Reader in;
 
-    public StringReader(InputStream in)
+    public ProgressiveStringReader(Listener listener, InputStream in)
     {
+        this.listener = listener;
         this.in = new InputStreamReader(in);
     }
 
-    public StringReader(InputStream in, Charset encoding)
+    public ProgressiveStringReader(Listener listener, InputStream in, Charset encoding)
     {
+        this.listener = listener;
         this.in = new InputStreamReader(in, encoding);
     }
 
-    public StringReader(InputStream in, String encoding)
+    public ProgressiveStringReader(Listener listener, InputStream in, String encoding)
     {
+        this.listener = listener;
         try
         {
             this.in = new InputStreamReader(in, encoding);
         }
         catch (UnsupportedEncodingException e)
         {
-            throw new IllegalStateException("Can't create stream reader", e);
+            throw new IllegalArgumentException("Can't create stream reader", e);
         }
     }
 
-    public StringReader(Reader in)
+    public ProgressiveStringReader(Listener listener, Reader in)
     {
+        this.listener = listener;
         this.in = in;
     }
 
     public void close()
     {
-        IO.close(in);
+        IO.close(listener, in);
     }
 
+    /**
+     * Reads a string giving progress in bytes
+     *
+     * @param reporter The reporter to call for each byte read
+     * @return The string read from input
+     */
     public String readString(ProgressReporter reporter)
     {
         try

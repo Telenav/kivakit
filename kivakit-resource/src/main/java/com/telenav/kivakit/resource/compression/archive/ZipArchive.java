@@ -203,7 +203,7 @@ public final class ZipArchive extends BaseRepeater implements
     public synchronized void close()
     {
         Nio.close(filesystem);
-        IO.close(filesystem);
+        IO.close(this, filesystem);
         filesystem = null;
     }
 
@@ -305,8 +305,8 @@ public final class ZipArchive extends BaseRepeater implements
         saveEntry(entryName, output ->
         {
             var input = resource.openForReading();
-            IO.copy(input, output);
-            IO.close(input);
+            IO.copy(this, input, output);
+            IO.close(this, input);
         });
         return this;
     }
@@ -325,7 +325,7 @@ public final class ZipArchive extends BaseRepeater implements
             }
             finally
             {
-                IO.flush(output);
+                IO.flush(this, output);
             }
         });
     }

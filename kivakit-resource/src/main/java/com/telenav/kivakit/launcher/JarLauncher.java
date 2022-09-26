@@ -76,6 +76,7 @@ import static com.telenav.kivakit.launcher.JarLauncher.ProcessType.DETACHED;
  *
  * @author jonathanl (shibo)
  */
+@SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramJarLauncher.class)
 @LexakaiJavadoc(complete = true)
 public class JarLauncher extends BaseRepeater
@@ -262,8 +263,8 @@ public class JarLauncher extends BaseRepeater
                         announcement.put("stderr", "console");
                         announcement.asStringList().titledBox("Launching Jar");
                         var process = builder.start();
-                        KivaKitThread.run(this, "RedirectOutputToConsole", () -> Processes.redirectStandardOutToConsole(process));
-                        KivaKitThread.run(this, "RedirectErrorToConsole", () -> Processes.redirectStandardErrorToConsole(process));
+                        KivaKitThread.run(this, "RedirectOutputToConsole", () -> Processes.redirectStandardOutToConsole(this, process));
+                        KivaKitThread.run(this, "RedirectErrorToConsole", () -> Processes.redirectStandardErrorToConsole(this, process));
                         return process;
                     }
 

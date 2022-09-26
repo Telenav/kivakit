@@ -18,28 +18,43 @@
 
 package com.telenav.kivakit.core.io;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramIo;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
+import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
 import java.io.Reader;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.MORE_TESTING_NEEDED;
+
 /**
- * A simple stream that allows you to peek at what is coming next in an input stream.
+ * A simple stream that allows you to peek at what is coming next in an input stream, with {@link #lookAhead()}. The
+ * current line number can also be retrieved with {@link #lineNumber()}.
  *
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramIo.class)
+@ApiQuality(stability = STABLE,
+            testing = MORE_TESTING_NEEDED,
+            documentation = FULLY_DOCUMENTED)
 public class LookAheadReader extends Reader
 {
+    /** Signal value for end of stream */
     public static final int END_OF_STREAM = -1;
 
+    /** The current line number */
     private int lineNumber;
 
+    /** The input */
     private final Reader in;
 
+    /** The current character */
     private int current = END_OF_STREAM;
 
+    /** Any next character, or {@link #END_OF_STREAM} */
     private int lookAhead = END_OF_STREAM;
 
     public LookAheadReader(Reader in)
@@ -50,7 +65,7 @@ public class LookAheadReader extends Reader
         // Prime the look ahead value.
         next();
 
-        // If there is more data then prime the current value.
+        // If there is more data, then prime the current value.
         if (lookAhead != END_OF_STREAM)
         {
             // read the second byte too so lookAhead() will work
@@ -81,6 +96,9 @@ public class LookAheadReader extends Reader
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void close()
     {
@@ -109,6 +127,9 @@ public class LookAheadReader extends Reader
         return current != END_OF_STREAM;
     }
 
+    /**
+     * Gets the current line number
+     */
     public int lineNumber()
     {
         return lineNumber;
@@ -144,8 +165,15 @@ public class LookAheadReader extends Reader
         }
     }
 
+    /**
+     * {@inheritDoc}
+     *
+     * @param buffer Destination buffer
+     * @param offset Offset at which to start storing characters
+     * @param length Maximum number of characters to read
+     */
     @Override
-    public int read(char[] buffer, int offset, int length)
+    public int read(char @NotNull [] buffer, int offset, int length)
     {
         var i = offset;
         var count = 0;

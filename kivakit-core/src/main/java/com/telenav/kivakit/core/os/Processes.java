@@ -19,7 +19,8 @@
 package com.telenav.kivakit.core.os;
 
 import com.telenav.kivakit.core.io.IO;
-import com.telenav.kivakit.core.io.StringReader;
+import com.telenav.kivakit.core.io.ProgressiveStringReader;
+import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.progress.ProgressReporter;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 
@@ -34,37 +35,37 @@ public class Processes
     /**
      * @return The output of the given process as a string
      */
-    public static String captureOutput(Process process)
+    public static String captureOutput(Listener listener, Process process)
     {
         var in = process.getInputStream();
         try
         {
-            return new StringReader(in).readString(ProgressReporter.none());
+            return new ProgressiveStringReader(listener, in).readString(ProgressReporter.none());
         }
         finally
         {
-            IO.close(in);
+            IO.close(listener, in);
         }
     }
 
     /**
      * Redirects the output of the given process to the console
      */
-    public static void redirectStandardErrorToConsole(Process process)
+    public static void redirectStandardErrorToConsole(Listener listener, Process process)
     {
         var input = process.getErrorStream();
-        IO.copy(input, System.err, IO.CopyStyle.UNBUFFERED);
-        IO.flush(System.err);
+        IO.copy(listener, input, System.err, IO.CopyStyle.UNBUFFERED);
+        IO.flush(listener, System.err);
     }
 
     /**
      * Redirects the output of the given process to the console
      */
-    public static void redirectStandardOutToConsole(Process process)
+    public static void redirectStandardOutToConsole(Listener listener, Process process)
     {
         var input = process.getInputStream();
-        IO.copy(input, System.out, IO.CopyStyle.UNBUFFERED);
-        IO.flush(System.out);
+        IO.copy(listener, input, System.out, IO.CopyStyle.UNBUFFERED);
+        IO.flush(listener, System.out);
     }
 
     /**

@@ -19,6 +19,7 @@
 package com.telenav.kivakit.resource.writing;
 
 import com.telenav.kivakit.core.io.IO;
+import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.progress.ProgressReporter;
 import com.telenav.kivakit.resource.CopyMode;
 import com.telenav.kivakit.resource.Resource;
@@ -40,11 +41,12 @@ import java.io.OutputStream;
  *     <li>{@link #copyFrom(Resource, CopyMode, ProgressReporter)} - Copies to this resource from the given resource</li>
  *     <li>{@link #delete()} - Deletes this resource</li>
  *     <li>{@link #println(String)} - Prints the given string to this resource</li>
- *     <li>{@link #save(InputStream, ProgressReporter)} - Copies the given input to this resource</li>
+ *     <li>{@link #save(Listener, InputStream, ProgressReporter)} - Copies the given input to this resource</li>
  * </ul>
  * <p>
  * All other methods are documented in the {@link Resource} superinterface.
  */
+@SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramFileSystemFile.class)
 @UmlClassDiagram(diagram = DiagramResource.class)
 public abstract class BaseWritableResource extends BaseReadableResource implements WritableResource
@@ -70,7 +72,7 @@ public abstract class BaseWritableResource extends BaseReadableResource implemen
      */
     public void copyFrom(Resource source, CopyMode mode, ProgressReporter reporter)
     {
-        source.copyTo(this, mode, reporter);
+        source.copyTo(this, this, mode, reporter);
     }
 
     /**
@@ -110,10 +112,10 @@ public abstract class BaseWritableResource extends BaseReadableResource implemen
     /**
      * Saves the given input stream into this file
      */
-    public void save(InputStream in, ProgressReporter reporter)
+    public void save(Listener listener, InputStream in, ProgressReporter reporter)
     {
         var out = openForWriting(reporter);
-        IO.copyAndClose(in, out);
-        IO.close(out);
+        IO.copyAndClose(listener, in, out);
+        IO.close(listener, out);
     }
 }

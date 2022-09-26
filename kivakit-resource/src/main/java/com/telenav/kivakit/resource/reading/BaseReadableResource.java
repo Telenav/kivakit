@@ -21,6 +21,7 @@ package com.telenav.kivakit.resource.reading;
 import com.telenav.kivakit.core.io.IO;
 import com.telenav.kivakit.core.logging.Logger;
 import com.telenav.kivakit.core.logging.LoggerFactory;
+import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.messaging.repeaters.BaseRepeater;
 import com.telenav.kivakit.core.object.Lazy;
 import com.telenav.kivakit.core.progress.ProgressReporter;
@@ -143,7 +144,7 @@ public abstract class BaseReadableResource extends BaseRepeater implements Resou
      * Copies the data in this resource to the destination.
      */
     @Override
-    public void copyTo(WritableResource destination, CopyMode mode, ProgressReporter reporter)
+    public void copyTo(Listener listener, WritableResource destination, CopyMode mode, ProgressReporter reporter)
     {
         // If we can copy from this resource to the given resource in this mode,
         if (mode.canCopy(this, destination))
@@ -151,7 +152,7 @@ public abstract class BaseReadableResource extends BaseRepeater implements Resou
             // copy the resource stream (which might involve compression or decompression or both).
             var input = openForReading(reporter);
             var output = destination.openForWriting();
-            if (!IO.copyAndClose(input, output))
+            if (!IO.copyAndClose(listener, input, output))
             {
                 throw new IllegalStateException("Unable to copy " + this + " to " + destination);
             }

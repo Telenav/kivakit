@@ -18,6 +18,7 @@
 
 package com.telenav.kivakit.resource.reading;
 
+import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.progress.ProgressReporter;
 import com.telenav.kivakit.resource.CopyMode;
 import com.telenav.kivakit.resource.Resource;
@@ -70,7 +71,7 @@ public interface ReadableResource extends Readable
      *
      * @param destination The destination to write to
      */
-    void copyTo(WritableResource destination, CopyMode mode, ProgressReporter reporter);
+    void copyTo(Listener listener, WritableResource destination, CopyMode mode, ProgressReporter reporter);
 
     /**
      * @return A reader with convenient methods for reading from the resource

@@ -18,15 +18,13 @@
 
 package com.telenav.kivakit.core.io;
 
-import com.telenav.kivakit.core.logging.Logger;
-import com.telenav.kivakit.core.logging.LoggerFactory;
+import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.core.internal.lexakai.DiagramIo;
+import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.progress.ProgressReporter;
 import com.telenav.kivakit.core.progress.reporters.ProgressiveInputStream;
-import com.telenav.kivakit.core.internal.lexakai.DiagramIo;
-import com.telenav.kivakit.core.string.Strings;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
-import com.telenav.lexakai.annotations.visibility.UmlExcludeMember;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
@@ -41,20 +39,68 @@ import java.io.Writer;
 import java.util.stream.Collectors;
 import java.util.zip.ZipFile;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_STATIC_EXPANDABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_REQUIRED;
 import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
 import static com.telenav.kivakit.core.io.IO.CopyStyle.BUFFERED;
 
 /**
- * Utility methods for buffering, closing, copying and flushing streams.
+ * Utility methods for buffering, closing, copying and flushing streams. All methods take a listener (except for the
+ * buffer methods), catch all exceptions and transmit problems with relevant information with the listener.
+ *
+ * <p><b>Buffering</b></p>
+ *
+ * <ul>
+ *     <li>{@link #buffer(InputStream)}</li>
+ *     <li>{@link #buffer(OutputStream)}</li>
+ * </ul>
+ *
+ * <p><b>Reading</b></p>
+ *
+ * <ul>
+ *     <li>{@link #readByte(Listener, InputStream)}</li>
+ *     <li>{@link #readBytes(Listener, InputStream)}</li>
+ *     <li>{@link #skip(Listener, InputStream, long)}</li>
+ *     <li>{@link #string(Listener, Reader)}</li>
+ *     <li>{@link #string(Listener, InputStream)}</li>
+ * </ul>
+ *
+ * <p><b>Copying</b></p>
+ *
+ * <ul>
+ *     <li>{@link #copy(Listener, InputStream, OutputStream)}</li>
+ *     <li>{@link #copy(Listener, InputStream, OutputStream, CopyStyle)}</li>
+ *     <li>{@link #copyAndClose(Listener, InputStream, OutputStream)}</li>
+ * </ul>
+ *
+ * <p><b>Flushing</b></p>
+ *
+ * <ul>
+ *     <li>{@link #flush(Listener, OutputStream)}</li>
+ *     <li>{@link #flush(Listener, Writer)}</li>
+ * </ul>
+ *
+ * <p><b>Closing</b></p>
+ *
+ * <ul>
+ *     <li>{@link #close(Listener, AutoCloseable)}</li>
+ *     <li>{@link #close(Listener, InputStream)}</li>
+ *     <li>{@link #close(Listener, OutputStream)}</li>
+ *     <li>{@link #close(Listener, Reader)}</li>
+ *     <li>{@link #close(Listener, Writer)}</li>
+ *     <li>{@link #close(Listener, ZipFile)}</li>
+ * </ul>
  *
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramIo.class)
 @LexakaiJavadoc(complete = true)
+@ApiQuality(stability = STABLE_STATIC_EXPANDABLE,
+            testing = TESTING_NOT_REQUIRED,
+            documentation = FULLY_DOCUMENTED)
 public class IO
 {
-    private static final Logger LOGGER = LoggerFactory.newLogger();
-
     public static BufferedInputStream buffer(InputStream in)
     {
         if (in instanceof BufferedInputStream)
@@ -84,7 +130,7 @@ public class IO
     /**
      * Added writer safe close capability
      */
-    public static void close(AutoCloseable closeable)
+    public static void close(Listener listener, AutoCloseable closeable)
     {
         if (closeable != null)
         {
@@ -94,12 +140,12 @@ public class IO
             }
             catch (Exception e)
             {
-                LOGGER.problem(e, "Can't close AutoCloseable $", closeable);
+                listener.problem(e, "Can't close AutoCloseable $", closeable);
             }
         }
     }
 
-    public static void close(InputStream in)
+    public static void close(Listener listener, InputStream in)
     {
         try
         {
@@ -110,11 +156,11 @@ public class IO
         }
         catch (IOException e)
         {
-            LOGGER.problem(e, "Can't close input stream");
+            listener.problem(e, "Can't close input stream");
         }
     }
 
-    public static void close(OutputStream out)
+    public static void close(Listener listener, OutputStream out)
     {
         try
         {
@@ -123,12 +169,13 @@ public class IO
                 out.close();
             }
         }
-        catch (Exception ignored)
+        catch (Exception e)
         {
+            listener.problem(e, "Can't close input stream");
         }
     }
 
-    public static void close(Reader reader)
+    public static void close(Listener listener, Reader reader)
     {
         try
         {
@@ -139,14 +186,14 @@ public class IO
         }
         catch (IOException e)
         {
-            LOGGER.problem(e, "Can't close reader");
+            listener.problem(e, "Can't close reader");
         }
     }
 
     /**
      * Added writer safe close capability
      */
-    public static void close(Writer writer)
+    public static void close(Listener listener, Writer writer)
     {
         try
         {
@@ -157,11 +204,11 @@ public class IO
         }
         catch (IOException e)
         {
-            LOGGER.problem(e, "Can't close writer");
+            listener.problem(e, "Can't close writer");
         }
     }
 
-    public static void close(ZipFile zip)
+    public static void close(Listener listener, ZipFile zip)
     {
         try
         {
@@ -172,24 +219,25 @@ public class IO
         }
         catch (IOException e)
         {
-            LOGGER.problem(e, "Can't close input stream");
+            listener.problem(e, "Can't close input stream");
         }
     }
 
-    public static boolean copy(InputStream input, OutputStream output)
+    public static boolean copy(Listener listener, InputStream input, OutputStream output)
     {
-        return copy(input, output, BUFFERED);
+        return copy(listener, input, output, BUFFERED);
     }
 
     /**
      * Copy an input stream to an output stream. The streams will be automatically buffered for efficiency if they are
-     * not already buffered when {@link CopyStyle} is {@link CopyStyle#BUFFERED}. Note that there is no {@link
-     * ProgressReporter} argument to this method even though it could take a long time. The reason is that resources are
-     * opened using a progress reporter as {@link ProgressiveInputStream} stream, which does progress reporting.
+     * not already buffered when {@link CopyStyle} is {@link CopyStyle#BUFFERED}. Note that there is no
+     * {@link ProgressReporter} argument to this method even though it could take a long time. The reason is that
+     * resources are opened using a progress reporter as {@link ProgressiveInputStream} stream, which does progress
+     * reporting.
      *
      * @return True if the copy succeeded.
      */
-    public static boolean copy(InputStream input, OutputStream output, CopyStyle style)
+    public static boolean copy(Listener listener, InputStream input, OutputStream output, CopyStyle style)
     {
         var in = style == BUFFERED ? buffer(input) : input;
         var out = style == BUFFERED ? buffer(output) : output;
@@ -206,7 +254,7 @@ public class IO
         }
         catch (IOException e)
         {
-            LOGGER.problem(e, "Could not copy streams ${debug} to ${debug}", input, output);
+            listener.problem(e, "Could not copy streams ${debug} to ${debug}", input, output);
             return false;
         }
     }
@@ -217,24 +265,25 @@ public class IO
      *
      * @return True if the copy succeeded.
      */
-    public static boolean copyAndClose(InputStream input,
+    public static boolean copyAndClose(Listener listener,
+                                       InputStream input,
                                        OutputStream output)
     {
         ensureNotNull(input);
         ensureNotNull(output);
-        
+
         try
         {
-            return copy(input, output);
+            return copy(listener, input, output);
         }
         finally
         {
-            close(input);
-            close(output);
+            close(listener, input);
+            close(listener, output);
         }
     }
 
-    public static boolean flush(OutputStream out)
+    public static boolean flush(Listener listener, OutputStream out)
     {
         try
         {
@@ -243,33 +292,24 @@ public class IO
         }
         catch (IOException e)
         {
-            LOGGER.problem(e, "Couldn't flush output stream");
+            listener.problem(e, "Couldn't flush output stream");
             return false;
         }
     }
 
-    public static void flush(Writer out)
+    public static void flush(Listener listener, Writer out)
     {
         try
         {
             out.flush();
         }
-        catch (IOException ignored)
+        catch (IOException e)
         {
+            listener.problem(e, "Couldn't flush writer");
         }
     }
 
-    /**
-     * Convenience method to print a formatted message to the console
-     */
-    @SuppressWarnings("UseOfSystemOutOrSystemErr")
-    @UmlExcludeMember
-    public static void println(String message, Object... arguments)
-    {
-        System.out.println(Strings.format(message, arguments));
-    }
-
-    public static int readByte(InputStream in)
+    public static int readByte(Listener listener, InputStream in)
     {
         try
         {
@@ -277,15 +317,15 @@ public class IO
         }
         catch (IOException e)
         {
-            LOGGER.problem(e, "OperationFailed reading from input stream");
+            listener.problem(e, "OperationFailed reading from input stream");
             return -1;
         }
     }
 
-    public static byte[] readBytes(InputStream in)
+    public static byte[] readBytes(Listener listener, InputStream in)
     {
         var out = new ByteArrayOutputStream();
-        if (copyAndClose(in, out))
+        if (copyAndClose(listener, in, out))
         {
             return out.toByteArray();
         }
@@ -293,7 +333,7 @@ public class IO
     }
 
     @SuppressWarnings("ResultOfMethodCallIgnored")
-    public static void skip(InputStream in, long offset)
+    public static void skip(Listener listener, InputStream in, long offset)
     {
         try
         {
@@ -301,21 +341,29 @@ public class IO
         }
         catch (IOException e)
         {
-            LOGGER.problem(e, "Can't skip bytes on input stream");
+            listener.problem(e, "Can't skip bytes on input stream");
         }
     }
 
-    public static String string(InputStream in)
+    public static String string(Listener listener, InputStream in)
     {
-        return string(new InputStreamReader(buffer(in)));
+        return string(listener, new InputStreamReader(buffer(in)));
     }
 
-    public static String string(Reader in)
+    public static String string(Listener listener, Reader in)
     {
-        return new BufferedReader(in)
-                .lines()
-                .collect(Collectors.joining("\n"))
-                .trim();
+        try
+        {
+            return new BufferedReader(in)
+                    .lines()
+                    .collect(Collectors.joining("\n"))
+                    .trim();
+        }
+        catch (Exception e)
+        {
+            listener.problem(e, "Unable to read string from input stream");
+            return null;
+        }
     }
 
     /**

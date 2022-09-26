@@ -20,6 +20,7 @@ package com.telenav.kivakit.core.os;
 
 import com.telenav.kivakit.core.collections.map.VariableMap;
 import com.telenav.kivakit.core.internal.lexakai.DiagramOs;
+import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.interfaces.naming.Named;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
@@ -58,7 +59,7 @@ public class OperatingSystem implements Named
         return variables;
     }
 
-    public String exec(File folder, String... command)
+    public String execute(Listener listener, File folder, String... command)
     {
         try
         {
@@ -67,7 +68,7 @@ public class OperatingSystem implements Named
             builder.directory(folder);
             builder.redirectErrorStream(true);
             var process = builder.start();
-            var output = Processes.captureOutput(process);
+            var output = Processes.captureOutput(listener, process);
             Processes.waitFor(process);
             return output;
         }
