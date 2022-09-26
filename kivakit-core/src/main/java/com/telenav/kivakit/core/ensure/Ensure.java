@@ -1,5 +1,6 @@
 package com.telenav.kivakit.core.ensure;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramEnsure;
 import com.telenav.kivakit.core.logging.Logger;
 import com.telenav.kivakit.core.messaging.Broadcaster;
@@ -19,6 +20,10 @@ import java.util.Objects;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_STATIC_EXPANDABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.MORE_DOCUMENTATION_NEEDED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.MORE_TESTING_NEEDED;
+
 /**
  * A class for providing flexibility and consistency in the checking of states and parameters. There are multiple kinds
  * of validation tools available in the Java environment, including manual checks, exceptions, assertions, loggers,
@@ -27,8 +32,9 @@ import java.util.function.Supplier;
  * changed at runtime for different classes of failures.
  *
  * <p>
- * An application can specify what kind of reporting it wants by calling {@link Failure#reporter(Class,
- * FailureReporter)}, passing in the class of failure and the {@link FailureReporter} that should be used to report it.
+ * An application can specify what kind of reporting it wants by calling
+ * {@link Failure#reporter(Class, FailureReporter)}, passing in the class of failure and the {@link FailureReporter}
+ * that should be used to report it.
  * </p>
  *
  * <p><b>Failure Types</b></p>
@@ -44,8 +50,8 @@ import java.util.function.Supplier;
  * <p>
  * The {@link FailureReporter} methods used to report {@link Ensure} failures:
  * <ul>
- *     <li><b>{@link FailureReporter#asserting()}</b> - Fails with a Java assertion</li>
- *     <li><b>{@link FailureReporter#logging()}</b> - Logs the failure</li>
+ *     <li><b>{@link FailureReporter#assertingFailureReporter()}</b> - Fails with a Java assertion</li>
+ *     <li><b>{@link FailureReporter#loggingFailureReporter()}</b> - Logs the failure</li>
  *     <li><b>{@link FailureReporter#emptyListener()}</b> - Does nothing</li>
  *     <li><b>{@link FailureReporter#throwingListener()}</b> - Throws an exception</li>
  * </ul>
@@ -162,6 +168,9 @@ import java.util.function.Supplier;
  */
 @SuppressWarnings("unused") @UmlClassDiagram(diagram = DiagramEnsure.class)
 @UmlRelation(label = "reports", referent = EnsureProblem.class)
+@ApiQuality(stability = STABLE_STATIC_EXPANDABLE,
+            testing = MORE_TESTING_NEEDED,
+            documentation = MORE_DOCUMENTATION_NEEDED)
 public class Ensure
 {
     /**
@@ -194,8 +203,8 @@ public class Ensure
     }
 
     /**
-     * If the condition is false (the check is invalid), a {@link EnsureProblem} message is given to the {@link
-     * FailureReporter} that message type.
+     * If the condition is false (the check is invalid), a {@link EnsureProblem} message is given to the
+     * {@link FailureReporter} that message type.
      */
     public static <T> T ensure(boolean condition,
                                Throwable e,
@@ -269,11 +278,11 @@ public class Ensure
         ensure(messages.count(Problem.class).equals(Count._1));
     }
 
-    public static void ensureClose(Number expected, Number actual, int numberOfDecimalsToMatch)
+    public static void ensureClose(Number given, Number expected, int numberOfDecimalsToMatch)
     {
         var roundedExpected = (int) (expected.doubleValue() * Math.pow(10, numberOfDecimalsToMatch))
                 / Math.pow(10, numberOfDecimalsToMatch);
-        var roundedActual = (int) (actual.doubleValue() * Math.pow(10, numberOfDecimalsToMatch))
+        var roundedActual = (int) (given.doubleValue() * Math.pow(10, numberOfDecimalsToMatch))
                 / Math.pow(10, numberOfDecimalsToMatch);
         ensureWithin(roundedExpected, roundedActual, 1E-3);
     }
@@ -350,7 +359,7 @@ public class Ensure
         return Boolean.TRUE.equals(ensure(!condition, message, arguments));
     }
 
-    public static void ensureNonZero(final Number value)
+    public static void ensureNonZero(Number value)
     {
         ensure(value.doubleValue() != 0.0);
     }
@@ -416,7 +425,7 @@ public class Ensure
         }
     }
 
-    public static void ensureZero(final Number value)
+    public static void ensureZero(Number value)
     {
         ensure(value.doubleValue() == 0.0);
     }
@@ -428,7 +437,8 @@ public class Ensure
 
     public static <T> T fail(Throwable e, String message, Object... arguments)
     {
-        return Failure.report(EnsureProblem.class, e, message, arguments);
+        Failure.report(EnsureProblem.class, e, message, arguments);
+        return null;
     }
 
     public static <T> T fail(String message, Object... arguments)
@@ -466,16 +476,6 @@ public class Ensure
     {
         Failure.report(Unsupported.class, message, arguments);
         return null;
-    }
-
-    public static void warning(String message, Object... arguments)
-    {
-        System.out.println("Warning: " + Strings.format(message, arguments));
-    }
-
-    public static void warning(Throwable throwable, String message, Object... arguments)
-    {
-        System.out.println("Warning: " + Strings.format(message, arguments) + "\n" + throwable);
     }
 
     private static String format(String message, Object[] arguments)

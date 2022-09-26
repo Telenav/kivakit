@@ -18,23 +18,41 @@
 
 package com.telenav.kivakit.core.ensure;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.core.internal.lexakai.DiagramFailureReporter;
 import com.telenav.kivakit.core.logging.Logger;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.messaging.Message;
-import com.telenav.kivakit.core.internal.lexakai.DiagramFailureReporter;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_STATIC_EXPANDABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_REQUIRED;
 import static com.telenav.kivakit.core.string.Formatter.Format.WITH_EXCEPTION;
 
 /**
- * Reporter of failure messages.
+ * Reporter of failure messages. Reporter implementations include:
+ *
+ * <ul>
+ *     <li>{@link #assertingFailureReporter()}</li>
+ *     <li>{@link #emptyFailureReporter()}</li>
+ *     <li>{@link #loggingFailureReporter()}</li>
+ *     <li>{@link #throwingFailureReporter()}</li>
+ * </ul>
  *
  * @author jonathanl (shibo)
  */
+@SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramFailureReporter.class)
+@ApiQuality(stability = STABLE_STATIC_EXPANDABLE,
+            testing = TESTING_NOT_REQUIRED,
+            documentation = FULLY_DOCUMENTED)
 public interface FailureReporter extends Listener
 {
-    static FailureReporter asserting()
+    /**
+     * Returns a failure reporter that uses Java assertions
+     */
+    static FailureReporter assertingFailureReporter()
     {
         return message ->
         {
@@ -42,19 +60,28 @@ public interface FailureReporter extends Listener
         };
     }
 
-    static FailureReporter logging()
-    {
-        return message -> Logger.logger().log(message);
-    }
-
-    static FailureReporter none()
+    /**
+     * Returns a failure reporter that does nothing
+     */
+    static FailureReporter emptyFailureReporter()
     {
         return ignored ->
         {
         };
     }
 
-    static FailureReporter throwing()
+    /**
+     * Returns a failure reporter that logs failures
+     */
+    static FailureReporter loggingFailureReporter()
+    {
+        return message -> Logger.logger().log(message);
+    }
+
+    /**
+     * Returns a failure reporter that throws an exception
+     */
+    static FailureReporter throwingFailureReporter()
     {
         return message ->
         {
@@ -62,10 +89,18 @@ public interface FailureReporter extends Listener
         };
     }
 
+    /**
+     * Reports any failure messages
+     *
+     * @param message The message
+     */
     @Override
     default void onMessage(Message message)
     {
-        report(message);
+        if (message.isFailure())
+        {
+            report(message);
+        }
     }
 
     /**

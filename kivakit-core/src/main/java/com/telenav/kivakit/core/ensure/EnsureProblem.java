@@ -18,16 +18,26 @@
 
 package com.telenav.kivakit.core.ensure;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.messaging.messages.status.Problem;
 import com.telenav.kivakit.core.internal.lexakai.DiagramEnsure;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE;
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXPANDABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.MORE_TESTING_NEEDED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_REQUIRED;
+
 /**
- * A validation problem reported by {@link Ensure} failures.
+ * A problem subclass reported by {@link Ensure} failures.
  *
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramEnsure.class)
+@ApiQuality(stability = STABLE,
+            testing = TESTING_NOT_REQUIRED,
+            documentation = FULLY_DOCUMENTED)
 public class EnsureProblem extends Problem
 {
     public EnsureProblem(String message, Object... arguments)
