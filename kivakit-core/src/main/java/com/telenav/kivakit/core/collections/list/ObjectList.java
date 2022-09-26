@@ -390,4 +390,19 @@ public class ObjectList<Value> extends BaseList<Value>
     {
         return (ObjectList<Value>) super.without(matcher);
     }
+
+    @Override
+    protected BaseList<Value> newList()
+    {
+        return objectList();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    protected BaseList<Value> onNewCollection()
+    {
+        return newList();
+    }
 }

@@ -18,40 +18,23 @@
 
 package com.telenav.kivakit.core.collections.set;
 
-import com.telenav.kivakit.core.collections.iteration.BaseIterator;
-import com.telenav.kivakit.core.collections.iteration.FilteredIterable;
-import com.telenav.kivakit.core.collections.list.StringList;
-import com.telenav.kivakit.core.ensure.Ensure;
-import com.telenav.kivakit.core.string.StringTo;
-import com.telenav.kivakit.core.value.count.Count;
+import com.telenav.kivakit.core.collections.BaseCollection;
 import com.telenav.kivakit.core.value.count.Countable;
 import com.telenav.kivakit.core.value.count.Maximum;
 import com.telenav.kivakit.interfaces.collection.Addable;
-import com.telenav.kivakit.interfaces.collection.Appendable;
 import com.telenav.kivakit.interfaces.collection.Copyable;
-import com.telenav.kivakit.interfaces.collection.Indexable;
 import com.telenav.kivakit.interfaces.collection.Joinable;
-import com.telenav.kivakit.interfaces.collection.Prependable;
-import com.telenav.kivakit.interfaces.collection.Sectionable;
 import com.telenav.kivakit.interfaces.collection.Sequence;
-import com.telenav.kivakit.interfaces.collection.WriteIndexable;
 import com.telenav.kivakit.interfaces.comparison.Matcher;
 import com.telenav.kivakit.interfaces.factory.Factory;
 import com.telenav.kivakit.interfaces.string.StringFormattable;
-import com.telenav.lexakai.annotations.LexakaiJavadoc;
-import org.jetbrains.annotations.NotNull;
 
-import java.lang.reflect.Array;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Iterator;
-import java.util.List;
-import java.util.RandomAccess;
 import java.util.Set;
 import java.util.function.Function;
 import java.util.function.Predicate;
-
-import static com.telenav.kivakit.core.value.count.Maximum.maximum;
 
 /**
  * A set with a maximum size. Adds useful methods to the usual {@link Set} operations, as well as implementing:
@@ -165,40 +148,26 @@ import static com.telenav.kivakit.core.value.count.Maximum.maximum;
  * </ul>
  *
  * @author jonathanl (shibo)
- * @see Addable
- * @see Appendable
- * @see Countable
+ * @see BaseCollection
+ * @see Copyable
  * @see Factory
- * @see Indexable
- * @see Joinable
- * @see List
- * @see Prependable
- * @see RandomAccess
- * @see Sectionable
- * @see StringFormattable
- * @see WriteIndexable
+ * @see Set
  */
-@SuppressWarnings("unused") @LexakaiJavadoc(complete = true)
-public abstract class BaseSet<Value> implements
-        Set<Value>,
-        Sequence<Value>,
-        Addable<Value>,
-        Factory<BaseSet<Value>>,
+@SuppressWarnings("unused")
+public abstract class BaseSet<Value> extends BaseCollection<Value> implements
         Copyable<Value, BaseSet<Value>>,
-        Countable,
-        Joinable<Value>,
-        StringFormattable
+        Factory<BaseSet<Value>>,
+        Set<Value>
 {
-    /** True if this set ran out of room, and we've already warned about it */
-    private boolean warnedAboutOutOfRoom;
-
     /** The backing set */
     private final Set<Value> set;
 
-    /** The maximum number of values that can be stored in this set */
-    protected int maximumSize;
-
-    public BaseSet(Maximum maximumSize)
+    /**
+     * Construct a set with a maximum number of elements
+     *
+     * @param maximumSize The maximum size
+     */
+    protected BaseSet(Maximum maximumSize)
     {
         this(maximumSize, new HashSet<>());
     }
@@ -207,23 +176,16 @@ public abstract class BaseSet<Value> implements
      * @param maximumSize The maximum size of this set
      * @param values The initial values for this set
      */
-    public BaseSet(Maximum maximumSize, Collection<Value> values)
+    protected BaseSet(Maximum maximumSize, Collection<Value> values)
     {
+        super(maximumSize);
+
         // If there is room for the initial values,
         if (hasRoomFor(values.size()))
         {
-            // save the maximum size
-            this.maximumSize = maximumSize.asInt();
-
-            // and the set.
-            if (values instanceof Set)
-            {
-                this.set = (Set<Value>) values;
-            }
-            else
-            {
-                this.set = new HashSet<>(values);
-            }
+            // save the set.
+            this.set = newSet();
+            this.set.addAll(values);
         }
         else
         {
@@ -231,282 +193,58 @@ public abstract class BaseSet<Value> implements
             onOutOfRoom(values.size());
 
             // and leave the set empty.
-            this.set = new HashSet<>();
+            this.set = newSet();
         }
-    }
-
-    public BaseSet(Set<Value> set)
-    {
-        this(Maximum.MAXIMUM, set);
     }
 
     protected BaseSet()
     {
-        set = new HashSet<>();
-    }
-
-    @Override
-    public boolean add(Value value)
-    {
-        return onAdd(value);
-    }
-
-    @Override
-    public boolean addAll(@NotNull Collection<? extends Value> values)
-    {
-        return Addable.super.addAll(values);
-    }
-
-    /**
-     * @return This list as an array
-     */
-    @SuppressWarnings({ "unchecked" })
-    public Value[] asArray(Class<Value> type)
-    {
-        var array = (Value[]) Array.newInstance(type, size());
-        toArray(array);
-        return array;
-    }
-
-    @Override
-    public @NotNull Iterator<Value> asIterator(Matcher<Value> matcher)
-    {
-        return new BaseIterator<>()
-        {
-            private final Iterator<Value> iterator = set.iterator();
-
-            @Override
-            protected Value onNext()
-            {
-                if (iterator.hasNext())
-                {
-                    return iterator.next();
-                }
-                return null;
-            }
-        };
-    }
-
-    @Override
-    public @NotNull Iterator<Value> asIterator()
-    {
-        return Copyable.super.asIterator();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @SuppressWarnings("SwitchStatementWithTooFewBranches")
-    @Override
-    public String asString(Format format)
-    {
-        switch (format)
-        {
-            case DEBUG:
-                return join(", ", StringTo::debug);
-
-            default:
-                return toString();
-        }
-    }
-
-    /**
-     * @return This list as a string list
-     */
-    public StringList asStringList()
-    {
-        return new StringList(maximumSize(), this);
-    }
-
-    @Override
-    public void clear()
-    {
-        set.clear();
-    }
-
-    @Override
-    public boolean contains(Object object)
-    {
-        return set.contains(object);
-    }
-
-    @SuppressWarnings("NullableProblems")
-    @Override
-    public boolean containsAll(Collection<?> collection)
-    {
-        return set.containsAll(collection);
+        this(Maximum.MAXIMUM);
     }
 
     @Override
     public BaseSet<Value> copy()
     {
-        var set = newInstance();
-        set.addAll(this);
-        return set;
+        return Copyable.super.copy();
     }
 
     @Override
-    public Count count()
+    public <Output> BaseSet<Output> mapped(Function<Value, Output> mapper)
     {
-        return Count.count(size());
-    }
-
-    @Override
-    public boolean equals(Object object)
-    {
-        if (object instanceof Set)
-        {
-            var that = (Set<?>) object;
-            return set.equals(that);
-        }
-        return false;
-    }
-
-    @Override
-    public Value first()
-    {
-        return iterator().next();
-    }
-
-    @Override
-    public int hashCode()
-    {
-        return set.hashCode();
-    }
-
-    @Override
-    public boolean isEmpty()
-    {
-        return set.isEmpty();
-    }
-
-    @Override
-    public Iterator<Value> iterator()
-    {
-        return set.iterator();
-    }
-
-    /**
-     * @return This bounded list with all elements mapped by the given mapper to the mapper's target type
-     */
-    @SuppressWarnings("unchecked")
-    public <Target> BaseSet<Target> mapped(Function<Value, Target> mapper)
-    {
-        var filtered = (BaseSet<Target>) newInstance();
-        for (var element : this)
-        {
-            filtered.add(mapper.apply(element));
-        }
-        return filtered;
+        return (BaseSet<Output>) super.mapped(mapper);
     }
 
     @Override
     public BaseSet<Value> matching(Matcher<Value> matcher)
     {
-        var matches = newInstance();
-        matches.addAllMatching(this, matcher);
-        return matches;
-    }
-
-    public Iterable<Value> matchingAsIterable(Matcher<Value> matcher)
-    {
-        return new FilteredIterable<>(set, matcher);
-    }
-
-    public Maximum maximumSize()
-    {
-        return maximum(maximumSize);
+        return Copyable.super.matching(matcher);
     }
 
     @Override
-    public boolean onAdd(Value value)
-    {
-        return set.add(value);
-    }
-
-    @Override
-    public abstract BaseSet<Value> onNewInstance();
-
-    @Override
-    public void onOutOfRoom(int values)
-    {
-        if (!warnedAboutOutOfRoom)
-        {
-            warnedAboutOutOfRoom = true;
-            Ensure.warning(new Throwable(), "Adding $ values, would exceed maximum size of $. Ignoring operation.", values, totalRoom());
-        }
-    }
-
-    @Override
-    public boolean remove(Object object)
-    {
-        return set.remove(object);
-    }
-
-    @SuppressWarnings("NullableProblems")
-    @Override
-    public boolean removeAll(Collection<?> collection)
-    {
-        return set.removeAll(collection);
-    }
-
-    /**
-     * Removes all values matching the given matcher
-     */
-    public boolean removeAllMatching(Matcher<Value> matcher)
-    {
-        return removeIf(matcher);
-    }
-
-    @SuppressWarnings("NullableProblems")
-    @Override
-    public boolean retainAll(Collection<?> collection)
-    {
-        return set.retainAll(collection);
-    }
-
-    @Override
-    public int size()
-    {
-        return set.size();
-    }
-
-    @Override
-    public Object[] toArray()
-    {
-        return set.toArray();
-    }
-
-    @SuppressWarnings({ "SuspiciousToArrayCall" })
-    @Override
-    public <E> E[] toArray(E @NotNull [] array)
-    {
-        return set.toArray(array);
-    }
-
-    @Override
-    public String toString()
-    {
-        return set.toString();
-    }
-
-    /**
-     * Returns this list with the given value
-     */
     public BaseSet<Value> with(Value value)
     {
-        var copy = copy();
-        copy.add(value);
-        return copy;
+        return (BaseSet<Value>) super.with(value);
     }
 
     /**
      * Returns this list with the given values
      */
+    @Override
     public BaseSet<Value> with(Collection<Value> that)
     {
-        var set = copy();
-        set.addAll(that);
+        return (BaseSet<Value>) super.with(that);
+    }
+
+    @Override
+    protected Set<Value> collection()
+    {
+        return set;
+    }
+
+    protected abstract Set<Value> newSet();
+
+    protected Set<Value> set()
+    {
         return set;
     }
 }

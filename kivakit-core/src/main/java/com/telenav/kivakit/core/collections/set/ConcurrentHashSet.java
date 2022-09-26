@@ -19,17 +19,16 @@
 package com.telenav.kivakit.core.collections.set;
 
 import com.telenav.kivakit.core.internal.lexakai.DiagramCollections;
+import com.telenav.kivakit.core.value.count.Maximum;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
-import org.jetbrains.annotations.NotNull;
 
-import java.io.Serializable;
+import java.util.AbstractSet;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
-
-import static com.telenav.kivakit.core.ensure.Ensure.unsupported;
 
 /**
  * A convenient implementation of {@link Set} using {@link ConcurrentHashMap}.
@@ -38,61 +37,23 @@ import static com.telenav.kivakit.core.ensure.Ensure.unsupported;
  */
 @UmlClassDiagram(diagram = DiagramCollections.class)
 @LexakaiJavadoc(complete = true)
-public class ConcurrentHashSet<Element> implements Set<Element>, Serializable
+public class ConcurrentHashSet<Value> extends BaseSet<Value>
 {
-    private final ConcurrentHashMap<Element, Element> members;
+    private final ConcurrentHashMap<Value, Value> map = new ConcurrentHashMap<>();
 
     public ConcurrentHashSet()
     {
-        members = new ConcurrentHashMap<>();
+        this(Maximum.MAXIMUM);
     }
 
-    public ConcurrentHashSet(int initialCapacity, float loadFactor)
+    public ConcurrentHashSet(Maximum maximumSize)
     {
-        members = new ConcurrentHashMap<>(initialCapacity, loadFactor);
+        this(maximumSize, Collections.emptySet());
     }
 
-    @Override
-    public boolean add(Element element)
+    public ConcurrentHashSet(Maximum maximumSize, Collection<Value> values)
     {
-        return members.put(element, element) != null;
-    }
-
-    @Override
-    public boolean addAll(Collection<? extends Element> collection)
-    {
-        var changed = false;
-        for (Element object : collection)
-        {
-            changed = add(object) || changed;
-        }
-        return changed;
-    }
-
-    @Override
-    public void clear()
-    {
-        members.clear();
-    }
-
-    @Override
-    @SuppressWarnings("SuspiciousMethodCalls")
-    public boolean contains(Object object)
-    {
-        return members.get(object) != null;
-    }
-
-    public synchronized boolean containsAdd(Element object)
-    {
-        var contains = contains(object);
-        add(object);
-        return contains;
-    }
-
-    @Override
-    public boolean containsAll(@NotNull Collection<?> collection)
-    {
-        return members.keySet().containsAll(collection);
+        super(maximumSize, values);
     }
 
     /**
@@ -101,50 +62,15 @@ public class ConcurrentHashSet<Element> implements Set<Element>, Serializable
      * @param prototype The object to match against
      * @return Any object in the current set that matches the given object
      */
-    public Element get(Element prototype)
+    public Value get(Value prototype)
     {
-        return members.get(prototype);
+        return map.get(prototype);
     }
 
     @Override
-    public boolean isEmpty()
+    public ConcurrentHashSet<Value> onNewInstance()
     {
-        return members.isEmpty();
-    }
-
-    @Override
-    public @NotNull Iterator<Element> iterator()
-    {
-        return members.keySet().iterator();
-    }
-
-    @Override
-    public boolean remove(Object key)
-    {
-        return members.remove(key) != null;
-    }
-
-    @Override
-    public boolean removeAll(Collection<?> collection)
-    {
-        var changed = false;
-        for (Object object : collection)
-        {
-            changed = remove(object) || changed;
-        }
-        return changed;
-    }
-
-    @Override
-    public boolean retainAll(@NotNull Collection<?> c)
-    {
-        return unsupported();
-    }
-
-    @Override
-    public int size()
-    {
-        return members.size();
+        return (ConcurrentHashSet<Value>) newSet();
     }
 
     /**
@@ -154,21 +80,65 @@ public class ConcurrentHashSet<Element> implements Set<Element>, Serializable
      * @param prototype The object to match against
      * @return Any matching object after removing it from the set
      */
-    public Element take(Element prototype)
+    public Value take(Value prototype)
     {
-        return members.remove(prototype);
+        return map.remove(prototype);
     }
 
     @Override
-    public Object[] toArray()
+    protected Set<Value> newSet()
     {
-        return members.keySet().toArray();
+        return new AbstractSet<>()
+        {
+            @Override
+            public boolean add(Value value)
+            {
+                map.put(value, value);
+                return true;
+            }
+
+            @Override
+            public void clear()
+            {
+                map.clear();
+            }
+
+            @Override
+            public boolean contains(Object value)
+            {
+                return map.contains(value);
+            }
+
+            @Override
+            public Iterator<Value> iterator()
+            {
+                return map.keySet().iterator();
+            }
+
+            @Override
+            public boolean remove(Object value)
+            {
+                map.remove(value);
+                return true;
+            }
+
+            @Override
+            public int size()
+            {
+                return map.size();
+            }
+        };
     }
 
-    @SuppressWarnings({ "SuspiciousToArrayCall" })
     @Override
-    public <E> E[] toArray(E @NotNull [] array)
+    protected ConcurrentHashSet<Value> onNewCollection()
     {
-        return members.keySet().toArray(array);
+        return new ConcurrentHashSet<>();
+    }
+
+    @Override
+    protected ConcurrentHashSet<Value> set()
+    {
+        return (ConcurrentHashSet<Value>) super.set();
     }
 }

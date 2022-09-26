@@ -19,7 +19,6 @@
 package com.telenav.kivakit.core.collections;
 
 import com.telenav.kivakit.annotations.code.ApiQuality;
-import com.telenav.kivakit.core.collections.list.ObjectList;
 
 import java.util.Collection;
 
@@ -39,22 +38,8 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_RE
 public class Collections
 {
     /**
-     * Adds the given value n times to a collection of values
-     *
-     * @param values The collection to add to
-     * @param value The value to add
-     * @param times The number of times to add the value
-     */
-    public static <T> void addRepeatedly(Collection<T> values, T value, int times)
-    {
-        for (var index = 0; index < times; index++)
-        {
-            values.add(value);
-        }
-    }
-
-    /**
-     * Returns the first value in a collection of values
+     * Returns the first value in a collection of values, or null if the collection is empty. If the collection is not
+     * ordered, which value is returned is not defined.
      *
      * @param values The values
      * @return The first value
@@ -63,16 +48,5 @@ public class Collections
     {
         var iterator = values.iterator();
         return iterator.hasNext() ? iterator.next() : null;
-    }
-
-    /**
-     * Returns a collection of values as a sorted {@link ObjectList}
-     *
-     * @param values The values
-     * @return The values as a sorted object list
-     */
-    public static <T extends Comparable<T>> ObjectList<T> sortedCollection(Collection<T> values)
-    {
-        return ObjectList.objectList(values).sorted();
     }
 }

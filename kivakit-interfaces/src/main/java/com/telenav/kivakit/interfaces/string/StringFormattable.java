@@ -98,6 +98,8 @@ public interface StringFormattable extends AsString
     }
 
     /**
+     * Produces a string representation of this object in the given format
+     *
      * @return A string representation of this object that is suitable for the given purpose
      */
     String asString(Format format);

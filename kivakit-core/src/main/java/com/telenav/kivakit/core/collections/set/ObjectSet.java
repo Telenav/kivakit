@@ -18,6 +18,7 @@
 
 package com.telenav.kivakit.core.collections.set;
 
+import com.telenav.kivakit.core.collections.BaseCollection;
 import com.telenav.kivakit.core.collections.list.ObjectList;
 import com.telenav.kivakit.core.value.count.Maximum;
 import com.telenav.kivakit.interfaces.comparison.Matcher;
@@ -28,7 +29,7 @@ import java.util.Set;
 /**
  * @author jonathanl (shibo)
  */
-public class ObjectSet<T> extends BaseSet<T>
+public class ObjectSet<Value> extends BaseSet<Value>
 {
     public static <T> ObjectSet<T> emptyObjectSet()
     {
@@ -55,12 +56,12 @@ public class ObjectSet<T> extends BaseSet<T>
         super(maximumSize);
     }
 
-    public ObjectSet(Maximum maximumSize, Set<T> set)
+    public ObjectSet(Maximum maximumSize, Set<Value> set)
     {
         super(maximumSize, set);
     }
 
-    public ObjectSet(Set<T> set)
+    public ObjectSet(Set<Value> set)
     {
         super(Maximum.MAXIMUM, set);
     }
@@ -71,7 +72,7 @@ public class ObjectSet<T> extends BaseSet<T>
     }
 
     @Override
-    public boolean addIfNotNull(T object)
+    public boolean addIfNotNull(Value object)
     {
         if (object != null)
         {
@@ -81,39 +82,50 @@ public class ObjectSet<T> extends BaseSet<T>
     }
 
     @Override
-    public ObjectList<T> asList()
+    public ObjectList<Value> asList()
     {
-        return (ObjectList<T>) super.asList();
+        return (ObjectList<Value>) super.asList();
     }
 
     @Override
-    public ObjectSet<T> copy()
+    public ObjectSet<Value> copy()
     {
-        return (ObjectSet<T>) super.copy();
+        return (ObjectSet<Value>) super.copy();
     }
 
     @Override
-    public ObjectSet<T> matching(Matcher<T> matcher)
+    public ObjectSet<Value> matching(Matcher<Value> matcher)
     {
-        return (ObjectSet<T>) super.matching(matcher);
+        return (ObjectSet<Value>) super.matching(matcher);
     }
 
     @Override
-    public ObjectSet<T> onNewInstance()
+    public BaseSet<Value> onNewInstance()
     {
-        return new ObjectSet<>();
-    }
-
-    public ObjectList<T> sorted()
-    {
-        var list = ObjectList.objectList(this);
-        list.sorted();
-        return list;
+        return newSet();
     }
 
     @Override
-    public ObjectSet<T> with(Collection<T> that)
+    public ObjectSet<Value> with(Value value)
     {
-        return (ObjectSet<T>) super.with(that);
+        return (ObjectSet<Value>) super.with(value);
+    }
+
+    @Override
+    public ObjectSet<Value> with(Collection<Value> that)
+    {
+        return (ObjectSet<Value>) super.with(that);
+    }
+
+    @Override
+    protected ObjectSet<Value> newSet()
+    {
+        return objectSet();
+    }
+
+    @Override
+    protected BaseCollection<Value> onNewCollection()
+    {
+        return objectSet();
     }
 }

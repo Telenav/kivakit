@@ -83,13 +83,16 @@ public interface Addable<Value> extends
     }
 
     /**
-     * {@inheritDoc}
+     * Adds the given values to this store
+     *
+     * @param values The values to add
+     * @return True if the values were added, false otherwise
      */
-    default boolean addAll(Collection<? extends Value> elements)
+    default boolean addAll(Collection<? extends Value> values)
     {
-        if (hasRoomFor(elements.size()))
+        if (hasRoomFor(values.size()))
         {
-            return addAll(elements.iterator());
+            return addAll(values.iterator());
         }
         return false;
     }

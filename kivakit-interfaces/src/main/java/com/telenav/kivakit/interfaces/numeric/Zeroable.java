@@ -18,6 +18,8 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_RE
 public interface Zeroable
 {
     /**
+     * Returns true if this object is non-zero
+     *
      * @return True if this object is not zero
      */
     default boolean isNonZero()
@@ -26,6 +28,8 @@ public interface Zeroable
     }
 
     /**
+     * Returns true if this object is zero
+     *
      * @return True if this object is zero
      */
     boolean isZero();

@@ -170,7 +170,10 @@ public interface Sequence<Value> extends
     }
 
     /**
-     * @return An {@link Iterator} over elements in this sequence
+     * Returns an iterator over all the values in this sequence that match the given matcher
+     *
+     * @param matcher The matcher to match values against
+     * @return An {@link Iterator} over values in this sequence
      */
     @NotNull
     Iterator<Value> asIterator(Matcher<Value> matcher);

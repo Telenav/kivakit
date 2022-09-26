@@ -19,80 +19,128 @@
 package com.telenav.kivakit.core.collections.set;
 
 import com.telenav.kivakit.core.internal.lexakai.DiagramCollections;
+import com.telenav.kivakit.core.value.count.Maximum;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.AbstractSet;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.IdentityHashMap;
 import java.util.Iterator;
+import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
- * A set of elements stored by identity (as opposed to using the {@link #hashCode()} / {@link #equals(Object)}
- * contract). Implemented with an {@link IdentityHashMap}.
+ * A convenient implementation of {@link Set} using {@link ConcurrentHashMap}.
  *
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramCollections.class)
 @LexakaiJavadoc(complete = true)
-public class IdentitySet<Element> extends AbstractSet<Element>
+public class IdentitySet<Value> extends BaseSet<Value>
 {
-    private final IdentityHashMap<Element, Boolean> map = new IdentityHashMap<>();
+    private final IdentityHashMap<Value, Value> map = new IdentityHashMap<>();
 
-    @Override
-    public boolean add(Element element)
+    public IdentitySet()
     {
-        return map.put(element, true) != null;
+        this(Maximum.MAXIMUM);
+    }
+
+    public IdentitySet(Maximum maximumSize)
+    {
+        this(maximumSize, Collections.emptySet());
+    }
+
+    public IdentitySet(Maximum maximumSize, Collection<Value> values)
+    {
+        super(maximumSize, values);
+    }
+
+    /**
+     * Gets the value currently in the set is equal to the given prototype object
+     *
+     * @param prototype The object to match against
+     * @return Any object in the current set that matches the given object
+     */
+    public Value get(Value prototype)
+    {
+        return map.get(prototype);
     }
 
     @Override
-    public boolean addAll(Collection<? extends Element> collection)
+    public IdentitySet<Value> onNewInstance()
     {
-        collection.forEach(this::add);
-        return true;
+        return (IdentitySet<Value>) newSet();
+    }
+
+    /**
+     * Takes any object matching the given prototype out of the set, returning the set's value (but not necessarily the
+     * prototype).
+     *
+     * @param prototype The object to match against
+     * @return Any matching object after removing it from the set
+     */
+    public Value take(Value prototype)
+    {
+        return map.remove(prototype);
     }
 
     @Override
-    public void clear()
+    protected Set<Value> newSet()
     {
-        map.clear();
+        return new AbstractSet<>()
+        {
+            @Override
+            public boolean add(Value value)
+            {
+                map.put(value, value);
+                return true;
+            }
+
+            @Override
+            public void clear()
+            {
+                map.clear();
+            }
+
+            @Override
+            @SuppressWarnings("SuspiciousMethodCalls")
+            public boolean contains(Object value)
+            {
+                return map.containsKey(value);
+            }
+
+            @Override
+            public Iterator<Value> iterator()
+            {
+                return map.keySet().iterator();
+            }
+
+            @Override
+            public boolean remove(Object value)
+            {
+                map.remove(value);
+                return true;
+            }
+
+            @Override
+            public int size()
+            {
+                return map.size();
+            }
+        };
     }
 
     @Override
-    @SuppressWarnings({ "unchecked" })
-    public boolean contains(Object object)
+    protected IdentitySet<Value> onNewCollection()
     {
-        return map.containsKey((Element) object);
+        return new IdentitySet<>();
     }
 
     @Override
-    public boolean isEmpty()
+    protected IdentitySet<Value> set()
     {
-        return map.isEmpty();
-    }
-
-    @Override
-    public Iterator<Element> iterator()
-    {
-        return map.keySet().iterator();
-    }
-
-    @Override
-    public boolean remove(Object element)
-    {
-        return map.remove(element) != null;
-    }
-
-    @Override
-    public boolean removeAll(Collection<?> collection)
-    {
-        collection.forEach(this::remove);
-        return true;
-    }
-
-    @Override
-    public int size()
-    {
-        return map.size();
+        return (IdentitySet<Value>) super.set();
     }
 }

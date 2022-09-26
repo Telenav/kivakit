@@ -24,19 +24,13 @@ import com.telenav.kivakit.core.internal.lexakai.DiagramCollections;
 import com.telenav.kivakit.core.string.AsciiArt;
 import com.telenav.kivakit.core.string.Formatter;
 import com.telenav.kivakit.core.value.count.Count;
-import com.telenav.kivakit.core.value.count.Countable;
 import com.telenav.kivakit.core.value.count.Maximum;
-import com.telenav.kivakit.interfaces.collection.Addable;
 import com.telenav.kivakit.interfaces.collection.Appendable;
 import com.telenav.kivakit.interfaces.collection.Copyable;
 import com.telenav.kivakit.interfaces.collection.Indexable;
-import com.telenav.kivakit.interfaces.collection.Joinable;
 import com.telenav.kivakit.interfaces.collection.Prependable;
 import com.telenav.kivakit.interfaces.collection.Sectionable;
-import com.telenav.kivakit.interfaces.collection.Sequence;
-import com.telenav.kivakit.interfaces.collection.WriteIndexable;
 import com.telenav.kivakit.interfaces.comparison.Matcher;
-import com.telenav.kivakit.interfaces.string.StringFormattable;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import org.jetbrains.annotations.NotNull;
 
@@ -61,16 +55,13 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.MORE_TESTING_N
  * A base class for bounded lists which adds convenient methods as well as support for various KivaKit interfaces:
  *
  * <ul>
- *     <li>{@link List}</li>
+ *     <li>{@link Appendable}</li>
  *     <li>{@link Copyable}</li>
- *     <li>{@link WriteIndexable}</li>
- *     <li>{@link Sequence}</li>
- *     <li>{@link Sectionable}</li>
- *     <li>{@link Addable}</li>
+ *     <li>{@link Indexable}</li>
+ *     <li>{@link List}</li>
  *     <li>{@link Prependable}</li>
  *     <li>{@link RandomAccess}</li>
- *     <li>{@link Countable}</li>
- *     <li>{@link StringFormattable}</li>
+ *     <li>{@link Sectionable}</li>
  * </ul>
  *
  * <p><b>Functional Methods</b></p>
@@ -244,17 +235,13 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.MORE_TESTING_N
  * </ul>
  *
  * @author jonathanl (shibo)
- * @see Addable
  * @see Appendable
- * @see Countable
+ * @see Copyable
  * @see Indexable
- * @see Joinable
  * @see List
  * @see Prependable
  * @see RandomAccess
  * @see Sectionable
- * @see StringFormattable
- * @see WriteIndexable
  */
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramCollections.class, excludeAllSuperTypes = true)
@@ -262,16 +249,13 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.MORE_TESTING_N
             testing = MORE_TESTING_NEEDED,
             documentation = FULLY_DOCUMENTED)
 public abstract class BaseList<Value> extends BaseCollection<Value> implements
-        List<Value>,
-        WriteIndexable<Value>,
-        Sequence<Value>,
-        Sectionable<Value, BaseList<Value>>,
-        Joinable<Value>,
         Appendable<Value>,
+        Copyable<Value, BaseList<Value>>,
+        Indexable<Value>,
+        List<Value>,
         Prependable<Value>,
         RandomAccess,
-        Countable,
-        StringFormattable
+        Sectionable<Value, BaseList<Value>>
 {
     /** Initial list implementation while mutable */
     private final List<Value> list;
@@ -359,13 +343,13 @@ public abstract class BaseList<Value> extends BaseCollection<Value> implements
     @Override
     public BaseList<Value> appendThen(Value value)
     {
-        return (BaseList<Value>) super.appendThen(value);
+        return (BaseList<Value>) Appendable.super.appendThen(value);
     }
 
     @Override
     public BaseList<Value> appendThen(Iterable<? extends Value> values)
     {
-        return (BaseList<Value>) super.appendThen(values);
+        return (BaseList<Value>) Appendable.super.appendThen(values);
     }
 
     /**
@@ -403,7 +387,7 @@ public abstract class BaseList<Value> extends BaseCollection<Value> implements
     @Override
     public BaseList<Value> copy()
     {
-        return (BaseList<Value>) super.copy();
+        return Copyable.super.copy();
     }
 
     /**
@@ -531,6 +515,21 @@ public abstract class BaseList<Value> extends BaseCollection<Value> implements
     }
 
     /**
+     * {@inheritDoc}
+     */
+    @Override
+    public boolean onAppend(Value value)
+    {
+        return onAdd(value);
+    }
+
+    @Override
+    public BaseList<Value> onNewInstance()
+    {
+        return newList();
+    }
+
+    /**
      * Prepends the given value to the front of this list
      */
     @Override
@@ -641,27 +640,6 @@ public abstract class BaseList<Value> extends BaseCollection<Value> implements
     }
 
     /**
-     * @return This list sorted by casting the element type to {@link Comparable}. If the elements in the list are not
-     * comparable, an exception will be thrown.
-     */
-    @SuppressWarnings("unchecked")
-    public BaseList<Value> sorted()
-    {
-        return sorted((Value a, Value b) -> ((Comparable<Value>) a).compareTo(b));
-    }
-
-    /**
-     * @return A copy of this list sorted by the given comparator
-     */
-    public BaseList<Value> sorted(Comparator<Value> comparator)
-    {
-        var sorted = newList();
-        sorted.addAll(this);
-        sorted.sort(comparator);
-        return sorted;
-    }
-
-    /**
      * {@inheritDoc}
      */
     @Override
@@ -711,11 +689,19 @@ public abstract class BaseList<Value> extends BaseCollection<Value> implements
         return list;
     }
 
-    protected BaseList<Value> newList()
-    {
-        return (BaseList<Value>) newCollection();
-    }
+    /**
+     * Creates a list of the subclass type
+     *
+     * @return The new list
+     */
+    protected abstract BaseList<Value> newList();
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    protected abstract BaseList<Value> onNewCollection();
+    protected BaseList<Value> onNewCollection()
+    {
+        return newList();
+    }
 }

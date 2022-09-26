@@ -31,10 +31,15 @@ import com.telenav.lexakai.annotations.LexakaiJavadoc;
 public interface Countable extends Zeroable
 {
     /**
+     * Retrieves the count for this object
+     *
      * @return The count for this object
      */
     Count count();
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     default boolean isZero()
     {
