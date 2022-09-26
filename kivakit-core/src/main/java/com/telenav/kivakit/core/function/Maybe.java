@@ -1,5 +1,6 @@
 package com.telenav.kivakit.core.function;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.code.UncheckedVoidCode;
 import com.telenav.kivakit.core.function.arities.PentaFunction;
 import com.telenav.kivakit.core.function.arities.TetraFunction;
@@ -17,6 +18,9 @@ import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.stream.Stream;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXPANDABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.MORE_TESTING_NEEDED;
 import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
 
 /**
@@ -83,6 +87,9 @@ import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
  * @author viniciusluisr
  * @see <a href="https://github.com/viniciusluisr/improved-optional">improved-optional</a>
  */
+@ApiQuality(stability = STABLE_EXPANDABLE,
+            testing = MORE_TESTING_NEEDED,
+            documentation = FULLY_DOCUMENTED)
 public class Maybe<Value> implements
         Presence,
         TryCatchTrait
@@ -205,6 +212,7 @@ public class Maybe<Value> implements
         return isPresent() ? Stream.of(value) : Stream.empty();
     }
 
+    @Override
     public boolean equals(Object object)
     {
         if (object instanceof Maybe)
@@ -286,6 +294,7 @@ public class Maybe<Value> implements
     /**
      * Returns true if there is a value present
      */
+    @Override
     public boolean isPresent()
     {
         return value != null;
@@ -633,6 +642,7 @@ public class Maybe<Value> implements
         return map(function);
     }
 
+    @Override
     public String toString()
     {
         return "[Maybe value = " + value + "]";
