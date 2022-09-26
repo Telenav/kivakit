@@ -18,6 +18,7 @@
 
 package com.telenav.kivakit.core.language.module;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.collections.list.ObjectList;
 import com.telenav.kivakit.core.ensure.Ensure;
 import com.telenav.kivakit.core.internal.lexakai.DiagramPath;
@@ -39,6 +40,10 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
+
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXPANDABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_REQUIRED;
 
 /**
  * Represents the path to a Java package. The PackagePath object in kivakit-resource differs from this class.
@@ -88,11 +93,19 @@ import java.util.zip.ZipInputStream;
  *
  * @author jonathanl (shibo)
  */
-@SuppressWarnings({ "unused", "DuplicatedCode" }) @UmlClassDiagram(diagram = DiagramPath.class)
+@SuppressWarnings({ "unused", "DuplicatedCode", "SpellCheckingInspection" })
+@UmlClassDiagram(diagram = DiagramPath.class)
+@ApiQuality(stability = STABLE_EXPANDABLE,
+            testing = TESTING_NOT_REQUIRED,
+            documentation = FULLY_DOCUMENTED)
 public final class PackageReference extends StringPath
 {
+    /** Reference to the com.telenav package */
     public static final PackageReference TELENAV = parsePackageReference(Listener.emptyListener(), "com.telenav");
 
+    /**
+     * Returns true if the given path is a package reference
+     */
     public static boolean isPackageReference(String path)
     {
         return path.matches("(?x) [a-z][a-z0-9_]* ( \\. [a-z][a-z0-9_]* ) *");
@@ -177,7 +190,7 @@ public final class PackageReference extends StringPath
     /**
      * @return A list of sub packages under this package from the directories in classpath
      */
-    public Set<PackageReference> filesystemSubPackages()
+    public Set<PackageReference> filesystemSubPackages(Listener listener)
     {
         // Get the code source for the package type class,
         var packages = new HashSet<PackageReference>();
@@ -196,15 +209,17 @@ public final class PackageReference extends StringPath
 
                     if (Files.exists(directory))
                     {
-                        Files.list(directory)
-                                .filter(Files::isDirectory)
-                                .forEach(path -> packages.add(withChild(path.getFileName().toString())));
+                        try (var list = Files.list(directory))
+                        {
+                            list.filter(Files::isDirectory)
+                                    .forEach(path -> packages.add(withChild(path.getFileName().toString())));
+                        }
                     }
                 }
             }
             catch (Exception ignored)
             {
-                Ensure.warning("Exception thrown while searching directory sub packages from $", this);
+                listener.warning("Exception thrown while searching directory sub packages from $", this);
             }
         }
         return packages;
@@ -230,7 +245,7 @@ public final class PackageReference extends StringPath
     /**
      * @return A list of sub packages under this package from the jars in classpath
      */
-    public Set<PackageReference> jarSubPackages()
+    public Set<PackageReference> jarSubPackages(Listener listener)
     {
         // Get the code source for the package type class,
         var packages = new HashSet<PackageReference>();
@@ -284,7 +299,7 @@ public final class PackageReference extends StringPath
             }
             catch (Exception ignored)
             {
-                Ensure.warning("Exception thrown while searching jar sub packages from $", this);
+                listener.warning("Exception thrown while searching jar sub packages from $", this);
             }
         }
         return packages;
@@ -388,8 +403,8 @@ public final class PackageReference extends StringPath
                 .map(resource -> resource.packageReference().withPackageType(packageType))
                 .collect(Collectors.toSet());
         listener.trace("Found sub-packages:\n$", ObjectList.objectList(packages).join("\n"));
-        packages.addAll(jarSubPackages());
-        packages.addAll(filesystemSubPackages());
+        packages.addAll(jarSubPackages(listener));
+        packages.addAll(filesystemSubPackages(listener));
         return packages;
     }
 

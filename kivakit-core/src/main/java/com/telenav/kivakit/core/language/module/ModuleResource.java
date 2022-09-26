@@ -18,10 +18,11 @@
 
 package com.telenav.kivakit.core.language.module;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.core.internal.lexakai.DiagramModule;
 import com.telenav.kivakit.core.io.Nio;
 import com.telenav.kivakit.core.language.object.ObjectFormatter;
 import com.telenav.kivakit.core.language.reflection.property.KivaKitIncludeProperty;
-import com.telenav.kivakit.core.internal.lexakai.DiagramModule;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.path.StringPath;
 import com.telenav.kivakit.core.time.Time;
@@ -34,6 +35,10 @@ import java.net.URI;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.attribute.BasicFileAttributes;
+
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXPANDABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_REQUIRED;
 
 /**
  * A resource in a module having the following attributes. {@link ModuleResource}s can be found with the methods in
@@ -58,8 +63,19 @@ import java.nio.file.attribute.BasicFileAttributes;
  * @see Modules
  */
 @UmlClassDiagram(diagram = DiagramModule.class)
+@ApiQuality(stability = STABLE_EXPANDABLE,
+            testing = TESTING_NOT_REQUIRED,
+            documentation = FULLY_DOCUMENTED)
 public class ModuleResource
 {
+    /**
+     * Finds a module resource for a {@link ModuleReference} and URI.
+     *
+     * @param listener The listener to receive any problems
+     * @param reference The module reference
+     * @param uri The URI where the module resides
+     * @return The module resource
+     */
     public static ModuleResource moduleResource(Listener listener, ModuleReference reference, URI uri)
     {
         var location = reference.location();
@@ -96,6 +112,7 @@ public class ModuleResource
                 case "jar":
                 case "zip":
                 {
+                    //noinspection resource
                     Nio.filesystem(listener, uri);
                     var _package = PackageReference.packageReference(StringPath.stringPath(uri));
                     return new ModuleResource(_package, uri);
@@ -112,14 +129,19 @@ public class ModuleResource
         return null;
     }
 
+    /** The time this module resource was created */
     private Time created;
 
+    /** The time this module resource was last modified */
     private Time lastModified;
 
+    /** A reference to the package where the resource resides */
     private final PackageReference packageReference;
 
+    /** The size of the resource */
     private Bytes size;
 
+    /** The resource URI */
     private final URI uri;
 
     protected ModuleResource(PackageReference packageReference, URI uri)
@@ -138,34 +160,52 @@ public class ModuleResource
         }
     }
 
+    /**
+     * Returns the time at which the resource was created
+     */
     public Time created()
     {
         return created;
     }
 
+    /**
+     * Returns the resource filename as a Java {@link Path}
+     */
     @KivaKitIncludeProperty
     public Path fileNameAsJavaPath()
     {
         return Path.of(fileName());
     }
 
+    /**
+     * Returns the Java {@link Path} to the resource
+     */
     public Path javaPath()
     {
         return StringPath.stringPath(uri).asJavaPath();
     }
 
+    /**
+     * Returns the time at which the resource was last modified
+     */
     @KivaKitIncludeProperty
     public Time lastModified()
     {
         return lastModified;
     }
 
+    /**
+     * Returns a reference to the package where the resource resides
+     */
     @KivaKitIncludeProperty
     public PackageReference packageReference()
     {
         return packageReference;
     }
 
+    /**
+     * Returns the size of the resource in bytes
+     */
     @KivaKitIncludeProperty
     public Bytes size()
     {
@@ -178,6 +218,9 @@ public class ModuleResource
         return new ObjectFormatter(this).toString();
     }
 
+    /**
+     * Returns the URI of the resource
+     */
     public URI uri()
     {
         return uri;
