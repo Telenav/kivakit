@@ -21,7 +21,9 @@ package com.telenav.kivakit.core.value.count;
 import com.telenav.kivakit.core.ensure.Ensure;
 import com.telenav.kivakit.core.internal.lexakai.DiagramCount;
 import com.telenav.kivakit.core.value.level.Percent;
+import com.telenav.kivakit.interfaces.value.LongValued;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.concurrent.atomic.AtomicLong;
 
@@ -33,7 +35,10 @@ import java.util.concurrent.atomic.AtomicLong;
  * @author jonathanl (shibo)
  */
 @SuppressWarnings("unused") @UmlClassDiagram(diagram = DiagramCount.class)
-public class ConcurrentMutableCount implements Countable
+public class ConcurrentMutableCount implements
+        Countable,
+        LongValued,
+        Comparable<ConcurrentMutableCount>
 {
     private final AtomicLong count;
 
@@ -63,11 +68,13 @@ public class ConcurrentMutableCount implements Countable
         return Count.count(asLong());
     }
 
+    @Override
     public int asInt()
     {
         return (int) asLong();
     }
 
+    @Override
     public long asLong()
     {
         return count.get();
@@ -76,6 +83,12 @@ public class ConcurrentMutableCount implements Countable
     public void clear()
     {
         count.set(0);
+    }
+
+    @Override
+    public int compareTo(@NotNull ConcurrentMutableCount that)
+    {
+        return (int) (asLong() - that.count().asLong());
     }
 
     @Override
@@ -134,6 +147,12 @@ public class ConcurrentMutableCount implements Countable
         return asInt() == 0;
     }
 
+    @Override
+    public long longValue()
+    {
+        return asLong();
+    }
+
     public Percent percentOf(Count total)
     {
         if (total.isZero())
@@ -141,6 +160,16 @@ public class ConcurrentMutableCount implements Countable
             return Percent._0;
         }
         return Percent.percent(asInt() * 100.0 / total.asInt());
+    }
+
+    public long plus(long that)
+    {
+        return count.addAndGet(that);
+    }
+
+    public long plus(LongValued that)
+    {
+        return plus(that.longValue());
     }
 
     public void set(long count)

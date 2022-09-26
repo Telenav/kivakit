@@ -31,6 +31,7 @@ import java.util.function.Predicate;
 import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXPANDABLE;
 import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.TestingQuality.MORE_TESTING_NEEDED;
+import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
 import static com.telenav.kivakit.interfaces.string.StringFormattable.Format.TO_STRING;
 
 /**
@@ -177,7 +178,7 @@ public abstract class BaseCollection<Value> implements
      */
     protected BaseCollection(Maximum maximumSize)
     {
-        this.maximumSize = maximumSize.asInt();
+        this.maximumSize = ensureNotNull(maximumSize.asInt());
     }
 
     /**

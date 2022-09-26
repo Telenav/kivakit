@@ -142,7 +142,7 @@ public class MultiMap<Key, Value> extends BaseMap<Key, ObjectList<Value>>
     }
 
     @Override
-    protected ObjectList<Value> onInitialize(Key key)
+    protected ObjectList<Value> onCreateValue(Key key)
     {
         return new ObjectList<>(maximumValues);
     }

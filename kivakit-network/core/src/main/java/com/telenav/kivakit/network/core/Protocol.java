@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.network.core;
 
-import com.telenav.kivakit.core.collections.map.NameMap;
+import com.telenav.kivakit.core.collections.map.StringMap;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.value.name.Name;
 import com.telenav.kivakit.network.core.internal.lexakai.DiagramPort;
@@ -34,11 +34,12 @@ import java.util.Map;
  *
  * @author jonathanl (shibo)
  */
+@SuppressWarnings({ "unused", "SpellCheckingInspection" })
 @UmlClassDiagram(diagram = DiagramPort.class)
 @LexakaiJavadoc(complete = true)
 public class Protocol extends Name
 {
-    private static final NameMap<Protocol> nameToProtocol = new NameMap<>();
+    private static final StringMap<Protocol> nameToProtocol = new StringMap<>();
 
     private static final Map<Integer, Protocol> portToProtocol = new HashMap<>();
 
@@ -83,7 +84,7 @@ public class Protocol extends Name
     {
         super(name);
         this.defaultPort = defaultPort;
-        nameToProtocol.add(this);
+        nameToProtocol.put(name(), this);
         portToProtocol.put(defaultPort, this);
     }
 

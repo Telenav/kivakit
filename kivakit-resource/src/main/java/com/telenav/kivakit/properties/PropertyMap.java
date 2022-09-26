@@ -207,7 +207,7 @@ public class PropertyMap extends VariableMap<String>
      */
     public Folder asFolder(String key)
     {
-        return Folder.parseFolder(this, asPath(key));
+        return Folder.parseFolder(this, asPathString(key));
     }
 
     /**

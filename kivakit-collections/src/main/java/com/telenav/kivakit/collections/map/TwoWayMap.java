@@ -24,6 +24,7 @@ import com.telenav.kivakit.core.collections.map.LinkedMap;
 import com.telenav.kivakit.core.value.count.Maximum;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * A map from key to value, but also from value to key (with {@link #key(Object)}).
@@ -67,7 +68,7 @@ public class TwoWayMap<Key, Value> extends BaseMap<Key, Value>
     }
 
     @Override
-    public Value remove(Object key)
+    public Value remove(@NotNull Object key)
     {
         var value = super.remove(key);
         valueToKey.remove(value);

@@ -98,16 +98,16 @@ public class BaseIndexedMap<Key, Value> extends BaseMap<Key, Value> implements I
     }
 
     @Override
-    public void putAll(Map<? extends Key, ? extends Value> map)
+    public void putAll(@NotNull Map<? extends Key, ? extends Value> that)
     {
-        for (Map.Entry<? extends Key, ? extends Value> entry : map.entrySet())
+        for (Map.Entry<? extends Key, ? extends Value> entry : that.entrySet())
         {
             put(entry.getKey(), entry.getValue());
         }
     }
 
     @Override
-    public Value remove(Object key)
+    public Value remove(@NotNull Object key)
     {
         list.remove(get(key));
         return super.remove(key);

@@ -18,13 +18,23 @@
 
 package com.telenav.kivakit.core.collections.map;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.value.count.Maximum;
 
 import java.util.Map;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXPANDABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.MORE_TESTING_NEEDED;
+
 /**
+ * A trivial extension of {@link BaseMap} for storing objects
+ *
  * @author jonathanl (shibo)
  */
+@ApiQuality(stability = STABLE_EXPANDABLE,
+            testing = MORE_TESTING_NEEDED,
+            documentation = FULLY_DOCUMENTED)
 public class ObjectMap<Key, Value> extends BaseMap<Key, Value>
 {
     public ObjectMap()
@@ -36,8 +46,7 @@ public class ObjectMap<Key, Value> extends BaseMap<Key, Value>
         super(maximumSize);
     }
 
-    public ObjectMap(Maximum maximumSize,
-                     Map<Key, Value> map)
+    public ObjectMap(Maximum maximumSize, Map<Key, Value> map)
     {
         super(maximumSize, map);
     }
@@ -45,5 +54,12 @@ public class ObjectMap<Key, Value> extends BaseMap<Key, Value>
     public ObjectMap(Map<Key, Value> map)
     {
         super(map);
+    }
+
+    public ObjectMap<Key, Value> copy()
+    {
+        var copy = new ObjectMap<Key, Value>();
+        copy.putAll(this);
+        return copy;
     }
 }

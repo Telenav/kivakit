@@ -143,7 +143,7 @@ public class MultiSet<Key, Value> extends BaseMap<Key, ObjectSet<Value>>
     }
 
     @Override
-    protected ObjectSet<Value> onInitialize(Key key)
+    protected ObjectSet<Value> onCreateValue(Key key)
     {
         return new ObjectSet<>(maximumValues);
     }

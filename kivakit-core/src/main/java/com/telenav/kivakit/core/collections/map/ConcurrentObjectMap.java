@@ -18,11 +18,17 @@
 
 package com.telenav.kivakit.core.collections.map;
 
-import com.telenav.kivakit.core.value.count.Maximum;
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramCollections;
+import com.telenav.kivakit.core.value.count.Maximum;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.concurrent.ConcurrentHashMap;
+
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXPANDABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.MORE_TESTING_NEEDED;
 
 /**
  * Class for concurrent maps with a bounded number of values.
@@ -32,7 +38,11 @@ import java.util.concurrent.ConcurrentHashMap;
  * @version 1.0.0 2012-12-27
  */
 @UmlClassDiagram(diagram = DiagramCollections.class)
-public class ConcurrentObjectMap<Key, Value> extends BaseMap<Key, Value> implements java.util.concurrent.ConcurrentMap<Key, Value>
+@ApiQuality(stability = STABLE_EXPANDABLE,
+            testing = MORE_TESTING_NEEDED,
+            documentation = FULLY_DOCUMENTED)
+public class ConcurrentObjectMap<Key, Value> extends ObjectMap<Key, Value> implements
+        java.util.concurrent.ConcurrentMap<Key, Value>
 {
     /**
      * A bounded concurrent map
@@ -67,59 +77,13 @@ public class ConcurrentObjectMap<Key, Value> extends BaseMap<Key, Value> impleme
     }
 
     @Override
-    @SuppressWarnings("unchecked")
-    public Value getOrCreate(Object key)
-    {
-        var value = get(key);
-        if (value == null)
-        {
-            value = onInitialize((Key) key);
-            if (value != null)
-            {
-                var oldValue = putIfAbsent((Key) key, value);
-                if (oldValue != null)
-                {
-                    value = oldValue;
-                }
-            }
-        }
-        return value;
-    }
-
-    @SuppressWarnings("NullableProblems")
-    @Override
-    public Value putIfAbsent(Key key, Value value)
-    {
-        if (checkSize(1))
-        {
-            return concurrentMap().putIfAbsent(key, value);
-        }
-        return null;
-    }
-
-    @SuppressWarnings("NullableProblems")
-    @Override
-    public boolean remove(Object key, Object value)
-    {
-        return concurrentMap().remove(key, value);
-    }
-
-    @SuppressWarnings("NullableProblems")
-    @Override
-    public boolean replace(Key key, Value oldValue, Value newValue)
+    public boolean replace(@NotNull Key key, @NotNull Value oldValue, @NotNull Value newValue)
     {
         return concurrentMap().replace(key, oldValue, newValue);
     }
 
-    @SuppressWarnings("NullableProblems")
-    @Override
-    public Value replace(Key key, Value value)
+    private ConcurrentHashMap<Key, Value> concurrentMap()
     {
-        return concurrentMap().replace(key, value);
-    }
-
-    private java.util.concurrent.ConcurrentMap<Key, Value> concurrentMap()
-    {
-        return (java.util.concurrent.ConcurrentMap<Key, Value>) super.map();
+        return (ConcurrentHashMap<Key, Value>) map();
     }
 }

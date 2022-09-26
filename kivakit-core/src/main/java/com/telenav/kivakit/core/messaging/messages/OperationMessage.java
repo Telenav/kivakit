@@ -18,7 +18,8 @@
 
 package com.telenav.kivakit.core.messaging.messages;
 
-import com.telenav.kivakit.core.collections.map.NameMap;
+import com.telenav.kivakit.core.collections.map.StringMap;
+import com.telenav.kivakit.core.internal.lexakai.DiagramMessageType;
 import com.telenav.kivakit.core.language.Hash;
 import com.telenav.kivakit.core.language.Objects;
 import com.telenav.kivakit.core.logging.Log;
@@ -39,7 +40,6 @@ import com.telenav.kivakit.core.messaging.messages.status.Problem;
 import com.telenav.kivakit.core.messaging.messages.status.Trace;
 import com.telenav.kivakit.core.messaging.messages.status.Warning;
 import com.telenav.kivakit.core.messaging.messages.status.activity.Activity;
-import com.telenav.kivakit.core.internal.lexakai.DiagramMessageType;
 import com.telenav.kivakit.core.string.Formatter;
 import com.telenav.kivakit.core.string.Strings;
 import com.telenav.kivakit.core.thread.ReentrancyTracker;
@@ -56,8 +56,8 @@ import static com.telenav.kivakit.core.thread.ReentrancyTracker.Reentrancy.REENT
 
 /**
  * Base implementation of the {@link Message} interface. Represents a message destined for a {@link Listener} such as a
- * {@link Logger} with arguments which can be interpolated if the message is formatted with {@link
- * #formatted(Formatter.Format)}. All {@link OperationMessage}s have the attributes defined in {@link Message}.
+ * {@link Logger} with arguments which can be interpolated if the message is formatted with
+ * {@link #formatted(Formatter.Format)}. All {@link OperationMessage}s have the attributes defined in {@link Message}.
  * <p>
  * For messages that might be sent to frequently, {@link #maximumFrequency(Frequency)} can be used to specify that the
  * receiver only handle the message every so often. {@link Log}s support this feature, so it is possible to easily tag a
@@ -69,11 +69,12 @@ import static com.telenav.kivakit.core.thread.ReentrancyTracker.Reentrancy.REENT
  * @see Frequency
  * @see Severity
  */
+@SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramMessageType.class)
 @UmlExcludeSuperTypes({ Named.class })
 public abstract class OperationMessage implements Named, Message
 {
-    private static NameMap<OperationMessage> messages;
+    private static StringMap<OperationMessage> messages;
 
     private static final ReentrancyTracker reentrancy = new ReentrancyTracker();
 
@@ -127,12 +128,12 @@ public abstract class OperationMessage implements Named, Message
     protected OperationMessage(String message)
     {
         this.message = message;
-        messages().add(this);
+        messages().put(name(), this);
     }
 
     protected OperationMessage()
     {
-        messages().add(this);
+        messages().put(name(), this);
     }
 
     @Override
@@ -169,6 +170,7 @@ public abstract class OperationMessage implements Named, Message
         return cause;
     }
 
+    @Override
     public final OperationMessage cause(Throwable cause)
     {
         this.cause = cause;
@@ -210,7 +212,7 @@ public abstract class OperationMessage implements Named, Message
     }
 
     @Override
-    public boolean equals(final Object object)
+    public boolean equals(Object object)
     {
         if (object instanceof OperationMessage)
         {
@@ -346,12 +348,11 @@ public abstract class OperationMessage implements Named, Message
         new Warning();
     }
 
-    private static NameMap<OperationMessage> messages()
+    private static StringMap<OperationMessage> messages()
     {
         if (messages == null)
         {
-            messages = new NameMap<>();
-            messages.caseSensitive(false);
+            messages = new StringMap<>();
         }
         return messages;
     }

@@ -19,19 +19,19 @@
 package com.telenav.kivakit.core.language.reflection;
 
 import com.telenav.kivakit.core.collections.list.ObjectList;
-import com.telenav.kivakit.core.collections.map.ClassMap;
-import com.telenav.kivakit.core.collections.map.NameMap;
+import com.telenav.kivakit.core.collections.map.ObjectMap;
+import com.telenav.kivakit.core.collections.map.StringMap;
 import com.telenav.kivakit.core.collections.map.VariableMap;
 import com.telenav.kivakit.core.collections.set.ObjectSet;
 import com.telenav.kivakit.core.ensure.Ensure;
+import com.telenav.kivakit.core.internal.lexakai.DiagramReflection;
 import com.telenav.kivakit.core.language.Classes;
+import com.telenav.kivakit.core.language.module.PackageReference;
 import com.telenav.kivakit.core.language.reflection.filters.field.NamedField;
 import com.telenav.kivakit.core.language.reflection.filters.method.NamedMethod;
 import com.telenav.kivakit.core.language.reflection.property.Property;
 import com.telenav.kivakit.core.language.reflection.property.PropertyFilter;
 import com.telenav.kivakit.core.language.reflection.property.PropertyNamingConvention;
-import com.telenav.kivakit.core.language.module.PackageReference;
-import com.telenav.kivakit.core.internal.lexakai.DiagramReflection;
 import com.telenav.kivakit.core.string.Strings;
 import com.telenav.kivakit.interfaces.comparison.Filter;
 import com.telenav.kivakit.interfaces.naming.Named;
@@ -50,7 +50,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
-import java.util.TreeMap;
 import java.util.stream.Collectors;
 
 import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
@@ -61,14 +60,15 @@ import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
  *
  * @author jonathanl (shibo)
  */
+@SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramReflection.class)
 public class Type<T> implements Named
 {
-    private static final ClassMap<Type<?>> types = new ClassMap<>()
+    private static final ObjectMap<Class<?>, Type<?>> types = new ObjectMap<>()
     {
         @SuppressWarnings({ "rawtypes", "unchecked" })
         @Override
-        protected Type<?> onInitialize(Class<?> key)
+        protected Type<?> onCreateValue(Class<?> key)
         {
             return new Type(key);
         }
@@ -104,7 +104,7 @@ public class Type<T> implements Named
     private Boolean hasToString;
 
     /** Properties stored by name */
-    private final Map<PropertyFilter, NameMap<Property>> propertiesForFilter = new IdentityHashMap<>();
+    private final Map<PropertyFilter, Map<String, Property>> propertiesForFilter = new IdentityHashMap<>();
 
     private final Class<T> type;
 
@@ -344,14 +344,14 @@ public class Type<T> implements Named
         if (properties == null)
         {
             // create a new set of properties
-            properties = new NameMap<>(new TreeMap<>());
+            properties = new StringMap<>();
 
             // and add a property getter/setter for each declared field in this type and all super classes
             for (var field : allFields())
             {
                 if (filter.includeField(field))
                 {
-                    properties.add(new Property(filter.nameForField(field), new FieldGetter(field), new FieldSetter(field)));
+                    properties.put(filter.nameForField(field), new Property(filter.nameForField(field), new FieldGetter(field), new FieldSetter(field)));
                 }
             }
 
@@ -373,7 +373,7 @@ public class Type<T> implements Named
                     var property = properties.get(name);
                     if (property == null)
                     {
-                        properties.add(new Property(name, new MethodGetter(method), null));
+                        properties.put(name, new Property(name, new MethodGetter(method), null));
                     }
                     else
                     {
@@ -387,7 +387,7 @@ public class Type<T> implements Named
                     var property = properties.get(name);
                     if (property == null)
                     {
-                        properties.add(new Property(name, null, new MethodSetter(method)));
+                        properties.put(name, new Property(name, null, new MethodSetter(method)));
                     }
                     else
                     {

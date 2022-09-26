@@ -43,13 +43,16 @@ import java.util.List;
 import java.util.ListIterator;
 import java.util.Random;
 import java.util.RandomAccess;
+import java.util.Spliterator;
 import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.function.UnaryOperator;
+import java.util.stream.Stream;
 
 import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_DEFAULT_EXPANDABLE;
 import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.TestingQuality.MORE_TESTING_NEEDED;
+import static com.telenav.kivakit.core.collections.list.ObjectList.objectList;
 
 /**
  * A base class for bounded lists which adds convenient methods as well as support for various KivaKit interfaces:
@@ -540,6 +543,15 @@ public abstract class BaseList<Value> extends BaseCollection<Value> implements
     }
 
     /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Stream<Value> parallelStream()
+    {
+        return list.parallelStream();
+    }
+
+    /**
      * @return The last value in this list, after removing it
      */
     public Value pop()
@@ -554,6 +566,15 @@ public abstract class BaseList<Value> extends BaseCollection<Value> implements
     public Value remove(int index)
     {
         return list.remove(index);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public boolean removeIf(Predicate<? super Value> filter)
+    {
+        return list.removeIf(filter);
     }
 
     /**
@@ -643,9 +664,27 @@ public abstract class BaseList<Value> extends BaseCollection<Value> implements
      * {@inheritDoc}
      */
     @Override
-    public List<Value> subList(int fromIndex, int toIndex)
+    public Spliterator<Value> spliterator()
     {
-        return list.subList(fromIndex, toIndex);
+        return list.spliterator();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Stream<Value> stream()
+    {
+        return list.stream();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public ObjectList<Value> subList(int fromIndex, int toIndex)
+    {
+        return objectList(list.subList(fromIndex, toIndex));
     }
 
     /**
