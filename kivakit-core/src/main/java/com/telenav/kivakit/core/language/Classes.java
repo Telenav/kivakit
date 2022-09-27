@@ -18,6 +18,7 @@
 
 package com.telenav.kivakit.core.language;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.string.Paths;
 
 import java.io.InputStream;
@@ -26,16 +27,58 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_STATIC_EXPANDABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
 import static com.telenav.kivakit.core.ensure.Ensure.ensure;
 
 /**
  * Class utility methods
  *
+ * <p><b>Classes</b></p>
+ *
+ * <ul>
+ *     <li>{@link #loadClass(ClassLoader, String)}</li>
+ *     <li>{@link #classForName(String)}</li>
+ *     <li>{@link #constructor(Class, Class[])}</li>
+ *     <li>{@link #newInstance(Class, Object...)}</li>
+ *     <li>{@link #simpleName(Class)}</li>
+ * </ul>>
+ *
+ * <p><b>Resources</b></p>
+ *
+ * <ul>
+ *      <li>{@link #openResource(Class, String)}</li>
+ *      <li>{@link #resourceUri(Class, String)}</li>
+ *      <li>{@link #resourceUrl(Class, String)}</li>
+ * </ul>
+ *
  * @author jonathanl (shibo)
  */
-@SuppressWarnings("unchecked")
+@SuppressWarnings({ "unchecked", "unused" })
+@ApiQuality(stability = STABLE_STATIC_EXPANDABLE,
+            testing = UNTESTED,
+            documentation = FULLY_DOCUMENTED)
 public class Classes
 {
+    /**
+     * Gets the named class by loading it.
+     */
+    public static <T> Class<T> classForName(String name)
+    {
+        try
+        {
+            return (Class<T>) Class.forName(name);
+        }
+        catch (Exception e)
+        {
+            return null;
+        }
+    }
+
+    /**
+     * Gets the constructor for the given type with the given arguments
+     */
     public static <T> Constructor<T> constructor(Class<T> type, Class<?>... arguments)
     {
         try
@@ -48,25 +91,16 @@ public class Classes
         }
     }
 
-    public static <T> Class<T> forName(ClassLoader loader, String name)
+    /**
+     * Gets the named class by loading it.
+     */
+    public static <T> Class<T> loadClass(ClassLoader loader, String name)
     {
         try
         {
             return (Class<T>) loader.loadClass(name);
         }
         catch (ClassNotFoundException e)
-        {
-            return null;
-        }
-    }
-
-    public static <T> Class<T> forName(String name)
-    {
-        try
-        {
-            return (Class<T>) Class.forName(name);
-        }
-        catch (Exception e)
         {
             return null;
         }
@@ -101,7 +135,7 @@ public class Classes
                 var argumentIndex = index * 2;
 
                 ensure(arguments[argumentIndex] instanceof Class);
-                
+
                 types[index] = (Class<?>) arguments[argumentIndex];
                 values[index] = arguments[argumentIndex + 1];
             }
@@ -116,6 +150,9 @@ public class Classes
         }
     }
 
+    /**
+     * Returns an open input stream to the resource at the given path relative to the base class
+     */
     public static InputStream openResource(Class<?> base, String path)
     {
         var in = base.getResourceAsStream(path);
@@ -142,6 +179,9 @@ public class Classes
         return in;
     }
 
+    /**
+     * Returns The URI to the resource at the given path relative to the base class
+     */
     public static URI resourceUri(Class<?> base, String path)
     {
         try
@@ -154,6 +194,9 @@ public class Classes
         }
     }
 
+    /**
+     * Returns The URL to the resource at the given path relative to the base class
+     */
     public static URL resourceUrl(Class<?> base, String path)
     {
         var resource = base.getResource(path);
@@ -172,6 +215,9 @@ public class Classes
         return resource;
     }
 
+    /**
+     * Returns the simple name for the given type
+     */
     public static String simpleName(Class<?> type)
     {
         if (type != null)
@@ -185,6 +231,9 @@ public class Classes
         return "Unknown";
     }
 
+    /**
+     * Returns the simple name of the top-level class (without any anonymous / nested classes)
+     */
     public static String simpleTopLevelClass(Class<?> type)
     {
         var name = Paths.optionalSuffix(type.getName(), '.');

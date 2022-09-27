@@ -72,7 +72,7 @@ public class PropertiesObjectSerializer implements ObjectSerializer
                     typeName = properties.get("type");
                 }
                 ensureNotNull(typeName, "Cannot find 'class' or 'type' property in: $", path);
-                type = ensureNotNull(Classes.forName(typeName), "Unable to load class $, specified in $", typeName, path);
+                type = ensureNotNull(Classes.classForName(typeName), "Unable to load class $, specified in $", typeName, path);
             }
 
             // Next, read any version

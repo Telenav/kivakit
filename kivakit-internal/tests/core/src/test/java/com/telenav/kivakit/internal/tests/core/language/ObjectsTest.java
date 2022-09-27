@@ -28,20 +28,20 @@ public class ObjectsTest extends CoreUnitTest
     @Test
     public void testEquals()
     {
-        ensure(Objects.equal(1, 1));
-        ensure(Objects.equal(1, 1));
-        ensureFalse(Objects.equal(1, 1.0));
-        ensure(Objects.equal(null, null));
-        ensureFalse(Objects.equal(1, null));
-        ensureFalse(Objects.equal(null, 1));
-        ensureFalse(Objects.equal(1, ""));
+        ensure(Objects.isEqual(1, 1));
+        ensure(Objects.isEqual(1, 1));
+        ensureFalse(Objects.isEqual(1, 1.0));
+        ensure(Objects.isEqual(null, null));
+        ensureFalse(Objects.isEqual(1, null));
+        ensureFalse(Objects.isEqual(null, 1));
+        ensureFalse(Objects.isEqual(1, ""));
     }
 
     @Test
     public void testHashCode()
     {
-        ensureEqual(Hash.many(1, 2, 3), Hash.many(1, 2, 3));
-        ensureNotEqual(Hash.many(1, 2, 3), Hash.many(3, 2, 1));
+        ensureEqual(Hash.hashMany(1, 2, 3), Hash.hashMany(1, 2, 3));
+        ensureNotEqual(Hash.hashMany(1, 2, 3), Hash.hashMany(3, 2, 1));
     }
 
     @Test

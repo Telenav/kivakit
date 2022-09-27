@@ -78,7 +78,7 @@ public class Switch extends Argument implements Named
     @Override
     public int hashCode()
     {
-        return Hash.many(name());
+        return Hash.hashMany(name());
     }
 
     /**

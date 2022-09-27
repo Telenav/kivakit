@@ -83,7 +83,7 @@ public class Locale
         if (object instanceof Locale)
         {
             var that = (Locale) object;
-            return Objects.equal(language, that.language);
+            return Objects.isEqual(language, that.language);
         }
         return false;
     }

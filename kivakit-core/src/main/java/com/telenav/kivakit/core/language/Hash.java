@@ -18,20 +18,27 @@
 
 package com.telenav.kivakit.core.language;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramObject;
-import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.Arrays;
 import java.util.Iterator;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_STATIC_EXPANDABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.MORE_DOCUMENTATION_NEEDED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
+
 /**
- * Hashing utility methods
+ * Various convenience methods for computing different kinds of hash codes.
  *
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramObject.class)
-@LexakaiJavadoc(complete = true)
+@ApiQuality(stability = STABLE_STATIC_EXPANDABLE,
+            testing = UNTESTED,
+            documentation = FULLY_DOCUMENTED)
 public class Hash
 {
     /**
@@ -39,14 +46,18 @@ public class Hash
      */
     public static final int SEED = 536870909;
 
+    /** Seed for Knuth hashing */
     public static final long KNUTH_SEED = 2654435761L;
 
-    public static int code(byte[] a)
+    public static int hashCode(byte[] a)
     {
-        return code(a, 0, a.length);
+        return hashCode(a, 0, a.length);
     }
 
-    public static int code(byte[] a, int start, int end)
+    /**
+     * Returns a hash code for the given range of the given array
+     */
+    public static int hashCode(byte[] a, int start, int end)
     {
         if (a == null)
         {
@@ -63,7 +74,10 @@ public class Hash
         return result;
     }
 
-    public static int code(char[] a, int start, int end)
+    /**
+     * Returns a hash code for the given range of the given array
+     */
+    public static int hashCode(char[] a, int start, int end)
     {
         if (a == null)
         {
@@ -80,12 +94,18 @@ public class Hash
         return result;
     }
 
-    public static int code(int[] a)
+    /**
+     * Returns a hash code for the given int array
+     */
+    public static int hashCode(int[] a)
     {
-        return code(a, 0, a.length);
+        return hashCode(a, 0, a.length);
     }
 
-    public static int code(int[] a, int start, int end)
+    /**
+     * Returns a hash code for the given range of the given array
+     */
+    public static int hashCode(int[] a, int start, int end)
     {
         if (a == null)
         {
@@ -102,7 +122,10 @@ public class Hash
         return result;
     }
 
-    public static int code(Object object)
+    /**
+     * Returns a hash code for the given object, allowing support for array types
+     */
+    public static int hashCode(Object object)
     {
         if (object instanceof boolean[])
         {
@@ -143,7 +166,10 @@ public class Hash
         return object != null ? object.hashCode() : 0;
     }
 
-    public static int code(Iterator<Object> objects)
+    /**
+     * Returns a hash code for the given iterator
+     */
+    public static int hashCode(Iterator<Object> objects)
     {
         var hashCode = 1;
         while (objects.hasNext())
@@ -151,23 +177,32 @@ public class Hash
             var object = objects.next();
             if (object != null)
             {
-                hashCode = hashCode * SEED + code(object);
+                hashCode = hashCode * SEED + hashCode(object);
             }
         }
         return hashCode;
     }
 
-    public static int code(long[] a)
+    /**
+     * Returns a hash code for the given long array
+     */
+    public static int hashCode(long[] a)
     {
-        return code(a, 0, a.length);
+        return hashCode(a, 0, a.length);
     }
 
-    public static int code(long value)
+    /**
+     * Returns a hash code for the given long value
+     */
+    public static int hashCode(long value)
     {
         return (int) (value ^ (value >>> 32));
     }
 
-    public static int code(long[] a, int start, int end)
+    /**
+     * Returns a hash code for the given range of the given array
+     */
+    public static int hashCode(long[] a, int start, int end)
     {
         if (a == null)
         {
@@ -184,26 +219,35 @@ public class Hash
         return result;
     }
 
-    public static int identity(Object object)
+    /**
+     * Returns a hash code for the given variable number of objects
+     */
+    public static int hashMany(Object... objects)
+    {
+        return Arrays.hashCode(objects);
+    }
+
+    /**
+     * Returns the identity hash of the given object
+     */
+    public static int identityHash(Object object)
     {
         return System.identityHashCode(object);
     }
 
-    public static int knuth(int value)
+    /**
+     * Returns a Knuth hash for the given value
+     */
+    public static int knuthHash(int value)
     {
         return (int) Math.abs(value * KNUTH_SEED);
     }
 
-    public static int knuth(long value)
-    {
-        return Math.abs(knuth((int) value) ^ knuth((int) (value >>> 32)));
-    }
-
     /**
-     * Warning...
+     * Returns a Knuth hash for the given value
      */
-    public static int many(Object... objects)
+    public static int knuthHash(long value)
     {
-        return Arrays.hashCode(objects);
+        return Math.abs(knuthHash((int) value) ^ knuthHash((int) (value >>> 32)));
     }
 }

@@ -210,7 +210,7 @@ public class Port implements AsString
     @Override
     public int hashCode()
     {
-        return Hash.many(port, host);
+        return Hash.hashMany(port, host);
     }
 
     /**

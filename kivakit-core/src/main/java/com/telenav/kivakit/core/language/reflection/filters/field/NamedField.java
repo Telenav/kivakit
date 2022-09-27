@@ -53,7 +53,7 @@ public class NamedField extends AllFields
     @Override
     public int hashCode()
     {
-        return Hash.many(name);
+        return Hash.hashMany(name);
     }
 
     @Override

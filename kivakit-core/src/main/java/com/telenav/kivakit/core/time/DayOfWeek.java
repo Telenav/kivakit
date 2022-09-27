@@ -177,7 +177,7 @@ public class DayOfWeek extends BaseTime<DayOfWeek>
     @Override
     public int hashCode()
     {
-        return Hash.code(asIsoOrdinal());
+        return Hash.hashCode(asIsoOrdinal());
     }
 
     @Override

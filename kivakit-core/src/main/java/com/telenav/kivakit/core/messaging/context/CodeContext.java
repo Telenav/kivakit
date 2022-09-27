@@ -102,7 +102,7 @@ public class CodeContext
     {
         if (type == null)
         {
-            type = Classes.forName(fullTypeName);
+            type = Classes.classForName(fullTypeName);
         }
         return type;
     }

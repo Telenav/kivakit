@@ -98,6 +98,23 @@ public class Strings
     }
 
     /**
+     * Returns true if the two strings are equal, ignoring case
+     */
+    @SuppressWarnings("StringEquality")
+    public static boolean equalIgnoringCase(String a, String b)
+    {
+        if (a == b)
+        {
+            return true;
+        }
+        if (a != null && b != null)
+        {
+            return a.equalsIgnoreCase(b);
+        }
+        return false;
+    }
+
+    /**
      * Avoids null pointer issues when comparing the two string arguments
      *
      * @return True if the strings are equal

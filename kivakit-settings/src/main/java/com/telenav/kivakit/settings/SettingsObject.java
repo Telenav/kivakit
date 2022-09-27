@@ -111,7 +111,7 @@ public class SettingsObject implements RegistryTrait
         @Override
         public int hashCode()
         {
-            return Hash.many(type, instance);
+            return Hash.hashMany(type, instance);
         }
 
         /**
@@ -183,7 +183,7 @@ public class SettingsObject implements RegistryTrait
     @Override
     public int hashCode()
     {
-        return Hash.identity(object);
+        return Hash.identityHash(object);
     }
 
     public Identifier identifier()

@@ -44,7 +44,7 @@ public class SerializableObject<T> extends VersionedObject<T>
             if (object instanceof SerializableObject)
             {
                 var that = (SerializableObject<?>) object;
-                return Objects.equalPairs(this.instance, that.instance);
+                return Objects.areEqualPairs(this.instance, that.instance);
             }
         }
         return false;
@@ -53,7 +53,7 @@ public class SerializableObject<T> extends VersionedObject<T>
     @Override
     public int hashCode()
     {
-        return Hash.many(super.hashCode(), this.instance);
+        return Hash.hashMany(super.hashCode(), this.instance);
     }
 
     public InstanceIdentifier instance()

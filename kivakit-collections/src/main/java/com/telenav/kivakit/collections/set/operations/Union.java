@@ -85,7 +85,7 @@ public class Union<T> extends LogicalSet<T>
     @Override
     public int hashCode()
     {
-        return Hash.many(larger, smaller);
+        return Hash.hashMany(larger, smaller);
     }
 
     @Override

@@ -110,7 +110,7 @@ public class Field extends Member
     @Override
     public int hashCode()
     {
-        return Hash.many(System.identityHashCode(object), field);
+        return Hash.hashMany(System.identityHashCode(object), field);
     }
 
     public boolean isPrimitive()

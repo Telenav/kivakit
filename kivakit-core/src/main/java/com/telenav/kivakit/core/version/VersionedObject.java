@@ -53,7 +53,7 @@ public class VersionedObject<T> implements
         if (object instanceof VersionedObject)
         {
             var that = (VersionedObject<?>) object;
-            return Objects.equalPairs(this.object, that.object, this.version, that.version);
+            return Objects.areEqualPairs(this.object, that.object, this.version, that.version);
         }
         return false;
     }
@@ -61,7 +61,7 @@ public class VersionedObject<T> implements
     @Override
     public int hashCode()
     {
-        return Hash.many(this.object, this.version);
+        return Hash.hashMany(this.object, this.version);
     }
 
     /**

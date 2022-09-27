@@ -108,7 +108,7 @@ public class LogEntry implements Triaged
     public String format(LogFormatter formatter, Formatter.Format format)
     {
         assert context != null;
-        if (formattedEntry != null && Objects.equal(formatter, lastFormatter))
+        if (formattedEntry != null && Objects.isEqual(formatter, lastFormatter))
         {
             return formattedEntry;
         }

@@ -125,7 +125,7 @@ public class Property implements Named, Comparable<Property>
     @Override
     public int hashCode()
     {
-        return Hash.many(name);
+        return Hash.hashMany(name);
     }
 
     public boolean isNull(Object object)

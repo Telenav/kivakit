@@ -198,7 +198,7 @@ public class PackageResource extends BaseReadableResource
         if (object instanceof PackageResource)
         {
             var that = (PackageResource) object;
-            return Objects.equalPairs(packagePath, that.packagePath, name, that.name);
+            return Objects.areEqualPairs(packagePath, that.packagePath, name, that.name);
         }
         return false;
     }
@@ -213,7 +213,7 @@ public class PackageResource extends BaseReadableResource
     @Override
     public int hashCode()
     {
-        return Hash.many(packagePath, name);
+        return Hash.hashMany(packagePath, name);
     }
 
     @Override

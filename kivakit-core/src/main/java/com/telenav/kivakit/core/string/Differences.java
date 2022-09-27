@@ -87,7 +87,7 @@ public class Differences implements Sized
      */
     public <T> boolean compare(String description, T a, T b)
     {
-        if (!Objects.equal(a, b))
+        if (!Objects.isEqual(a, b))
         {
             add(description + " (" + a + " vs " + b + ")");
             return false;

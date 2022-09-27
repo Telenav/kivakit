@@ -213,7 +213,7 @@ public abstract class Path<Element extends Comparable<Element>> implements
         if (object instanceof Path)
         {
             var that = (Path<Element>) object;
-            return Objects.equalPairs(root, that.root, elements, that.elements);
+            return Objects.areEqualPairs(root, that.root, elements, that.elements);
         }
         return false;
     }
@@ -254,7 +254,7 @@ public abstract class Path<Element extends Comparable<Element>> implements
     @Override
     public int hashCode()
     {
-        return Hash.many(root, elements);
+        return Hash.hashMany(root, elements);
     }
 
     /**

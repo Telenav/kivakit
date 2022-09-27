@@ -140,7 +140,7 @@ public class GsonObjectSerializer implements
             var typeMatcher = TYPE_PATTERN.matcher(json);
             if (typeMatcher.find())
             {
-                type = Classes.forName(typeMatcher.group("type"));
+                type = Classes.classForName(typeMatcher.group("type"));
             }
         }
 

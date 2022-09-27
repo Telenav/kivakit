@@ -91,7 +91,7 @@ public class HourOfWeekSpan
         if (object instanceof HourOfWeekSpan)
         {
             HourOfWeekSpan that = (HourOfWeekSpan) object;
-            return Objects.equalPairs(startHourOfWeek(), that.startHourOfWeek(),
+            return Objects.areEqualPairs(startHourOfWeek(), that.startHourOfWeek(),
                     endHourOfWeek(), that.endHourOfWeek());
         }
         return false;
@@ -100,7 +100,7 @@ public class HourOfWeekSpan
     @Override
     public int hashCode()
     {
-        return Hash.many(startHourOfWeek(), endHourOfWeek());
+        return Hash.hashMany(startHourOfWeek(), endHourOfWeek());
     }
 
     /**

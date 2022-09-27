@@ -217,7 +217,7 @@ public abstract class OperationMessage implements Named, Message
         if (object instanceof OperationMessage)
         {
             var that = (OperationMessage) object;
-            return Objects.equalPairs(this.getClass(), that.getClass(),
+            return Objects.areEqualPairs(this.getClass(), that.getClass(),
                     this.created, that.created,
                     this.message, that.message,
                     this.stackTrace, that.stackTrace) && Arrays.equals(this.arguments, that.arguments);
@@ -263,7 +263,7 @@ public abstract class OperationMessage implements Named, Message
     @Override
     public int hashCode()
     {
-        return Hash.many(getClass(), created, message, stackTrace, Arrays.hashCode(arguments));
+        return Hash.hashMany(getClass(), created, message, stackTrace, Arrays.hashCode(arguments));
     }
 
     @Override

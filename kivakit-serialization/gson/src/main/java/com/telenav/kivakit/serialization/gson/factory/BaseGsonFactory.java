@@ -151,7 +151,7 @@ public abstract class BaseGsonFactory extends BaseRepeater implements GsonFactor
             if (object instanceof GsonSettings)
             {
                 GsonSettings that = (GsonSettings) object;
-                return Objects.equalPairs(
+                return Objects.areEqualPairs(
                         typeAdapterFactories, that.typeAdapterFactories,
                         serializers, that.serializers,
                         deserializers, that.deserializers,
@@ -171,7 +171,7 @@ public abstract class BaseGsonFactory extends BaseRepeater implements GsonFactor
         @Override
         public int hashCode()
         {
-            return Hash.many(
+            return Hash.hashMany(
                     typeAdapterFactories,
                     serializers,
                     deserializers,

@@ -75,7 +75,7 @@ class KryoTypeEntry
     @Override
     public int hashCode()
     {
-        return Hash.many(type, identifier);
+        return Hash.hashMany(type, identifier);
     }
 
     @Override

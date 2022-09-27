@@ -205,8 +205,8 @@ public class NetworkLocation implements StringFormattable, Comparable<NetworkLoc
         {
             var that = (NetworkLocation) object;
             return port.equals(that.port) && networkPath.equals(that.networkPath)
-                    && Objects.equal(queryParameters, that.queryParameters)
-                    && Objects.equal(reference, that.reference);
+                    && Objects.isEqual(queryParameters, that.queryParameters)
+                    && Objects.isEqual(reference, that.reference);
         }
         return false;
     }
@@ -214,7 +214,7 @@ public class NetworkLocation implements StringFormattable, Comparable<NetworkLoc
     @Override
     public int hashCode()
     {
-        return Hash.many(port, networkPath, queryParameters, reference);
+        return Hash.hashMany(port, networkPath, queryParameters, reference);
     }
 
     @KivaKitIncludeProperty

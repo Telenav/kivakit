@@ -604,6 +604,6 @@ public class RandomValueFactory implements RandomNumeric
     {
         // NOTE: this code comes from java.util.Random, since it does not expose the way it creates
         // seed values
-        return Hash.knuth(++SALT + System.nanoTime());
+        return Hash.knuthHash(++SALT + System.nanoTime());
     }
 }

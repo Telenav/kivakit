@@ -18,16 +18,29 @@
 
 package com.telenav.kivakit.core.language;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramPrimitive;
 import com.telenav.kivakit.interfaces.value.LongValued;
-import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.lang.reflect.Array;
 import java.util.Collection;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_STATIC_EXPANDABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
+
 /**
  * Utility methods for working with arrays.
+ *
+ * <p><b>Creation</b></p>
+ *
+ * <ul>
+ *     <li>{@link #intArray(Collection)}</li>
+ *     <li>{@link #longArray(Collection)}</li>
+ * </ul>
+ *
+ * <p><b>Ordering</b></p>
  *
  * <ul>
  *     <li>{@link #reverse(int[])}</li>
@@ -38,7 +51,9 @@ import java.util.Collection;
  * @author jonathanl (shibo)
  */
 @SuppressWarnings("unused") @UmlClassDiagram(diagram = DiagramPrimitive.class)
-@LexakaiJavadoc(complete = true)
+@ApiQuality(stability = STABLE_STATIC_EXPANDABLE,
+            testing = UNTESTED,
+            documentation = FULLY_DOCUMENTED)
 public class Arrays
 {
     /**
@@ -54,16 +69,22 @@ public class Arrays
         return builder.toString();
     }
 
-    public static <T> T[] concatenate(T[] a, T[] b)
+    /**
+     * Returns the concatenation of the two given arrays, as an array.
+     */
+    public static <Value> Value[] concatenate(Value[] a, Value[] b)
     {
         @SuppressWarnings("unchecked")
-        T[] concatenated = (T[]) Array.newInstance(a.getClass().getComponentType(), a.length + b.length);
+        Value[] concatenated = (Value[]) Array.newInstance(a.getClass().getComponentType(), a.length + b.length);
         System.arraycopy(a, 0, concatenated, 0, a.length);
         System.arraycopy(b, 0, concatenated, a.length, b.length);
         return concatenated;
     }
 
-    public static <T> boolean contains(T[] array, T object)
+    /**
+     * Returns true if the given array contains the given object
+     */
+    public static <Value> boolean contains(Value[] array, Value object)
     {
         for (var at : array)
         {
@@ -75,6 +96,9 @@ public class Arrays
         return false;
     }
 
+    /**
+     * Creates an int[] for the given {@link LongValued} collections
+     */
     static int[] intArray(Collection<? extends LongValued> values)
     {
         var array = new int[values.size()];
@@ -86,6 +110,9 @@ public class Arrays
         return array;
     }
 
+    /**
+     * Creates a long[] for the given {@link LongValued} collections
+     */
     static long[] longArray(Collection<? extends LongValued> values)
     {
         var array = new long[values.size()];

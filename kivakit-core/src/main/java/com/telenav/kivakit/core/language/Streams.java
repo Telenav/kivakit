@@ -18,6 +18,7 @@
 
 package com.telenav.kivakit.core.language;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramLanguage;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
@@ -25,25 +26,49 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 import java.util.stream.Stream;
 import java.util.stream.StreamSupport;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE;
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_STATIC_EXPANDABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_REQUIRED;
+
 /**
  * Simple utility methods that hide the mechanics of Java's stream support and spliterator.
+ *
+ * <p><b>Streams</b></p>
+ *
+ * <ul>
+ *     <li>{@link #stream(Iterable)}</li>
+ *     <li>{@link #parallelStream(Iterable)}</li>
+ *     <li>{@link #stream(Processing, Iterable)}</li>
+ * </ul>
  *
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramLanguage.class)
-@LexakaiJavadoc(complete = true)
+@ApiQuality(stability = STABLE_STATIC_EXPANDABLE,
+            testing = TESTING_NOT_REQUIRED,
+            documentation = FULLY_DOCUMENTED)
 public class Streams
 {
+    /**
+     * Returns a parallel stream for an iterable
+     */
     public static <T> Stream<T> parallelStream(Iterable<T> iterable)
     {
         return StreamSupport.stream(iterable.spliterator(), true);
     }
 
+    /**
+     * Re3turns a stream for an iterable
+     */
     public static <T> Stream<T> stream(Iterable<T> iterable)
     {
         return StreamSupport.stream(iterable.spliterator(), false);
     }
 
+    /**
+     * Returns a parallel or sequential stream for the given iterable
+     */
     public static <T> Stream<T> stream(Processing processing, Iterable<T> iterable)
     {
         switch (processing)
