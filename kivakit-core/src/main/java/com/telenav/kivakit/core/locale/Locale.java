@@ -18,6 +18,7 @@
 
 package com.telenav.kivakit.core.locale;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.collections.list.ObjectList;
 import com.telenav.kivakit.core.internal.lexakai.DiagramLocale;
 import com.telenav.kivakit.core.language.Objects;
@@ -28,42 +29,42 @@ import com.telenav.lexakai.annotations.associations.UmlAggregation;
 
 import java.util.Collection;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXPANDABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
 import static com.telenav.kivakit.core.collections.list.ObjectList.objectList;
 
 /**
- * A locale constructed from a {@link LocaleLanguage} and an optional {@link LocaleCountry}. Provides a unique path to
- * localized resources for this locale with {@link #path(String)}.
+ * A locale constructed from a {@link LocaleLanguage} and an optional {@link LocaleRegion}. Provides a unique path to
+ * localized resources for this locale with {@link #path(LocaleLanguage)}.
  *
  * @author jonathanl (shibo)
  */
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramLocale.class)
+@ApiQuality(stability = STABLE_EXPANDABLE,
+            testing = UNTESTED,
+            documentation = FULLY_DOCUMENTED)
 public class Locale
 {
-    /** The country for the locale, which might increase specificity, for example, US and Australian English. */
+    /** The region for the locale, which might increase specificity, for example, US and Australian English. */
     @UmlAggregation
-    private final LocaleCountry country;
+    private final LocaleRegion region;
 
     /** ISO codes for the languages spoken in this locale */
     @UmlAggregation
     private final ObjectList<LocaleLanguage> languages;
 
     /**
-     * @param country The country
+     * Constructs a locale for a given region with a collection of languages. The first language in the collection is
+     * considered the "primary" language for the locale
+     *
+     * @param region The region
      * @param languages The languages spoken in this locale
      */
-    public Locale(LocaleCountry country, Collection<LocaleLanguage> languages)
+    public Locale(LocaleRegion region, Collection<LocaleLanguage> languages)
     {
-        this.country = country;
-        this.languages = objectList(languages);
-    }
-
-    /**
-     * @param languages The language for this locale throughout the world, for example, World English
-     */
-    public Locale(Collection<LocaleLanguage> languages)
-    {
-        this.country = null;
+        this.region = region;
         this.languages = objectList(languages);
     }
 
@@ -73,17 +74,9 @@ public class Locale
      */
     public java.util.Locale asJavaLocale(String name)
     {
-        return country == null
+        return region == null
                 ? new java.util.Locale(language(name).iso3Code())
-                : new java.util.Locale(language(name).iso3Code(), country.alpha2Code());
-    }
-
-    /**
-     * @return Any country for this locale, or null if the locale is relevant to the whole world
-     */
-    public LocaleCountry country()
-    {
-        return country;
+                : new java.util.Locale(language(name).iso3Code(), region.alpha2Code());
     }
 
     /**
@@ -114,7 +107,7 @@ public class Locale
      */
     public boolean isWorld()
     {
-        return country == null;
+        return region == LocaleRegion.WORLD;
     }
 
     /**
@@ -144,22 +137,38 @@ public class Locale
     }
 
     /**
-     * Produces a path of the form "locales/[language-name](/[country-name])?. This path can be used when loading
+     * Produces a path of the form "locales/[language-name](/[region-name])?. This path can be used when loading
      * localized resources.
      *
-     * @param name The name of the language
+     * @param language The name of the language
      * @return A relative path of the given type for this locale
      */
-    public StringPath path(String name)
+    public StringPath path(LocaleLanguage language)
     {
-        return country == null
-                ? StringPath.stringPath("locales", name)
-                : StringPath.stringPath("locales", name, country.name());
+        return region == null
+                ? StringPath.stringPath("locales", language.name())
+                : StringPath.stringPath("locales", language.name(), region.name());
+    }
+
+    /**
+     * Returns the primary language for this locale
+     */
+    public LocaleLanguage primaryLanguage()
+    {
+        return languages.get(0);
+    }
+
+    /**
+     * @return Any region for this locale, or null if the locale is relevant to the whole world
+     */
+    public LocaleRegion region()
+    {
+        return region;
     }
 
     @Override
     public String toString()
     {
-        return "[country = " + StringTo.nonNullString(country.name()) + ": " + languages().join(", ") + "]";
+        return "[region = " + StringTo.nonNullString(region.name()) + ": " + languages().join(", ") + "]";
     }
 }

@@ -24,7 +24,7 @@ import com.telenav.kivakit.core.messaging.Broadcaster;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.messaging.Message;
 import com.telenav.kivakit.core.internal.lexakai.DiagramListenerType;
-import com.telenav.kivakit.core.string.Formatter;
+import com.telenav.kivakit.core.messaging.MessageFormat;
 import com.telenav.kivakit.core.value.count.Count;
 import com.telenav.kivakit.core.value.count.Maximum;
 import com.telenav.kivakit.interfaces.comparison.Filter;
@@ -172,7 +172,7 @@ public class MessageList extends ObjectList<Message> implements MessageCounter
         var messages = new StringList(maximumSize());
         for (var message : this)
         {
-            messages.add(message.formatted(Formatter.Format.WITH_EXCEPTION));
+            messages.add(message.formatted(MessageFormat.WITH_EXCEPTION));
         }
         return messages;
     }

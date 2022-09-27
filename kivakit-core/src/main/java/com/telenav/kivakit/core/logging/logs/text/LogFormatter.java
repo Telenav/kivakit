@@ -18,10 +18,15 @@
 
 package com.telenav.kivakit.core.logging.logs.text;
 
-import com.telenav.kivakit.core.logging.LogEntry;
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramLogs;
-import com.telenav.kivakit.core.string.Formatter;
+import com.telenav.kivakit.core.logging.LogEntry;
+import com.telenav.kivakit.core.messaging.MessageFormat;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
+
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
 
 /**
  * Something that formats log entries in a text log
@@ -29,7 +34,17 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramLogs.class)
+@ApiQuality(stability = STABLE,
+            testing = TESTING_NOT_NEEDED,
+            documentation = FULLY_DOCUMENTED)
 public interface LogFormatter
 {
-    String format(LogEntry entry, Formatter.Format format);
+    /**
+     * Formats a log entry in the given format
+     *
+     * @param entry The log entry to format
+     * @param formats The format to use (formatted or un-formatted, and with or without an exception)
+     * @return The formatted text
+     */
+    String format(LogEntry entry, MessageFormat... formats);
 }

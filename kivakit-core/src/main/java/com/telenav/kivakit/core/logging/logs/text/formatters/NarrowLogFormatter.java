@@ -20,7 +20,7 @@ package com.telenav.kivakit.core.logging.logs.text.formatters;
 
 import com.telenav.kivakit.core.internal.lexakai.DiagramLogs;
 import com.telenav.kivakit.core.logging.LogEntry;
-import com.telenav.kivakit.core.string.Formatter;
+import com.telenav.kivakit.core.messaging.MessageFormat;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 /**
@@ -40,7 +40,7 @@ public class NarrowLogFormatter extends BaseColumnarFormatter
 
     private final Column typeColumn = new Column(4, 4, Layout.CLIP_RIGHT);
 
-    public String format(LogEntry entry, Formatter.Format format)
+    public String format(LogEntry entry, MessageFormat... formats)
     {
         // Create line output
         var line = new LineOutput();
@@ -48,7 +48,7 @@ public class NarrowLogFormatter extends BaseColumnarFormatter
         // Add each column and its content
         line.add(contextColumn, entry.context().typeName());
         line.add(typeColumn, entry.messageType());
-        line.add(messageColumn, entry.formattedMessage(format));
+        line.add(messageColumn, entry.formattedMessage(formats));
 
         // Return the formatted line
         return line.format();

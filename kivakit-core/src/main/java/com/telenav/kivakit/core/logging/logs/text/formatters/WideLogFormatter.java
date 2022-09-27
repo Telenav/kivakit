@@ -18,11 +18,11 @@
 
 package com.telenav.kivakit.core.logging.logs.text.formatters;
 
-import com.telenav.kivakit.core.logging.LogEntry;
 import com.telenav.kivakit.core.internal.lexakai.DiagramLogs;
-import com.telenav.kivakit.core.string.Formatter;
-import com.telenav.kivakit.interfaces.string.StringFormattable;
+import com.telenav.kivakit.core.logging.LogEntry;
+import com.telenav.kivakit.core.messaging.MessageFormat;
 import com.telenav.kivakit.core.time.Time;
+import com.telenav.kivakit.interfaces.string.StringFormattable;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 /**
@@ -36,13 +36,13 @@ public class WideLogFormatter extends BaseColumnarFormatter
 {
     public static final WideLogFormatter INSTANCE = new WideLogFormatter();
 
+    private static final TimeType timeType = TimeType.ELAPSED;
+
     private enum TimeType
     {
         ELAPSED,
         ABSOLUTE_TIME
     }
-
-    private static final TimeType timeType = TimeType.ELAPSED;
 
     private final Column contextColumn = new Column(30, 30, Layout.CLIP_RIGHT);
 
@@ -60,7 +60,8 @@ public class WideLogFormatter extends BaseColumnarFormatter
 
     private final Column typeColumn = new Column(12, 20, Layout.CLIP_RIGHT);
 
-    public String format(LogEntry entry, Formatter.Format format)
+    @Override
+    public String format(LogEntry entry, MessageFormat... formats)
     {
         // Create line output
         var line = new LineOutput();
@@ -79,7 +80,7 @@ public class WideLogFormatter extends BaseColumnarFormatter
         line.add(threadColumn, entry.threadName());
         line.add(contextColumn, entry.context().typeName());
         line.add(typeColumn, entry.messageType());
-        line.add(messageColumn, entry.formattedMessage(format));
+        line.add(messageColumn, entry.formattedMessage(formats));
 
         // Return the formatted line
         return line.format();

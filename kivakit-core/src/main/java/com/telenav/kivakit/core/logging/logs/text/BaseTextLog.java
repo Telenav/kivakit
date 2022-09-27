@@ -18,39 +18,57 @@
 
 package com.telenav.kivakit.core.logging.logs.text;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.collections.map.VariableMap;
 import com.telenav.kivakit.core.internal.lexakai.DiagramLogs;
 import com.telenav.kivakit.core.logging.LogEntry;
 import com.telenav.kivakit.core.logging.logs.BaseLog;
 import com.telenav.kivakit.core.logging.logs.text.formatters.BaseColumnarFormatter;
-import com.telenav.kivakit.core.string.Formatter;
-import com.telenav.lexakai.annotations.LexakaiJavadoc;
+import com.telenav.kivakit.core.messaging.MessageFormat;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeMember;
 import org.jetbrains.annotations.MustBeInvokedByOverriders;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_DEFAULT_EXPANDABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
 import static com.telenav.kivakit.core.ensure.Ensure.fail;
+import static com.telenav.kivakit.core.messaging.MessageFormat.WITH_EXCEPTION;
 
+/**
+ * Base class for text logs
+ *
+ * @author jonathanl (shibo)
+ */
 @UmlClassDiagram(diagram = DiagramLogs.class)
 @UmlRelation(label = "formats entries with", referent = LogFormatter.class)
+@ApiQuality(stability = STABLE_DEFAULT_EXPANDABLE,
+            testing = UNTESTED,
+            documentation = FULLY_DOCUMENTED)
 public abstract class BaseTextLog extends BaseLog
 {
     /**
      * The type of formatting to perform on log entries
      */
-    @LexakaiJavadoc(complete = true)
-    public enum Format
+    public enum Formatting
     {
         FORMATTED,
         @SuppressWarnings("SpellCheckingInspection")
         UNFORMATTED,
     }
 
-    private Format format = Format.FORMATTED;
+    /** The formatting to use */
+    private Formatting format = Formatting.FORMATTED;
 
+    /** The formatter to use */
     private LogFormatter formatter = BaseColumnarFormatter.get();
 
+    /**
+     * Configures this log with the given properties
+     *
+     * @param properties A property map specific to the type of log
+     */
     @Override
     @UmlExcludeMember
     @MustBeInvokedByOverriders
@@ -59,24 +77,30 @@ public abstract class BaseTextLog extends BaseLog
         var formatter = properties.get("formatter");
         if (formatter != null)
         {
-            format = Format.valueOf(formatter.toUpperCase());
+            format = Formatting.valueOf(formatter.toUpperCase());
         }
     }
 
+    /**
+     * Sets the log formatter to use
+     */
     public void formatter(LogFormatter formatter)
     {
         this.formatter = formatter;
     }
 
+    /**
+     * Returns formatted text for the log entry
+     */
     protected String formatted(LogEntry entry)
     {
         switch (format)
         {
             case UNFORMATTED:
-                return entry.message().formatted(Formatter.Format.WITH_EXCEPTION);
+                return entry.message().formatted(WITH_EXCEPTION);
 
             case FORMATTED:
-                return format(entry, Formatter.Format.WITH_EXCEPTION);
+                return format(entry, WITH_EXCEPTION);
 
             default:
                 fail("Unsupported format: $", format);
@@ -84,8 +108,11 @@ public abstract class BaseTextLog extends BaseLog
         }
     }
 
+    /**
+     * Formats the given log entry using the given format (with, or without an exception)
+     */
     @SuppressWarnings("SameParameterValue")
-    private String format(LogEntry entry, Formatter.Format format)
+    private String format(LogEntry entry, MessageFormat format)
     {
         return entry.format(formatter, format);
     }

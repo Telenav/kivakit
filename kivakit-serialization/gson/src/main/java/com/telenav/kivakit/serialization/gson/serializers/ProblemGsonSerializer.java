@@ -19,7 +19,7 @@
 package com.telenav.kivakit.serialization.gson.serializers;
 
 import com.telenav.kivakit.core.messaging.messages.status.Problem;
-import com.telenav.kivakit.core.string.Formatter;
+import com.telenav.kivakit.core.messaging.MessageFormat;
 import com.telenav.kivakit.serialization.gson.PrimitiveGsonSerializer;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 
@@ -31,9 +31,9 @@ import com.telenav.lexakai.annotations.LexakaiJavadoc;
 @LexakaiJavadoc(complete = true)
 public class ProblemGsonSerializer extends PrimitiveGsonSerializer<Problem, String>
 {
-    private final Formatter.Format format;
+    private final MessageFormat format;
 
-    public ProblemGsonSerializer(Formatter.Format format)
+    public ProblemGsonSerializer(MessageFormat format)
     {
         super(String.class);
         this.format = format;

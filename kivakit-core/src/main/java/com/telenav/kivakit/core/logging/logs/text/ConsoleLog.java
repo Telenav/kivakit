@@ -18,6 +18,7 @@
 
 package com.telenav.kivakit.core.logging.logs.text;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramLogs;
 import com.telenav.kivakit.core.logging.LogEntry;
 import com.telenav.kivakit.core.logging.loggers.LogServiceLogger;
@@ -27,23 +28,37 @@ import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeMember;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
 import static com.telenav.kivakit.core.os.Console.OutputType.ERROR;
 import static com.telenav.kivakit.core.os.Console.OutputType.NORMAL;
 
 /**
- * A text log that logs to the console. The formatter can be specified from the command line as "formatter=columnar" or
- * "formatter=unformatted". See {@link LogServiceLogger} for details.
+ * A text log that logs to the console. Severe log entries are logged to stderr, others to stdout. The formatter can be
+ * specified from the command line as "formatter=columnar" or "formatter=unformatted". See {@link LogServiceLogger} for
+ * details.
  *
  * @author jonathanl (shibo)
+ * @see Console
+ * @see LogEntry
  * @see BaseTextLog
  * @see LogServiceLogger
  */
+@SuppressWarnings("SpellCheckingInspection")
 @UmlClassDiagram(diagram = DiagramLogs.class)
 @LexakaiJavadoc(complete = true)
+@ApiQuality(stability = STABLE,
+            testing = UNTESTED,
+            documentation = FULLY_DOCUMENTED)
 public class ConsoleLog extends BaseTextLog
 {
+    /** The console to log to */
     private final Console console = new Console();
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     @UmlExcludeMember
     public void flush(Duration maximumWaitTime)
@@ -52,6 +67,9 @@ public class ConsoleLog extends BaseTextLog
         console.flush(maximumWaitTime);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     @UmlExcludeMember
     public String name()
@@ -59,6 +77,9 @@ public class ConsoleLog extends BaseTextLog
         return "Console";
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     @UmlExcludeMember
     @SuppressWarnings("AccessStaticViaInstance")

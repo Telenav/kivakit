@@ -18,18 +18,18 @@
 
 package com.telenav.kivakit.core.logging;
 
+import com.telenav.kivakit.core.internal.lexakai.DiagramLogging;
 import com.telenav.kivakit.core.language.Classes;
 import com.telenav.kivakit.core.language.Objects;
 import com.telenav.kivakit.core.language.reflection.property.KivaKitIncludeProperty;
 import com.telenav.kivakit.core.logging.logs.text.LogFormatter;
 import com.telenav.kivakit.core.logging.logs.text.formatters.NarrowLogFormatter;
 import com.telenav.kivakit.core.messaging.Message;
+import com.telenav.kivakit.core.messaging.MessageFormat;
 import com.telenav.kivakit.core.messaging.context.CodeContext;
 import com.telenav.kivakit.core.messaging.context.StackTrace;
 import com.telenav.kivakit.core.messaging.messages.Severity;
 import com.telenav.kivakit.core.messaging.messages.Triaged;
-import com.telenav.kivakit.core.internal.lexakai.DiagramLogging;
-import com.telenav.kivakit.core.string.Formatter;
 import com.telenav.kivakit.core.time.Time;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlAggregation;
@@ -71,6 +71,15 @@ public class LogEntry implements Triaged
 
     private transient String formattedEntry;
 
+    /**
+     * Construct a log entry for the given logger
+     *
+     * @param logger The logger
+     * @param context The code context
+     * @param thread The thread
+     * @param message The message to log
+     */
+    @SuppressWarnings("unused")
     @UmlExcludeMember
     public LogEntry(Logger logger, LoggerCodeContext context, Thread thread, Message message)
     {
@@ -105,7 +114,7 @@ public class LogEntry implements Triaged
         return created;
     }
 
-    public String format(LogFormatter formatter, Formatter.Format format)
+    public String format(LogFormatter formatter, MessageFormat format)
     {
         assert context != null;
         if (formattedEntry != null && Objects.isEqual(formatter, lastFormatter))
@@ -126,17 +135,17 @@ public class LogEntry implements Triaged
      */
     public String formattedMessage()
     {
-        return formattedMessage(Formatter.Format.WITH_EXCEPTION);
+        return formattedMessage(MessageFormat.WITH_EXCEPTION);
     }
 
     /**
-     *
+     * Formats this log entry using the given format(s)
      */
-    public String formattedMessage(Formatter.Format format)
+    public String formattedMessage(MessageFormat... formats)
     {
         if (formattedMessage == null)
         {
-            formattedMessage = message.formatted(format);
+            formattedMessage = message.formatted(formats);
         }
         return formattedMessage;
     }

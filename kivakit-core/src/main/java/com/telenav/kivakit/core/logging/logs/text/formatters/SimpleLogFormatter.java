@@ -18,21 +18,26 @@
 
 package com.telenav.kivakit.core.logging.logs.text.formatters;
 
+import com.telenav.kivakit.core.internal.lexakai.DiagramLogs;
 import com.telenav.kivakit.core.language.Classes;
 import com.telenav.kivakit.core.logging.LogEntry;
 import com.telenav.kivakit.core.logging.logs.text.LogFormatter;
-import com.telenav.kivakit.core.internal.lexakai.DiagramLogs;
-import com.telenav.kivakit.core.string.Formatter;
+import com.telenav.kivakit.core.messaging.MessageFormat;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
+/**
+ * A simple log formatter that does nothing fancy
+ *
+ * @author jonathanl (shibo)
+ */
 @UmlClassDiagram(diagram = DiagramLogs.class)
 public class SimpleLogFormatter implements LogFormatter
 {
     @Override
-    public String format(LogEntry entry, Formatter.Format format)
+    public String format(LogEntry entry, MessageFormat... formats)
     {
         return entry.message().created().utc() + " " + entry.context() + " "
                 + Classes.simpleName(entry.message().getClass()) + " " + entry.threadName() + ": "
-                + entry.formattedMessage(format);
+                + entry.formattedMessage(formats);
     }
 }

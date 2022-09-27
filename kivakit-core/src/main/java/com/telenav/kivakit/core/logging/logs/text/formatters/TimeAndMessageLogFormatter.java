@@ -20,13 +20,13 @@ package com.telenav.kivakit.core.logging.logs.text.formatters;
 
 import com.telenav.kivakit.core.logging.LogEntry;
 import com.telenav.kivakit.core.logging.logs.text.LogFormatter;
-import com.telenav.kivakit.core.string.Formatter;
+import com.telenav.kivakit.core.messaging.MessageFormat;
 
 public class TimeAndMessageLogFormatter implements LogFormatter
 {
     @Override
-    public String format(LogEntry entry, Formatter.Format format)
+    public String format(LogEntry entry, MessageFormat... formats)
     {
-        return entry.message().created() + " " + entry.formattedMessage(format);
+        return entry.message().created() + " " + entry.formattedMessage(formats);
     }
 }
