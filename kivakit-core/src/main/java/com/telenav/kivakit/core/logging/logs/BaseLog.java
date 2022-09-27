@@ -20,7 +20,7 @@ package com.telenav.kivakit.core.logging.logs;
 
 import com.telenav.kivakit.core.collections.map.CountMap;
 import com.telenav.kivakit.core.language.Classes;
-import com.telenav.kivakit.core.language.object.ObjectFormatter;
+import com.telenav.kivakit.core.string.ObjectFormatter;
 import com.telenav.kivakit.core.language.reflection.property.KivaKitIncludeProperty;
 import com.telenav.kivakit.core.internal.lexakai.DiagramLogs;
 import com.telenav.kivakit.core.logging.Log;

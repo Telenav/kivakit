@@ -20,7 +20,7 @@ package com.telenav.kivakit.resource.compression.archive;
 
 import com.telenav.kivakit.core.code.UncheckedCode;
 import com.telenav.kivakit.core.io.IO;
-import com.telenav.kivakit.core.language.object.ObjectFormatter;
+import com.telenav.kivakit.core.string.ObjectFormatter;
 import com.telenav.kivakit.core.language.reflection.property.KivaKitIncludeProperty;
 import com.telenav.kivakit.core.time.Time;
 import com.telenav.kivakit.core.value.count.Bytes;

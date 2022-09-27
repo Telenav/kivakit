@@ -16,10 +16,12 @@
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-package com.telenav.kivakit.core.language.object;
+package com.telenav.kivakit.core.string;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramString;
 import com.telenav.kivakit.interfaces.string.StringFormattable;
+import com.telenav.kivakit.interfaces.string.StringFormattable.Format;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.lang.annotation.ElementType;
@@ -27,17 +29,30 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_REQUIRED;
 import static com.telenav.kivakit.interfaces.string.StringFormattable.Format.TEXT;
 
+/**
+ * Annotation for properties that are format-able with {@link ObjectFormatter}. The specific format desired can be
+ * specified with {@link #format()}.
+ *
+ * @author jonathanl (shibo)
+ */
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ ElementType.FIELD, ElementType.METHOD })
 @UmlClassDiagram(diagram = DiagramString.class)
-public @interface KivaKitFormatProperty
+@ApiQuality(stability = STABLE,
+            testing = TESTING_NOT_REQUIRED,
+            documentation = FULLY_DOCUMENTED)
+public @interface KivaKitFormat
 {
     /**
-     * The format to use for the annotated property. If "toString()" is specified then the {@link #toString()} method is
-     * called, otherwise, the format value is used to convert the object to a string using {@link
-     * StringFormattable#asString(StringFormattable.Format)}, where the purpose is case-insensitive.
+     * The format to use for the annotated property. If {@link Format#TO_STRING} is specified then the
+     * {@link #toString()} method is called, otherwise, the format value is used to convert the object to a string using
+     * {@link StringFormattable#asString(Format)}, where the purpose is case-insensitive. The default
+     * format is TEXT.
      */
-    StringFormattable.Format format() default TEXT;
+    Format format() default TEXT;
 }

@@ -18,9 +18,13 @@
 
 package com.telenav.kivakit.core.language.primitive;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramPrimitive;
-import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
+
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_STATIC_EXPANDABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.FULLY_TESTED;
 
 /**
  * Utility methods for <i>boolean</i>> values.
@@ -33,18 +37,24 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramPrimitive.class)
-@LexakaiJavadoc(complete = true)
+@ApiQuality(stability = STABLE_STATIC_EXPANDABLE,
+            testing = FULLY_TESTED,
+            documentation = FULLY_DOCUMENTED)
 public class Booleans
 {
     public static boolean isFalse(String string)
     {
-        return "false".equalsIgnoreCase(string) || "f".equalsIgnoreCase(string) || "no".equalsIgnoreCase(string)
+        return "false".equalsIgnoreCase(string)
+                || "f".equalsIgnoreCase(string)
+                || "no".equalsIgnoreCase(string)
                 || "disabled".equalsIgnoreCase(string);
     }
 
     public static boolean isTrue(String string)
     {
-        return "true".equalsIgnoreCase(string) || "t".equalsIgnoreCase(string) || "yes".equalsIgnoreCase(string)
+        return "true".equalsIgnoreCase(string)
+                || "t".equalsIgnoreCase(string)
+                || "yes".equalsIgnoreCase(string)
                 || "enabled".equalsIgnoreCase(string);
     }
 }

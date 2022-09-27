@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.core.vm;
 
-import com.telenav.kivakit.core.language.object.ObjectFormatter;
+import com.telenav.kivakit.core.string.ObjectFormatter;
 import com.telenav.kivakit.core.language.reflection.property.KivaKitIncludeProperty;
 import com.telenav.kivakit.core.internal.lexakai.DiagramLanguage;
 import com.telenav.kivakit.core.logging.LogEntry;
@@ -31,7 +31,7 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-import static com.telenav.kivakit.core.language.object.ObjectFormatter.Format.SINGLE_LINE;
+import static com.telenav.kivakit.core.string.ObjectFormatter.ObjectFormat.SINGLE_LINE;
 
 /**
  * @author jonathanl (shibo)
@@ -131,7 +131,7 @@ public class JavaVirtualMachineHealth
     @Override
     public String toString()
     {
-        return new ObjectFormatter(this).toString(SINGLE_LINE);
+        return new ObjectFormatter(this).asString(SINGLE_LINE);
     }
 
     @KivaKitIncludeProperty

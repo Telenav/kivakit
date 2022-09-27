@@ -24,22 +24,32 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 
+import static com.telenav.kivakit.core.language.reflection.property.PropertyNamingConvention.JAVA_BEANS;
+import static com.telenav.kivakit.core.language.reflection.property.PropertyNamingConvention.KIVAKIT;
+import static com.telenav.kivakit.core.language.reflection.property.PropertyNamingConvention.KIVAKIT_AND_JAVA_BEANS;
+
 /**
  * A filter that determines how a {@link Property} field or method can be accessed.
  *
  * @author jonathanl (shibo)
  */
+@SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramReflection.class)
 public interface PropertyFilter
 {
     static PropertyFilter beansProperties(PropertyMembers... included)
     {
-        return new PropertyFilterSet(PropertyNamingConvention.JAVA_BEANS, included);
+        return new PropertyFilterSet(JAVA_BEANS, included);
+    }
+
+    static PropertyFilter allProperties(PropertyMembers... included)
+    {
+        return new PropertyFilterSet(KIVAKIT_AND_JAVA_BEANS, included);
     }
 
     static PropertyFilter kivakitProperties(PropertyMembers... included)
     {
-        return new PropertyFilterSet(PropertyNamingConvention.KIVAKIT, included);
+        return new PropertyFilterSet(KIVAKIT, included);
     }
 
     /** True if the given method should be included as a property getter */

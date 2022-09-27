@@ -1,7 +1,24 @@
 package com.telenav.kivakit.core.language.primitive;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
+
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_STATIC_EXPANDABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
+
+/**
+ * Methods for working with primitive types
+ *
+ * @author jonathanl (shibo)
+ */
+@ApiQuality(stability = STABLE_STATIC_EXPANDABLE,
+            testing = UNTESTED,
+            documentation = FULLY_DOCUMENTED)
 public class Primitives
 {
+    /**
+     * Returns true if the given type is a primitive class.
+     */
     public static boolean isPrimitive(Class<?> type)
     {
         return Long.TYPE.equals(type)
@@ -14,6 +31,9 @@ public class Primitives
                 || Float.TYPE.equals(type);
     }
 
+    /**
+     * Returns true if the given object is a primitive wrapper type, like Integer or Byte.
+     */
     public static boolean isPrimitiveWrapper(Object object)
     {
         return object instanceof Long

@@ -11,6 +11,9 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 @UmlClassDiagram(diagram = DiagramReflection.class)
 public enum PropertyMembers
 {
+    /** Include all fields and methods as properties */
+    ALL_FIELDS_AND_METHODS,
+
     /** Include properties with public getters and setters */
     PUBLIC_METHODS,
 

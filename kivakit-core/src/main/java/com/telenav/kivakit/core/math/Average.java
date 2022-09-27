@@ -18,8 +18,8 @@
 
 package com.telenav.kivakit.core.math;
 
-import com.telenav.kivakit.core.language.object.KivaKitFormatProperty;
-import com.telenav.kivakit.core.language.object.ObjectFormatter;
+import com.telenav.kivakit.core.string.KivaKitFormat;
+import com.telenav.kivakit.core.string.ObjectFormatter;
 import com.telenav.kivakit.interfaces.lifecycle.Resettable;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 
@@ -68,7 +68,7 @@ public class Average implements Resettable
     /**
      * @return The average of all samples that have been added
      */
-    @KivaKitFormatProperty
+    @KivaKitFormat
     public double average()
     {
         if (samples > 0)
@@ -81,7 +81,7 @@ public class Average implements Resettable
     /**
      * @return The largest sample
      */
-    @KivaKitFormatProperty
+    @KivaKitFormat
     public double maximum()
     {
         return maximum;
@@ -90,7 +90,7 @@ public class Average implements Resettable
     /**
      * @return The smallest sample
      */
-    @KivaKitFormatProperty
+    @KivaKitFormat
     public double minimum()
     {
         return minimum;
@@ -109,7 +109,7 @@ public class Average implements Resettable
     /**
      * @return The number of samples in this average
      */
-    @KivaKitFormatProperty
+    @KivaKitFormat
     public int samples()
     {
         return samples;
@@ -124,7 +124,7 @@ public class Average implements Resettable
     /**
      * @return The total of all samples in this average
      */
-    @KivaKitFormatProperty
+    @KivaKitFormat
     public double total()
     {
         return total;
