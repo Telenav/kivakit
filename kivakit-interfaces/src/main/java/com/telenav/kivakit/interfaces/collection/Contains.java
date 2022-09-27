@@ -23,9 +23,8 @@ import com.telenav.kivakit.interfaces.internal.lexakai.DiagramCollection;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import static com.telenav.kivakit.annotations.code.ApiStability.MORE_EVALUATION_NEEDED;
-import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_DEFAULT_EXPANDABLE;
 import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_REQUIRED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
 
 /**
  * An interface for any object that can contain values, typically a collection.
@@ -36,7 +35,7 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_RE
 @FunctionalInterface
 @UmlClassDiagram(diagram = DiagramCollection.class)
 @ApiQuality(stability = MORE_EVALUATION_NEEDED,
-            testing = TESTING_NOT_REQUIRED,
+            testing = TESTING_NOT_NEEDED,
             documentation = FULLY_DOCUMENTED,
             reviews = 1,
             reviewers = "shibo")

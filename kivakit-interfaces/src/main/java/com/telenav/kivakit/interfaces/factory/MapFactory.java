@@ -24,7 +24,7 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import static com.telenav.kivakit.annotations.code.ApiStability.STABLE;
 import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_REQUIRED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
 
 /**
  * A factory that creates an object given a parameter (it "maps" from the parameter to the new object).
@@ -39,7 +39,7 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_RE
 @FunctionalInterface
 @UmlClassDiagram(diagram = DiagramFactory.class)
 @ApiQuality(stability = STABLE,
-            testing = TESTING_NOT_REQUIRED,
+            testing = TESTING_NOT_NEEDED,
             documentation = FULLY_DOCUMENTED)
 public interface MapFactory<Parameter, Value>
 {

@@ -34,10 +34,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXPANDABLE;
 import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_STATIC_EXPANDABLE;
 import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_REQUIRED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
 
 /**
  * Provides easy access to module resources. The {@link #moduleResource(Listener listener, StringPath)},
@@ -52,7 +51,7 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_RE
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramModule.class)
 @ApiQuality(stability = STABLE_STATIC_EXPANDABLE,
-            testing = TESTING_NOT_REQUIRED,
+            testing = TESTING_NOT_NEEDED,
             documentation = FULLY_DOCUMENTED)
 public class Modules
 {

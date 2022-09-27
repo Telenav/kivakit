@@ -232,7 +232,7 @@ public class SwitchParser<T> implements
 
         public Builder<T> type(Class<T> type)
         {
-            this.type = Type.forClass(type);
+            this.type = Type.typeForClass(type);
             return this;
         }
 

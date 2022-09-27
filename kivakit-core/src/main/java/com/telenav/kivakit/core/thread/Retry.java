@@ -160,7 +160,7 @@ public class Retry extends BaseRepeater
             }
             catch (Exception e)
             {
-                Type<? extends Exception> errorType = Type.of(e);
+                Type<? extends Exception> errorType = Type.type(e);
                 var shouldRetry = false;
                 if (errorType.isDescendantOf(exceptionType))
                 {

@@ -8,7 +8,7 @@ import java.text.DecimalFormat;
 
 import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_DEFAULT_EXPANDABLE;
 import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_REQUIRED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
 
 /**
  * Interface for all time measurements, whether a {@link LengthOfTime} or a {@link PointInTime}.
@@ -41,7 +41,7 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_RE
  * @author jonathanl (shibo)
  */
 @ApiQuality(stability = STABLE_DEFAULT_EXPANDABLE,
-            testing = TESTING_NOT_REQUIRED,
+            testing = TESTING_NOT_NEEDED,
             documentation = FULLY_DOCUMENTED)
 public interface TimeMeasurement extends LongValued
 {

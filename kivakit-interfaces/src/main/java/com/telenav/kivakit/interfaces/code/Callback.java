@@ -26,7 +26,7 @@ import java.util.function.Consumer;
 
 import static com.telenav.kivakit.annotations.code.ApiStability.STABLE;
 import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_REQUIRED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
 
 /**
  * A simple callback interface. There are other similar interfaces, but sometimes the best name is callback.
@@ -36,7 +36,7 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_RE
  */
 @UmlClassDiagram(diagram = DiagramCode.class)
 @ApiQuality(stability = STABLE,
-            testing = TESTING_NOT_REQUIRED,
+            testing = TESTING_NOT_NEEDED,
             documentation = FULLY_DOCUMENTED,
             reviews = 1,
             reviewers = "shibo")

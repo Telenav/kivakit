@@ -201,7 +201,7 @@ public class FieldArchive extends BaseRepeater implements Closeable
     public synchronized <T> T loadFieldOf(ObjectReader reader, NamedObject object, String fieldName)
     {
         // Get the field
-        Type<?> type = Type.of(object);
+        Type<?> type = Type.type(object);
         var field = type.field(CaseFormat.hyphenatedToCamel(fieldName));
         ensure(field != null, "Cannot find field '$' in $", fieldName, type);
 
@@ -255,8 +255,8 @@ public class FieldArchive extends BaseRepeater implements Closeable
         for (var object : objects)
         {
             // and for each archived field
-            Type<?> type = Type.of(object);
-            for (var field : type.properties(new ArchivedFields(PropertyNamingConvention.KIVAKIT)).sorted())
+            Type<?> type = Type.type(object);
+            for (var field : type.properties(new ArchivedFields(PropertyNamingConvention.KIVAKIT_PROPERTY_NAMING)).sorted())
             {
                 // if it is not lazy,
                 if (!field.getter().annotation(KivaKitArchivedField.class).lazy())
@@ -318,7 +318,7 @@ public class FieldArchive extends BaseRepeater implements Closeable
 
         this.version = version;
 
-        for (var field : Type.of(object).properties(new ArchivedFields(PropertyNamingConvention.KIVAKIT)).sorted())
+        for (var field : Type.type(object).properties(new ArchivedFields(PropertyNamingConvention.KIVAKIT_PROPERTY_NAMING)).sorted())
         {
             try
             {

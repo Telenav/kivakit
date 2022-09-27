@@ -41,7 +41,7 @@ import java.util.zip.ZipFile;
 
 import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_STATIC_EXPANDABLE;
 import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_REQUIRED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
 import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
 import static com.telenav.kivakit.core.io.IO.CopyStyle.BUFFERED;
 
@@ -97,7 +97,7 @@ import static com.telenav.kivakit.core.io.IO.CopyStyle.BUFFERED;
 @UmlClassDiagram(diagram = DiagramIo.class)
 @LexakaiJavadoc(complete = true)
 @ApiQuality(stability = STABLE_STATIC_EXPANDABLE,
-            testing = TESTING_NOT_REQUIRED,
+            testing = TESTING_NOT_NEEDED,
             documentation = FULLY_DOCUMENTED)
 public class IO
 {

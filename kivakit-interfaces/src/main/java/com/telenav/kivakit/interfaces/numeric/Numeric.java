@@ -5,7 +5,7 @@ import com.telenav.kivakit.interfaces.value.LongValued;
 
 import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_DEFAULT_EXPANDABLE;
 import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_REQUIRED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
 
 /**
  * Interface for common operations on integers (in the math sense, not in the sense of {@link Integer}).
@@ -14,7 +14,7 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_RE
  * @author jonathanl (shibo)
  */
 @ApiQuality(stability = STABLE_DEFAULT_EXPANDABLE,
-            testing = TESTING_NOT_REQUIRED,
+            testing = TESTING_NOT_NEEDED,
             documentation = FULLY_DOCUMENTED)
 public interface Numeric<Value extends LongValued> extends
         Arithmetic<Value>,

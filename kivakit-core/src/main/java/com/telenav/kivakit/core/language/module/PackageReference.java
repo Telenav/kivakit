@@ -43,7 +43,7 @@ import java.util.zip.ZipInputStream;
 
 import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXPANDABLE;
 import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_REQUIRED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
 
 /**
  * Represents the path to a Java package. The PackagePath object in kivakit-resource differs from this class.
@@ -96,7 +96,7 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_RE
 @SuppressWarnings({ "unused", "DuplicatedCode", "SpellCheckingInspection" })
 @UmlClassDiagram(diagram = DiagramPath.class)
 @ApiQuality(stability = STABLE_EXPANDABLE,
-            testing = TESTING_NOT_REQUIRED,
+            testing = TESTING_NOT_NEEDED,
             documentation = FULLY_DOCUMENTED)
 public final class PackageReference extends StringPath
 {

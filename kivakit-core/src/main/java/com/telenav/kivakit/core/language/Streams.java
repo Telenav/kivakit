@@ -20,16 +20,14 @@ package com.telenav.kivakit.core.language;
 
 import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramLanguage;
-import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.stream.Stream;
 import java.util.stream.StreamSupport;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.STABLE;
 import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_STATIC_EXPANDABLE;
 import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_REQUIRED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
 
 /**
  * Simple utility methods that hide the mechanics of Java's stream support and spliterator.
@@ -46,7 +44,7 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_RE
  */
 @UmlClassDiagram(diagram = DiagramLanguage.class)
 @ApiQuality(stability = STABLE_STATIC_EXPANDABLE,
-            testing = TESTING_NOT_REQUIRED,
+            testing = TESTING_NOT_NEEDED,
             documentation = FULLY_DOCUMENTED)
 public class Streams
 {

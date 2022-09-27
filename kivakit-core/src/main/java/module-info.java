@@ -75,4 +75,5 @@ open module kivakit.core
     exports com.telenav.kivakit.core.bits;
     exports com.telenav.kivakit.core.logging.logs.text.formatters;
     exports com.telenav.kivakit.core.math;
+    exports com.telenav.kivakit.core.language.reflection.accessors;
 }

@@ -27,7 +27,7 @@ import com.telenav.lexakai.annotations.visibility.UmlExcludeSuperTypes;
 import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_DEFAULT_EXPANDABLE;
 import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_ENUM_EXPANDABLE;
 import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_REQUIRED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
 
 /**
  * Interface to an object that can produce one or more different kinds of string representations. This can be useful
@@ -40,7 +40,7 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_RE
 @UmlRelation(label = "formats with", referent = StringFormattable.Format.class)
 @UmlClassDiagram(diagram = DiagramString.class)
 @ApiQuality(stability = STABLE_DEFAULT_EXPANDABLE,
-            testing = TESTING_NOT_REQUIRED,
+            testing = TESTING_NOT_NEEDED,
             documentation = FULLY_DOCUMENTED)
 public interface StringFormattable extends AsString
 {
@@ -49,7 +49,7 @@ public interface StringFormattable extends AsString
      */
     @UmlClassDiagram(diagram = DiagramString.class)
     @ApiQuality(stability = STABLE_ENUM_EXPANDABLE,
-                testing = TESTING_NOT_REQUIRED,
+                testing = TESTING_NOT_NEEDED,
                 documentation = FULLY_DOCUMENTED)
     @UmlExcludeSuperTypes enum Format
     {

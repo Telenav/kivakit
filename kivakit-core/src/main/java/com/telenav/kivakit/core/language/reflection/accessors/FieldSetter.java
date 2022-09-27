@@ -16,65 +16,98 @@
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-package com.telenav.kivakit.core.language.reflection;
+package com.telenav.kivakit.core.language.reflection.accessors;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramReflection;
+import com.telenav.kivakit.core.language.reflection.Field;
+import com.telenav.kivakit.core.language.reflection.ReflectionProblem;
+import com.telenav.kivakit.core.language.reflection.Type;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.lang.annotation.Annotation;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
+
+/**
+ * Set the value of a field
+ *
+ * @author jonathanl (shibo)
+ */
 @UmlClassDiagram(diagram = DiagramReflection.class)
+@ApiQuality(stability = STABLE,
+            testing = UNTESTED,
+            documentation = FULLY_DOCUMENTED)
 public class FieldSetter implements Setter
 {
-    private final transient java.lang.reflect.Field field;
+    /** The field to access */
+    private final Field field;
 
-    public FieldSetter(java.lang.reflect.Field field)
+    public FieldSetter(Field field)
     {
         this.field = field;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public <T extends Annotation> T annotation(Class<T> annotationType)
     {
-        return field.getAnnotation(annotationType);
+        return field.annotation(annotationType);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String name()
     {
-        return field.getName();
+        return field.name();
     }
 
+    /**
+     * Sets the value of this field in the given object
+     *
+     * @param object The object to set to
+     * @param value The value to set
+     * @return Any reflection problem, or null if the operation succeeded
+     */
     @Override
     public ReflectionProblem set(Object object, Object value)
     {
         try
         {
-            if (Field.accessible(field))
+            var problem = field.makeAccessible();
+            if (problem == null)
             {
-                field.set(object, value);
-                return null;
+                return field.set(object, value);
             }
-            else
-            {
-                return new ReflectionProblem("Cannot set: " + this);
-            }
+            return problem;
         }
         catch (Exception e)
         {
-            return new ReflectionProblem(e, "Cannot set: " + this);
+            return new ReflectionProblem(e, "Cannot set " + this + " to " + value);
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String toString()
     {
         return "[FieldSetter name = " + name() + ", type = " + type() + "]";
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public Class<?> type()
+    public Type<?> type()
     {
-        return field.getType();
+        return field.type();
     }
 }

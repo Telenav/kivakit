@@ -18,27 +18,40 @@
 
 package com.telenav.kivakit.core.language.reflection.filters.field;
 
-import com.telenav.kivakit.core.language.reflection.property.PropertyNamingConvention;
-import com.telenav.kivakit.core.language.Hash;
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramReflection;
+import com.telenav.kivakit.core.language.Hash;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.lang.reflect.Field;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
+import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
+
 /**
- * This filter matches a field with a particular name in a given naming convention
+ * This filter matches a field with a particular name
+ *
+ * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramReflection.class)
+@ApiQuality(stability = STABLE,
+            testing = UNTESTED,
+            documentation = FULLY_DOCUMENTED)
 public class NamedField extends AllFields
 {
+    /** The field name */
     private final String name;
 
-    public NamedField(PropertyNamingConvention convention, String name)
+    public NamedField(String name)
     {
-        super(convention);
-        this.name = name;
+        this.name = ensureNotNull(name);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean equals(Object object)
     {
@@ -50,15 +63,22 @@ public class NamedField extends AllFields
         return false;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public int hashCode()
     {
         return Hash.hashMany(name);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean includeField(Field field)
     {
+        // Include the field if its name matches
         return field.getName().equals(name);
     }
 }

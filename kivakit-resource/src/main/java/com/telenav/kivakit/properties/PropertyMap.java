@@ -176,7 +176,7 @@ public class PropertyMap extends VariableMap<String>
 
     public void add(Object object, PropertyFilter filter)
     {
-        Type<?> type = Type.of(object);
+        Type<?> type = Type.type(object);
         for (var property : type.properties(filter))
         {
             if (!"class".equals(property.name()))

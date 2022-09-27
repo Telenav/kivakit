@@ -16,23 +16,23 @@
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-package com.telenav.kivakit.core.language.reflection.filters.method;
+package com.telenav.kivakit.core.language.reflection.accessors;
 
 import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramReflection;
-import com.telenav.kivakit.core.language.reflection.property.PropertyFilterSet;
-import com.telenav.kivakit.core.language.reflection.property.PropertyNamingConvention;
+import com.telenav.kivakit.core.language.reflection.Field;
+import com.telenav.kivakit.core.language.reflection.ReflectionProblem;
+import com.telenav.kivakit.core.language.reflection.Type;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
-import java.lang.reflect.Field;
-import java.lang.reflect.Method;
+import java.lang.annotation.Annotation;
 
 import static com.telenav.kivakit.annotations.code.ApiStability.STABLE;
 import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
 
 /**
- * A filter that includes all methods with the given naming convention.
+ * Gets the value of a field
  *
  * @author jonathanl (shibo)
  */
@@ -40,37 +40,79 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
 @ApiQuality(stability = STABLE,
             testing = UNTESTED,
             documentation = FULLY_DOCUMENTED)
-public class AllMethods extends PropertyFilterSet
+public class FieldGetter implements Getter
 {
-    public AllMethods(PropertyNamingConvention convention)
+    /** The field to access */
+    private final Field field;
+
+    public FieldGetter(Field field)
     {
-        super(convention);
+        this.field = field;
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public boolean includeAsGetter(Method method)
+    public <T extends Annotation> T annotation(Class<T> annotationType)
     {
-        return method.getParameterTypes().length == 0 && method.getReturnType() != Void.class;
+        return field.annotation(annotationType);
+    }
+
+    /**
+     * @return The field to access
+     */
+    public Field field()
+    {
+        return field;
+    }
+
+    /**
+     * Gets the value of this field in the given object
+     *
+     * @param object The object to get from
+     * @return The value of this field in the given object, or an instance of {@link ReflectionProblem} if the operation
+     * failed
+     */
+    @Override
+    public Object get(Object object)
+    {
+        try
+        {
+            var problem = field.makeAccessible();
+            if (problem == null)
+            {
+                return field.get(object);
+            }
+            return problem;
+        }
+        catch (Exception e)
+        {
+            return new ReflectionProblem(e, "Cannot get " + this);
+        }
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public boolean includeAsSetter(Method method)
+    public String name()
     {
-        return method.getReturnType() == Void.class && method.getParameterTypes().length == 1;
+        return field.name();
+    }
+
+    @Override
+    public String toString()
+    {
+        return "[FieldGetter name = " + name() + ", type = " + type() + "]";
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public boolean includeField(Field field)
+    public Type<?> type()
     {
-        return false;
+        return field.type();
     }
 }

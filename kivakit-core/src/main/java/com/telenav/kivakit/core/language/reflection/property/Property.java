@@ -21,13 +21,13 @@ package com.telenav.kivakit.core.language.reflection.property;
 import com.telenav.kivakit.core.ensure.Ensure;
 import com.telenav.kivakit.core.language.Hash;
 import com.telenav.kivakit.core.language.reflection.Field;
-import com.telenav.kivakit.core.language.reflection.FieldGetter;
-import com.telenav.kivakit.core.language.reflection.Getter;
+import com.telenav.kivakit.core.language.reflection.accessors.FieldGetter;
+import com.telenav.kivakit.core.language.reflection.accessors.Getter;
 import com.telenav.kivakit.core.language.reflection.Member;
 import com.telenav.kivakit.core.language.reflection.Method;
-import com.telenav.kivakit.core.language.reflection.MethodGetter;
+import com.telenav.kivakit.core.language.reflection.accessors.MethodGetter;
 import com.telenav.kivakit.core.language.reflection.ReflectionProblem;
-import com.telenav.kivakit.core.language.reflection.Setter;
+import com.telenav.kivakit.core.language.reflection.accessors.Setter;
 import com.telenav.kivakit.core.language.reflection.Type;
 import com.telenav.kivakit.core.internal.lexakai.DiagramReflection;
 import com.telenav.kivakit.interfaces.naming.Named;
@@ -203,11 +203,11 @@ public class Property implements Named, Comparable<Property>
     {
         if (getter != null)
         {
-            return Type.forClass(getter.type());
+            return Type.typeForClass(getter.type());
         }
         if (setter != null)
         {
-            return Type.forClass(setter.type());
+            return Type.typeForClass(setter.type());
         }
         return null;
     }

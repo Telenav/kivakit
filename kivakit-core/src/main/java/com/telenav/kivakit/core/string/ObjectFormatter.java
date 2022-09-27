@@ -86,7 +86,7 @@ public class ObjectFormatter
             return "null";
         }
 
-        Type<?> type = Type.of(object);
+        Type<?> type = Type.type(object);
         var strings = new StringList();
         for (var property : type.properties(PropertyFilter.allProperties()))
         {
@@ -198,7 +198,7 @@ public class ObjectFormatter
         else
         {
             // Get the type object for this value
-            Type<?> valueType = Type.of(propertyValue);
+            Type<?> valueType = Type.type(propertyValue);
 
             // If the value doesn't directly implement toString, and it's not a
             // system type (something implemented by Java)

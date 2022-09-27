@@ -2,7 +2,7 @@ package com.telenav.kivakit.annotations.code;
 
 import static com.telenav.kivakit.annotations.code.ApiStability.MORE_EVALUATION_NEEDED;
 import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_REQUIRED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
 
 /**
  * The level of API stability for a class, as evaluated by a developer. This is different from a measure of past source
@@ -13,7 +13,7 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_RE
  */
 @SuppressWarnings("unused")
 @ApiQuality(stability = MORE_EVALUATION_NEEDED,
-            testing = TESTING_NOT_REQUIRED,
+            testing = TESTING_NOT_NEEDED,
             documentation = FULLY_DOCUMENTED,
             reviews = 1,
             reviewers = "shibo")

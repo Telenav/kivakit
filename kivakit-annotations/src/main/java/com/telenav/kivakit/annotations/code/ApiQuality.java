@@ -7,7 +7,7 @@ import java.lang.annotation.Target;
 
 import static com.telenav.kivakit.annotations.code.ApiStability.*;
 import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_REQUIRED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
 
 /**
  * Indicates the API stability, documentation completeness, code reviews, and testing sufficiency of a class or
@@ -31,7 +31,7 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_RE
 @Retention(RetentionPolicy.SOURCE)
 @Target({ ElementType.TYPE })
 @ApiQuality(stability = MORE_EVALUATION_NEEDED,
-            testing = TESTING_NOT_REQUIRED,
+            testing = TESTING_NOT_NEEDED,
             documentation = FULLY_DOCUMENTED,
             reviews = 1,
             reviewers = "shibo")

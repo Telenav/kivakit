@@ -180,7 +180,7 @@ public class PropertyFilterSet implements PropertyFilter
             var name = method.getName();
             switch (convention)
             {
-                case JAVA_BEANS:
+                case JAVA_BEANS_NAMING:
                     if (!"getClass".equals(method.getName()))
                     {
                         if (name.startsWith("get") && name.matches("get[A-Z].*")
@@ -191,7 +191,7 @@ public class PropertyFilterSet implements PropertyFilter
                     }
                     break;
 
-                case KIVAKIT:
+                case KIVAKIT_PROPERTY_NAMING:
                     return true;
 
                 default:
@@ -296,7 +296,7 @@ public class PropertyFilterSet implements PropertyFilter
         // If the method takes one parameter, and it's not static,
         if (method.getParameterTypes().length == 1)
         {
-            return convention == PropertyNamingConvention.KIVAKIT || method.getName().startsWith("set");
+            return convention == PropertyNamingConvention.KIVAKIT_PROPERTY_NAMING || method.getName().startsWith("set");
         }
         return false;
     }

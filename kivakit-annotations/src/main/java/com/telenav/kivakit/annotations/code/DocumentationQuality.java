@@ -2,7 +2,7 @@ package com.telenav.kivakit.annotations.code;
 
 import static com.telenav.kivakit.annotations.code.ApiStability.MORE_EVALUATION_NEEDED;
 import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_REQUIRED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
 
 /**
  * An evaluation of the quality of documentation for this class, as determined by a developer. Some classes need more
@@ -11,7 +11,7 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_RE
  * @author jonathanl (shibo)
  */
 @ApiQuality(stability = MORE_EVALUATION_NEEDED,
-            testing = TESTING_NOT_REQUIRED,
+            testing = TESTING_NOT_NEEDED,
             documentation = FULLY_DOCUMENTED,
             reviews = 1,
             reviewers = "shibo")

@@ -27,7 +27,7 @@ import java.util.Iterator;
 
 import static com.telenav.kivakit.annotations.code.ApiStability.MORE_EVALUATION_NEEDED;
 import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_REQUIRED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
 
 /**
  * An object, often a collection or related type, to which objects can be appended. Provides default implementations for
@@ -39,7 +39,7 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_RE
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramCollection.class)
 @ApiQuality(stability = MORE_EVALUATION_NEEDED,
-            testing = TESTING_NOT_REQUIRED,
+            testing = TESTING_NOT_NEEDED,
             documentation = FULLY_DOCUMENTED,
             reviews = 1,
             reviewers = "shibo")

@@ -16,64 +16,106 @@
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-package com.telenav.kivakit.core.language.reflection;
+package com.telenav.kivakit.core.language.reflection.accessors;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramReflection;
+import com.telenav.kivakit.core.language.reflection.Method;
+import com.telenav.kivakit.core.language.reflection.ReflectionProblem;
+import com.telenav.kivakit.core.language.reflection.Type;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.lang.annotation.Annotation;
-import java.lang.reflect.Method;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
+
+/**
+ * Gets the value of a property by calling its getter method
+ *
+ * @author jonathanl (shibo)
+ */
 @UmlClassDiagram(diagram = DiagramReflection.class)
+@ApiQuality(stability = STABLE,
+            testing = UNTESTED,
+            documentation = FULLY_DOCUMENTED)
 public class MethodGetter implements Getter
 {
-    private final transient Method method;
+    /** The method to call to get a value */
+    private final Method method;
 
     public MethodGetter(Method method)
     {
         this.method = method;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public <T extends Annotation> T annotation(Class<T> annotationType)
     {
-        return method.getAnnotation(annotationType);
+        return method.annotation(annotationType);
     }
 
+    /**
+     * Gets the value returned by this getter in the given object
+     *
+     * @param object The object to get from
+     * @return The value of this property in the given object, or an instance of {@link ReflectionProblem} if the
+     * operation failed
+     */
     @Override
     public Object get(Object object)
     {
         try
         {
-            method.setAccessible(true);
-            return method.invoke(object);
+            var problem = method.makeAccessible();
+            if (problem == null)
+            {
+                return method.invoke(object);
+            }
+            return problem;
         }
         catch (Exception e)
         {
-            return new ReflectionProblem(e, "Cannot get: " + this);
+            return new ReflectionProblem(e, "Cannot get " + this);
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public Method method()
     {
         return method;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String name()
     {
-        return method.getName();
+        return method.name();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String toString()
     {
         return "[MethodGetter name = " + name() + ", type = " + type() + "]";
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public Class<?> type()
+    public Type<?> type()
     {
-        return method.getReturnType();
+        return method.type();
     }
 }

@@ -9,7 +9,7 @@ import com.telenav.kivakit.core.language.reflection.property.PropertyValues;
 import com.telenav.kivakit.core.messaging.Listener;
 
 import static com.telenav.kivakit.core.language.reflection.property.PropertyMembers.CONVERTED_FIELDS_AND_METHODS;
-import static com.telenav.kivakit.core.language.reflection.property.PropertyNamingConvention.KIVAKIT;
+import static com.telenav.kivakit.core.language.reflection.property.PropertyNamingConvention.KIVAKIT_PROPERTY_NAMING;
 
 /**
  * Converts a {@link PropertyValues} to an object of a given Value type.
@@ -40,10 +40,10 @@ public class ObjectConverter<Value> extends BaseConverter<PropertyValues, Value>
         try
         {
             // Create an object of the given type,
-            var object = Type.forClass(type).newInstance();
+            var object = Type.typeForClass(type).newInstance();
 
             // and a filter that matches converted fields and methods,
-            var filter = new ConversionPropertyFilterSet(KIVAKIT, CONVERTED_FIELDS_AND_METHODS);
+            var filter = new ConversionPropertyFilterSet(KIVAKIT_PROPERTY_NAMING, CONVERTED_FIELDS_AND_METHODS);
 
             // and populate the object with converted values.
             new ObjectPopulator(filter, () -> convertedValues(values)).populate(object);

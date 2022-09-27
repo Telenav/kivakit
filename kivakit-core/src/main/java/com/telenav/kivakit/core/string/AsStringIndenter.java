@@ -166,7 +166,7 @@ public class AsStringIndenter
                 else
                 {
                     // and last of all, if we just have a vanilla object, loop through the properties of the object,
-                    var type = Type.of(object);
+                    var type = Type.type(object);
                     var properties = type.properties(filter);
                     if (properties.isEmpty())
                     {

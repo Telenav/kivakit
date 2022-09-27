@@ -16,59 +16,95 @@
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-package com.telenav.kivakit.core.language.reflection;
+package com.telenav.kivakit.core.language.reflection.accessors;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramReflection;
+import com.telenav.kivakit.core.language.reflection.Method;
+import com.telenav.kivakit.core.language.reflection.ReflectionProblem;
+import com.telenav.kivakit.core.language.reflection.Type;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.lang.annotation.Annotation;
-import java.lang.reflect.Method;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
+
+/**
+ * Set the value of a property by calling its setter method
+ *
+ * @author jonathanl (shibo)
+ */
 @UmlClassDiagram(diagram = DiagramReflection.class)
+@ApiQuality(stability = STABLE,
+            testing = UNTESTED,
+            documentation = FULLY_DOCUMENTED)
 public class MethodSetter implements Setter
 {
-    private final transient Method method;
+    /** The method to call to set a value */
+    private final Method method;
 
     public MethodSetter(Method method)
     {
         this.method = method;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public <T extends Annotation> T annotation(Class<T> annotationType)
     {
-        return method.getAnnotation(annotationType);
+        return method.annotation(annotationType);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String name()
     {
-        return method.getName();
+        return method.name();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ReflectionProblem set(Object object, Object value)
     {
         try
         {
-            method.invoke(object, value);
-            return null;
+            var problem = method.makeAccessible();
+            if (problem == null)
+            {
+                method.invoke(object, value);
+                return null;
+            }
+            return problem;
         }
         catch (Exception e)
         {
-            return new ReflectionProblem(e, "Cannot set: " + this);
+            return new ReflectionProblem(e, "Cannot get " + this);
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String toString()
     {
         return "[MethodSetter name = " + name() + ", type = " + type() + "]";
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public Class<?> type()
+    public Type<?> type()
     {
-        return method.getParameterTypes()[0];
+        return Type.typeForClass(method.method().getParameterTypes()[0]);
     }
 }

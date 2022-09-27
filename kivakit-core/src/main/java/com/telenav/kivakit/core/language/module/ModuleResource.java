@@ -38,7 +38,7 @@ import java.nio.file.attribute.BasicFileAttributes;
 
 import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXPANDABLE;
 import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_REQUIRED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
 
 /**
  * A resource in a module having the following attributes. {@link ModuleResource}s can be found with the methods in
@@ -64,7 +64,7 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_RE
  */
 @UmlClassDiagram(diagram = DiagramModule.class)
 @ApiQuality(stability = STABLE_EXPANDABLE,
-            testing = TESTING_NOT_REQUIRED,
+            testing = TESTING_NOT_NEEDED,
             documentation = FULLY_DOCUMENTED)
 public class ModuleResource
 {

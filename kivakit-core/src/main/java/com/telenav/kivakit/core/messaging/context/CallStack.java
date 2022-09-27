@@ -106,7 +106,7 @@ public class CallStack
         var stack = new ObjectList<Method>();
         for (var frame : Thread.currentThread().getStackTrace())
         {
-            var method = Method.of(frame);
+            var method = Method.method(frame);
             if (method != null)
             {
                 stack.add(method);

@@ -12,11 +12,11 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 public enum PropertyNamingConvention
 {
     /** The x() and x(Value) naming convention used in KivaKit */
-    KIVAKIT,
+    KIVAKIT_PROPERTY_NAMING,
 
     /** The getX() and setX(Value) naming convention that is used in Java Beans */
-    JAVA_BEANS,
+    JAVA_BEANS_NAMING,
 
     /** Both KivaKit and Java Beans naming conventions are acceptable */
-    KIVAKIT_AND_JAVA_BEANS
+    ANY_NAMING_CONVENTION
 }

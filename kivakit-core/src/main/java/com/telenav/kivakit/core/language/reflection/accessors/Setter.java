@@ -16,25 +16,54 @@
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-package com.telenav.kivakit.core.language.reflection;
+package com.telenav.kivakit.core.language.reflection.accessors;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramReflection;
+import com.telenav.kivakit.core.language.reflection.ReflectionProblem;
+import com.telenav.kivakit.core.language.reflection.Type;
 import com.telenav.kivakit.interfaces.naming.Named;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.lang.annotation.Annotation;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
+
+/**
+ * Interface to a setter, either for a field or a method.
+ *
+ * @author jonathanl (shibo)
+ */
 @UmlClassDiagram(diagram = DiagramReflection.class)
+@ApiQuality(stability = STABLE,
+            testing = TESTING_NOT_NEEDED,
+            documentation = FULLY_DOCUMENTED)
 public interface Setter extends Named
 {
+    /**
+     * Gets the annotation of the given type for this getter
+     */
     <T extends Annotation> T annotation(Class<T> annotationType);
 
+    /**
+     * True if this setter has an annotation of the given type
+     */
     default boolean hasAnnotation(Class<? extends Annotation> annotation)
     {
         return annotation(annotation) != null;
     }
 
+    /**
+     * @param object The object whose property should be set
+     * @param value The property value
+     * @return {@link ReflectionProblem} if something went wrong, or null if the operation succeeded
+     */
     ReflectionProblem set(Object object, Object value);
 
-    Class<?> type();
+    /**
+     * Gets the type of value that this setter sets
+     */
+    Type<?> type();
 }

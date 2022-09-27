@@ -7,7 +7,7 @@ import java.util.function.Function;
 
 import static com.telenav.kivakit.annotations.code.ApiStability.STABLE;
 import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_REQUIRED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
 
 /**
  * Represents a function that accepts two arguments and produces a result. This is the five-arity specialization of
@@ -27,7 +27,7 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_RE
 @SuppressWarnings("SpellCheckingInspection")
 @FunctionalInterface
 @ApiQuality(stability = STABLE,
-            testing = TESTING_NOT_REQUIRED,
+            testing = TESTING_NOT_NEEDED,
             documentation = FULLY_DOCUMENTED)
 public interface PentaFunction<Argument1, Argument2, Argument3, Argument4, Argument5, Result>
 {

@@ -16,17 +16,36 @@
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-package com.telenav.kivakit.core.language.reflection;
+package com.telenav.kivakit.core.language.reflection.accessors;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramReflection;
+import com.telenav.kivakit.core.language.reflection.ReflectionProblem;
+import com.telenav.kivakit.core.language.reflection.Type;
 import com.telenav.kivakit.interfaces.naming.Named;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.lang.annotation.Annotation;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
+
+/**
+ * Interface to a getter, either for a field or a method.
+ *
+ * @author jonathanl (shibo)
+ */
+@SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramReflection.class)
+@ApiQuality(stability = STABLE,
+            testing = TESTING_NOT_NEEDED,
+            documentation = FULLY_DOCUMENTED)
 public interface Getter extends Named
 {
+    /**
+     * Gets the annotation of the given type for this getter
+     */
     <T extends Annotation> T annotation(Class<T> annotationType);
 
     /**
@@ -35,5 +54,16 @@ public interface Getter extends Named
      */
     Object get(Object object);
 
-    Class<?> type();
+    /**
+     * True if this setter has an annotation of the given type
+     */
+    default boolean hasAnnotation(Class<? extends Annotation> annotation)
+    {
+        return annotation(annotation) != null;
+    }
+
+    /**
+     * Gets the type of value that this getter retrieves
+     */
+    Type<?> type();
 }

@@ -306,7 +306,7 @@ public class JavaVirtualMachine extends BaseRepeater
      */
     public Bytes sizeOfObjectGraph(Object object, String prefix, Bytes minimumSizeToDebugTrace)
     {
-        Type<?> type = Type.of(object);
+        Type<?> type = Type.type(object);
         var isTree = type.type().isAnnotationPresent(KivaKitNonCyclicObjectGraph.class);
         return sizeOfObject(object, isTree ? null : Sets.identitySet(), prefix, minimumSizeToDebugTrace, false, 0);
     }
@@ -544,7 +544,7 @@ public class JavaVirtualMachine extends BaseRepeater
                 {
                     visited.add(object);
                 }
-                Type<?> type = Type.of(object);
+                Type<?> type = Type.type(object);
                 excludeFromTracing = excludeFromTracing
                         || type.type().isAnnotationPresent(KivaKitExcludeFromSizeOfDebugTracing.class);
                 if (!type.type().isAnnotationPresent(KivaKitExcludeFromSizeOf.class))

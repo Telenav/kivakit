@@ -53,7 +53,7 @@ public class ObjectPopulator
     public <T> T populate(T object)
     {
         // Go through each property on the object,
-        for (var property : Type.of(object).properties(filter))
+        for (var property : Type.type(object).properties(filter))
         {
             // get any value for the given property,
             var value = source.get().valueFor(property);
