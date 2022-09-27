@@ -32,7 +32,9 @@ import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DO
 import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
 
 /**
- * This annotation signals that a missing converted property should not be considered a problem.
+ * This annotation signals that a missing property value should not be considered a problem.
+ *
+ * @author jonathanl (shibo)
  */
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ ElementType.FIELD, ElementType.METHOD })

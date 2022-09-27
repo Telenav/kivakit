@@ -200,6 +200,7 @@ public class Field extends Member
     {
         return Modifier.isStatic(field.getModifiers());
     }
+
     /**
      * Returns true if this is a transient field
      */
@@ -240,7 +241,7 @@ public class Field extends Member
      *
      * @return The value or an instance of {@link ReflectionProblem} if something went wrong
      */
-    public Object set(@NotNull Object object, Object value)
+    public ReflectionProblem set(@NotNull Object object, Object value)
     {
         try
         {
