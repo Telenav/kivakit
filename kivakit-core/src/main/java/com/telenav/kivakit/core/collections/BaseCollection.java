@@ -5,7 +5,8 @@ import com.telenav.kivakit.core.collections.iteration.BaseIterator;
 import com.telenav.kivakit.core.collections.iteration.FilteredIterable;
 import com.telenav.kivakit.core.collections.list.ObjectList;
 import com.telenav.kivakit.core.collections.list.StringList;
-import com.telenav.kivakit.core.ensure.Ensure;
+import com.telenav.kivakit.core.logging.Logger;
+import com.telenav.kivakit.core.logging.LoggerFactory;
 import com.telenav.kivakit.core.string.StringTo;
 import com.telenav.kivakit.core.value.count.Count;
 import com.telenav.kivakit.core.value.count.Countable;
@@ -167,6 +168,8 @@ public abstract class BaseCollection<Value> implements
         Sized,
         StringFormattable
 {
+    private static final Logger LOGGER = LoggerFactory.newLogger();
+
     /** The maximum number of values that can be stored in this list */
     private int maximumSize;
 
@@ -382,7 +385,7 @@ public abstract class BaseCollection<Value> implements
         if (!warnedAboutOutOfRoom)
         {
             warnedAboutOutOfRoom = true;
-            Ensure.warning(new Throwable(), "Adding $ values, would exceed maximum size of $. Ignoring operation.", values, totalRoom());
+            LOGGER.warning(new Throwable(), "Adding $ values, would exceed maximum size of $. Ignoring operation.", values, totalRoom());
         }
     }
 

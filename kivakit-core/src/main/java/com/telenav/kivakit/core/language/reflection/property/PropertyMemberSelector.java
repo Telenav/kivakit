@@ -1,15 +1,23 @@
 package com.telenav.kivakit.core.language.reflection.property;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramReflection;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXPANDABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
+
 /**
- * Kinds of property methods and fields
+ * Different kinds of property methods and fields.
  *
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramReflection.class)
-public enum PropertyMembers
+@ApiQuality(stability = STABLE_EXPANDABLE,
+            testing = UNTESTED,
+            documentation = FULLY_DOCUMENTED)
+public enum PropertyMemberSelector
 {
     /** Include all fields and methods as properties */
     ALL_FIELDS_AND_METHODS,
@@ -21,10 +29,10 @@ public enum PropertyMembers
     NON_PUBLIC_METHODS,
 
     /** Include fields and methods marked with {@link KivaKitIncludeProperty} */
-    INCLUDED_FIELDS_AND_METHODS,
+    KIVAKIT_ANNOTATION_INCLUDED_FIELDS_AND_METHODS,
 
     /** Include fields marked with {@link KivaKitIncludeProperty} */
-    INCLUDED_FIELDS,
+    KIVAKIT_ANNOTATION_INCLUDED_FIELDS,
 
     /** Include fields marked with @KivaKitPropertyConverter */
     CONVERTED_FIELDS_AND_METHODS

@@ -20,7 +20,7 @@ package com.telenav.kivakit.resource.reading;
 
 import com.telenav.kivakit.core.collections.list.StringList;
 import com.telenav.kivakit.core.io.IO;
-import com.telenav.kivakit.core.messaging.broadcasters.Multicaster;
+import com.telenav.kivakit.core.messaging.repeaters.BaseRepeater;
 import com.telenav.kivakit.core.progress.ProgressReporter;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import org.jetbrains.annotations.NotNull;
@@ -34,13 +34,13 @@ import java.util.function.Consumer;
 import java.util.stream.Stream;
 
 /**
- * Reads the provided {@link ReadableResource} as a series of lines, reporting progress to the given {@link
- * ProgressReporter}.
+ * Reads the provided {@link ReadableResource} as a series of lines, reporting progress to the given
+ * {@link ProgressReporter}.
  *
  * @author jonathanl (shibo)
  */
 @LexakaiJavadoc(complete = true)
-public class LineReader extends Multicaster implements Iterable<String>
+public class LineReader extends BaseRepeater implements Iterable<String>
 {
     /** The resource to read */
     private final ReadableResource resource;
@@ -102,7 +102,7 @@ public class LineReader extends Multicaster implements Iterable<String>
         }
         finally
         {
-            IO.close(reader);
+            IO.close(this, reader);
         }
     }
 

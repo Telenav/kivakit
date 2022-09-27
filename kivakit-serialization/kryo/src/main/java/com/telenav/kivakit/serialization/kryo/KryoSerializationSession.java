@@ -49,7 +49,7 @@ import static com.telenav.kivakit.core.ensure.Ensure.fail;
  * @see Kryo
  * @see SerializationSession
  */
-@UmlClassDiagram(diagram = DiagramKryo.class)
+@SuppressWarnings("UnusedReturnValue") @UmlClassDiagram(diagram = DiagramKryo.class)
 @UmlRelation(diagram = DiagramKryo.class,
              label = "registers",
              referent = Serializer.class,
@@ -110,7 +110,7 @@ public final class KryoSerializationSession extends BaseRepeater implements
         if (isWriting())
         {
             trace("Flushing");
-            IO.flush(output);
+            IO.flush(this, output);
         }
     }
 
@@ -136,14 +136,14 @@ public final class KryoSerializationSession extends BaseRepeater implements
     {
         if (isReading())
         {
-            IO.close(input);
+            IO.close(this, input);
             input = null;
         }
 
         if (isWriting())
         {
             flush();
-            IO.close(output);
+            IO.close(this, output);
             output = null;
         }
     }

@@ -20,8 +20,9 @@ package com.telenav.kivakit.core.collections.map;
 
 import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.collections.list.StringList;
-import com.telenav.kivakit.core.ensure.Ensure;
 import com.telenav.kivakit.core.internal.lexakai.DiagramCollections;
+import com.telenav.kivakit.core.logging.Logger;
+import com.telenav.kivakit.core.logging.LoggerFactory;
 import com.telenav.kivakit.core.value.count.Maximum;
 import com.telenav.kivakit.interfaces.collection.SpaceLimited;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
@@ -62,6 +63,8 @@ public class BaseMap<Key, Value> implements
         Map<Key, Value>,
         SpaceLimited
 {
+    private static final Logger LOGGER = LoggerFactory.newLogger();
+
     /** The map to wrap */
     private final Map<Key, Value> map;
 
@@ -286,7 +289,7 @@ public class BaseMap<Key, Value> implements
         if (!warnedAboutOutOfRoom)
         {
             warnedAboutOutOfRoom = true;
-            Ensure.warning(new Throwable(), "Adding $ values, would exceed maximum size of $. Ignoring operation.", values, totalRoom());
+            LOGGER.warning(new Throwable(), "Adding $ values, would exceed maximum size of $. Ignoring operation.", values, totalRoom());
         }
     }
 

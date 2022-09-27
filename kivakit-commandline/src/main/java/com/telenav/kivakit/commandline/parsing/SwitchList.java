@@ -25,7 +25,7 @@ import com.telenav.kivakit.commandline.internal.lexakai.DiagramSwitch;
 import com.telenav.kivakit.commandline.internal.lexakai.DiagramValidation;
 import com.telenav.kivakit.core.collections.list.ObjectList;
 import com.telenav.kivakit.core.language.reflection.property.Property;
-import com.telenav.kivakit.core.language.reflection.property.PropertyValues;
+import com.telenav.kivakit.core.language.reflection.property.PropertyValue;
 import com.telenav.kivakit.interfaces.string.StringFormattable;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlAggregation;
@@ -52,7 +52,7 @@ import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
 public class SwitchList implements
         Iterable<Switch>,
         StringFormattable,
-        PropertyValues
+        PropertyValue
 {
     /** The switches */
     @UmlAggregation
@@ -103,7 +103,7 @@ public class SwitchList implements
      * {@inheritDoc}
      */
     @Override
-    public Object valueFor(Property property)
+    public Object propertyValue(Property property)
     {
         var _switch = switchForName(property.name());
         if (_switch != null)

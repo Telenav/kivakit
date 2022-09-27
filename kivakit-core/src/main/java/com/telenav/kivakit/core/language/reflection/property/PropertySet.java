@@ -18,22 +18,26 @@
 
 package com.telenav.kivakit.core.language.reflection.property;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramReflection;
+import com.telenav.kivakit.core.language.reflection.Field;
+import com.telenav.kivakit.core.language.reflection.Method;
 import com.telenav.kivakit.core.string.CaseFormat;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlAggregation;
 
-import java.lang.reflect.Field;
-import java.lang.reflect.Method;
-import java.lang.reflect.Modifier;
 import java.util.Set;
+
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXPANDABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
 
 /**
  * Base class for property filters. Supports Java Beans and KivaKit style accessor naming conventions with the enum
- * {@link PropertyNamingConvention} and filtering of properties and fields with {@link PropertyMembers}. The constructor
- * takes a style and a set of explicit includes (nothing is included by default). Static fields and properties are never
- * included. Any field or method tagged with {@link KivaKitExcludeProperty} will be excluded regardless of the
- * inclusions specified.
+ * {@link PropertyNamingConvention} and filtering of properties and fields with {@link PropertyMemberSelector}. The
+ * constructor takes a style and a set of explicit includes (nothing is included by default). Static fields and
+ * properties are never included. Any field or method tagged with {@link KivaKitExcludeProperty} will be excluded
+ * regardless of the inclusions specified.
  * <p>
  * Subclasses can utilize the following tests to implement filters that don't follow the pattern implemented by this
  * base class.
@@ -46,8 +50,8 @@ import java.util.Set;
  * <p>
  * <b>Include Tests</b>
  * <ul>
- *     <li>{@link #isIncluded(Method)} - True if the method is included under the given set of {@link PropertyMembers}s</li>
- *     <li>{@link #isIncluded(Field)} - True if the field is included under the given set of {@link PropertyMembers}s</li>
+ *     <li>{@link #isIncluded(Method)} - True if the method is included under the given set of {@link PropertyMemberSelector}s</li>
+ *     <li>{@link #isIncluded(Field)} - True if the field is included under the given set of {@link PropertyMemberSelector}s</li>
  * </ul>
  * <p>
  * <b>KivaKit Annotation Tests</b>
@@ -61,35 +65,46 @@ import java.util.Set;
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramReflection.class)
-public class PropertyFilterSet implements PropertyFilter
+@ApiQuality(stability = STABLE_EXPANDABLE,
+            testing = UNTESTED,
+            documentation = FULLY_DOCUMENTED)
+public class PropertySet implements PropertyFilter
 {
+    /** The property naming convention */
     @UmlAggregation
     private final PropertyNamingConvention convention;
 
+    /** The set of selectors that describe what kind of properties to include */
     @UmlAggregation
-    private final Set<PropertyMembers> included;
+    private final Set<PropertyMemberSelector> selection;
 
     /**
      * @param convention The naming convention used for getters and setters
-     * @param included Set of fields and properties to include
+     * @param selection Set of fields and properties to include
      */
-    public PropertyFilterSet(PropertyNamingConvention convention, PropertyMembers... included)
+    public PropertySet(PropertyNamingConvention convention, PropertyMemberSelector... selection)
     {
         this.convention = convention;
-        this.included = Set.of(included);
+        this.selection = Set.of(selection);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean equals(Object object)
     {
-        if (object instanceof PropertyFilterSet)
+        if (object instanceof PropertySet)
         {
-            var that = (PropertyFilterSet) object;
+            var that = (PropertySet) object;
             return getClass().equals(that.getClass());
         }
         return false;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public int hashCode()
     {
@@ -123,9 +138,12 @@ public class PropertyFilterSet implements PropertyFilter
         return isIncluded(field);
     }
 
-    public Set<PropertyMembers> included()
+    /**
+     * Returns the set of selectors for this filter
+     */
+    public Set<PropertyMemberSelector> included()
     {
-        return included;
+        return selection;
     }
 
     /**
@@ -134,7 +152,18 @@ public class PropertyFilterSet implements PropertyFilter
     @Override
     public String nameForField(Field field)
     {
-        return field.getName();
+        // If an explicit name was provided,
+        var includeAnnotation = field.annotation(KivaKitIncludeProperty.class);
+        if (includeAnnotation != null)
+        {
+            var name = includeAnnotation.name();
+            if (!"".equals(name))
+            {
+                // use that name
+                return name;
+            }
+        }
+        return field.name();
     }
 
     /**
@@ -143,8 +172,8 @@ public class PropertyFilterSet implements PropertyFilter
     @Override
     public String nameForMethod(Method method)
     {
-        // If explicit name was provided,
-        var includeAnnotation = method.getAnnotation(KivaKitIncludeProperty.class);
+        // If an explicit name was provided,
+        var includeAnnotation = method.annotation(KivaKitIncludeProperty.class);
         if (includeAnnotation != null)
         {
             var name = includeAnnotation.name();
@@ -156,7 +185,7 @@ public class PropertyFilterSet implements PropertyFilter
         }
 
         // Otherwise, use beans naming conventions, if applicable
-        var name = method.getName();
+        var name = method.name();
         if (name.startsWith("is") && name.length() >= 3 && Character.isUpperCase(name.charAt(2)))
         {
             return CaseFormat.decapitalize(name.substring(2));
@@ -174,14 +203,14 @@ public class PropertyFilterSet implements PropertyFilter
     protected boolean isGetter(Method method)
     {
         // If the method takes no parameters, and it's not static,
-        if (method.getParameterTypes().length == 0)
+        if (method.parameterTypes().length == 0)
         {
             // then determine if it's a getter in the given style
-            var name = method.getName();
+            var name = method.name();
             switch (convention)
             {
                 case JAVA_BEANS_NAMING:
-                    if (!"getClass".equals(method.getName()))
+                    if (!"getClass".equals(method.name()))
                     {
                         if (name.startsWith("get") && name.matches("get[A-Z].*")
                                 || name.startsWith("is") && name.matches("is[A-Z].*"))
@@ -192,7 +221,7 @@ public class PropertyFilterSet implements PropertyFilter
                     break;
 
                 case KIVAKIT_PROPERTY_NAMING:
-                    return true;
+                    return method.returnType() != Void.class && method.parameterTypes().length == 0;
 
                 default:
                     return false;
@@ -206,17 +235,7 @@ public class PropertyFilterSet implements PropertyFilter
      */
     protected boolean isIncluded(Field field)
     {
-        if (Modifier.isStatic(field.getModifiers()))
-        {
-            return false;
-        }
-
-        if (isKivaKitExcluded(field))
-        {
-            return false;
-        }
-
-        return isKivaKitIncluded(field);
+        return !field.isStatic() && !isKivaKitExcluded(field) && isKivaKitIncluded(field);
     }
 
     /**
@@ -224,17 +243,7 @@ public class PropertyFilterSet implements PropertyFilter
      */
     protected boolean isIncluded(Method method)
     {
-        if (Modifier.isStatic(method.getModifiers()))
-        {
-            return false;
-        }
-
-        if (isKivaKitExcluded(method))
-        {
-            return false;
-        }
-
-        return isKivaKitIncluded(method);
+        return !method.isStatic() && !isKivaKitExcluded(method) && isKivaKitIncluded(method);
     }
 
     /**
@@ -242,7 +251,7 @@ public class PropertyFilterSet implements PropertyFilter
      */
     protected boolean isKivaKitExcluded(Method method)
     {
-        return method.getAnnotation(KivaKitExcludeProperty.class) != null;
+        return method.annotation(KivaKitExcludeProperty.class) != null;
     }
 
     /**
@@ -250,7 +259,7 @@ public class PropertyFilterSet implements PropertyFilter
      */
     protected boolean isKivaKitExcluded(Field field)
     {
-        return field.getAnnotation(KivaKitExcludeProperty.class) != null;
+        return field.annotation(KivaKitExcludeProperty.class) != null;
     }
 
     /**
@@ -258,9 +267,10 @@ public class PropertyFilterSet implements PropertyFilter
      */
     protected boolean isKivaKitIncluded(Field field)
     {
-        if (!field.isSynthetic() && !java.lang.reflect.Modifier.isStatic(field.getModifiers()))
+        if (!field.isSynthetic() && !field.isStatic())
         {
-            return field.getAnnotation(KivaKitIncludeProperty.class) != null && included.contains(PropertyMembers.INCLUDED_FIELDS);
+            return field.annotation(KivaKitIncludeProperty.class) != null &&
+                    selection.contains(PropertyMemberSelector.KIVAKIT_ANNOTATION_INCLUDED_FIELDS);
         }
         return false;
     }
@@ -270,20 +280,20 @@ public class PropertyFilterSet implements PropertyFilter
      */
     protected boolean isKivaKitIncluded(Method method)
     {
-        if (!method.isSynthetic() && !java.lang.reflect.Modifier.isStatic(method.getModifiers()))
+        if (!method.isSynthetic() && !method.isStatic())
         {
-            if (method.getAnnotation(KivaKitIncludeProperty.class) != null
-                    && included.contains(PropertyMembers.INCLUDED_FIELDS_AND_METHODS))
+            if (method.annotation(KivaKitIncludeProperty.class) != null
+                    && selection.contains(PropertyMemberSelector.KIVAKIT_ANNOTATION_INCLUDED_FIELDS_AND_METHODS))
             {
                 return true;
             }
 
-            if (included.contains(PropertyMembers.PUBLIC_METHODS) && Modifier.isPublic(method.getModifiers()))
+            if (selection.contains(PropertyMemberSelector.PUBLIC_METHODS) && method.isPublic())
             {
                 return true;
             }
 
-            return included.contains(PropertyMembers.NON_PUBLIC_METHODS);
+            return selection.contains(PropertyMemberSelector.NON_PUBLIC_METHODS);
         }
         return false;
     }
@@ -294,9 +304,10 @@ public class PropertyFilterSet implements PropertyFilter
     protected boolean isSetter(Method method)
     {
         // If the method takes one parameter, and it's not static,
-        if (method.getParameterTypes().length == 1)
+        if (method.parameterTypes().length == 1)
         {
-            return convention == PropertyNamingConvention.KIVAKIT_PROPERTY_NAMING || method.getName().startsWith("set");
+            return convention == PropertyNamingConvention.KIVAKIT_PROPERTY_NAMING ||
+                    method.name().startsWith("set");
         }
         return false;
     }

@@ -26,7 +26,6 @@ import com.telenav.kivakit.core.value.count.ConcurrentMutableCount;
 import com.telenav.kivakit.core.value.count.Count;
 import com.telenav.kivakit.core.value.count.Countable;
 import com.telenav.kivakit.core.value.count.Maximum;
-import com.telenav.kivakit.core.value.count.MutableCount;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.ArrayList;
@@ -112,13 +111,13 @@ public class CountMap<Key> extends ObjectMap<Key, ConcurrentMutableCount>
     /**
      * @return Entries sorted in ascending order with the given comparator
      */
-    @SuppressWarnings("unchecked")
-    public ObjectList<Map.Entry<Key, ConcurrentMutableCount>> ascendingEntries(Maximum maximum,
-                                                                         Comparator<Map.Entry<Key, MutableCount>> comparator)
+    public ObjectList<Map.Entry<Key, ConcurrentMutableCount>> ascendingEntries(
+            Maximum maximum,
+            Comparator<? super Map.Entry<Key, ConcurrentMutableCount>> comparator)
     {
         assert maximum != null;
-        ObjectList<Map.Entry<Key, ConcurrentMutableCount>> sorted = new ObjectList<>(entrySet());
-        sorted.sort((Comparator<? super Entry<Key, ConcurrentMutableCount>>) comparator);
+        var sorted = new ObjectList<>(entrySet());
+        sorted.sort(comparator);
         return sorted.subList(0, Math.min(sorted.size(), maximum.asInt()));
     }
 
@@ -133,7 +132,7 @@ public class CountMap<Key> extends ObjectMap<Key, ConcurrentMutableCount>
     /**
      * Returns the bottom entries, up to the maximum, in sorted order
      */
-    public CountMap<Key> bottom(Maximum maximum, Comparator<Map.Entry<Key, MutableCount>> comparator)
+    public CountMap<Key> bottom(Maximum maximum, Comparator<? super Map.Entry<Key, ConcurrentMutableCount>> comparator)
     {
         var bottom = new CountMap<Key>();
         for (var entry : ascendingEntries(maximum, comparator))
@@ -167,8 +166,9 @@ public class CountMap<Key> extends ObjectMap<Key, ConcurrentMutableCount>
     /**
      * @return Entries sorted in descending order with the given comparator
      */
-    public ObjectList<Map.Entry<Key, ConcurrentMutableCount>> descendingEntries(Maximum maximum,
-                                                                          Comparator<Map.Entry<Key, ConcurrentMutableCount>> comparator)
+    public ObjectList<Map.Entry<Key, ConcurrentMutableCount>> descendingEntries(
+            Maximum maximum,
+            Comparator<? super Map.Entry<Key, ConcurrentMutableCount>> comparator)
     {
         assert maximum != null;
         ObjectList<Map.Entry<Key, ConcurrentMutableCount>> sorted = new ObjectList<>(entrySet());

@@ -26,6 +26,7 @@ import com.telenav.kivakit.core.time.Time;
 import com.telenav.kivakit.core.value.count.BaseCount;
 import com.telenav.kivakit.core.value.count.Count;
 import com.telenav.kivakit.interfaces.collection.Addable;
+import com.telenav.kivakit.interfaces.collection.Sequence;
 import com.telenav.kivakit.interfaces.comparison.Matcher;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
@@ -97,7 +98,7 @@ import static com.telenav.kivakit.core.ensure.Ensure.ensure;
  */
 @SuppressWarnings({ "SpellCheckingInspection", "unused" })
 @UmlClassDiagram(diagram = DiagramThread.class)
-public class Batcher<Element> extends BaseRepeater
+public class Batcher<Value> extends BaseRepeater
 {
     /**
      * @return Creates a new batcher
@@ -120,7 +121,7 @@ public class Batcher<Element> extends BaseRepeater
      * A batch of elements for processing
      */
     @LexakaiJavadoc(complete = true)
-    public class Batch extends ArrayList<Element>
+    public class Batch extends ArrayList<Value>
     {
         boolean isFull()
         {
@@ -156,20 +157,20 @@ public class Batcher<Element> extends BaseRepeater
      * shared among threads, and therefore it would have to be synchronized. Having each thread add elements to its own
      * thread-local batch adder reduces lock contention.
      */
-    public class BatchAdder implements Addable<Element>
+    public class BatchAdder implements Addable<Value>, Sequence<Value>
     {
         /** The batch to fill with elements */
         private Batch batch = new Batch();
 
         @Override
-        public @NotNull Iterator<Element> asIterator(Matcher<Element> matcher)
+        public @NotNull Iterator<Value> asIterator(Matcher<Value> matcher)
         {
             return new BaseIterator<>()
             {
-                private final Iterator<Element> iterator = batch.iterator();
+                private final Iterator<Value> iterator = batch.iterator();
 
                 @Override
-                protected Element onNext()
+                protected Value onNext()
                 {
                     if (iterator.hasNext())
                     {
@@ -184,7 +185,7 @@ public class Batcher<Element> extends BaseRepeater
          * Adds the given item to a batch and enqueues the batch if it is full
          */
         @Override
-        public boolean onAdd(Element item)
+        public boolean onAdd(Value item)
         {
             var outer = Batcher.this;
 
@@ -265,7 +266,7 @@ public class Batcher<Element> extends BaseRepeater
     {
     }
 
-    protected Batcher(Batcher<Element> that)
+    protected Batcher(Batcher<Value> that)
     {
         name = that.name;
         batchSize = that.batchSize;
@@ -363,42 +364,42 @@ public class Batcher<Element> extends BaseRepeater
         }
     }
 
-    public Batcher<Element> withBatchFullPredicate(Predicate<Batch> predicate)
+    public Batcher<Value> withBatchFullPredicate(Predicate<Batch> predicate)
     {
         var copy = copy();
         copy.batchFullPredicate = predicate;
         return copy;
     }
 
-    public Batcher<Element> withBatchSize(Count size)
+    public Batcher<Value> withBatchSize(Count size)
     {
         var copy = copy();
         copy.batchSize = size.asInt();
         return copy;
     }
 
-    public Batcher<Element> withConsumer(Consumer<Batch> consumer)
+    public Batcher<Value> withConsumer(Consumer<Batch> consumer)
     {
         var copy = copy();
         copy.consumer = consumer;
         return copy;
     }
 
-    public Batcher<Element> withName(String name)
+    public Batcher<Value> withName(String name)
     {
         var copy = copy();
         copy.name = name;
         return copy;
     }
 
-    public Batcher<Element> withQueueSize(BaseCount<?> size)
+    public Batcher<Value> withQueueSize(BaseCount<?> size)
     {
         var copy = copy();
         copy.queueSize = size.asInt();
         return copy;
     }
 
-    protected Batcher<Element> copy()
+    protected Batcher<Value> copy()
     {
         return new Batcher<>(this);
     }

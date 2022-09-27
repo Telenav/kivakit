@@ -177,6 +177,14 @@ public class Field extends Member
     }
 
     /**
+     * Returns true if this field has an annotation of the given type
+     */
+    public boolean hasAnnotation(Class<? extends Annotation> type)
+    {
+        return field.isAnnotationPresent(type);
+    }
+
+    /**
      * {@inheritDoc}
      */
     @Override
@@ -199,6 +207,14 @@ public class Field extends Member
     public boolean isStatic()
     {
         return Modifier.isStatic(field.getModifiers());
+    }
+
+    /**
+     * Returns true if this is a synthetic field
+     */
+    public boolean isSynthetic()
+    {
+        return field.isSynthetic();
     }
 
     /**

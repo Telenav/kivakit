@@ -20,8 +20,8 @@ package com.telenav.kivakit.core.vm;
 
 import com.sun.tools.attach.VirtualMachine;
 import com.telenav.kivakit.core.KivaKit;
-import com.telenav.kivakit.core.collections.Sets;
 import com.telenav.kivakit.core.collections.map.VariableMap;
+import com.telenav.kivakit.core.collections.set.IdentitySet;
 import com.telenav.kivakit.core.internal.lexakai.DiagramLanguage;
 import com.telenav.kivakit.core.language.primitive.Primitives;
 import com.telenav.kivakit.core.language.reflection.Field;
@@ -46,7 +46,6 @@ import java.lang.annotation.Target;
 import java.lang.instrument.Instrumentation;
 import java.lang.management.ManagementFactory;
 import java.lang.reflect.Array;
-import java.lang.reflect.Modifier;
 import java.nio.file.Path;
 import java.util.Set;
 
@@ -308,7 +307,7 @@ public class JavaVirtualMachine extends BaseRepeater
     {
         Type<?> type = Type.type(object);
         var isTree = type.type().isAnnotationPresent(KivaKitNonCyclicObjectGraph.class);
-        return sizeOfObject(object, isTree ? null : Sets.identitySet(), prefix, minimumSizeToDebugTrace, false, 0);
+        return sizeOfObject(object, isTree ? null : new IdentitySet<>(), prefix, minimumSizeToDebugTrace, false, 0);
     }
 
     public Bytes sizeOfPrimitive(Object value)
@@ -451,7 +450,9 @@ public class JavaVirtualMachine extends BaseRepeater
         return properties().addAll(OperatingSystem.get().environmentVariables());
     }
 
-    private Bytes sizeOfField(Object object, java.lang.reflect.Field field, Set<Object> visited,
+    private Bytes sizeOfField(Object object,
+                              Field field,
+                              Set<Object> visited,
                               String prefix,
                               Bytes minimumSizeToDebugTrace, boolean excludeFromTracing, int level)
     {
@@ -460,16 +461,16 @@ public class JavaVirtualMachine extends BaseRepeater
             return null;
         }
         var size = Bytes._0;
-        if (Field.accessible(field))
+        if (field.makeAccessible() != null)
         {
-            if (!field.getName().startsWith("this$"))
+            if (!field.name().startsWith("this$"))
             {
-                if (!Modifier.isStatic(field.getModifiers()))
+                if (!field.isStatic())
                 {
                     try
                     {
                         var value = field.get(object);
-                        if (value != null && !field.isAnnotationPresent(KivaKitExcludeFromSizeOf.class))
+                        if (value != null && !field.hasAnnotation(KivaKitExcludeFromSizeOf.class))
                         {
                             if (visited == null || !visited.contains(value))
                             {
@@ -477,7 +478,7 @@ public class JavaVirtualMachine extends BaseRepeater
                                 {
                                     visited.add(value);
                                 }
-                                var child = prefix + "." + field.getName();
+                                var child = prefix + "." + field.name();
                                 if (value.getClass().isArray())
                                 {
                                     if (value.getClass().getComponentType().isPrimitive())
@@ -504,7 +505,7 @@ public class JavaVirtualMachine extends BaseRepeater
                                 }
                                 else
                                 {
-                                    if (Primitives.isPrimitive(field.getType()))
+                                    if (field.isPrimitive())
                                     {
                                         size = size.plus(sizeOfPrimitive(value));
                                     }
@@ -521,7 +522,7 @@ public class JavaVirtualMachine extends BaseRepeater
                             }
                         }
                     }
-                    catch (IllegalArgumentException | IllegalAccessException e)
+                    catch (Exception e)
                     {
                         warning(e, "Unable to determine size of field $", field);
                     }
@@ -552,7 +553,7 @@ public class JavaVirtualMachine extends BaseRepeater
                     for (var field : type.allFields())
                     {
                         excludeFromTracing = excludeFromTracing
-                                || field.isAnnotationPresent(KivaKitExcludeFromSizeOfDebugTracing.class);
+                                || field.hasAnnotation(KivaKitExcludeFromSizeOfDebugTracing.class);
                         var sizeOf = sizeOfField(object, field, visited, prefix, minimumSizeToDebugTrace,
                                 excludeFromTracing, level);
                         if (sizeOf != null)

@@ -19,8 +19,9 @@
 package com.telenav.kivakit.resource.packages;
 
 import com.telenav.kivakit.core.collections.list.StringList;
-import com.telenav.kivakit.core.ensure.Ensure;
 import com.telenav.kivakit.core.language.module.PackageReference;
+import com.telenav.kivakit.core.logging.Logger;
+import com.telenav.kivakit.core.logging.LoggerFactory;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.path.Path;
 import com.telenav.kivakit.core.path.StringPath;
@@ -76,12 +77,14 @@ import static com.telenav.kivakit.resource.packages.Package.packageForPath;
  *
  * @author jonathanl (shibo)
  */
-@SuppressWarnings({ "unused", "DuplicatedCode" })
+@SuppressWarnings({ "unused", "DuplicatedCode", "SpellCheckingInspection" })
 @UmlClassDiagram(diagram = DiagramResource.class)
 @UmlClassDiagram(diagram = DiagramResourcePath.class)
 public final class PackagePath extends ResourcePath
 {
     public static final PackagePath TELENAV = parsePackagePath(Listener.emptyListener(), "com.telenav");
+
+    private static final Logger LOGGER = LoggerFactory.newLogger();
 
     public static boolean isPackagePath(String path)
     {
@@ -188,6 +191,7 @@ public final class PackagePath extends ResourcePath
 
                     if (Files.exists(directory))
                     {
+                        //noinspection resource
                         Files.list(directory)
                                 .filter(Files::isDirectory)
                                 .forEach(path -> packages.add(withChild(path.getFileName().toString())));
@@ -196,7 +200,7 @@ public final class PackagePath extends ResourcePath
             }
             catch (Exception ignored)
             {
-                Ensure.warning("Exception thrown while searching directory sub packages from $", this);
+                LOGGER.warning("Exception thrown while searching directory sub packages from $", this);
             }
         }
         return packages;
@@ -276,7 +280,7 @@ public final class PackagePath extends ResourcePath
             }
             catch (Exception ignored)
             {
-                Ensure.warning("Exception thrown while searching jar sub packages from $", this);
+                LOGGER.warning("Exception thrown while searching jar sub packages from $", this);
             }
         }
         return packages;

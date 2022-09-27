@@ -55,10 +55,10 @@ import static com.telenav.kivakit.resource.Resource.Can.DELETE;
 import static com.telenav.kivakit.resource.Resource.Can.RENAME;
 
 /**
- * A resource that can be read via {@link ReadableResource}. In addition, resources are {@link ModifiedAt}, {@link
- * ByteSized} and are message {@link Repeater}s. A resource can be created by instantiating a concrete implementation of
- * {@link Resource} or one can be resolved from an abstract {@link ResourceIdentifier} with {@link #resolve(Listener,
- * ResourceIdentifier)}.
+ * A resource that can be read via {@link ReadableResource}. In addition, resources are {@link ModifiedAt},
+ * {@link ByteSized} and are message {@link Repeater}s. A resource can be created by instantiating a concrete
+ * implementation of {@link Resource} or one can be resolved from an abstract {@link ResourceIdentifier} with
+ * {@link #resolve(Listener, ResourceIdentifier)}.
  *
  * <p><b>Examples</b></p>
  * <p>
@@ -139,9 +139,9 @@ public interface Resource extends
     }
 
     /**
-     * Resolves the given {@link ResourceIdentifier} to a {@link Resource}. This is done by using {@link
-     * ResourceResolverServiceLoader} to find an implementation of {@link ResourceResolver} using Java's {@link
-     * ServiceLoader} to find the implementation.
+     * Resolves the given {@link ResourceIdentifier} to a {@link Resource}. This is done by using
+     * {@link ResourceResolverServiceLoader} to find an implementation of {@link ResourceResolver} using Java's
+     * {@link ServiceLoader} to find the implementation.
      *
      * @param listener The listener to call with any resolution problems
      * @param identifier The resource identifier
@@ -402,7 +402,7 @@ public interface Resource extends
             var temporary = destination.parent().temporaryFile(destination.fileName());
             ensure(destination.can(DELETE));
             ensure(temporary.can(RENAME));
-            copyTo(temporary, mode, reporter);
+            copyTo(this, temporary, mode, reporter);
 
             // remove the destination file
             if (destination.exists())

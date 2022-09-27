@@ -42,7 +42,7 @@ public class LoggerCodeContext extends CodeContext
                         CallStack.Matching.SUBCLASS,
                         Logger.class,
                         CallStack.Matching.EXACT,
-                        LoggerFactory.class)).typeClass());
+                        LoggerFactory.class)).type().type());
     }
 
     public LoggerCodeContext(Method callerOf)

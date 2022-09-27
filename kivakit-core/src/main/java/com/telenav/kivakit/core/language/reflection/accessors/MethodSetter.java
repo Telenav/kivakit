@@ -105,6 +105,6 @@ public class MethodSetter implements Setter
     @Override
     public Type<?> type()
     {
-        return Type.typeForClass(method.method().getParameterTypes()[0]);
+        return Type.typeForClass(method.parameterTypes()[0]);
     }
 }

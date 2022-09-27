@@ -5,6 +5,7 @@ import com.telenav.kivakit.core.language.primitive.Longs;
 import com.telenav.kivakit.core.language.primitive.Primes;
 import com.telenav.kivakit.core.value.level.Percent;
 import com.telenav.kivakit.interfaces.numeric.Numeric;
+import com.telenav.kivakit.interfaces.value.DoubleValued;
 import com.telenav.kivakit.interfaces.value.FormattedLongValued;
 import com.telenav.kivakit.interfaces.value.LongValued;
 import com.telenav.kivakit.interfaces.value.Source;
@@ -199,7 +200,8 @@ public abstract class BaseCount<SubClass extends BaseCount<SubClass>> implements
         Numeric<SubClass>,
         Countable,
         Comparable<Countable>,
-        Source<Long>
+        Source<Long>,
+        DoubleValued
 {
     /** The underlying primitive cardinal number */
     private final long count;
@@ -292,6 +294,12 @@ public abstract class BaseCount<SubClass extends BaseCount<SubClass>> implements
     public boolean dividesEvenlyBy(LongValued value)
     {
         return asLong() % value.longValue() == 0;
+    }
+
+    @Override
+    public double doubleValue()
+    {
+        return asDouble();
     }
 
     @Override

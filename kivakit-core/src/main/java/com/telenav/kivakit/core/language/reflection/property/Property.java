@@ -18,21 +18,27 @@
 
 package com.telenav.kivakit.core.language.reflection.property;
 
-import com.telenav.kivakit.core.ensure.Ensure;
+import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.core.internal.lexakai.DiagramReflection;
 import com.telenav.kivakit.core.language.Hash;
 import com.telenav.kivakit.core.language.reflection.Field;
-import com.telenav.kivakit.core.language.reflection.accessors.FieldGetter;
-import com.telenav.kivakit.core.language.reflection.accessors.Getter;
 import com.telenav.kivakit.core.language.reflection.Member;
 import com.telenav.kivakit.core.language.reflection.Method;
-import com.telenav.kivakit.core.language.reflection.accessors.MethodGetter;
 import com.telenav.kivakit.core.language.reflection.ReflectionProblem;
-import com.telenav.kivakit.core.language.reflection.accessors.Setter;
 import com.telenav.kivakit.core.language.reflection.Type;
-import com.telenav.kivakit.core.internal.lexakai.DiagramReflection;
+import com.telenav.kivakit.core.language.reflection.accessors.FieldGetter;
+import com.telenav.kivakit.core.language.reflection.accessors.Getter;
+import com.telenav.kivakit.core.language.reflection.accessors.MethodGetter;
+import com.telenav.kivakit.core.language.reflection.accessors.Setter;
 import com.telenav.kivakit.interfaces.naming.Named;
-import com.telenav.kivakit.interfaces.value.Source;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
+
+import java.util.function.Supplier;
+
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXPANDABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
+import static com.telenav.kivakit.core.ensure.Ensure.ensure;
 
 /**
  * A property with a getter and/or setter
@@ -41,43 +47,50 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
  */
 @SuppressWarnings({ "DuplicatedCode", "unused" })
 @UmlClassDiagram(diagram = DiagramReflection.class)
+@ApiQuality(stability = STABLE_EXPANDABLE,
+            testing = UNTESTED,
+            documentation = FULLY_DOCUMENTED)
 public class Property implements Named, Comparable<Property>
 {
-    private transient Getter getter;
+    /** The property getter */
+    private Getter getter;
 
+    /** The name of the property */
     private final String name;
 
-    private transient Setter setter;
+    /** Any property setter */
+    private Setter setter;
 
+    /**
+     * Constructs a property with the given name, getter and setter
+     *
+     * @param name The name of the property
+     * @param getter The property getter
+     * @param setter Any property setter
+     */
     public Property(String name, Getter getter, Setter setter)
     {
-        Ensure.ensure(name != null);
-        Ensure.ensure(getter != null || setter != null);
-        Ensure.ensure(getter == null || setter == null || getter.type().equals(setter.type()));
+        ensure(name != null);
+        ensure(getter != null || setter != null);
+        ensure(getter == null || setter == null || getter.type().equals(setter.type()));
 
         this.name = name;
         this.getter = getter;
         this.setter = setter;
     }
 
-    public ReflectionProblem clear(Object object)
-    {
-        if (setter != null)
-        {
-            return setter.set(object, null);
-        }
-        else
-        {
-            return new ReflectionProblem("Setter not found: " + this);
-        }
-    }
-
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public int compareTo(Property that)
     {
         return name.compareTo(that.name);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean equals(Object object)
     {
@@ -89,17 +102,22 @@ public class Property implements Named, Comparable<Property>
         return false;
     }
 
+    /**
+     * Returns any field for this property, or null if there is none
+     */
     public Field field()
     {
         var getter = getter();
         if (getter instanceof FieldGetter)
         {
-            return new Field(null, ((FieldGetter) getter).field());
+            return ((FieldGetter) getter).field();
         }
         return null;
     }
 
     /**
+     * Retrieves this property from the given object
+     *
      * @param object The object to get from
      * @return The object retrieved or a String if something went wrong
      */
@@ -112,32 +130,42 @@ public class Property implements Named, Comparable<Property>
         return null;
     }
 
+    /**
+     * Returns the getter for this property
+     */
     public Getter getter()
     {
         return getter;
     }
 
+    /**
+     * Changes the getter for this property
+     */
     public void getter(Getter getter)
     {
         this.getter = getter;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public int hashCode()
     {
         return Hash.hashMany(name);
     }
 
-    public boolean isNull(Object object)
-    {
-        return get(object) == null;
-    }
-
+    /**
+     * Returns true if this property is optional because it was annotated with {@link KivaKitOptionalProperty}
+     */
     public boolean isOptional()
     {
         return setter.hasAnnotation(KivaKitOptionalProperty.class);
     }
 
+    /**
+     * Returns the field or method that is getting this property
+     */
     public Member member()
     {
         var method = method();
@@ -148,23 +176,36 @@ public class Property implements Named, Comparable<Property>
         return method;
     }
 
+    /**
+     * Returns the method that gets this property
+     */
     public Method method()
     {
         var getter = getter();
         if (getter instanceof MethodGetter)
         {
-            return new Method(null, ((MethodGetter) getter).method());
+            return ((MethodGetter) getter).method();
         }
         return null;
     }
 
+    /**
+     * Returns the name of this property
+     */
     @Override
     public String name()
     {
         return name;
     }
 
-    public <T> ReflectionProblem set(Object object, Source<T> source)
+    /**
+     * Sets this property on the given object using the value supplied by the given source
+     *
+     * @param object The object to set the property on
+     * @param source The source of the value
+     * @return ReflectionProblem if anything went wrong, otherwise null
+     */
+    public <T> ReflectionProblem set(Object object, Supplier<T> source)
     {
         var value = source.get();
 
@@ -183,104 +224,44 @@ public class Property implements Named, Comparable<Property>
         }
     }
 
+    /**
+     * Returns any setter for this property
+     */
     public Setter setter()
     {
         return setter;
     }
 
+    /**
+     * Changes the setter for this property
+     */
     public void setter(Setter setter)
     {
         this.setter = setter;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String toString()
     {
         return "[Property name = " + name() + ", type = " + type().simpleName() + "]";
     }
 
+    /**
+     * Returns the type for which this property is defined
+     */
     public Type<?> type()
     {
         if (getter != null)
         {
-            return Type.typeForClass(getter.type());
+            return getter.type();
         }
         if (setter != null)
         {
-            return Type.typeForClass(setter.type());
+            return setter.type();
         }
         return null;
-    }
-
-    private boolean canAssign(Class<?> from, Class<?> to)
-    {
-        if (to.isAssignableFrom(from))
-        {
-            return true;
-        }
-        if (to.isPrimitive())
-        {
-            if (to == Integer.TYPE && from == Integer.class)
-            {
-                return true;
-            }
-            if (to == Long.TYPE && from == Long.class)
-            {
-                return true;
-            }
-            if (to == Character.TYPE && from == Character.class)
-            {
-                return true;
-            }
-            if (to == Boolean.TYPE && from == Boolean.class)
-            {
-                return true;
-            }
-            if (to == Short.TYPE && from == Short.class)
-            {
-                return true;
-            }
-            if (to == Byte.TYPE && from == Byte.class)
-            {
-                return true;
-            }
-            if (to == Double.TYPE && from == Double.class)
-            {
-                return true;
-            }
-            if (to == Float.TYPE && from == Float.class)
-            {
-                return true;
-            }
-        }
-        if (from.isPrimitive())
-        {
-            if (to == Integer.class && from == Integer.TYPE)
-            {
-                return true;
-            }
-            if (to == Long.class && from == Long.TYPE)
-            {
-                return true;
-            }
-            if (to == Character.class && from == Character.TYPE)
-            {
-                return true;
-            }
-            if (to == Boolean.class && from == Boolean.TYPE)
-            {
-                return true;
-            }
-            if (to == Short.class && from == Short.TYPE)
-            {
-                return true;
-            }
-            if (to == Byte.class && from == Byte.TYPE)
-            {
-                return true;
-            }
-            return to == Float.class && from == Float.TYPE;
-        }
-        return false;
     }
 }

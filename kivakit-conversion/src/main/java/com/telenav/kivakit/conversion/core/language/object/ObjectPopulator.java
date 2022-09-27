@@ -19,10 +19,10 @@
 package com.telenav.kivakit.conversion.core.language.object;
 
 import com.telenav.kivakit.conversion.internal.lexakai.DiagramConversionLanguage;
-import com.telenav.kivakit.core.ensure.Ensure;
 import com.telenav.kivakit.core.language.reflection.Type;
 import com.telenav.kivakit.core.language.reflection.property.PropertyFilter;
-import com.telenav.kivakit.core.language.reflection.property.PropertyValues;
+import com.telenav.kivakit.core.language.reflection.property.PropertyValue;
+import com.telenav.kivakit.core.messaging.repeaters.BaseRepeater;
 import com.telenav.kivakit.interfaces.value.Source;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
@@ -31,14 +31,15 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
  *
  * @author jonathanl (shibo)
  */
+@SuppressWarnings("SpellCheckingInspection")
 @UmlClassDiagram(diagram = DiagramConversionLanguage.class)
-public class ObjectPopulator
+public class ObjectPopulator extends BaseRepeater
 {
-    private final Source<PropertyValues> source;
+    private final Source<PropertyValue> source;
 
     private final PropertyFilter filter;
 
-    public ObjectPopulator(PropertyFilter filter, Source<PropertyValues> source)
+    public ObjectPopulator(PropertyFilter filter, Source<PropertyValue> source)
     {
         this.filter = filter;
         this.source = source;
@@ -56,7 +57,7 @@ public class ObjectPopulator
         for (var property : Type.type(object).properties(filter))
         {
             // get any value for the given property,
-            var value = source.get().valueFor(property);
+            var value = source.get().propertyValue(property);
 
             // and if the value is non-null,
             if (value != null)
@@ -68,14 +69,14 @@ public class ObjectPopulator
                 if (error != null)
                 {
                     // notify any listeners.
-                    Ensure.warning(error.toString());
+                    warning(error.toString());
                 }
             }
             else
             {
                 if (!property.isOptional())
                 {
-                    Ensure.warning("No value found for property: " + property.name());
+                    warning("No value found for property: " + property.name());
                 }
             }
         }

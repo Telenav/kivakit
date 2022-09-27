@@ -19,20 +19,21 @@
 package com.telenav.kivakit.core.messaging.context;
 
 import com.telenav.kivakit.core.collections.list.ObjectList;
+import com.telenav.kivakit.core.internal.lexakai.DiagramContext;
 import com.telenav.kivakit.core.language.reflection.Method;
 import com.telenav.kivakit.core.messaging.Debug;
-import com.telenav.kivakit.core.internal.lexakai.DiagramContext;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.List;
 
 /**
- * A stack of KivaKit {@link Method} objects for a given thread ({@link #stack(Thread)} or the current thread {@link
- * #stack()}.
+ * A stack of KivaKit {@link Method} objects for a given thread ({@link #stack(Thread)} or the current thread
+ * {@link #stack()}.
  * <p>
- * The caller of a given class on the stack (the "callee") can be determined with {@link #callerOf(Proximity, Matching,
- * Class, Matching, Class[])}, which takes the callee type and a variable number of classes to ignore. Matching of the
- * caller and its distance from the callee are specified by the first and second parameters respectively.
+ * The caller of a given class on the stack (the "callee") can be determined with
+ * {@link #callerOf(Proximity, Matching, Class, Matching, Class[])}, which takes the callee type and a variable number
+ * of classes to ignore. Matching of the caller and its distance from the callee are specified by the first and second
+ * parameters respectively.
  * <p>
  * For example, the class <b>A</b> might want to determine who called it (for a concrete example see {@link Debug},
  * which finds its caller in order to switch on/off debugging for that class). This makes class <b>A</b> the callee. It
@@ -101,6 +102,7 @@ public class CallStack
         return stack(Thread.currentThread());
     }
 
+    @SuppressWarnings("unused")
     public static ObjectList<Method> stack(Thread thread)
     {
         var stack = new ObjectList<Method>();
@@ -143,7 +145,9 @@ public class CallStack
         var index = 0;
         for (var method : stack)
         {
-            var matches = matching == Matching.EXACT ? calleeType.equals(method.typeClass()) : calleeType.isAssignableFrom(method.typeClass());
+            var matches = matching == Matching.EXACT
+                    ? calleeType.equals(method.type().type())
+                    : calleeType.isAssignableFrom(method.type().type());
 
             switch (proximity)
             {
@@ -183,7 +187,7 @@ public class CallStack
         {
             for (var ignore : ignores)
             {
-                if ((exact && ignore == caller.typeClass()) || (!exact && ignore.isAssignableFrom(caller.typeClass())))
+                if ((exact && ignore == caller.type().type()) || (!exact && ignore.isAssignableFrom(caller.type().type())))
                 {
                     ignored = true;
                 }

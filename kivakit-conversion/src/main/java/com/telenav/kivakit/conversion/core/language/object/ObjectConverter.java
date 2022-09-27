@@ -5,18 +5,18 @@ import com.telenav.kivakit.conversion.StringConverter;
 import com.telenav.kivakit.core.language.Classes;
 import com.telenav.kivakit.core.language.reflection.Type;
 import com.telenav.kivakit.core.language.reflection.property.KivaKitOptionalProperty;
-import com.telenav.kivakit.core.language.reflection.property.PropertyValues;
+import com.telenav.kivakit.core.language.reflection.property.PropertyValue;
 import com.telenav.kivakit.core.messaging.Listener;
 
-import static com.telenav.kivakit.core.language.reflection.property.PropertyMembers.CONVERTED_FIELDS_AND_METHODS;
+import static com.telenav.kivakit.core.language.reflection.property.PropertyMemberSelector.CONVERTED_FIELDS_AND_METHODS;
 import static com.telenav.kivakit.core.language.reflection.property.PropertyNamingConvention.KIVAKIT_PROPERTY_NAMING;
 
 /**
- * Converts a {@link PropertyValues} to an object of a given Value type.
+ * Converts a {@link PropertyValue} to an object of a given Value type.
  *
  * @author jonathanl (shibo)
  */
-public class ObjectConverter<Value> extends BaseConverter<PropertyValues, Value>
+public class ObjectConverter<Value> extends BaseConverter<PropertyValue, Value>
 {
     /** The object type to convert to */
     private final Class<Value> type;
@@ -35,7 +35,7 @@ public class ObjectConverter<Value> extends BaseConverter<PropertyValues, Value>
      * {@inheritDoc}
      */
     @Override
-    protected Value onConvert(PropertyValues values)
+    protected Value onConvert(PropertyValue values)
     {
         try
         {
@@ -43,7 +43,7 @@ public class ObjectConverter<Value> extends BaseConverter<PropertyValues, Value>
             var object = Type.typeForClass(type).newInstance();
 
             // and a filter that matches converted fields and methods,
-            var filter = new ConversionPropertyFilterSet(KIVAKIT_PROPERTY_NAMING, CONVERTED_FIELDS_AND_METHODS);
+            var filter = new ConversionPropertySetSet(KIVAKIT_PROPERTY_NAMING, CONVERTED_FIELDS_AND_METHODS);
 
             // and populate the object with converted values.
             new ObjectPopulator(filter, () -> convertedValues(values)).populate(object);
@@ -57,7 +57,7 @@ public class ObjectConverter<Value> extends BaseConverter<PropertyValues, Value>
         }
     }
 
-    private PropertyValues convertedValues(final PropertyValues values)
+    private PropertyValue convertedValues(final PropertyValue values)
     {
         var outer = this;
         return property ->
@@ -72,7 +72,7 @@ public class ObjectConverter<Value> extends BaseConverter<PropertyValues, Value>
                     {
                         var constructor = Classes.constructor(annotation.value(), Listener.class);
                         var converter = (StringConverter<?>) constructor.newInstance(outer);
-                        var value = values.valueFor(property);
+                        var value = values.propertyValue(property);
                         if (setter.hasAnnotation(KivaKitOptionalProperty.class) && value == null)
                         {
                             return null;

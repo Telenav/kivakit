@@ -62,6 +62,85 @@ import static com.telenav.kivakit.core.ensure.Ensure.ensure;
 public class Classes
 {
     /**
+     * Returns true if the given class can be assigned to the given class, taking into account primitive types
+     *
+     * @param from The class to assign from
+     * @param to The class to assign to
+     */
+    @SuppressWarnings("DuplicatedCode")
+    public static boolean canAssign(Class<?> from, Class<?> to)
+    {
+        if (to.isAssignableFrom(from))
+        {
+            return true;
+        }
+        if (to.isPrimitive())
+        {
+            if (to == Integer.TYPE && from == Integer.class)
+            {
+                return true;
+            }
+            if (to == Long.TYPE && from == Long.class)
+            {
+                return true;
+            }
+            if (to == Character.TYPE && from == Character.class)
+            {
+                return true;
+            }
+            if (to == Boolean.TYPE && from == Boolean.class)
+            {
+                return true;
+            }
+            if (to == Short.TYPE && from == Short.class)
+            {
+                return true;
+            }
+            if (to == Byte.TYPE && from == Byte.class)
+            {
+                return true;
+            }
+            if (to == Double.TYPE && from == Double.class)
+            {
+                return true;
+            }
+            if (to == Float.TYPE && from == Float.class)
+            {
+                return true;
+            }
+        }
+        if (from.isPrimitive())
+        {
+            if (to == Integer.class && from == Integer.TYPE)
+            {
+                return true;
+            }
+            if (to == Long.class && from == Long.TYPE)
+            {
+                return true;
+            }
+            if (to == Character.class && from == Character.TYPE)
+            {
+                return true;
+            }
+            if (to == Boolean.class && from == Boolean.TYPE)
+            {
+                return true;
+            }
+            if (to == Short.class && from == Short.TYPE)
+            {
+                return true;
+            }
+            if (to == Byte.class && from == Byte.TYPE)
+            {
+                return true;
+            }
+            return to == Float.class && from == Float.TYPE;
+        }
+        return false;
+    }
+
+    /**
      * Gets the named class by loading it.
      */
     public static <T> Class<T> classForName(String name)

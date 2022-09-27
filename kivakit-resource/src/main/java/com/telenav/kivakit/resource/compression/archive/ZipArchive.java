@@ -202,7 +202,7 @@ public final class ZipArchive extends BaseRepeater implements
     @Override
     public synchronized void close()
     {
-        Nio.close(filesystem);
+        Nio.close(this, filesystem);
         IO.close(this, filesystem);
         filesystem = null;
     }
