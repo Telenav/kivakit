@@ -85,6 +85,7 @@ public class ConsoleLog extends BaseTextLog
     @SuppressWarnings("AccessStaticViaInstance")
     public synchronized void onLog(LogEntry entry)
     {
-        console.println(entry.isSevere() ? ERROR : NORMAL, formatted(entry));
+        var outputType = entry.isSevere() ? ERROR : NORMAL;
+        console.println(outputType, formatted(entry));
     }
 }

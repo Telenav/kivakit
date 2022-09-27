@@ -18,6 +18,7 @@
 
 package com.telenav.kivakit.core.logging.logs.text.formatters;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramLogs;
 import com.telenav.kivakit.core.language.Classes;
 import com.telenav.kivakit.core.logging.LogEntry;
@@ -25,19 +26,30 @@ import com.telenav.kivakit.core.logging.logs.text.LogFormatter;
 import com.telenav.kivakit.core.messaging.MessageFormat;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
+
 /**
  * A simple log formatter that does nothing fancy
  *
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramLogs.class)
+@ApiQuality(stability = STABLE,
+            testing = UNTESTED,
+            documentation = FULLY_DOCUMENTED)
 public class SimpleLogFormatter implements LogFormatter
 {
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String format(LogEntry entry, MessageFormat... formats)
     {
-        return entry.message().created().utc() + " " + entry.context() + " "
-                + Classes.simpleName(entry.message().getClass()) + " " + entry.threadName() + ": "
-                + entry.formattedMessage(formats);
+        return entry.message().created().utc()
+                + " " + entry.context()
+                + " " + Classes.simpleName(entry.message().getClass())
+                + " " + entry.threadName() + ": " + entry.formattedMessage(formats);
     }
 }

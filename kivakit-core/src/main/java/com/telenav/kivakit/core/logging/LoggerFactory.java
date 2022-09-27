@@ -18,11 +18,16 @@
 
 package com.telenav.kivakit.core.logging;
 
-import com.telenav.kivakit.core.logging.loggers.LogServiceLogger;
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramLogging;
+import com.telenav.kivakit.core.logging.loggers.LogServiceLogger;
 import com.telenav.kivakit.interfaces.factory.Factory;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
+
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
 
 /**
  * Creates new {@link Logger} instances via {@link #newLogger()}. By default, instances of {@link LogServiceLogger} are
@@ -34,12 +39,16 @@ import com.telenav.lexakai.annotations.associations.UmlRelation;
  */
 @UmlClassDiagram(diagram = DiagramLogging.class)
 @UmlRelation(label = "creates", referent = Logger.class)
+@ApiQuality(stability = STABLE,
+            testing = UNTESTED,
+            documentation = FULLY_DOCUMENTED)
 public class LoggerFactory
 {
+    /** The current logger factory */
     private static Factory<Logger> factory = LogServiceLogger::new;
 
     /**
-     * Installs a custom logger factory
+     * Installs a custom logger factory. This overrides logger creation for the entire system
      *
      * @param factory The logger factory to use
      */
@@ -49,7 +58,7 @@ public class LoggerFactory
     }
 
     /**
-     * @return A new logger instance
+     * @return A new logger instance, created using the current logger factory
      */
     public static Logger newLogger()
     {

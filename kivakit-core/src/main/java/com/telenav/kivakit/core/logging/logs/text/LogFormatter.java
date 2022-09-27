@@ -21,7 +21,10 @@ package com.telenav.kivakit.core.logging.logs.text;
 import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramLogs;
 import com.telenav.kivakit.core.logging.LogEntry;
+import com.telenav.kivakit.core.logging.logs.text.formatters.NarrowLogFormatter;
+import com.telenav.kivakit.core.logging.logs.text.formatters.WideLogFormatter;
 import com.telenav.kivakit.core.messaging.MessageFormat;
+import com.telenav.kivakit.core.vm.JavaVirtualMachine;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import static com.telenav.kivakit.annotations.code.ApiStability.STABLE;
@@ -39,6 +42,17 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NE
             documentation = FULLY_DOCUMENTED)
 public interface LogFormatter
 {
+    /**
+     * Returns the log formatter specified by the KIVAKIT_LOG_FORMATTER property or environment variable
+     */
+    static LogFormatter formatter()
+    {
+        var formatter = JavaVirtualMachine.local().variables().get("KIVAKIT_LOG_FORMATTER");
+        return "Wide".equalsIgnoreCase(formatter)
+                ? new WideLogFormatter()
+                : new NarrowLogFormatter();
+    }
+
     /**
      * Formats a log entry in the given format
      *

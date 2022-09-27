@@ -18,6 +18,7 @@
 
 package com.telenav.kivakit.core.logging.logs.text.formatters;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramLogs;
 import com.telenav.kivakit.core.logging.LogEntry;
 import com.telenav.kivakit.core.messaging.MessageFormat;
@@ -25,41 +26,64 @@ import com.telenav.kivakit.core.time.Time;
 import com.telenav.kivakit.interfaces.string.StringFormattable;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
+
 /**
  * Formats log entries into flexible delimited columns.
  *
  * @author jonathanl (shibo)
  */
-@SuppressWarnings("DuplicatedCode")
+@SuppressWarnings({ "DuplicatedCode", "unused" })
 @UmlClassDiagram(diagram = DiagramLogs.class)
+@ApiQuality(stability = STABLE,
+            testing = UNTESTED,
+            documentation = FULLY_DOCUMENTED)
 public class WideLogFormatter extends BaseColumnarFormatter
 {
-    public static final WideLogFormatter INSTANCE = new WideLogFormatter();
-
-    private static final TimeType timeType = TimeType.ELAPSED;
-
-    private enum TimeType
+    /**
+     * What type of time to display
+     */
+    public enum TimeType
     {
+        /** Show duration elapsed from start time */
         ELAPSED,
+
+        /** Show the absolute time */
         ABSOLUTE_TIME
     }
 
-    private final Column contextColumn = new Column(30, 30, Layout.CLIP_RIGHT);
+    /** The type of time to show */
+    private TimeType timeType = TimeType.ELAPSED;
 
-    private final Column durationColumn = new Column(6, 10, Layout.CLIP_RIGHT);
+    /** The code context column, showing class names */
+    private final Column contextColumn = new Column(30, 30, ColumnLayout.CLIP_RIGHT);
 
-    private final Column messageColumn = new Column(150, 150, Layout.WRAP);
+    /** The elapsed time column */
+    private final Column elapsedColumn = new Column(6, 10, ColumnLayout.CLIP_RIGHT);
 
-    private final Column sequenceNumberColumn = new Column(6, 10, Layout.CLIP_RIGHT);
+    /** The message text column */
+    private final Column messageTextColumn = new Column(150, 150, ColumnLayout.WRAP);
 
+    /** The sequence number column */
+    private final Column sequenceNumberColumn = new Column(6, 10, ColumnLayout.CLIP_RIGHT);
+
+    /** The time this formatter was created */
     private final Time start = Time.now();
 
-    private final Column threadColumn = new Column(16, 24, Layout.CLIP_LEFT);
+    /** The thread name column */
+    private final Column threadColumn = new Column(16, 24, ColumnLayout.CLIP_LEFT);
 
-    private final Column timeColumn = new Column(21, 21, Layout.CLIP_RIGHT);
+    /** The absolute time column */
+    private final Column timeColumn = new Column(21, 21, ColumnLayout.CLIP_RIGHT);
 
-    private final Column typeColumn = new Column(12, 20, Layout.CLIP_RIGHT);
+    /** The message type column */
+    private final Column typeColumn = new Column(12, 20, ColumnLayout.CLIP_RIGHT);
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String format(LogEntry entry, MessageFormat... formats)
     {
@@ -68,21 +92,29 @@ public class WideLogFormatter extends BaseColumnarFormatter
 
         // Add each column and its content
         var message = entry.message();
-        line.add(sequenceNumberColumn, String.valueOf(entry.sequenceNumber()));
+        line.addColumnText(sequenceNumberColumn, String.valueOf(entry.sequenceNumber()));
         if (timeType == TimeType.ELAPSED)
         {
-            line.add(durationColumn, start.elapsedSince().asString(StringFormattable.Format.USER_LABEL));
+            line.addColumnText(elapsedColumn, start.elapsedSince().asString(StringFormattable.Format.USER_LABEL));
         }
         else
         {
-            line.add(timeColumn, message.created().utc().toString());
+            line.addColumnText(timeColumn, message.created().utc().toString());
         }
-        line.add(threadColumn, entry.threadName());
-        line.add(contextColumn, entry.context().typeName());
-        line.add(typeColumn, entry.messageType());
-        line.add(messageColumn, entry.formattedMessage(formats));
+        line.addColumnText(threadColumn, entry.threadName());
+        line.addColumnText(contextColumn, entry.context().typeName());
+        line.addColumnText(typeColumn, entry.messageType());
+        line.addColumnText(messageTextColumn, entry.formattedMessage(formats));
 
         // Return the formatted line
         return line.format();
+    }
+
+    /**
+     * Sets the type of time to show, elapsed or absolute
+     */
+    public void timeType(TimeType timeType)
+    {
+        this.timeType = timeType;
     }
 }

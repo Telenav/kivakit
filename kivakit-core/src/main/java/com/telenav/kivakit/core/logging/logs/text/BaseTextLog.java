@@ -21,19 +21,24 @@ package com.telenav.kivakit.core.logging.logs.text;
 import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.collections.map.VariableMap;
 import com.telenav.kivakit.core.internal.lexakai.DiagramLogs;
+import com.telenav.kivakit.core.language.Arrays;
 import com.telenav.kivakit.core.logging.LogEntry;
 import com.telenav.kivakit.core.logging.logs.BaseLog;
-import com.telenav.kivakit.core.logging.logs.text.formatters.BaseColumnarFormatter;
+import com.telenav.kivakit.core.logging.logs.text.formatters.SimpleLogFormatter;
 import com.telenav.kivakit.core.messaging.MessageFormat;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeMember;
 import org.jetbrains.annotations.MustBeInvokedByOverriders;
+import org.jetbrains.annotations.NotNull;
 
 import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_DEFAULT_EXPANDABLE;
 import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
-import static com.telenav.kivakit.core.ensure.Ensure.fail;
+import static com.telenav.kivakit.core.ensure.Ensure.unsupported;
+import static com.telenav.kivakit.core.messaging.MessageFormat.FORMATTED;
+import static com.telenav.kivakit.core.messaging.MessageFormat.UNFORMATTED;
+import static com.telenav.kivakit.core.messaging.MessageFormat.WITHOUT_EXCEPTION;
 import static com.telenav.kivakit.core.messaging.MessageFormat.WITH_EXCEPTION;
 
 /**
@@ -41,6 +46,7 @@ import static com.telenav.kivakit.core.messaging.MessageFormat.WITH_EXCEPTION;
  *
  * @author jonathanl (shibo)
  */
+@SuppressWarnings({ "SpellCheckingInspection", "unused" })
 @UmlClassDiagram(diagram = DiagramLogs.class)
 @UmlRelation(label = "formats entries with", referent = LogFormatter.class)
 @ApiQuality(stability = STABLE_DEFAULT_EXPANDABLE,
@@ -48,21 +54,14 @@ import static com.telenav.kivakit.core.messaging.MessageFormat.WITH_EXCEPTION;
             documentation = FULLY_DOCUMENTED)
 public abstract class BaseTextLog extends BaseLog
 {
-    /**
-     * The type of formatting to perform on log entries
-     */
-    public enum Formatting
-    {
-        FORMATTED,
-        @SuppressWarnings("SpellCheckingInspection")
-        UNFORMATTED,
-    }
-
     /** The formatting to use */
-    private Formatting format = Formatting.FORMATTED;
+    private MessageFormat[] formats = { FORMATTED };
 
     /** The formatter to use */
-    private LogFormatter formatter = BaseColumnarFormatter.get();
+    private LogFormatter formatter = LogFormatter.formatter();
+
+    /** Simple formatter to use when not providing formatting */
+    private final LogFormatter simpleFormatter = new SimpleLogFormatter();
 
     /**
      * Configures this log with the given properties
@@ -77,7 +76,7 @@ public abstract class BaseTextLog extends BaseLog
         var formatter = properties.get("formatter");
         if (formatter != null)
         {
-            format = Formatting.valueOf(formatter.toUpperCase());
+            formats = new MessageFormat[] { MessageFormat.valueOf(formatter.toUpperCase()) };
         }
     }
 
@@ -94,26 +93,38 @@ public abstract class BaseTextLog extends BaseLog
      */
     protected String formatted(LogEntry entry)
     {
-        switch (format)
+        switch (formattedOrNot())
         {
-            case UNFORMATTED:
-                return entry.message().formatted(WITH_EXCEPTION);
-
             case FORMATTED:
-                return format(entry, WITH_EXCEPTION);
+                return entry.format(formatter, formattedOrNot(), withExceptionOrWithout());
+
+            case UNFORMATTED:
+                return entry.format(simpleFormatter, formattedOrNot(), withExceptionOrWithout());
 
             default:
-                fail("Unsupported format: $", format);
-                return null;
+                return unsupported();
         }
     }
 
     /**
-     * Formats the given log entry using the given format (with, or without an exception)
+     * Returns either FORMATTED OR UNFORMATTED
      */
-    @SuppressWarnings("SameParameterValue")
-    private String format(LogEntry entry, MessageFormat format)
+    @NotNull
+    private MessageFormat formattedOrNot()
     {
-        return entry.format(formatter, format);
+        return Arrays.contains(formats, FORMATTED)
+                ? FORMATTED
+                : UNFORMATTED;
+    }
+
+    /**
+     * Returns either WITH_EXCEPTION or WITHOUT_EXCEPTION
+     */
+    @NotNull
+    private MessageFormat withExceptionOrWithout()
+    {
+        return Arrays.contains(formats, WITH_EXCEPTION)
+                ? WITH_EXCEPTION
+                : WITHOUT_EXCEPTION;
     }
 }
