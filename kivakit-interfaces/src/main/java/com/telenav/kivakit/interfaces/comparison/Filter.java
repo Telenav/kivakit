@@ -105,6 +105,8 @@ public interface Filter<Value> extends Matcher<Value>
     }
 
     /**
+     * Returns true if this filter accepts the given value
+     *
      * @return True if this filter accepts the given value
      */
     boolean accepts(Value value);

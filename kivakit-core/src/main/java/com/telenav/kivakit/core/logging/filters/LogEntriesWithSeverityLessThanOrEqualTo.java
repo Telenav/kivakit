@@ -18,12 +18,26 @@
 
 package com.telenav.kivakit.core.logging.filters;
 
-import com.telenav.kivakit.interfaces.comparison.Filter;
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.logging.LogEntry;
 import com.telenav.kivakit.core.messaging.messages.Severity;
+import com.telenav.kivakit.interfaces.comparison.Filter;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
+
+/**
+ * A filter that accepts each {@link LogEntry}  that has at least the given maximum severity
+ *
+ * @author jonathanl (shibo)
+ */
+@ApiQuality(stability = STABLE,
+            testing = UNTESTED,
+            documentation = FULLY_DOCUMENTED)
 public class LogEntriesWithSeverityLessThanOrEqualTo implements Filter<LogEntry>
 {
+    /** The maximum severity */
     private final Severity severity;
 
     public LogEntriesWithSeverityLessThanOrEqualTo(Severity severity)
@@ -31,12 +45,18 @@ public class LogEntriesWithSeverityLessThanOrEqualTo implements Filter<LogEntry>
         this.severity = severity;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean accepts(LogEntry entry)
     {
         return entry.message().severity().isLessThanOrEqualTo(severity);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String toString()
     {

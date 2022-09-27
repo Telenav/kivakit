@@ -18,29 +18,42 @@
 
 package com.telenav.kivakit.core.logging.filters;
 
-import com.telenav.kivakit.interfaces.comparison.Filter;
 import com.telenav.kivakit.core.logging.LogEntry;
 import com.telenav.kivakit.core.messaging.messages.Severity;
+import com.telenav.kivakit.interfaces.comparison.Filter;
 
+import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
+
+/**
+ * A filter that accepts each {@link LogEntry}  that has at least the given minimum severity
+ *
+ * @author jonathanl (shibo)
+ */
 public class LogEntriesWithSeverityGreaterThanOrEqualTo implements Filter<LogEntry>
 {
-    private final Severity severity;
+    /** The minimum severity */
+    private final Severity minimumSeverity;
 
-    public LogEntriesWithSeverityGreaterThanOrEqualTo(Severity severity)
+    public LogEntriesWithSeverityGreaterThanOrEqualTo(Severity minimumSeverity)
     {
-        assert severity != null;
-        this.severity = severity;
+        this.minimumSeverity = ensureNotNull(minimumSeverity);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean accepts(LogEntry entry)
     {
-        return entry.message().severity().isGreaterThanOrEqualTo(severity);
+        return entry.message().severity().isGreaterThanOrEqualTo(minimumSeverity);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String toString()
     {
-        return "severityGreaterThanOrEqualTo(" + severity + ")";
+        return minimumSeverity.name();
     }
 }

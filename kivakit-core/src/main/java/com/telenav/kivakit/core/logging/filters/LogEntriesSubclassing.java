@@ -18,28 +18,49 @@
 
 package com.telenav.kivakit.core.logging.filters;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.collections.list.StringList;
 import com.telenav.kivakit.core.language.Classes;
 import com.telenav.kivakit.core.logging.LogEntry;
 import com.telenav.kivakit.core.messaging.Message;
 import com.telenav.kivakit.interfaces.comparison.Filter;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE;
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXPANDABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
+
+/**
+ * A {@link LogEntry} filter that accepts a given set of messages and their subtypes
+ *
+ * @author jonathanl (shibo)
+ */
+@ApiQuality(stability = STABLE,
+            testing = UNTESTED,
+            documentation = FULLY_DOCUMENTED)
 public class LogEntriesSubclassing implements Filter<LogEntry>
 {
-    private final Class<? extends Message>[] types;
+    /** The message supertypes to include */
+    private final Class<? extends Message>[] include;
 
+    /**
+     * Constructs a filter that accepts subtypes of the given messages
+     */
     @SafeVarargs
-    public LogEntriesSubclassing(Class<? extends Message>... types)
+    public LogEntriesSubclassing(Class<? extends Message>... include)
     {
-        this.types = types;
+        this.include = include;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public boolean accepts(LogEntry value)
+    public boolean accepts(LogEntry entry)
     {
-        for (var type : types)
+        for (var type : include)
         {
-            if (type.isAssignableFrom(value.message().getClass()))
+            if (type.isAssignableFrom(entry.message().getClass()))
             {
                 return true;
             }
@@ -47,14 +68,17 @@ public class LogEntriesSubclassing implements Filter<LogEntry>
         return false;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String toString()
     {
         var names = new StringList();
-        for (var type : types)
+        for (var type : include)
         {
             names.add(Classes.simpleName(type));
         }
-        return "logEntriesSubclassing(" + names + ")";
+        return names.join();
     }
 }
