@@ -26,7 +26,6 @@ import com.telenav.kivakit.core.messaging.Message;
 import com.telenav.kivakit.interfaces.comparison.Filter;
 
 import static com.telenav.kivakit.annotations.code.ApiStability.STABLE;
-import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXPANDABLE;
 import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
 

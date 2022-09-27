@@ -18,6 +18,8 @@
 
 package com.telenav.kivakit.core.logging.loggers;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.core.collections.list.ObjectList;
 import com.telenav.kivakit.core.collections.map.ConcurrentObjectMap;
 import com.telenav.kivakit.core.collections.set.ObjectSet;
 import com.telenav.kivakit.core.ensure.Ensure;
@@ -37,41 +39,67 @@ import com.telenav.kivakit.interfaces.comparison.Filter;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeMember;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXPANDABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
+
+/**
+ * Base implementation of the {@link Logger} interface
+ *
+ * @author jonathanl (shibo)
+ */
 @UmlClassDiagram(diagram = DiagramLogging.class)
+@ApiQuality(stability = STABLE_EXPANDABLE,
+            testing = UNTESTED,
+            documentation = FULLY_DOCUMENTED)
 public abstract class BaseLogger implements Logger
 {
+    /** Map from (un-interpolated) message text to the last time the message was logged */
     private static final Map<String, Time> lastLogTime = new ConcurrentObjectMap<>();
 
     /** The severity level to log */
     private static Severity level;
 
+    /** The code context of the logger (what class it is in) */
     private final LoggerCodeContext codeContext;
 
-    private final List<Filter<LogEntry>> filters = new ArrayList<>();
+    /** List of log entry filters */
+    private final ObjectList<Filter<LogEntry>> filters = ObjectList.objectList();
 
+    /** The time that this logger was constructed */
     private final Time start = Time.now();
 
+    /**
+     * Constructs with implicit code context determined from stack analysis
+     */
     protected BaseLogger()
     {
         this(new LoggerCodeContext());
     }
 
+    /**
+     * Constructs with the given code context
+     */
     protected BaseLogger(LoggerCodeContext codeContext)
     {
         this.codeContext = codeContext;
-        addFilter(new LogEntriesWithSeverityGreaterThanOrEqualTo(level()));
+        addFilter(new LogEntriesWithSeverityGreaterThanOrEqualTo(minimumSeverityLevel()));
     }
 
+    /**
+     * Adds a log entry filter to this logger
+     */
     @Override
     public void addFilter(Filter<LogEntry> filter)
     {
         filters.add(filter);
     }
 
+    /**
+     * Returns the code context that instantiated this logger
+     */
     @Override
     @UmlExcludeMember
     public LoggerCodeContext codeContext()
@@ -79,12 +107,21 @@ public abstract class BaseLogger implements Logger
         return codeContext;
     }
 
+    /**
+     * Returns the log entry filters installed on this logger
+     */
     @Override
-    public List<Filter<LogEntry>> filters()
+    public ObjectList<Filter<LogEntry>> filters()
     {
         return filters;
     }
 
+    /**
+     * Flushes each log that this logger has been writing to
+     * <p>
+     * {@inheritDoc}
+     * </p>
+     */
     @Override
     @UmlExcludeMember
     public void flush(Duration maximumWaitTime)
@@ -128,12 +165,18 @@ public abstract class BaseLogger implements Logger
         log(codeContext, Thread.currentThread(), message);
     }
 
+    /**
+     * Returns the maximum time to wait for flushing to complete
+     */
     @Override
     public Duration maximumFlushTime()
     {
         return Duration.MAXIMUM;
     }
 
+    /**
+     * Returns the time that this logger started
+     */
     @Override
     @UmlExcludeMember
     public Time startTime()
@@ -141,6 +184,9 @@ public abstract class BaseLogger implements Logger
         return start;
     }
 
+    /**
+     * Returns true if this logger accepts the given log entry
+     */
     protected final boolean accept(LogEntry entry)
     {
         for (var filter : filters)
@@ -153,6 +199,9 @@ public abstract class BaseLogger implements Logger
         return true;
     }
 
+    /**
+     * If the given message has a maximum frequency, returns true if it has been long enough to log it
+     */
     @UmlExcludeMember
     protected boolean isTimeToLog(Message message)
     {
@@ -179,16 +228,27 @@ public abstract class BaseLogger implements Logger
         return true;
     }
 
+    /**
+     * <b>Not public API</b>
+     * <p>
+     * Creates a log entry for the given thread, code context and message.
+     */
     @UmlExcludeMember
     protected LogEntry logEntry(LoggerCodeContext context, Thread thread, Message message)
     {
         return new LogEntry(this, context, thread, message);
     }
 
+    /**
+     * Returns the logs that this logger should write to
+     */
     @UmlExcludeMember
     protected abstract ObjectSet<Log> logs();
 
-    private static Severity level()
+    /**
+     * Returns the minimum severity level for logging entries
+     */
+    private static Severity minimumSeverityLevel()
     {
         if (level == null)
         {

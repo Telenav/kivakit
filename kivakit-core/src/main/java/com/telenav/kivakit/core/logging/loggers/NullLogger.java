@@ -18,73 +18,44 @@
 
 package com.telenav.kivakit.core.logging.loggers;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.core.collections.set.ObjectSet;
 import com.telenav.kivakit.core.internal.lexakai.DiagramLogging;
-import com.telenav.kivakit.core.logging.LogEntry;
-import com.telenav.kivakit.core.logging.Logger;
-import com.telenav.kivakit.core.logging.LoggerCodeContext;
-import com.telenav.kivakit.core.messaging.Message;
-import com.telenav.kivakit.core.time.Duration;
-import com.telenav.kivakit.core.time.Time;
-import com.telenav.kivakit.interfaces.comparison.Filter;
+import com.telenav.kivakit.core.logging.Log;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
+import com.telenav.lexakai.annotations.visibility.UmlExcludeMember;
 
-import java.util.List;
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
+import static com.telenav.kivakit.core.collections.set.ObjectSet.objectSet;
 
 /**
  * A logger that does nothing.
  * <p>
- * The following code can be used to efficiently shut off all logging:
+ * The following code can be used to shut off all logging:
  * </p>
  * <pre>
- * LogFactory.factory(NullLogger::new)
- * </pre>
+ * LogFactory.factory(NullLogger::new)</pre>
  *
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramLogging.class)
-public class NullLogger implements Logger
+@ApiQuality(stability = STABLE,
+            testing = UNTESTED,
+            documentation = FULLY_DOCUMENTED)
+public class NullLogger extends BaseLogger
 {
+    /**
+     * Returns an empty set of logs
+     * <p>
+     * {@inheritDoc}
+     * </p>
+     */
     @Override
-    public void addFilter(Filter<LogEntry> filter)
+    @UmlExcludeMember
+    protected ObjectSet<Log> logs()
     {
-    }
-
-    @Override
-    public LoggerCodeContext codeContext()
-    {
-        return new LoggerCodeContext();
-    }
-
-    @Override
-    public List<Filter<LogEntry>> filters()
-    {
-        return List.of();
-    }
-
-    @Override
-    public void flush(Duration maximumWaitTime)
-    {
-    }
-
-    @Override
-    public void log(Message message)
-    {
-    }
-
-    @Override
-    public void log(LoggerCodeContext context, Thread thread, Message message)
-    {
-    }
-
-    @Override
-    public Duration maximumFlushTime()
-    {
-        return Duration.MAXIMUM;
-    }
-
-    @Override
-    public Time startTime()
-    {
-        return Time.now();
+        return objectSet();
     }
 }
