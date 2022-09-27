@@ -18,6 +18,7 @@
 
 package com.telenav.kivakit.core.messaging.context;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.collections.list.ObjectList;
 import com.telenav.kivakit.core.internal.lexakai.DiagramContext;
 import com.telenav.kivakit.core.language.reflection.Method;
@@ -25,6 +26,11 @@ import com.telenav.kivakit.core.messaging.Debug;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.List;
+
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE;
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXPANDABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
 
 /**
  * A stack of KivaKit {@link Method} objects for a given thread ({@link #stack(Thread)} or the current thread
@@ -44,6 +50,9 @@ import java.util.List;
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramContext.class)
+@ApiQuality(stability = STABLE_EXPANDABLE,
+            testing = UNTESTED,
+            documentation = FULLY_DOCUMENTED)
 public class CallStack
 {
     public static Method callerOf(Proximity proximity, Matching matching, Class<?> calleeType)

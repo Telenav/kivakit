@@ -18,16 +18,36 @@
 
 package com.telenav.kivakit.core.messaging.context;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.language.Classes;
 import com.telenav.kivakit.core.string.Align;
 import com.telenav.kivakit.core.string.IndentingStringBuilder;
 import com.telenav.kivakit.interfaces.collection.Sized;
+import com.telenav.kivakit.interfaces.string.StringFormattable;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class StackTrace implements Sized
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXPANDABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
+
+/**
+ * Holds stack trace information
+ *
+ * @author jonathanl (shibo)
+ */
+@SuppressWarnings("unused")
+@ApiQuality(stability = STABLE_EXPANDABLE,
+            testing = UNTESTED,
+            documentation = FULLY_DOCUMENTED)
+public class StackTrace implements
+        Sized,
+        StringFormattable
 {
+    /**
+     * Returns stack traces for all threads
+     */
     public static Map<Thread, StackTrace> allThreads()
     {
         Map<Thread, StackTrace> traces = new HashMap<>();
@@ -44,17 +64,21 @@ public class StackTrace implements Sized
      *
      * @author jonathanl (shibo)
      */
-    public static class Frame
+    @SuppressWarnings("unused") public static class StackFrame
     {
+        /** The Java file */
         private String file;
 
+        /** The line number */
         private int line;
 
+        /** The method */
         private String method;
 
+        /** The simple type name */
         private String type;
 
-        public Frame(StackTraceElement element)
+        public StackFrame(StackTraceElement element)
         {
             type = element.getClassName();
             method = element.getMethodName();
@@ -62,16 +86,22 @@ public class StackTrace implements Sized
             file = element.getFileName();
         }
 
-        protected Frame()
+        protected StackFrame()
         {
         }
 
+        /**
+         * Returns the full description of this frame
+         */
         public String full()
         {
             return "    at " + type + "." + method
                     + "(" + file + ":" + line + ")";
         }
 
+        /**
+         * Returns a simplified description of this frame
+         */
         public String simplified()
         {
             // Make type human-readable
@@ -95,14 +125,19 @@ public class StackTrace implements Sized
         }
     }
 
+    /** The stack trace that caused this one */
     private StackTrace cause;
 
+    /** The type of exception thrown */
     private String exceptionType;
 
-    private final Frame[] frames;
+    /** The stack frames in this trace */
+    private final StackFrame[] frames;
 
+    /** The fully qualified exception type name */
     private String fullExceptionType;
 
+    /** The message associated with this trace */
     private final String message;
 
     public StackTrace()
@@ -113,11 +148,11 @@ public class StackTrace implements Sized
     public StackTrace(String message, StackTraceElement[] elements)
     {
         this.message = message;
-        frames = new Frame[elements.length];
+        frames = new StackFrame[elements.length];
         var index = 0;
         for (var element : elements)
         {
-            frames[index++] = new Frame(element);
+            frames[index++] = new StackFrame(element);
         }
     }
 
@@ -132,17 +167,43 @@ public class StackTrace implements Sized
         exceptionType = Classes.simpleName(throwable.getClass());
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public String asString(Format format)
+    {
+        switch (format)
+        {
+            case HTML:
+                return toHtmlString();
+
+            case TEXT:
+            default:
+                return toString();
+        }
+    }
+
+    /**
+     * Returns the stack trace that caused this one
+     */
     public StackTrace cause()
     {
         return cause;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public int size()
     {
         return frames.length;
     }
 
+    /**
+     * Returns this trace as an HTML string
+     */
     public String toHtmlString()
     {
         var builder = new StringBuilder();
@@ -158,6 +219,9 @@ public class StackTrace implements Sized
         return builder.toString().replaceAll("\\$", ".");
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String toString()
     {
@@ -165,6 +229,9 @@ public class StackTrace implements Sized
         return trace(!simple);
     }
 
+    /**
+     * Returns the text for the top of stack
+     */
     public String top()
     {
         return frames[0].full();

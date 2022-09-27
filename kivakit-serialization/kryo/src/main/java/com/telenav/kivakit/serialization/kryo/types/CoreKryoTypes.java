@@ -135,8 +135,8 @@ public class CoreKryoTypes extends KryoTypes
         group("language", () ->
         {
             register(StackTrace.class);
-            register(StackTrace.Frame.class);
-            register(StackTrace.Frame[].class);
+            register(StackTrace.StackFrame.class);
+            register(StackTrace.StackFrame[].class);
             register(JavaVirtualMachineHealth.class);
             register(ThreadStatus.class);
             register(Thread.State.class);
