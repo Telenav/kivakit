@@ -167,7 +167,7 @@ public class Settings extends MemorySettingsStore implements
         loadSettingsFolders();
 
         // then look in the global object registry for the settings object,
-        var settings = Registry.of(this).lookup(type, instance);
+        var settings = Registry.registryFor(this).lookup(type, instance);
 
         // and if settings still have not been explicitly defined,
         if (settings == null)

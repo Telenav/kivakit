@@ -18,49 +18,98 @@
 
 package com.telenav.kivakit.core.registry;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramRegistry;
-import com.telenav.kivakit.core.value.identifier.StringIdentifier;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeSuperTypes;
 
+import java.util.Objects;
+
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
 import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
 
 /**
  * An identifier for a particular instance of a class. Used by {@link Registry} when locating an object by class which
  * has more than one instance.
  *
+ * <p><b>Creation</b></p>
+ *
+ * <ul>
+ *     <li>{@link #singleton()}</li>
+ *     <li>{@link #instanceIdentifier(Enum)}</li>
+ * </ul>
+ *
  * @author jonathanl (shibo)
  * @see Registry
  */
 @UmlClassDiagram(diagram = DiagramRegistry.class)
 @UmlExcludeSuperTypes
-public class InstanceIdentifier extends StringIdentifier
+@ApiQuality(stability = STABLE,
+            testing = TESTING_NOT_NEEDED,
+            documentation = FULLY_DOCUMENTED)
+public class InstanceIdentifier
 {
     /** Identifies the one and only instance of a singleton */
-    public static final InstanceIdentifier SINGLETON = InstanceIdentifier.of("SINGLETON");
+    private static final InstanceIdentifier SINGLETON = InstanceIdentifier.instanceIdentifier(Singleton.SINGLETON);
 
-    public static InstanceIdentifier of(Class<?> value)
-    {
-        return of(value.getSimpleName());
-    }
-
-    public static InstanceIdentifier of(Enum<?> value)
-    {
-        return of(value.name());
-    }
-
-    public static InstanceIdentifier of(String value)
+    /**
+     * Returns an instance identifier for the given enum value
+     *
+     * @param value The enum value
+     * @return The instance identifier
+     */
+    public static InstanceIdentifier instanceIdentifier(Enum<?> value)
     {
         return new InstanceIdentifier(value);
     }
 
-    protected InstanceIdentifier(String string)
+    /**
+     * Returns an instance identifier for singleton objects
+     */
+    public static InstanceIdentifier singleton()
     {
-        super(ensureNotNull(string, "Instance identifier cannot be null"));
+        return SINGLETON;
+    }
+
+    private enum Singleton
+    {
+        SINGLETON
+    }
+
+    private final Enum<?> identifier;
+
+    protected InstanceIdentifier(Enum<?> identifier)
+    {
+        this.identifier = ensureNotNull(identifier, "Instance identifier cannot be null");
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public boolean equals(Object object)
+    {
+        if (object instanceof InstanceIdentifier)
+        {
+            InstanceIdentifier that = (InstanceIdentifier) object;
+            return this.identifier.equals(that.identifier);
+        }
+        return false;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public int hashCode()
+    {
+        return Objects.hash();
     }
 
     RegistryKey key(Class<?> at)
     {
-        return new RegistryKey(at.getName() + ":" + identifier());
+        return new RegistryKey(at.getName() + ":" + identifier.name());
     }
 }

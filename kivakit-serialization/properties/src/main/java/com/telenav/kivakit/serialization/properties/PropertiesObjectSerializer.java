@@ -86,7 +86,7 @@ public class PropertiesObjectSerializer implements ObjectSerializer
             var instance = SINGLETON;
             if (Arrays.contains(metadata, INSTANCE))
             {
-                instance = InstanceIdentifier.of(properties.getOrDefault("instance", SINGLETON.identifier()));
+                instance = InstanceIdentifier.instanceIdentifier(properties.getOrDefault("instance", SINGLETON.identifier()));
             }
 
             // convert the property map to an object,

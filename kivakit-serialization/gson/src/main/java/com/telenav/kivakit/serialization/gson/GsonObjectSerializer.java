@@ -129,7 +129,7 @@ public class GsonObjectSerializer implements
         var instanceMatcher = INSTANCE_PATTERN.matcher(json);
         if (INSTANCE.containedIn(metadata) && instanceMatcher.find())
         {
-            instance = InstanceIdentifier.of(instanceMatcher.group("instance"));
+            instance = InstanceIdentifier.instanceIdentifier(instanceMatcher.group("instance"));
         }
         return instance;
     }

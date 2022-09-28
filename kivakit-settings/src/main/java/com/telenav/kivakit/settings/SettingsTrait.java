@@ -77,7 +77,7 @@ public interface SettingsTrait extends Repeater
      */
     default boolean hasSettings(Class<?> type, Enum<?> instance)
     {
-        return hasSettings(type, InstanceIdentifier.of(instance));
+        return hasSettings(type, InstanceIdentifier.instanceIdentifier(instance));
     }
 
     /**
@@ -85,7 +85,7 @@ public interface SettingsTrait extends Repeater
      */
     default boolean hasSettings(Class<?> type, String instance)
     {
-        return hasSettings(type, InstanceIdentifier.of(instance));
+        return hasSettings(type, InstanceIdentifier.instanceIdentifier(instance));
     }
 
     /**
@@ -121,12 +121,12 @@ public interface SettingsTrait extends Repeater
      */
     default <T> T lookupSettings(Class<T> type, Enum<?> instance)
     {
-        return settingsRegistry().lookupSettings(type, InstanceIdentifier.of(instance));
+        return settingsRegistry().lookupSettings(type, InstanceIdentifier.instanceIdentifier(instance));
     }
 
     default <T> T lookupSettings(Class<T> type, String instance)
     {
-        return settingsRegistry().lookupSettings(type, InstanceIdentifier.of(instance));
+        return settingsRegistry().lookupSettings(type, InstanceIdentifier.instanceIdentifier(instance));
     }
 
     /**
@@ -150,7 +150,7 @@ public interface SettingsTrait extends Repeater
      */
     default Settings registerSettingsObject(Object settings, Enum<?> instance)
     {
-        return registerSettingsObject(settings, InstanceIdentifier.of(instance));
+        return registerSettingsObject(settings, InstanceIdentifier.instanceIdentifier(instance));
     }
 
     /**
@@ -158,7 +158,7 @@ public interface SettingsTrait extends Repeater
      */
     default Settings registerSettingsObject(Object settings, String instance)
     {
-        return registerSettingsObject(settings, InstanceIdentifier.of(instance));
+        return registerSettingsObject(settings, InstanceIdentifier.instanceIdentifier(instance));
     }
 
     /**
@@ -182,7 +182,7 @@ public interface SettingsTrait extends Repeater
      */
     default <T> T requireSettings(Class<T> type, Enum<?> instance)
     {
-        return requireSettings(type, InstanceIdentifier.of(instance));
+        return requireSettings(type, InstanceIdentifier.instanceIdentifier(instance));
     }
 
     /**
@@ -190,7 +190,7 @@ public interface SettingsTrait extends Repeater
      */
     default <T> T requireSettings(Class<T> type, String instance)
     {
-        return requireSettings(type, InstanceIdentifier.of(instance));
+        return requireSettings(type, InstanceIdentifier.instanceIdentifier(instance));
     }
 
     /**
@@ -224,7 +224,7 @@ public interface SettingsTrait extends Repeater
      */
     default boolean saveSettingsTo(SettingsStore store, Object object, Enum<?> instance)
     {
-        return saveSettingsTo(store, object, InstanceIdentifier.of(instance));
+        return saveSettingsTo(store, object, InstanceIdentifier.instanceIdentifier(instance));
     }
 
     /**
@@ -237,7 +237,7 @@ public interface SettingsTrait extends Repeater
      */
     default boolean saveSettingsTo(SettingsStore store, Object object, String instance)
     {
-        return saveSettingsTo(store, object, InstanceIdentifier.of(instance));
+        return saveSettingsTo(store, object, InstanceIdentifier.instanceIdentifier(instance));
     }
 
     /**
