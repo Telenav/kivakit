@@ -18,11 +18,15 @@
 
 package com.telenav.kivakit.core.string;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramString;
-import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.regex.Pattern;
+
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_STATIC_EXPANDABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
 
 /**
  * Wraps text at a given width.
@@ -30,19 +34,21 @@ import java.util.regex.Pattern;
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramString.class)
-@LexakaiJavadoc(complete = true)
+@ApiQuality(stability = STABLE_STATIC_EXPANDABLE,
+            testing = UNTESTED,
+            documentation = FULLY_DOCUMENTED)
 public class Wrap
 {
     /**
      * @return The given text wrapped at the given width
      */
-    public static String wrap(String text, int width)
+    public static String wrap(String text, int maximumWidth)
     {
         var wrapped = new StringBuilder();
         int position = 0;
-        for (var word : Split.words(text))
+        for (var word : Split.splitIntoWords(text))
         {
-            if (position + word.length() > width)
+            if (position + word.length() > maximumWidth)
             {
                 wrapped.append("\n");
                 position = 0;
@@ -56,9 +62,9 @@ public class Wrap
     /**
      * @return The given string with all text between [wrap] and [end] markers wrapped.
      */
-    public static String wrapRegion(String text, int width)
+    public static String wrapRegion(String text, int maximumWidth)
     {
         var matcher = Pattern.compile("\\[wrap](.*?)\\[end]", Pattern.DOTALL).matcher(text);
-        return matcher.replaceAll(result -> wrap(result.group(1), width));
+        return matcher.replaceAll(result -> wrap(result.group(1), maximumWidth));
     }
 }

@@ -185,7 +185,7 @@ public interface MessageCounter extends Listener
             var count = count(type);
             if (count != null)
             {
-                statistics.append(Align.right(Plural.pluralize(Classes.simpleName(type)), 24, ' ')
+                statistics.append(Align.right(Plural.pluralizeEnglish(Classes.simpleName(type)), 24, ' ')
                         + ": " + count.asCommaSeparatedString());
             }
         }

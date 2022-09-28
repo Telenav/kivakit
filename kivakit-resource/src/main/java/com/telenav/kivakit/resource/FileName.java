@@ -172,7 +172,7 @@ public class FileName implements Named, Comparable<FileName>
     {
         if (name().contains("."))
         {
-            var before = Paths.optionalHead(name(), '.');
+            var before = Paths.pathOptionalHead(name(), '.');
             if (before != null)
             {
                 return parseFileName(LOGGER, before);
@@ -194,7 +194,7 @@ public class FileName implements Named, Comparable<FileName>
     {
         if (name().contains("."))
         {
-            var after = Paths.tail(name(), '.');
+            var after = Paths.pathTail(name(), '.');
             if (after != null)
             {
                 return new Extension(after);
@@ -239,7 +239,7 @@ public class FileName implements Named, Comparable<FileName>
     {
         if (name().contains("."))
         {
-            return new Extension(Paths.optionalSuffix(name(), '.'));
+            return new Extension(Paths.pathOptionalSuffix(name(), '.'));
         }
         return null;
     }
@@ -375,7 +375,7 @@ public class FileName implements Named, Comparable<FileName>
         var extension = extension();
         if (extension != null)
         {
-            return parseFileName(LOGGER, Paths.optionalHead(name(), '.'));
+            return parseFileName(LOGGER, Paths.pathOptionalHead(name(), '.'));
         }
         return this;
     }
@@ -388,7 +388,7 @@ public class FileName implements Named, Comparable<FileName>
         var extension = extension();
         if (extension != null)
         {
-            var before = Paths.optionalHead(name(), '.');
+            var before = Paths.pathOptionalHead(name(), '.');
             if (before != null)
             {
                 return parseFileName(LOGGER, before);

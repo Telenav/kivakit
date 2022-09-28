@@ -18,6 +18,7 @@
 
 package com.telenav.kivakit.core.string;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.collections.set.IdentitySet;
 import com.telenav.kivakit.core.internal.lexakai.DiagramString;
 import com.telenav.kivakit.core.language.reflection.Type;
@@ -34,6 +35,9 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.function.Consumer;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXPANDABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
 import static com.telenav.kivakit.core.language.reflection.property.PropertyMemberSelector.KIVAKIT_ANNOTATION_INCLUDED_FIELDS;
 import static com.telenav.kivakit.core.language.reflection.property.PropertyMemberSelector.KIVAKIT_ANNOTATION_INCLUDED_FIELDS_AND_METHODS;
 import static com.telenav.kivakit.core.string.IndentingStringBuilder.Indentation;
@@ -62,11 +66,15 @@ import static com.telenav.kivakit.core.string.IndentingStringBuilder.Indentation
  * @see Type
  */
 @UmlClassDiagram(diagram = DiagramString.class)
-public class AsStringIndenter
+@ApiQuality(stability = STABLE_EXPANDABLE,
+            testing = UNTESTED,
+            documentation = FULLY_DOCUMENTED)
+public class ObjectIndenter
 {
     /** Property filter to use to determine which properties and fields to include */
     private final PropertyFilter filter;
 
+    /** The format to use */
     private final StringFormattable.Format format;
 
     /** String indenter */
@@ -84,7 +92,7 @@ public class AsStringIndenter
     /**
      * By default, an indenter includes all properties and fields explicitly marked with {@link KivaKitIncludeProperty}
      */
-    public AsStringIndenter(StringFormattable.Format format)
+    public ObjectIndenter(StringFormattable.Format format)
     {
         this(format, 0);
     }
@@ -92,7 +100,7 @@ public class AsStringIndenter
     /**
      * By default, an indenter includes all properties and fields explicitly marked with {@link KivaKitIncludeProperty}
      */
-    public AsStringIndenter(StringFormattable.Format format, int level)
+    public ObjectIndenter(StringFormattable.Format format, int level)
     {
         this(format, level, PropertyFilter.kivakitProperties(KIVAKIT_ANNOTATION_INCLUDED_FIELDS_AND_METHODS, KIVAKIT_ANNOTATION_INCLUDED_FIELDS));
     }
@@ -100,18 +108,18 @@ public class AsStringIndenter
     /**
      * @param filter The filter to determine what properties to include
      */
-    public AsStringIndenter(StringFormattable.Format format, int level, PropertyFilter filter)
+    public ObjectIndenter(StringFormattable.Format format, int level, PropertyFilter filter)
     {
         this.format = format;
         this.filter = filter;
 
         if (format == StringFormattable.Format.HTML)
         {
-            indenter = new IndentingStringBuilder(Style.HTML, Indentation.of(12));
+            indenter = new IndentingStringBuilder(Style.HTML, Indentation.indentation(12));
         }
         else
         {
-            indenter = new IndentingStringBuilder(Style.TEXT, Indentation.of(2));
+            indenter = new IndentingStringBuilder(Style.TEXT, Indentation.indentation(2));
         }
 
         indenter.level(level);
@@ -129,7 +137,7 @@ public class AsStringIndenter
      * Recursively formats the given object, including nested {@link Collection}s, fields and methods marked with
      * {@link KivaKitIncludeProperty} and sub-objects implementing {@link AsIndentedString}.
      */
-    public AsStringIndenter asString(Object object)
+    public ObjectIndenter asString(Object object)
     {
         if (haveVisited(object))
         {
@@ -209,7 +217,7 @@ public class AsStringIndenter
     /**
      * Calls the consumer for each element int the given collection within indented curly brackets
      */
-    public AsStringIndenter bracketed(Iterable<?> iterable, Consumer<Object> consumer)
+    public ObjectIndenter bracketed(Iterable<?> iterable, Consumer<Object> consumer)
     {
         text("{");
         indented(() ->
@@ -248,7 +256,7 @@ public class AsStringIndenter
     /**
      * Adds the given label and then indents what is in the code block
      */
-    public AsStringIndenter indented(String label, Runnable code)
+    public ObjectIndenter indented(String label, Runnable code)
     {
         label(label);
         indented(code);
@@ -258,7 +266,7 @@ public class AsStringIndenter
     /**
      * Increases the indent level, executes the given code and then decreases the indent level again
      */
-    public AsStringIndenter indented(Runnable code)
+    public ObjectIndenter indented(Runnable code)
     {
         try
         {
@@ -290,7 +298,7 @@ public class AsStringIndenter
     /**
      * Adds the given label on a line by itself
      */
-    public AsStringIndenter label(String label)
+    public ObjectIndenter label(String label)
     {
         return text(label + ":");
     }
@@ -298,7 +306,7 @@ public class AsStringIndenter
     /**
      * Adds a one-line labeled object
      */
-    public AsStringIndenter labeled(String label, Object object)
+    public ObjectIndenter labeled(String label, Object object)
     {
         if (format.isHtml())
         {
@@ -314,7 +322,7 @@ public class AsStringIndenter
     /**
      * @param levels The maximum number of levels of recursion allowed
      */
-    public AsStringIndenter levels(Maximum levels)
+    public ObjectIndenter levels(Maximum levels)
     {
         this.levels = levels;
         return this;
@@ -323,7 +331,7 @@ public class AsStringIndenter
     /**
      * Designates that given class as a leaf which should not be explored further
      */
-    public AsStringIndenter pruneAt(Class<?> leaf)
+    public ObjectIndenter pruneAt(Class<?> leaf)
     {
         leaves.add(leaf);
         return this;
@@ -332,7 +340,7 @@ public class AsStringIndenter
     /**
      * Adds the given label on a line by itself
      */
-    public AsStringIndenter text(String label)
+    public ObjectIndenter text(String label)
     {
         if (format.isHtml())
         {
@@ -375,6 +383,6 @@ public class AsStringIndenter
         {
             return format.isHtml() ? "<span class='not-available'>N/A</font>" : "N/A";
         }
-        return StringTo.string(object);
+        return StringConversions.toString(object);
     }
 }

@@ -18,18 +18,24 @@
 
 package com.telenav.kivakit.core.string;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramString;
-import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXPANDABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
+
 /**
- * Aligns a string within a given width using a padding character: {@link #center(String, int, char)}, {@link
- * #left(String, int, char)} or {@link #right(String, int, char)}.
+ * Aligns a string within a given width using a padding character: {@link #center(String, int, char)},
+ * {@link #left(String, int, char)} or {@link #right(String, int, char)}.
  *
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramString.class)
-@LexakaiJavadoc(complete = true)
+@ApiQuality(stability = STABLE_EXPANDABLE,
+            testing = UNTESTED,
+            documentation = FULLY_DOCUMENTED)
 public class Align
 {
     /**

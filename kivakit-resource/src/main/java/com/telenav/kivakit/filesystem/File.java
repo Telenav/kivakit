@@ -272,11 +272,11 @@ public class File extends BaseWritableResource implements FileSystemObject
     public static File parseFile(Listener listener, String path)
     {
         // If there is a KivaKit scheme, like "s3", "hdfs" or "java",
-        var scheme = Paths.head(path, ":");
+        var scheme = Paths.pathHead(path, ":");
         if (scheme != null)
         {
             // parse the rest of the path into a FilePath,
-            var filePath = FilePath.parseFilePath(listener, Paths.tail(path, ":"));
+            var filePath = FilePath.parseFilePath(listener, Paths.pathTail(path, ":"));
 
             // then prepend the KivaKit scheme to the list of schemes in the parsed FilePath,
             var schemes = filePath.schemes().copy();
@@ -804,7 +804,7 @@ public class File extends BaseWritableResource implements FileSystemObject
         var extension = extension();
         if (extension != null)
         {
-            var withoutExtension = Paths.withoutOptionalSuffix(path().toString(), '.');
+            var withoutExtension = Paths.pathWithoutOptionalSuffix(path().toString(), '.');
             return parseFile(this, withoutExtension);
         }
         return this;

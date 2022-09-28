@@ -522,7 +522,7 @@ public abstract class BaseLog implements
         {
             synchronized (messageCounts)
             {
-                messageCounts.increment(Plural.pluralize(entry.messageType()));
+                messageCounts.increment(Plural.pluralizeEnglish(entry.messageType()));
             }
         }
         var success = true;

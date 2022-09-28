@@ -18,25 +18,34 @@
 
 package com.telenav.kivakit.core.string;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.core.collections.iteration.Iterables;
 import com.telenav.kivakit.core.collections.list.ObjectList;
 import com.telenav.kivakit.core.collections.list.StringList;
-import com.telenav.kivakit.core.collections.iteration.Iterables;
-import com.telenav.kivakit.core.language.Objects;
 import com.telenav.kivakit.core.internal.lexakai.DiagramLanguage;
+import com.telenav.kivakit.core.language.Objects;
 import com.telenav.kivakit.interfaces.collection.Sized;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlAggregation;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeMember;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXPANDABLE;
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_STATIC_EXPANDABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
+
 /**
- * Tracks the difference between objects that are compared with {@link #compare(String, Object, Object)} or {@link
- * #compare(String, Iterable, Iterable)}. If there have been any differences, {@link #isDifferent()} will return true,
- * and if not, {@link #isIdentical()} will return true. The number of differences is available through {@link #size()}
- * and {@link #toString()} returns a description of all the differences that have been encountered.
+ * Tracks the difference between objects that are compared with {@link #compare(String, Object, Object)} or
+ * {@link #compare(String, Iterable, Iterable)}. If there have been any differences, {@link #isDifferent()} will return
+ * true, and if not, {@link #isIdentical()} will return true. The number of differences is available through
+ * {@link #size()} and {@link #toString()} returns a description of all the differences that have been encountered.
  *
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramLanguage.class)
+@ApiQuality(stability = STABLE_EXPANDABLE,
+            testing = UNTESTED,
+            documentation = FULLY_DOCUMENTED)
 public class Differences implements Sized
 {
     @UmlAggregation

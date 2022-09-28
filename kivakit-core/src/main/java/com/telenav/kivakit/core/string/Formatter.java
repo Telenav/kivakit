@@ -18,12 +18,17 @@
 
 package com.telenav.kivakit.core.string;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.collections.map.VariableMap;
+import com.telenav.kivakit.core.internal.lexakai.DiagramString;
 import com.telenav.kivakit.core.language.Classes;
 import com.telenav.kivakit.core.language.primitive.Doubles;
-import com.telenav.kivakit.core.internal.lexakai.DiagramString;
 import com.telenav.kivakit.interfaces.naming.Named;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
+
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
 
 /**
  * Handles message formatting, given a message and an argument array. This class is used extensively throughout the
@@ -33,7 +38,7 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
  * <p><b>Interpolations</b></p>
  *
  * <ul>
- *     <li><b>$</b> - converts the corresponding argument to a string using {@link StringTo#string(Object)}.
+ *     <li><b>$</b> - converts the corresponding argument to a string using {@link StringConversions#toString(Object)}.
  *             Long and Integer arguments are converted to a more readable comma-separated format</li>
  *     <li><b>$$</b> - evaluates to a literal '$'</li>
  *     <li><b>${class}</b> - converts a {@link Class} argument to a simple (non-qualified) class name</li>
@@ -74,6 +79,9 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
  * @see Named
  */
 @UmlClassDiagram(diagram = DiagramString.class)
+@ApiQuality(stability = STABLE,
+            testing = UNTESTED,
+            documentation = FULLY_DOCUMENTED)
 public class Formatter
 {
     /**
@@ -192,7 +200,7 @@ public class Formatter
                         {
                             return "No key '" + command + "' in: " + message;
                         }
-                        builder.append(StringTo.string(value));
+                        builder.append(StringConversions.toString(value));
                     }
                     else
                     {
@@ -204,15 +212,15 @@ public class Formatter
                                 break;
 
                             case "string":
-                                builder.append(StringTo.string(arguments[argumentIndex++]));
+                                builder.append(StringConversions.toString(arguments[argumentIndex++]));
                                 break;
 
                             case "lower":
-                                builder.append(StringTo.string(arguments[argumentIndex++]).toLowerCase());
+                                builder.append(StringConversions.toString(arguments[argumentIndex++]).toLowerCase());
                                 break;
 
                             case "upper":
-                                builder.append(StringTo.string(arguments[argumentIndex++]).toUpperCase());
+                                builder.append(StringConversions.toString(arguments[argumentIndex++]).toUpperCase());
                                 break;
 
                             case "integer":
@@ -245,7 +253,7 @@ public class Formatter
                                 break;
 
                             case "debug":
-                                builder.append(StringTo.debug(arguments[argumentIndex++]));
+                                builder.append(StringConversions.toDebugString(arguments[argumentIndex++]));
                                 break;
 
                             case "class":
@@ -293,7 +301,7 @@ public class Formatter
                                     var position = Integer.parseInt(command);
                                     if (position >= 0 && position <= arguments.length - 1)
                                     {
-                                        builder.append(StringTo.string(arguments[position]));
+                                        builder.append(StringConversions.toString(arguments[position]));
                                     }
                                     else
                                     {

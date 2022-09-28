@@ -23,7 +23,7 @@ import com.telenav.kivakit.core.collections.list.ObjectList;
 import com.telenav.kivakit.core.internal.lexakai.DiagramLocale;
 import com.telenav.kivakit.core.language.Objects;
 import com.telenav.kivakit.core.path.StringPath;
-import com.telenav.kivakit.core.string.StringTo;
+import com.telenav.kivakit.core.string.StringConversions;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlAggregation;
 
@@ -169,6 +169,6 @@ public class Locale
     @Override
     public String toString()
     {
-        return "[region = " + StringTo.nonNullString(region.name()) + ": " + languages().join(", ") + "]";
+        return "[region = " + StringConversions.nonNullString(region.name()) + ": " + languages().join(", ") + "]";
     }
 }

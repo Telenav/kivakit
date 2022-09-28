@@ -305,7 +305,7 @@ public class Classes
             {
                 return type.getSimpleName();
             }
-            return Paths.optionalSuffix(type.getName(), '.').replace('$', '.');
+            return Paths.pathOptionalSuffix(type.getName(), '.').replace('$', '.');
         }
         return "Unknown";
     }
@@ -315,10 +315,10 @@ public class Classes
      */
     public static String simpleTopLevelClass(Class<?> type)
     {
-        var name = Paths.optionalSuffix(type.getName(), '.');
+        var name = Paths.pathOptionalSuffix(type.getName(), '.');
         if (name.contains("$"))
         {
-            return Paths.optionalHead(name, '$');
+            return Paths.pathOptionalHead(name, '$');
         }
         return name;
     }

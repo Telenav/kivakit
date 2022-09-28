@@ -81,7 +81,7 @@ public class Nio
      */
     public static FileSystem filesystem(Listener listener, URI uri, Map<String, String> variables)
     {
-        var key = Paths.head(uri.toString(), "!/");
+        var key = Paths.pathHead(uri.toString(), "!/");
         if (key == null)
         {
             key = uri.toString();

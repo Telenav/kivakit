@@ -288,7 +288,7 @@ public class Multicaster implements Broadcaster
      */
     public String listenerTree()
     {
-        var builder = new IndentingStringBuilder(TEXT, Indentation.of(4));
+        var builder = new IndentingStringBuilder(TEXT, Indentation.indentation(4));
         listenerTree(builder);
         return builder.toString();
     }

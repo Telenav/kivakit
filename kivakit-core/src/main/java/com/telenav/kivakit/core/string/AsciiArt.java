@@ -18,15 +18,18 @@
 
 package com.telenav.kivakit.core.string;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.ensure.Ensure;
 import com.telenav.kivakit.core.internal.lexakai.DiagramString;
-import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Arrays;
 import java.util.Collection;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXPANDABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
 import static com.telenav.kivakit.core.string.Join.join;
 
 /**
@@ -41,8 +44,10 @@ import static com.telenav.kivakit.core.string.Join.join;
  *
  * @author jonathanl (shibo)
  */
-@UmlClassDiagram(diagram = DiagramString.class)
-@LexakaiJavadoc(complete = true)
+@SuppressWarnings("unused") @UmlClassDiagram(diagram = DiagramString.class)
+@ApiQuality(stability = STABLE_EXPANDABLE,
+            testing = UNTESTED,
+            documentation = FULLY_DOCUMENTED)
 public class AsciiArt
 {
     private static final boolean isMac = System.getProperty("os.name").toLowerCase().contains("mac");
@@ -66,18 +71,24 @@ public class AsciiArt
     public static final int LINE_LENGTH = 100;
 
     /**
-     * @return The message centered on a line as a banner
+     * Returns the given message centered on a line as a banner
      */
-    public static String banner(String message)
+    public static String bannerLine(String message)
     {
         return Align.center(" " + message + " ", LINE_LENGTH, HORIZONTAL_LINE_CHARACTER);
     }
 
+    /**
+     * Returns a bottom line of the given width
+     */
     public static String bottomLine(int width)
     {
         return BOTTOM_LEFT_LINE_CHARACTER + line(width - 2) + BOTTOM_RIGHT_LINE_CHARACTER;
     }
 
+    /**
+     * Returns a bottom line with the given message
+     */
     public static String bottomLine(int extraWidth, String message, Object... arguments)
     {
         message = " " + Strings.format(message, arguments) + " ";
@@ -86,11 +97,17 @@ public class AsciiArt
                 + BOTTOM_RIGHT_LINE_CHARACTER;
     }
 
+    /**
+     * Returns a bottom line with the given message
+     */
     public static String bottomLine(String message, Object... arguments)
     {
         return bottomLine(0, message, arguments);
     }
 
+    /**
+     * Returns a bottom line
+     */
     public static String bottomLine()
     {
         return bottomLine(LINE_LENGTH);
@@ -273,11 +290,17 @@ public class AsciiArt
         return builder.toString();
     }
 
+    /**
+     * Returns a top line with the given title
+     */
     public static String topLine(String title, Object... arguments)
     {
         return topLine(0, title, arguments);
     }
 
+    /**
+     * Returns a top line with the given title
+     */
     public static String topLine(int extraWidth, String title, Object... arguments)
     {
         title = title(title, arguments);

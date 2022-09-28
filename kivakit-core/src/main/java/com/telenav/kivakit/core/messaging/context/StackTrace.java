@@ -244,7 +244,7 @@ public class StackTrace implements
 
     private String trace(boolean full)
     {
-        var builder = new IndentingStringBuilder(IndentingStringBuilder.Indentation.of(full ? 4 : 2));
+        var builder = new IndentingStringBuilder(IndentingStringBuilder.Indentation.indentation(full ? 4 : 2));
         if (full)
         {
             builder.appendLine("Exception in thread \"" + Thread.currentThread().getName() + "\""

@@ -22,7 +22,7 @@ import com.telenav.kivakit.core.collections.map.VariableMap;
 import com.telenav.kivakit.core.internal.lexakai.DiagramString;
 import com.telenav.kivakit.core.os.Console;
 import com.telenav.kivakit.core.string.AsciiArt;
-import com.telenav.kivakit.core.string.StringTo;
+import com.telenav.kivakit.core.string.StringConversions;
 import com.telenav.kivakit.core.string.Strings;
 import com.telenav.kivakit.core.value.count.Count;
 import com.telenav.kivakit.core.value.count.Maximum;
@@ -584,6 +584,6 @@ public class StringList extends ObjectList<String>
 
     protected String objectToString(Object object)
     {
-        return StringTo.string(object);
+        return StringConversions.toString(object);
     }
 }

@@ -7,7 +7,7 @@ import com.telenav.kivakit.core.collections.list.ObjectList;
 import com.telenav.kivakit.core.collections.list.StringList;
 import com.telenav.kivakit.core.logging.Logger;
 import com.telenav.kivakit.core.logging.LoggerFactory;
-import com.telenav.kivakit.core.string.StringTo;
+import com.telenav.kivakit.core.string.StringConversions;
 import com.telenav.kivakit.core.value.count.Count;
 import com.telenav.kivakit.core.value.count.Countable;
 import com.telenav.kivakit.core.value.count.Maximum;
@@ -249,7 +249,7 @@ public abstract class BaseCollection<Value> implements
         switch (format)
         {
             case DEBUG:
-                return join(separator(), StringTo::debug);
+                return join(separator(), StringConversions::toDebugString);
 
             default:
                 return join();
@@ -553,6 +553,6 @@ public abstract class BaseCollection<Value> implements
      */
     protected String toString(Value value)
     {
-        return StringTo.string(value);
+        return StringConversions.toString(value);
     }
 }

@@ -18,25 +18,45 @@
 
 package com.telenav.kivakit.core.string;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.core.internal.lexakai.DiagramString;
 import com.telenav.kivakit.interfaces.string.StringFormattable;
 import com.telenav.kivakit.interfaces.value.Source;
-import com.telenav.kivakit.core.internal.lexakai.DiagramString;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.ArrayList;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXPANDABLE;
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_STATIC_EXPANDABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
 import static com.telenav.kivakit.core.string.Join.join;
 
 /**
+ * String conversion utilities
+ *
  * @author jonathanl (shibo)
  */
+@SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramString.class)
-public class StringTo
+@ApiQuality(stability = STABLE_STATIC_EXPANDABLE,
+            testing = UNTESTED,
+            documentation = FULLY_DOCUMENTED)
+public class StringConversions
 {
+    /**
+     * @return The value as a string or an empty string if it is null
+     */
+    public static String nonNullString(Object value)
+    {
+        return value == null ? "" : toString(value);
+    }
+
     /**
      * @return The lowest bits of the given value as a binary string
      */
-    public static String binary(int value, int bits)
+    public static String toBinaryString(int value, int bits)
     {
         var builder = new StringBuilder();
         var mask = 1 << (bits - 1);
@@ -49,26 +69,26 @@ public class StringTo
     }
 
     /**
-     * Converts the given object to a debug string. If the object supports the AsString interface, the {@link
-     * StringFormattable#asString(StringFormattable.Format)} method is called with {@link StringFormattable.Format#DEBUG}. If it does not,
-     * the toString() method is called.
+     * Converts the given object to a debug string. If the object supports the AsString interface, the
+     * {@link StringFormattable#asString(StringFormattable.Format)} method is called with
+     * {@link StringFormattable.Format#DEBUG}. If it does not, the toString() method is called.
      *
      * @param object The object
      * @return A debug string for the object
      */
-    public static String debug(Object object)
+    public static String toDebugString(Object object)
     {
         if (object instanceof StringFormattable)
         {
             return ((StringFormattable) object).asString(StringFormattable.Format.DEBUG);
         }
-        return string(object);
+        return toString(object);
     }
 
     /**
      * @return The given enum value as a displayable string
      */
-    public static String display(Enum<?> enumValue)
+    public static String toDisplayString(Enum<?> enumValue)
     {
         var words = Split.split(enumValue.name(), "_");
         var display = new ArrayList<String>();
@@ -82,23 +102,15 @@ public class StringTo
     /**
      * @return The given text trivially converted to HTML
      */
-    public static String html(String text)
+    public static String toHtmlString(String text)
     {
         return text.replaceAll("\n", "<br/>").replaceAll(" ", "&nbsp;");
     }
 
     /**
-     * @return The value as a string or an empty string if it is null
-     */
-    public static String nonNullString(Object value)
-    {
-        return value == null ? "" : string(value);
-    }
-
-    /**
      * @return The given object as a string or the given value if it is null
      */
-    public static String string(Object object, String defaultValue)
+    public static String toString(Object object, String defaultValue)
     {
         if (object == null)
         {
@@ -106,7 +118,7 @@ public class StringTo
         }
         if (object instanceof Source)
         {
-            return string(((Source<?>) object).get());
+            return toString(((Source<?>) object).get());
         }
         if (object instanceof Long)
         {
@@ -124,8 +136,8 @@ public class StringTo
     /**
      * @return The given object as a string or "null" if it is null
      */
-    public static String string(Object object)
+    public static String toString(Object object)
     {
-        return string(object, "null");
+        return toString(object, "null");
     }
 }
