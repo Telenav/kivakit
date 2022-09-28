@@ -51,8 +51,8 @@ import com.telenav.kivakit.core.messaging.repeaters.BaseRepeater;
 import com.telenav.kivakit.core.project.Build;
 import com.telenav.kivakit.core.project.Project;
 import com.telenav.kivakit.core.project.ProjectTrait;
-import com.telenav.kivakit.core.project.StartUp;
-import com.telenav.kivakit.core.project.StartUp.Option;
+import com.telenav.kivakit.core.project.StartUpOptions;
+import com.telenav.kivakit.core.project.StartUpOptions.StartupOption;
 import com.telenav.kivakit.core.registry.Registry;
 import com.telenav.kivakit.core.registry.RegistryTrait;
 import com.telenav.kivakit.core.string.Align;
@@ -588,7 +588,7 @@ public abstract class Application extends BaseComponent implements
             }
 
             // Enable start-up options,
-            startupOptions().forEach(StartUp::enable);
+            startupOptions().forEach(StartUpOptions::enable);
 
             // signal that we are initializing,
             state.transitionTo(INITIALIZING);
@@ -650,7 +650,7 @@ public abstract class Application extends BaseComponent implements
                 registerSettingsIn(get(DEPLOYMENT));
             }
 
-            if (!StartUp.isEnabled(Option.QUIET))
+            if (!StartUpOptions.isEnabled(StartupOption.QUIET))
             {
                 showStartupInformation();
             }
@@ -861,7 +861,7 @@ public abstract class Application extends BaseComponent implements
     /**
      * Returns true if this application should not show startup information
      */
-    protected ObjectSet<StartUp.Option> startupOptions()
+    protected ObjectSet<StartupOption> startupOptions()
     {
         return objectSet();
     }

@@ -26,7 +26,7 @@ import com.telenav.kivakit.core.language.Patterns;
 import com.telenav.kivakit.core.logging.Logger;
 import com.telenav.kivakit.core.logging.LoggerFactory;
 import com.telenav.kivakit.core.messaging.context.CallStack;
-import com.telenav.kivakit.core.project.StartUp;
+import com.telenav.kivakit.core.project.StartUpOptions;
 import com.telenav.kivakit.core.string.AsciiArt;
 import com.telenav.kivakit.interfaces.messaging.Transmittable;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
@@ -269,7 +269,7 @@ public final class Debug implements MessageTransceiver
                 var log = property("KIVAKIT_LOG");
                 var kivakitVersion = resolveProject(KivaKit.class).kivakitVersion();
                 var title = "KivaKit " + kivakitVersion + " (" + resolveProject(KivaKit.class).build() + ")";
-                if (!StartUp.isEnabled(StartUp.Option.QUIET))
+                if (!StartUpOptions.isEnabled(StartUpOptions.StartupOption.QUIET))
                 {
                     LOGGER.information(AsciiArt.textBox(title, "      Logging: https://tinyurl.com/mhc3ss5s\n"
                                     + "    Debugging: https://tinyurl.com/2xycuvph\n"

@@ -56,8 +56,8 @@ public class Properties
             properties.addAll(VariableMap.variableMap(BuildMetadata.of(projectRoot).projectProperties()));
             properties.put("version", properties.get("project-version"));
             properties.putIfNotNull("build-name", build.name());
-            properties.putIfNotNull("build-date", build.formattedDate());
-            properties.putIfNotNull("build-number", Integer.toString(build.number()));
+            properties.putIfNotNull("build-date", build.buildFormattedDate());
+            properties.putIfNotNull("build-number", Integer.toString(build.buildNumber()));
             properties.put("date-and-time", LocalTime.now().asDateTimeString());
 
             properties = properties.expanded();

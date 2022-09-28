@@ -18,11 +18,11 @@
 
 package com.telenav.kivakit.core.project;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.collections.map.VariableMap;
 import com.telenav.kivakit.core.collections.set.ObjectSet;
-import com.telenav.kivakit.core.language.Classes;
-import com.telenav.kivakit.core.language.trait.LanguageTrait;
 import com.telenav.kivakit.core.internal.lexakai.DiagramProject;
+import com.telenav.kivakit.core.language.Classes;
 import com.telenav.kivakit.core.messaging.repeaters.BaseRepeater;
 import com.telenav.kivakit.core.object.LazyMap;
 import com.telenav.kivakit.core.registry.RegistryTrait;
@@ -41,6 +41,10 @@ import com.telenav.lexakai.annotations.visibility.UmlExcludeSuperTypes;
 
 import java.util.HashSet;
 import java.util.Set;
+
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXPANDABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
 
 /**
  * Base class for KivaKit projects, enabling run-time dependency management and initialization.
@@ -62,6 +66,15 @@ import java.util.Set;
  * projects define a {@link Project} subclass. Project initialization occurs automatically for Applications.</i>
  * </p>
  *
+ * <p><b>Project Initialization</b></p>
+ *
+ * <ul>
+ *     <li>{@link #initialize()} - Initializes this project</li>
+ *     <li>{@link #onInitializing()} - Called before initialization</li>
+ *     <li>{@link #onInitialize()} - Called to initialize</li>
+ *     <li>{@link #onInitialized()} - Called after initializing</li>
+ * </ul>
+ *
  * <p><b>Properties</b></p>
  *
  * <p>
@@ -69,26 +82,37 @@ import java.util.Set;
  * </p>
  *
  * <ul>
+ *     <li>{@link #artifactId()} - The Maven artifact id for this project</li>
  *     <li>{@link #build()} - Build information</li>
- *     <li>{@link #projectVersion()} - The project version</li>
+ *     <li>{@link #dependencies()} - Dependent projects</li>
+ *     <li>{@link #groupId()} - The Maven group id for this project</li>
+ *     <li>{@link #kivakit()} - The KivaKit project</li>
  *     <li>{@link #kivakitVersion()} - The version of KivaKit used by the project</li>
+ *     <li>{@link #projectVersion()} - The project version</li>
  *     <li>{@link #properties()} - System properties, environment variables and build properties for this project</li>
+ *     <li>{@link #property(String)} - The given project property, system property or environment variable</li>
+ *     <li>{@link #visitDependencies(Visitor)} - Calls the given visitor for each dependency</li>
  * </ul>
  *
  * @author jonathanl (shibo)
  * @see Version
+ * @see Initializable
+ * @see JavaTrait
+ * @see ProjectTrait
+ * @see RegistryTrait
  */
 @UmlClassDiagram(diagram = DiagramProject.class)
 @UmlExcludeSuperTypes({ Named.class })
+@ApiQuality(stability = STABLE_EXPANDABLE,
+            testing = TESTING_NOT_NEEDED,
+            documentation = FULLY_DOCUMENTED)
 public abstract class Project extends BaseRepeater implements
         Initializable,
         Named,
+        NamedObject,
         JavaTrait,
         ProjectTrait,
-        RegistryTrait,
-        LanguageTrait,
-        NamedObject
-
+        RegistryTrait
 {
     /** Map from project class to project instance used by {@link #resolveProject(Class)} */
     private static final LazyMap<Class<? extends Project>, Project> projects = LazyMap.of(Project::newProject);
@@ -193,7 +217,7 @@ public abstract class Project extends BaseRepeater implements
             onInitializing();
 
             // initialize the project
-            if (!StartUp.isEnabled(StartUp.Option.QUIET))
+            if (!StartUpOptions.isEnabled(StartUpOptions.StartupOption.QUIET))
             {
                 announce("Loading$ $ build $",
                         Align.right(getClass().getSimpleName(), 40, '.'),
@@ -209,6 +233,7 @@ public abstract class Project extends BaseRepeater implements
     /**
      * @return The KivaKit version in use
      */
+    @Override
     public final Version kivakitVersion()
     {
         return kivakit().projectVersion();
@@ -231,10 +256,16 @@ public abstract class Project extends BaseRepeater implements
     {
     }
 
+    /**
+     * Called after project initialization
+     */
     public void onInitialized()
     {
     }
 
+    /**
+     * Called before project initialization
+     */
     public void onInitializing()
     {
     }
