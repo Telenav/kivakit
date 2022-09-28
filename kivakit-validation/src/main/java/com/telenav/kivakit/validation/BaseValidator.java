@@ -199,7 +199,7 @@ public abstract class BaseValidator implements Validator
                 {
                     // we broadcast a short summary of the validation results.
                     listener.information("Validated $ ($ problems, $ glitches, $ warnings)",
-                            Name.of(validationTarget()), problems, glitches, warnings);
+                            Name.nameOf(validationTarget()), problems, glitches, warnings);
                 }
             }
 

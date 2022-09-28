@@ -44,9 +44,20 @@ public interface DoubleValued extends LongValued
      * @param within The tolerance
      * @return True if the difference between this value and that value is within the given tolerance
      */
-    default boolean isApproximately(DoubleValued that, DoubleValued within)
+    default boolean isCloseTo(DoubleValued that, DoubleValued within)
     {
         return absoluteDifference(that) <= within.doubleValue();
+    }
+
+    /**
+     * Returns true if this level is close to the given level, within the given tolerance
+     *
+     * @param that The level to compare with
+     * @param tolerance The amount of maximum amount difference that is still considered "close"
+     */
+    default boolean isCloseTo(DoubleValued that, double tolerance)
+    {
+        return Math.abs(that.doubleValue() - that.doubleValue()) < tolerance;
     }
 
     /**

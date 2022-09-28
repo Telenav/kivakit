@@ -62,8 +62,6 @@ import static com.telenav.kivakit.core.value.count.Estimate.estimate;
  * best approach is to simply use {@link Count} objects until a clear inefficiency shows up in a profiler like YourKit.
  * </p>
  *
- * <hr>
- *
  * <p><b>Conversion</b></p>
  *
  * <ul>
@@ -112,8 +110,6 @@ import static com.telenav.kivakit.core.value.count.Estimate.estimate;
  *     <li>{@link #minimize(LongValued)} - Returns the minimum of this count and the given count</li>
  * </ul>
  *
- * <hr>
- *
  * <p><b>Arithmetic</b></p>
  *
  * <ul>
@@ -131,8 +127,6 @@ import static com.telenav.kivakit.core.value.count.Estimate.estimate;
  *     <li>{@link #times(Percent)} - This count times the given percentage</li>
  * </ul>
  *
- * <hr>
- *
  * <p><b>Mathematics</b></p>
  *
  * <ul>
@@ -146,15 +140,11 @@ import static com.telenav.kivakit.core.value.count.Estimate.estimate;
  *     <li>{@link #powerOfTwoCeiling()} - The next power of two above this count</li>
  * </ul>
  *
- * <hr>
- *
  * <p><b>Looping</b></p>
  *
  * <ul>
  *     <li>{@link #loop(Runnable)} - Runs the given code block {@link #count()} times</li>
  * </ul>
- *
- * <hr>
  *
  * <p><b>Iteration</b></p>
  *
@@ -164,8 +154,6 @@ import static com.telenav.kivakit.core.value.count.Estimate.estimate;
  *     <li>{@link #forEachLong(Consumer)} - Passes each long from 0 to {@link #asLong()} to the given consumer, exclusive</li>
  *     <li>{@link #forEachShort(Consumer)} - Passes to the given consumer, each byte from 0 to the smaller of this count or {@link Short#MAX_VALUE}, exclusive</li>
  * </ul>
- *
- * <hr>
  *
  * <p><b>Array Allocation</b></p>
  *
@@ -182,8 +170,6 @@ import static com.telenav.kivakit.core.value.count.Estimate.estimate;
  * </ul>
  * <p>
  * {@link Count} objects implement the {@link #hashCode()} / {@link #equals(Object)} contract and are {@link Comparable}.
- *
- * <hr>
  *
  * @param <SubClass> The subclass type
  * @author jonathanl (shibo)

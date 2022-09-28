@@ -290,7 +290,7 @@ public class Ensure
     @SuppressWarnings("UnusedReturnValue")
     public static boolean ensureClose(Duration given, Duration expected)
     {
-        return given.isApproximately(expected, Duration.seconds(0.5));
+        return given.isCloseTo(expected, Duration.seconds(0.5));
     }
 
     public static <T> T ensureEqual(T given, T expected)
