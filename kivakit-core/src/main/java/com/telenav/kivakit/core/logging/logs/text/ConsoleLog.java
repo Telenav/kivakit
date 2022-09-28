@@ -31,8 +31,8 @@ import com.telenav.lexakai.annotations.visibility.UmlExcludeMember;
 import static com.telenav.kivakit.annotations.code.ApiStability.STABLE;
 import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
-import static com.telenav.kivakit.core.os.Console.OutputType.ERROR;
-import static com.telenav.kivakit.core.os.Console.OutputType.NORMAL;
+import static com.telenav.kivakit.core.os.Console.OutputStream.ERROR;
+import static com.telenav.kivakit.core.os.Console.OutputStream.NORMAL;
 
 /**
  * A text log that logs to the console. Severe log entries are logged to stderr, others to stdout. The formatter can be

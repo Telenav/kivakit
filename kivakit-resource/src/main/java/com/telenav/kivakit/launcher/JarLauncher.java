@@ -203,7 +203,7 @@ public class JarLauncher extends BaseRepeater
                 var base = resource.fileName().withoutExtension(Extension.JAR);
 
                 // and create the argument list.
-                var java = OperatingSystem.get().java();
+                var java = OperatingSystem.operatingSystem().java();
                 var arguments = new StringList();
                 arguments.add(java);
                 if (headless)
@@ -248,7 +248,7 @@ public class JarLauncher extends BaseRepeater
                 }
 
                 // get this process' identifier
-                var pid = OperatingSystem.get().processIdentifier();
+                var pid = OperatingSystem.operatingSystem().processIdentifier();
 
                 // and launch the jar, redirecting output to
                 var announcement = PropertyMap.create();

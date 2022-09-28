@@ -447,7 +447,7 @@ public class JavaVirtualMachine extends BaseRepeater
 
     public VariableMap<String> variables()
     {
-        return properties().addAll(OperatingSystem.get().environmentVariables());
+        return properties().addAll(OperatingSystem.operatingSystem().environmentVariables());
     }
 
     private Bytes sizeOfField(Object object,

@@ -77,7 +77,7 @@ public class LocalHost extends Host
     @Override
     public InetAddress onResolveAddress()
     {
-        if (OperatingSystem.get().isWindows())
+        if (OperatingSystem.operatingSystem().isWindows())
         {
             try
             {
