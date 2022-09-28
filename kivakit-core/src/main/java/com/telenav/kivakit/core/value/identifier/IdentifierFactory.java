@@ -18,11 +18,16 @@
 
 package com.telenav.kivakit.core.value.identifier;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramIdentifier;
 import com.telenav.kivakit.interfaces.factory.Factory;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.concurrent.atomic.AtomicLong;
+
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
 
 /**
  * A thread-safe factory that produces identifiers
@@ -30,6 +35,9 @@ import java.util.concurrent.atomic.AtomicLong;
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramIdentifier.class)
+@ApiQuality(stability = STABLE,
+            testing = UNTESTED,
+            documentation = FULLY_DOCUMENTED)
 public class IdentifierFactory implements Factory<Identifier>
 {
     private final AtomicLong next;
@@ -39,9 +47,9 @@ public class IdentifierFactory implements Factory<Identifier>
         this(0);
     }
 
-    public IdentifierFactory(long base)
+    public IdentifierFactory(long initial)
     {
-        next = new AtomicLong(base);
+        next = new AtomicLong(initial);
     }
 
     @Override

@@ -18,12 +18,17 @@
 
 package com.telenav.kivakit.core.value.identifier;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramIdentifier;
+import com.telenav.kivakit.core.string.KivaKitFormat;
 import com.telenav.kivakit.core.value.count.BitCount;
 import com.telenav.kivakit.interfaces.model.Identifiable;
 import com.telenav.kivakit.interfaces.value.LongValued;
-import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
+
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXPANDABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
 
 /**
  * Base class for *long* identifiers
@@ -35,33 +40,42 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
  */
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramIdentifier.class)
-@LexakaiJavadoc(complete = true)
+@ApiQuality(stability = STABLE_EXPANDABLE,
+            testing = UNTESTED,
+            documentation = FULLY_DOCUMENTED)
 public class Identifier implements
         Identifiable,
+        LongValued,
         Comparable<Identifier>
 {
-    private final long value;
+    private final long identifier;
 
-    public Identifier(long value)
+    /**
+     * Creates an identifier
+     */
+    public Identifier(long identifier)
     {
-        this.value = value;
+        this.identifier = identifier;
     }
 
     @Override
     public long asLong()
     {
-        return value;
+        return identifier;
     }
 
+    /**
+     * Returns the number of bits required to represent this identifier
+     */
     public BitCount bitsToRepresent()
     {
-        return BitCount.bitsToRepresent(value);
+        return BitCount.bitsToRepresent(identifier);
     }
 
     @Override
     public int compareTo(Identifier that)
     {
-        return Long.compare(value, that.value);
+        return Long.compare(identifier, that.identifier);
     }
 
     @Override
@@ -70,7 +84,7 @@ public class Identifier implements
         if (object instanceof Identifier)
         {
             var that = (Identifier) object;
-            return value == that.value;
+            return identifier == that.identifier;
         }
         return false;
     }
@@ -78,24 +92,25 @@ public class Identifier implements
     @Override
     public int hashCode()
     {
-        return (int) value;
+        return (int) identifier;
     }
 
+    @KivaKitFormat
     @Override
     public long identifier()
     {
-        return value;
+        return identifier;
     }
 
     @Override
     public long longValue()
     {
-        return value;
+        return identifier;
     }
 
     @Override
     public String toString()
     {
-        return Long.toString(value);
+        return Long.toString(identifier);
     }
 }
