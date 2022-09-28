@@ -18,21 +18,42 @@
 
 package com.telenav.kivakit.core.value.count;
 
-import com.telenav.lexakai.annotations.LexakaiJavadoc;
+import com.telenav.kivakit.annotations.code.ApiQuality;
+
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_DEFAULT_EXPANDABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
 
 /**
  * An interface to any object whose size can be measured in bytes.
  *
  * @author jonathanl (shibo)
  */
-@LexakaiJavadoc(complete = true)
+@SuppressWarnings("unused")
+@ApiQuality(stability = STABLE_DEFAULT_EXPANDABLE,
+            testing = UNTESTED,
+            documentation = FULLY_DOCUMENTED)
 public interface ByteSized
 {
+    /**
+     * Returns true if this byte sized object is larger than the given one
+     */
     default boolean isLargerThan(ByteSized that)
     {
         return sizeInBytes().isGreaterThan(that.sizeInBytes());
     }
 
+    /**
+     * Returns true if this byte sized object is the same size as the given one
+     */
+    default boolean isSameSizeAs(ByteSized that)
+    {
+        return sizeInBytes().equals(that.sizeInBytes());
+    }
+
+    /**
+     * Returns true if this byte sized object is smaller than the given one
+     */
     default boolean isSmallerThan(ByteSized that)
     {
         return sizeInBytes().isLessThan(that.sizeInBytes());

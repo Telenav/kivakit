@@ -18,6 +18,7 @@
 
 package com.telenav.kivakit.core.value.count;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramCount;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.string.Strings;
@@ -26,6 +27,10 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 import java.util.Collection;
 import java.util.Iterator;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXPANDABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
+
 /**
  * A count value that is an maximum. This class mainly exists to clarify APIs by giving a meaning to the count value.
  *
@@ -33,6 +38,9 @@ import java.util.Iterator;
  */
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramCount.class)
+@ApiQuality(stability = STABLE_EXPANDABLE,
+            testing = UNTESTED,
+            documentation = FULLY_DOCUMENTED)
 public class Maximum extends BaseCount<Maximum>
 {
     public static final Maximum _0 = new Maximum(0);
@@ -170,11 +178,17 @@ public class Maximum extends BaseCount<Maximum>
         }
     }
 
+    /**
+     * Returns the number of values as an {@link Maximum}
+     */
     public static Maximum maximum(Iterable<?> iterable)
     {
         return maximum(iterable.iterator());
     }
 
+    /**
+     * Returns the number of values as a {@link Maximum}
+     */
     public static Maximum maximum(Iterator<?> iterator)
     {
         var count = 0;
@@ -186,6 +200,9 @@ public class Maximum extends BaseCount<Maximum>
         return maximum(count);
     }
 
+    /**
+     * Returns the value as a {@link Maximum}
+     */
     public static Maximum maximum(long value)
     {
         // If we have a cached value,
@@ -206,23 +223,36 @@ public class Maximum extends BaseCount<Maximum>
         return new Maximum(value);
     }
 
+    /**
+     * Returns the number of array elements as an {@link Maximum}
+     */
     public static <T> Maximum maximum(T[] values)
     {
         return maximum(values.length);
     }
 
+    /**
+     * Returns the number of elements in the collection, as a {@link Maximum}
+     */
     public static Maximum maximum(Collection<?> collection)
     {
         return maximum(collection.size());
     }
 
-    public static Maximum parseMaximum(Listener listener, String value)
+    /**
+     * Parses the given text into an {@link Maximum}
+     *
+     * @param listener The listener to call with any problems
+     * @param text The text to parse
+     * @return The estimate
+     */
+    public static Maximum parseMaximum(Listener listener, String text)
     {
-        if (value.indexOf(',') > 0)
+        if (text.indexOf(',') > 0)
         {
-            value = Strings.removeAll(value, ',');
+            text = Strings.removeAll(text, ',');
         }
-        return maximum(Integer.parseInt(value));
+        return maximum(Integer.parseInt(text));
     }
 
     protected Maximum(long count)
@@ -235,8 +265,11 @@ public class Maximum extends BaseCount<Maximum>
         super(0);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public Maximum newInstance(long count)
+    public Maximum onNewInstance(long count)
     {
         return maximum(count);
     }

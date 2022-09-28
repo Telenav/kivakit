@@ -370,7 +370,7 @@ public class RandomValueFactory implements RandomNumeric
         var randomMinimum = randomLongExclusive(minimum.asLong(), exclusiveMaximum.asLong() - randomWidth);
         var randomExclusiveMaximum = randomMinimum + randomWidth;
 
-        return Range.rangeExclusive(minimum.newInstance(randomMinimum), minimum.newInstance(randomExclusiveMaximum));
+        return Range.rangeExclusive(minimum.onNewInstance(randomMinimum), minimum.onNewInstance(randomExclusiveMaximum));
     }
 
     public <T extends BaseCount<T>> Range<T> rangeExclusive(T minimum, T exclusiveMaximum)
@@ -398,8 +398,8 @@ public class RandomValueFactory implements RandomNumeric
         var randomMinimum = randomLongInclusive(minimum.asLong(), minimum.asLong() + randomWidth);
         var randomInclusiveMaximum = inRangeInclusive(randomMinimum + randomWidth, 0, inclusiveMaximum.asLong());
 
-        return Range.rangeInclusive(minimum.newInstance(randomMinimum),
-                minimum.newInstance(randomInclusiveMaximum));
+        return Range.rangeInclusive(minimum.onNewInstance(randomMinimum),
+                minimum.onNewInstance(randomInclusiveMaximum));
     }
 
     public Range<Count> rangeInclusive(long minimum, long inclusiveMaximum, long minimumWidth)

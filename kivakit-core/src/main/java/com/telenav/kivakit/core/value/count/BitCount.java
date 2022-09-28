@@ -18,21 +18,30 @@
 
 package com.telenav.kivakit.core.value.count;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramCount;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
+
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXPANDABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
 
 /**
  * A number of bits and various associated methods.
  * <p>
- * The largest value represented by this number of bits can be retrieved with {@link #maximumUnsigned()} or {@link
- * #maximumSigned()} and the smallest by {@link #minimumSigned()}. A mask for the given number of bits (where a {@link
- * BitCount} of 3 would return the mask 111) is given by {@link #mask()}. Various mathematical operations and
+ * The largest value represented by this number of bits can be retrieved with {@link #maximumUnsigned()} or
+ * {@link #maximumSigned()} and the smallest by {@link #minimumSigned()}. A mask for the given number of bits (where a
+ * {@link BitCount} of 3 would return the mask 111) is given by {@link #mask()}. Various mathematical operations and
  * conversions can be performed on bit counts, including all such methods in the superclass {@link Count}.
  *
  * @author jonathanl
  * @see Count
  */
+@SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramCount.class)
+@ApiQuality(stability = STABLE_EXPANDABLE,
+            testing = UNTESTED,
+            documentation = FULLY_DOCUMENTED)
 public class BitCount extends BaseCount<BitCount>
 {
     public static final BitCount _0 = new BitCount(0);
@@ -171,7 +180,10 @@ public class BitCount extends BaseCount<BitCount>
 
     private static BitCount[] cached;
 
-    public static BitCount bitCount(long count)
+    /**
+     * Creates the given bit count
+     */
+    public static BitCount bits(long count)
     {
         assert count >= 0;
         assert count <= Integer.MAX_VALUE;
@@ -192,49 +204,60 @@ public class BitCount extends BaseCount<BitCount>
         return new BitCount(count);
     }
 
-    public static <T> BitCount bitCount(T[] values)
+    /**
+     * Returns the number of bits per byte
+     */
+    public static BitCount bitsPerByte()
     {
-        return bitCount(values.length);
+        return bits(Byte.SIZE);
     }
 
-    public static BitCount bitsToRepresent(int value)
+    /**
+     * Returns the number of bits per character
+     */
+    public static BitCount bitsPerChar()
     {
-        return BitCount.bitCount(Integer.SIZE - Integer.numberOfLeadingZeros(value));
+        return bits(Character.SIZE);
     }
 
+    /**
+     * Returns the number of bits per character
+     */
+    public static BitCount bitsPerInt()
+    {
+        return bits(Integer.SIZE);
+    }
+
+    /**
+     * Returns the number of bits per long value
+     */
+    public static BitCount bitsPerLong()
+    {
+        return bits(Long.SIZE);
+    }
+
+    /**
+     * Returns the number of bits per short value
+     */
+    public static BitCount bitsPerShort()
+    {
+        return bits(Short.SIZE);
+    }
+
+    /**
+     * Returns the number of bits required to represent the given value
+     */
     public static BitCount bitsToRepresent(long value)
     {
-        return BitCount.bitCount(Long.SIZE - Long.numberOfLeadingZeros(value)).maximize(BitCount._1);
+        return BitCount.bits(Long.SIZE - Long.numberOfLeadingZeros(value)).maximize(BitCount._1);
     }
 
-    public static BitCount perByte()
+    /**
+     * Returns the number of bits required to represent the given value
+     */
+    public static BitCount bitsToRepresent(int value)
     {
-        return bitCount(Byte.SIZE);
-    }
-
-    public static BitCount perCharacter()
-    {
-        return bitCount(Character.SIZE);
-    }
-
-    public static BitCount perInteger()
-    {
-        return bitCount(Integer.SIZE);
-    }
-
-    public static BitCount perLong()
-    {
-        return bitCount(Long.SIZE);
-    }
-
-    public static BitCount perShort()
-    {
-        return bitCount(Short.SIZE);
-    }
-
-    public static BitCount toRepresent(long value)
-    {
-        return new BitCount(Long.SIZE - Long.numberOfLeadingZeros(value));
+        return BitCount.bits(Integer.SIZE - Integer.numberOfLeadingZeros(value));
     }
 
     protected BitCount(long bits)
@@ -255,25 +278,37 @@ public class BitCount extends BaseCount<BitCount>
         return values() - 1;
     }
 
+    /**
+     * Returns the maximum signed value with this number of bits
+     */
     public long maximumSigned()
     {
         return asInt() == 64 ? Long.MAX_VALUE : (1L << (asInt() - 1)) - 1;
     }
 
+    /**
+     * Returns the maximum unsigned value with this number of bits
+     */
     public long maximumUnsigned()
     {
         return asInt() == 64 ? Long.MAX_VALUE : (1L << asInt()) - 1;
     }
 
+    /**
+     * Returns the minimum signed value with this number of bits
+     */
     public long minimumSigned()
     {
         return asInt() == 64 ? Long.MIN_VALUE : -maximumSigned() - 1;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public BitCount newInstance(long count)
+    public BitCount onNewInstance(long count)
     {
-        return bitCount(count);
+        return bits(count);
     }
 
     /**

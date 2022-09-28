@@ -18,18 +18,31 @@
 
 package com.telenav.kivakit.core.value.count;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramCount;
 import com.telenav.kivakit.interfaces.collection.Contains;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXPANDABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
+
 /**
+ * Represents a range of long values
+ *
  * @author jonathanl (shibo)
  */
+@SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramCount.class)
+@ApiQuality(stability = STABLE_EXPANDABLE,
+            testing = UNTESTED,
+            documentation = FULLY_DOCUMENTED)
 public class LongRange implements Contains<Long>
 {
+    /** The minimum value */
     private long minimum;
 
+    /** The maximum value, inclusive */
     private long maximum;
 
     public LongRange(long minimum, long maximum)
@@ -42,36 +55,25 @@ public class LongRange implements Contains<Long>
     {
     }
 
-    public Long constrainTo(Long value)
+    /**
+     * Returns the given long value constrained to this range
+     *
+     * @param value The value to constrain
+     * @return The constrained value
+     */
+    public long constrainTo(long value)
     {
         value = Math.min(maximum, value);
         value = Math.max(minimum, value);
         return value;
     }
 
+    /**
+     * Returns true if the given value is in range, inclusive
+     */
     @Override
     public boolean contains(Long value)
     {
         return value >= minimum && value <= maximum;
-    }
-
-    public Long maximum(Long that)
-    {
-        return Math.max(maximum, that);
-    }
-
-    public Long maximum()
-    {
-        return maximum;
-    }
-
-    public Long minimum(Long that)
-    {
-        return Math.min(minimum, that);
-    }
-
-    public Long minimum()
-    {
-        return minimum;
     }
 }

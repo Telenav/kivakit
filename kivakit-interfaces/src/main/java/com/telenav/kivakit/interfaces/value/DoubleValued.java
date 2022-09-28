@@ -35,6 +35,8 @@ public interface DoubleValued extends LongValued
     }
 
     /**
+     * Returns the double value for this object
+     *
      * @return The double value for this object
      */
     double doubleValue();

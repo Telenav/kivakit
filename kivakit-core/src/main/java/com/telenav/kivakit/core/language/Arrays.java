@@ -127,6 +127,27 @@ public class Arrays
     /**
      * Reverses the elements in the given array
      */
+    public static void reverse(byte[] array)
+    {
+        reverse(array, 0, array.length);
+    }
+
+    /**
+     * Reverses the region of elements in the given array
+     */
+    public static void reverse(byte[] array, int fromIndex, int toIndex)
+    {
+        for (int i = fromIndex, j = toIndex - 1; i < j; i++, j--)
+        {
+            byte temporary = array[i];
+            array[i] = array[j];
+            array[j] = temporary;
+        }
+    }
+
+    /**
+     * Reverses the elements in the given array
+     */
     public static int[] reverse(int[] elements)
     {
         for (var i = 0; i < elements.length / 2; i++)

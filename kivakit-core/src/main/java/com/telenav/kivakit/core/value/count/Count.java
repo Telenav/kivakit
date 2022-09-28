@@ -18,6 +18,7 @@
 
 package com.telenav.kivakit.core.value.count;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramCount;
 import com.telenav.kivakit.core.language.primitive.Longs;
 import com.telenav.kivakit.core.messaging.Listener;
@@ -28,6 +29,10 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.function.Consumer;
+
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXPANDABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
 
 /**
  * Represents a count of something.
@@ -51,8 +56,6 @@ import java.util.function.Consumer;
  *     <li>Counts provide a more readable, comma-separated String representation by default</li>
  * </ol>
  *
- * <hr>
- *
  * <p><b>Efficiency</b></p>
  *
  * <p>
@@ -74,8 +77,6 @@ import java.util.function.Consumer;
  * best approach is to simply use {@link Count} objects until a clear inefficiency shows up in a profiler like YourKit.
  * </p>
  *
- * <hr>
- *
  * <p><b>Creation</b></p>
  *
  * <ul>
@@ -86,8 +87,6 @@ import java.util.function.Consumer;
  *    <li>{@link #count(Iterator)} - Returns the {@link Count} of items provided the given {@link Iterator}</li>
  *    <li>{@link #count(Collection)} - Returns the {@link Count} of items in the given {@link Collection}</li>
  * </ul>
- *
- * <hr>
  *
  * <p><b>Conversion</b></p>
  *
@@ -103,17 +102,13 @@ import java.util.function.Consumer;
  *     <li>{@link #asMinimum()} - This count as a {@link Minimum}</li>
  * </ul>
  *
- * <hr>
- *
  * <p><b>String Representations</b></p>
  *
  * <ul>
  *     <li>{@link #asString(Format)} - This count formatted in the given format</li>
  *     <li>{@link #asCommaSeparatedString()} - This count as a comma-separated string, like 65,536</li>
- *     <li>{@link #quantumAsSimpleString()} - This count as a simple string, like 65536</li>
+ *     <li>{@link #asSimpleString()} ()} - This count as a simple string, like 65536</li>
  * </ul>
- *
- * <hr>
  *
  * <p><b>Comparison</b></p>
  *
@@ -126,8 +121,6 @@ import java.util.function.Consumer;
  *     <li>{@link #isZero()} - True if this count is zero</li>
  *     <li>{@link #isNonZero()} - True if this count is not zero</li>
  * </ul>
- *
- * <hr>
  *
  * <p><b>Minima and Maxima</b></p>
  *
@@ -143,8 +136,6 @@ import java.util.function.Consumer;
  *     <li>{@link #asMaximum()} - Converts this count to a {@link Maximum}</li>
  *     <li>{@link #asMinimum()} - Converts this count to a {@link Minimum}</li>
  * </ul>
- *
- * <hr>
  *
  * <p><b>Arithmetic</b></p>
  *
@@ -163,8 +154,6 @@ import java.util.function.Consumer;
  *     <li>{@link #times(Percent)} - This count times the given percentage</li>
  * </ul>
  *
- * <hr>
- *
  * <p><b>Mathematics</b></p>
  *
  * <ul>
@@ -173,20 +162,16 @@ import java.util.function.Consumer;
  *     <li>{@link #dividesEvenlyBy(LongValued)} - True if there is no remainder when dividing this count by the given count</li>
  *     <li>{@link #powerOfTenCeiling(int)} - The maximum value of this count taking on the given number of digits</li>
  *     <li>{@link #powerOfTenFloor(int)} - The minimum value of this count taking on the given number of digits</li>
- *     <li>{@link #nextPrime()} - The next prime value from a limited table of primes, useful in allocating linear hashmaps</li>
+ *     <li>{@link #asPrimeAllocationSize()} - The next prime value from a limited table of primes, useful in allocating linear hashmaps</li>
  *     <li>{@link #bitsToRepresent()} - The number of bits required to represent this count</li>
  *     <li>{@link #powerOfTwoCeiling()} - The next power of two above this count</li>
  * </ul>
- *
- * <hr>
  *
  * <p><b>Looping</b></p>
  *
  * <ul>
  *     <li>{@link #loop(Runnable)} - Runs the given code block {@link #count()} times</li>
  * </ul>
- *
- * <hr>
  *
  * <p><b>Iteration</b></p>
  *
@@ -196,8 +181,6 @@ import java.util.function.Consumer;
  *     <li>{@link #forEachLong(Consumer)} - Passes each long from 0 to {@link #asLong()} to the given consumer, exclusive</li>
  *     <li>{@link #forEachShort(Consumer)} - Passes to the given consumer, each byte from 0 to the smaller of this count or {@link #MAXIMUM_SHORT_VALUE}, exclusive</li>
  * </ul>
- *
- * <hr>
  *
  * <p><b>Array Allocation</b></p>
  *
@@ -215,8 +198,6 @@ import java.util.function.Consumer;
  * <p>
  * {@link Count} objects implement the {@link #hashCode()} / {@link #equals(Object)} contract and are {@link Comparable}.
  *
- * <hr>
- *
  * @author jonathanl (shibo)
  * @see LongValued
  * @see Countable
@@ -227,6 +208,9 @@ import java.util.function.Consumer;
  */
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramCount.class)
+@ApiQuality(stability = STABLE_EXPANDABLE,
+            testing = UNTESTED,
+            documentation = FULLY_DOCUMENTED)
 public class Count extends BaseCount<Count>
 {
     public static final Count _0 = new Count(0);
@@ -376,22 +360,34 @@ public class Count extends BaseCount<Count>
         }
     }
 
+    /**
+     * Returns the count of values in the given collection
+     */
     public static Count count(Collection<?> collection)
     {
         return count(collection.size());
     }
 
+    /**
+     * Returns the count of values in the given iterable
+     */
     public static Count count(Iterable<?> iterable)
     {
         assert !(iterable instanceof Count);
         return count(iterable.iterator());
     }
 
+    /**
+     * Returns the count of values in the given collection, but no more than the maximum
+     */
     public static Count count(Iterable<?> iterable, Maximum maximum)
     {
         return count(iterable.iterator(), maximum);
     }
 
+    /**
+     * Returns the count of values produced by the given iterator
+     */
     public static Count count(Iterator<?> iterator)
     {
         var count = 0L;
@@ -403,6 +399,9 @@ public class Count extends BaseCount<Count>
         return count(count);
     }
 
+    /**
+     * Returns the count of values produced by the given iterator, but not more than the given maximum
+     */
     public static Count count(Iterator<?> iterator, Maximum maximum)
     {
         var count = 0L;
@@ -418,16 +417,17 @@ public class Count extends BaseCount<Count>
         return count(count);
     }
 
+    /**
+     * Returns a count for the given value
+     */
     public static Count count(double value)
     {
         return count((long) value);
     }
 
-    public static Count count(String text)
-    {
-        return count(text.length());
-    }
-
+    /**
+     * Returns a count for the given value
+     */
     public static Count count(long value)
     {
         // If we have a cached value,
@@ -448,14 +448,32 @@ public class Count extends BaseCount<Count>
         return new Count(value);
     }
 
+    /**
+     * Returns the count of values in the given array
+     */
     public static <T> Count count(T[] values)
     {
         return count(values.length);
     }
 
-    public static Count parseCount(Listener listener, String value)
+    /**
+     * Returns the count of characters in the given text
+     */
+    public static Count countOfCharacters(String text)
     {
-        var count = Longs.parseFast(value, -1);
+        return count(text.length());
+    }
+
+    /**
+     * Parses the given text into a count
+     *
+     * @param listener The listener to call with any problems
+     * @param text The text to parse
+     * @return The count
+     */
+    public static Count parseCount(Listener listener, String text)
+    {
+        var count = Longs.parseFast(text, -1);
         return count < 0 ? null : count(count);
     }
 
@@ -468,8 +486,11 @@ public class Count extends BaseCount<Count>
     {
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public Count newInstance(long count)
+    public Count onNewInstance(long count)
     {
         return count(count);
     }

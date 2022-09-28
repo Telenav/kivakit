@@ -75,7 +75,7 @@ public class HourOfWeekTest extends CoreUnitTest
             var range = random().rangeExclusive(0, 7 * 24);
             ensure(range.isExclusive());
             ensure(range.size() <= 168);
-            ensure(range.exclusiveMaximum().asInt() <= 168);
+            ensure(range.maximum().asInt() <= 168);
             range.forEach(HourOfWeek::hourOfWeek);
             range.forEach(at -> hourOfWeek(at.asInt()));
         });

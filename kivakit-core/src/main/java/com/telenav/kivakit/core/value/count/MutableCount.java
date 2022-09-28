@@ -18,11 +18,16 @@
 
 package com.telenav.kivakit.core.value.count;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramCount;
 import com.telenav.kivakit.core.value.level.Percent;
+import com.telenav.kivakit.interfaces.collection.Clearable;
 import com.telenav.kivakit.interfaces.value.LongValued;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXPANDABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
 import static com.telenav.kivakit.core.ensure.Ensure.ensure;
 
 /**
@@ -32,9 +37,14 @@ import static com.telenav.kivakit.core.ensure.Ensure.ensure;
  *
  * @author jonathanl (shibo)
  */
-@SuppressWarnings("unused") @UmlClassDiagram(diagram = DiagramCount.class)
+@SuppressWarnings("unused")
+@UmlClassDiagram(diagram = DiagramCount.class)
+@ApiQuality(stability = STABLE_EXPANDABLE,
+            testing = UNTESTED,
+            documentation = FULLY_DOCUMENTED)
 public class MutableCount implements
         Countable,
+        Clearable,
         LongValued,
         Comparable<Countable>
 {
@@ -52,42 +62,66 @@ public class MutableCount implements
         this.count = count;
     }
 
+    /**
+     * Returns this count as a {@link Count}
+     */
     public Count asCount()
     {
         return Count.count(count);
     }
 
+    /**
+     * Returns this count as an int
+     */
+    @Override
     public int asInt()
     {
         return (int) count;
     }
 
+    /**
+     * Returns this count as a long value
+     */
+    @Override
     public long asLong()
     {
         return count;
     }
 
+    /**
+     * Clears this count
+     */
+    @Override
     public void clear()
     {
         count = 0;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public int compareTo(Countable that)
     {
         return (int) (longValue() - that.count().longValue());
     }
 
+    /**
+     * Returns this mutable count as a {@link Count}
+     */
     @Override
     public Count count()
     {
         return Count.count(asLong());
     }
 
+    /**
+     * Returns this count minus one
+     */
     public long decrement()
     {
         assert count > 0;
-        return count--;
+        return --count;
     }
 
     @Override
@@ -101,6 +135,9 @@ public class MutableCount implements
         return false;
     }
 
+    /**
+     * Returns this count
+     */
     public long get()
     {
         return count;
@@ -112,24 +149,36 @@ public class MutableCount implements
         return Long.hashCode(get());
     }
 
+    /**
+     * Returns this count plus one
+     */
     public long increment()
     {
         assert count + 1 >= 0;
-        return count++;
+        return ++count;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean isZero()
     {
         return asLong() == 0L;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public long longValue()
     {
         return count;
     }
 
+    /**
+     * Returns this count minus the given value
+     */
     public long minus(long that)
     {
         count -= that;
@@ -137,6 +186,9 @@ public class MutableCount implements
         return count;
     }
 
+    /**
+     * Returns the percentage of the given count that this count represents
+     */
     public Percent percentOf(Count total)
     {
         if (total.isZero())
@@ -146,6 +198,9 @@ public class MutableCount implements
         return Percent.percent(asLong() * 100.0 / total.asLong());
     }
 
+    /**
+     * Returns this count plus the given value
+     */
     public long plus(long that)
     {
         count += that;
@@ -153,11 +208,17 @@ public class MutableCount implements
         return count;
     }
 
+    /**
+     * Returns this count plus the given value
+     */
     public long plus(LongValued that)
     {
         return plus(that.longValue());
     }
 
+    /**
+     * Sets this count
+     */
     public void set(long count)
     {
         assert count >= 0;
