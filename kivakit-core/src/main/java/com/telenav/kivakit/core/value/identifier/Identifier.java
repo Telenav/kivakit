@@ -48,6 +48,7 @@ public class Identifier implements
         LongValued,
         Comparable<Identifier>
 {
+    /** The identifier */
     private final long identifier;
 
     /**

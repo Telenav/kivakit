@@ -1,8 +1,12 @@
 package com.telenav.kivakit.core.time;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.language.primitive.Ints;
 import com.telenav.kivakit.interfaces.time.Nanoseconds;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXPANDABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
 import static com.telenav.kivakit.core.ensure.Ensure.ensure;
 import static com.telenav.kivakit.core.ensure.Ensure.unsupported;
 import static com.telenav.kivakit.core.time.BaseTime.Topology.CYCLIC;
@@ -21,8 +25,12 @@ import static java.lang.Integer.MAX_VALUE;
  * @author jonathanl (shibo)
  */
 @SuppressWarnings("unused")
+@ApiQuality(stability = STABLE_EXPANDABLE,
+            testing = UNTESTED,
+            documentation = FULLY_DOCUMENTED)
 public class Day extends BaseTime<Day>
 {
+    /** The number of nanoseconds per day */
     static final Nanoseconds nanosecondsPerDay = nanosecondsPerHour.times(24);
 
     /**
@@ -132,6 +140,11 @@ public class Day extends BaseTime<Day>
         return super.asUnits();
     }
 
+    /**
+     * The number of days (zero based), or the day of the month (one based)
+     * <p>
+     * {@inheritDoc}
+     */
     @Override
     public int asUnits()
     {
@@ -181,6 +194,9 @@ public class Day extends BaseTime<Day>
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Day maximum()
     {
@@ -200,32 +216,57 @@ public class Day extends BaseTime<Day>
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Day minimum()
     {
-        return day(0);
+        switch (type)
+        {
+            case DAY_OF_MONTH:
+            case DAY_OF_YEAR:
+                return unsupported();
+
+            default:
+                return day(0);
+        }
     }
 
+    /**
+     * Returns the number of nanoseconds per day
+     */
     @Override
     public Nanoseconds nanosecondsPerUnit()
     {
         return nanosecondsPerDay;
     }
 
+    /**
+     * Creates a day object for the given nanoseconds
+     */
     @Override
     public Day onNewTime(Nanoseconds nanoseconds)
     {
         return new Day(type, (int) nanosecondsToUnits(nanoseconds));
     }
 
+    /**
+     * Returns the type of day this object is representing
+     */
     public Type type()
     {
         return type;
     }
 
+    /**
+     * Returns the topology (linearity or circularity) of this time object
+     */
     @Override
     protected Topology topology()
     {
-        return type() == DAY || type() == DAY_OF_UNIX_EPOCH ? LINEAR : CYCLIC;
+        return type() == DAY || type() == DAY_OF_UNIX_EPOCH
+                ? LINEAR
+                : CYCLIC;
     }
 }

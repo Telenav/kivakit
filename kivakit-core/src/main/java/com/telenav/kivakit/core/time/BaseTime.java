@@ -138,6 +138,9 @@ public abstract class BaseTime<T extends BaseTime<T>> implements
         return toString();
     }
 
+    /**
+     * Returns this time in some unit defined by a subclass
+     */
     public int asUnits()
     {
         return (int) asPreciseUnits();

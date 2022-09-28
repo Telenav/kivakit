@@ -218,6 +218,14 @@ public interface LengthOfTime<Duration extends LongValued & LengthOfTime<Duratio
     /**
      * @return This length of time divided by the given divisor
      */
+    default Duration dividedBy(Duration that)
+    {
+        return newDuration(nanoseconds().dividedBy(that.nanoseconds().asDouble()));
+    }
+
+    /**
+     * @return This length of time divided by the given divisor
+     */
     default Duration dividedBy(long value)
     {
         return dividedBy((double) value);

@@ -1,5 +1,6 @@
 package com.telenav.kivakit.core.time;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.value.count.BaseCount;
 import com.telenav.kivakit.interfaces.time.Nanoseconds;
 
@@ -7,6 +8,10 @@ import java.time.ZoneId;
 import java.util.Objects;
 import java.util.TimeZone;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXPANDABLE;
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_STATIC_EXPANDABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
 import static com.telenav.kivakit.core.ensure.Ensure.ensureBetweenExclusive;
 import static com.telenav.kivakit.core.time.BaseTime.Topology.CYCLIC;
 import static com.telenav.kivakit.core.time.DayOfWeek.isoDayOfWeek;
@@ -19,6 +24,9 @@ import static com.telenav.kivakit.core.time.Hour.nanosecondsPerHour;
  * @author jonathanl (shibo)
  */
 @SuppressWarnings("unused")
+@ApiQuality(stability = STABLE_EXPANDABLE,
+            testing = UNTESTED,
+            documentation = FULLY_DOCUMENTED)
 public class HourOfWeek extends BaseTime<HourOfWeek>
 {
     /**
@@ -76,6 +84,9 @@ public class HourOfWeek extends BaseTime<HourOfWeek>
         this.hourOfDay = hourOfDay;
     }
 
+    /**
+     * This hour of the week relative to the start of the UNIX epoch
+     */
     public Time asEpochTime()
     {
         return Time.epochNanoseconds(nanoseconds());

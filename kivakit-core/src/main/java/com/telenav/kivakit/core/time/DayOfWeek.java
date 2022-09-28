@@ -18,15 +18,18 @@
 
 package com.telenav.kivakit.core.time;
 
-import com.telenav.kivakit.core.language.Hash;
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramTime;
+import com.telenav.kivakit.core.language.Hash;
 import com.telenav.kivakit.interfaces.string.StringFormattable;
 import com.telenav.kivakit.interfaces.time.Nanoseconds;
-import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.List;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXPANDABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
 import static com.telenav.kivakit.core.ensure.Ensure.ensureBetweenInclusive;
 import static com.telenav.kivakit.core.time.BaseTime.Topology.CYCLIC;
 import static com.telenav.kivakit.core.time.Day.nanosecondsPerDay;
@@ -58,7 +61,9 @@ import static com.telenav.kivakit.interfaces.string.StringFormattable.Format.USE
  * @see java.time.DayOfWeek
  */
 @SuppressWarnings("unused") @UmlClassDiagram(diagram = DiagramTime.class)
-@LexakaiJavadoc(complete = true)
+@ApiQuality(stability = STABLE_EXPANDABLE,
+            testing = UNTESTED,
+            documentation = FULLY_DOCUMENTED)
 public class DayOfWeek extends BaseTime<DayOfWeek>
 {
     public static final DayOfWeek MONDAY = isoDayOfWeek(0);
@@ -124,45 +129,66 @@ public class DayOfWeek extends BaseTime<DayOfWeek>
         ensureBetweenInclusive(asIsoOrdinal(), 0, 6, "Invalid day of the week: " + this);
     }
 
+    /**
+     * This day of the week as a {@link Day}
+     */
     public Day asDay()
     {
         return Day.isoDayOfWeek(asIsoOrdinal());
     }
 
+    /**
+     * This day of the week as an hour of the week
+     */
     public HourOfWeek asHourOfWeek()
     {
         return hourOfWeek(asIsoOrdinal() * 24);
     }
 
     /**
-     * @return This day of the week as an ISO-8601 ordinal value
+     * @return This day of the week as a zero-based ISO-8601 ordinal value
      */
     public int asIsoOrdinal()
     {
         return asUnits();
     }
 
+    /**
+     * This day of the week as a java day of the week
+     */
     public java.time.DayOfWeek asJavaDayOfWeek()
     {
         return java.time.DayOfWeek.of(asJavaOrdinal());
     }
 
+    /**
+     * , The Java 1-based ordinal for this day of the week
+     */
     public int asJavaOrdinal()
     {
         return asIsoOrdinal() + 1;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String asString(StringFormattable.Format format)
     {
         return asJavaDayOfWeek().name();
     }
 
+    /**
+     * , Returns the hour of the week from this day of the week at the given hour
+     */
     public HourOfWeek at(Hour hour)
     {
         return hourOfWeek(this, hour);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean equals(Object object)
     {
@@ -174,36 +200,54 @@ public class DayOfWeek extends BaseTime<DayOfWeek>
         return false;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public int hashCode()
     {
         return Hash.hashCode(asIsoOrdinal());
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public DayOfWeek maximum()
     {
         return SUNDAY;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public DayOfWeek minimum()
     {
         return MONDAY;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Nanoseconds nanosecondsPerUnit()
     {
         return nanosecondsPerDay;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Duration newDuration(Nanoseconds nanoseconds)
     {
         return Duration.nanoseconds(nanoseconds);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public DayOfWeek next()
     {
@@ -214,18 +258,27 @@ public class DayOfWeek extends BaseTime<DayOfWeek>
         return isoDayOfWeek(asUnits() + 1);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public DayOfWeek onNewTime(Nanoseconds nanoseconds)
     {
         return isoDayOfWeek((int) nanosecondsToUnits(nanoseconds));
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String toString()
     {
         return asString(USER_LABEL);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected Topology topology()
     {
