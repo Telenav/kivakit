@@ -18,6 +18,7 @@
 
 package com.telenav.kivakit.core.messaging;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramBroadcaster;
 import com.telenav.kivakit.core.internal.lexakai.DiagramListener;
 import com.telenav.kivakit.core.internal.lexakai.DiagramMessaging;
@@ -38,7 +39,7 @@ import com.telenav.kivakit.core.messaging.messages.status.Information;
 import com.telenav.kivakit.core.messaging.messages.status.Problem;
 import com.telenav.kivakit.core.messaging.messages.status.Trace;
 import com.telenav.kivakit.core.messaging.messages.status.Warning;
-import com.telenav.kivakit.core.messaging.messages.status.activity.Activity;
+import com.telenav.kivakit.core.messaging.messages.status.activity.Step;
 import com.telenav.kivakit.core.messaging.messages.status.activity.StepFailure;
 import com.telenav.kivakit.core.messaging.messages.status.activity.StepIncomplete;
 import com.telenav.kivakit.core.messaging.messages.status.activity.StepSuccess;
@@ -54,6 +55,9 @@ import com.telenav.lexakai.annotations.associations.UmlRelation;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeMember;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeSuperTypes;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
 import static com.telenav.kivakit.core.messaging.MessageFormat.FORMATTED;
 import static com.telenav.kivakit.core.messaging.MessageFormat.WITHOUT_EXCEPTION;
 import static com.telenav.kivakit.core.messaging.MessageFormat.WITH_EXCEPTION;
@@ -107,7 +111,7 @@ import static com.telenav.kivakit.core.messaging.MessageFormat.WITH_EXCEPTION;
  * <p>
  * A {@link Status} message relates to the result of executing a step in a larger operation:
  * <ul>
- *     <li>{@link Status#SUCCEEDED} - The step succeeded and the message is reporting progress: {@link Activity}, {@link Information}, {@link StepSuccess}, {@link Trace}</li>
+ *     <li>{@link Status#SUCCEEDED} - The step succeeded and the message is reporting progress: {@link Step}, {@link Information}, {@link StepSuccess}, {@link Trace}</li>
  *     <li>{@link Status#COMPLETED} - The step completed and produced a result but there was an actual or potential negative effect that should be noted: {{@link Warning}}</li>
  *     <li>{@link Status#RESULT_COMPROMISED} - The step completed successfully amd data was not discarded, but the result may be partly invalid: {@link Glitch}</li>
  *     <li>{@link Status#RESULT_INCOMPLETE} - The step completed but some aspect of the result had to be discarded: {@link StepIncomplete}</li>
@@ -123,6 +127,9 @@ import static com.telenav.kivakit.core.messaging.MessageFormat.WITH_EXCEPTION;
 @UmlClassDiagram(diagram = DiagramListener.class)
 @UmlExcludeSuperTypes({ StringFormattable.class })
 @UmlRelation(label = "formats with", diagram = DiagramMessaging.class, referent = Formatter.class)
+@ApiQuality(stability = STABLE,
+            testing = UNTESTED,
+            documentation = FULLY_DOCUMENTED)
 public interface Message extends
         Transmittable,
         Triaged,
@@ -142,7 +149,7 @@ public interface Message extends
      */
     static Message parseMessageName(Listener listener, String name)
     {
-        return OperationMessage.parse(listener, name);
+        return OperationMessage.parseMessageType(listener, name);
     }
 
     /**
@@ -305,13 +312,13 @@ public interface Message extends
     @UmlExcludeMember
     default boolean isMoreImportantThan(Class<? extends Message> type)
     {
-        return importance().isGreaterThan(Importance.importance(type));
+        return importance().isGreaterThan(Importance.importanceOfMessage(type));
     }
 
     @UmlExcludeMember
     default boolean isMoreImportantThanOrEqualTo(Class<? extends Message> type)
     {
-        return importance().isGreaterThanOrEqualTo(Importance.importance(type));
+        return importance().isGreaterThanOrEqualTo(Importance.importanceOfMessage(type));
     }
 
     /**

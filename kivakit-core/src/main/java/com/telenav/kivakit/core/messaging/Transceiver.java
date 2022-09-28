@@ -18,10 +18,10 @@
 
 package com.telenav.kivakit.core.messaging;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramBroadcaster;
 import com.telenav.kivakit.core.internal.lexakai.DiagramListener;
 import com.telenav.kivakit.core.internal.lexakai.DiagramLogging;
-import com.telenav.kivakit.core.messaging.context.CodeContext;
 import com.telenav.kivakit.core.messaging.messages.lifecycle.OperationHalted;
 import com.telenav.kivakit.core.messaging.messages.status.Announcement;
 import com.telenav.kivakit.core.messaging.messages.status.FatalProblem;
@@ -33,7 +33,6 @@ import com.telenav.kivakit.core.messaging.messages.status.Quibble;
 import com.telenav.kivakit.core.messaging.messages.status.Trace;
 import com.telenav.kivakit.core.messaging.messages.status.Warning;
 import com.telenav.kivakit.core.messaging.repeaters.BaseRepeater;
-import com.telenav.kivakit.core.time.Frequency;
 import com.telenav.kivakit.interfaces.messaging.Receiver;
 import com.telenav.kivakit.interfaces.messaging.Transmittable;
 import com.telenav.kivakit.interfaces.messaging.Transmitter;
@@ -41,15 +40,18 @@ import com.telenav.kivakit.interfaces.naming.NamedObject;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.UmlNote;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
-import com.telenav.lexakai.annotations.visibility.UmlExcludeMember;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeSuperTypes;
+
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
 
 /**
  * Functionality that is common to {@link Broadcaster}s, {@link Listener}s, {@link Repeater}s and potentially other
  * classes that are involved in handling messages. The {@link #isTransmitting()} method returns true if transmitting is
  * enabled. The {@link #isReceiving()} method returns true if receiving is enabled. When enabled, the
- * {@link #receive(Transmittable)} method calls {@link #onReceive(Transmittable)} (Transmittable)} to allow the subclass
- * to handle the message.
+ * {@link #receive(Transmittable)} method calls {@link #onReceive(Transmittable)} to allow the subclass to handle the
+ * message.
  *
  * <p><b>Convenience Methods</b></p>
  * <p>
@@ -68,15 +70,6 @@ import com.telenav.lexakai.annotations.visibility.UmlExcludeSuperTypes;
  *     <li>halted*() - The sends a formatted {@link OperationHalted} message to this {@link Transceiver}</li>
  * </ul>
  *
- * <p><b>Debugging</b></p>
- * <p>
- * A {@link Transceiver} provides access to a {@link Debug} object which has the class context (also {@link
- * CodeContext}) provided by the method {@link #debugClassContext()}.
- * <p>
- * The {@link #isDebugOn()} provides convenient access to {@link Debug#isDebugOn()} and the {@link #ifDebug(Runnable)}
- * executes the given code if debugging is on. Several convenience methods also provide tracing which originates {@link
- * Trace} messages only if debugging is on.
- * </p>
  * <p>
  * Because {@link Broadcaster}s, {@link Listener}s and {@link Repeater}s are debug transceivers, they inherit all the
  * methods in this class. This means that a subclass of {@link BaseRepeater} can simply call a trace() or glitch()
@@ -108,28 +101,32 @@ import com.telenav.lexakai.annotations.visibility.UmlExcludeSuperTypes;
  * @see Problem
  * @see OperationHalted
  */
-@SuppressWarnings({ "unused", "UnusedReturnValue" }) @UmlClassDiagram(diagram = DiagramLogging.class)
+@SuppressWarnings({ "unused", "UnusedReturnValue", "SpellCheckingInspection" })
+@UmlClassDiagram(diagram = DiagramLogging.class)
 @UmlClassDiagram(diagram = DiagramBroadcaster.class)
 @UmlClassDiagram(diagram = DiagramListener.class)
 @UmlRelation(label = "delegates to", referent = Debug.class)
 @UmlExcludeSuperTypes({ NamedObject.class })
 @UmlNote(text = "Functionality common to transmitters and receivers")
+@ApiQuality(stability = STABLE,
+            testing = TESTING_NOT_NEEDED,
+            documentation = FULLY_DOCUMENTED)
 public interface Transceiver extends
         NamedObject,
         Receiver,
         Transmitter
 {
-    @Override
-    default void onTransmit(Transmittable message)
-    {
-        receive(message);
-    }
-
     /**
      * {@inheritDoc}
      */
     @Override
     default void onReceive(Transmittable message)
     {
+    }
+
+    @Override
+    default void onTransmit(Transmittable message)
+    {
+        receive(message);
     }
 }

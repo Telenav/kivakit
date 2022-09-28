@@ -18,6 +18,7 @@
 
 package com.telenav.kivakit.core.messaging;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramBroadcaster;
 import com.telenav.kivakit.core.internal.lexakai.DiagramRepeater;
 import com.telenav.kivakit.interfaces.comparison.Filter;
@@ -26,6 +27,10 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
 
 import java.util.List;
+
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_DEFAULT_EXPANDABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
 
 /**
  * Broadcasts a message to zero or more listeners via {@link #transmit(Transmittable)}. Listeners can be added with
@@ -53,6 +58,9 @@ import java.util.List;
 @UmlClassDiagram(diagram = DiagramBroadcaster.class)
 @UmlClassDiagram(diagram = DiagramRepeater.class)
 @UmlRelation(label = "transmits", referent = Listener.class, refereeCardinality = "1", referentCardinality = "*")
+@ApiQuality(stability = STABLE_DEFAULT_EXPANDABLE,
+            testing = UNTESTED,
+            documentation = FULLY_DOCUMENTED)
 public interface Broadcaster extends MessageTransceiver
 {
     /**
@@ -127,6 +135,7 @@ public interface Broadcaster extends MessageTransceiver
     /**
      * Allows subclass to transmit message to listeners
      */
+    @Override
     default void onTransmit(Transmittable message)
     {
         receive(message);
@@ -134,6 +143,7 @@ public interface Broadcaster extends MessageTransceiver
 
     /**
      * Allows subclass to process a message after it is transmitted
+     *
      * @param message The message
      */
     default void onTransmitted(Transmittable message)

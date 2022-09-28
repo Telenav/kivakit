@@ -18,10 +18,17 @@
 
 package com.telenav.kivakit.core.messaging.messages.status;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramMessageType;
 import com.telenav.kivakit.core.messaging.messages.OperationStatusMessage;
 import com.telenav.kivakit.core.messaging.messages.Severity;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
+
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
+import static com.telenav.kivakit.core.messaging.Message.Status.SUCCEEDED;
+import static com.telenav.kivakit.core.messaging.messages.Severity.NONE;
 
 /**
  * Uncategorized, generic information about the progress of the current operation with no severity and which does not
@@ -46,6 +53,9 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramMessageType.class)
+@ApiQuality(stability = STABLE,
+            testing = TESTING_NOT_NEEDED,
+            documentation = FULLY_DOCUMENTED)
 public class Information extends OperationStatusMessage
 {
     public Information(String message, Object... arguments)
@@ -58,15 +68,21 @@ public class Information extends OperationStatusMessage
     {
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Severity severity()
     {
-        return Severity.NONE;
+        return NONE;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Status status()
     {
-        return Status.SUCCEEDED;
+        return SUCCEEDED;
     }
 }

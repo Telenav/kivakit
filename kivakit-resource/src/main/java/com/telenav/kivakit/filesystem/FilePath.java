@@ -286,7 +286,7 @@ public class FilePath extends ResourcePath
     {
         if (isAbsolute())
         {
-            if (OperatingSystem.get().isWindows())
+            if (OperatingSystem.operatingSystem().isWindows())
             {
                 var pattern = Pattern.compile("(?<drive>[A-Za-z]):\\\\");
                 var matcher = pattern.matcher(rootElement());

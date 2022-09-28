@@ -18,11 +18,18 @@
 
 package com.telenav.kivakit.core.messaging.messages.status.activity;
 
-import com.telenav.kivakit.core.messaging.Message;
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramMessageType;
+import com.telenav.kivakit.core.messaging.Message;
 import com.telenav.kivakit.core.messaging.messages.OperationStatusMessage;
 import com.telenav.kivakit.core.messaging.messages.Severity;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
+
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
+import static com.telenav.kivakit.core.messaging.Message.Status.FAILED;
+import static com.telenav.kivakit.core.messaging.messages.Severity.HIGH;
 
 /**
  * The current step failed to produce any useful result
@@ -30,10 +37,11 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramMessageType.class)
+@ApiQuality(stability = STABLE,
+            testing = TESTING_NOT_NEEDED,
+            documentation = FULLY_DOCUMENTED)
 public class StepFailure extends OperationStatusMessage
 {
-    public static final StepFailure INSTANCE = new StepFailure();
-
     public StepFailure(String message, Object... arguments)
     {
         super(message);
@@ -51,15 +59,21 @@ public class StepFailure extends OperationStatusMessage
     {
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Severity severity()
     {
-        return Severity.MEDIUM_HIGH;
+        return HIGH;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public final Status status()
     {
-        return Status.FAILED;
+        return FAILED;
     }
 }

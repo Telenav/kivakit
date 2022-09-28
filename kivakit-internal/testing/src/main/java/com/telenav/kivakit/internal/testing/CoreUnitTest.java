@@ -229,7 +229,7 @@ public abstract class CoreUnitTest extends TestWatcher implements
 
     protected boolean isMac()
     {
-        return OperatingSystem.get().isMac();
+        return OperatingSystem.operatingSystem().isMac();
     }
 
     protected boolean isQuickTest()
@@ -244,7 +244,7 @@ public abstract class CoreUnitTest extends TestWatcher implements
 
     protected boolean isWindows()
     {
-        return OperatingSystem.get().isWindows();
+        return OperatingSystem.operatingSystem().isWindows();
     }
 
     protected Count iterations()

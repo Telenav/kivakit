@@ -18,11 +18,16 @@
 
 package com.telenav.kivakit.core.object;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.core.internal.lexakai.DiagramObject;
 import com.telenav.kivakit.interfaces.collection.Clearable;
 import com.telenav.kivakit.interfaces.factory.Factory;
 import com.telenav.kivakit.interfaces.value.Source;
-import com.telenav.kivakit.core.internal.lexakai.DiagramObject;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
+
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXPANDABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
 
 /**
  * A lazy-initializing value. Given a factory that creates a value, only creates the object when {@link #get()} is
@@ -40,19 +45,27 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
  * @author Sergiy Yevtushenko
  */
 @UmlClassDiagram(diagram = DiagramObject.class)
+@ApiQuality(stability = STABLE_EXPANDABLE,
+            testing = UNTESTED,
+            documentation = FULLY_DOCUMENTED)
 public class Lazy<Value> implements Clearable
 {
     /**
      * Factory method to create a Lazy object with the given value factory
      */
-    public static <V> Lazy<V> of(Factory<V> factory)
+    public static <V> Lazy<V> lazy(Factory<V> factory)
     {
         return new Lazy<>(factory);
     }
 
     /** The factory to create a new value */
-    private final Factory<Value> factory;    /** A reference to the initialize method */
+    private final Factory<Value> factory;
+
+    /** A reference to the initialize method */
     private final Source<Value> createValueMethod = this::createValue;
+
+    /** A reference to the method that currently returns a value */
+    private volatile Source<Value> valueSource = createValueMethod;
 
     /**
      * @param factory A factory to create values whenever needed
@@ -60,12 +73,12 @@ public class Lazy<Value> implements Clearable
     protected Lazy(Factory<Value> factory)
     {
         this.factory = factory;
-    }    /** A reference to the method that currently returns a value */
-    private volatile Source<Value> valueSource = createValueMethod;
+    }
 
     /**
      * Clears this lazy value. It will be recreated by the factory if {@link #get()} is called.
      */
+    @Override
     public synchronized void clear()
     {
         valueSource = this::createValue;
@@ -99,8 +112,4 @@ public class Lazy<Value> implements Clearable
         // then return the value.
         return get();
     }
-
-
-
-
 }

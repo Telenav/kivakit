@@ -18,7 +18,8 @@
 
 package com.telenav.kivakit.internal.tests.core.messaging;
 
-import com.telenav.kivakit.core.messaging.messages.Severity;import com.telenav.kivakit.internal.testing.CoreUnitTest;
+import com.telenav.kivakit.core.messaging.messages.Severity;
+import com.telenav.kivakit.internal.testing.CoreUnitTest;
 import org.junit.Test;
 
 public class SeverityTest extends CoreUnitTest
@@ -27,15 +28,13 @@ public class SeverityTest extends CoreUnitTest
     public void test()
     {
         ensure(Severity.CRITICAL.isGreaterThan(Severity.HIGH));
-        ensure(Severity.HIGH.isGreaterThan(Severity.MEDIUM_HIGH));
-        ensure(Severity.MEDIUM_HIGH.isGreaterThan(Severity.MEDIUM));
+        ensure(Severity.HIGH.isGreaterThan(Severity.MEDIUM));
         ensure(Severity.MEDIUM.isGreaterThan(Severity.LOW));
         ensure(Severity.LOW.isGreaterThan(Severity.NONE));
 
         ensure(Severity.HIGH.isLessThan(Severity.CRITICAL));
-        ensure(Severity.MEDIUM_HIGH.isLessThan(Severity.HIGH));
-        ensure(Severity.MEDIUM.isLessThan(Severity.MEDIUM_HIGH));
+        ensure(Severity.MEDIUM.isLessThan(Severity.HIGH));
         ensure(Severity.LOW.isLessThan(Severity.MEDIUM));
-        ensure(Severity.NONE.isLessThan(Severity.LOW));
+        ensure(Severity.LOW.isLessThan(Severity.NONE));
     }
 }

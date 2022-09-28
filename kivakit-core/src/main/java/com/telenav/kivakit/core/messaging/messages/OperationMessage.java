@@ -18,6 +18,7 @@
 
 package com.telenav.kivakit.core.messaging.messages;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.collections.map.StringMap;
 import com.telenav.kivakit.core.internal.lexakai.DiagramMessageType;
 import com.telenav.kivakit.core.language.Arrays;
@@ -41,7 +42,7 @@ import com.telenav.kivakit.core.messaging.messages.status.Information;
 import com.telenav.kivakit.core.messaging.messages.status.Problem;
 import com.telenav.kivakit.core.messaging.messages.status.Trace;
 import com.telenav.kivakit.core.messaging.messages.status.Warning;
-import com.telenav.kivakit.core.messaging.messages.status.activity.Activity;
+import com.telenav.kivakit.core.messaging.messages.status.activity.Step;
 import com.telenav.kivakit.core.string.Strings;
 import com.telenav.kivakit.core.thread.ReentrancyTracker;
 import com.telenav.kivakit.core.time.Frequency;
@@ -50,7 +51,12 @@ import com.telenav.kivakit.interfaces.naming.Named;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeSuperTypes;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXPANDABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
 import static com.telenav.kivakit.core.messaging.MessageFormat.WITH_EXCEPTION;
+import static com.telenav.kivakit.core.messaging.messages.Importance.importanceOfMessage;
+import static com.telenav.kivakit.core.messaging.messages.Severity.NONE;
 import static com.telenav.kivakit.core.thread.ReentrancyTracker.Reentrancy.REENTERED;
 
 /**
@@ -62,6 +68,41 @@ import static com.telenav.kivakit.core.thread.ReentrancyTracker.Reentrancy.REENT
  * receiver only handle the message every so often. {@link Log}s support this feature, so it is possible to easily tag a
  * message as something to only log once in a while.
  *
+ * <p><b>Formatting</b></p>
+ *
+ * <ul>
+ *     <li>{@link #formatted(MessageFormat...)}</li>
+ *     <li>{@link #formatted()}</li>
+ * </ul>
+ *
+ * <p><b>Properties</b></p>
+ *
+ * <ul>
+ *     <li>{@link #arguments()}</li>
+ *     <li>{@link #arguments(Object[])}</li>
+ *     <li>{@link #cause()}</li>
+ *     <li>{@link #cause(Throwable)}</li>
+ *     <li>{@link #context()}</li>
+ *     <li>{@link #context(CodeContext)}</li>
+ *     <li>{@link #created()}</li>
+ *     <li>{@link #created(Time)}</li>
+ *     <li>{@link #description()}</li>
+ *     <li>{@link #importance()}</li>
+ *     <li>{@link #maximumFrequency()}</li>
+ *     <li>{@link #maximumFrequency(Frequency)}</li>
+ *     <li>{@link #message(String)}</li>
+ *     <li>{@link #severity()}</li>
+ *     <li>{@link #stackTrace()}</li>
+ *     <li>{@link #stackTrace(StackTrace)}</li>
+ * </ul>
+ *
+ * <p><b>Conversions</b></p>
+ *
+ * <ul>
+ *     <li>{@link #asString(Format)}</li>
+ *     <li>{@link #asException()}</li>
+ * </ul>
+ *
  * @see Message
  * @see Log
  * @see Listener
@@ -71,19 +112,42 @@ import static com.telenav.kivakit.core.thread.ReentrancyTracker.Reentrancy.REENT
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramMessageType.class)
 @UmlExcludeSuperTypes({ Named.class })
+@ApiQuality(stability = STABLE_EXPANDABLE,
+            testing = TESTING_NOT_NEEDED,
+            documentation = FULLY_DOCUMENTED)
 public abstract class OperationMessage implements Named, Message
 {
-    private static StringMap<OperationMessage> messages;
+    /** Map from string to message prototype */
+    private static StringMap<OperationMessage> messagePrototypes;
 
     private static final ReentrancyTracker reentrancy = new ReentrancyTracker();
 
     /** This flag can be helpful in detecting infinite recursion of message formatting */
     private static final boolean DETECT_REENTRANCY = false;
 
-    public static <T extends Message> T newInstance(Listener listener,
-                                                    Class<T> type,
-                                                    String message,
-                                                    Object[] arguments)
+    /**
+     * Gets a message prototype for the given type
+     *
+     * @param type The type of message
+     */
+    public static Message message(Class<? extends Message> type)
+    {
+        return parseMessageType(Listener.throwingListener(), type.getSimpleName());
+    }
+
+    /**
+     * Returns a new message instance
+     *
+     * @param listener The listener to call with any problems
+     * @param type The type of message to create
+     * @param message The message text
+     * @param arguments Formatting arguments
+     * @return The message
+     */
+    public static <MessageType extends Message> MessageType newInstance(Listener listener,
+                                                                        Class<MessageType> type,
+                                                                        String message,
+                                                                        Object[] arguments)
     {
         try
         {
@@ -96,32 +160,41 @@ public abstract class OperationMessage implements Named, Message
         }
     }
 
-    public static Message of(Class<? extends Message> type)
-    {
-        return parse(Listener.throwingListener(), type.getSimpleName());
-    }
-
-    public static Message parse(Listener listener, String name)
+    /**
+     * Parses the given message type
+     *
+     * @param listener The listener to report errors to
+     * @param typeName The message type name
+     */
+    public static Message parseMessageType(Listener listener, String typeName)
     {
         initialize();
 
-        return listener.problemIfNull(messages.get(name), "Invalid message name: $", name);
+        return listener.problemIfNull(messagePrototypes.get(typeName), "Invalid message name: $", typeName);
     }
 
+    /** Formatting arguments */
     private Object[] arguments;
 
+    /** Any exception that was a cause of this message */
     private transient Throwable cause;
 
+    /** The code context that transmitted this message */
     private CodeContext context;
 
+    /** The time this message was created */
     private Time created = Time.now();
 
+    /** Any formatted message string */
     private String formattedMessage;
 
+    /** The maximum frequency at which this message should be transmitted */
     private Frequency maximumFrequency;
 
+    /** The message text */
     private String message;
 
+    /** Any associated stack trace */
     private StackTrace stackTrace;
 
     protected OperationMessage(String message)
@@ -135,23 +208,37 @@ public abstract class OperationMessage implements Named, Message
         messages().put(name(), this);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Object[] arguments()
     {
         return arguments;
     }
 
+    /**
+     * Sets the formatting arguments for this message.
+     *
+     * @param arguments The arguments
+     */
     public void arguments(Object[] arguments)
     {
         this.arguments = arguments;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public MessageException asException()
     {
         return new MessageException(this);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @SuppressWarnings("SwitchStatementWithTooFewBranches")
     @Override
     public String asString(Format format)
@@ -163,12 +250,18 @@ public abstract class OperationMessage implements Named, Message
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public final Throwable cause()
     {
         return cause;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public final OperationMessage cause(Throwable cause)
     {
@@ -176,12 +269,18 @@ public abstract class OperationMessage implements Named, Message
         return this;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public CodeContext context()
     {
         return context;
     }
 
+    /**
+     * Sets the code context for this message
+     */
     public void context(CodeContext context)
     {
         if (this.context == null)
@@ -190,12 +289,18 @@ public abstract class OperationMessage implements Named, Message
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Time created()
     {
         return created;
     }
 
+    /**
+     * Sets the time of creation for this message
+     */
     public void created(Time created)
     {
         this.created = created;
@@ -210,6 +315,9 @@ public abstract class OperationMessage implements Named, Message
         return Strings.format(message, arguments);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean equals(Object object)
     {
@@ -260,41 +368,62 @@ public abstract class OperationMessage implements Named, Message
         return formattedMessage;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public int hashCode()
     {
         return Hash.hashMany(getClass(), created, message, stackTrace, arguments);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Importance importance()
     {
-        return Importance.importance(getClass());
+        return importanceOfMessage(getClass());
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Frequency maximumFrequency()
     {
         return maximumFrequency;
     }
 
+    /**
+     * Sets the maximum frequency at which this message can be transmitted
+     */
     public OperationMessage maximumFrequency(Frequency maximumFrequency)
     {
         this.maximumFrequency = maximumFrequency;
         return this;
     }
 
+    /**
+     * Sets the message text
+     */
     public void message(String message)
     {
         this.message = message;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Severity severity()
     {
-        return Severity.NONE;
+        return NONE;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public StackTrace stackTrace()
     {
@@ -309,18 +438,27 @@ public abstract class OperationMessage implements Named, Message
         return stackTrace;
     }
 
+    /**
+     * Sets the stack trace for this message
+     */
     public OperationMessage stackTrace(StackTrace stackTrace)
     {
         this.stackTrace = stackTrace;
         return this;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String text()
     {
         return message;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String toString()
     {
@@ -338,7 +476,7 @@ public abstract class OperationMessage implements Named, Message
         new OperationHalted();
 
         // Progress messages
-        new Activity();
+        new Step();
         new Alert();
         new CriticalAlert();
         new Information();
@@ -350,10 +488,10 @@ public abstract class OperationMessage implements Named, Message
 
     private static StringMap<OperationMessage> messages()
     {
-        if (messages == null)
+        if (messagePrototypes == null)
         {
-            messages = new StringMap<>();
+            messagePrototypes = new StringMap<>();
         }
-        return messages;
+        return messagePrototypes;
     }
 }

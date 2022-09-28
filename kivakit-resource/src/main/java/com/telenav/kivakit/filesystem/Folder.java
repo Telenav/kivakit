@@ -380,7 +380,7 @@ public class Folder extends BaseRepeater implements
     {
         synchronized (temporaryLock)
         {
-            var name = "kivakit-process-" + OperatingSystem.get().processIdentifier();
+            var name = "kivakit-process-" + OperatingSystem.operatingSystem().processIdentifier();
             var temporary = kivakitTemporary()
                     .folder("processes")
                     .folder(name)

@@ -18,6 +18,8 @@
 
 package com.telenav.kivakit.core.messaging.messages;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.core.internal.lexakai.DiagramMessaging;
 import com.telenav.kivakit.core.messaging.Message;
 import com.telenav.kivakit.core.messaging.messages.status.Alert;
 import com.telenav.kivakit.core.messaging.messages.status.Announcement;
@@ -28,17 +30,19 @@ import com.telenav.kivakit.core.messaging.messages.status.Narration;
 import com.telenav.kivakit.core.messaging.messages.status.Problem;
 import com.telenav.kivakit.core.messaging.messages.status.Trace;
 import com.telenav.kivakit.core.messaging.messages.status.Warning;
-import com.telenav.kivakit.core.messaging.messages.status.activity.Activity;
+import com.telenav.kivakit.core.messaging.messages.status.activity.Step;
 import com.telenav.kivakit.core.messaging.messages.status.activity.StepFailure;
 import com.telenav.kivakit.core.messaging.messages.status.activity.StepIncomplete;
 import com.telenav.kivakit.core.messaging.messages.status.activity.StepSuccess;
-import com.telenav.kivakit.core.internal.lexakai.DiagramMessaging;
 import com.telenav.kivakit.core.value.level.Level;
-import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.HashMap;
 import java.util.Map;
+
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
 
 /**
  * The (relative) importance of {@link Message}s as a level from zero to one.
@@ -46,9 +50,12 @@ import java.util.Map;
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramMessaging.class)
-@LexakaiJavadoc(complete = true)
+@ApiQuality(stability = STABLE,
+            testing = TESTING_NOT_NEEDED,
+            documentation = FULLY_DOCUMENTED)
 public class Importance extends Level
 {
+    /** Importance level for each message type */
     private static final Map<Class<? extends Message>, Importance> levels = new HashMap<>();
 
     static
@@ -58,7 +65,7 @@ public class Importance extends Level
 
         register(
                 Trace.class,
-                Activity.class,
+                Step.class,
                 Information.class,
                 StepSuccess.class,
                 Narration.class,
@@ -73,12 +80,18 @@ public class Importance extends Level
         );
     }
 
+    /**
+     * Returns an {@link Importance} for the given level
+     */
     public static Importance importance(double level)
     {
         return new Importance(level);
     }
 
-    public static Importance importance(Class<? extends Message> type)
+    /**
+     * Returns an {@link Importance} for the given message type
+     */
+    public static Importance importanceOfMessage(Class<? extends Message> type)
     {
         return levels.get(type);
     }

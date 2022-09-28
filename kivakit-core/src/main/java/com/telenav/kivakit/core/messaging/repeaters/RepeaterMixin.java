@@ -1,25 +1,31 @@
 package com.telenav.kivakit.core.messaging.repeaters;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.messaging.Broadcaster;
-import com.telenav.kivakit.core.messaging.Message;
-import com.telenav.kivakit.interfaces.comparison.Filter;
-import com.telenav.kivakit.interfaces.messaging.Transmittable;
 import com.telenav.kivakit.core.messaging.Listener;
+import com.telenav.kivakit.core.messaging.Message;
 import com.telenav.kivakit.core.messaging.Repeater;
 import com.telenav.kivakit.core.messaging.context.CodeContext;
+import com.telenav.kivakit.interfaces.comparison.Filter;
+import com.telenav.kivakit.interfaces.messaging.Transmittable;
 import com.telenav.kivakit.mixins.Mixin;
-import com.telenav.lexakai.annotations.LexakaiJavadoc;
 
 import java.util.List;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXPANDABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
+
 /**
- * A stateful {@link Mixin} that can be used when a class can't extend {@link BaseRepeater} to implement the {@link
- * Repeater} interface.
+ * A stateful {@link Mixin} that can be used when a class can't extend {@link BaseRepeater} to implement the
+ * {@link Repeater} interface.
  *
  * @author jonathanl (shibo)
  * @see Mixin
  */
-@LexakaiJavadoc(complete = true)
+@ApiQuality(stability = STABLE_EXPANDABLE,
+            testing = UNTESTED,
+            documentation = FULLY_DOCUMENTED)
 public interface RepeaterMixin extends
         Repeater,
         Mixin

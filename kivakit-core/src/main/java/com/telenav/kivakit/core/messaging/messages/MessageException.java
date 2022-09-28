@@ -1,6 +1,11 @@
 package com.telenav.kivakit.core.messaging.messages;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.messaging.Message;
+
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
 
 /**
  * An exception thrown when exception chaining might not be desired.
@@ -8,6 +13,9 @@ import com.telenav.kivakit.core.messaging.Message;
  * @author jonathanl (shibo)
  */
 @SuppressWarnings("unused")
+@ApiQuality(stability = STABLE,
+            testing = TESTING_NOT_NEEDED,
+            documentation = FULLY_DOCUMENTED)
 public class MessageException extends RuntimeException
 {
     private final Message message;
@@ -17,7 +25,7 @@ public class MessageException extends RuntimeException
         this.message = message;
     }
 
-    public Message messageObject()
+    public Message message()
     {
         return message;
     }

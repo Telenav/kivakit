@@ -18,28 +18,45 @@
 
 package com.telenav.kivakit.core.messaging.filters;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.messaging.Message;
 import com.telenav.kivakit.core.messaging.MessageFilter;
 import com.telenav.kivakit.core.messaging.messages.Severity;
 
-public class SeverityGreaterThanOrEqualTo implements MessageFilter
-{
-    private final Severity value;
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
 
-    public SeverityGreaterThanOrEqualTo(Severity value)
+/**
+ * A message filter that matches messages with the given severity, or worse.
+ *
+ * @author jonathanl (shibo)
+ */
+@ApiQuality(stability = STABLE,
+            testing = UNTESTED,
+            documentation = FULLY_DOCUMENTED)
+public class MessagesWithSeverityOf implements MessageFilter
+{
+    /** The minimum severity */
+    private final Severity minimumSeverity;
+
+    public MessagesWithSeverityOf(Severity minimumSeverity)
     {
-        this.value = value;
+        this.minimumSeverity = minimumSeverity;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean accepts(Message value)
     {
-        return value.severity().isGreaterThanOrEqualTo(this.value);
+        return value.severity().isGreaterThanOrEqualTo(this.minimumSeverity);
     }
 
     @Override
     public String toString()
     {
-        return "severityGreaterThan(" + value + ")";
+        return minimumSeverity.name();
     }
 }

@@ -41,7 +41,7 @@ import static com.telenav.kivakit.core.ensure.Ensure.fail;
 @LexakaiJavadoc(complete = true)
 public class LocalHost extends Host
 {
-    private static final Lazy<LocalHost> localhost = Lazy.of(LocalHost::new);
+    private static final Lazy<LocalHost> localhost = Lazy.lazy(LocalHost::new);
 
     static
     {
@@ -77,7 +77,7 @@ public class LocalHost extends Host
     @Override
     public InetAddress onResolveAddress()
     {
-        if (OperatingSystem.get().isWindows())
+        if (OperatingSystem.operatingSystem().isWindows())
         {
             try
             {

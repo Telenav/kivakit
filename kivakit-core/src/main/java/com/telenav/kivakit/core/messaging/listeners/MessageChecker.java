@@ -18,12 +18,13 @@
 
 package com.telenav.kivakit.core.messaging.listeners;
 
-import com.telenav.kivakit.core.value.count.Count;
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.ensure.Ensure;
-import com.telenav.kivakit.core.messaging.Message;
-import com.telenav.kivakit.core.messaging.repeaters.BaseRepeater;
-import com.telenav.kivakit.core.messaging.messages.status.Problem;
 import com.telenav.kivakit.core.internal.lexakai.DiagramListenerType;
+import com.telenav.kivakit.core.messaging.Message;
+import com.telenav.kivakit.core.messaging.messages.status.Problem;
+import com.telenav.kivakit.core.messaging.repeaters.BaseRepeater;
+import com.telenav.kivakit.core.value.count.Count;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.HashMap;
@@ -31,11 +32,15 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXPANDABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
+
 /**
  * Listens to messages to determine if the expected number and type of messages were received during some operation.
  * Expected messages are added with {@link #expect(Class)} and {@link #expect(Class, int)} and after the operation has
- * finished the messages can be checked with {@link #check()}. For example, the following code should broadcast a {@link
- * Problem} message and return null.
+ * finished the messages can be checked with {@link #check()}. For example, the following code should broadcast a
+ * {@link Problem} message and return null.
  * <pre>
  * new MessageChecker().expect(Problem.class).check(() -&gt;
  *     ensureEqual(null, new Duration.SecondsConverter(Listener.none()).convert("x")));
@@ -44,10 +49,15 @@ import java.util.Set;
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramListenerType.class)
+@ApiQuality(stability = STABLE_EXPANDABLE,
+            testing = UNTESTED,
+            documentation = FULLY_DOCUMENTED)
 public class MessageChecker extends BaseRepeater
 {
+    /** Map from message type to count */
     private final Map<Class<? extends Message>, Count> expectedCount = new HashMap<>();
 
+    /** List of captured messages */
     private final MessageList messages = new MessageList(at -> true);
 
     /**

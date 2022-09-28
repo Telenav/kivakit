@@ -18,6 +18,7 @@
 
 package com.telenav.kivakit.core.messaging.listeners;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.collections.list.StringList;
 import com.telenav.kivakit.core.internal.lexakai.DiagramListenerType;
 import com.telenav.kivakit.core.language.Classes;
@@ -31,6 +32,10 @@ import com.telenav.kivakit.core.string.Align;
 import com.telenav.kivakit.core.string.Plural;
 import com.telenav.kivakit.core.value.count.Count;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
+
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXPANDABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
 
 /**
  * A {@link Listener}, such as {@link MessageList} that is able to report how many of different kinds of messages it has
@@ -78,6 +83,9 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
  * @see MessageList
  */
 @SuppressWarnings("unused") @UmlClassDiagram(diagram = DiagramListenerType.class)
+@ApiQuality(stability = STABLE_EXPANDABLE,
+            testing = UNTESTED,
+            documentation = FULLY_DOCUMENTED)
 public interface MessageCounter extends Listener
 {
     /**
@@ -109,7 +117,7 @@ public interface MessageCounter extends Listener
      */
     default Count countWorseThanOrEqualTo(Class<? extends Message> type)
     {
-        return countWorseThanOrEqualTo(OperationMessage.of(type).status());
+        return countWorseThanOrEqualTo(OperationMessage.message(type).status());
     }
 
     /**

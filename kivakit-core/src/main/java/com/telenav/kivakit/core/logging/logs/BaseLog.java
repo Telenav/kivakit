@@ -53,6 +53,7 @@ import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXPANDABL
 import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
 import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
+import static com.telenav.kivakit.core.messaging.messages.Severity.NONE;
 import static com.telenav.kivakit.core.thread.KivaKitThread.State.STOP_REQUESTED;
 import static com.telenav.kivakit.core.time.Frequency.CONTINUOUSLY;
 import static com.telenav.kivakit.core.vm.ShutdownHook.Order.LAST;
@@ -517,7 +518,7 @@ public abstract class BaseLog implements
      */
     private boolean dispatch(LogEntry entry)
     {
-        if (entry.severity().isGreaterThan(Severity.NONE))
+        if (entry.severity().isGreaterThan(NONE))
         {
             synchronized (messageCounts)
             {

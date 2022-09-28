@@ -69,7 +69,6 @@ open module kivakit.core
     exports com.telenav.kivakit.core.logging.logs.text;
     exports com.telenav.kivakit.core.logging.loggers;
     exports com.telenav.kivakit.core.language.reflection.filters.field;
-    exports com.telenav.kivakit.core.messaging.alarms;
     exports com.telenav.kivakit.core.value.mutable;
     exports com.telenav.kivakit.core.bits;
     exports com.telenav.kivakit.core.logging.logs.text.formatters;

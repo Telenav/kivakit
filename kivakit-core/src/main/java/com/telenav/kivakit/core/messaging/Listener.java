@@ -18,6 +18,7 @@
 
 package com.telenav.kivakit.core.messaging;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramBroadcaster;
 import com.telenav.kivakit.core.internal.lexakai.DiagramListener;
 import com.telenav.kivakit.core.internal.lexakai.DiagramRepeater;
@@ -31,10 +32,12 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeMember;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeSuperTypes;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXPANDABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
+
 /**
  * Handles messages through {@link #onMessage(Message)}.
- *
- * <hr>
  *
  * <p><b>Listening to Broadcasters</b></p>
  *
@@ -42,8 +45,6 @@ import com.telenav.lexakai.annotations.visibility.UmlExcludeSuperTypes;
  * A listener can listen to a particular {@link Broadcaster} with {@link #listenTo(Broadcaster)}. Conversely, a listener
  * can be added to a broadcaster with {@link Broadcaster#addListener(Listener)}. Both methods achieve the same result.
  * </p>
- *
- * <hr>
  *
  * <p><b>Convenience Methods and Logging</b></p>
  *
@@ -56,7 +57,6 @@ import com.telenav.lexakai.annotations.visibility.UmlExcludeSuperTypes;
  * <pre>
  * problem("Unable to read $", file);</pre>
  *
- * <hr>
  *
  * <p><b>Repeater Chains</b></p>
  *
@@ -99,8 +99,6 @@ import com.telenav.lexakai.annotations.visibility.UmlExcludeSuperTypes;
  * &nbsp;&nbsp;&nbsp;&nbsp;<b>EmployeeLoader ==> PayrollProcessor ==> Logger</b>
  * </p>
  *
- * <hr>
- *
  * @author jonathanl (shibo)
  * @see Broadcaster
  * @see <a href="https://state-of-the-art.org#broadcaster">State(Art) Blog Article</a>
@@ -110,6 +108,9 @@ import com.telenav.lexakai.annotations.visibility.UmlExcludeSuperTypes;
 @UmlClassDiagram(diagram = DiagramListener.class)
 @UmlExcludeSuperTypes({ NamedObject.class })
 @FunctionalInterface
+@ApiQuality(stability = STABLE_EXPANDABLE,
+            testing = UNTESTED,
+            documentation = FULLY_DOCUMENTED)
 public interface Listener extends MessageTransceiver
 {
     /**
@@ -149,6 +150,7 @@ public interface Listener extends MessageTransceiver
 
     /**
      * Registers this listener with the given broadcaster in being interested in transmitted messages
+     *
      * @param broadcaster The broadcaster that should send to this listener
      * @param filter The message filter to apply
      * @return The broadcaster
@@ -161,6 +163,7 @@ public interface Listener extends MessageTransceiver
 
     /**
      * Registers this listener with the given broadcaster in being interested in transmitted messages
+     *
      * @param broadcaster The broadcaster that should send to this listener
      * @return The broadcaster
      */
