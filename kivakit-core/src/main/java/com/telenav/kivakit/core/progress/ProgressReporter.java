@@ -18,18 +18,18 @@
 
 package com.telenav.kivakit.core.progress;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramProgress;
 import com.telenav.kivakit.core.progress.reporters.BroadcastingProgressReporter;
-import com.telenav.kivakit.core.progress.reporters.ProgressiveInputStream;
-import com.telenav.kivakit.core.progress.reporters.ProgressiveOutputStream;
 import com.telenav.kivakit.core.value.count.BaseCount;
 import com.telenav.kivakit.core.value.count.Count;
 import com.telenav.kivakit.interfaces.lifecycle.Resettable;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
 
-import java.io.InputStream;
-import java.io.OutputStream;
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_DEFAULT_EXPANDABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
 
 /**
  * Reports the progress of some operation to an end-user in some manner. The operation begins when {@link #start()} is
@@ -40,8 +40,12 @@ import java.io.OutputStream;
  * @author jonathanl (shibo)
  * @see BroadcastingProgressReporter
  */
+@SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramProgress.class)
 @UmlRelation(label = "reports progress to", referent = ProgressListener.class)
+@ApiQuality(stability = STABLE_DEFAULT_EXPANDABLE,
+            testing = TESTING_NOT_NEEDED,
+            documentation = FULLY_DOCUMENTED)
 public interface ProgressReporter extends Resettable
 {
     /**
@@ -78,8 +82,8 @@ public interface ProgressReporter extends Resettable
     }
 
     /**
-     * Calls a listener with the percent of progress each time it changes. This method is only called if {@link
-     * #steps()} is larger than 0.
+     * Calls a listener with the percent of progress each time it changes. This method is only called if
+     * {@link #steps()} is larger than 0.
      */
     default ProgressReporter listener(ProgressListener listener)
     {
@@ -118,24 +122,6 @@ public interface ProgressReporter extends Resettable
     default ProgressReporter phase(String phase)
     {
         return this;
-    }
-
-    default ProgressiveInputStream progressiveInput(InputStream input)
-    {
-        if (input instanceof ProgressiveInputStream)
-        {
-            return (ProgressiveInputStream) input;
-        }
-        return new ProgressiveInputStream(input, this);
-    }
-
-    default ProgressiveOutputStream progressiveOutput(OutputStream output)
-    {
-        if (output instanceof ProgressiveOutputStream)
-        {
-            return (ProgressiveOutputStream) output;
-        }
-        return new ProgressiveOutputStream(output, this);
     }
 
     /**

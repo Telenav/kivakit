@@ -18,10 +18,11 @@
 
 package com.telenav.kivakit.core.path;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.KivaKit;
 import com.telenav.kivakit.core.collections.list.StringList;
-import com.telenav.kivakit.core.language.reflection.property.KivaKitIncludeProperty;
 import com.telenav.kivakit.core.internal.lexakai.DiagramPath;
+import com.telenav.kivakit.core.language.reflection.property.KivaKitIncludeProperty;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.string.Strings;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
@@ -34,6 +35,9 @@ import java.util.Map;
 import java.util.function.Function;
 import java.util.regex.Pattern;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXPANDABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.MORE_TESTING_NEEDED;
 import static com.telenav.kivakit.core.project.Project.resolveProject;
 
 /**
@@ -45,13 +49,13 @@ import static com.telenav.kivakit.core.project.Project.resolveProject;
  *
  * <ul>
  *     <li>{@link #asContraction(int)} - This path as a contracted string of the given maximum length </li>
- *     <li>{@link #asString()} - This path as a string</li>
  *     <li>{@link #asJavaPath()} - This path as a {@link java.nio.file.Path}</li>
- *     <li>{@link #separator()} - The separator string for this path, by default this is a forward slash</li>
+ *     <li>{@link #asString()} - This path as a string</li>
+ *     <li>{@link #endsWith(String)} - True if this path ends with the given suffix when joined</li>
  *     <li>{@link #join()} - This path joined by the path {@link #separator()}</li>
  *     <li>{@link #join(String)} - This path joined with the given separator</li>
+ *     <li>{@link #separator()} - The separator string for this path, by default this is a forward slash</li>
  *     <li>{@link #startsWith(String)} - True if this path starts with the given prefix when joined</li>
- *     <li>{@link #endsWith(String)} - True if this path ends with the given suffix when joined</li>
  *     <li>{@link #withSeparator(String)} - This path with the given separator string</li>
  * </ul>
  *
@@ -71,9 +75,13 @@ import static com.telenav.kivakit.core.project.Project.resolveProject;
  * </ul>
  *
  * @author jonathanl (shibo)
+ * @see Path
  */
 @SuppressWarnings({ "SpellCheckingInspection", "SwitchStatementWithTooFewBranches" })
 @UmlClassDiagram(diagram = DiagramPath.class)
+@ApiQuality(stability = STABLE_EXPANDABLE,
+            testing = MORE_TESTING_NEEDED,
+            documentation = FULLY_DOCUMENTED)
 public class StringPath extends Path<String>
 {
     private static final Map<String, Pattern> patterns = new HashMap<>();
@@ -188,6 +196,9 @@ public class StringPath extends Path<String>
     }
 
     /**
+     * Returns this path with middle elements removed to ensure the path is shorter than the given maximum length
+     *
+     * @param maximumLength The maximum length of the contracted path in characters
      * @return A contraction of this path as a string. Middle elements are removed until the length is less than the
      * given maximum length.
      */
@@ -246,6 +257,22 @@ public class StringPath extends Path<String>
      * {@inheritDoc}
      */
     @Override
+    public String asString(Format format)
+    {
+        switch (format)
+        {
+            case FILESYSTEM:
+                return join(File.separator);
+
+            default:
+                return join();
+        }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public StringPath copy()
     {
         return (StringPath) super.copy();
@@ -285,19 +312,6 @@ public class StringPath extends Path<String>
     public String join()
     {
         return join(separator());
-    }
-
-    @Override
-    public String asString(final Format format)
-    {
-        switch (format)
-        {
-            case FILESYSTEM:
-                return join(File.separator);
-
-            default:
-                return join();
-        }
     }
 
     /**

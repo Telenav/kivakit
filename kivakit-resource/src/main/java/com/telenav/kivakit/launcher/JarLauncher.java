@@ -203,7 +203,7 @@ public class JarLauncher extends BaseRepeater
                 var base = resource.fileName().withoutExtension(Extension.JAR);
 
                 // and create the argument list.
-                var java = OperatingSystem.operatingSystem().java();
+                var java = OperatingSystem.operatingSystem().javaExecutable();
                 var arguments = new StringList();
                 arguments.add(java);
                 if (headless)

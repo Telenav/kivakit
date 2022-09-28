@@ -18,6 +18,7 @@
 
 package com.telenav.kivakit.core.path;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.collections.list.ObjectList;
 import com.telenav.kivakit.core.ensure.Ensure;
 import com.telenav.kivakit.core.internal.lexakai.DiagramPath;
@@ -36,8 +37,14 @@ import java.util.List;
 import java.util.function.Function;
 import java.util.stream.Stream;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXPANDABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
+
 /**
- * Abstraction of an immutable path of elements of a given type with an optional root element.
+ * Abstraction of an immutable path of elements of a given type with an optional root element. Functional methods in
+ * Path work on subtypes of Path because subtypes implement {@link #copy()} to return the correct subtype.
  * <p>
  * <b>Kinds of Paths</b>
  * <ul>
@@ -56,29 +63,57 @@ import java.util.stream.Stream;
  * has a root element but no path elements and {@link #isRoot()} will return true. The empty path has
  * neither a root nor any elements and {@link #isEmpty()} will return true.</p>
  *
+ * <p><b>Adding Elements</b></p>
+ *
+ * <ul>
+ *     <li>{@link #push(Comparable)}</li>
+ * </ul>
+ *
  * <p><b>Element Retrieval</b></p>
  *
  * <ul>
- *     <li>{@link #first()} - The first element in the path or null if there is none</li>
- *     <li>{@link #last()} - The last element in the path or null if there is none</li>
- *     <li>{@link #first(int)} - The first n elements in the path or null if there are fewer elements</li>
- *     <li>{@link #last(int)} - The last n elements in the path or null if there are fewer elements</li>
- *     <li>{@link #get(int)} - The nth element in the path or null if there is no nth element</li>
- *     <li>{@link #rootElement()} - The root element, if any</li>
  *     <li>{@link #elements()} - The elements in this path</li>
+ *     <li>{@link #first()} - The first element in the path or null if there is none</li>
+ *     <li>{@link #first(int)} - The first n elements in the path or null if there are fewer elements</li>
+ *     <li>{@link #get(int)} - The nth element in the path or null if there is no nth element</li>
  *     <li>{@link #iterator()} - The elements in this path</li>
+ *     <li>{@link #last()} - The last element in the path or null if there is none</li>
+ *     <li>{@link #last(int)} - The last n elements in the path or null if there are fewer elements</li>
+ *     <li>{@link #pop()}</li>
+ *     <li>{@link #rootElement()} - The root element, if any</li>
  *     <li>{@link #stream()} - A stream of the elements in this path (not including the root)</li>
+ * </ul>
+ *
+ * <p><b>Parenting</b></p>
+ *
+ * <ul>
+ *     <li>{@link #parent()}</li>
+ *     <li>{@link #root()}</li>
+ *     <li>{@link #rootElement()}</li>
+ * </ul>
+ *
+ *
+ * <p><b>Conversion</b></p>
+ *
+ * <ul>
+ *     <li>{@link #asString(Format)}</li>
+ * </ul>
+ *
+ * <p><b>Comparison</b></p>
+ *
+ * <ul>
+ *     <li>{@link #compareTo(Path)}</li>
+ *     <li>{@link #endsWith(Path)} - True if this path ends with the given path</li>
+ *     <li>{@link #startsWith(Path)} - True if this path starts with the given path</li>
  * </ul>
  *
  * <p><b>Checks</b></p>
  *
  * <ul>
  *     <li>{@link #isAbsolute()} - True if this path has a root element</li>
- *     <li>{@link #isRelative()} - True if this path does not have a root element</li>
  *     <li>{@link #isEmpty()} - True if this path has no root and no elements</li>
+ *     <li>{@link #isRelative()} - True if this path does not have a root element</li>
  *     <li>{@link #isRoot()} - True if this path has a root element but no path elements</li>
- *     <li>{@link #endsWith(Path)} - True if this path ends with the given path</li>
- *     <li>{@link #startsWith(Path)} - True if this path starts with the given path</li>
  * </ul>
  *
  * <p><b>Functional Methods</b></p>
@@ -91,6 +126,7 @@ import java.util.stream.Stream;
  * </p>
  *
  * <ul>
+ *     <li>{@link #copy()} - A copy of this path</li>
  *     <li>{@link #emptyPath()} - The empty path</li>
  *     <li>{@link #parent()} - The parent of this path</li>
  *     <li>{@link #root()} - The root path of this path</li>
@@ -103,8 +139,10 @@ import java.util.stream.Stream;
  *     <li>{@link #withRoot(Element)} - This path with the given root element</li>
  *     <li>{@link #withoutFirst()} - This path without any first element or null if there is no first element</li>
  *     <li>{@link #withoutLast()} - This path without any last element or null if there is no last element</li>
- *     <li>{@link #withoutRoot()} - This path without the root element</li>
+ *     <li>{@link #withoutOptionalPrefix(Path)} - This path without the prefix, if it exists</li>
+ *     <li>{@link #withoutOptionalSuffix(Path)} - This path without the suffix, if it exists</li>
  *     <li>{@link #withoutPrefix(Path)} - This path without the given prefix path or null if it is not found</li>
+ *     <li>{@link #withoutRoot()} - This path without the root element</li>
  *     <li>{@link #withoutSuffix(Path)} - This path without the given suffix path or null if it is not found</li>
  * </ul>
  *
@@ -112,6 +150,9 @@ import java.util.stream.Stream;
  */
 @SuppressWarnings({ "UnusedReturnValue", "SpellCheckingInspection", "SwitchStatementWithTooFewBranches" })
 @UmlClassDiagram(diagram = DiagramPath.class)
+@ApiQuality(stability = STABLE_EXPANDABLE,
+            testing = UNTESTED,
+            documentation = FULLY_DOCUMENTED)
 public abstract class Path<Element extends Comparable<Element>> implements
         Iterable<Element>,
         Comparable<Path<Element>>,
@@ -142,6 +183,9 @@ public abstract class Path<Element extends Comparable<Element>> implements
         this(that.root, that.elements);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String asString(Format format)
     {
@@ -155,6 +199,9 @@ public abstract class Path<Element extends Comparable<Element>> implements
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public int compareTo(Path<Element> that)
     {
@@ -206,6 +253,9 @@ public abstract class Path<Element extends Comparable<Element>> implements
         return elements.endsWith(suffix.elements);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     @SuppressWarnings("unchecked")
     public boolean equals(Object object)
@@ -251,6 +301,9 @@ public abstract class Path<Element extends Comparable<Element>> implements
         return null;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public int hashCode()
     {
@@ -290,9 +343,11 @@ public abstract class Path<Element extends Comparable<Element>> implements
         return root != null && isEmpty();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public @NotNull
-    Iterator<Element> iterator()
+    public @NotNull Iterator<Element> iterator()
     {
         return elements.iterator();
     }
@@ -326,11 +381,21 @@ public abstract class Path<Element extends Comparable<Element>> implements
         return withoutLast();
     }
 
+    /**
+     * Pops the last element off the path
+     *
+     * @return The last element
+     */
     public Element pop()
     {
         return elements.pop();
     }
 
+    /**
+     * Pushes the given element onto the end of the path
+     *
+     * @param element The element
+     */
     public void push(Element element)
     {
         elements.push(element);

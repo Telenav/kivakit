@@ -177,7 +177,7 @@ public final class ZipArchive extends BaseRepeater implements
         assert file != null;
         assert filesystem != null;
 
-        this.file = file.materialized(BroadcastingProgressReporter.create(this));
+        this.file = file.materialized(BroadcastingProgressReporter.createProgressReporter(this));
         this.filesystem = filesystem;
     }
 
@@ -273,7 +273,7 @@ public final class ZipArchive extends BaseRepeater implements
             var entry = entry(entryName);
             if (entry != null)
             {
-                try (var input = new ProgressiveInputStream(entry.openForReading(reader.reporter())))
+                try (var input = new ProgressiveInputStream(entry.openForReading(reader.reporter()), reader.reporter()))
                 {
                     return reader.read(input, StringPath.stringPath(entryName), TYPE, VERSION);
                 }
