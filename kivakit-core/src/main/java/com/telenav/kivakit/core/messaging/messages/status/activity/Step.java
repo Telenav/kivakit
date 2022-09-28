@@ -18,11 +18,18 @@
 
 package com.telenav.kivakit.core.messaging.messages.status.activity;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.messaging.Message;
 import com.telenav.kivakit.core.internal.lexakai.DiagramMessageType;
 import com.telenav.kivakit.core.messaging.messages.OperationStatusMessage;
 import com.telenav.kivakit.core.messaging.messages.Severity;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
+
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
+import static com.telenav.kivakit.core.messaging.Message.Status.SUCCEEDED;
+import static com.telenav.kivakit.core.messaging.messages.Severity.LOW;
 
 /**
  * A message sent to indicate that an activity that might be monitored has occurred. For example, a resource (usually a
@@ -31,19 +38,22 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramMessageType.class)
-public class Activity extends OperationStatusMessage
+@ApiQuality(stability = STABLE,
+            testing = TESTING_NOT_NEEDED,
+            documentation = FULLY_DOCUMENTED)
+public class Step extends OperationStatusMessage
 {
-    public Activity()
+    public Step()
     {
     }
 
-    public Activity(String message, Object... arguments)
+    public Step(String message, Object... arguments)
     {
         super(message);
         arguments(arguments);
     }
 
-    public Activity(Throwable cause, String message, Object... arguments)
+    public Step(Throwable cause, String message, Object... arguments)
     {
         super(message + (cause == null
                 ? ""
@@ -52,15 +62,21 @@ public class Activity extends OperationStatusMessage
         arguments(arguments);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Severity severity()
     {
-        return Severity.LOW;
+        return LOW;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Status status()
     {
-        return Status.SUCCEEDED;
+        return SUCCEEDED;
     }
 }

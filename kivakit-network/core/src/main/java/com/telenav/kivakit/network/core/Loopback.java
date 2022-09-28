@@ -38,7 +38,7 @@ import static com.telenav.kivakit.core.ensure.Ensure.fail;
 @LexakaiJavadoc(complete = true)
 public class Loopback extends Host
 {
-    private static final Lazy<Loopback> loopback = Lazy.of(Loopback::new);
+    private static final Lazy<Loopback> loopback = Lazy.lazy(Loopback::new);
 
     /**
      * @return The loopback address (normally 127.0.01) as a host

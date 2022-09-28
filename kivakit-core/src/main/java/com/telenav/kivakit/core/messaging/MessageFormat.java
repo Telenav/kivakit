@@ -11,7 +11,6 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NE
  *
  * @author jonathanl (shibo)
  */
-@SuppressWarnings("SpellCheckingInspection")
 @ApiQuality(stability = STABLE_ENUM_EXPANDABLE,
             testing = TESTING_NOT_NEEDED,
             documentation = FULLY_DOCUMENTED)

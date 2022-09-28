@@ -18,6 +18,7 @@
 
 package com.telenav.kivakit.core.messaging;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.KivaKit;
 import com.telenav.kivakit.core.ensure.Ensure;
 import com.telenav.kivakit.core.internal.lexakai.DiagramBroadcaster;
@@ -33,6 +34,9 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 import java.util.HashMap;
 import java.util.Map;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXPANDABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
 import static com.telenav.kivakit.core.project.Project.resolveProject;
 
 /**
@@ -76,7 +80,11 @@ import static com.telenav.kivakit.core.project.Project.resolveProject;
  * @author jonathanl (shibo)
  * @see <a href="https://tinyurl.com/2xycuvph">KivaKit Debugging Documentation</a>
  */
+@SuppressWarnings("SpellCheckingInspection")
 @UmlClassDiagram(diagram = DiagramBroadcaster.class)
+@ApiQuality(stability = STABLE_EXPANDABLE,
+            testing = UNTESTED,
+            documentation = FULLY_DOCUMENTED)
 public final class Debug implements MessageTransceiver
 {
     private static final Logger LOGGER = LoggerFactory.newLogger();
@@ -136,28 +144,43 @@ public final class Debug implements MessageTransceiver
         this.transceiver = transceiver;
     }
 
+    /**
+     * Returns this debug object
+     */
     @Override
     public Debug debug()
     {
         return this;
     }
 
+    /**
+     * Turns debugging output off
+     */
     public void debugOff()
     {
         debugOn = false;
     }
 
+    /**
+     * Turns debugging output on
+     */
     public void debugOn()
     {
         debugOn = true;
     }
 
+    /**
+     * Returns true if debugging output is on
+     */
     @Override
     public boolean isDebugOn()
     {
         return debugOn;
     }
 
+    /**
+     * Returns a listener for this debug object based on its enable state
+     */
     public Listener listener()
     {
         if (debugOn)
@@ -167,6 +190,9 @@ public final class Debug implements MessageTransceiver
         return Listener.emptyListener();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void onReceive(Transmittable message)
     {

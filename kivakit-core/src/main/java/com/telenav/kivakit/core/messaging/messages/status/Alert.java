@@ -18,12 +18,18 @@
 
 package com.telenav.kivakit.core.messaging.messages.status;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramMessageType;
 import com.telenav.kivakit.core.messaging.MessageFormat;
 import com.telenav.kivakit.core.messaging.messages.OperationStatusMessage;
 import com.telenav.kivakit.core.messaging.messages.Severity;
-import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
+
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
+import static com.telenav.kivakit.core.messaging.Message.Status.FAILED;
+import static com.telenav.kivakit.core.messaging.messages.Severity.HIGH;
 
 /**
  * An alert with a proposed solution, intended to help IT staff resolve the issue.
@@ -48,7 +54,9 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
  *  @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramMessageType.class)
-@LexakaiJavadoc(complete = true)
+@ApiQuality(stability = STABLE,
+            testing = TESTING_NOT_NEEDED,
+            documentation = FULLY_DOCUMENTED)
 public class Alert extends OperationStatusMessage
 {
     private String solution = "No solution provided";
@@ -64,32 +72,47 @@ public class Alert extends OperationStatusMessage
     {
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String formatted(MessageFormat... format)
     {
         return super.formatted(format) + "\nProposed Solution: " + solution();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Severity severity()
     {
-        return Severity.HIGH;
+        return HIGH;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public Alert solution(String solution)
     {
         this.solution = solution;
         return this;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public String solution()
     {
         return solution;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Status status()
     {
-        return Status.FAILED;
+        return FAILED;
     }
 }

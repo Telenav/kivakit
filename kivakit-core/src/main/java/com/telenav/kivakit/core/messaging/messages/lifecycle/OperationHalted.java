@@ -18,19 +18,29 @@
 
 package com.telenav.kivakit.core.messaging.messages.lifecycle;
 
-import com.telenav.kivakit.core.messaging.messages.OperationLifecycleMessage;
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramMessageType;
+import com.telenav.kivakit.core.messaging.messages.OperationLifecycleMessage;
 import com.telenav.kivakit.core.messaging.messages.Severity;
 import com.telenav.kivakit.core.messaging.messages.status.Problem;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
+import static com.telenav.kivakit.core.messaging.Message.OperationStatus.HALTED;
+import static com.telenav.kivakit.core.messaging.messages.Severity.HIGH;
+
 /**
- * A problem with severity high enough to halt the current operation. If the problem is not severe enough, {@link
- * Problem} should be used instead.
+ * A problem with severity high enough to halt the current operation. If the problem is not severe enough,
+ * {@link Problem} should be used instead.
  *
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramMessageType.class)
+@ApiQuality(stability = STABLE,
+            testing = TESTING_NOT_NEEDED,
+            documentation = FULLY_DOCUMENTED)
 public class OperationHalted extends OperationLifecycleMessage
 {
     public OperationHalted()
@@ -51,15 +61,21 @@ public class OperationHalted extends OperationLifecycleMessage
         arguments(arguments);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public OperationStatus operationStatus()
     {
-        return OperationStatus.HALTED;
+        return HALTED;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Severity severity()
     {
-        return Severity.HIGH;
+        return HIGH;
     }
 }

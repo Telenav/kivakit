@@ -36,7 +36,7 @@ import com.telenav.kivakit.core.messaging.messages.status.Information;
 import com.telenav.kivakit.core.messaging.messages.status.Problem;
 import com.telenav.kivakit.core.messaging.messages.status.Trace;
 import com.telenav.kivakit.core.messaging.messages.status.Warning;
-import com.telenav.kivakit.core.messaging.messages.status.activity.Activity;
+import com.telenav.kivakit.core.messaging.messages.status.activity.Step;
 import com.telenav.kivakit.core.time.Day;
 import com.telenav.kivakit.core.time.DayOfWeek;
 import com.telenav.kivakit.core.time.Duration;
@@ -175,7 +175,7 @@ public class CoreKryoTypes extends KryoTypes
             register(OperationSucceeded.class);
             register(OperationFailed.class);
             register(OperationHalted.class);
-            register(Activity.class);
+            register(Step.class);
             register(Alert.class);
             register(CriticalAlert.class);
             register(Information.class);

@@ -18,12 +18,13 @@
 
 package com.telenav.kivakit.core.messaging.listeners;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.collections.list.ObjectList;
 import com.telenav.kivakit.core.collections.list.StringList;
+import com.telenav.kivakit.core.internal.lexakai.DiagramListenerType;
 import com.telenav.kivakit.core.messaging.Broadcaster;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.messaging.Message;
-import com.telenav.kivakit.core.internal.lexakai.DiagramListenerType;
 import com.telenav.kivakit.core.messaging.MessageFormat;
 import com.telenav.kivakit.core.value.count.Count;
 import com.telenav.kivakit.core.value.count.Maximum;
@@ -31,6 +32,9 @@ import com.telenav.kivakit.interfaces.comparison.Filter;
 import com.telenav.kivakit.interfaces.comparison.Matcher;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXPANDABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
 import static com.telenav.kivakit.core.ensure.Ensure.unsupported;
 
 /**
@@ -52,13 +56,17 @@ import static com.telenav.kivakit.core.ensure.Ensure.unsupported;
  *
  * @author jonathanl (shibo)
  */
+@SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramListenerType.class)
+@ApiQuality(stability = STABLE_EXPANDABLE,
+            testing = UNTESTED,
+            documentation = FULLY_DOCUMENTED)
 public class MessageList extends ObjectList<Message> implements MessageCounter
 {
     private static final MessageList EMPTY = new MessageList()
     {
         @Override
-        public void onMessage(final Message message)
+        public void onMessage(Message message)
         {
             unsupported("The message list returned by empty() is read-only");
         }
@@ -69,6 +77,7 @@ public class MessageList extends ObjectList<Message> implements MessageCounter
         return EMPTY;
     }
 
+    /** The message filter to include messages in this list */
     private Matcher<Message> filter;
 
     public MessageList(Matcher<Message> filter)
@@ -87,6 +96,9 @@ public class MessageList extends ObjectList<Message> implements MessageCounter
         this.filter = filter;
     }
 
+    /**
+     * Transmits all the messages in this list to the given listener
+     */
     public void broadcastTo(Listener listener)
     {
         forEach(listener::receive);

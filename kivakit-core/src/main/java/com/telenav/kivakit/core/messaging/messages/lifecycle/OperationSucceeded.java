@@ -18,11 +18,15 @@
 
 package com.telenav.kivakit.core.messaging.messages.lifecycle;
 
-import com.telenav.kivakit.core.messaging.Message;
-import com.telenav.kivakit.core.messaging.messages.OperationLifecycleMessage;
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramMessageType;
-import com.telenav.lexakai.annotations.LexakaiJavadoc;
+import com.telenav.kivakit.core.messaging.messages.OperationLifecycleMessage;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
+
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
+import static com.telenav.kivakit.core.messaging.Message.OperationStatus.SUCCEEDED;
 
 /**
  * A message representing the success of an operation
@@ -30,11 +34,11 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramMessageType.class)
-@LexakaiJavadoc(complete = true)
+@ApiQuality(stability = STABLE,
+            testing = TESTING_NOT_NEEDED,
+            documentation = FULLY_DOCUMENTED)
 public class OperationSucceeded extends OperationLifecycleMessage
 {
-    public static final OperationSucceeded INSTANCE = new OperationSucceeded();
-
     public OperationSucceeded()
     {
         super("OperationSucceeded");
@@ -45,9 +49,12 @@ public class OperationSucceeded extends OperationLifecycleMessage
         super(message, arguments);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public Message.OperationStatus operationStatus()
+    public OperationStatus operationStatus()
     {
-        return Message.OperationStatus.SUCCEEDED;
+        return SUCCEEDED;
     }
 }

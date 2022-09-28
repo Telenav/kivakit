@@ -18,9 +18,14 @@
 
 package com.telenav.kivakit.core.messaging.messages;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramMessageType;
-import com.telenav.kivakit.core.messaging.Message;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
+
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
+import static com.telenav.kivakit.core.messaging.Message.OperationStatus.NOT_APPLICABLE;
 
 /**
  * Signals the status of an operation.
@@ -44,6 +49,9 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramMessageType.class)
+@ApiQuality(stability = STABLE,
+            testing = TESTING_NOT_NEEDED,
+            documentation = FULLY_DOCUMENTED)
 public abstract class OperationStatusMessage extends OperationMessage
 {
     /** A hierarchical error code per IETF RFC 7807. */
@@ -60,8 +68,7 @@ public abstract class OperationStatusMessage extends OperationMessage
     }
 
     /**
-     * @return A hierarchical error code per IETF RFC 7807. For example,
-     * "errors/authentication/incorrect-password".
+     * @return A hierarchical error code per IETF RFC 7807. For example, "errors/authentication/incorrect-password".
      */
     public String code()
     {
@@ -78,9 +85,12 @@ public abstract class OperationStatusMessage extends OperationMessage
         return this;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public final OperationStatus operationStatus()
     {
-        return Message.OperationStatus.NOT_APPLICABLE;
+        return NOT_APPLICABLE;
     }
 }

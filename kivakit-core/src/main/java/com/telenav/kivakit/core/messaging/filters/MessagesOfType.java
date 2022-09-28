@@ -18,31 +18,48 @@
 
 package com.telenav.kivakit.core.messaging.filters;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.core.messaging.Message;
 import com.telenav.kivakit.interfaces.comparison.Filter;
-import com.telenav.kivakit.core.language.Classes;
 
-public class SubClassesOf<T> implements Filter<T>
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
+
+/**
+ * A filter that matches messages equal to or subclassing the given type.
+ *
+ * @author jonathanl (shibo)
+ */
+@ApiQuality(stability = STABLE,
+            testing = UNTESTED,
+            documentation = FULLY_DOCUMENTED)
+public class MessagesOfType<MessageType extends Message> implements Filter<MessageType>
 {
-    private final Class<T> type;
+    /** The type of message to include */
+    private final Class<MessageType> type;
 
-    public SubClassesOf(Class<T> type)
+    public MessagesOfType(Class<MessageType> type)
     {
         this.type = type;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public boolean accepts(Object value)
+    public boolean accepts(MessageType message)
     {
-        if (value == null)
+        if (message == null)
         {
             return false;
         }
-        return value.getClass().isAssignableFrom(type);
+        return message.getClass().isAssignableFrom(type);
     }
 
     @Override
     public String toString()
     {
-        return "subClassOf(" + Classes.simpleName(type) + ")";
+        return type.getSimpleName();
     }
 }

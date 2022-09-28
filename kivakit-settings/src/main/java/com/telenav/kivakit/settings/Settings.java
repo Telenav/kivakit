@@ -128,7 +128,7 @@ public class Settings extends MemorySettingsStore implements
     private static final Logger LOGGER = LoggerFactory.newLogger();
 
     /** The global settings */
-    private static final Lazy<Settings> global = Lazy.of(() ->
+    private static final Lazy<Settings> global = Lazy.lazy(() ->
             LOGGER.listenTo(new Settings()
             {
                 @Override

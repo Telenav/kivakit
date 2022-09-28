@@ -66,7 +66,7 @@ public abstract class BaseReadableResource extends BaseRepeater implements Resou
     /**
      * The temporary cache folder for storing materialized files
      */
-    private static final Lazy<Folder> cacheFolder = Lazy.of(() ->
+    private static final Lazy<Folder> cacheFolder = Lazy.lazy(() ->
             Folder.temporaryForProcess(Folder.Type.CLEAN_UP_ON_EXIT).ensureExists());
 
     /**

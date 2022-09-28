@@ -18,6 +18,7 @@
 
 package com.telenav.kivakit.core.messaging.messages;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.messaging.Message;
 import com.telenav.kivakit.core.messaging.messages.lifecycle.OperationFailed;
 import com.telenav.kivakit.core.messaging.messages.lifecycle.OperationHalted;
@@ -25,6 +26,10 @@ import com.telenav.kivakit.core.messaging.messages.lifecycle.OperationStarted;
 import com.telenav.kivakit.core.messaging.messages.lifecycle.OperationSucceeded;
 import com.telenav.kivakit.core.internal.lexakai.DiagramMessageType;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
+
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
 
 /**
  * A message representing a state transition in the lifecycle of an operation. For example, an operation may have failed
@@ -37,6 +42,9 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
  * @see OperationHalted
  */
 @UmlClassDiagram(diagram = DiagramMessageType.class)
+@ApiQuality(stability = STABLE,
+            testing = TESTING_NOT_NEEDED,
+            documentation = FULLY_DOCUMENTED)
 public abstract class OperationLifecycleMessage extends OperationMessage
 {
     protected OperationLifecycleMessage()
@@ -49,6 +57,9 @@ public abstract class OperationLifecycleMessage extends OperationMessage
         arguments(arguments);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public final Message.Status status()
     {

@@ -65,7 +65,7 @@ public class JavaVirtualMachine extends BaseRepeater
 
     private static boolean ASSERTIONS_ENABLED;
 
-    private static final Lazy<JavaVirtualMachine> LOCAL = Lazy.of(JavaVirtualMachine::new);
+    private static final Lazy<JavaVirtualMachine> LOCAL = Lazy.lazy(JavaVirtualMachine::new);
 
     static
     {

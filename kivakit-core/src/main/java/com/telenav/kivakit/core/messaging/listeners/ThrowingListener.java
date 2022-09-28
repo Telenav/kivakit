@@ -18,10 +18,15 @@
 
 package com.telenav.kivakit.core.messaging.listeners;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramListenerType;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.messaging.Message;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
+
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
 
 /**
  * Listens to {@link Message}s of a given type. All problems are logged. All failure messages result in an exception
@@ -30,6 +35,9 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramListenerType.class)
+@ApiQuality(stability = STABLE,
+            testing = UNTESTED,
+            documentation = FULLY_DOCUMENTED)
 public class ThrowingListener implements Listener
 {
     @Override

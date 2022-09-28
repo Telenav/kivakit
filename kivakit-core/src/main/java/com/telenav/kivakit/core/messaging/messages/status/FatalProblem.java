@@ -18,16 +18,23 @@
 
 package com.telenav.kivakit.core.messaging.messages.status;
 
-import com.telenav.kivakit.core.messaging.Message;
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramMessageType;
+import com.telenav.kivakit.core.messaging.Message;
 import com.telenav.kivakit.core.messaging.messages.OperationStatusMessage;
 import com.telenav.kivakit.core.messaging.messages.Severity;
 import com.telenav.kivakit.core.messaging.messages.lifecycle.OperationHalted;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
+import static com.telenav.kivakit.core.messaging.Message.Status.FAILED;
+import static com.telenav.kivakit.core.messaging.messages.Severity.HIGH;
+
 /**
  * A problem that is severe enough to result in data loss, but not severe enough to halt the current operation. If the
- * operation will not succeed, {@link OperationHalted} should be used instead.
+ * operation does not succeed, {@link OperationHalted} should be used instead.
  *
  * <p>
  * {@link OperationStatusMessage}s in order of importance:
@@ -49,6 +56,9 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramMessageType.class)
+@ApiQuality(stability = STABLE,
+            testing = TESTING_NOT_NEEDED,
+            documentation = FULLY_DOCUMENTED)
 public class FatalProblem extends Problem
 {
     public FatalProblem(String message, Object... arguments)
@@ -76,15 +86,21 @@ public class FatalProblem extends Problem
         return this;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Severity severity()
     {
-        return Severity.HIGH;
+        return HIGH;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Status status()
     {
-        return Status.FAILED;
+        return FAILED;
     }
 }
