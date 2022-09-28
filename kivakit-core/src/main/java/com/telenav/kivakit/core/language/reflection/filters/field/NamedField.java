@@ -21,9 +21,8 @@ package com.telenav.kivakit.core.language.reflection.filters.field;
 import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramReflection;
 import com.telenav.kivakit.core.language.Hash;
+import com.telenav.kivakit.core.language.reflection.Field;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
-
-import java.lang.reflect.Field;
 
 import static com.telenav.kivakit.annotations.code.ApiStability.STABLE;
 import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
@@ -79,6 +78,6 @@ public class NamedField extends AllFields
     public boolean includeField(Field field)
     {
         // Include the field if its name matches
-        return field.getName().equals(name);
+        return field.name().equals(name);
     }
 }

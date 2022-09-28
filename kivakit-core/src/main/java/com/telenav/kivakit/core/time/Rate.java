@@ -21,6 +21,7 @@ package com.telenav.kivakit.core.time;
 import com.telenav.kivakit.core.internal.lexakai.DiagramTime;
 import com.telenav.kivakit.interfaces.numeric.Maximizable;
 import com.telenav.kivakit.interfaces.numeric.Minimizable;
+import com.telenav.kivakit.interfaces.value.DoubleValued;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
@@ -51,7 +52,8 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 public class Rate implements
         Comparable<Rate>,
         Maximizable<Rate>,
-        Minimizable<Rate>
+        Minimizable<Rate>,
+        DoubleValued
 {
     public static final Rate MAXIMUM = new Rate(Integer.MAX_VALUE, Duration.milliseconds(1));
 
@@ -135,6 +137,12 @@ public class Rate implements
     public boolean isSlowerThan(Rate that)
     {
         return perMinute().count < that.perMinute().count;
+    }
+
+    @Override
+    public double doubleValue()
+    {
+        return perDay().doubleValue();
     }
 
     @Override

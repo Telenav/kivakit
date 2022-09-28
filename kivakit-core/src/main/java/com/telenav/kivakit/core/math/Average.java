@@ -18,10 +18,14 @@
 
 package com.telenav.kivakit.core.math;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.string.KivaKitFormat;
 import com.telenav.kivakit.core.string.ObjectFormatter;
 import com.telenav.kivakit.interfaces.lifecycle.Resettable;
-import com.telenav.lexakai.annotations.LexakaiJavadoc;
+
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXPANDABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.MORE_TESTING_NEEDED;
 
 /**
  * Computes a simple average, as well as a minimum and maximum value from a series of <i>double</i> sample values.
@@ -29,17 +33,26 @@ import com.telenav.lexakai.annotations.LexakaiJavadoc;
  *
  * @author jonathanl (shibo)
  */
-@LexakaiJavadoc(complete = true)
+@ApiQuality(stability = STABLE_EXPANDABLE,
+            testing = MORE_TESTING_NEEDED,
+            documentation = FULLY_DOCUMENTED)
 public class Average implements Resettable
 {
+    /** The total of all samples added */
     private double total;
 
+    /** The number of samples added */
     private int samples;
 
+    /** The maximum value of all samples */
     private double maximum = Double.MIN_VALUE;
 
+    /** The minimum value of all samples */
     private double minimum = Double.MAX_VALUE;
 
+    /**
+     * Combines the given average to this average
+     */
     public void add(Average that)
     {
         minimum = Math.min(minimum, that.minimum);

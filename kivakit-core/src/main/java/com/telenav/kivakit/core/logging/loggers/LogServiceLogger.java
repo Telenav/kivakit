@@ -18,6 +18,7 @@
 
 package com.telenav.kivakit.core.logging.loggers;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.collections.map.VariableMap;
 import com.telenav.kivakit.core.collections.set.ObjectSet;
 import com.telenav.kivakit.core.internal.lexakai.DiagramLogging;
@@ -35,6 +36,9 @@ import com.telenav.lexakai.annotations.visibility.UmlExcludeMember;
 
 import java.util.regex.Pattern;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
 import static com.telenav.kivakit.core.collections.set.ObjectSet.objectSet;
 import static com.telenav.kivakit.core.ensure.Ensure.fail;
 
@@ -53,12 +57,16 @@ import static com.telenav.kivakit.core.ensure.Ensure.fail;
 @UmlClassDiagram(diagram = DiagramLogging.class)
 @UmlRelation(label = "configures", referent = Log.class)
 @UmlRelation(label = "loads log services with", referent = LogServiceLoader.class)
+@ApiQuality(stability = STABLE,
+            testing = UNTESTED,
+            documentation = FULLY_DOCUMENTED)
 public class LogServiceLogger extends BaseLogger
 {
     /** List of logs to log to, initially just a console log, unless logs are specified with KIVAKIT_LOG */
     @UmlAggregation(label = "logs to")
     private static ObjectSet<Log> logs = objectSet(new ConsoleLog());
 
+    /** True if loggers have been dynamically loaded */
     private static boolean loaded;
 
     @UmlExcludeMember
@@ -73,6 +81,10 @@ public class LogServiceLogger extends BaseLogger
         super(context);
     }
 
+    /**
+     * Returns the set of loggers described by the KIVAKIT_LOG property (either a system property or an environment
+     * variable). If KIVAKIT_LOG has not been set, logging will go to a {@link ConsoleLog}.
+     */
     @Override
     @UmlExcludeMember
     public synchronized ObjectSet<Log> logs()
@@ -114,6 +126,9 @@ public class LogServiceLogger extends BaseLogger
         return logs;
     }
 
+    /**
+     * Loads and configures a log based on a descriptor, as described above
+     */
     private static Log log(String descriptor)
     {
         // If the descriptor matches "<log-name> <key>=<value> ..."

@@ -20,8 +20,8 @@ package com.telenav.kivakit.core.messaging;
 
 import com.telenav.kivakit.core.KivaKit;
 import com.telenav.kivakit.core.ensure.Ensure;
-import com.telenav.kivakit.core.language.Patterns;
 import com.telenav.kivakit.core.internal.lexakai.DiagramBroadcaster;
+import com.telenav.kivakit.core.language.Patterns;
 import com.telenav.kivakit.core.logging.Logger;
 import com.telenav.kivakit.core.logging.LoggerFactory;
 import com.telenav.kivakit.core.messaging.context.CallStack;
@@ -76,7 +76,6 @@ import static com.telenav.kivakit.core.project.Project.resolveProject;
  * @author jonathanl (shibo)
  * @see <a href="https://tinyurl.com/2xycuvph">KivaKit Debugging Documentation</a>
  */
-@SuppressWarnings("SpellCheckingInspection")
 @UmlClassDiagram(diagram = DiagramBroadcaster.class)
 public final class Debug implements MessageTransceiver
 {
@@ -126,7 +125,7 @@ public final class Debug implements MessageTransceiver
     public Debug(Transceiver transceiver)
     {
         // The class where debug was constructed is the most immediate caller of the class Debug
-        this(CallStack.callerOf(CallStack.Proximity.IMMEDIATE, CallStack.Matching.EXACT, Debug.class).typeClass(), transceiver);
+        this(CallStack.callerOf(CallStack.Proximity.IMMEDIATE, CallStack.Matching.EXACT, Debug.class).type().type(), transceiver);
     }
 
     private Debug(Class<?> type, Transceiver transceiver)
@@ -227,8 +226,8 @@ public final class Debug implements MessageTransceiver
     }
 
     /**
-     * @return {@link Boolean#TRUE} if the class is enabled for debugging, {@link Boolean#FALSE} if it is explicitly disabled and null
-     * if the class is simply available for enabling.
+     * @return {@link Boolean#TRUE} if the class is enabled for debugging, {@link Boolean#FALSE} if it is explicitly
+     * disabled and null if the class is simply available for enabling.
      */
     private static boolean isDebugOn(Class<?> type)
     {

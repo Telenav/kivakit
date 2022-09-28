@@ -21,6 +21,7 @@ package com.telenav.kivakit.resource.packages;
 import com.telenav.kivakit.core.language.Classes;
 import com.telenav.kivakit.core.language.module.PackageReference;
 import com.telenav.kivakit.core.locale.Locale;
+import com.telenav.kivakit.core.locale.LocaleLanguage;
 import com.telenav.kivakit.core.logging.Logger;
 import com.telenav.kivakit.core.logging.LoggerFactory;
 import com.telenav.kivakit.core.messaging.Listener;
@@ -232,9 +233,9 @@ public class Package extends BaseRepeater implements ResourceFolder<Package>
     /**
      * @return A localized property map for the given locale
      */
-    public PropertyMap localizedProperties(Listener listener, Locale locale)
+    public PropertyMap localizedProperties(Listener listener, Locale locale, LocaleLanguage languageName)
     {
-        return PropertyMap.localized(listener, path(), locale);
+        return PropertyMap.localized(listener, path(), locale, languageName);
     }
 
     @Override
@@ -282,7 +283,7 @@ public class Package extends BaseRepeater implements ResourceFolder<Package>
     }
 
     @Override
-    public boolean renameTo(final ResourceFolder<?> folder)
+    public boolean renameTo(ResourceFolder<?> folder)
     {
         return unsupported();
     }
@@ -328,13 +329,13 @@ public class Package extends BaseRepeater implements ResourceFolder<Package>
     }
 
     @Override
-    public WritableResource temporaryFile(final FileName baseName, final Extension extension)
+    public WritableResource temporaryFile(FileName baseName, Extension extension)
     {
         return unsupported();
     }
 
     @Override
-    public ResourceFolder<?> temporaryFolder(final FileName baseName)
+    public ResourceFolder<?> temporaryFolder(FileName baseName)
     {
         return unsupported();
     }

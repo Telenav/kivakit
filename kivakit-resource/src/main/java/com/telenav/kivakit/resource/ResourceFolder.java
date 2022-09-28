@@ -176,7 +176,7 @@ public interface ResourceFolder<T extends ResourceFolder<T>> extends
             {
                 // then copy the resource and update its last modified timestamp to the source timestamp
                 information("Copying $ to $", resource, target);
-                resource.copyTo(target.ensureWritable(), mode, reporter);
+                resource.copyTo(this, target.ensureWritable(), mode, reporter);
                 target.lastModified(resource.modifiedAt());
             }
         }

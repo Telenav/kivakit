@@ -46,9 +46,7 @@ import static com.telenav.kivakit.interfaces.comparison.Matcher.matchAll;
             documentation = FULLY_DOCUMENTED,
             reviews = 1,
             reviewers = "shibo")
-public interface Addable<Value> extends
-        Sequence<Value>,
-        SpaceLimited
+public interface Addable<Value> extends SpaceLimited
 {
     /**
      * Adds the given value

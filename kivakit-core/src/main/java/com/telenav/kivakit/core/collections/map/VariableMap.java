@@ -22,7 +22,7 @@ import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.collections.list.StringList;
 import com.telenav.kivakit.core.internal.lexakai.DiagramCollections;
 import com.telenav.kivakit.core.language.reflection.property.Property;
-import com.telenav.kivakit.core.language.reflection.property.PropertyValues;
+import com.telenav.kivakit.core.language.reflection.property.PropertyValue;
 import com.telenav.kivakit.core.value.count.Maximum;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
@@ -47,7 +47,7 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.MORE_TESTING_N
 @ApiQuality(stability = STABLE_EXPANDABLE,
             testing = MORE_TESTING_NEEDED,
             documentation = FULLY_DOCUMENTED)
-public class VariableMap<Value> extends StringMap<Value> implements PropertyValues
+public class VariableMap<Value> extends StringMap<Value> implements PropertyValue
 {
     /**
      * @return A string variable map for the given string-to-string map
@@ -226,7 +226,7 @@ public class VariableMap<Value> extends StringMap<Value> implements PropertyValu
      * {@inheritDoc}
      */
     @Override
-    public Object valueFor(Property property)
+    public Object propertyValue(Property property)
     {
         return get(property.name());
     }

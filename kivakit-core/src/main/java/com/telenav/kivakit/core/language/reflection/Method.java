@@ -24,6 +24,7 @@ import com.telenav.kivakit.core.internal.lexakai.DiagramReflection;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.lang.annotation.Annotation;
+import java.lang.reflect.Modifier;
 import java.lang.reflect.ParameterizedType;
 import java.util.ArrayList;
 import java.util.List;
@@ -40,6 +41,7 @@ import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
  *
  * @author jonathanl (shibo)
  */
+@SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramReflection.class)
 @ApiQuality(stability = STABLE_EXPANDABLE,
             testing = UNTESTED,
@@ -154,6 +156,22 @@ public class Method extends Member
     }
 
     /**
+     * Returns true if this is a static method
+     */
+    public boolean isPublic()
+    {
+        return Modifier.isPublic(method.getModifiers());
+    }
+
+    /**
+     * Returns true if this is a static method
+     */
+    public boolean isStatic()
+    {
+        return Modifier.isStatic(method.getModifiers());
+    }
+
+    /**
      * Returns true if this is a synthetic method
      */
     public boolean isSynthetic()
@@ -194,6 +212,22 @@ public class Method extends Member
     public String name()
     {
         return name;
+    }
+
+    /**
+     * Returns the parameter types for this method
+     */
+    public Class<?>[] parameterTypes()
+    {
+        return method.getParameterTypes();
+    }
+
+    /**
+     * Returns the return type for this method
+     */
+    public Class<?> returnType()
+    {
+        return method.getReturnType();
     }
 
     /**

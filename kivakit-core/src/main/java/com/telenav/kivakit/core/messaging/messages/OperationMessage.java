@@ -20,12 +20,14 @@ package com.telenav.kivakit.core.messaging.messages;
 
 import com.telenav.kivakit.core.collections.map.StringMap;
 import com.telenav.kivakit.core.internal.lexakai.DiagramMessageType;
+import com.telenav.kivakit.core.language.Arrays;
 import com.telenav.kivakit.core.language.Hash;
 import com.telenav.kivakit.core.language.Objects;
 import com.telenav.kivakit.core.logging.Log;
 import com.telenav.kivakit.core.logging.Logger;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.messaging.Message;
+import com.telenav.kivakit.core.messaging.MessageFormat;
 import com.telenav.kivakit.core.messaging.context.CodeContext;
 import com.telenav.kivakit.core.messaging.context.StackTrace;
 import com.telenav.kivakit.core.messaging.messages.lifecycle.OperationFailed;
@@ -40,7 +42,6 @@ import com.telenav.kivakit.core.messaging.messages.status.Problem;
 import com.telenav.kivakit.core.messaging.messages.status.Trace;
 import com.telenav.kivakit.core.messaging.messages.status.Warning;
 import com.telenav.kivakit.core.messaging.messages.status.activity.Activity;
-import com.telenav.kivakit.core.string.Formatter;
 import com.telenav.kivakit.core.string.Strings;
 import com.telenav.kivakit.core.thread.ReentrancyTracker;
 import com.telenav.kivakit.core.time.Frequency;
@@ -49,15 +50,13 @@ import com.telenav.kivakit.interfaces.naming.Named;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeSuperTypes;
 
-import java.util.Arrays;
-
-import static com.telenav.kivakit.core.string.Formatter.Format.WITH_EXCEPTION;
+import static com.telenav.kivakit.core.messaging.MessageFormat.WITH_EXCEPTION;
 import static com.telenav.kivakit.core.thread.ReentrancyTracker.Reentrancy.REENTERED;
 
 /**
  * Base implementation of the {@link Message} interface. Represents a message destined for a {@link Listener} such as a
  * {@link Logger} with arguments which can be interpolated if the message is formatted with
- * {@link #formatted(Formatter.Format)}. All {@link OperationMessage}s have the attributes defined in {@link Message}.
+ * {@link #formatted(MessageFormat[])}. All {@link OperationMessage}s have the attributes defined in {@link Message}.
  * <p>
  * For messages that might be sent to frequently, {@link #maximumFrequency(Frequency)} can be used to specify that the
  * receiver only handle the message every so often. {@link Log}s support this feature, so it is possible to easily tag a
@@ -220,7 +219,8 @@ public abstract class OperationMessage implements Named, Message
             return Objects.areEqualPairs(this.getClass(), that.getClass(),
                     this.created, that.created,
                     this.message, that.message,
-                    this.stackTrace, that.stackTrace) && Arrays.equals(this.arguments, that.arguments);
+                    this.stackTrace, that.stackTrace,
+                    this.arguments, that.arguments);
         }
         return false;
     }
@@ -229,7 +229,7 @@ public abstract class OperationMessage implements Named, Message
      * @return The fully formatted message including stack trace information
      */
     @Override
-    public String formatted(Formatter.Format format)
+    public String formatted(MessageFormat... formats)
     {
         if (formattedMessage == null)
         {
@@ -242,7 +242,7 @@ public abstract class OperationMessage implements Named, Message
                 else
                 {
                     formattedMessage = Strings.format(message, arguments);
-                    if (format == WITH_EXCEPTION)
+                    if (Arrays.contains(formats, WITH_EXCEPTION))
                     {
                         var cause = cause();
                         if (cause != null)
@@ -263,7 +263,7 @@ public abstract class OperationMessage implements Named, Message
     @Override
     public int hashCode()
     {
-        return Hash.hashMany(getClass(), created, message, stackTrace, Arrays.hashCode(arguments));
+        return Hash.hashMany(getClass(), created, message, stackTrace, arguments);
     }
 
     @Override

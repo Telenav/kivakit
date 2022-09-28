@@ -19,9 +19,11 @@
 package com.telenav.kivakit.collections.map;
 
 import com.telenav.kivakit.core.collections.list.StringList;
+import com.telenav.kivakit.core.ensure.Ensure;
+import com.telenav.kivakit.core.logging.Logger;
+import com.telenav.kivakit.core.logging.LoggerFactory;
 import com.telenav.kivakit.core.value.count.Count;
 import com.telenav.kivakit.core.value.count.Countable;
-import com.telenav.kivakit.core.ensure.Ensure;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 
 import java.util.ArrayList;
@@ -37,9 +39,12 @@ import java.util.concurrent.atomic.AtomicLong;
  *
  * @author jonathanl (shibo)
  */
+@SuppressWarnings("unused")
 @LexakaiJavadoc(complete = true)
 public class ConcurrentCountMap<Key>
 {
+    private static final Logger LOGGER = LoggerFactory.newLogger();
+
     private final ConcurrentHashMap<Key, AtomicLong> counts = new ConcurrentHashMap<>();
 
     private final AtomicLong total = new AtomicLong();
@@ -61,7 +66,7 @@ public class ConcurrentCountMap<Key>
         var total = get(key).addAndGet(value);
         if (total < 0)
         {
-            Ensure.warning("Adding $ to count caused long overflow", value);
+            LOGGER.warning("Adding $ to count caused long overflow", value);
         }
         this.total.addAndGet(value);
         return Count.count(total);

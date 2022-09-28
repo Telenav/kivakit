@@ -36,6 +36,7 @@ import com.telenav.kivakit.core.function.Result;
 import com.telenav.kivakit.core.language.Classes;
 import com.telenav.kivakit.core.language.trait.LanguageTrait;
 import com.telenav.kivakit.core.locale.Locale;
+import com.telenav.kivakit.core.locale.LocaleLanguage;
 import com.telenav.kivakit.core.logging.Logger;
 import com.telenav.kivakit.core.logging.LoggerFactory;
 import com.telenav.kivakit.core.logging.logs.BaseLog;
@@ -526,7 +527,12 @@ public abstract class Application extends BaseComponent implements
 
     public PropertyMap localizedProperties(Locale locale)
     {
-        return PropertyMap.localized(this, thisPackage().path(), locale);
+        return localizedProperties(locale, locale.primaryLanguage());
+    }
+
+    public PropertyMap localizedProperties(Locale locale, LocaleLanguage language)
+    {
+        return PropertyMap.localized(this, thisPackage().path(), locale, language);
     }
 
     /**
@@ -751,6 +757,7 @@ public abstract class Application extends BaseComponent implements
     /**
      * @return The application version as specified in the resource "/project.properties"
      */
+    @Override
     public Version version()
     {
         return properties().asVersion("project-version");

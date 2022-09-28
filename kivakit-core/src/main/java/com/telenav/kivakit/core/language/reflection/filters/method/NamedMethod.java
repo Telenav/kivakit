@@ -21,10 +21,9 @@ package com.telenav.kivakit.core.language.reflection.filters.method;
 import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramReflection;
 import com.telenav.kivakit.core.language.Hash;
+import com.telenav.kivakit.core.language.reflection.Method;
 import com.telenav.kivakit.core.language.reflection.property.PropertyNamingConvention;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
-
-import java.lang.reflect.Method;
 
 import static com.telenav.kivakit.annotations.code.ApiStability.STABLE;
 import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
@@ -78,6 +77,6 @@ public class NamedMethod extends AllMethods
     public boolean includeAsGetter(Method method)
     {
         // Include getter if the name matches
-        return super.includeAsGetter(method) && method.getName().equals(name);
+        return super.includeAsGetter(method) && method.name().equals(name);
     }
 }

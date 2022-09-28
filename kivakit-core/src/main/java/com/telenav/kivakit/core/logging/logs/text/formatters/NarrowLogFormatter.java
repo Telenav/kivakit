@@ -1,4 +1,4 @@
- ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //
 // © 2011-2021 Telenav, Inc.
 //
@@ -18,10 +18,15 @@
 
 package com.telenav.kivakit.core.logging.logs.text.formatters;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramLogs;
 import com.telenav.kivakit.core.logging.LogEntry;
-import com.telenav.kivakit.core.string.Formatter;
+import com.telenav.kivakit.core.messaging.MessageFormat;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
+
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
 
 /**
  * Formats log entries into flexible delimited columns.
@@ -30,27 +35,35 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
  */
 @SuppressWarnings("DuplicatedCode")
 @UmlClassDiagram(diagram = DiagramLogs.class)
+@ApiQuality(stability = STABLE,
+            testing = UNTESTED,
+            documentation = FULLY_DOCUMENTED)
 public class NarrowLogFormatter extends BaseColumnarFormatter
 {
-    public static final NarrowLogFormatter INSTANCE = new NarrowLogFormatter();
+    /** The code context column */
+    private final Column contextColumn = new Column(12, 12, ColumnLayout.CLIP_RIGHT);
 
-    private final Column contextColumn = new Column(12, 12, Layout.CLIP_RIGHT);
+    /** The message column */
+    private final Column messageColumn = new Column(128, 128, ColumnLayout.WRAP);
 
-    private final Column messageColumn = new Column(128, 128, Layout.WRAP);
+    /** The message type column */
+    private final Column typeColumn = new Column(4, 4, ColumnLayout.CLIP_RIGHT);
 
-    private final Column typeColumn = new Column(4, 4, Layout.CLIP_RIGHT);
-
-    public String format(LogEntry entry, Formatter.Format format)
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public String format(LogEntry entry, MessageFormat... formats)
     {
-        // Create line output
+        // Create line output,
         var line = new LineOutput();
 
-        // Add each column and its content
-        line.add(contextColumn, entry.context().typeName());
-        line.add(typeColumn, entry.messageType());
-        line.add(messageColumn, entry.formattedMessage(format));
+        // add each column and its content,
+        line.addColumnText(contextColumn, entry.context().typeName());
+        line.addColumnText(typeColumn, entry.messageType());
+        line.addColumnText(messageColumn, entry.formattedMessage(formats));
 
-        // Return the formatted line
+        // and return the formatted line
         return line.format();
     }
 }

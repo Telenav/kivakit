@@ -18,25 +18,24 @@
 
 package com.telenav.kivakit.resource.compression.archive;
 
-import com.telenav.kivakit.core.string.ObjectFormatter;
 import com.telenav.kivakit.core.language.reflection.Type;
 import com.telenav.kivakit.core.language.reflection.property.KivaKitIncludeProperty;
 import com.telenav.kivakit.core.language.reflection.property.Property;
-import com.telenav.kivakit.core.language.reflection.property.PropertyNamingConvention;
 import com.telenav.kivakit.core.messaging.Repeater;
 import com.telenav.kivakit.core.messaging.repeaters.BaseRepeater;
 import com.telenav.kivakit.core.progress.ProgressReporter;
 import com.telenav.kivakit.core.string.CaseFormat;
+import com.telenav.kivakit.core.string.ObjectFormatter;
 import com.telenav.kivakit.core.version.Version;
 import com.telenav.kivakit.core.version.VersionedObject;
 import com.telenav.kivakit.filesystem.File;
 import com.telenav.kivakit.interfaces.io.Closeable;
 import com.telenav.kivakit.interfaces.naming.NamedObject;
 import com.telenav.kivakit.resource.Resource;
-import com.telenav.kivakit.resource.serialization.SerializableObject;
 import com.telenav.kivakit.resource.internal.lexakai.DiagramResourceArchive;
 import com.telenav.kivakit.resource.serialization.ObjectReader;
 import com.telenav.kivakit.resource.serialization.ObjectWriter;
+import com.telenav.kivakit.resource.serialization.SerializableObject;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlAggregation;
@@ -54,9 +53,9 @@ import static com.telenav.kivakit.core.ensure.Ensure.ensure;
  * named "paintbrush" has a field named "width", the entry would be saved as "paintbrush.width" in the archive.
  * <p>
  * When an entry is read with {@link #load(ObjectReader, NamedObject, String)}, the object's name and the field name
- * will be used again to reconstruct the archive entry name. The methods {@link #loadFieldOf(ObjectReader, NamedObject,
- * String)} and {@link #loadFieldsOf(ObjectReader, NamedObject...)} both load object(s) from the archive, but they also
- * set the loaded value into the property with the given field name.
+ * will be used again to reconstruct the archive entry name. The methods
+ * {@link #loadFieldOf(ObjectReader, NamedObject, String)} and {@link #loadFieldsOf(ObjectReader, NamedObject...)} both
+ * load object(s) from the archive, but they also set the loaded value into the property with the given field name.
  * <p>
  * <b>Saving</b>
  * <ul>
@@ -83,6 +82,7 @@ import static com.telenav.kivakit.core.ensure.Ensure.ensure;
  * @see ZipArchive
  * @see Repeater
  */
+@SuppressWarnings({ "unused", "resource" })
 @UmlClassDiagram(diagram = DiagramResourceArchive.class)
 @UmlRelation(label = "reads annotations", referent = KivaKitArchivedField.class)
 @UmlRelation(label = "reads and writes", referent = NamedObject.class)
@@ -92,7 +92,7 @@ public class FieldArchive extends BaseRepeater implements Closeable
     /**
      * A particular field of an object
      */
-    @LexakaiJavadoc(complete = true)
+    @SuppressWarnings("resource") @LexakaiJavadoc(complete = true)
     private class ObjectField
     {
         private final Object object;
@@ -256,7 +256,7 @@ public class FieldArchive extends BaseRepeater implements Closeable
         {
             // and for each archived field
             Type<?> type = Type.type(object);
-            for (var field : type.properties(new ArchivedFields(PropertyNamingConvention.KIVAKIT_PROPERTY_NAMING)).sorted())
+            for (var field : type.properties(new ArchivedFields()).sorted())
             {
                 // if it is not lazy,
                 if (!field.getter().annotation(KivaKitArchivedField.class).lazy())
@@ -318,7 +318,7 @@ public class FieldArchive extends BaseRepeater implements Closeable
 
         this.version = version;
 
-        for (var field : Type.type(object).properties(new ArchivedFields(PropertyNamingConvention.KIVAKIT_PROPERTY_NAMING)).sorted())
+        for (var field : Type.type(object).properties(new ArchivedFields()).sorted())
         {
             try
             {

@@ -18,10 +18,10 @@
 
 package com.telenav.kivakit.core.messaging;
 
-import com.telenav.kivakit.core.language.Classes;
 import com.telenav.kivakit.core.internal.lexakai.DiagramBroadcaster;
 import com.telenav.kivakit.core.internal.lexakai.DiagramListener;
 import com.telenav.kivakit.core.internal.lexakai.DiagramMessaging;
+import com.telenav.kivakit.core.language.Classes;
 import com.telenav.kivakit.core.messaging.context.CodeContext;
 import com.telenav.kivakit.core.messaging.context.StackTrace;
 import com.telenav.kivakit.core.messaging.messages.Importance;
@@ -54,13 +54,14 @@ import com.telenav.lexakai.annotations.associations.UmlRelation;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeMember;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeSuperTypes;
 
-import static com.telenav.kivakit.core.string.Formatter.Format.WITHOUT_EXCEPTION;
-import static com.telenav.kivakit.core.string.Formatter.Format.WITH_EXCEPTION;
+import static com.telenav.kivakit.core.messaging.MessageFormat.FORMATTED;
+import static com.telenav.kivakit.core.messaging.MessageFormat.WITHOUT_EXCEPTION;
+import static com.telenav.kivakit.core.messaging.MessageFormat.WITH_EXCEPTION;
 
 /**
  * An interface to retrieve the basic attributes of a message, find out what it means and format it as text. A message's
  * text is un-formatted when it is created. The message text and any arguments must be passed to {@link Formatter} to
- * produce a final formatted message, which can be retrieved with {@link #formatted(Formatter.Format)}. This is a useful
+ * produce a final formatted message, which can be retrieved with {@link #formatted(MessageFormat[])}. This is a useful
  * design because it is cheaper to construct messages if the formatting is delayed until the formatted string is need,
  * for example, when a log message is added to a formatted text log.
  * <p>
@@ -283,11 +284,11 @@ public interface Message extends
     /**
      * @return Formatted message, including any stack trace information
      */
-    String formatted(Formatter.Format format);
+    String formatted(MessageFormat... format);
 
     default String formatted()
     {
-        return formatted(WITHOUT_EXCEPTION);
+        return formatted(FORMATTED, WITHOUT_EXCEPTION);
     }
 
     /**

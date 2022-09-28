@@ -18,6 +18,7 @@
 
 package com.telenav.kivakit.core.messaging.broadcasters;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramRepeater;
 import com.telenav.kivakit.core.language.Classes;
 import com.telenav.kivakit.core.logging.Logger;
@@ -43,6 +44,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE;
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXPANDABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
 import static com.telenav.kivakit.core.ensure.Ensure.ensure;
 import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
 import static com.telenav.kivakit.core.string.IndentingStringBuilder.Style.TEXT;
@@ -88,24 +93,34 @@ import static com.telenav.kivakit.core.string.IndentingStringBuilder.Style.TEXT;
  */
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramRepeater.class)
+@ApiQuality(stability = STABLE,
+            testing = UNTESTED,
+            documentation = FULLY_DOCUMENTED)
 public class Multicaster implements Broadcaster
 {
+    /** Console logger for serious messaging problems */
     private static final Logger LOGGER = new ConsoleLogger();
 
     /** This multi-caster audience */
     @UmlAggregation
     private final transient List<AudienceMember> audience = new ArrayList<>();
 
+    /** The class context for any debug object associated with this multicaster */
     private final transient Class<?> debugClassContext;
 
+    /** The code context for any debug object associated with this multicaster */
     private transient CodeContext debugCodeContext;
 
+    /** Lock for synchronizing access to the audience across threads */
     private transient ReadWriteLock lock;
 
+    /** The name of this object */
     private final transient String objectName;
 
+    /** Any broadcaster that is sending messages through this multicaster */
     private transient Broadcaster source;
 
+    /** True if this multicaster is enabled to transmit */
     private transient boolean transmitting;
 
     public Multicaster(String objectName, Class<?> debugClassContext)
@@ -187,18 +202,27 @@ public class Multicaster implements Broadcaster
         lock().write(audience::clear);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Class<?> debugClassContext()
     {
         return debugClassContext;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public CodeContext debugCodeContext()
     {
         return debugCodeContext;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void debugCodeContext(CodeContext context)
     {
@@ -232,6 +256,9 @@ public class Multicaster implements Broadcaster
         });
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean isTransmitting()
     {
@@ -279,18 +306,27 @@ public class Multicaster implements Broadcaster
                 .collect(Collectors.toList()));
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Broadcaster messageSource()
     {
         return source;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void messageSource(Broadcaster source)
     {
         this.source = source;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String objectName()
     {
@@ -363,6 +399,9 @@ public class Multicaster implements Broadcaster
         return message;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void transmitting(boolean transmitting)
     {

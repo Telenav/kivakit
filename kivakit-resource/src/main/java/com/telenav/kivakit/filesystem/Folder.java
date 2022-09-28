@@ -1059,7 +1059,7 @@ public class Folder extends BaseRepeater implements
         var temporary = destination.parent().temporaryFolder(FileName.parseFileName(this, "temporary-copy"));
         for (var file : nestedFiles(matcher))
         {
-            file.copyTo(temporary.resource(file.relativeTo(this)).asWritable(), mode, reporter);
+            file.copyTo(this, temporary.resource(file.relativeTo(this)).asWritable(), mode, reporter);
         }
         temporary.renameTo(destination);
         information("Safe copy completed in $", start.elapsedSince());

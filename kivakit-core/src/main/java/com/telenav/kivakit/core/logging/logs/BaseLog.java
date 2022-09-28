@@ -18,11 +18,12 @@
 
 package com.telenav.kivakit.core.logging.logs;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.core.collections.list.ObjectList;
 import com.telenav.kivakit.core.collections.map.CountMap;
-import com.telenav.kivakit.core.language.Classes;
-import com.telenav.kivakit.core.string.ObjectFormatter;
-import com.telenav.kivakit.core.language.reflection.property.KivaKitIncludeProperty;
 import com.telenav.kivakit.core.internal.lexakai.DiagramLogs;
+import com.telenav.kivakit.core.language.Classes;
+import com.telenav.kivakit.core.language.reflection.property.KivaKitIncludeProperty;
 import com.telenav.kivakit.core.logging.Log;
 import com.telenav.kivakit.core.logging.LogEntry;
 import com.telenav.kivakit.core.logging.filters.LogEntriesWithSeverityGreaterThanOrEqualTo;
@@ -30,6 +31,7 @@ import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.messaging.messages.Severity;
 import com.telenav.kivakit.core.messaging.messages.status.Problem;
 import com.telenav.kivakit.core.os.ConsoleWriter;
+import com.telenav.kivakit.core.string.ObjectFormatter;
 import com.telenav.kivakit.core.string.Plural;
 import com.telenav.kivakit.core.thread.RepeatingThread;
 import com.telenav.kivakit.core.thread.StateWatcher;
@@ -47,58 +49,124 @@ import java.util.List;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.atomic.AtomicBoolean;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXPANDABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
+import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
 import static com.telenav.kivakit.core.thread.KivaKitThread.State.STOP_REQUESTED;
 import static com.telenav.kivakit.core.time.Frequency.CONTINUOUSLY;
 import static com.telenav.kivakit.core.vm.ShutdownHook.Order.LAST;
 
 /**
- * Base class for log implementations. Handles background queueing of log entries.
+ * Base class for log implementations. Handles background queueing of log entries. By default, logging is asynchronous.
+ * To make logging synchronous (for example, when debugging), set the property KIVAKIT_LOG_SYNCHRONOUS to false.
+ *
+ * <p><b>Configuration</b></p>
+ *
+ * <ul>
+ *     <li>{@link #logs()}</li>
+ *     <li>{@link #level(Severity)}</li>
+ *     <li>{@link #maximumFlushTime()}</li>
+ *     <li>{@link #maximumStopTime()}</li>
+ * </ul>
+ *
+ * <p><b>Logging</b></p>
+ *
+ * <ul>
+ *     <li>{@link #name()}</li>
+ *     <li>{@link #log(LogEntry)}</li>
+ *     <li>{@link #clear()}</li>
+ *     <li>{@link #flush(Duration)}</li>
+ *     <li>{@link #closeOutput()}</li>
+ *     <li>{@link #close()}</li>
+ *     <li>{@link #isClosed()}</li>
+ *     <li>{@link #messageCounts()}</li>
+ * </ul>
+ *
+ * <p><b>Filtering</b></p>
+ *
+ * <ul>
+ *     <li>{@link #addFilter(Filter)}</li>
+ *     <li>{@link #filters()}</li>
+ * </ul>
+ *
+ * <p><b>Asynchronous Logging</b></p>
+ *
+ * <ul>
+ *     <li>{@link #isAsynchronous}</li>
+ *     <li>{@link #asynchronous(boolean)}</li>
+ *     <li>{@link #start()}</li>
+ *     <li>{@link #stop(Duration)}</li>
+ *     <li>{@link #isRunning()}</li>
+ * </ul>
  *
  * @author jonathanl (shibo)
  */
 @SuppressWarnings("UseOfSystemOutOrSystemErr")
 @UmlClassDiagram(diagram = DiagramLogs.class)
+@ApiQuality(stability = STABLE_EXPANDABLE,
+            testing = UNTESTED,
+            documentation = FULLY_DOCUMENTED)
 public abstract class BaseLog implements
         Startable,
         Stoppable<Duration>,
         Log
 {
+    /** True if logging is asynchronous (applies to all logs) */
     private static volatile boolean isAsynchronous;
 
+    /** A collection of all logs in use */
     private static final List<BaseLog> logs = new ArrayList<>();
 
     static
     {
+        // Determine if we are asynchronous or not
         isAsynchronous = Properties.isPropertyFalse("KIVAKIT_LOG_SYNCHRONOUS");
     }
 
+    /**
+     * Set asynchronicity
+     */
     public static void asynchronous(boolean asynchronous)
     {
         isAsynchronous = asynchronous;
     }
 
+    /**
+     * Returns true if logging is asynchronous
+     */
     public static boolean isAsynchronous()
     {
         return isAsynchronous;
     }
 
+    /**
+     * Returns the list of logs in use
+     */
     public static List<BaseLog> logs()
     {
         return logs;
     }
 
+    /** True if this log is closed and will accept no further entries */
     private volatile boolean closed;
 
-    private final List<Filter<LogEntry>> filters = new ArrayList<>();
+    /** List of log entry filters */
+    private final ObjectList<Filter<LogEntry>> filters = new ObjectList<>();
 
+    /** The number of each type of message that has been logged */
     private final CountMap<String> messageCounts = new CountMap<>();
 
+    /** Queue of log entries to write asynchronously */
     private final ArrayBlockingQueue<LogEntry> queue = new ArrayBlockingQueue<>(queueSize());
 
+    /** True if this log has started */
     private final AtomicBoolean started = new AtomicBoolean();
 
-    private RepeatingThread thread;
+    /** Background thread to write log entries */
+    private RepeatingThread writerThread;
 
+    /** State that indicates the queue is empty */
     final StateWatcher<Boolean> queueEmpty = new StateWatcher<>(true);
 
     protected BaseLog()
@@ -117,11 +185,19 @@ public abstract class BaseLog implements
         }
     }
 
+    /**
+     * Adds the given filter to this log
+     *
+     * @param filter The filter
+     */
     public void addFilter(Filter<LogEntry> filter)
     {
         filters.add(filter);
     }
 
+    /**
+     * Clears this log (if the log is transient, such as a log stored in memory
+     */
     public void clear()
     {
     }
@@ -135,10 +211,16 @@ public abstract class BaseLog implements
         closed = true;
     }
 
+    /**
+     * Closes log output, such as when logs are rolled over
+     */
     public void closeOutput()
     {
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean equals(Object object)
     {
@@ -150,40 +232,60 @@ public abstract class BaseLog implements
         return false;
     }
 
+    /**
+     * Retrieves the log entry filters for this log
+     */
     @Override
     public List<Filter<LogEntry>> filters()
     {
         return filters;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void flush(Duration maximumWaitTime)
     {
-        if (thread != null)
+        if (writerThread != null)
         {
             asynchronous(false);
-            thread.interrupt();
+            writerThread.interrupt();
             queueEmpty.waitFor(true, maximumWaitTime);
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public int hashCode()
     {
         return name().hashCode();
     }
 
+    /**
+     * Returns true if this log is closed to further entries
+     */
     public boolean isClosed()
     {
         return closed;
     }
 
+    /**
+     * Returns true if the background writer thread is running
+     */
     @Override
     public boolean isRunning()
     {
-        return thread != null && thread.isRunning();
+        return writerThread != null && writerThread.isRunning();
     }
 
+    /**
+     * Sets the minimum severity for entries to log
+     *
+     * @param minimum The minimum severity of entries to log
+     */
     @Override
     public void level(Severity minimum)
     {
@@ -193,10 +295,14 @@ public abstract class BaseLog implements
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public final void log(LogEntry entry)
     {
-        assert entry.context() != null;
+        ensureNotNull(entry.context());
+
         if (!closed && accept(entry))
         {
             JavaVirtualMachine.local().health().logEntry(entry);
@@ -225,6 +331,9 @@ public abstract class BaseLog implements
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public final Duration maximumStopTime()
     {
@@ -242,16 +351,22 @@ public abstract class BaseLog implements
         }
     }
 
+    /**
+     * Returns the name of this log
+     */
     @Override
     public String name()
     {
         return Classes.simpleName(getClass());
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public final boolean start()
     {
-        thread = new RepeatingThread(Listener.emptyListener(), name() + "-Log", CONTINUOUSLY)
+        writerThread = new RepeatingThread(Listener.emptyListener(), name() + "-Log", CONTINUOUSLY)
         {
             @Override
             protected void onRun()
@@ -309,17 +424,20 @@ public abstract class BaseLog implements
                 addListener(new ConsoleWriter());
             }
         };
-        return thread.start();
+        return writerThread.start();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void stop(Duration wait)
     {
         close();
         flush(wait);
-        if (thread != null)
+        if (writerThread != null)
         {
-            thread.stop(wait);
+            writerThread.stop(wait);
         }
     }
 
@@ -329,6 +447,12 @@ public abstract class BaseLog implements
         return new ObjectFormatter(this).toString();
     }
 
+    /**
+     * Accepts or rejects the given log entry
+     *
+     * @param entry The entry to inspect
+     * @return True if the entry is accepted, false otherwise
+     */
     protected final boolean accept(LogEntry entry)
     {
         for (var filter : filters)
@@ -341,13 +465,22 @@ public abstract class BaseLog implements
         return true;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     protected abstract void onLog(LogEntry entry);
 
+    /**
+     * Called if an entry is dropped
+     */
     protected void onLogFailure(LogEntry entry)
     {
         System.out.println("Failed to log: " + entry);
     }
 
+    /**
+     * The maximum queue size for asynchronous logging
+     */
     @SuppressWarnings("SameReturnValue")
     @KivaKitIncludeProperty
     protected int queueSize()
@@ -355,6 +488,9 @@ public abstract class BaseLog implements
         return 20_000;
     }
 
+    /**
+     * Returns the number of retries that should be attempted before giving up on logging an entry
+     */
     @SuppressWarnings("SameReturnValue")
     @KivaKitIncludeProperty
     protected int retries()
@@ -362,6 +498,9 @@ public abstract class BaseLog implements
         return 3;
     }
 
+    /**
+     * Returns true if the queue is empty
+     */
     private void checkForEmptyQueue()
     {
         if (queue.isEmpty())
@@ -370,6 +509,12 @@ public abstract class BaseLog implements
         }
     }
 
+    /**
+     * Increments the message count for the type of message, and dispatches the log entry by calling
+     * {@link #onLog(LogEntry)}
+     *
+     * @return True if the entry was logged successfully
+     */
     private boolean dispatch(LogEntry entry)
     {
         if (entry.severity().isGreaterThan(Severity.NONE))

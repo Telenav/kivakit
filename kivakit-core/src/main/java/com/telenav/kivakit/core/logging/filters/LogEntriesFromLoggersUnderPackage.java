@@ -18,28 +18,53 @@
 
 package com.telenav.kivakit.core.logging.filters;
 
-import com.telenav.kivakit.core.logging.LogEntry;
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.language.module.PackageReference;
+import com.telenav.kivakit.core.logging.LogEntry;
 import com.telenav.kivakit.interfaces.comparison.Filter;
 
-public class LoggersInPackage implements Filter<LogEntry>
-{
-    private final PackageReference path;
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
 
-    public LoggersInPackage(PackageReference path)
+/**
+ * A filter that accepts each {@link LogEntry}  that came from a package or sub-package
+ *
+ * @author jonathanl (shibo)
+ */
+@SuppressWarnings("unused")
+@ApiQuality(stability = STABLE,
+            testing = UNTESTED,
+            documentation = FULLY_DOCUMENTED)
+public class LogEntriesFromLoggersUnderPackage implements Filter<LogEntry>
+{
+    /** The package */
+    private final PackageReference _package;
+
+    public LogEntriesFromLoggersUnderPackage(PackageReference _package)
     {
-        this.path = path;
+        this._package = _package;
     }
 
+    /**
+     * Accepts log entries from loggers in this filter's package
+     *
+     * <p>
+     * {@inheritDoc}
+     * </p>
+     */
     @Override
     public boolean accepts(LogEntry value)
     {
-        return value.context().packagePath().startsWith(path);
+        return value.context().packagePath().startsWith(_package);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String toString()
     {
-        return "loggersInPackage(" + path + ")";
+        return _package.join();
     }
 }

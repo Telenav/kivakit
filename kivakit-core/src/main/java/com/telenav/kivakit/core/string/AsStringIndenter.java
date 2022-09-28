@@ -18,12 +18,12 @@
 
 package com.telenav.kivakit.core.string;
 
-import com.telenav.kivakit.core.collections.Sets;
+import com.telenav.kivakit.core.collections.set.IdentitySet;
+import com.telenav.kivakit.core.internal.lexakai.DiagramString;
 import com.telenav.kivakit.core.language.reflection.Type;
 import com.telenav.kivakit.core.language.reflection.property.KivaKitIncludeProperty;
 import com.telenav.kivakit.core.language.reflection.property.Property;
 import com.telenav.kivakit.core.language.reflection.property.PropertyFilter;
-import com.telenav.kivakit.core.internal.lexakai.DiagramString;
 import com.telenav.kivakit.core.string.IndentingStringBuilder.Style;
 import com.telenav.kivakit.core.value.count.Maximum;
 import com.telenav.kivakit.interfaces.string.StringFormattable;
@@ -34,23 +34,23 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.function.Consumer;
 
-import static com.telenav.kivakit.core.language.reflection.property.PropertyMembers.INCLUDED_FIELDS;
-import static com.telenav.kivakit.core.language.reflection.property.PropertyMembers.INCLUDED_FIELDS_AND_METHODS;
+import static com.telenav.kivakit.core.language.reflection.property.PropertyMemberSelector.KIVAKIT_ANNOTATION_INCLUDED_FIELDS;
+import static com.telenav.kivakit.core.language.reflection.property.PropertyMemberSelector.KIVAKIT_ANNOTATION_INCLUDED_FIELDS_AND_METHODS;
 import static com.telenav.kivakit.core.string.IndentingStringBuilder.Indentation;
 
 /**
  * Holds state information during an object tree traversal by {@link AsIndentedString}.
  * <p>
- * The {@link #add(String, Object...)} method will add a new line at the current indentation level. The {@link
- * #label(String)} method will add a label on a line by itself and {@link #labeled(String, Object)} will add a label and
- * the given object as a string on the same line.
+ * The {@link #add(String, Object...)} method will add a new line at the current indentation level. The
+ * {@link #label(String)} method will add a label on a line by itself and {@link #labeled(String, Object)} will add a
+ * label and the given object as a string on the same line.
  * <p>
- * The current indentation level is returned by {@link #indentationLevel()}. An indented block can be added with {@link
- * #indented(String, Runnable)} or {@link #indented(Runnable)}. A list of elements can be added inside a bracketed
- * indented block with {@link #bracketed(Iterable, Consumer)}.
+ * The current indentation level is returned by {@link #indentationLevel()}. An indented block can be added with
+ * {@link #indented(String, Runnable)} or {@link #indented(Runnable)}. A list of elements can be added inside a
+ * bracketed indented block with {@link #bracketed(Iterable, Consumer)}.
  * <p>
- * Recursion can be controlled with {@link #haveVisited(Object)}, {@link #isLeaf(Object)} and {@link
- * #canExplore(Object)}.
+ * Recursion can be controlled with {@link #haveVisited(Object)}, {@link #isLeaf(Object)} and
+ * {@link #canExplore(Object)}.
  *
  * @author jonathanl (shibo)
  * @see AsIndentedString
@@ -79,7 +79,7 @@ public class AsStringIndenter
     private Maximum levels = Maximum._8;
 
     /** Objects we have visited */
-    private final Set<Object> visited = Sets.identitySet();
+    private final Set<Object> visited = new IdentitySet<>();
 
     /**
      * By default, an indenter includes all properties and fields explicitly marked with {@link KivaKitIncludeProperty}
@@ -94,7 +94,7 @@ public class AsStringIndenter
      */
     public AsStringIndenter(StringFormattable.Format format, int level)
     {
-        this(format, level, PropertyFilter.kivakitProperties(INCLUDED_FIELDS_AND_METHODS, INCLUDED_FIELDS));
+        this(format, level, PropertyFilter.kivakitProperties(KIVAKIT_ANNOTATION_INCLUDED_FIELDS_AND_METHODS, KIVAKIT_ANNOTATION_INCLUDED_FIELDS));
     }
 
     /**
@@ -126,8 +126,8 @@ public class AsStringIndenter
     }
 
     /**
-     * Recursively formats the given object, including nested {@link Collection}s, fields and methods marked with {@link
-     * KivaKitIncludeProperty} and sub-objects implementing {@link AsIndentedString}.
+     * Recursively formats the given object, including nested {@link Collection}s, fields and methods marked with
+     * {@link KivaKitIncludeProperty} and sub-objects implementing {@link AsIndentedString}.
      */
     public AsStringIndenter asString(Object object)
     {

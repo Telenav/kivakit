@@ -18,10 +18,11 @@
 
 package com.telenav.kivakit.core.value.count;
 
-import com.telenav.kivakit.core.language.primitive.Doubles;
 import com.telenav.kivakit.core.internal.lexakai.DiagramCount;
+import com.telenav.kivakit.core.language.primitive.Doubles;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.string.Strings;
+import com.telenav.kivakit.interfaces.value.DoubleValued;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.lang.reflect.Array;
@@ -76,7 +77,9 @@ import java.util.regex.Pattern;
  */
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramCount.class)
-public final class Bytes extends BaseCount<Bytes> implements ByteSized
+public final class Bytes extends BaseCount<Bytes> implements
+        ByteSized,
+        DoubleValued
 {
     /** Pattern for string parsing. */
     private static final Pattern PATTERN = Pattern.compile("([0-9]+([.,][0-9]+)?)\\s*(|K|M|G|T)B?",
@@ -329,6 +332,15 @@ public final class Bytes extends BaseCount<Bytes> implements ByteSized
     public double asTerabytes()
     {
         return asGigabytes() / 1024.0;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public double doubleValue()
+    {
+        return asBytes();
     }
 
     @Override

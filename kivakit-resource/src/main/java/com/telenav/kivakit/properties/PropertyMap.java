@@ -25,6 +25,7 @@ import com.telenav.kivakit.core.collections.map.VariableMap;
 import com.telenav.kivakit.core.language.reflection.Type;
 import com.telenav.kivakit.core.language.reflection.property.PropertyFilter;
 import com.telenav.kivakit.core.locale.Locale;
+import com.telenav.kivakit.core.locale.LocaleLanguage;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.progress.ProgressReporter;
 import com.telenav.kivakit.core.string.AsciiArt;
@@ -153,9 +154,9 @@ public class PropertyMap extends VariableMap<String>
         return properties;
     }
 
-    public static PropertyMap localized(Listener listener, PackagePath path, Locale locale)
+    public static PropertyMap localized(Listener listener, PackagePath path, Locale locale, LocaleLanguage languageName)
     {
-        return PropertyMap.load(listener, packageResource(listener, path, locale.path().join("/")));
+        return PropertyMap.load(listener, packageResource(listener, path, locale.path(languageName).join("/")));
     }
 
     public static PropertyMap propertyMap(VariableMap<String> variables)

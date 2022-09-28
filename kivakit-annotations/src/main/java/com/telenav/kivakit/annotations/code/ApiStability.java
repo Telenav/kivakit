@@ -19,6 +19,9 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NE
             reviewers = "shibo")
 public enum ApiStability
 {
+    /** The API is not public, and should not be used outside of the KivaKit framework */
+    NOT_PUBLIC,
+
     /** The API is not expected to change */
     STABLE,
 

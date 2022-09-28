@@ -20,6 +20,7 @@ package com.telenav.kivakit.network.ftp;
 
 import com.telenav.kivakit.core.collections.list.ObjectList;
 import com.telenav.kivakit.core.io.IO;
+import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.progress.ProgressReporter;
 import com.telenav.kivakit.core.value.count.Bytes;
 import com.telenav.kivakit.core.value.count.Count;
@@ -30,6 +31,7 @@ import com.telenav.kivakit.network.core.NetworkPath;
 import com.telenav.kivakit.network.core.Protocol;
 import com.telenav.kivakit.network.ftp.internal.lexakai.DiagramFtp;
 import com.telenav.kivakit.resource.CopyMode;
+import com.telenav.kivakit.resource.Resource;
 import com.telenav.kivakit.resource.writing.WritableResource;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
@@ -80,7 +82,7 @@ public class FtpResource extends BaseNetworkResource
             super.close();
 
             // Close the wrapped input stream.
-            IO.close(in);
+            IO.close((Resource) this, in);
 
             // Logout of the FTP site.
             if (client.isConnected())
@@ -123,7 +125,7 @@ public class FtpResource extends BaseNetworkResource
     }
 
     @Override
-    public void copyTo(WritableResource destination, CopyMode mode, ProgressReporter reporter)
+    public void copyTo(Listener listener, WritableResource destination, CopyMode mode, ProgressReporter reporter)
     {
         try
         {
@@ -144,7 +146,7 @@ public class FtpResource extends BaseNetworkResource
         }
         catch (IOException e)
         {
-            throw new IllegalStateException("Unable to download file to " + destination, e);
+            listener.problem(e, "Unable to download file to " + destination, e);
         }
     }
 

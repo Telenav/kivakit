@@ -1,8 +1,9 @@
-package com.telenav.kivakit.core.messaging.alarms;
+package com.telenav.kivakit.core.messaging.listeners;
 
-import com.telenav.kivakit.core.messaging.Message;
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.messaging.Broadcaster;
 import com.telenav.kivakit.core.messaging.Listener;
+import com.telenav.kivakit.core.messaging.Message;
 import com.telenav.kivakit.core.messaging.Repeater;
 import com.telenav.kivakit.core.messaging.messages.status.Problem;
 import com.telenav.kivakit.core.time.Duration;
@@ -11,17 +12,21 @@ import com.telenav.kivakit.core.time.Rate;
 import com.telenav.kivakit.core.time.RateCalculator;
 import com.telenav.kivakit.core.time.Time;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXPANDABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
 import static com.telenav.kivakit.core.time.Duration.ONE_MINUTE;
 
 /**
- * Base class for implementing message alarms.
+ * Base class for implementing message alarms that trigger when alarming messages are received at a high rate.
  *
  * <p><b>Installing a Message Alarm</b></p>
  *
  * <p>
- * A {@link MessageAlarm} is a {@link Listener} which can listen to messages from any {@link Broadcaster} or {@link
- * Repeater} when installed with {@link MessageAlarm#listenTo(Broadcaster)}. For example:
+ * A {@link MessageAlarm} is a {@link Listener} which can listen to messages from any {@link Broadcaster} or
+ * {@link Repeater} when installed with {@link MessageAlarm#listenTo(Broadcaster)}. For example:
  * </p>
+ *
  * <pre>
  * public void onRun()
  * {
@@ -32,8 +37,8 @@ import static com.telenav.kivakit.core.time.Duration.ONE_MINUTE;
  * <p>
  * The installed alarm will be triggered when the error {@link #rate()} exceeds {@link #triggerRate()}, which defaults
  * to 10 errors per minute. This default value can be overridden with {@link #triggerRate(Rate)}. The maximum alarm
- * trigger frequency defaults to once every 30 minutes. This value can be overridden with {@link
- * #maximumTriggerFrequency(Frequency)}.
+ * trigger frequency defaults to once every 30 minutes. This value can be overridden with
+ * {@link #maximumTriggerFrequency(Frequency)}.
  * </p>
  *
  * <p><b>Implementing an Alarm</b></p>
@@ -42,13 +47,18 @@ import static com.telenav.kivakit.core.time.Duration.ONE_MINUTE;
  * To implement an alarm, override {@link #onTrigger(Rate)} and implement the alarm action. By default, the alarm will
  * be triggered when {@link #shouldTrigger()} returns true. By default, {@link #shouldTrigger()} returns true if the
  * current error {@link #rate()} exceeds {@link #triggerRate()}. The current error {@link #rate()} is computed with a
- * {@link RateCalculator} that automatically resets once a minute. MessageTransceiver are categorized as errors (or not) by {@link
- * #isError(Message)}, which returns true if the message status is worse-than-or-equal-to {@link Problem} by default.
+ * {@link RateCalculator} that automatically resets once a minute. MessageTransceiver are categorized as errors (or not)
+ * by {@link #isAlarming(Message)}, which returns true if the message status is worse-than-or-equal-to {@link Problem}
+ * by default.
  * </p>
  *
  * @author jonathanl (shibo)
  */
-public abstract class BaseMessageAlarm implements MessageAlarm
+@SuppressWarnings("unused")
+@ApiQuality(stability = STABLE_EXPANDABLE,
+            testing = UNTESTED,
+            documentation = FULLY_DOCUMENTED)
+public abstract class MessageAlarm implements Listener
 {
     /** Computes the rate of errors received */
     private final RateCalculator errorRate = new RateCalculator(ONE_MINUTE);
@@ -68,7 +78,7 @@ public abstract class BaseMessageAlarm implements MessageAlarm
     /**
      * Sets the maximum frequency at which this alarm can be triggered
      */
-    public BaseMessageAlarm maximumTriggerFrequency(Frequency maximumTriggerFrequency)
+    public MessageAlarm maximumTriggerFrequency(Frequency maximumTriggerFrequency)
     {
         this.maximumTriggerFrequency = maximumTriggerFrequency;
         return this;
@@ -81,7 +91,7 @@ public abstract class BaseMessageAlarm implements MessageAlarm
     public final synchronized void onMessage(Message message)
     {
         // If the message is an error,
-        if (isError(message))
+        if (isAlarming(message))
         {
             // increment the number of errors,
             errorRate.increment();
@@ -103,7 +113,6 @@ public abstract class BaseMessageAlarm implements MessageAlarm
      *
      * @return True if this alarm should be triggered
      */
-    @Override
     public boolean shouldTrigger()
     {
         return rate().isFasterThan(triggerRate);
@@ -112,7 +121,6 @@ public abstract class BaseMessageAlarm implements MessageAlarm
     /**
      * {@inheritDoc}
      */
-    @Override
     public final void trigger(Rate rate)
     {
         onTrigger(rate);
@@ -123,7 +131,7 @@ public abstract class BaseMessageAlarm implements MessageAlarm
      *
      * @param triggerRate The rate of error messages at which this alarm will be triggered
      */
-    public BaseMessageAlarm triggerRate(Rate triggerRate)
+    public MessageAlarm triggerRate(Rate triggerRate)
     {
         this.triggerRate = triggerRate;
         return this;
@@ -143,7 +151,7 @@ public abstract class BaseMessageAlarm implements MessageAlarm
      * @param message The message
      * @return True if the message is a problem that should be counted
      */
-    protected boolean isError(Message message)
+    protected boolean isAlarming(Message message)
     {
         return message.isWorseThanOrEqualTo(Problem.class);
     }

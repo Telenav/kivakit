@@ -92,12 +92,6 @@ public class Formatter
         return message;
     }
 
-    public enum Format
-    {
-        WITHOUT_EXCEPTION,
-        WITH_EXCEPTION
-    }
-
     @SuppressWarnings({ "unchecked" })
     private static <T> T cast(Object object, Class<T> type)
     {

@@ -21,8 +21,11 @@ package com.telenav.kivakit.core.time;
 import com.telenav.kivakit.core.internal.lexakai.DiagramTime;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.value.level.Percent;
+import com.telenav.kivakit.interfaces.time.Awaitable;
 import com.telenav.kivakit.interfaces.time.LengthOfTime;
 import com.telenav.kivakit.interfaces.time.Nanoseconds;
+import com.telenav.kivakit.interfaces.time.WakeState;
+import com.telenav.kivakit.interfaces.value.DoubleValued;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.lang.management.ManagementFactory;
@@ -43,8 +46,8 @@ import static java.util.regex.Pattern.CASE_INSENSITIVE;
  * <p>
  * Some convenience methods take or produce <i>double values</i>, which are only precise up to 2^53 nanoseconds, or
  * approximately 0.285 years (at this time). If it is desirable to avoid imprecision for values larger than this, avoid
- * using these methods, and the {@link #nanoseconds()} method will provide the fully-accurate underlying {@link
- * BigDecimal} value.
+ * using these methods, and the {@link #nanoseconds()} method will provide the fully-accurate underlying
+ * {@link BigDecimal} value.
  * </p>
  *
  * <p><b>Creation</b></p>
@@ -97,7 +100,7 @@ import static java.util.regex.Pattern.CASE_INSENSITIVE;
  */
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramTime.class)
-public class Duration implements LengthOfTime<Duration>
+public class Duration implements LengthOfTime<Duration>, DoubleValued
 {
     /** Constant for maximum duration. */
     public static final Duration MAXIMUM = nanoseconds(Long.MAX_VALUE);
@@ -119,7 +122,7 @@ public class Duration implements LengthOfTime<Duration>
 
     /** Constant for one minute. */
     public static final Duration ONE_MINUTE = minutes(1);
-    
+
     /** Constant for one millisecond. */
     public static final Duration ONE_MILLISECOND = milliseconds(1);
 
@@ -373,9 +376,57 @@ public class Duration implements LengthOfTime<Duration>
         return Frequency.every(this);
     }
 
+    @Override
+    public java.time.Duration asJavaDuration()
+    {
+        return LengthOfTime.super.asJavaDuration();
+    }
+
+    @Override
+    public String asString(Format format)
+    {
+        return LengthOfTime.super.asString(format);
+    }
+
+    @Override
+    public WakeState await(Awaitable awaitable)
+    {
+        return LengthOfTime.super.await(awaitable);
+    }
+
+    @Override
+    public int compareTo(LengthOfTime<?> that)
+    {
+        return LengthOfTime.super.compareTo(that);
+    }
+
+    @Override
+    public Duration difference(Duration that)
+    {
+        return LengthOfTime.super.difference(that);
+    }
+
+    @Override
+    public Duration dividedBy(double value)
+    {
+        return LengthOfTime.super.dividedBy(value);
+    }
+
+    @Override
+    public Duration dividedBy(long value)
+    {
+        return LengthOfTime.super.dividedBy(value);
+    }
+
     public double dividedBy(Duration that)
     {
         return nanoseconds().dividedBy(that.nanoseconds());
+    }
+
+    @Override
+    public double doubleValue()
+    {
+        return asMilliseconds();
     }
 
     @Override
@@ -398,6 +449,12 @@ public class Duration implements LengthOfTime<Duration>
     public boolean isMaximum()
     {
         return equals(Duration.MAXIMUM);
+    }
+
+    @Override
+    public long longValue()
+    {
+        return LengthOfTime.super.longValue();
     }
 
     public Duration longerBy(Percent percentage)
@@ -437,6 +494,7 @@ public class Duration implements LengthOfTime<Duration>
         return nanoseconds;
     }
 
+    @Override
     public Duration nearest(Duration unit)
     {
         var units = dividedBy(unit);

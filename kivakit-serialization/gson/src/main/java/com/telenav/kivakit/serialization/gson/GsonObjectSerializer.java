@@ -68,7 +68,7 @@ public class GsonObjectSerializer implements
         return tryCatchThrow(() ->
         {
             // Read JSON from input,
-            var json = IO.string(input);
+            var json = IO.string(this, input);
 
             // get the type to read,
             var type = Arrays.contains(metadata, TYPE)
@@ -115,12 +115,15 @@ public class GsonObjectSerializer implements
                 json = json.replaceAll("\\s*\\{", "{\n\"instance\": \"" + object.instance() + "\"");
             }
 
-            new OutputResource(output).printWriter().println(json);
+            try (var out = new OutputResource(output).printWriter())
+            {
+                out.println(json);
+            }
         }, "Unable to write to: $", path);
     }
 
     @NotNull
-    private InstanceIdentifier instance(final String json, final ObjectMetadata[] metadata)
+    private InstanceIdentifier instance(String json, ObjectMetadata[] metadata)
     {
         var instance = InstanceIdentifier.SINGLETON;
         var instanceMatcher = INSTANCE_PATTERN.matcher(json);
@@ -132,7 +135,7 @@ public class GsonObjectSerializer implements
     }
 
     @Nullable
-    private <T> Class<T> type(final String json, final ObjectMetadata[] metadata, final Class<T> typeToRead)
+    private <T> Class<T> type(String json, ObjectMetadata[] metadata, Class<T> typeToRead)
     {
         Class<T> type = typeToRead;
         if (type == null && TYPE.containedIn(metadata))
@@ -148,7 +151,7 @@ public class GsonObjectSerializer implements
     }
 
     @Nullable
-    private Version version(final String json)
+    private Version version(String json)
     {
         Version version = null;
         var versionMatcher = VERSION_PATTERN.matcher(json);
