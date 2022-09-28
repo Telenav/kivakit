@@ -18,12 +18,16 @@
 
 package com.telenav.kivakit.core.thread;
 
-import com.telenav.kivakit.core.messaging.Listener;
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramThread;
-import com.telenav.kivakit.interfaces.lifecycle.Pausable;
+import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.time.Frequency;
+import com.telenav.kivakit.interfaces.lifecycle.Pausable;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXPANDABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
 import static com.telenav.kivakit.core.thread.KivaKitThread.State.PAUSED;
 import static com.telenav.kivakit.core.thread.KivaKitThread.State.PAUSE_REQUESTED;
 import static com.telenav.kivakit.core.thread.KivaKitThread.State.RESUME_REQUESTED;
@@ -37,11 +41,14 @@ import static com.telenav.kivakit.core.thread.KivaKitThread.State.STOP_REQUESTED
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramThread.class)
+@ApiQuality(stability = STABLE_EXPANDABLE,
+            testing = UNTESTED,
+            documentation = FULLY_DOCUMENTED)
 public class RepeatingThread extends KivaKitThread implements Pausable
 {
     /**
-     * @return A started thread with the given name that will run the given code at the given frequency. Unlike {@link
-     * KivaKitThread#repeat}, this thread can be paused and resumed.
+     * @return A started thread with the given name that will run the given code at the given frequency. Unlike
+     * {@link KivaKitThread#repeat}, this thread can be paused and resumed.
      */
     public static RepeatingThread run(Listener listener,
                                       String name,
@@ -54,8 +61,8 @@ public class RepeatingThread extends KivaKitThread implements Pausable
     }
 
     /**
-     * @return A started thread with the given name that will run the given code repeatedly. Unlike {@link
-     * KivaKitThread#repeat}, this thread can be paused and resumed.
+     * @return A started thread with the given name that will run the given code repeatedly. Unlike
+     * {@link KivaKitThread#repeat}, this thread can be paused and resumed.
      */
     public static RepeatingThread run(Listener listener,
                                       String name,
@@ -96,12 +103,18 @@ public class RepeatingThread extends KivaKitThread implements Pausable
         return this;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean isPaused()
     {
         return is(PAUSED);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void pause()
     {
@@ -110,6 +123,9 @@ public class RepeatingThread extends KivaKitThread implements Pausable
         trace("Paused");
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void resume()
     {

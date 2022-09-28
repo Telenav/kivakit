@@ -18,6 +18,7 @@
 
 package com.telenav.kivakit.core.thread.latches;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramThread;
 import com.telenav.kivakit.core.time.Duration;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
@@ -25,23 +26,37 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
+
 /**
  * A latch that waits for the initialization of something by another thread. The latch is waited on by one thread with
- * {@link #await(Duration)} and it is signaled by another thread via {@link #ready()}.
+ * {@link #awaitInitialization(Duration)} and it is signaled by another thread via {@link #initializationComplete()}.
  *
  * @author jonathanl (shibo)
  */
+@SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramThread.class)
+@ApiQuality(stability = STABLE,
+            testing = UNTESTED,
+            documentation = FULLY_DOCUMENTED)
 public class InitializationLatch
 {
     private CountDownLatch countdown = new CountDownLatch(1);
 
-    public boolean await()
+    /**
+     * Awaits initialization forever
+     */
+    public boolean awaitInitialization()
     {
-        return await(Duration.MAXIMUM);
+        return awaitInitialization(Duration.MAXIMUM);
     }
 
-    public boolean await(Duration duration)
+    /**
+     * Awaits initialization for the given duration
+     */
+    public boolean awaitInitialization(Duration duration)
     {
         try
         {
@@ -53,19 +68,28 @@ public class InitializationLatch
         return false;
     }
 
-    public boolean isReady()
+    /**
+     * Called to indicate that initialization is complete
+     */
+    public void initializationComplete()
     {
-        return countdown.getCount() == 0;
-    }
-
-    public void ready()
-    {
-        if (!isReady())
+        if (!isInitialized())
         {
             countdown.countDown();
         }
     }
 
+    /**
+     * True if initialization is completed
+     */
+    public boolean isInitialized()
+    {
+        return countdown.getCount() == 0;
+    }
+
+    /**
+     * Resets this latch for another use
+     */
     public void reset()
     {
         countdown = new CountDownLatch(1);

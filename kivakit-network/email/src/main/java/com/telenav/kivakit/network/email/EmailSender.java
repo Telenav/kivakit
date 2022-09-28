@@ -134,7 +134,7 @@ public abstract class EmailSender extends BaseRepeater implements
             }
             if (queue().isEmpty())
             {
-                queueEmpty.completed();
+                queueEmpty.threadCompleted();
             }
         }
 
@@ -185,7 +185,7 @@ public abstract class EmailSender extends BaseRepeater implements
     public void flush(Duration maximumWaitTime)
     {
         trace("Flushing queue within ${debug}", maximumWaitTime);
-        queueEmpty.waitForCompletion();
+        queueEmpty.waitForAllThreadsToComplete();
         trace("Flushed");
     }
 

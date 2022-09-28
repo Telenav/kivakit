@@ -18,32 +18,44 @@
 
 package com.telenav.kivakit.core.thread.latches;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramThread;
-import com.telenav.kivakit.interfaces.time.WakeState;
 import com.telenav.kivakit.core.time.Duration;
 import com.telenav.kivakit.core.value.count.Count;
+import com.telenav.kivakit.interfaces.time.WakeState;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
 
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
+
 /**
  * A simple wrapper around {@link CountDownLatch} that makes code easier to understand. A completion latch can be
- * constructed for one thread with the default constructor or for any number of threads with {@link
- * #CompletionLatch(Count)}. The resulting latch can be waited on by {@link #waitForCompletion()} and {@link
- * #waitForCompletion(Duration)} and completion of a thread can be signaled by calling {@link #completed()}, indicating
- * that the awaited operation has completed. The <i>wait*()</i> methods return the cause for waking, either {@link
- * WakeState#INTERRUPTED}, {@link WakeState#TIMED_OUT} OR {@link WakeState#COMPLETED}. The method {@link
- * #hasCompleted()} returns true if the operation has completed.
+ * constructed for one thread with the default constructor or for any number of threads with
+ * {@link #CompletionLatch(Count)}. The resulting latch can be waited on by {@link #waitForAllThreadsToComplete()} and
+ * {@link #waitForAllThreadsToComplete(Duration)} and completion of a thread can be signaled by calling
+ * {@link #threadCompleted()}, indicating that the awaited operation has completed. The <i>wait*()</i> methods return
+ * the cause for waking, either {@link WakeState#INTERRUPTED}, {@link WakeState#TIMED_OUT} OR
+ * {@link WakeState#COMPLETED}. The method {@link #allThreadsHaveCompleted()} returns true if the operation has
+ * completed.
  *
  * @author jonathanl (shibo)
  */
+@SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramThread.class)
+@ApiQuality(stability = STABLE,
+            testing = UNTESTED,
+            documentation = FULLY_DOCUMENTED)
 public class CompletionLatch
 {
+    /** The underlying countdown latch */
     private CountDownLatch countdown;
 
+    /** The number of threads that need to complete */
     private final Count threads;
 
     public CompletionLatch()
@@ -57,23 +69,32 @@ public class CompletionLatch
         reset();
     }
 
-    public void completed()
-    {
-        countdown.countDown();
-    }
-
-    public boolean hasCompleted()
+    /**
+     * Returns true when all threads have completed
+     */
+    public boolean allThreadsHaveCompleted()
     {
         return countdown.getCount() == 0;
     }
 
+    /**
+     * Resets this latch for another use
+     */
     public void reset()
     {
         countdown = new CountDownLatch(threads.asInt());
     }
 
+    /**
+     * Called when a thread completes
+     */
+    public void threadCompleted()
+    {
+        countdown.countDown();
+    }
+
     @UmlRelation(label = "waits until")
-    public WakeState waitForCompletion(Duration duration)
+    public WakeState waitForAllThreadsToComplete(Duration duration)
     {
         try
         {
@@ -85,8 +106,8 @@ public class CompletionLatch
         }
     }
 
-    public WakeState waitForCompletion()
+    public WakeState waitForAllThreadsToComplete()
     {
-        return waitForCompletion(Duration.MAXIMUM);
+        return waitForAllThreadsToComplete(Duration.MAXIMUM);
     }
 }

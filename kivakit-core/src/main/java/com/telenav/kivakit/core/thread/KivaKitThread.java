@@ -18,6 +18,7 @@
 
 package com.telenav.kivakit.core.thread;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.code.UncheckedVoidCode;
 import com.telenav.kivakit.core.ensure.Ensure;
 import com.telenav.kivakit.core.internal.lexakai.DiagramThread;
@@ -42,6 +43,9 @@ import org.jetbrains.annotations.MustBeInvokedByOverriders;
 import java.util.HashSet;
 import java.util.Set;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXPANDABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
 import static com.telenav.kivakit.core.thread.KivaKitThread.State.CREATED;
 import static com.telenav.kivakit.core.thread.KivaKitThread.State.EXITED;
 import static com.telenav.kivakit.core.thread.KivaKitThread.State.RAN;
@@ -80,9 +84,9 @@ import static com.telenav.kivakit.core.thread.KivaKitThread.State.WAITING;
  *
  * <ul>
  *     <li>{@link #daemon(boolean)} - Makes this thread a daemon if true, must be set before the thread is started</li>
- *     <li>{@link #highPriority()} - Makes this thread high priority</li>
+ *     <li>{@link #makeHighPriority()} - Makes this thread high priority</li>
  *     <li>{@link #initialDelay(Duration)} - Sets a delay that should pass before this thread starts to execute user code</li>
- *     <li>{@link #lowPriority()} - Makes this thread low priority</li>
+ *     <li>{@link #makeLowPriority()} - Makes this thread low priority</li>
  *     <li>{@link #startedAt()} - The time at which this thread transitioned to {@link State#RUNNING}</li>
  *     <li>{@link #stateMachine()} - The current state of the thread as a {@link StateMachine} that can be waited on</li>
  *     <li>{@link #thread()} - The underlying Java thread object</li>
@@ -126,9 +130,11 @@ import static com.telenav.kivakit.core.thread.KivaKitThread.State.WAITING;
  * @see Stoppable
  * @see Repeater
  */
-@SuppressWarnings("UnusedReturnValue")
+@SuppressWarnings({ "UnusedReturnValue", "unused" })
 @UmlClassDiagram(diagram = DiagramThread.class)
-@LexakaiJavadoc(complete = true)
+@ApiQuality(stability = STABLE_EXPANDABLE,
+            testing = UNTESTED,
+            documentation = FULLY_DOCUMENTED)
 public class KivaKitThread extends BaseRepeater implements
         Startable,
         Runnable,
@@ -271,15 +277,6 @@ public class KivaKitThread extends BaseRepeater implements
     }
 
     /**
-     * Makes this thread high priority
-     */
-    public KivaKitThread highPriority()
-    {
-        thread.setPriority(Thread.MAX_PRIORITY);
-        return this;
-    }
-
-    /**
      * Sets an initial delay before the thread's user code starts executing
      */
     public KivaKitThread initialDelay(Duration initialDelay)
@@ -329,9 +326,18 @@ public class KivaKitThread extends BaseRepeater implements
     }
 
     /**
+     * Makes this thread high priority
+     */
+    public KivaKitThread makeHighPriority()
+    {
+        thread.setPriority(Thread.MAX_PRIORITY);
+        return this;
+    }
+
+    /**
      * Makes this a low priority thread
      */
-    public KivaKitThread lowPriority()
+    public KivaKitThread makeLowPriority()
     {
         thread.setPriority(Thread.MIN_PRIORITY);
         return this;

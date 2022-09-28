@@ -18,6 +18,7 @@
 
 package com.telenav.kivakit.core.thread;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramThread;
 import com.telenav.kivakit.core.thread.locks.Lock;
 import com.telenav.kivakit.core.time.Duration;
@@ -33,6 +34,9 @@ import java.util.List;
 import java.util.concurrent.locks.Condition;
 import java.util.function.Predicate;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXPANDABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
 import static com.telenav.kivakit.core.time.Duration.seconds;
 import static com.telenav.kivakit.interfaces.time.WakeState.COMPLETED;
 import static com.telenav.kivakit.interfaces.time.WakeState.INTERRUPTED;
@@ -40,8 +44,8 @@ import static com.telenav.kivakit.interfaces.time.WakeState.TERMINATED;
 import static com.telenav.kivakit.interfaces.time.WakeState.TIMED_OUT;
 
 /**
- * Allows a thread to wait for a particular state or for predicate to be satisfied by some other thread calling {@link
- * #signal(Object)}.
+ * Allows a thread to wait for a particular state or for predicate to be satisfied by some other thread calling
+ * {@link #signal(Object)}.
  *
  * <p>
  * A thread waiting for a particular value calls one of:
@@ -65,6 +69,9 @@ import static com.telenav.kivakit.interfaces.time.WakeState.TIMED_OUT;
  */
 @UmlClassDiagram(diagram = DiagramThread.class)
 @LexakaiJavadoc(complete = true)
+@ApiQuality(stability = STABLE_EXPANDABLE,
+            testing = UNTESTED,
+            documentation = FULLY_DOCUMENTED)
 public final class StateWatcher<State>
 {
     /**
@@ -73,17 +80,17 @@ public final class StateWatcher<State>
     @LexakaiJavadoc(complete = true)
     private class Waiter
     {
-        private Waiter(Predicate<State> predicate, Condition condition)
-        {
-            this.predicate = predicate;
-            this.condition = condition;
-        }
-
         /** The predicate that must be satisfied */
         final Predicate<State> predicate;
 
         /** The condition variable to wait on and signal */
         final Condition condition;
+
+        private Waiter(Predicate<State> predicate, Condition condition)
+        {
+            this.predicate = predicate;
+            this.condition = condition;
+        }
     }
 
     /** The most recently reported state */

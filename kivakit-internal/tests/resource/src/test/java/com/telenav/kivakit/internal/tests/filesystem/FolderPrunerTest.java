@@ -51,7 +51,7 @@ public class FolderPrunerTest extends UnitTest
             @Override
             protected void onFileRemoved(File file)
             {
-                removed.completed();
+                removed.threadCompleted();
             }
         };
         pruner.capacity(Bytes.bytes(4));
@@ -66,7 +66,7 @@ public class FolderPrunerTest extends UnitTest
         file2.writer().save("def");
 
         // Wait for a file to get removed
-        removed.waitForCompletion();
+        removed.waitForAllThreadsToComplete();
 
         // Because of file system time granularity either file could get removed, but not both
         ensure(file1.exists() || file2.exists());

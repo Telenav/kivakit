@@ -18,9 +18,13 @@
 
 package com.telenav.kivakit.core.thread;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramThread;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
 import static com.telenav.kivakit.core.thread.ReentrancyTracker.Reentrancy.ENTERED;
 import static com.telenav.kivakit.core.thread.ReentrancyTracker.Reentrancy.EXITED;
 import static com.telenav.kivakit.core.thread.ReentrancyTracker.Reentrancy.EXITED_REENTRY;
@@ -41,6 +45,9 @@ import static com.telenav.kivakit.core.thread.ReentrancyTracker.Reentrancy.REENT
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramThread.class)
+@ApiQuality(stability = STABLE,
+            testing = UNTESTED,
+            documentation = FULLY_DOCUMENTED)
 public class ReentrancyTracker
 {
     public enum Reentrancy
@@ -88,8 +95,8 @@ public class ReentrancyTracker
     }
 
     /**
-     * @return True if the current thread has reentered the code between the {@link #enter()} call and the {@link
-     * #exit()} call
+     * @return True if the current thread has reentered the code between the {@link #enter()} call and the
+     * {@link #exit()} call
      */
     public boolean hasReentered()
     {

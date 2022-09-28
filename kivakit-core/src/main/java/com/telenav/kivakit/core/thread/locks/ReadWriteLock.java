@@ -18,12 +18,17 @@
 
 package com.telenav.kivakit.core.thread.locks;
 
-import com.telenav.kivakit.interfaces.value.Source;
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramThread;
+import com.telenav.kivakit.interfaces.value.Source;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.concurrent.locks.ReentrantLock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
+
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
 
 /**
  * A lock subclass that adds convenient features to {@link ReentrantLock}.
@@ -31,6 +36,9 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramThread.class)
+@ApiQuality(stability = STABLE,
+            testing = UNTESTED,
+            documentation = FULLY_DOCUMENTED)
 public class ReadWriteLock extends ReentrantReadWriteLock
 {
     public ReadWriteLock()
