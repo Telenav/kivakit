@@ -30,7 +30,7 @@ import com.telenav.kivakit.core.logging.filters.LogEntriesWithSeverityGreaterTha
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.messaging.messages.Severity;
 import com.telenav.kivakit.core.messaging.messages.status.Problem;
-import com.telenav.kivakit.core.os.ConsoleWriter;
+import com.telenav.kivakit.core.os.Console;
 import com.telenav.kivakit.core.string.ObjectFormatter;
 import com.telenav.kivakit.core.string.Plural;
 import com.telenav.kivakit.core.thread.RepeatingThread;
@@ -122,7 +122,7 @@ public abstract class BaseLog implements
     static
     {
         // Determine if we are asynchronous or not
-        isAsynchronous = Properties.isPropertyFalse("KIVAKIT_LOG_SYNCHRONOUS");
+        isAsynchronous = Properties.isSystemPropertyOrEnvironmentVariableFalse("KIVAKIT_LOG_SYNCHRONOUS");
     }
 
     /**
@@ -306,7 +306,7 @@ public abstract class BaseLog implements
 
         if (!closed && accept(entry))
         {
-            JavaVirtualMachine.local().health().logEntry(entry);
+            JavaVirtualMachine.javaVirtualMachine().health().logEntry(entry);
 
             if (isAsynchronous())
             {
@@ -422,7 +422,7 @@ public abstract class BaseLog implements
             }
 
             {
-                addListener(new ConsoleWriter());
+                addListener(new Console());
             }
         };
         return writerThread.start();

@@ -47,7 +47,7 @@ public interface LogFormatter
      */
     static LogFormatter formatter()
     {
-        var formatter = JavaVirtualMachine.local().variables().get("KIVAKIT_LOG_FORMATTER");
+        var formatter = JavaVirtualMachine.javaVirtualMachine().systemPropertiesAndEnvironmentVariables().get("KIVAKIT_LOG_FORMATTER");
         return "Wide".equalsIgnoreCase(formatter)
                 ? new WideLogFormatter()
                 : new NarrowLogFormatter();

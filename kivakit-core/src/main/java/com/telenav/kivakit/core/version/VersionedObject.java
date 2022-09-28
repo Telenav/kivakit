@@ -18,9 +18,14 @@
 
 package com.telenav.kivakit.core.version;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.language.Hash;
 import com.telenav.kivakit.core.language.Objects;
 import com.telenav.kivakit.interfaces.naming.NamedObject;
+
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
 
 /**
  * An object of a particular version. Used in kryo serialization. For example FieldArchive and ZipArchive both have
@@ -29,12 +34,17 @@ import com.telenav.kivakit.interfaces.naming.NamedObject;
  *
  * @author jonathanl (shibo)
  */
+@ApiQuality(stability = STABLE,
+            testing = UNTESTED,
+            documentation = FULLY_DOCUMENTED)
 public class VersionedObject<T> implements
         NamedObject,
         Versioned
 {
+    /** The object */
     private T object;
 
+    /** The object version */
     private Version version;
 
     public VersionedObject()
@@ -48,7 +58,7 @@ public class VersionedObject<T> implements
     }
 
     @Override
-    public boolean equals(final Object object)
+    public boolean equals(Object object)
     {
         if (object instanceof VersionedObject)
         {

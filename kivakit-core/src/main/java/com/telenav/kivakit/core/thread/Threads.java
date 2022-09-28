@@ -98,6 +98,6 @@ public class Threads
 
     public static ExecutorService threadPool(String name)
     {
-        return threadPool(name, JavaVirtualMachine.local().processors());
+        return threadPool(name, JavaVirtualMachine.javaVirtualMachine().processors());
     }
 }

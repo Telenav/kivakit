@@ -1,6 +1,7 @@
 package com.telenav.kivakit.core.vm;
 
 import com.telenav.cactus.metadata.BuildMetadata;
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.collections.map.VariableMap;
 import com.telenav.kivakit.core.language.primitive.Booleans;
 import com.telenav.kivakit.core.os.OperatingSystem;
@@ -11,26 +12,22 @@ import com.telenav.kivakit.core.time.LocalTime;
 import java.util.HashMap;
 import java.util.Map;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_STATIC_EXPANDABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
+
 /**
  * Provides access to system properties, environment variables and project properties
  *
  * @author jonathanl (shibo)
  */
+@ApiQuality(stability = STABLE_STATIC_EXPANDABLE,
+            testing = UNTESTED,
+            documentation = FULLY_DOCUMENTED)
 public class Properties
 {
     /** A map from root package name to project properties */
     private static final Map<String, VariableMap<String>> projectProperties = new HashMap<>();
-
-    public static boolean isPropertyFalse(String key)
-    {
-        var value = property(key);
-        return value == null || Booleans.isFalse(value);
-    }
-
-    public static boolean isPropertyTrue(String key)
-    {
-        return Booleans.isTrue(property(key));
-    }
 
     /**
      * Returns a set of properties, including:
@@ -44,7 +41,7 @@ public class Properties
      * @return All relevant properties for the given project root class (normally a {@link Project} or Application
      * class).
      */
-    public static VariableMap<String> projectProperties(Class<?> projectRoot)
+    public static VariableMap<String> allProperties(Class<?> projectRoot)
     {
         var packageName = projectRoot.getPackageName();
         var properties = projectProperties.get(packageName);
@@ -52,7 +49,7 @@ public class Properties
         {
             var build = Build.build(projectRoot);
 
-            properties = JavaVirtualMachine.local().variables();
+            properties = JavaVirtualMachine.javaVirtualMachine().systemPropertiesAndEnvironmentVariables();
             properties.addAll(VariableMap.variableMap(BuildMetadata.of(projectRoot).projectProperties()));
             properties.put("version", properties.get("project-version"));
             properties.putIfNotNull("build-name", build.name());
@@ -68,7 +65,18 @@ public class Properties
         return properties;
     }
 
-    public static String property(String key)
+    public static boolean isSystemPropertyOrEnvironmentVariableFalse(String key)
+    {
+        var value = systemPropertyOrEnvironmentVariable(key);
+        return value == null || Booleans.isFalse(value);
+    }
+
+    public static boolean isSystemPropertyOrEnvironmentVariableTrue(String key)
+    {
+        return Booleans.isTrue(systemPropertyOrEnvironmentVariable(key));
+    }
+
+    public static String systemPropertyOrEnvironmentVariable(String key)
     {
         var value = System.getProperty(key);
         if (value == null)
@@ -78,9 +86,9 @@ public class Properties
         return value;
     }
 
-    public static String property(String key, String defaultValue)
+    public static String systemPropertyOrEnvironmentVariable(String key, String defaultValue)
     {
-        var value = property(key);
+        var value = systemPropertyOrEnvironmentVariable(key);
         return value == null ? defaultValue : value;
     }
 }

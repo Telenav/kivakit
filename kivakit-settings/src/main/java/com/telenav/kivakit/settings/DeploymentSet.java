@@ -69,7 +69,7 @@ public class DeploymentSet extends BaseRepeater implements RegistryTrait
         }
 
         // and if a deployment folder was specified, and it exists,
-        var deploymentFolder = PropertyMap.propertyMap(JavaVirtualMachine.local().properties())
+        var deploymentFolder = PropertyMap.propertyMap(JavaVirtualMachine.javaVirtualMachine().systemProperties())
                 .asFolder("KIVAKIT_DEPLOYMENT_FOLDER");
         if (deploymentFolder != null && deploymentFolder.exists())
         {

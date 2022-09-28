@@ -383,7 +383,7 @@ public class Multicaster implements Broadcaster
                 }
 
                 // Notify that there was nowhere to send the message.
-                if (Properties.isPropertyFalse("KIVAKIT_IGNORE_MISSING_LISTENERS"))
+                if (Properties.isSystemPropertyOrEnvironmentVariableFalse("KIVAKIT_IGNORE_MISSING_LISTENERS"))
                 {
                     var text = new IndentingStringBuilder();
                     for (var at : listenerChain())

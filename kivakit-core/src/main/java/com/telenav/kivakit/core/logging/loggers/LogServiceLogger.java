@@ -96,7 +96,7 @@ public class LogServiceLogger extends BaseLogger
             loaded = true;
 
             // so get log service descriptors
-            var descriptors = Properties.property("KIVAKIT_LOG");
+            var descriptors = Properties.systemPropertyOrEnvironmentVariable("KIVAKIT_LOG");
             if (descriptors != null)
             {
                 // and for each descriptor,

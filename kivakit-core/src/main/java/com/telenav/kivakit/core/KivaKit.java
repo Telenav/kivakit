@@ -18,13 +18,19 @@
 
 package com.telenav.kivakit.core;
 
-import com.telenav.kivakit.core.ensure.Ensure;
-import com.telenav.kivakit.core.project.Project;
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramProject;
-import com.telenav.lexakai.annotations.LexakaiJavadoc;
+import com.telenav.kivakit.core.path.StringPath;
+import com.telenav.kivakit.core.project.Project;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.nio.file.Path;
+
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_STATIC_EXPANDABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
+import static com.telenav.kivakit.core.ensure.Ensure.fail;
+import static com.telenav.kivakit.core.path.StringPath.parseStringPath;
 
 /**
  * This class defines a KivaKit {@link Project}. It cannot be constructed with the new operator since it has a private
@@ -32,8 +38,8 @@ import java.nio.file.Path;
  * {@link com.telenav.kivakit.core.project.ProjectTrait#project(Class)}.
  *
  * <p>
- * Information about KivaKit, including the home folder, the cache folder and the framework version. Since {@link
- * KivaKit} is a {@link Project} it inherits that functionality as well.
+ * Information about KivaKit, including the home folder, the cache folder and the framework version. Since
+ * {@link KivaKit} is a {@link Project} it inherits that functionality as well.
  * </p>
  *
  * @author jonathanl (shibo)
@@ -41,20 +47,22 @@ import java.nio.file.Path;
  * @see Path
  */
 @UmlClassDiagram(diagram = DiagramProject.class)
-@LexakaiJavadoc(complete = true)
+@ApiQuality(stability = STABLE_STATIC_EXPANDABLE,
+            testing = UNTESTED,
+            documentation = FULLY_DOCUMENTED)
 public class KivaKit extends Project
 {
     /**
      * @return The cache folder for KivaKit
      */
-    public Path cacheFolderPath()
+    public StringPath cacheFolderPath()
     {
         var version = projectVersion();
         if (version != null)
         {
-            return Path.of(System.getProperty("user.home"), ".kivakit", version.toString());
+            return parseStringPath(this, System.getProperty("user.home"), ".kivakit", version.toString());
         }
-        Ensure.fail("Unable to get version for cache folder");
+        fail("Unable to get version for cache folder");
         return null;
     }
 
@@ -67,13 +75,13 @@ public class KivaKit extends Project
      *
      * @return Path to KivaKit home if it's available in the environment or as a system property.
      */
-    public Path homeFolderPath()
+    public StringPath homeFolderPath()
     {
-        var home = systemProperty("KIVAKIT_HOME");
+        var home = systemPropertyOrEnvironmentVariable("KIVAKIT_HOME");
         if (home == null)
         {
             return null;
         }
-        return Path.of(home);
+        return parseStringPath(this, home, "/");
     }
 }

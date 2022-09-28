@@ -18,31 +18,59 @@
 
 package com.telenav.kivakit.core.version;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.messaging.Listener;
+
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXPANDABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
 
 /**
  * The release for a particular {@link Version}. For example "alpha", "beta" or "final".
  *
  * @author jonathanl (shibo)
  */
-public enum Release
+@SuppressWarnings("unused")
+@ApiQuality(stability = STABLE_EXPANDABLE,
+            testing = UNTESTED,
+            documentation = FULLY_DOCUMENTED)
+public enum ReleaseType
 {
-    ALPHA(1),
-    BETA(2),
-    RC(3),
-    FINAL(4),
-    M1(5),
-    M2(6),
-    M3(7),
-    M4(8),
-    M5(9),
-    M6(10),
-    M7(11),
-    M8(12),
-    M9(13),
-    RELEASE(14);
+    ALPHA,
+    BETA,
+    M1,
+    M2,
+    M3,
+    M4,
+    M5,
+    M6,
+    M7,
+    M8,
+    M9,
+    RC,
+    FINAL,
+    RELEASE;
 
-    public static Release forIdentifier(int identifier)
+    public static ReleaseType parseRelease(Listener listener, String value)
+    {
+        if (value != null)
+        {
+            for (var type : values())
+            {
+                if (type.name().equalsIgnoreCase(value))
+                {
+                    return type;
+                }
+            }
+        }
+        if ("SNAPSHOT".equalsIgnoreCase(value))
+        {
+            return null;
+        }
+        throw listener.problem("Invalid release: " + value).asException();
+    }
+
+    public static ReleaseType releaseForIdentifier(int identifier)
     {
         switch (identifier)
         {
@@ -77,43 +105,18 @@ public enum Release
         }
     }
 
-    public static Release parse(Listener listener, String value)
-    {
-        if (value != null)
-        {
-            for (var type : values())
-            {
-                if (type.name().equalsIgnoreCase(value))
-                {
-                    return type;
-                }
-            }
-        }
-        if ("SNAPSHOT".equalsIgnoreCase(value))
-        {
-            return null;
-        }
-        throw listener.problem("Invalid release: " + value).asException();
-    }
-
-    private final int identifier;
-
-    Release(int identifier)
-    {
-        this.identifier = identifier;
-    }
-
-    public int identifier()
-    {
-        return identifier;
-    }
-
-    public boolean isAfter(Release that)
+    /**
+     * Returns true if this release is after the given release
+     */
+    public boolean isAfter(ReleaseType that)
     {
         return ordinal() > that.ordinal();
     }
 
-    public boolean isBefore(Release that)
+    /**
+     * Returns true if this release is before the given release
+     */
+    public boolean isBefore(ReleaseType that)
     {
         return ordinal() < that.ordinal();
     }

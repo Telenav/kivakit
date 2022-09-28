@@ -283,7 +283,7 @@ public abstract class Project extends BaseRepeater implements
      */
     public VariableMap<String> properties()
     {
-        return Properties.projectProperties(getClass());
+        return Properties.allProperties(getClass());
     }
 
     /**

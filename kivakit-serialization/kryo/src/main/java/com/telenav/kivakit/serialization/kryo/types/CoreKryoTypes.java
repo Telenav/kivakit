@@ -65,7 +65,7 @@ import com.telenav.kivakit.core.value.count.MutableCount;
 import com.telenav.kivakit.core.value.count.Range;
 import com.telenav.kivakit.core.value.level.Level;
 import com.telenav.kivakit.core.value.level.Percent;
-import com.telenav.kivakit.core.version.Release;
+import com.telenav.kivakit.core.version.ReleaseType;
 import com.telenav.kivakit.core.version.Version;
 import com.telenav.kivakit.core.vm.JavaVirtualMachineHealth;
 import com.telenav.kivakit.core.vm.ThreadStatus;
@@ -109,7 +109,7 @@ public class CoreKryoTypes extends KryoTypes
         group("scalars", () ->
         {
             register(Version.class);
-            register(Release.class);
+            register(ReleaseType.class);
             register(Count.class);
             register(MutableCount.class);
             register(Level.class);

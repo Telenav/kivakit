@@ -31,7 +31,7 @@ public class JavaVirtualMachineTest extends CoreUnitTest
     @Test
     public void test()
     {
-        var vm = JavaVirtualMachine.local();
+        var vm = JavaVirtualMachine.javaVirtualMachine();
         ensure(vm.freeMemory().isGreaterThan(Bytes._0));
         ensure(vm.freeMemory().isLessThan(vm.maximumMemory()));
         ensure(vm.usedMemory().isGreaterThan(Bytes._0));
@@ -41,7 +41,7 @@ public class JavaVirtualMachineTest extends CoreUnitTest
     @Ignore
     public void testSizeOf()
     {
-        var vm = JavaVirtualMachine.local();
+        var vm = JavaVirtualMachine.javaVirtualMachine();
         ensureEqual(Bytes.bytes(4), vm.sizeOfPrimitive(4));
         ensureEqual(Bytes.bytes(8), vm.sizeOfPrimitive(4L));
         ensureEqual(Bytes.bytes(8), vm.sizeOfPrimitive(4.0));
@@ -56,7 +56,7 @@ public class JavaVirtualMachineTest extends CoreUnitTest
     @Ignore
     public void testSizeOfGraph()
     {
-        var vm = JavaVirtualMachine.local();
+        var vm = JavaVirtualMachine.javaVirtualMachine();
         final Set<Integer> set = new HashSet<>();
         for (var i = 0; i < 100; i++)
         {

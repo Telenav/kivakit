@@ -548,7 +548,7 @@ public abstract class Application extends BaseComponent implements
      */
     public PropertyMap properties()
     {
-        return PropertyMap.propertyMap(Properties.projectProperties(getClass()));
+        return PropertyMap.propertyMap(Properties.allProperties(getClass()));
     }
 
     public void ready()

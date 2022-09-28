@@ -248,7 +248,7 @@ public class Settings extends MemorySettingsStore implements
     private void loadSettingsFolders()
     {
         // Go through each path specified by the KIVAKIT_SETTINGS_FOLDERS environment variable
-        var settingsFolders = systemProperty("KIVAKIT_SETTINGS_FOLDERS");
+        var settingsFolders = systemPropertyOrEnvironmentVariable("KIVAKIT_SETTINGS_FOLDERS");
         if (settingsFolders != null)
         {
             for (var path : settingsFolders.split(",\\s*"))
