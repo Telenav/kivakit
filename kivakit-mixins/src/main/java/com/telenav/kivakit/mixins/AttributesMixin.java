@@ -1,9 +1,15 @@
 package com.telenav.kivakit.mixins;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.mixins.internal.lexakai.DiagramMixin;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.HashMap;
+
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE;
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXPANDABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
 
 /**
  * A {@link Mixin} that allows any object to have a set of attributes associated with it.
@@ -11,6 +17,9 @@ import java.util.HashMap;
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramMixin.class)
+@ApiQuality(stability = STABLE,
+            testing = UNTESTED,
+            documentation = FULLY_DOCUMENTED)
 public interface AttributesMixin<Key, Value> extends Mixin
 {
     default Value attribute(Key key)
