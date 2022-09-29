@@ -18,6 +18,7 @@
 
 package com.telenav.kivakit.application;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.application.internal.lexakai.DiagramApplication;
 import com.telenav.kivakit.commandline.ApplicationMetadata;
 import com.telenav.kivakit.commandline.ArgumentList;
@@ -77,7 +78,6 @@ import com.telenav.kivakit.serialization.properties.PropertiesObjectSerializer;
 import com.telenav.kivakit.settings.Deployment;
 import com.telenav.kivakit.settings.DeploymentSet;
 import com.telenav.kivakit.settings.SettingsTrait;
-import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlAggregation;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
@@ -91,12 +91,16 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import static com.telenav.kivakit.application.Application.State.CONSTRUCTING;
-import static com.telenav.kivakit.application.Application.State.INITIALIZING;
-import static com.telenav.kivakit.application.Application.State.READY;
-import static com.telenav.kivakit.application.Application.State.RUNNING;
-import static com.telenav.kivakit.application.Application.State.STOPPED;
-import static com.telenav.kivakit.application.Application.State.STOPPING;
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE;
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXPANDABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
+import static com.telenav.kivakit.application.Application.ExecutionState.CONSTRUCTING;
+import static com.telenav.kivakit.application.Application.ExecutionState.INITIALIZING;
+import static com.telenav.kivakit.application.Application.ExecutionState.READY;
+import static com.telenav.kivakit.application.Application.ExecutionState.RUNNING;
+import static com.telenav.kivakit.application.Application.ExecutionState.STOPPED;
+import static com.telenav.kivakit.application.Application.ExecutionState.STOPPING;
 import static com.telenav.kivakit.application.ExitCode.FAILED;
 import static com.telenav.kivakit.application.ExitCode.SUCCEEDED;
 import static com.telenav.kivakit.commandline.Quantifier.OPTIONAL;
@@ -135,8 +139,6 @@ import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
  *     <li>{@link NamedObject} - Provides component name</li>
  * </ul>
  *
- * <hr>
- *
  * <p><b>Creating an Application</b></p>
  *
  * <p>
@@ -154,16 +156,12 @@ import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
  *     [...]
  * }</pre>
  *
- * <hr>
- *
  * <p><b>Project Initialization</b></p>
  *
  * <p>
  * Application constructors should pass one or more {@link Project}s to the {@link Application} constructor to
  * ensure that all of the application's transitively dependent project(s) are initialized. See {@link Project} for details.
  * </p>
- *
- * <hr>
  *
  * <p><b>Application Metadata</b></p>
  *
@@ -177,8 +175,6 @@ import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
  *     <li>{@link #identifier()} - A unique identifier for the application class</li>
  * </ul>
  *
- * <hr>
- *
  * <p><b>Application Environment</b></p>
  *
  * <p>
@@ -189,8 +185,6 @@ import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
  *     <li>{@link #properties()} - System and environment properties</li>
  *     <li>{@link #localizedProperties(Locale)} - Properties that are specific to the {@link Locale}</li>
  * </ul>
- *
- * <hr>
  *
  * <p><b>Execution</b></p>
  *
@@ -222,8 +216,6 @@ import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
  * display the given message and show command line usage before exiting the application.
  * </p>
  *
- * <hr>
- *
  * <p><b>Command Line Parsing</b></p>
  *
  * <p>
@@ -253,15 +245,11 @@ import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
  *     <li>{@link #argument(int, ArgumentParser)} - Gets the nth argument using the given argument parser</li>
  * </ul>
  *
- * <hr>
- *
  * <p><b>Messaging and Logging</b></p>
  *
  * <p>
  * This class extends {@link BaseRepeater} and has a {@link Logger} that listens for messages and logs them.
  * </p>
- *
- * <hr>
  *
  * @author jonathanl (shibo)
  * @see BaseRepeater
@@ -271,7 +259,9 @@ import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
  */
 @SuppressWarnings({ "unused", "BooleanMethodIsAlwaysInverted" })
 @UmlClassDiagram(diagram = DiagramApplication.class)
-@LexakaiJavadoc(complete = true)
+@ApiQuality(stability = STABLE_EXPANDABLE,
+            testing = UNTESTED,
+            documentation = FULLY_DOCUMENTED)
 public abstract class Application extends BaseComponent implements
         PackageTrait,
         ProjectTrait,
@@ -336,7 +326,10 @@ public abstract class Application extends BaseComponent implements
         }
     }
 
-    public enum State
+    /**
+     * The application execution state
+     */
+    public enum ExecutionState
     {
         CONSTRUCTING,
         INITIALIZING,
@@ -353,7 +346,9 @@ public abstract class Application extends BaseComponent implements
      */
     @UmlClassDiagram(diagram = DiagramApplication.class)
     @UmlExcludeSuperTypes
-    @LexakaiJavadoc(complete = true)
+    @ApiQuality(stability = STABLE,
+                testing = UNTESTED,
+                documentation = FULLY_DOCUMENTED)
     public static class Identifier extends StringIdentifier
     {
         public Identifier(String identifier)
@@ -381,7 +376,7 @@ public abstract class Application extends BaseComponent implements
     private final Set<Project> projects = new IdentitySet<>();
 
     /** State machine for application lifecycle */
-    private final StateMachine<State> state = new StateMachine<>(CONSTRUCTING);
+    private final StateMachine<ExecutionState> state = new StateMachine<>(CONSTRUCTING);
 
     @UmlExcludeMember
     protected final SwitchParser<Boolean> QUIET =
