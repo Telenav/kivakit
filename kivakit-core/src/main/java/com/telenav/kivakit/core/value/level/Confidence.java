@@ -30,7 +30,6 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramCount.class)
-@LexakaiJavadoc(complete = true)
 public class Confidence extends Level
 {
     public static final Confidence FULL = new Confidence(1);

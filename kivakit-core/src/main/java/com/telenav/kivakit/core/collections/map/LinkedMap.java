@@ -36,7 +36,6 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.MORE_TESTING_N
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramCollections.class)
-@LexakaiJavadoc(complete = true)
 @ApiQuality(stability = STABLE_EXPANDABLE,
             testing = MORE_TESTING_NEEDED,
             documentation = FULLY_DOCUMENTED)

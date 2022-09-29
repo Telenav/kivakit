@@ -193,8 +193,7 @@ public class KivaKitThread extends BaseRepeater implements
      *
      * @author jonathanl (shibo)
      */
-    @LexakaiJavadoc(complete = true)
-    public enum State
+        public enum State
     {
         /** The thread has been created but is not yet running */
         CREATED,

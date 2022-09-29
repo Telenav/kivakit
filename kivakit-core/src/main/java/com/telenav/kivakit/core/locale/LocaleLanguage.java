@@ -41,7 +41,6 @@ import static com.telenav.kivakit.core.ensure.Ensure.ensure;
  */
 @SuppressWarnings({ "unused", "SpellCheckingInspection" })
 @UmlClassDiagram(diagram = DiagramLocale.class)
-@LexakaiJavadoc(complete = true)
 @ApiQuality(stability = STABLE_EXPANDABLE,
             testing = UNTESTED,
             documentation = FULLY_DOCUMENTED)

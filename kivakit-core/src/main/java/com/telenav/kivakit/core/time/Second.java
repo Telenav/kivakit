@@ -1,8 +1,12 @@
 package com.telenav.kivakit.core.time;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.language.primitive.Doubles;
 import com.telenav.kivakit.interfaces.time.Nanoseconds;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXPANDABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
 import static com.telenav.kivakit.core.ensure.Ensure.ensure;
 import static com.telenav.kivakit.core.time.BaseTime.Topology.CYCLIC;
 
@@ -12,6 +16,9 @@ import static com.telenav.kivakit.core.time.BaseTime.Topology.CYCLIC;
  * @author jonathanl (shibo)
  */
 @SuppressWarnings("unused")
+@ApiQuality(stability = STABLE_EXPANDABLE,
+            testing = UNTESTED,
+            documentation = FULLY_DOCUMENTED)
 public class Second extends BaseTime<Second>
 {
     static final Nanoseconds nanosecondsPerSecond = Nanoseconds.nanoseconds(1E9);

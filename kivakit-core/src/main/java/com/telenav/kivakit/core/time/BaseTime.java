@@ -1,5 +1,6 @@
 package com.telenav.kivakit.core.time;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.interfaces.string.StringFormattable;
 import com.telenav.kivakit.interfaces.time.LengthOfTime;
 import com.telenav.kivakit.interfaces.time.Nanoseconds;
@@ -7,6 +8,11 @@ import com.telenav.kivakit.interfaces.time.PointInTime;
 
 import java.util.Objects;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE;
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXPANDABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
 import static com.telenav.kivakit.core.ensure.Ensure.ensure;
 import static com.telenav.kivakit.core.time.BaseTime.Topology.CYCLIC;
 
@@ -49,6 +55,31 @@ import static com.telenav.kivakit.core.time.BaseTime.Topology.CYCLIC;
  *     <li>{@link #unitsToNanoseconds(double)}</li>
  * </ul>
  *
+ * <p><b>Arithmetic</b></p>
+ *
+ * <ul>
+ *     <li>{@link #decremented()}</li>
+ *     <li>{@link #incremented()}</li>
+ *     <li>{@link #plus(LengthOfTime)}</li>
+ *     <li>{@link #plusUnits(double)}</li>
+ *     <li>{@link #minus(LengthOfTime)}</li>
+ *     <li>{@link #minusUnits(double)}</li>
+ *     <li>{@link #next()}</li>
+ * </ul>
+ *
+ * <p><b>Comparison</b></p>
+ *
+ * <ul>
+ *     <li>{@link #compareTo(PointInTime)}</li>
+ *     <li>{@link #longComparable()}</li>
+ *     <li>{@link #isBetweenExclusive(BaseTime, BaseTime)}</li>
+ *     <li>{@link #isBetweenInclusive(BaseTime, BaseTime)}</li>
+ *     <li>{@link #isBefore(PointInTime)}</li>
+ *     <li>{@link #isAfter(PointInTime)}</li>
+ *     <li>{@link #isAtOrBefore(PointInTime)}</li>
+ *     <li>{@link #isAtOrAfter(PointInTime)}</li>
+ * </ul>
+ *
  * <p><b>Conversion</b></p>
  *
  * <p>
@@ -56,15 +87,17 @@ import static com.telenav.kivakit.core.time.BaseTime.Topology.CYCLIC;
  * </p>
  *
  * <ul>
- *     <li>{@link #asUnits()}</li>
+ *     <li>{@link #asDays()}</li>
+ *     <li>{@link #asHours()}</li>
  *     <li>{@link #asJavaInstant()}</li>
- *     <li>{@link #asNanoseconds()}</li>
  *     <li>{@link #asMicroseconds()}</li>
  *     <li>{@link #asMilliseconds()}</li>
- *     <li>{@link #asSeconds()}</li>
  *     <li>{@link #asMinutes()}</li>
- *     <li>{@link #asHours()}</li>
- *     <li>{@link #asDays()}</li>
+ *     <li>{@link #asNanoseconds()}</li>
+ *     <li>{@link #asPreciseUnits()}</li>
+ *     <li>{@link #asSeconds()}</li>
+ *     <li>{@link #asString(Format)}</li>
+ *     <li>{@link #asUnits()}</li>
  *     <li>{@link #asWeeks()}</li>
  *     <li>{@link #asYears()}</li>
  * </ul>
@@ -88,9 +121,10 @@ import static com.telenav.kivakit.core.time.BaseTime.Topology.CYCLIC;
  * <ul>
  *     <li>{@link #newDuration(Nanoseconds)}</li>
  *     <li>{@link #newTime(Nanoseconds)}</li>
+ *     <li>{@link #onNewTime(Nanoseconds)}</li>
  * </ul>
  *
- * @see Time
+ * @see com.telenav.kivakit.core.time.Time
  * @see LocalTime
  * @see Year
  * @see Week
@@ -102,10 +136,16 @@ import static com.telenav.kivakit.core.time.BaseTime.Topology.CYCLIC;
  * @see Second
  */
 @SuppressWarnings("unused")
-public abstract class BaseTime<T extends BaseTime<T>> implements
-        PointInTime<T, Duration>,
+@ApiQuality(stability = STABLE_EXPANDABLE,
+            testing = UNTESTED,
+            documentation = FULLY_DOCUMENTED)
+public abstract class BaseTime<TimeType extends BaseTime<TimeType>> implements
+        PointInTime<TimeType, Duration>,
         StringFormattable
 {
+    @ApiQuality(stability = STABLE,
+                testing = TESTING_NOT_NEEDED,
+                documentation = FULLY_DOCUMENTED)
     public enum Topology
     {
         LINEAR,
@@ -149,7 +189,7 @@ public abstract class BaseTime<T extends BaseTime<T>> implements
     /**
      * @return This time minus one unit
      */
-    public T decremented()
+    public TimeType decremented()
     {
         return minusUnits(1);
     }
@@ -174,18 +214,30 @@ public abstract class BaseTime<T extends BaseTime<T>> implements
     /**
      * @return This time plus one unit
      */
-    public T incremented()
+    public TimeType incremented()
     {
         return plusUnits(1);
     }
 
-    public boolean isBetweenExclusive(T minimum, T maximum)
+    /**
+     * Returns true if this time is between the given times, exclusive
+     *
+     * @param minimum The minimum time
+     * @param maximum The maximum time
+     */
+    public boolean isBetweenExclusive(TimeType minimum, TimeType maximum)
     {
         return nanoseconds().isGreaterThanOrEqualTo(minimum.nanoseconds())
                 && nanoseconds().isLessThan(maximum.nanoseconds());
     }
 
-    public boolean isBetweenInclusive(T minimum, T maximum)
+    /**
+     * Returns true if this time is between the given times, inclusive
+     *
+     * @param minimum The minimum time
+     * @param maximum The maximum time
+     */
+    public boolean isBetweenInclusive(TimeType minimum, TimeType maximum)
     {
         return nanoseconds().isGreaterThanOrEqualTo(minimum.nanoseconds())
                 && nanoseconds().isLessThanOrEqualTo(maximum.nanoseconds());
@@ -194,7 +246,7 @@ public abstract class BaseTime<T extends BaseTime<T>> implements
     /**
      * @return This time minus the given number of units
      */
-    public T minusUnits(double units)
+    public TimeType minusUnits(double units)
     {
         return minus(Duration.nanoseconds(unitsToNanoseconds(units)));
     }
@@ -209,18 +261,24 @@ public abstract class BaseTime<T extends BaseTime<T>> implements
     }
 
     /**
-     * Returns the number of milliseconds per unit of time
+     * Returns the number of nanoseconds per unit of time
      */
     public abstract Nanoseconds nanosecondsPerUnit();
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Duration newDuration(Nanoseconds nanoseconds)
     {
         return Duration.nanoseconds(nanoseconds);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public final T newTime(Nanoseconds nanoseconds)
+    public final TimeType newTime(Nanoseconds nanoseconds)
     {
         return onNewTime(inRange(nanoseconds));
     }
@@ -228,17 +286,20 @@ public abstract class BaseTime<T extends BaseTime<T>> implements
     /**
      * @return This time plus one unit
      */
-    public T next()
+    public TimeType next()
     {
         return plusUnits(1);
     }
 
-    public abstract T onNewTime(Nanoseconds nanoseconds);
+    /**
+     * Called by {@link #newTime(Nanoseconds)} to create a time object in the subclass
+     */
+    public abstract TimeType onNewTime(Nanoseconds nanoseconds);
 
     /**
      * @return This time plus the given number of units
      */
-    public T plusUnits(double units)
+    public TimeType plusUnits(double units)
     {
         return newTime(nanoseconds().plus(unitsToNanoseconds(units)));
     }
@@ -249,6 +310,9 @@ public abstract class BaseTime<T extends BaseTime<T>> implements
         return String.valueOf(asUnits());
     }
 
+    /**
+     * <b>Not public API</b>
+     */
     protected Nanoseconds inRange(Nanoseconds nanoseconds)
     {
         if (topology() == CYCLIC)

@@ -173,7 +173,7 @@ public interface TimeMeasurement extends LongValued
     }
 
     /**
-     * @return The number of milliseconds for this time measurement
+     * Returns the number of milliseconds for this time measurement
      */
     default long milliseconds()
     {
@@ -181,7 +181,7 @@ public interface TimeMeasurement extends LongValued
     }
 
     /**
-     * @return The number of nanoseconds for this measurement
+     * Returns the number of nanoseconds for this measurement
      */
     Nanoseconds nanoseconds();
 

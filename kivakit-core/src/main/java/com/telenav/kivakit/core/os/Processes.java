@@ -34,7 +34,6 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
  *
  * @author jonathanl (shibo)
  */
-@LexakaiJavadoc(complete = true)
 @ApiQuality(stability = STABLE_STATIC_EXPANDABLE,
             testing = UNTESTED,
             documentation = FULLY_DOCUMENTED)

@@ -95,7 +95,6 @@ import static com.telenav.kivakit.core.io.IO.CopyStyle.BUFFERED;
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramIo.class)
-@LexakaiJavadoc(complete = true)
 @ApiQuality(stability = STABLE_STATIC_EXPANDABLE,
             testing = TESTING_NOT_NEEDED,
             documentation = FULLY_DOCUMENTED)
@@ -369,8 +368,7 @@ public class IO
     /**
      * The style to copy in, either buffered or unbuffered
      */
-    @LexakaiJavadoc(complete = true)
-    public enum CopyStyle
+        public enum CopyStyle
     {
         BUFFERED,
         UNBUFFERED

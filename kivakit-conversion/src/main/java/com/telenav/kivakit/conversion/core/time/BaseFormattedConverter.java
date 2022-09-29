@@ -72,7 +72,7 @@ public class BaseFormattedConverter extends BaseStringConverter<LocalTime>
     @Override
     protected String onToString(LocalTime value)
     {
-        return formatter().format(value.javaLocalDateTime());
+        return formatter().format(value.asJavaLocalDateTime());
     }
 
     @Override

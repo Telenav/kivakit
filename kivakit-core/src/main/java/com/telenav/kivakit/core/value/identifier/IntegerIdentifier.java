@@ -31,7 +31,6 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramIdentifier.class)
-@LexakaiJavadoc(complete = true)
 public class IntegerIdentifier implements
         Comparable<IntegerIdentifier>,
         LongValued,

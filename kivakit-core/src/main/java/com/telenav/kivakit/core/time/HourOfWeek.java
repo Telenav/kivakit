@@ -9,7 +9,6 @@ import java.util.Objects;
 import java.util.TimeZone;
 
 import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXPANDABLE;
-import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_STATIC_EXPANDABLE;
 import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
 import static com.telenav.kivakit.core.ensure.Ensure.ensureBetweenExclusive;
@@ -123,7 +122,7 @@ public class HourOfWeek extends BaseTime<HourOfWeek>
     }
 
     @Override
-    public boolean equals(final Object object)
+    public boolean equals(Object object)
     {
         if (object instanceof HourOfWeek)
         {
@@ -166,6 +165,9 @@ public class HourOfWeek extends BaseTime<HourOfWeek>
         return offset(-count);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Nanoseconds nanosecondsPerUnit()
     {
@@ -181,6 +183,9 @@ public class HourOfWeek extends BaseTime<HourOfWeek>
         return hourOfWeek((int) nanosecondsToUnits(nanoseconds));
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public HourOfWeek plusUnits(double count)
     {
@@ -193,6 +198,9 @@ public class HourOfWeek extends BaseTime<HourOfWeek>
         return dayOfWeek() + " at " + hourOfDay();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected Topology topology()
     {
@@ -225,7 +233,7 @@ public class HourOfWeek extends BaseTime<HourOfWeek>
      * @return The offset in hours of the identified time zone, using the present moment to determine any daylight
      * savings adjustment.
      */
-    private int offsetInHours(final ZoneId zone)
+    private int offsetInHours(ZoneId zone)
     {
         // Get the TimeZone object for the specified zone id,
         var timeZone = TimeZone.getTimeZone(zone);

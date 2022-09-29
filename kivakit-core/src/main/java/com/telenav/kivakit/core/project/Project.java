@@ -133,8 +133,7 @@ public abstract class Project extends BaseRepeater implements
      * Visitor interface for use with {@link #visitDependencies(Visitor)}
      */
     @FunctionalInterface
-    @LexakaiJavadoc(complete = true)
-    public interface Visitor
+        public interface Visitor
     {
         /**
          * @param at The project we are at

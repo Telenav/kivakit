@@ -40,7 +40,6 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramRepeater.class)
-@LexakaiJavadoc(complete = true)
 @ApiQuality(stability = NOT_PUBLIC,
             testing = UNTESTED,
             documentation = FULLY_DOCUMENTED)

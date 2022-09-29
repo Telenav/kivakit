@@ -70,7 +70,6 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.MORE_TESTING_N
  */
 @SuppressWarnings("SpellCheckingInspection")
 @UmlClassDiagram(diagram = DiagramBits.class)
-@LexakaiJavadoc(complete = true)
 @ApiQuality(stability = STABLE,
             testing = MORE_TESTING_NEEDED,
             documentation = FULLY_DOCUMENTED)
@@ -80,8 +79,7 @@ public class BitDiagram
      * The bit field for a given character in a bit diagram
      */
     @SuppressWarnings("unused")
-    @LexakaiJavadoc(complete = true)
-    public static class BitField
+        public static class BitField
     {
         /** The mask to access the bit field */
         private long mask;

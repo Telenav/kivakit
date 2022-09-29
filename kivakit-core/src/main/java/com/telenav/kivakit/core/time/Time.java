@@ -18,12 +18,16 @@
 
 package com.telenav.kivakit.core.time;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramTime;
 import com.telenav.kivakit.interfaces.time.Nanoseconds;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.time.ZoneId;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXPANDABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
 import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
 import static com.telenav.kivakit.core.time.BaseTime.Topology.LINEAR;
 import static com.telenav.kivakit.core.time.Duration.ZERO_DURATION;
@@ -39,11 +43,73 @@ import static com.telenav.kivakit.core.time.Second.second;
  * <code>Duration</code> class. To represent a time period with a start and end time, use the
  * <code>TimeSpan</code> class.
  *
+ * <p><b>Creation</b></p>
+ *
+ * <ul>
+ *     <li>{@link #epochMilliseconds(long)}</li>
+ *     <li>{@link #epochNanoseconds(Nanoseconds)}</li>
+ *     <li>{@link #now()}</li>
+ *     <li>{@link #utcTime(Year, Month, Day, Hour)}</li>
+ *     <li>{@link #utcTime(Year, Month, Day)}</li>
+ *     <li>{@link #utcTime(Year, Month)}</li>
+ *     <li>{@link #utcTime(Year, Month, Day, Hour, Minute, Second)}</li>
+ * </ul>
+ *
+ * <p><b>Properties</b></p>
+ *
+ * <ul>
+ *     <li>{@link #isLocal()}</li>
+ * </ul>
+ *
+ * <p><b>Computations</b></p>
+ *
+ * <ul>
+ *     <li>{@link #decremented()}</li>
+ *     <li>{@link #elapsedSince()}</li>
+ *     <li>{@link #elapsedSince(Time)}</li>
+ *     <li>{@link #incremented()}</li>
+ *     <li>{@link #leftUntil(Duration)}</li>
+ *     <li>{@link #minusUnits(double)}</li>
+ *     <li>{@link #next()}</li>
+ *     <li>{@link #plusUnits(double)}</li>
+ *     <li>{@link #until(Time)}</li>
+ *     <li>{@link #untilNow()}</li>
+ * </ul>
+ *
+ * <p><b>Comparisons</b></p>
+ *
+ * <ul>
+ *     <li>{@link #isNewerThan(Time)}</li>
+ *     <li>{@link #isNewerThan(Duration)}</li>
+ *     <li>{@link #isOlderThan(Time)}</li>
+ *     <li>{@link #isOlderThan(Duration)}</li>
+ *     <li>{@link #isNewerThanOrEqualTo(Time)}</li>
+ *     <li>{@link #isOlderThanOrEqualTo(Time)}</li>
+ * </ul>
+ *
+ * <p><b>Conversions</b></p>
+ *
+ * <ul>
+ *     <li>{@link #asUtc()}</li>
+ *     <li>{@link #asLocalTime()}</li>
+ * </ul>
+ *
+ * <p><b>Time Zone</b></p>
+ *
+ * <ul>
+ *     <li>{@link #asUtc()}</li>
+ *     <li>{@link #timeZone()}</li>
+ * </ul>
+ *
  * @author Jonathan Locke
+ * @see BaseTime
  * @since 1.2.6
  */
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramTime.class)
+@ApiQuality(stability = STABLE_EXPANDABLE,
+            testing = UNTESTED,
+            documentation = FULLY_DOCUMENTED)
 public class Time extends BaseTime<Time>
 {
     /** The beginning of UNIX time: January 1, 1970, 0:00 GMT. */
@@ -131,6 +197,9 @@ public class Time extends BaseTime<Time>
         return inTimeZone(localTimeZone());
     }
 
+    /**
+     * Returns this time in the UTC timezone
+     */
     public Time asUtc()
     {
         return this;
@@ -147,7 +216,7 @@ public class Time extends BaseTime<Time>
     }
 
     /**
-     * Subtract time from this and returns the difference as a <code>Duration</code> object.
+     * Subtracts time from this and returns the difference as a <code>Duration</code> object.
      *
      * @param that The time to subtract
      * @return The <code>Duration</code> between this and that time
@@ -273,6 +342,10 @@ public class Time extends BaseTime<Time>
         return Time.epochNanoseconds(nanoseconds);
     }
 
+    /**
+     * Returns the timezone for this time. For {@link Time} this will always be the UTC timezone. For the
+     * {@link LocalTime} subclass this will be the local timezone.
+     */
     public ZoneId timeZone()
     {
         return utcTimeZone();
@@ -299,11 +372,6 @@ public class Time extends BaseTime<Time>
     public Duration untilNow()
     {
         return until(Time.now());
-    }
-
-    public LocalTime utc()
-    {
-        return asLocalTime().utc();
     }
 
     @Override

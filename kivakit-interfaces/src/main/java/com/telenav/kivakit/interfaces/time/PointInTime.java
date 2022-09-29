@@ -178,6 +178,7 @@ public interface PointInTime<Time extends PointInTime<Time, Duration>, Duration 
     /**
      * @return True if this is time zero
      */
+    @Override
     default boolean isZero()
     {
         return nanoseconds().isZero();
@@ -212,7 +213,7 @@ public interface PointInTime<Time extends PointInTime<Time, Duration>, Duration 
     }
 
     /**
-     * @return This point in time minus the given length of time
+     * Returns this point in time minus the given length of time
      */
     default Time minus(Duration duration)
     {
@@ -236,17 +237,17 @@ public interface PointInTime<Time extends PointInTime<Time, Duration>, Duration 
     }
 
     /**
-     * @return An instance of the class implementing LengthOfTime
+     * Creates an instance of the class implementing LengthOfTime
      */
     Duration newDuration(Nanoseconds nanoseconds);
 
     /**
-     * @return An instance of the class implementing PointInTime
+     * Creates an instance of the class implementing PointInTime
      */
     Time newTime(Nanoseconds nanoseconds);
 
     /**
-     * @return This point in time plus the given duration
+     * Returns this point in time plus the given duration
      */
     default Time plus(Duration that)
     {

@@ -36,7 +36,6 @@ import java.util.concurrent.ConcurrentHashMap;
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramCollections.class)
-@LexakaiJavadoc(complete = true)
 public class ConcurrentHashSet<Value> extends BaseSet<Value>
 {
     private final ConcurrentHashMap<Value, Value> map = new ConcurrentHashMap<>();

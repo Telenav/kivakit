@@ -18,7 +18,11 @@
 
 package com.telenav.kivakit.core.time;
 
-import com.telenav.lexakai.annotations.LexakaiJavadoc;
+import com.telenav.kivakit.annotations.code.ApiQuality;
+
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXPANDABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
 
 /**
  * Calculates a {@link Rate} over time as a count is increased by {@link #add(int)} or {@link #increment()}. The rate
@@ -26,7 +30,9 @@ import com.telenav.lexakai.annotations.LexakaiJavadoc;
  *
  * @author jonathanl (shibo)
  */
-@LexakaiJavadoc(complete = true)
+@ApiQuality(stability = STABLE_EXPANDABLE,
+            testing = UNTESTED,
+            documentation = FULLY_DOCUMENTED)
 public class RateCalculator
 {
     private double count;
@@ -39,22 +45,34 @@ public class RateCalculator
 
     private final Duration resetInterval;
 
+    /**
+     * Creates a rate calculator that resets every so often
+     */
     public RateCalculator(Duration resetInterval)
     {
         this.resetInterval = resetInterval;
         reset();
     }
 
+    /**
+     * Add to the number of cycles
+     */
     public void add(int count)
     {
         this.count += count;
     }
 
+    /**
+     * Increment the number of cycles
+     */
     public void increment()
     {
         count++;
     }
 
+    /**
+     * Returns the calculated rate based on how many cycles have occurred since the rate calculator was created
+     */
     public Rate rate()
     {
         var elapsed = start.elapsedSince();
@@ -74,6 +92,9 @@ public class RateCalculator
         return rate;
     }
 
+    /**
+     * Resets rate calculation
+     */
     public void reset()
     {
         lastCount = count;

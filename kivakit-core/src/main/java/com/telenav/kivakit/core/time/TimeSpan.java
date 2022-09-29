@@ -1,37 +1,92 @@
 package com.telenav.kivakit.core.time;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
+
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXPANDABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
+
+/**
+ * A span of time
+ *
+ * <p><b>Creation</b></p>
+ *
+ * <ul>
+ *     <li>{@link #timeSpan(Time, Duration)}</li>
+ *     <li>{@link #timeSpan(Time, Time)}</li>
+ *     <li>{@link #timeSpanFromNow(Duration)}</li>
+ *     <li>{@link #timeSpanToNow(Duration)}</li>
+ *     <li>{@link #unixEpoch()}</li>
+ * </ul>
+ *
+ * <p><b>Properties</b></p>
+ *
+ * <ul>
+ *     <li>{@link #end()}</li>
+ *     <li>{@link #length()}</li>
+ *     <li>{@link #start()}</li>
+ * </ul>
+ *
+ * <p><b>Comparison</b></p>
+ *
+ * <ul>
+ *     <li>{@link #contains(Time)}</li>
+ * </ul>
+ *
+ * @author jonathanl (shibo)
+ */
 @SuppressWarnings("unused")
+@ApiQuality(stability = STABLE_EXPANDABLE,
+            testing = UNTESTED,
+            documentation = FULLY_DOCUMENTED)
 public class TimeSpan
 {
-    public static TimeSpan all()
-    {
-        return new TimeSpan(Time.START_OF_UNIX_TIME, Time.MAXIMUM);
-    }
-
-    public static TimeSpan future(Duration duration)
-    {
-        var now = Time.now();
-        return of(now, now.plus(duration));
-    }
-
-    public static TimeSpan of(Time start, Duration duration)
+    /**
+     * Returns a timespan from the given start time to the given start time plus the given duration
+     */
+    public static TimeSpan timeSpan(Time start, Duration duration)
     {
         return new TimeSpan(start, start.plus(duration));
     }
 
-    public static TimeSpan of(Time start, Time end)
+    /**
+     * Returns a timespan from the given start time to the given end time
+     */
+    public static TimeSpan timeSpan(Time start, Time end)
     {
         return new TimeSpan(start, end);
     }
 
-    public static TimeSpan past(Duration duration)
+    /**
+     * Returns a timespan from now to the the given duration in the future
+     */
+    public static TimeSpan timeSpanFromNow(Duration duration)
     {
         var now = Time.now();
-        return of(now.minus(duration), now);
+        return timeSpan(now, now.plus(duration));
     }
 
+    /**
+     * Returns a timespan from the given duration in the past to now
+     */
+    public static TimeSpan timeSpanToNow(Duration duration)
+    {
+        var now = Time.now();
+        return timeSpan(now.minus(duration), now);
+    }
+
+    /**
+     * The entire UNIX timespan
+     */
+    public static TimeSpan unixEpoch()
+    {
+        return new TimeSpan(Time.START_OF_UNIX_TIME, Time.MAXIMUM);
+    }
+
+    /** The start of this timespan */
     private final Time end;
 
+    /** The end of this timespan */
     private final Time start;
 
     protected TimeSpan(Time start, Time end)
@@ -48,16 +103,25 @@ public class TimeSpan
         return time.isAtOrAfter(start) && time.isAtOrBefore(end);
     }
 
-    public Duration duration()
-    {
-        return end.elapsedSince(start);
-    }
-
+    /**
+     * Returns the end of this timespan
+     */
     public Time end()
     {
         return end;
     }
 
+    /**
+     * Returns the length of this timespan
+     */
+    public Duration length()
+    {
+        return end.elapsedSince(start);
+    }
+
+    /**
+     * Returns the start of this timespan
+     */
     public Time start()
     {
         return start;

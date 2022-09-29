@@ -18,40 +18,42 @@
 
 package com.telenav.kivakit.core.time;
 
-import com.telenav.kivakit.core.language.primitive.Ints;
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramTime;
-import com.telenav.lexakai.annotations.LexakaiJavadoc;
+import com.telenav.kivakit.core.language.primitive.Ints;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
 import static com.telenav.kivakit.core.ensure.Ensure.ensure;
 import static com.telenav.kivakit.core.ensure.Ensure.unsupported;
 
 /**
- * Anti-meridiem (AM) or post-meridiem (PM) in the English system of keeping time, or MILITARY_TIME for the rest of the
+ * Anti-meridiem (AM) or post-meridiem (PM) in the English system of keeping time, or military time for the rest of the
  * world.
  *
  * @author jonathanl (shibo)
  */
-@SuppressWarnings("unused")
+@SuppressWarnings({ "unused", "SpellCheckingInspection" })
 @UmlClassDiagram(diagram = DiagramTime.class)
-@LexakaiJavadoc(complete = true)
+@ApiQuality(stability = STABLE,
+            testing = UNTESTED,
+            documentation = FULLY_DOCUMENTED)
 public enum Meridiem
 {
     NO_MERIDIEM,
+
+    /** Anti-meridiem */
     AM,
+
+    /** Post-meridiem */
     PM;
 
     /**
-     * Returns the Meridiem for the given military (0-23) hour.
+     * Returns the meridiem hour for the given military hour
      */
-    public static Meridiem meridiem(int militaryHour)
-    {
-        ensure(Ints.isBetweenInclusive(militaryHour, 0, 23));
-
-        return militaryHour < 12 ? AM : PM;
-    }
-
-    public static int meridiemHour(int militaryHour)
+    public static int asMeridiemHour(int militaryHour)
     {
         ensure(Ints.isBetweenInclusive(militaryHour, 0, 23));
 
@@ -65,6 +67,19 @@ public enum Meridiem
                 : militaryHour - 12;
     }
 
+    /**
+     * Returns the Meridiem for the given military (0-23) hour.
+     */
+    public static Meridiem meridiem(int militaryHour)
+    {
+        ensure(Ints.isBetweenInclusive(militaryHour, 0, 23));
+
+        return militaryHour < 12 ? AM : PM;
+    }
+
+    /**
+     * Returns the given meridiem hour as a military hour
+     */
     public int asMilitaryHour(int meridiemHour)
     {
         ensure(Ints.isBetweenInclusive(meridiemHour, 1, 12));

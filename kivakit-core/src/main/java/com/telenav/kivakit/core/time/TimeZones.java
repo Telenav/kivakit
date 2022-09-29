@@ -18,9 +18,9 @@
 
 package com.telenav.kivakit.core.time;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramTime;
 import com.telenav.kivakit.core.messaging.Listener;
-import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.time.ZoneId;
@@ -29,13 +29,48 @@ import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXPANDABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
+
 /**
  * Utility methods to map between {@link ZoneId}s and their display names
  *
+ * <p><b>Access</b></p>
+ *
+ * <ul>
+ *     <li>{@link #utc()}</li>
+ * </ul>
+ *
+ * <p><b>Display Names</b></p>
+ *
+ * <ul>
+ *     <li>{@link #shortDisplayName(ZoneId)}</li>
+ * </ul>
+ *
+ * <p><b>Parsing</b></p>
+ *
+ * <ul>
+ *     <li>{@link #parseShortDisplayName(Listener, String)}</li>
+ *     <li>{@link #parseZoneId(Listener, String)}</li>
+ *     <li>{@link #parseZoneIdOrDisplayName(Listener, String)}</li>
+ * </ul>
+ *
+ * <p><b>Checks</b></p>
+ *
+ * <ul>
+ *     <li>{@link #isUtc(ZoneId)}</li>
+ *     <li>{@link #isValidShortDisplayName(String)}</li>
+ *     <li>{@link #isValidZoneId(String)}</li>
+ * </ul>
+ *
  * @author jonathanl (shibo)
  */
+@SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramTime.class)
-@LexakaiJavadoc(complete = true)
+@ApiQuality(stability = STABLE_EXPANDABLE,
+            testing = UNTESTED,
+            documentation = FULLY_DOCUMENTED)
 public class TimeZones
 {
     /** Map from a short display name (PST) to its zone id (America/Los Angeles) */

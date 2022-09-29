@@ -18,12 +18,16 @@
 
 package com.telenav.kivakit.core.time;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramTime;
 import com.telenav.kivakit.interfaces.numeric.Maximizable;
 import com.telenav.kivakit.interfaces.numeric.Minimizable;
 import com.telenav.kivakit.interfaces.value.DoubleValued;
-import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
+
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXPANDABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
 
 /**
  * An abstract rate in <i>count</i> per {@link Duration}. Rates can be constructed as a count per Duration with
@@ -34,9 +38,10 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
  *     <li>{@link #perHour(double)}</li>
  *     <li>{@link #perMinute(double)}</li>
  *     <li>{@link #perSecond(double)}</li>
+ *     <li>{@link #perYear(double)}</li>
  * </ul>
  * <p>
- * Rates can be compared with {@link #isFasterThan(Rate)} and {@link #isSlowerThan(Rate)}.
+ * Rates can be compared with {@link #compareTo(Rate)}, {@link #isFasterThan(Rate)} and {@link #isSlowerThan(Rate)}.
  * </p>
  *
  * <p>
@@ -48,7 +53,9 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
  */
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramTime.class)
-@LexakaiJavadoc(complete = true)
+@ApiQuality(stability = STABLE_EXPANDABLE,
+            testing = UNTESTED,
+            documentation = FULLY_DOCUMENTED)
 public class Rate implements
         Comparable<Rate>,
         Maximizable<Rate>,
@@ -57,26 +64,41 @@ public class Rate implements
 {
     public static final Rate MAXIMUM = new Rate(Integer.MAX_VALUE, Duration.milliseconds(1));
 
+    /**
+     * Returns the given rate per day
+     */
     public static Rate perDay(double count)
     {
         return new Rate(count, Duration.ONE_DAY);
     }
 
+    /**
+     * Returns the given rate per hour
+     */
     public static Rate perHour(double count)
     {
         return new Rate(count, Duration.ONE_HOUR);
     }
 
+    /**
+     * Returns the given rate per minute
+     */
     public static Rate perMinute(double count)
     {
         return new Rate(count, Duration.ONE_MINUTE);
     }
 
+    /**
+     * Returns the given rate per second
+     */
     public static Rate perSecond(double count)
     {
         return new Rate(count, Duration.ONE_SECOND);
     }
 
+    /**
+     * Returns the given rate per year
+     */
     public static Rate perYear(double count)
     {
         return new Rate(count, Duration.ONE_YEAR);
@@ -113,6 +135,12 @@ public class Rate implements
     }
 
     @Override
+    public double doubleValue()
+    {
+        return perDay().doubleValue();
+    }
+
+    @Override
     public boolean equals(Object object)
     {
         if (object instanceof Rate)
@@ -129,20 +157,20 @@ public class Rate implements
         return Double.hashCode(count / duration.asMinutes());
     }
 
+    /**
+     * Returns true if this rate is faster than the given rate
+     */
     public boolean isFasterThan(Rate that)
     {
         return perMinute().count > that.perMinute().count;
     }
 
+    /**
+     * Returns true if this rate is slower than the given rate
+     */
     public boolean isSlowerThan(Rate that)
     {
         return perMinute().count < that.perMinute().count;
-    }
-
-    @Override
-    public double doubleValue()
-    {
-        return perDay().doubleValue();
     }
 
     @Override
@@ -169,36 +197,58 @@ public class Rate implements
         return perDay(value);
     }
 
+    /**
+     * This rate converted to cycles per day
+     */
     public Rate perDay()
     {
         return new Rate(count / duration.asDays(), Duration.ONE_DAY);
     }
 
+    /**
+     * This rate converted to cycles per hour
+     */
     public Rate perHour()
     {
         return new Rate(count / duration.asHours(), Duration.ONE_HOUR);
     }
 
+    /**
+     * This rate converted to cycles per minute
+     */
     public Rate perMinute()
     {
         return new Rate(count / duration.asMinutes(), Duration.ONE_MINUTE);
     }
 
+    /**
+     * This rate converted to cycles per second
+     */
     public Rate perSecond()
     {
         return new Rate(count / duration.asSeconds(), Duration.ONE_SECOND);
     }
 
+    /**
+     * This rate converted to cycles per year
+     */
     public Rate perYear()
     {
         return new Rate(count / duration.asYears(), Duration.ONE_YEAR);
     }
 
+    /**
+     * This rate plus the given rate
+     */
     public Rate plus(Rate that)
     {
         return Rate.perDay(perDay().count() + that.perDay().count());
     }
 
+    /**
+     * Sleeps the appropriate amount of time to make the rates equal, if this rate is faster than the given maximum
+     * rate
+     */
     public void throttle(Rate maximumRate)
     {
         if (isFasterThan(maximumRate))

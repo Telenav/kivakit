@@ -14,7 +14,6 @@ import static com.telenav.kivakit.core.time.BaseTime.Topology.CYCLIC;
 import static com.telenav.kivakit.core.time.HourOfWeek.hourOfWeek;
 import static com.telenav.kivakit.core.time.Meridiem.AM;
 import static com.telenav.kivakit.core.time.Meridiem.PM;
-import static com.telenav.kivakit.core.time.Meridiem.meridiemHour;
 import static com.telenav.kivakit.core.time.Minute.nanosecondsPerMinute;
 
 /**
@@ -147,7 +146,7 @@ public class Hour extends BaseTime<Hour>
      */
     public int asMeridiemHour()
     {
-        return meridiemHour(asMilitaryHour());
+        return Meridiem.asMeridiemHour(asMilitaryHour());
     }
 
     /**

@@ -68,7 +68,6 @@ import static com.telenav.kivakit.interfaces.time.WakeState.TIMED_OUT;
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramThread.class)
-@LexakaiJavadoc(complete = true)
 @ApiQuality(stability = STABLE_EXPANDABLE,
             testing = UNTESTED,
             documentation = FULLY_DOCUMENTED)
@@ -77,8 +76,7 @@ public final class StateWatcher<State>
     /**
      * A thread that is waiting for its predicate to be satisfied
      */
-    @LexakaiJavadoc(complete = true)
-    private class Waiter
+        private class Waiter
     {
         /** The predicate that must be satisfied */
         final Predicate<State> predicate;

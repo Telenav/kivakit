@@ -22,7 +22,6 @@ import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramTime;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.string.Strip;
-import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.Objects;
@@ -68,7 +67,9 @@ import static com.telenav.kivakit.core.time.Duration.parseDuration;
  */
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramTime.class)
-@LexakaiJavadoc(complete = true)
+@ApiQuality(stability = STABLE_EXPANDABLE,
+            testing = UNTESTED,
+            documentation = FULLY_DOCUMENTED)
 public class Frequency
 {
     public static final Frequency ONCE = every(Duration.MAXIMUM);
@@ -151,7 +152,8 @@ public class Frequency
     }
 
     /**
-     * The start time of a cycle
+     * The start time of a cycle. The {@link #next()} method returns the time at which this cycle will repeat. The
+     * amount of time before this time is returned by {@link #waitTimeBeforeNextCycle()}
      */
     @ApiQuality(stability = STABLE_EXPANDABLE,
                 testing = UNTESTED,

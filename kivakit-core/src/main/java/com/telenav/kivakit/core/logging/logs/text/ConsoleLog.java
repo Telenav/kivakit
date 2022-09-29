@@ -47,7 +47,6 @@ import static com.telenav.kivakit.core.os.Console.OutputStream.NORMAL;
  */
 @SuppressWarnings("SpellCheckingInspection")
 @UmlClassDiagram(diagram = DiagramLogs.class)
-@LexakaiJavadoc(complete = true)
 @ApiQuality(stability = STABLE,
             testing = UNTESTED,
             documentation = FULLY_DOCUMENTED)
