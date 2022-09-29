@@ -5,6 +5,11 @@ import com.telenav.kivakit.core.messaging.Listener;
 
 import java.time.ZoneId;
 
+/**
+ * Converts to and from zone id objects
+ *
+ * @author jonathanl (shibo)
+ */
 public class ZoneIdConverter extends BaseStringConverter<ZoneId>
 {
     /**
@@ -15,6 +20,9 @@ public class ZoneIdConverter extends BaseStringConverter<ZoneId>
         super(listener);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected ZoneId onToValue(String value)
     {

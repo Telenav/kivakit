@@ -18,6 +18,7 @@
 
 package com.telenav.kivakit.conversion.core.language.object;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.conversion.internal.lexakai.DiagramConversionLanguage;
 import com.telenav.kivakit.core.language.reflection.Type;
 import com.telenav.kivakit.core.language.reflection.property.PropertyFilter;
@@ -26,6 +27,10 @@ import com.telenav.kivakit.core.messaging.repeaters.BaseRepeater;
 import com.telenav.kivakit.interfaces.value.Source;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
+
 /**
  * Populates object properties given a property filter and a source of property values.
  *
@@ -33,12 +38,21 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
  */
 @SuppressWarnings("SpellCheckingInspection")
 @UmlClassDiagram(diagram = DiagramConversionLanguage.class)
+@ApiQuality(stability = STABLE,
+            testing = UNTESTED,
+            documentation = FULLY_DOCUMENTED)
 public class ObjectPopulator extends BaseRepeater
 {
+    /** The property value source */
     private final Source<PropertyValue> source;
 
+    /** The property filter */
     private final PropertyFilter filter;
 
+    /**
+     * @param filter The property filter to select which properties to populate
+     * @param source The source of property values
+     */
     public ObjectPopulator(PropertyFilter filter, Source<PropertyValue> source)
     {
         this.filter = filter;

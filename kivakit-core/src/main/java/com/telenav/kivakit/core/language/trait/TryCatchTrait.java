@@ -4,7 +4,7 @@ import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.code.UncheckedCode;
 import com.telenav.kivakit.core.code.UncheckedVoidCode;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_DEFAULT_EXPANDABLE;
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_DEFAULT_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
 
@@ -35,7 +35,7 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
  * @see TryTrait
  */
 @SuppressWarnings("unused")
-@ApiQuality(stability = STABLE_DEFAULT_EXPANDABLE,
+@ApiQuality(stability = STABLE_DEFAULT_EXTENSIBLE,
             documentation = FULLY_DOCUMENTED,
             testing = UNTESTED)
 public interface TryCatchTrait

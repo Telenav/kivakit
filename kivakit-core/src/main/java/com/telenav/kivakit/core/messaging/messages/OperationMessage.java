@@ -51,7 +51,7 @@ import com.telenav.kivakit.interfaces.naming.Named;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeSuperTypes;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXPANDABLE;
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
 import static com.telenav.kivakit.core.messaging.MessageFormat.WITH_EXCEPTION;
@@ -112,7 +112,7 @@ import static com.telenav.kivakit.core.thread.ReentrancyTracker.Reentrancy.REENT
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramMessageType.class)
 @UmlExcludeSuperTypes({ Named.class })
-@ApiQuality(stability = STABLE_EXPANDABLE,
+@ApiQuality(stability = STABLE_EXTENSIBLE,
             testing = TESTING_NOT_NEEDED,
             documentation = FULLY_DOCUMENTED)
 public abstract class OperationMessage implements Named, Message

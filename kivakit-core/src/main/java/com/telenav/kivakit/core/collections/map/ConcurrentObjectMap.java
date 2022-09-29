@@ -26,7 +26,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.concurrent.ConcurrentHashMap;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXPANDABLE;
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.TestingQuality.MORE_TESTING_NEEDED;
 
@@ -38,7 +38,7 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.MORE_TESTING_N
  * @version 1.0.0 2012-12-27
  */
 @UmlClassDiagram(diagram = DiagramCollections.class)
-@ApiQuality(stability = STABLE_EXPANDABLE,
+@ApiQuality(stability = STABLE_EXTENSIBLE,
             testing = MORE_TESTING_NEEDED,
             documentation = FULLY_DOCUMENTED)
 public class ConcurrentObjectMap<Key, Value> extends ObjectMap<Key, Value> implements

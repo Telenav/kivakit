@@ -25,7 +25,7 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.time.ZoneId;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXPANDABLE;
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
 import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
@@ -107,7 +107,7 @@ import static com.telenav.kivakit.core.time.Second.second;
  */
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramTime.class)
-@ApiQuality(stability = STABLE_EXPANDABLE,
+@ApiQuality(stability = STABLE_EXTENSIBLE,
             testing = UNTESTED,
             documentation = FULLY_DOCUMENTED)
 public class Time extends BaseTime<Time>

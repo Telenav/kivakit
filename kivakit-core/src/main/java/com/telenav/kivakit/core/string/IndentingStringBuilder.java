@@ -25,7 +25,7 @@ import com.telenav.kivakit.core.internal.lexakai.DiagramString;
 import com.telenav.kivakit.core.value.count.Count;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXPANDABLE;
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
 import static com.telenav.kivakit.core.string.IndentingStringBuilder.Style.HTML;
@@ -42,7 +42,7 @@ import static com.telenav.kivakit.core.string.IndentingStringBuilder.Style.TEXT;
  */
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramString.class)
-@ApiQuality(stability = STABLE_EXPANDABLE,
+@ApiQuality(stability = STABLE_EXTENSIBLE,
             testing = UNTESTED,
             documentation = FULLY_DOCUMENTED)
 public class IndentingStringBuilder

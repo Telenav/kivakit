@@ -6,7 +6,7 @@ import com.telenav.kivakit.core.value.count.Maximum;
 import java.util.Collection;
 import java.util.LinkedList;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_DEFAULT_EXPANDABLE;
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_DEFAULT_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.TestingQuality.MORE_TESTING_NEEDED;
 
@@ -16,7 +16,7 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.MORE_TESTING_N
  * @author jonathanl (shibo)
  */
 @SuppressWarnings("unused")
-@ApiQuality(stability = STABLE_DEFAULT_EXPANDABLE,
+@ApiQuality(stability = STABLE_DEFAULT_EXTENSIBLE,
             testing = MORE_TESTING_NEEDED,
             documentation = FULLY_DOCUMENTED)
 public class LinkedObjectList<Value> extends ObjectList<Value>

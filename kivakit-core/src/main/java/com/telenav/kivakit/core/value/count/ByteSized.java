@@ -20,7 +20,7 @@ package com.telenav.kivakit.core.value.count;
 
 import com.telenav.kivakit.annotations.code.ApiQuality;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_DEFAULT_EXPANDABLE;
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_DEFAULT_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
 
@@ -30,7 +30,7 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
  * @author jonathanl (shibo)
  */
 @SuppressWarnings("unused")
-@ApiQuality(stability = STABLE_DEFAULT_EXPANDABLE,
+@ApiQuality(stability = STABLE_DEFAULT_EXTENSIBLE,
             testing = UNTESTED,
             documentation = FULLY_DOCUMENTED)
 public interface ByteSized

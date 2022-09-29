@@ -25,7 +25,7 @@ import com.telenav.kivakit.core.time.Frequency;
 import com.telenav.kivakit.interfaces.lifecycle.Pausable;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXPANDABLE;
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
 import static com.telenav.kivakit.core.thread.KivaKitThread.State.PAUSED;
@@ -41,7 +41,7 @@ import static com.telenav.kivakit.core.thread.KivaKitThread.State.STOP_REQUESTED
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramThread.class)
-@ApiQuality(stability = STABLE_EXPANDABLE,
+@ApiQuality(stability = STABLE_EXTENSIBLE,
             testing = UNTESTED,
             documentation = FULLY_DOCUMENTED)
 public class RepeatingThread extends KivaKitThread implements Pausable

@@ -3,14 +3,14 @@ package com.telenav.kivakit.interfaces.value;
 import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.interfaces.string.StringFormattable;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_DEFAULT_EXPANDABLE;
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_DEFAULT_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
 
 /**
  * @author jonathanl (shibo)
  */
-@ApiQuality(stability = STABLE_DEFAULT_EXPANDABLE,
+@ApiQuality(stability = STABLE_DEFAULT_EXTENSIBLE,
             testing = TESTING_NOT_NEEDED,
             documentation = FULLY_DOCUMENTED)
 public interface FormattedLongValued extends

@@ -1,43 +1,63 @@
 package com.telenav.kivakit.conversion.core.collections.list;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.conversion.BaseStringConverter;
 import com.telenav.kivakit.conversion.internal.lexakai.DiagramConversionOther;
 import com.telenav.kivakit.core.collections.list.StringList;
 import com.telenav.kivakit.core.messaging.Listener;
-import com.telenav.kivakit.core.value.identifier.Identifier;
-import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE;
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
+
 /**
- * Converts to and from {@link Identifier}
+ * Converts to and from a {@link StringList}
  *
  * @author jonathanl (shibo)
  */
-@LexakaiJavadoc(complete = true)
 @UmlClassDiagram(diagram = DiagramConversionOther.class)
+@ApiQuality(stability = STABLE,
+            testing = UNTESTED,
+            documentation = FULLY_DOCUMENTED)
 public class StringListConverter extends BaseStringConverter<StringList>
 {
+    /** The delimiter to separate items in the list */
     private final String delimiter;
 
+    /**
+     * @param listener The listener to report problems to
+     */
     public StringListConverter(Listener listener)
     {
         this(listener, ",");
     }
 
+    /**
+     * @param listener The listener to report problems to
+     * @param delimiter The delimiter to separate items in the list
+     */
     public StringListConverter(Listener listener, String delimiter)
     {
         super(listener);
         this.delimiter = delimiter;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    protected String onToString(final StringList strings)
+    protected String onToString(StringList strings)
     {
         return strings.join();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    protected StringList onToValue(final String value)
+    protected StringList onToValue(String value)
     {
         return StringList.split(value, delimiter);
     }

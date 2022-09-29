@@ -18,6 +18,7 @@
 
 package com.telenav.kivakit.conversion;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.conversion.internal.lexakai.DiagramConversion;
 import com.telenav.kivakit.core.messaging.Broadcaster;
 import com.telenav.kivakit.core.messaging.Listener;
@@ -30,6 +31,10 @@ import com.telenav.kivakit.core.messaging.repeaters.BaseRepeater;
 import com.telenav.kivakit.core.time.Frequency;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeMember;
+
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
 
 /**
  * Base class for implementing converters. The inherited {@link Converter#convert(Object)} method converts from the
@@ -52,6 +57,7 @@ import com.telenav.lexakai.annotations.visibility.UmlExcludeMember;
  * @param <From> The type to convert from
  * @param <To> The type to convert to
  * @author jonathanl (shibo)
+ * @see Converter
  * @see Repeater
  * @see BaseRepeater
  * @see Broadcaster
@@ -60,11 +66,19 @@ import com.telenav.lexakai.annotations.visibility.UmlExcludeMember;
  * @see Glitch
  */
 @UmlClassDiagram(diagram = DiagramConversion.class)
+@ApiQuality(stability = STABLE_EXTENSIBLE,
+            testing = UNTESTED,
+            documentation = FULLY_DOCUMENTED)
 public abstract class BaseConverter<From, To> extends BaseRepeater implements Converter<From, To>
 {
     /** True if this converter allows null values */
     private boolean allowNull;
 
+    /**
+     * Constructs a converter that broadcasts to the given listener
+     *
+     * @param listener The listener to send problems to
+     */
     protected BaseConverter(Listener listener)
     {
         listener.listenTo(this);

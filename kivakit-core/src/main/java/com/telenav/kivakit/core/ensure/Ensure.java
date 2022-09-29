@@ -20,7 +20,7 @@ import java.util.Objects;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_STATIC_EXPANDABLE;
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_STATIC_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.DocumentationQuality.MORE_DOCUMENTATION_NEEDED;
 import static com.telenav.kivakit.annotations.code.TestingQuality.MORE_TESTING_NEEDED;
 
@@ -168,7 +168,7 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.MORE_TESTING_N
  */
 @SuppressWarnings("unused") @UmlClassDiagram(diagram = DiagramEnsure.class)
 @UmlRelation(label = "reports", referent = EnsureProblem.class)
-@ApiQuality(stability = STABLE_STATIC_EXPANDABLE,
+@ApiQuality(stability = STABLE_STATIC_EXTENSIBLE,
             testing = MORE_TESTING_NEEDED,
             documentation = MORE_DOCUMENTATION_NEEDED)
 public class Ensure

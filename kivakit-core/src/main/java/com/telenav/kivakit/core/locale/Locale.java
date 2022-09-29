@@ -29,7 +29,7 @@ import com.telenav.lexakai.annotations.associations.UmlAggregation;
 
 import java.util.Collection;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXPANDABLE;
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
 import static com.telenav.kivakit.core.collections.list.ObjectList.objectList;
@@ -42,7 +42,7 @@ import static com.telenav.kivakit.core.collections.list.ObjectList.objectList;
  */
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramLocale.class)
-@ApiQuality(stability = STABLE_EXPANDABLE,
+@ApiQuality(stability = STABLE_EXTENSIBLE,
             testing = UNTESTED,
             documentation = FULLY_DOCUMENTED)
 public class Locale

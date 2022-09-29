@@ -18,16 +18,19 @@
 
 package com.telenav.kivakit.conversion;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.conversion.internal.lexakai.DiagramConversion;
 import com.telenav.kivakit.conversion.internal.lexakai.DiagramConversionPrimitive;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.string.Strings;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
-import com.telenav.lexakai.annotations.visibility.UmlExcludeMember;
 
 import java.util.function.BiFunction;
 import java.util.function.Function;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
 import static com.telenav.kivakit.core.ensure.Ensure.ensure;
 
 /**
@@ -35,9 +38,9 @@ import static com.telenav.kivakit.core.ensure.Ensure.ensure;
  *
  * <p><b>Converting to and from Strings</b>
  * <p>
- * Subclasses implement conversion by overriding {@link #onToValue(String)}. If no implementation is given for {@link
- * #onToString(Object)}, a default implementation is provided which simply converts the object to a String by calling
- * {@link #toString()}.
+ * Subclasses implement conversion by overriding {@link #onToValue(String)}. If no implementation is given for
+ * {@link #onToString(Object)}, a default implementation is provided which simply converts the object to a String by
+ * calling {@link #toString()}.
  * </p>
  *
  * <p><b>Empty Strings</b></p>
@@ -45,8 +48,8 @@ import static com.telenav.kivakit.core.ensure.Ensure.ensure;
  * <p>
  * Just as {@link BaseConverter} has an option to allow or disallow null values, {@link BaseStringConverter} has an
  * option to allow or disallow empty strings. An empty string null, zero length or contains nothing but whitespace. The
- * method {@link #allowEmpty(boolean)} can be used to allow empty values (which are not allowed by default), and {@link
- * #allowsEmpty()} will return true if the converter allows empty strings.
+ * method {@link #allowEmpty(boolean)} can be used to allow empty values (which are not allowed by default), and
+ * {@link #allowsEmpty()} will return true if the converter allows empty strings.
  * </p>
  *
  * <p><b>Thread Safety</b></p>
@@ -62,21 +65,26 @@ import static com.telenav.kivakit.core.ensure.Ensure.ensure;
  * @see BaseConverter
  * @see StringConverter
  */
+@SuppressWarnings({ "unused", "SpellCheckingInspection" })
 @UmlClassDiagram(diagram = DiagramConversion.class)
 @UmlClassDiagram(diagram = DiagramConversionPrimitive.class, includeMembers = false)
+@ApiQuality(stability = STABLE_EXTENSIBLE,
+            testing = UNTESTED,
+            documentation = FULLY_DOCUMENTED)
 public abstract class BaseStringConverter<Value> extends BaseConverter<String, Value> implements StringConverter<Value>
 {
     /** True if empty strings are allowed */
     private boolean allowEmpty;
 
+    /** Function to convert from a string to a value */
     private Function<String, Value> lambda;
 
+    /** A bi-function to convert from string to value, allowing access to this listener in the function */
     private BiFunction<Listener, String, Value> biLambda;
 
     /**
      * @param listener The conversion listener
      */
-    @UmlExcludeMember
     protected BaseStringConverter(Listener listener)
     {
         super(listener);
@@ -85,7 +93,6 @@ public abstract class BaseStringConverter<Value> extends BaseConverter<String, V
     /**
      * @param listener The conversion listener
      */
-    @UmlExcludeMember
     protected BaseStringConverter(Listener listener, Function<String, Value> lambda)
     {
         super(listener);
@@ -95,7 +102,6 @@ public abstract class BaseStringConverter<Value> extends BaseConverter<String, V
     /**
      * @param listener The conversion listener
      */
-    @UmlExcludeMember
     protected BaseStringConverter(Listener listener, BiFunction<Listener, String, Value> biLambda)
     {
         super(listener);
@@ -119,6 +125,9 @@ public abstract class BaseStringConverter<Value> extends BaseConverter<String, V
         return allowEmpty;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public final Value onConvert(String string)
     {
@@ -144,7 +153,6 @@ public abstract class BaseStringConverter<Value> extends BaseConverter<String, V
      * {@inheritDoc}
      */
     @Override
-    @UmlExcludeMember
     public final String unconvert(Value value)
     {
         // If the value is null
@@ -180,7 +188,6 @@ public abstract class BaseStringConverter<Value> extends BaseConverter<String, V
     /**
      * @return The string representation of a null value. By default, this value is null, not "null".
      */
-    @UmlExcludeMember
     protected String nullString()
     {
         return null;

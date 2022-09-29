@@ -23,7 +23,7 @@ import com.telenav.kivakit.core.value.count.Maximum;
 
 import java.util.Map;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXPANDABLE;
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.TestingQuality.MORE_TESTING_NEEDED;
 
@@ -32,7 +32,7 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.MORE_TESTING_N
  *
  * @author jonathanl (shibo)
  */
-@ApiQuality(stability = STABLE_EXPANDABLE,
+@ApiQuality(stability = STABLE_EXTENSIBLE,
             testing = MORE_TESTING_NEEDED,
             documentation = FULLY_DOCUMENTED)
 public class ObjectMap<Key, Value> extends BaseMap<Key, Value>

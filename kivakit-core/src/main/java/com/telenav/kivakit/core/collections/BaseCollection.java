@@ -29,7 +29,7 @@ import java.util.Set;
 import java.util.function.Function;
 import java.util.function.Predicate;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXPANDABLE;
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.TestingQuality.MORE_TESTING_NEEDED;
 import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
@@ -156,7 +156,7 @@ import static com.telenav.kivakit.interfaces.string.StringFormattable.Format.TO_
  * @see StringFormattable
  */
 @SuppressWarnings("unused")
-@ApiQuality(stability = STABLE_EXPANDABLE,
+@ApiQuality(stability = STABLE_EXTENSIBLE,
             testing = MORE_TESTING_NEEDED,
             documentation = FULLY_DOCUMENTED)
 public abstract class BaseCollection<Value> implements

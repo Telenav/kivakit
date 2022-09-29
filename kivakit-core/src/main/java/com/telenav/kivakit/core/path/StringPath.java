@@ -35,7 +35,7 @@ import java.util.Map;
 import java.util.function.Function;
 import java.util.regex.Pattern;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXPANDABLE;
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.TestingQuality.MORE_TESTING_NEEDED;
 import static com.telenav.kivakit.core.project.Project.resolveProject;
@@ -79,7 +79,7 @@ import static com.telenav.kivakit.core.project.Project.resolveProject;
  */
 @SuppressWarnings({ "SpellCheckingInspection", "SwitchStatementWithTooFewBranches" })
 @UmlClassDiagram(diagram = DiagramPath.class)
-@ApiQuality(stability = STABLE_EXPANDABLE,
+@ApiQuality(stability = STABLE_EXTENSIBLE,
             testing = MORE_TESTING_NEEDED,
             documentation = FULLY_DOCUMENTED)
 public class StringPath extends Path<String>

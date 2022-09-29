@@ -10,8 +10,8 @@ import com.telenav.kivakit.core.value.count.Maximum;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_ENUM_EXPANDABLE;
-import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXPANDABLE;
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_ENUM_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
 import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
@@ -23,7 +23,7 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
  *
  * @author jonathanl (shibo)
  */
-@ApiQuality(stability = STABLE_EXPANDABLE,
+@ApiQuality(stability = STABLE_EXTENSIBLE,
             testing = UNTESTED,
             documentation = FULLY_DOCUMENTED)
 public abstract class BaseColumnarFormatter implements LogFormatter
@@ -31,7 +31,7 @@ public abstract class BaseColumnarFormatter implements LogFormatter
     /**
      * ColumnLayout rules to use when lines are too wide for the column they are in
      */
-    @ApiQuality(stability = STABLE_ENUM_EXPANDABLE,
+    @ApiQuality(stability = STABLE_ENUM_EXTENSIBLE,
                 testing = TESTING_NOT_NEEDED,
                 documentation = FULLY_DOCUMENTED)
     protected enum ColumnLayout
@@ -49,7 +49,7 @@ public abstract class BaseColumnarFormatter implements LogFormatter
     /**
      * Data structure for modeling a text column
      */
-    @ApiQuality(stability = STABLE_EXPANDABLE,
+    @ApiQuality(stability = STABLE_EXTENSIBLE,
                 testing = UNTESTED,
                 documentation = FULLY_DOCUMENTED)
     protected static class Column
@@ -148,7 +148,7 @@ public abstract class BaseColumnarFormatter implements LogFormatter
     /**
      * The output for a line as it is populated by column
      */
-    @ApiQuality(stability = STABLE_EXPANDABLE,
+    @ApiQuality(stability = STABLE_EXTENSIBLE,
                 testing = UNTESTED,
                 documentation = FULLY_DOCUMENTED)
     protected static class LineOutput

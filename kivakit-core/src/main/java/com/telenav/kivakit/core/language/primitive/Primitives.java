@@ -2,7 +2,7 @@ package com.telenav.kivakit.core.language.primitive;
 
 import com.telenav.kivakit.annotations.code.ApiQuality;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_STATIC_EXPANDABLE;
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_STATIC_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
 
@@ -11,7 +11,7 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
  *
  * @author jonathanl (shibo)
  */
-@ApiQuality(stability = STABLE_STATIC_EXPANDABLE,
+@ApiQuality(stability = STABLE_STATIC_EXTENSIBLE,
             testing = UNTESTED,
             documentation = FULLY_DOCUMENTED)
 public class Primitives

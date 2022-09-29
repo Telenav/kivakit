@@ -28,9 +28,8 @@ import org.jetbrains.annotations.NotNull;
 import java.io.IOException;
 import java.io.OutputStream;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXPANDABLE;
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
 import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
 
 /**
@@ -40,7 +39,7 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
  */
 @UmlClassDiagram(diagram = DiagramProgress.class)
 @UmlClassDiagram(diagram = DiagramIo.class)
-@ApiQuality(stability = STABLE_EXPANDABLE,
+@ApiQuality(stability = STABLE_EXTENSIBLE,
             testing = UNTESTED,
             documentation = FULLY_DOCUMENTED)
 public class ProgressiveOutputStream extends OutputStream

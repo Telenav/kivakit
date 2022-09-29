@@ -30,7 +30,7 @@ import com.telenav.lexakai.annotations.associations.UmlAggregation;
 
 import java.nio.file.Path;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXPANDABLE;
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
 import static com.telenav.kivakit.core.os.OperatingSystem.operatingSystem;
@@ -80,7 +80,7 @@ import static com.telenav.kivakit.core.os.OperatingSystem.operatingSystem;
  */
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramLanguage.class)
-@ApiQuality(stability = STABLE_EXPANDABLE,
+@ApiQuality(stability = STABLE_EXTENSIBLE,
             testing = UNTESTED,
             documentation = FULLY_DOCUMENTED)
 public class JavaVirtualMachine extends BaseRepeater

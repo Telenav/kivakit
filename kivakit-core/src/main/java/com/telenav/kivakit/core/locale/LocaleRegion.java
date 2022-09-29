@@ -21,7 +21,7 @@ package com.telenav.kivakit.core.locale;
 import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.language.reflection.property.KivaKitExcludeProperty;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXPANDABLE;
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
 
@@ -36,7 +36,7 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
  * @version 1.0.0 2012-7-12
  */
 @SuppressWarnings({ "JavadocLinkAsPlainText", "unused" })
-@ApiQuality(stability = STABLE_EXPANDABLE,
+@ApiQuality(stability = STABLE_EXTENSIBLE,
             testing = UNTESTED,
             documentation = FULLY_DOCUMENTED)
 public class LocaleRegion

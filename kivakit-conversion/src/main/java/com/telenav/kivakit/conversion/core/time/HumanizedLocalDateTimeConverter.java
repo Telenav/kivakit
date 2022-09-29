@@ -18,6 +18,7 @@
 
 package com.telenav.kivakit.conversion.core.time;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.conversion.BaseStringConverter;
 import com.telenav.kivakit.conversion.internal.lexakai.DiagramConversionTime;
 import com.telenav.kivakit.core.messaging.Listener;
@@ -29,14 +30,21 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Pattern;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
 import static com.telenav.kivakit.core.time.Duration.days;
 
 /**
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramConversionTime.class)
+@ApiQuality(stability = STABLE,
+            testing = UNTESTED,
+            documentation = FULLY_DOCUMENTED)
 public class HumanizedLocalDateTimeConverter extends BaseStringConverter<LocalTime>
 {
+    /** Pattern than matches humanized dates */
     private static final Pattern HUMANIZED_DATE = Pattern.compile("("
             + "(?<yesterday>yesterday)"
             + "|(?<today>today)"
@@ -66,12 +74,18 @@ public class HumanizedLocalDateTimeConverter extends BaseStringConverter<LocalTi
         super(listener);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected String onToString(LocalTime time)
     {
         return humanizedDate(time) + " " + new LocalTimeConverter(Listener.emptyListener(), time.timeZone()).unconvert(time);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected LocalTime onToValue(String value)
     {

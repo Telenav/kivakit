@@ -6,7 +6,7 @@ import com.telenav.kivakit.interfaces.time.Nanoseconds;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXPANDABLE;
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
 import static com.telenav.kivakit.core.ensure.Ensure.ensure;
@@ -48,7 +48,7 @@ import static com.telenav.kivakit.core.time.Minute.nanosecondsPerMinute;
  * @author jonathanl (shibo)
  */
 @SuppressWarnings({ "unused", "SpellCheckingInspection" })
-@ApiQuality(stability = STABLE_EXPANDABLE,
+@ApiQuality(stability = STABLE_EXTENSIBLE,
             testing = UNTESTED,
             documentation = FULLY_DOCUMENTED)
 public class Hour extends BaseTime<Hour>

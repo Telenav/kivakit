@@ -25,7 +25,7 @@ import com.telenav.kivakit.interfaces.factory.Factory;
 import com.telenav.kivakit.interfaces.value.Source;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXPANDABLE;
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
 
@@ -45,7 +45,7 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
  * @author Sergiy Yevtushenko
  */
 @UmlClassDiagram(diagram = DiagramObject.class)
-@ApiQuality(stability = STABLE_EXPANDABLE,
+@ApiQuality(stability = STABLE_EXTENSIBLE,
             testing = UNTESTED,
             documentation = FULLY_DOCUMENTED)
 public class Lazy<Value> implements Clearable

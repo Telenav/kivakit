@@ -32,7 +32,7 @@ import java.nio.charset.CharsetEncoder;
 import java.nio.charset.CoderResult;
 import java.util.Arrays;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXPANDABLE;
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.TestingQuality.FULLY_TESTED;
 import static java.lang.Math.ceil;
@@ -47,7 +47,7 @@ import static java.nio.charset.StandardCharsets.UTF_8;
  */
 @SuppressWarnings({ "UnusedReturnValue", "SpellCheckingInspection" })
 @UmlClassDiagram(diagram = DiagramIo.class)
-@ApiQuality(stability = STABLE_EXPANDABLE,
+@ApiQuality(stability = STABLE_EXTENSIBLE,
             testing = FULLY_TESTED,
             documentation = FULLY_DOCUMENTED)
 public class StringInputStream extends InputStream

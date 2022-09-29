@@ -18,6 +18,7 @@
 
 package com.telenav.kivakit.conversion.core.time;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.conversion.BaseStringConverter;
 import com.telenav.kivakit.conversion.internal.lexakai.DiagramConversionTime;
 import com.telenav.kivakit.core.messaging.Listener;
@@ -28,10 +29,17 @@ import java.time.Instant;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
+
 /**
  * Convert to/from local time
  */
 @UmlClassDiagram(diagram = DiagramConversionTime.class)
+@ApiQuality(stability = STABLE,
+            testing = UNTESTED,
+            documentation = FULLY_DOCUMENTED)
 public class BaseFormattedConverter extends BaseStringConverter<LocalTime>
 {
     /** The date time formatter */
@@ -40,6 +48,11 @@ public class BaseFormattedConverter extends BaseStringConverter<LocalTime>
     /** The local time zone */
     private ZoneId zone;
 
+    /**
+     * @param listener The listener to report problems to
+     * @param formatter The formatter to use
+     * @param zone The timezone
+     */
     public BaseFormattedConverter(Listener listener,
                                   DateTimeFormatter formatter,
                                   ZoneId zone)
@@ -49,32 +62,50 @@ public class BaseFormattedConverter extends BaseStringConverter<LocalTime>
         this.formatter = formatter;
     }
 
+    /**
+     * Returns the formatter in this timezone
+     */
     public DateTimeFormatter formatter()
     {
         return formatter.withZone(zone);
     }
 
+    /**
+     * Sets the formatter
+     */
     public void formatter(DateTimeFormatter formatter)
     {
         this.formatter = formatter;
     }
 
+    /**
+     * Returns the zone id
+     */
     public ZoneId zone()
     {
         return zone;
     }
 
+    /**
+     * Sets the zone id
+     */
     public void zone(ZoneId zone)
     {
         this.zone = zone;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected String onToString(LocalTime value)
     {
         return formatter().format(value.asJavaLocalDateTime());
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected LocalTime onToValue(String value)
     {

@@ -1,11 +1,11 @@
 package com.telenav.kivakit.network.http;
 
-import com.telenav.kivakit.conversion.core.time.DateTimeConverter;
+import com.telenav.kivakit.conversion.core.time.TimeConverter;
 import com.telenav.kivakit.core.messaging.Listener;
 
 import java.time.format.DateTimeFormatter;
 
-public class HttpDateTimeConverter extends DateTimeConverter
+public class HttpDateTimeConverter extends TimeConverter
 {
     public HttpDateTimeConverter(Listener listener)
     {

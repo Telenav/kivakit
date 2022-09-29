@@ -26,16 +26,16 @@ public enum ApiStability
     STABLE,
 
     /** The API is not expected to change, except that new methods may be added */
-    STABLE_EXPANDABLE,
+    STABLE_EXTENSIBLE,
 
     /** The API is not expected to change, except that new static methods may be added */
-    STABLE_STATIC_EXPANDABLE,
+    STABLE_STATIC_EXTENSIBLE,
 
     /** The API is not expected to change, except that new default methods may be added */
-    STABLE_DEFAULT_EXPANDABLE,
+    STABLE_DEFAULT_EXTENSIBLE,
 
     /** The API is not expected to change, except that new enum values may be added */
-    STABLE_ENUM_EXPANDABLE,
+    STABLE_ENUM_EXTENSIBLE,
 
     /** The API may be changed */
     UNSTABLE,

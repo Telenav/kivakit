@@ -18,6 +18,7 @@
 
 package com.telenav.kivakit.conversion.core.language.primitive;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.conversion.BaseStringConverter;
 import com.telenav.kivakit.conversion.internal.lexakai.DiagramConversionPrimitive;
 import com.telenav.kivakit.core.messaging.Listener;
@@ -25,13 +26,19 @@ import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeMember;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
+
 /**
  * Converts between *long* values and strings
  *
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramConversionPrimitive.class)
-@LexakaiJavadoc(complete = true)
+@ApiQuality(stability = STABLE,
+            testing = UNTESTED,
+            documentation = FULLY_DOCUMENTED)
 public class LongConverter extends BaseStringConverter<Long>
 {
     /**
