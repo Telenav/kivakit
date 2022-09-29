@@ -8,15 +8,14 @@ import com.telenav.kivakit.resource.ResourceFolder;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
 
 import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
-import static com.telenav.kivakit.core.registry.InstanceIdentifier.SINGLETON;
+import static com.telenav.kivakit.core.registry.InstanceIdentifier.instanceIdentifierForEnumName;
+import static com.telenav.kivakit.core.registry.InstanceIdentifier.singletonInstance;
 
 /**
  * <p>
- * A stateless trait for accessing the {@link Settings} for the implementing component.
- * Settings for a component can be retrieved with {@link #settingsRegistry()}. This
- * provides a simplified interface to load settings objects specified by the user while
- * also allowing for default settings when they are not specified. See
- * {@link Settings} for details.
+ * A stateless trait for accessing the {@link Settings} for the implementing component. Settings for a component can be
+ * retrieved with {@link #settingsRegistry()}. This provides a simplified interface to load settings objects specified
+ * by the user while also allowing for default settings when they are not specified. See {@link Settings} for details.
  * </p>
  *
  * <p>
@@ -53,7 +52,7 @@ import static com.telenav.kivakit.core.registry.InstanceIdentifier.SINGLETON;
  * @author jonathanl (shibo)
  * @see Settings
  */
-@SuppressWarnings("unused")
+@SuppressWarnings({ "unused", "UnusedReturnValue" })
 public interface SettingsTrait extends Repeater
 {
     /**
@@ -83,9 +82,9 @@ public interface SettingsTrait extends Repeater
     /**
      * @return True if this set has the specified instance of the settings object specified by the given type
      */
-    default boolean hasSettings(Class<?> type, String instance)
+    default boolean hasSettings(Class<?> type, String enumName)
     {
-        return hasSettings(type, InstanceIdentifier.instanceIdentifier(instance));
+        return hasSettings(type, instanceIdentifier(enumName));
     }
 
     /**
@@ -124,9 +123,9 @@ public interface SettingsTrait extends Repeater
         return settingsRegistry().lookupSettings(type, InstanceIdentifier.instanceIdentifier(instance));
     }
 
-    default <T> T lookupSettings(Class<T> type, String instance)
+    default <T> T lookupSettings(Class<T> type, String enumName)
     {
-        return settingsRegistry().lookupSettings(type, InstanceIdentifier.instanceIdentifier(instance));
+        return settingsRegistry().lookupSettings(type, instanceIdentifier(enumName));
     }
 
     /**
@@ -142,7 +141,7 @@ public interface SettingsTrait extends Repeater
      */
     default Settings registerSettingsObject(Object settings)
     {
-        return registerSettingsObject(settings, InstanceIdentifier.SINGLETON);
+        return registerSettingsObject(settings, singletonInstance());
     }
 
     /**
@@ -156,9 +155,9 @@ public interface SettingsTrait extends Repeater
     /**
      * @return Adds the given instance of a settings object to this set
      */
-    default Settings registerSettingsObject(Object settings, String instance)
+    default Settings registerSettingsObject(Object settings, String enumName)
     {
-        return registerSettingsObject(settings, InstanceIdentifier.instanceIdentifier(instance));
+        return registerSettingsObject(settings, instanceIdentifier(enumName));
     }
 
     /**
@@ -174,7 +173,7 @@ public interface SettingsTrait extends Repeater
      */
     default <T> T requireSettings(Class<T> type)
     {
-        return requireSettings(type, SINGLETON);
+        return requireSettings(type, singletonInstance());
     }
 
     /**
@@ -188,9 +187,9 @@ public interface SettingsTrait extends Repeater
     /**
      * Convenience method
      */
-    default <T> T requireSettings(Class<T> type, String instance)
+    default <T> T requireSettings(Class<T> type, String enumName)
     {
-        return requireSettings(type, InstanceIdentifier.instanceIdentifier(instance));
+        return requireSettings(type, instanceIdentifier(enumName));
     }
 
     /**
@@ -232,12 +231,12 @@ public interface SettingsTrait extends Repeater
      *
      * @param store The store to save to
      * @param object The object
-     * @param instance Which instance of the object
+     * @param enumName Which instance of the object
      * @return True if the object was saved
      */
-    default boolean saveSettingsTo(SettingsStore store, Object object, String instance)
+    default boolean saveSettingsTo(SettingsStore store, Object object, String enumName)
     {
-        return saveSettingsTo(store, object, InstanceIdentifier.instanceIdentifier(instance));
+        return saveSettingsTo(store, object, instanceIdentifier(enumName));
     }
 
     /**
@@ -249,7 +248,7 @@ public interface SettingsTrait extends Repeater
      */
     default boolean saveSettingsTo(SettingsStore store, Object object)
     {
-        return saveSettingsTo(store, object, SINGLETON);
+        return saveSettingsTo(store, object, singletonInstance());
     }
 
     /**
@@ -271,5 +270,10 @@ public interface SettingsTrait extends Repeater
     default boolean unloadSettings()
     {
         return settingsRegistry().unload();
+    }
+
+    private InstanceIdentifier instanceIdentifier(String enumName)
+    {
+        return instanceIdentifierForEnumName(this, enumName);
     }
 }

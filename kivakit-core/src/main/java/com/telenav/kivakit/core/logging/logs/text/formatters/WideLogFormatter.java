@@ -99,7 +99,7 @@ public class WideLogFormatter extends BaseColumnarFormatter
         }
         else
         {
-            line.addColumnText(timeColumn, message.created().utc().toString());
+            line.addColumnText(timeColumn, message.created().asUtc().toString());
         }
         line.addColumnText(threadColumn, entry.threadName());
         line.addColumnText(contextColumn, entry.context().typeName());

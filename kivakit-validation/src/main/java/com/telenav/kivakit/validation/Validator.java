@@ -18,47 +18,45 @@
 
 package com.telenav.kivakit.validation;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.messaging.Message;
 import com.telenav.kivakit.core.messaging.Transceiver;
 import com.telenav.kivakit.core.messaging.messages.status.Problem;
 import com.telenav.kivakit.core.messaging.messages.status.Warning;
 import com.telenav.kivakit.validation.internal.lexakai.DiagramValidation;
+import com.telenav.kivakit.validation.validators.EmptyValidator;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
+
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
 
 /**
  * When {@link #validate(Listener)} is called, a {@link Validator} validates itself, using the listener parameter to
  * send messages like {@link Problem} s and {@link Warning}s as validation proceeds. If no failure {@link Message} is
- * sent the method returns true, allowing the caller to make success or failure decisions easily. The {@link
- * BaseValidator} class makes it easy to implement validators by hiding access to the listener and providing methods
- * that check conditions and broadcast messages.
+ * sent the method returns true, allowing the caller to make success or failure decisions easily. The
+ * {@link BaseValidator} class makes it easy to implement validators by hiding access to the listener and providing
+ * methods that check conditions and broadcast messages.
  *
  * @author jonathanl (shibo)
  * @see BaseValidator
  * @see Listener
  * @see Transceiver
  */
+@SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramValidation.class)
 @UmlRelation(label = "reports to", referent = Listener.class)
+@ApiQuality(stability = STABLE,
+            testing = UNTESTED,
+            documentation = FULLY_DOCUMENTED)
 public interface Validator
 {
     /** A validator that does nothing */
-    Validator NULL = new BaseValidator()
+    static Validator emptyValidator()
     {
-        @Override
-        protected void onValidate()
-        {
-        }
-    };
-
-    /**
-     * @return True if this object is valid, but without returning any reason why it's not valid. To find out why the
-     * object is not valid, call {@link #validate(Listener)}.
-     */
-    default boolean validate()
-    {
-        return validate(Listener.emptyListener());
+        return new EmptyValidator();
     }
 
     /**

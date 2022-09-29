@@ -35,6 +35,7 @@ import com.telenav.lexakai.annotations.visibility.UmlExcludeMember;
 import java.util.Set;
 
 import static com.telenav.kivakit.core.ensure.Ensure.unsupported;
+import static com.telenav.kivakit.core.string.Formatter.format;
 import static com.telenav.kivakit.settings.SettingsStore.AccessMode.DELETE;
 import static com.telenav.kivakit.settings.SettingsStore.AccessMode.INDEX;
 import static com.telenav.kivakit.settings.SettingsStore.AccessMode.LOAD;
@@ -47,10 +48,11 @@ import static java.util.Collections.emptySet;
  * </p>
  *
  * <p>
- * A {@link ResourceFolderSettingsStore} can be created with {@link ResourceFolderSettingsStore(Listener,
- * ResourceFolder)}. The specified package should contain a set of settings files, each of which can be passed to the
- * {@link ObjectSerializer} for the file's extension to deserialize the object. Object serializers are located with the
- * {@link ObjectSerializers} object found in the global {@link Registry}.
+ * A {@link ResourceFolderSettingsStore} can be created with
+ * {@link ResourceFolderSettingsStore(Listener, ResourceFolder)}. The specified package should contain a set of settings
+ * files, each of which can be passed to the {@link ObjectSerializer} for the file's extension to deserialize the
+ * object. Object serializers are located with the {@link ObjectSerializers} object found in the global
+ * {@link Registry}.
  * </p>
  *
  * @author jonathanl (shibo)

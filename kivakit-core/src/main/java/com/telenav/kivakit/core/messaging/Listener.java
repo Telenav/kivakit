@@ -25,7 +25,7 @@ import com.telenav.kivakit.core.internal.lexakai.DiagramRepeater;
 import com.telenav.kivakit.core.logging.Logger;
 import com.telenav.kivakit.core.messaging.listeners.ThrowingListener;
 import com.telenav.kivakit.core.messaging.messages.status.Problem;
-import com.telenav.kivakit.core.os.ConsoleWriter;
+import com.telenav.kivakit.core.os.Console;
 import com.telenav.kivakit.interfaces.messaging.Transmittable;
 import com.telenav.kivakit.interfaces.naming.NamedObject;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
@@ -118,7 +118,7 @@ public interface Listener extends MessageTransceiver
      */
     static Listener consoleListener()
     {
-        return new ConsoleWriter();
+        return Console.console();
     }
 
     /**

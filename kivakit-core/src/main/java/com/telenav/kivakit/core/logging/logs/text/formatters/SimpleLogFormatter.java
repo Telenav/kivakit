@@ -47,7 +47,7 @@ public class SimpleLogFormatter implements LogFormatter
     @Override
     public String format(LogEntry entry, MessageFormat... formats)
     {
-        return entry.message().created().utc()
+        return entry.message().created().asUtc()
                 + " " + entry.context()
                 + " " + Classes.simpleName(entry.message().getClass())
                 + " " + entry.threadName() + ": " + entry.formattedMessage(formats);

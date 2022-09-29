@@ -17,14 +17,11 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.telenav.kivakit.internal.tests.core.vm;
-import com.telenav.kivakit.internal.testing.CoreUnitTest;
+
 import com.telenav.kivakit.core.value.count.Bytes;
 import com.telenav.kivakit.core.vm.JavaVirtualMachine;
-import org.junit.Ignore;
+import com.telenav.kivakit.internal.testing.CoreUnitTest;
 import org.junit.Test;
-
-import java.util.HashSet;
-import java.util.Set;
 
 public class JavaVirtualMachineTest extends CoreUnitTest
 {
@@ -36,36 +33,5 @@ public class JavaVirtualMachineTest extends CoreUnitTest
         ensure(vm.freeMemory().isLessThan(vm.maximumMemory()));
         ensure(vm.usedMemory().isGreaterThan(Bytes._0));
         ensure(vm.usedMemory().isLessThan(vm.maximumMemory()));
-    }
-
-    @Ignore
-    public void testSizeOf()
-    {
-        var vm = JavaVirtualMachine.javaVirtualMachine();
-        ensureEqual(Bytes.bytes(4), vm.sizeOfPrimitive(4));
-        ensureEqual(Bytes.bytes(8), vm.sizeOfPrimitive(4L));
-        ensureEqual(Bytes.bytes(8), vm.sizeOfPrimitive(4.0));
-        var sizeOfTenThousandIntegers = vm.sizeOf(new int[10_000]);
-        if (sizeOfTenThousandIntegers != null)
-        {
-            ensure(sizeOfTenThousandIntegers.isGreaterThanOrEqualTo(Bytes.bytes(4 * 10_000)));
-            ensure(sizeOfTenThousandIntegers.isLessThanOrEqualTo(Bytes.bytes(4 * 10_000 + 32)));
-        }
-    }
-
-    @Ignore
-    public void testSizeOfGraph()
-    {
-        var vm = JavaVirtualMachine.javaVirtualMachine();
-        final Set<Integer> set = new HashSet<>();
-        for (var i = 0; i < 100; i++)
-        {
-            set.add(i);
-        }
-        var size = vm.sizeOfObjectGraph(set, "test", Bytes._0);
-        if (size != null)
-        {
-            ensure(size.isGreaterThan(Bytes.bytes(100 * 50)));
-        }
     }
 }

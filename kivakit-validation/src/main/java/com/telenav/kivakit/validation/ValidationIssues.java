@@ -18,6 +18,7 @@
 
 package com.telenav.kivakit.validation;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.messaging.Message;
 import com.telenav.kivakit.core.messaging.listeners.MessageCounter;
 import com.telenav.kivakit.core.messaging.listeners.MessageList;
@@ -26,14 +27,21 @@ import com.telenav.kivakit.core.messaging.messages.status.Problem;
 import com.telenav.kivakit.validation.internal.lexakai.DiagramValidation;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXPANDABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
+
 /**
- * A {@link MessageList} and {@link MessageCounter} that captures validation issues. Any message with a {@link
- * Message.Status} worse than or equal to that of a {@link Glitch} causes {@link #isValid()} to return false. In
+ * A {@link MessageList} and {@link MessageCounter} that captures validation issues. Any message with a
+ * {@link Message.Status} worse than or equal to that of a {@link Glitch} causes {@link #isValid()} to return false. In
  * particular, capturing a {@link Glitch} or {@link Problem} makes this {@link ValidationIssues} object invalid.
  *
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramValidation.class)
+@ApiQuality(stability = STABLE_EXPANDABLE,
+            testing = UNTESTED,
+            documentation = FULLY_DOCUMENTED)
 public class ValidationIssues extends MessageList
 {
     public ValidationIssues()
@@ -42,6 +50,9 @@ public class ValidationIssues extends MessageList
         super(message -> !message.status().succeeded());
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ValidationIssues copy()
     {
@@ -56,6 +67,9 @@ public class ValidationIssues extends MessageList
         return countWorseThanOrEqualTo(new Glitch().status()).isZero();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public MessageList onNewInstance()
     {

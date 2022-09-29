@@ -24,6 +24,8 @@ import com.telenav.kivakit.interfaces.string.StringFormattable;
 import org.junit.Assert;
 import org.junit.Test;
 
+import static com.telenav.kivakit.core.string.Formatter.format;
+
 public class MessageFormatterTest extends CoreUnitTest
 {
     private static class Bean implements StringFormattable

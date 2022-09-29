@@ -17,22 +17,28 @@ package com.telenav.kivakit.settings;///////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 import com.telenav.kivakit.core.registry.InstanceIdentifier;
-import com.telenav.kivakit.testing.UnitTest;
 import com.telenav.kivakit.core.time.Duration;
 import com.telenav.kivakit.resource.packages.PackageTrait;
 import com.telenav.kivakit.serialization.gson.GsonSerializationProject;
 import com.telenav.kivakit.serialization.gson.factory.CoreGsonFactory;
 import com.telenav.kivakit.serialization.properties.PropertiesSerializationProject;
 import com.telenav.kivakit.settings.stores.ResourceFolderSettingsStore;
+import com.telenav.kivakit.testing.UnitTest;
 import org.jetbrains.annotations.NotNull;
 import org.junit.Before;
 import org.junit.Test;
 
 public class SettingsTest extends UnitTest implements PackageTrait
 {
-    private static final InstanceIdentifier SERVER1 = InstanceIdentifier.instanceIdentifier("SERVER1");
+    private static final InstanceIdentifier SERVER1 = InstanceIdentifier.instanceIdentifier(WhichServer.SERVER1);
 
-    private static final InstanceIdentifier SERVER2 = InstanceIdentifier.instanceIdentifier("SERVER2");
+    private static final InstanceIdentifier SERVER2 = InstanceIdentifier.instanceIdentifier(WhichServer.SERVER2);
+
+    enum WhichServer
+    {
+        SERVER1,
+        SERVER2
+    }
 
     @Before
     public void setup()

@@ -20,7 +20,6 @@ import static com.telenav.kivakit.core.ensure.Ensure.ensure;
 import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
 import static com.telenav.kivakit.core.ensure.Ensure.fail;
 import static com.telenav.kivakit.core.ensure.Ensure.unsupported;
-import static com.telenav.kivakit.core.registry.InstanceIdentifier.SINGLETON;
 import static com.telenav.kivakit.resource.serialization.ObjectMetadata.INSTANCE;
 import static com.telenav.kivakit.resource.serialization.ObjectMetadata.TYPE;
 import static com.telenav.kivakit.resource.serialization.ObjectMetadata.VERSION;
@@ -83,10 +82,12 @@ public class PropertiesObjectSerializer implements ObjectSerializer
             }
 
             // get any instance identifier,
-            var instance = SINGLETON;
+            var instance = InstanceIdentifier.singletonInstance();
             if (Arrays.contains(metadata, INSTANCE))
             {
-                instance = InstanceIdentifier.instanceIdentifier(properties.getOrDefault("instance", SINGLETON.identifier()));
+                var enumName = properties.getOrDefault("instance",
+                        InstanceIdentifier.singletonInstance().identifier().name());
+                instance = InstanceIdentifier.instanceIdentifierForEnumName(this, enumName);
             }
 
             // convert the property map to an object,

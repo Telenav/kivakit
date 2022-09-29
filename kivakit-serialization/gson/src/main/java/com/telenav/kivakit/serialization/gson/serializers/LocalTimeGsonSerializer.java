@@ -46,6 +46,6 @@ public class LocalTimeGsonSerializer extends PrimitiveGsonSerializer<LocalTime, 
     @Override
     protected String toPrimitive(LocalTime time)
     {
-        return time.utc().toString();
+        return time.asUtc().toString();
     }
 }

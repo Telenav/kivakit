@@ -18,63 +18,65 @@
 
 package com.telenav.kivakit.validation;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.value.name.Name;
 import com.telenav.kivakit.validation.internal.lexakai.DiagramValidation;
+import com.telenav.kivakit.validation.types.ValidateAll;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.HashSet;
 import java.util.Set;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
+
 /**
- * A kind of validation as restricted to a particular set of value types.
+ * A kind of validation as restricted to a particular set of {@link Validatable} types.
  *
  * <p>
- * {@link #VALIDATE_ALL} specifies that values of all types should be validated. Calling {@link #include(Class)} can
- * specify one or more specific types of values to validate. An object which is {@link Validatable} can then implement
- * {@link Validatable#validator(ValidationType)} by returning different {@link Validator} implementations depending on
- * the type of {@link ValidationType} requested or by doing validation conditionally depending on what {@link
- * #shouldValidate(Class)} returns for one or more different target types.
+ * {@link ValidationType#validateAll()} specifies that values of all types should be validated. Calling
+ * {@link #include(Class)} can specify one or more specific types of values to validate. An object which is
+ * {@link Validatable} can then implement {@link Validatable#validator(ValidationType)} by returning different
+ * {@link Validator} implementations depending on the type of {@link ValidationType} requested or by doing validation
+ * conditionally depending on what {@link #shouldValidate(Class)} returns for one or more different target types.
  * </p>
  *
  * @author jonathanl (shibo)
  * @see Validatable
  * @see Validator
  */
+@SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramValidation.class)
+@ApiQuality(stability = STABLE,
+            testing = UNTESTED,
+            documentation = FULLY_DOCUMENTED)
 public class ValidationType extends Name
 {
     /**
      * Full validation of all relevant values
      */
-    public static final ValidationType VALIDATE_ALL = new ValidationType("ALL")
+    public static ValidationType validateAll()
     {
-        @Override
-        public boolean shouldValidate(Class<?> type)
-        {
-            return true;
-        }
-    };
+        return new ValidateAll();
+    }
 
-    /** What kinds of values to validate under this kind of validation */
-    private final Set<Class<?>> toValidate = new HashSet<>();
+    /** What kinds of validate-ables to validate under this kind of validation */
+    private final Set<Class<? extends Validatable>> toValidate = new HashSet<>();
 
-    /**
-     * @param name A user-friendly name for this kind of validation
-     */
-    public ValidationType(String name)
+    public ValidationType()
     {
-        super(name);
     }
 
     /** Skip validation of the given type of value */
-    public ValidationType exclude(Class<?> type)
+    public <T extends Validatable> ValidationType exclude(Class<T> type)
     {
         toValidate.remove(type);
         return this;
     }
 
     /** Ensure the given type of value */
-    public ValidationType include(Class<?> type)
+    public <T extends Validatable> ValidationType include(Class<T> type)
     {
         toValidate.add(type);
         return this;
@@ -83,7 +85,7 @@ public class ValidationType extends Name
     /**
      * @return True if this validation should validate the given type
      */
-    public boolean shouldValidate(Class<?> type)
+    public <T extends Validatable> boolean shouldValidate(Class<T> type)
     {
         return toValidate.contains(type);
     }

@@ -31,7 +31,7 @@ import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.messaging.Message;
 import com.telenav.kivakit.core.messaging.Repeater;
 import com.telenav.kivakit.core.messaging.repeaters.RepeaterMixin;
-import com.telenav.kivakit.core.os.ConsoleWriter;
+import com.telenav.kivakit.core.os.Console;
 import com.telenav.kivakit.core.os.OperatingSystem;
 import com.telenav.kivakit.core.project.Project;
 import com.telenav.kivakit.core.project.ProjectTrait;
@@ -180,11 +180,8 @@ public abstract class CoreUnitTest extends TestWatcher implements
         Failure.reporterFactory(messageType -> new JUnitFailureReporter());
     }
 
-
     @Rule
     public UnitTestWatcher watcher = new UnitTestWatcher(this);
-
-    private final ConsoleWriter console = new ConsoleWriter();
 
     private final ThreadLocal<RandomValueFactory> randomValueFactory = ThreadLocal.withInitial(this::newRandomValueFactory);
 
@@ -198,11 +195,11 @@ public abstract class CoreUnitTest extends TestWatcher implements
     @Override
     public void onMessage(Message message)
     {
-        console.receive(message);
+        Console.console().receive(message);
     }
 
     @Override
-    public <T> T register(final T object)
+    public <T> T register(T object)
     {
         return RegistryTrait.super.register(object);
     }

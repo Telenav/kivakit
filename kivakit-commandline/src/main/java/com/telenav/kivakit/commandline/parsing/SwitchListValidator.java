@@ -26,6 +26,8 @@ import com.telenav.lexakai.annotations.visibility.UmlNotPublicApi;
 
 import java.util.HashMap;
 
+import static com.telenav.kivakit.core.messaging.Listener.emptyListener;
+
 /**
  * <b>Not Public API</b>
  * <p>
@@ -77,7 +79,7 @@ public class SwitchListValidator extends BaseValidator
             if (parser != null)
             {
                 // and if it is invalid or has a duplicate, report failure
-                problemIf(!parser.isValid(), "Switch '${debug}' is invalid", _switch);
+                problemIf(!parser.isValid(emptyListener()), "Switch '${debug}' is invalid", _switch);
                 problemIf(found.containsKey(parser.name()), "Duplicate switch '${debug}'", _switch);
                 found.put(parser.name(), Boolean.TRUE);
             }

@@ -20,19 +20,25 @@ package com.telenav.kivakit.settings.deployment;
 
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.registry.InstanceIdentifier;
-import com.telenav.kivakit.testing.UnitTest;
 import com.telenav.kivakit.core.time.Duration;
 import com.telenav.kivakit.settings.Deployment;
 import com.telenav.kivakit.settings.ServerSettings;
 import com.telenav.kivakit.settings.Settings;
 import com.telenav.kivakit.settings.SettingsTrait;
+import com.telenav.kivakit.testing.UnitTest;
 import org.junit.Test;
 
 public class ComplexDeploymentTest extends UnitTest
 {
-    private static final InstanceIdentifier SERVER1 = InstanceIdentifier.instanceIdentifier("SERVER1");
+    private static final InstanceIdentifier SERVER1 = InstanceIdentifier.instanceIdentifier(WhichServer.SERVER1);
 
-    private static final InstanceIdentifier SERVER2 = InstanceIdentifier.instanceIdentifier("SERVER2");
+    private static final InstanceIdentifier SERVER2 = InstanceIdentifier.instanceIdentifier(WhichServer.SERVER2);
+
+    enum WhichServer
+    {
+        SERVER1,
+        SERVER2
+    }
 
     public static class Development extends Deployment implements SettingsTrait
     {
@@ -44,11 +50,12 @@ public class ComplexDeploymentTest extends UnitTest
         }
     }
 
+    @SuppressWarnings("unused")
     public static class Production extends Deployment implements SettingsTrait
     {
         public Production()
         {
-            super(Listener.throwingListener(),"production", "test production deployment");
+            super(Listener.throwingListener(), "production", "test production deployment");
             registerSettingsObject(new Server3(), SERVER1);
             registerSettingsObject(new Server4(), SERVER2);
         }

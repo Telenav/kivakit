@@ -30,14 +30,14 @@ import java.security.Key;
 
 import static com.telenav.kivakit.core.ensure.Ensure.ensureFalse;
 import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
-import static com.telenav.kivakit.core.registry.InstanceIdentifier.SINGLETON;
+import static com.telenav.kivakit.core.registry.InstanceIdentifier.singletonInstance;
 
 /**
  * <b>Service Provider API</b>
  *
  * <p>
- * A settings object with a unique type and instance identifier. The {@link Settings} class stores {@link
- * SettingsObject}s in a {@link SettingsStore}.
+ * A settings object with a unique type and instance identifier. The {@link Settings} class stores
+ * {@link SettingsObject}s in a {@link SettingsStore}.
  * </p>
  *
  * @author jonathanl (shibo)
@@ -78,7 +78,7 @@ public class SettingsObject implements RegistryTrait
         public Identifier(Class<?> type)
         {
             this.type = type;
-            instance = SINGLETON;
+            instance = singletonInstance();
         }
 
         /**
@@ -146,7 +146,7 @@ public class SettingsObject implements RegistryTrait
 
     public SettingsObject(Object object)
     {
-        this(object, SINGLETON);
+        this(object, singletonInstance());
     }
 
     public SettingsObject(SerializableObject<?> object)
