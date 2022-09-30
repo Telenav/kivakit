@@ -18,6 +18,7 @@
 
 package com.telenav.kivakit.collections.set.operations;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.collections.internal.lexakai.DiagramSet;
 import com.telenav.kivakit.collections.set.LogicalSet;
 import com.telenav.kivakit.core.collections.iteration.BaseIterator;
@@ -25,6 +26,10 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.Iterator;
 import java.util.Set;
+
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
 
 /**
  * A given set without the elements of another set (technically, the "relative complement"). The two sets are logically
@@ -35,6 +40,9 @@ import java.util.Set;
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramSet.class)
+@ApiQuality(stability = STABLE_EXTENSIBLE,
+            testing = UNTESTED,
+            documentation = FULLY_DOCUMENTED)
 public class Without<T> extends LogicalSet<T>
 {
     private final Set<T> set;

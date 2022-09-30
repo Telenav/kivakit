@@ -44,11 +44,11 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.MORE_TESTING_N
  * <p><b>Adding</b></p>
  *
  * <ul>
- *     <li>{@link #plus(Object, long)}</li>
- *     <li>{@link #plus(Object, Countable)}</li>
- *     <li>{@link #increment(Object)}</li>
  *     <li>{@link #decrement(Object)}</li>
+ *     <li>{@link #increment(Object)}</li>
  *     <li>{@link #mergeIn(CountMap)}</li>
+ *     <li>{@link #plus(Object, Countable)}</li>
+ *     <li>{@link #plus(Object, long)}</li>
  * </ul>
  *
  * <p><b>Values</b></p>

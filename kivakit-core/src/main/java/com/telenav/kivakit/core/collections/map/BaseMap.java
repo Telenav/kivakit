@@ -271,6 +271,14 @@ public class BaseMap<Key, Value> implements
     }
 
     /**
+     * Returns the maximum size of this map
+     */
+    public int maximumSize()
+    {
+        return maximumSize;
+    }
+
+    /**
      * {@inheritDoc}
      */
     @Override

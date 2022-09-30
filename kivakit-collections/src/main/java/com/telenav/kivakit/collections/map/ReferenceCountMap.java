@@ -18,23 +18,33 @@
 
 package com.telenav.kivakit.collections.map;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.collections.internal.lexakai.DiagramMap;
 import com.telenav.kivakit.core.value.count.Count;
 import com.telenav.kivakit.core.value.count.MutableCount;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
-import java.util.HashMap;
+import java.util.IdentityHashMap;
 import java.util.Map;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
+
 /**
- * A non-thread-safe map of reference counts.
+ * A non-thread-safe map of reference counts. Counts are increased by calling {@link #reference(Object)}, and decreased
+ * by calling {@link #dereference(Object)}. The method {@link #isReferenced(Object)} returns true if there is any
+ * remaining reference to the given object.
  *
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramMap.class)
+@ApiQuality(stability = STABLE_EXTENSIBLE,
+            testing = UNTESTED,
+            documentation = FULLY_DOCUMENTED)
 public class ReferenceCountMap<Key>
 {
-    private final Map<Key, MutableCount> referenceCount = new HashMap<>();
+    private final Map<Key, MutableCount> referenceCount = new IdentityHashMap<>();
 
     /**
      * @return The reference count for the given object

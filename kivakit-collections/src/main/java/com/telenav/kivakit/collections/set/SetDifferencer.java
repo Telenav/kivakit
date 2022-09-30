@@ -18,6 +18,7 @@
 
 package com.telenav.kivakit.collections.set;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.collections.internal.lexakai.DiagramSet;
 import com.telenav.kivakit.core.collections.set.ConcurrentHashSet;
 import com.telenav.kivakit.interfaces.comparison.Equality;
@@ -25,15 +26,28 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.Set;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
+
 /**
  * Computes the edit difference between two sets. As the comparison proceeds, each element that is added, removed or
  * updated (according to an identity comparator) in the after set when compared with the before set, is passed to a
  * corresponding subclass method.
  *
+ * <p><b>Comparison</b></p>
+ *
+ * <ul>
+ *     <li>{@link #compare(Set, Set)}</li>
+ * </ul>
+ *
  * @author jonathanl (shibo)
  */
-@SuppressWarnings("SpellCheckingInspection")
+@SuppressWarnings({ "SpellCheckingInspection", "unused" })
 @UmlClassDiagram(diagram = DiagramSet.class)
+@ApiQuality(stability = STABLE_EXTENSIBLE,
+            testing = UNTESTED,
+            documentation = FULLY_DOCUMENTED)
 public abstract class SetDifferencer<Element>
 {
     private final Equality<Element> updateComparator;
@@ -44,8 +58,8 @@ public abstract class SetDifferencer<Element>
     }
 
     /**
-     * Compares beforeSet with afterSet, calling {@link #onAdded(Object)}, {@link #onRemoved(Object)} and {@link
-     * #onUpdated(Object)} appropriately.
+     * Compares beforeSet with afterSet, calling {@link #onAdded(Object)}, {@link #onRemoved(Object)} and
+     * {@link #onUpdated(Object)} appropriately.
      *
      * @param beforeSet The set as it used to be
      * @param afterSet The set as it will be

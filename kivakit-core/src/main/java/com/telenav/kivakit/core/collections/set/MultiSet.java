@@ -16,31 +16,47 @@
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-package com.telenav.kivakit.collections.set;
+package com.telenav.kivakit.core.collections.set;
 
-import com.telenav.kivakit.collections.internal.lexakai.DiagramSet;
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.collections.iteration.Iterables;
 import com.telenav.kivakit.core.collections.map.BaseMap;
-import com.telenav.kivakit.core.collections.set.ObjectSet;
 import com.telenav.kivakit.core.value.count.Count;
 import com.telenav.kivakit.core.value.count.Maximum;
 import com.telenav.kivakit.interfaces.collection.NextIterator;
-import com.telenav.lexakai.annotations.LexakaiJavadoc;
-import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
+
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
 
 /**
  * A map from key to an {@link ObjectSet} of values. Values can be added with {@link #add(Object, Object)}. A flattened
  * set of all values in the map can be retrieved with {@link #flatValues()}. The {@link ObjectSet} for a key can be
  * retrieved with {@link #set(Object)}. If the set for the given key does not yet exist, one is created.
  *
+ * <p><b>Adding Values</b></p>
+ *
+ * <ul>
+ *     <li>{@link #add(Object, Object)}</li>
+ * </ul>
+ *
+ * <p><b>Retrieving Values</b></p>
+ *
+ * <ul>
+ *     <li>{@link #flatValues()}</li>
+ *     <li>{@link #set(Object)}</li>
+ * </ul>
+ *
  * @author jonathanl (shibo)
  */
-@UmlClassDiagram(diagram = DiagramSet.class)
-@LexakaiJavadoc(complete = true)
+@SuppressWarnings("unused")
+@ApiQuality(stability = STABLE_EXTENSIBLE,
+            testing = UNTESTED,
+            documentation = FULLY_DOCUMENTED)
 public class MultiSet<Key, Value> extends BaseMap<Key, ObjectSet<Value>>
 {
     private final Maximum maximumValues;
@@ -65,24 +81,20 @@ public class MultiSet<Key, Value> extends BaseMap<Key, ObjectSet<Value>>
         this.maximumValues = maximumValues;
     }
 
+    /**
+     * Adds the given value to the set under the given key
+     *
+     * @param key The key
+     * @param value The value to add
+     */
     public void add(Key key, Value value)
     {
         getOrCreate(key).add(value);
     }
 
-    public int entryCount()
-    {
-        var count = 0;
-        for (var set : values())
-        {
-            if (set != null)
-            {
-                count += set.size();
-            }
-        }
-        return count;
-    }
-
+    /**
+     * Returns a list with all values in this multi-map
+     */
     public Iterable<Value> flatValues()
     {
         return Iterables.iterable(() -> new NextIterator<>()
@@ -110,11 +122,20 @@ public class MultiSet<Key, Value> extends BaseMap<Key, ObjectSet<Value>>
         });
     }
 
+    /**
+     * Gets the set of values for the given key. If there is no set, returns the empty set.
+     *
+     * @param key The key to access
+     * @return The set
+     */
     public Set<Value> getOrEmptySet(Object key)
     {
         return getOrDefault(key, new ObjectSet<>());
     }
 
+    /**
+     * Returns the size of the largest set in this map
+     */
     public Count maximumSetSize()
     {
         var maximum = 0;
@@ -125,21 +146,55 @@ public class MultiSet<Key, Value> extends BaseMap<Key, ObjectSet<Value>>
         return Count.count(maximum);
     }
 
+    /**
+     * Removes the given value from the set found under the given key
+     *
+     * @param key The key
+     * @param value The value to remove
+     */
     public void removeFromSet(Key key, Value value)
     {
         var set = getOrEmptySet(key);
         set.remove(value);
     }
 
+    /**
+     * Replaces the given value from the set found under the given key
+     *
+     * @param key The key
+     * @param value The value to remove
+     */
     public void replaceValue(Key key, Value value)
     {
         removeFromSet(key, value);
         add(key, value);
     }
 
+    /**
+     * Returns the set found under the given key
+     *
+     * @param key The key
+     * @return The set
+     */
     public ObjectSet<Value> set(Key key)
     {
         return computeIfAbsent(key, ignored -> new ObjectSet<>());
+    }
+
+    /**
+     * The total number of values in this map
+     */
+    public int valueCount()
+    {
+        var count = 0;
+        for (var set : values())
+        {
+            if (set != null)
+            {
+                count += set.size();
+            }
+        }
+        return count;
     }
 
     @Override

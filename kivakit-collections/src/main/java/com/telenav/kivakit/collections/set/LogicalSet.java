@@ -18,6 +18,7 @@
 
 package com.telenav.kivakit.collections.set;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.collections.internal.lexakai.DiagramSet;
 import com.telenav.kivakit.collections.set.operations.Intersection;
 import com.telenav.kivakit.collections.set.operations.Union;
@@ -30,6 +31,10 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Collection;
 import java.util.Set;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
+
 /**
  * Base classes for sets that represent an immutable logical view of two or more sets, combined with some sort of
  * logical operation. Logical sets are not modifiable. To change the contents of a logical set, you must modify the
@@ -41,6 +46,9 @@ import java.util.Set;
  * @see Without
  */
 @UmlClassDiagram(diagram = DiagramSet.class)
+@ApiQuality(stability = STABLE_EXTENSIBLE,
+            testing = UNTESTED,
+            documentation = FULLY_DOCUMENTED)
 public abstract class LogicalSet<Element> implements Set<Element>
 {
     @Override
