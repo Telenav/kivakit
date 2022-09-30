@@ -33,6 +33,6 @@ public class EmailAddressConverter extends BaseStringConverter<EmailAddress>
 {
     public EmailAddressConverter(Listener listener)
     {
-        super(listener, EmailAddress::parseEmail);
+        super(listener, EmailAddress::parseEmailAddress);
     }
 }

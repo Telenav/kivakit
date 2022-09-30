@@ -64,7 +64,7 @@ class SecureFtpConnector
             try
             {
                 session = jsch.getSession(location.constraints().userName().toString(),
-                        location.host().address().getHostName(), location.port().number());
+                        location.host().address().getHostName(), location.port().portNumber());
                 session.setConfig("StrictHostKeyChecking", "no");
                 session.setPassword(location.constraints().password().toString());
                 session.connect();

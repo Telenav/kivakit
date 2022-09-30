@@ -100,7 +100,7 @@ public class HttpNetworkLocation extends NetworkLocation implements Resourceful
                 var query = url.getQuery();
                 if (query != null)
                 {
-                    location.queryParameters(QueryParameters.parse(this, query));
+                    location.queryParameters(QueryParameters.parseQueryParameters(this, query));
                 }
                 location.reference(url.getRef());
                 return location;

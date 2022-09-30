@@ -18,11 +18,15 @@
 
 package com.telenav.kivakit.network.core;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.network.core.internal.lexakai.DiagramNetworkLocation;
 import com.telenav.kivakit.resource.Resource;
-import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
+
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
 
 /**
  * Interface to a network resource. The resource has a {@link NetworkLocation}.
@@ -30,10 +34,14 @@ import com.telenav.lexakai.annotations.associations.UmlRelation;
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramNetworkLocation.class)
-@LexakaiJavadoc(complete = true)
+@ApiQuality(stability = STABLE,
+            testing = TESTING_NOT_NEEDED,
+            documentation = FULLY_DOCUMENTED)
 public interface NetworkResource extends Resource
 {
     /**
+     * Returns the location of this network resource
+     *
      * @return The location of this network resource
      */
     @UmlRelation(label = "located at")

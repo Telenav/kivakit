@@ -140,7 +140,7 @@ public class NetworkLocation implements StringFormattable, Comparable<NetworkLoc
         try
         {
             var username = constraints == null || constraints.userName() == null ? null : constraints.userName().name();
-            var portNumber = port().number();
+            var portNumber = port().portNumber();
             if (protocol().defaultPort() == portNumber)
             {
                 portNumber = -1;
@@ -169,7 +169,7 @@ public class NetworkLocation implements StringFormattable, Comparable<NetworkLoc
             {
                 file += "#" + reference;
             }
-            var portNumber = port().number();
+            var portNumber = port().portNumber();
             if (protocol().defaultPort() == portNumber)
             {
                 portNumber = -1;

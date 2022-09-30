@@ -41,7 +41,7 @@ public class QueryParametersTest extends UnitTest
         variables.put("c", "3");
         variables.put("b", "2");
         var parameters = new QueryParameters(variables);
-        ensureEqual(4, parameters.asMap().size());
+        ensureEqual(4, parameters.asVariableMap().size());
         ensureEqual("a=1&b=2&c=3&d=4", parameters.toString());
         var q1 = new QueryParameters("d=4&a=1&c=3&b=2");
         ensureEqual(q1, parameters);
@@ -51,7 +51,7 @@ public class QueryParametersTest extends UnitTest
     public void testParseString()
     {
         var parameters = new QueryParameters("x=1&y=2");
-        var variables = parameters.asMap();
+        var variables = parameters.asVariableMap();
         ensureEqual(2, variables.size());
         ensureEqual("1", variables.get("x"));
         ensureEqual("2", variables.get("y"));

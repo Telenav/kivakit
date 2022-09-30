@@ -27,7 +27,7 @@ public class HostTest extends UnitTest
     @Test
     public void test()
     {
-        ensureEqual(Host.local(), Host.local());
+        ensureEqual(Host.localhost(), Host.localhost());
     }
 
     @Test

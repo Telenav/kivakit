@@ -18,20 +18,21 @@
 
 package com.telenav.kivakit.network.core;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.commandline.SwitchParser;
 import com.telenav.kivakit.conversion.BaseStringConverter;
 import com.telenav.kivakit.core.collections.map.CacheMap;
 import com.telenav.kivakit.core.language.Arrays;
-import com.telenav.kivakit.core.string.ObjectFormatter;
 import com.telenav.kivakit.core.language.reflection.property.KivaKitIncludeProperty;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.messaging.repeaters.BaseRepeater;
+import com.telenav.kivakit.core.string.KivaKitFormat;
+import com.telenav.kivakit.core.string.ObjectFormatter;
 import com.telenav.kivakit.core.time.Duration;
 import com.telenav.kivakit.core.value.count.Maximum;
 import com.telenav.kivakit.interfaces.naming.Named;
 import com.telenav.kivakit.interfaces.string.StringFormattable;
 import com.telenav.kivakit.network.core.internal.lexakai.DiagramPort;
-import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeMember;
 
@@ -39,6 +40,11 @@ import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.Objects;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE;
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
 import static com.telenav.kivakit.commandline.SwitchParser.builder;
 import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
 import static com.telenav.kivakit.network.core.Protocol.FTP;
@@ -57,11 +63,40 @@ import static com.telenav.kivakit.network.core.Protocol.UNKNOWN;
  * <p><b>Attributes</b></p>
  *
  * <p>
- * A host has a network {@link #name()} and a {@link #description()}. If the port is on the localhost, {@link
- * #isLocal()} will return true. If the port can be resolved to an address, {@link #isResolvable()} will return true and
- * {@link #address()} will return the resolved address. The canonical name can be retrieved with {@link
- * #canonicalName()}.
+ * A host has a network {@link #name()} and a {@link #description()}. If the port is on the localhost,
+ * {@link #isLocal()} will return true. If the port can be resolved to an address, {@link #isResolvable()} will return
+ * true and {@link #address()} will return the resolved address. The canonical name can be retrieved with
+ * {@link #canonicalName()}.
  * </p>
+ *
+ * <p><b>Creation</b></p>
+ *
+ * <ul>
+ *     <li>{@link #parseHost(Listener, String)}</li>
+ *     <li>{@link #parseHost(Listener, String, String)}</li>
+ *     <li>{@link Host#Host(InetAddress, String)}</li>
+ *     <li>{@link Host#Host(InetAddress, String, String)}</li>
+ *     <li>{@link #hostSwitchParser(Listener, String, String)}</li>
+ * </ul>
+ *
+ * <p><b>Hosts</b></p>
+ *
+ * <ul>
+ *     <li>{@link LocalHost#localhost()}</li>
+ *     <li>{@link Loopback#loopback()}</li>
+ *     <li>{@link #none()}</li>
+ * </ul>
+ *
+ * <p><b>Properties</b></p>
+ *
+ * <ul>
+ *     <li>{@link #address()}</li>
+ *     <li>{@link #canonicalName()}</li>
+ *     <li>{@link #description()}</li>
+ *     <li>{@link #dnsName()}</li>
+ *     <li>{@link #isLocal()}</li>
+ *     <li>{@link #isResolvable()}</li>
+ * </ul>
  *
  * <p><b>Ports</b></p>
  *
@@ -86,10 +121,25 @@ import static com.telenav.kivakit.network.core.Protocol.UNKNOWN;
  *     <li>{@link #sftp(int)}</li>
  * </ul>
  *
+ * <p><b>Conversions</b></p>
+ *
+ * <ul>
+ *     <li>{@link #asString(Format)}</li>
+ * </ul>
+ *
+ * <p><b>Comparison</b></p>
+ *
+ * <ul>
+ *     <li>{@link #compareTo(Host)}</li>
+ * </ul>
+ *
  * @author jonathanl (shibo)
  */
+@SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramPort.class)
-@LexakaiJavadoc(complete = true)
+@ApiQuality(stability = STABLE_EXTENSIBLE,
+            testing = UNTESTED,
+            documentation = FULLY_DOCUMENTED)
 public class Host extends BaseRepeater implements
         Named,
         StringFormattable,
@@ -106,26 +156,34 @@ public class Host extends BaseRepeater implements
                 .description(description);
     }
 
-    public static Host local()
-    {
-        return LocalHost.get();
-    }
-
-    public static Host loopback()
-    {
-        return Loopback.get();
-    }
-
+    /**
+     * Returns a value representing no host
+     */
     public static Host none()
     {
         return new Host("[No Host]");
     }
 
+    /**
+     * Parses the given host name into a {@link Host}
+     *
+     * @param listener The listener to call with problems
+     * @param name The name of the host
+     * @return The host
+     */
     public static Host parseHost(Listener listener, String name)
     {
         return listener.listenTo(new Host(name));
     }
 
+    /**
+     * Parses the given host name into a {@link Host}
+     *
+     * @param listener The listener to call with problems
+     * @param name The name of the host
+     * @param description The host's description
+     * @return The host
+     */
     public static Host parseHost(Listener listener, String name, String description)
     {
         return listener.listenTo(new Host(name, description));
@@ -136,7 +194,9 @@ public class Host extends BaseRepeater implements
      *
      * @author jonathanl (shibo)
      */
-    @LexakaiJavadoc(complete = true)
+    @ApiQuality(stability = STABLE,
+                testing = TESTING_NOT_NEEDED,
+                documentation = FULLY_DOCUMENTED)
     public static class Converter extends BaseStringConverter<Host>
     {
         public Converter(Listener listener)
@@ -145,14 +205,19 @@ public class Host extends BaseRepeater implements
         }
     }
 
+    /** The internet address of this host */
     private transient InetAddress address;
 
+    /** A description of this host */
     private String description;
 
+    /** True if this is the local host */
     private Boolean local;
 
+    /** The name of this host */
     private String name;
 
+    /** The raw internet address of this host */
     private byte[] rawAddress;
 
     public Host(InetAddress address, String description)
@@ -179,7 +244,6 @@ public class Host extends BaseRepeater implements
         this.description = description;
     }
 
-    @UmlExcludeMember
     protected Host()
     {
     }
@@ -195,13 +259,12 @@ public class Host extends BaseRepeater implements
     }
 
     @Override
-    @UmlExcludeMember
     public String asString(Format format)
     {
         return new ObjectFormatter(this).toString();
     }
 
-    @KivaKitIncludeProperty
+    @KivaKitFormat
     public String canonicalName()
     {
         return address().getCanonicalHostName();
@@ -213,7 +276,7 @@ public class Host extends BaseRepeater implements
         return canonicalName().compareTo(that.canonicalName());
     }
 
-    @KivaKitIncludeProperty
+    @KivaKitFormat
     public String description()
     {
         return description;
@@ -303,7 +366,6 @@ public class Host extends BaseRepeater implements
         return value;
     }
 
-    @KivaKitIncludeProperty
     public boolean isLocal()
     {
         if (local == null)
@@ -327,13 +389,13 @@ public class Host extends BaseRepeater implements
         }
     }
 
-    @UmlExcludeMember
+    @SuppressWarnings("SpellCheckingInspection")
     public Port memcache()
     {
         return memcachePort(MEMCACHE.defaultPort());
     }
 
-    @UmlExcludeMember
+    @SuppressWarnings("SpellCheckingInspection")
     public Port memcachePort(int port)
     {
         return port(MEMCACHE, port);
@@ -372,7 +434,7 @@ public class Host extends BaseRepeater implements
 
     public Port port(Protocol protocol, int number)
     {
-        return new Port(this, protocol, number);
+        return new Port(this, number, protocol);
     }
 
     public Port sftp()
@@ -403,7 +465,6 @@ public class Host extends BaseRepeater implements
         return builder.toString();
     }
 
-    @UmlExcludeMember
     protected InetAddress onResolveAddress()
     {
         if (rawAddress != null)
@@ -451,7 +512,7 @@ public class Host extends BaseRepeater implements
         else if (name.equals("127.0.0.1"))
         {
             // then the address is the loopback
-            address = Loopback.get().address();
+            address = Loopback.loopback().address();
         }
         else
         {
@@ -460,6 +521,7 @@ public class Host extends BaseRepeater implements
         }
     }
 
+    @SuppressWarnings("SpellCheckingInspection")
     private InetAddress resolveHostName(String name)
     {
         try
@@ -468,7 +530,7 @@ public class Host extends BaseRepeater implements
                     || "localhost".equals(name)
                     || "localhost.localdomain".equals(name))
             {
-                return Loopback.get().address();
+                return Loopback.loopback().address();
             }
 
             var address = resolvedHostNames.get(name);

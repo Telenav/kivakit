@@ -18,20 +18,20 @@
 
 package com.telenav.kivakit.network.core;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.commandline.SwitchParser;
 import com.telenav.kivakit.conversion.BaseStringConverter;
 import com.telenav.kivakit.core.collections.list.StringList;
-import com.telenav.kivakit.core.language.reflection.property.KivaKitIncludeProperty;
 import com.telenav.kivakit.core.logging.Logger;
 import com.telenav.kivakit.core.logging.LoggerFactory;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.path.Path;
 import com.telenav.kivakit.core.path.StringPath;
+import com.telenav.kivakit.core.string.KivaKitFormat;
+import com.telenav.kivakit.filesystem.FilePath;
 import com.telenav.kivakit.network.core.internal.lexakai.DiagramNetworkLocation;
 import com.telenav.kivakit.resource.Extension;
 import com.telenav.kivakit.resource.FileName;
-import com.telenav.kivakit.filesystem.FilePath;
-import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.net.URI;
@@ -39,6 +39,10 @@ import java.net.URISyntaxException;
 import java.util.List;
 import java.util.function.Function;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE;
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
 import static com.telenav.kivakit.commandline.SwitchParser.builder;
 
 /**
@@ -69,21 +73,30 @@ import static com.telenav.kivakit.commandline.SwitchParser.builder;
  *
  * @author jonathanl (shibo)
  */
+@SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramNetworkLocation.class)
-@LexakaiJavadoc(complete = true)
+@ApiQuality(stability = STABLE_EXTENSIBLE,
+            testing = TESTING_NOT_NEEDED,
+            documentation = FULLY_DOCUMENTED)
 public class NetworkPath extends FilePath
 {
     private static final Logger LOGGER = LoggerFactory.newLogger();
 
     /**
+     * Returns a network path for the given URI
+     *
+     * @param listener The listener to call with any problems
      * @return A network path for the given URI
      */
     public static NetworkPath networkPath(Listener listener, URI uri)
     {
-        return networkPath(listener, Port.from(uri), uri.getPath());
+        return networkPath(listener, Port.port(uri), uri.getPath());
     }
 
     /**
+     * Returns a network path for the given port and path
+     *
+     * @param listener The listener to call with any problems
      * @return The given path relative to the given port as a network path
      */
     public static NetworkPath networkPath(Listener listener, Port port, String path)
@@ -92,6 +105,14 @@ public class NetworkPath extends FilePath
         return new NetworkPath(port, StringPath.parseStringPath(listener, path, "/", "/").withRoot(root));
     }
 
+    /**
+     * Returns a switch parser builder for network paths
+     *
+     * @param listener The listener to call with any problems
+     * @param name The name of the switch
+     * @param description The switch description
+     * @return The switch parser builder
+     */
     public static SwitchParser.Builder<NetworkPath> networkPathSwitchParser(Listener listener,
                                                                             String name,
                                                                             String description)
@@ -103,17 +124,20 @@ public class NetworkPath extends FilePath
     }
 
     /**
+     * Parses the given text into a {@link NetworkPath}
+     *
+     * @param text The text to parse
      * @return A network path for the given string
      */
-    public static NetworkPath parseNetworkPath(Listener listener, String path)
+    public static NetworkPath parseNetworkPath(Listener listener, String text)
     {
         try
         {
-            return networkPath(listener, new URI(path));
+            return networkPath(listener, new URI(text));
         }
         catch (URISyntaxException e)
         {
-            listener.problem("Invalid network path: $", path);
+            listener.problem("Invalid network path: $", text);
             return null;
         }
     }
@@ -123,7 +147,9 @@ public class NetworkPath extends FilePath
      *
      * @author jonathanl (shibo)
      */
-    @LexakaiJavadoc(complete = true)
+    @ApiQuality(stability = STABLE,
+                testing = TESTING_NOT_NEEDED,
+                documentation = FULLY_DOCUMENTED)
     public static class Converter extends BaseStringConverter<NetworkPath>
     {
         public Converter(Listener listener)
@@ -173,6 +199,7 @@ public class NetworkPath extends FilePath
     /**
      * @return This network path as a URI
      */
+    @Override
     public URI asUri()
     {
         try
@@ -216,7 +243,7 @@ public class NetworkPath extends FilePath
     /**
      * @return The port for this network path (which includes the host and protocol)
      */
-    @KivaKitIncludeProperty
+    @KivaKitFormat
     public Port port()
     {
         return port;
@@ -234,6 +261,7 @@ public class NetworkPath extends FilePath
     /**
      * {@inheritDoc}
      */
+    @SuppressWarnings("SpellCheckingInspection")
     @Override
     public NetworkPath subpath(int start, int end)
     {
