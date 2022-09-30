@@ -77,7 +77,7 @@ import com.telenav.kivakit.serialization.gson.GsonObjectSerializer;
 import com.telenav.kivakit.serialization.properties.PropertiesObjectSerializer;
 import com.telenav.kivakit.settings.Deployment;
 import com.telenav.kivakit.settings.DeploymentSet;
-import com.telenav.kivakit.settings.SettingsTrait;
+import com.telenav.kivakit.settings.SettingsRegistryTrait;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlAggregation;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
@@ -132,7 +132,7 @@ import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
  *
  * <ul>
  *     <li>{@link PackageTrait} - Provides access to packages and packaged resources</li>
- *     <li>{@link SettingsTrait} - Loads settings objects and deployment configurations</li>
+ *     <li>{@link SettingsRegistryTrait} - Loads settings objects and deployment configurations</li>
  *     <li>{@link RegistryTrait} - Service {@link Registry} access</li>
  *     <li>{@link LanguageTrait} - Enhancements that reduce language verbosity</li>
  *     <li>{@link Repeater} - Message broadcasting, listening and repeating</li>
@@ -265,7 +265,7 @@ import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
 public abstract class Application extends BaseComponent implements
         PackageTrait,
         ProjectTrait,
-        SettingsTrait,
+        SettingsRegistryTrait,
         Named,
         ApplicationMetadata
 {
@@ -600,7 +600,7 @@ public abstract class Application extends BaseComponent implements
             onProjectsInitialized();
 
             // load deployments,
-            deployments = DeploymentSet.load(this, getClass());
+            deployments = DeploymentSet.loadDeploymentSet(this, getClass());
 
             // then through arguments
             var argumentList = new StringList();

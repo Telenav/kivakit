@@ -18,6 +18,7 @@
 
 package com.telenav.kivakit.settings;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.logging.Logger;
 import com.telenav.kivakit.core.logging.LoggerFactory;
 import com.telenav.kivakit.core.object.Lazy;
@@ -31,6 +32,9 @@ import com.telenav.kivakit.settings.stores.MemorySettingsStore;
 import com.telenav.kivakit.settings.stores.ResourceFolderSettingsStore;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
 import static com.telenav.kivakit.core.ensure.Ensure.fail;
 import static com.telenav.kivakit.settings.SettingsStore.AccessMode.LOAD;
 
@@ -42,22 +46,23 @@ import static com.telenav.kivakit.settings.SettingsStore.AccessMode.LOAD;
  * <p><b>Settings</b></p>
  *
  * <p>
- * The global {@link Settings} registry is returned by {@link #global()}, and it is the default registry returned by
- * {@link #of(Object)}. The global settings registry is normally the central point of settings registration and lookup
- * for an application. It allows settings objects to be easily queried from client code anywhere. Convenient access to
- * the global settings registry is provided by {@link SettingsTrait}, and by the <i>Component</i> class in
- * <i>kivakit-component</i>, which implements {@link SettingsTrait}. A component can have its own settings registry
- * (not a common use case) by overriding the {@link SettingsTrait#settingsRegistry()} method (which returns the global
+ * The global {@link SettingsRegistry} registry is returned by {@link #global()}, and it is the default registry returned by
+ * {@link #settingsRegistryFor(Object)}. The global settings registry is normally the central point of settings
+ * registration and lookup for an application. It allows settings objects to be easily queried from client code
+ * anywhere. Convenient access to the global settings registry is provided by {@link SettingsRegistryTrait}, and by the
+ * <i>Component</i> class in
+ * <i>kivakit-component</i>, which implements {@link SettingsRegistryTrait}. A component can have its own settings registry
+ * (not a common use case) by overriding the {@link SettingsRegistryTrait#settingsRegistry()} method (which returns the global
  * settings registry by default).
  * </p>
  *
  * <p><b>How Settings are Registered</b></p>
  *
  * <p>
- * A component can easily register settings objects with the {@link SettingsTrait} <i>registerSettings*()</i> methods.
- * In particular, they can be registered from a {@link SettingsStore} with the method {@link
- * #registerSettingsIn(SettingsStore)}. A typical way for a component to register the settings objects in a {@link
- * SettingsStore} is something like:
+ * A component can easily register settings objects with the {@link SettingsRegistryTrait} <i>registerSettings*()</i> methods.
+ * In particular, they can be registered from a {@link SettingsStore} with the method
+ * {@link #registerSettingsIn(SettingsStore)}. A typical way for a component to register the settings objects in a
+ * {@link SettingsStore} is something like:
  * </p>
  * <pre>
  * registerSettingsIn(PackageSettingsStore.of(package));</pre>
@@ -96,13 +101,13 @@ import static com.telenav.kivakit.settings.SettingsStore.AccessMode.LOAD;
  * <p><b>How Settings are Looked Up</b></p>
  *
  * <p>
- * The <i>lookupSettings*()</i> and <i>requireSettings*()</i> methods provided by {@link SettingsTrait} can be used to locate settings
+ * The <i>lookupSettings*()</i> and <i>requireSettings*()</i> methods provided by {@link SettingsRegistryTrait} can be used to locate settings
  * objects from any Component (see the <i>kivakit-component</i> project). Settings are located according to this
  * series of steps:
  * <ol>
  *     <li>Look for the object in the resources in the (comma separated) sequence of folders specified by KIVAKIT_SETTINGS_FOLDERS</li>
  *     <li>Look for the object in the global lookup {@link Registry}</li>
- *     <li>Look for the object in the (usually global) {@link Settings}</li>
+ *     <li>Look for the object in the (usually global) {@link SettingsRegistry}</li>
  * </ol>
  *
  * <p>
@@ -114,22 +119,25 @@ import static com.telenav.kivakit.settings.SettingsStore.AccessMode.LOAD;
  * </p>
  *
  * @author jonathanl (shibo)
- * @see SettingsTrait
+ * @see SettingsRegistryTrait
  * @see Registry
  * @see Deployment
  * @see MemorySettingsStore
  * @see ResourceFolderSettingsStore
  */
 @UmlClassDiagram(diagram = DiagramSettings.class)
-public class Settings extends MemorySettingsStore implements
-        SettingsTrait,
+@ApiQuality(stability = STABLE_EXTENSIBLE,
+            testing = UNTESTED,
+            documentation = FULLY_DOCUMENTED)
+public class SettingsRegistry extends MemorySettingsStore implements
+        SettingsRegistryTrait,
         JavaTrait
 {
     private static final Logger LOGGER = LoggerFactory.newLogger();
 
-    /** The global settings */
-    private static final Lazy<Settings> global = Lazy.lazy(() ->
-            LOGGER.listenTo(new Settings()
+    /** The global settings registry */
+    private static final Lazy<SettingsRegistry> global = Lazy.lazy(() ->
+            LOGGER.listenTo(new SettingsRegistry()
             {
                 @Override
                 public String name()
@@ -141,15 +149,17 @@ public class Settings extends MemorySettingsStore implements
     /**
      * @return The global settings object
      */
-    public static Settings global()
+    public static SettingsRegistry global()
     {
         return global.get();
     }
 
     /**
-     * @return The settings registry for the given object (the global settings registry by default)
+     * Returns the settings registry for the given object. By default, this is the global settings registry.
+     *
+     * @return The settings registry for the given object
      */
-    public static synchronized Settings of(Object ignored)
+    public static synchronized SettingsRegistry settingsRegistryFor(Object ignored)
     {
         return global();
     }
@@ -173,7 +183,7 @@ public class Settings extends MemorySettingsStore implements
         if (settings == null)
         {
             // then search settings objects in this store,
-            settings = lookup(new SettingsObject.Identifier(type, instance));
+            settings = lookup(new SettingsObject.SettingsObjectIdentifier(type, instance));
 
             // and if the settings are still not found and a default settings package was specified,
             if (settings == null && defaultSettings != null)
@@ -182,7 +192,7 @@ public class Settings extends MemorySettingsStore implements
                 trace("Loading default settings from $", defaultSettings);
                 var store = new ResourceFolderSettingsStore(this, defaultSettings);
                 registerSettingsIn(store);
-                settings = store.lookup(new SettingsObject.Identifier(type, instance));
+                settings = store.lookup(new SettingsObject.SettingsObjectIdentifier(type, instance));
             }
         }
 
@@ -198,8 +208,30 @@ public class Settings extends MemorySettingsStore implements
         return lookupSettings(type, instance, null);
     }
 
+    /**
+     * @return Adds the given instance of a settings object to this set
+     */
     @Override
-    public Settings registerSettingsIn(SettingsStore store)
+    public synchronized SettingsRegistry registerSettings(Object settings, InstanceIdentifier instance)
+    {
+        // If a client tries to register a deployment or other settings store this way,
+        if (settings instanceof SettingsStore)
+        {
+            // then tell them to call registerSettingsIn(),
+            return fail("To register a Deployment or other SettingsStore, call registerSettingsIn(SettingsStore)");
+        }
+
+        // otherwise, index the object in the settings store,
+        index(new SettingsObject(settings, instance));
+
+        // add the object to the global lookup registry.
+        register(settings, instance);
+
+        return this;
+    }
+
+    @Override
+    public SettingsRegistry registerSettingsIn(SettingsStore store)
     {
         // If we can load the settings store,
         if (store.supports(LOAD))
@@ -216,28 +248,6 @@ public class Settings extends MemorySettingsStore implements
 
         // and register the settings objects in the global object registry.
         registerAllIn(store);
-
-        return this;
-    }
-
-    /**
-     * @return Adds the given instance of a settings object to this set
-     */
-    @Override
-    public synchronized Settings registerSettingsObject(Object settings, InstanceIdentifier instance)
-    {
-        // If a client tries to register a deployment or other settings store this way,
-        if (settings instanceof SettingsStore)
-        {
-            // then tell them to call registerSettingsIn(),
-            return fail("To register a Deployment or other SettingsStore, call registerSettingsIn(SettingsStore)");
-        }
-
-        // otherwise, index the object in the settings store,
-        index(new SettingsObject(settings, instance));
-
-        // add the object to the global lookup registry.
-        register(settings, instance);
 
         return this;
     }

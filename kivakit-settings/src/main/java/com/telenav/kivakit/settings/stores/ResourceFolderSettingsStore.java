@@ -18,6 +18,7 @@
 
 package com.telenav.kivakit.settings.stores;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.collections.set.ObjectSet;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.registry.Registry;
@@ -25,8 +26,8 @@ import com.telenav.kivakit.filesystem.Folder;
 import com.telenav.kivakit.resource.ResourceFolder;
 import com.telenav.kivakit.resource.serialization.ObjectSerializer;
 import com.telenav.kivakit.resource.serialization.ObjectSerializers;
-import com.telenav.kivakit.settings.Settings;
 import com.telenav.kivakit.settings.SettingsObject;
+import com.telenav.kivakit.settings.SettingsRegistry;
 import com.telenav.kivakit.settings.SettingsStore;
 import com.telenav.kivakit.settings.internal.lexakai.DiagramSettings;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
@@ -34,6 +35,9 @@ import com.telenav.lexakai.annotations.visibility.UmlExcludeMember;
 
 import java.util.Set;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
 import static com.telenav.kivakit.core.ensure.Ensure.unsupported;
 import static com.telenav.kivakit.core.string.Formatter.format;
 import static com.telenav.kivakit.settings.SettingsStore.AccessMode.DELETE;
@@ -44,26 +48,29 @@ import static java.util.Collections.emptySet;
 
 /**
  * <p>
- * A folder containing settings objects defined by <i>.properties</i> files.
+ * A read-only folder containing settings objects defined by <i>.properties</i> files.
  * </p>
  *
  * <p>
  * A {@link ResourceFolderSettingsStore} can be created with
- * {@link ResourceFolderSettingsStore(Listener, ResourceFolder)}. The specified package should contain a set of settings
- * files, each of which can be passed to the {@link ObjectSerializer} for the file's extension to deserialize the
- * object. Object serializers are located with the {@link ObjectSerializers} object found in the global
- * {@link Registry}.
+ * {@link ResourceFolderSettingsStore#ResourceFolderSettingsStore(Listener, ResourceFolder)}. The specified package
+ * should contain a set of settings files, each of which can be passed to the {@link ObjectSerializer} for the file's
+ * extension to deserialize the object. Object serializers are located with the {@link ObjectSerializers} object found
+ * in the global {@link Registry}.
  * </p>
  *
  * @author jonathanl (shibo)
  * @see BaseResourceSettingsStore
  * @see ObjectSerializers
- * @see Settings
+ * @see SettingsRegistry
  * @see SettingsStore
  * @see SettingsObject
  * @see Folder
  */
 @UmlClassDiagram(diagram = DiagramSettings.class)
+@ApiQuality(stability = STABLE_EXTENSIBLE,
+            testing = UNTESTED,
+            documentation = FULLY_DOCUMENTED)
 public class ResourceFolderSettingsStore extends BaseResourceSettingsStore
 {
     /** The folder containing .properties files defining settings objects */
@@ -79,12 +86,18 @@ public class ResourceFolderSettingsStore extends BaseResourceSettingsStore
         this.folder = folder;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Set<AccessMode> accessModes()
     {
         return Set.of(INDEX, DELETE, UNLOAD, LOAD);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String name()
     {
@@ -121,12 +134,18 @@ public class ResourceFolderSettingsStore extends BaseResourceSettingsStore
         return objects;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean onSave(SettingsObject object)
     {
         return unsupported();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected boolean onDelete(SettingsObject object)
     {

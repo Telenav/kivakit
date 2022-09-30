@@ -1,5 +1,6 @@
 package com.telenav.kivakit.settings;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.collections.set.ObjectSet;
 import com.telenav.kivakit.core.ensure.Ensure;
 import com.telenav.kivakit.core.messaging.Repeater;
@@ -7,15 +8,17 @@ import com.telenav.kivakit.core.registry.InstanceIdentifier;
 import com.telenav.kivakit.resource.ResourceFolder;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_DEFAULT_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
 import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
-import static com.telenav.kivakit.core.registry.InstanceIdentifier.instanceIdentifierForEnumName;
 import static com.telenav.kivakit.core.registry.InstanceIdentifier.singletonInstance;
 
 /**
  * <p>
- * A stateless trait for accessing the {@link Settings} for the implementing component. Settings for a component can be
+ * A stateless trait for accessing the {@link SettingsRegistry} for the implementing component. Settings for a component can be
  * retrieved with {@link #settingsRegistry()}. This provides a simplified interface to load settings objects specified
- * by the user while also allowing for default settings when they are not specified. See {@link Settings} for details.
+ * by the user while also allowing for default settings when they are not specified. See {@link SettingsRegistry} for details.
  * </p>
  *
  * <p>
@@ -25,35 +28,60 @@ import static com.telenav.kivakit.core.registry.InstanceIdentifier.singletonInst
  * this trait to add easy access to settings objects to all components.
  * </p>
  *
+ * <p><b>Registry Access</b></p>
+ *
+ * <ul>
+ *     <li>{@link #settingsRegistry()}</li>
+ * </ul>
+ *
  * <p><b>Register methods</b></p>
  *
  * <ul>
+ *     <li>{@link #registerSettings(Object)} - Registers the given object</li>
+ *     <li>{@link #registerSettings(Object, Enum)} - Registers the given identified object instance</li>
+ *     <li>{@link #registerSettings(Object, InstanceIdentifier)} - Registers the given identified object instance</li>
  *     <li>{@link #registerSettingsIn(SettingsStore)} - Registers the settings in the given folder with this settings object</li>
- *     <li>{@link #registerSettingsObject(Object)} - Registers the given object</li>
- *     <li>{@link #registerSettingsObject(Object, String)} - Registers the given identified object instance</li>
- *     <li>{@link #registerSettingsObject(Object, Enum)} - Registers the given identified object instance</li>
  * </ul>
  *
  * <p><b>Lookup methods</b></p>
  *
  * <ul>
- *     <li>{@link #settingsRegistry()} - The {@link Settings} for this object</li>
  *     <li>{@link #hasSettings(Class)} - Determines if the registered instance of the given class can be found</li>
- *     <li>{@link #hasSettings(Class, String)} - Determines if the registered instance of the given class can be found</li>
+ *     <li>{@link #hasSettings(Class, InstanceIdentifier)} - Determines if the registered instance of the given class can be found</li>
  *     <li>{@link #hasSettings(Class, Enum)} - Determines if the registered instance of the given class can be found</li>
  *     <li>{@link #lookupSettings(Class)} - Locates the registered instance of the given class</li>
- *     <li>{@link #lookupSettings(Class, String)} - Locates the specified registered instance of the given class</li>
  *     <li>{@link #lookupSettings(Class, Enum)} - Locates the specified registered instance of the given class</li>
+ *     <li>{@link #lookupSettings(Class, InstanceIdentifier)} - Locates the specified registered instance of the given class</li>
+ *     <li>{@link #lookupSettings(Class, InstanceIdentifier, ResourceFolder)} - Locates the specified registered instance of the given class, or loads it from the given folder</li>
  *     <li>{@link #requireSettings(Class)} - Locates the registered instance of the given class or fails</li>
- *     <li>{@link #requireSettings(Class, String)} - Locates the specified registered instance of the given class or fails</li>
  *     <li>{@link #requireSettings(Class, Enum)} - Locates the specified registered instance of the given class or fails</li>
+ *     <li>{@link #requireSettings(Class, InstanceIdentifier)} - Locates the specified registered instance of the given class or fails</li>
+ *     <li>{@link #settingsRegistry()} - The {@link SettingsRegistry} for this object</li>
+ * </ul>
+ *
+ * <p><b>Loading</b></p>
+ *
+ * <ul>
+ *     <li>{@link #settingsIn(SettingsStore)}</li>
+ *     <li>{@link #unloadSettings()}</li>
+ * </ul>
+ *
+ * <p><b>Saving</b></p>
+ *
+ * <ul>
+ *     <li>{@link #saveSettings(SettingsStore, Object)}</li>
+ *     <li>{@link #saveSettings(SettingsStore, Object, Enum)}</li>
+ *     <li>{@link #saveSettings(SettingsStore, Object, InstanceIdentifier)}</li>
  * </ul>
  *
  * @author jonathanl (shibo)
- * @see Settings
+ * @see SettingsRegistry
  */
 @SuppressWarnings({ "unused", "UnusedReturnValue" })
-public interface SettingsTrait extends Repeater
+@ApiQuality(stability = STABLE_DEFAULT_EXTENSIBLE,
+            testing = UNTESTED,
+            documentation = FULLY_DOCUMENTED)
+public interface SettingsRegistryTrait extends Repeater
 {
     /**
      * @return True if this set has a settings object of the given type
@@ -77,14 +105,6 @@ public interface SettingsTrait extends Repeater
     default boolean hasSettings(Class<?> type, Enum<?> instance)
     {
         return hasSettings(type, InstanceIdentifier.instanceIdentifier(instance));
-    }
-
-    /**
-     * @return True if this set has the specified instance of the settings object specified by the given type
-     */
-    default boolean hasSettings(Class<?> type, String enumName)
-    {
-        return hasSettings(type, instanceIdentifier(enumName));
     }
 
     /**
@@ -123,49 +143,36 @@ public interface SettingsTrait extends Repeater
         return settingsRegistry().lookupSettings(type, InstanceIdentifier.instanceIdentifier(instance));
     }
 
-    default <T> T lookupSettings(Class<T> type, String enumName)
+    /**
+     * @return Add the given settings object to this set
+     */
+    default SettingsRegistry registerSettings(Object settings)
     {
-        return settingsRegistry().lookupSettings(type, instanceIdentifier(enumName));
+        return registerSettings(settings, singletonInstance());
+    }
+
+    /**
+     * @return Adds the given instance of a settings object to this set
+     */
+    default SettingsRegistry registerSettings(Object settings, Enum<?> instance)
+    {
+        return registerSettings(settings, InstanceIdentifier.instanceIdentifier(instance));
+    }
+
+    /**
+     * @return Adds the given instance of a settings object to this set
+     */
+    default SettingsRegistry registerSettings(Object settings, InstanceIdentifier instance)
+    {
+        return settingsRegistry().registerSettings(settings, instance);
     }
 
     /**
      * Adds the settings objects from the given {@link Deployment} to the settings registry for this component.
      */
-    default Settings registerSettingsIn(SettingsStore settings)
+    default SettingsRegistry registerSettingsIn(SettingsStore settings)
     {
         return settingsRegistry().registerSettingsIn(settings);
-    }
-
-    /**
-     * @return Add the given settings object to this set
-     */
-    default Settings registerSettingsObject(Object settings)
-    {
-        return registerSettingsObject(settings, singletonInstance());
-    }
-
-    /**
-     * @return Adds the given instance of a settings object to this set
-     */
-    default Settings registerSettingsObject(Object settings, Enum<?> instance)
-    {
-        return registerSettingsObject(settings, InstanceIdentifier.instanceIdentifier(instance));
-    }
-
-    /**
-     * @return Adds the given instance of a settings object to this set
-     */
-    default Settings registerSettingsObject(Object settings, String enumName)
-    {
-        return registerSettingsObject(settings, instanceIdentifier(enumName));
-    }
-
-    /**
-     * @return Adds the given instance of a settings object to this set
-     */
-    default Settings registerSettingsObject(Object settings, InstanceIdentifier instance)
-    {
-        return settingsRegistry().registerSettingsObject(settings, instance);
     }
 
     /**
@@ -185,14 +192,6 @@ public interface SettingsTrait extends Repeater
     }
 
     /**
-     * Convenience method
-     */
-    default <T> T requireSettings(Class<T> type, String enumName)
-    {
-        return requireSettings(type, instanceIdentifier(enumName));
-    }
-
-    /**
      * @return The object of the given instance and type, or {@link Ensure#fail()} if there is no such object
      */
     default <T> T requireSettings(Class<T> type, InstanceIdentifier instance)
@@ -208,7 +207,7 @@ public interface SettingsTrait extends Repeater
      * @param instance Which instance of the object
      * @return True if the object was saved
      */
-    default boolean saveSettingsTo(SettingsStore store, Object object, InstanceIdentifier instance)
+    default boolean saveSettings(SettingsStore store, Object object, InstanceIdentifier instance)
     {
         return store.save(new SettingsObject(object, instance));
     }
@@ -221,22 +220,9 @@ public interface SettingsTrait extends Repeater
      * @param instance Which instance of the object
      * @return True if the object was saved
      */
-    default boolean saveSettingsTo(SettingsStore store, Object object, Enum<?> instance)
+    default boolean saveSettings(SettingsStore store, Object object, Enum<?> instance)
     {
-        return saveSettingsTo(store, object, InstanceIdentifier.instanceIdentifier(instance));
-    }
-
-    /**
-     * Saves the given instance of the given object to the given settings store
-     *
-     * @param store The store to save to
-     * @param object The object
-     * @param enumName Which instance of the object
-     * @return True if the object was saved
-     */
-    default boolean saveSettingsTo(SettingsStore store, Object object, String enumName)
-    {
-        return saveSettingsTo(store, object, instanceIdentifier(enumName));
+        return saveSettings(store, object, InstanceIdentifier.instanceIdentifier(instance));
     }
 
     /**
@@ -246,12 +232,14 @@ public interface SettingsTrait extends Repeater
      * @param object The object
      * @return True if the object was saved
      */
-    default boolean saveSettingsTo(SettingsStore store, Object object)
+    default boolean saveSettings(SettingsStore store, Object object)
     {
-        return saveSettingsTo(store, object, singletonInstance());
+        return saveSettings(store, object, singletonInstance());
     }
 
     /**
+     * Returns the settings objects in the given store
+     *
      * @return The settings in the given store
      */
     default ObjectSet<SettingsObject> settingsIn(SettingsStore store)
@@ -259,9 +247,9 @@ public interface SettingsTrait extends Repeater
         return store.indexed();
     }
 
-    default Settings settingsRegistry()
+    default SettingsRegistry settingsRegistry()
     {
-        return Settings.of(this);
+        return SettingsRegistry.settingsRegistryFor(this);
     }
 
     /**
@@ -270,10 +258,5 @@ public interface SettingsTrait extends Repeater
     default boolean unloadSettings()
     {
         return settingsRegistry().unload();
-    }
-
-    private InstanceIdentifier instanceIdentifier(String enumName)
-    {
-        return instanceIdentifierForEnumName(this, enumName);
     }
 }

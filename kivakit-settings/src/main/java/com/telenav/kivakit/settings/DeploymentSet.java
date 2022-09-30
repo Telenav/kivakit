@@ -18,6 +18,7 @@
 
 package com.telenav.kivakit.settings;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.commandline.SwitchParser;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.messaging.repeaters.BaseRepeater;
@@ -37,25 +38,76 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
+
 /**
  * A set of {@link Deployment} objects, each being a set of settings objects. Deployments can be added to the set from a
  * folder with {@link #addDeploymentsIn(ResourceFolder)}. A switch parser to select a deployment from the command line
  * can be retrieved with SwitchParser.deployment(DeploymentSet).
  *
+ * <p><b>Loading</b></p>
+ *
+ * <ul>
+ *     <li>{@link #loadDeploymentSet(Listener, Class)}</li>
+ * </ul>
+ *
+ * <p><b>Creation</b></p>
+ *
+ * <ul>
+ *     <li>{@link #deploymentSet(Listener, Deployment, Deployment...)}</li>
+ * </ul>
+ *
+ * <p><b>Adding Deployments</b></p>
+ *
+ * <ul>
+ *     <li>{@link #add(Deployment)}</li>
+ *     <li>{@link #addAll(Collection)}</li>
+ *     <li>{@link #addDeploymentsIn(ResourceFolder)}</li>
+ * </ul>
+ *
+ * <p><b>Accessing Deployments</b></p>
+ *
+ * <ul>
+ *     <li>{@link #deployment(String)}</li>
+ *     <li>{@link #deployments()}</li>
+ *     <li>{@link #switchParser(String)}</li>
+ * </ul>
+ *
  * @author jonathanl (shibo)
  * @see Deployment
- * @see Settings
+ * @see SettingsRegistry
  */
-@SuppressWarnings("UnusedReturnValue")
+@SuppressWarnings({ "UnusedReturnValue", "unused" })
 @UmlClassDiagram(diagram = DiagramSettings.class)
+@ApiQuality(stability = STABLE_EXTENSIBLE,
+            testing = UNTESTED,
+            documentation = FULLY_DOCUMENTED)
 public class DeploymentSet extends BaseRepeater implements RegistryTrait
 {
     /**
-     * Loads all deployments in the root package 'deployments' and in any folder specified by
-     * KIVAKIT_DEPLOYMENT_FOLDER.
+     * Returns a deployment set with the given deployments
+     *
+     * @param listener The listener to call with any problems
+     * @param deployment The first deployment to add
+     * @param more Further deployments to add
+     * @return The deployment set
+     */
+    public static DeploymentSet deploymentSet(Listener listener, Deployment deployment, Deployment... more)
+    {
+        var set = listener.listenTo(new DeploymentSet());
+        set.add(deployment);
+        set.addAll(Arrays.asList(more));
+        return set;
+    }
+
+    /**
+     * Loads all deployments in the package 'deployments' relative to the given class' package, and in any folder
+     * specified by KIVAKIT_DEPLOYMENT_FOLDER.
      */
     @SuppressWarnings("ConstantConditions")
-    public static DeploymentSet load(Listener listener, Class<?> relativeTo)
+    public static DeploymentSet loadDeploymentSet(Listener listener, Class<?> relativeTo)
     {
         // Create an empty set of deployments,
         var deployments = listener.listenTo(new DeploymentSet());
@@ -80,14 +132,7 @@ public class DeploymentSet extends BaseRepeater implements RegistryTrait
         return deployments;
     }
 
-    public static DeploymentSet of(Listener listener, Deployment deployment, Deployment... more)
-    {
-        var set = listener.listenTo(new DeploymentSet());
-        set.add(deployment);
-        set.addAll(Arrays.asList(more));
-        return set;
-    }
-
+    /** The set of deployments */
     @UmlAggregation
     private final Set<Deployment> deployments = new HashSet<>();
 

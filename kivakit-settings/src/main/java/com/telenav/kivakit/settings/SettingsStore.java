@@ -1,11 +1,16 @@
 package com.telenav.kivakit.settings;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.collections.set.ObjectSet;
 import com.telenav.kivakit.core.messaging.Repeater;
 import com.telenav.kivakit.core.registry.RegistryTrait;
 import com.telenav.kivakit.interfaces.naming.Named;
 
 import java.util.Set;
+
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
 
 /**
  * <b>Service Provider API</b>
@@ -16,7 +21,7 @@ import java.util.Set;
  *
  * <p>
  * <i>NOTE: This store object should not be accessed directly by user code. Instead, use
- * {@link SettingsTrait}.</i>
+ * {@link SettingsRegistryTrait}.</i>
  * </p>
  *
  * <p><b>Loading and Saving</b></p>
@@ -31,13 +36,16 @@ import java.util.Set;
  *
  * <p>
  * Note that it is not necessary for settings {@link Object}s to implement the {@link Object#hashCode()} /
- * {@link Object#equals(Object)} contract. The {@link SettingsObject.Identifier} class implements this contract,
+ * {@link Object#equals(Object)} contract. The {@link SettingsObject.SettingsObjectIdentifier} class implements this contract,
  * allowing {@link SettingsObject}s to be accessed in maps and stored in sets.
  * </p>
  *
  * @author jonathanl (shibo)
  */
 @SuppressWarnings({ "UnusedReturnValue", "unused" })
+@ApiQuality(stability = STABLE_EXTENSIBLE,
+            testing = UNTESTED,
+            documentation = FULLY_DOCUMENTED)
 public interface SettingsStore extends
         RegistryTrait,
         Repeater,
@@ -73,6 +81,9 @@ public interface SettingsStore extends
 
     /**
      * <b>Service Provider API</b>
+     * <p>
+     * Returns the access modes this store supports
+     * </p>
      *
      * @return The access modes this store supports
      */
@@ -81,6 +92,10 @@ public interface SettingsStore extends
     /**
      * <b>Service Provider API</b>
      *
+     * <p>
+     * Deletes the given settings object from this store
+     * </p>
+     *
      * @return True if the given setting object was removed from the in-memory index of this store
      */
     boolean delete(SettingsObject object);
@@ -88,7 +103,7 @@ public interface SettingsStore extends
     /**
      * <b>Service Provider API</b>
      * <p>
-     * Add the given object to the in-memory index of this settings store. This will <i>not</i>> add the object to the
+     * Adds the given object to the in-memory index of this settings store. This will <i>not</i>> add the object to the
      * underlying persistent store. To do that, call {@link #save(SettingsObject)}.
      */
     boolean index(SettingsObject object);
@@ -97,6 +112,7 @@ public interface SettingsStore extends
      * <b>Service Provider API</b>
      * <p>
      * Adds all {@link SettingsObject}s to this store's in-memory index via {@link #index(SettingsObject)}.
+     * </p>
      */
     default boolean indexAll(SettingsStore store)
     {
@@ -106,6 +122,9 @@ public interface SettingsStore extends
 
     /**
      * <b>Service Provider API</b>
+     * <p>
+     * Returns all indexed objects
+     * </p>
      *
      * @return All objects in this store's in-memory index. If the store supports loading, and it has not yet been
      * loaded, {@link #load()} will be called first.
@@ -114,6 +133,10 @@ public interface SettingsStore extends
 
     /**
      * <b>Service Provider API</b>
+     *
+     * <p>
+     * Loads this settings store with {@link SettingsObject}s
+     * </p>
      *
      * @return The set of {@link SettingsObject} instances in this store
      */
@@ -158,6 +181,7 @@ public interface SettingsStore extends
 
     /**
      * <b>Service Provider API</b>
+     * Returns true if this store supports the given access mode
      *
      * @return True if this store supports the given type of access
      */
@@ -172,10 +196,14 @@ public interface SettingsStore extends
      * Removes the given object from the in-memory index of this settings store. This will <i>not</i>> add the object to
      * the underlying persistent store. To do that, call {@link #save(SettingsObject)}.
      */
+    @SuppressWarnings("SpellCheckingInspection")
     boolean unindex(SettingsObject object);
 
     /**
      * <b>Service Provider API</b>
+     * <p>
+     * Unloads all data in this store
+     * </p>
      *
      * @return True if the in-memory index of this store was cleared
      */

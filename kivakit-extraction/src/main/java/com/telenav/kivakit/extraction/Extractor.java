@@ -18,13 +18,18 @@
 
 package com.telenav.kivakit.extraction;
 
-import com.telenav.kivakit.core.value.count.Count;
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.messaging.Broadcaster;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.messaging.Repeater;
 import com.telenav.kivakit.core.messaging.Transceiver;
+import com.telenav.kivakit.core.value.count.Count;
 import com.telenav.kivakit.extraction.internal.lexakai.DiagramExtraction;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
+
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
 
 /**
  * An extractor extracts a value from a source object of a given type.
@@ -69,6 +74,9 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
  * @see Transceiver
  */
 @UmlClassDiagram(diagram = DiagramExtraction.class)
+@ApiQuality(stability = STABLE,
+            testing = UNTESTED,
+            documentation = FULLY_DOCUMENTED)
 public interface Extractor<Value, From> extends Broadcaster
 {
     /**

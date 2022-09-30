@@ -132,7 +132,7 @@ public abstract class Project extends BaseRepeater implements
      * Visitor interface for use with {@link #visitDependencies(Visitor)}
      */
     @FunctionalInterface
-        public interface Visitor
+    public interface Visitor
     {
         /**
          * @param at The project we are at
@@ -161,6 +161,8 @@ public abstract class Project extends BaseRepeater implements
     }
 
     /**
+     * Returns the set of projects that depend on this project
+     *
      * @return The set of dependent projects for this project
      */
     @UmlRelation(label = "depends on")

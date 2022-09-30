@@ -1,5 +1,6 @@
 package com.telenav.kivakit.settings.stores;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.conversion.core.language.object.KivaKitConverted;
 import com.telenav.kivakit.conversion.core.language.object.ObjectPopulator;
 import com.telenav.kivakit.core.registry.Registry;
@@ -11,6 +12,9 @@ import com.telenav.kivakit.settings.BaseSettingsStore;
 import com.telenav.kivakit.settings.SettingsObject;
 import com.telenav.kivakit.settings.SettingsStore;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
 import static com.telenav.kivakit.resource.serialization.ObjectMetadata.INSTANCE;
 import static com.telenav.kivakit.resource.serialization.ObjectMetadata.TYPE;
 
@@ -22,10 +26,10 @@ import static com.telenav.kivakit.resource.serialization.ObjectMetadata.TYPE;
  * </p>
  *
  * <p>
- * This class is the base class for {@link ResourceFolderSettingsStore}, which loads settings
- * information from <i>.properties</i> files in folders and packages. Settings objects are loaded when
- * they are requested, and each <i>.properties</i> resource describes <i>just one settings object</i>. This means that a
- * settings folder or package will often have more than one <i>.properties</i> resource in it, such as:
+ * This class is the base class for {@link ResourceFolderSettingsStore}, which loads settings information from
+ * <i>.properties</i> files in folders and packages. Settings objects are loaded when they are requested, and each
+ * <i>.properties</i> resource describes <i>just one settings object</i>. This means that a settings folder or package
+ * will often have more than one <i>.properties</i> resource in it, such as:
  * </p>
  *
  * <pre>
@@ -104,6 +108,9 @@ import static com.telenav.kivakit.resource.serialization.ObjectMetadata.TYPE;
  * @see SettingsStore
  * @see ResourceFolderSettingsStore
  */
+@ApiQuality(stability = STABLE_EXTENSIBLE,
+            testing = UNTESTED,
+            documentation = FULLY_DOCUMENTED)
 public abstract class BaseResourceSettingsStore extends BaseSettingsStore implements
         SettingsStore,
         RegistryTrait

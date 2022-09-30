@@ -1,5 +1,6 @@
 package com.telenav.kivakit.settings;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.collections.set.ObjectSet;
 import com.telenav.kivakit.core.messaging.repeaters.BaseRepeater;
 import com.telenav.kivakit.core.registry.Registry;
@@ -8,7 +9,6 @@ import com.telenav.kivakit.core.thread.locks.ReadWriteLock;
 import com.telenav.kivakit.core.vm.JavaTrait;
 import com.telenav.kivakit.settings.stores.MemorySettingsStore;
 import com.telenav.kivakit.settings.stores.ResourceFolderSettingsStore;
-import com.telenav.lexakai.annotations.visibility.UmlExcludeMember;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.HashMap;
@@ -17,6 +17,9 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
 import static com.telenav.kivakit.core.collections.set.ObjectSet.objectSet;
 import static com.telenav.kivakit.core.ensure.Ensure.ensure;
 import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
@@ -56,7 +59,7 @@ import static com.telenav.kivakit.settings.SettingsStore.AccessMode.UNLOAD;
  *     <li>{@link #unload()} - Clears this store's in-memory index</li>
  *     <li>{@link #iterator()} - Iterates through each settings {@link Object} in this store</li>
  *     <li>{@link #load()} - Lazy-loads objects from persistent storage by calling {@link #onLoad()} and then adds them to the in-memory index</li>
- *     <li>{@link #lookup(SettingsObject.Identifier)} - Looks up the object for the given identifier in the store's index</li>
+ *     <li>{@link #lookup(SettingsObject.SettingsObjectIdentifier)} - Looks up the object for the given identifier in the store's index</li>
  *     <li>{@link #save(SettingsObject)} - Saves the given settings object to persistent storage by calling {@link #onSave(SettingsObject)}</li>
  * </ul>
  *
@@ -77,6 +80,9 @@ import static com.telenav.kivakit.settings.SettingsStore.AccessMode.UNLOAD;
  * @see Deployment
  * @see ResourceFolderSettingsStore
  */
+@ApiQuality(stability = STABLE_EXTENSIBLE,
+            testing = UNTESTED,
+            documentation = FULLY_DOCUMENTED)
 public abstract class BaseSettingsStore extends BaseRepeater implements
         SettingsStore,
         RegistryTrait,
@@ -89,7 +95,7 @@ public abstract class BaseSettingsStore extends BaseRepeater implements
     private final ReadWriteLock lock = new ReadWriteLock();
 
     /** Map to get settings entries by identifier */
-    private final Map<SettingsObject.Identifier, SettingsObject> objects = new HashMap<>();
+    private final Map<SettingsObject.SettingsObjectIdentifier, SettingsObject> objects = new HashMap<>();
 
     /** Store to propagate changes to */
     private SettingsStore propagateChangesTo;
@@ -114,12 +120,11 @@ public abstract class BaseSettingsStore extends BaseRepeater implements
     }
 
     /**
-     * Adds the given settings object to the in-memory index for this store. The object (from {@link
-     * SettingsObject#object()}) is indexed under its class and all implemented interfaces. It is also indexed under all
-     * superclasses and superinterfaces.
+     * Adds the given settings object to the in-memory index for this store. The object (from
+     * {@link SettingsObject#object()}) is indexed under its class and all implemented interfaces. It is also indexed
+     * under all superclasses and superinterfaces.
      */
     @Override
-    @UmlExcludeMember
     public boolean index(SettingsObject settings)
     {
         ensure(supports(INDEX));
@@ -171,7 +176,6 @@ public abstract class BaseSettingsStore extends BaseRepeater implements
      * {@inheritDoc}
      */
     @Override
-    @UmlExcludeMember
     public final synchronized Set<SettingsObject> load()
     {
         ensure(supports(LOAD));
@@ -195,7 +199,7 @@ public abstract class BaseSettingsStore extends BaseRepeater implements
      * @return Any settings object for the given identifier
      */
     @SuppressWarnings("unchecked")
-    public <T> T lookup(SettingsObject.Identifier identifier)
+    public <T> T lookup(SettingsObject.SettingsObjectIdentifier identifier)
     {
         maybeLoad();
 
@@ -265,12 +269,12 @@ public abstract class BaseSettingsStore extends BaseRepeater implements
     }
 
     /**
-     * Adds the given settings object to the in-memory index for this store. The object (from {@link
-     * SettingsObject#object()}) is indexed under its class and all implemented interfaces. It is also indexed under all
-     * superclasses and superinterfaces.
+     * Adds the given settings object to the in-memory index for this store. The object (from
+     * {@link SettingsObject#object()}) is indexed under its class and all implemented interfaces. It is also indexed
+     * under all superclasses and superinterfaces.
      */
     @Override
-    @UmlExcludeMember
+    @SuppressWarnings("SpellCheckingInspection")
     public boolean unindex(SettingsObject settings)
     {
         ensure(supports(INDEX));

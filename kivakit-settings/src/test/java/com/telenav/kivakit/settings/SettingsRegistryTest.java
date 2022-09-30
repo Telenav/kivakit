@@ -28,7 +28,7 @@ import org.jetbrains.annotations.NotNull;
 import org.junit.Before;
 import org.junit.Test;
 
-public class SettingsTest extends UnitTest implements PackageTrait
+public class SettingsRegistryTest extends UnitTest implements PackageTrait
 {
     private static final InstanceIdentifier SERVER1 = InstanceIdentifier.instanceIdentifier(WhichServer.SERVER1);
 
@@ -60,13 +60,13 @@ public class SettingsTest extends UnitTest implements PackageTrait
             server.port(9000);
 
             // and adds it to global configuration set
-            Settings.of(this).registerSettingsObject(server);
+            SettingsRegistry.settingsRegistryFor(this).registerSettings(server);
         }
 
         // Get configuration
         {
             // Client code, possibly in a library class, later retrieves the configuration
-            var server = Settings.of(this).requireSettings(ServerSettings.class);
+            var server = SettingsRegistry.settingsRegistryFor(this).requireSettings(ServerSettings.class);
             ensureEqual(Duration.ONE_MINUTE, server.timeout());
             ensureEqual(9000, server.port());
         }
@@ -86,7 +86,7 @@ public class SettingsTest extends UnitTest implements PackageTrait
         // Get configuration
         {
             // Client code can then retrieve both settings
-            var server1 = settings.requireSettings(ClientSettings.class, "banana");
+            var server1 = settings.requireSettings(ClientSettings.class, WhichServer.SERVER1);
             ensureEqual(Duration.seconds(6), server1.timeout());
             ensureEqual(9999, server1.port());
         }
@@ -105,7 +105,7 @@ public class SettingsTest extends UnitTest implements PackageTrait
             server1.port(8080);
 
             // and adds it to the global settings set with the given enum key
-            settings.registerSettingsObject(server1, SERVER1);
+            settings.registerSettings(server1, SERVER1);
 
             // Script can register a second settings of the same class
             var server2 = new ServerSettings();
@@ -113,17 +113,17 @@ public class SettingsTest extends UnitTest implements PackageTrait
             server2.port(80);
 
             // under a different key
-            settings.registerSettingsObject(server2, SERVER2);
+            settings.registerSettings(server2, SERVER2);
         }
 
         // Get settings
         {
             // Client code can then retrieve both settings
-            var server1 = Settings.of(this).requireSettings(ServerSettings.class, SERVER1);
+            var server1 = SettingsRegistry.settingsRegistryFor(this).requireSettings(ServerSettings.class, SERVER1);
             ensureEqual(Duration.ONE_MINUTE, server1.timeout());
             ensureEqual(8080, server1.port());
 
-            var server2 = Settings.of(this).requireSettings(ServerSettings.class, SERVER2);
+            var server2 = SettingsRegistry.settingsRegistryFor(this).requireSettings(ServerSettings.class, SERVER2);
             ensureEqual(Duration.ONE_MINUTE, server2.timeout());
             ensureEqual(80, server2.port());
         }
@@ -143,16 +143,16 @@ public class SettingsTest extends UnitTest implements PackageTrait
         // Get settings
         {
             // Client code, possibly in a library class, later retrieves the settings
-            var serverSettings = Settings.of(this).requireSettings(ServerSettings.class);
+            var serverSettings = SettingsRegistry.settingsRegistryFor(this).requireSettings(ServerSettings.class);
             ensureEqual(Duration.ONE_MINUTE, serverSettings.timeout());
             ensureEqual(7000, serverSettings.port());
         }
     }
 
     @NotNull
-    private Settings globalSettings()
+    private SettingsRegistry globalSettings()
     {
-        var global = Settings.of(this);
+        var global = SettingsRegistry.settingsRegistryFor(this);
         global.unload();
         global.clearListeners();
         global.addListener(this);

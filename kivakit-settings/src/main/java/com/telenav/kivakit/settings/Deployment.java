@@ -18,6 +18,7 @@
 
 package com.telenav.kivakit.settings;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.commandline.SwitchParser;
 import com.telenav.kivakit.conversion.BaseStringConverter;
 import com.telenav.kivakit.core.messaging.Listener;
@@ -26,11 +27,14 @@ import com.telenav.kivakit.interfaces.naming.Named;
 import com.telenav.kivakit.resource.ResourceFolder;
 import com.telenav.kivakit.settings.internal.lexakai.DiagramSettings;
 import com.telenav.kivakit.settings.stores.MemorySettingsStore;
-import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.io.Serializable;
 import java.util.Objects;
+
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
 
 /**
  * <p>
@@ -38,8 +42,8 @@ import java.util.Objects;
  * </p>
  *
  * <p>
- * The name of a deployment can be retrieved with {@link #name()} and a description of its purpose with {@link
- * #description()}. The example below, has details on how settings information can be loaded and queried.
+ * The name of a deployment can be retrieved with {@link #name()} and a description of its purpose with
+ * {@link #description()}. The example below, has details on how settings information can be loaded and queried.
  * </p>
  *
  * <p><b>Deploying Applications</b></p>
@@ -60,9 +64,9 @@ import java.util.Objects;
  *
  * <p>
  * Here, settings objects in the "production" {@link Deployment} will be installed into the global settings registry. At
- * a later point, the application can look up those objects with {@link SettingsTrait#lookupSettings(Class)} and {@link
- * SettingsTrait#lookupSettings(Class, InstanceIdentifier)}, both of which are provided by the <i>Component</i> class in
- * the <i>kivakit-component</i> project.
+ * a later point, the application can look up those objects with {@link SettingsRegistryTrait#lookupSettings(Class)} and
+ * {@link SettingsRegistryTrait#lookupSettings(Class, InstanceIdentifier)}, both of which are provided by the
+ * <i>Component</i> class in the <i>kivakit-component</i> project.
  * </p>
  *
  * <p><b>Example</b></p>
@@ -82,8 +86,8 @@ import java.util.Objects;
  *
  * <p>
  * It does this by using a {@link SwitchParser} from <i>kivakit-application</i> to allow the user to select a deployment
- * from the command line. The deployment is automatically installed in the global {@link Settings} registry, and these
- * settings objects can easily be located in the code. The usage for the <i>Demo</i> application then, is:
+ * from the command line. The deployment is automatically installed in the global {@link SettingsRegistry} registry, and
+ * these settings objects can easily be located in the code. The usage for the <i>Demo</i> application then, is:
  * </p>
  *
  * <pre>
@@ -141,20 +145,31 @@ import java.util.Objects;
  * }</pre>
  *
  * <p>
- * For more details on how settings are processed and how applications can locate settings information, see {@link
- * Settings}.
+ * For more details on how settings are processed and how applications can locate settings information, see
+ * {@link SettingsRegistry}.
  * </p>
  *
  * @author jonathanl (shibo)
- * @see Settings
+ * @see SettingsRegistry
  * @see SettingsStore
  * @see SettingsObject
  * @see DeploymentSet
  */
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramSettings.class, excludeSuperTypes = { Serializable.class })
+@ApiQuality(stability = STABLE,
+            testing = UNTESTED,
+            documentation = FULLY_DOCUMENTED)
 public class Deployment extends MemorySettingsStore implements Serializable
 {
+    /**
+     * Returns a switch parser to select deployments
+     *
+     * @param listener The listener to call with problems
+     * @param deployments The set of deployments to select from
+     * @param switchName The name of the switch
+     * @return The switch parser builder
+     */
     public static SwitchParser.Builder<Deployment> deploymentSwitchParser(Listener listener,
                                                                           DeploymentSet deployments,
                                                                           String switchName)
@@ -171,9 +186,12 @@ public class Deployment extends MemorySettingsStore implements Serializable
      *
      * @author jonathanl (shibo)
      */
-    @LexakaiJavadoc(complete = true)
+    @ApiQuality(stability = STABLE,
+                testing = UNTESTED,
+                documentation = FULLY_DOCUMENTED)
     public static class Converter extends BaseStringConverter<Deployment>
     {
+        /** Set of deployments to choose from */
         private final DeploymentSet deployments;
 
         public Converter(Listener listener, DeploymentSet deployments)
