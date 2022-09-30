@@ -129,8 +129,8 @@ public class Package extends BaseRepeater implements ResourceFolder<Package>
      * the form of {@link Package}s).
      *
      * @author jonathanl (shibo)
-     * @see Resource#resolve(Listener, String)
-     * @see Resource#resolve(Listener, ResourceIdentifier)
+     * @see Resource#resolveResource(Listener, String)
+     * @see Resource#resolveResource(Listener, ResourceIdentifier)
      */
     @UmlClassDiagram(diagram = DiagramResourceService.class)
     @LexakaiJavadoc(complete = true)
@@ -219,9 +219,9 @@ public class Package extends BaseRepeater implements ResourceFolder<Package>
     }
 
     @Override
-    public ResourceFolderIdentifier identifier()
+    public ResourceFolderIdentifier resourceFolderIdentifier()
     {
-        return ResourceFolder.identifier(packagePath.packageType() + ":" + packagePath.join());
+        return ResourceFolder.resourceFolderIdentifier(packagePath.packageType() + ":" + packagePath.join());
     }
 
     @Override

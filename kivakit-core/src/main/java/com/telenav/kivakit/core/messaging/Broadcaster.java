@@ -87,7 +87,7 @@ public interface Broadcaster extends MessageTransceiver
      */
     default void addListener(Listener listener)
     {
-        addListener(listener, Filter.acceptingAll());
+        addListener(listener, Filter.acceptAll());
     }
 
     /**

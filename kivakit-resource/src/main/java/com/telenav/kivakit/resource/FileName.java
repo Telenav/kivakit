@@ -18,11 +18,10 @@
 
 package com.telenav.kivakit.resource;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.conversion.core.time.LocalDateConverter;
 import com.telenav.kivakit.conversion.core.time.LocalDateTimeConverter;
 import com.telenav.kivakit.conversion.core.time.LocalTimeConverter;
-import com.telenav.kivakit.core.logging.Logger;
-import com.telenav.kivakit.core.logging.LoggerFactory;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.string.Paths;
 import com.telenav.kivakit.core.string.Strings;
@@ -32,11 +31,15 @@ import com.telenav.kivakit.filesystem.FilePath;
 import com.telenav.kivakit.interfaces.comparison.Matcher;
 import com.telenav.kivakit.interfaces.naming.Named;
 import com.telenav.kivakit.resource.internal.lexakai.DiagramResourcePath;
-import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.time.ZoneId;
 import java.util.regex.Pattern;
+
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
+import static com.telenav.kivakit.core.messaging.Listener.throwingListener;
 
 /**
  * A file name, with a base name and an {@link Extension}.
@@ -49,7 +52,7 @@ import java.util.regex.Pattern;
  * <ul>
  *     <li>{@link #name()} - This filename as a string</li>
  *     <li>{@link #asPath()} - This filename as A {@link FilePath}</li>
- *     <li>{@link #base()} - This filename without any extension</li>
+ *     <li>{@link #baseName()} - This filename without any extension</li>
  *     <li>{@link #compoundExtension()} - The (possibly compound) extension of this filename, like ".tar" or ".tar.gz"</li>
  *     <li>{@link #extension()} - The final extension of this filename, for example the extension of "data.tar.gz" is ".gz"</li>
  *     <li>{@link #localDateTime()} - This file name parsed as a {@link LocalTime} object using the KivaKit DATE_TIME format
@@ -90,64 +93,112 @@ import java.util.regex.Pattern;
  */
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramResourcePath.class)
-@LexakaiJavadoc(complete = true)
+@ApiQuality(stability = STABLE_EXTENSIBLE,
+            testing = UNTESTED,
+            documentation = FULLY_DOCUMENTED)
 public class FileName implements Named, Comparable<FileName>
 {
-    private static final Logger LOGGER = LoggerFactory.newLogger();
-
+    /**
+     * Returns a filename for the current date
+     */
     public static FileName date()
     {
-        return parseFileName(LOGGER, LocalTime.now().asDateString());
+        return parseFileName(throwingListener(), LocalTime.now().asDateString());
     }
 
+    /**
+     * Returns a filename for the current local time
+     */
     public static FileName date(LocalTime time)
     {
-        return parseFileName(LOGGER, new LocalDateConverter(LOGGER).unconvert(time));
+        return parseFileName(throwingListener(), new LocalDateConverter(throwingListener()).unconvert(time));
     }
 
+    /**
+     * Returns a filename for the given time in the given timezone
+     */
     public static FileName date(LocalTime time, ZoneId zone)
     {
-        return parseFileName(LOGGER, new LocalDateConverter(LOGGER, zone).unconvert(time));
+        return parseFileName(throwingListener(), new LocalDateConverter(throwingListener(), zone).unconvert(time));
     }
 
+    /**
+     * Returns a filename for the current date and time
+     */
     public static FileName dateTime()
     {
         return dateTime(LocalTime.now());
     }
 
+    /**
+     * Returns a filename for the current date and time
+     */
     public static FileName dateTime(LocalTime time)
     {
-        return parseFileName(LOGGER, new LocalDateTimeConverter(LOGGER).unconvert(time));
+        return parseFileName(throwingListener(), new LocalDateTimeConverter(throwingListener()).unconvert(time));
     }
 
+    /**
+     * Returns a filename for the given local time in the given timezone
+     */
     public static FileName dateTime(LocalTime time, ZoneId zone)
     {
-        return parseFileName(LOGGER, new LocalDateTimeConverter(LOGGER, zone).unconvert(time));
+        return parseFileName(throwingListener(), new LocalDateTimeConverter(throwingListener(), zone).unconvert(time));
     }
 
-    public static LocalTime parseDateTime(Listener listener, String dateTime)
+    /**
+     * Parses the given text into a {@link java.time.LocalTime} object
+     *
+     * @param listener The listener to call with any problems
+     * @param text The text to parse
+     */
+    public static LocalTime parseDateTime(Listener listener, String text)
     {
-        return new LocalDateTimeConverter(listener).convert(dateTime);
+        return new LocalDateTimeConverter(listener).convert(text);
     }
 
-    public static LocalTime parseDateTime(Listener listener, String dateTime, ZoneId zone)
+    /**
+     * Parses the given text into a {@link java.time.LocalTime} object
+     *
+     * @param listener The listener to call with any problems
+     * @param text The text to parse
+     * @param zone The timezone
+     */
+    public static LocalTime parseDateTime(Listener listener, String text, ZoneId zone)
     {
-        return new LocalDateTimeConverter(listener, zone).convert(dateTime);
+        return new LocalDateTimeConverter(listener, zone).convert(text);
     }
 
-    public static FileName parseFileName(Listener listener, String name)
+    /**
+     * Parses the given text into a {@link FileName} object
+     *
+     * @param listener The listener to call with any problems
+     * @param text The text to parse
+     */
+    public static FileName parseFileName(Listener listener, String text)
     {
-        return new FileName(name);
+        return new FileName(text);
     }
 
+    /**
+     * Returns a filename for the given local time
+     *
+     * @param time The time
+     */
     public static FileName time(LocalTime time)
     {
-        return parseFileName(LOGGER, new LocalTimeConverter(LOGGER, time.timeZone()).unconvert(time));
+        return parseFileName(throwingListener(), new LocalTimeConverter(throwingListener(), time.timeZone()).unconvert(time));
     }
 
+    /**
+     * Returns a filename for the given local time and timezone
+     *
+     * @param time The time
+     * @param zone The timezone
+     */
     public static FileName time(LocalTime time, ZoneId zone)
     {
-        return parseFileName(LOGGER, new LocalTimeConverter(LOGGER, zone).unconvert(time));
+        return parseFileName(throwingListener(), new LocalTimeConverter(throwingListener(), zone).unconvert(time));
     }
 
     private final String name;
@@ -158,7 +209,7 @@ public class FileName implements Named, Comparable<FileName>
     }
 
     /**
-     * @return This filename as a {@link FilePath}
+     * Returns this filename as a {@link FilePath}
      */
     public FilePath asPath()
     {
@@ -166,16 +217,16 @@ public class FileName implements Named, Comparable<FileName>
     }
 
     /**
-     * @return This filename without any extensions
+     * Returns this filename without any extensions
      */
-    public FileName base()
+    public FileName baseName()
     {
         if (name().contains("."))
         {
             var before = Paths.pathOptionalHead(name(), '.');
             if (before != null)
             {
-                return parseFileName(LOGGER, before);
+                return parseFileName(throwingListener(), before);
             }
         }
         return this;
@@ -188,7 +239,7 @@ public class FileName implements Named, Comparable<FileName>
     }
 
     /**
-     * @return The compound extension of this filename, like ".tar.gz"
+     * Returns the compound extension of this filename, like ".tar.gz"
      */
     public Extension compoundExtension()
     {
@@ -204,7 +255,7 @@ public class FileName implements Named, Comparable<FileName>
     }
 
     /**
-     * @return True if this filename ends with the given extension
+     * Returns true if this filename ends with the given extension
      */
     public boolean endsWith(Extension extension)
     {
@@ -213,7 +264,7 @@ public class FileName implements Named, Comparable<FileName>
     }
 
     /**
-     * @return True if this filename ends with the given suffix
+     * Returns true if this filename ends with the given suffix
      */
     public boolean endsWith(String suffix)
     {
@@ -232,7 +283,7 @@ public class FileName implements Named, Comparable<FileName>
     }
 
     /**
-     * @return The final extension of this filename. For example, the extension of "data.tar.gz" is ".gz". To get the
+     * Returns the final extension of this filename. For example, the extension of "data.tar.gz" is ".gz". To get the
      * full compound extension, ".tar.gz", use {@link #compoundExtension()}.
      */
     public Extension extension()
@@ -245,7 +296,7 @@ public class FileName implements Named, Comparable<FileName>
     }
 
     /**
-     * @return A matcher for this filename
+     * Returns a matcher for this filename
      */
     public Matcher<FileName> fileNameMatcher()
     {
@@ -263,11 +314,11 @@ public class FileName implements Named, Comparable<FileName>
      */
     public LocalTime localDateTime()
     {
-        return localDateTime(LOGGER);
+        return localDateTime(throwingListener());
     }
 
     /**
-     * @return This file name parsed as a {@link LocalTime} object using the KivaKit DATE_TIME format
+     * Returns this file name parsed as a {@link LocalTime} object using the KivaKit DATE_TIME format
      * ("yyyy.MM.dd_h.mma").
      */
     public LocalTime localDateTime(Listener listener)
@@ -297,7 +348,7 @@ public class FileName implements Named, Comparable<FileName>
     }
 
     /**
-     * @return This filename as a string
+     * Returns this filename as a string
      */
     @Override
     public String name()
@@ -306,19 +357,19 @@ public class FileName implements Named, Comparable<FileName>
     }
 
     /**
-     * @return This filename normalized for any filesystem using {@link FilePath#normalized()}.
+     * Returns this filename normalized for any filesystem using {@link FilePath#normalized()}.
      */
     public FileName normalized()
     {
-        return parseFileName(LOGGER, FilePath.filePath(this).normalized().toString());
+        return parseFileName(throwingListener(), FilePath.filePath(this).normalized().toString());
     }
 
     /**
-     * @return This filename with the given prefix
+     * Returns this filename with the given prefix
      */
     public FileName prefixedWith(String prefix)
     {
-        return parseFileName(LOGGER, prefix + name);
+        return parseFileName(throwingListener(), prefix + name);
     }
 
     /**
@@ -330,11 +381,11 @@ public class FileName implements Named, Comparable<FileName>
     }
 
     /**
-     * @return This filename in lower case
+     * Returns this filename in lower case
      */
     public FileName toLowerCase()
     {
-        return parseFileName(LOGGER, name().toLowerCase());
+        return parseFileName(throwingListener(), name().toLowerCase());
     }
 
     @Override
@@ -344,44 +395,44 @@ public class FileName implements Named, Comparable<FileName>
     }
 
     /**
-     * @return This filename in uppercase
+     * Returns this filename in uppercase
      */
     public FileName toUpperCase()
     {
-        return parseFileName(LOGGER, name().toUpperCase());
+        return parseFileName(throwingListener(), name().toUpperCase());
     }
 
     /**
-     * @return This filename with the given extension added
+     * Returns this filename with the given extension added
      */
     public FileName withExtension(Extension extension)
     {
-        return parseFileName(LOGGER, name() + extension);
+        return parseFileName(throwingListener(), name() + extension);
     }
 
     /**
-     * @return This filename with the given suffix
+     * Returns this filename with the given suffix
      */
     public FileName withSuffix(String suffix)
     {
-        return parseFileName(LOGGER, name + suffix);
+        return parseFileName(throwingListener(), name + suffix);
     }
 
     /**
-     * @return This filename without any extension
+     * Returns this filename without any extension
      */
     public FileName withoutCompoundExtension()
     {
         var extension = extension();
         if (extension != null)
         {
-            return parseFileName(LOGGER, Paths.pathOptionalHead(name(), '.'));
+            return parseFileName(throwingListener(), Paths.pathOptionalHead(name(), '.'));
         }
         return this;
     }
 
     /**
-     * @return This filename without its final extension
+     * Returns this filename without its final extension
      */
     public FileName withoutExtension()
     {
@@ -391,26 +442,26 @@ public class FileName implements Named, Comparable<FileName>
             var before = Paths.pathOptionalHead(name(), '.');
             if (before != null)
             {
-                return parseFileName(LOGGER, before);
+                return parseFileName(throwingListener(), before);
             }
         }
         return this;
     }
 
     /**
-     * @return This filename without the given extension if it ends in that extension
+     * Returns this filename without the given extension if it ends in that extension
      */
     public FileName withoutExtension(Extension extension)
     {
         if (name().endsWith(extension.toString()))
         {
-            return parseFileName(LOGGER, Strip.trailing(name(), extension.toString()));
+            return parseFileName(throwingListener(), Strip.trailing(name(), extension.toString()));
         }
         return this;
     }
 
     /**
-     * @return This filename with all known extensions removed
+     * Returns this filename with all known extensions removed
      */
     public FileName withoutKnownExtensions()
     {
@@ -419,11 +470,11 @@ public class FileName implements Named, Comparable<FileName>
         do
         {
             removedOne = false;
-            for (var extension : Extension.known())
+            for (var extension : Extension.allWellKnownExtensions())
             {
                 if (name.endsWith(extension))
                 {
-                    name = parseFileName(LOGGER, Strip.ending(name.toString(), extension.toString()));
+                    name = parseFileName(throwingListener(), Strip.ending(name.toString(), extension.toString()));
                     removedOne = true;
                 }
             }

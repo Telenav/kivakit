@@ -18,8 +18,11 @@
 
 package com.telenav.kivakit.resource;
 
-import com.telenav.lexakai.annotations.LexakaiJavadoc;
+import com.telenav.kivakit.annotations.code.ApiQuality;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
 import static com.telenav.kivakit.core.ensure.Ensure.unsupported;
 
 /**
@@ -28,7 +31,9 @@ import static com.telenav.kivakit.core.ensure.Ensure.unsupported;
  *
  * @author jonathanl (shibo)
  */
-@LexakaiJavadoc(complete = true)
+@ApiQuality(stability = STABLE,
+            testing = UNTESTED,
+            documentation = FULLY_DOCUMENTED)
 public enum CopyMode
 {
     /** Copy to the destination even if it already exists */
@@ -41,7 +46,7 @@ public enum CopyMode
     DO_NOT_OVERWRITE;
 
     /**
-     * @return True if the given source can be copied to the given destination
+     * Returns true if the given source can be copied to the given destination
      */
     public boolean canCopy(Resource source, Resource destination)
     {

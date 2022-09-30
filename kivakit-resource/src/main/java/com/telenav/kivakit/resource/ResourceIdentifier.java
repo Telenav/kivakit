@@ -18,11 +18,15 @@
 
 package com.telenav.kivakit.resource;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.resource.internal.lexakai.DiagramResourceService;
 import com.telenav.kivakit.resource.spi.ResourceResolver;
-import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
+
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
 
 /**
  * An arbitrary string that identifies a resource.
@@ -42,27 +46,42 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
  * </ul>
  *
  * @author jonathanl (shibo)
- * @see Resource#resolve(Listener, String)
+ * @see Resource#resolveResource(Listener, String)
  */
 @UmlClassDiagram(diagram = DiagramResourceService.class)
-@LexakaiJavadoc(complete = true)
+@ApiQuality(stability = STABLE,
+            testing = UNTESTED,
+            documentation = FULLY_DOCUMENTED)
 public class ResourceIdentifier
 {
+    /** The storage-agnostic identifier */
     private final String identifier;
 
+    /**
+     * @param identifier The storage-agnostic identifier
+     */
     public ResourceIdentifier(String identifier)
     {
         this.identifier = identifier;
     }
 
+    /**
+     * Returns the identifier
+     */
     public String identifier()
     {
         return identifier;
     }
 
+    /**
+     * Resolves this resource identifier to a {@link Resource}
+     *
+     * @param listener The listener to call with any problems during resolution
+     * @return The {@link Resource} that this identifier identifies
+     */
     public Resource resolve(Listener listener)
     {
-        return Resource.resolve(listener, this);
+        return Resource.resolveResource(listener, this);
     }
 
     @Override

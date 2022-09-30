@@ -67,7 +67,7 @@ public class ResourceList extends BaseResourceList<Resource>
     @Override
     protected Resource newResource(final ResourcePath path)
     {
-        return Resource.resolve(Listener.throwingListener(), path);
+        return Resource.resolveResource(Listener.throwingListener(), path);
     }
 
     @Override

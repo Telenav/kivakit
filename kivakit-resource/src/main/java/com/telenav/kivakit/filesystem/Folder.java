@@ -39,7 +39,6 @@ import com.telenav.kivakit.core.value.count.Bytes;
 import com.telenav.kivakit.filesystem.spi.FileService;
 import com.telenav.kivakit.filesystem.spi.FileSystemService;
 import com.telenav.kivakit.filesystem.spi.FolderService;
-import com.telenav.kivakit.interfaces.comparison.Filter;
 import com.telenav.kivakit.interfaces.comparison.Matcher;
 import com.telenav.kivakit.resource.CopyMode;
 import com.telenav.kivakit.resource.Extension;
@@ -47,6 +46,7 @@ import com.telenav.kivakit.resource.FileName;
 import com.telenav.kivakit.resource.Resource;
 import com.telenav.kivakit.resource.ResourceFolder;
 import com.telenav.kivakit.resource.ResourceFolderIdentifier;
+import com.telenav.kivakit.resource.ResourceGlob;
 import com.telenav.kivakit.resource.ResourceList;
 import com.telenav.kivakit.resource.ResourcePath;
 import com.telenav.kivakit.resource.ResourcePathed;
@@ -81,8 +81,9 @@ import static com.telenav.kivakit.core.project.Project.resolveProject;
 import static com.telenav.kivakit.filesystem.Folder.Traversal.RECURSE;
 import static com.telenav.kivakit.filesystem.Folder.Type.CLEAN_UP_ON_EXIT;
 import static com.telenav.kivakit.filesystem.loader.FileSystemServiceLoader.fileSystem;
+import static com.telenav.kivakit.interfaces.comparison.Filter.acceptAll;
 import static com.telenav.kivakit.resource.Extension.TMP;
-import static com.telenav.kivakit.resource.ResourceGlob.match;
+import static com.telenav.kivakit.resource.ResourceGlob.glob;
 import static com.telenav.kivakit.resource.ResourceList.resourceList;
 
 /**
@@ -566,8 +567,8 @@ public class Folder extends BaseRepeater implements
 
     public void chmodNested(PosixFilePermission... permissions)
     {
-        nestedFolders(Filter.acceptingAll()).forEach(folder -> folder().chmod(permissions));
-        nestedFiles(Filter.acceptingAll()).forEach(file -> file.chmod(permissions));
+        nestedFolders(acceptAll()).forEach(folder -> folder().chmod(permissions));
+        nestedFiles(acceptAll()).forEach(file -> file.chmod(permissions));
     }
 
     /**
@@ -739,7 +740,7 @@ public class Folder extends BaseRepeater implements
 
     public FileList files()
     {
-        return files(Filter.acceptingAll());
+        return files(acceptAll());
     }
 
     public FileList files(Matcher<ResourcePathed> matcher, Traversal recurse)
@@ -749,7 +750,7 @@ public class Folder extends BaseRepeater implements
 
     public FileList files(String globPattern)
     {
-        return files(file -> match(globPattern).matches(file));
+        return files(file -> ResourceGlob.glob(globPattern).matches(file));
     }
 
     public FileList files(Extension extension)
@@ -867,9 +868,9 @@ public class Folder extends BaseRepeater implements
     }
 
     @Override
-    public ResourceFolderIdentifier identifier()
+    public ResourceFolderIdentifier resourceFolderIdentifier()
     {
-        return ResourceFolder.identifier(path().join());
+        return ResourceFolder.resourceFolderIdentifier(path().join());
     }
 
     @Override
@@ -969,7 +970,7 @@ public class Folder extends BaseRepeater implements
 
     public File oldest()
     {
-        return oldest(Filter.acceptingAll());
+        return oldest(acceptAll());
     }
 
     public File oldest(Matcher<File> matcher)
@@ -1068,7 +1069,7 @@ public class Folder extends BaseRepeater implements
     @Override
     public void safeCopyTo(ResourceFolder<?> destination, CopyMode mode, ProgressReporter reporter)
     {
-        safeCopyTo(destination, mode, Filter.acceptingAll(), reporter);
+        safeCopyTo(destination, mode, acceptAll(), reporter);
     }
 
     @SuppressWarnings("UnusedReturnValue")

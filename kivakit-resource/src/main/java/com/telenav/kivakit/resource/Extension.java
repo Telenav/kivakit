@@ -18,6 +18,8 @@
 
 package com.telenav.kivakit.resource;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.core.collections.list.ObjectList;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.value.count.Count;
 import com.telenav.kivakit.interfaces.comparison.Matchable;
@@ -28,12 +30,14 @@ import com.telenav.kivakit.resource.compression.codecs.GzipCodec;
 import com.telenav.kivakit.resource.compression.codecs.NullCodec;
 import com.telenav.kivakit.resource.compression.codecs.ZipCodec;
 import com.telenav.kivakit.resource.internal.lexakai.DiagramResourcePath;
-import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.ArrayList;
-import java.util.List;
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
+import static com.telenav.kivakit.core.collections.list.ObjectList.objectList;
+import static com.telenav.kivakit.core.messaging.Listener.throwingListener;
 
 /**
  * A {@link FileName} extension, such as ".txt" or ".jar".
@@ -44,9 +48,8 @@ import java.util.List;
  * </p>
  *
  * <pre>
- * Extension.parse(".xyz");
- * Extension.parse("xyz");
- * </pre>
+ * parseExtension(".xyz");
+ * parseExtension("xyz");</pre>
  *
  * <p><b>Properties</b></p>
  *
@@ -60,9 +63,10 @@ import java.util.List;
  * <ul>
  *     <li>{@link #matcher()} - A matcher that matches resources with this extension</li>
  *     <li>{@link #ends(Resource)} - True if the given resource has this extension</li>
+ *     <li>{@link #endsWith(Extension)}</li>
  * </ul>
  *
- * <p><b>Checks</b></p>
+ * <p><b>Tests</b></p>
  *
  * <ul>
  *     <li>{@link #endsWith(Extension)} - True if this (compound) extension ends with the given extension</li>
@@ -80,7 +84,9 @@ import java.util.List;
  */
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramResourcePath.class)
-@LexakaiJavadoc(complete = true)
+@ApiQuality(stability = STABLE_EXTENSIBLE,
+            testing = UNTESTED,
+            documentation = FULLY_DOCUMENTED)
 public class Extension implements
         Named,
         Matchable<ResourcePathed>
@@ -89,6 +95,7 @@ public class Extension implements
 
     public static final Extension CSV = parseExtension(".csv");
 
+    @SuppressWarnings("SpellCheckingInspection")
     public static final Extension GEOJSON = parseExtension(".geojson");
 
     public static final Extension GRAPH = parseExtension(".graph");
@@ -111,6 +118,7 @@ public class Extension implements
 
     public static final Extension OSM = parseExtension(".osm");
 
+    @SuppressWarnings("SpellCheckingInspection")
     public static final Extension OSMPP = parseExtension(".osmpp");
 
     public static final Extension OSM_PBF = parseExtension(".osm.pbf");
@@ -149,77 +157,62 @@ public class Extension implements
 
     public static final Extension ZIP = parseExtension(".zip");
 
-    public static List<Extension> archive()
-    {
-        List<Extension> executable = new ArrayList<>();
-        executable.add(JAR);
-        executable.add(ZIP);
-        executable.add(GZIP);
-        return executable;
-    }
-
-    public static List<Extension> executable()
-    {
-        List<Extension> executable = new ArrayList<>();
-        executable.add(PYTHON);
-        executable.add(SHELL);
-        return executable;
-    }
-
+    /**
+     * Returns all extensions that are well-known (to KivaKit)
+     */
     @SuppressWarnings("DuplicatedCode")
-    public static List<Extension> known()
+    public static ObjectList<Extension> allWellKnownExtensions()
     {
-        List<Extension> known = new ArrayList<>();
-        known.add(CSV);
-        known.add(GEOJSON);
-        known.add(GRAPH);
-        known.add(GRAPH_GZIP);
-        known.add(GZIP);
-        known.add(JAR);
-        known.add(OSM);
-        known.add(OSMPP);
-        known.add(OSM_PBF);
-        known.add(PBF);
-        known.add(PNG);
-        known.add(POLY);
-        known.add(PROPERTIES);
-        known.add(SHELL);
-        known.add(TXD);
-        known.add(TXD_GZIP);
-        known.add(TXT);
-        known.add(TXT_GZIP);
-        known.add(XML);
-        known.add(YAML);
-        known.add(ZIP);
-        known.sort((a, b) ->
-        {
-            if (a.length().isLessThan(b.length()))
-            {
-                return 1;
-            }
-            if (a.length().isGreaterThan(b.length()))
-            {
-                return -1;
-            }
-            return 0;
-        });
-        return known;
+        return objectList(CLASS, CSV, GEOJSON, GRAPH, GRAPH_GZIP,
+                GZIP, JAR, JAVA, JSON, KRYO, MARKDOWN, MD5, OSM, OSMPP,
+                OSM_PBF, PBF, PNG, POLY, POM, PROPERTIES, PYTHON, SHA1,
+                SHELL, TMP, TXD, TXD_GZIP, TXT, TXT_GZIP, XML, YAML, YML, ZIP).sorted();
     }
 
-    public static Extension parseExtension(Listener listener, String value)
+    /**
+     * Returns extensions that refer to archives
+     */
+    public static ObjectList<Extension> archiveExtensions()
     {
-        if (value.matches("(\\.[A-Za-z0-9]+)+"))
+        return objectList(JAR, ZIP, GZIP);
+    }
+
+    /**
+     * Returns extensions that refer to executables
+     */
+    public static ObjectList<Extension> executableExtensions()
+    {
+        return objectList(PYTHON, SHELL);
+    }
+
+    /**
+     * Parses the given text into an extension
+     *
+     * @param listener The listener to call with any problems
+     * @param text The text to parse
+     * @return The extension
+     */
+    public static Extension parseExtension(Listener listener, String text)
+    {
+        if (text.matches("(\\.[A-Za-z0-9]+)+"))
         {
-            return new Extension(value);
+            return new Extension(text);
         }
-        throw listener.problem("Cannot parse $", value).asException();
+        throw listener.problem("Cannot parse $", text).asException();
     }
 
-    public static Extension parseExtension(String value)
+    /**
+     * Parses the given text into an extension. Throws an exception if parsing fails.
+     *
+     * @param text The text to parse
+     * @return The extension
+     */
+    public static Extension parseExtension(String text)
     {
-        return parseExtension(Listener.throwingListener(), value);
+        return parseExtension(throwingListener(), text);
     }
 
+    /** The extension (without the leading dot) */
     private final String extension;
 
     protected Extension(String value)
@@ -268,8 +261,8 @@ public class Extension implements
     }
 
     /**
-     * @return True if this extension ends with the given extension. For example the extension ".tar.gz" ends with the
-     * extension ".gz"
+     * True if this extension ends with the given extension. For example the extension ".tar.gz" ends with the extension
+     * ".gz"
      */
     public boolean endsWith(Extension extension)
     {
@@ -287,6 +280,9 @@ public class Extension implements
         return false;
     }
 
+    /**
+     * Returns this extension gzipped
+     */
     public Extension gzipped()
     {
         return new Extension(extension + ".gz");
@@ -298,21 +294,33 @@ public class Extension implements
         return extension.hashCode();
     }
 
+    /**
+     * Returns true if this is an archive extension
+     */
     public boolean isArchive()
     {
-        return archive().contains(this);
+        return archiveExtensions().contains(this);
     }
 
+    /**
+     * Returns true if this is an executable extension
+     */
     public boolean isExecutable()
     {
-        return executable().contains(this);
+        return executableExtensions().contains(this);
     }
 
+    /**
+     * Returns the length of this extension
+     */
     public Count length()
     {
         return Count.count(toString().length());
     }
 
+    /**
+     * Returns a matcher that matches resources and resource paths with this extension
+     */
     @Override
     @NotNull
     public Matcher<ResourcePathed> matcher()
@@ -324,18 +332,27 @@ public class Extension implements
         };
     }
 
+    /**
+     * The extension name (without the dot)
+     */
     @Override
     public String name()
     {
         return extension;
     }
 
+    /**
+     * Returns this extension with the leading dot, such as ".txt"
+     */
     @Override
     public String toString()
     {
         return "." + extension;
     }
 
+    /**
+     * Returns this extension with the given extension appended
+     */
     public Extension withExtension(Extension extension)
     {
         return new Extension(this.extension + extension);

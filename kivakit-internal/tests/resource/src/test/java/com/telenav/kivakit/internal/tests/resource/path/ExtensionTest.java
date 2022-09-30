@@ -29,7 +29,7 @@ public class ExtensionTest extends UnitTest
     public void testKnown()
     {
         Extension previous = null;
-        for (Extension extension : Extension.known())
+        for (Extension extension : Extension.allWellKnownExtensions())
         {
             if (previous != null)
             {

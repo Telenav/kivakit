@@ -28,7 +28,7 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 /**
  * An identifier for a {@link ResourceFolder} implementation, including either a {@link Package} or a {@link Folder}.
  * The {@link ResourceFolder} can be resolved by searching for an implementation which accepts the identifier, with
- * {@link #resolve(Listener)} or {@link ResourceFolder#resolve(Listener, ResourceFolderIdentifier)}.
+ * {@link #resolve(Listener)} or {@link ResourceFolder#resolveResourceFolder(Listener, ResourceFolderIdentifier)}.
  *
  * @author jonathanl (shibo)
  * @see ResourceFolder
@@ -51,7 +51,7 @@ public class ResourceFolderIdentifier
 
     public ResourceFolder<?> resolve(Listener listener)
     {
-        return ResourceFolder.resolve(listener, this);
+        return ResourceFolder.resolveResourceFolder(listener, this);
     }
 
     @Override

@@ -393,9 +393,9 @@ public class File extends BaseWritableResource implements FileSystemObject
     }
 
     @Override
-    public ObjectSet<Can> can()
+    public ObjectSet<Action> can()
     {
-        return objectSet(Can.DELETE, Can.RENAME);
+        return objectSet(Action.DELETE, Action.RENAME);
     }
 
     /**
@@ -821,7 +821,7 @@ public class File extends BaseWritableResource implements FileSystemObject
         do
         {
             removedOne = false;
-            for (var extension : Extension.known())
+            for (var extension : Extension.allWellKnownExtensions())
             {
                 if (file.fileName().endsWith(extension))
                 {

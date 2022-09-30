@@ -295,7 +295,7 @@ public class PropertyMap extends VariableMap<String>
 
     public void save(WritableResource resource)
     {
-        save(resource.baseName().name(), resource);
+        save(resource.baseFileName().name(), resource);
     }
 
     public void save(String heading, WritableResource resource)
