@@ -232,7 +232,7 @@ public class LocalFile extends BaseWritableResource implements FileService
     @Override
     public LocalFolder parentService()
     {
-        return new LocalFolder(path().absolute().parent());
+        return new LocalFolder(path().asAbsolute().parent());
     }
 
     @Override

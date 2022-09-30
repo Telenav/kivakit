@@ -83,7 +83,7 @@ public class LocalHost extends Host
     }
 
     /**
-     * @return The first non-loopback, non-virtual, IPV4 InetAddress in the list of network interfaces. This is
+     * Returns the first non-loopback, non-virtual, IPV4 InetAddress in the list of network interfaces. This is
      * necessary on the Mac because Oracle broke InetAddress.getLocalhost() on the Mac (and does not intend to fix it)
      */
     @Override

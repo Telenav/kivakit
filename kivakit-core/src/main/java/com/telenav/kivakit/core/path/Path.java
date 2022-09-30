@@ -218,7 +218,7 @@ public abstract class Path<Element extends Comparable<Element>> implements
     }
 
     /**
-     * @return A copy of this path
+     * Returns a copy of this path
      */
     public Path<Element> copy()
     {
@@ -226,7 +226,7 @@ public abstract class Path<Element extends Comparable<Element>> implements
     }
 
     /**
-     * @return The elements in this path as a list
+     * Returns the elements in this path as a list
      */
     public List<Element> elements()
     {
@@ -234,7 +234,7 @@ public abstract class Path<Element extends Comparable<Element>> implements
     }
 
     /**
-     * @return A relative path with no elements
+     * Returns a relative path with no elements
      */
     public Path<Element> emptyPath()
     {
@@ -268,7 +268,7 @@ public abstract class Path<Element extends Comparable<Element>> implements
     }
 
     /**
-     * @return The first element in this path, or null if there is none.
+     * Returns the first element in this path, or null if there is none.
      */
     public Element first()
     {
@@ -276,7 +276,7 @@ public abstract class Path<Element extends Comparable<Element>> implements
     }
 
     /**
-     * @return A path consisting of the first n elements of this path, or null if there are not that many elements. If
+     * Returns a path consisting of the first n elements of this path, or null if there are not that many elements. If
      * the path is absolute, the returned path will also be absolute, with the same root element.
      */
     public Path<Element> first(int n)
@@ -289,7 +289,7 @@ public abstract class Path<Element extends Comparable<Element>> implements
     }
 
     /**
-     * @return The element at the given index or null if the index is out of range
+     * Returns the element at the given index or null if the index is out of range
      */
     public Element get(int index)
     {
@@ -352,7 +352,7 @@ public abstract class Path<Element extends Comparable<Element>> implements
     }
 
     /**
-     * @return A path consisting of the last n elements of this path, or null if there are not that many elements. The
+     * Returns a path consisting of the last n elements of this path, or null if there are not that many elements. The
      * returned path will be relative in all cases.
      */
     public Path<Element> last(int n)
@@ -365,7 +365,7 @@ public abstract class Path<Element extends Comparable<Element>> implements
     }
 
     /**
-     * @return The last element of this path, or null if this is an empty path
+     * Returns the last element of this path, or null if this is an empty path
      */
     public Element last()
     {
@@ -373,7 +373,7 @@ public abstract class Path<Element extends Comparable<Element>> implements
     }
 
     /**
-     * @return The parent of this path, or null if there is no parent
+     * Returns the parent of this path, or null if there is no parent
      */
     public Path<Element> parent()
     {
@@ -382,8 +382,8 @@ public abstract class Path<Element extends Comparable<Element>> implements
 
     /**
      * Pops the last element off the path
-     *
-     * @return The last element
+     * <p>
+     * Returns the last element
      */
     public Element pop()
     {
@@ -401,7 +401,7 @@ public abstract class Path<Element extends Comparable<Element>> implements
     }
 
     /**
-     * @return The root path if this path is absolute or null if it is relative
+     * Returns the root path if this path is absolute or null if it is relative
      */
     public Path<Element> root()
     {
@@ -415,7 +415,7 @@ public abstract class Path<Element extends Comparable<Element>> implements
     }
 
     /**
-     * @return The root element for this path if it is absolute, or null if the path is relative
+     * Returns the root element for this path if it is absolute, or null if the path is relative
      */
     public Element rootElement()
     {
@@ -423,7 +423,7 @@ public abstract class Path<Element extends Comparable<Element>> implements
     }
 
     /**
-     * @return The number of elements in this path, or zero if this is an empty path
+     * Returns the number of elements in this path, or zero if this is an empty path
      */
     @Override
     public int size()
@@ -440,7 +440,7 @@ public abstract class Path<Element extends Comparable<Element>> implements
     }
 
     /**
-     * @return The elements in this path as a {@link Stream}
+     * Returns the elements in this path as a {@link Stream}
      */
     public Stream<Element> stream()
     {
@@ -448,7 +448,7 @@ public abstract class Path<Element extends Comparable<Element>> implements
     }
 
     /**
-     * @return The sub-path of this path starting at given start index (inclusive) and extending to the end index
+     * Returns the sub-path of this path starting at given start index (inclusive) and extending to the end index
      * (exclusive). If start and end are equal, the empty path is returned. If start and end are not equal and the path
      * is absolute, the sub-path will still be absolute with the same root. If the start and end indexes are invalid,
      * null is returned.
@@ -469,7 +469,7 @@ public abstract class Path<Element extends Comparable<Element>> implements
     }
 
     /**
-     * @return A copy of this path with each element transformed by the given function
+     * Returns a copy of this path with each element transformed by the given function
      */
     public Path<Element> transformed(Function<Element, Element> function)
     {
@@ -484,7 +484,7 @@ public abstract class Path<Element extends Comparable<Element>> implements
     }
 
     /**
-     * @return This path with the given path appended
+     * Returns this path with the given path appended
      */
     public Path<Element> withChild(Path<Element> that)
     {
@@ -494,7 +494,7 @@ public abstract class Path<Element extends Comparable<Element>> implements
     }
 
     /**
-     * @return This path with the given element appended
+     * Returns this path with the given element appended
      */
     public Path<Element> withChild(Element element)
     {
@@ -504,7 +504,7 @@ public abstract class Path<Element extends Comparable<Element>> implements
     }
 
     /**
-     * @return This path with the given element prepended
+     * Returns this path with the given element prepended
      */
     public Path<Element> withParent(Element element)
     {
@@ -514,7 +514,7 @@ public abstract class Path<Element extends Comparable<Element>> implements
     }
 
     /**
-     * @return This path with the given path prepended
+     * Returns this path with the given path prepended
      */
     public Path<Element> withParent(Path<Element> that)
     {
@@ -522,7 +522,7 @@ public abstract class Path<Element extends Comparable<Element>> implements
     }
 
     /**
-     * @return This path with the given root element (whether the path is absolute or relative)
+     * Returns this path with the given root element (whether the path is absolute or relative)
      */
     public Path<Element> withRoot(Element root)
     {
@@ -532,7 +532,7 @@ public abstract class Path<Element extends Comparable<Element>> implements
     }
 
     /**
-     * @return This path without the first element. If this is an empty path, null is returned. If there is only one
+     * Returns this path without the first element. If this is an empty path, null is returned. If there is only one
      * element in this path, the root path or empty path is returned, for absolute and relative paths, respectively.
      */
     public Path<Element> withoutFirst()
@@ -551,7 +551,7 @@ public abstract class Path<Element extends Comparable<Element>> implements
     }
 
     /**
-     * @return This path without the last element. If this is an empty path, null is returned. If there is only one
+     * Returns this path without the last element. If this is an empty path, null is returned. If there is only one
      * element in this path, the root path is returned. If there is only one element in this path, the root path or
      * empty path is returned, for absolute and relative paths, respectively.
      */
@@ -575,7 +575,7 @@ public abstract class Path<Element extends Comparable<Element>> implements
     }
 
     /**
-     * @return This path without the given prefix. If this path doesn't start with the prefix, the path is returned
+     * Returns this path without the given prefix. If this path doesn't start with the prefix, the path is returned
      * unchanged.
      */
     public Path<Element> withoutOptionalPrefix(Path<Element> prefix)
@@ -585,7 +585,7 @@ public abstract class Path<Element extends Comparable<Element>> implements
     }
 
     /**
-     * @return This path without the given suffix. If this path doesn't end with the suffix, the path is returned
+     * Returns this path without the given suffix. If this path doesn't end with the suffix, the path is returned
      * unchanged.
      */
     public Path<Element> withoutOptionalSuffix(Path<Element> suffix)
@@ -595,7 +595,7 @@ public abstract class Path<Element extends Comparable<Element>> implements
     }
 
     /**
-     * @return This path after the given prefix. If the path doesn't start with the prefix null is returned. If the path
+     * Returns this path after the given prefix. If the path doesn't start with the prefix null is returned. If the path
      * is equal to the prefix, a root or empty path is returned for absolute and relative paths respectively.
      */
     public Path<Element> withoutPrefix(Path<Element> prefix)
@@ -612,7 +612,7 @@ public abstract class Path<Element extends Comparable<Element>> implements
     }
 
     /**
-     * @return This path without the root element or null if this path is a root element
+     * Returns this path without the root element or null if this path is a root element
      */
     public Path<Element> withoutRoot()
     {
@@ -626,7 +626,7 @@ public abstract class Path<Element extends Comparable<Element>> implements
     }
 
     /**
-     * @return This path before the given suffix. If the path doesn't end with the suffix null is returned.  If the path
+     * Returns this path before the given suffix. If the path doesn't end with the suffix null is returned.  If the path
      * doesn't start with the prefix null is returned. If the path * is equal to the prefix, a root or empty path is
      * returned for absolute and relative paths respectively.
      */
@@ -644,7 +644,7 @@ public abstract class Path<Element extends Comparable<Element>> implements
     }
 
     /**
-     * @return A copy of this path
+     * Returns a copy of this path
      */
     protected abstract Path<Element> onCopy(Element root, List<Element> elements);
 }

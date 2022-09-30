@@ -526,7 +526,7 @@ public class Folder extends BaseRepeater implements
     @Override
     public Folder absolute()
     {
-        return new Folder(path().absolute()).withTrailingSlash();
+        return new Folder(path().asAbsolute()).withTrailingSlash();
     }
 
     public URI asUri()
@@ -991,7 +991,7 @@ public class Folder extends BaseRepeater implements
     @Override
     public Folder parent()
     {
-        return new Folder(path().absolute().parent());
+        return new Folder(path().asAbsolute().parent());
     }
 
     @Override

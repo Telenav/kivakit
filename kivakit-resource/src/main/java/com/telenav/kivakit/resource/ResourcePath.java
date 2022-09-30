@@ -174,13 +174,13 @@ public class ResourcePath extends StringPath implements
         this.schemes = schemes.copy();
     }
 
-    public ResourcePath absolute()
+    public ResourcePath asAbsolute()
     {
         return this;
     }
 
     /**
-     * @return This resource path as a file
+     * Returns this resource path as a file
      */
     public File asFile()
     {
@@ -188,16 +188,23 @@ public class ResourcePath extends StringPath implements
     }
 
     /**
-     * @return This resource path as a file path
+     * Returns this resource path as a file path
      */
     public FilePath asFilePath()
     {
         return FilePath.parseFilePath(LOGGER, asString());
     }
 
+    @Override
+    public java.io.File asJavaFile()
+    {
+        return new java.io.File(asString());
+    }
+
     /**
      * @return The file extension of this resource path's filename
      */
+    @Override
     public Extension extension()
     {
         return fileName().extension();
@@ -206,6 +213,7 @@ public class ResourcePath extends StringPath implements
     /**
      * @return The file name of this resource path
      */
+    @Override
     public FileName fileName()
     {
         var last = last();
@@ -253,7 +261,7 @@ public class ResourcePath extends StringPath implements
     }
 
     /**
-     * @return This path without characters that are unacceptable in a resource path
+     * Returns this path without characters that are unacceptable in a resource path
      */
     public ResourcePath normalized()
     {
@@ -277,12 +285,6 @@ public class ResourcePath extends StringPath implements
     public ResourcePath path()
     {
         return asFilePath();
-    }
-
-    @Override
-    public java.io.File asJavaFile()
-    {
-        return new java.io.File(asString());
     }
 
     public ResourcePath relativeTo(ResourcePath path)
@@ -315,6 +317,7 @@ public class ResourcePath extends StringPath implements
     /**
      * {@inheritDoc}
      */
+    @SuppressWarnings("SpellCheckingInspection")
     @Override
     public ResourcePath subpath(int start, int end)
     {
@@ -358,7 +361,7 @@ public class ResourcePath extends StringPath implements
     }
 
     /**
-     * @return This resource path with the given extension
+     * Returns this resource path with the given extension
      */
     public FilePath withExtension(Extension extension)
     {
@@ -463,7 +466,7 @@ public class ResourcePath extends StringPath implements
     }
 
     /**
-     * @return This filepath without any scheme
+     * Returns this filepath without any scheme
      */
     public ResourcePath withoutSchemes()
     {

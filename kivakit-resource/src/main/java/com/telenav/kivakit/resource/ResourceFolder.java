@@ -143,7 +143,7 @@ public interface ResourceFolder<T extends ResourceFolder<T>> extends
      */
     default ResourceFolder<?> absolute()
     {
-        return newFolder(path().absolute()).withTrailingSlash();
+        return newFolder(path().asAbsolute()).withTrailingSlash();
     }
 
     default boolean contains(ResourcePathed that)

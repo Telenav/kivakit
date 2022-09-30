@@ -18,15 +18,19 @@
 
 package com.telenav.kivakit.network.core.authentication.passwords;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.conversion.BaseStringConverter;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.string.AsciiArt;
 import com.telenav.kivakit.interfaces.string.StringFormattable;
 import com.telenav.kivakit.network.core.authentication.Password;
 import com.telenav.kivakit.network.core.internal.lexakai.DiagramAuthentication;
-import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeSuperTypes;
+
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
 
 /**
  * A plain text password, which can be tested against a given password using {@link #matches(Password)}.
@@ -36,12 +40,20 @@ import com.telenav.lexakai.annotations.visibility.UmlExcludeSuperTypes;
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramAuthentication.class)
 @UmlExcludeSuperTypes({ StringFormattable.class })
-@LexakaiJavadoc(complete = true)
+@ApiQuality(stability = STABLE_EXTENSIBLE,
+            testing = UNTESTED,
+            documentation = FULLY_DOCUMENTED)
 public class PlainTextPassword implements Password, StringFormattable
 {
-    public static PlainTextPassword parse(Listener listener, String password)
+    /**
+     * Parses the given text into a plain text password
+     *
+     * @param listener The listener to notify with any problems
+     * @param text The text to parse
+     */
+    public static PlainTextPassword parsePlainTextPassword(Listener listener, String text)
     {
-        return new PlainTextPassword(password);
+        return new PlainTextPassword(text);
     }
 
     /**
@@ -49,7 +61,9 @@ public class PlainTextPassword implements Password, StringFormattable
      *
      * @author jonathanl (shibo)
      */
-    @LexakaiJavadoc(complete = true)
+    @ApiQuality(stability = STABLE_EXTENSIBLE,
+                testing = UNTESTED,
+                documentation = FULLY_DOCUMENTED)
     public static class Converter extends BaseStringConverter<Password>
     {
         public Converter(Listener listener)
@@ -60,7 +74,7 @@ public class PlainTextPassword implements Password, StringFormattable
         @Override
         protected Password onToValue(String value)
         {
-            return PlainTextPassword.parse(this, value);
+            return PlainTextPassword.parsePlainTextPassword(this, value);
         }
     }
 
@@ -81,6 +95,7 @@ public class PlainTextPassword implements Password, StringFormattable
         return null;
     }
 
+    @SuppressWarnings("SpellCheckingInspection")
     @Override
     public boolean matches(Password uncast)
     {

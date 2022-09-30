@@ -106,7 +106,7 @@ public class LocalFolder extends BaseRepeater implements FolderService
 
     public LocalFolder asAbsolute()
     {
-        return new LocalFolder(path().absolute());
+        return new LocalFolder(path().asAbsolute());
     }
 
     @Override
@@ -422,7 +422,7 @@ public class LocalFolder extends BaseRepeater implements FolderService
     @Override
     public LocalFolder parentService()
     {
-        return new LocalFolder(path().absolute().parent());
+        return new LocalFolder(path().asAbsolute().parent());
     }
 
     @Override

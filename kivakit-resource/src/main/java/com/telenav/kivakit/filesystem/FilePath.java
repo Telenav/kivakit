@@ -51,7 +51,7 @@ import java.util.regex.Pattern;
  * </p>
  *
  * <ul>
- *     <li>{@link #absolute()} - This file path as an absolute path</li>
+ *     <li>{@link #asAbsolute()} - This file path as an absolute path</li>
  *     <li>{@link #asFile()} - This file path as a file</li>
  *     <li>{@link #asStringPath()} - This file path without any root or scheme</li>
  *     <li>{@link #asUnixString()} - This file path as a forward-slash separated string</li>
@@ -237,7 +237,7 @@ public class FilePath extends ResourcePath
      * Returns this file path as an absolute path
      */
     @Override
-    public FilePath absolute()
+    public FilePath asAbsolute()
     {
         if (isCurrentFolder())
         {
@@ -302,7 +302,7 @@ public class FilePath extends ResourcePath
     }
 
     /**
-     * @return URI for this file path
+     * Returns the URI for this file path
      */
     public URI asUri()
     {
@@ -310,7 +310,7 @@ public class FilePath extends ResourcePath
     }
 
     /**
-     * @return This file path with the given filename appended
+     * Returns this file path with the given filename appended
      */
     public FilePath file(FileName child)
     {

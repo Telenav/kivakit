@@ -18,8 +18,9 @@
 
 package com.telenav.kivakit.network.core;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.core.string.KivaKitFormat;
 import com.telenav.kivakit.core.string.ObjectFormatter;
-import com.telenav.kivakit.core.language.reflection.property.KivaKitIncludeProperty;
 import com.telenav.kivakit.core.time.Duration;
 import com.telenav.kivakit.network.core.authentication.Password;
 import com.telenav.kivakit.network.core.authentication.UserName;
@@ -28,17 +29,22 @@ import com.telenav.kivakit.validation.BaseValidator;
 import com.telenav.kivakit.validation.Validatable;
 import com.telenav.kivakit.validation.ValidationType;
 import com.telenav.kivakit.validation.Validator;
-import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlAggregation;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
+
 /**
- * Access constraints for network requests, including {@link #timeout()} and authentication requirements.
+ * Access constraints for network requests, including {@link #timeout()} and basic authentication requirements.
  *
  * @author jonathanl (shibo)
  */
-@LexakaiJavadoc(complete = true)
 @UmlClassDiagram(diagram = DiagramNetworkLocation.class)
+@ApiQuality(stability = STABLE_EXTENSIBLE,
+            testing = UNTESTED,
+            documentation = FULLY_DOCUMENTED)
 public class NetworkAccessConstraints implements Validatable
 {
     public static final NetworkAccessConstraints DEFAULT = new NetworkAccessConstraints().timeout(Duration.seconds(60));
@@ -52,7 +58,7 @@ public class NetworkAccessConstraints implements Validatable
     @UmlAggregation
     private Password password;
 
-    @KivaKitIncludeProperty
+    @KivaKitFormat
     public Password password()
     {
         return password;
@@ -63,7 +69,7 @@ public class NetworkAccessConstraints implements Validatable
         this.password = password;
     }
 
-    @KivaKitIncludeProperty
+    @KivaKitFormat
     public Duration timeout()
     {
         return timeout;
@@ -86,7 +92,7 @@ public class NetworkAccessConstraints implements Validatable
         this.userName = userName;
     }
 
-    @KivaKitIncludeProperty
+    @KivaKitFormat
     public UserName userName()
     {
         return userName;

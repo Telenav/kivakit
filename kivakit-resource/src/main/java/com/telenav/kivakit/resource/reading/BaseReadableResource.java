@@ -249,9 +249,9 @@ public abstract class BaseReadableResource extends BaseRepeater implements Resou
                     {
                         cached.parent().ensureExists();
                         var start = Time.now();
-                        trace("Materializing $ to $", this, cached.path().absolute());
+                        trace("Materializing $ to $", this, cached.path().asAbsolute());
                         safeCopyTo(cached, CopyMode.OVERWRITE, reporter);
-                        trace("Materialized ${debug} ($) from ${debug} in ${debug}", cached.path().absolute(),
+                        trace("Materialized ${debug} ($) from ${debug} in ${debug}", cached.path().asAbsolute(),
                                 cached.sizeInBytes(), this, start.elapsedSince());
                     }
                     materialized = cached;
@@ -321,7 +321,7 @@ public abstract class BaseReadableResource extends BaseRepeater implements Resou
         if (path instanceof FilePath)
         {
             var filepath = (FilePath) path;
-            return filepath.absolute().toString();
+            return filepath.asAbsolute().toString();
         }
         return path().toString();
     }

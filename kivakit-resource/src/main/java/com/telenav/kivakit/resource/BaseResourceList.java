@@ -61,7 +61,7 @@ public abstract class BaseResourceList<T extends Resource> extends ObjectList<T>
             for (var resource : this)
             {
                 builder.append("[")
-                        .append(resource.path().absolute())
+                        .append(resource.path().asAbsolute())
                         .append(":")
                         .append(resource.createdAt())
                         .append(":")

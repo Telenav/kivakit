@@ -244,7 +244,7 @@ public class StringPath extends Path<String>
     }
 
     /**
-     * @return This path as a String
+     * Returns this path as a String
      */
     @Override
     @KivaKitIncludeProperty
@@ -296,7 +296,7 @@ public class StringPath extends Path<String>
     }
 
     /**
-     * @return This path joined by the given separator
+     * Returns this path joined by the given separator
      */
     public final String join(String separator)
     {
@@ -307,7 +307,7 @@ public class StringPath extends Path<String>
     }
 
     /**
-     * @return This path joined by the path {@link #separator()}
+     * Returns this path joined by the path {@link #separator()}
      */
     public String join()
     {
@@ -342,7 +342,7 @@ public class StringPath extends Path<String>
     }
 
     /**
-     * @return The separator to use when converting the path to string representation
+     * Returns the path separator to use when converting to string representation
      */
     public String separator()
     {
@@ -367,7 +367,7 @@ public class StringPath extends Path<String>
     }
 
     /**
-     * @return This path joined by the path {@link #separator()}
+     * Returns this path joined by the path {@link #separator()}
      */
     @Override
     public String toString()
@@ -430,7 +430,7 @@ public class StringPath extends Path<String>
     }
 
     /**
-     * @return This string path with the given separator
+     * Returns this string path with the given separator
      */
     public StringPath withSeparator(String separator)
     {

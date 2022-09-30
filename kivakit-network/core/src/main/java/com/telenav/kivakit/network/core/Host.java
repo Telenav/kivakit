@@ -74,8 +74,6 @@ import static com.telenav.kivakit.network.core.Protocol.UNKNOWN;
  * <ul>
  *     <li>{@link #parseHost(Listener, String)}</li>
  *     <li>{@link #parseHost(Listener, String, String)}</li>
- *     <li>{@link Host#Host(InetAddress, String)}</li>
- *     <li>{@link Host#Host(InetAddress, String, String)}</li>
  *     <li>{@link #hostSwitchParser(Listener, String, String)}</li>
  * </ul>
  *
@@ -145,9 +143,18 @@ public class Host extends BaseRepeater implements
         StringFormattable,
         Comparable<Host>
 {
+    /** A cache of resolved host names with an expiration time of 5 minutes */
     private static final CacheMap<String, InetAddress> resolvedHostNames =
             new CacheMap<>(Maximum.maximum(2048), Duration.minutes(5));
 
+    /**
+     * Returns a switch parser builder for the given host
+     *
+     * @param listener The listener to call with any problems
+     * @param name The name of the switch
+     * @param description A description for the switch
+     * @return The switch parser builder
+     */
     public static SwitchParser.Builder<Host> hostSwitchParser(Listener listener, String name, String description)
     {
         return builder(Host.class)

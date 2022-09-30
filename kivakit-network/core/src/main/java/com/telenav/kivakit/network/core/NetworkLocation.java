@@ -18,19 +18,19 @@
 
 package com.telenav.kivakit.network.core;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.conversion.BaseStringConverter;
 import com.telenav.kivakit.core.collections.map.VariableMap;
 import com.telenav.kivakit.core.language.Hash;
 import com.telenav.kivakit.core.language.Objects;
-import com.telenav.kivakit.core.string.ObjectFormatter;
 import com.telenav.kivakit.core.language.reflection.property.KivaKitIncludeProperty;
 import com.telenav.kivakit.core.logging.Logger;
 import com.telenav.kivakit.core.logging.LoggerFactory;
 import com.telenav.kivakit.core.messaging.Listener;
+import com.telenav.kivakit.core.string.ObjectFormatter;
 import com.telenav.kivakit.core.string.Strings;
 import com.telenav.kivakit.interfaces.string.StringFormattable;
 import com.telenav.kivakit.network.core.internal.lexakai.DiagramNetworkLocation;
-import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlAggregation;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeMember;
@@ -42,19 +42,80 @@ import java.net.URL;
 import java.net.URLDecoder;
 import java.nio.charset.StandardCharsets;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE;
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
+
 /**
  * A network location with a {@link Port}, {@link NetworkPath}, {@link NetworkAccessConstraints} and optional
  * {@link QueryParameters}.
+ *
+ * <p><b>Factory Methods</b></p>
+ *
+ * <ul>
+ *     <li>{@link #networkLocation(Listener, URI)}</li>
+ * </ul>
+ *
+ * <p><b>Parsing</b></p>
+ *
+ * <ul>
+ *     <li>{@link #parseNetworkLocation(Listener, String)}</li>
+ * </ul>
+ *
+ * <p><b>Properties</b></p>
+ *
+ * <ul>
+ *     <li>{@link #constraints()}</li>
+ *     <li>{@link #constraints(NetworkAccessConstraints)}</li>
+ *     <li>{@link #host()}</li>
+ *     <li>{@link #networkPath()}</li>
+ *     <li>{@link #port()}</li>
+ *     <li>{@link #protocol()}</li>
+ *     <li>{@link #queryParameters()}</li>
+ *     <li>{@link #reference()}</li>
+ * </ul>
+ *
+ * <p><b>Comparison</b></p>
+ *
+ * <ul>
+ *     <li>{@link #compareTo(NetworkLocation)}</li>
+ * </ul>
+ *
+ * <p><b>Conversions</b></p>
+ *
+ * <ul>
+ *     <li>{@link #asUri()}</li>
+ *     <li>{@link #asUrl()}</li>
+ *     <li>{@link #asString(Format)}</li>
+ * </ul>
+ *
+ * <p><b>Functional</b></p>
+ *
+ * <ul>
+ *     <li>{@link #withPath(NetworkPath)}</li>
+ *     <li>{@link #withInterpolatedVariables(VariableMap)}</li>
+ *     <li>{@link #withQueryParameters(QueryParameters)}</li>
+ * </ul>
  *
  * @author jonathanl (shibo)
  */
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramNetworkLocation.class)
-@LexakaiJavadoc(complete = true)
+@ApiQuality(stability = STABLE_EXTENSIBLE,
+            testing = UNTESTED,
+            documentation = FULLY_DOCUMENTED)
 public class NetworkLocation implements StringFormattable, Comparable<NetworkLocation>
 {
     private static final Logger LOGGER = LoggerFactory.newLogger();
 
+    /**
+     * Returns a network location for a {@link URI}
+     *
+     * @param listener The listener to call with any problems
+     * @param uri The URI
+     * @return The network location
+     */
     public static NetworkLocation networkLocation(Listener listener, URI uri)
     {
         try
@@ -72,15 +133,22 @@ public class NetworkLocation implements StringFormattable, Comparable<NetworkLoc
         }
     }
 
-    public static NetworkLocation parseNetworkLocation(Listener listener, String value)
+    /**
+     * Parses the given text into a network location
+     *
+     * @param listener The listener to call with any problems
+     * @param text The text to parse
+     * @return The network location
+     */
+    public static NetworkLocation parseNetworkLocation(Listener listener, String text)
     {
         try
         {
-            return networkLocation(listener, new URI(value));
+            return networkLocation(listener, new URI(text));
         }
         catch (URISyntaxException e)
         {
-            listener.problem(e, "Bad network location ${debug}", value);
+            listener.problem(e, "Bad network location ${debug}", text);
             return null;
         }
     }
@@ -90,7 +158,9 @@ public class NetworkLocation implements StringFormattable, Comparable<NetworkLoc
      *
      * @author jonathanl (shibo)
      */
-    @LexakaiJavadoc(complete = true)
+    @ApiQuality(stability = STABLE,
+                testing = UNTESTED,
+                documentation = FULLY_DOCUMENTED)
     public static class Converter extends BaseStringConverter<NetworkLocation>
     {
         public Converter(Listener listener)
@@ -99,18 +169,23 @@ public class NetworkLocation implements StringFormattable, Comparable<NetworkLoc
         }
     }
 
+    /** The constraints for accessing this network location */
     @UmlAggregation
     private NetworkAccessConstraints constraints;
 
+    /** The path to this location */
     @UmlAggregation
     private NetworkPath networkPath;
 
+    /** The host and port for this location */
     @UmlAggregation
     private final Port port;
 
+    /** Any query parameters for this location */
     @UmlAggregation(label = "optional")
     private QueryParameters queryParameters;
 
+    /** Any hyperlink reference */
     private String reference;
 
     public NetworkLocation(NetworkLocation that)
@@ -129,12 +204,18 @@ public class NetworkLocation implements StringFormattable, Comparable<NetworkLoc
         port = networkPath.port();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String asString(Format format)
     {
         return new ObjectFormatter(this).toString();
     }
 
+    /**
+     * Returns this location as a {@link URI}
+     */
     public URI asUri()
     {
         try
@@ -156,6 +237,9 @@ public class NetworkLocation implements StringFormattable, Comparable<NetworkLoc
         }
     }
 
+    /**
+     * Returns this location as a {@link URL}
+     */
     public URL asUrl()
     {
         try
@@ -182,17 +266,26 @@ public class NetworkLocation implements StringFormattable, Comparable<NetworkLoc
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public int compareTo(NetworkLocation that)
     {
         return asUri().compareTo(that.asUri());
     }
 
+    /**
+     * Returns the constraints for accessing this network location
+     */
     public NetworkAccessConstraints constraints()
     {
         return constraints;
     }
 
+    /**
+     * Sets the constraints for accessing this network location
+     */
     public void constraints(NetworkAccessConstraints constraints)
     {
         this.constraints = constraints;
@@ -217,52 +310,79 @@ public class NetworkLocation implements StringFormattable, Comparable<NetworkLoc
         return Hash.hashMany(port, networkPath, queryParameters, reference);
     }
 
+    /**
+     * Returns the host for this network location
+     */
     @KivaKitIncludeProperty
     public Host host()
     {
         return port().host();
     }
 
+    /**
+     * Returns true if this location is a child of the given location
+     */
     public boolean isChildOf(NetworkLocation that)
     {
         // NOTE: This is not really sufficient, but works for our cases for now
         return toString().startsWith(that.toString());
     }
 
+    /**
+     * Returns the path portion of this network location
+     */
     @KivaKitIncludeProperty
     public NetworkPath networkPath()
     {
         return networkPath;
     }
 
+    /**
+     * Returns the host and port for this location
+     */
     @KivaKitIncludeProperty
     public Port port()
     {
         return port;
     }
 
+    /**
+     * Returns the protocol required to access this network location
+     */
     @KivaKitIncludeProperty
     public Protocol protocol()
     {
         return port.protocol();
     }
 
+    /**
+     * Returns any query parameters for this network location
+     */
     @KivaKitIncludeProperty
     public QueryParameters queryParameters()
     {
         return queryParameters;
     }
 
+    /**
+     * Sets any query parameters for this network location
+     */
     public void queryParameters(QueryParameters queryParameters)
     {
         this.queryParameters = queryParameters;
     }
 
+    /**
+     * Returns any ref value for this network location
+     */
     public String reference()
     {
         return reference;
     }
 
+    /**
+     * Sets any ref value for this network location
+     */
     public void reference(String fragment)
     {
         reference = fragment;
@@ -299,6 +419,12 @@ public class NetworkLocation implements StringFormattable, Comparable<NetworkLoc
         return builder.toString();
     }
 
+    /**
+     * Returns this network location with any variable markers expanded using the given variable map
+     *
+     * @param variables The variables to interpolate
+     * @return The new network location
+     */
     @UmlExcludeMember
     public NetworkLocation withInterpolatedVariables(VariableMap<String> variables)
     {
@@ -320,6 +446,9 @@ public class NetworkLocation implements StringFormattable, Comparable<NetworkLoc
         return location;
     }
 
+    /**
+     * Returns this network location with the given path
+     */
     public NetworkLocation withPath(NetworkPath path)
     {
         var location = new NetworkLocation(this);
@@ -327,6 +456,9 @@ public class NetworkLocation implements StringFormattable, Comparable<NetworkLoc
         return location;
     }
 
+    /**
+     * Returns this network location with the given query parameters
+     */
     public NetworkLocation withQueryParameters(QueryParameters queryParameters)
     {
         var location = new NetworkLocation(this);

@@ -32,7 +32,7 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NE
 /**
  * An email address, according to RFC 5322.
  *
- * <b><p>Parsing</p></b>
+ * <p><b>Parsing</b></p>
  *
  * <ul>
  *     <li>{@link #parseEmailAddress(Listener, String)}</li>

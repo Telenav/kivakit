@@ -53,22 +53,57 @@ import static com.telenav.kivakit.commandline.SwitchParser.builder;
  * clients. Methods that are unique to this class mainly have to do with networks:
  * </p>
  *
+ * <p><b>Path Factory Methods</b></p>
+ *
  * <ul>
- *     <li>{@link #asUri()} - This network path as a URI</li>
- *     <li>{@link #port()} - The port for this network path</li>
+ *     <li>{@link #networkPath(Listener, URI)}</li>
+ *     <li>{@link #networkPath(Listener, Port, String)}</li>
  * </ul>
  *
  * <p><b>Path Parsing Methods</b></p>
  *
  * <ul>
- *     <li>{@link #parseNetworkPath(Listener, String)} - The given string as a network path</li>
+ *     <li>{@link #parseNetworkPath(Listener, String)}</li>
  * </ul>
  *
- * <p><b>Path Factory Methods</b></p>
+ * <p><b>Properties</b></p>
  *
  * <ul>
- *     <li>{@link #networkPath(Listener, URI)} - A network path for the given URI</li>
- *     <li>{@link #networkPath(Listener, Port, String)} - The given port (including host and protocol) and path as a network path</li>
+ *     <li>{@link #parent()}</li>
+ *     <li>{@link #port()}</li>
+ *     <li>{@link #separator()}</li>
+ * </ul>
+ *
+ * <p><b>Conversions</b></p>
+ *
+ * <ul>
+ *     <li>{@link #asAbsolute()}</li>
+ *     <li>{@link #asStringPath()}</li>
+ *     <li>{@link #asUri()}</li>
+ *     <li>{@link #normalized()}</li>
+ * </ul>
+ *
+ * <p><b>Functional</b></p>
+ *
+ * <ul>
+ *     <li>{@link #subpath(int, int)}</li>
+ *     <li>{@link #transformed(Function)}</li>
+ *     <li>{@link #withChild(String)}</li>
+ *     <li>{@link #withChild(Path)}</li>
+ *     <li>{@link #withExtension(Extension)}</li>
+ *     <li>{@link #withParent(String)}</li>
+ *     <li>{@link #withParent(Path)}</li>
+ *     <li>{@link #withRoot(String)}</li>
+ *     <li>{@link #withSeparator(String)}</li>
+ *     <li>{@link #withoutFirst()}</li>
+ *     <li>{@link #withoutLast()}</li>
+ *     <li>{@link #withoutOptionalPrefix(Path)}</li>
+ *     <li>{@link #withoutOptionalSuffix(Path)}</li>
+ *     <li>{@link #withoutPrefix(String)}</li>
+ *     <li>{@link #withoutPrefix(Path)}</li>
+ *     <li>{@link #withoutRoot()}</li>
+ *     <li>{@link #withoutSchemes()}</li>
+ *     <li>{@link #withoutSuffix(Path)}</li>
  * </ul>
  *
  * @author jonathanl (shibo)
@@ -182,9 +217,9 @@ public class NetworkPath extends FilePath
      * {@inheritDoc}
      */
     @Override
-    public NetworkPath absolute()
+    public NetworkPath asAbsolute()
     {
-        return (NetworkPath) super.absolute();
+        return (NetworkPath) super.asAbsolute();
     }
 
     /**

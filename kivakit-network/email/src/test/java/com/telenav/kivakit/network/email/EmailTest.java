@@ -48,8 +48,8 @@ public class EmailTest extends UnitTest
 
         var configuration = new SmtpEmailSender.Configuration()
                 .host(Host.localhost())
-                .username(UserName.parse(this, ""))
-                .password(PlainTextPassword.parse(this, ""));
+                .username(UserName.parseUserName(this, ""))
+                .password(PlainTextPassword.parsePlainTextPassword(this, ""));
 
         var sender = new SmtpEmailSender(configuration).sendingOn(false);
         sender.start();

@@ -361,7 +361,7 @@ public class File extends BaseWritableResource implements FileSystemObject
      */
     public File absolute()
     {
-        return File.file(path().absolute());
+        return File.file(path().asAbsolute());
     }
 
     @Override
