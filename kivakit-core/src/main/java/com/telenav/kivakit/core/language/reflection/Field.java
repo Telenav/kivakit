@@ -165,7 +165,7 @@ public class Field extends Member
     /**
      * Gets the value of this field
      *
-     * @return The value or an instance of {@link ReflectionProblem} if something went wrong
+     * @return he value or an instance of {@link ReflectionProblem} if something went wrong
      */
     public Object get()
     {

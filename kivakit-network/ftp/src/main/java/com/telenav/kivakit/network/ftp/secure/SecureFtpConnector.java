@@ -24,16 +24,20 @@ import com.jcraft.jsch.JSch;
 import com.jcraft.jsch.JSchException;
 import com.jcraft.jsch.Session;
 import com.jcraft.jsch.SftpException;
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.collections.list.ObjectList;
 import com.telenav.kivakit.network.core.NetworkAccessConstraints;
 import com.telenav.kivakit.network.core.NetworkLocation;
 import com.telenav.kivakit.network.ftp.internal.lexakai.DiagramSecureFtp;
 import com.telenav.kivakit.resource.Resource;
 import com.telenav.kivakit.resource.writing.WritableResource;
-import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.io.InputStream;
+
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
 
 /**
  * <b>Not public API</b>
@@ -45,7 +49,9 @@ import java.io.InputStream;
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramSecureFtp.class)
-@LexakaiJavadoc(complete = true)
+@ApiQuality(stability = STABLE_EXTENSIBLE,
+            testing = UNTESTED,
+            documentation = FULLY_DOCUMENTED)
 class SecureFtpConnector
 {
     private Session session;
@@ -122,7 +128,7 @@ class SecureFtpConnector
         var sourcePath = location.networkPath().join();
         try
         {
-            channel.get(sourcePath, ((WritableResource)destination).openForWriting());
+            channel.get(sourcePath, ((WritableResource) destination).openForWriting());
         }
         catch (SftpException e)
         {

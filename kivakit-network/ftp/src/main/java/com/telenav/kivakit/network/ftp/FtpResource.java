@@ -18,6 +18,7 @@
 
 package com.telenav.kivakit.network.ftp;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.collections.list.ObjectList;
 import com.telenav.kivakit.core.io.IO;
 import com.telenav.kivakit.core.messaging.Listener;
@@ -33,7 +34,6 @@ import com.telenav.kivakit.network.ftp.internal.lexakai.DiagramFtp;
 import com.telenav.kivakit.resource.CopyMode;
 import com.telenav.kivakit.resource.Resource;
 import com.telenav.kivakit.resource.writing.WritableResource;
-import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import org.apache.commons.net.ftp.FTP;
 import org.apache.commons.net.ftp.FTPClient;
@@ -44,18 +44,22 @@ import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.List;
+
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
 
 /**
  * Simple FTP downloader. Note that this is made to download a single FTP file and then close the connection. At this
  * point full support of navigating around the FTP file system and examining files is not supported.
  *
- * @author ericg
+ * @author jonathanl (shibo)
  */
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramFtp.class)
-@LexakaiJavadoc(complete = true)
+@ApiQuality(stability = STABLE_EXTENSIBLE,
+            testing = UNTESTED,
+            documentation = FULLY_DOCUMENTED)
 public class FtpResource extends BaseNetworkResource
 {
     /**
@@ -63,7 +67,9 @@ public class FtpResource extends BaseNetworkResource
      *
      * @author ericg
      */
-    @LexakaiJavadoc(complete = true)
+    @ApiQuality(stability = STABLE_EXTENSIBLE,
+                testing = UNTESTED,
+                documentation = FULLY_DOCUMENTED)
     private static class FtpInput extends InputStream
     {
         private final FTPClient client;
@@ -116,7 +122,7 @@ public class FtpResource extends BaseNetworkResource
         this.constraints = constraints;
     }
 
-    public void clean()
+    public void close()
     {
         if (isConnected())
         {
@@ -124,6 +130,9 @@ public class FtpResource extends BaseNetworkResource
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void copyTo(Listener listener, WritableResource destination, CopyMode mode, ProgressReporter reporter)
     {
@@ -169,24 +178,9 @@ public class FtpResource extends BaseNetworkResource
         }
     }
 
-    public List<FtpResource> files()
-    {
-        List<FtpResource> resources = new ArrayList<>();
-        for (var file : listFiles(networkLocation.networkPath()))
-        {
-            var path = networkLocation.networkPath().withChild(file.getName());
-            var location = new FtpNetworkLocation(path);
-            location.constraints(networkLocation.constraints());
-            if (networkLocation instanceof FtpNetworkLocation)
-            {
-                location.mode(((FtpNetworkLocation) networkLocation).mode());
-            }
-
-            resources.add(new FtpResource(location, NetworkAccessConstraints.DEFAULT));
-        }
-        return resources;
-    }
-
+    /**
+     * Returns true if the FTP client is connected
+     */
     public boolean isConnected()
     {
         return client != null && client.isConnected();
@@ -195,7 +189,7 @@ public class FtpResource extends BaseNetworkResource
     /**
      * @return The files present in the given folder.
      */
-    public ObjectList<FTPFile> listFiles(NetworkPath path)
+    public ObjectList<FTPFile> listOfFiles(NetworkPath path)
     {
         try
         {
@@ -211,6 +205,9 @@ public class FtpResource extends BaseNetworkResource
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public NetworkLocation location()
     {
@@ -257,6 +254,27 @@ public class FtpResource extends BaseNetworkResource
         }
     }
 
+    /**
+     * Returns a list of ftp resources
+     */
+    public ObjectList<FtpResource> resources()
+    {
+        ObjectList<FtpResource> resources = new ObjectList<>();
+        for (var file : listOfFiles(networkLocation.networkPath()))
+        {
+            var path = networkLocation.networkPath().withChild(file.getName());
+            var location = new FtpNetworkLocation(path);
+            location.constraints(networkLocation.constraints());
+            if (networkLocation instanceof FtpNetworkLocation)
+            {
+                location.mode(((FtpNetworkLocation) networkLocation).mode());
+            }
+
+            resources.add(new FtpResource(location, NetworkAccessConstraints.DEFAULT));
+        }
+        return resources;
+    }
+
     @Override
     public Bytes sizeInBytes()
     {
@@ -278,7 +296,7 @@ public class FtpResource extends BaseNetworkResource
         if (networkLocation instanceof FtpNetworkLocation)
         {
             var mode = ((FtpNetworkLocation) networkLocation).mode();
-            if (FtpNetworkLocation.Mode.Passive.equals(mode))
+            if (FtpNetworkLocation.Mode.PASSIVE.equals(mode))
             {
                 client.enterLocalPassiveMode();
             }
