@@ -9,6 +9,7 @@ import com.telenav.kivakit.core.time.Rate;
  * implementation.
  *
  * @author jonathanl (shibo)
+ * @see MessageAlarm
  */
 public abstract class EmailMessageAlarm extends MessageAlarm implements RegistryTrait
 {
@@ -32,6 +33,7 @@ public abstract class EmailMessageAlarm extends MessageAlarm implements Registry
      * Composes and sends an email for this alarm
      * </p>
      */
+    @SuppressWarnings("resource")
     @Override
     protected void onTrigger(Rate rate)
     {

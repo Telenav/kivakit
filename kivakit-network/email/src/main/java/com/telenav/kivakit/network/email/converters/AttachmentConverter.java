@@ -18,20 +18,26 @@
 
 package com.telenav.kivakit.network.email.converters;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.conversion.BaseTwoWayConverter;
 import com.telenav.kivakit.core.collections.list.StringList;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.network.email.EmailAttachment;
-import com.telenav.lexakai.annotations.LexakaiJavadoc;
 
 import java.util.Base64;
+
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
 
 /**
  * Converter to and from {@link EmailAttachment} objects
  *
  * @author jonathanl (shibo)
  */
-@LexakaiJavadoc(complete = true)
+@ApiQuality(stability = STABLE,
+            testing = UNTESTED,
+            documentation = FULLY_DOCUMENTED)
 public class AttachmentConverter extends BaseTwoWayConverter<StringList, EmailAttachment>
 {
     public AttachmentConverter(Listener listener)
@@ -40,7 +46,7 @@ public class AttachmentConverter extends BaseTwoWayConverter<StringList, EmailAt
     }
 
     @Override
-    protected EmailAttachment onConvert(final StringList value)
+    protected EmailAttachment onConvert(StringList value)
     {
         if (value.size() == 3)
         {
@@ -53,8 +59,9 @@ public class AttachmentConverter extends BaseTwoWayConverter<StringList, EmailAt
         return null;
     }
 
+    @SuppressWarnings("SpellCheckingInspection")
     @Override
-    protected StringList onUnconvert(final EmailAttachment emailAttachment)
+    protected StringList onUnconvert(EmailAttachment emailAttachment)
     {
         var list = new StringList();
         list.add(emailAttachment.mimeType());

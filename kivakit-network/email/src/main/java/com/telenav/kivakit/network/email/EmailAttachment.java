@@ -18,9 +18,9 @@
 
 package com.telenav.kivakit.network.email;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.language.reflection.property.KivaKitExcludeProperty;
 import com.telenav.kivakit.network.email.internal.lexakai.DiagramEmail;
-import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import javax.activation.DataHandler;
@@ -28,13 +28,30 @@ import javax.mail.MessagingException;
 import javax.mail.internet.MimeBodyPart;
 import javax.mail.util.ByteArrayDataSource;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
+
 /**
  * An email attachment specified by either a byte array or a filename.
+ *
+ * <p><b>Properties</b></p>
+ *
+ * <ul>
+ *     <li>{@link #data()}</li>
+ *     <li>{@link #data(byte[])}</li>
+ *     <li>{@link #filename()}</li>
+ *     <li>{@link #filename(String)}</li>
+ *     <li>{@link #mimeType()}</li>
+ *     <li>{@link #mimeType(String)}</li>
+ * </ul>
  *
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramEmail.class)
-@LexakaiJavadoc(complete = true)
+@ApiQuality(stability = STABLE_EXTENSIBLE,
+            testing = UNTESTED,
+            documentation = FULLY_DOCUMENTED)
 public class EmailAttachment
 {
     private byte[] data;

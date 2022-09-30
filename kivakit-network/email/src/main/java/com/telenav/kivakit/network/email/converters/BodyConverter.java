@@ -18,20 +18,27 @@
 
 package com.telenav.kivakit.network.email.converters;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.conversion.BaseTwoWayConverter;
 import com.telenav.kivakit.core.collections.list.StringList;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.value.count.Maximum;
 import com.telenav.kivakit.network.email.EmailBody;
 import com.telenav.kivakit.network.email.HtmlEmailBody;
-import com.telenav.lexakai.annotations.LexakaiJavadoc;
+
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
 
 /**
  * Converts to and from {@link EmailBody} models.
  *
  * @author jonathanl (shibo)
  */
-@LexakaiJavadoc(complete = true)
+@SuppressWarnings("SpellCheckingInspection")
+@ApiQuality(stability = STABLE,
+            testing = UNTESTED,
+            documentation = FULLY_DOCUMENTED)
 public class BodyConverter extends BaseTwoWayConverter<StringList, EmailBody>
 {
     public BodyConverter(Listener listener)
@@ -40,14 +47,14 @@ public class BodyConverter extends BaseTwoWayConverter<StringList, EmailBody>
     }
 
     @Override
-    protected EmailBody onConvert(final StringList columns)
+    protected EmailBody onConvert(StringList columns)
     {
         var mimeType = columns.get(0);
-        if (EmailBody.MIME_TYPE.equals(mimeType))
+        if ("text/plain".equals(mimeType))
         {
             return new EmailBody(columns.get(1));
         }
-        if (HtmlEmailBody.MIME_TYPE.equals(mimeType))
+        if ("text/html".equals(mimeType))
         {
             return new HtmlEmailBody(columns.get(1));
         }
@@ -55,7 +62,7 @@ public class BodyConverter extends BaseTwoWayConverter<StringList, EmailBody>
     }
 
     @Override
-    protected StringList onUnconvert(final EmailBody emailBody)
+    protected StringList onUnconvert(EmailBody emailBody)
     {
         var list = new StringList(Maximum._2);
         list.add(emailBody.mimeType());

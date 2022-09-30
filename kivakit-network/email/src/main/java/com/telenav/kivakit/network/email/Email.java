@@ -18,6 +18,7 @@
 
 package com.telenav.kivakit.network.email;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.time.Duration;
 import com.telenav.kivakit.core.time.Time;
 import com.telenav.kivakit.core.value.count.Count;
@@ -27,7 +28,6 @@ import com.telenav.kivakit.validation.BaseValidator;
 import com.telenav.kivakit.validation.Validatable;
 import com.telenav.kivakit.validation.ValidationType;
 import com.telenav.kivakit.validation.Validator;
-import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlAggregation;
 
@@ -42,24 +42,39 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
 import static com.telenav.kivakit.core.ensure.Ensure.illegalState;
 
 /**
- * Models an email with:
+ * Models an email.
+ *
+ * <p><b>Properties</b></p>
  *
  * <ul>
- *     <li>A 'from' email address</li>
- *     <li>One or more 'to' email addresses</li>
- *     <li>A subject</li>
- *     <li>A body</li>
- *     <li>Optional attachments</li>
- *     <li>Time sent</li>
+ *     <li>{@link #addRecipient(EmailAddress)}</li>
+ *     <li>{@link #body(EmailBody)}</li>
+ *     <li>{@link #from(EmailAddress)}</li>
+ *     <li>{@link #sentAt(Time)}</li>
+ *     <li>{@link #subject(String)}</li>
+ *     <li>{@link #to(Set)}</li>
+ *     <li>{@link #waitForRetry(Duration)} </li>
+ * </ul>
+ *
+ * <p><b>Validation</b></p>
+ *
+ * <ul>
+ *     <li>{@link #validator(ValidationType)}</li>
  * </ul>
  *
  * @author jonathanl (shibo)
  */
+@SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramEmail.class)
-@LexakaiJavadoc(complete = true)
+@ApiQuality(stability = STABLE_EXTENSIBLE,
+            testing = UNTESTED,
+            documentation = FULLY_DOCUMENTED)
 public class Email implements Validatable
 {
     @UmlAggregation(label = "to")
@@ -82,7 +97,7 @@ public class Email implements Validatable
 
     int tries;
 
-    public Email addTo(EmailAddress address)
+    public Email addRecipient(EmailAddress address)
     {
         to.add(address);
         return this;

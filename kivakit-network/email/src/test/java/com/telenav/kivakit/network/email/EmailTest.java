@@ -43,7 +43,7 @@ public class EmailTest extends UnitTest
         var email = new Email()
                 .from(shibo)
                 .subject("testing")
-                .addTo(shibo)
+                .addRecipient(shibo)
                 .body(new EmailBody("this is a test"));
 
         var configuration = new SmtpEmailSender.Configuration()
@@ -51,7 +51,7 @@ public class EmailTest extends UnitTest
                 .username(UserName.parseUserName(this, ""))
                 .password(PlainTextPassword.parsePlainTextPassword(this, ""));
 
-        var sender = new SmtpEmailSender(configuration).sendingOn(false);
+        var sender = new SmtpEmailSender(configuration).enableSending(false);
         sender.start();
         sender.enqueue(email);
         sender.stop();
