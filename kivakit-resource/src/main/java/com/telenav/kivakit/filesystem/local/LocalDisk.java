@@ -18,12 +18,16 @@
 
 package com.telenav.kivakit.filesystem.local;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.value.count.Bytes;
 import com.telenav.kivakit.filesystem.spi.DiskService;
 import com.telenav.kivakit.resource.internal.lexakai.DiagramFileSystemService;
-import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.visibility.UmlNotPublicApi;
+
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
 
 /**
  * Implementation of {@link DiskService} provider interface for the local filesystem.
@@ -31,8 +35,10 @@ import com.telenav.lexakai.annotations.visibility.UmlNotPublicApi;
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramFileSystemService.class)
-@LexakaiJavadoc(complete = true)
 @UmlNotPublicApi
+@ApiQuality(stability = STABLE_EXTENSIBLE,
+            testing = TESTING_NOT_NEEDED,
+            documentation = FULLY_DOCUMENTED)
 public class LocalDisk implements DiskService
 {
     private final LocalFolder root;

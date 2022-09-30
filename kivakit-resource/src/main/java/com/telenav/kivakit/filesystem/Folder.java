@@ -120,7 +120,7 @@ import static com.telenav.kivakit.resource.ResourceList.resourceList;
  * <ul>
  *     <li>{@link #name()} - The filename of this folder</li>
  *     <li>{@link #disk()} - The disk where this folder exists, if any</li>
- *     <li>{@link #modifiedAt()} - The last time this folder was modified</li>
+ *     <li>{@link #lastModified()} - The last time this folder was modified</li>
  *     <li>{@link #size()} - The total size of this folder</li>
  * </ul>
  *
@@ -926,9 +926,9 @@ public class Folder extends BaseRepeater implements
     }
 
     @Override
-    public Time modifiedAt()
+    public Time lastModified()
     {
-        return folder().modifiedAt();
+        return folder().lastModified();
     }
 
     public FileName name()
@@ -946,7 +946,7 @@ public class Folder extends BaseRepeater implements
      */
     public FileList nestedFiles(Matcher<ResourcePathed> matcher)
     {
-        var files = FileList.forServices(folder().nestedFiles(path -> matcher.matches((path.asFile()))));
+        var files = FileList.fileListForServices(folder().nestedFiles(path -> matcher.matches((path.asFile()))));
         trace("Nested files in $: $", this, files);
         return files;
     }

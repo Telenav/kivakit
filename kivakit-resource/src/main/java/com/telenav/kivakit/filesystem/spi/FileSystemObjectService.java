@@ -18,6 +18,7 @@
 
 package com.telenav.kivakit.filesystem.spi;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.messaging.Repeater;
 import com.telenav.kivakit.core.string.Strings;
@@ -30,12 +31,14 @@ import com.telenav.kivakit.filesystem.loader.FileSystemServiceLoader;
 import com.telenav.kivakit.resource.Deletable;
 import com.telenav.kivakit.resource.ResourcePathed;
 import com.telenav.kivakit.resource.internal.lexakai.DiagramFileSystemService;
-import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeSuperTypes;
 
 import java.nio.file.attribute.PosixFilePermission;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
 import static com.telenav.kivakit.core.ensure.Ensure.unsupported;
 
 /**
@@ -57,7 +60,9 @@ import static com.telenav.kivakit.core.ensure.Ensure.unsupported;
  */
 @UmlClassDiagram(diagram = DiagramFileSystemService.class)
 @UmlExcludeSuperTypes(ResourcePathed.class)
-@LexakaiJavadoc(complete = true)
+@ApiQuality(stability = STABLE_EXTENSIBLE,
+            testing = TESTING_NOT_NEEDED,
+            documentation = FULLY_DOCUMENTED)
 public interface FileSystemObjectService extends
         Repeater,
         ByteSized,
@@ -68,7 +73,7 @@ public interface FileSystemObjectService extends
         Deletable
 {
     /**
-     * @return True if the permissions were changed
+     * Returns true if the permissions were changed
      */
     default boolean chmod(PosixFilePermission... permissions)
     {
@@ -76,7 +81,7 @@ public interface FileSystemObjectService extends
     }
 
     /**
-     * @return The disk that this object is on
+     * Returns the disk that this object is on
      */
     default DiskService diskService()
     {
@@ -84,7 +89,7 @@ public interface FileSystemObjectService extends
     }
 
     /**
-     * @return True if this folder exists
+     * Returns true if this folder exists
      */
     boolean exists();
 
@@ -94,7 +99,7 @@ public interface FileSystemObjectService extends
     }
 
     /**
-     * @return The service provider for folders
+     * Returns the service provider for folders
      */
     default FolderService folderService()
     {
@@ -102,7 +107,7 @@ public interface FileSystemObjectService extends
     }
 
     /**
-     * @return True if this is a file, false if it is a folder
+     * Returns true if this is a file, false if it is a folder
      */
     default boolean isFile()
     {
@@ -110,7 +115,7 @@ public interface FileSystemObjectService extends
     }
 
     /**
-     * @return True if this is a folder. If this is a folder, asFolder() will be successful.
+     * Returns true if this is a folder. If this is a folder, asFolder() will be successful.
      */
     boolean isFolder();
 
@@ -122,7 +127,7 @@ public interface FileSystemObjectService extends
     }
 
     /**
-     * @return True if this folder is remote
+     * Returns true if this folder is remote
      */
     default boolean isRemote()
     {
@@ -130,12 +135,12 @@ public interface FileSystemObjectService extends
     }
 
     /**
-     * @return The parent of this folder or null if none exists
+     * Returns the parent of this folder or null if none exists
      */
     FolderService parentService();
 
     /**
-     * @return The path to this object
+     * Returns the path to this object
      */
     @Override
     FilePath path();
@@ -160,7 +165,7 @@ public interface FileSystemObjectService extends
     }
 
     /**
-     * @return The root folder containing this object
+     * Returns the root folder containing this object
      */
     FolderService root();
 }

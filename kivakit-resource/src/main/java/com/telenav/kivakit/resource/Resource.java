@@ -362,7 +362,7 @@ public interface Resource extends
 
     default boolean isOlderThan(Resource that)
     {
-        return modifiedAt().isOlderThan(that.modifiedAt());
+        return lastModified().isOlderThan(that.lastModified());
     }
 
     /**
@@ -387,12 +387,12 @@ public interface Resource extends
     default boolean isSame(Resource that)
     {
         assert that != null;
-        assert modifiedAt() != null;
+        assert lastModified() != null;
         assert sizeInBytes() != null;
-        assert that.modifiedAt() != null;
+        assert that.lastModified() != null;
         assert that.sizeInBytes() != null;
 
-        return modifiedAt().equals(that.modifiedAt()) && sizeInBytes().equals(that.sizeInBytes());
+        return lastModified().equals(that.lastModified()) && sizeInBytes().equals(that.sizeInBytes());
     }
 
     /**

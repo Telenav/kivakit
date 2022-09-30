@@ -18,6 +18,7 @@
 
 package com.telenav.kivakit.filesystem;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.conversion.BaseStringConverter;
 import com.telenav.kivakit.core.collections.list.StringList;
 import com.telenav.kivakit.core.messaging.Listener;
@@ -41,6 +42,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Function;
 import java.util.regex.Pattern;
+
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
+import static com.telenav.kivakit.core.messaging.Listener.throwingListener;
 
 /**
  * An abstraction for a path on any kind of filesystem or file-related data source.
@@ -82,11 +88,13 @@ import java.util.regex.Pattern;
  */
 @SuppressWarnings({ "unused", "JavadocLinkAsPlainText" })
 @UmlClassDiagram(diagram = DiagramResourcePath.class)
-@LexakaiJavadoc(complete = true)
+@ApiQuality(stability = STABLE_EXTENSIBLE,
+            testing = TESTING_NOT_NEEDED,
+            documentation = FULLY_DOCUMENTED)
 public class FilePath extends ResourcePath
 {
     /**
-     * @return A file path for the given URI
+     * Returns file path for the given URI
      */
     public static FilePath filePath(URI uri)
     {
@@ -134,7 +142,7 @@ public class FilePath extends ResourcePath
     }
 
     /**
-     * @return A file path for the given {@link java.io.File}
+     * Returns a file path for the given {@link java.io.File}
      */
     public static FilePath filePath(java.io.File file)
     {
@@ -142,7 +150,7 @@ public class FilePath extends ResourcePath
     }
 
     /**
-     * @return A file path for the given {@link java.nio.file.Path}
+     * Returns a file path for the given {@link java.nio.file.Path}
      */
     public static FilePath filePath(java.nio.file.Path path)
     {
@@ -150,7 +158,7 @@ public class FilePath extends ResourcePath
     }
 
     /**
-     * @return A file path with only the given filename
+     * Returns a file path with only the given filename
      */
     public static FilePath filePath(FileName name)
     {
@@ -160,7 +168,7 @@ public class FilePath extends ResourcePath
     }
 
     /**
-     * @return A file path for the given string path
+     * Returns a file path for the given string path
      */
     public static FilePath filePath(StringPath path)
     {
@@ -168,7 +176,7 @@ public class FilePath extends ResourcePath
     }
 
     /**
-     * @return A file path for the given string
+     * Returns a file path for the given string
      */
     public static FilePath parseFilePath(Listener listener, String path, Object... arguments)
     {
@@ -258,11 +266,11 @@ public class FilePath extends ResourcePath
     @Override
     public File asFile()
     {
-        return File.file(this);
+        return File.file(throwingListener(), this);
     }
 
     /**
-     * @return This filepath as a string
+     * Returns this filepath as a string
      */
     @Override
     public String asString()
@@ -280,7 +288,7 @@ public class FilePath extends ResourcePath
     }
 
     /**
-     * @return Converts this path to a UNIX path string, obeying the rules for Windows bash shell where an absolute path
+     * Returns converts this path to a UNIX path string, obeying the rules for Windows bash shell where an absolute path
      * like "C:\xyz" is represented as "/c/xyz"
      */
     public String asUnixString()
@@ -343,7 +351,7 @@ public class FilePath extends ResourcePath
     }
 
     /**
-     * @return True if this path is the current folder, either as '.' or as an absolute path
+     * Returns true if this path is the current folder, either as '.' or as an absolute path
      */
     public boolean isCurrentFolder()
     {
@@ -357,7 +365,7 @@ public class FilePath extends ResourcePath
     }
 
     /**
-     * @return The last component of this path
+     * Returns the last component of this path
      */
     @Override
     public String last()
@@ -373,7 +381,7 @@ public class FilePath extends ResourcePath
     }
 
     /**
-     * @return True if this path matches the given matcher
+     * Returns true if this path matches the given matcher
      */
     @Override
     public boolean matches(Matcher<String> matcher)
@@ -425,6 +433,7 @@ public class FilePath extends ResourcePath
     /**
      * {@inheritDoc}
      */
+    @SuppressWarnings("SpellCheckingInspection")
     @Override
     public FilePath subpath(int start, int end)
     {
@@ -521,7 +530,7 @@ public class FilePath extends ResourcePath
     }
 
     /**
-     * @return This path with a trailing slash
+     * Returns this path with a trailing slash
      */
     public FilePath withTrailingSlash()
     {
@@ -533,7 +542,7 @@ public class FilePath extends ResourcePath
     }
 
     /**
-     * @return This path without file: scheme if that is the only scheme
+     * Returns this path without file: scheme if that is the only scheme
      */
     public FilePath withoutFileScheme()
     {
@@ -604,7 +613,7 @@ public class FilePath extends ResourcePath
     }
 
     /**
-     * @return This filepath without any scheme
+     * Returns this filepath without any scheme
      */
     @Override
     public FilePath withoutSchemes()
@@ -622,7 +631,7 @@ public class FilePath extends ResourcePath
     }
 
     /**
-     * @return This path without any trailing slash, which is represented by a final component that is empty ("")
+     * Returns this path without any trailing slash, which is represented by a final component that is empty ("")
      */
     public FilePath withoutTrailingSlash()
     {

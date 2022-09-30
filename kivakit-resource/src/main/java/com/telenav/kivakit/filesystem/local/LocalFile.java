@@ -18,6 +18,7 @@
 
 package com.telenav.kivakit.filesystem.local;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.time.Time;
 import com.telenav.kivakit.core.value.count.Bytes;
@@ -29,7 +30,6 @@ import com.telenav.kivakit.resource.internal.lexakai.DiagramFileSystemService;
 import com.telenav.kivakit.resource.writing.BaseWritableResource;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
-import com.telenav.lexakai.annotations.visibility.UmlNotPublicApi;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -43,21 +43,24 @@ import java.nio.file.attribute.PosixFilePermission;
 import java.util.Arrays;
 import java.util.HashSet;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
+
 /**
  * Implementation of {@link FileService} provider interface for the local filesystem.
  *
  * @author jonathanl (shibo)
  */
+@SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramFileSystemService.class)
-@UmlNotPublicApi
 @LexakaiJavadoc(complete = true)
+@ApiQuality(stability = STABLE_EXTENSIBLE,
+            testing = TESTING_NOT_NEEDED,
+            documentation = FULLY_DOCUMENTED)
 public class LocalFile extends BaseWritableResource implements FileService
 {
-    public static boolean isFile(FilePath path)
-    {
-        return new java.io.File(path.join()).isFile();
-    }
-
+    /** The underlying Java file */
     private final java.io.File file;
 
     public LocalFile(FilePath path)
@@ -198,7 +201,7 @@ public class LocalFile extends BaseWritableResource implements FileService
     }
 
     @Override
-    public Time modifiedAt()
+    public Time lastModified()
     {
         return Time.epochMilliseconds(file.lastModified());
     }

@@ -18,6 +18,7 @@
 
 package com.telenav.kivakit.filesystem.local;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.messaging.repeaters.BaseRepeater;
 import com.telenav.kivakit.core.thread.Monitor;
@@ -30,7 +31,6 @@ import com.telenav.kivakit.filesystem.spi.FolderService;
 import com.telenav.kivakit.interfaces.comparison.Matcher;
 import com.telenav.kivakit.resource.FileName;
 import com.telenav.kivakit.resource.internal.lexakai.DiagramFileSystemService;
-import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.visibility.UmlNotPublicApi;
 
@@ -47,6 +47,9 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
 import static com.telenav.kivakit.core.ensure.Ensure.fail;
 
 /**
@@ -57,7 +60,9 @@ import static com.telenav.kivakit.core.ensure.Ensure.fail;
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramFileSystemService.class)
 @UmlNotPublicApi
-@LexakaiJavadoc(complete = true)
+@ApiQuality(stability = STABLE_EXTENSIBLE,
+            testing = TESTING_NOT_NEEDED,
+            documentation = FULLY_DOCUMENTED)
 public class LocalFolder extends BaseRepeater implements FolderService
 {
     // Monitor for serializing the creation of temporary files
@@ -392,7 +397,7 @@ public class LocalFolder extends BaseRepeater implements FolderService
     }
 
     @Override
-    public Time modifiedAt()
+    public Time lastModified()
     {
         return Time.epochMilliseconds(file.lastModified());
     }

@@ -39,7 +39,7 @@ public interface ModifiedAt
     /**
      * Returns the time of last modification
      */
-    default Time modifiedAt()
+    default Time lastModified()
     {
         throw new UnsupportedOperationException("Cannot retrieve last modified time from: " + getClass());
     }
@@ -49,7 +49,7 @@ public interface ModifiedAt
      */
     default boolean wasChangedAfter(ModifiedAt that)
     {
-        return modifiedAt().isAfter(that.modifiedAt());
+        return lastModified().isAfter(that.lastModified());
     }
 
     /**
@@ -57,6 +57,6 @@ public interface ModifiedAt
      */
     default boolean wasChangedBefore(ModifiedAt that)
     {
-        return modifiedAt().isBefore(that.modifiedAt());
+        return lastModified().isBefore(that.lastModified());
     }
 }

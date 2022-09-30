@@ -158,7 +158,7 @@ public class FolderPruner
      */
     protected Duration age(File file)
     {
-        return file.modifiedAt().elapsedSince();
+        return file.lastModified().elapsedSince();
     }
 
     /**

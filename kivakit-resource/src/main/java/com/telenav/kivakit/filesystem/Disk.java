@@ -18,13 +18,17 @@
 
 package com.telenav.kivakit.filesystem;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.value.count.Bytes;
 import com.telenav.kivakit.core.value.level.Percent;
 import com.telenav.kivakit.filesystem.spi.DiskService;
 import com.telenav.kivakit.resource.internal.lexakai.DiagramFileSystemFolder;
-import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeMember;
+
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
 
 /**
  * Represents a logical disk where folders and files are stored. Note that not all filesystems have a disk. For example,
@@ -33,8 +37,11 @@ import com.telenav.lexakai.annotations.visibility.UmlExcludeMember;
  *
  * @author jonathanl (shibo)
  */
+@SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramFileSystemFolder.class)
-@LexakaiJavadoc(complete = true)
+@ApiQuality(stability = STABLE_EXTENSIBLE,
+            testing = UNTESTED,
+            documentation = FULLY_DOCUMENTED)
 public class Disk
 {
     /** The disk service provider */
@@ -47,7 +54,7 @@ public class Disk
     }
 
     /**
-     * @return Space free on this disk in {@link Bytes}
+     * Returns space free on this disk in {@link Bytes}
      */
     public Bytes free()
     {
@@ -55,7 +62,7 @@ public class Disk
     }
 
     /**
-     * @return The percentage of the disk that is free
+     * Returns the percentage of the disk that is free
      */
     public Percent percentFree()
     {
@@ -63,7 +70,7 @@ public class Disk
     }
 
     /**
-     * @return The percentage of this disk that can be written to, taking into account permissions and other factors
+     * Returns the percentage of this disk that can be written to, taking into account permissions and other factors
      */
     public Percent percentUsable()
     {
@@ -71,7 +78,7 @@ public class Disk
     }
 
     /**
-     * @return The root folder of this disk
+     * Returns the root folder of this disk
      */
     public Folder root()
     {
@@ -79,7 +86,7 @@ public class Disk
     }
 
     /**
-     * @return The total size of this disk
+     * Returns the total size of this disk
      */
     public Bytes size()
     {
@@ -93,7 +100,7 @@ public class Disk
     }
 
     /**
-     * @return The amount of usable free space on this disk, taking into account write permissions and other factors
+     * Returns the amount of usable free space on this disk, taking into account write permissions and other factors
      */
     public Bytes usable()
     {

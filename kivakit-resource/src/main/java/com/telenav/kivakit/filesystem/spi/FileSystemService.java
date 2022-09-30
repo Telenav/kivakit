@@ -18,12 +18,16 @@
 
 package com.telenav.kivakit.filesystem.spi;
 
-import com.telenav.kivakit.resource.internal.lexakai.DiagramFileSystemService;
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.filesystem.FilePath;
-import com.telenav.lexakai.annotations.LexakaiJavadoc;
+import com.telenav.kivakit.resource.internal.lexakai.DiagramFileSystemService;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
 import org.jetbrains.annotations.NotNull;
+
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
 
 /**
  * Service provider interface (SPI) for filesystems. FileSystemService is further broken down into SPIs for disk, folder
@@ -34,31 +38,34 @@ import org.jetbrains.annotations.NotNull;
  * @see FileService
  * @see FolderService
  */
+@SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramFileSystemService.class)
-@LexakaiJavadoc(complete = true)
+@ApiQuality(stability = STABLE_EXTENSIBLE,
+            testing = TESTING_NOT_NEEDED,
+            documentation = FULLY_DOCUMENTED)
 public interface FileSystemService
 {
     /**
-     * @return Determines if the given path is accepted as a path for by this filesystem service
+     * Returns determines if the given path is accepted as a path for by this filesystem service
      */
     boolean accepts(FilePath path);
 
     /**
-     * @return The {@link DiskService} for the given path
+     * Returns the {@link DiskService} for the given path
      */
     @UmlRelation(label = "provides")
     @NotNull
     DiskService diskService(FilePath path);
 
     /**
-     * @return The {@link FileService} for the given path
+     * Returns the {@link FileService} for the given path
      */
     @UmlRelation(label = "provides")
     @NotNull
     FileService fileService(FilePath path);
 
     /**
-     * @return The {@link FolderService} for the given path
+     * Returns the {@link FolderService} for the given path
      */
     @UmlRelation(label = "provides")
     @NotNull

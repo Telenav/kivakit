@@ -18,13 +18,13 @@
 
 package com.telenav.kivakit.filesystem.loader;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.messaging.repeaters.BaseRepeater;
 import com.telenav.kivakit.filesystem.FilePath;
 import com.telenav.kivakit.filesystem.local.LocalFileSystemService;
 import com.telenav.kivakit.filesystem.spi.FileSystemService;
 import com.telenav.kivakit.resource.internal.lexakai.DiagramFileSystemService;
-import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlAggregation;
 import com.telenav.lexakai.annotations.visibility.UmlNotPublicApi;
@@ -33,6 +33,10 @@ import org.jetbrains.annotations.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ServiceLoader;
+
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
 
 /**
  * Loads {@link FileSystemService}s with the Java {@link ServiceLoader} and chooses a {@link FileSystemService}
@@ -45,9 +49,12 @@ import java.util.ServiceLoader;
  */
 @UmlClassDiagram(diagram = DiagramFileSystemService.class)
 @UmlNotPublicApi
-@LexakaiJavadoc(complete = true)
+@ApiQuality(stability = STABLE,
+            testing = TESTING_NOT_NEEDED,
+            documentation = FULLY_DOCUMENTED)
 public class FileSystemServiceLoader extends BaseRepeater
 {
+    /** The local filesystem service */
     private static final LocalFileSystemService LOCAL = new LocalFileSystemService();
 
     /** Loaded filesystem services */
@@ -55,7 +62,7 @@ public class FileSystemServiceLoader extends BaseRepeater
     private static List<FileSystemService> services;
 
     /**
-     * @return The {@link FileSystemService} to use for the given path
+     * Returns the {@link FileSystemService} to use for the given path
      */
     @Nullable
     public static FileSystemService fileSystem(Listener listener, FilePath path)

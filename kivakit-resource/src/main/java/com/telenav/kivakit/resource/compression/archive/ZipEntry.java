@@ -89,7 +89,7 @@ public class ZipEntry extends BaseWritableResource implements AutoCloseable
 
     @KivaKitIncludeProperty
     @Override
-    public Time modifiedAt()
+    public Time lastModified()
     {
         return UncheckedCode.unchecked(() -> Time.epochMilliseconds(Files.getLastModifiedTime(path).toMillis())).orNull();
     }

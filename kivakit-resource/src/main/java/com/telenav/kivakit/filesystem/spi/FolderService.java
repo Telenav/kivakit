@@ -18,22 +18,25 @@
 
 package com.telenav.kivakit.filesystem.spi;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.filesystem.FilePath;
 import com.telenav.kivakit.filesystem.Folder;
 import com.telenav.kivakit.interfaces.comparison.Matcher;
 import com.telenav.kivakit.resource.FileName;
-import com.telenav.kivakit.filesystem.FilePath;
 import com.telenav.kivakit.resource.internal.lexakai.DiagramFileSystemService;
-import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
 import static com.telenav.kivakit.core.ensure.Ensure.unsupported;
 
 /**
- * A service provider interface (SPI) for filesystem folders. In addition to the methods required by {@link
- * FileSystemObjectService}, this interface requires:
+ * A service provider interface (SPI) for filesystem folders. In addition to the methods required by
+ * {@link FileSystemObjectService}, this interface requires:
  *
  * <ul>
  *     <li>{@link #clear()} - Remove all files in this folder</li>
@@ -57,8 +60,11 @@ import static com.telenav.kivakit.core.ensure.Ensure.unsupported;
  * @see FileSystemObjectService
  * @see FileSystemService
  */
+@SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramFileSystemService.class)
-@LexakaiJavadoc(complete = true)
+@ApiQuality(stability = STABLE_EXTENSIBLE,
+            testing = TESTING_NOT_NEEDED,
+            documentation = FULLY_DOCUMENTED)
 public interface FolderService extends FileSystemObjectService
 {
     /**
@@ -70,17 +76,17 @@ public interface FolderService extends FileSystemObjectService
     }
 
     /**
-     * @return The file service for the given file name
+     * Returns the file service for the given file name
      */
     FileService file(FileName name);
 
     /**
-     * @return The files in this folder
+     * Returns the files in this folder
      */
     List<FileService> files();
 
     /**
-     * @return The files in this folder that match the matcher
+     * Returns the files in this folder that match the matcher
      */
     default List<FileService> files(Matcher<FilePath> matcher)
     {
@@ -96,22 +102,22 @@ public interface FolderService extends FileSystemObjectService
     }
 
     /**
-     * @return The named sub-folder in this folder
+     * Returns the named sub-folder in this folder
      */
     FolderService folder(FileName folder);
 
     /**
-     * @return The named folder path within this folder
+     * Returns the named folder path within this folder
      */
     FolderService folder(Folder folder);
 
     /**
-     * @return The folders in this folder
+     * Returns the folders in this folder
      */
     List<FolderService> folders();
 
     /**
-     * @return The folders in this folder that match the matcher
+     * Returns the folders in this folder that match the matcher
      */
     default List<FolderService> folders(Matcher<FilePath> matcher)
     {
@@ -137,7 +143,7 @@ public interface FolderService extends FileSystemObjectService
     }
 
     /**
-     * @return true if the folder is empty
+     * Returns true if the folder is empty
      */
     default boolean isEmpty()
     {
@@ -145,25 +151,26 @@ public interface FolderService extends FileSystemObjectService
     }
 
     /**
-     * @return True if this folder can be written to
+     * Returns true if this folder can be written to
      */
     Boolean isWritable();
 
     /**
-     * @return True if the folder was created, along with all necessary parent folders.
+     * Returns true if the folder was created, along with all necessary parent folders.
      */
+    @SuppressWarnings("SpellCheckingInspection")
     default FolderService mkdirs()
     {
         return unsupported();
     }
 
     /**
-     * @return Files in this folder that match the given matcher, recursively
+     * Returns files in this folder that match the given matcher, recursively
      */
     List<FileService> nestedFiles(Matcher<FilePath> matcher);
 
     /**
-     * @return Files in this folder that match the given matcher, recursively
+     * Returns files in this folder that match the given matcher, recursively
      */
     List<FolderService> nestedFolders(Matcher<FilePath> matcher);
 

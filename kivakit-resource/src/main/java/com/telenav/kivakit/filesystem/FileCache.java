@@ -18,28 +18,68 @@
 
 package com.telenav.kivakit.filesystem;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.messaging.repeaters.BaseRepeater;
 import com.telenav.kivakit.core.progress.ProgressReporter;
 import com.telenav.kivakit.core.time.Duration;
 import com.telenav.kivakit.core.value.level.Percent;
 import com.telenav.kivakit.resource.CopyMode;
-import com.telenav.kivakit.resource.Resource;
 import com.telenav.kivakit.resource.FileName;
-import com.telenav.lexakai.annotations.LexakaiJavadoc;
+import com.telenav.kivakit.resource.Resource;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
 import static com.telenav.kivakit.core.ensure.Ensure.ensure;
 import static com.telenav.kivakit.core.time.Frequency.EVERY_30_SECONDS;
+import static com.telenav.kivakit.core.value.level.Percent.percent;
 
 /**
- * A file cache with the given root. Resources can be copied into the cache with {@link #add(Resource, CopyMode,
- * ProgressReporter)}. Files can be retrieved with {@link #file(FileName)}.
+ * A file cache with the given root. Resources can be copied into the cache with
+ * {@link #add(Resource, CopyMode, ProgressReporter)}. Files can be retrieved with {@link #file(FileName)}. The cache
+ * can be pruned of old files by calling {@link #startPruner()}.
+ *
+ * <p><b>Adding</b></p>
+ *
+ * <ul>
+ *     <li>{@link #add(Resource, CopyMode)}</li>
+ *     <li>{@link #add(Resource, CopyMode, ProgressReporter)}</li>
+ *     <li>{@link #addAs(Resource, FileName, CopyMode)}</li>
+ *     <li>{@link #addAs(Resource, FileName, CopyMode, ProgressReporter)}</li>
+ * </ul>
+ *
+ * <p><b>Retrieving</b></p>
+ *
+ * <ul>
+ *     <li>{@link #file(FileName)}</li>
+ *     <li>{@link #folder(String)}</li>
+ * </ul>
+ *
+ * <p><b>Pruning</b></p>
+ *
+ * <ul>
+ *     <li>{@link #maximumAge(Duration)}</li>
+ *     <li>{@link #minimumUsableDiskSpace(Percent)}</li>
+ *     <li>{@link #startPruner()}</li>
+ * </ul>
  *
  * @author jonathanl (shibo)
  */
-@LexakaiJavadoc(complete = true)
+@SuppressWarnings("unused")
+@ApiQuality(stability = STABLE_EXTENSIBLE,
+            testing = UNTESTED,
+            documentation = FULLY_DOCUMENTED)
 public class FileCache extends BaseRepeater
 {
+    /** Storage for cached files */
     private final Folder cacheFolder;
+
+    /** Maximum age beyond which files are pruned */
+    private Duration maximumAge;
+
+    /** Minimum usable disk space below which files are pruned */
+    private Percent minimumUsableDiskSpace = percent(10);
 
     /**
      * @param cacheFolder The cache folder where files should be stored
@@ -123,12 +163,31 @@ public class FileCache extends BaseRepeater
         return cacheFolder.folder(name);
     }
 
+    /**
+     * Sets the maximum age of files in the cache before they can be pruned
+     */
+    public void maximumAge(Duration maximumAge)
+    {
+        this.maximumAge = maximumAge;
+    }
+
+    /**
+     * Sets the minimum disk space below which files are pruned from the cache
+     */
+    public void minimumUsableDiskSpace(Percent minimum)
+    {
+        this.minimumUsableDiskSpace = minimum;
+    }
+
+    /**
+     * Starts the thread that prunes old files
+     */
     public void startPruner()
     {
         // Start folder pruner
         var pruner = new FolderPruner(cacheFolder, EVERY_30_SECONDS);
-        pruner.minimumUsableDiskSpace(Percent.percent(10));
-        pruner.maximumAge(Duration.days(30));
+        pruner.minimumUsableDiskSpace(minimumUsableDiskSpace);
+        pruner.maximumAge(maximumAge);
         pruner.start();
     }
 }

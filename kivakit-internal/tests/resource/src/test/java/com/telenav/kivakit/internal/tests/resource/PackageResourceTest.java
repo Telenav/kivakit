@@ -33,7 +33,7 @@ public class PackageResourceTest extends UnitTest implements PackageTrait
     @Test
     public void testLastModified()
     {
-        ensure(a().modifiedAt().isAfter(Time.START_OF_UNIX_TIME));
+        ensure(a().lastModified().isAfter(Time.START_OF_UNIX_TIME));
     }
 
     @Test

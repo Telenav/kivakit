@@ -18,6 +18,7 @@
 
 package com.telenav.kivakit.filesystem.local;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.collections.list.StringList;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.string.Strings;
@@ -37,6 +38,10 @@ import org.jetbrains.annotations.NotNull;
 import java.nio.file.InvalidPathException;
 import java.nio.file.Paths;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
+
 /**
  * Implementation of {@link FileSystemService} provider interface for the local filesystem.
  *
@@ -47,7 +52,9 @@ import java.nio.file.Paths;
 @UmlRelation(label = "creates", referent = LocalFile.class)
 @UmlRelation(label = "creates", referent = LocalFolder.class)
 @UmlNotPublicApi
-@LexakaiJavadoc(complete = true)
+@ApiQuality(stability = STABLE_EXTENSIBLE,
+            testing = TESTING_NOT_NEEDED,
+            documentation = FULLY_DOCUMENTED)
 public class LocalFileSystemService implements FileSystemService
 {
     @Override

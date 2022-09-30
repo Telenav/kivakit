@@ -18,32 +18,60 @@
 
 package com.telenav.kivakit.filesystem;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.conversion.BaseStringConverter;
 import com.telenav.kivakit.core.collections.iteration.Iterables;
+import com.telenav.kivakit.core.collections.list.ObjectList;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.filesystem.spi.FileService;
 import com.telenav.kivakit.interfaces.comparison.Matcher;
 import com.telenav.kivakit.resource.BaseResourceList;
 import com.telenav.kivakit.resource.Extension;
+import com.telenav.kivakit.resource.Resource;
 import com.telenav.kivakit.resource.ResourcePath;
 import com.telenav.kivakit.resource.internal.lexakai.DiagramFileSystemFile;
-import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeMember;
 
-import java.util.ArrayList;
 import java.util.List;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
+import static com.telenav.kivakit.core.messaging.Listener.throwingListener;
 import static com.telenav.kivakit.filesystem.FilePath.filePath;
 
 /**
- * A list of files with useful methods added. Additional methods include:
+ * A list of files with useful methods added
+ *
+ * <p><b>Creation</b></p>
+ *
+ * <ul>
+ *     <li>{@link #fileList(File...)}</li>
+ *     <li>{@link #fileList(Iterable)}</li>
+ * </ul>
+ *
+ * <p><b>Adding</b></p>
+ *
+ * <ul>
+ *     <li>{@link BaseResourceList#add(Resource)}</li>
+ *     <li>{@link BaseResourceList#add(int, Resource)}</li>
+ * </ul>
+ *
+ * <p><b>Conversion</b></p>
  *
  * <ul>
  *     <li>{@link #asJavaFiles()} - This file list as a list of {@link java.io.File} objects</li>
- *     <li>{@link #asSet()} - This list as a set</li>
+ *     <li>{@link #asSet()}</li>
+ * </ul>
+ *
+ * <p><b>Retrieval</b></p>
+ *
+ * <ul>
  *     <li>{@link #first()} - The first file in this list</li>
  *     <li>{@link #largest()} - The largest file in this list</li>
+ *     <li>{@link #last()}</li>
  *     <li>{@link #matching(Matcher)} - The files in this list matching the given matcher</li>
  *     <li>{@link #smallest()} - The smallest file in this list</li>
  *     <li>{@link #sortedLargestToSmallest()} - This file list sorted</li>
@@ -55,14 +83,28 @@ import static com.telenav.kivakit.filesystem.FilePath.filePath;
  */
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramFileSystemFile.class)
-@LexakaiJavadoc(complete = true)
+@ApiQuality(stability = STABLE_EXTENSIBLE,
+            testing = TESTING_NOT_NEEDED,
+            documentation = FULLY_DOCUMENTED)
 public class FileList extends BaseResourceList<File> implements Iterable<File>
 {
+    /**
+     * Creates a list of files from the given arguments
+     *
+     * @param files The files
+     * @return The {@link FileList}
+     */
     public static FileList fileList(File... files)
     {
         return fileList(Iterables.iterable(files));
     }
 
+    /**
+     * Creates a list of files from the given arguments
+     *
+     * @param files The files
+     * @return The {@link FileList}
+     */
     public static FileList fileList(Iterable<File> files)
     {
         return new FileList(files);
@@ -72,7 +114,7 @@ public class FileList extends BaseResourceList<File> implements Iterable<File>
      * <b>Not public API</b>
      */
     @UmlExcludeMember
-    public static FileList forServices(List<? extends FileService> fileServices)
+    public static FileList fileListForServices(List<? extends FileService> fileServices)
     {
         var files = new FileList();
         for (var file : fileServices)
@@ -87,7 +129,9 @@ public class FileList extends BaseResourceList<File> implements Iterable<File>
      *
      * @author jonathanl (shibo)
      */
-    @LexakaiJavadoc(complete = true)
+    @ApiQuality(stability = STABLE_EXTENSIBLE,
+                testing = UNTESTED,
+                documentation = FULLY_DOCUMENTED)
     public static class Converter extends BaseStringConverter<FileList>
     {
         private final Extension extension;
@@ -134,38 +178,56 @@ public class FileList extends BaseResourceList<File> implements Iterable<File>
         addAll(that);
     }
 
+    /**
+     * Returns a list of Java files
+     */
     @UmlExcludeMember
-    public List<java.io.File> asJavaFiles()
+    public ObjectList<java.io.File> asJavaFiles()
     {
-        var files = new ArrayList<java.io.File>();
+        var files = new ObjectList<java.io.File>();
         forEach(file -> files.add(file.asJavaFile()));
         return files;
     }
 
+    /**
+     * Returns the largest file in this list
+     */
     @Override
     public File largest()
     {
         return (File) super.largest();
     }
 
+    /**
+     * Returns the files in this list that match the given matcher
+     */
     @Override
     public FileList matching(Matcher<File> matcher)
     {
         return (FileList) super.matching(matcher);
     }
 
+    /**
+     * Returns the smallest file in this list
+     */
     @Override
     public File smallest()
     {
         return (File) super.smallest();
     }
 
+    /**
+     * Returns a list of files sorted from largest to smallest
+     */
     @Override
     public FileList sortedLargestToSmallest()
     {
         return (FileList) super.sortedLargestToSmallest();
     }
 
+    /**
+     * Returns a list of files sorted from oldest to newest
+     */
     @Override
     @SuppressWarnings("UnusedReturnValue")
     public FileList sortedOldestToNewest()
@@ -173,12 +235,18 @@ public class FileList extends BaseResourceList<File> implements Iterable<File>
         return (FileList) super.sortedOldestToNewest();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected File newResource(ResourcePath path)
     {
-        return File.file(filePath(path));
+        return File.file(throwingListener(), filePath(path));
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected BaseResourceList<File> newResourceList()
     {

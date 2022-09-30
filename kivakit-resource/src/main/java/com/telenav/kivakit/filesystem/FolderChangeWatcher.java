@@ -54,7 +54,7 @@ public class FolderChangeWatcher extends PeriodicCollectionChangeWatcher<FileSys
     @Override
     protected Time lastModified(FileSystemObject object)
     {
-        return object.modifiedAt();
+        return object.lastModified();
     }
 
     @Override

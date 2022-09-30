@@ -226,7 +226,7 @@ public class PackageResource extends BaseReadableResource
      * {@inheritDoc}
      */
     @Override
-    public Time modifiedAt()
+    public Time lastModified()
     {
         return resource == null ? Time.now() : resource.lastModified();
     }

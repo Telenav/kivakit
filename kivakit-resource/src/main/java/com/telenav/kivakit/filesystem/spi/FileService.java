@@ -18,10 +18,14 @@
 
 package com.telenav.kivakit.filesystem.spi;
 
-import com.telenav.kivakit.resource.writing.WritableResource;
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.resource.internal.lexakai.DiagramFileSystemService;
-import com.telenav.lexakai.annotations.LexakaiJavadoc;
+import com.telenav.kivakit.resource.writing.WritableResource;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
+
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
 
 /**
  * A service provider interface (SPI) for filesystem files. Adds {@link #renameTo(FileService)} to the methods required
@@ -32,16 +36,25 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
  * @see FileSystemService
  */
 @UmlClassDiagram(diagram = DiagramFileSystemService.class)
-@LexakaiJavadoc(complete = true)
+@ApiQuality(stability = STABLE_EXTENSIBLE,
+            testing = TESTING_NOT_NEEDED,
+            documentation = FULLY_DOCUMENTED)
 public interface FileService extends
         FileSystemObjectService,
         WritableResource
 {
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     default java.io.File asJavaFile()
     {
         return null;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     default boolean isRemote()
     {
