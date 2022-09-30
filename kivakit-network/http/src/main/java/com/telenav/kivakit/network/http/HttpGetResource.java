@@ -18,12 +18,15 @@
 
 package com.telenav.kivakit.network.http;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.network.core.NetworkAccessConstraints;
 import com.telenav.kivakit.network.core.NetworkLocation;
 import com.telenav.kivakit.network.http.internal.lexakai.DiagramHttp;
-import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
 import static com.telenav.kivakit.core.ensure.Ensure.ensure;
 
 /**
@@ -32,7 +35,9 @@ import static com.telenav.kivakit.core.ensure.Ensure.ensure;
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramHttp.class)
-@LexakaiJavadoc(complete = true)
+@ApiQuality(stability = STABLE_EXTENSIBLE,
+            testing = UNTESTED,
+            documentation = FULLY_DOCUMENTED)
 public class HttpGetResource extends BaseHttpResource
 {
     public HttpGetResource(NetworkLocation location, NetworkAccessConstraints constraints)

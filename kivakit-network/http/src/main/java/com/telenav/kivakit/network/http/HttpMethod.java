@@ -18,9 +18,19 @@
 
 package com.telenav.kivakit.network.http;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.core.messaging.Listener;
+
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
+
 /**
  * @author jonathanl (shibo)
  */
+@ApiQuality(stability = STABLE_EXTENSIBLE,
+            testing = UNTESTED,
+            documentation = FULLY_DOCUMENTED)
 public enum HttpMethod
 {
     GET,
@@ -34,8 +44,22 @@ public enum HttpMethod
     PATCH,
     NONE;
 
-    public static HttpMethod parse(String text)
+    /**
+     * Returns the {@link HttpMethod} for the given text
+     *
+     * @param listener The listener to notify with any problems
+     * @param text The text to parse
+     */
+    public static HttpMethod parseHttpMethod(Listener listener, String text)
     {
-        return valueOf(text.toUpperCase());
+        try
+        {
+            return valueOf(text.toUpperCase());
+        }
+        catch (Exception e)
+        {
+            listener.problem("Invalid HTTP method: $", text);
+            return null;
+        }
     }
 }

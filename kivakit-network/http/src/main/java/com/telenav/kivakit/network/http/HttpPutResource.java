@@ -18,11 +18,15 @@
 
 package com.telenav.kivakit.network.http;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.network.core.NetworkAccessConstraints;
 import com.telenav.kivakit.network.core.NetworkLocation;
 import com.telenav.kivakit.network.http.internal.lexakai.DiagramHttp;
-import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
+
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
 
 /**
  * A resource accessed by HTTP PUT at the given network location using the given access constraints.
@@ -30,7 +34,9 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramHttp.class)
-@LexakaiJavadoc(complete = true)
+@ApiQuality(stability = STABLE_EXTENSIBLE,
+            testing = UNTESTED,
+            documentation = FULLY_DOCUMENTED)
 public class HttpPutResource extends BaseHttpResource
 {
     public HttpPutResource(NetworkLocation networkLocation, NetworkAccessConstraints constraints)

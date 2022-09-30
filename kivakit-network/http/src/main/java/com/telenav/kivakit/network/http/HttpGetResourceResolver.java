@@ -1,13 +1,16 @@
 package com.telenav.kivakit.network.http;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.network.http.secure.SecureHttpNetworkLocation;
 import com.telenav.kivakit.resource.Resource;
 import com.telenav.kivakit.resource.ResourceIdentifier;
 import com.telenav.kivakit.resource.internal.lexakai.DiagramResourceService;
 import com.telenav.kivakit.resource.spi.ResourceResolver;
-import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
 import static com.telenav.kivakit.core.ensure.Ensure.fail;
 
 /**
@@ -16,16 +19,24 @@ import static com.telenav.kivakit.core.ensure.Ensure.fail;
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramResourceService.class)
-@LexakaiJavadoc(complete = true)
+@ApiQuality(stability = STABLE_EXTENSIBLE,
+            testing = UNTESTED,
+            documentation = FULLY_DOCUMENTED)
 public class HttpGetResourceResolver implements ResourceResolver
 {
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public boolean accepts(final ResourceIdentifier resourceIdentifier)
+    public boolean accepts(ResourceIdentifier resourceIdentifier)
     {
         var identifier = resourceIdentifier.identifier();
         return identifier.startsWith("https:") || identifier.startsWith("http:");
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Resource resolve(ResourceIdentifier resourceIdentifier)
     {

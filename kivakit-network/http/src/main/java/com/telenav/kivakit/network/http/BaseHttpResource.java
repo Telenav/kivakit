@@ -18,12 +18,12 @@
 
 package com.telenav.kivakit.network.http;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.collections.map.VariableMap;
 import com.telenav.kivakit.network.core.BaseNetworkResource;
 import com.telenav.kivakit.network.core.NetworkAccessConstraints;
 import com.telenav.kivakit.network.core.NetworkLocation;
 import com.telenav.kivakit.network.http.internal.lexakai.DiagramHttp;
-import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlAggregation;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
@@ -36,6 +36,9 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.util.Objects;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
 import static java.net.http.HttpRequest.BodyPublishers.noBody;
 import static java.net.http.HttpResponse.BodyHandlers.ofInputStream;
 import static java.net.http.HttpResponse.BodyHandlers.ofString;
@@ -50,18 +53,36 @@ import static java.net.http.HttpResponse.BodyHandlers.ofString;
  * also has:
  * </p>
  *
+ * <p><b>Properties</b></p>
+ *
+ * <ul>
+ *     <li>{@link #contentType()}</li>
+ *     <li>{@link #encoding()}</li>
+ *     <li>{@link #isRemote()}</li>
+ *     <li>{@link #location()}</li>
+ *     <li>{@link #status()}</li>
+ * </ul>
+ *
+ * <p><b>Conversions</b></p>
+ *
+ * <ul>
+ *     <li>{@link #asString()}</li>
+ * </ul>
+ *
+ * <p><b>Headers</b></p>
+ *
  * <ul>
  *     <li>{@link #httpHeadRequestContentType()} - A MIME content type</li>
- *     <li>{@link #asString()} - The resource content as a string</li>
- *     <li>{@link #encoding()} - A content encoding</li>
  *     <li>{@link #httpHeadRequestHeaderField(String)} - An optional header</li>
- *     <li>{@link #status()} - A status code once the resource has been accessed</li>
+ *     <li>{@link #responseHeader()}</li>
  * </ul>
  *
  * @author jonathanl (shibo)
  */
 @SuppressWarnings("unused") @UmlClassDiagram(diagram = DiagramHttp.class)
-@LexakaiJavadoc(complete = true)
+@ApiQuality(stability = STABLE_EXTENSIBLE,
+            testing = UNTESTED,
+            documentation = FULLY_DOCUMENTED)
 public abstract class BaseHttpResource extends BaseNetworkResource implements HttpRequestFactory
 {
     @UmlAggregation
@@ -91,6 +112,7 @@ public abstract class BaseHttpResource extends BaseNetworkResource implements Ht
     /**
      * @return The content of this HTTP resource as a string
      */
+    @Override
     public String asString()
     {
         return reader().asString();

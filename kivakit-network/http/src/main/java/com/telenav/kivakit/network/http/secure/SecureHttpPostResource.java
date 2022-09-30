@@ -18,13 +18,16 @@
 
 package com.telenav.kivakit.network.http.secure;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.network.core.NetworkAccessConstraints;
 import com.telenav.kivakit.network.core.NetworkLocation;
 import com.telenav.kivakit.network.http.HttpPostResource;
 import com.telenav.kivakit.network.http.internal.lexakai.DiagramHttps;
-import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
 import static com.telenav.kivakit.network.core.NetworkAccessConstraints.DEFAULT;
 
 /**
@@ -33,7 +36,9 @@ import static com.telenav.kivakit.network.core.NetworkAccessConstraints.DEFAULT;
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramHttps.class)
-@LexakaiJavadoc(complete = true)
+@ApiQuality(stability = STABLE_EXTENSIBLE,
+            testing = UNTESTED,
+            documentation = FULLY_DOCUMENTED)
 public class SecureHttpPostResource extends HttpPostResource
 {
     public SecureHttpPostResource(NetworkLocation networkLocation, NetworkAccessConstraints constraints)
@@ -46,7 +51,7 @@ public class SecureHttpPostResource extends HttpPostResource
         }
     }
 
-    public SecureHttpPostResource(final SecureHttpNetworkLocation location)
+    public SecureHttpPostResource(SecureHttpNetworkLocation location)
     {
         super(location, DEFAULT);
     }

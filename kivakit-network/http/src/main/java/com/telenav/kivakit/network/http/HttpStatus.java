@@ -18,21 +18,38 @@
 
 package com.telenav.kivakit.network.http;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.network.http.internal.lexakai.DiagramHttp;
-import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_ENUM_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
+
 /**
  * The status of an HTTP request.
  *
+ * <p><b>Tests</b></p>
+ *
+ * <ul>
+ *     <li>{@link #isClientError()} </li>
+ *     <li>{@link #isFailure()}</li>
+ *     <li>{@link #isRedirect()}</li>
+ *     <li>{@link #isServerError()}</li>
+ *     <li>{@link #isSuccess()}</li>
+ * </ul>
+ *
  * @author jonathanl (shibo)
  */
-@SuppressWarnings("unused") @UmlClassDiagram(diagram = DiagramHttp.class)
-@LexakaiJavadoc(complete = true)
+@SuppressWarnings("unused")
+@UmlClassDiagram(diagram = DiagramHttp.class)
+@ApiQuality(stability = STABLE_ENUM_EXTENSIBLE,
+            testing = UNTESTED,
+            documentation = FULLY_DOCUMENTED)
 public enum HttpStatus
 {
     // --- 1xx Informational ---
