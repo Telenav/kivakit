@@ -40,7 +40,7 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NE
 public interface Startable extends Operation
 {
     /**
-     * @return True if this task started
+     * Returns true if this task started
      */
     boolean start();
 }

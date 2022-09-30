@@ -18,19 +18,25 @@
 
 package com.telenav.kivakit.filesystem;
 
-import com.telenav.kivakit.core.logging.Logger;
-import com.telenav.kivakit.core.logging.LoggerFactory;
+import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.core.messaging.repeaters.BaseRepeater;
 import com.telenav.kivakit.core.thread.RepeatingThread;
 import com.telenav.kivakit.core.time.Duration;
 import com.telenav.kivakit.core.time.Frequency;
 import com.telenav.kivakit.core.value.count.Bytes;
 import com.telenav.kivakit.core.value.level.Percent;
 import com.telenav.kivakit.interfaces.comparison.Matcher;
+import com.telenav.kivakit.interfaces.lifecycle.Startable;
+import com.telenav.kivakit.interfaces.lifecycle.Stoppable;
 import com.telenav.kivakit.resource.ResourcePathed;
 import com.telenav.kivakit.resource.internal.lexakai.DiagramFileSystemFolder;
-import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
+
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
+import static com.telenav.kivakit.core.time.Duration.seconds;
 
 /**
  * Removes nested files matching {@link #matcher(Matcher)} from the given folder when they meet expiration criteria.
@@ -43,15 +49,37 @@ import com.telenav.lexakai.annotations.associations.UmlRelation;
  * {@link #capacity(Bytes)}.
  * </p>
  *
+ * <p><b>Lifecycle</b></p>
+ *
+ * <ul>
+ *     <li>{@link #isRunning()}</li>
+ *     <li>{@link #start()}</li>
+ *     <li>{@link #stop(Duration)}</li>
+ *     <li>{@link #maximumStopTime()}</li>
+ * </ul>
+ *
+ * <p><b>Pruning Criteria</b></p>
+ *
+ * <ul>
+ *     <li>{@link #capacity()}</li>
+ *     <li>{@link #capacity(Bytes)}</li>
+ *     <li>{@link #matcher()}</li>
+ *     <li>{@link #matcher(Matcher)}</li>
+ *     <li>{@link #maximumAge(Duration)}</li>
+ *     <li>{@link #minimumUsableDiskSpace(Percent)}</li>
+ * </ul>
+ *
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramFileSystemFolder.class)
 @UmlRelation(label = "prunes old files from", referent = Folder.class)
-@LexakaiJavadoc(complete = true)
-public class FolderPruner
+@ApiQuality(stability = STABLE_EXTENSIBLE,
+            testing = TESTING_NOT_NEEDED,
+            documentation = FULLY_DOCUMENTED)
+public class FolderPruner extends BaseRepeater implements
+        Startable,
+        Stoppable<Duration>
 {
-    private static final Logger LOGGER = LoggerFactory.newLogger();
-
     /** The maximum folder capacity */
     private volatile Bytes capacity = Bytes.MAXIMUM;
 
@@ -72,7 +100,7 @@ public class FolderPruner
 
     public FolderPruner(Folder folder, Frequency frequency)
     {
-        thread = new RepeatingThread(LOGGER, getClass().getSimpleName(), frequency)
+        thread = new RepeatingThread(this, getClass().getSimpleName(), frequency)
         {
             @Override
             protected void onRun()
@@ -107,45 +135,79 @@ public class FolderPruner
                 }
                 catch (Exception e)
                 {
-                    LOGGER.problem(e, "Folder pruner threw exception");
+                    problem(e, "Folder pruner threw exception");
                 }
             }
         };
         thread.daemon(true);
-        thread.addListener(LOGGER);
+        thread.addListener(this);
     }
 
+    /**
+     * Sets the capacity of the folder before pruning occurs
+     */
     public void capacity(Bytes capacity)
     {
         this.capacity = capacity;
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public boolean isRunning()
     {
         return running;
     }
 
+    /**
+     * Sets the matcher to use when selecting resources to prune
+     */
     public void matcher(Matcher<ResourcePathed> matcher)
     {
         this.matcher = matcher;
     }
 
+    /**
+     * Sets the maximum age at which resources can be expired
+     */
     public void maximumAge(Duration maximumAge)
     {
         this.maximumAge = maximumAge;
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Duration maximumStopTime()
+    {
+        return seconds(30);
+    }
+
+    /**
+     * Sets the minimum usable disk space below which pruning occurs
+     */
     public void minimumUsableDiskSpace(Percent minimumUsableDiskSpace)
     {
         this.minimumUsableDiskSpace = minimumUsableDiskSpace;
     }
 
-    public void start()
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public boolean start()
     {
         thread.start();
         running = true;
+        return true;
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public void stop(Duration maximumWaitTime)
     {
         thread.stop(maximumWaitTime);
@@ -192,8 +254,11 @@ public class FolderPruner
         return minimumUsableDiskSpace;
     }
 
+    /**
+     * Called when files are removed
+     */
     protected void onFileRemoved(File file)
     {
-        LOGGER.warning("FolderPruner removing $", file);
+        warning("FolderPruner removing $", file);
     }
 }

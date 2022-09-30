@@ -957,7 +957,7 @@ public class Folder extends BaseRepeater implements
     @Override
     public FolderList nestedFolders(Matcher<Folder> matcher)
     {
-        var folders = FolderList.forVirtual(folder().nestedFolders(path -> matcher.matches(new Folder(path))));
+        var folders = FolderList.folderList(folder().nestedFolders(path -> matcher.matches(new Folder(path))));
         trace("Nested folders in $: $", this, folders);
         return folders;
     }

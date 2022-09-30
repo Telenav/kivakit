@@ -50,14 +50,14 @@ import static com.telenav.kivakit.core.ensure.Ensure.unsupported;
  *
  * @author jonathanl (shibo)
  */
-@SuppressWarnings("NullableProblems") @UmlClassDiagram(diagram = DiagramFileSystemFolder.class)
-@LexakaiJavadoc(complete = true)
+@SuppressWarnings({ "NullableProblems", "unused" })
+@UmlClassDiagram(diagram = DiagramFileSystemFolder.class)
 public class FolderList implements List<Folder>
 {
     /**
      * <b>Not public API</b>
      */
-    public static FolderList forVirtual(List<? extends FolderService> virtualFolders)
+    public static FolderList folderList(List<? extends FolderService> virtualFolders)
     {
         var folders = new FolderList();
         for (FolderService folder : virtualFolders)
@@ -149,7 +149,7 @@ public class FolderList implements List<Folder>
     @Override
     public boolean containsAll(@NotNull Collection<?> c)
     {
-        return folders.containsAll(c);
+        return new HashSet<>(folders).containsAll(c);
     }
 
     @Override
@@ -293,6 +293,6 @@ public class FolderList implements List<Folder>
     @Override
     public <T> T[] toArray(@NotNull T[] array)
     {
-       return unsupported();
+        return unsupported();
     }
 }

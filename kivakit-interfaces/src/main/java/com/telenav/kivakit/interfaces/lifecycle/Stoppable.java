@@ -39,7 +39,7 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NE
 public interface Stoppable<Duration extends LengthOfTime<Duration>> extends Operation
 {
     /**
-     * @return The maximum time to wait when stopping
+     * Returns the maximum time to wait when stopping
      */
     Duration maximumStopTime();
 
