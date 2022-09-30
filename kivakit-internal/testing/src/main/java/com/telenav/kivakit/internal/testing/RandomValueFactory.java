@@ -18,6 +18,7 @@
 
 package com.telenav.kivakit.internal.testing;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.collections.list.ObjectList;
 import com.telenav.kivakit.core.collections.set.ObjectSet;
 import com.telenav.kivakit.core.language.Hash;
@@ -34,7 +35,6 @@ import com.telenav.kivakit.interfaces.comparison.Filter;
 import com.telenav.kivakit.interfaces.comparison.Matcher;
 import com.telenav.kivakit.interfaces.numeric.RandomNumeric;
 import com.telenav.kivakit.internal.testing.internal.lexakai.DiagramTest;
-import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.ArrayList;
@@ -43,6 +43,9 @@ import java.util.List;
 import java.util.Random;
 import java.util.function.Consumer;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.UNSTABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
 import static com.telenav.kivakit.core.ensure.Ensure.ensure;
 import static com.telenav.kivakit.core.language.primitive.Longs.inRangeInclusive;
 import static com.telenav.kivakit.core.value.count.Count._256;
@@ -87,8 +90,10 @@ import static com.telenav.kivakit.internal.testing.Repeats.NO_REPEATS;
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramTest.class)
-@LexakaiJavadoc(complete = true)
 @SuppressWarnings({ "SpellCheckingInspection", "unused" })
+@ApiQuality(stability = UNSTABLE,
+            testing = UNTESTED,
+            documentation = FULLY_DOCUMENTED)
 public class RandomValueFactory implements RandomNumeric
 {
     private static volatile long SALT = 8682522807148012L;

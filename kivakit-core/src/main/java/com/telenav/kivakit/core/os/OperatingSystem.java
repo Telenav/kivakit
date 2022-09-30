@@ -167,11 +167,12 @@ public class OperatingSystem implements Named
     }
 
     /**
-     * Returns true if this is UNIX
+     * Returns true if this is UNIX (but not MacOs)
      */
     public boolean isUnix()
     {
-        return name().toLowerCase().contains("unix") || name().toLowerCase().contains("linux");
+        return name().toLowerCase().contains("unix")
+                || name().toLowerCase().contains("linux");
     }
 
     /**
