@@ -1,5 +1,6 @@
 package com.telenav.kivakit.testing;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.ensure.Ensure;
 import com.telenav.kivakit.core.language.trait.LanguageTrait;
 import com.telenav.kivakit.core.messaging.Broadcaster;
@@ -16,6 +17,10 @@ import com.telenav.kivakit.resource.packages.PackageTrait;
 import java.util.Collection;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
+
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
 
 /**
  * This is the base class for all unit tests. It provides useful methods that are common to all tests. Several ensure*()
@@ -114,6 +119,9 @@ import java.util.function.Supplier;
  *
  * @author jonathanl (shibo)
  */
+@ApiQuality(stability = STABLE,
+            testing = TESTING_NOT_NEEDED,
+            documentation = FULLY_DOCUMENTED)
 public class UnitTest extends CoreUnitTest implements
         JavaTrait,
         ProjectTrait,
