@@ -18,11 +18,17 @@
 
 package com.telenav.kivakit.resource.compression;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.resource.internal.lexakai.DiagramResourceCompression;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.io.OutputStream;
+
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
 
 /**
  * A compressor applies a compression algorithm to an {@link OutputStream}, yielding another (compressed) {@link
@@ -31,7 +37,9 @@ import java.io.OutputStream;
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramResourceCompression.class)
-@LexakaiJavadoc(complete = true)
+@ApiQuality(stability = STABLE,
+            testing = TESTING_NOT_NEEDED,
+            documentation = FULLY_DOCUMENTED)
 public interface Compressor
 {
     /**

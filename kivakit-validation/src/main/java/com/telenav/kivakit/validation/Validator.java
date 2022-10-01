@@ -25,7 +25,7 @@ import com.telenav.kivakit.core.messaging.Transceiver;
 import com.telenav.kivakit.core.messaging.messages.status.Problem;
 import com.telenav.kivakit.core.messaging.messages.status.Warning;
 import com.telenav.kivakit.validation.internal.lexakai.DiagramValidation;
-import com.telenav.kivakit.validation.validators.EmptyValidator;
+import com.telenav.kivakit.validation.validators.NullValidator;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
 
@@ -54,9 +54,9 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
 public interface Validator
 {
     /** A validator that does nothing */
-    static Validator emptyValidator()
+    static Validator nullValidator()
     {
-        return new EmptyValidator();
+        return new NullValidator();
     }
 
     /**

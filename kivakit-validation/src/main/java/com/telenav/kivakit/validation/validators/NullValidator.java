@@ -15,7 +15,7 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
 @ApiQuality(stability = STABLE,
             testing = UNTESTED,
             documentation = FULLY_DOCUMENTED)
-public class EmptyValidator extends BaseValidator
+public class NullValidator extends BaseValidator
 {
     /**
      * {@inheritDoc}

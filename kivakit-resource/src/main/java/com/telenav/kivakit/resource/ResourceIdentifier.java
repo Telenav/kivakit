@@ -39,7 +39,7 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
  *
  * <p><b>Resource Resolvers</b></p>
  * <ul>
- *    <li>PackageResource.Resolver - Resolves resources for the scheme <i>classpath:</i></li>
+ *    <li>PackageResource.PackageResolver - Resolves resources for the scheme <i>classpath:</i></li>
  *    <li>File.Resolver - Resolves filesystem resource with various schemes. Resources on the local filesystem
  *                        are identifier with <i>file:</i> or by not specifying any scheme</li>
  *    <li>HttpGetResourceResolver - Resolves <i>https:</i> and <i>http:</i> resources</li>

@@ -18,29 +18,53 @@
 
 package com.telenav.kivakit.resource.reading;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.collections.list.StringList;
 import com.telenav.kivakit.core.io.IO;
 import com.telenav.kivakit.core.messaging.repeaters.BaseRepeater;
 import com.telenav.kivakit.core.progress.ProgressReporter;
-import com.telenav.lexakai.annotations.LexakaiJavadoc;
-import org.jetbrains.annotations.NotNull;
 
 import java.io.Closeable;
 import java.io.IOException;
 import java.io.LineNumberReader;
 import java.io.UncheckedIOException;
-import java.util.Iterator;
 import java.util.function.Consumer;
 import java.util.stream.Stream;
+
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
+import static com.telenav.kivakit.core.collections.list.StringList.stringList;
 
 /**
  * Reads the provided {@link ReadableResource} as a series of lines, reporting progress to the given
  * {@link ProgressReporter}.
  *
+ * <p><b>Reading Lines</b></p>
+ *
+ * <ul>
+ *     <li>{@link #lines()}</li>
+ *     <li>{@link #lines(Consumer)}</li>
+ *     <li>{@link #stream()}</li>
+ * </ul>
+ *
+ * <p><b>NOTE</b></p>
+ *
+ * <p>
+ * The {@link #stream()} method should be used in an idiom like this to avoid a resource leak:
+ * <pre>
+ * try (var stream = stream())
+ * {
+ *     [...]
+ * }</pre>
+ * </p>
+ *
  * @author jonathanl (shibo)
  */
-@LexakaiJavadoc(complete = true)
-public class LineReader extends BaseRepeater implements Iterable<String>
+@ApiQuality(stability = STABLE_EXTENSIBLE,
+            testing = UNTESTED,
+            documentation = FULLY_DOCUMENTED)
+public class LineReader extends BaseRepeater
 {
     /** The resource to read */
     private final ReadableResource resource;
@@ -48,6 +72,10 @@ public class LineReader extends BaseRepeater implements Iterable<String>
     /** The handler for reporting progress */
     private final ProgressReporter reporter;
 
+    /**
+     * @param resource The resource to read
+     * @param reporter The progress reporter to call after each line is read
+     */
     public LineReader(ReadableResource resource, ProgressReporter reporter)
     {
         this.resource = resource;
@@ -55,32 +83,24 @@ public class LineReader extends BaseRepeater implements Iterable<String>
     }
 
     /**
-     * {@inheritDoc}
-     */
-    @Override
-    public @NotNull
-    Iterator<String> iterator()
-    {
-        return stream().iterator();
-    }
-
-    /**
-     * @return The lines in this resource as a list of strings
+     * Returns the lines in this resource as a list of strings
      */
     public StringList lines()
     {
-        var list = new StringList();
-        list.addAll(this);
-        return list;
+        var lines = stringList();
+        try (var stream = stream())
+        {
+            stream.forEach(lines::add);
+        }
+        return lines;
     }
 
     /**
-     * Calls the given consumer with each line
+     * Calls the given consumer with each line. This method ensures that the resource stream is closed.
      */
     public void lines(Consumer<String> consumer)
     {
-        var reader = new LineNumberReader(resource.reader(reporter).textReader());
-        try
+        try (var reader = new LineNumberReader(resource.reader(reporter).textReader()))
         {
             reporter.start();
             while (true)
@@ -95,19 +115,18 @@ public class LineReader extends BaseRepeater implements Iterable<String>
                 consumer.accept(next);
             }
         }
-        catch (IOException e)
+        catch (Exception e)
         {
-            throw new IllegalStateException(
-                    "Exception thrown while reading " + resource + " at line " + reader.getLineNumber(), e);
-        }
-        finally
-        {
-            IO.close(this, reader);
+            problem(e, "Error reading lines from: $", resource);
         }
     }
 
     /**
-     * @return The lines produced by this reader as a {@link Stream}
+     * Returns the lines produced by this reader as a {@link Stream}. If the resource cannot be read from, an empty
+     * stream is returned and a problem is broadcast.
+     * <p><b>NOTE</b></p>
+     * The resource input stream is closed only when the stream is closed. Failing to close the stream will result in a
+     * resource leak.
      */
     public Stream<String> stream()
     {
@@ -119,21 +138,9 @@ public class LineReader extends BaseRepeater implements Iterable<String>
         }
         catch (Exception e)
         {
-            try
-            {
-                reader.close();
-            }
-            catch (IOException ex)
-            {
-                try
-                {
-                    e.addSuppressed(ex);
-                }
-                catch (Throwable ignore)
-                {
-                }
-            }
-            throw e;
+            IO.close(this, reader);
+            problem("Unable to read from: $", resource);
+            return Stream.empty();
         }
         finally
         {

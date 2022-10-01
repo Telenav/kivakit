@@ -24,16 +24,16 @@ import static com.telenav.kivakit.resource.packages.Package.parsePackage;
  * <p><b>Packages</b></p>
  *
  * <ul>
- *     <li>{@link #thisPackage()} - Returns the package containing this class</li>
- *     <li>{@link #packageContaining(Class)} - Returns the {@link Package} containing the given class</li>
- *     <li>{@link #relativePackage(String)} - Returns the package at the given path, relative to this package</li>
+ *     <li>{@link #packageForThis()} - Returns the package containing this class</li>
+ *     <li>{@link #packageFor(Class)} - Returns the {@link Package} containing the given class</li>
+ *     <li>{@link #packageForRelativePath(String)} - Returns the package at the given path, relative to this package</li>
  * </ul>
  *
  * <p><b>Package Paths</b></p>
  *
  * <ul>
- *     <li>{@link #thisPackagePath()} - Returns the {@link PackagePath} to the package containing this class</li>
- *     <li>{@link #packagePath(Class)} - Returns the {@link PackagePath} of the package containing the given class</li>
+ *     <li>{@link #packagePathForThis()} - Returns the {@link PackagePath} to the package containing this class</li>
+ *     <li>{@link #packagePathFor(Class)} - Returns the {@link PackagePath} of the package containing the given class</li>
  * </ul>
  *
  * @author jonathanl (shibo)
@@ -45,61 +45,71 @@ import static com.telenav.kivakit.resource.packages.Package.parsePackage;
 public interface PackageTrait extends Repeater
 {
     /**
-     * @return The package containing the given type
+     * Returns the package containing the given type
      */
-    default Package packageContaining(Class<?> type)
+    default Package packageFor(Class<?> type)
     {
         return Package.packageContaining(this, type);
     }
 
     /**
-     * @return The path to the package containing the given type
+     * Gets the package with the given relative path
+     *
+     * @param relativePath The relative path
+     * @return The given package relative to this class' package
      */
-    default PackagePath packagePath(Class<?> type)
+    default Package packageForRelativePath(String relativePath)
+    {
+        return parsePackage(this, getClass(), relativePath);
+    }
+
+    /**
+     * Returns the package containing this class
+     *
+     * @return This package
+     */
+    default Package packageForThis()
+    {
+        return packageFor(getClass());
+    }
+
+    /**
+     * Returns the path to the package containing the given type
+     *
+     * @param type The type
+     * @return The package path
+     */
+    default PackagePath packagePathFor(Class<?> type)
     {
         return PackagePath.packagePath(type);
     }
 
     /**
-     * @return The resource at the given path relative to this component's class
+     * Returns the path to the package containing this class
      */
-    default PackageResource packageResource(String path)
+    default PackagePath packagePathForThis()
     {
-        return packageResource(getClass(), path);
+        return packagePathFor(getClass());
     }
 
     /**
-     * @return The resource at the given path relative to this component's class
-     */
-    default PackageResource packageResource(Class<?> type, String path)
-    {
-        return PackageResource.packageResource(this, type, path);
-    }
-
-    /**
-     * Gets the package with the given relative path
+     * Returns the resource at the given path relative to the given type
      *
-     * @param path The relative path
-     * @return The given package relative to this class' package
+     * @param type The type
+     * @param relativePath The relative path
      */
-    default Package relativePackage(String path)
+    default PackageResource packageResource(Class<?> type, String relativePath)
     {
-        return parsePackage(this, getClass(), path);
+        return PackageResource.packageResource(this, type, relativePath);
     }
 
     /**
-     * @return The package containing this class
+     * Returns the resource at the given path relative to this component's class
+     *
+     * @param relativePath The path relative to this object's class
      */
-    default Package thisPackage()
+    default PackageResource packageResource(String relativePath)
     {
-        return packageContaining(getClass());
-    }
-
-    /**
-     * @return The path to the package containing this class
-     */
-    default PackagePath thisPackagePath()
-    {
-        return packagePath(getClass());
+        return packageResource(getClass(), relativePath);
     }
 }

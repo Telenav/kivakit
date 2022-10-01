@@ -18,6 +18,7 @@
 
 package com.telenav.kivakit.resource.packages;
 
+import com.telenav.kivakit.core.collections.list.ObjectList;
 import com.telenav.kivakit.core.language.Classes;
 import com.telenav.kivakit.core.language.module.PackageReference;
 import com.telenav.kivakit.core.locale.Locale;
@@ -200,9 +201,9 @@ public class Package extends BaseRepeater implements ResourceFolder<Package>
     }
 
     @Override
-    public List<Package> folders()
+    public ObjectList<Package> folders()
     {
-        var children = new ArrayList<Package>();
+        var children = new ObjectList<Package>();
 
         for (var child : reference().subPackages(this))
         {

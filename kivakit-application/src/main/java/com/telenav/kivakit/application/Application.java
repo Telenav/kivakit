@@ -527,7 +527,7 @@ public abstract class Application extends BaseComponent implements
 
     public PropertyMap localizedProperties(Locale locale, LocaleLanguage language)
     {
-        return PropertyMap.loadLocalizedPropertyMap(this, thisPackage().path(), locale, language);
+        return PropertyMap.loadLocalizedPropertyMap(this, packageForThis().path(), locale, language);
     }
 
     /**

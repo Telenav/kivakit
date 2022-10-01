@@ -18,10 +18,10 @@
 
 package com.telenav.kivakit.resource.compression.codecs;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.messaging.messages.status.Problem;
 import com.telenav.kivakit.resource.compression.Codec;
 import com.telenav.kivakit.resource.internal.lexakai.DiagramResourceCompression;
-import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.io.IOException;
@@ -30,15 +30,24 @@ import java.io.OutputStream;
 import java.util.zip.GZIPInputStream;
 import java.util.zip.GZIPOutputStream;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
+
 /**
  * Codec for gzip compression.
  *
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramResourceCompression.class)
-@LexakaiJavadoc(complete = true)
+@ApiQuality(stability = STABLE,
+            testing = UNTESTED,
+            documentation = FULLY_DOCUMENTED)
 public class GzipCodec implements Codec
 {
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public OutputStream compressed(OutputStream out)
     {
@@ -52,6 +61,9 @@ public class GzipCodec implements Codec
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public InputStream decompressed(InputStream in)
     {

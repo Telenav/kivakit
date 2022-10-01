@@ -19,7 +19,7 @@ public class ResourceGlobTest extends UnitTest implements PackageTrait, JavaTrai
     @Test
     public void test()
     {
-        var here = thisPackage();
+        var here = packageForThis();
         for (var at : here.resources(TXT::matches))
         {
             println("at = $", at);

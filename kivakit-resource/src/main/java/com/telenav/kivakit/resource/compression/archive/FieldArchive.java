@@ -18,6 +18,7 @@
 
 package com.telenav.kivakit.resource.compression.archive;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.language.reflection.Type;
 import com.telenav.kivakit.core.language.reflection.property.KivaKitIncludeProperty;
 import com.telenav.kivakit.core.language.reflection.property.Property;
@@ -25,6 +26,7 @@ import com.telenav.kivakit.core.messaging.Repeater;
 import com.telenav.kivakit.core.messaging.repeaters.BaseRepeater;
 import com.telenav.kivakit.core.progress.ProgressReporter;
 import com.telenav.kivakit.core.string.CaseFormat;
+import com.telenav.kivakit.core.string.KivaKitFormat;
 import com.telenav.kivakit.core.string.ObjectFormatter;
 import com.telenav.kivakit.core.version.Version;
 import com.telenav.kivakit.core.version.VersionedObject;
@@ -36,44 +38,67 @@ import com.telenav.kivakit.resource.internal.lexakai.DiagramResourceArchive;
 import com.telenav.kivakit.resource.serialization.ObjectReader;
 import com.telenav.kivakit.resource.serialization.ObjectWriter;
 import com.telenav.kivakit.resource.serialization.SerializableObject;
-import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlAggregation;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
 import static com.telenav.kivakit.core.ensure.Ensure.ensure;
 
 /**
+ * <p>
  * A field archive serializes data into zip file entries in a {@link ZipArchive}. The constructor for this class takes a
  * {@link Resource}, which is used to construct the zip archive. {@link FieldArchive} only serializes fields that are
  * explicitly labeled with the {@link KivaKitArchivedField} annotation.
+ * </p>
+ *
  * <p>
  * When the fields of an object are saved with {@link #saveFieldsOf(ObjectWriter, NamedObject, Version)}, the object's
  * name via {@link NamedObject#objectName()} is used as a prefix for each field that is saved. For example, if an object
  * named "paintbrush" has a field named "width", the entry would be saved as "paintbrush.width" in the archive.
+ * </p>
+ *
  * <p>
  * When an entry is read with {@link #load(ObjectReader, NamedObject, String)}, the object's name and the field name
  * will be used again to reconstruct the archive entry name. The methods
  * {@link #loadFieldOf(ObjectReader, NamedObject, String)} and {@link #loadFieldsOf(ObjectReader, NamedObject...)} both
  * load object(s) from the archive, but they also set the loaded value into the property with the given field name.
- * <p>
- * <b>Saving</b>
+ * </p>
+ *
+ * <p><b>Properties</b></p>
+ *
  * <ul>
- *     <li>{@link #save(ObjectWriter, String, VersionedObject)} - Saves the versioned object in the named archive entry</li>
- *     <li>{@link #saveFieldsOf(ObjectWriter, NamedObject, Version)} - Saves all object fields using the given version</li>
- *     <li>{@link #saveVersion(ObjectWriter, Version)} - Sets the version of data in this archive</li>
+ *     <li>{@link #file()}</li>
+ *     <li>{@link #mode()}</li>
+ *     <li>{@link #progressReporter()}</li>
+ *     <li>{@link #version()}</li>
+ *     <li>{@link #version(Version)}</li>
+ *     <li>{@link #zip()}</li>
  * </ul>
- * <p>
- * <b>Loading</b>
+ *
+ * <p><b>Loading</b></p>
+ *
  * <ul>
  *      <li>{@link #load(ObjectReader reader, NamedObject, String)} - Loads the object with the given object name and field name</li>
  *      <li>{@link #loadFieldOf(ObjectReader, NamedObject, String)} - Loads the named field into the given object</li>
  *      <li>{@link #loadFieldsOf(ObjectReader, NamedObject...)} - Loads all the fields of the given object</li>
  *      <li>{@link #loadVersion(ObjectReader)} - The version of data in this archive</li>
  * </ul>
+ *
+ * <p><b>Saving</b></p>
+ *
+ * <ul>
+ *     <li>{@link #save(ObjectWriter, String, VersionedObject)} - Saves the versioned object in the named archive entry</li>
+ *     <li>{@link #saveFieldsOf(ObjectWriter, NamedObject, Version)} - Saves all object fields using the given version</li>
+ *     <li>{@link #saveVersion(ObjectWriter, Version)} - Sets the version of data in this archive</li>
+ * </ul>
+ *
  * <p>
  * When objects have been saved or loaded from the archive, {@link #close()} ensures that output (if any) is flushed and
  * streams are closed.
+ * </p>
  *
  * @author jonathanl (shibo)
  * @see Resource
@@ -86,40 +111,47 @@ import static com.telenav.kivakit.core.ensure.Ensure.ensure;
 @UmlClassDiagram(diagram = DiagramResourceArchive.class)
 @UmlRelation(label = "reads annotations", referent = KivaKitArchivedField.class)
 @UmlRelation(label = "reads and writes", referent = NamedObject.class)
-@LexakaiJavadoc(complete = true)
+@ApiQuality(stability = STABLE_EXTENSIBLE,
+            testing = UNTESTED,
+            documentation = FULLY_DOCUMENTED)
 public class FieldArchive extends BaseRepeater implements Closeable
 {
     /**
      * A particular field of an object
      */
-    @SuppressWarnings("resource") @LexakaiJavadoc(complete = true)
+    @SuppressWarnings("resource")
+    @ApiQuality(stability = STABLE_EXTENSIBLE,
+                testing = UNTESTED,
+                documentation = FULLY_DOCUMENTED)
     private class ObjectField
     {
+        /** The object */
         private final Object object;
 
-        private final Property field;
+        /** The property */
+        private final Property property;
 
-        public ObjectField(Object object, Property field)
+        public ObjectField(Object object, Property property)
         {
             this.object = object;
-            this.field = field;
+            this.property = property;
         }
 
         public String name()
         {
-            return field.name();
+            return property.name();
         }
 
         @Override
         public String toString()
         {
-            return field.toString();
+            return property.toString();
         }
 
         boolean saveObject(ObjectWriter writer, String entryName)
         {
             var outer = FieldArchive.this;
-            var value = field.get(object);
+            var value = property.get(object);
             if (value != null)
             {
                 zip().save(writer, entryName, new SerializableObject<>(value, outer.version));
@@ -130,12 +162,12 @@ public class FieldArchive extends BaseRepeater implements Closeable
     }
 
     /** The zip archive storing the fields */
-    @KivaKitIncludeProperty
+    @KivaKitFormat
     @UmlAggregation(label = "writes to")
     private ZipArchive zip;
 
     /** The version of data in this archive */
-    @KivaKitIncludeProperty
+    @KivaKitFormat
     private Version version;
 
     /** The zip file */
@@ -145,20 +177,20 @@ public class FieldArchive extends BaseRepeater implements Closeable
     private final ProgressReporter reporter;
 
     /** The mode for accessing the zip file */
-    private final ZipArchive.Mode mode;
+    private final ZipArchive.AccessMode mode;
 
     /**
      * @param file A field archive resource
      * @param mode The mode of access to this archive
      */
-    public FieldArchive(File file, ProgressReporter reporter, ZipArchive.Mode mode)
+    public FieldArchive(File file, ProgressReporter reporter, ZipArchive.AccessMode mode)
     {
         this.file = file;
         this.reporter = reporter;
         this.mode = mode;
     }
 
-    public FieldArchive(File file, ZipArchive.Mode mode)
+    public FieldArchive(File file, ZipArchive.AccessMode mode)
     {
         this(file, ProgressReporter.none(), mode);
     }
@@ -187,7 +219,7 @@ public class FieldArchive extends BaseRepeater implements Closeable
                                        NamedObject object,
                                        String fieldName)
     {
-        return zip().load(reader, entryName(object, fieldName));
+        return zip().loadVersionedObject(reader, entryName(object, fieldName));
     }
 
     /**
@@ -274,14 +306,13 @@ public class FieldArchive extends BaseRepeater implements Closeable
     }
 
     /**
-     * @return The version of data in this archive
+     * Returns the version of data in this archive
      */
-    @KivaKitIncludeProperty
     public Version loadVersion(ObjectReader reader)
     {
         if (version == null)
         {
-            var version = zip().load(reader, "version");
+            var version = zip().loadVersionedObject(reader, "version");
             if (version != null)
             {
                 this.version = (Version) version.object();
@@ -290,12 +321,12 @@ public class FieldArchive extends BaseRepeater implements Closeable
         return version;
     }
 
-    public ZipArchive.Mode mode()
+    public ZipArchive.AccessMode mode()
     {
         return mode;
     }
 
-    public ProgressReporter reporter()
+    public ProgressReporter progressReporter()
     {
         return reporter;
     }
@@ -362,14 +393,14 @@ public class FieldArchive extends BaseRepeater implements Closeable
     }
 
     /**
-     * @return The field archive's underlying zip archive for special operations on the archive
+     * Returns the field archive's underlying zip archive for special operations on the archive
      */
     @KivaKitIncludeProperty
     public ZipArchive zip()
     {
         if (zip == null)
         {
-            zip = ZipArchive.open(this, file, mode);
+            zip = ZipArchive.zipArchive(this, file, mode);
         }
         return zip;
     }

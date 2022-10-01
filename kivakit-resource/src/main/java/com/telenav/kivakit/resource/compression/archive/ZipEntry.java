@@ -18,17 +18,18 @@
 
 package com.telenav.kivakit.resource.compression.archive;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.code.UncheckedCode;
 import com.telenav.kivakit.core.io.IO;
-import com.telenav.kivakit.core.language.reflection.property.KivaKitIncludeProperty;
+import com.telenav.kivakit.core.string.KivaKitFormat;
 import com.telenav.kivakit.core.string.ObjectFormatter;
 import com.telenav.kivakit.core.time.Time;
 import com.telenav.kivakit.core.value.count.Bytes;
 import com.telenav.kivakit.filesystem.FilePath;
+import com.telenav.kivakit.interfaces.io.Closeable;
 import com.telenav.kivakit.resource.internal.lexakai.DiagramResourceArchive;
 import com.telenav.kivakit.resource.writing.BaseWritableResource;
 import com.telenav.kivakit.resource.writing.WritableResource;
-import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeSuperTypes;
 
@@ -39,19 +40,34 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.attribute.BasicFileAttributes;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
 import static java.nio.file.StandardOpenOption.CREATE;
 import static java.nio.file.StandardOpenOption.WRITE;
 
 /**
  * A zip entry in a {@link ZipArchive} that is a {@link WritableResource}.
  *
+ * <p><b>Properties</b></p>
+ *
+ * <ul>
+ *     <li>{@link #createdAt()}</li>
+ *     <li>{@link #isWritable()}</li>
+ *     <li>{@link #lastModified()}</li>
+ *     <li>{@link #path()}</li>
+ *     <li>{@link #sizeInBytes()}</li>
+ * </ul>
+ *
  * @author jonathanl (shibo)
  * @see ZipArchive
  */
 @UmlClassDiagram(diagram = DiagramResourceArchive.class)
 @UmlExcludeSuperTypes({ AutoCloseable.class })
-@LexakaiJavadoc(complete = true)
-public class ZipEntry extends BaseWritableResource implements AutoCloseable
+@ApiQuality(stability = STABLE_EXTENSIBLE,
+            testing = UNTESTED,
+            documentation = FULLY_DOCUMENTED)
+public class ZipEntry extends BaseWritableResource implements Closeable
 {
     private InputStream in;
 
@@ -64,6 +80,9 @@ public class ZipEntry extends BaseWritableResource implements AutoCloseable
         this.path = filesystem.getPath(path.toString());
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void close()
     {
@@ -74,26 +93,39 @@ public class ZipEntry extends BaseWritableResource implements AutoCloseable
         out = null;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
+    @KivaKitFormat
     public Time createdAt()
     {
         return UncheckedCode.unchecked(() -> Time.epochMilliseconds(Files.readAttributes(path, BasicFileAttributes.class)
                 .creationTime().toMillis())).orNull();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Boolean isWritable()
     {
         return false;
     }
 
-    @KivaKitIncludeProperty
+    /**
+     * {@inheritDoc}
+     */
+    @KivaKitFormat
     @Override
     public Time lastModified()
     {
         return UncheckedCode.unchecked(() -> Time.epochMilliseconds(Files.getLastModifiedTime(path).toMillis())).orNull();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public InputStream onOpenForReading()
     {
@@ -112,6 +144,9 @@ public class ZipEntry extends BaseWritableResource implements AutoCloseable
         return in;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public OutputStream onOpenForWriting()
     {
@@ -143,20 +178,29 @@ public class ZipEntry extends BaseWritableResource implements AutoCloseable
         return out;
     }
 
-    @KivaKitIncludeProperty
+    /**
+     * {@inheritDoc}
+     */
+    @KivaKitFormat
     @Override
     public FilePath path()
     {
         return FilePath.filePath(path);
     }
 
-    @KivaKitIncludeProperty
+    /**
+     * {@inheritDoc}
+     */
+    @KivaKitFormat
     @Override
     public Bytes sizeInBytes()
     {
         return UncheckedCode.unchecked(() -> Bytes.bytes(Files.size(path))).orNull();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String toString()
     {

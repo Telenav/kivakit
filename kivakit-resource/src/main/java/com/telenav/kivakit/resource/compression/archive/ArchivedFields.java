@@ -18,18 +18,27 @@
 
 package com.telenav.kivakit.resource.compression.archive;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.language.reflection.Field;
 import com.telenav.kivakit.core.language.reflection.filters.field.AllFields;
-import com.telenav.lexakai.annotations.LexakaiJavadoc;
+
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_DEFAULT_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
 
 /**
  * A filter that matches all fields annotated with {@link KivaKitArchivedField}
  *
  * @author jonathanl (shibo)
  */
-@LexakaiJavadoc(complete = true)
+@ApiQuality(stability = STABLE_DEFAULT_EXTENSIBLE,
+            testing = TESTING_NOT_NEEDED,
+            documentation = FULLY_DOCUMENTED)
 class ArchivedFields extends AllFields
 {
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean includeField(Field field)
     {

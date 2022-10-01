@@ -109,16 +109,6 @@ public class ResourceReader implements AsString
         }
     }
 
-    public Iterable<String> lines(ProgressReporter reporter)
-    {
-        return new LineReader(resource, reporter);
-    }
-
-    public Iterable<String> lines()
-    {
-        return new LineReader(resource, ProgressReporter.none());
-    }
-
     /**
      * @return The lines in the resource being read
      */

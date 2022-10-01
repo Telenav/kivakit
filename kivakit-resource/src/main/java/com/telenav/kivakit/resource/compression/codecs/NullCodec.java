@@ -18,13 +18,17 @@
 
 package com.telenav.kivakit.resource.compression.codecs;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.resource.compression.Codec;
 import com.telenav.kivakit.resource.internal.lexakai.DiagramResourceCompression;
-import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.io.InputStream;
 import java.io.OutputStream;
+
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
 
 /**
  * Codec that does no compression or decompression.
@@ -32,15 +36,23 @@ import java.io.OutputStream;
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramResourceCompression.class)
-@LexakaiJavadoc(complete = true)
+@ApiQuality(stability = STABLE,
+            testing = UNTESTED,
+            documentation = FULLY_DOCUMENTED)
 public class NullCodec implements Codec
 {
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public OutputStream compressed(OutputStream out)
     {
         return out;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public InputStream decompressed(InputStream in)
     {

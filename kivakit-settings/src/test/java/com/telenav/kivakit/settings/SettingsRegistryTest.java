@@ -80,7 +80,7 @@ public class SettingsRegistryTest extends UnitTest implements PackageTrait
         // Configure
         {
             // Add all properties files in this package to the global set
-            settings.registerSettingsIn(new ResourceFolderSettingsStore(this, thisPackage()));
+            settings.registerSettingsIn(new ResourceFolderSettingsStore(this, packageForThis()));
         }
 
         // Get configuration
@@ -137,7 +137,7 @@ public class SettingsRegistryTest extends UnitTest implements PackageTrait
         // Configure
         {
             // Add all properties files in this package to the global set
-            settings.registerSettingsIn(new ResourceFolderSettingsStore(this, thisPackage()));
+            settings.registerSettingsIn(new ResourceFolderSettingsStore(this, packageForThis()));
         }
 
         // Get settings
