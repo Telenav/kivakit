@@ -527,7 +527,7 @@ public abstract class Application extends BaseComponent implements
 
     public PropertyMap localizedProperties(Locale locale, LocaleLanguage language)
     {
-        return PropertyMap.localized(this, thisPackage().path(), locale, language);
+        return PropertyMap.loadLocalizedPropertyMap(this, thisPackage().path(), locale, language);
     }
 
     /**
@@ -612,7 +612,7 @@ public abstract class Application extends BaseComponent implements
                     // then load properties from the resource
                     var resourceIdentifier = Strip.leading(argument, "-switches=");
                     var resource = Resource.resolveResource(this, resourceIdentifier);
-                    var properties = PropertyMap.load(this, resource);
+                    var properties = PropertyMap.loadPropertyMap(this, resource);
 
                     // and add those properties to the argument list
                     for (var key : properties.keySet())

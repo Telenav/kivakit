@@ -32,14 +32,12 @@ import com.telenav.kivakit.resource.packages.Package;
 import com.telenav.kivakit.resource.spi.ResourceFolderResolverServiceLoader;
 import com.telenav.kivakit.resource.writing.WritableResource;
 
-import java.util.List;
-
 import static com.telenav.kivakit.annotations.code.ApiStability.STABLE;
 import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_DEFAULT_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
 import static com.telenav.kivakit.core.ensure.Ensure.unsupported;
-import static com.telenav.kivakit.filesystem.Folder.Type.NORMAL;
+import static com.telenav.kivakit.filesystem.Folder.FolderType.NORMAL;
 import static com.telenav.kivakit.interfaces.comparison.Matcher.matchAll;
 import static com.telenav.kivakit.resource.CopyMode.OVERWRITE;
 import static com.telenav.kivakit.resource.ResourcePath.parseResourcePath;
@@ -209,7 +207,7 @@ public interface ResourceFolder<T extends ResourceFolder<T>> extends
      */
     T folder(String path);
 
-    List<T> folders();
+    ObjectList<T> folders();
 
     /**
      * Returns true if the path for this resource folder has a trailing slash

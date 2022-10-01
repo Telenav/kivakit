@@ -249,7 +249,7 @@ public class FilePath extends ResourcePath
     {
         if (isCurrentFolder())
         {
-            return Folder.current().path();
+            return Folder.currentFolder().path();
         }
 
         if (schemes().isNonEmpty())
@@ -355,7 +355,7 @@ public class FilePath extends ResourcePath
      */
     public boolean isCurrentFolder()
     {
-        return toString().equals(".") || equals(Folder.current().path());
+        return toString().equals(".") || equals(Folder.currentFolder().path());
     }
 
     @Override

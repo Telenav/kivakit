@@ -18,6 +18,7 @@
 
 package com.telenav.kivakit.launcher;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.collections.list.StringList;
 import com.telenav.kivakit.core.messaging.repeaters.BaseRepeater;
 import com.telenav.kivakit.core.os.OperatingSystem;
@@ -26,11 +27,10 @@ import com.telenav.kivakit.core.progress.ProgressReporter;
 import com.telenav.kivakit.core.thread.KivaKitThread;
 import com.telenav.kivakit.filesystem.File;
 import com.telenav.kivakit.filesystem.Folder;
-import com.telenav.kivakit.resource.Extension;
 import com.telenav.kivakit.properties.PropertyMap;
+import com.telenav.kivakit.resource.Extension;
 import com.telenav.kivakit.resource.Resourceful;
 import com.telenav.kivakit.resource.internal.lexakai.DiagramJarLauncher;
-import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlAggregation;
 
@@ -39,6 +39,11 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_ENUM_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
 import static com.telenav.kivakit.core.ensure.Ensure.unsupported;
 import static com.telenav.kivakit.launcher.JarLauncher.ProcessType.CHILD;
 import static com.telenav.kivakit.launcher.JarLauncher.ProcessType.DETACHED;
@@ -78,7 +83,9 @@ import static com.telenav.kivakit.launcher.JarLauncher.ProcessType.DETACHED;
  */
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramJarLauncher.class)
-@LexakaiJavadoc(complete = true)
+@ApiQuality(stability = STABLE_EXTENSIBLE,
+            testing = UNTESTED,
+            documentation = FULLY_DOCUMENTED)
 public class JarLauncher extends BaseRepeater
 {
     /**
@@ -87,7 +94,9 @@ public class JarLauncher extends BaseRepeater
      * @author jonathanl (shibo)
      */
     @UmlClassDiagram(diagram = DiagramJarLauncher.class)
-    @LexakaiJavadoc(complete = true)
+    @ApiQuality(stability = STABLE_ENUM_EXTENSIBLE,
+                testing = TESTING_NOT_NEEDED,
+                documentation = FULLY_DOCUMENTED)
     public enum ProcessType
     {
         DETACHED,
@@ -99,7 +108,9 @@ public class JarLauncher extends BaseRepeater
      *
      * @author jonathanl (shibo)
      */
-    @LexakaiJavadoc(complete = true)
+    @ApiQuality(stability = STABLE_ENUM_EXTENSIBLE,
+                testing = TESTING_NOT_NEEDED,
+                documentation = FULLY_DOCUMENTED)
     public enum RedirectTo
     {
         FILE,
@@ -251,7 +262,7 @@ public class JarLauncher extends BaseRepeater
                 var pid = OperatingSystem.operatingSystem().processIdentifier();
 
                 // and launch the jar, redirecting output to
-                var announcement = PropertyMap.create();
+                var announcement = PropertyMap.propertyMap();
                 announcement.put("jar", resource.path().toString());
                 announcement.put("arguments", arguments.join(" "));
                 switch (redirectTo)

@@ -116,12 +116,12 @@ public abstract class PeriodicCollectionChangeWatcher<T> extends BaseCollectionC
     }
 
     /**
-     * @return Gets the last time the given object was modified
+     * Sets the last time the given object was modified
      */
     protected abstract Time lastModified(T object);
 
     /**
-     * @return The collection to watch
+     * Returns the collection to watch
      */
     protected abstract Collection<T> objects();
 

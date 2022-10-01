@@ -235,7 +235,7 @@ public class Package extends BaseRepeater implements ResourceFolder<Package>
      */
     public PropertyMap localizedProperties(Listener listener, Locale locale, LocaleLanguage languageName)
     {
-        return PropertyMap.localized(listener, path(), locale, languageName);
+        return PropertyMap.loadLocalizedPropertyMap(listener, path(), locale, languageName);
     }
 
     @Override
