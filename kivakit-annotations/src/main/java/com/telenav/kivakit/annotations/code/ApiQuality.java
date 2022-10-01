@@ -5,7 +5,9 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.*;
+import static com.telenav.kivakit.annotations.code.ApiStability.MORE_EVALUATION_NEEDED;
+import static com.telenav.kivakit.annotations.code.ApiStability.UNEVALUATED;
+import static com.telenav.kivakit.annotations.code.ApiType.PUBLIC_API;
 import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
 
@@ -38,27 +40,32 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NE
 public @interface ApiQuality
 {
     /**
-     * @return The subjective documentation quality, as evaluated by a developer
+     * Returns the subjective documentation quality, as evaluated by a developer
      */
     DocumentationQuality[] documentation() default DocumentationQuality.UNEVALUATED;
 
     /**
-     * @return A comma-separated list of reviewers
+     * Returns a comma-separated list of reviewers
      */
     String[] reviewers() default "";
 
     /**
-     * @return The number of reviews of this class or interface
+     * Returns the number of reviews of this class or interface
      */
     int reviews() default 0;
 
     /**
-     * @return The subjective likelihood of future API stability, as evaluated by a developer
+     * Returns the subjective likelihood of future API stability, as evaluated by a developer
      */
     ApiStability[] stability() default UNEVALUATED;
 
     /**
-     * @return The level of testing provided based versus the level needed, as evaluated by a developer
+     * Returns the level of testing provided based versus the level needed, as evaluated by a developer
      */
     TestingQuality[] testing() default TestingQuality.UNEVALUATED;
+
+    /**
+     * Returns the type of API
+     */
+    ApiType type() default PUBLIC_API;
 }

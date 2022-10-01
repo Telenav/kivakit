@@ -237,7 +237,7 @@ public final class ZipArchive extends BaseRepeater implements
      */
     public void add(Collection<File> files)
     {
-        add(files, ProgressReporter.none());
+        add(files, ProgressReporter.nullProgressReporter());
     }
 
     /**

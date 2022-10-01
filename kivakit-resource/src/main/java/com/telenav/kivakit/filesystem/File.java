@@ -136,7 +136,7 @@ import static com.telenav.kivakit.filesystem.loader.FileSystemServiceLoader.file
  * <ul>
  *     <li>{@link #chmod(PosixFilePermission...)}</li>
  *     <li>{@link #delete()}</li>
- *     <li>{@link #print(String)}</li>
+ *     <li>{@link #saveText(String)}</li>
  *     <li>{@link #println(String)}</li>
  *     <li>{@link #renameTo(Resource)}</li>
  *     <li>{@link #safeCopyFrom(Resource, CopyMode, ProgressReporter)}</li>
@@ -800,9 +800,9 @@ public class File extends BaseWritableResource implements FileSystemObject
      * {@inheritDoc}
      */
     @Override
-    public File print(String text)
+    public File saveText(String text)
     {
-        return (File) super.print(text);
+        return (File) super.saveText(text);
     }
 
     /**

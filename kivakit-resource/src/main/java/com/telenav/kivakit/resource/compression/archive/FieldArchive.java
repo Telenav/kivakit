@@ -192,7 +192,7 @@ public class FieldArchive extends BaseRepeater implements Closeable
 
     public FieldArchive(File file, ZipArchive.AccessMode mode)
     {
-        this(file, ProgressReporter.none(), mode);
+        this(file, ProgressReporter.nullProgressReporter(), mode);
     }
 
     /**

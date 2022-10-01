@@ -35,7 +35,7 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NE
  * Reports the progress of some operation to an end-user in some manner. The operation begins when {@link #start()} is
  * called and ends when {@link #end()} is called. During the operation, each increment of progress can be reported with
  * {@link #next()} or {@link #next(Count)}. As the operation progresses, any {@link ProgressListener} that is registered
- * via {@link #listener(ProgressListener)} is called with the percent-complete.
+ * via {@link #progressReporter(ProgressListener)} is called with the percent-complete.
  *
  * @author jonathanl (shibo)
  * @see BroadcastingProgressReporter
@@ -51,7 +51,7 @@ public interface ProgressReporter extends Resettable
     /**
      * A progress reporter that does nothing
      */
-    static ProgressReporter none()
+    static ProgressReporter nullProgressReporter()
     {
         return () ->
         {
@@ -79,15 +79,6 @@ public interface ProgressReporter extends Resettable
     default boolean isIndefinite()
     {
         return steps() == null;
-    }
-
-    /**
-     * Calls a listener with the percent of progress each time it changes. This method is only called if
-     * {@link #steps()} is larger than 0.
-     */
-    default ProgressReporter listener(ProgressListener listener)
-    {
-        return this;
     }
 
     /**
@@ -120,6 +111,15 @@ public interface ProgressReporter extends Resettable
      * @param phase The phase of processing the same items multiple times, like "reading", "sorting", "saving"
      */
     default ProgressReporter phase(String phase)
+    {
+        return this;
+    }
+
+    /**
+     * Calls a listener with the percent of progress each time it changes. This method is only called if
+     * {@link #steps()} is larger than 0.
+     */
+    default ProgressReporter progressReporter(ProgressListener listener)
     {
         return this;
     }

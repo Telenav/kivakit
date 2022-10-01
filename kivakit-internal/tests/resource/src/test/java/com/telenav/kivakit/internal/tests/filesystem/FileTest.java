@@ -36,7 +36,7 @@ public class FileTest extends UnitTest
     public void testFactory()
     {
         var temp = File.temporary(TXT);
-        temp.writer().save("hello");
+        temp.writer().saveText("hello");
         ensureEqual("hello", File.parseFile(this, temp.toString()).reader().asString());
         temp.delete();
     }

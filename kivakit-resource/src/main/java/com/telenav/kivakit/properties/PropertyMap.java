@@ -145,7 +145,7 @@ public class PropertyMap extends VariableMap<String>
         var properties = new PropertyMap();
         var linePattern = Pattern.compile("(?<key>[^=]*?)\\s*=\\s*(?<value>[^=]*)");
         int lineNumber = 1;
-        for (var line : resource.reader().lines(ProgressReporter.none()))
+        for (var line : resource.reader().readLines(ProgressReporter.nullProgressReporter()))
         {
             var trimmed = line.trim();
             if (!trimmed.isEmpty() && !trimmed.startsWith("#") && !trimmed.startsWith("//"))

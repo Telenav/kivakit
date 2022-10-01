@@ -207,7 +207,7 @@ public class JarLauncher extends BaseRepeater
         for (var source : jarSources)
         {
             // get the resource and materialize it to the local host,
-            var resource = source.resource().materialized(ProgressReporter.none());
+            var resource = source.resource().materialized(ProgressReporter.nullProgressReporter());
             try
             {
                 // get the resource basename,

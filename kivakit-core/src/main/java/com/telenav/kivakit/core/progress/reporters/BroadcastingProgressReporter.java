@@ -246,7 +246,7 @@ public class BroadcastingProgressReporter extends Multicaster implements Progres
      * {@inheritDoc}
      */
     @Override
-    public BroadcastingProgressReporter listener(ProgressListener listener)
+    public BroadcastingProgressReporter progressReporter(ProgressListener listener)
     {
         this.listener = listener;
         return this;

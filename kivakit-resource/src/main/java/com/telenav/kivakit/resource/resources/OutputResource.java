@@ -18,16 +18,19 @@
 
 package com.telenav.kivakit.resource.resources;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.value.count.Bytes;
-import com.telenav.kivakit.resource.writing.WritableResource;
 import com.telenav.kivakit.resource.internal.lexakai.DiagramResourceType;
 import com.telenav.kivakit.resource.writing.BaseWritableResource;
-import com.telenav.lexakai.annotations.LexakaiJavadoc;
+import com.telenav.kivakit.resource.writing.WritableResource;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.io.InputStream;
 import java.io.OutputStream;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
 import static com.telenav.kivakit.core.ensure.Ensure.unsupported;
 
 /**
@@ -36,34 +39,60 @@ import static com.telenav.kivakit.core.ensure.Ensure.unsupported;
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramResourceType.class)
-@LexakaiJavadoc(complete = true)
+@ApiQuality(stability = STABLE_EXTENSIBLE,
+            documentation = FULLY_DOCUMENTED,
+            testing = UNTESTED)
 public class OutputResource extends BaseWritableResource
 {
+    /** The output stream to write to */
     private final OutputStream out;
 
+    /** True if this resource has been opened */
+    private boolean opened;
+
+    /**
+     * @param out The output stream to write to
+     */
     public OutputResource(OutputStream out)
     {
         this.out = out;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Boolean isWritable()
     {
         return true;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public InputStream onOpenForReading()
     {
         return unsupported();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public OutputStream onOpenForWriting()
     {
+        if (opened)
+        {
+            return fatal("OutputResource can only be written to once.");
+        }
+        opened = true;
         return out;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Bytes sizeInBytes()
     {

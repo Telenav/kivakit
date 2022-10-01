@@ -18,9 +18,9 @@
 
 package com.telenav.kivakit.resource.writing;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.resource.internal.lexakai.DiagramFileSystemFile;
 import com.telenav.kivakit.resource.internal.lexakai.DiagramResource;
-import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.io.OutputStreamWriter;
@@ -28,40 +28,45 @@ import java.io.PrintWriter;
 import java.io.Writer;
 import java.nio.charset.Charset;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
+import static java.nio.charset.StandardCharsets.UTF_8;
+
 /**
  * This class provides methods that write to a {@link WritableResource}. An instance of this class can be created with
  * {@link WritableResource#writer()} or {@link WritableResource#writer(Charset)}. This functionality is provided
  * separately from {@link WritableResource} so it doesn't clutter up that class and so it can be extended in the
  * future.
  *
- * <p><b>Writers</b></p>
+ * <p><b>Writing</b></p>
  *
- * <p>
- * A {@link PrintWriter} can be obtained with {@link #printWriter()} and a {@link Writer} for performing text output
- * with {@link #textWriter()}.
- * </p>
- *
- * <p><b>Saving</b></p>
- *
- * <p>
- * A string can be saved with {@link #save(String)}.
- * </p>
+ * <ul>
+ *     <li>{@link #charset()}</li>
+ *     <li>{@link #printWriter()}</li>
+ *     <li>{@link #saveText(String)}</li>
+ *     <li>{@link #textWriter()}</li>
+ * </ul>
  *
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramFileSystemFile.class)
 @UmlClassDiagram(diagram = DiagramResource.class)
-@LexakaiJavadoc(complete = true)
+@ApiQuality(stability = STABLE_EXTENSIBLE,
+            documentation = FULLY_DOCUMENTED,
+            testing = UNTESTED)
 public class ResourceWriter
 {
+    /** The resource to write to */
     private final WritableResource resource;
 
+    /** The character set to use */
     private final Charset charset;
 
     public ResourceWriter(WritableResource resource)
     {
         this.resource = resource;
-        charset = null;
+        this.charset = UTF_8;
     }
 
     public ResourceWriter(WritableResource resource, Charset charset)
@@ -70,24 +75,42 @@ public class ResourceWriter
         this.charset = charset;
     }
 
+    /**
+     * Returns the character set being used by this text writer
+     */
     public Charset charset()
     {
         return charset;
     }
 
+    /**
+     * Returns a {@link PrintWriter} that writes to this resource. The writer must be closed by the caller.
+     *
+     * @return The writer
+     */
     public PrintWriter printWriter()
     {
         return new PrintWriter(textWriter());
     }
 
-    public void save(String string)
+    /**
+     * Saves the given text to this resource
+     *
+     * @param text The text
+     */
+    public void saveText(String text)
     {
         try (var out = printWriter())
         {
-            out.print(string);
+            out.print(text);
         }
     }
 
+    /**
+     * Returns a text {@link Writer} to this resource. The writer must be closed by the caller.
+     *
+     * @return The writer
+     */
     public Writer textWriter()
     {
         var out = resource.openForWriting();

@@ -18,19 +18,19 @@
 
 package com.telenav.kivakit.resource.reading;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.conversion.Converter;
-import com.telenav.kivakit.core.collections.iteration.Iterables;
+import com.telenav.kivakit.core.collections.list.ObjectList;
 import com.telenav.kivakit.core.collections.list.StringList;
+import com.telenav.kivakit.core.collections.set.ObjectSet;
 import com.telenav.kivakit.core.io.IO;
 import com.telenav.kivakit.core.io.ProgressiveStringReader;
-import com.telenav.kivakit.core.messaging.Listener;
+import com.telenav.kivakit.core.messaging.repeaters.BaseRepeater;
 import com.telenav.kivakit.core.progress.ProgressReporter;
-import com.telenav.kivakit.interfaces.collection.NextIterator;
 import com.telenav.kivakit.interfaces.string.AsString;
 import com.telenav.kivakit.resource.Resource;
 import com.telenav.kivakit.resource.internal.lexakai.DiagramFileSystemFile;
 import com.telenav.kivakit.resource.internal.lexakai.DiagramResource;
-import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeSuperTypes;
 
@@ -38,45 +38,83 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
 import java.nio.charset.Charset;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Set;
+import java.util.function.Consumer;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_DEFAULT_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
+import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
 import static com.telenav.kivakit.core.ensure.Ensure.fail;
-import static com.telenav.kivakit.core.messaging.Listener.throwingListener;
+import static com.telenav.kivakit.core.progress.ProgressReporter.nullProgressReporter;
+import static java.nio.charset.StandardCharsets.UTF_8;
 
 /**
  * Resource reader provides a variety of convenient ways of reading a resource, including as an array of bytes
- * ({@link #bytes(Listener)}), as a single string ({@link #asString()}), as lines ({@link #linesAsStringList()}), and as
- * objects with ({@link #objectList(Converter, ProgressReporter)}, {@link #objectSet(Converter, ProgressReporter)}, and
- * {@link #objects(Converter, ProgressReporter)}). To read the resource as text, a {@link java.io.Reader} can be
- * retrieved with {@link #textReader()}.
+ * ({@link #readBytes()}), as a single string ({@link #asString()}), as lines ({@link #readLines()}), and as objects
+ * with ({@link #readObjectList(Converter, ProgressReporter)}, {@link #readObjectSet(Converter, ProgressReporter)}, and
+ * {@link #readObjects(Converter, Consumer, ProgressReporter)}). To read the resource as text, a {@link java.io.Reader}
+ * can be retrieved with {@link #textReader()}.
+ *
+ * <p><b>Reading</b></p>
+ *
+ * <ul>
+ *     <li>{@link #asString()}</li>
+ *     <li>{@link #readBytes()}</li>
+ *     <li>{@link #readLines()}</li>
+ *     <li>{@link #readLines(Consumer, ProgressReporter)}</li>
+ *     <li>{@link #readLines(ProgressReporter)}</li>
+ *     <li>{@link #readObjects(Converter, Consumer, ProgressReporter)}</li>
+ *     <li>{@link #readObjectList(Converter, ProgressReporter)}</li>
+ *     <li>{@link #readObjectSet(Converter, ProgressReporter)}</li>
+ *     <li>{@link #readText(ProgressReporter)}</li>
+ *     <li>{@link #textReader()}</li>
+ * </ul>
  *
  * @author jonathanl (shibo)
  */
-@UmlClassDiagram(diagram = DiagramFileSystemFile.class)
+@SuppressWarnings("unused") @UmlClassDiagram(diagram = DiagramFileSystemFile.class)
 @UmlClassDiagram(diagram = DiagramResource.class)
 @UmlExcludeSuperTypes
-@LexakaiJavadoc(complete = true)
-public class ResourceReader implements AsString
+@ApiQuality(stability = STABLE_DEFAULT_EXTENSIBLE,
+            documentation = FULLY_DOCUMENTED,
+            testing = UNTESTED)
+public class ResourceReader extends BaseRepeater implements AsString
 {
+    /** The character set to read text in */
     private final Charset charset;
 
+    /** The progress reporter to call as text is read */
     private final ProgressReporter reporter;
 
+    /** The resource to read */
     private final Resource resource;
 
-    private String value;
+    /** The text */
+    private String text;
 
+    /**
+     * Creates a resource reader
+     *
+     * @param resource The resource to read
+     * @param reporter The progress reporter to call as the resource is read
+     * @param charset The charset for the text content
+     */
     public ResourceReader(Resource resource, ProgressReporter reporter, Charset charset)
     {
-        this.reporter = reporter;
-        assert resource != null;
-        this.resource = resource;
-        this.charset = charset;
+        this.reporter = ensureNotNull(reporter);
+        this.resource = ensureNotNull(resource);
+        this.charset = ensureNotNull(charset);
+    }
+
+    /**
+     * Creates a resource reader that reads UTF-8 encoded text
+     *
+     * @param resource The resource to read
+     * @param reporter The progress reporter to call as the resource is read
+     */
+    public ResourceReader(Resource resource, ProgressReporter reporter)
+    {
+        this(resource, reporter, UTF_8);
     }
 
     /**
@@ -85,105 +123,114 @@ public class ResourceReader implements AsString
     @Override
     public String asString()
     {
-        return asString(throwingListener());
-    }
-
-    public String asString(Listener listener)
-    {
-        return string(listener, ProgressReporter.none());
+        return readText(nullProgressReporter());
     }
 
     /**
-     * @return The bytes in the resource being read
+     * Returns the bytes in the resource being read
+     *
+     * @return The bytes in this resource or null if the bytes could not be read
      */
-    public byte[] bytes(Listener listener)
+    public byte[] readBytes()
     {
         var in = open();
-        try
+        if (in != null)
         {
-            return IO.readBytes(listener, in);
+            return IO.readBytes(this, in);
         }
-        finally
+        else
         {
-            IO.close(listener, in);
+            problem("Unable to open: $", resource);
+            return null;
         }
     }
 
     /**
-     * @return The lines in the resource being read
+     * Returns the lines in this text file
+     *
+     * @param reporter The progress reporter to call as lines are read
      */
-    public StringList linesAsStringList()
+    public StringList readLines(ProgressReporter reporter)
     {
-        return linesAsStringList(ProgressReporter.none());
+        return listenTo(new LineReader(resource, reporter)).lines();
     }
 
     /**
-     * @return The lines in the resource being read
+     * Returns the lines in this text file
      */
-    public StringList linesAsStringList(ProgressReporter reporter)
+    public StringList readLines()
     {
-        var list = new StringList();
-        list.addAll(lines(reporter));
-        return list;
+        return readLines(nullProgressReporter());
     }
 
     /**
-     * @return The lines in the resource being read as a list of objects created by converting each line to an object
+     * Passes the lines in this text file to the given consumer, one at a time
+     *
+     * @param consumer The consumer to call with each line
+     * @param reporter The progress reporter to call as lines are read
+     */
+    public void readLines(Consumer<String> consumer, ProgressReporter reporter)
+    {
+        listenTo(new LineReader(resource, reporter)).lines(consumer);
+    }
+
+    /**
+     * Returns the lines in the resource being read as a list of objects created by converting each line to an object
      * using the given converter.
      */
-    public <T> List<T> objectList(Converter<String, T> converter, ProgressReporter reporter)
+    public <T> ObjectList<T> readObjectList(Converter<String, T> converter, ProgressReporter reporter)
     {
-        return (List<T>) addObjectsTo(new ArrayList<>(), converter, reporter);
+        var objects = new ObjectList<T>();
+        readLines(reporter).forEach(line -> objects.add(converter.convert(line)));
+        return objects;
     }
 
     /**
-     * @return The lines in the resource being read as a set of objects created by converting each line to an object
+     * Returns the lines in the resource being read as a set of objects created by converting each line to an object
      * using the given converter.
      */
-    public <T> Set<T> objectSet(Converter<String, T> converter, ProgressReporter reporter)
+    public <T> ObjectSet<T> readObjectSet(Converter<String, T> converter, ProgressReporter reporter)
     {
-        return (Set<T>) addObjectsTo(new HashSet<>(), converter, reporter);
+        var objects = new ObjectSet<T>();
+        readLines(reporter).forEach(line -> objects.add(converter.convert(line)));
+        return objects;
     }
 
     /**
-     * @return The lines in the resource being read as a {@link Iterable} of objects created by converting each line to
+     * Returns the lines in the resource being read as a {@link Iterable} of objects created by converting each line to
      * an object using the given converter.
      */
-    public <T> Iterable<T> objects(Converter<String, T> converter, ProgressReporter reporter)
+    public <T> void readObjects(Converter<String, T> converter, Consumer<T> consumer, ProgressReporter reporter)
     {
-        return Iterables.iterable(() -> new NextIterator<>()
-        {
-            private final Iterator<String> lines = lines(reporter).iterator();
-
-            @Override
-            public T next()
-            {
-                if (lines.hasNext())
-                {
-                    return converter.convert(lines.next());
-                }
-                return null;
-            }
-        });
+        listenTo(new LineReader(resource, reporter)).lines(line -> consumer.accept(converter.convert(line)));
     }
 
-    public String string(Listener listener, ProgressReporter reporter)
+    /**
+     * Returns the text in this resource
+     *
+     * @param reporter The reporter to call as data is read
+     * @return The string
+     */
+    public String readText(ProgressReporter reporter)
     {
-        if (value == null)
+        if (text == null)
         {
-            var reader = new ProgressiveStringReader(listener, textReader());
+            var reader = new ProgressiveStringReader(this, textReader());
             try
             {
-                value = reader.readString(reporter);
+                text = reader.readString(reporter);
             }
             finally
             {
                 reader.close();
             }
         }
-        return value;
+        return text;
     }
 
+    /**
+     * Returns an open text {@link Reader} for this resource
+     */
     public Reader textReader()
     {
         var in = open();
@@ -208,19 +255,6 @@ public class ResourceReader implements AsString
     public String toString()
     {
         return resource.toString();
-    }
-
-    /**
-     * Adds objects in the resource being read to the given collection by reading lines and converting each line to an
-     * object using the given converter
-     *
-     * @return The collection that was passed in
-     */
-    private <T> Collection<T> addObjectsTo(Collection<T> collection, Converter<String, T> converter,
-                                           ProgressReporter reporter)
-    {
-        lines(reporter).forEach(line -> collection.add(converter.convert(line)));
-        return collection;
     }
 
     private InputStream open()

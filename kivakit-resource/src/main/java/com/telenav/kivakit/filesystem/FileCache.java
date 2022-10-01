@@ -29,7 +29,6 @@ import com.telenav.kivakit.resource.Resource;
 
 import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
 import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
 import static com.telenav.kivakit.core.ensure.Ensure.ensure;
 import static com.telenav.kivakit.core.time.Frequency.EVERY_30_SECONDS;
@@ -99,7 +98,7 @@ public class FileCache extends BaseRepeater
      */
     public File add(Resource resource, CopyMode mode)
     {
-        return add(resource, mode, ProgressReporter.none());
+        return add(resource, mode, ProgressReporter.nullProgressReporter());
     }
 
     /**
@@ -123,7 +122,7 @@ public class FileCache extends BaseRepeater
      */
     public File addAs(Resource resource, FileName filename, CopyMode mode)
     {
-        return addAs(resource, filename, mode, ProgressReporter.none());
+        return addAs(resource, filename, mode, ProgressReporter.nullProgressReporter());
     }
 
     /**

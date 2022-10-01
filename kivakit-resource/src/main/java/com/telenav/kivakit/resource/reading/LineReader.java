@@ -35,6 +35,7 @@ import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXTENSIBL
 import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
 import static com.telenav.kivakit.core.collections.list.StringList.stringList;
+import static com.telenav.kivakit.core.progress.ProgressReporter.nullProgressReporter;
 
 /**
  * Reads the provided {@link ReadableResource} as a series of lines, reporting progress to the given
@@ -83,6 +84,14 @@ public class LineReader extends BaseRepeater
     }
 
     /**
+     * @param resource The resource to read
+     */
+    public LineReader(ReadableResource resource)
+    {
+        this(resource, nullProgressReporter());
+    }
+
+    /**
      * Returns the lines in this resource as a list of strings
      */
     public StringList lines()
@@ -100,7 +109,7 @@ public class LineReader extends BaseRepeater
      */
     public void lines(Consumer<String> consumer)
     {
-        try (var reader = new LineNumberReader(resource.reader(reporter).textReader()))
+        try (var reader = new LineNumberReader(listenTo(resource.reader(reporter)).textReader()))
         {
             reporter.start();
             while (true)
@@ -130,7 +139,7 @@ public class LineReader extends BaseRepeater
      */
     public Stream<String> stream()
     {
-        var reader = new LineNumberReader(resource.reader(reporter).textReader());
+        var reader = new LineNumberReader(listenTo(resource.reader(reporter)).textReader());
         try
         {
             reporter.start();

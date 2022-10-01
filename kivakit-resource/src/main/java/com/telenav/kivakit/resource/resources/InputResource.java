@@ -18,30 +18,38 @@
 
 package com.telenav.kivakit.resource.resources;
 
-import com.telenav.kivakit.core.messaging.Listener;
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.value.count.Bytes;
-import com.telenav.kivakit.resource.reading.ReadableResource;
 import com.telenav.kivakit.resource.ResourcePath;
 import com.telenav.kivakit.resource.internal.lexakai.DiagramResourceType;
 import com.telenav.kivakit.resource.reading.BaseReadableResource;
-import com.telenav.lexakai.annotations.LexakaiJavadoc;
+import com.telenav.kivakit.resource.reading.ReadableResource;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.io.InputStream;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
+import static com.telenav.kivakit.core.messaging.Listener.throwingListener;
+
 /**
- * An {@link InputStream} stream wrapper that allows *one-time* reading of an input stream as a {@link
- * ReadableResource}. Once the StreamResource has been opened, it cannot be opened a second time. Attempting to do so
- * will result in an {@link IllegalStateException}.
+ * An {@link InputStream} stream wrapper that allows *one-time* reading of an input stream as a
+ * {@link ReadableResource}. Once the StreamResource has been opened, it cannot be opened a second time. Attempting to
+ * do so will result in an {@link IllegalStateException}.
  *
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramResourceType.class)
-@LexakaiJavadoc(complete = true)
+@ApiQuality(stability = STABLE_EXTENSIBLE,
+            documentation = FULLY_DOCUMENTED,
+            testing = UNTESTED)
 public class InputResource extends BaseReadableResource
 {
+    /** The input stream to read */
     private final InputStream in;
 
+    /** True if this resource has been opened */
     private boolean opened;
 
     /**
@@ -49,7 +57,8 @@ public class InputResource extends BaseReadableResource
      */
     public InputResource(InputStream in)
     {
-        super(ResourcePath.parseUnixResourcePath(Listener.consoleListener(), "/objects/InputResource/" + Integer.toHexString(in.hashCode())));
+        super(ResourcePath.parseUnixResourcePath(throwingListener(),
+                "/objects/InputResource/" + Integer.toHexString(in.hashCode())));
         this.in = in;
     }
 
@@ -61,12 +70,15 @@ public class InputResource extends BaseReadableResource
     {
         if (opened)
         {
-            return fatal("StreamResource can only be read once.");
+            return fatal("InputResource can only be read once.");
         }
         opened = true;
         return in;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Bytes sizeInBytes()
     {

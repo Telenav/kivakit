@@ -19,7 +19,7 @@
 package com.telenav.kivakit.resource.reading;
 
 import com.telenav.kivakit.annotations.code.ApiQuality;
-import com.telenav.kivakit.core.messaging.Listener;
+import com.telenav.kivakit.core.messaging.Repeater;
 import com.telenav.kivakit.core.progress.ProgressReporter;
 import com.telenav.kivakit.resource.CopyMode;
 import com.telenav.kivakit.resource.Resource;
@@ -36,12 +36,15 @@ import java.nio.charset.StandardCharsets;
 import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_DEFAULT_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
+import static com.telenav.kivakit.core.progress.ProgressReporter.nullProgressReporter;
 
 /**
- * Interface to an object that is {@link Readable} and can be read with a {@link ResourceReader}. A reader can be
- * obtained with:
+ * Interface to an object that is {@link Readable} and can be read with a {@link ResourceReader}.
+ *
+ * <p><b>Reading</b></p>
  *
  * <ul>
+ *     <li>{@link #charset()}</li>
  *     <li>{@link #reader()}</li>
  *     <li>{@link #reader(ProgressReporter)}</li>
  *     <li>{@link #reader(ProgressReporter, Charset)}</li>
@@ -50,14 +53,14 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NE
  * <p><b>Copying</b></p>
  *
  * <ul>
- *     <li>{@link #copyTo(Listener, WritableResource, CopyMode, ProgressReporter)}</li>
+ *     <li>{@link #copyTo(WritableResource, CopyMode, ProgressReporter)}</li>
  * </ul>
  *
  * <p><b>NOTE</b></p>
  *
  * <p>
  * The {@link #resource()} method must be defined by the implementer, as well as the method
- * {@link #copyTo(Listener, WritableResource, CopyMode, ProgressReporter)}.
+ * {@link #copyTo(WritableResource, CopyMode, ProgressReporter)}.
  * </p>
  *
  * @author jonathanl (shibo)
@@ -69,7 +72,9 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NE
 @ApiQuality(stability = STABLE_DEFAULT_EXTENSIBLE,
             testing = TESTING_NOT_NEEDED,
             documentation = FULLY_DOCUMENTED)
-public interface ReadableResource extends Readable
+public interface ReadableResource extends
+        Readable,
+        Repeater
 {
     /**
      * Returns a string resource for the entire contents of this resource
@@ -92,7 +97,7 @@ public interface ReadableResource extends Readable
      *
      * @param destination The destination to write to
      */
-    void copyTo(Listener listener, WritableResource destination, CopyMode mode, ProgressReporter reporter);
+    void copyTo(WritableResource destination, CopyMode mode, ProgressReporter reporter);
 
     /**
      * Returns a reader with convenient methods for reading from the resource
@@ -107,11 +112,11 @@ public interface ReadableResource extends Readable
      */
     default ResourceReader reader()
     {
-        return reader(ProgressReporter.none());
+        return reader(nullProgressReporter());
     }
 
     /**
-     *
+     * Returns a reader with convenient methods for reading from the resource
      */
     default ResourceReader reader(ProgressReporter reporter, Charset charset)
     {

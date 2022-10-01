@@ -50,7 +50,7 @@ public class Processes
         var in = process.getInputStream();
         try
         {
-            return new ProgressiveStringReader(listener, in).readString(ProgressReporter.none());
+            return new ProgressiveStringReader(listener, in).readString(ProgressReporter.nullProgressReporter());
         }
         finally
         {

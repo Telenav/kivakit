@@ -48,7 +48,7 @@ public class GsonObjectSerializer implements
 
     public GsonObjectSerializer()
     {
-        this(ProgressReporter.none());
+        this(ProgressReporter.nullProgressReporter());
     }
 
     public GsonObjectSerializer(ProgressReporter reporter)

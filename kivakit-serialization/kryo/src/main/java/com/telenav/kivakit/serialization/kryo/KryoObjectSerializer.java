@@ -37,7 +37,7 @@ public class KryoObjectSerializer implements
 
     public KryoObjectSerializer(KryoTypes types)
     {
-        this(types, ProgressReporter.none());
+        this(types, ProgressReporter.nullProgressReporter());
     }
 
     public KryoObjectSerializer(KryoTypes types, ProgressReporter reporter)

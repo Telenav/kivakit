@@ -18,19 +18,24 @@
 
 package com.telenav.kivakit.resource.resources;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.io.StringInputStream;
-import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.time.Time;
 import com.telenav.kivakit.core.value.count.Bytes;
 import com.telenav.kivakit.resource.ResourcePath;
 import com.telenav.kivakit.resource.internal.lexakai.DiagramResourceType;
 import com.telenav.kivakit.resource.reading.BaseReadableResource;
 import com.telenav.kivakit.resource.reading.ReadableResource;
-import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.io.InputStream;
 import java.util.function.Function;
+
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
+import static com.telenav.kivakit.core.messaging.Listener.emptyListener;
+import static com.telenav.kivakit.resource.ResourcePath.parseUnixResourcePath;
 
 /**
  * A {@link ReadableResource} formed from a string passed to the constructor {@link #StringResource(String)}.
@@ -38,44 +43,71 @@ import java.util.function.Function;
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramResourceType.class)
-@LexakaiJavadoc(complete = true)
+@ApiQuality(stability = STABLE_EXTENSIBLE,
+            documentation = FULLY_DOCUMENTED,
+            testing = UNTESTED)
 public class StringResource extends BaseReadableResource
 {
-    private final String value;
+    /** The text to read */
+    private final String text;
 
+    /** The time of creation of this object */
     private final Time created = Time.now();
 
-    public StringResource(String value)
+    /**
+     * @param text The text to read
+     */
+    public StringResource(String text)
     {
-        this(ResourcePath.parseUnixResourcePath(Listener.consoleListener(), "/objects/String@" + Integer.toHexString(value.hashCode())), value);
+        this(parseUnixResourcePath(emptyListener(),
+                "/objects/String@" + Integer.toHexString(text.hashCode())), text);
     }
 
-    public StringResource(ResourcePath path, String value)
+    /**
+     * @param path The made-up path to use
+     * @param text The text to read
+     */
+    public StringResource(ResourcePath path, String text)
     {
         super(path);
-        this.value = value;
+        this.text = text;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Time createdAt()
     {
         return created;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public InputStream onOpenForReading()
     {
-        return new StringInputStream(value);
+        return new StringInputStream(text);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Bytes sizeInBytes()
     {
-        return Bytes.bytes(value.length());
+        return Bytes.bytes(text.length());
     }
 
+    /**
+     * Returns a new string resource with the given transformation applied
+     *
+     * @param transformation The transformation to apply to this string resource
+     * @return The resource to read
+     */
     public StringResource transform(Function<String, String> transformation)
     {
-        return new StringResource(transformation.apply(value));
+        return new StringResource(transformation.apply(text));
     }
 }

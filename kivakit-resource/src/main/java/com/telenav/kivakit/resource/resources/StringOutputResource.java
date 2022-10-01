@@ -18,10 +18,10 @@
 
 package com.telenav.kivakit.resource.resources;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.resource.internal.lexakai.DiagramResourceType;
 import com.telenav.kivakit.resource.writing.BaseWritableResource;
 import com.telenav.kivakit.resource.writing.WritableResource;
-import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.io.ByteArrayInputStream;
@@ -29,37 +29,53 @@ import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
+
 /**
  * A {@link WritableResource} that writes to a byte array, and can be converted to a string with {@link #string()}.
  *
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramResourceType.class)
-@LexakaiJavadoc(complete = true)
+@ApiQuality(stability = STABLE_EXTENSIBLE,
+            documentation = FULLY_DOCUMENTED,
+            testing = UNTESTED)
 public class StringOutputResource extends BaseWritableResource
 {
-    private final ByteArrayOutputStream array = new ByteArrayOutputStream();
+    /** The output stream */
+    private final ByteArrayOutputStream out = new ByteArrayOutputStream();
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Boolean isWritable()
     {
         return true;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public InputStream onOpenForReading()
     {
-        return new ByteArrayInputStream(array.toByteArray());
+        return new ByteArrayInputStream(out.toByteArray());
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public OutputStream onOpenForWriting()
     {
-        return array;
+        return out;
     }
 
     public String string()
     {
-        return array.toString();
+        return out.toString();
     }
 }

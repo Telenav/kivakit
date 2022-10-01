@@ -28,7 +28,9 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
 
 import static com.telenav.kivakit.annotations.code.ApiStability.STABLE;
+import static com.telenav.kivakit.annotations.code.ApiType.SERVICE_PROVIDER_API;
 import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
 import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
 
 /**
@@ -43,8 +45,9 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
 @UmlClassDiagram(diagram = DiagramResourceService.class)
 @UmlRelation(label = "parses", referent = ResourceFolderIdentifier.class)
 @ApiQuality(stability = STABLE,
-            testing = UNTESTED,
-            documentation = FULLY_DOCUMENTED)
+            testing = TESTING_NOT_NEEDED,
+            documentation = FULLY_DOCUMENTED,
+            type = SERVICE_PROVIDER_API)
 public interface ResourceResolver extends RepeaterMixin
 {
     /**

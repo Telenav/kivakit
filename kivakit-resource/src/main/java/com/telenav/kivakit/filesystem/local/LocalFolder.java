@@ -472,7 +472,7 @@ public class LocalFolder extends BaseRepeater implements FolderService
                 sequenceNumber++;
             }
             while (file.exists());
-            file.writer().save("");
+            file.writer().saveText("");
             return file;
         }
     }

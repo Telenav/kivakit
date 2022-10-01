@@ -41,7 +41,7 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NE
 public interface AsString
 {
     /**
-     * @return The string value
+     * Returns a string value
      */
     String asString();
 }

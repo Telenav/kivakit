@@ -41,7 +41,7 @@ import com.telenav.kivakit.resource.reading.ReadableResource;
 import com.telenav.kivakit.resource.resources.NullResource;
 import com.telenav.kivakit.resource.resources.StringResource;
 import com.telenav.kivakit.resource.spi.ResourceResolver;
-import com.telenav.kivakit.resource.spi.ResourceResolverServiceLoader;
+import com.telenav.kivakit.resource.spi.ResourceResolverService;
 import com.telenav.kivakit.resource.writing.WritableResource;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
@@ -58,6 +58,7 @@ import static com.telenav.kivakit.core.ensure.Ensure.ensure;
 import static com.telenav.kivakit.core.ensure.Ensure.unsupported;
 import static com.telenav.kivakit.resource.Resource.Action.DELETE;
 import static com.telenav.kivakit.resource.Resource.Action.RENAME;
+import static com.telenav.kivakit.resource.spi.ResourceResolverService.resourceResolverService;
 
 /**
  * A resource that can be read via {@link ReadableResource}. In addition, resources are {@link ModifiedAt},
@@ -157,7 +158,7 @@ public interface Resource extends
 {
     /**
      * Resolves the given {@link ResourceIdentifier} to a {@link Resource}. This is done by using
-     * {@link ResourceResolverServiceLoader} to find an implementation of {@link ResourceResolver} using Java's
+     * {@link ResourceResolverService} to find an implementation of {@link ResourceResolver} using Java's
      * {@link ServiceLoader} to find the implementation.
      *
      * @param listener The listener to call with any resolution problems
@@ -166,14 +167,32 @@ public interface Resource extends
      */
     static Resource resolveResource(Listener listener, ResourceIdentifier identifier)
     {
-        return listener.listenTo(listener.listenTo(ResourceResolverServiceLoader.get()).resolve(identifier));
+        return listener.listenTo(resourceResolverService()).resolveResource(identifier);
     }
 
-    static Resource resolveResource(Listener listener, ResourcePath path)
+    /**
+     * Resolves the given {@link ResourceIdentifier} to a {@link Resource}. This is done by using
+     * {@link ResourceResolverService} to find an implementation of {@link ResourceResolver} using Java's
+     * {@link ServiceLoader} to find the implementation.
+     *
+     * @param listener The listener to call with any resolution problems
+     * @param resourcePath The resource identifier
+     * @return The resource
+     */
+    static Resource resolveResource(Listener listener, ResourcePath resourcePath)
     {
-        return resolveResource(listener, path.asString());
+        return resolveResource(listener, resourcePath.asString());
     }
 
+    /**
+     * Resolves the given {@link ResourceIdentifier} to a {@link Resource}. This is done by using
+     * {@link ResourceResolverService} to find an implementation of {@link ResourceResolver} using Java's
+     * {@link ServiceLoader} to find the implementation.
+     *
+     * @param listener The listener to call with any resolution problems
+     * @param identifier The resource identifier
+     * @return The resource
+     */
     static Resource resolveResource(Listener listener, String identifier)
     {
         return resolveResource(listener, new ResourceIdentifier(identifier));
@@ -452,7 +471,7 @@ public interface Resource extends
      */
     default void safeCopyTo(ResourceFolder<?> destination, CopyMode mode)
     {
-        safeCopyTo(destination.resource(fileName()).asWritable(), mode, ProgressReporter.none());
+        safeCopyTo(destination.resource(fileName()).asWritable(), mode, ProgressReporter.nullProgressReporter());
     }
 
     /**
@@ -476,7 +495,7 @@ public interface Resource extends
      */
     default void safeCopyTo(WritableResource destination, CopyMode mode)
     {
-        safeCopyTo(destination, mode, ProgressReporter.none());
+        safeCopyTo(destination, mode, ProgressReporter.nullProgressReporter());
     }
 
     /**
@@ -494,10 +513,10 @@ public interface Resource extends
         if (mode.canCopy(this, destination))
         {
             // then copy to a temporary file
-            var temporary = destination.parent().temporaryFile(destination.fileName());
+            var temporary = listenTo(destination.parent().temporaryFile(destination.fileName()));
             ensure(destination.can(DELETE));
             ensure(temporary.can(RENAME));
-            copyTo(this, temporary, mode, reporter);
+            copyTo(temporary, mode, reporter);
 
             // remove the destination file
             if (destination.exists())

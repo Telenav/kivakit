@@ -39,7 +39,7 @@ public class PropertiesObjectSerializer implements ObjectSerializer
 
     public PropertiesObjectSerializer()
     {
-        this(ProgressReporter.none());
+        this(ProgressReporter.nullProgressReporter());
     }
 
     public PropertiesObjectSerializer(ProgressReporter reporter)

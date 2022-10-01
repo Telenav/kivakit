@@ -18,32 +18,38 @@
 
 package com.telenav.kivakit.resource.writing;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.resource.Resource;
 import com.telenav.kivakit.resource.internal.lexakai.DiagramFileSystemFile;
 import com.telenav.kivakit.resource.internal.lexakai.DiagramResource;
-import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
 
 import java.io.PrintWriter;
 import java.nio.charset.Charset;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_DEFAULT_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
+
 /**
  * Adds the ability to write to {@link Resource} and {@link Writable}. A {@link ResourceWriter}, which provides a
- * collection of useful methods for writing to resource, can be accessed with {@link #writer()} or {@link
- * #writer(Charset)}. For convenience, a {@link PrintWriter} can be retrieved with {@link #printWriter()}
+ * collection of useful methods for writing to resource, can be accessed with {@link #writer()} or
+ * {@link #writer(Charset)}. For convenience, a {@link PrintWriter} can be retrieved with {@link #printWriter()}
  *
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramFileSystemFile.class)
 @UmlClassDiagram(diagram = DiagramResource.class)
-@LexakaiJavadoc(complete = true)
+@ApiQuality(stability = STABLE_DEFAULT_EXTENSIBLE,
+            documentation = FULLY_DOCUMENTED,
+            testing = UNTESTED)
 public interface WritableResource extends
         Resource,
         Writable
 {
     /**
-     * @return A {@link PrintWriter} for writing to this resource
+     * Returns a {@link PrintWriter} for writing to this resource. The caller is responsible for closing the writer.
      */
     default PrintWriter printWriter()
     {
@@ -51,7 +57,7 @@ public interface WritableResource extends
     }
 
     /**
-     * @return A {@link ResourceWriter} for writing to this resource
+     * Returns a {@link ResourceWriter} for writing to this resource. The caller is responsible for closing the writer.
      */
     @UmlRelation(label = "provides")
     default ResourceWriter writer()
@@ -60,7 +66,8 @@ public interface WritableResource extends
     }
 
     /**
-     * @return A {@link ResourceWriter} for writing to this resource with the given {@link Charset}
+     * Returns a {@link ResourceWriter} for writing to this resource with the given {@link Charset}. The caller is
+     * responsible for closing the writer.
      */
     default ResourceWriter writer(Charset charset)
     {

@@ -32,7 +32,7 @@ public class FolderTest extends UnitTest
     {
         var file = Folder.kivakitTest(getClass()).file("age-test.txt");
         file.delete();
-        file.print("test");
+        file.saveText("test");
         ensure(file.createdAt().elapsedSince().isLessThan(Duration.seconds(30)));
     }
 
@@ -49,8 +49,8 @@ public class FolderTest extends UnitTest
     {
         var folder = Folder.kivakitTest(getClass()).folder("clear-test");
         folder.mkdirs();
-        folder.file("a.txt").print("A");
-        folder.file("b.txt").print("B");
+        folder.file("a.txt").saveText("A");
+        folder.file("b.txt").saveText("B");
         ensureEqual(2, folder.files().size());
         folder.clearAll();
         ensure(folder.isEmpty());
@@ -60,7 +60,7 @@ public class FolderTest extends UnitTest
     public void testDelete()
     {
         var file = Folder.kivakitTest(getClass()).file("delete-test.txt");
-        file.print("test");
+        file.saveText("test");
         ensure(file.exists());
         file.delete();
         ensureFalse(file.exists());
@@ -73,9 +73,9 @@ public class FolderTest extends UnitTest
         var folder = Folder.kivakitTest(getClass()).folder("clear-test");
         folder.mkdirs();
         folder.clearAll();
-        folder.file("a.txt").print("A");
+        folder.file("a.txt").saveText("A");
         Duration.untilNextSecond().sleep();
-        folder.file("b.txt").print("B");
+        folder.file("b.txt").saveText("B");
         ensureEqual(FileName.parseFileName(this, "a.txt"), folder.oldest().fileName());
     }
 

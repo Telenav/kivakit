@@ -29,7 +29,7 @@ import com.telenav.kivakit.filesystem.Folder;
 import com.telenav.kivakit.interfaces.comparison.Matchable;
 import com.telenav.kivakit.interfaces.comparison.Matcher;
 import com.telenav.kivakit.resource.packages.Package;
-import com.telenav.kivakit.resource.spi.ResourceFolderResolverServiceLoader;
+import com.telenav.kivakit.resource.spi.ResourceFolderResolverService;
 import com.telenav.kivakit.resource.writing.WritableResource;
 
 import static com.telenav.kivakit.annotations.code.ApiStability.STABLE;
@@ -115,7 +115,7 @@ public interface ResourceFolder<T extends ResourceFolder<T>> extends
 
     static ResourceFolder<?> resolveResourceFolder(Listener listener, ResourceFolderIdentifier identifier)
     {
-        return ResourceFolderResolverServiceLoader.resolve(listener, identifier);
+        return ResourceFolderResolverService.resolveResourceFolder(listener, identifier);
     }
 
     static ResourceFolderIdentifier resourceFolderIdentifier(String identifier)

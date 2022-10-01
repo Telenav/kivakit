@@ -41,7 +41,7 @@ public class FolderPrunerTest extends UnitTest
 
         // Save file abc
         var file1 = folder.file("abc");
-        file1.writer().save("abc");
+        file1.writer().saveText("abc");
         ensure(file1.exists());
 
         // Start folder pruner
@@ -63,7 +63,7 @@ public class FolderPrunerTest extends UnitTest
 
         // Save file def
         var file2 = folder.file("def");
-        file2.writer().save("def");
+        file2.writer().saveText("def");
 
         // Wait for a file to get removed
         removed.waitForAllThreadsToComplete();
@@ -81,7 +81,7 @@ public class FolderPrunerTest extends UnitTest
         {
             var folder = folder("disk-space-test");
             var file = folder.file("temp1");
-            file.writer().save("test");
+            file.writer().saveText("test");
             FolderPruner pruner = new FolderPruner(folder, Duration.milliseconds(25).asFrequency())
             {
                 @Override

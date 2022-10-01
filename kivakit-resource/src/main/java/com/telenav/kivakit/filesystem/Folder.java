@@ -1434,7 +1434,7 @@ public class Folder extends BaseRepeater implements
                 sequenceNumber++;
             }
             while (file.exists());
-            file.writer().save("");
+            file.writer().saveText("");
             return file;
         }
     }
