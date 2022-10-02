@@ -72,14 +72,14 @@ public class InstanceIdentifier
     }
 
     /**
-     * Returns the {@link InstanceIdentifier} for the given enum name
+     * Returns the {@link InstanceIdentifier} for the given enum value name
      */
-    public static InstanceIdentifier instanceIdentifierForEnumName(Listener listener, String enumName)
+    public static InstanceIdentifier instanceIdentifierForEnumName(Listener listener, String enumValueName)
     {
-        var identifier = instanceIdentifierForEnumName.get(enumName);
+        var identifier = instanceIdentifierForEnumName.get(enumValueName);
         if (identifier == null)
         {
-            listener.problem("Invalid instance identifier: $", enumName);
+            listener.problem("Invalid instance identifier: $", enumValueName);
         }
         return identifier;
     }
@@ -92,7 +92,7 @@ public class InstanceIdentifier
         return SINGLETON;
     }
 
-    private enum Singleton
+    public enum Singleton
     {
         SINGLETON
     }
