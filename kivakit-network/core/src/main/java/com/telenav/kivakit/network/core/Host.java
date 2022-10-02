@@ -35,6 +35,7 @@ import com.telenav.kivakit.interfaces.string.StringFormattable;
 import com.telenav.kivakit.network.core.internal.lexakai.DiagramPort;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeMember;
+import org.jetbrains.annotations.NotNull;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;
@@ -45,7 +46,7 @@ import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXTENSIBL
 import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
 import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
-import static com.telenav.kivakit.commandline.SwitchParser.builder;
+import static com.telenav.kivakit.commandline.SwitchParser.switchParserBuilder;
 import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
 import static com.telenav.kivakit.network.core.Protocol.FTP;
 import static com.telenav.kivakit.network.core.Protocol.HAZELCAST;
@@ -157,7 +158,7 @@ public class Host extends BaseRepeater implements
      */
     public static SwitchParser.Builder<Host> hostSwitchParser(Listener listener, String name, String description)
     {
-        return builder(Host.class)
+        return switchParserBuilder(Host.class)
                 .name(name)
                 .converter(new Host.Converter(listener))
                 .description(description);
@@ -266,7 +267,7 @@ public class Host extends BaseRepeater implements
     }
 
     @Override
-    public String asString(Format format)
+    public String asString(@NotNull Format format)
     {
         return new ObjectFormatter(this).toString();
     }

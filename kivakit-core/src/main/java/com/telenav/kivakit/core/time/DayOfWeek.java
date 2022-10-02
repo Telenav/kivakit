@@ -24,6 +24,7 @@ import com.telenav.kivakit.core.language.Hash;
 import com.telenav.kivakit.interfaces.string.StringFormattable;
 import com.telenav.kivakit.interfaces.time.Nanoseconds;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
@@ -173,7 +174,7 @@ public class DayOfWeek extends BaseTime<DayOfWeek>
      * {@inheritDoc}
      */
     @Override
-    public String asString(StringFormattable.Format format)
+    public String asString(StringFormattable.@NotNull Format format)
     {
         return asJavaDayOfWeek().name();
     }

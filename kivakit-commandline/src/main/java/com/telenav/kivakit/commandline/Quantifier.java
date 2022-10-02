@@ -18,9 +18,15 @@
 
 package com.telenav.kivakit.commandline;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.commandline.internal.lexakai.DiagramArgument;
 import com.telenav.kivakit.commandline.internal.lexakai.DiagramSwitch;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
+
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_ENUM_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
 
 /**
  * Specifies the number of arguments required or allowed
@@ -29,6 +35,9 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
  */
 @UmlClassDiagram(diagram = DiagramArgument.class)
 @UmlClassDiagram(diagram = DiagramSwitch.class)
+@ApiQuality(stability = STABLE_ENUM_EXTENSIBLE,
+            testing = UNTESTED,
+            documentation = FULLY_DOCUMENTED)
 public enum Quantifier
 {
     /**
@@ -49,10 +58,5 @@ public enum Quantifier
     /**
      * The argument must appear at least one time but may appear more times
      */
-    ONE_OR_MORE,
-
-    /**
-     * The argument must appear at least two times but may appear more times
-     */
-    TWO_OR_MORE
+    ONE_OR_MORE
 }

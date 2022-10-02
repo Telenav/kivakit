@@ -258,7 +258,7 @@ public class StringPath extends Path<String>
      * {@inheritDoc}
      */
     @Override
-    public String asString(Format format)
+    public String asString(@NotNull Format format)
     {
         switch (format)
         {

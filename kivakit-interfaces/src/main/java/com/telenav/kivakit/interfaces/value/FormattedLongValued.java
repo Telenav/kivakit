@@ -2,6 +2,7 @@ package com.telenav.kivakit.interfaces.value;
 
 import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.interfaces.string.StringFormattable;
+import org.jetbrains.annotations.NotNull;
 
 import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_DEFAULT_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
@@ -28,7 +29,7 @@ public interface FormattedLongValued extends
     }
 
     @SuppressWarnings("SwitchStatementWithTooFewBranches")
-    default String asString(StringFormattable.Format format)
+    default String asString(StringFormattable.@NotNull Format format)
     {
         switch (format)
         {

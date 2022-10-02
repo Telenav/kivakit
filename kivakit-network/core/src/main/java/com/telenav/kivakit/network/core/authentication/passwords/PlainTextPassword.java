@@ -27,6 +27,7 @@ import com.telenav.kivakit.network.core.authentication.Password;
 import com.telenav.kivakit.network.core.internal.lexakai.DiagramAuthentication;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeSuperTypes;
+import org.jetbrains.annotations.NotNull;
 
 import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
@@ -86,7 +87,7 @@ public class PlainTextPassword implements Password, StringFormattable
     }
 
     @Override
-    public String asString(Format format)
+    public String asString(@NotNull Format format)
     {
         if (password != null)
         {

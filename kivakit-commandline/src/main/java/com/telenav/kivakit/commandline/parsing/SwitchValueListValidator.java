@@ -18,6 +18,8 @@
 
 package com.telenav.kivakit.commandline.parsing;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.commandline.SwitchValueList;
 import com.telenav.kivakit.commandline.internal.lexakai.DiagramValidation;
 import com.telenav.kivakit.validation.BaseValidator;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
@@ -26,7 +28,10 @@ import com.telenav.lexakai.annotations.visibility.UmlNotPublicApi;
 
 import java.util.HashMap;
 
-import static com.telenav.kivakit.core.messaging.Listener.emptyListener;
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.ApiType.PRIVATE_API;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
 
 /**
  * <b>Not Public API</b>
@@ -35,13 +40,17 @@ import static com.telenav.kivakit.core.messaging.Listener.emptyListener;
  *
  * @author jonathanl (shibo)
  */
-@UmlClassDiagram(diagram = DiagramValidation.class)
+@SuppressWarnings("DuplicatedCode") @UmlClassDiagram(diagram = DiagramValidation.class)
 @UmlNotPublicApi
-public class SwitchListValidator extends BaseValidator
+@ApiQuality(stability = STABLE_EXTENSIBLE,
+            testing = UNTESTED,
+            documentation = FULLY_DOCUMENTED,
+            type = PRIVATE_API)
+public class SwitchValueListValidator extends BaseValidator
 {
     /** The list of switches to validate */
     @UmlAggregation
-    private final SwitchList switches;
+    private final SwitchValueList switchValues;
 
     /** The list of switch parsers to validate against */
     @UmlAggregation
@@ -49,12 +58,12 @@ public class SwitchListValidator extends BaseValidator
 
     /**
      * @param parsers The switch parsers to validate against
-     * @param switches The switches
+     * @param switchValues The switches
      */
-    public SwitchListValidator(SwitchParserList parsers, SwitchList switches)
+    public SwitchValueListValidator(SwitchParserList parsers, SwitchValueList switchValues)
     {
         this.parsers = parsers;
-        this.switches = switches;
+        this.switchValues = switchValues;
     }
 
     /**
@@ -67,26 +76,26 @@ public class SwitchListValidator extends BaseValidator
         for (var parser : parsers)
         {
             // and report failure if the parser requires the switch but the list doesn't have it.
-            problemIf(parser.isRequired() && !switches.has(parser), "Required switch ${debug} not found", parser);
+            problemIf(parser.isRequired() && !switchValues.has(parser), "Required switch ${debug} not found", parser);
         }
 
         // Go through the switches
         var found = new HashMap<String, Boolean>();
-        for (var _switch : switches)
+        for (var switchValue : switchValues)
         {
             // and get the corresponding parser,
-            var parser = parsers.forName(_switch.name());
+            var parser = parsers.forName(switchValue.name());
             if (parser != null)
             {
                 // and if it is invalid or has a duplicate, report failure
-                problemIf(!parser.isValid(emptyListener()), "Switch '${debug}' is invalid", _switch);
-                problemIf(found.containsKey(parser.name()), "Duplicate switch '${debug}'", _switch);
+                problemIfNull(parser.asObject(switchValue), "Switch '${debug}' is invalid", switchValue);
+                problemIf(found.containsKey(parser.name()), "Duplicate switch '${debug}'", switchValue);
                 found.put(parser.name(), Boolean.TRUE);
             }
             else
             {
                 // otherwise, report an unknown switch.
-                problem("Unrecognized switch '${debug}'", _switch);
+                problem("Unrecognized switch '${debug}'", switchValue);
             }
         }
     }

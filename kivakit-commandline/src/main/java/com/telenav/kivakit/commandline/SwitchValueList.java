@@ -16,10 +16,9 @@
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-package com.telenav.kivakit.commandline.parsing;
+package com.telenav.kivakit.commandline;
 
-import com.telenav.kivakit.commandline.Switch;
-import com.telenav.kivakit.commandline.SwitchParser;
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.commandline.internal.lexakai.DiagramCommandLine;
 import com.telenav.kivakit.commandline.internal.lexakai.DiagramSwitch;
 import com.telenav.kivakit.commandline.internal.lexakai.DiagramValidation;
@@ -30,10 +29,13 @@ import com.telenav.kivakit.interfaces.string.StringFormattable;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlAggregation;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeSuperTypes;
-import com.telenav.lexakai.annotations.visibility.UmlNotPublicApi;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Iterator;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
 import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
 
 /**
@@ -42,50 +44,73 @@ import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
  * A list of switches for which values can be retrieved by {@link SwitchParser}s. Switches can only appear once on a
  * command line.
  *
+ * <p><b>Adding</b></p>
+ *
+ * <ul>
+ *     <li>{@link #add(SwitchValue)}</li>
+ * </ul>
+ *
+ * <p><b>Retrieval</b></p>
+ *
+ * <ul>
+ *     <li>{@link #get(SwitchParser)}</li>
+ *     <li>{@link #has(SwitchParser)}</li>
+ *     <li>{@link #iterator()}</li>
+ *     <li>{@link #propertyValue(Property)}</li>
+ * </ul>
+ *
+ * <p><b>Conversion</b></p>
+ *
+ * <ul>
+ *     <li>{@link #asString(Format)}</li>
+ * </ul>
+ *
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramSwitch.class)
 @UmlClassDiagram(diagram = DiagramValidation.class)
 @UmlClassDiagram(diagram = DiagramCommandLine.class)
 @UmlExcludeSuperTypes
-@UmlNotPublicApi
-public class SwitchList implements
-        Iterable<Switch>,
+@ApiQuality(stability = STABLE_EXTENSIBLE,
+            testing = UNTESTED,
+            documentation = FULLY_DOCUMENTED)
+public class SwitchValueList implements
+        Iterable<SwitchValue>,
         StringFormattable,
         PropertyValue
 {
     /** The switches */
     @UmlAggregation
-    private final ObjectList<Switch> switches = new ObjectList<>();
+    private final ObjectList<SwitchValue> switchValues = new ObjectList<>();
 
     /**
      * Adds the given switch to this list
      */
-    public void add(Switch _switch)
+    public void add(@NotNull SwitchValue that)
     {
-        switches.add(_switch);
+        switchValues.add(that);
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public String asString(Format format)
+    public String asString(@NotNull Format format)
     {
-        return switches.join();
+        return switchValues.join();
     }
 
     /**
-     * @return The switch value for the given switch parser
+     * Returns the switch value for the given switch parser
      */
-    public <T> T get(SwitchParser<T> parser)
+    public <T> T get(@NotNull SwitchParser<T> parser)
     {
         ensureNotNull(parser);
 
-        var _switch = switchForName(parser.name());
-        if (_switch != null)
+        var switchValue = switchForName(parser.name());
+        if (switchValue != null)
         {
-            return _switch.get(parser);
+            return switchValue.get(parser);
         }
         else
         {
@@ -93,41 +118,41 @@ public class SwitchList implements
         }
     }
 
-    @Override
-    public Iterator<Switch> iterator()
+    /**
+     * Returns true if this switch list has a value for the given switch parser
+     */
+    public boolean has(@NotNull SwitchParser<?> parser)
     {
-        return switches.iterator();
+        return switchForName(parser.name()) != null;
+    }
+
+    @Override
+    public Iterator<SwitchValue> iterator()
+    {
+        return switchValues.iterator();
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public Object propertyValue(Property property)
+    public Object propertyValue(@NotNull Property property)
     {
-        var _switch = switchForName(property.name());
-        if (_switch != null)
+        var switchValue = switchForName(property.name());
+        if (switchValue != null)
         {
-            return _switch.value();
+            return switchValue.value();
         }
         return null;
     }
 
-    /**
-     * @return True if this switch list has a value for the given switch parser
-     */
-    boolean has(SwitchParser<?> parser)
+    private SwitchValue switchForName(@NotNull String name)
     {
-        return switchForName(parser.name()) != null;
-    }
-
-    private Switch switchForName(String name)
-    {
-        for (var _switch : switches)
+        for (var switchValue : switchValues)
         {
-            if (_switch.name().equalsIgnoreCase(name))
+            if (switchValue.name().equalsIgnoreCase(name))
             {
-                return _switch;
+                return switchValue;
             }
         }
         return null;

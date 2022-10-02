@@ -186,7 +186,7 @@ public abstract class Path<Element extends Comparable<Element>> implements
      * {@inheritDoc}
      */
     @Override
-    public String asString(Format format)
+    public String asString(@NotNull Format format)
     {
         switch (format)
         {

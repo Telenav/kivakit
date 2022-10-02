@@ -29,6 +29,7 @@ import com.telenav.kivakit.core.string.KivaKitFormat;
 import com.telenav.kivakit.network.core.internal.lexakai.DiagramPort;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlAggregation;
+import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -43,7 +44,7 @@ import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXTENSIBL
 import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
 import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
-import static com.telenav.kivakit.commandline.SwitchParser.builder;
+import static com.telenav.kivakit.commandline.SwitchParser.switchParserBuilder;
 import static com.telenav.kivakit.network.core.Protocol.HTTP;
 import static com.telenav.kivakit.network.core.Protocol.HTTPS;
 
@@ -138,7 +139,7 @@ public class Port implements AsString
      */
     public static SwitchParser.Builder<Port> portSwitchParser(Listener listener, String name, String description)
     {
-        return builder(Port.class)
+        return switchParserBuilder(Port.class)
                 .name(name)
                 .converter(new Port.Converter(listener))
                 .description(description);
@@ -243,7 +244,7 @@ public class Port implements AsString
 
     @Override
     @SuppressWarnings("SwitchStatementWithTooFewBranches")
-    public String asString(Format format)
+    public String asString(@NotNull Format format)
     {
         switch (format)
         {

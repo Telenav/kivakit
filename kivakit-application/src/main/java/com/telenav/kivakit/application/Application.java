@@ -21,7 +21,7 @@ package com.telenav.kivakit.application;
 import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.application.internal.lexakai.DiagramApplication;
 import com.telenav.kivakit.commandline.ApplicationMetadata;
-import com.telenav.kivakit.commandline.ArgumentList;
+import com.telenav.kivakit.commandline.ArgumentValueList;
 import com.telenav.kivakit.commandline.ArgumentParser;
 import com.telenav.kivakit.commandline.CommandLine;
 import com.telenav.kivakit.commandline.CommandLineParser;
@@ -427,9 +427,9 @@ public abstract class Application extends BaseComponent implements
     /**
      * @return All non-switch command line arguments
      */
-    public ArgumentList argumentList()
+    public ArgumentValueList argumentList()
     {
-        return commandLine().arguments();
+        return commandLine().argumentValues();
     }
 
     /**
@@ -441,7 +441,7 @@ public abstract class Application extends BaseComponent implements
         var arguments = new ObjectList<T>();
         for (int i = 0; i < argumentList().size(); i++)
         {
-            if (parser.canParse(argumentList().get(i).value()))
+            if (parser.canParse(argumentList().argumentValue(i).value()))
             {
                 arguments.add(argument(i, parser));
             }

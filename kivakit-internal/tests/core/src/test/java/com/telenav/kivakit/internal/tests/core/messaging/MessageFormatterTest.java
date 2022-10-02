@@ -21,6 +21,7 @@ package com.telenav.kivakit.internal.tests.core.messaging;
 import com.telenav.kivakit.core.collections.map.VariableMap;
 import com.telenav.kivakit.core.language.reflection.property.KivaKitIncludeProperty;import com.telenav.kivakit.internal.testing.CoreUnitTest;
 import com.telenav.kivakit.interfaces.string.StringFormattable;
+import org.jetbrains.annotations.NotNull;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -35,7 +36,7 @@ public class MessageFormatterTest extends CoreUnitTest
         int x = 5;
 
         @Override
-        public String asString(Format ignored)
+        public String asString(@NotNull Format ignored)
         {
             return "*" + x + "*";
         }

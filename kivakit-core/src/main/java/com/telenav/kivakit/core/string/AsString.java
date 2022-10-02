@@ -21,6 +21,7 @@ package com.telenav.kivakit.core.string;
 import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.interfaces.string.StringFormattable;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
+import org.jetbrains.annotations.NotNull;
 
 import static com.telenav.kivakit.annotations.code.ApiStability.STABLE;
 import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
@@ -47,7 +48,7 @@ public interface AsString extends StringFormattable
      * @return A string representation of this object that is suitable for the given purpose
      */
     @Override
-    default String asString(Format format)
+    default String asString(@NotNull Format format)
     {
         return toString();
     }

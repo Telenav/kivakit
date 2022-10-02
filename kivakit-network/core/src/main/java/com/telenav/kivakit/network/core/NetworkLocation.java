@@ -34,6 +34,7 @@ import com.telenav.kivakit.network.core.internal.lexakai.DiagramNetworkLocation;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlAggregation;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeMember;
+import org.jetbrains.annotations.NotNull;
 
 import java.net.MalformedURLException;
 import java.net.URI;
@@ -208,7 +209,7 @@ public class NetworkLocation implements StringFormattable, Comparable<NetworkLoc
      * {@inheritDoc}
      */
     @Override
-    public String asString(Format format)
+    public String asString(@NotNull Format format)
     {
         return new ObjectFormatter(this).toString();
     }

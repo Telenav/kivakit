@@ -18,6 +18,7 @@
 
 package com.telenav.kivakit.commandline.parsing;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.commandline.ArgumentParser;
 import com.telenav.kivakit.commandline.internal.lexakai.DiagramArgument;
 import com.telenav.kivakit.commandline.internal.lexakai.DiagramCommandLine;
@@ -31,6 +32,11 @@ import com.telenav.lexakai.annotations.visibility.UmlExcludeSuperTypes;
 import com.telenav.lexakai.annotations.visibility.UmlNotPublicApi;
 
 import java.util.Iterator;
+
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.ApiType.PRIVATE_API;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
 
 /**
  * <b>Not Public API</b>
@@ -46,6 +52,10 @@ import java.util.Iterator;
 @UmlClassDiagram(diagram = DiagramCommandLine.class)
 @UmlNotPublicApi
 @UmlExcludeSuperTypes({ Iterable.class })
+@ApiQuality(stability = STABLE_EXTENSIBLE,
+            testing = UNTESTED,
+            documentation = FULLY_DOCUMENTED,
+            type = PRIVATE_API)
 public class ArgumentParserList implements Iterable<ArgumentParser<?>>
 {
     /** The list of argument parsers */
@@ -98,6 +108,9 @@ public class ArgumentParserList implements Iterable<ArgumentParser<?>>
         }
     }
 
+    /**
+     * Returns true if there are no argument parsers in this list
+     */
     public boolean isEmpty()
     {
         return parsers.isEmpty();
@@ -109,6 +122,9 @@ public class ArgumentParserList implements Iterable<ArgumentParser<?>>
         return parsers.iterator();
     }
 
+    /**
+     * Returns the last argument parser in this list
+     */
     @UmlExcludeMember
     public ArgumentParser<?> last()
     {

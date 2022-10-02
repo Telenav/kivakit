@@ -18,6 +18,7 @@
 
 package com.telenav.kivakit.commandline;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.commandline.internal.lexakai.DiagramArgument;
 import com.telenav.kivakit.commandline.internal.lexakai.DiagramCommandLine;
 import com.telenav.kivakit.commandline.internal.lexakai.DiagramValidation;
@@ -28,47 +29,81 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlAggregation;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeMember;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeSuperTypes;
+import org.jetbrains.annotations.NotNull;
 
-import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.List;
+
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
 
 /**
- * A list of {@link Argument}s passed on a command line and retrieved with {@link CommandLine#arguments()} after command
- * line parsing with {@link CommandLineParser}. Individual arguments values can be retrieved as typed values with
- * {@link Argument#get(ArgumentParser)}. If the arguments are all the same type they can be retrieved as a list with
- * {@link #argumentValues(ArgumentParser)}.
+ * A list of {@link ArgumentValue}s passed on a command line and retrieved with {@link CommandLine#argumentValues()}
+ * after command line parsing with {@link CommandLineParser}. Individual arguments values can be retrieved as typed
+ * values with {@link ArgumentValue#get(ArgumentParser)}. If the arguments are all the same type they can be retrieved
+ * as a list with {@link #arguments(ArgumentParser)}.
+ *
+ * <p><b>Arguments</b></p>
+ *
+ * <ul>
+ *     <li>{@link #arguments(ArgumentParser)}</li>
+ *     <li>{@link #firstArgumentValue()}</li>
+ *     <li>{@link #argumentValue(int)}</li>
+ *     <li>{@link #isEmpty()}</li>
+ *     <li>{@link #iterator()}</li>
+ *     <li>{@link #size()}</li>
+ * </ul>
+ *
+ * <p><b>Adding</b></p>
+ *
+ * <ul>
+ *     <li>{@link #add(ArgumentValue)}</li>
+ * </ul>
  *
  * @author jonathanl (shibo)
  * @see CommandLine
- * @see Argument
+ * @see ArgumentValue
  */
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramArgument.class)
 @UmlClassDiagram(diagram = DiagramValidation.class)
 @UmlClassDiagram(diagram = DiagramCommandLine.class)
 @UmlExcludeSuperTypes
-public class ArgumentList implements Iterable<Argument>, StringFormattable, Sized
+@ApiQuality(stability = STABLE_EXTENSIBLE,
+            testing = UNTESTED,
+            documentation = FULLY_DOCUMENTED)
+public class ArgumentValueList implements
+        Iterable<ArgumentValue>,
+        StringFormattable,
+        Sized
 {
     /** The arguments */
     @UmlAggregation
-    private final ObjectList<Argument> arguments = new ObjectList<>();
+    private final ObjectList<ArgumentValue> argumentValues = new ObjectList<>();
 
     /**
      * Adds an argument to this list
      */
-    public void add(Argument argument)
+    public void add(ArgumentValue argumentValue)
     {
-        arguments.add(argument);
+        argumentValues.add(argumentValue);
     }
 
     /**
-     * @return All values in this list converted using the given parser
+     * Returns the argument at the given index in this list
+     */
+    public ArgumentValue argumentValue(int index)
+    {
+        return argumentValues.get(index);
+    }
+
+    /**
+     * Returns all values in this list converted using the given parser
      */
     @UmlExcludeMember
-    public <T> List<T> argumentValues(ArgumentParser<T> parser)
+    public <T> ObjectList<T> arguments(ArgumentParser<T> parser)
     {
-        var arguments = new ArrayList<T>();
+        var arguments = new ObjectList<T>();
         for (var argument : this)
         {
             arguments.add(argument.get(parser));
@@ -78,25 +113,17 @@ public class ArgumentList implements Iterable<Argument>, StringFormattable, Size
 
     @Override
     @UmlExcludeMember
-    public String asString(Format format)
+    public String asString(@NotNull Format format)
     {
-        return arguments.join();
+        return argumentValues.join();
     }
 
     /**
-     * @return The first argument in this list
+     * Returns the first argument in this list
      */
-    public Argument first()
+    public ArgumentValue firstArgumentValue()
     {
-        return arguments.first();
-    }
-
-    /**
-     * @return The argument at the given index in this list
-     */
-    public Argument get(int index)
-    {
-        return arguments.get(index);
+        return argumentValues.first();
     }
 
     /**
@@ -106,13 +133,13 @@ public class ArgumentList implements Iterable<Argument>, StringFormattable, Size
     @UmlExcludeMember
     public boolean isEmpty()
     {
-        return arguments.isEmpty();
+        return argumentValues.isEmpty();
     }
 
     @Override
-    public Iterator<Argument> iterator()
+    public Iterator<ArgumentValue> iterator()
     {
-        return arguments.iterator();
+        return argumentValues.iterator();
     }
 
     /**
@@ -121,7 +148,7 @@ public class ArgumentList implements Iterable<Argument>, StringFormattable, Size
     @Override
     public int size()
     {
-        return arguments.size();
+        return argumentValues.size();
     }
 
     @Override

@@ -18,12 +18,18 @@
 
 package com.telenav.kivakit.commandline.parsing;
 
-import com.telenav.kivakit.commandline.ArgumentList;
+import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.commandline.ArgumentValueList;
 import com.telenav.kivakit.commandline.internal.lexakai.DiagramValidation;
 import com.telenav.kivakit.validation.BaseValidator;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlAggregation;
 import com.telenav.lexakai.annotations.visibility.UmlNotPublicApi;
+
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.ApiType.PRIVATE_API;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
 
 /**
  * <b>Not Public API</b>
@@ -32,13 +38,17 @@ import com.telenav.lexakai.annotations.visibility.UmlNotPublicApi;
  *
  * @author jonathanl (shibo)
  */
-@UmlClassDiagram(diagram = DiagramValidation.class)
+@SuppressWarnings("DuplicatedCode") @UmlClassDiagram(diagram = DiagramValidation.class)
 @UmlNotPublicApi
-public class ArgumentListValidator extends BaseValidator
+@ApiQuality(stability = STABLE_EXTENSIBLE,
+            testing = UNTESTED,
+            documentation = FULLY_DOCUMENTED,
+            type = PRIVATE_API)
+public class ArgumentValueListValidator extends BaseValidator
 {
     /** The arguments to check */
     @UmlAggregation
-    private final ArgumentList arguments;
+    private final ArgumentValueList argumentValues;
 
     /** The argument parsers to check against */
     @UmlAggregation
@@ -46,12 +56,12 @@ public class ArgumentListValidator extends BaseValidator
 
     /**
      * @param parsers The argument parsers to check against
-     * @param arguments The arguments to check
+     * @param argumentValues The arguments to check
      */
-    public ArgumentListValidator(ArgumentParserList parsers, ArgumentList arguments)
+    public ArgumentValueListValidator(ArgumentParserList parsers, ArgumentValueList argumentValues)
     {
         this.parsers = parsers;
-        this.arguments = arguments;
+        this.argumentValues = argumentValues;
     }
 
     /**
@@ -60,7 +70,7 @@ public class ArgumentListValidator extends BaseValidator
     @Override
     protected void onValidate()
     {
-        var remaining = arguments.size();
+        var remaining = argumentValues.size();
 
         // Go through argument parsers
         for (var parser : parsers)
@@ -82,14 +92,6 @@ public class ArgumentListValidator extends BaseValidator
                         problem("Must supply one or more ${debug} arguments for \"$\"", parser, parser.description());
                     }
                     remaining--;
-                    break;
-
-                case TWO_OR_MORE:
-                    if (remaining < 2)
-                    {
-                        problem("Must supply two or more ${debug} arguments for \"$\"", parser, parser.description());
-                    }
-                    remaining -= 2;
                     break;
 
                 case OPTIONAL:

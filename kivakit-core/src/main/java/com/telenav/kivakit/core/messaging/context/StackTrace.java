@@ -24,6 +24,7 @@ import com.telenav.kivakit.core.string.Align;
 import com.telenav.kivakit.core.string.IndentingStringBuilder;
 import com.telenav.kivakit.interfaces.collection.Sized;
 import com.telenav.kivakit.interfaces.string.StringFormattable;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -171,7 +172,7 @@ public class StackTrace implements
      * {@inheritDoc}
      */
     @Override
-    public String asString(Format format)
+    public String asString(@NotNull Format format)
     {
         switch (format)
         {

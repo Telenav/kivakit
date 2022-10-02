@@ -23,6 +23,7 @@ import com.telenav.kivakit.interfaces.internal.lexakai.DiagramString;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeSuperTypes;
+import org.jetbrains.annotations.NotNull;
 
 import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_DEFAULT_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_ENUM_EXTENSIBLE;
@@ -102,7 +103,7 @@ public interface StringFormattable extends AsString
      *
      * @return A string representation of this object that is suitable for the given purpose
      */
-    String asString(Format format);
+    String asString(@NotNull Format format);
 
     @Override
     default String asString()

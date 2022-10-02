@@ -18,6 +18,7 @@
 
 package com.telenav.kivakit.commandline;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.commandline.internal.lexakai.DiagramCommandLine;
 import com.telenav.kivakit.commandline.internal.lexakai.DiagramSwitch;
 import com.telenav.kivakit.conversion.BaseStringConverter;
@@ -28,24 +29,27 @@ import com.telenav.kivakit.core.collections.list.ObjectList;
 import com.telenav.kivakit.core.collections.list.StringList;
 import com.telenav.kivakit.core.collections.set.ObjectSet;
 import com.telenav.kivakit.core.language.reflection.Type;
+import com.telenav.kivakit.core.messaging.messages.status.Glitch;
 import com.telenav.kivakit.core.version.Version;
 import com.telenav.kivakit.interfaces.naming.Named;
-import com.telenav.kivakit.validation.BaseValidator;
 import com.telenav.kivakit.validation.Validatable;
 import com.telenav.kivakit.validation.ValidationIssues;
-import com.telenav.kivakit.validation.ValidationType;
-import com.telenav.kivakit.validation.Validator;
-import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlAggregation;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeSuperTypes;
 import com.telenav.lexakai.annotations.visibility.UmlNotPublicApi;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Set;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
+import static com.telenav.kivakit.commandline.Quantifier.OPTIONAL;
+import static com.telenav.kivakit.commandline.Quantifier.REQUIRED;
+import static com.telenav.kivakit.core.collections.set.ObjectSet.objectSet;
 import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
-import static com.telenav.kivakit.core.ensure.Ensure.fail;
 
 /**
  * A switch parser that can be passed to {@link CommandLine#get(SwitchParser)} to retrieve a switch value.
@@ -53,15 +57,15 @@ import static com.telenav.kivakit.core.ensure.Ensure.fail;
  * <p><b>Built-In Parsers</b></p>
  *
  * <p>
- * Numerous switch parser builders are provided by this class as static methods.
+ * Numerous switch parser builders are provided by {@link SwitchParsers}.
  * </p>
  *
  * <p><b>Parser Builders</b></p>
  *
  * <p>
  * New switches can be created with the switch parser {@link Builder}, which can be accessed through
- * {@link #builder(Class)}. The type parameter is the type of the switch being built. For example, a float switch would
- * be of type Float.class. The builder then allows attributes of the switch parser to be specified:
+ * {@link #switchParserBuilder(Class)}. The type parameter is the type of the switch being built. For example, a float
+ * switch would be of type Float.class. The builder then allows attributes of the switch parser to be specified:
  * <ul>
  *     <li>{@link Builder#name(String)} - The name of the switch on the command line, like "input"</li>
  *     <li>{@link Builder#description(String)} - A description of what the switch does</li>
@@ -78,7 +82,9 @@ import static com.telenav.kivakit.core.ensure.Ensure.fail;
  * command line will be converted from a string to a {@link Version} object with {@link VersionConverter}. Many classes
  * in KivaKit provide string converters, which makes it an easy job to construct switch parsers.
  * <pre>
- * public static Builder&lt;Version&gt; switchParser(Listener listener, String name, String description)
+ * public static Builder&lt;Version&gt; switchParser(Listener listener,
+ *                                             String name,
+ *                                             String description)
  * {
  *     return builder(Version.class)
  *         .name(name)
@@ -87,20 +93,52 @@ import static com.telenav.kivakit.core.ensure.Ensure.fail;
  * }
  * </pre>
  *
+ * <p><b>Values</b></p>
+ *
+ * <ul>
+ *     <li>{@link #asObjectList(SwitchValue)}</li>
+ *     <li>{@link #asObject(SwitchValue)}</li>
+ *     <li>{@link #assignValue(SwitchValue, String)}</li>
+ * </ul>
+ *
+ * <p><b>Validation</b></p>
+ *
+ * <ul>
+ *     <li>{@link #validValues()}</li>
+ * </ul>
+ *
+ * <p><b>Properties</b></p>
+ *
+ * <ul>
+ *     <li>{@link #defaultValue()}</li>
+ *     <li>{@link #help()}</li>
+ *     <li>{@link #isRequired()}</li>
+ *     <li>{@link #name}</li>
+ *     <li>{@link #parent(CommandLineParser)}</li>
+ *     <li>{@link #validValues()}</li>
+ * </ul>
+ *
  * @author jonathanl (shibo)
  * @see BaseStringConverter
  * @see StringConverter
  * @see Converter
  */
-@SuppressWarnings("unused")
+@SuppressWarnings({ "unused", "DuplicatedCode" })
 @UmlClassDiagram(diagram = DiagramSwitch.class)
 @UmlClassDiagram(diagram = DiagramCommandLine.class, includeMembers = false)
 @UmlExcludeSuperTypes
-public class SwitchParser<T> implements
-        Named,
-        Validatable
+@ApiQuality(stability = STABLE_EXTENSIBLE,
+            testing = UNTESTED,
+            documentation = FULLY_DOCUMENTED)
+public class SwitchParser<T> implements Named
 {
-    public static <T> Builder<T> builder(Class<T> type)
+    /**
+     * Creates a switch parser builder for the given type
+     *
+     * @param type The type
+     * @return The builder
+     */
+    public static <T> Builder<T> switchParserBuilder(Class<T> type)
     {
         return new Builder<T>().type(type);
     }
@@ -120,183 +158,247 @@ public class SwitchParser<T> implements
      *
      * @author jonathanl (shibo)
      */
-    @SuppressWarnings("DuplicatedCode") @LexakaiJavadoc(complete = true)
+    @SuppressWarnings("DuplicatedCode")
+    @ApiQuality(stability = STABLE_EXTENSIBLE,
+                testing = UNTESTED,
+                documentation = FULLY_DOCUMENTED)
     public static class Builder<T>
     {
-        private StringConverter<T> converter;
-
-        private T defaultValue;
-
-        private String description;
-
-        private String name;
-
-        private Quantifier quantifier;
-
-        private Type<T> type;
-
-        private Set<T> validValues;
-
-        private String delimiter;
+        /** The switch parser we're building */
+        private SwitchParser<T> parser;
 
         private Builder()
         {
         }
 
+        /**
+         * Returns the switch parser
+         */
         @UmlRelation(label = "creates")
         public SwitchParser<T> build()
         {
-            if (quantifier == null)
-            {
-                fail("Must provide quantifier");
-                return null;
-            }
-            if (name == null)
-            {
-                fail("Must provide name");
-                return null;
-            }
-            if (type == null)
-            {
-                fail("Must provide type");
-                return null;
-            }
-            if (converter == null)
-            {
-                fail("Must provide converter");
-                return null;
-            }
-            if (description == null)
-            {
-                fail("Must provide description");
-                return null;
-            }
-            return new SwitchParser<>(quantifier,
-                    name,
-                    type,
-                    defaultValue,
-                    validValues,
-                    converter,
-                    delimiter,
-                    description);
+            ensureNotNull(parser.quantifier, "Must provide quantifier");
+            ensureNotNull(parser.name, "Must provide name");
+            ensureNotNull(parser.type, "Must provide type");
+            ensureNotNull(parser.converter, "Must provide converter");
+            ensureNotNull(parser.description, "Must provide description");
+
+            return parser;
         }
 
-        public Builder<T> converter(StringConverter<T> converter)
+        /**
+         * Sets the converter
+         *
+         * @param converter The converter
+         * @return This for method chaining
+         */
+        public Builder<T> converter(@NotNull StringConverter<T> converter)
         {
-            this.converter = converter;
+            parser.converter = converter;
             return this;
         }
 
-        public Builder<T> defaultValue(T defaultValue)
+        /**
+         * Sets the default value
+         *
+         * @param defaultValue The default value
+         * @return This for method chaining
+         */
+        public Builder<T> defaultValue(@NotNull T defaultValue)
         {
-            this.defaultValue = defaultValue;
+            parser.defaultValue = defaultValue;
             return this;
         }
 
-        public Builder<T> description(String description)
+        /**
+         * Sets the switch description
+         *
+         * @param description The description
+         * @return This for method chaining
+         */
+        public Builder<T> description(@NotNull String description)
         {
-            this.description = description;
+            parser.description = description;
             return this;
         }
 
-        public Builder<T> listConverter(StringConverter<T> converter, String delimiter)
+        /**
+         * Sets the converter and delimiter to use for parsing lists
+         *
+         * @param converter The converter
+         * @return This for method chaining
+         */
+        public Builder<T> listConverter(@NotNull StringConverter<T> converter, String delimiter)
         {
-            this.converter = converter;
-            this.delimiter = delimiter;
+            parser.converter = converter;
+            parser.delimiter = delimiter;
             return this;
         }
 
-        public Builder<T> name(String name)
+        /**
+         * Sets the name of this switch
+         *
+         * @param name The name of this switch
+         * @return This for method chaining
+         */
+        public Builder<T> name(@NotNull String name)
         {
-            this.name = name;
+            parser.name = name;
             return this;
         }
 
+        /**
+         * Makes this switch optional
+         *
+         * @return This for method chaining
+         */
         public Builder<T> optional()
         {
-            quantifier = Quantifier.OPTIONAL;
-            return this;
+            return quantifier(OPTIONAL);
         }
 
-        public Builder<T> quantifier(Quantifier quantifier)
+        /**
+         * Assigns the given quantifier to this switch
+         *
+         * @return This for method chaining
+         */
+        public Builder<T> quantifier(@NotNull Quantifier quantifier)
         {
-            this.quantifier = quantifier;
+            parser.quantifier = quantifier;
             return this;
         }
 
+        /**
+         * Makes this switch required
+         *
+         * @return This for method chaining
+         */
         public Builder<T> required()
         {
-            quantifier = Quantifier.REQUIRED;
+            return quantifier(REQUIRED);
+        }
+
+        /**
+         * Sets the type of object for this switch
+         *
+         * @param type The object type
+         * @return This for method chaining
+         */
+        public Builder<T> type(@NotNull Class<T> type)
+        {
+            parser.type = Type.typeForClass(type);
             return this;
         }
 
-        public Builder<T> type(Class<T> type)
+        /**
+         * Sets the set of valid values for this switch
+         *
+         * @param validValues The values that are acceptable
+         * @return This for method chaining
+         */
+        public Builder<T> validValues(@NotNull Set<T> validValues)
         {
-            this.type = Type.typeForClass(type);
-            return this;
-        }
-
-        public Builder<T> validValues(Set<T> validValues)
-        {
-            this.validValues = validValues;
+            parser.validValues = objectSet(validValues);
             return this;
         }
     }
 
+    /** Converts from string to object */
     @UmlAggregation(label = "converts values with")
-    private final StringConverter<T> converter;
+    private StringConverter<T> converter;
 
-    private final String delimiter;
-
+    /** The default value if no value is provided */
     @UmlAggregation(label = "default value")
-    private final T defaultValue;
+    private T defaultValue;
 
-    private final String description;
+    /** Description of the switch */
+    private String description;
 
-    private final String name;
+    /** Name of the switch */
+    private String name;
 
+    /** Number of times the switch can appear */
+    @UmlAggregation
+    private Quantifier quantifier;
+
+    /** The type of object produced */
+    private Type<T> type;
+
+    /** A set of value values */
+    private ObjectSet<T> validValues;
+
+    /** The delimiter for parsing multiple values */
+    private String delimiter;
+
+    /** The command line parser that owns this switch parser */
     private CommandLineParser parent;
 
-    @UmlAggregation
-    private final Quantifier quantifier;
-
-    private final Type<T> type;
-
-    private final ObjectSet<T> validValues;
-
     /**
-     * Construct.
-     *
-     * @param quantifier The optionality of the switch
-     * @param name The name of the switch
-     * @param type The type of the switch
-     * @param defaultValue The default value if the switch is optional and omitted
-     * @param validValues A set of valid values
-     * @param converter String converter for the given type
-     * @param description Description of what the switch does
+     * Returns the value of the given switch
      */
-    private SwitchParser(
-            Quantifier quantifier,
-            String name,
-            Type<T> type,
-            T defaultValue,
-            Set<T> validValues,
-            StringConverter<T> converter,
-            String delimiter,
-            String description)
+    @UmlNotPublicApi
+    @UmlRelation(label = "gets")
+    public T asObject(@NotNull SwitchValue switchValue)
     {
-        this.name = name;
-        this.quantifier = quantifier;
-        this.defaultValue = defaultValue;
-        this.validValues = ObjectSet.objectSet(validValues);
-        this.converter = converter;
-        this.delimiter = delimiter;
-        this.type = type;
-        this.description = description;
+        ensureNotNull(parent, "Switch parser was not added to command line parent");
+
+        var issues = new ValidationIssues();
+        issues.listenTo(converter);
+        var value = converter.convert(switchValue.value());
+        if (value instanceof Validatable)
+        {
+            ((Validatable) value).isValid(issues);
+        }
+        if (issues.countWorseThanOrEqualTo(Glitch.class).isZero())
+        {
+            return value;
+        }
+        parent.exit("Invalid value $ for switch -$ ", switchValue.value(), switchValue.name());
+        return null;
     }
 
     /**
-     * @return The default value to use if there is no switch present
+     * Returns a list of values for the given switch
+     */
+    @UmlNotPublicApi
+    @UmlRelation(label = "gets")
+    public ObjectList<T> asObjectList(@NotNull SwitchValue switchValue)
+    {
+        ensureNotNull(parent, "Switch parser was not added to command line parent");
+
+        var messages = new ValidationIssues();
+        messages.listenTo(converter);
+        var value = converter.convertToList(switchValue.value(), ensureNotNull(delimiter));
+        if (messages.isEmpty())
+        {
+            return value;
+        }
+        parent.exit("Invalid value $ for switch -$ ", switchValue.value(), switchValue.name());
+        return null;
+    }
+
+    /**
+     * Returns a list of values for the given switch
+     */
+    @UmlRelation(label = "gets")
+    public ObjectSet<T> assignValue(@NotNull SwitchValue switchValue,
+                                    @NotNull String delimiter)
+    {
+        ensureNotNull(parent, "Switch parser was not added to command line parent");
+
+        var messages = new ValidationIssues();
+        messages.listenTo(converter);
+        var value = converter.convertToSet(switchValue.value(), delimiter);
+        if (messages.isEmpty())
+        {
+            return value;
+        }
+        parent.exit("Invalid value $ for switch -$ ", switchValue.value(), switchValue.name());
+        return null;
+    }
+
+    /**
+     * Returns the default value to use if there is no switch present
      */
     public T defaultValue()
     {
@@ -304,25 +406,7 @@ public class SwitchParser<T> implements
     }
 
     /**
-     * @return The value of the given switch
-     */
-    @UmlNotPublicApi
-    @UmlRelation(label = "gets")
-    public T get(Switch _switch)
-    {
-        var messages = new ValidationIssues();
-        messages.listenTo(converter);
-        var value = converter.convert(_switch.value());
-        if (messages.isEmpty())
-        {
-            return value;
-        }
-        exit("Invalid value $ for switch -$ ", _switch.value(), _switch.name());
-        return null;
-    }
-
-    /**
-     * @return A help string for this switch
+     * Returns a help string for this switch
      */
     public String help()
     {
@@ -338,7 +422,7 @@ public class SwitchParser<T> implements
     }
 
     /**
-     * @return True if this switch is required
+     * Returns true if this switch is required
      */
     public boolean isRequired()
     {
@@ -346,48 +430,12 @@ public class SwitchParser<T> implements
     }
 
     /**
-     * Returns a list of values for the given switch
-     */
-    @UmlNotPublicApi
-    @UmlRelation(label = "gets")
-    public ObjectList<T> list(Switch _switch)
-    {
-        var messages = new ValidationIssues();
-        messages.listenTo(converter);
-        var value = converter.convertToList(_switch.value(), ensureNotNull(delimiter));
-        if (messages.isEmpty())
-        {
-            return value;
-        }
-        exit("Invalid value $ for switch -$ ", _switch.value(), _switch.name());
-        return null;
-    }
-
-    /**
-     * @return The name of the switch
+     * Returns the name of the switch
      */
     @Override
     public String name()
     {
         return name;
-    }
-
-    /**
-     * Returns a list of values for the given switch
-     */
-    @UmlNotPublicApi
-    @UmlRelation(label = "gets")
-    public ObjectSet<T> set(Switch _switch, String delimiter)
-    {
-        var messages = new ValidationIssues();
-        messages.listenTo(converter);
-        var value = converter.convertToSet(_switch.value(), delimiter);
-        if (messages.isEmpty())
-        {
-            return value;
-        }
-        exit("Invalid value $ for switch -$ ", _switch.value(), _switch.name());
-        return null;
     }
 
     @Override
@@ -397,43 +445,18 @@ public class SwitchParser<T> implements
     }
 
     /**
-     * @return The set of valid values for switches parsed by this parser
+     * Returns the set of valid values for switches parsed by this parser
      */
-    public Set<T> validValues()
+    public ObjectSet<T> validValues()
     {
         return validValues;
     }
 
     /**
-     * {@inheritDoc}
-     */
-    @Override
-    public Validator validator(ValidationType type)
-    {
-        return new BaseValidator()
-        {
-            @Override
-            protected void onValidate()
-            {
-            }
-        };
-    }
-
-    /**
      * @param parent The parent command-line parser that owns this switch parser
      */
-    void parent(CommandLineParser parent)
+    void parent(@NotNull CommandLineParser parent)
     {
         this.parent = parent;
-    }
-
-    @SuppressWarnings("SameParameterValue")
-    private void exit(String message, Object... arguments)
-    {
-        if (parent != null)
-        {
-            parent.exit(message, arguments);
-        }
-        fail("Switch parser was not added in Application.switchParsers(): $", this);
     }
 }

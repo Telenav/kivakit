@@ -244,7 +244,7 @@ public abstract class BaseCollection<Value> implements
      */
     @SuppressWarnings("SwitchStatementWithTooFewBranches")
     @Override
-    public String asString(StringFormattable.Format format)
+    public String asString(StringFormattable.@NotNull Format format)
     {
         switch (format)
         {

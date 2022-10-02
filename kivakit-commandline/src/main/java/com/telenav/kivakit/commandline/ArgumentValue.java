@@ -18,10 +18,15 @@
 
 package com.telenav.kivakit.commandline;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.commandline.internal.lexakai.DiagramArgument;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
+import org.jetbrains.annotations.NotNull;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
 import static com.telenav.kivakit.core.ensure.Ensure.fail;
 
 /**
@@ -30,17 +35,23 @@ import static com.telenav.kivakit.core.ensure.Ensure.fail;
  *
  * @author jonathanl (shibo)
  * @see ArgumentParser
- * @see ArgumentList
+ * @see ArgumentValueList
  * @see CommandLine
  */
 @UmlClassDiagram(diagram = DiagramArgument.class)
 @UmlRelation(label = "gets value with", referent = ArgumentParser.class)
-public class Argument
+@ApiQuality(stability = STABLE_EXTENSIBLE,
+            testing = UNTESTED,
+            documentation = FULLY_DOCUMENTED)
+public class ArgumentValue
 {
     /** The argument's string value */
     private final String value;
 
-    public Argument(String value)
+    /**
+     * @param value The argument value
+     */
+    public ArgumentValue(@NotNull String value)
     {
         this.value = value;
     }
@@ -49,9 +60,9 @@ public class Argument
      * @param parser The argument parser
      * @return The value of this argument using the given argument parser
      */
-    public <T> T get(ArgumentParser<T> parser)
+    public <T> T get(@NotNull ArgumentParser<T> parser)
     {
-        var value = parser.get(this);
+        var value = parser.asObject(this);
         if (value == null)
         {
             var parent = parser.parent();
@@ -74,7 +85,7 @@ public class Argument
     }
 
     /**
-     * @return The string value of this argument
+     * Returns the string value of this argument
      */
     public String value()
     {

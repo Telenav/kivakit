@@ -174,7 +174,7 @@ public class Deployment extends MemorySettingsStore implements Serializable
                                                                           DeploymentSet deployments,
                                                                           String switchName)
     {
-        return SwitchParser.builder(Deployment.class)
+        return SwitchParser.switchParserBuilder(Deployment.class)
                 .name("deployment")
                 .validValues(deployments.deployments())
                 .converter(new Deployment.Converter(listener, deployments))

@@ -6,6 +6,7 @@ import com.telenav.kivakit.interfaces.internal.lexakai.DiagramTime;
 import com.telenav.kivakit.interfaces.string.StringFormattable;
 import com.telenav.kivakit.interfaces.value.LongValued;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
+import org.jetbrains.annotations.NotNull;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -111,7 +112,7 @@ public interface LengthOfTime<Duration extends LongValued & LengthOfTime<Duratio
      */
     @Override
     @SuppressWarnings({ "SpellCheckingInspection", "DuplicatedCode" })
-    default String asString(Format format)
+    default String asString(@NotNull Format format)
     {
         switch (format)
         {

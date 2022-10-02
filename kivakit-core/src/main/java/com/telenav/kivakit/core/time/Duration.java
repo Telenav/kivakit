@@ -28,6 +28,7 @@ import com.telenav.kivakit.interfaces.time.Nanoseconds;
 import com.telenav.kivakit.interfaces.time.WakeState;
 import com.telenav.kivakit.interfaces.value.DoubleValued;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
+import org.jetbrains.annotations.NotNull;
 
 import java.lang.management.ManagementFactory;
 import java.lang.management.ThreadMXBean;
@@ -524,7 +525,7 @@ public class Duration implements
     }
 
     @Override
-    public String asString(Format format)
+    public String asString(@NotNull Format format)
     {
         return LengthOfTime.super.asString(format);
     }

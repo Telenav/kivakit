@@ -5,6 +5,7 @@ import com.telenav.kivakit.interfaces.string.StringFormattable;
 import com.telenav.kivakit.interfaces.time.LengthOfTime;
 import com.telenav.kivakit.interfaces.time.Nanoseconds;
 import com.telenav.kivakit.interfaces.time.PointInTime;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Objects;
 
@@ -173,7 +174,7 @@ public abstract class BaseTime<TimeType extends BaseTime<TimeType>> implements
     }
 
     @Override
-    public String asString(Format format)
+    public String asString(@NotNull Format format)
     {
         return toString();
     }

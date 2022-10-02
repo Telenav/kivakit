@@ -18,13 +18,13 @@
 
 package com.telenav.kivakit.commandline;
 
-import com.telenav.kivakit.commandline.parsing.SwitchList;
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.commandline.internal.lexakai.DiagramCommandLine;
+import com.telenav.kivakit.core.collections.list.ObjectList;
 import com.telenav.kivakit.core.collections.list.StringList;
-import com.telenav.kivakit.core.string.ObjectFormatter;
 import com.telenav.kivakit.core.language.reflection.property.KivaKitIncludeProperty;
 import com.telenav.kivakit.core.string.AsciiArt;
-import com.telenav.kivakit.core.string.Strings;
+import com.telenav.kivakit.core.string.ObjectFormatter;
 import com.telenav.kivakit.interfaces.string.StringFormattable;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.UmlNote;
@@ -32,13 +32,16 @@ import com.telenav.lexakai.annotations.associations.UmlAggregation;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeMember;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeSuperTypes;
+import org.jetbrains.annotations.NotNull;
 
-import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.List;
 import java.util.regex.Pattern;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
 import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
+import static com.telenav.kivakit.core.string.Strings.format;
 import static com.telenav.lexakai.annotations.UmlNote.Align.TOP;
 
 /**
@@ -47,9 +50,10 @@ import static com.telenav.lexakai.annotations.UmlNote.Align.TOP;
  * <p><b>Retrieving Switches and Arguments</b></p>
  *
  * <p>
- * The list of arguments can be retrieved with {@link #arguments()} or by using the command line object in an advanced
- * for loop. Switch values can be retrieved by passing a {@link SwitchParser} to {@link #get(SwitchParser)} or {@link
- * #get(SwitchParser, Object)}. The method {@link #has(SwitchParser)} can be used to determine if a switch is present.
+ * The list of arguments can be retrieved with {@link #argumentValues()} or by using the command line object in an
+ * advanced for loop. Switch values can be retrieved by passing a {@link SwitchParser} to {@link #get(SwitchParser)} or
+ * {@link #get(SwitchParser, Object)}. The method {@link #has(SwitchParser)} can be used to determine if a switch is
+ * present.
  * </p>
  *
  * <p><b>Error Handling</b></p>
@@ -59,6 +63,38 @@ import static com.telenav.lexakai.annotations.UmlNote.Align.TOP;
  * help. An application might want to do this, for example, if two switches conflict or if a file is missing.
  * </p>
  *
+ * <p><b>Arguments</b></p>
+ *
+ * <ul>
+ *     <li>{@link #argument(ArgumentParser)}</li>
+ *     <li>{@link #argument(int, ArgumentParser)}</li>
+ *     <li>{@link #arguments(ArgumentParser)}</li>
+ *     <li>{@link #argumentValues()}</li>
+ *     <li>{@link #iterator()}</li>
+ * </ul>
+ *
+ * <p><b>Switches</b></p>
+ *
+ * <ul>
+ *     <li>{@link #addSwitch(String, String)}</li>
+ *     <li>{@link #get(SwitchParser)}</li>
+ *     <li>{@link #get(SwitchParser, Object)}</li>
+ *     <li>{@link #has(SwitchParser)}</li>
+ * </ul>
+ *
+ * <p><b>Operations</b></p>
+ *
+ * <ul>
+ *     <li>{@link #exit(String, Object...)}</li>
+ * </ul>
+ *
+ * <p><b>Conversion</b></p>
+ *
+ * <ul>
+ *     <li>{@link #asArgumentArray()}</li>
+ *     <li>{@link #asString(Format)}</li>
+ * </ul>
+ *
  * @author jonathanl (shibo)
  * @see CommandLineParser
  */
@@ -66,7 +102,10 @@ import static com.telenav.lexakai.annotations.UmlNote.Align.TOP;
 @UmlClassDiagram(diagram = DiagramCommandLine.class)
 @UmlExcludeSuperTypes({ StringFormattable.class })
 @UmlNote(text = "See Application for easy access to switches and arguments", align = TOP)
-public class CommandLine implements StringFormattable, Iterable<Argument>
+@ApiQuality(stability = STABLE_EXTENSIBLE,
+            testing = UNTESTED,
+            documentation = FULLY_DOCUMENTED)
+public class CommandLine implements StringFormattable, Iterable<ArgumentValue>
 {
     /**
      * The pattern for switches, such as "-x=9" ( note that the equal sign is always required)
@@ -78,7 +117,7 @@ public class CommandLine implements StringFormattable, Iterable<Argument>
      */
     @KivaKitIncludeProperty
     @UmlAggregation
-    private final ArgumentList arguments;
+    private final ArgumentValueList arguments;
 
     @UmlRelation(label = "parses with")
     private final CommandLineParser parser;
@@ -88,23 +127,23 @@ public class CommandLine implements StringFormattable, Iterable<Argument>
      */
     @KivaKitIncludeProperty
     @UmlAggregation
-    private final SwitchList switches;
+    private final SwitchValueList switches;
 
     /**
      * @param parser The command line parser
      * @param arguments The argument list as passed to the CommandLineApplication constructor (and originating from the
      * standard Java main() entry point for command-line applications).
      */
-    public CommandLine(CommandLineParser parser, String[] arguments)
+    public CommandLine(@NotNull CommandLineParser parser, @NotNull String[] arguments)
     {
         // Save command line parser
         this.parser = parser;
 
         // Create argument list with parsers
-        this.arguments = new ArgumentList();
+        this.arguments = new ArgumentValueList();
 
         // Create switch list with parsers
-        switches = new SwitchList();
+        switches = new SwitchValueList();
 
         // Loop through arguments, assigning switches to the switch list and arguments to the
         // argument list
@@ -120,7 +159,7 @@ public class CommandLine implements StringFormattable, Iterable<Argument>
                 if (matcher.matches())
                 {
                     // add it to the switch list,
-                    switches.add(new Switch(matcher.group(1), matcher.group(2)));
+                    switches.add(new SwitchValue(matcher.group(1), matcher.group(2)));
                 }
                 else
                 {
@@ -131,7 +170,7 @@ public class CommandLine implements StringFormattable, Iterable<Argument>
             else
             {
                 // otherwise, add the argument to the argument list
-                this.arguments.add(new Argument(argument));
+                this.arguments.add(new ArgumentValue(argument));
             }
         }
 
@@ -143,36 +182,44 @@ public class CommandLine implements StringFormattable, Iterable<Argument>
      * A programmatic way to add a switch
      */
     @UmlExcludeMember
-    public void addSwitch(String name, String value)
+    public void addSwitch(@NotNull String name, @NotNull String value)
     {
-        switches.add(new Switch(name, value));
+        switches.add(new SwitchValue(name, value));
     }
 
     /**
-     * @return The non-switch argument at the given index parsed using the given argument parser
+     * Returns the non-switch argument at the given index parsed using the given argument parser
      */
     @UmlRelation(label = "gets arguments")
-    public <T> T argument(int index, ArgumentParser<T> parser)
+    public <T> T argument(int index, @NotNull ArgumentParser<T> parser)
     {
-        return arguments().get(index).get(parser);
+        return argumentValues().argumentValue(index).get(parser);
     }
 
     /**
-     * @return The first non-switch argument parsed using the given argument parser
+     * Returns the first non-switch argument parsed using the given argument parser
      */
-    public <T> T argument(ArgumentParser<T> parser)
+    public <T> T argument(@NotNull ArgumentParser<T> parser)
     {
         return argument(0, parser);
     }
 
     /**
-     * @return The list of all arguments retrieved using the given parser. Note that this implies that all arguments are
+     * Returns the list of command-line (non-switch) arguments
+     */
+    public ArgumentValueList argumentValues()
+    {
+        return arguments;
+    }
+
+    /**
+     * Returns the list of all arguments retrieved using the given parser. Note that this implies that all arguments are
      * of the same type.
      */
-    public <T> List<T> arguments(ArgumentParser<T> parser)
+    public <T> ObjectList<T> arguments(@NotNull ArgumentParser<T> parser)
     {
-        var arguments = new ArrayList<T>();
-        for (var argument : arguments())
+        var arguments = new ObjectList<T>();
+        for (var argument : argumentValues())
         {
             arguments.add(argument.get(parser));
         }
@@ -180,15 +227,7 @@ public class CommandLine implements StringFormattable, Iterable<Argument>
     }
 
     /**
-     * @return The list of command-line (non-switch) arguments
-     */
-    public ArgumentList arguments()
-    {
-        return arguments;
-    }
-
-    /**
-     * @return This command line converted back into a string array. Note that switches will always appear first in the
+     * Returns this command line converted back into a string array. Note that switches will always appear first in the
      * returned array.
      */
     @UmlExcludeMember
@@ -209,7 +248,7 @@ public class CommandLine implements StringFormattable, Iterable<Argument>
     @SuppressWarnings("SwitchStatementWithTooFewBranches")
     @Override
     @UmlExcludeMember
-    public String asString(Format format)
+    public String asString(@NotNull Format format)
     {
         switch (format)
         {
@@ -224,16 +263,16 @@ public class CommandLine implements StringFormattable, Iterable<Argument>
     /**
      * Exits the application with the given error message and help for the user.
      */
-    public void exit(String error, Object... arguments)
+    public void exit(@NotNull String error, Object... arguments)
     {
-        parser.exit(Strings.format(AsciiArt.spaces(4) + AsciiArt.bullet() + " " + error, arguments));
+        parser.exit(format(AsciiArt.spaces(4) + AsciiArt.bullet() + " " + error, arguments));
     }
 
     /**
-     * @return The value of any switch on this command line for the given switch parser
+     * Returns the value of any switch on this command line for the given switch parser
      */
     @UmlRelation(label = "gets switches")
-    public <T> T get(SwitchParser<T> parser)
+    public <T> T get(@NotNull SwitchParser<T> parser)
     {
         ensureNotNull(parser);
 
@@ -265,10 +304,11 @@ public class CommandLine implements StringFormattable, Iterable<Argument>
     }
 
     /**
-     * @return The value for the given switch parser, or if the switch does not exist on this command line, the default
+     * Returns the value for the given switch parser, or if the switch does not exist on this command line, the default
      * value instead.
      */
-    public <T> T get(SwitchParser<T> parser, T defaultValue)
+    public <T> T get(@NotNull SwitchParser<T> parser,
+                     @NotNull T defaultValue)
     {
         ensureNotNull(parser);
 
@@ -281,9 +321,9 @@ public class CommandLine implements StringFormattable, Iterable<Argument>
     }
 
     /**
-     * @return True if this command line has a value for the given switch parser
+     * Returns true if this command line has a value for the given switch parser
      */
-    public <T> boolean has(SwitchParser<T> parser)
+    public <T> boolean has(@NotNull SwitchParser<T> parser)
     {
         ensureNotNull(parser);
 
@@ -291,7 +331,7 @@ public class CommandLine implements StringFormattable, Iterable<Argument>
     }
 
     @Override
-    public Iterator<Argument> iterator()
+    public Iterator<ArgumentValue> iterator()
     {
         return arguments.iterator();
     }

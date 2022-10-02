@@ -336,7 +336,7 @@ public class Folder extends BaseRepeater implements
     public static ArgumentParser.Builder<Folder> folderArgumentParser(@NotNull Listener listener,
                                                                       @NotNull String description)
     {
-        return ArgumentParser.builder(Folder.class)
+        return ArgumentParser.argumentParserBuilder(Folder.class)
                 .converter(new Folder.Converter(listener))
                 .description(description);
     }
@@ -351,7 +351,7 @@ public class Folder extends BaseRepeater implements
     public static ArgumentParser.Builder<FolderList> folderListArgumentParser(@NotNull Listener listener,
                                                                               @NotNull String description)
     {
-        return ArgumentParser.builder(FolderList.class)
+        return ArgumentParser.argumentParserBuilder(FolderList.class)
                 .converter(new FolderList.Converter(listener))
                 .description(description);
     }
@@ -368,7 +368,7 @@ public class Folder extends BaseRepeater implements
                                                                           @NotNull String name,
                                                                           @NotNull String description)
     {
-        return SwitchParser.builder(FolderList.class)
+        return SwitchParser.switchParserBuilder(FolderList.class)
                 .name(name)
                 .converter(new FolderList.Converter(listener))
                 .description(description);
@@ -385,7 +385,7 @@ public class Folder extends BaseRepeater implements
                                                                   @NotNull String name,
                                                                   @NotNull String description)
     {
-        return SwitchParser.builder(Folder.class)
+        return SwitchParser.switchParserBuilder(Folder.class)
                 .name(name)
                 .converter(new Folder.Converter(listener))
                 .description(description);

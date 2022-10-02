@@ -293,7 +293,7 @@ public class File extends BaseWritableResource implements FileSystemObject
     public static ArgumentParser.Builder<File> fileArgumentParser(@NotNull Listener listener,
                                                                   @NotNull String description)
     {
-        return ArgumentParser.builder(File.class)
+        return ArgumentParser.argumentParserBuilder(File.class)
                 .converter(new File.Converter(listener))
                 .description(description);
     }
@@ -310,7 +310,7 @@ public class File extends BaseWritableResource implements FileSystemObject
                                                                           @NotNull String description,
                                                                           @NotNull Extension extension)
     {
-        return ArgumentParser.builder(FileList.class)
+        return ArgumentParser.argumentParserBuilder(FileList.class)
                 .converter(new FileList.Converter(listener, extension))
                 .description(description);
     }
@@ -329,7 +329,7 @@ public class File extends BaseWritableResource implements FileSystemObject
                                                                       @NotNull String description,
                                                                       @NotNull Extension extension)
     {
-        return SwitchParser.builder(FileList.class)
+        return SwitchParser.switchParserBuilder(FileList.class)
                 .name(name)
                 .converter(new FileList.Converter(listener, extension))
                 .description(description);
@@ -347,7 +347,7 @@ public class File extends BaseWritableResource implements FileSystemObject
                                                                       @NotNull String name,
                                                                       @NotNull String description)
     {
-        return SwitchParser.builder(FilePath.class)
+        return SwitchParser.switchParserBuilder(FilePath.class)
                 .name(name)
                 .converter(new FilePath.Converter(listener))
                 .description(description);
@@ -365,7 +365,7 @@ public class File extends BaseWritableResource implements FileSystemObject
                                                               @NotNull String name,
                                                               @NotNull String description)
     {
-        return SwitchParser.builder(File.class)
+        return SwitchParser.switchParserBuilder(File.class)
                 .name(name)
                 .converter(new File.Converter(listener))
                 .description(description);

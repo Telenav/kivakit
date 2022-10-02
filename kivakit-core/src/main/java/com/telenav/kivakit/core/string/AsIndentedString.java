@@ -26,6 +26,7 @@ import com.telenav.kivakit.core.language.reflection.property.Property;
 import com.telenav.kivakit.core.value.count.Maximum;
 import com.telenav.kivakit.interfaces.string.StringFormattable;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
+import org.jetbrains.annotations.NotNull;
 
 import static com.telenav.kivakit.annotations.code.ApiStability.STABLE;
 import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
@@ -78,7 +79,7 @@ public interface AsIndentedString extends StringFormattable
      * {@inheritDoc}
      */
     @Override
-    default String asString(Format format)
+    default String asString(@NotNull Format format)
     {
         var indenter = new ObjectIndenter(format);
         indenter.levels(Maximum._8);

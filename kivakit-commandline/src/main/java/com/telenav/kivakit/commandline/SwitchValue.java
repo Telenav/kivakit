@@ -18,12 +18,17 @@
 
 package com.telenav.kivakit.commandline;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.commandline.internal.lexakai.DiagramSwitch;
 import com.telenav.kivakit.core.language.Hash;
 import com.telenav.kivakit.interfaces.naming.Named;
-import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
+import org.jetbrains.annotations.NotNull;
+
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
 
 /**
  * <b>Not public API</b>
@@ -34,8 +39,10 @@ import com.telenav.lexakai.annotations.associations.UmlRelation;
  */
 @UmlClassDiagram(diagram = DiagramSwitch.class)
 @UmlRelation(label = "gets value with", referent = SwitchParser.class)
-@LexakaiJavadoc(complete = true)
-public class Switch extends Argument implements Named
+@ApiQuality(stability = STABLE_EXTENSIBLE,
+            testing = UNTESTED,
+            documentation = FULLY_DOCUMENTED)
+public class SwitchValue extends ArgumentValue implements Named
 {
     /** The name of this switch argument */
     private final String name;
@@ -44,7 +51,8 @@ public class Switch extends Argument implements Named
      * @param name The name of the switch
      * @param value The switch's value
      */
-    public Switch(String name, String value)
+    public SwitchValue(@NotNull String name,
+                       @NotNull String value)
     {
         super(value);
         this.name = name;
@@ -56,9 +64,9 @@ public class Switch extends Argument implements Named
     @Override
     public boolean equals(Object object)
     {
-        if (object instanceof Switch)
+        if (object instanceof SwitchValue)
         {
-            var that = (Switch) object;
+            var that = (SwitchValue) object;
             return name.equals(that.name);
         }
         return false;
@@ -67,9 +75,9 @@ public class Switch extends Argument implements Named
     /**
      * @return The typed value of this switch converted using the given switch parser
      */
-    public <T> T get(SwitchParser<T> parser)
+    public <T> T get(@NotNull SwitchParser<T> parser)
     {
-        return parser.get(this);
+        return parser.asObject(this);
     }
 
     /**
@@ -82,7 +90,7 @@ public class Switch extends Argument implements Named
     }
 
     /**
-     * @return The name of this switch
+     * Returns the name of this switch
      */
     @Override
     public String name()
