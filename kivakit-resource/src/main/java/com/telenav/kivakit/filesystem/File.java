@@ -48,6 +48,7 @@ import com.telenav.kivakit.resource.writing.BaseWritableResource;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlAggregation;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeMember;
+import org.jetbrains.annotations.NotNull;
 
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -137,7 +138,6 @@ import static com.telenav.kivakit.filesystem.loader.FileSystemServiceLoader.file
  *     <li>{@link #chmod(PosixFilePermission...)}</li>
  *     <li>{@link #delete()}</li>
  *     <li>{@link #saveText(String)}</li>
- *     <li>{@link #println(String)}</li>
  *     <li>{@link #renameTo(Resource)}</li>
  *     <li>{@link #safeCopyFrom(Resource, CopyMode, ProgressReporter)}</li>
  * </ul>
@@ -211,7 +211,7 @@ public class File extends BaseWritableResource implements FileSystemObject
      *
      * @param listener The listener to call with any problems
      */
-    public static File file(Listener listener, URI uri)
+    public static File file(@NotNull Listener listener, @NotNull URI uri)
     {
         // Ensure our many preconditions
         if (!uri.isAbsolute())
@@ -266,7 +266,7 @@ public class File extends BaseWritableResource implements FileSystemObject
      *
      * @param listener The listener to call with any problems
      */
-    public static File file(Listener listener, java.io.File file)
+    public static File file(@NotNull Listener listener, @NotNull java.io.File file)
     {
         return parseFile(listener, file.getAbsolutePath());
     }
@@ -277,7 +277,7 @@ public class File extends BaseWritableResource implements FileSystemObject
      * @param listener The listener to call with any problems
      * @param path The path
      */
-    public static File file(Listener listener, FilePath path)
+    public static File file(@NotNull Listener listener, @NotNull FilePath path)
     {
         var filesystem = fileSystem(listener, path);
         return new File(ensureNotNull(filesystem).fileService(path));
@@ -290,7 +290,8 @@ public class File extends BaseWritableResource implements FileSystemObject
      * @param description The argument description
      * @return The argument parser builder
      */
-    public static ArgumentParser.Builder<File> fileArgumentParser(Listener listener, String description)
+    public static ArgumentParser.Builder<File> fileArgumentParser(@NotNull Listener listener,
+                                                                  @NotNull String description)
     {
         return ArgumentParser.builder(File.class)
                 .converter(new File.Converter(listener))
@@ -305,9 +306,9 @@ public class File extends BaseWritableResource implements FileSystemObject
      * @param extension The extension to match for files in the file list
      * @return The argument parser builder
      */
-    public static ArgumentParser.Builder<FileList> fileListArgumentParser(Listener listener,
-                                                                          String description,
-                                                                          Extension extension)
+    public static ArgumentParser.Builder<FileList> fileListArgumentParser(@NotNull Listener listener,
+                                                                          @NotNull String description,
+                                                                          @NotNull Extension extension)
     {
         return ArgumentParser.builder(FileList.class)
                 .converter(new FileList.Converter(listener, extension))
@@ -323,10 +324,10 @@ public class File extends BaseWritableResource implements FileSystemObject
      * @param extension The extension to match for files in the file list
      * @return The switch parser builder
      */
-    public static SwitchParser.Builder<FileList> fileListSwitchParser(Listener listener,
-                                                                      String name,
-                                                                      String description,
-                                                                      Extension extension)
+    public static SwitchParser.Builder<FileList> fileListSwitchParser(@NotNull Listener listener,
+                                                                      @NotNull String name,
+                                                                      @NotNull String description,
+                                                                      @NotNull Extension extension)
     {
         return SwitchParser.builder(FileList.class)
                 .name(name)
@@ -342,9 +343,9 @@ public class File extends BaseWritableResource implements FileSystemObject
      * @param description The switch description
      * @return The switch parser builder
      */
-    public static SwitchParser.Builder<FilePath> filePathSwitchParser(Listener listener,
-                                                                      String name,
-                                                                      String description)
+    public static SwitchParser.Builder<FilePath> filePathSwitchParser(@NotNull Listener listener,
+                                                                      @NotNull String name,
+                                                                      @NotNull String description)
     {
         return SwitchParser.builder(FilePath.class)
                 .name(name)
@@ -360,9 +361,9 @@ public class File extends BaseWritableResource implements FileSystemObject
      * @param description The switch description
      * @return The switch parser builder
      */
-    public static SwitchParser.Builder<File> fileSwitchParser(Listener listener,
-                                                              String name,
-                                                              String description)
+    public static SwitchParser.Builder<File> fileSwitchParser(@NotNull Listener listener,
+                                                              @NotNull String name,
+                                                              @NotNull String description)
     {
         return SwitchParser.builder(File.class)
                 .name(name)
@@ -378,7 +379,9 @@ public class File extends BaseWritableResource implements FileSystemObject
      * @param variables The variables to expand
      * @return The file
      */
-    public static File parseFile(Listener listener, String path, VariableMap<String> variables)
+    public static File parseFile(@NotNull Listener listener,
+                                 @NotNull String path,
+                                 @NotNull VariableMap<String> variables)
     {
         return parseFile(listener, variables.expand(path));
     }
@@ -390,7 +393,7 @@ public class File extends BaseWritableResource implements FileSystemObject
      * @param path The path to parse
      * @return The file
      */
-    public static File parseFile(Listener listener, String path)
+    public static File parseFile(@NotNull Listener listener, @NotNull String path)
     {
         // If there is a KivaKit scheme, like "s3", "hdfs" or "java",
         var scheme = Paths.pathHead(path, ":");
@@ -416,7 +419,7 @@ public class File extends BaseWritableResource implements FileSystemObject
      * @param extension The extension
      * @return The temporary file
      */
-    public static File temporary(Extension extension)
+    public static File temporary(@NotNull Extension extension)
     {
         return Folder.kivakitTemporary().file("temp-" + temporaryFileNumber++ + extension);
     }
@@ -431,7 +434,7 @@ public class File extends BaseWritableResource implements FileSystemObject
                 documentation = FULLY_DOCUMENTED)
     public static class Converter extends BaseStringConverter<File>
     {
-        public Converter(Listener listener)
+        public Converter(@NotNull Listener listener)
         {
             super(listener, File::parseFile);
         }
@@ -449,7 +452,7 @@ public class File extends BaseWritableResource implements FileSystemObject
     public static class Resolver implements ResourceResolver
     {
         @Override
-        public boolean accepts(ResourceIdentifier identifier)
+        public boolean accepts(@NotNull ResourceIdentifier identifier)
         {
             if (identifier.identifier().matches("^(http|https|classpath):.*"))
             {
@@ -459,7 +462,7 @@ public class File extends BaseWritableResource implements FileSystemObject
         }
 
         @Override
-        public Resource resolve(ResourceIdentifier identifier)
+        public Resource resolve(@NotNull ResourceIdentifier identifier)
         {
             return File.parseFile(this, identifier.identifier());
         }
@@ -472,7 +475,7 @@ public class File extends BaseWritableResource implements FileSystemObject
      * <b>Not public API</b>
      */
     @UmlExcludeMember
-    File(FileService file)
+    File(@NotNull FileService file)
     {
         service = file;
     }
@@ -481,7 +484,7 @@ public class File extends BaseWritableResource implements FileSystemObject
      * <b>Not public API</b>
      */
     @UmlExcludeMember
-    private File(File that)
+    private File(@NotNull File that)
     {
         super(that);
         service = that.service;
@@ -539,7 +542,7 @@ public class File extends BaseWritableResource implements FileSystemObject
      * @return True if permissions were successfully changed
      */
     @SuppressWarnings("UnusedReturnValue")
-    public boolean chmod(PosixFilePermission... permissions)
+    public boolean chmod(@NotNull PosixFilePermission... permissions)
     {
         return service.chmod(permissions);
     }
@@ -647,12 +650,12 @@ public class File extends BaseWritableResource implements FileSystemObject
     /**
      * Returns true if this file is newer than the given file
      */
-    public boolean isNewerThan(File that)
+    public boolean isNewerThan(@NotNull File that)
     {
         return service.lastModified().isAfter(that.service.lastModified());
     }
 
-    public boolean isNewerThan(Duration duration)
+    public boolean isNewerThan(@NotNull Duration duration)
     {
         return age().isLessThan(duration);
     }
@@ -668,12 +671,12 @@ public class File extends BaseWritableResource implements FileSystemObject
     /**
      * Returns true if this file is older than the given file
      */
-    public boolean isOlderThan(File that)
+    public boolean isOlderThan(@NotNull File that)
     {
         return service.lastModified().isBefore(that.service.lastModified());
     }
 
-    public boolean isOlderThan(Duration duration)
+    public boolean isOlderThan(@NotNull Duration duration)
     {
         return age().isGreaterThan(duration);
     }
@@ -709,7 +712,7 @@ public class File extends BaseWritableResource implements FileSystemObject
      * Sets the last modified timestamp on this file
      */
     @Override
-    public boolean lastModified(Time modified)
+    public boolean lastModified(@NotNull Time modified)
     {
         return service.lastModified(modified);
     }
@@ -734,7 +737,7 @@ public class File extends BaseWritableResource implements FileSystemObject
      * @return This file, or if it is remote, a file on the local filesystem that has the contents of this file
      */
     @Override
-    public File materialized(ProgressReporter reporter)
+    public File materialized(@NotNull ProgressReporter reporter)
     {
         if (service.isRemote())
         {
@@ -800,7 +803,7 @@ public class File extends BaseWritableResource implements FileSystemObject
      * {@inheritDoc}
      */
     @Override
-    public File saveText(String text)
+    public File saveText(@NotNull String text)
     {
         return (File) super.saveText(text);
     }
@@ -809,16 +812,7 @@ public class File extends BaseWritableResource implements FileSystemObject
      * {@inheritDoc}
      */
     @Override
-    public File println(String text)
-    {
-        return (File) super.println(text);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public File relativeTo(ResourceFolder<?> folder)
+    public File relativeTo(@NotNull ResourceFolder<?> folder)
     {
         var service = ((Folder) folder).service();
         return File.file(this, this.service.relativePath(service).withoutTrailingSlash());
@@ -831,7 +825,7 @@ public class File extends BaseWritableResource implements FileSystemObject
      */
     @Override
     @SuppressWarnings("UnusedReturnValue")
-    public boolean renameTo(Resource that)
+    public boolean renameTo(@NotNull Resource that)
     {
         trace("Rename $ to $", this, that);
         return service.renameTo(((File) that).service);
@@ -851,7 +845,9 @@ public class File extends BaseWritableResource implements FileSystemObject
      * file in the same folder. If the copy operation is successful, the destination file is then removed and the
      * temporary file is renamed to the destination file's name.
      */
-    public void safeCopyFrom(Resource resource, CopyMode mode, ProgressReporter reporter)
+    public void safeCopyFrom(@NotNull Resource resource,
+                             @NotNull CopyMode mode,
+                             @NotNull ProgressReporter reporter)
     {
         resource.safeCopyTo(this, mode, reporter);
     }
@@ -877,7 +873,7 @@ public class File extends BaseWritableResource implements FileSystemObject
     /**
      * Returns this file with the given basename (but the same path and extension)
      */
-    public File withBaseName(String name)
+    public File withBaseName(@NotNull String name)
     {
         var file = File.file(this, path().parent().withChild(name));
         if (extension() != null)
@@ -890,7 +886,7 @@ public class File extends BaseWritableResource implements FileSystemObject
     /**
      * Returns this file with the given {@link Charset}
      */
-    public File withCharset(Charset charset)
+    public File withCharset(@NotNull Charset charset)
     {
         var file = new File(this);
         file.charset(charset);
@@ -900,7 +896,7 @@ public class File extends BaseWritableResource implements FileSystemObject
     /**
      * Returns this file with the given compression / decompression codec
      */
-    public File withCodec(Codec codec)
+    public File withCodec(@NotNull Codec codec)
     {
         var file = new File(this);
         file.codec(codec);
@@ -910,7 +906,7 @@ public class File extends BaseWritableResource implements FileSystemObject
     /**
      * Returns this file with the given extension
      */
-    public File withExtension(Extension extension)
+    public File withExtension(@NotNull Extension extension)
     {
         return parseFile(this, path().toString() + extension);
     }

@@ -33,10 +33,12 @@ import com.telenav.kivakit.resource.ResourcePathed;
 import com.telenav.kivakit.resource.internal.lexakai.DiagramFileSystemService;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeSuperTypes;
+import org.jetbrains.annotations.NotNull;
 
 import java.nio.file.attribute.PosixFilePermission;
 
 import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.ApiType.SERVICE_PROVIDER_API;
 import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
 import static com.telenav.kivakit.core.ensure.Ensure.unsupported;
@@ -62,7 +64,8 @@ import static com.telenav.kivakit.core.ensure.Ensure.unsupported;
 @UmlExcludeSuperTypes(ResourcePathed.class)
 @ApiQuality(stability = STABLE_EXTENSIBLE,
             testing = TESTING_NOT_NEEDED,
-            documentation = FULLY_DOCUMENTED)
+            documentation = FULLY_DOCUMENTED,
+            type = SERVICE_PROVIDER_API)
 public interface FileSystemObjectService extends
         Repeater,
         ByteSized,
@@ -75,7 +78,7 @@ public interface FileSystemObjectService extends
     /**
      * Returns true if the permissions were changed
      */
-    default boolean chmod(PosixFilePermission... permissions)
+    default boolean chmod(@NotNull PosixFilePermission... permissions)
     {
         return unsupported();
     }
@@ -93,7 +96,7 @@ public interface FileSystemObjectService extends
      */
     boolean exists();
 
-    default FileSystemService fileSystemService(FilePath path)
+    default FileSystemService fileSystemService(@NotNull FilePath path)
     {
         return FileSystemServiceLoader.fileSystem(Listener.throwingListener(), path);
     }
@@ -119,7 +122,7 @@ public interface FileSystemObjectService extends
      */
     boolean isFolder();
 
-    default boolean isOnSameFileSystem(FileSystemObjectService that)
+    default boolean isOnSameFileSystem(@NotNull FileSystemObjectService that)
     {
         var thisService = fileSystemService(path());
         var thatService = fileSystemService(that.path());
@@ -145,7 +148,7 @@ public interface FileSystemObjectService extends
     @Override
     FilePath path();
 
-    default FilePath relativePath(FolderService folderService)
+    default FilePath relativePath(@NotNull FolderService folderService)
     {
         var fullName = Strings.ensureEndsWith(path().toString().replace("\\", "/"), "/");
         var folderName = Strings.ensureEndsWith(folderService.path().toString().replace("\\", "/"), "/");

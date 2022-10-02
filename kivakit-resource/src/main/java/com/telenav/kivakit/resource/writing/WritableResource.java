@@ -24,6 +24,7 @@ import com.telenav.kivakit.resource.internal.lexakai.DiagramFileSystemFile;
 import com.telenav.kivakit.resource.internal.lexakai.DiagramResource;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
+import org.jetbrains.annotations.NotNull;
 
 import java.io.PrintWriter;
 import java.nio.charset.Charset;
@@ -69,7 +70,7 @@ public interface WritableResource extends
      * Returns a {@link ResourceWriter} for writing to this resource with the given {@link Charset}. The caller is
      * responsible for closing the writer.
      */
-    default ResourceWriter writer(Charset charset)
+    default ResourceWriter writer(@NotNull Charset charset)
     {
         return new ResourceWriter(this, charset);
     }

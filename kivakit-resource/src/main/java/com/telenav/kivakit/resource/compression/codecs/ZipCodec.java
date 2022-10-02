@@ -22,6 +22,7 @@ import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.resource.compression.Codec;
 import com.telenav.kivakit.resource.internal.lexakai.DiagramResourceCompression;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
+import org.jetbrains.annotations.NotNull;
 
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -47,7 +48,7 @@ public class ZipCodec implements Codec
      * {@inheritDoc}
      */
     @Override
-    public OutputStream compressed(OutputStream out)
+    public OutputStream compressed(@NotNull OutputStream out)
     {
         return new ZipOutputStream(out);
     }
@@ -56,7 +57,7 @@ public class ZipCodec implements Codec
      * {@inheritDoc}
      */
     @Override
-    public InputStream decompressed(InputStream in)
+    public InputStream decompressed(@NotNull InputStream in)
     {
         return new ZipInputStream(in);
     }

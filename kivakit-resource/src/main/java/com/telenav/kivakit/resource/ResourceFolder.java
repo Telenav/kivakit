@@ -29,8 +29,8 @@ import com.telenav.kivakit.filesystem.Folder;
 import com.telenav.kivakit.interfaces.comparison.Matchable;
 import com.telenav.kivakit.interfaces.comparison.Matcher;
 import com.telenav.kivakit.resource.packages.Package;
-import com.telenav.kivakit.resource.spi.ResourceFolderResolverService;
 import com.telenav.kivakit.resource.writing.WritableResource;
+import org.jetbrains.annotations.NotNull;
 
 import static com.telenav.kivakit.annotations.code.ApiStability.STABLE;
 import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_DEFAULT_EXTENSIBLE;
@@ -41,6 +41,7 @@ import static com.telenav.kivakit.filesystem.Folder.FolderType.NORMAL;
 import static com.telenav.kivakit.interfaces.comparison.Matcher.matchAll;
 import static com.telenav.kivakit.resource.CopyMode.OVERWRITE;
 import static com.telenav.kivakit.resource.ResourcePath.parseResourcePath;
+import static com.telenav.kivakit.resource.spi.ResourceFolderResolverService.resourceFolderResolverService;
 
 /**
  * A resource container is an abstraction that provides access to hierarchical resources, independent of implementation.
@@ -108,17 +109,19 @@ public interface ResourceFolder<T extends ResourceFolder<T>> extends
         ResourcePathed,
         Matchable<ResourcePathed>
 {
-    static ResourceFolder<?> resolveResourceFolder(Listener listener, String identifier)
+    static ResourceFolder<?> resolveResourceFolder(@NotNull Listener listener,
+                                                   @NotNull String identifier)
     {
         return resolveResourceFolder(listener, new ResourceFolderIdentifier(identifier));
     }
 
-    static ResourceFolder<?> resolveResourceFolder(Listener listener, ResourceFolderIdentifier identifier)
+    static ResourceFolder<?> resolveResourceFolder(@NotNull Listener listener,
+                                                   @NotNull ResourceFolderIdentifier identifier)
     {
-        return ResourceFolderResolverService.resolveResourceFolder(listener, identifier);
+        return listener.listenTo(resourceFolderResolverService()).resolveResourceFolder(identifier);
     }
 
-    static ResourceFolderIdentifier resourceFolderIdentifier(String identifier)
+    static ResourceFolderIdentifier resourceFolderIdentifier(@NotNull String identifier)
     {
         return new ResourceFolderIdentifier(identifier);
     }
@@ -153,7 +156,7 @@ public interface ResourceFolder<T extends ResourceFolder<T>> extends
         return newFolder(path().asAbsolute()).withTrailingSlash();
     }
 
-    default boolean contains(ResourcePathed that)
+    default boolean contains(@NotNull ResourcePathed that)
     {
         return that.path().startsWith(path());
     }
@@ -161,10 +164,10 @@ public interface ResourceFolder<T extends ResourceFolder<T>> extends
     /**
      * Copies all nested resources matching the given matcher from this folder to the destination folder.
      */
-    default void copyTo(Folder destination,
-                        CopyMode mode,
-                        Matcher<ResourcePathed> matcher,
-                        ProgressReporter reporter)
+    default void copyTo(@NotNull Folder destination,
+                        @NotNull CopyMode mode,
+                        @NotNull Matcher<ResourcePathed> matcher,
+                        @NotNull ProgressReporter reporter)
     {
         var start = Time.now();
 
@@ -183,7 +186,7 @@ public interface ResourceFolder<T extends ResourceFolder<T>> extends
             {
                 // then copy the resource and update its last modified timestamp to the source timestamp
                 information("Copying $ to $", resource, target);
-                resource.copyTo(this, target.ensureWritable(), mode, reporter);
+                listenTo(resource).copyTo(target.ensureWritable(), mode, reporter);
                 target.lastModified(resource.lastModified());
             }
         }
@@ -271,7 +274,7 @@ public interface ResourceFolder<T extends ResourceFolder<T>> extends
     /**
      * Materializes this folder to the given folder
      */
-    default Folder materializeTo(Folder folder)
+    default Folder materializeTo(@NotNull Folder folder)
     {
         if (!isMaterialized())
         {
@@ -301,7 +304,7 @@ public interface ResourceFolder<T extends ResourceFolder<T>> extends
      * @param matcher The matcher
      * @return The matching folders
      */
-    default ObjectList<T> nestedFolders(Matcher<T> matcher)
+    default ObjectList<T> nestedFolders(@NotNull Matcher<T> matcher)
     {
         var folders = new ObjectList<T>();
         for (var at : folders())
@@ -323,7 +326,7 @@ public interface ResourceFolder<T extends ResourceFolder<T>> extends
     /**
      * @return Any matching files that are recursively contained in this folder
      */
-    default ResourceList nestedResources(Matcher<ResourcePathed> matcher)
+    default ResourceList nestedResources(@NotNull Matcher<ResourcePathed> matcher)
     {
         var list = new ResourceList();
         list.addAll(resources());
@@ -334,14 +337,14 @@ public interface ResourceFolder<T extends ResourceFolder<T>> extends
         return list;
     }
 
-    ResourceFolder<?> newFolder(ResourcePath relativePath);
+    ResourceFolder<?> newFolder(@NotNull ResourcePath relativePath);
 
     /**
      * Returns the parent folder of this folder
      */
     ResourceFolder<?> parent();
 
-    default ResourceFolder<?> relativeTo(ResourceFolder<?> folder)
+    default ResourceFolder<?> relativeTo(@NotNull ResourceFolder<?> folder)
     {
         var relativePath = absolute().path().relativeTo(folder.absolute().path());
         return newFolder(relativePath);
@@ -350,12 +353,12 @@ public interface ResourceFolder<T extends ResourceFolder<T>> extends
     /**
      * Renames this folder to the given folder
      */
-    boolean renameTo(ResourceFolder<?> folder);
+    boolean renameTo(@NotNull ResourceFolder<?> folder);
 
     /**
      * Returns the resource of the given in this container
      */
-    default Resource resource(FileName name)
+    default Resource resource(@NotNull FileName name)
     {
         return resource(name.asPath());
     }
@@ -363,7 +366,7 @@ public interface ResourceFolder<T extends ResourceFolder<T>> extends
     /**
      * Returns the resource of the given in this container
      */
-    default Resource resource(String name)
+    default Resource resource(@NotNull String name)
     {
         return resource(parseResourcePath(Listener.throwingListener(), name));
     }
@@ -371,7 +374,7 @@ public interface ResourceFolder<T extends ResourceFolder<T>> extends
     /**
      * Returns the resource of the given in this container
      */
-    Resource resource(ResourcePathed name);
+    Resource resource(@NotNull ResourcePathed name);
 
     /**
      * Returns the storage-independent identifier for this folder
@@ -381,7 +384,7 @@ public interface ResourceFolder<T extends ResourceFolder<T>> extends
     /**
      * @return The resources in this folder matching the given matcher
      */
-    ResourceList resources(Matcher<ResourcePathed> matcher);
+    ResourceList resources(@NotNull Matcher<ResourcePathed> matcher);
 
     /**
      * Returns the resources in this folder
@@ -394,7 +397,9 @@ public interface ResourceFolder<T extends ResourceFolder<T>> extends
     /**
      * Copies the resources in this package to the given folder
      */
-    default void safeCopyTo(ResourceFolder<?> folder, CopyMode mode, ProgressReporter reporter)
+    default void safeCopyTo(@NotNull ResourceFolder<?> folder,
+                            @NotNull CopyMode mode,
+                            @NotNull ProgressReporter reporter)
     {
         safeCopyTo(folder, mode, matchAll(), reporter);
     }
@@ -402,10 +407,10 @@ public interface ResourceFolder<T extends ResourceFolder<T>> extends
     /**
      * Copies the resources in this package to the given folder
      */
-    default void safeCopyTo(ResourceFolder<?> folder,
-                            CopyMode mode,
-                            Matcher<ResourcePathed> matcher,
-                            ProgressReporter reporter)
+    default void safeCopyTo(@NotNull ResourceFolder<?> folder,
+                            @NotNull CopyMode mode,
+                            @NotNull Matcher<ResourcePathed> matcher,
+                            @NotNull ProgressReporter reporter)
     {
         for (var at : resources(matcher))
         {
@@ -423,7 +428,7 @@ public interface ResourceFolder<T extends ResourceFolder<T>> extends
      * @param baseName The base filename
      * @return The writable file
      */
-    default WritableResource temporaryFile(FileName baseName)
+    default WritableResource temporaryFile(@NotNull FileName baseName)
     {
         return temporaryFile(baseName, Extension.TMP);
     }
@@ -435,7 +440,8 @@ public interface ResourceFolder<T extends ResourceFolder<T>> extends
      * @param extension The extension
      * @return The writable file
      */
-    WritableResource temporaryFile(FileName baseName, Extension extension);
+    WritableResource temporaryFile(@NotNull FileName baseName,
+                                   @NotNull Extension extension);
 
     /**
      * Returns a temporary folder with the given base name
@@ -443,7 +449,7 @@ public interface ResourceFolder<T extends ResourceFolder<T>> extends
      * @param baseName The base name
      * @return The temporary folder
      */
-    default ResourceFolder<?> temporaryFolder(FileName baseName)
+    default ResourceFolder<?> temporaryFolder(@NotNull FileName baseName)
     {
         return unsupported();
     }

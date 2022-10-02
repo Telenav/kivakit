@@ -26,6 +26,7 @@ import com.telenav.lexakai.annotations.associations.UmlRelation;
 import org.jetbrains.annotations.NotNull;
 
 import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.ApiType.SERVICE_PROVIDER_API;
 import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
 
@@ -42,32 +43,33 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NE
 @UmlClassDiagram(diagram = DiagramFileSystemService.class)
 @ApiQuality(stability = STABLE_EXTENSIBLE,
             testing = TESTING_NOT_NEEDED,
-            documentation = FULLY_DOCUMENTED)
+            documentation = FULLY_DOCUMENTED,
+            type = SERVICE_PROVIDER_API)
 public interface FileSystemService
 {
     /**
      * Returns determines if the given path is accepted as a path for by this filesystem service
      */
-    boolean accepts(FilePath path);
+    boolean accepts(@NotNull FilePath path);
 
     /**
      * Returns the {@link DiskService} for the given path
      */
     @UmlRelation(label = "provides")
     @NotNull
-    DiskService diskService(FilePath path);
+    DiskService diskService(@NotNull FilePath path);
 
     /**
      * Returns the {@link FileService} for the given path
      */
     @UmlRelation(label = "provides")
     @NotNull
-    FileService fileService(FilePath path);
+    FileService fileService(@NotNull FilePath path);
 
     /**
      * Returns the {@link FolderService} for the given path
      */
     @UmlRelation(label = "provides")
     @NotNull
-    FolderService folderService(FilePath path);
+    FolderService folderService(@NotNull FilePath path);
 }

@@ -26,6 +26,7 @@ import com.telenav.kivakit.core.value.level.Percent;
 import com.telenav.kivakit.resource.CopyMode;
 import com.telenav.kivakit.resource.FileName;
 import com.telenav.kivakit.resource.Resource;
+import org.jetbrains.annotations.NotNull;
 
 import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
@@ -83,7 +84,7 @@ public class FileCache extends BaseRepeater
     /**
      * @param cacheFolder The cache folder where files should be stored
      */
-    public FileCache(Folder cacheFolder)
+    public FileCache(@NotNull Folder cacheFolder)
     {
         this.cacheFolder = cacheFolder.mkdirs();
 
@@ -96,7 +97,7 @@ public class FileCache extends BaseRepeater
      * @param resource The resource to add to the cache
      * @param mode How the resource should be copied
      */
-    public File add(Resource resource, CopyMode mode)
+    public File add(@NotNull Resource resource, @NotNull CopyMode mode)
     {
         return add(resource, mode, ProgressReporter.nullProgressReporter());
     }
@@ -108,7 +109,9 @@ public class FileCache extends BaseRepeater
      * @param mode How the resource should be copied
      * @param reporter The progress reporter to call as the file is being copied into the cache
      */
-    public File add(Resource resource, CopyMode mode, ProgressReporter reporter)
+    public File add(@NotNull Resource resource,
+                    @NotNull CopyMode mode,
+                    @NotNull ProgressReporter reporter)
     {
         return addAs(resource, resource.fileName(), mode, reporter);
     }
@@ -120,7 +123,9 @@ public class FileCache extends BaseRepeater
      * @param filename The name of the file to write to in this cache
      * @param mode How the resource should be copied
      */
-    public File addAs(Resource resource, FileName filename, CopyMode mode)
+    public File addAs(@NotNull Resource resource,
+                      @NotNull FileName filename,
+                      @NotNull CopyMode mode)
     {
         return addAs(resource, filename, mode, ProgressReporter.nullProgressReporter());
     }
@@ -133,10 +138,10 @@ public class FileCache extends BaseRepeater
      * @param mode How the resource should be copied
      * @param reporter The progress reporter to call as the file is being copied into the cache
      */
-    public synchronized File addAs(Resource resource,
-                                   FileName filename,
-                                   CopyMode mode,
-                                   ProgressReporter reporter)
+    public synchronized File addAs(@NotNull Resource resource,
+                                   @NotNull FileName filename,
+                                   @NotNull CopyMode mode,
+                                   @NotNull ProgressReporter reporter)
     {
         var file = file(filename);
         if (!file.exists())
@@ -149,7 +154,7 @@ public class FileCache extends BaseRepeater
     /**
      * @return The given file in this cache
      */
-    public File file(FileName name)
+    public File file(@NotNull FileName name)
     {
         return cacheFolder.file(name);
     }
@@ -157,7 +162,7 @@ public class FileCache extends BaseRepeater
     /**
      * @return A sub-folder in the cache folder with the given name
      */
-    public Folder folder(String name)
+    public Folder folder(@NotNull String name)
     {
         return cacheFolder.folder(name);
     }
@@ -165,7 +170,7 @@ public class FileCache extends BaseRepeater
     /**
      * Sets the maximum age of files in the cache before they can be pruned
      */
-    public void maximumAge(Duration maximumAge)
+    public void maximumAge(@NotNull Duration maximumAge)
     {
         this.maximumAge = maximumAge;
     }
@@ -173,7 +178,7 @@ public class FileCache extends BaseRepeater
     /**
      * Sets the minimum disk space below which files are pruned from the cache
      */
-    public void minimumUsableDiskSpace(Percent minimum)
+    public void minimumUsableDiskSpace(@NotNull Percent minimum)
     {
         this.minimumUsableDiskSpace = minimum;
     }

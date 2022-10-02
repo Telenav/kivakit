@@ -270,7 +270,7 @@ public class Folder extends BaseRepeater implements
      *
      * @param path The path
      */
-    public static Folder folder(Path path)
+    public static Folder folder(@NotNull Path path)
     {
         return parseFolder(throwingListener(), path.toString());
     }
@@ -278,7 +278,7 @@ public class Folder extends BaseRepeater implements
     /**
      * Returns the folder for the given path
      */
-    public static Folder folder(StringPath path)
+    public static Folder folder(@NotNull StringPath path)
     {
         return parseFolder(throwingListener(), path.toString());
     }
@@ -286,7 +286,7 @@ public class Folder extends BaseRepeater implements
     /**
      * Returns the folder specified by the given Java file object
      */
-    public static Folder folder(java.io.File file)
+    public static Folder folder(@NotNull java.io.File file)
     {
         return folder(file.toPath());
     }
@@ -294,7 +294,7 @@ public class Folder extends BaseRepeater implements
     /**
      * Returns the folder for the given {@link URI}
      */
-    public static Folder folder(URI uri)
+    public static Folder folder(@NotNull URI uri)
     {
         return folder(new java.io.File(uri));
     }
@@ -302,7 +302,7 @@ public class Folder extends BaseRepeater implements
     /**
      * Returns the folder for the given {@link URL}
      */
-    public static Folder folder(URL url)
+    public static Folder folder(@NotNull URL url)
     {
         try
         {
@@ -321,7 +321,7 @@ public class Folder extends BaseRepeater implements
      * @param path The path
      * @return The folder
      */
-    public static Folder folder(FilePath path)
+    public static Folder folder(@NotNull FilePath path)
     {
         return parseFolder(throwingListener(), path.toString());
     }
@@ -333,8 +333,8 @@ public class Folder extends BaseRepeater implements
      * @param description The description of the argument
      * @return The parser builder
      */
-    public static ArgumentParser.Builder<Folder> folderArgumentParser(Listener listener,
-                                                                      String description)
+    public static ArgumentParser.Builder<Folder> folderArgumentParser(@NotNull Listener listener,
+                                                                      @NotNull String description)
     {
         return ArgumentParser.builder(Folder.class)
                 .converter(new Folder.Converter(listener))
@@ -348,8 +348,8 @@ public class Folder extends BaseRepeater implements
      * @param description The description of the argument
      * @return The parser builder
      */
-    public static ArgumentParser.Builder<FolderList> folderListArgumentParser(Listener listener,
-                                                                              String description)
+    public static ArgumentParser.Builder<FolderList> folderListArgumentParser(@NotNull Listener listener,
+                                                                              @NotNull String description)
     {
         return ArgumentParser.builder(FolderList.class)
                 .converter(new FolderList.Converter(listener))
@@ -364,9 +364,9 @@ public class Folder extends BaseRepeater implements
      * @param description The description of the switch
      * @return The parser builder
      */
-    public static SwitchParser.Builder<FolderList> folderListSwitchParser(Listener listener,
-                                                                          String name,
-                                                                          String description)
+    public static SwitchParser.Builder<FolderList> folderListSwitchParser(@NotNull Listener listener,
+                                                                          @NotNull String name,
+                                                                          @NotNull String description)
     {
         return SwitchParser.builder(FolderList.class)
                 .name(name)
@@ -381,9 +381,9 @@ public class Folder extends BaseRepeater implements
      * @param description The description of the switch
      * @return The parser builder
      */
-    public static SwitchParser.Builder<Folder> folderSwitchParser(Listener listener,
-                                                                  String name,
-                                                                  String description)
+    public static SwitchParser.Builder<Folder> folderSwitchParser(@NotNull Listener listener,
+                                                                  @NotNull String name,
+                                                                  @NotNull String description)
     {
         return SwitchParser.builder(Folder.class)
                 .name(name)
@@ -434,7 +434,7 @@ public class Folder extends BaseRepeater implements
      * @param type The type to use as a sub-folder name
      * @return The folder
      */
-    public static Folder kivakitTest(Class<?> type)
+    public static Folder kivakitTest(@NotNull Class<?> type)
     {
         return kivakitTemporary().folder("test").folder(type.getSimpleName()).mkdirs();
     }
@@ -446,7 +446,7 @@ public class Folder extends BaseRepeater implements
      * @param arguments Any arguments to format the path with
      * @return The folder
      */
-    public static Folder parseFolder(String path, Object... arguments)
+    public static Folder parseFolder(@NotNull String path, Object... arguments)
     {
         return parseFolder(throwingListener(), path, arguments);
     }
@@ -459,7 +459,7 @@ public class Folder extends BaseRepeater implements
      * @param arguments Any arguments to format the path with
      * @return The folder
      */
-    public static Folder parseFolder(Listener listener, String path, Object... arguments)
+    public static Folder parseFolder(@NotNull Listener listener, @NotNull String path, Object... arguments)
     {
         if (Strings.isEmpty(path))
         {
@@ -473,7 +473,7 @@ public class Folder extends BaseRepeater implements
     /**
      * @return unique temporary folder per process
      */
-    public static Folder temporaryForProcess(FolderType type)
+    public static Folder temporaryForProcess(@NotNull FolderType type)
     {
         synchronized (temporaryLock)
         {
@@ -543,12 +543,12 @@ public class Folder extends BaseRepeater implements
     {
         private boolean ensureExists;
 
-        public Converter(Listener listener)
+        public Converter(@NotNull Listener listener)
         {
             super(listener);
         }
 
-        public Converter(Listener listener, boolean ensureExists)
+        public Converter(@NotNull Listener listener, boolean ensureExists)
         {
             super(listener);
             this.ensureExists = ensureExists;
@@ -579,13 +579,13 @@ public class Folder extends BaseRepeater implements
     public static class Resolver implements ResourceFolderResolver
     {
         @Override
-        public boolean accepts(ResourceFolderIdentifier identifier)
+        public boolean accepts(@NotNull ResourceFolderIdentifier identifier)
         {
             return Folder.parseFolder(this, identifier.identifier()) != null;
         }
 
         @Override
-        public Folder resolve(ResourceFolderIdentifier identifier)
+        public Folder resolve(@NotNull ResourceFolderIdentifier identifier)
         {
             return Folder.parseFolder(this, identifier.identifier());
         }
@@ -612,7 +612,7 @@ public class Folder extends BaseRepeater implements
      * <b>Not public API</b>
      */
     @UmlExcludeMember
-    public Folder(FolderService service)
+    public Folder(@NotNull FolderService service)
     {
         ensureNotNull(service);
 
@@ -625,7 +625,7 @@ public class Folder extends BaseRepeater implements
     /**
      * <b>Not public API</b>
      */
-    public Folder(FilePath path)
+    public Folder(@NotNull FilePath path)
     {
         this(Objects.requireNonNull(fileSystem(throwingListener(), path)).folderService(path));
     }
@@ -678,7 +678,7 @@ public class Folder extends BaseRepeater implements
      * Changes the access permissions for this folder
      */
     @SuppressWarnings("UnusedReturnValue")
-    public boolean chmod(PosixFilePermission... permissions)
+    public boolean chmod(@NotNull PosixFilePermission... permissions)
     {
         return folderService().chmod(permissions);
     }
@@ -686,7 +686,7 @@ public class Folder extends BaseRepeater implements
     /**
      * Changes the access permissions for this folder and all folders below it
      */
-    public void chmodNested(PosixFilePermission... permissions)
+    public void chmodNested(@NotNull PosixFilePermission... permissions)
     {
         nestedFolders(acceptAll()).forEach(folder -> folderService().chmod(permissions));
         nestedFiles(acceptAll()).forEach(file -> file.chmod(permissions));
@@ -834,7 +834,7 @@ public class Folder extends BaseRepeater implements
     /**
      * Returns the given file in this folder
      */
-    public File file(File file)
+    public File file(@NotNull File file)
     {
         return file(file.path());
     }
@@ -845,7 +845,7 @@ public class Folder extends BaseRepeater implements
      * @param name The filename
      * @return The file
      */
-    public File file(FileName name)
+    public File file(@NotNull FileName name)
     {
         return new File(folderService().file(name));
     }
@@ -857,7 +857,7 @@ public class Folder extends BaseRepeater implements
      * @return The file
      */
     @SuppressWarnings("SpellCheckingInspection")
-    public File file(ResourcePathed pathed)
+    public File file(@NotNull ResourcePathed pathed)
     {
         var child = pathed.path().withoutRoot();
 
@@ -885,7 +885,7 @@ public class Folder extends BaseRepeater implements
      * @param arguments Any arguments to format the path
      * @return The file
      */
-    public File file(String path, Object... arguments)
+    public File file(@NotNull String path, Object... arguments)
     {
         return file(parseFilePath(this, path, arguments));
     }
@@ -904,7 +904,7 @@ public class Folder extends BaseRepeater implements
      *
      * @param traversal The kind of traversal to make
      */
-    public FileList files(Matcher<ResourcePathed> matcher, Traversal traversal)
+    public FileList files(@NotNull Matcher<ResourcePathed> matcher, @NotNull Traversal traversal)
     {
         return traversal == RECURSE
                 ? nestedFiles(matcher)
@@ -918,7 +918,7 @@ public class Folder extends BaseRepeater implements
      * @return The matching files
      * @see ResourceGlob
      */
-    public FileList files(String globPattern)
+    public FileList files(@NotNull String globPattern)
     {
         return files(file -> ResourceGlob.glob(globPattern).matches(file));
     }
@@ -929,7 +929,7 @@ public class Folder extends BaseRepeater implements
      * @param extension The extension
      * @return The list of files
      */
-    public FileList files(Extension extension)
+    public FileList files(@NotNull Extension extension)
     {
         return files(extension::matches);
     }
@@ -940,7 +940,7 @@ public class Folder extends BaseRepeater implements
      * @param matcher The path matcher
      * @return The list of files
      */
-    public FileList files(Matcher<ResourcePathed> matcher)
+    public FileList files(@NotNull Matcher<ResourcePathed> matcher)
     {
         var files = new FileList();
         if (exists())
@@ -964,7 +964,7 @@ public class Folder extends BaseRepeater implements
      * @param pattern The regular expression pattern
      * @return The list of matching files
      */
-    public FileList files(Pattern pattern)
+    public FileList files(@NotNull Pattern pattern)
     {
         return files(value -> pattern.matcher(value.fileName().name()).matches());
     }
@@ -973,7 +973,7 @@ public class Folder extends BaseRepeater implements
      * {@inheritDoc}
      */
     @Override
-    public Folder folder(String child)
+    public Folder folder(@NotNull String child)
     {
         if (child.equals("."))
         {
@@ -989,7 +989,7 @@ public class Folder extends BaseRepeater implements
      * @param child The filename of the child folder
      * @return The child folder
      */
-    public Folder folder(FileName child)
+    public Folder folder(@NotNull FileName child)
     {
         if (child.name().equals("."))
         {
@@ -1004,7 +1004,7 @@ public class Folder extends BaseRepeater implements
      * @param child The relative child folder
      * @return The child folder
      */
-    public Folder folder(Folder child)
+    public Folder folder(@NotNull Folder child)
     {
         if (child.path().isEmpty() || child.path().asString().equals("."))
         {
@@ -1019,7 +1019,7 @@ public class Folder extends BaseRepeater implements
      * @param matcher The matcher
      * @return The list of folders
      */
-    public ObjectList<Folder> folders(Matcher<Folder> matcher)
+    public ObjectList<Folder> folders(@NotNull Matcher<Folder> matcher)
     {
         return objectList(folders().stream().filter(matcher::matches).collect(Collectors.toList()));
     }
@@ -1189,7 +1189,7 @@ public class Folder extends BaseRepeater implements
     /**
      * @return Any matching files that are recursively contained in this folder
      */
-    public FileList nestedFiles(Matcher<ResourcePathed> matcher)
+    public FileList nestedFiles(@NotNull Matcher<ResourcePathed> matcher)
     {
         var files = FileList.fileListForServices(folderService().nestedFiles(path -> matcher.matches((path.asFile()))));
         trace("Nested files in $: $", this, files);
@@ -1200,7 +1200,7 @@ public class Folder extends BaseRepeater implements
      * @return Any matching folders that are recursively contained in this folder
      */
     @Override
-    public FolderList nestedFolders(Matcher<Folder> matcher)
+    public FolderList nestedFolders(@NotNull Matcher<Folder> matcher)
     {
         var folders = FolderList.folderList(folderService().nestedFolders(path -> matcher.matches(new Folder(path))));
         trace("Nested folders in $: $", this, folders);
@@ -1211,7 +1211,7 @@ public class Folder extends BaseRepeater implements
      * {@inheritDoc}
      */
     @Override
-    public ResourceFolder<?> newFolder(ResourcePath relativePath)
+    public ResourceFolder<?> newFolder(@NotNull ResourcePath relativePath)
     {
         return new Folder(FilePath.filePath(relativePath));
     }
@@ -1229,7 +1229,7 @@ public class Folder extends BaseRepeater implements
      *
      * @param matcher The matcher
      */
-    public File oldest(Matcher<File> matcher)
+    public File oldest(@NotNull Matcher<File> matcher)
     {
         File oldestFile = null;
         for (var file : files())
@@ -1269,7 +1269,7 @@ public class Folder extends BaseRepeater implements
      * @param folder The other folder
      * @return The relative path
      */
-    public FilePath relativePath(Folder folder)
+    public FilePath relativePath(@NotNull Folder folder)
     {
         return absolute().folderService().relativePath(folder.absolute().folderService());
     }
@@ -1280,7 +1280,7 @@ public class Folder extends BaseRepeater implements
      * @param folder The given folder
      * @return The relative folder
      */
-    public Folder relativeTo(Folder folder)
+    public Folder relativeTo(@NotNull Folder folder)
     {
         return new Folder(relativePath(folder));
     }
@@ -1290,7 +1290,7 @@ public class Folder extends BaseRepeater implements
      */
     @Override
     @SuppressWarnings("UnusedReturnValue")
-    public boolean renameTo(ResourceFolder<?> that)
+    public boolean renameTo(@NotNull ResourceFolder<?> that)
     {
         trace("Renaming $ to $", this, that);
         return folderService().renameTo(((Folder) that).folderService());
@@ -1300,7 +1300,7 @@ public class Folder extends BaseRepeater implements
      * {@inheritDoc}
      */
     @Override
-    public Resource resource(ResourcePathed name)
+    public Resource resource(@NotNull ResourcePathed name)
     {
         return file(name.path());
     }
@@ -1318,7 +1318,7 @@ public class Folder extends BaseRepeater implements
      * {@inheritDoc}
      */
     @Override
-    public ResourceList resources(Matcher<ResourcePathed> matcher)
+    public ResourceList resources(@NotNull Matcher<ResourcePathed> matcher)
     {
         return resourceList(files()
                 .stream()
@@ -1338,10 +1338,10 @@ public class Folder extends BaseRepeater implements
      * {@inheritDoc}
      */
     @Override
-    public void safeCopyTo(ResourceFolder<?> destination,
-                           CopyMode mode,
-                           Matcher<ResourcePathed> matcher,
-                           ProgressReporter reporter)
+    public void safeCopyTo(@NotNull ResourceFolder<?> destination,
+                           @NotNull CopyMode mode,
+                           @NotNull Matcher<ResourcePathed> matcher,
+                           @NotNull ProgressReporter reporter)
     {
         if (mode == CopyMode.DO_NOT_OVERWRITE && destination.exists() && !destination.isEmpty())
         {
@@ -1359,7 +1359,7 @@ public class Folder extends BaseRepeater implements
         var temporary = destination.parent().temporaryFolder(FileName.parseFileName(this, "temporary-copy"));
         for (var file : nestedFiles(matcher))
         {
-            file.copyTo(this, temporary.resource(file.relativeTo(this)).asWritable(), mode, reporter);
+            file.copyTo(temporary.resource(file.relativeTo(this)).asWritable(), mode, reporter);
         }
         temporary.renameTo(destination);
         information("Safe copy completed in $", start.elapsedSince());
@@ -1369,7 +1369,9 @@ public class Folder extends BaseRepeater implements
      * {@inheritDoc}
      */
     @Override
-    public void safeCopyTo(ResourceFolder<?> destination, CopyMode mode, ProgressReporter reporter)
+    public void safeCopyTo(@NotNull ResourceFolder<?> destination,
+                           @NotNull CopyMode mode,
+                           @NotNull ProgressReporter reporter)
     {
         safeCopyTo(destination, mode, acceptAll(), reporter);
     }
@@ -1413,7 +1415,7 @@ public class Folder extends BaseRepeater implements
      * {@inheritDoc}
      */
     @Override
-    public File temporaryFile(FileName baseName)
+    public File temporaryFile(@NotNull FileName baseName)
     {
         return temporaryFile(baseName, TMP);
     }
@@ -1422,7 +1424,7 @@ public class Folder extends BaseRepeater implements
      * {@inheritDoc}
      */
     @Override
-    public File temporaryFile(FileName baseName, Extension extension)
+    public File temporaryFile(@NotNull FileName baseName, @NotNull Extension extension)
     {
         synchronized (temporaryLock)
         {
@@ -1443,7 +1445,7 @@ public class Folder extends BaseRepeater implements
      * {@inheritDoc}
      */
     @Override
-    public Folder temporaryFolder(FileName baseName)
+    public Folder temporaryFolder(@NotNull FileName baseName)
     {
         synchronized (temporaryLock)
         {
@@ -1517,7 +1519,7 @@ public class Folder extends BaseRepeater implements
         return service;
     }
 
-    private @NotNull FileSystemService fileSystemService(FilePath path)
+    private @NotNull FileSystemService fileSystemService(@NotNull FilePath path)
     {
         return ensureNotNull(fileSystem(throwingListener(), path));
     }

@@ -72,7 +72,7 @@ import com.telenav.kivakit.properties.PropertyMap;
 import com.telenav.kivakit.resource.Extension;
 import com.telenav.kivakit.resource.Resource;
 import com.telenav.kivakit.resource.packages.PackageTrait;
-import com.telenav.kivakit.resource.serialization.ObjectSerializers;
+import com.telenav.kivakit.resource.serialization.ObjectSerializerRegistry;
 import com.telenav.kivakit.serialization.gson.GsonObjectSerializer;
 import com.telenav.kivakit.serialization.properties.PropertiesObjectSerializer;
 import com.telenav.kivakit.settings.Deployment;
@@ -826,7 +826,7 @@ public abstract class Application extends BaseComponent implements
 
     protected void onRegisterObjectSerializers()
     {
-        var serializers = new ObjectSerializers();
+        var serializers = new ObjectSerializerRegistry();
         tryCatch(() -> serializers.add(Extension.JSON, new GsonObjectSerializer()));
         tryCatch(() -> serializers.add(Extension.PROPERTIES, new PropertiesObjectSerializer()));
         register(serializers);

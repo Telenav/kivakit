@@ -26,6 +26,7 @@ import com.telenav.kivakit.core.language.reflection.property.KivaKitIncludePrope
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.string.Strings;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
+import org.jetbrains.annotations.NotNull;
 
 import java.io.File;
 import java.net.URI;
@@ -179,17 +180,17 @@ public class StringPath extends Path<String>
     /** By default, paths are separated by slashes */
     private String separator = "/";
 
-    protected StringPath(List<String> elements)
+    protected StringPath(@NotNull List<String> elements)
     {
         this(null, elements);
     }
 
-    protected StringPath(String root, List<String> elements)
+    protected StringPath(String root, @NotNull List<String> elements)
     {
         super(root, substituteSystemVariables(elements));
     }
 
-    protected StringPath(StringPath path)
+    protected StringPath(@NotNull StringPath path)
     {
         this(path.rootElement(), path.elements());
         separator = path.separator;

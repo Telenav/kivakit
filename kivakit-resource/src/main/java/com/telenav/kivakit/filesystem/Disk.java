@@ -25,6 +25,7 @@ import com.telenav.kivakit.filesystem.spi.DiskService;
 import com.telenav.kivakit.resource.internal.lexakai.DiagramFileSystemFolder;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeMember;
+import org.jetbrains.annotations.NotNull;
 
 import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
@@ -48,7 +49,7 @@ public class Disk
     private final DiskService disk;
 
     @UmlExcludeMember
-    public Disk(DiskService disk)
+    public Disk(@NotNull DiskService disk)
     {
         this.disk = disk;
     }

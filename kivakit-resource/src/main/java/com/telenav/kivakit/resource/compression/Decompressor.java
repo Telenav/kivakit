@@ -21,6 +21,7 @@ package com.telenav.kivakit.resource.compression;
 import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.resource.internal.lexakai.DiagramResourceCompression;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
+import org.jetbrains.annotations.NotNull;
 
 import java.io.InputStream;
 
@@ -41,8 +42,10 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NE
 public interface Decompressor
 {
     /**
+     * Returns the given input stream, decompressed
+     *
      * @param in The input stream
      * @return The decompressed input stream
      */
-    InputStream decompressed(InputStream in);
+    InputStream decompressed(@NotNull InputStream in);
 }

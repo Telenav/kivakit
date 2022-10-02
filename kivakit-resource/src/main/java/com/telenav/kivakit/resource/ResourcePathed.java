@@ -25,6 +25,7 @@ import com.telenav.kivakit.resource.internal.lexakai.DiagramResource;
 import com.telenav.kivakit.resource.internal.lexakai.DiagramResourcePath;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
+import org.jetbrains.annotations.NotNull;
 
 import java.net.MalformedURLException;
 import java.net.URI;
@@ -121,7 +122,7 @@ public interface ResourcePathed extends UriIdentified
     /**
      * Returns true if this resource ends with the given extension
      */
-    default boolean hasExtension(Extension extension)
+    default boolean hasExtension(@NotNull Extension extension)
     {
         return fileName().endsWith(extension);
     }
@@ -129,7 +130,7 @@ public interface ResourcePathed extends UriIdentified
     /**
      * Returns true if the resource path matches the given matcher
      */
-    default boolean matches(Matcher<String> matcher)
+    default boolean matches(@NotNull Matcher<String> matcher)
     {
         return matcher.matches(path().asString());
     }

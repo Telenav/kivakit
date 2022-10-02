@@ -32,6 +32,7 @@ import com.telenav.kivakit.interfaces.comparison.Matcher;
 import com.telenav.kivakit.interfaces.naming.Named;
 import com.telenav.kivakit.resource.internal.lexakai.DiagramResourcePath;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
+import org.jetbrains.annotations.NotNull;
 
 import java.time.ZoneId;
 import java.util.regex.Pattern;
@@ -109,7 +110,8 @@ public class FileName implements Named, Comparable<FileName>
     /**
      * Returns a filename for the current local time
      */
-    public static FileName date(LocalTime time)
+    @SuppressWarnings("ConstantConditions")
+    public static FileName date(@NotNull LocalTime time)
     {
         return parseFileName(throwingListener(), new LocalDateConverter(throwingListener()).unconvert(time));
     }
@@ -117,7 +119,9 @@ public class FileName implements Named, Comparable<FileName>
     /**
      * Returns a filename for the given time in the given timezone
      */
-    public static FileName date(LocalTime time, ZoneId zone)
+    @SuppressWarnings("ConstantConditions")
+    public static FileName date(@NotNull LocalTime time,
+                                @NotNull ZoneId zone)
     {
         return parseFileName(throwingListener(), new LocalDateConverter(throwingListener(), zone).unconvert(time));
     }
@@ -133,7 +137,8 @@ public class FileName implements Named, Comparable<FileName>
     /**
      * Returns a filename for the current date and time
      */
-    public static FileName dateTime(LocalTime time)
+    @SuppressWarnings("ConstantConditions")
+    public static FileName dateTime(@NotNull LocalTime time)
     {
         return parseFileName(throwingListener(), new LocalDateTimeConverter(throwingListener()).unconvert(time));
     }
@@ -141,7 +146,9 @@ public class FileName implements Named, Comparable<FileName>
     /**
      * Returns a filename for the given local time in the given timezone
      */
-    public static FileName dateTime(LocalTime time, ZoneId zone)
+    @SuppressWarnings("ConstantConditions")
+    public static FileName dateTime(@NotNull LocalTime time,
+                                    @NotNull ZoneId zone)
     {
         return parseFileName(throwingListener(), new LocalDateTimeConverter(throwingListener(), zone).unconvert(time));
     }
@@ -152,7 +159,8 @@ public class FileName implements Named, Comparable<FileName>
      * @param listener The listener to call with any problems
      * @param text The text to parse
      */
-    public static LocalTime parseDateTime(Listener listener, String text)
+    public static LocalTime parseDateTime(@NotNull Listener listener,
+                                          @NotNull String text)
     {
         return new LocalDateTimeConverter(listener).convert(text);
     }
@@ -164,7 +172,9 @@ public class FileName implements Named, Comparable<FileName>
      * @param text The text to parse
      * @param zone The timezone
      */
-    public static LocalTime parseDateTime(Listener listener, String text, ZoneId zone)
+    public static LocalTime parseDateTime(@NotNull Listener listener,
+                                          @NotNull String text,
+                                          @NotNull ZoneId zone)
     {
         return new LocalDateTimeConverter(listener, zone).convert(text);
     }
@@ -175,7 +185,8 @@ public class FileName implements Named, Comparable<FileName>
      * @param listener The listener to call with any problems
      * @param text The text to parse
      */
-    public static FileName parseFileName(Listener listener, String text)
+    public static FileName parseFileName(@NotNull Listener listener,
+                                         @NotNull String text)
     {
         return new FileName(text);
     }
@@ -185,7 +196,8 @@ public class FileName implements Named, Comparable<FileName>
      *
      * @param time The time
      */
-    public static FileName time(LocalTime time)
+    @SuppressWarnings("ConstantConditions")
+    public static FileName time(@NotNull LocalTime time)
     {
         return parseFileName(throwingListener(), new LocalTimeConverter(throwingListener(), time.timeZone()).unconvert(time));
     }
@@ -196,7 +208,9 @@ public class FileName implements Named, Comparable<FileName>
      * @param time The time
      * @param zone The timezone
      */
-    public static FileName time(LocalTime time, ZoneId zone)
+    @SuppressWarnings("ConstantConditions")
+    public static FileName time(@NotNull LocalTime time,
+                                @NotNull ZoneId zone)
     {
         return parseFileName(throwingListener(), new LocalTimeConverter(throwingListener(), zone).unconvert(time));
     }
@@ -233,7 +247,7 @@ public class FileName implements Named, Comparable<FileName>
     }
 
     @Override
-    public int compareTo(FileName that)
+    public int compareTo(@NotNull FileName that)
     {
         return name().compareTo(that.name());
     }
@@ -257,7 +271,7 @@ public class FileName implements Named, Comparable<FileName>
     /**
      * Returns true if this filename ends with the given extension
      */
-    public boolean endsWith(Extension extension)
+    public boolean endsWith(@NotNull Extension extension)
     {
         var compoundExtension = compoundExtension();
         return compoundExtension != null && compoundExtension.endsWith(extension);
@@ -266,7 +280,7 @@ public class FileName implements Named, Comparable<FileName>
     /**
      * Returns true if this filename ends with the given suffix
      */
-    public boolean endsWith(String suffix)
+    public boolean endsWith(@NotNull String suffix)
     {
         return name().endsWith(suffix);
     }
@@ -321,7 +335,7 @@ public class FileName implements Named, Comparable<FileName>
      * Returns this file name parsed as a {@link LocalTime} object using the KivaKit DATE_TIME format
      * ("yyyy.MM.dd_h.mma").
      */
-    public LocalTime localDateTime(Listener listener)
+    public LocalTime localDateTime(@NotNull Listener listener)
     {
         LocalTime time;
         if ((time = new LocalDateTimeConverter(listener).convert(name())) != null)
@@ -342,7 +356,7 @@ public class FileName implements Named, Comparable<FileName>
     /**
      * @return True if this filename matches the given {@link Pattern}
      */
-    public boolean matches(Pattern pattern)
+    public boolean matches(@NotNull Pattern pattern)
     {
         return pattern.matcher(name()).matches();
     }
@@ -367,7 +381,7 @@ public class FileName implements Named, Comparable<FileName>
     /**
      * Returns this filename with the given prefix
      */
-    public FileName prefixedWith(String prefix)
+    public FileName prefixedWith(@NotNull String prefix)
     {
         return parseFileName(throwingListener(), prefix + name);
     }
@@ -375,7 +389,7 @@ public class FileName implements Named, Comparable<FileName>
     /**
      * @return True if this filename starts with the given prefix
      */
-    public boolean startsWith(String prefix)
+    public boolean startsWith(@NotNull String prefix)
     {
         return name().startsWith(prefix);
     }
@@ -405,7 +419,7 @@ public class FileName implements Named, Comparable<FileName>
     /**
      * Returns this filename with the given extension added
      */
-    public FileName withExtension(Extension extension)
+    public FileName withExtension(@NotNull Extension extension)
     {
         return parseFileName(throwingListener(), name() + extension);
     }
@@ -413,7 +427,7 @@ public class FileName implements Named, Comparable<FileName>
     /**
      * Returns this filename with the given suffix
      */
-    public FileName withSuffix(String suffix)
+    public FileName withSuffix(@NotNull String suffix)
     {
         return parseFileName(throwingListener(), name + suffix);
     }
@@ -451,7 +465,7 @@ public class FileName implements Named, Comparable<FileName>
     /**
      * Returns this filename without the given extension if it ends in that extension
      */
-    public FileName withoutExtension(Extension extension)
+    public FileName withoutExtension(@NotNull Extension extension)
     {
         if (name().endsWith(extension.toString()))
         {
@@ -483,7 +497,7 @@ public class FileName implements Named, Comparable<FileName>
         return name;
     }
 
-    private String normalize(String name)
+    private String normalize(@NotNull String name)
     {
         return Strings.removeAll(name, '\'').replaceAll("[,:; ]", "_").replace('/', '-');
     }

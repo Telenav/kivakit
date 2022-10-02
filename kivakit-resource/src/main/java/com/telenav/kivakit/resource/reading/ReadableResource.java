@@ -29,6 +29,7 @@ import com.telenav.kivakit.resource.resources.StringResource;
 import com.telenav.kivakit.resource.writing.WritableResource;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
+import org.jetbrains.annotations.NotNull;
 
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
@@ -97,12 +98,14 @@ public interface ReadableResource extends
      *
      * @param destination The destination to write to
      */
-    void copyTo(WritableResource destination, CopyMode mode, ProgressReporter reporter);
+    void copyTo(@NotNull WritableResource destination,
+                @NotNull CopyMode mode,
+                @NotNull ProgressReporter reporter);
 
     /**
      * Returns a reader with convenient methods for reading from the resource
      */
-    default ResourceReader reader(ProgressReporter reporter)
+    default ResourceReader reader(@NotNull ProgressReporter reporter)
     {
         return new ResourceReader(resource(), reporter, charset());
     }
@@ -118,7 +121,8 @@ public interface ReadableResource extends
     /**
      * Returns a reader with convenient methods for reading from the resource
      */
-    default ResourceReader reader(ProgressReporter reporter, Charset charset)
+    default ResourceReader reader(@NotNull ProgressReporter reporter,
+                                  @NotNull Charset charset)
     {
         return new ResourceReader(resource(), reporter, charset);
     }

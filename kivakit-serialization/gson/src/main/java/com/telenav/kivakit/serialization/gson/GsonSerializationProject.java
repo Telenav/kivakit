@@ -3,7 +3,7 @@ package com.telenav.kivakit.serialization.gson;
 import com.telenav.kivakit.core.project.Project;
 import com.telenav.kivakit.core.registry.Registry;
 import com.telenav.kivakit.resource.Extension;
-import com.telenav.kivakit.resource.serialization.ObjectSerializers;
+import com.telenav.kivakit.resource.serialization.ObjectSerializerRegistry;
 import com.telenav.kivakit.serialization.gson.factory.BaseGsonFactory;
 import com.telenav.kivakit.serialization.gson.factory.CoreGsonFactory;
 import com.telenav.kivakit.serialization.gson.factory.GsonFactory;
@@ -15,7 +15,7 @@ import com.telenav.kivakit.serialization.gson.factory.GsonFactory;
  *
  * <p>
  * Project initialization associates a {@link GsonObjectSerializer} with the <i>.json</i> extension in {@link
- * ObjectSerializers}, and registers a {@link BaseGsonFactory} in the global {@link Registry}.
+ * ObjectSerializerRegistry}, and registers a {@link BaseGsonFactory} in the global {@link Registry}.
  * </p>
  *
  * @author jonathanl (shibo)
@@ -30,7 +30,7 @@ public class GsonSerializationProject extends Project
     public void onInitialize()
     {
         // Associate Gson object serializer with .json resources
-        require(ObjectSerializers.class, ObjectSerializers::new)
+        require(ObjectSerializerRegistry.class, ObjectSerializerRegistry::new)
                 .add(Extension.JSON, listenTo(new GsonObjectSerializer()));
 
         // Register default GsonFactory

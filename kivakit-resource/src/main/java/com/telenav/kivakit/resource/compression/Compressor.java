@@ -20,19 +20,18 @@ package com.telenav.kivakit.resource.compression;
 
 import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.resource.internal.lexakai.DiagramResourceCompression;
-import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
+import org.jetbrains.annotations.NotNull;
 
 import java.io.OutputStream;
 
 import static com.telenav.kivakit.annotations.code.ApiStability.STABLE;
 import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
-import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
 
 /**
- * A compressor applies a compression algorithm to an {@link OutputStream}, yielding another (compressed) {@link
- * OutputStream}.
+ * A compressor applies a compression algorithm to an {@link OutputStream}, yielding another (compressed)
+ * {@link OutputStream}.
  *
  * @author jonathanl (shibo)
  */
@@ -43,8 +42,10 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
 public interface Compressor
 {
     /**
+     * Returns the given output stream compressed
+     *
      * @param out The output stream to compress
      * @return The compressed output stream
      */
-    OutputStream compressed(OutputStream out);
+    OutputStream compressed(@NotNull OutputStream out);
 }

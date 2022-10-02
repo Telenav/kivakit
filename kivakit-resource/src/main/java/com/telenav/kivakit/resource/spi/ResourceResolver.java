@@ -26,12 +26,12 @@ import com.telenav.kivakit.resource.ResourceIdentifier;
 import com.telenav.kivakit.resource.internal.lexakai.DiagramResourceService;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
+import org.jetbrains.annotations.NotNull;
 
 import static com.telenav.kivakit.annotations.code.ApiStability.STABLE;
 import static com.telenav.kivakit.annotations.code.ApiType.SERVICE_PROVIDER_API;
 import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
-import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
 
 /**
  * Service provider interface that resolves resource identifiers to resources. If the resolver returns true from
@@ -53,11 +53,11 @@ public interface ResourceResolver extends RepeaterMixin
     /**
      * Returns true if this resource factory understands the given resource identifier
      */
-    boolean accepts(ResourceIdentifier identifier);
+    boolean accepts(@NotNull ResourceIdentifier identifier);
 
     /**
      * Returns a new resource for the given resource identifier
      */
     @UmlRelation(label = "creates")
-    Resource resolve(ResourceIdentifier identifier);
+    Resource resolve(@NotNull ResourceIdentifier identifier);
 }

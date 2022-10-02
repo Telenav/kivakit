@@ -33,6 +33,7 @@ import com.telenav.kivakit.resource.internal.lexakai.DiagramFileSystemFile;
 import com.telenav.kivakit.resource.internal.lexakai.DiagramResource;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeSuperTypes;
+import org.jetbrains.annotations.NotNull;
 
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -99,7 +100,9 @@ public class ResourceReader extends BaseRepeater implements AsString
      * @param reporter The progress reporter to call as the resource is read
      * @param charset The charset for the text content
      */
-    public ResourceReader(Resource resource, ProgressReporter reporter, Charset charset)
+    public ResourceReader(@NotNull Resource resource,
+                          @NotNull ProgressReporter reporter,
+                          @NotNull Charset charset)
     {
         this.reporter = ensureNotNull(reporter);
         this.resource = ensureNotNull(resource);
@@ -112,7 +115,8 @@ public class ResourceReader extends BaseRepeater implements AsString
      * @param resource The resource to read
      * @param reporter The progress reporter to call as the resource is read
      */
-    public ResourceReader(Resource resource, ProgressReporter reporter)
+    public ResourceReader(@NotNull Resource resource,
+                          @NotNull ProgressReporter reporter)
     {
         this(resource, reporter, UTF_8);
     }
@@ -150,7 +154,7 @@ public class ResourceReader extends BaseRepeater implements AsString
      *
      * @param reporter The progress reporter to call as lines are read
      */
-    public StringList readLines(ProgressReporter reporter)
+    public StringList readLines(@NotNull ProgressReporter reporter)
     {
         return listenTo(new LineReader(resource, reporter)).lines();
     }
@@ -169,7 +173,8 @@ public class ResourceReader extends BaseRepeater implements AsString
      * @param consumer The consumer to call with each line
      * @param reporter The progress reporter to call as lines are read
      */
-    public void readLines(Consumer<String> consumer, ProgressReporter reporter)
+    public void readLines(@NotNull Consumer<String> consumer,
+                          @NotNull ProgressReporter reporter)
     {
         listenTo(new LineReader(resource, reporter)).lines(consumer);
     }
@@ -178,7 +183,8 @@ public class ResourceReader extends BaseRepeater implements AsString
      * Returns the lines in the resource being read as a list of objects created by converting each line to an object
      * using the given converter.
      */
-    public <T> ObjectList<T> readObjectList(Converter<String, T> converter, ProgressReporter reporter)
+    public <T> ObjectList<T> readObjectList(@NotNull Converter<String, T> converter,
+                                            @NotNull ProgressReporter reporter)
     {
         var objects = new ObjectList<T>();
         readLines(reporter).forEach(line -> objects.add(converter.convert(line)));
@@ -189,7 +195,8 @@ public class ResourceReader extends BaseRepeater implements AsString
      * Returns the lines in the resource being read as a set of objects created by converting each line to an object
      * using the given converter.
      */
-    public <T> ObjectSet<T> readObjectSet(Converter<String, T> converter, ProgressReporter reporter)
+    public <T> ObjectSet<T> readObjectSet(@NotNull Converter<String, T> converter,
+                                          @NotNull ProgressReporter reporter)
     {
         var objects = new ObjectSet<T>();
         readLines(reporter).forEach(line -> objects.add(converter.convert(line)));
@@ -200,7 +207,9 @@ public class ResourceReader extends BaseRepeater implements AsString
      * Returns the lines in the resource being read as a {@link Iterable} of objects created by converting each line to
      * an object using the given converter.
      */
-    public <T> void readObjects(Converter<String, T> converter, Consumer<T> consumer, ProgressReporter reporter)
+    public <T> void readObjects(@NotNull Converter<String, T> converter,
+                                @NotNull Consumer<T> consumer,
+                                @NotNull ProgressReporter reporter)
     {
         listenTo(new LineReader(resource, reporter)).lines(line -> consumer.accept(converter.convert(line)));
     }
@@ -211,7 +220,7 @@ public class ResourceReader extends BaseRepeater implements AsString
      * @param reporter The reporter to call as data is read
      * @return The string
      */
-    public String readText(ProgressReporter reporter)
+    public String readText(@NotNull ProgressReporter reporter)
     {
         if (text == null)
         {

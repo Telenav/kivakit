@@ -3,6 +3,7 @@ package com.telenav.kivakit.resource;
 import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.interfaces.comparison.Matchable;
 import com.telenav.kivakit.interfaces.comparison.Matcher;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.regex.Pattern;
 
@@ -99,7 +100,7 @@ public class ResourceGlob implements Matcher<ResourcePathed>
      * @param matchable The source of a matcher
      * @return The glob
      */
-    public static ResourceGlob glob(Matchable<ResourcePathed> matchable)
+    public static ResourceGlob glob(@NotNull Matchable<ResourcePathed> matchable)
     {
         return glob(matchable::matches);
     }
@@ -114,7 +115,7 @@ public class ResourceGlob implements Matcher<ResourcePathed>
      * @param pattern The pattern to match
      * @return The glob
      */
-    public static ResourceGlob glob(Pattern pattern)
+    public static ResourceGlob glob(@NotNull Pattern pattern)
     {
         return glob(it -> pattern.matcher(it.path().asString()).matches());
     }
@@ -135,7 +136,7 @@ public class ResourceGlob implements Matcher<ResourcePathed>
      * @param glob The pattern to match
      * @return The glob
      */
-    public static ResourceGlob glob(String glob)
+    public static ResourceGlob glob(@NotNull String glob)
     {
 
         return glob(Pattern.compile(glob
@@ -150,7 +151,7 @@ public class ResourceGlob implements Matcher<ResourcePathed>
      * @param matcher The matcher
      * @return The glob
      */
-    public static ResourceGlob glob(Matcher<ResourcePathed> matcher)
+    public static ResourceGlob glob(@NotNull Matcher<ResourcePathed> matcher)
     {
         return new ResourceGlob(matcher);
     }
@@ -169,7 +170,7 @@ public class ResourceGlob implements Matcher<ResourcePathed>
      * @param folder The folder that resources must be under (recursively)
      * @return The glob
      */
-    public static ResourceGlob globAllIn(ResourceFolder<?> folder)
+    public static ResourceGlob globAllIn(@NotNull ResourceFolder<?> folder)
     {
         return glob(folder.matchAllPathsIn());
     }
@@ -180,7 +181,7 @@ public class ResourceGlob implements Matcher<ResourcePathed>
      * @param folder The folder that resources must be under (recursively)
      * @return The glob
      */
-    public static ResourceGlob globAllUnder(ResourceFolder<?> folder)
+    public static ResourceGlob globAllUnder(@NotNull ResourceFolder<?> folder)
     {
         return glob(folder.matchAllPathsUnder());
     }
@@ -191,7 +192,7 @@ public class ResourceGlob implements Matcher<ResourcePathed>
     /**
      * <b>Not public API</b>
      */
-    protected ResourceGlob(Matcher<ResourcePathed> matcher)
+    protected ResourceGlob(@NotNull Matcher<ResourcePathed> matcher)
     {
         this.matcher = matcher;
     }
@@ -199,7 +200,7 @@ public class ResourceGlob implements Matcher<ResourcePathed>
     /**
      * Returns this glob, but with matches restricted to the given folder
      */
-    public ResourceGlob in(ResourceFolder<?> folder)
+    public ResourceGlob in(@NotNull ResourceFolder<?> folder)
     {
         return select(folder.matchAllPathsIn());
     }
@@ -208,7 +209,7 @@ public class ResourceGlob implements Matcher<ResourcePathed>
      * {@inheritDoc}
      */
     @Override
-    public boolean matches(ResourcePathed resource)
+    public boolean matches(@NotNull ResourcePathed resource)
     {
         return matcher.matches(resource);
     }
@@ -216,7 +217,7 @@ public class ResourceGlob implements Matcher<ResourcePathed>
     /**
      * Returns a glob that matches this glob minus whatever matches the given {@link Matchable}
      */
-    public ResourceGlob minus(Matchable<ResourcePathed> that)
+    public ResourceGlob minus(@NotNull Matchable<ResourcePathed> that)
     {
         return glob(it -> this.matches(it) && !that.matches(it));
     }
@@ -232,7 +233,7 @@ public class ResourceGlob implements Matcher<ResourcePathed>
     /**
      * Returns a glob that matches this glob or the given {@link Matchable}
      */
-    public ResourceGlob plus(Matchable<ResourcePathed> that)
+    public ResourceGlob plus(@NotNull Matchable<ResourcePathed> that)
     {
         return glob(it -> this.matches(it) || that.matches(it));
     }
@@ -240,7 +241,7 @@ public class ResourceGlob implements Matcher<ResourcePathed>
     /**
      * Returns a glob that matches only what this glob <i>and</i> the given {@link Matchable} both match
      */
-    public ResourceGlob select(Matchable<ResourcePathed> that)
+    public ResourceGlob select(@NotNull Matchable<ResourcePathed> that)
     {
         return glob(it -> this.matches(it) && that.matches(it));
     }
@@ -248,7 +249,7 @@ public class ResourceGlob implements Matcher<ResourcePathed>
     /**
      * Returns a glob that matches this glob, and all resources in or under the given {@link ResourceFolder}.
      */
-    public ResourceGlob under(ResourceFolder<?> folder)
+    public ResourceGlob under(@NotNull ResourceFolder<?> folder)
     {
         return select(folder.matchAllPathsUnder());
     }

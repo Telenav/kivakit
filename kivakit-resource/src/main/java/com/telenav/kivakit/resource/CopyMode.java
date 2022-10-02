@@ -19,6 +19,7 @@
 package com.telenav.kivakit.resource;
 
 import com.telenav.kivakit.annotations.code.ApiQuality;
+import org.jetbrains.annotations.NotNull;
 
 import static com.telenav.kivakit.annotations.code.ApiStability.STABLE;
 import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
@@ -48,7 +49,8 @@ public enum CopyMode
     /**
      * Returns true if the given source can be copied to the given destination
      */
-    public boolean canCopy(Resource source, Resource destination)
+    public boolean canCopy(@NotNull Resource source,
+                           @NotNull Resource destination)
     {
         switch (this)
         {

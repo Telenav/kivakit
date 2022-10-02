@@ -23,6 +23,7 @@ import com.telenav.kivakit.core.messaging.messages.status.Problem;
 import com.telenav.kivakit.resource.compression.Codec;
 import com.telenav.kivakit.resource.internal.lexakai.DiagramResourceCompression;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
+import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -49,7 +50,7 @@ public class GzipCodec implements Codec
      * {@inheritDoc}
      */
     @Override
-    public OutputStream compressed(OutputStream out)
+    public OutputStream compressed(@NotNull OutputStream out)
     {
         try
         {
@@ -65,7 +66,7 @@ public class GzipCodec implements Codec
      * {@inheritDoc}
      */
     @Override
-    public InputStream decompressed(InputStream in)
+    public InputStream decompressed(@NotNull InputStream in)
     {
         try
         {

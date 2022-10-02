@@ -45,6 +45,7 @@ import com.telenav.kivakit.resource.spi.ResourceResolverService;
 import com.telenav.kivakit.resource.writing.WritableResource;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ServiceLoader;
 
@@ -165,7 +166,8 @@ public interface Resource extends
      * @param identifier The resource identifier
      * @return The resource
      */
-    static Resource resolveResource(Listener listener, ResourceIdentifier identifier)
+    static Resource resolveResource(@NotNull Listener listener,
+                                    @NotNull ResourceIdentifier identifier)
     {
         return listener.listenTo(resourceResolverService()).resolveResource(identifier);
     }
@@ -179,7 +181,8 @@ public interface Resource extends
      * @param resourcePath The resource identifier
      * @return The resource
      */
-    static Resource resolveResource(Listener listener, ResourcePath resourcePath)
+    static Resource resolveResource(@NotNull Listener listener,
+                                    @NotNull ResourcePath resourcePath)
     {
         return resolveResource(listener, resourcePath.asString());
     }
@@ -193,7 +196,8 @@ public interface Resource extends
      * @param identifier The resource identifier
      * @return The resource
      */
-    static Resource resolveResource(Listener listener, String identifier)
+    static Resource resolveResource(@NotNull Listener listener,
+                                    @NotNull String identifier)
     {
         return resolveResource(listener, new ResourceIdentifier(identifier));
     }
@@ -205,7 +209,8 @@ public interface Resource extends
      * @param description A description for the resource argument
      * @return The builder
      */
-    static ArgumentParser.Builder<Resource> resourceArgumentParser(Listener listener, String description)
+    static ArgumentParser.Builder<Resource> resourceArgumentParser(@NotNull Listener listener,
+                                                                   @NotNull String description)
     {
         return ArgumentParser.builder(Resource.class)
                 .converter(new Resource.Converter(listener))
@@ -218,7 +223,7 @@ public interface Resource extends
      * @param identifier The identifier
      * @return The {@link ResourceIdentifier}
      */
-    static ResourceIdentifier resourceIdentifier(String identifier)
+    static ResourceIdentifier resourceIdentifier(@NotNull String identifier)
     {
         return new ResourceIdentifier(identifier);
     }
@@ -232,9 +237,9 @@ public interface Resource extends
      * @return The builder
      */
     static SwitchParser.Builder<Resource> resourceSwitchParser(
-            Listener listener,
-            String name,
-            String description)
+            @NotNull Listener listener,
+            @NotNull String name,
+            @NotNull String description)
     {
         return SwitchParser.builder(Resource.class)
                 .name(name)
@@ -267,7 +272,7 @@ public interface Resource extends
                 documentation = FULLY_DOCUMENTED)
     class Converter extends BaseStringConverter<Resource>
     {
-        public Converter(Listener listener)
+        public Converter(@NotNull Listener listener)
         {
             super(listener);
         }
@@ -325,7 +330,7 @@ public interface Resource extends
     {
     }
 
-    default boolean endsWith(String end)
+    default boolean endsWith(@NotNull String end)
     {
         return path().endsWith(end);
     }
@@ -379,7 +384,7 @@ public interface Resource extends
         return isPackaged() || isRemote();
     }
 
-    default boolean isOlderThan(Resource that)
+    default boolean isOlderThan(@NotNull Resource that)
     {
         return lastModified().isOlderThan(that.lastModified());
     }
@@ -403,9 +408,8 @@ public interface Resource extends
     /**
      * @return True if the given resource has the same last modified time and the same size
      */
-    default boolean isSame(Resource that)
+    default boolean isSame(@NotNull Resource that)
     {
-        assert that != null;
         assert lastModified() != null;
         assert sizeInBytes() != null;
         assert that.lastModified() != null;
@@ -417,7 +421,7 @@ public interface Resource extends
     /**
      * Returns a local cached copy of this resource if it is remote.
      */
-    Resource materialized(ProgressReporter reporter);
+    Resource materialized(@NotNull ProgressReporter reporter);
 
     /**
      * Returns the parent folder of this resource
@@ -438,7 +442,7 @@ public interface Resource extends
     /**
      * Returns this file with a path relative to the given folder
      */
-    default Resource relativeTo(ResourceFolder<?> folder)
+    default Resource relativeTo(@NotNull ResourceFolder<?> folder)
     {
         return unsupported();
     }
@@ -449,7 +453,7 @@ public interface Resource extends
      * @param that The resource to rename to
      * @return True if renaming succeeded
      */
-    default boolean renameTo(Resource that)
+    default boolean renameTo(@NotNull Resource that)
     {
         return unsupported();
     }
@@ -469,7 +473,8 @@ public interface Resource extends
      * @param destination The file to copy to
      * @param mode Copying semantics
      */
-    default void safeCopyTo(ResourceFolder<?> destination, CopyMode mode)
+    default void safeCopyTo(@NotNull ResourceFolder<?> destination,
+                            @NotNull CopyMode mode)
     {
         safeCopyTo(destination.resource(fileName()).asWritable(), mode, ProgressReporter.nullProgressReporter());
     }
@@ -480,7 +485,9 @@ public interface Resource extends
      * @param destination The file to copy to
      * @param mode Copying semantics
      */
-    default void safeCopyTo(ResourceFolder<?> destination, CopyMode mode, ProgressReporter reporter)
+    default void safeCopyTo(@NotNull ResourceFolder<?> destination,
+                            @NotNull CopyMode mode,
+                            @NotNull ProgressReporter reporter)
     {
         safeCopyTo(destination.resource(fileName()).asWritable(), mode, reporter);
     }
@@ -493,7 +500,8 @@ public interface Resource extends
      * @param destination The file to copy to
      * @param mode Copying semantics
      */
-    default void safeCopyTo(WritableResource destination, CopyMode mode)
+    default void safeCopyTo(@NotNull WritableResource destination,
+                            @NotNull CopyMode mode)
     {
         safeCopyTo(destination, mode, ProgressReporter.nullProgressReporter());
     }
@@ -507,7 +515,9 @@ public interface Resource extends
      * @param mode Copying semantics
      * @param reporter Progress reporter to call as copy proceeds
      */
-    default void safeCopyTo(WritableResource destination, CopyMode mode, ProgressReporter reporter)
+    default void safeCopyTo(@NotNull WritableResource destination,
+                            @NotNull CopyMode mode,
+                            @NotNull ProgressReporter reporter)
     {
         // If there is no destination file or we can overwrite,
         if (mode.canCopy(this, destination))

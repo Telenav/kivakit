@@ -32,6 +32,7 @@ import com.telenav.kivakit.resource.ResourcePath;
 import com.telenav.kivakit.resource.internal.lexakai.DiagramFileSystemFile;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeMember;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
@@ -94,7 +95,7 @@ public class FileList extends BaseResourceList<File> implements Iterable<File>
      * @param files The files
      * @return The {@link FileList}
      */
-    public static FileList fileList(File... files)
+    public static FileList fileList(@NotNull File... files)
     {
         return fileList(Iterables.iterable(files));
     }
@@ -105,7 +106,7 @@ public class FileList extends BaseResourceList<File> implements Iterable<File>
      * @param files The files
      * @return The {@link FileList}
      */
-    public static FileList fileList(Iterable<File> files)
+    public static FileList fileList(@NotNull Iterable<File> files)
     {
         return new FileList(files);
     }
@@ -136,7 +137,7 @@ public class FileList extends BaseResourceList<File> implements Iterable<File>
     {
         private final Extension extension;
 
-        public Converter(Listener listener, Extension extension)
+        public Converter(@NotNull Listener listener, @NotNull Extension extension)
         {
             super(listener);
             this.extension = extension;
@@ -173,7 +174,7 @@ public class FileList extends BaseResourceList<File> implements Iterable<File>
     {
     }
 
-    protected FileList(Iterable<File> that)
+    protected FileList(@NotNull Iterable<File> that)
     {
         addAll(that);
     }
@@ -202,7 +203,7 @@ public class FileList extends BaseResourceList<File> implements Iterable<File>
      * Returns the files in this list that match the given matcher
      */
     @Override
-    public FileList matching(Matcher<File> matcher)
+    public FileList matching(@NotNull Matcher<File> matcher)
     {
         return (FileList) super.matching(matcher);
     }
@@ -239,7 +240,7 @@ public class FileList extends BaseResourceList<File> implements Iterable<File>
      * {@inheritDoc}
      */
     @Override
-    protected File newResource(ResourcePath path)
+    protected File newResource(@NotNull ResourcePath path)
     {
         return File.file(throwingListener(), filePath(path));
     }

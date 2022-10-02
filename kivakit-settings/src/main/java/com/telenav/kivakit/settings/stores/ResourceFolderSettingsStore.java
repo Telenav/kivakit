@@ -25,7 +25,7 @@ import com.telenav.kivakit.core.registry.Registry;
 import com.telenav.kivakit.filesystem.Folder;
 import com.telenav.kivakit.resource.ResourceFolder;
 import com.telenav.kivakit.resource.serialization.ObjectSerializer;
-import com.telenav.kivakit.resource.serialization.ObjectSerializers;
+import com.telenav.kivakit.resource.serialization.ObjectSerializerRegistry;
 import com.telenav.kivakit.settings.SettingsObject;
 import com.telenav.kivakit.settings.SettingsRegistry;
 import com.telenav.kivakit.settings.SettingsStore;
@@ -55,13 +55,13 @@ import static java.util.Collections.emptySet;
  * A {@link ResourceFolderSettingsStore} can be created with
  * {@link ResourceFolderSettingsStore#ResourceFolderSettingsStore(Listener, ResourceFolder)}. The specified package
  * should contain a set of settings files, each of which can be passed to the {@link ObjectSerializer} for the file's
- * extension to deserialize the object. Object serializers are located with the {@link ObjectSerializers} object found
+ * extension to deserialize the object. Object serializers are located with the {@link ObjectSerializerRegistry} object found
  * in the global {@link Registry}.
  * </p>
  *
  * @author jonathanl (shibo)
  * @see BaseResourceSettingsStore
- * @see ObjectSerializers
+ * @see ObjectSerializerRegistry
  * @see SettingsRegistry
  * @see SettingsStore
  * @see SettingsObject
@@ -113,7 +113,7 @@ public class ResourceFolderSettingsStore extends BaseResourceSettingsStore
     {
         var objects = new ObjectSet<SettingsObject>();
 
-        var serializers = require(ObjectSerializers.class, ObjectSerializers::new);
+        var serializers = require(ObjectSerializerRegistry.class, ObjectSerializerRegistry::new);
         if (serializers.serializers().isEmpty())
         {
             problem("Cannot load settings: no registered object serializers for $", this);

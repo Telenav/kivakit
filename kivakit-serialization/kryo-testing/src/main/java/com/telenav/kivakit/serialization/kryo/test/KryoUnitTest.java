@@ -37,7 +37,7 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 
 import static com.telenav.kivakit.core.version.Version.version;
-import static com.telenav.kivakit.resource.serialization.ObjectMetadata.VERSION;
+import static com.telenav.kivakit.resource.serialization.ObjectMetadata.OBJECT_VERSION;
 import static com.telenav.kivakit.serialization.core.SerializationSession.SessionType.RESOURCE;
 
 /**
@@ -88,11 +88,11 @@ public abstract class KryoUnitTest extends UnitTest
         var path = StringPath.stringPath("/a/b/c");
 
         var write = new SerializableObject<>(object, version);
-        serializer.write(output, path, write, VERSION);
+        serializer.writeObject(output, path, write, OBJECT_VERSION);
 
         var input = new ByteArrayInputStream(output.toByteArray());
 
-        var read = serializer.read(input, path, object.getClass(), VERSION);
+        var read = serializer.readObject(input, path, object.getClass(), OBJECT_VERSION);
         ensureEqual(write, read);
     }
 

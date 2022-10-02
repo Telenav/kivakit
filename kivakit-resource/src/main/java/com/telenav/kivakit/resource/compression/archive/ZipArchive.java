@@ -45,6 +45,7 @@ import com.telenav.kivakit.resource.serialization.SerializableObject;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeSuperTypes;
+import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
 import java.io.OutputStream;
@@ -67,8 +68,8 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
 import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
 import static com.telenav.kivakit.core.ensure.Ensure.fail;
 import static com.telenav.kivakit.resource.compression.archive.ZipArchive.AccessMode.READ;
-import static com.telenav.kivakit.resource.serialization.ObjectMetadata.TYPE;
-import static com.telenav.kivakit.resource.serialization.ObjectMetadata.VERSION;
+import static com.telenav.kivakit.resource.serialization.ObjectMetadata.OBJECT_TYPE;
+import static com.telenav.kivakit.resource.serialization.ObjectMetadata.OBJECT_VERSION;
 
 /**
  * A wrapper around the JDK zip filesystem that makes it easier to use. A {@link ZipArchive} can be created with
@@ -152,7 +153,7 @@ public final class ZipArchive extends BaseRepeater implements
     /**
      * Returns true if the resource is a zip archive
      */
-    public static boolean isZipArchive(Listener listener, File file)
+    public static boolean isZipArchive(@NotNull Listener listener, @NotNull File file)
     {
         if (file.isRemote())
         {
@@ -181,7 +182,9 @@ public final class ZipArchive extends BaseRepeater implements
      * @param mode The access mode
      * @return The {@link ZipArchive} object
      */
-    public static ZipArchive zipArchive(Listener listener, File file, AccessMode mode)
+    public static ZipArchive zipArchive(@NotNull Listener listener,
+                                        @NotNull File file,
+                                        @NotNull AccessMode mode)
     {
         if (file.isRemote())
         {
@@ -223,7 +226,8 @@ public final class ZipArchive extends BaseRepeater implements
      * @param filesystem The zip filesystem
      * @param zipFile The zip file to access
      */
-    private ZipArchive(FileSystem filesystem, File zipFile)
+    private ZipArchive(@NotNull FileSystem filesystem,
+                       @NotNull File zipFile)
     {
         ensureNotNull(filesystem);
         ensureNotNull(zipFile);
@@ -235,7 +239,7 @@ public final class ZipArchive extends BaseRepeater implements
     /**
      * Adds the given files to this archive
      */
-    public void add(Collection<File> files)
+    public void add(@NotNull Collection<File> files)
     {
         add(files, ProgressReporter.nullProgressReporter());
     }
@@ -247,7 +251,8 @@ public final class ZipArchive extends BaseRepeater implements
      * @param reporter The progress reporter to call as each file is added
      */
     @SuppressWarnings("resource")
-    public void add(Collection<File> files, ProgressReporter reporter)
+    public void add(@NotNull Collection<File> files,
+                    @NotNull ProgressReporter reporter)
     {
         for (var file : files)
         {
@@ -270,7 +275,7 @@ public final class ZipArchive extends BaseRepeater implements
     /**
      * Returns the entries that match the given pattern
      */
-    public List<ZipEntry> entries(Pattern compile)
+    public List<ZipEntry> entries(@NotNull Pattern compile)
     {
         var entries = new ArrayList<ZipEntry>();
         for (var entry : this)
@@ -289,7 +294,7 @@ public final class ZipArchive extends BaseRepeater implements
      *
      * @return The entry, if any, for the given name
      */
-    public synchronized ZipEntry entry(String pathname)
+    public synchronized ZipEntry entry(@NotNull String pathname)
     {
         var path = UncheckedCode.unchecked(() -> filesystem.getPath(pathname)).orNull();
         if (path != null)
@@ -329,16 +334,17 @@ public final class ZipArchive extends BaseRepeater implements
      * @param entryName The zip file entry to read
      */
     @SuppressWarnings("resource")
-    public synchronized <T> VersionedObject<T> loadVersionedObject(ObjectReader reader, String entryName)
+    public synchronized <T> VersionedObject<T> loadVersionedObject(@NotNull ObjectReader reader,
+                                                                   @NotNull String entryName)
     {
         try
         {
             var entry = entry(entryName);
             if (entry != null)
             {
-                try (var input = new ProgressiveInputStream(entry.openForReading(reader.reporter()), reader.reporter()))
+                try (var input = new ProgressiveInputStream(entry.openForReading(reader.progressReporter()), reader.progressReporter()))
                 {
-                    return reader.read(input, StringPath.stringPath(entryName), TYPE, VERSION);
+                    return reader.readObject(input, StringPath.stringPath(entryName), OBJECT_TYPE, OBJECT_VERSION);
                 }
             }
         }
@@ -363,7 +369,7 @@ public final class ZipArchive extends BaseRepeater implements
      * @param entryName The entry name
      * @param resource The resource to save
      */
-    public ZipArchive save(String entryName, Resource resource)
+    public ZipArchive save(@NotNull String entryName, @NotNull Resource resource)
     {
         saveEntry(entryName, output ->
         {
@@ -377,14 +383,16 @@ public final class ZipArchive extends BaseRepeater implements
     /**
      * Saves the given object to the zip archive under the given entry name using the given serialization
      */
-    public <T> void save(ObjectWriter writer, String entryName, VersionedObject<T> object)
+    public <T> void save(@NotNull ObjectWriter writer,
+                         @NotNull String entryName,
+                         @NotNull VersionedObject<T> object)
     {
         saveEntry(entryName, output ->
         {
             try
             {
-                writer.write(new ProgressiveOutputStream(output, writer.reporter()),
-                        StringPath.stringPath(entryName), new SerializableObject<>(object), TYPE, VERSION);
+                writer.writeObject(new ProgressiveOutputStream(output, writer.progressReporter()),
+                        StringPath.stringPath(entryName), new SerializableObject<>(object), OBJECT_TYPE, OBJECT_VERSION);
             }
             finally
             {
@@ -396,7 +404,8 @@ public final class ZipArchive extends BaseRepeater implements
     /**
      * Saves to the given archive entry, calling the callback with the output stream to write to
      */
-    public void saveEntry(String entryName, Callback<OutputStream> onWrite)
+    public void saveEntry(@NotNull String entryName,
+                          @NotNull Callback<OutputStream> onWrite)
     {
         try
         {
@@ -436,7 +445,9 @@ public final class ZipArchive extends BaseRepeater implements
         return zipFile.path().toString();
     }
 
-    private static FileSystem filesystem(Listener listener, File file, AccessMode mode)
+    private static FileSystem filesystem(@NotNull Listener listener,
+                                         @NotNull File file,
+                                         @NotNull AccessMode mode)
     {
         var fileUri = file.asJavaFile().toURI();
         var uri = URI.create("jar:" + fileUri);

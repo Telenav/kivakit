@@ -24,6 +24,7 @@ import com.telenav.kivakit.resource.internal.lexakai.DiagramResourceType;
 import com.telenav.kivakit.resource.writing.BaseWritableResource;
 import com.telenav.kivakit.resource.writing.WritableResource;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
+import org.jetbrains.annotations.NotNull;
 
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -53,7 +54,7 @@ public class OutputResource extends BaseWritableResource
     /**
      * @param out The output stream to write to
      */
-    public OutputResource(OutputStream out)
+    public OutputResource(@NotNull OutputStream out)
     {
         this.out = out;
     }

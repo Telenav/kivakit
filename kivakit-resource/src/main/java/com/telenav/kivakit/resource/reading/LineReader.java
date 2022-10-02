@@ -23,6 +23,7 @@ import com.telenav.kivakit.core.collections.list.StringList;
 import com.telenav.kivakit.core.io.IO;
 import com.telenav.kivakit.core.messaging.repeaters.BaseRepeater;
 import com.telenav.kivakit.core.progress.ProgressReporter;
+import org.jetbrains.annotations.NotNull;
 
 import java.io.Closeable;
 import java.io.IOException;
@@ -77,7 +78,8 @@ public class LineReader extends BaseRepeater
      * @param resource The resource to read
      * @param reporter The progress reporter to call after each line is read
      */
-    public LineReader(ReadableResource resource, ProgressReporter reporter)
+    public LineReader(@NotNull ReadableResource resource,
+                      @NotNull ProgressReporter reporter)
     {
         this.resource = resource;
         this.reporter = reporter;
@@ -86,7 +88,7 @@ public class LineReader extends BaseRepeater
     /**
      * @param resource The resource to read
      */
-    public LineReader(ReadableResource resource)
+    public LineReader(@NotNull ReadableResource resource)
     {
         this(resource, nullProgressReporter());
     }
@@ -107,7 +109,7 @@ public class LineReader extends BaseRepeater
     /**
      * Calls the given consumer with each line. This method ensures that the resource stream is closed.
      */
-    public void lines(Consumer<String> consumer)
+    public void lines(@NotNull Consumer<String> consumer)
     {
         try (var reader = new LineNumberReader(listenTo(resource.reader(reporter)).textReader()))
         {
@@ -157,7 +159,7 @@ public class LineReader extends BaseRepeater
         }
     }
 
-    private Runnable closer(Closeable closeable)
+    private Runnable closer(@NotNull Closeable closeable)
     {
         return () ->
         {

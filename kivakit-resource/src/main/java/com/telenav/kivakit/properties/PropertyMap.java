@@ -40,6 +40,7 @@ import com.telenav.kivakit.resource.packages.PackagePath;
 import com.telenav.kivakit.resource.resources.InputResource;
 import com.telenav.kivakit.resource.writing.WritableResource;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
+import org.jetbrains.annotations.NotNull;
 
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -70,9 +71,9 @@ import static com.telenav.kivakit.resource.packages.PackageResource.packageResou
  *     <li>{@link #loadPropertyMap(Listener, ResourceFolder, String)} - Loads property map from the given package path and relative path</li>
  *     <li>{@link #loadLocalizedPropertyMap(Listener, PackagePath, Locale, LocaleLanguage)}</li>
  * </ul>
- * 
+ *
  * <p><b>Access</b></p>
- * 
+ *
  * <ul>
  *     <li>{@link #get(String, StringConverter)}</li>
  *     <li>{@link #get(String, StringConverter, Object)}</li>
@@ -126,21 +127,50 @@ import static com.telenav.kivakit.resource.packages.PackageResource.packageResou
             documentation = FULLY_DOCUMENTED)
 public class PropertyMap extends VariableMap<String>
 {
-    public static PropertyMap loadLocalizedPropertyMap(Listener listener, PackagePath path, Locale locale,
-                                                       LocaleLanguage languageName)
+    /**
+     * Loads and returns the property map stored at the given package path. Expansion markers like "${XYZ}" will be
+     * expanded using the system properties and environment variables available.
+     *
+     * @param listener The listener to call with any problems
+     * @param path The package path
+     * @param locale The KivaKit locale
+     * @param languageName The language within the locale
+     * @return The loaded property map
+     */
+    public static PropertyMap loadLocalizedPropertyMap(@NotNull Listener listener,
+                                                       @NotNull PackagePath path,
+                                                       @NotNull Locale locale,
+                                                       @NotNull LocaleLanguage languageName)
     {
         return PropertyMap.loadPropertyMap(listener, packageResource(listener, path, locale.path(languageName).join("/")));
     }
 
-    public static PropertyMap loadPropertyMap(Listener listener, ResourceFolder<?> folder, String resourcePath)
+    /**
+     * Loads and returns the property map stored in the given folder at the given path. Expansion markers like "${XYZ}"
+     * will be expanded using the system properties and environment variables available.
+     *
+     * @param listener The listener to call with any problems
+     * @param folder The folder where the property map is stored
+     * @param path The relative path to the property map
+     * @return The loaded property map
+     */
+    public static PropertyMap loadPropertyMap(@NotNull Listener listener,
+                                              @NotNull ResourceFolder<?> folder,
+                                              @NotNull String path)
     {
-        return loadPropertyMap(listener, listener.listenTo(folder.resource(resourcePath)));
+        return loadPropertyMap(listener, listener.listenTo(folder.resource(path)));
     }
 
     /**
-     * Returns loads the given .properties resource, interpolating system variables into each value
+     * Loads and returns the property map stored in the given resource. Expansion markers like "${XYZ}" will be expanded
+     * using the system properties and environment variables available.
+     *
+     * @param listener The listener to call with any problems
+     * @param resource The resource where the property map is stored
+     * @return The loaded property map
      */
-    public static PropertyMap loadPropertyMap(Listener listener, Resource resource)
+    public static PropertyMap loadPropertyMap(@NotNull Listener listener,
+                                              @NotNull Resource resource)
     {
         var properties = new PropertyMap();
         var linePattern = Pattern.compile("(?<key>[^=]*?)\\s*=\\s*(?<value>[^=]*)");
@@ -193,7 +223,7 @@ public class PropertyMap extends VariableMap<String>
      * @param variables The variables
      * @return The property map
      */
-    public static PropertyMap propertyMap(VariableMap<String> variables)
+    public static PropertyMap propertyMap(@NotNull VariableMap<String> variables)
     {
         var map = propertyMap();
         for (var key : variables.keySet())
@@ -215,7 +245,8 @@ public class PropertyMap extends VariableMap<String>
      * @param object The object
      * @param filter The property filter
      */
-    public void addProperties(Object object, PropertyFilter filter)
+    public void addProperties(@NotNull Object object,
+                              @NotNull PropertyFilter filter)
     {
         Type<?> type = Type.type(object);
         for (var property : type.properties(filter))
@@ -238,7 +269,7 @@ public class PropertyMap extends VariableMap<String>
     /**
      * Returns the given value as a {@link Folder}
      */
-    public File asFile(String key)
+    public File asFile(@NotNull String key)
     {
         return File.parseFile(this, get(key));
     }
@@ -246,7 +277,7 @@ public class PropertyMap extends VariableMap<String>
     /**
      * Returns the given value as a {@link Folder}
      */
-    public Folder asFolder(String key)
+    public Folder asFolder(@NotNull String key)
     {
         return Folder.parseFolder(this, asPathString(key));
     }
@@ -262,7 +293,8 @@ public class PropertyMap extends VariableMap<String>
     /**
      * Returns associate a comment with the given key. The comment will be written out when the property map is saved.
      */
-    public PropertyMap comment(String key, String comment)
+    public PropertyMap comment(@NotNull String key,
+                               @NotNull String comment)
     {
         comments.put(key, comment);
         return this;
@@ -294,7 +326,7 @@ public class PropertyMap extends VariableMap<String>
     /**
      * Returns this property map with all values expanded using the values in the given property map
      */
-    public PropertyMap expandedWith(VariableMap<String> that)
+    public PropertyMap expandedWith(@NotNull VariableMap<String> that)
     {
         var map = new PropertyMap();
         for (var key : keySet())
@@ -312,7 +344,8 @@ public class PropertyMap extends VariableMap<String>
      * @param converter The converter
      * @return The value
      */
-    public <T> T get(String key, StringConverter<T> converter)
+    public <T> T get(@NotNull String key,
+                     @NotNull StringConverter<T> converter)
     {
         if (converter.listeners().isEmpty())
         {
@@ -330,7 +363,9 @@ public class PropertyMap extends VariableMap<String>
      * @param defaultValue The default value to use if there is no value for the key
      * @return The value
      */
-    public <T> T get(String key, StringConverter<T> converter, T defaultValue)
+    public <T> T get(@NotNull String key,
+                     @NotNull StringConverter<T> converter,
+                     @NotNull T defaultValue)
     {
         var converted = get(key, converter);
         return converted == null ? defaultValue : converted;
@@ -343,7 +378,7 @@ public class PropertyMap extends VariableMap<String>
      * @return A string with all key/value pairs
      */
     @Override
-    public String join(String separator)
+    public String join(@NotNull String separator)
     {
         var entries = new StringList();
         var keys = new ArrayList<>(keySet());
@@ -366,7 +401,7 @@ public class PropertyMap extends VariableMap<String>
      *
      * @param resource The resource
      */
-    public void save(WritableResource resource)
+    public void save(@NotNull WritableResource resource)
     {
         save(resource, resource.baseFileName().name());
     }
@@ -377,7 +412,7 @@ public class PropertyMap extends VariableMap<String>
      * @param resource The resource
      * @param heading The heading
      */
-    public void save(WritableResource resource, String heading)
+    public void save(@NotNull WritableResource resource, @NotNull String heading)
     {
         var out = resource.printWriter();
         out.println(AsciiArt.box(heading, '#', '#'));

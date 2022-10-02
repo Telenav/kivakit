@@ -3,6 +3,7 @@ package com.telenav.kivakit.resource.packages;
 import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.messaging.Repeater;
 import com.telenav.kivakit.resource.Resource;
+import org.jetbrains.annotations.NotNull;
 
 import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_DEFAULT_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
@@ -47,7 +48,7 @@ public interface PackageTrait extends Repeater
     /**
      * Returns the package containing the given type
      */
-    default Package packageFor(Class<?> type)
+    default Package packageFor(@NotNull Class<?> type)
     {
         return Package.packageContaining(this, type);
     }
@@ -58,7 +59,7 @@ public interface PackageTrait extends Repeater
      * @param relativePath The relative path
      * @return The given package relative to this class' package
      */
-    default Package packageForRelativePath(String relativePath)
+    default Package packageForRelativePath(@NotNull String relativePath)
     {
         return parsePackage(this, getClass(), relativePath);
     }
@@ -79,7 +80,7 @@ public interface PackageTrait extends Repeater
      * @param type The type
      * @return The package path
      */
-    default PackagePath packagePathFor(Class<?> type)
+    default PackagePath packagePathFor(@NotNull Class<?> type)
     {
         return PackagePath.packagePath(type);
     }
@@ -98,7 +99,8 @@ public interface PackageTrait extends Repeater
      * @param type The type
      * @param relativePath The relative path
      */
-    default PackageResource packageResource(Class<?> type, String relativePath)
+    default PackageResource packageResource(@NotNull Class<?> type,
+                                            @NotNull String relativePath)
     {
         return PackageResource.packageResource(this, type, relativePath);
     }
@@ -108,7 +110,7 @@ public interface PackageTrait extends Repeater
      *
      * @param relativePath The path relative to this object's class
      */
-    default PackageResource packageResource(String relativePath)
+    default PackageResource packageResource(@NotNull String relativePath)
     {
         return packageResource(getClass(), relativePath);
     }

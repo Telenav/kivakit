@@ -41,6 +41,7 @@ import com.telenav.kivakit.resource.serialization.SerializableObject;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlAggregation;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
+import org.jetbrains.annotations.NotNull;
 
 import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
@@ -131,7 +132,7 @@ public class FieldArchive extends BaseRepeater implements Closeable
         /** The property */
         private final Property property;
 
-        public ObjectField(Object object, Property property)
+        public ObjectField(@NotNull Object object, @NotNull Property property)
         {
             this.object = object;
             this.property = property;
@@ -148,7 +149,7 @@ public class FieldArchive extends BaseRepeater implements Closeable
             return property.toString();
         }
 
-        boolean saveObject(ObjectWriter writer, String entryName)
+        boolean saveObject(@NotNull ObjectWriter writer, @NotNull String entryName)
         {
             var outer = FieldArchive.this;
             var value = property.get(object);
@@ -183,14 +184,17 @@ public class FieldArchive extends BaseRepeater implements Closeable
      * @param file A field archive resource
      * @param mode The mode of access to this archive
      */
-    public FieldArchive(File file, ProgressReporter reporter, ZipArchive.AccessMode mode)
+    public FieldArchive(@NotNull File file,
+                        @NotNull ProgressReporter reporter,
+                        @NotNull ZipArchive.AccessMode mode)
     {
         this.file = file;
         this.reporter = reporter;
         this.mode = mode;
     }
 
-    public FieldArchive(File file, ZipArchive.AccessMode mode)
+    public FieldArchive(@NotNull File file,
+                        @NotNull ZipArchive.AccessMode mode)
     {
         this(file, ProgressReporter.nullProgressReporter(), mode);
     }
@@ -215,9 +219,9 @@ public class FieldArchive extends BaseRepeater implements Closeable
     /**
      * Loads a versioned object from the zip entry named "[object-name].[field-name]"
      */
-    public <T> VersionedObject<T> load(ObjectReader reader,
-                                       NamedObject object,
-                                       String fieldName)
+    public <T> VersionedObject<T> load(@NotNull ObjectReader reader,
+                                       @NotNull NamedObject object,
+                                       @NotNull String fieldName)
     {
         return zip().loadVersionedObject(reader, entryName(object, fieldName));
     }
@@ -230,7 +234,9 @@ public class FieldArchive extends BaseRepeater implements Closeable
      * @return The value of the field after attempting to load
      */
     @SuppressWarnings({ "ConstantConditions", "unchecked" })
-    public synchronized <T> T loadFieldOf(ObjectReader reader, NamedObject object, String fieldName)
+    public synchronized <T> T loadFieldOf(@NotNull ObjectReader reader,
+                                          @NotNull NamedObject object,
+                                          @NotNull String fieldName)
     {
         // Get the field
         Type<?> type = Type.type(object);
@@ -276,7 +282,8 @@ public class FieldArchive extends BaseRepeater implements Closeable
      * @return True if all fields were loaded
      */
     @SuppressWarnings({ "UnusedReturnValue", "ConstantConditions" })
-    public synchronized boolean loadFieldsOf(ObjectReader reader, NamedObject... objects)
+    public synchronized boolean loadFieldsOf(@NotNull ObjectReader reader,
+                                             @NotNull NamedObject... objects)
     {
         ensure(objects != null);
         ensure(objects.length > 0);
@@ -308,7 +315,7 @@ public class FieldArchive extends BaseRepeater implements Closeable
     /**
      * Returns the version of data in this archive
      */
-    public Version loadVersion(ObjectReader reader)
+    public Version loadVersion(@NotNull ObjectReader reader)
     {
         if (version == null)
         {
@@ -334,7 +341,9 @@ public class FieldArchive extends BaseRepeater implements Closeable
     /**
      * Saves the given versioned object to the entry with the given name
      */
-    public synchronized <T> void save(ObjectWriter writer, String fieldName, VersionedObject<T> object)
+    public synchronized <T> void save(@NotNull ObjectWriter writer,
+                                      @NotNull String fieldName,
+                                      @NotNull VersionedObject<T> object)
     {
         zip().save(writer, CaseFormat.camelCaseToHyphenated(fieldName), object);
     }
@@ -343,7 +352,9 @@ public class FieldArchive extends BaseRepeater implements Closeable
      * Saves the fields of the given object to this archive with the given version
      */
     @SuppressWarnings("ConstantConditions")
-    public synchronized void saveFieldsOf(ObjectWriter writer, NamedObject object, Version version)
+    public synchronized void saveFieldsOf(@NotNull ObjectWriter writer,
+                                          @NotNull NamedObject object,
+                                          @NotNull Version version)
     {
         ensure(object != null);
 
@@ -368,7 +379,8 @@ public class FieldArchive extends BaseRepeater implements Closeable
     /**
      * Saves the given archive version
      */
-    public void saveVersion(ObjectWriter writer, Version version)
+    public void saveVersion(@NotNull ObjectWriter writer,
+                            @NotNull Version version)
     {
         save(writer, "version", new SerializableObject<>(version, version));
     }
@@ -387,7 +399,7 @@ public class FieldArchive extends BaseRepeater implements Closeable
         return version;
     }
 
-    public void version(Version version)
+    public void version(@NotNull Version version)
     {
         this.version = version;
     }
@@ -405,7 +417,8 @@ public class FieldArchive extends BaseRepeater implements Closeable
         return zip;
     }
 
-    private String entryName(NamedObject object, String fieldName)
+    private String entryName(@NotNull NamedObject object,
+                             @NotNull String fieldName)
     {
         return object.objectName() + "." + CaseFormat.camelCaseToHyphenated(fieldName);
     }

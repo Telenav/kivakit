@@ -192,7 +192,8 @@ public class Extension implements
      * @param text The text to parse
      * @return The extension
      */
-    public static Extension parseExtension(Listener listener, String text)
+    public static Extension parseExtension(@NotNull Listener listener,
+                                           @NotNull String text)
     {
         if (text.matches("(\\.[A-Za-z0-9]+)+"))
         {
@@ -207,7 +208,7 @@ public class Extension implements
      * @param text The text to parse
      * @return The extension
      */
-    public static Extension parseExtension(String text)
+    public static Extension parseExtension(@NotNull String text)
     {
         return parseExtension(throwingListener(), text);
     }
@@ -215,7 +216,7 @@ public class Extension implements
     /** The extension (without the leading dot) */
     private final String extension;
 
-    protected Extension(String value)
+    protected Extension(@NotNull String value)
     {
         if (value.startsWith("."))
         {
@@ -247,7 +248,7 @@ public class Extension implements
     /**
      * True if the given resource has this extension
      */
-    public boolean ends(Resource resource)
+    public boolean ends(@NotNull Resource resource)
     {
         return resource.hasExtension(this);
     }
@@ -255,7 +256,7 @@ public class Extension implements
     /**
      * True if the given path has this extension
      */
-    public boolean ends(ResourcePath path)
+    public boolean ends(@NotNull ResourcePath path)
     {
         return path.extension().equals(this);
     }
@@ -264,7 +265,7 @@ public class Extension implements
      * True if this extension ends with the given extension. For example the extension ".tar.gz" ends with the extension
      * ".gz"
      */
-    public boolean endsWith(Extension extension)
+    public boolean endsWith(@NotNull Extension extension)
     {
         return this.extension.endsWith(extension.extension);
     }
@@ -353,7 +354,7 @@ public class Extension implements
     /**
      * Returns this extension with the given extension appended
      */
-    public Extension withExtension(Extension extension)
+    public Extension withExtension(@NotNull Extension extension)
     {
         return new Extension(this.extension + extension);
     }

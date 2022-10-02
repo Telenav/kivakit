@@ -19,10 +19,10 @@
 package com.telenav.kivakit.resource.writing;
 
 import com.telenav.kivakit.annotations.code.ApiQuality;
-import com.telenav.kivakit.core.io.IO;
 import com.telenav.kivakit.core.progress.ProgressReporter;
 import com.telenav.kivakit.core.progress.reporters.ProgressiveOutputStream;
 import com.telenav.kivakit.core.value.count.BaseCount;
+import org.jetbrains.annotations.NotNull;
 
 import java.io.OutputStream;
 
@@ -82,7 +82,7 @@ public interface Writable
      * @param reporter A progress reporter that is called for each byte that is written
      * @return The output stream to write to
      */
-    default OutputStream openForWriting(ProgressReporter reporter)
+    default OutputStream openForWriting(@NotNull ProgressReporter reporter)
     {
         return new ProgressiveOutputStream(bufferOutput(onOpenForWriting()), reporter);
     }

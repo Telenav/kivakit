@@ -26,6 +26,7 @@ import com.telenav.kivakit.filesystem.File;
 import com.telenav.kivakit.filesystem.Folder;
 import com.telenav.kivakit.filesystem.FolderPruner;
 import com.telenav.kivakit.testing.UnitTest;
+import org.jetbrains.annotations.NotNull;
 import org.junit.Ignore;
 import org.junit.Test;
 
@@ -49,7 +50,7 @@ public class FolderPrunerTest extends UnitTest
         FolderPruner pruner = new FolderPruner(folder, Duration.milliseconds(1).asFrequency())
         {
             @Override
-            protected void onFileRemoved(File file)
+            protected void onFileRemoved(@NotNull File file)
             {
                 removed.threadCompleted();
             }
@@ -85,7 +86,7 @@ public class FolderPrunerTest extends UnitTest
             FolderPruner pruner = new FolderPruner(folder, Duration.milliseconds(25).asFrequency())
             {
                 @Override
-                protected void onFileRemoved(File file)
+                protected void onFileRemoved(@NotNull File file)
                 {
                 }
             };

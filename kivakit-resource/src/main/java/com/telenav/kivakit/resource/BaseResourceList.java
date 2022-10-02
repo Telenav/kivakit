@@ -5,6 +5,7 @@ import com.telenav.kivakit.core.collections.set.ObjectSet;
 import com.telenav.kivakit.core.value.count.Bytes;
 import com.telenav.kivakit.core.value.count.Count;
 import com.telenav.kivakit.interfaces.comparison.Matcher;
+import org.jetbrains.annotations.NotNull;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -18,7 +19,7 @@ public abstract class BaseResourceList<T extends Resource> extends ObjectList<T>
      * Adds the given resource to this list at the given index
      */
     @Override
-    public void add(int index, T resource)
+    public void add(int index, @NotNull T resource)
     {
         if (accepts(resource.fileName()))
         {
@@ -30,7 +31,7 @@ public abstract class BaseResourceList<T extends Resource> extends ObjectList<T>
      * Adds the given resource to this list
      */
     @Override
-    public boolean add(T resource)
+    public boolean add(@NotNull T resource)
     {
         if (accepts(resource.fileName()))
         {
@@ -110,7 +111,7 @@ public abstract class BaseResourceList<T extends Resource> extends ObjectList<T>
     /**
      * Returns the resources in this list that match the given extension
      */
-    public BaseResourceList<T> matching(Extension extension)
+    public BaseResourceList<T> matching(@NotNull Extension extension)
     {
         return matching(resource ->
         {
@@ -123,7 +124,7 @@ public abstract class BaseResourceList<T extends Resource> extends ObjectList<T>
      * Returns the resources in this list that match the given matcher
      */
     @Override
-    public BaseResourceList<T> matching(Matcher<T> matcher)
+    public BaseResourceList<T> matching(@NotNull Matcher<T> matcher)
     {
         var matches = newResourceList();
         for (var resource : this)
@@ -139,7 +140,7 @@ public abstract class BaseResourceList<T extends Resource> extends ObjectList<T>
     /**
      * Returns this resource list relative to the given folder
      */
-    public BaseResourceList<T> relativeTo(ResourceFolder<?> folder)
+    public BaseResourceList<T> relativeTo(@NotNull ResourceFolder<?> folder)
     {
         var resources = newResourceList();
         for (var resource : this)
@@ -151,7 +152,7 @@ public abstract class BaseResourceList<T extends Resource> extends ObjectList<T>
     }
 
     @Override
-    public T set(int index, T resource)
+    public T set(int index, @NotNull T resource)
     {
         if (accepts(resource.fileName()))
         {
@@ -232,7 +233,7 @@ public abstract class BaseResourceList<T extends Resource> extends ObjectList<T>
         return bytes;
     }
 
-    protected boolean accepts(FileName name)
+    protected boolean accepts(@NotNull FileName name)
     {
         return true;
     }
@@ -243,7 +244,7 @@ public abstract class BaseResourceList<T extends Resource> extends ObjectList<T>
      * @param path The path
      * @return The resource
      */
-    protected abstract T newResource(ResourcePath path);
+    protected abstract T newResource(@NotNull ResourcePath path);
 
     /**
      * Creates a new resource list of the subclass type

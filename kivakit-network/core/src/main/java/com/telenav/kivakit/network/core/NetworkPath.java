@@ -33,6 +33,7 @@ import com.telenav.kivakit.network.core.internal.lexakai.DiagramNetworkLocation;
 import com.telenav.kivakit.resource.Extension;
 import com.telenav.kivakit.resource.FileName;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
+import org.jetbrains.annotations.NotNull;
 
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -252,7 +253,7 @@ public class NetworkPath extends FilePath
      * {@inheritDoc}
      */
     @Override
-    public NetworkPath file(FileName child)
+    public NetworkPath file(@NotNull FileName child)
     {
         return (NetworkPath) super.file(child);
     }
@@ -307,7 +308,7 @@ public class NetworkPath extends FilePath
      * {@inheritDoc}
      */
     @Override
-    public NetworkPath transformed(Function<String, String> consumer)
+    public NetworkPath transformed(@NotNull Function<String, String> consumer)
     {
         return (NetworkPath) super.transformed(consumer);
     }
@@ -316,7 +317,7 @@ public class NetworkPath extends FilePath
      * {@inheritDoc}
      */
     @Override
-    public NetworkPath withChild(String child)
+    public NetworkPath withChild(@NotNull String child)
     {
         return (NetworkPath) super.withChild(child);
     }
@@ -325,7 +326,7 @@ public class NetworkPath extends FilePath
      * {@inheritDoc}
      */
     @Override
-    public NetworkPath withChild(Path<String> that)
+    public NetworkPath withChild(@NotNull Path<String> that)
     {
         return (NetworkPath) super.withChild(that);
     }
@@ -334,7 +335,7 @@ public class NetworkPath extends FilePath
      * {@inheritDoc}
      */
     @Override
-    public NetworkPath withExtension(Extension extension)
+    public NetworkPath withExtension(@NotNull Extension extension)
     {
         return (NetworkPath) super.withExtension(extension);
     }
@@ -343,7 +344,7 @@ public class NetworkPath extends FilePath
      * {@inheritDoc}
      */
     @Override
-    public NetworkPath withParent(String element)
+    public NetworkPath withParent(@NotNull String element)
     {
         return (NetworkPath) super.withParent(element);
     }
@@ -352,7 +353,7 @@ public class NetworkPath extends FilePath
      * {@inheritDoc}
      */
     @Override
-    public NetworkPath withParent(Path<String> that)
+    public NetworkPath withParent(@NotNull Path<String> that)
     {
         return (NetworkPath) super.withParent(that);
     }
@@ -361,7 +362,7 @@ public class NetworkPath extends FilePath
      * {@inheritDoc}
      */
     @Override
-    public NetworkPath withRoot(String root)
+    public NetworkPath withRoot(@NotNull String root)
     {
         return (NetworkPath) super.withRoot(root);
     }
@@ -370,7 +371,7 @@ public class NetworkPath extends FilePath
      * {@inheritDoc}
      */
     @Override
-    public NetworkPath withSeparator(String separator)
+    public NetworkPath withSeparator(@NotNull String separator)
     {
         return (NetworkPath) super.withSeparator(separator);
     }
@@ -397,7 +398,7 @@ public class NetworkPath extends FilePath
      * {@inheritDoc}
      */
     @Override
-    public NetworkPath withoutOptionalPrefix(Path<String> prefix)
+    public NetworkPath withoutOptionalPrefix(@NotNull Path<String> prefix)
     {
         return (NetworkPath) super.withoutOptionalPrefix(prefix);
     }
@@ -406,7 +407,7 @@ public class NetworkPath extends FilePath
      * {@inheritDoc}
      */
     @Override
-    public NetworkPath withoutOptionalSuffix(Path<String> suffix)
+    public NetworkPath withoutOptionalSuffix(@NotNull Path<String> suffix)
     {
         return (NetworkPath) super.withoutOptionalSuffix(suffix);
     }
@@ -415,7 +416,7 @@ public class NetworkPath extends FilePath
      * {@inheritDoc}
      */
     @Override
-    public NetworkPath withoutPrefix(Path<String> prefix)
+    public NetworkPath withoutPrefix(@NotNull Path<String> prefix)
     {
         return (NetworkPath) super.withoutPrefix(prefix);
     }
@@ -442,7 +443,7 @@ public class NetworkPath extends FilePath
      * {@inheritDoc}
      */
     @Override
-    public NetworkPath withoutSuffix(Path<String> suffix)
+    public NetworkPath withoutSuffix(@NotNull Path<String> suffix)
     {
         return (NetworkPath) super.withoutSuffix(suffix);
     }
@@ -451,7 +452,7 @@ public class NetworkPath extends FilePath
      * {@inheritDoc}
      */
     @Override
-    protected NetworkPath onCopy(String root, List<String> elements)
+    protected NetworkPath onCopy(@NotNull String root, @NotNull List<String> elements)
     {
         return new NetworkPath(port(), root, elements);
     }

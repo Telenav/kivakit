@@ -25,11 +25,13 @@ import com.telenav.kivakit.interfaces.comparison.Matcher;
 import com.telenav.kivakit.resource.FileName;
 import com.telenav.kivakit.resource.internal.lexakai.DiagramFileSystemService;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.ApiType.SERVICE_PROVIDER_API;
 import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
 import static com.telenav.kivakit.core.ensure.Ensure.unsupported;
@@ -64,7 +66,8 @@ import static com.telenav.kivakit.core.ensure.Ensure.unsupported;
 @UmlClassDiagram(diagram = DiagramFileSystemService.class)
 @ApiQuality(stability = STABLE_EXTENSIBLE,
             testing = TESTING_NOT_NEEDED,
-            documentation = FULLY_DOCUMENTED)
+            documentation = FULLY_DOCUMENTED,
+            type = SERVICE_PROVIDER_API)
 public interface FolderService extends FileSystemObjectService
 {
     /**
@@ -78,7 +81,7 @@ public interface FolderService extends FileSystemObjectService
     /**
      * Returns the file service for the given file name
      */
-    FileService file(FileName name);
+    FileService file(@NotNull FileName name);
 
     /**
      * Returns the files in this folder
@@ -88,7 +91,7 @@ public interface FolderService extends FileSystemObjectService
     /**
      * Returns the files in this folder that match the matcher
      */
-    default List<FileService> files(Matcher<FilePath> matcher)
+    default List<FileService> files(@NotNull Matcher<FilePath> matcher)
     {
         List<FileService> files = new ArrayList<>();
         for (var file : files())
@@ -104,12 +107,12 @@ public interface FolderService extends FileSystemObjectService
     /**
      * Returns the named sub-folder in this folder
      */
-    FolderService folder(FileName folder);
+    FolderService folder(@NotNull FileName folder);
 
     /**
      * Returns the named folder path within this folder
      */
-    FolderService folder(Folder folder);
+    FolderService folder(@NotNull Folder folder);
 
     /**
      * Returns the folders in this folder
@@ -119,7 +122,7 @@ public interface FolderService extends FileSystemObjectService
     /**
      * Returns the folders in this folder that match the matcher
      */
-    default List<FolderService> folders(Matcher<FilePath> matcher)
+    default List<FolderService> folders(@NotNull Matcher<FilePath> matcher)
     {
         List<FolderService> folders = new ArrayList<>();
         for (var folder : folders())
@@ -167,18 +170,18 @@ public interface FolderService extends FileSystemObjectService
     /**
      * Returns files in this folder that match the given matcher, recursively
      */
-    List<FileService> nestedFiles(Matcher<FilePath> matcher);
+    List<FileService> nestedFiles(@NotNull Matcher<FilePath> matcher);
 
     /**
      * Returns files in this folder that match the given matcher, recursively
      */
-    List<FolderService> nestedFolders(Matcher<FilePath> matcher);
+    List<FolderService> nestedFolders(@NotNull Matcher<FilePath> matcher);
 
     /**
      * @param that The folder to rename this folder to
      * @return True if the folder was renamed
      */
-    default boolean renameTo(FolderService that)
+    default boolean renameTo(@NotNull FolderService that)
     {
         return unsupported();
     }
@@ -187,7 +190,7 @@ public interface FolderService extends FileSystemObjectService
      * @param baseName Base name of temporary file
      * @return A unique, existing temporary file in this folder
      */
-    default FileService temporaryFile(FileName baseName)
+    default FileService temporaryFile(@NotNull FileName baseName)
     {
         return unsupported();
     }
@@ -196,7 +199,7 @@ public interface FolderService extends FileSystemObjectService
      * @param baseName Base name of temporary folder
      * @return A unique, existing temporary folder in this folder
      */
-    default FolderService temporaryFolder(FileName baseName)
+    default FolderService temporaryFolder(@NotNull FileName baseName)
     {
         return unsupported();
     }

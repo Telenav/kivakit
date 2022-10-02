@@ -26,6 +26,7 @@ import com.telenav.kivakit.core.time.Time;
 import com.telenav.kivakit.resource.internal.lexakai.DiagramFileSystemFolder;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -73,7 +74,7 @@ public class FolderChangeWatcher extends PeriodicCollectionChangeWatcher<FileSys
      * @param folder The folder to watch
      * @param frequency The frequency to inspect the folder at
      */
-    public FolderChangeWatcher(Folder folder, Frequency frequency)
+    public FolderChangeWatcher(@NotNull Folder folder, @NotNull Frequency frequency)
     {
         super(frequency);
         this.folder = folder;
@@ -83,7 +84,7 @@ public class FolderChangeWatcher extends PeriodicCollectionChangeWatcher<FileSys
      * {@inheritDoc}
      */
     @Override
-    protected Time lastModified(FileSystemObject object)
+    protected Time lastModified(@NotNull FileSystemObject object)
     {
         return object.lastModified();
     }

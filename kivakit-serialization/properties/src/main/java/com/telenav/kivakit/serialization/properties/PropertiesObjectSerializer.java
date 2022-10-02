@@ -12,6 +12,7 @@ import com.telenav.kivakit.resource.Resource;
 import com.telenav.kivakit.resource.serialization.ObjectMetadata;
 import com.telenav.kivakit.resource.serialization.ObjectSerializer;
 import com.telenav.kivakit.resource.serialization.SerializableObject;
+import org.jetbrains.annotations.NotNull;
 
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -20,9 +21,9 @@ import static com.telenav.kivakit.core.ensure.Ensure.ensure;
 import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
 import static com.telenav.kivakit.core.ensure.Ensure.fail;
 import static com.telenav.kivakit.core.ensure.Ensure.unsupported;
-import static com.telenav.kivakit.resource.serialization.ObjectMetadata.INSTANCE;
-import static com.telenav.kivakit.resource.serialization.ObjectMetadata.TYPE;
-import static com.telenav.kivakit.resource.serialization.ObjectMetadata.VERSION;
+import static com.telenav.kivakit.resource.serialization.ObjectMetadata.OBJECT_INSTANCE;
+import static com.telenav.kivakit.resource.serialization.ObjectMetadata.OBJECT_TYPE;
+import static com.telenav.kivakit.resource.serialization.ObjectMetadata.OBJECT_VERSION;
 
 /**
  * Reads a {@link SerializableObject} from a <i>.properties</i> file.
@@ -51,10 +52,10 @@ public class PropertiesObjectSerializer implements ObjectSerializer
      * {@inheritDoc}
      */
     @Override
-    public <T> SerializableObject<T> read(InputStream input,
-                                          StringPath path,
-                                          Class<T> type,
-                                          ObjectMetadata... metadata)
+    public <T> SerializableObject<T> readObject(@NotNull InputStream input,
+                                                @NotNull StringPath path,
+                                                @NotNull Class<T> type,
+                                                ObjectMetadata @NotNull ... metadata)
     {
         // Load properties from the given resource,
         var properties = PropertyMap.loadPropertyMap(this, input);
@@ -64,7 +65,7 @@ public class PropertiesObjectSerializer implements ObjectSerializer
             if (type == null)
             {
                 // then load it using the class name specified by the 'class' property.
-                ensure(Arrays.contains(metadata, TYPE), "Must specify either an explicit type or ObjectMetadata.TYPE to read the type from the input");
+                ensure(Arrays.contains(metadata, OBJECT_TYPE), "Must specify either an explicit type or ObjectMetadata.TYPE to read the type from the input");
                 var typeName = properties.get("class");
                 if (typeName == null)
                 {
@@ -76,14 +77,14 @@ public class PropertiesObjectSerializer implements ObjectSerializer
 
             // Next, read any version
             Version version = null;
-            if (Arrays.contains(metadata, VERSION))
+            if (Arrays.contains(metadata, OBJECT_VERSION))
             {
                 version = Version.parseVersion(this, properties.get("version"));
             }
 
             // get any instance identifier,
             var instance = InstanceIdentifier.singletonInstance();
-            if (Arrays.contains(metadata, INSTANCE))
+            if (Arrays.contains(metadata, OBJECT_INSTANCE))
             {
                 var enumName = properties.getOrDefault("instance",
                         InstanceIdentifier.singletonInstance().identifier().name());
@@ -109,16 +110,16 @@ public class PropertiesObjectSerializer implements ObjectSerializer
     }
 
     @Override
-    public ProgressReporter reporter()
+    public ProgressReporter progressReporter()
     {
         return reporter;
     }
 
     @Override
-    public <T> void write(OutputStream output,
-                          StringPath path,
-                          SerializableObject<T> object,
-                          ObjectMetadata... metadata)
+    public <T> void writeObject(@NotNull OutputStream output,
+                                @NotNull StringPath path,
+                                @NotNull SerializableObject<T> object,
+                                ObjectMetadata @NotNull ... metadata)
     {
         unsupported();
     }

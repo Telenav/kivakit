@@ -61,7 +61,9 @@ public class ResourceSection extends BaseReadableResource
      * @param startOffset The start offset, inclusive
      * @param endOffset The end offset, exclusive
      */
-    public ResourceSection(@NotNull Resource resource, long startOffset, long endOffset)
+    public ResourceSection(@NotNull Resource resource,
+                           long startOffset,
+                           long endOffset)
     {
         super(resource.path());
         this.resource = ensureNotNull(resource);

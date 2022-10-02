@@ -26,6 +26,7 @@ import com.telenav.kivakit.resource.ResourceFolderIdentifier;
 import com.telenav.kivakit.resource.internal.lexakai.DiagramResourceService;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlAggregation;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ServiceLoader;
 
@@ -82,7 +83,7 @@ public class ResourceFolderResolverService extends BaseRepeater
      * @param identifier The resource folder identifier to resolve
      * @return The resource folder
      */
-    public ResourceFolder<?> resolveResourceFolder(ResourceFolderIdentifier identifier)
+    public ResourceFolder<?> resolveResourceFolder(@NotNull ResourceFolderIdentifier identifier)
     {
         for (var factory : resourceFolderResolvers())
         {

@@ -7,7 +7,7 @@ import com.telenav.kivakit.core.registry.Registry;
 import com.telenav.kivakit.core.registry.RegistryTrait;
 import com.telenav.kivakit.resource.Resource;
 import com.telenav.kivakit.resource.serialization.ObjectReader;
-import com.telenav.kivakit.resource.serialization.ObjectSerializers;
+import com.telenav.kivakit.resource.serialization.ObjectSerializerRegistry;
 import com.telenav.kivakit.settings.BaseSettingsStore;
 import com.telenav.kivakit.settings.SettingsObject;
 import com.telenav.kivakit.settings.SettingsStore;
@@ -15,8 +15,8 @@ import com.telenav.kivakit.settings.SettingsStore;
 import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
-import static com.telenav.kivakit.resource.serialization.ObjectMetadata.INSTANCE;
-import static com.telenav.kivakit.resource.serialization.ObjectMetadata.TYPE;
+import static com.telenav.kivakit.resource.serialization.ObjectMetadata.OBJECT_INSTANCE;
+import static com.telenav.kivakit.resource.serialization.ObjectMetadata.OBJECT_TYPE;
 
 /**
  * <b>Service Provider API</b>
@@ -123,11 +123,11 @@ public abstract class BaseResourceSettingsStore extends BaseSettingsStore implem
      */
     protected SettingsObject read(Resource resource)
     {
-        var reader = require(ObjectSerializers.class, ObjectSerializers::new)
+        var reader = require(ObjectSerializerRegistry.class, ObjectSerializerRegistry::new)
                 .serializer(resource.extension());
         if (reader != null)
         {
-            var object = reader.read(resource, TYPE, INSTANCE);
+            var object = reader.readObject(resource, OBJECT_TYPE, OBJECT_INSTANCE);
             if (object != null)
             {
                 return new SettingsObject(object);

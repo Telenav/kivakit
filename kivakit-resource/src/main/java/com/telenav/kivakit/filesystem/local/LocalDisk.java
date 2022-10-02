@@ -24,10 +24,12 @@ import com.telenav.kivakit.filesystem.spi.DiskService;
 import com.telenav.kivakit.resource.internal.lexakai.DiagramFileSystemService;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.visibility.UmlNotPublicApi;
+import org.jetbrains.annotations.NotNull;
 
 import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.ApiType.PRIVATE_API;
 import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
 
 /**
  * Implementation of {@link DiskService} provider interface for the local filesystem.
@@ -37,13 +39,14 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NE
 @UmlClassDiagram(diagram = DiagramFileSystemService.class)
 @UmlNotPublicApi
 @ApiQuality(stability = STABLE_EXTENSIBLE,
-            testing = TESTING_NOT_NEEDED,
-            documentation = FULLY_DOCUMENTED)
+            testing = UNTESTED,
+            documentation = FULLY_DOCUMENTED,
+            type = PRIVATE_API)
 public class LocalDisk implements DiskService
 {
     private final LocalFolder root;
 
-    public LocalDisk(LocalFolder folder)
+    public LocalDisk(@NotNull LocalFolder folder)
     {
         // Go up the folder hierarchy until we find a partition mount point
         var at = folder;
@@ -54,30 +57,45 @@ public class LocalDisk implements DiskService
         root = at;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Bytes free()
     {
         return Bytes.bytes(root.asJavaFile().getFreeSpace());
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public LocalFolder root()
     {
         return root;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Bytes size()
     {
         return Bytes.bytes(root.asJavaFile().getTotalSpace());
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String toString()
     {
         return root.toString();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Bytes usable()
     {

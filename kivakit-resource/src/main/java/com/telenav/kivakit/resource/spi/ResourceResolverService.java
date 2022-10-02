@@ -28,6 +28,7 @@ import com.telenav.kivakit.resource.ResourcePath;
 import com.telenav.kivakit.resource.internal.lexakai.DiagramResourceService;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlAggregation;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ServiceLoader;
 
@@ -100,7 +101,7 @@ public class ResourceResolverService extends BaseRepeater
      * @param identifier The resource identifier to resolve
      * @return The resolved resource
      */
-    public Resource resolveResource(ResourceIdentifier identifier)
+    public Resource resolveResource(@NotNull ResourceIdentifier identifier)
     {
         for (var resolver : resourceResolvers())
         {

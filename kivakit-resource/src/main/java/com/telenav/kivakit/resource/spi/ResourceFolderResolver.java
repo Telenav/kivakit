@@ -27,6 +27,7 @@ import com.telenav.kivakit.resource.ResourceIdentifier;
 import com.telenav.kivakit.resource.internal.lexakai.DiagramResourceService;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ServiceLoader;
 
@@ -56,11 +57,11 @@ public interface ResourceFolderResolver extends RepeaterMixin
     /**
      * @return True if this resource factory understands the given resource identifier
      */
-    boolean accepts(ResourceFolderIdentifier identifier);
+    boolean accepts(@NotNull ResourceFolderIdentifier identifier);
 
     /**
      * @return A new resource for the given resource identifier
      */
     @UmlRelation(label = "creates")
-    ResourceFolder<?> resolve(ResourceFolderIdentifier identifier);
+    ResourceFolder<?> resolve(@NotNull ResourceFolderIdentifier identifier);
 }

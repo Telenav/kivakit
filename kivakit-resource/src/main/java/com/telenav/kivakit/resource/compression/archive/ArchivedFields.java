@@ -21,6 +21,7 @@ package com.telenav.kivakit.resource.compression.archive;
 import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.language.reflection.Field;
 import com.telenav.kivakit.core.language.reflection.filters.field.AllFields;
+import org.jetbrains.annotations.NotNull;
 
 import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_DEFAULT_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
@@ -40,7 +41,7 @@ class ArchivedFields extends AllFields
      * {@inheritDoc}
      */
     @Override
-    public boolean includeField(Field field)
+    public boolean includeField(@NotNull Field field)
     {
         return field.hasAnnotation(KivaKitArchivedField.class);
     }

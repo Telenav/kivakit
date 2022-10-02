@@ -24,6 +24,7 @@ import com.telenav.kivakit.resource.internal.lexakai.DiagramResourceService;
 import com.telenav.kivakit.resource.packages.Package;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * An identifier for a {@link ResourceFolder} implementation, including either a {@link Package} or a {@link Folder}.
@@ -39,7 +40,7 @@ public class ResourceFolderIdentifier
 {
     private final String identifier;
 
-    public ResourceFolderIdentifier(String identifier)
+    public ResourceFolderIdentifier(@NotNull String identifier)
     {
         this.identifier = identifier;
     }
@@ -49,7 +50,7 @@ public class ResourceFolderIdentifier
         return identifier;
     }
 
-    public ResourceFolder<?> resolve(Listener listener)
+    public ResourceFolder<?> resolve(@NotNull Listener listener)
     {
         return ResourceFolder.resolveResourceFolder(listener, this);
     }

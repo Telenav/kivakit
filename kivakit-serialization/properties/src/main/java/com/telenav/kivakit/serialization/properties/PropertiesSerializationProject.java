@@ -3,7 +3,7 @@ package com.telenav.kivakit.serialization.properties;
 import com.telenav.kivakit.core.project.Project;
 import com.telenav.kivakit.core.project.ProjectTrait;
 import com.telenav.kivakit.resource.Extension;
-import com.telenav.kivakit.resource.serialization.ObjectSerializers;
+import com.telenav.kivakit.resource.serialization.ObjectSerializerRegistry;
 
 /**
  * This class defines a KivaKit {@link Project}. It cannot be constructed with the new operator since it has a private
@@ -18,7 +18,7 @@ public class PropertiesSerializationProject extends Project
     public void onInitialize()
     {
         // Register .properties object serializer
-        require(ObjectSerializers.class, ObjectSerializers::new)
+        require(ObjectSerializerRegistry.class, ObjectSerializerRegistry::new)
                 .add(Extension.PROPERTIES, listenTo(new PropertiesObjectSerializer()));
     }
 }

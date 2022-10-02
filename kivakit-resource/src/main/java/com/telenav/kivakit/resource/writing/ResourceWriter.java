@@ -22,6 +22,7 @@ import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.resource.internal.lexakai.DiagramFileSystemFile;
 import com.telenav.kivakit.resource.internal.lexakai.DiagramResource;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
+import org.jetbrains.annotations.NotNull;
 
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
@@ -63,13 +64,14 @@ public class ResourceWriter
     /** The character set to use */
     private final Charset charset;
 
-    public ResourceWriter(WritableResource resource)
+    public ResourceWriter(@NotNull WritableResource resource)
     {
         this.resource = resource;
         this.charset = UTF_8;
     }
 
-    public ResourceWriter(WritableResource resource, Charset charset)
+    public ResourceWriter(@NotNull WritableResource resource,
+                          @NotNull Charset charset)
     {
         this.resource = resource;
         this.charset = charset;
@@ -98,7 +100,7 @@ public class ResourceWriter
      *
      * @param text The text
      */
-    public void saveText(String text)
+    public void saveText(@NotNull String text)
     {
         try (var out = printWriter())
         {

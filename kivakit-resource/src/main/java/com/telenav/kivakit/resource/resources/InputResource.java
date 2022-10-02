@@ -25,6 +25,7 @@ import com.telenav.kivakit.resource.internal.lexakai.DiagramResourceType;
 import com.telenav.kivakit.resource.reading.BaseReadableResource;
 import com.telenav.kivakit.resource.reading.ReadableResource;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
+import org.jetbrains.annotations.NotNull;
 
 import java.io.InputStream;
 
@@ -55,7 +56,7 @@ public class InputResource extends BaseReadableResource
     /**
      * @param in The input stream (which can only be read one time)
      */
-    public InputResource(InputStream in)
+    public InputResource(@NotNull InputStream in)
     {
         super(ResourcePath.parseUnixResourcePath(throwingListener(),
                 "/objects/InputResource/" + Integer.toHexString(in.hashCode())));

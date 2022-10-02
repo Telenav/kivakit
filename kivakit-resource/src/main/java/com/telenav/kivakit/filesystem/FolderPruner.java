@@ -32,6 +32,7 @@ import com.telenav.kivakit.resource.ResourcePathed;
 import com.telenav.kivakit.resource.internal.lexakai.DiagramFileSystemFolder;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
+import org.jetbrains.annotations.NotNull;
 
 import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
@@ -98,7 +99,7 @@ public class FolderPruner extends BaseRepeater implements
     /** The pruner thread */
     private final RepeatingThread thread;
 
-    public FolderPruner(Folder folder, Frequency frequency)
+    public FolderPruner(@NotNull Folder folder, @NotNull Frequency frequency)
     {
         thread = new RepeatingThread(this, getClass().getSimpleName(), frequency)
         {
@@ -146,7 +147,7 @@ public class FolderPruner extends BaseRepeater implements
     /**
      * Sets the capacity of the folder before pruning occurs
      */
-    public void capacity(Bytes capacity)
+    public void capacity(@NotNull Bytes capacity)
     {
         this.capacity = capacity;
     }
@@ -163,7 +164,7 @@ public class FolderPruner extends BaseRepeater implements
     /**
      * Sets the matcher to use when selecting resources to prune
      */
-    public void matcher(Matcher<ResourcePathed> matcher)
+    public void matcher(@NotNull Matcher<ResourcePathed> matcher)
     {
         this.matcher = matcher;
     }
@@ -171,7 +172,7 @@ public class FolderPruner extends BaseRepeater implements
     /**
      * Sets the maximum age at which resources can be expired
      */
-    public void maximumAge(Duration maximumAge)
+    public void maximumAge(@NotNull Duration maximumAge)
     {
         this.maximumAge = maximumAge;
     }
@@ -188,7 +189,7 @@ public class FolderPruner extends BaseRepeater implements
     /**
      * Sets the minimum usable disk space below which pruning occurs
      */
-    public void minimumUsableDiskSpace(Percent minimumUsableDiskSpace)
+    public void minimumUsableDiskSpace(@NotNull Percent minimumUsableDiskSpace)
     {
         this.minimumUsableDiskSpace = minimumUsableDiskSpace;
     }
@@ -208,7 +209,7 @@ public class FolderPruner extends BaseRepeater implements
      * {@inheritDoc}
      */
     @Override
-    public void stop(Duration maximumWaitTime)
+    public void stop(@NotNull Duration maximumWaitTime)
     {
         thread.stop(maximumWaitTime);
         running = false;
@@ -218,7 +219,7 @@ public class FolderPruner extends BaseRepeater implements
      * Allows subclass to determine the file age (because it may want to infer the date of the file from the filename or
      * some other source instead of using the OS time)
      */
-    protected Duration age(File file)
+    protected Duration age(@NotNull File file)
     {
         return file.lastModified().elapsedSince();
     }
@@ -229,7 +230,8 @@ public class FolderPruner extends BaseRepeater implements
      * @return True if the candidate file can be removed
      */
     @SuppressWarnings({ "SameReturnValue", "unused" })
-    protected boolean canRemove(File candidate, FileList files)
+    protected boolean canRemove(@NotNull File candidate,
+                                @NotNull FileList files)
     {
         return true;
     }
@@ -257,7 +259,7 @@ public class FolderPruner extends BaseRepeater implements
     /**
      * Called when files are removed
      */
-    protected void onFileRemoved(File file)
+    protected void onFileRemoved(@NotNull File file)
     {
         warning("FolderPruner removing $", file);
     }

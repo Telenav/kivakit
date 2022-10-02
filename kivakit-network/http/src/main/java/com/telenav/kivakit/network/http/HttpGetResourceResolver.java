@@ -7,6 +7,7 @@ import com.telenav.kivakit.resource.ResourceIdentifier;
 import com.telenav.kivakit.resource.internal.lexakai.DiagramResourceService;
 import com.telenav.kivakit.resource.spi.ResourceResolver;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
+import org.jetbrains.annotations.NotNull;
 
 import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
@@ -28,7 +29,7 @@ public class HttpGetResourceResolver implements ResourceResolver
      * {@inheritDoc}
      */
     @Override
-    public boolean accepts(ResourceIdentifier resourceIdentifier)
+    public boolean accepts(@NotNull ResourceIdentifier resourceIdentifier)
     {
         var identifier = resourceIdentifier.identifier();
         return identifier.startsWith("https:") || identifier.startsWith("http:");
@@ -38,7 +39,7 @@ public class HttpGetResourceResolver implements ResourceResolver
      * {@inheritDoc}
      */
     @Override
-    public Resource resolve(ResourceIdentifier resourceIdentifier)
+    public Resource resolve(@NotNull ResourceIdentifier resourceIdentifier)
     {
         var identifier = resourceIdentifier.identifier();
         if (identifier.startsWith("http:"))

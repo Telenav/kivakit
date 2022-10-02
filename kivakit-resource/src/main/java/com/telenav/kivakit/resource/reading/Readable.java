@@ -24,6 +24,7 @@ import com.telenav.kivakit.core.progress.ProgressReporter;
 import com.telenav.kivakit.core.progress.reporters.ProgressiveInputStream;
 import com.telenav.kivakit.core.value.count.ByteSized;
 import com.telenav.kivakit.core.value.count.Bytes;
+import org.jetbrains.annotations.NotNull;
 
 import java.io.InputStream;
 
@@ -79,7 +80,7 @@ public interface Readable extends ByteSized
      * @param reporter A progress reporter that is called for each byte that is read
      * @return The input stream to read from
      */
-    default InputStream openForReading(ProgressReporter reporter)
+    default InputStream openForReading(@NotNull ProgressReporter reporter)
     {
         // Get the size of this resource
         var size = sizeInBytes();

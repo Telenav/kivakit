@@ -23,6 +23,7 @@ import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.resource.internal.lexakai.DiagramResourceService;
 import com.telenav.kivakit.resource.spi.ResourceResolver;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
+import org.jetbrains.annotations.NotNull;
 
 import static com.telenav.kivakit.annotations.code.ApiStability.STABLE;
 import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
@@ -60,7 +61,7 @@ public class ResourceIdentifier
     /**
      * @param identifier The storage-agnostic identifier
      */
-    public ResourceIdentifier(String identifier)
+    public ResourceIdentifier(@NotNull String identifier)
     {
         this.identifier = identifier;
     }
@@ -79,7 +80,7 @@ public class ResourceIdentifier
      * @param listener The listener to call with any problems during resolution
      * @return The {@link Resource} that this identifier identifies
      */
-    public Resource resolve(Listener listener)
+    public Resource resolve(@NotNull Listener listener)
     {
         return Resource.resolveResource(listener, this);
     }

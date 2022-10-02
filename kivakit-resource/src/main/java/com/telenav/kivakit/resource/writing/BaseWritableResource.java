@@ -30,6 +30,7 @@ import com.telenav.kivakit.resource.internal.lexakai.DiagramResource;
 import com.telenav.kivakit.resource.reading.BaseReadableResource;
 import com.telenav.kivakit.resource.reading.ReadableResource;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
+import org.jetbrains.annotations.NotNull;
 
 import java.io.BufferedOutputStream;
 import java.io.InputStream;
@@ -68,12 +69,12 @@ public abstract class BaseWritableResource extends BaseReadableResource implemen
     {
     }
 
-    protected BaseWritableResource(BaseWritableResource that)
+    protected BaseWritableResource(@NotNull BaseWritableResource that)
     {
         super(that);
     }
 
-    protected BaseWritableResource(ResourcePath path)
+    protected BaseWritableResource(@NotNull ResourcePath path)
     {
         super(path);
     }
@@ -83,7 +84,9 @@ public abstract class BaseWritableResource extends BaseReadableResource implemen
      *
      * @param source The resource to copy from
      */
-    public void copyFrom(Resource source, CopyMode mode, ProgressReporter reporter)
+    public void copyFrom(@NotNull Resource source,
+                         @NotNull CopyMode mode,
+                         @NotNull ProgressReporter reporter)
     {
         source.copyTo(this, mode, reporter);
     }
@@ -100,7 +103,9 @@ public abstract class BaseWritableResource extends BaseReadableResource implemen
     /**
      * Saves the given input stream into this file
      */
-    public void save(Listener listener, InputStream in, ProgressReporter reporter)
+    public void save(@NotNull Listener listener,
+                     @NotNull InputStream in,
+                     @NotNull ProgressReporter reporter)
     {
         var out = openForWriting(reporter);
         IO.copyAndClose(listener, in, out);
@@ -112,7 +117,7 @@ public abstract class BaseWritableResource extends BaseReadableResource implemen
      *
      * @param text The text to print
      */
-    public Resource saveText(String text)
+    public Resource saveText(@NotNull String text)
     {
         try (var out = printWriter())
         {

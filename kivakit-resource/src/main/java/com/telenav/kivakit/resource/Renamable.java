@@ -1,6 +1,7 @@
 package com.telenav.kivakit.resource;
 
 import com.telenav.kivakit.annotations.code.ApiQuality;
+import org.jetbrains.annotations.NotNull;
 
 import static com.telenav.kivakit.annotations.code.ApiStability.STABLE;
 import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
@@ -19,7 +20,7 @@ public interface Renamable
     /**
      * Returns true if the object was deleted, false otherwise
      */
-    default boolean renameTo(ResourcePathed path)
+    default boolean renameTo(@NotNull ResourcePathed path)
     {
         return unsupported();
     }

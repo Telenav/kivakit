@@ -26,6 +26,7 @@ import com.telenav.kivakit.filesystem.spi.FolderService;
 import com.telenav.kivakit.interfaces.comparison.Matcher;
 import com.telenav.kivakit.resource.internal.lexakai.DiagramFileSystemFolder;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.HashSet;
 import java.util.List;
@@ -56,10 +57,10 @@ public class FolderList extends ObjectList<Folder>
     /**
      * <b>Not public API</b>
      */
-    public static FolderList folderList(List<? extends FolderService> virtualFolders)
+    public static FolderList folderList(@NotNull List<? extends FolderService> folderServices)
     {
         var folders = new FolderList();
-        for (FolderService folder : virtualFolders)
+        for (FolderService folder : folderServices)
         {
             folders.add(new Folder(folder));
         }
@@ -76,7 +77,7 @@ public class FolderList extends ObjectList<Folder>
                 documentation = FULLY_DOCUMENTED)
     public static class Converter extends BaseStringConverter<FolderList>
     {
-        public Converter(Listener listener)
+        public Converter(@NotNull Listener listener)
         {
             super(listener);
         }
@@ -111,7 +112,7 @@ public class FolderList extends ObjectList<Folder>
      * {@inheritDoc}
      */
     @Override
-    public FolderList matching(Matcher<Folder> matcher)
+    public FolderList matching(@NotNull Matcher<Folder> matcher)
     {
         var folders = new FolderList();
         for (var folder : this)

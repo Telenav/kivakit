@@ -33,6 +33,7 @@ import com.telenav.kivakit.resource.Resourceful;
 import com.telenav.kivakit.resource.internal.lexakai.DiagramJarLauncher;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlAggregation;
+import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -135,7 +136,7 @@ public class JarLauncher extends BaseRepeater
     /**
      * Adds the given resourced object to this launcher as a potential place to load the JAR file from
      */
-    public JarLauncher addJarSource(Resourceful resourced)
+    public JarLauncher addJarSource(@NotNull Resourceful resourced)
     {
         jarSources.add(resourced);
         return this;
@@ -144,7 +145,7 @@ public class JarLauncher extends BaseRepeater
     /**
      * @param arguments The arguments to pass to the launched Java program
      */
-    public JarLauncher arguments(String... arguments)
+    public JarLauncher arguments(@NotNull String... arguments)
     {
         programArguments = StringList.stringList(Arrays.asList(arguments));
         return this;
@@ -153,7 +154,7 @@ public class JarLauncher extends BaseRepeater
     /**
      * @param arguments The arguments to pass to the launched Java program
      */
-    public JarLauncher arguments(StringList arguments)
+    public JarLauncher arguments(@NotNull StringList arguments)
     {
         programArguments = arguments;
         return this;
@@ -181,7 +182,7 @@ public class JarLauncher extends BaseRepeater
     /**
      * @param type The type of process to launch
      */
-    public JarLauncher processType(ProcessType type)
+    public JarLauncher processType(@NotNull ProcessType type)
     {
         processType = type;
         return this;
@@ -190,7 +191,7 @@ public class JarLauncher extends BaseRepeater
     /**
      * @param redirectTo The type of output redirection to perform
      */
-    public JarLauncher redirectTo(RedirectTo redirectTo)
+    public JarLauncher redirectTo(@NotNull RedirectTo redirectTo)
     {
         this.redirectTo = redirectTo;
         return this;

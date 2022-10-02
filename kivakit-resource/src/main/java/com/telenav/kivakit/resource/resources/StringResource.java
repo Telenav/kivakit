@@ -27,6 +27,7 @@ import com.telenav.kivakit.resource.internal.lexakai.DiagramResourceType;
 import com.telenav.kivakit.resource.reading.BaseReadableResource;
 import com.telenav.kivakit.resource.reading.ReadableResource;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
+import org.jetbrains.annotations.NotNull;
 
 import java.io.InputStream;
 import java.util.function.Function;
@@ -57,7 +58,7 @@ public class StringResource extends BaseReadableResource
     /**
      * @param text The text to read
      */
-    public StringResource(String text)
+    public StringResource(@NotNull String text)
     {
         this(parseUnixResourcePath(emptyListener(),
                 "/objects/String@" + Integer.toHexString(text.hashCode())), text);
@@ -67,7 +68,8 @@ public class StringResource extends BaseReadableResource
      * @param path The made-up path to use
      * @param text The text to read
      */
-    public StringResource(ResourcePath path, String text)
+    public StringResource(@NotNull ResourcePath path,
+                          @NotNull String text)
     {
         super(path);
         this.text = text;
@@ -106,7 +108,7 @@ public class StringResource extends BaseReadableResource
      * @param transformation The transformation to apply to this string resource
      * @return The resource to read
      */
-    public StringResource transform(Function<String, String> transformation)
+    public StringResource transform(@NotNull Function<String, String> transformation)
     {
         return new StringResource(transformation.apply(text));
     }

@@ -32,6 +32,7 @@ import com.telenav.kivakit.resource.writing.BaseWritableResource;
 import com.telenav.kivakit.resource.writing.WritableResource;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeSuperTypes;
+import org.jetbrains.annotations.NotNull;
 
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -75,7 +76,8 @@ public class ZipEntry extends BaseWritableResource implements Closeable
 
     private final Path path;
 
-    public ZipEntry(FileSystem filesystem, Path path)
+    public ZipEntry(@NotNull FileSystem filesystem,
+                    @NotNull Path path)
     {
         this.path = filesystem.getPath(path.toString());
     }
