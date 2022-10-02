@@ -26,9 +26,9 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.Objects;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
-import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
 import static com.telenav.kivakit.core.time.Duration.ZERO_DURATION;
 import static com.telenav.kivakit.core.time.Duration.parseDuration;
 
@@ -67,9 +67,9 @@ import static com.telenav.kivakit.core.time.Duration.parseDuration;
  */
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramTime.class)
-@ApiQuality(stability = STABLE_EXTENSIBLE,
-            testing = UNTESTED,
-            documentation = FULLY_DOCUMENTED)
+@ApiQuality(stability = API_STABLE_EXTENSIBLE,
+            testing = TESTING_NONE,
+            documentation = DOCUMENTATION_COMPLETE)
 public class Frequency
 {
     public static final Frequency ONCE = every(Duration.MAXIMUM);
@@ -155,9 +155,9 @@ public class Frequency
      * The start time of a cycle. The {@link #next()} method returns the time at which this cycle will repeat. The
      * amount of time before this time is returned by {@link #waitTimeBeforeNextCycle()}
      */
-    @ApiQuality(stability = STABLE_EXTENSIBLE,
-                testing = UNTESTED,
-                documentation = FULLY_DOCUMENTED)
+    @ApiQuality(stability = API_STABLE_EXTENSIBLE,
+                testing = TESTING_NONE,
+                documentation = DOCUMENTATION_COMPLETE)
     public class Cycle
     {
         private final Time start;

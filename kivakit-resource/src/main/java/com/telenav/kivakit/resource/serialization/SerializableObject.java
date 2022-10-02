@@ -8,9 +8,9 @@ import com.telenav.kivakit.core.version.Version;
 import com.telenav.kivakit.core.version.VersionedObject;
 import org.jetbrains.annotations.NotNull;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.UNSTABLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
-import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
+import static com.telenav.kivakit.annotations.code.ApiStability.API_UNSTABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
 import static com.telenav.kivakit.core.registry.InstanceIdentifier.singletonInstance;
 
 /**
@@ -18,9 +18,9 @@ import static com.telenav.kivakit.core.registry.InstanceIdentifier.singletonInst
  *
  * @author jonathanl (shibo)
  */
-@ApiQuality(stability = UNSTABLE,
-            documentation = FULLY_DOCUMENTED,
-            testing = UNTESTED)
+@ApiQuality(stability = API_UNSTABLE,
+            documentation = DOCUMENTATION_COMPLETE,
+            testing = TESTING_NONE)
 public class SerializableObject<T> extends VersionedObject<T>
 {
     private InstanceIdentifier instance = singletonInstance();

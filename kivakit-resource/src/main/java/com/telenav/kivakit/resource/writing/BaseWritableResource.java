@@ -36,9 +36,9 @@ import java.io.BufferedOutputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
-import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
 
 /**
  * Extends {@link BaseReadableResource} and provides a base implementation of the {@link WritableResource} interface.
@@ -60,9 +60,9 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramFileSystemFile.class)
 @UmlClassDiagram(diagram = DiagramResource.class)
-@ApiQuality(stability = STABLE_EXTENSIBLE,
-            documentation = FULLY_DOCUMENTED,
-            testing = UNTESTED)
+@ApiQuality(stability = API_STABLE_EXTENSIBLE,
+            documentation = DOCUMENTATION_COMPLETE,
+            testing = TESTING_NONE)
 public abstract class BaseWritableResource extends BaseReadableResource implements WritableResource
 {
     protected BaseWritableResource()

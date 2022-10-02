@@ -32,9 +32,9 @@ import com.telenav.kivakit.resource.packages.Package;
 import com.telenav.kivakit.resource.writing.WritableResource;
 import org.jetbrains.annotations.NotNull;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.STABLE;
-import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_DEFAULT_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE;
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_DEFAULT_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
 import static com.telenav.kivakit.core.ensure.Ensure.unsupported;
 import static com.telenav.kivakit.filesystem.Folder.FolderType.NORMAL;
@@ -100,9 +100,9 @@ import static com.telenav.kivakit.resource.spi.ResourceFolderResolverService.res
  * @author jonathanl (shibo)
  */
 @SuppressWarnings("unused")
-@ApiQuality(stability = STABLE_DEFAULT_EXTENSIBLE,
+@ApiQuality(stability = API_STABLE_DEFAULT_EXTENSIBLE,
             testing = TESTING_NOT_NEEDED,
-            documentation = FULLY_DOCUMENTED)
+            documentation = DOCUMENTATION_COMPLETE)
 public interface ResourceFolder<T extends ResourceFolder<T>> extends
         Repeater,
         UriIdentified,
@@ -131,9 +131,9 @@ public interface ResourceFolder<T extends ResourceFolder<T>> extends
      *
      * @author jonathanl (shibo)
      */
-    @ApiQuality(stability = STABLE,
+    @ApiQuality(stability = API_STABLE,
                 testing = TESTING_NOT_NEEDED,
-                documentation = FULLY_DOCUMENTED)
+                documentation = DOCUMENTATION_COMPLETE)
     class Converter extends BaseStringConverter<ResourceFolder<?>>
     {
         public Converter(Listener listener)

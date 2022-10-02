@@ -10,11 +10,11 @@ import com.telenav.kivakit.core.value.count.Maximum;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_ENUM_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_ENUM_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
-import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
 
 /**
  * A columnar log formatter. {@link Column} models can be created by subclasses and added to the {@link LineOutput} with
@@ -23,17 +23,17 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
  *
  * @author jonathanl (shibo)
  */
-@ApiQuality(stability = STABLE_EXTENSIBLE,
-            testing = UNTESTED,
-            documentation = FULLY_DOCUMENTED)
+@ApiQuality(stability = API_STABLE_EXTENSIBLE,
+            testing = TESTING_NONE,
+            documentation = DOCUMENTATION_COMPLETE)
 public abstract class BaseColumnarFormatter implements LogFormatter
 {
     /**
      * ColumnLayout rules to use when lines are too wide for the column they are in
      */
-    @ApiQuality(stability = STABLE_ENUM_EXTENSIBLE,
+    @ApiQuality(stability = API_STABLE_ENUM_EXTENSIBLE,
                 testing = TESTING_NOT_NEEDED,
-                documentation = FULLY_DOCUMENTED)
+                documentation = DOCUMENTATION_COMPLETE)
     protected enum ColumnLayout
     {
         /** Column should wrap */
@@ -49,9 +49,9 @@ public abstract class BaseColumnarFormatter implements LogFormatter
     /**
      * Data structure for modeling a text column
      */
-    @ApiQuality(stability = STABLE_EXTENSIBLE,
-                testing = UNTESTED,
-                documentation = FULLY_DOCUMENTED)
+    @ApiQuality(stability = API_STABLE_EXTENSIBLE,
+                testing = TESTING_NONE,
+                documentation = DOCUMENTATION_COMPLETE)
     protected static class Column
     {
         /** The layout of the column */
@@ -148,9 +148,9 @@ public abstract class BaseColumnarFormatter implements LogFormatter
     /**
      * The output for a line as it is populated by column
      */
-    @ApiQuality(stability = STABLE_EXTENSIBLE,
-                testing = UNTESTED,
-                documentation = FULLY_DOCUMENTED)
+    @ApiQuality(stability = API_STABLE_EXTENSIBLE,
+                testing = TESTING_NONE,
+                documentation = DOCUMENTATION_COMPLETE)
     protected static class LineOutput
     {
         /** The column definitions */

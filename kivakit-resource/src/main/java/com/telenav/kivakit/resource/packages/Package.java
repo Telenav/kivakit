@@ -60,10 +60,10 @@ import java.util.stream.Collectors;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_DEFAULT_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
-import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_DEFAULT_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
 import static com.telenav.kivakit.core.ensure.Ensure.fail;
 import static com.telenav.kivakit.core.ensure.Ensure.unsupported;
 import static com.telenav.kivakit.core.language.module.PackageReference.packageReference;
@@ -105,9 +105,9 @@ import static com.telenav.kivakit.resource.packages.PackageResource.packageResou
  */
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramResourceType.class)
-@ApiQuality(stability = STABLE_EXTENSIBLE,
-            documentation = FULLY_DOCUMENTED,
-            testing = UNTESTED)
+@ApiQuality(stability = API_STABLE_EXTENSIBLE,
+            documentation = DOCUMENTATION_COMPLETE,
+            testing = TESTING_NONE)
 public class Package extends BaseRepeater implements ResourceFolder<Package>
 {
     /**
@@ -157,9 +157,9 @@ public class Package extends BaseRepeater implements ResourceFolder<Package>
      * @see Resource#resolveResource(Listener, ResourceIdentifier)
      */
     @UmlClassDiagram(diagram = DiagramResourceService.class)
-    @ApiQuality(stability = STABLE_DEFAULT_EXTENSIBLE,
-                documentation = FULLY_DOCUMENTED,
-                testing = UNTESTED)
+    @ApiQuality(stability = API_STABLE_DEFAULT_EXTENSIBLE,
+                documentation = DOCUMENTATION_COMPLETE,
+                testing = TESTING_NONE)
     public static class Resolver implements ResourceFolderResolver
     {
         public static final String SCHEME = "classpath:";

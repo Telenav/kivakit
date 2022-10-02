@@ -32,9 +32,9 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 import java.io.Serializable;
 import java.util.Objects;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.STABLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
-import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
 
 /**
  * <p>
@@ -157,9 +157,9 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
  */
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramSettings.class, excludeSuperTypes = { Serializable.class })
-@ApiQuality(stability = STABLE,
-            testing = UNTESTED,
-            documentation = FULLY_DOCUMENTED)
+@ApiQuality(stability = API_STABLE,
+            testing = TESTING_NONE,
+            documentation = DOCUMENTATION_COMPLETE)
 public class Deployment extends MemorySettingsStore implements Serializable
 {
     /**
@@ -186,9 +186,9 @@ public class Deployment extends MemorySettingsStore implements Serializable
      *
      * @author jonathanl (shibo)
      */
-    @ApiQuality(stability = STABLE,
-                testing = UNTESTED,
-                documentation = FULLY_DOCUMENTED)
+    @ApiQuality(stability = API_STABLE,
+                testing = TESTING_NONE,
+                documentation = DOCUMENTATION_COMPLETE)
     public static class Converter extends BaseStringConverter<Deployment>
     {
         /** Set of deployments to choose from */

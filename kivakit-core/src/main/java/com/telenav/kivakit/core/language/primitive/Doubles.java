@@ -22,9 +22,9 @@ import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramPrimitive;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_STATIC_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
-import static com.telenav.kivakit.annotations.code.TestingQuality.FULLY_TESTED;
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_STATIC_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_SUFFICIENT;
 
 /**
  * Utility methods for working with <i>double</i> values
@@ -41,9 +41,9 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.FULLY_TESTED;
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramPrimitive.class)
-@ApiQuality(stability = STABLE_STATIC_EXTENSIBLE,
-            testing = FULLY_TESTED,
-            documentation = FULLY_DOCUMENTED)
+@ApiQuality(stability = API_STABLE_STATIC_EXTENSIBLE,
+            testing = TESTING_SUFFICIENT,
+            documentation = DOCUMENTATION_COMPLETE)
 public class Doubles
 {
     /** Default invalid value */

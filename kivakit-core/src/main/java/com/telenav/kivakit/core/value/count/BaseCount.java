@@ -13,9 +13,9 @@ import com.telenav.kivakit.interfaces.value.Source;
 
 import java.util.function.Consumer;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
-import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
 import static com.telenav.kivakit.core.ensure.Ensure.ensure;
 import static com.telenav.kivakit.core.value.count.BitCount.bits;
 import static com.telenav.kivakit.core.value.count.Estimate.estimate;
@@ -186,9 +186,9 @@ import static java.lang.Math.min;
  * @see Minimum
  */
 @SuppressWarnings({ "unused", "unchecked" })
-@ApiQuality(stability = STABLE_EXTENSIBLE,
-            testing = UNTESTED,
-            documentation = FULLY_DOCUMENTED)
+@ApiQuality(stability = API_STABLE_EXTENSIBLE,
+            testing = TESTING_NONE,
+            documentation = DOCUMENTATION_COMPLETE)
 public abstract class BaseCount<SubClass extends BaseCount<SubClass>> implements
         FormattedLongValued,
         Numeric<SubClass>,

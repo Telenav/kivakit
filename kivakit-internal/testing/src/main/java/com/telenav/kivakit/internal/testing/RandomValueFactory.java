@@ -43,9 +43,9 @@ import java.util.List;
 import java.util.Random;
 import java.util.function.Consumer;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.UNSTABLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
-import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
+import static com.telenav.kivakit.annotations.code.ApiStability.API_UNSTABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
 import static com.telenav.kivakit.core.ensure.Ensure.ensure;
 import static com.telenav.kivakit.core.language.primitive.Longs.inRangeInclusive;
 import static com.telenav.kivakit.core.value.count.Count._256;
@@ -91,9 +91,9 @@ import static com.telenav.kivakit.internal.testing.Repeats.NO_REPEATS;
  */
 @UmlClassDiagram(diagram = DiagramTest.class)
 @SuppressWarnings({ "SpellCheckingInspection", "unused" })
-@ApiQuality(stability = UNSTABLE,
-            testing = UNTESTED,
-            documentation = FULLY_DOCUMENTED)
+@ApiQuality(stability = API_UNSTABLE,
+            testing = TESTING_NONE,
+            documentation = DOCUMENTATION_COMPLETE)
 public class RandomValueFactory implements RandomNumeric
 {
     private static volatile long SALT = 8682522807148012L;

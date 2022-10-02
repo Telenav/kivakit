@@ -26,9 +26,9 @@ import org.jetbrains.annotations.NotNull;
 
 import java.io.OutputStream;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
-import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
 import static com.telenav.kivakit.core.io.IO.bufferOutput;
 import static com.telenav.kivakit.core.progress.ProgressReporter.nullProgressReporter;
 
@@ -47,9 +47,9 @@ import static com.telenav.kivakit.core.progress.ProgressReporter.nullProgressRep
  *
  * @author jonathanl (shibo)
  */
-@ApiQuality(stability = STABLE_EXTENSIBLE,
-            documentation = FULLY_DOCUMENTED,
-            testing = UNTESTED)
+@ApiQuality(stability = API_STABLE_EXTENSIBLE,
+            documentation = DOCUMENTATION_COMPLETE,
+            testing = TESTING_NONE)
 public interface Writable
 {
     /**

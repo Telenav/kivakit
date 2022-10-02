@@ -56,10 +56,10 @@ import java.net.URI;
 import java.nio.charset.Charset;
 import java.nio.file.attribute.PosixFilePermission;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.STABLE;
-import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
-import static com.telenav.kivakit.annotations.code.TestingQuality.MORE_TESTING_NEEDED;
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE;
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_INSUFFICIENT;
 import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
 import static com.telenav.kivakit.core.collections.set.ObjectSet.objectSet;
 import static com.telenav.kivakit.core.ensure.Ensure.ensure;
@@ -189,9 +189,9 @@ import static com.telenav.kivakit.filesystem.loader.FileSystemServiceLoader.file
  */
 @SuppressWarnings({ "SameParameterValue", "unused" })
 @UmlClassDiagram(diagram = DiagramFileSystemFile.class)
-@ApiQuality(stability = STABLE_EXTENSIBLE,
-            testing = MORE_TESTING_NEEDED,
-            documentation = FULLY_DOCUMENTED)
+@ApiQuality(stability = API_STABLE_EXTENSIBLE,
+            testing = TESTING_INSUFFICIENT,
+            documentation = DOCUMENTATION_COMPLETE)
 public class File extends BaseWritableResource implements FileSystemObject
 {
     public static PosixFilePermission[] ACCESS_ALL = { PosixFilePermission.OWNER_READ,
@@ -429,9 +429,9 @@ public class File extends BaseWritableResource implements FileSystemObject
      *
      * @author jonathanl (shibo)
      */
-    @ApiQuality(stability = STABLE,
+    @ApiQuality(stability = API_STABLE,
                 testing = TESTING_NOT_NEEDED,
-                documentation = FULLY_DOCUMENTED)
+                documentation = DOCUMENTATION_COMPLETE)
     public static class Converter extends BaseStringConverter<File>
     {
         public Converter(@NotNull Listener listener)
@@ -446,9 +446,9 @@ public class File extends BaseWritableResource implements FileSystemObject
      * @author jonathanl (shibo)
      */
     @UmlClassDiagram(diagram = DiagramResourceService.class)
-    @ApiQuality(stability = STABLE,
+    @ApiQuality(stability = API_STABLE,
                 testing = TESTING_NOT_NEEDED,
-                documentation = FULLY_DOCUMENTED)
+                documentation = DOCUMENTATION_COMPLETE)
     public static class Resolver implements ResourceResolver
     {
         @Override

@@ -1,7 +1,7 @@
 package com.telenav.kivakit.annotations.code;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.MORE_EVALUATION_NEEDED;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.ApiStability.API_FURTHER_EVALUATION_NEEDED;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
 
 /**
@@ -12,19 +12,19 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NE
  * @author jonathanl (shibo)
  */
 @SuppressWarnings("unused")
-@ApiQuality(stability = MORE_EVALUATION_NEEDED,
+@ApiQuality(stability = API_FURTHER_EVALUATION_NEEDED,
             testing = TESTING_NOT_NEEDED,
-            documentation = FULLY_DOCUMENTED,
+            documentation = DOCUMENTATION_COMPLETE,
             reviews = 1,
             reviewers = "shibo")
 public enum ApiType
 {
     /** The API is fully public and intended for end-users */
-    PUBLIC_API,
+    API_PUBLIC,
 
     /** The API is not intended for end-users, but is public to service provider implementers */
-    SERVICE_PROVIDER_API,
+    API_SERVICE_PROVIDER,
 
     /** The API is private and should not be used outside the framework */
-    PRIVATE_API
+    API_PRIVATE
 }

@@ -24,9 +24,9 @@ import com.telenav.kivakit.network.http.HttpGetResource;
 import com.telenav.kivakit.network.http.internal.lexakai.DiagramHttps;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
-import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
 import static com.telenav.kivakit.network.core.NetworkAccessConstraints.DEFAULT;
 
 /**
@@ -35,9 +35,9 @@ import static com.telenav.kivakit.network.core.NetworkAccessConstraints.DEFAULT;
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramHttps.class)
-@ApiQuality(stability = STABLE_EXTENSIBLE,
-            testing = UNTESTED,
-            documentation = FULLY_DOCUMENTED)
+@ApiQuality(stability = API_STABLE_EXTENSIBLE,
+            testing = TESTING_NONE,
+            documentation = DOCUMENTATION_COMPLETE)
 public class SecureHttpGetResource extends HttpGetResource
 {
     public SecureHttpGetResource(SecureHttpNetworkLocation location, NetworkAccessConstraints constraints)

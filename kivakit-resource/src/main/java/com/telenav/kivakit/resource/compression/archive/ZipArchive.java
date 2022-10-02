@@ -60,11 +60,11 @@ import java.util.List;
 import java.util.regex.Pattern;
 import java.util.zip.ZipFile;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_DEFAULT_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_ENUM_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_DEFAULT_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_ENUM_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
-import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
 import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
 import static com.telenav.kivakit.core.ensure.Ensure.fail;
 import static com.telenav.kivakit.resource.compression.archive.ZipArchive.AccessMode.READ;
@@ -142,9 +142,9 @@ import static com.telenav.kivakit.resource.serialization.ObjectMetadata.OBJECT_V
 @UmlRelation(label = "stores", referent = ZipEntry.class)
 @UmlRelation(label = "opens for access", referent = ZipArchive.AccessMode.class)
 @UmlExcludeSuperTypes({ AutoCloseable.class, Iterable.class })
-@ApiQuality(stability = STABLE_DEFAULT_EXTENSIBLE,
-            testing = UNTESTED,
-            documentation = FULLY_DOCUMENTED)
+@ApiQuality(stability = API_STABLE_DEFAULT_EXTENSIBLE,
+            testing = TESTING_NONE,
+            documentation = DOCUMENTATION_COMPLETE)
 public final class ZipArchive extends BaseRepeater implements
         Iterable<ZipEntry>,
         Closeable,
@@ -207,9 +207,9 @@ public final class ZipArchive extends BaseRepeater implements
      * @author jonathanl (shibo)
      */
     @UmlClassDiagram(diagram = DiagramResourceArchive.class)
-    @ApiQuality(stability = STABLE_ENUM_EXTENSIBLE,
+    @ApiQuality(stability = API_STABLE_ENUM_EXTENSIBLE,
                 testing = TESTING_NOT_NEEDED,
-                documentation = FULLY_DOCUMENTED)
+                documentation = DOCUMENTATION_COMPLETE)
     public enum AccessMode
     {
         READ,

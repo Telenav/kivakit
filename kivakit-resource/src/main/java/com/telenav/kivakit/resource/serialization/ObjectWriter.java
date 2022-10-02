@@ -11,9 +11,9 @@ import org.jetbrains.annotations.NotNull;
 
 import java.io.OutputStream;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_DEFAULT_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
-import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_DEFAULT_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
 
 /**
  * Interface to code that can write {@link SerializableObject}s to a {@link WritableResource}.
@@ -22,9 +22,9 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
  * @see WritableResource
  * @see SerializableObject
  */
-@ApiQuality(stability = STABLE_DEFAULT_EXTENSIBLE,
-            documentation = FULLY_DOCUMENTED,
-            testing = UNTESTED)
+@ApiQuality(stability = API_STABLE_DEFAULT_EXTENSIBLE,
+            documentation = DOCUMENTATION_COMPLETE,
+            testing = TESTING_NONE)
 public interface ObjectWriter extends
         RepeaterMixin,
         TryTrait

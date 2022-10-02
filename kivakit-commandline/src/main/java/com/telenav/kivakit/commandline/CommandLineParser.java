@@ -42,9 +42,9 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.Collection;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
-import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
 import static com.telenav.kivakit.core.project.Project.resolveProject;
 
 /**
@@ -122,9 +122,9 @@ import static com.telenav.kivakit.core.project.Project.resolveProject;
 @UmlClassDiagram(diagram = DiagramCommandLine.class)
 @UmlRelation(label = "validates", referent = ArgumentValueList.class)
 @UmlRelation(diagram = DiagramCommandLine.class, label = "validates", referent = SwitchValueList.class)
-@ApiQuality(stability = STABLE_EXTENSIBLE,
-            testing = UNTESTED,
-            documentation = FULLY_DOCUMENTED)
+@ApiQuality(stability = API_STABLE_EXTENSIBLE,
+            testing = TESTING_NONE,
+            documentation = DOCUMENTATION_COMPLETE)
 public class CommandLineParser
 {
     /** Parsers for arguments */

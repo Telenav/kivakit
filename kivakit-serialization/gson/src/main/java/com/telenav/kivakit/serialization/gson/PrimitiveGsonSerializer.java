@@ -31,9 +31,9 @@ import com.telenav.kivakit.serialization.gson.factory.JsonSerializerDeserializer
 
 import java.lang.reflect.Type;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.STABLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
-import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
 
 /**
  * Serializer base class for implementing {@link Gson} serialization and deserialization of primitive types. Subclasses
@@ -43,9 +43,9 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
  * @see JsonSerializer
  * @see JsonDeserializer
  */
-@ApiQuality(stability = STABLE,
-            testing = UNTESTED,
-            documentation = FULLY_DOCUMENTED)
+@ApiQuality(stability = API_STABLE,
+            testing = TESTING_NONE,
+            documentation = DOCUMENTATION_COMPLETE)
 public abstract class PrimitiveGsonSerializer<T, Primitive> implements JsonSerializerDeserializer<T>
 {
     private final Class<Primitive> type;

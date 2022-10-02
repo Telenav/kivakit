@@ -31,9 +31,9 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.ServiceLoader;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.STABLE;
-import static com.telenav.kivakit.annotations.code.ApiType.SERVICE_PROVIDER_API;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE;
+import static com.telenav.kivakit.annotations.code.ApiType.API_SERVICE_PROVIDER;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
 
 /**
@@ -48,10 +48,10 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NE
  */
 @UmlClassDiagram(diagram = DiagramResourceService.class)
 @UmlRelation(label = "parses", referent = ResourceIdentifier.class)
-@ApiQuality(stability = STABLE,
-            documentation = FULLY_DOCUMENTED,
+@ApiQuality(stability = API_STABLE,
+            documentation = DOCUMENTATION_COMPLETE,
             testing = TESTING_NOT_NEEDED,
-            type = SERVICE_PROVIDER_API)
+            type = API_SERVICE_PROVIDER)
 public interface ResourceFolderResolver extends RepeaterMixin
 {
     /**

@@ -40,9 +40,9 @@ import java.net.URISyntaxException;
 import java.util.List;
 import java.util.function.Function;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.STABLE;
-import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE;
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
 import static com.telenav.kivakit.commandline.SwitchParser.switchParserBuilder;
 
@@ -111,9 +111,9 @@ import static com.telenav.kivakit.commandline.SwitchParser.switchParserBuilder;
  */
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramNetworkLocation.class)
-@ApiQuality(stability = STABLE_EXTENSIBLE,
+@ApiQuality(stability = API_STABLE_EXTENSIBLE,
             testing = TESTING_NOT_NEEDED,
-            documentation = FULLY_DOCUMENTED)
+            documentation = DOCUMENTATION_COMPLETE)
 public class NetworkPath extends FilePath
 {
     private static final Logger LOGGER = LoggerFactory.newLogger();
@@ -183,9 +183,9 @@ public class NetworkPath extends FilePath
      *
      * @author jonathanl (shibo)
      */
-    @ApiQuality(stability = STABLE,
+    @ApiQuality(stability = API_STABLE,
                 testing = TESTING_NOT_NEEDED,
-                documentation = FULLY_DOCUMENTED)
+                documentation = DOCUMENTATION_COMPLETE)
     public static class Converter extends BaseStringConverter<NetworkPath>
     {
         public Converter(Listener listener)
