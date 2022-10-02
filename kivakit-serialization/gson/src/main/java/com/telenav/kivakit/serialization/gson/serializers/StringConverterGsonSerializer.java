@@ -24,11 +24,15 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonParseException;
 import com.google.gson.JsonSerializationContext;
 import com.google.gson.JsonSerializer;
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.conversion.StringConverter;
 import com.telenav.kivakit.serialization.gson.factory.JsonSerializerDeserializer;
-import com.telenav.lexakai.annotations.LexakaiJavadoc;
 
 import java.lang.reflect.Type;
+
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
 
 /**
  * An adapter that converts a {@link StringConverter} into a {@link JsonSerializer} and {@link JsonDeserializer} by
@@ -37,7 +41,9 @@ import java.lang.reflect.Type;
  *
  * @author jonathanl (shibo)
  */
-@LexakaiJavadoc(complete = true)
+@ApiQuality(stability = STABLE_EXTENSIBLE,
+            testing = UNTESTED,
+            documentation = FULLY_DOCUMENTED)
 public class StringConverterGsonSerializer<Value> implements JsonSerializerDeserializer<Value>
 {
     private final StringConverter<Value> converter;

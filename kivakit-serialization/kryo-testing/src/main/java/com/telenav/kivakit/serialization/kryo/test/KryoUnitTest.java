@@ -18,6 +18,7 @@
 
 package com.telenav.kivakit.serialization.kryo.test;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.path.StringPath;
 import com.telenav.kivakit.core.value.count.Count;
 import com.telenav.kivakit.core.version.Version;
@@ -27,18 +28,20 @@ import com.telenav.kivakit.serialization.core.SerializationSessionFactory;
 import com.telenav.kivakit.serialization.kryo.KryoObjectSerializer;
 import com.telenav.kivakit.serialization.kryo.KryoSerializationSession;
 import com.telenav.kivakit.serialization.kryo.KryoSerializationSessionFactory;
-import com.telenav.kivakit.serialization.kryo.types.CoreKryoTypes;
+import com.telenav.kivakit.serialization.kryo.types.KivaKitCoreKryoTypes;
 import com.telenav.kivakit.serialization.kryo.types.KryoTypes;
-import com.telenav.kivakit.serialization.kryo.types.ResourceKryoTypes;
+import com.telenav.kivakit.serialization.kryo.types.KivaKitResourceKryoTypes;
 import com.telenav.kivakit.testing.UnitTest;
-import com.telenav.lexakai.annotations.LexakaiJavadoc;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
 import static com.telenav.kivakit.core.version.Version.version;
 import static com.telenav.kivakit.resource.serialization.ObjectMetadata.OBJECT_VERSION;
-import static com.telenav.kivakit.serialization.core.SerializationSession.SessionType.RESOURCE;
+import static com.telenav.kivakit.serialization.core.SerializationSession.SessionType.RESOURCE_SERIALIZATION_SESSION;
 
 /**
  * Adds Kryo serialization testing to the {@link UnitTest} base class. Serialization of objects can be tested with:
@@ -56,21 +59,33 @@ import static com.telenav.kivakit.serialization.core.SerializationSession.Sessio
  * @author jonathanl (shibo)
  */
 @SuppressWarnings("unused")
-@LexakaiJavadoc(complete = true)
+@ApiQuality(stability = STABLE_EXTENSIBLE,
+            testing = UNTESTED,
+            documentation = FULLY_DOCUMENTED)
 public abstract class KryoUnitTest extends UnitTest
 {
     private SerializationSessionFactory factory;
 
+    /**
+     * Returns the kryo types for this unit test. By default this is the kivakit-core types and the kivakit-resource
+     * types.
+     */
     protected KryoTypes kryoTypes()
     {
-        return new CoreKryoTypes().mergedWith(new ResourceKryoTypes());
+        return new KivaKitCoreKryoTypes().mergedWith(new KivaKitResourceKryoTypes());
     }
 
+    /**
+     * Returns a new serialization session
+     */
     protected SerializationSession session()
     {
         return sessionFactory().newSession(this);
     }
 
+    /**
+     * Returns the serialization session factory
+     */
     protected final SerializationSessionFactory sessionFactory()
     {
         if (factory == null)
@@ -117,7 +132,7 @@ public abstract class KryoUnitTest extends UnitTest
         // Write the object n times to the session
         {
             var session = new KryoSerializationSession(kryoTypes());
-            session.open(output, RESOURCE, version);
+            session.open(output, RESOURCE_SERIALIZATION_SESSION, version);
             n.loop(() -> session.write(new SerializableObject<>(object, version)));
             session.close();
         }
@@ -126,7 +141,7 @@ public abstract class KryoUnitTest extends UnitTest
         {
             var session = new KryoSerializationSession(kryoTypes());
             var input = new ByteArrayInputStream(output.toByteArray());
-            var streamVersion = session.open(input, RESOURCE);
+            var streamVersion = session.open(input, RESOURCE_SERIALIZATION_SESSION);
             ensureEqual(version, streamVersion);
             n.loop(() ->
             {

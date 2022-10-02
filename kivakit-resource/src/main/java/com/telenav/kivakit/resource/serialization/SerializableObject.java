@@ -37,7 +37,7 @@ public class SerializableObject<T> extends VersionedObject<T>
     }
 
     public SerializableObject(@NotNull T object,
-                              @NotNull Version version,
+                              Version version,
                               @NotNull InstanceIdentifier instance)
     {
         super(object, version);
@@ -45,7 +45,7 @@ public class SerializableObject<T> extends VersionedObject<T>
     }
 
     public SerializableObject(@NotNull T object,
-                              @NotNull Version version)
+                              Version version)
     {
         super(object, version);
     }

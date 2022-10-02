@@ -55,7 +55,9 @@ public class FtpNetworkLocation extends NetworkLocation
      * @see <a href="https://en.wikipedia.org/wiki/File_Transfer_Protocol">FTP documentation</a>
      */
     @UmlClassDiagram(diagram = DiagramFtp.class)
-    @LexakaiJavadoc(complete = true)
+    @ApiQuality(stability = STABLE_ENUM_EXTENSIBLE,
+                testing = UNTESTED,
+                documentation = FULLY_DOCUMENTED)
     public enum Mode
     {
         ACTIVE,

@@ -26,6 +26,7 @@ import com.google.gson.InstanceCreator;
 import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonSerializer;
 import com.google.gson.TypeAdapterFactory;
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.conversion.StringConverter;
 import com.telenav.kivakit.core.collections.list.ObjectList;
 import com.telenav.kivakit.core.collections.set.ObjectSet;
@@ -35,21 +36,56 @@ import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.messaging.repeaters.BaseRepeater;
 import com.telenav.kivakit.core.version.Version;
 import com.telenav.kivakit.serialization.gson.serializers.StringConverterGsonSerializer;
-import com.telenav.lexakai.annotations.LexakaiJavadoc;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
 import static com.telenav.kivakit.core.version.Version.parseVersion;
 
 /**
  * Factory that produces configured {@link Gson} JSON serializers via {@link #gson()}.
  *
+ * <p><b>Creation</b></p>
+ *
+ * <ul>
+ *     <li>{@link #gson()}</li>
+ * </ul>
+ *
+ * <p><b>Configuration</b></p>
+ *
+ * <ul>
+ *     <li>{@link #addConvertingSerializer(Class, StringConverter)}</li>
+ *     <li>{@link #addInstanceCreator(Class, InstanceCreator)}</li>
+ *     <li>{@link #addJsonDeserializer(Class, JsonDeserializer)}</li>
+ *     <li>{@link #addJsonSerializer(Class, JsonSerializer)}</li>
+ *     <li>{@link #addJsonSerializerDeserializer(Class, JsonSerializerDeserializer)}</li>
+ *     <li>{@link #addTypeAdapterFactory(TypeAdapterFactory)}</li>
+ *     <li>{@link #exclusionStrategy(ExclusionStrategy)}</li>
+ *     <li>{@link #ignoreClass(Class)}</li>
+ *     <li>{@link #ignoreField(String)}</li>
+ * </ul>
+ * 
+ * <p><b>Properties</b></p>
+ *
+ * <ul>
+ *     <li>{@link #dateFormat(String)}</li>
+ *     <li>{@link #htmlEscaping(boolean)}</li>
+ *     <li>{@link #prettyPrinting(boolean)}</li>
+ *     <li>{@link #requireExposeAnnotation(boolean)}</li>
+ *     <li>{@link #serializeNulls(boolean)}</li>
+ *     <li>{@link #version(Version)}</li>
+ * </ul>
+ *
  * @author jonathanl (shibo)
  */
-@LexakaiJavadoc(complete = true)
+@ApiQuality(stability = STABLE_EXTENSIBLE,
+            testing = UNTESTED,
+            documentation = FULLY_DOCUMENTED)
 public abstract class BaseGsonFactory extends BaseRepeater implements GsonFactory
 {
     /**
@@ -198,7 +234,7 @@ public abstract class BaseGsonFactory extends BaseRepeater implements GsonFactor
      * {@inheritDoc}
      */
     @Override
-    public <T> BaseGsonFactory addConvertingSerializer(final Class<T> type, final StringConverter<T> converter)
+    public <T> BaseGsonFactory addConvertingSerializer(Class<T> type, StringConverter<T> converter)
     {
         addJsonSerializerDeserializer(type, new StringConverterGsonSerializer<>(converter));
         return this;
@@ -251,6 +287,7 @@ public abstract class BaseGsonFactory extends BaseRepeater implements GsonFactor
     /**
      * {@inheritDoc}
      */
+    @Override
     public BaseGsonFactory addTypeAdapterFactory(TypeAdapterFactory factory)
     {
         settings.typeAdapterFactories.add(factory);
@@ -302,12 +339,14 @@ public abstract class BaseGsonFactory extends BaseRepeater implements GsonFactor
         return this;
     }
 
+    @Override
     public BaseGsonFactory ignoreClass(Class<?> type)
     {
         settings.classesToExclude.add(type);
         return this;
     }
 
+    @Override
     public BaseGsonFactory ignoreField(String name)
     {
         settings.fieldsToExclude.add(name);

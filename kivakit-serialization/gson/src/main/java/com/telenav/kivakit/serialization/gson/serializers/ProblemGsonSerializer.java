@@ -18,17 +18,23 @@
 
 package com.telenav.kivakit.serialization.gson.serializers;
 
-import com.telenav.kivakit.core.messaging.messages.status.Problem;
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.messaging.MessageFormat;
+import com.telenav.kivakit.core.messaging.messages.status.Problem;
 import com.telenav.kivakit.serialization.gson.PrimitiveGsonSerializer;
-import com.telenav.lexakai.annotations.LexakaiJavadoc;
+
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
 
 /**
  * Serializes {@link Problem}s to and from JSON.
  *
  * @author jonathanl (shibo)
  */
-@LexakaiJavadoc(complete = true)
+@ApiQuality(stability = STABLE_EXTENSIBLE,
+            testing = UNTESTED,
+            documentation = FULLY_DOCUMENTED)
 public class ProblemGsonSerializer extends PrimitiveGsonSerializer<Problem, String>
 {
     private final MessageFormat format;

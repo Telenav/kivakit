@@ -22,6 +22,7 @@ import com.esotericsoftware.kryo.Kryo;
 import com.esotericsoftware.kryo.Serializer;
 import com.esotericsoftware.kryo.io.Input;
 import com.esotericsoftware.kryo.io.Output;
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.io.IO;
 import com.telenav.kivakit.core.messaging.repeaters.BaseRepeater;
 import com.telenav.kivakit.core.time.Duration;
@@ -31,7 +32,6 @@ import com.telenav.kivakit.resource.serialization.SerializableObject;
 import com.telenav.kivakit.serialization.core.SerializationSession;
 import com.telenav.kivakit.serialization.kryo.internal.lexakai.DiagramKryo;
 import com.telenav.kivakit.serialization.kryo.types.KryoTypes;
-import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
 
@@ -40,6 +40,9 @@ import java.io.OutputStream;
 import java.util.HashMap;
 import java.util.Map;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
 import static com.telenav.kivakit.core.ensure.Ensure.fail;
 
 /**
@@ -54,7 +57,9 @@ import static com.telenav.kivakit.core.ensure.Ensure.fail;
              label = "registers",
              referent = Serializer.class,
              referentCardinality = "*")
-@LexakaiJavadoc(complete = true)
+@ApiQuality(stability = STABLE_EXTENSIBLE,
+            testing = UNTESTED,
+            documentation = FULLY_DOCUMENTED)
 public final class KryoSerializationSession extends BaseRepeater implements
         Named,
         SerializationSession
@@ -65,9 +70,9 @@ public final class KryoSerializationSession extends BaseRepeater implements
     private static final Map<Kryo, KryoSerializationSession> kryoToSession = new HashMap<>();
 
     /**
-     * @return The {@link KryoSerializationSession} for the given kryo object
+     * Returns the {@link KryoSerializationSession} for the given kryo object
      */
-    public static KryoSerializationSession session(Kryo kryo)
+    public static KryoSerializationSession kryoSerializationSession(Kryo kryo)
     {
         return kryoToSession.get(kryo);
     }
@@ -164,7 +169,7 @@ public final class KryoSerializationSession extends BaseRepeater implements
             // If the session type is,
             switch (type)
             {
-                case CLIENT:
+                case CLIENT_SOCKET_SERIALIZATION_SESSION:
                 {
                     // write our version to the server,
                     startWriting(output, version);
@@ -173,7 +178,7 @@ public final class KryoSerializationSession extends BaseRepeater implements
                     return startReading(input);
                 }
 
-                case RESOURCE:
+                case RESOURCE_SERIALIZATION_SESSION:
                 {
                     // If we are reading
                     if (input != null)
@@ -199,7 +204,7 @@ public final class KryoSerializationSession extends BaseRepeater implements
                     fail("Input and output streams both null");
                 }
 
-                case SERVER:
+                case SERVER_SOCKET_SERIALIZATION_SESSION:
                 {
                     // read the client's version,
                     var clientVersion = startReading(input);

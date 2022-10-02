@@ -22,14 +22,16 @@ import java.io.OutputStream;
 import java.util.regex.Pattern;
 
 import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
+import static com.telenav.kivakit.core.progress.ProgressReporter.nullProgressReporter;
 import static com.telenav.kivakit.resource.serialization.ObjectMetadata.OBJECT_INSTANCE;
 import static com.telenav.kivakit.resource.serialization.ObjectMetadata.OBJECT_TYPE;
 import static com.telenav.kivakit.resource.serialization.ObjectMetadata.OBJECT_VERSION;
 
 /**
- * JSON {@link ObjectSerializer} using Google Gson library.
+ * JSON {@link ObjectSerializer} implementation using Google Gson library.
  *
  * @author jonathanl (shibo)
+ * @see ObjectSerializer
  */
 public class GsonObjectSerializer implements
         ObjectSerializer,
@@ -42,18 +44,37 @@ public class GsonObjectSerializer implements
 
     private static final Pattern VERSION_PATTERN = Pattern.compile("\"(version)\"\\s*:\\s*\"(?<version>.+)\"");
 
-    private final ProgressReporter reporter;
+    /** The progress reporter to notify as serialization proceeds */
+    private final ProgressReporter progressReporter;
 
+    /** The Gson object factory */
     private final GsonFactory factory = require(GsonFactory.class);
 
+    /**
+     * Create a Gson object serializer
+     */
     public GsonObjectSerializer()
     {
-        this(ProgressReporter.nullProgressReporter());
+        this(nullProgressReporter());
     }
 
-    public GsonObjectSerializer(ProgressReporter reporter)
+    /**
+     * Create a Gson object serializer
+     *
+     * @param progressReporter The progress reporter to update as serialization proceeds
+     */
+    public GsonObjectSerializer(ProgressReporter progressReporter)
     {
-        this.reporter = reporter;
+        this.progressReporter = progressReporter;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public ProgressReporter progressReporter()
+    {
+        return progressReporter;
     }
 
     /**
@@ -79,12 +100,6 @@ public class GsonObjectSerializer implements
             return new SerializableObject<>(factory.gson().fromJson(json, type),
                     version(json), instance(json, metadata));
         }, "Unable to read from $", path);
-    }
-
-    @Override
-    public ProgressReporter progressReporter()
-    {
-        return reporter;
     }
 
     /**

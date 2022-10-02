@@ -63,7 +63,9 @@ public class VersionedObject<T> implements
         if (object instanceof VersionedObject)
         {
             var that = (VersionedObject<?>) object;
-            return Objects.areEqualPairs(this.object, that.object, this.version, that.version);
+            return Objects.areEqualPairs(
+                    this.object, that.object,
+                    this.version, that.version);
         }
         return false;
     }

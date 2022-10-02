@@ -18,13 +18,22 @@
 
 package com.telenav.kivakit.serialization.core;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.messaging.Listener;
+import org.jetbrains.annotations.NotNull;
+
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
 
 /**
  * Creates new {@link SerializationSession}. The session will be thread-safe.
  *
  * @author jonathanl (shibo)
  */
+@ApiQuality(stability = STABLE,
+            testing = UNTESTED,
+            documentation = FULLY_DOCUMENTED)
 public interface SerializationSessionFactory
 {
     /**
@@ -33,5 +42,5 @@ public interface SerializationSessionFactory
      * @param listener The listener to report problems to
      * @return The session
      */
-    SerializationSession newSession(Listener listener);
+    SerializationSession newSession(@NotNull Listener listener);
 }

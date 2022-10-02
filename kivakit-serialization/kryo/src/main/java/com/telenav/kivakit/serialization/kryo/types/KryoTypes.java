@@ -20,6 +20,7 @@ package com.telenav.kivakit.serialization.kryo.types;
 
 import com.esotericsoftware.kryo.Kryo;
 import com.esotericsoftware.kryo.Serializer;
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.collections.Collections;
 import com.telenav.kivakit.core.collections.Maps;
 import com.telenav.kivakit.core.collections.list.ObjectList;
@@ -30,7 +31,6 @@ import com.telenav.kivakit.interfaces.naming.Named;
 import com.telenav.kivakit.serialization.core.SerializationSessionFactory;
 import com.telenav.kivakit.serialization.kryo.KryoSerializationSession;
 import com.telenav.kivakit.serialization.kryo.KryoSerializationSessionFactory;
-import com.telenav.lexakai.annotations.LexakaiJavadoc;
 
 import java.util.HashMap;
 import java.util.LinkedHashMap;
@@ -38,6 +38,9 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
 import static com.telenav.kivakit.core.ensure.Ensure.fail;
 
 /**
@@ -73,10 +76,10 @@ import static com.telenav.kivakit.core.ensure.Ensure.fail;
  *
  * <p>
  * Once all relevant serializable types have been with a {@link KryoTypes} set, it can be merged with other type set(s)
- * using {@link #mergedWith(KryoTypes)}. The resulting merged set can be passed to {@link
- * KryoSerializationSessionFactory#KryoSerializationSessionFactory(KryoTypes)} to create a {@link
- * SerializationSessionFactory}. The {@link KryoSerializationSessionFactory#newSession(Listener)} method can then be
- * used to create a thread-local {@link KryoSerializationSession}, which can be used to read and write data.
+ * using {@link #mergedWith(KryoTypes)}. The resulting merged set can be passed to
+ * {@link KryoSerializationSessionFactory#KryoSerializationSessionFactory(KryoTypes)} to create a
+ * {@link SerializationSessionFactory}. The {@link KryoSerializationSessionFactory#newSession(Listener)} method can then
+ * be used to create a thread-local {@link KryoSerializationSession}, which can be used to read and write data.
  * </p>
  *
  * <p><b>Backwards Compatibility</b></p>
@@ -99,7 +102,10 @@ import static com.telenav.kivakit.core.ensure.Ensure.fail;
  * @author jonathanl (shibo)
  * @see KryoSerializationSession
  */
-@LexakaiJavadoc(complete = true)
+@SuppressWarnings({ "unused", "UnusedReturnValue" })
+@ApiQuality(stability = STABLE_EXTENSIBLE,
+            testing = UNTESTED,
+            documentation = FULLY_DOCUMENTED)
 public class KryoTypes implements Named
 {
     /** The number of identifiers in each group */

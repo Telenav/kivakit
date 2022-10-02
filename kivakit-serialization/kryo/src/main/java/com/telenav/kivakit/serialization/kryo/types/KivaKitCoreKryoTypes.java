@@ -18,6 +18,7 @@
 
 package com.telenav.kivakit.serialization.kryo.types;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.collections.list.ObjectList;
 import com.telenav.kivakit.core.collections.set.ObjectSet;
 import com.telenav.kivakit.core.logging.LogEntry;
@@ -71,7 +72,6 @@ import com.telenav.kivakit.core.vm.JavaVirtualMachineHealth;
 import com.telenav.kivakit.core.vm.ThreadStatus;
 import com.telenav.kivakit.interfaces.time.Nanoseconds;
 import com.telenav.kivakit.serialization.kryo.internal.lexakai.DiagramKryo;
-import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.time.ZoneId;
@@ -80,16 +80,22 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
+
 /**
  * Kryo types to register for kivakit-core
  *
  * @author jonathanl (shibo)
  */
-@LexakaiJavadoc(complete = true)
 @UmlClassDiagram(diagram = DiagramKryo.class)
-public class CoreKryoTypes extends KryoTypes
+@ApiQuality(stability = STABLE_EXTENSIBLE,
+            testing = UNTESTED,
+            documentation = FULLY_DOCUMENTED)
+public class KivaKitCoreKryoTypes extends KryoTypes
 {
-    public CoreKryoTypes()
+    public KivaKitCoreKryoTypes()
     {
         //----------------------------------------------------------------------------------------------
         // NOTE: To maintain backward compatibility, classes are assigned identifiers by KryoTypes.

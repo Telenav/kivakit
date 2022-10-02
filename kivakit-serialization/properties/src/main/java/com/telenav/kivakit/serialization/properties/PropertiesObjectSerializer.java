@@ -1,5 +1,6 @@
 package com.telenav.kivakit.serialization.properties;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.conversion.core.language.object.ObjectConverter;
 import com.telenav.kivakit.core.language.Arrays;
 import com.telenav.kivakit.core.language.Classes;
@@ -17,6 +18,9 @@ import org.jetbrains.annotations.NotNull;
 import java.io.InputStream;
 import java.io.OutputStream;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
 import static com.telenav.kivakit.core.ensure.Ensure.ensure;
 import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
 import static com.telenav.kivakit.core.ensure.Ensure.fail;
@@ -26,7 +30,7 @@ import static com.telenav.kivakit.resource.serialization.ObjectMetadata.OBJECT_T
 import static com.telenav.kivakit.resource.serialization.ObjectMetadata.OBJECT_VERSION;
 
 /**
- * Reads a {@link SerializableObject} from a <i>.properties</i> file.
+ * Reads a {@link SerializableObject} from a <i>.properties</i> file. Writing is not supported at this time.
  *
  * @author jonathanl (shibo)
  * @see ObjectSerializer
@@ -34,15 +38,27 @@ import static com.telenav.kivakit.resource.serialization.ObjectMetadata.OBJECT_V
  * @see Version
  * @see InstanceIdentifier
  */
+@ApiQuality(stability = STABLE_EXTENSIBLE,
+            testing = UNTESTED,
+            documentation = FULLY_DOCUMENTED)
 public class PropertiesObjectSerializer implements ObjectSerializer
 {
+    /** The progress reporter to call while serializing */
     private final ProgressReporter reporter;
 
+    /**
+     * Creates a properties file object serializer
+     */
     public PropertiesObjectSerializer()
     {
         this(ProgressReporter.nullProgressReporter());
     }
 
+    /**
+     * Creates a properties file object serializer
+     *
+     * @param reporter The progress reporter to update as lines are read
+     */
     public PropertiesObjectSerializer(ProgressReporter reporter)
     {
         this.reporter = reporter;
@@ -52,9 +68,18 @@ public class PropertiesObjectSerializer implements ObjectSerializer
      * {@inheritDoc}
      */
     @Override
+    public ProgressReporter progressReporter()
+    {
+        return reporter;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public <T> SerializableObject<T> readObject(@NotNull InputStream input,
                                                 @NotNull StringPath path,
-                                                @NotNull Class<T> type,
+                                                Class<T> type,
                                                 ObjectMetadata @NotNull ... metadata)
     {
         // Load properties from the given resource,
@@ -109,12 +134,9 @@ public class PropertiesObjectSerializer implements ObjectSerializer
         }
     }
 
-    @Override
-    public ProgressReporter progressReporter()
-    {
-        return reporter;
-    }
-
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public <T> void writeObject(@NotNull OutputStream output,
                                 @NotNull StringPath path,

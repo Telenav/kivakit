@@ -18,18 +18,24 @@
 
 package com.telenav.kivakit.serialization.kryo.types;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.properties.PropertyMap;
-import com.telenav.lexakai.annotations.LexakaiJavadoc;
+
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
 
 /**
  * The types to register with Kryo for this project
  *
  * @author jonathanl (shibo)
  */
-@LexakaiJavadoc(complete = true)
-public class ResourceKryoTypes extends KryoTypes
+@ApiQuality(stability = STABLE_EXTENSIBLE,
+            testing = UNTESTED,
+            documentation = FULLY_DOCUMENTED)
+public class KivaKitResourceKryoTypes extends KryoTypes
 {
-    public ResourceKryoTypes()
+    public KivaKitResourceKryoTypes()
     {
         //----------------------------------------------------------------------------------------------
         // NOTE: To maintain backward compatibility of serialization, registration groups and the types

@@ -5,8 +5,8 @@ import com.telenav.kivakit.core.registry.Registry;
 import com.telenav.kivakit.resource.Extension;
 import com.telenav.kivakit.resource.serialization.ObjectSerializerRegistry;
 import com.telenav.kivakit.serialization.gson.factory.BaseGsonFactory;
-import com.telenav.kivakit.serialization.gson.factory.CoreGsonFactory;
 import com.telenav.kivakit.serialization.gson.factory.GsonFactory;
+import com.telenav.kivakit.serialization.gson.factory.KivaKitCoreGsonFactory;
 
 /**
  * This class defines a KivaKit {@link Project}. It cannot be constructed with the new operator since it has a private
@@ -14,8 +14,8 @@ import com.telenav.kivakit.serialization.gson.factory.GsonFactory;
  * {@link com.telenav.kivakit.core.project.ProjectTrait#project(Class)}.
  *
  * <p>
- * Project initialization associates a {@link GsonObjectSerializer} with the <i>.json</i> extension in {@link
- * ObjectSerializerRegistry}, and registers a {@link BaseGsonFactory} in the global {@link Registry}.
+ * Project initialization associates a {@link GsonObjectSerializer} with the <i>.json</i> extension in
+ * {@link ObjectSerializerRegistry}, and registers a {@link BaseGsonFactory} in the global {@link Registry}.
  * </p>
  *
  * @author jonathanl (shibo)
@@ -26,6 +26,9 @@ import com.telenav.kivakit.serialization.gson.factory.GsonFactory;
  */
 public class GsonSerializationProject extends Project
 {
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void onInitialize()
     {
@@ -34,6 +37,6 @@ public class GsonSerializationProject extends Project
                 .add(Extension.JSON, listenTo(new GsonObjectSerializer()));
 
         // Register default GsonFactory
-        register(new CoreGsonFactory(this));
+        register(new KivaKitCoreGsonFactory(this));
     }
 }

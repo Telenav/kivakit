@@ -6,15 +6,25 @@ import com.google.gson.InstanceCreator;
 import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonSerializer;
 import com.google.gson.TypeAdapterFactory;
+import com.google.gson.annotations.Expose;
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.conversion.StringConverter;
 import com.telenav.kivakit.core.messaging.Repeater;
 import com.telenav.kivakit.core.version.Version;
+
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
 
 /**
  * Creates {@link Gson} instances
  *
  * @author jonathanl (shibo)
  */
+@SuppressWarnings({ "unused", "UnusedReturnValue" })
+@ApiQuality(stability = STABLE_EXTENSIBLE,
+            testing = UNTESTED,
+            documentation = FULLY_DOCUMENTED)
 public interface GsonFactory extends Repeater
 {
     /**
@@ -63,17 +73,38 @@ public interface GsonFactory extends Repeater
      */
     Gson gson();
 
+    /**
+     * Enables or disables HTML escaping
+     */
     GsonFactory htmlEscaping(boolean escape);
 
+    /**
+     * Ignores the given class
+     */
     GsonFactory ignoreClass(Class<?> type);
 
-    GsonFactory ignoreField(String name);
+    /**
+     * Ignores the given field
+     */
+    GsonFactory ignoreField(String fieldName);
 
+    /**
+     * Enables or disables pretty printed JSON output
+     */
     GsonFactory prettyPrinting(boolean prettyPrinting);
 
+    /**
+     * Requires the @{@link Expose} annotation to serialize fields
+     */
     GsonFactory requireExposeAnnotation(boolean require);
 
+    /**
+     * Enables or disables serialization of null values
+     */
     GsonFactory serializeNulls(boolean serializeNulls);
 
+    /**
+     * Sets the version for serializing
+     */
     GsonFactory version(Version version);
 }

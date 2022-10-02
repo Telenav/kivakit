@@ -18,18 +18,25 @@
 
 package com.telenav.kivakit.serialization.gson.serializers;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.conversion.core.time.LocalDateTimeConverter;
-import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.time.LocalTime;
 import com.telenav.kivakit.serialization.gson.PrimitiveGsonSerializer;
-import com.telenav.lexakai.annotations.LexakaiJavadoc;
+
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
+import static com.telenav.kivakit.core.messaging.Listener.throwingListener;
+import static com.telenav.kivakit.core.time.LocalTime.localTimeZone;
 
 /**
  * Serializes {@link LocalTime} objects to and from JSON in KivaKit format.
  *
  * @author jonathanl (shibo)
  */
-@LexakaiJavadoc(complete = true)
+@ApiQuality(stability = STABLE_EXTENSIBLE,
+            testing = UNTESTED,
+            documentation = FULLY_DOCUMENTED)
 public class LocalTimeGsonSerializer extends PrimitiveGsonSerializer<LocalTime, String>
 {
     public LocalTimeGsonSerializer()
@@ -40,7 +47,7 @@ public class LocalTimeGsonSerializer extends PrimitiveGsonSerializer<LocalTime, 
     @Override
     protected LocalTime toObject(String text)
     {
-        return new LocalDateTimeConverter(Listener.throwingListener(), LocalTime.localTimeZone()).convert(text);
+        return new LocalDateTimeConverter(throwingListener(), localTimeZone()).convert(text);
     }
 
     @Override

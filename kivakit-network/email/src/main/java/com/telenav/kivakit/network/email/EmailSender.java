@@ -80,7 +80,9 @@ public abstract class EmailSender extends BaseRepeater implements
      * @author jonathanl (shibo)
      */
     @UmlClassDiagram(diagram = DiagramEmail.class)
-    @LexakaiJavadoc(complete = true)
+    @ApiQuality(stability = STABLE_EXTENSIBLE,
+                testing = UNTESTED,
+                documentation = FULLY_DOCUMENTED)
     public static class Configuration
     {
         private Rate maximumSendRate;

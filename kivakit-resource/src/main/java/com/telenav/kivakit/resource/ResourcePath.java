@@ -130,7 +130,9 @@ public class ResourcePath extends StringPath implements
      *
      * @author jonathanl (shibo)
      */
-    @LexakaiJavadoc(complete = true)
+    @ApiQuality(stability = STABLE_EXTENSIBLE,
+                testing = UNTESTED,
+                documentation = FULLY_DOCUMENTED)
     public static class Converter extends BaseStringConverter<ResourcePath>
     {
         public Converter(@NotNull Listener listener)

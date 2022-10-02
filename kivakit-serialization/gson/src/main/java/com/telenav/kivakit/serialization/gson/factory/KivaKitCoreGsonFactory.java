@@ -21,9 +21,12 @@ import com.telenav.kivakit.core.value.level.Confidence;
 import com.telenav.kivakit.core.value.level.Level;
 import com.telenav.kivakit.core.value.level.Percent;
 
-public class CoreGsonFactory extends BaseGsonFactory
+/**
+ *
+ */
+public class KivaKitCoreGsonFactory extends BaseGsonFactory
 {
-    public CoreGsonFactory(Listener listener)
+    public KivaKitCoreGsonFactory(Listener listener)
     {
         super(listener);
 

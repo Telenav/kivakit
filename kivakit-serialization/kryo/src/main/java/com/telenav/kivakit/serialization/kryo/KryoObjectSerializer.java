@@ -3,6 +3,7 @@ package com.telenav.kivakit.serialization.kryo;
 import com.esotericsoftware.kryo.Kryo;
 import com.esotericsoftware.kryo.io.Input;
 import com.esotericsoftware.kryo.io.Output;
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.language.trait.TryTrait;
 import com.telenav.kivakit.core.path.StringPath;
 import com.telenav.kivakit.core.progress.ProgressReporter;
@@ -16,6 +17,9 @@ import org.jetbrains.annotations.NotNull;
 import java.io.InputStream;
 import java.io.OutputStream;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
 import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
 import static com.telenav.kivakit.core.ensure.Ensure.fail;
 import static com.telenav.kivakit.resource.serialization.ObjectMetadata.OBJECT_TYPE;
@@ -25,7 +29,11 @@ import static com.telenav.kivakit.resource.serialization.ObjectMetadata.OBJECT_V
  * {@link Kryo} {@link ObjectSerializer} provider.
  *
  * @author jonathanl (shibo)
+ * @see ObjectSerializer
  */
+@ApiQuality(stability = STABLE_EXTENSIBLE,
+            testing = UNTESTED,
+            documentation = FULLY_DOCUMENTED)
 public class KryoObjectSerializer implements
         ObjectSerializer,
         TryTrait
@@ -36,22 +44,45 @@ public class KryoObjectSerializer implements
 
     private final ThreadLocal<Kryo> kryo = ThreadLocal.withInitial(this::newKryo);
 
+    /**
+     * Creates a Kryo object serializer for the given Kryo-registered types
+     *
+     * @param types The types to register with Kryo
+     */
     public KryoObjectSerializer(KryoTypes types)
     {
         this(types, ProgressReporter.nullProgressReporter());
     }
 
+    /**
+     * Creates a Kryo object serializer for the given Kryo-registered types
+     *
+     * @param types The types to register with Kryo
+     * @param reporter The reporter to call as data is serialized
+     */
     public KryoObjectSerializer(KryoTypes types, ProgressReporter reporter)
     {
         this.types = types;
         this.reporter = reporter;
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public ProgressReporter progressReporter()
+    {
+        return reporter;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     @SuppressWarnings("unchecked")
     @Override
     public <T> SerializableObject<T> readObject(@NotNull InputStream inputStream,
                                                 @NotNull StringPath path,
-                                                @NotNull Class<T> type,
+                                                Class<T> type,
                                                 ObjectMetadata @NotNull ... metadata)
     {
         try
@@ -86,12 +117,9 @@ public class KryoObjectSerializer implements
         }
     }
 
-    @Override
-    public ProgressReporter progressReporter()
-    {
-        return reporter;
-    }
-
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public <T> void writeObject(@NotNull OutputStream outputStream,
                                 @NotNull StringPath path,
