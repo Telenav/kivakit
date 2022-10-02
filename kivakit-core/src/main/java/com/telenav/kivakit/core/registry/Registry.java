@@ -83,16 +83,16 @@ import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
 public class Registry implements RegistryTrait
 {
     /** The global lookup */
-    private static final Registry GLOBAL = new Registry();
+    private static final Registry GLOBAL_REGISTRY = new Registry();
 
     /**
      * Returns the global registry
      *
      * @return The global registry
      */
-    public static Registry global()
+    public static Registry globalRegistry()
     {
-        return GLOBAL;
+        return GLOBAL_REGISTRY;
     }
 
     /**
@@ -104,7 +104,7 @@ public class Registry implements RegistryTrait
     @SuppressWarnings("unused")
     public static Registry registryFor(Object object)
     {
-        return global();
+        return globalRegistry();
     }
 
     /** Map from class and instance to type for multi-instance objects */
