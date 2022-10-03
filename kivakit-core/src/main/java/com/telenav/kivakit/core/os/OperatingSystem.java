@@ -18,6 +18,7 @@
 
 package com.telenav.kivakit.core.os;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.collections.map.VariableMap;
 import com.telenav.kivakit.core.internal.lexakai.DiagramOs;
 import com.telenav.kivakit.core.messaging.Listener;
@@ -27,6 +28,9 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 import java.io.File;
 import java.io.IOException;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
 import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
 import static com.telenav.kivakit.core.os.OperatingSystem.OperatingSystemType.MACOS;
 import static com.telenav.kivakit.core.os.OperatingSystem.OperatingSystemType.OTHER_OS;
@@ -37,12 +41,43 @@ import static com.telenav.kivakit.core.os.OperatingSystem.ProcessorArchitecture.
 import static com.telenav.kivakit.core.os.OperatingSystem.ProcessorArchitecture.OTHER_PROCESSOR;
 
 /**
- * An abstraction of features of the underlying OS through Java interfaces.
+ * An abstraction of features of the underlying OS through Java interfaces. This object is a singleton, which can be
+ * retrieved with {@link #operatingSystem()}.
+ *
+ * <p><b>Identity</b></p>
+ *
+ * <ul>
+ *     <li>{@link #operatingSystemType()}</li>
+ *     <li>{@link #processorArchitecture()}</li>
+ *     <li>{@link #isMac()}</li>
+ *     <li>{@link #isWindows()}</li>
+ *     <li>{@link #isWindows()}</li>
+ *     <li>{@link #name()}</li>
+ * </ul>
+ *
+ * <p><b>Execution</b></p>
+ *
+ * <ul>
+ *     <li>{@link #execute(Listener, File, String...)}</li>
+ *     <li>{@link #javaExecutable()}</li>
+ *     <li>{@link #processIdentifier()}</li>
+ * </ul>
+ *
+ * <p><b>Variables</b></p>
+ *
+ * <ul>
+ *     <li>{@link #environmentVariables()}m</li>
+ *     <li>{@link #systemPropertyOrEnvironmentVariable(String)}</li>
+ *     <li>{@link #javaHome()}</li>
+ * </ul>
  *
  * @author jonathanl (shibo)
  */
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramOs.class)
+@ApiQuality(stability = API_STABLE_EXTENSIBLE,
+            testing = TESTING_NONE,
+            documentation = DOCUMENTATION_COMPLETE)
 public class OperatingSystem implements Named
 {
     /** This operating system */
@@ -56,6 +91,9 @@ public class OperatingSystem implements Named
         return os;
     }
 
+    /**
+     * The type of operating system
+     */
     public enum OperatingSystemType
     {
         WINDOWS,
@@ -64,6 +102,9 @@ public class OperatingSystem implements Named
         OTHER_OS
     }
 
+    /**
+     * The type of processor
+     */
     public enum ProcessorArchitecture
     {
         INTEL,
@@ -96,6 +137,7 @@ public class OperatingSystem implements Named
      * @param listener The listener to call with any problems
      * @param folder The folder to run the command in
      * @param command The command to run
+     * @return The output of the command
      */
     public String execute(Listener listener, File folder, String... command)
     {
@@ -107,7 +149,7 @@ public class OperatingSystem implements Named
             builder.redirectErrorStream(true);
             var process = builder.start();
             var output = Processes.captureOutput(listener, process);
-            Processes.waitFor(process);
+            Processes.waitForTermination(process);
             return output;
         }
         catch (IOException e)
@@ -125,11 +167,12 @@ public class OperatingSystem implements Named
     }
 
     /**
-     * Returns true if this is UNIX
+     * Returns true if this is UNIX (but not MacOs)
      */
     public boolean isUnix()
     {
-        return name().toLowerCase().contains("unix") || name().toLowerCase().contains("linux");
+        return name().toLowerCase().contains("unix")
+                || name().toLowerCase().contains("linux");
     }
 
     /**
@@ -143,7 +186,7 @@ public class OperatingSystem implements Named
     /**
      * Returns path to java executable
      */
-    public String java()
+    public String javaExecutable()
     {
         return ensureNotNull(javaHome(), "JAVA_HOME must be set") + "/bin/java";
     }
@@ -153,10 +196,10 @@ public class OperatingSystem implements Named
      */
     public String javaHome()
     {
-        var home = property("KIVAKIT_JAVA_HOME");
+        var home = systemPropertyOrEnvironmentVariable("KIVAKIT_JAVA_HOME");
         if (home == null)
         {
-            home = property("JAVA_HOME");
+            home = systemPropertyOrEnvironmentVariable("JAVA_HOME");
         }
         return home;
     }
@@ -227,13 +270,18 @@ public class OperatingSystem implements Named
      *
      * @param variable The name of the property or environment variable to get.
      */
-    public String property(String variable)
+    public String systemPropertyOrEnvironmentVariable(String variable)
     {
+        // First check for a system property
         var value = System.getProperty(variable);
+
+        // then if that's not available,
         if (value == null)
         {
+            // check for an environment variable
             value = System.getenv(variable);
         }
+
         return value;
     }
 }

@@ -30,7 +30,7 @@ open module kivakit.resource
     uses ResourceResolver;
     uses ResourceFolderResolver;
 
-    provides ResourceResolver with File.Resolver, PackageResource.Resolver;
+    provides ResourceResolver with File.Resolver, PackageResource.PackageResolver;
     provides ResourceFolderResolver with Folder.Resolver, Package.Resolver;
 
     // KivaKit

@@ -28,8 +28,8 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 import java.util.HashMap;
 import java.util.Map;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXPANDABLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
 
 /**
@@ -39,9 +39,9 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NE
  */
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramMessaging.class)
-@ApiQuality(stability = STABLE_EXPANDABLE,
+@ApiQuality(stability = API_STABLE_EXTENSIBLE,
             testing = TESTING_NOT_NEEDED,
-            documentation = FULLY_DOCUMENTED)
+            documentation = DOCUMENTATION_COMPLETE)
 public final class Severity extends Level implements Named
 {
     private static final Map<String, Severity> severities = new HashMap<>();

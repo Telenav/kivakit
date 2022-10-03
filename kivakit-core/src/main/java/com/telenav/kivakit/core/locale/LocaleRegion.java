@@ -21,9 +21,9 @@ package com.telenav.kivakit.core.locale;
 import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.language.reflection.property.KivaKitExcludeProperty;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXPANDABLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
-import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
 
 /**
  * This class defines regions by name and relevant ISO codes. Provides the ISO region code, which can be represented by:
@@ -36,9 +36,9 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
  * @version 1.0.0 2012-7-12
  */
 @SuppressWarnings({ "JavadocLinkAsPlainText", "unused" })
-@ApiQuality(stability = STABLE_EXPANDABLE,
-            testing = UNTESTED,
-            documentation = FULLY_DOCUMENTED)
+@ApiQuality(stability = API_STABLE_EXTENSIBLE,
+            testing = TESTING_NONE,
+            documentation = DOCUMENTATION_COMPLETE)
 public class LocaleRegion
 {
     public static final LocaleRegion WORLD = new LocaleRegion("Earth", "EA", "EAR", -1);

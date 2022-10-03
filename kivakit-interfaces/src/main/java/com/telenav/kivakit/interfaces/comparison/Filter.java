@@ -26,9 +26,9 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Collection;
 import java.util.function.Predicate;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_DEFAULT_EXPANDABLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
-import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_DEFAULT_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
 
 /**
  * A filter which matches values allowing for boolean expressions. All {@link Filter}s are {@link Matcher}s and
@@ -43,10 +43,10 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
  * <p><b>Factory Methods</b></p>
  *
  * <ul>
- *     <li>{@link #accepting(Predicate)}</li>
- *     <li>{@link #accepting(Collection)}</li>
- *     <li>{@link #acceptingAll()}</li>
- *     <li>{@link #acceptingNone()}</li>
+ *     <li>{@link #accept(Predicate)}</li>
+ *     <li>{@link #accept(Collection)}</li>
+ *     <li>{@link #acceptAll()}</li>
+ *     <li>{@link #acceptNone()}</li>
  * </ul>
  *
  * <p><b>Logical Operations</b></p>
@@ -63,9 +63,9 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
  */
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramComparison.class)
-@ApiQuality(stability = STABLE_DEFAULT_EXPANDABLE,
-            testing = UNTESTED,
-            documentation = FULLY_DOCUMENTED)
+@ApiQuality(stability = API_STABLE_DEFAULT_EXTENSIBLE,
+            testing = TESTING_NONE,
+            documentation = DOCUMENTATION_COMPLETE)
 public interface Filter<Value> extends Matcher<Value>
 {
     /**
@@ -74,7 +74,7 @@ public interface Filter<Value> extends Matcher<Value>
      * Note: All {@link Matcher}s and {@link Filter}s are {@link Predicate}s).
      * </p>
      */
-    static <T> Filter<T> accepting(Predicate<T> predicate)
+    static <T> Filter<T> accept(Predicate<T> predicate)
     {
         return predicate::test;
     }
@@ -83,7 +83,7 @@ public interface Filter<Value> extends Matcher<Value>
      * @param values Collection of values that are acceptable
      * @return A filter that accepts values in the given collection
      */
-    static <T> Filter<T> accepting(Collection<T> values)
+    static <T> Filter<T> accept(Collection<T> values)
     {
         return values::contains;
     }
@@ -91,7 +91,7 @@ public interface Filter<Value> extends Matcher<Value>
     /**
      * @return A filter that accepts all values
      */
-    static <T> Filter<T> acceptingAll()
+    static <T> Filter<T> acceptAll()
     {
         return ignored -> true;
     }
@@ -99,7 +99,7 @@ public interface Filter<Value> extends Matcher<Value>
     /**
      * @return A filter that accepts no values
      */
-    static <T> Filter<T> acceptingNone()
+    static <T> Filter<T> acceptNone()
     {
         return ignored -> false;
     }

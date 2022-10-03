@@ -18,15 +18,18 @@
 
 package com.telenav.kivakit.network.core;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.object.Lazy;
 import com.telenav.kivakit.network.core.internal.lexakai.DiagramPort;
-import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.net.Inet4Address;
 import java.net.InetAddress;
 import java.net.NetworkInterface;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
 import static com.telenav.kivakit.core.ensure.Ensure.fail;
 
 /**
@@ -35,15 +38,18 @@ import static com.telenav.kivakit.core.ensure.Ensure.fail;
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramPort.class)
-@LexakaiJavadoc(complete = true)
+@ApiQuality(stability = API_STABLE_EXTENSIBLE,
+            testing = TESTING_NOT_NEEDED,
+            documentation = DOCUMENTATION_COMPLETE)
 public class Loopback extends Host
 {
+    /** The loopback interface for this host */
     private static final Lazy<Loopback> loopback = Lazy.lazy(Loopback::new);
 
     /**
      * @return The loopback address (normally 127.0.01) as a host
      */
-    public static Loopback get()
+    public static Loopback loopback()
     {
         return loopback.get();
     }

@@ -18,17 +18,17 @@
 
 package com.telenav.kivakit.filesystem.local;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.collections.list.StringList;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.string.Strings;
+import com.telenav.kivakit.filesystem.FilePath;
 import com.telenav.kivakit.filesystem.Folder;
 import com.telenav.kivakit.filesystem.spi.DiskService;
 import com.telenav.kivakit.filesystem.spi.FileService;
 import com.telenav.kivakit.filesystem.spi.FileSystemService;
 import com.telenav.kivakit.filesystem.spi.FolderService;
 import com.telenav.kivakit.resource.internal.lexakai.DiagramFileSystemService;
-import com.telenav.kivakit.filesystem.FilePath;
-import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
 import com.telenav.lexakai.annotations.visibility.UmlNotPublicApi;
@@ -36,6 +36,11 @@ import org.jetbrains.annotations.NotNull;
 
 import java.nio.file.InvalidPathException;
 import java.nio.file.Paths;
+
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.ApiType.PRIVATE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
 
 /**
  * Implementation of {@link FileSystemService} provider interface for the local filesystem.
@@ -47,11 +52,17 @@ import java.nio.file.Paths;
 @UmlRelation(label = "creates", referent = LocalFile.class)
 @UmlRelation(label = "creates", referent = LocalFolder.class)
 @UmlNotPublicApi
-@LexakaiJavadoc(complete = true)
+@ApiQuality(stability = API_STABLE_EXTENSIBLE,
+            testing = TESTING_NONE,
+            documentation = DOCUMENTATION_COMPLETE,
+            type = PRIVATE)
 public class LocalFileSystemService implements FileSystemService
 {
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public boolean accepts(FilePath path)
+    public boolean accepts(@NotNull FilePath path)
     {
         if (path.schemes().equals(StringList.stringList("file")))
         {
@@ -74,20 +85,29 @@ public class LocalFileSystemService implements FileSystemService
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public @NotNull DiskService diskService(FilePath path)
+    public @NotNull DiskService diskService(@NotNull FilePath path)
     {
         return new LocalDisk(new LocalFolder(normalize(path)));
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public @NotNull FileService fileService(FilePath path)
+    public @NotNull FileService fileService(@NotNull FilePath path)
     {
         return new LocalFile(normalize(path));
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public @NotNull FolderService folderService(FilePath path)
+    public @NotNull FolderService folderService(@NotNull FilePath path)
     {
         return new LocalFolder(normalize(path));
     }

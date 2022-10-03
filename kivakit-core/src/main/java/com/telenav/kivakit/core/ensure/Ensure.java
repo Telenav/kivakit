@@ -20,9 +20,9 @@ import java.util.Objects;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_STATIC_EXPANDABLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.MORE_DOCUMENTATION_NEEDED;
-import static com.telenav.kivakit.annotations.code.TestingQuality.MORE_TESTING_NEEDED;
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_STATIC_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_INSUFFICIENT;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_INSUFFICIENT;
 
 /**
  * A class for providing flexibility and consistency in the checking of states and parameters. There are multiple kinds
@@ -52,7 +52,7 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.MORE_TESTING_N
  * <ul>
  *     <li><b>{@link FailureReporter#assertingFailureReporter()}</b> - Fails with a Java assertion</li>
  *     <li><b>{@link FailureReporter#loggingFailureReporter()}</b> - Logs the failure</li>
- *     <li><b>{@link FailureReporter#emptyListener()}</b> - Does nothing</li>
+ *     <li><b>{@link FailureReporter#nullListener()}</b> - Does nothing</li>
  *     <li><b>{@link FailureReporter#throwingListener()}</b> - Throws an exception</li>
  * </ul>
  *
@@ -168,9 +168,9 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.MORE_TESTING_N
  */
 @SuppressWarnings("unused") @UmlClassDiagram(diagram = DiagramEnsure.class)
 @UmlRelation(label = "reports", referent = EnsureProblem.class)
-@ApiQuality(stability = STABLE_STATIC_EXPANDABLE,
-            testing = MORE_TESTING_NEEDED,
-            documentation = MORE_DOCUMENTATION_NEEDED)
+@ApiQuality(stability = API_STABLE_STATIC_EXTENSIBLE,
+            testing = TESTING_INSUFFICIENT,
+            documentation = DOCUMENTATION_INSUFFICIENT)
 public class Ensure
 {
     /**
@@ -290,7 +290,7 @@ public class Ensure
     @SuppressWarnings("UnusedReturnValue")
     public static boolean ensureClose(Duration given, Duration expected)
     {
-        return given.isApproximately(expected, Duration.seconds(0.5));
+        return given.isCloseTo(expected, Duration.seconds(0.5));
     }
 
     public static <T> T ensureEqual(T given, T expected)

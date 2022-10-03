@@ -18,6 +18,7 @@
 
 package com.telenav.kivakit.internal.testing;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.ensure.Ensure;
 import com.telenav.kivakit.core.ensure.EnsureTrait;
 import com.telenav.kivakit.core.ensure.Failure;
@@ -27,11 +28,9 @@ import com.telenav.kivakit.core.language.trait.LanguageTrait;
 import com.telenav.kivakit.core.logging.Logger;
 import com.telenav.kivakit.core.logging.LoggerFactory;
 import com.telenav.kivakit.core.messaging.Broadcaster;
-import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.messaging.Message;
 import com.telenav.kivakit.core.messaging.Repeater;
 import com.telenav.kivakit.core.messaging.repeaters.RepeaterMixin;
-import com.telenav.kivakit.core.os.ConsoleWriter;
 import com.telenav.kivakit.core.os.OperatingSystem;
 import com.telenav.kivakit.core.project.Project;
 import com.telenav.kivakit.core.project.ProjectTrait;
@@ -54,6 +53,11 @@ import java.util.Collection;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.API_UNSTABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
+import static com.telenav.kivakit.core.messaging.Listener.nullListener;
+import static com.telenav.kivakit.core.os.Console.console;
 import static com.telenav.kivakit.core.project.Project.resolveProject;
 
 /**
@@ -157,6 +161,9 @@ import static com.telenav.kivakit.core.project.Project.resolveProject;
 @UmlClassDiagram(diagram = DiagramTest.class)
 @UmlRelation(label = "uses", referent = RandomValueFactory.class)
 @UmlRelation(label = "reports validation failures with", referent = JUnitFailureReporter.class)
+@ApiQuality(stability = API_UNSTABLE,
+            testing = TESTING_NOT_NEEDED,
+            documentation = DOCUMENTATION_COMPLETE)
 public abstract class CoreUnitTest extends TestWatcher implements
         RepeaterMixin,
         ResultTrait,
@@ -168,8 +175,10 @@ public abstract class CoreUnitTest extends TestWatcher implements
         Repeater,
         NamedObject
 {
+    /** True if this is a quick test */
     private static boolean quickTest;
 
+    /** Logger for test output */
     private static final Logger LOGGER = LoggerFactory.newLogger();
 
     @BeforeClass
@@ -180,14 +189,13 @@ public abstract class CoreUnitTest extends TestWatcher implements
         Failure.reporterFactory(messageType -> new JUnitFailureReporter());
     }
 
-
+    /** Watches for unit test failures and reports the random value factory seed value so failed tests can be reproduced */
     @Rule
     public UnitTestWatcher watcher = new UnitTestWatcher(this);
 
-    private final ConsoleWriter console = new ConsoleWriter();
-
     private final ThreadLocal<RandomValueFactory> randomValueFactory = ThreadLocal.withInitial(this::newRandomValueFactory);
 
+    /** An index variable for use by subclasses */
     protected int index;
 
     protected CoreUnitTest()
@@ -198,11 +206,11 @@ public abstract class CoreUnitTest extends TestWatcher implements
     @Override
     public void onMessage(Message message)
     {
-        console.receive(message);
+        console().receive(message);
     }
 
     @Override
-    public <T> T register(final T object)
+    public <T> T register(T object)
     {
         return RegistryTrait.super.register(object);
     }
@@ -222,39 +230,57 @@ public abstract class CoreUnitTest extends TestWatcher implements
         return Count.count(value);
     }
 
+    /**
+     * Initialized the given project
+     */
     protected <T extends Project> void initializeProject(Class<T> project)
     {
-        Listener.emptyListener().listenTo(resolveProject(project)).initialize();
+        nullListener().listenTo(resolveProject(project)).initialize();
     }
 
+    /**
+     * Returns true if this is running on a mac
+     */
     protected boolean isMac()
     {
         return OperatingSystem.operatingSystem().isMac();
     }
 
+    /**
+     * Returns true if this is a quick test
+     */
     protected boolean isQuickTest()
     {
         return quickTest;
     }
 
+    /**
+     * Returns true if this is a randomized test
+     */
     protected boolean isRandomTest()
     {
         return randomValueFactory.get() != null;
     }
 
+    /**
+     * Returns true if this is running on UNIX (other than MacOS)
+     */
+    protected boolean isUnix()
+    {
+        return OperatingSystem.operatingSystem().isUnix();
+    }
+
+    /**
+     * Returns true if this is running on Windows
+     */
     protected boolean isWindows()
     {
         return OperatingSystem.operatingSystem().isWindows();
     }
 
-    protected Count iterations()
+    protected Maximum maximum(long maximum)
     {
-        return random().iterations();
-    }
-
-    protected Maximum maximum(long minimum)
-    {
-        return Maximum.maximum(minimum);
+        return Maximum.maximum(maximum);
     }
 
     protected Minimum minimum(long minimum)
@@ -267,8 +293,19 @@ public abstract class CoreUnitTest extends TestWatcher implements
         return new RandomValueFactory();
     }
 
+    /**
+     * Gets a random value factory (or subclass)
+     */
     protected RandomValueFactory random()
     {
         return randomValueFactory.get();
+    }
+
+    /**
+     * Returns a random number of iterations
+     */
+    protected Count randomIterations()
+    {
+        return random().iterations();
     }
 }

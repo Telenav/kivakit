@@ -18,11 +18,16 @@
 
 package com.telenav.kivakit.filesystem.spi;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.value.count.Bytes;
 import com.telenav.kivakit.core.value.level.Percent;
 import com.telenav.kivakit.resource.internal.lexakai.DiagramFileSystemService;
-import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
+
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.ApiType.SERVICE_PROVIDER_INTERFACE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
 
 /**
  * A service provider interface (SPI) for filesystem disks. Implementers provide:
@@ -38,16 +43,19 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
  * @see FileSystemService
  */
 @UmlClassDiagram(diagram = DiagramFileSystemService.class)
-@LexakaiJavadoc(complete = true)
+@ApiQuality(stability = API_STABLE_EXTENSIBLE,
+            testing = TESTING_NOT_NEEDED,
+            documentation = DOCUMENTATION_COMPLETE,
+            type = SERVICE_PROVIDER_INTERFACE)
 public interface DiskService
 {
     /**
-     * @return Free space on this disk
+     * Returns free space on this disk
      */
     Bytes free();
 
     /**
-     * @return Percentage of this disk that is free
+     * Returns percentage of this disk that is free
      */
     default Percent percentFree()
     {
@@ -55,7 +63,7 @@ public interface DiskService
     }
 
     /**
-     * @return Percentage of this disk that is usable
+     * Returns percentage of this disk that is usable
      */
     default Percent percentUsable()
     {
@@ -63,17 +71,17 @@ public interface DiskService
     }
 
     /**
-     * @return Root folder on this disk
+     * Returns root folder on this disk
      */
     FolderService root();
 
     /**
-     * @return Total size of this disk
+     * Returns total size of this disk
      */
     Bytes size();
 
     /**
-     * @return Usable space on this disk
+     * Returns usable space on this disk
      */
     Bytes usable();
 }

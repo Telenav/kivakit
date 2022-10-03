@@ -18,14 +18,18 @@
 
 package com.telenav.kivakit.resource.compression.archive;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.resource.internal.lexakai.DiagramResourceArchive;
-import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
+
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
 
 /**
  * Annotation for labeling fields that should be archived.
@@ -37,7 +41,9 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ ElementType.FIELD })
 @UmlClassDiagram(diagram = DiagramResourceArchive.class)
-@LexakaiJavadoc(complete = true)
+@ApiQuality(stability = API_STABLE,
+            testing = TESTING_NOT_NEEDED,
+            documentation = DOCUMENTATION_COMPLETE)
 public @interface KivaKitArchivedField
 {
     /**

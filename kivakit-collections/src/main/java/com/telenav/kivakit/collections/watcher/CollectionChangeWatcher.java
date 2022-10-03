@@ -18,9 +18,13 @@
 
 package com.telenav.kivakit.collections.watcher;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.collections.internal.lexakai.DiagramWatcher;
-import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
+
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
 
 /**
  * An interface to an object that watches changes to a collection
@@ -28,10 +32,18 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramWatcher.class)
-@LexakaiJavadoc(complete = true)
+@ApiQuality(stability = API_STABLE,
+            testing = TESTING_NOT_NEEDED,
+            documentation = DOCUMENTATION_COMPLETE)
 public interface CollectionChangeWatcher<T>
 {
+    /**
+     * Adds the given collection change listener to this watcher
+     */
     void addListener(CollectionChangeListener<T> listener);
 
+    /**
+     * Removes the given collection change listener from this watcher
+     */
     void removeListener(CollectionChangeListener<T> listener);
 }

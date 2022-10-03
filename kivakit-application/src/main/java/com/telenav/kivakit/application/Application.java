@@ -18,9 +18,10 @@
 
 package com.telenav.kivakit.application;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.application.internal.lexakai.DiagramApplication;
 import com.telenav.kivakit.commandline.ApplicationMetadata;
-import com.telenav.kivakit.commandline.ArgumentList;
+import com.telenav.kivakit.commandline.ArgumentValueList;
 import com.telenav.kivakit.commandline.ArgumentParser;
 import com.telenav.kivakit.commandline.CommandLine;
 import com.telenav.kivakit.commandline.CommandLineParser;
@@ -51,8 +52,8 @@ import com.telenav.kivakit.core.messaging.repeaters.BaseRepeater;
 import com.telenav.kivakit.core.project.Build;
 import com.telenav.kivakit.core.project.Project;
 import com.telenav.kivakit.core.project.ProjectTrait;
-import com.telenav.kivakit.core.project.StartUp;
-import com.telenav.kivakit.core.project.StartUp.Option;
+import com.telenav.kivakit.core.project.StartUpOptions;
+import com.telenav.kivakit.core.project.StartUpOptions.StartupOption;
 import com.telenav.kivakit.core.registry.Registry;
 import com.telenav.kivakit.core.registry.RegistryTrait;
 import com.telenav.kivakit.core.string.Align;
@@ -71,13 +72,12 @@ import com.telenav.kivakit.properties.PropertyMap;
 import com.telenav.kivakit.resource.Extension;
 import com.telenav.kivakit.resource.Resource;
 import com.telenav.kivakit.resource.packages.PackageTrait;
-import com.telenav.kivakit.resource.serialization.ObjectSerializers;
+import com.telenav.kivakit.resource.serialization.ObjectSerializerRegistry;
 import com.telenav.kivakit.serialization.gson.GsonObjectSerializer;
 import com.telenav.kivakit.serialization.properties.PropertiesObjectSerializer;
 import com.telenav.kivakit.settings.Deployment;
 import com.telenav.kivakit.settings.DeploymentSet;
-import com.telenav.kivakit.settings.SettingsTrait;
-import com.telenav.lexakai.annotations.LexakaiJavadoc;
+import com.telenav.kivakit.settings.SettingsRegistryTrait;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlAggregation;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
@@ -91,12 +91,16 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import static com.telenav.kivakit.application.Application.State.CONSTRUCTING;
-import static com.telenav.kivakit.application.Application.State.INITIALIZING;
-import static com.telenav.kivakit.application.Application.State.READY;
-import static com.telenav.kivakit.application.Application.State.RUNNING;
-import static com.telenav.kivakit.application.Application.State.STOPPED;
-import static com.telenav.kivakit.application.Application.State.STOPPING;
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE;
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+import static com.telenav.kivakit.application.Application.ExecutionState.CONSTRUCTING;
+import static com.telenav.kivakit.application.Application.ExecutionState.INITIALIZING;
+import static com.telenav.kivakit.application.Application.ExecutionState.READY;
+import static com.telenav.kivakit.application.Application.ExecutionState.RUNNING;
+import static com.telenav.kivakit.application.Application.ExecutionState.STOPPED;
+import static com.telenav.kivakit.application.Application.ExecutionState.STOPPING;
 import static com.telenav.kivakit.application.ExitCode.FAILED;
 import static com.telenav.kivakit.application.ExitCode.SUCCEEDED;
 import static com.telenav.kivakit.commandline.Quantifier.OPTIONAL;
@@ -128,14 +132,12 @@ import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
  *
  * <ul>
  *     <li>{@link PackageTrait} - Provides access to packages and packaged resources</li>
- *     <li>{@link SettingsTrait} - Loads settings objects and deployment configurations</li>
+ *     <li>{@link SettingsRegistryTrait} - Loads settings objects and deployment configurations</li>
  *     <li>{@link RegistryTrait} - Service {@link Registry} access</li>
  *     <li>{@link LanguageTrait} - Enhancements that reduce language verbosity</li>
  *     <li>{@link Repeater} - Message broadcasting, listening and repeating</li>
  *     <li>{@link NamedObject} - Provides component name</li>
  * </ul>
- *
- * <hr>
  *
  * <p><b>Creating an Application</b></p>
  *
@@ -154,16 +156,12 @@ import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
  *     [...]
  * }</pre>
  *
- * <hr>
- *
  * <p><b>Project Initialization</b></p>
  *
  * <p>
  * Application constructors should pass one or more {@link Project}s to the {@link Application} constructor to
  * ensure that all of the application's transitively dependent project(s) are initialized. See {@link Project} for details.
  * </p>
- *
- * <hr>
  *
  * <p><b>Application Metadata</b></p>
  *
@@ -177,8 +175,6 @@ import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
  *     <li>{@link #identifier()} - A unique identifier for the application class</li>
  * </ul>
  *
- * <hr>
- *
  * <p><b>Application Environment</b></p>
  *
  * <p>
@@ -189,8 +185,6 @@ import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
  *     <li>{@link #properties()} - System and environment properties</li>
  *     <li>{@link #localizedProperties(Locale)} - Properties that are specific to the {@link Locale}</li>
  * </ul>
- *
- * <hr>
  *
  * <p><b>Execution</b></p>
  *
@@ -222,8 +216,6 @@ import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
  * display the given message and show command line usage before exiting the application.
  * </p>
  *
- * <hr>
- *
  * <p><b>Command Line Parsing</b></p>
  *
  * <p>
@@ -253,15 +245,11 @@ import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
  *     <li>{@link #argument(int, ArgumentParser)} - Gets the nth argument using the given argument parser</li>
  * </ul>
  *
- * <hr>
- *
  * <p><b>Messaging and Logging</b></p>
  *
  * <p>
  * This class extends {@link BaseRepeater} and has a {@link Logger} that listens for messages and logs them.
  * </p>
- *
- * <hr>
  *
  * @author jonathanl (shibo)
  * @see BaseRepeater
@@ -271,11 +259,13 @@ import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
  */
 @SuppressWarnings({ "unused", "BooleanMethodIsAlwaysInverted" })
 @UmlClassDiagram(diagram = DiagramApplication.class)
-@LexakaiJavadoc(complete = true)
+@ApiQuality(stability = API_STABLE_EXTENSIBLE,
+            testing = TESTING_NONE,
+            documentation = DOCUMENTATION_COMPLETE)
 public abstract class Application extends BaseComponent implements
         PackageTrait,
         ProjectTrait,
-        SettingsTrait,
+        SettingsRegistryTrait,
         Named,
         ApplicationMetadata
 {
@@ -336,7 +326,10 @@ public abstract class Application extends BaseComponent implements
         }
     }
 
-    public enum State
+    /**
+     * The application execution state
+     */
+    public enum ExecutionState
     {
         CONSTRUCTING,
         INITIALIZING,
@@ -353,7 +346,9 @@ public abstract class Application extends BaseComponent implements
      */
     @UmlClassDiagram(diagram = DiagramApplication.class)
     @UmlExcludeSuperTypes
-    @LexakaiJavadoc(complete = true)
+    @ApiQuality(stability = API_STABLE,
+                testing = TESTING_NONE,
+                documentation = DOCUMENTATION_COMPLETE)
     public static class Identifier extends StringIdentifier
     {
         public Identifier(String identifier)
@@ -381,7 +376,7 @@ public abstract class Application extends BaseComponent implements
     private final Set<Project> projects = new IdentitySet<>();
 
     /** State machine for application lifecycle */
-    private final StateMachine<State> state = new StateMachine<>(CONSTRUCTING);
+    private final StateMachine<ExecutionState> state = new StateMachine<>(CONSTRUCTING);
 
     @UmlExcludeMember
     protected final SwitchParser<Boolean> QUIET =
@@ -432,9 +427,9 @@ public abstract class Application extends BaseComponent implements
     /**
      * @return All non-switch command line arguments
      */
-    public ArgumentList argumentList()
+    public ArgumentValueList argumentList()
     {
-        return commandLine().arguments();
+        return commandLine().argumentValues();
     }
 
     /**
@@ -446,7 +441,7 @@ public abstract class Application extends BaseComponent implements
         var arguments = new ObjectList<T>();
         for (int i = 0; i < argumentList().size(); i++)
         {
-            if (parser.canParse(argumentList().get(i).value()))
+            if (parser.canParse(argumentList().argumentValue(i).value()))
             {
                 arguments.add(argument(i, parser));
             }
@@ -532,7 +527,7 @@ public abstract class Application extends BaseComponent implements
 
     public PropertyMap localizedProperties(Locale locale, LocaleLanguage language)
     {
-        return PropertyMap.localized(this, thisPackage().path(), locale, language);
+        return PropertyMap.loadLocalizedPropertyMap(this, packageForThis().path(), locale, language);
     }
 
     /**
@@ -548,7 +543,7 @@ public abstract class Application extends BaseComponent implements
      */
     public PropertyMap properties()
     {
-        return PropertyMap.propertyMap(Properties.projectProperties(getClass()));
+        return PropertyMap.propertyMap(Properties.allProperties(getClass()));
     }
 
     public void ready()
@@ -588,7 +583,7 @@ public abstract class Application extends BaseComponent implements
             }
 
             // Enable start-up options,
-            startupOptions().forEach(StartUp::enable);
+            startupOptions().forEach(StartUpOptions::enable);
 
             // signal that we are initializing,
             state.transitionTo(INITIALIZING);
@@ -605,7 +600,7 @@ public abstract class Application extends BaseComponent implements
             onProjectsInitialized();
 
             // load deployments,
-            deployments = DeploymentSet.load(this, getClass());
+            deployments = DeploymentSet.loadDeploymentSet(this, getClass());
 
             // then through arguments
             var argumentList = new StringList();
@@ -616,8 +611,8 @@ public abstract class Application extends BaseComponent implements
                 {
                     // then load properties from the resource
                     var resourceIdentifier = Strip.leading(argument, "-switches=");
-                    var resource = Resource.resolve(this, resourceIdentifier);
-                    var properties = PropertyMap.load(this, resource);
+                    var resource = Resource.resolveResource(this, resourceIdentifier);
+                    var properties = PropertyMap.loadPropertyMap(this, resource);
 
                     // and add those properties to the argument list
                     for (var key : properties.keySet())
@@ -650,7 +645,7 @@ public abstract class Application extends BaseComponent implements
                 registerSettingsIn(get(DEPLOYMENT));
             }
 
-            if (!StartUp.isEnabled(Option.QUIET))
+            if (!StartUpOptions.isEnabled(StartupOption.QUIET))
             {
                 showStartupInformation();
             }
@@ -831,7 +826,7 @@ public abstract class Application extends BaseComponent implements
 
     protected void onRegisterObjectSerializers()
     {
-        var serializers = new ObjectSerializers();
+        var serializers = new ObjectSerializerRegistry();
         tryCatch(() -> serializers.add(Extension.JSON, new GsonObjectSerializer()));
         tryCatch(() -> serializers.add(Extension.PROPERTIES, new PropertiesObjectSerializer()));
         register(serializers);
@@ -861,7 +856,7 @@ public abstract class Application extends BaseComponent implements
     /**
      * Returns true if this application should not show startup information
      */
-    protected ObjectSet<StartUp.Option> startupOptions()
+    protected ObjectSet<StartupOption> startupOptions()
     {
         return objectSet();
     }

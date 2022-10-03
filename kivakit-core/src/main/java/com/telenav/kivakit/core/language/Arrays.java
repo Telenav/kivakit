@@ -26,9 +26,9 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 import java.lang.reflect.Array;
 import java.util.Collection;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_STATIC_EXPANDABLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
-import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_STATIC_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
 
 /**
  * Utility methods for working with arrays.
@@ -51,9 +51,9 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
  * @author jonathanl (shibo)
  */
 @SuppressWarnings("unused") @UmlClassDiagram(diagram = DiagramPrimitive.class)
-@ApiQuality(stability = STABLE_STATIC_EXPANDABLE,
-            testing = UNTESTED,
-            documentation = FULLY_DOCUMENTED)
+@ApiQuality(stability = API_STABLE_STATIC_EXTENSIBLE,
+            testing = TESTING_NONE,
+            documentation = DOCUMENTATION_COMPLETE)
 public class Arrays
 {
     /**
@@ -122,6 +122,27 @@ public class Arrays
             array[index++] = value.longValue();
         }
         return array;
+    }
+
+    /**
+     * Reverses the elements in the given array
+     */
+    public static void reverse(byte[] array)
+    {
+        reverse(array, 0, array.length);
+    }
+
+    /**
+     * Reverses the region of elements in the given array
+     */
+    public static void reverse(byte[] array, int fromIndex, int toIndex)
+    {
+        for (int i = fromIndex, j = toIndex - 1; i < j; i++, j--)
+        {
+            byte temporary = array[i];
+            array[i] = array[j];
+            array[j] = temporary;
+        }
     }
 
     /**

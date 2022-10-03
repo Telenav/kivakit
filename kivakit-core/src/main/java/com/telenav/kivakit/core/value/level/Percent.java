@@ -18,15 +18,20 @@
 
 package com.telenav.kivakit.core.value.level;
 
-import com.telenav.kivakit.core.language.primitive.Doubles;
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramCount;
+import com.telenav.kivakit.core.language.primitive.Doubles;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.string.Strip;
-import com.telenav.lexakai.annotations.LexakaiJavadoc;
+import com.telenav.kivakit.interfaces.value.DoubleValued;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Objects;
+
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
 
 /**
  * A percentage of any range (not only from 0 to 100%). A percent object can be created with {@link #percent(double)},
@@ -55,55 +60,83 @@ import java.util.Objects;
  *
  * @author jonathanl (shibo)
  */
-@UmlClassDiagram(diagram = DiagramCount.class)
-@LexakaiJavadoc(complete = true)
-public final class Percent implements Comparable<Percent>
+@SuppressWarnings("unused") @UmlClassDiagram(diagram = DiagramCount.class)
+@ApiQuality(stability = API_STABLE_EXTENSIBLE,
+            testing = TESTING_NONE,
+            documentation = DOCUMENTATION_COMPLETE)
+public final class Percent implements
+        Comparable<Percent>,
+        DoubleValued
 {
+    /** 0% */
     public static final Percent _0 = new Percent(0);
 
+    /** 50% */
     public static final Percent _50 = new Percent(50);
 
+    /** 100% */
     public static final Percent _100 = new Percent(100);
 
-    public static Percent parsePercent(Listener listener, String value)
+    /**
+     * Parses the given text into a percent
+     *
+     * @param listener The listener to report any errors to
+     * @param text The text to parse
+     * @return The percent
+     */
+    public static Percent parsePercent(Listener listener, String text)
     {
-        return Percent.percent(Double.parseDouble(value.endsWith("%")
-                ? Strip.ending(value, "%")
-                : value));
+        try
+        {
+            return Percent.percent(Double.parseDouble(text.endsWith("%")
+                    ? Strip.ending(text, "%")
+                    : text));
+        }
+        catch (Exception e)
+        {
+            listener.problem("Unable to parse: $", text);
+            return null;
+        }
     }
 
+    /**
+     * Creates a {@link Percent} object
+     *
+     * @param percent The percent on a scale from 0 to 100 (but it can be greater or less, like 200%)
+     * @return The percent
+     */
     public static Percent percent(double percent)
     {
         return new Percent(percent);
     }
 
-    private double value;
+    private double percent;
 
-    Percent(double value)
+    Percent(double percent)
     {
-        this.value = value;
+        this.percent = percent;
     }
 
     private Percent()
     {
     }
 
-    public int asInt()
-    {
-        return (int) value;
-    }
-
+    /**
+     * Returns this percent as a level between 0 and 1
+     */
     public Level asLevel()
     {
         return new Level(asZeroToOne());
     }
 
     /**
+     * This percent as a unit value, potentially greater than 1 or less than 0
+     *
      * @return This percentage divided by 100
      */
     public double asUnitValue()
     {
-        return value / 100.0;
+        return percent / 100.0;
     }
 
     /**
@@ -111,18 +144,36 @@ public final class Percent implements Comparable<Percent>
      */
     public double asZeroToOne()
     {
-        return Doubles.inRange(value / 100.0, 0.0, 1.0);
+        return Doubles.inRange(percent / 100.0, 0.0, 1.0);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public int compareTo(@NotNull Percent that)
     {
-        return Double.compare(value, that.value);
+        return Double.compare(percent, that.percent);
     }
 
+    /**
+     * Returns this percent divided by the given divisor
+     *
+     * @param divisor The divisor
+     * @return The new percent
+     */
     public Percent dividedBy(double divisor)
     {
-        return new Percent(value / divisor);
+        return new Percent(percent / divisor);
+    }
+
+    /**
+     * Returns the double value scaled from 0 to 100%, but possibly more like 200%, or less like -50%
+     */
+    @Override
+    public double doubleValue()
+    {
+        return percent;
     }
 
     @Override
@@ -131,7 +182,7 @@ public final class Percent implements Comparable<Percent>
         if (object instanceof Percent)
         {
             Percent that = (Percent) object;
-            return value == that.value;
+            return percent == that.percent;
         }
         return false;
     }
@@ -139,72 +190,82 @@ public final class Percent implements Comparable<Percent>
     @Override
     public int hashCode()
     {
-        return Objects.hash(value);
+        return Objects.hash(percent);
     }
 
+    /**
+     * This percent as a distance from 100, for example the inverse of 25% is 75%.
+     */
     public Percent inverse()
     {
         return new Percent(100.0 - asZeroToOne());
     }
 
-    public boolean isGreaterThan(Percent that)
-    {
-        return value > that.value;
-    }
-
-    public boolean isGreaterThanOrEqualTo(Percent that)
-    {
-        return value >= that.value;
-    }
-
-    public boolean isLessThan(Percent that)
-    {
-        return value < that.value;
-    }
-
-    public boolean isLessThanOrEqualTo(Percent that)
-    {
-        return value <= that.value;
-    }
-
+    /**
+     * Returns this percent minus the given percent
+     */
     public Percent minus(Percent that)
     {
-        return new Percent(value - that.value);
+        return new Percent(percent - that.percent);
     }
 
+    /**
+     * Returns this percentage from 0 to 100
+     */
+    public double percent()
+    {
+        return percent;
+    }
+
+    /**
+     * Returns this percent plus the given percent
+     */
     public Percent plus(Percent that)
     {
-        return new Percent(value + that.value);
+        return new Percent(percent + that.percent);
     }
 
-    public double scale(double value)
+    /**
+     * Returns this percent scaled by the given factor
+     */
+    public double scale(double factor)
     {
-        return value * asUnitValue();
+        return factor * doubleValue();
     }
 
+    /**
+     * Scales the given value by this percentage
+     *
+     * @param value The value
+     * @return The scaled value
+     */
     public long scale(long value)
     {
         return (long) (value * asUnitValue());
     }
 
+    /**
+     * Scales the given value by this percentage
+     *
+     * @param value The value
+     * @return The scaled value
+     */
     public int scale(int value)
     {
         return (int) (value * asUnitValue());
     }
 
+    /**
+     * Returns this percent plus the given percent
+     */
     public Percent times(double scaleFactor)
     {
-        return new Percent(value * scaleFactor);
+        return new Percent(percent * scaleFactor);
     }
 
     @Override
     public String toString()
     {
-        return Doubles.format(value, 1) + "%";
-    }
-
-    public double value()
-    {
-        return value;
+        return Doubles.format(percent, 1) + "%";
     }
 }

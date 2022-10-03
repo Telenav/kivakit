@@ -34,9 +34,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicLong;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXPANDABLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
-import static com.telenav.kivakit.annotations.code.TestingQuality.MORE_TESTING_NEEDED;
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_INSUFFICIENT;
 
 /**
  * Keeps a {@link ConcurrentMutableCount} for each key.
@@ -44,11 +44,11 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.MORE_TESTING_N
  * <p><b>Adding</b></p>
  *
  * <ul>
- *     <li>{@link #plus(Object, long)}</li>
- *     <li>{@link #plus(Object, Countable)}</li>
- *     <li>{@link #increment(Object)}</li>
  *     <li>{@link #decrement(Object)}</li>
+ *     <li>{@link #increment(Object)}</li>
  *     <li>{@link #mergeIn(CountMap)}</li>
+ *     <li>{@link #plus(Object, Countable)}</li>
+ *     <li>{@link #plus(Object, long)}</li>
  * </ul>
  *
  * <p><b>Values</b></p>
@@ -84,9 +84,9 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.MORE_TESTING_N
  */
 @SuppressWarnings({ "UnusedReturnValue", "unused" })
 @UmlClassDiagram(diagram = DiagramCollections.class)
-@ApiQuality(stability = STABLE_EXPANDABLE,
-            testing = MORE_TESTING_NEEDED,
-            documentation = FULLY_DOCUMENTED)
+@ApiQuality(stability = API_STABLE_EXTENSIBLE,
+            testing = TESTING_INSUFFICIENT,
+            documentation = DOCUMENTATION_COMPLETE)
 public class CountMap<Key> extends ObjectMap<Key, ConcurrentMutableCount>
 {
     private AtomicLong total = new AtomicLong();

@@ -8,4 +8,6 @@ open module kivakit.validation
 
     // Module exports
     exports com.telenav.kivakit.validation;
+    exports com.telenav.kivakit.validation.types;
+    exports com.telenav.kivakit.validation.validators;
 }

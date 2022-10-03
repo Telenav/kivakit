@@ -18,6 +18,7 @@
 
 package com.telenav.kivakit.settings;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.commandline.SwitchParser;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.messaging.repeaters.BaseRepeater;
@@ -37,25 +38,76 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+
 /**
  * A set of {@link Deployment} objects, each being a set of settings objects. Deployments can be added to the set from a
  * folder with {@link #addDeploymentsIn(ResourceFolder)}. A switch parser to select a deployment from the command line
  * can be retrieved with SwitchParser.deployment(DeploymentSet).
  *
+ * <p><b>Loading</b></p>
+ *
+ * <ul>
+ *     <li>{@link #loadDeploymentSet(Listener, Class)}</li>
+ * </ul>
+ *
+ * <p><b>Creation</b></p>
+ *
+ * <ul>
+ *     <li>{@link #deploymentSet(Listener, Deployment, Deployment...)}</li>
+ * </ul>
+ *
+ * <p><b>Adding Deployments</b></p>
+ *
+ * <ul>
+ *     <li>{@link #add(Deployment)}</li>
+ *     <li>{@link #addAll(Collection)}</li>
+ *     <li>{@link #addDeploymentsIn(ResourceFolder)}</li>
+ * </ul>
+ *
+ * <p><b>Accessing Deployments</b></p>
+ *
+ * <ul>
+ *     <li>{@link #deployment(String)}</li>
+ *     <li>{@link #deployments()}</li>
+ *     <li>{@link #switchParser(String)}</li>
+ * </ul>
+ *
  * @author jonathanl (shibo)
  * @see Deployment
- * @see Settings
+ * @see SettingsRegistry
  */
-@SuppressWarnings("UnusedReturnValue")
+@SuppressWarnings({ "UnusedReturnValue", "unused" })
 @UmlClassDiagram(diagram = DiagramSettings.class)
+@ApiQuality(stability = API_STABLE_EXTENSIBLE,
+            testing = TESTING_NONE,
+            documentation = DOCUMENTATION_COMPLETE)
 public class DeploymentSet extends BaseRepeater implements RegistryTrait
 {
     /**
-     * Loads all deployments in the root package 'deployments' and in any folder specified by
-     * KIVAKIT_DEPLOYMENT_FOLDER.
+     * Returns a deployment set with the given deployments
+     *
+     * @param listener The listener to call with any problems
+     * @param deployment The first deployment to add
+     * @param more Further deployments to add
+     * @return The deployment set
+     */
+    public static DeploymentSet deploymentSet(Listener listener, Deployment deployment, Deployment... more)
+    {
+        var set = listener.listenTo(new DeploymentSet());
+        set.add(deployment);
+        set.addAll(Arrays.asList(more));
+        return set;
+    }
+
+    /**
+     * Loads all deployments in the package 'deployments' relative to the given class' package, and in any folder
+     * specified by KIVAKIT_DEPLOYMENT_FOLDER.
      */
     @SuppressWarnings("ConstantConditions")
-    public static DeploymentSet load(Listener listener, Class<?> relativeTo)
+    public static DeploymentSet loadDeploymentSet(Listener listener, Class<?> relativeTo)
     {
         // Create an empty set of deployments,
         var deployments = listener.listenTo(new DeploymentSet());
@@ -69,7 +121,7 @@ public class DeploymentSet extends BaseRepeater implements RegistryTrait
         }
 
         // and if a deployment folder was specified, and it exists,
-        var deploymentFolder = PropertyMap.propertyMap(JavaVirtualMachine.local().properties())
+        var deploymentFolder = PropertyMap.propertyMap(JavaVirtualMachine.javaVirtualMachine().systemProperties())
                 .asFolder("KIVAKIT_DEPLOYMENT_FOLDER");
         if (deploymentFolder != null && deploymentFolder.exists())
         {
@@ -80,14 +132,7 @@ public class DeploymentSet extends BaseRepeater implements RegistryTrait
         return deployments;
     }
 
-    public static DeploymentSet of(Listener listener, Deployment deployment, Deployment... more)
-    {
-        var set = listener.listenTo(new DeploymentSet());
-        set.add(deployment);
-        set.addAll(Arrays.asList(more));
-        return set;
-    }
-
+    /** The set of deployments */
     @UmlAggregation
     private final Set<Deployment> deployments = new HashSet<>();
 
@@ -185,7 +230,7 @@ public class DeploymentSet extends BaseRepeater implements RegistryTrait
     private String description(Resource resource)
     {
         var description = "'" + resource.fileName().name() + "' deployment";
-        var deploymentProperties = PropertyMap.load(this, resource);
+        var deploymentProperties = PropertyMap.loadPropertyMap(this, resource);
         if (deploymentProperties.containsKey("description"))
         {
             description = deploymentProperties.get("description");

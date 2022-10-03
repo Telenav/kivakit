@@ -18,26 +18,42 @@
 
 package com.telenav.kivakit.resource.writing;
 
-import com.telenav.kivakit.core.io.IO;
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.progress.ProgressReporter;
 import com.telenav.kivakit.core.progress.reporters.ProgressiveOutputStream;
 import com.telenav.kivakit.core.value.count.BaseCount;
-import com.telenav.lexakai.annotations.LexakaiJavadoc;
+import org.jetbrains.annotations.NotNull;
 
 import java.io.OutputStream;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+import static com.telenav.kivakit.core.io.IO.bufferOutput;
+import static com.telenav.kivakit.core.progress.ProgressReporter.nullProgressReporter;
+
 /**
- * Interface to something that can potentially be opened for writing. An output stream can be obtained with {@link
- * #openForWriting()} or {@link #openForWriting(ProgressReporter)}. The latter method will report progress to the given
- * reporter as bytes are written to the output.
+ * Interface to something that can potentially be opened for writing. An output stream can be obtained with
+ * {@link #openForWriting()} or {@link #openForWriting(ProgressReporter)}. The latter method will report progress to the
+ * given reporter as bytes are written to the output.
+ *
+ * <p><b>Writing</b></p>
+ *
+ * <ul>
+ *     <li>{@link #isWritable()}</li>
+ *     <li>{@link #openForWriting()}</li>
+ *     <li>{@link #openForWriting(ProgressReporter)}</li>
+ * </ul>
  *
  * @author jonathanl (shibo)
  */
-@LexakaiJavadoc(complete = true)
+@ApiQuality(stability = API_STABLE_EXTENSIBLE,
+            documentation = DOCUMENTATION_COMPLETE,
+            testing = TESTING_NONE)
 public interface Writable
 {
     /**
-     * @return True if this write-open-able object can be written to, false if it cannot and null if it cannot be
+     * Returns true if this write-open-able object can be written to, false if it cannot and null if it cannot be
      * determined if this object can be written to.
      */
     Boolean isWritable();
@@ -54,7 +70,7 @@ public interface Writable
      */
     default OutputStream openForWriting()
     {
-        return openForWriting(ProgressReporter.none());
+        return openForWriting(nullProgressReporter());
     }
 
     /**
@@ -66,8 +82,8 @@ public interface Writable
      * @param reporter A progress reporter that is called for each byte that is written
      * @return The output stream to write to
      */
-    default OutputStream openForWriting(ProgressReporter reporter)
+    default OutputStream openForWriting(@NotNull ProgressReporter reporter)
     {
-        return new ProgressiveOutputStream(IO.buffer(onOpenForWriting()), reporter);
+        return new ProgressiveOutputStream(bufferOutput(onOpenForWriting()), reporter);
     }
 }

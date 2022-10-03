@@ -20,7 +20,6 @@ package com.telenav.kivakit.core.collections.set;
 
 import com.telenav.kivakit.core.internal.lexakai.DiagramCollections;
 import com.telenav.kivakit.core.value.count.Maximum;
-import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.AbstractSet;
@@ -36,7 +35,6 @@ import java.util.concurrent.ConcurrentHashMap;
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramCollections.class)
-@LexakaiJavadoc(complete = true)
 public class ConcurrentHashSet<Value> extends BaseSet<Value>
 {
     private final ConcurrentHashMap<Value, Value> map = new ConcurrentHashMap<>();

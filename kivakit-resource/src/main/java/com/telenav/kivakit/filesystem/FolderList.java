@@ -18,27 +18,24 @@
 
 package com.telenav.kivakit.filesystem;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.conversion.BaseStringConverter;
+import com.telenav.kivakit.core.collections.list.ObjectList;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.filesystem.spi.FolderService;
 import com.telenav.kivakit.interfaces.comparison.Matcher;
 import com.telenav.kivakit.resource.internal.lexakai.DiagramFileSystemFolder;
-import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
-import com.telenav.lexakai.annotations.associations.UmlAggregation;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Comparator;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.List;
-import java.util.ListIterator;
 import java.util.Set;
-import java.util.function.UnaryOperator;
 
-import static com.telenav.kivakit.core.ensure.Ensure.unsupported;
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE;
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
 
 /**
  * A list of folders with additional useful methods, including:
@@ -50,17 +47,20 @@ import static com.telenav.kivakit.core.ensure.Ensure.unsupported;
  *
  * @author jonathanl (shibo)
  */
-@SuppressWarnings("NullableProblems") @UmlClassDiagram(diagram = DiagramFileSystemFolder.class)
-@LexakaiJavadoc(complete = true)
-public class FolderList implements List<Folder>
+@SuppressWarnings("unused")
+@UmlClassDiagram(diagram = DiagramFileSystemFolder.class)
+@ApiQuality(stability = API_STABLE_EXTENSIBLE,
+            testing = TESTING_NONE,
+            documentation = DOCUMENTATION_COMPLETE)
+public class FolderList extends ObjectList<Folder>
 {
     /**
      * <b>Not public API</b>
      */
-    public static FolderList forVirtual(List<? extends FolderService> virtualFolders)
+    public static FolderList folderList(@NotNull List<? extends FolderService> folderServices)
     {
         var folders = new FolderList();
-        for (FolderService folder : virtualFolders)
+        for (FolderService folder : folderServices)
         {
             folders.add(new Folder(folder));
         }
@@ -72,10 +72,12 @@ public class FolderList implements List<Folder>
      *
      * @author jonathanl (shibo)
      */
-    @LexakaiJavadoc(complete = true)
+    @ApiQuality(stability = API_STABLE,
+                testing = TESTING_NONE,
+                documentation = DOCUMENTATION_COMPLETE)
     public static class Converter extends BaseStringConverter<FolderList>
     {
-        public Converter(Listener listener)
+        public Converter(@NotNull Listener listener)
         {
             super(listener);
         }
@@ -93,128 +95,24 @@ public class FolderList implements List<Folder>
         }
     }
 
-    @UmlAggregation
-    private final List<Folder> folders = new ArrayList<>();
-
     public FolderList()
     {
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public boolean add(Folder folder)
-    {
-        return folders.add(folder);
-    }
-
-    @Override
-    public void add(int index, Folder folder)
-    {
-        folders.add(index, folder);
-    }
-
-    @Override
-    public boolean addAll(int index,
-                          @NotNull Collection<? extends Folder> c)
-    {
-        return folders.addAll(index, c);
-    }
-
-    @Override
-    public boolean addAll(Collection<? extends Folder> collection)
-    {
-        for (Folder folder : collection)
-        {
-            add(folder);
-        }
-        return true;
-    }
-
     public Set<Folder> asSet()
     {
         return new HashSet<>(this);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public void clear()
-    {
-        folders.clear();
-    }
-
-    @Override
-    public boolean contains(Object o)
-    {
-        return folders.contains(o);
-    }
-
-    @Override
-    public boolean containsAll(@NotNull Collection<?> c)
-    {
-        return folders.containsAll(c);
-    }
-
-    @Override
-    public boolean equals(Object object)
-    {
-        if (object instanceof FolderList)
-        {
-            FolderList that = (FolderList) object;
-            return folders.equals(that.folders);
-        }
-        return false;
-    }
-
-    @Override
-    public Folder get(int index)
-    {
-        return folders.get(index);
-    }
-
-    @Override
-    public int hashCode()
-    {
-        return folders.hashCode();
-    }
-
-    @Override
-    public int indexOf(Object o)
-    {
-        return folders.indexOf(o);
-    }
-
-    @Override
-    public boolean isEmpty()
-    {
-        return folders.isEmpty();
-    }
-
-    @NotNull
-    @Override
-    public Iterator<Folder> iterator()
-    {
-        return folders.iterator();
-    }
-
-    @Override
-    public int lastIndexOf(Object o)
-    {
-        return folders.lastIndexOf(o);
-    }
-
-    @NotNull
-    @Override
-    public ListIterator<Folder> listIterator()
-    {
-        return folders.listIterator();
-    }
-
-    @NotNull
-    @Override
-    public ListIterator<Folder> listIterator(int index)
-    {
-        return folders.listIterator(index);
-    }
-
-    public FolderList matching(Matcher<Folder> matcher)
+    public FolderList matching(@NotNull Matcher<Folder> matcher)
     {
         var folders = new FolderList();
         for (var folder : this)
@@ -225,74 +123,5 @@ public class FolderList implements List<Folder>
             }
         }
         return folders;
-    }
-
-    @Override
-    public boolean remove(Object o)
-    {
-        return folders.remove(o);
-    }
-
-    @Override
-    public Folder remove(int index)
-    {
-        return folders.remove(index);
-    }
-
-    @Override
-    public boolean removeAll(@NotNull Collection<?> c)
-    {
-        return folders.removeAll(c);
-    }
-
-    @Override
-    public void replaceAll(UnaryOperator<Folder> operator)
-    {
-        folders.replaceAll(operator);
-    }
-
-    @Override
-    public boolean retainAll(@NotNull Collection<?> c)
-    {
-        return folders.retainAll(c);
-    }
-
-    @Override
-    public Folder set(int index, Folder folder)
-    {
-        return folders.set(index, folder);
-    }
-
-    @Override
-    public int size()
-    {
-        return folders.size();
-    }
-
-    @Override
-    public void sort(Comparator<? super Folder> c)
-    {
-        folders.sort(c);
-    }
-
-    @NotNull
-    @Override
-    public List<Folder> subList(int fromIndex, int toIndex)
-    {
-        return folders.subList(fromIndex, toIndex);
-    }
-
-    @NotNull
-    @Override
-    public Object[] toArray()
-    {
-        return folders.toArray();
-    }
-
-    @NotNull
-    @Override
-    public <T> T[] toArray(@NotNull T[] array)
-    {
-       return unsupported();
     }
 }

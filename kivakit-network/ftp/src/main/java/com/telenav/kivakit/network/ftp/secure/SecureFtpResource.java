@@ -19,8 +19,8 @@
 package com.telenav.kivakit.network.ftp.secure;
 
 import com.jcraft.jsch.ChannelSftp.LsEntry;
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.collections.list.ObjectList;
-import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.progress.ProgressReporter;
 import com.telenav.kivakit.core.value.count.Bytes;
 import com.telenav.kivakit.network.core.BaseNetworkResource;
@@ -30,12 +30,15 @@ import com.telenav.kivakit.network.ftp.internal.lexakai.DiagramSecureFtp;
 import com.telenav.kivakit.resource.CopyMode;
 import com.telenav.kivakit.resource.compression.codecs.GzipCodec;
 import com.telenav.kivakit.resource.writing.WritableResource;
-import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlAggregation;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
 
 import java.io.InputStream;
+
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
 
 /**
  * A resource accessed by SFTP. A list of files can be retrieved with {@link #listFiles()}.
@@ -44,7 +47,9 @@ import java.io.InputStream;
  */
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramSecureFtp.class)
-@LexakaiJavadoc(complete = true)
+@ApiQuality(stability = API_STABLE_EXTENSIBLE,
+            testing = TESTING_NONE,
+            documentation = DOCUMENTATION_COMPLETE)
 public class SecureFtpResource extends BaseNetworkResource
 {
     private final SecureFtpConnector connector;
@@ -72,7 +77,7 @@ public class SecureFtpResource extends BaseNetworkResource
      * Copy this resource to the disk
      */
     @Override
-    public void copyTo(Listener listener, WritableResource destination, CopyMode mode, ProgressReporter reporter)
+    public void copyTo(WritableResource destination, CopyMode mode, ProgressReporter reporter)
     {
         try
         {
@@ -112,7 +117,7 @@ public class SecureFtpResource extends BaseNetworkResource
     public InputStream onOpenForReading()
     {
         connector.connect(location);
-        return SecureFtpInput.forConnectorAndLocation(connector, location);
+        return SecureFtpInput.secureFtpInput(connector, location);
     }
 
     @Override

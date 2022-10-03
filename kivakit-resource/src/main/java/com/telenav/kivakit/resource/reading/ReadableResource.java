@@ -18,7 +18,8 @@
 
 package com.telenav.kivakit.resource.reading;
 
-import com.telenav.kivakit.core.messaging.Listener;
+import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.core.messaging.Repeater;
 import com.telenav.kivakit.core.progress.ProgressReporter;
 import com.telenav.kivakit.resource.CopyMode;
 import com.telenav.kivakit.resource.Resource;
@@ -26,40 +27,66 @@ import com.telenav.kivakit.resource.internal.lexakai.DiagramFileSystemFile;
 import com.telenav.kivakit.resource.internal.lexakai.DiagramResource;
 import com.telenav.kivakit.resource.resources.StringResource;
 import com.telenav.kivakit.resource.writing.WritableResource;
-import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
+import org.jetbrains.annotations.NotNull;
 
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_DEFAULT_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
+import static com.telenav.kivakit.core.progress.ProgressReporter.nullProgressReporter;
+
 /**
- * Interface to an object that is {@link Readable} and can be read with a {@link ResourceReader}. A reader can be
- * obtained with:
+ * Interface to an object that is {@link Readable} and can be read with a {@link ResourceReader}.
+ *
+ * <p><b>Reading</b></p>
  *
  * <ul>
+ *     <li>{@link #charset()}</li>
  *     <li>{@link #reader()}</li>
  *     <li>{@link #reader(ProgressReporter)}</li>
  *     <li>{@link #reader(ProgressReporter, Charset)}</li>
  * </ul>
+ *
+ * <p><b>Copying</b></p>
+ *
+ * <ul>
+ *     <li>{@link #copyTo(WritableResource, CopyMode, ProgressReporter)}</li>
+ * </ul>
+ *
+ * <p><b>NOTE</b></p>
+ *
  * <p>
  * The {@link #resource()} method must be defined by the implementer, as well as the method
  * {@link #copyTo(WritableResource, CopyMode, ProgressReporter)}.
+ * </p>
+ *
+ * @author jonathanl (shibo)
  */
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramFileSystemFile.class)
 @UmlClassDiagram(diagram = DiagramResource.class)
 @UmlRelation(label = "provides", referent = ResourceReader.class)
-@LexakaiJavadoc(complete = true)
-public interface ReadableResource extends Readable
+@ApiQuality(stability = API_STABLE_DEFAULT_EXTENSIBLE,
+            testing = TESTING_NOT_NEEDED,
+            documentation = DOCUMENTATION_COMPLETE)
+public interface ReadableResource extends
+        Readable,
+        Repeater
 {
+    /**
+     * Returns a string resource for the entire contents of this resource
+     */
     default StringResource asStringResource()
     {
         return new StringResource(reader().asString());
     }
 
     /**
-     * @return The charset used by this resource
+     * Returns the charset used by this resource
      */
     default Charset charset()
     {
@@ -71,34 +98,37 @@ public interface ReadableResource extends Readable
      *
      * @param destination The destination to write to
      */
-    void copyTo(Listener listener, WritableResource destination, CopyMode mode, ProgressReporter reporter);
+    void copyTo(@NotNull WritableResource destination,
+                @NotNull CopyMode mode,
+                @NotNull ProgressReporter reporter);
 
     /**
-     * @return A reader with convenient methods for reading from the resource
+     * Returns a reader with convenient methods for reading from the resource
      */
-    default ResourceReader reader(ProgressReporter reporter)
+    default ResourceReader reader(@NotNull ProgressReporter reporter)
     {
         return new ResourceReader(resource(), reporter, charset());
     }
 
     /**
-     * @return A reader with convenient methods for reading from the resource
+     * Returns a reader with convenient methods for reading from the resource
      */
     default ResourceReader reader()
     {
-        return reader(ProgressReporter.none());
+        return reader(nullProgressReporter());
     }
 
     /**
-     *
+     * Returns a reader with convenient methods for reading from the resource
      */
-    default ResourceReader reader(ProgressReporter reporter, Charset charset)
+    default ResourceReader reader(@NotNull ProgressReporter reporter,
+                                  @NotNull Charset charset)
     {
         return new ResourceReader(resource(), reporter, charset);
     }
 
     /**
-     * @return The resource being read
+     * Returns the resource being read
      */
     Resource resource();
 }

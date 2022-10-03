@@ -25,9 +25,9 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.Collection;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXPANDABLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
-import static com.telenav.kivakit.annotations.code.TestingQuality.MORE_TESTING_NEEDED;
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_INSUFFICIENT;
 
 /**
  * {@link ObjectList} already contains push and pop functionality, but this class can make it clear when an
@@ -36,9 +36,9 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.MORE_TESTING_N
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramCollections.class)
-@ApiQuality(stability = STABLE_EXPANDABLE,
-            testing = MORE_TESTING_NEEDED,
-            documentation = FULLY_DOCUMENTED)
+@ApiQuality(stability = API_STABLE_EXTENSIBLE,
+            testing = TESTING_INSUFFICIENT,
+            documentation = DOCUMENTATION_COMPLETE)
 public class Stack<Value> extends ObjectList<Value>
 {
     public Stack()

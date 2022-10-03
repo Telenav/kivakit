@@ -33,9 +33,9 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeSuperTypes;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_DEFAULT_EXPANDABLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
-import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_DEFAULT_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
 
 /**
  * Accepts log entries for some purpose, such as writing them to a file or displaying them in a terminal window.
@@ -73,9 +73,9 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
 @UmlClassDiagram(diagram = DiagramLogging.class)
 @UmlRelation(label = "logs", referent = LogEntry.class)
 @UmlExcludeSuperTypes({ Named.class, Flushable.class })
-@ApiQuality(stability = STABLE_DEFAULT_EXPANDABLE,
-            testing = UNTESTED,
-            documentation = FULLY_DOCUMENTED)
+@ApiQuality(stability = API_STABLE_DEFAULT_EXTENSIBLE,
+            testing = TESTING_NONE,
+            documentation = DOCUMENTATION_COMPLETE)
 public interface Log extends
         Named,
         Filtered<LogEntry>,

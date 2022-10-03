@@ -37,9 +37,9 @@ import java.util.function.BiConsumer;
 import java.util.function.BiFunction;
 import java.util.function.Function;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXPANDABLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
-import static com.telenav.kivakit.annotations.code.TestingQuality.MORE_TESTING_NEEDED;
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_INSUFFICIENT;
 import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
 
 /**
@@ -56,9 +56,9 @@ import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
  */
 @SuppressWarnings({ "UnusedReturnValue", "EqualsWhichDoesntCheckParameterClass" })
 @UmlClassDiagram(diagram = DiagramCollections.class)
-@ApiQuality(stability = STABLE_EXPANDABLE,
-            testing = MORE_TESTING_NEEDED,
-            documentation = FULLY_DOCUMENTED)
+@ApiQuality(stability = API_STABLE_EXTENSIBLE,
+            testing = TESTING_INSUFFICIENT,
+            documentation = DOCUMENTATION_COMPLETE)
 public class BaseMap<Key, Value> implements
         Map<Key, Value>,
         SpaceLimited
@@ -268,6 +268,14 @@ public class BaseMap<Key, Value> implements
     public Set<Key> keySet()
     {
         return map.keySet();
+    }
+
+    /**
+     * Returns the maximum size of this map
+     */
+    public int maximumSize()
+    {
+        return maximumSize;
     }
 
     /**

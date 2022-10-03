@@ -26,9 +26,9 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.concurrent.ConcurrentHashMap;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXPANDABLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
-import static com.telenav.kivakit.annotations.code.TestingQuality.MORE_TESTING_NEEDED;
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_INSUFFICIENT;
 
 /**
  * Class for concurrent maps with a bounded number of values.
@@ -38,9 +38,9 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.MORE_TESTING_N
  * @version 1.0.0 2012-12-27
  */
 @UmlClassDiagram(diagram = DiagramCollections.class)
-@ApiQuality(stability = STABLE_EXPANDABLE,
-            testing = MORE_TESTING_NEEDED,
-            documentation = FULLY_DOCUMENTED)
+@ApiQuality(stability = API_STABLE_EXTENSIBLE,
+            testing = TESTING_INSUFFICIENT,
+            documentation = DOCUMENTATION_COMPLETE)
 public class ConcurrentObjectMap<Key, Value> extends ObjectMap<Key, Value> implements
         java.util.concurrent.ConcurrentMap<Key, Value>
 {

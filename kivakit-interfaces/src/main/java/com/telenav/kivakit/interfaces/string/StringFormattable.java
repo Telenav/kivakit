@@ -23,10 +23,11 @@ import com.telenav.kivakit.interfaces.internal.lexakai.DiagramString;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeSuperTypes;
+import org.jetbrains.annotations.NotNull;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_DEFAULT_EXPANDABLE;
-import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_ENUM_EXPANDABLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_DEFAULT_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_ENUM_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
 
 /**
@@ -39,18 +40,18 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NE
 @SuppressWarnings("SpellCheckingInspection")
 @UmlRelation(label = "formats with", referent = StringFormattable.Format.class)
 @UmlClassDiagram(diagram = DiagramString.class)
-@ApiQuality(stability = STABLE_DEFAULT_EXPANDABLE,
+@ApiQuality(stability = API_STABLE_DEFAULT_EXTENSIBLE,
             testing = TESTING_NOT_NEEDED,
-            documentation = FULLY_DOCUMENTED)
+            documentation = DOCUMENTATION_COMPLETE)
 public interface StringFormattable extends AsString
 {
     /**
      * The type of format for a string returned by {@link StringFormattable#asString(Format)}
      */
     @UmlClassDiagram(diagram = DiagramString.class)
-    @ApiQuality(stability = STABLE_ENUM_EXPANDABLE,
+    @ApiQuality(stability = API_STABLE_ENUM_EXTENSIBLE,
                 testing = TESTING_NOT_NEEDED,
-                documentation = FULLY_DOCUMENTED)
+                documentation = DOCUMENTATION_COMPLETE)
     @UmlExcludeSuperTypes enum Format
     {
         /** A format suitable for debug tracing */
@@ -102,7 +103,7 @@ public interface StringFormattable extends AsString
      *
      * @return A string representation of this object that is suitable for the given purpose
      */
-    String asString(Format format);
+    String asString(@NotNull Format format);
 
     @Override
     default String asString()

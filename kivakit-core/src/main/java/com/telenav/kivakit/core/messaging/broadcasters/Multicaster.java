@@ -44,9 +44,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.STABLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
-import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
 import static com.telenav.kivakit.core.ensure.Ensure.ensure;
 import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
 import static com.telenav.kivakit.core.string.IndentingStringBuilder.Style.TEXT;
@@ -92,9 +92,9 @@ import static com.telenav.kivakit.core.string.IndentingStringBuilder.Style.TEXT;
  */
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramRepeater.class)
-@ApiQuality(stability = STABLE,
-            testing = UNTESTED,
-            documentation = FULLY_DOCUMENTED)
+@ApiQuality(stability = API_STABLE,
+            testing = TESTING_NONE,
+            documentation = DOCUMENTATION_COMPLETE)
 public class Multicaster implements Broadcaster
 {
     /** Console logger for serious messaging problems */
@@ -288,7 +288,7 @@ public class Multicaster implements Broadcaster
      */
     public String listenerTree()
     {
-        var builder = new IndentingStringBuilder(TEXT, Indentation.of(4));
+        var builder = new IndentingStringBuilder(TEXT, Indentation.indentation(4));
         listenerTree(builder);
         return builder.toString();
     }
@@ -383,7 +383,7 @@ public class Multicaster implements Broadcaster
                 }
 
                 // Notify that there was nowhere to send the message.
-                if (Properties.isPropertyFalse("KIVAKIT_IGNORE_MISSING_LISTENERS"))
+                if (Properties.isSystemPropertyOrEnvironmentVariableFalse("KIVAKIT_IGNORE_MISSING_LISTENERS"))
                 {
                     var text = new IndentingStringBuilder();
                     for (var at : listenerChain())

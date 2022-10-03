@@ -30,7 +30,7 @@ import com.telenav.kivakit.core.logging.filters.LogEntriesWithSeverityGreaterTha
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.messaging.messages.Severity;
 import com.telenav.kivakit.core.messaging.messages.status.Problem;
-import com.telenav.kivakit.core.os.ConsoleWriter;
+import com.telenav.kivakit.core.os.Console;
 import com.telenav.kivakit.core.string.ObjectFormatter;
 import com.telenav.kivakit.core.string.Plural;
 import com.telenav.kivakit.core.thread.RepeatingThread;
@@ -49,9 +49,9 @@ import java.util.List;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.atomic.AtomicBoolean;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXPANDABLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
-import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
 import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
 import static com.telenav.kivakit.core.messaging.messages.Severity.NONE;
 import static com.telenav.kivakit.core.thread.KivaKitThread.State.STOP_REQUESTED;
@@ -105,9 +105,9 @@ import static com.telenav.kivakit.core.vm.ShutdownHook.Order.LAST;
  */
 @SuppressWarnings("UseOfSystemOutOrSystemErr")
 @UmlClassDiagram(diagram = DiagramLogs.class)
-@ApiQuality(stability = STABLE_EXPANDABLE,
-            testing = UNTESTED,
-            documentation = FULLY_DOCUMENTED)
+@ApiQuality(stability = API_STABLE_EXTENSIBLE,
+            testing = TESTING_NONE,
+            documentation = DOCUMENTATION_COMPLETE)
 public abstract class BaseLog implements
         Startable,
         Stoppable<Duration>,
@@ -122,7 +122,7 @@ public abstract class BaseLog implements
     static
     {
         // Determine if we are asynchronous or not
-        isAsynchronous = Properties.isPropertyFalse("KIVAKIT_LOG_SYNCHRONOUS");
+        isAsynchronous = Properties.isSystemPropertyOrEnvironmentVariableFalse("KIVAKIT_LOG_SYNCHRONOUS");
     }
 
     /**
@@ -306,7 +306,7 @@ public abstract class BaseLog implements
 
         if (!closed && accept(entry))
         {
-            JavaVirtualMachine.local().health().logEntry(entry);
+            JavaVirtualMachine.javaVirtualMachine().health().logEntry(entry);
 
             if (isAsynchronous())
             {
@@ -367,7 +367,7 @@ public abstract class BaseLog implements
     @Override
     public final boolean start()
     {
-        writerThread = new RepeatingThread(Listener.emptyListener(), name() + "-Log", CONTINUOUSLY)
+        writerThread = new RepeatingThread(Listener.nullListener(), name() + "-Log", CONTINUOUSLY)
         {
             @Override
             protected void onRun()
@@ -422,7 +422,7 @@ public abstract class BaseLog implements
             }
 
             {
-                addListener(new ConsoleWriter());
+                addListener(new Console());
             }
         };
         return writerThread.start();
@@ -522,7 +522,7 @@ public abstract class BaseLog implements
         {
             synchronized (messageCounts)
             {
-                messageCounts.increment(Plural.pluralize(entry.messageType()));
+                messageCounts.increment(Plural.pluralizeEnglish(entry.messageType()));
             }
         }
         var success = true;

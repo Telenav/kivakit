@@ -24,13 +24,14 @@ import com.telenav.kivakit.core.string.Align;
 import com.telenav.kivakit.core.string.IndentingStringBuilder;
 import com.telenav.kivakit.interfaces.collection.Sized;
 import com.telenav.kivakit.interfaces.string.StringFormattable;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXPANDABLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
-import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
 
 /**
  * Holds stack trace information
@@ -38,9 +39,9 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
  * @author jonathanl (shibo)
  */
 @SuppressWarnings("unused")
-@ApiQuality(stability = STABLE_EXPANDABLE,
-            testing = UNTESTED,
-            documentation = FULLY_DOCUMENTED)
+@ApiQuality(stability = API_STABLE_EXTENSIBLE,
+            testing = TESTING_NONE,
+            documentation = DOCUMENTATION_COMPLETE)
 public class StackTrace implements
         Sized,
         StringFormattable
@@ -171,7 +172,7 @@ public class StackTrace implements
      * {@inheritDoc}
      */
     @Override
-    public String asString(Format format)
+    public String asString(@NotNull Format format)
     {
         switch (format)
         {
@@ -244,7 +245,7 @@ public class StackTrace implements
 
     private String trace(boolean full)
     {
-        var builder = new IndentingStringBuilder(IndentingStringBuilder.Indentation.of(full ? 4 : 2));
+        var builder = new IndentingStringBuilder(IndentingStringBuilder.Indentation.indentation(full ? 4 : 2));
         if (full)
         {
             builder.appendLine("Exception in thread \"" + Thread.currentThread().getName() + "\""

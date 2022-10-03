@@ -18,21 +18,45 @@
 
 package com.telenav.kivakit.core.time;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
+
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+
+/**
+ * Interface to an object that has a last modification time
+ *
+ * @author jonathanl (shibo)
+ * @see Modifiable
+ */
 @SuppressWarnings("unused")
+@ApiQuality(stability = API_STABLE_EXTENSIBLE,
+            testing = TESTING_NONE,
+            documentation = DOCUMENTATION_COMPLETE)
 public interface ModifiedAt
 {
-    default Time modifiedAt()
+    /**
+     * Returns the time of last modification
+     */
+    default Time lastModified()
     {
         throw new UnsupportedOperationException("Cannot retrieve last modified time from: " + getClass());
     }
 
+    /**
+     * Returns true if this object was changed after the given object
+     */
     default boolean wasChangedAfter(ModifiedAt that)
     {
-        return modifiedAt().isAfter(that.modifiedAt());
+        return lastModified().isAfter(that.lastModified());
     }
 
+    /**
+     * Returns true if this object was changed before the given object
+     */
     default boolean wasChangedBefore(ModifiedAt that)
     {
-        return modifiedAt().isBefore(that.modifiedAt());
+        return lastModified().isBefore(that.lastModified());
     }
 }

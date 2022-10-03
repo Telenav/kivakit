@@ -21,13 +21,13 @@ public class RangeTest extends CoreUnitTest
         var inclusiveRange = rangeInclusive(count(100), count(200));
         for (int i = 0; i < 1000; i++)
         {
-            ensure(inclusiveRange.constrain(count(i)).isBetweenInclusive(count(100), count(200)));
+            ensure(inclusiveRange.constrained(count(i)).isBetweenInclusive(count(100), count(200)));
         }
 
         var exclusiveRange = rangeExclusive(count(100), count(200));
         for (int i = 0; i < 1000; i++)
         {
-            ensure(exclusiveRange.constrain(count(i)).isBetweenInclusive(count(100), count(199)));
+            ensure(exclusiveRange.constrained(count(i)).isBetweenInclusive(count(100), count(199)));
         }
     }
 
@@ -36,17 +36,17 @@ public class RangeTest extends CoreUnitTest
     {
         for (int i = 1; i <= 10; i++)
         {
-            ensure(rangeInclusive(count(1), count(10)).contains(count(i)));
+            ensure(rangeInclusive(count(1), count(10)).containsInclusive(count(i)));
         }
-        ensure(!rangeInclusive(count(1), count(10)).contains(count(0)));
-        ensure(!rangeInclusive(count(1), count(10)).contains(count(11)));
+        ensure(!rangeInclusive(count(1), count(10)).containsInclusive(count(0)));
+        ensure(!rangeInclusive(count(1), count(10)).containsInclusive(count(11)));
 
         for (int i = 1; i < 10; i++)
         {
-            ensure(rangeExclusive(count(1), count(10)).contains(count(i)));
+            ensure(rangeExclusive(count(1), count(10)).containsInclusive(count(i)));
         }
-        ensure(!rangeExclusive(count(1), count(10)).contains(count(0)));
-        ensure(!rangeExclusive(count(1), count(10)).contains(count(10)));
+        ensure(!rangeExclusive(count(1), count(10)).containsInclusive(count(0)));
+        ensure(!rangeExclusive(count(1), count(10)).containsInclusive(count(10)));
     }
 
     @Test
@@ -55,7 +55,7 @@ public class RangeTest extends CoreUnitTest
         var range = rangeExclusive(count(0), count(10));
         ensureEqual(range.minimum(), count(0));
         ensureEqual(range.inclusiveMaximum(), count(9));
-        ensureEqual(range.exclusiveMaximum(), count(10));
+        ensureEqual(range.maximum(), count(10));
     }
     
     @Test
@@ -74,7 +74,7 @@ public class RangeTest extends CoreUnitTest
         var range = rangeInclusive(count(0), count(10));
         ensureEqual(range.minimum(), count(0));
         ensureEqual(range.inclusiveMaximum(), count(10));
-        ensureEqual(range.exclusiveMaximum(), count(11));
+        ensureEqual(range.maximum(), count(11));
     }
 
     @Test

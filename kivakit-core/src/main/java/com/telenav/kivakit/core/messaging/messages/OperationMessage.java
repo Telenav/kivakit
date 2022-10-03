@@ -50,9 +50,10 @@ import com.telenav.kivakit.core.time.Time;
 import com.telenav.kivakit.interfaces.naming.Named;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeSuperTypes;
+import org.jetbrains.annotations.NotNull;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXPANDABLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
 import static com.telenav.kivakit.core.messaging.MessageFormat.WITH_EXCEPTION;
 import static com.telenav.kivakit.core.messaging.messages.Importance.importanceOfMessage;
@@ -112,9 +113,9 @@ import static com.telenav.kivakit.core.thread.ReentrancyTracker.Reentrancy.REENT
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramMessageType.class)
 @UmlExcludeSuperTypes({ Named.class })
-@ApiQuality(stability = STABLE_EXPANDABLE,
+@ApiQuality(stability = API_STABLE_EXTENSIBLE,
             testing = TESTING_NOT_NEEDED,
-            documentation = FULLY_DOCUMENTED)
+            documentation = DOCUMENTATION_COMPLETE)
 public abstract class OperationMessage implements Named, Message
 {
     /** Map from string to message prototype */
@@ -144,10 +145,10 @@ public abstract class OperationMessage implements Named, Message
      * @param arguments Formatting arguments
      * @return The message
      */
-    public static <MessageType extends Message> MessageType newInstance(Listener listener,
-                                                                        Class<MessageType> type,
-                                                                        String message,
-                                                                        Object[] arguments)
+    public static <MessageType extends Message> MessageType newMessage(Listener listener,
+                                                                       Class<MessageType> type,
+                                                                       String message,
+                                                                       Object[] arguments)
     {
         try
         {
@@ -241,7 +242,7 @@ public abstract class OperationMessage implements Named, Message
      */
     @SuppressWarnings("SwitchStatementWithTooFewBranches")
     @Override
-    public String asString(Format format)
+    public String asString(@NotNull Format format)
     {
         switch (format)
         {

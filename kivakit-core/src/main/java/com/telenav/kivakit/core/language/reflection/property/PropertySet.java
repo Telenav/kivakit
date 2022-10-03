@@ -28,9 +28,9 @@ import com.telenav.lexakai.annotations.associations.UmlAggregation;
 
 import java.util.Set;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXPANDABLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
-import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
 
 /**
  * Base class for property filters. Supports Java Beans and KivaKit style accessor naming conventions with the enum
@@ -65,9 +65,9 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramReflection.class)
-@ApiQuality(stability = STABLE_EXPANDABLE,
-            testing = UNTESTED,
-            documentation = FULLY_DOCUMENTED)
+@ApiQuality(stability = API_STABLE_EXTENSIBLE,
+            testing = TESTING_NONE,
+            documentation = DOCUMENTATION_COMPLETE)
 public class PropertySet implements PropertyFilter
 {
     /** The property naming convention */

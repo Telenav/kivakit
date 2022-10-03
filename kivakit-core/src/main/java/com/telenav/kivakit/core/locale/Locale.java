@@ -23,15 +23,15 @@ import com.telenav.kivakit.core.collections.list.ObjectList;
 import com.telenav.kivakit.core.internal.lexakai.DiagramLocale;
 import com.telenav.kivakit.core.language.Objects;
 import com.telenav.kivakit.core.path.StringPath;
-import com.telenav.kivakit.core.string.StringTo;
+import com.telenav.kivakit.core.string.StringConversions;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlAggregation;
 
 import java.util.Collection;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXPANDABLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
-import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
 import static com.telenav.kivakit.core.collections.list.ObjectList.objectList;
 
 /**
@@ -42,9 +42,9 @@ import static com.telenav.kivakit.core.collections.list.ObjectList.objectList;
  */
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramLocale.class)
-@ApiQuality(stability = STABLE_EXPANDABLE,
-            testing = UNTESTED,
-            documentation = FULLY_DOCUMENTED)
+@ApiQuality(stability = API_STABLE_EXTENSIBLE,
+            testing = TESTING_NONE,
+            documentation = DOCUMENTATION_COMPLETE)
 public class Locale
 {
     /** The region for the locale, which might increase specificity, for example, US and Australian English. */
@@ -169,6 +169,6 @@ public class Locale
     @Override
     public String toString()
     {
-        return "[region = " + StringTo.nonNullString(region.name()) + ": " + languages().join(", ") + "]";
+        return "[region = " + StringConversions.nonNullString(region.name()) + ": " + languages().join(", ") + "]";
     }
 }

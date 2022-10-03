@@ -24,16 +24,20 @@ import com.jcraft.jsch.JSch;
 import com.jcraft.jsch.JSchException;
 import com.jcraft.jsch.Session;
 import com.jcraft.jsch.SftpException;
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.collections.list.ObjectList;
 import com.telenav.kivakit.network.core.NetworkAccessConstraints;
 import com.telenav.kivakit.network.core.NetworkLocation;
 import com.telenav.kivakit.network.ftp.internal.lexakai.DiagramSecureFtp;
 import com.telenav.kivakit.resource.Resource;
 import com.telenav.kivakit.resource.writing.WritableResource;
-import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.io.InputStream;
+
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
 
 /**
  * <b>Not public API</b>
@@ -45,7 +49,9 @@ import java.io.InputStream;
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramSecureFtp.class)
-@LexakaiJavadoc(complete = true)
+@ApiQuality(stability = API_STABLE_EXTENSIBLE,
+            testing = TESTING_NONE,
+            documentation = DOCUMENTATION_COMPLETE)
 class SecureFtpConnector
 {
     private Session session;
@@ -64,7 +70,7 @@ class SecureFtpConnector
             try
             {
                 session = jsch.getSession(location.constraints().userName().toString(),
-                        location.host().address().getHostName(), location.port().number());
+                        location.host().address().getHostName(), location.port().portNumber());
                 session.setConfig("StrictHostKeyChecking", "no");
                 session.setPassword(location.constraints().password().toString());
                 session.connect();
@@ -122,7 +128,7 @@ class SecureFtpConnector
         var sourcePath = location.networkPath().join();
         try
         {
-            channel.get(sourcePath, ((WritableResource)destination).openForWriting());
+            channel.get(sourcePath, ((WritableResource) destination).openForWriting());
         }
         catch (SftpException e)
         {

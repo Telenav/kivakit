@@ -23,7 +23,6 @@ import com.telenav.kivakit.core.internal.lexakai.DiagramIo;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.progress.ProgressReporter;
 import com.telenav.kivakit.core.progress.reporters.ProgressiveInputStream;
-import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.io.BufferedInputStream;
@@ -39,8 +38,8 @@ import java.io.Writer;
 import java.util.stream.Collectors;
 import java.util.zip.ZipFile;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_STATIC_EXPANDABLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_STATIC_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
 import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
 import static com.telenav.kivakit.core.io.IO.CopyStyle.BUFFERED;
@@ -52,8 +51,8 @@ import static com.telenav.kivakit.core.io.IO.CopyStyle.BUFFERED;
  * <p><b>Buffering</b></p>
  *
  * <ul>
- *     <li>{@link #buffer(InputStream)}</li>
- *     <li>{@link #buffer(OutputStream)}</li>
+ *     <li>{@link #bufferInput(InputStream)}</li>
+ *     <li>{@link #bufferOutput(OutputStream)}</li>
  * </ul>
  *
  * <p><b>Reading</b></p>
@@ -95,13 +94,15 @@ import static com.telenav.kivakit.core.io.IO.CopyStyle.BUFFERED;
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramIo.class)
-@LexakaiJavadoc(complete = true)
-@ApiQuality(stability = STABLE_STATIC_EXPANDABLE,
+@ApiQuality(stability = API_STABLE_STATIC_EXTENSIBLE,
             testing = TESTING_NOT_NEEDED,
-            documentation = FULLY_DOCUMENTED)
+            documentation = DOCUMENTATION_COMPLETE)
 public class IO
 {
-    public static BufferedInputStream buffer(InputStream in)
+    /**
+     * Returns the given input stream buffered, if it is not already
+     */
+    public static BufferedInputStream bufferInput(InputStream in)
     {
         if (in instanceof BufferedInputStream)
         {
@@ -114,7 +115,10 @@ public class IO
         return null;
     }
 
-    public static BufferedOutputStream buffer(OutputStream out)
+    /**
+     * Returns the given output stream buffered, if it is not already
+     */
+    public static BufferedOutputStream bufferOutput(OutputStream out)
     {
         if (out instanceof BufferedOutputStream)
         {
@@ -128,7 +132,7 @@ public class IO
     }
 
     /**
-     * Added writer safe close capability
+     * Closes the given closeable
      */
     public static void close(Listener listener, AutoCloseable closeable)
     {
@@ -145,6 +149,9 @@ public class IO
         }
     }
 
+    /**
+     * Closes the given input stream
+     */
     public static void close(Listener listener, InputStream in)
     {
         try
@@ -160,6 +167,9 @@ public class IO
         }
     }
 
+    /**
+     * Closes the given output stream
+     */
     public static void close(Listener listener, OutputStream out)
     {
         try
@@ -175,6 +185,9 @@ public class IO
         }
     }
 
+    /**
+     * Closes the given reader
+     */
     public static void close(Listener listener, Reader reader)
     {
         try
@@ -191,7 +204,7 @@ public class IO
     }
 
     /**
-     * Added writer safe close capability
+     * Closes the given writer
      */
     public static void close(Listener listener, Writer writer)
     {
@@ -208,6 +221,9 @@ public class IO
         }
     }
 
+    /**
+     * Closes the given zip file
+     */
     public static void close(Listener listener, ZipFile zip)
     {
         try
@@ -223,6 +239,9 @@ public class IO
         }
     }
 
+    /**
+     * Copies the given input to the given output
+     */
     public static boolean copy(Listener listener, InputStream input, OutputStream output)
     {
         return copy(listener, input, output, BUFFERED);
@@ -239,8 +258,8 @@ public class IO
      */
     public static boolean copy(Listener listener, InputStream input, OutputStream output, CopyStyle style)
     {
-        var in = style == BUFFERED ? buffer(input) : input;
-        var out = style == BUFFERED ? buffer(output) : output;
+        var in = style == BUFFERED ? bufferInput(input) : input;
+        var out = style == BUFFERED ? bufferOutput(output) : output;
         try
         {
             var buffer = new byte[style == BUFFERED ? 4096 : 1];
@@ -283,6 +302,9 @@ public class IO
         }
     }
 
+    /**
+     * Flushes the given output stream
+     */
     public static boolean flush(Listener listener, OutputStream out)
     {
         try
@@ -297,6 +319,9 @@ public class IO
         }
     }
 
+    /**
+     * Flushes the given writer
+     */
     public static void flush(Listener listener, Writer out)
     {
         try
@@ -309,6 +334,9 @@ public class IO
         }
     }
 
+    /**
+     * Reads a single byte from the given input
+     */
     public static int readByte(Listener listener, InputStream in)
     {
         try
@@ -322,6 +350,9 @@ public class IO
         }
     }
 
+    /**
+     * Reads all bytes from the given input
+     */
     public static byte[] readBytes(Listener listener, InputStream in)
     {
         var out = new ByteArrayOutputStream();
@@ -332,6 +363,9 @@ public class IO
         return null;
     }
 
+    /**
+     * Skips the given number of bytes in the given input stream
+     */
     @SuppressWarnings("ResultOfMethodCallIgnored")
     public static void skip(Listener listener, InputStream in, long offset)
     {
@@ -345,11 +379,17 @@ public class IO
         }
     }
 
+    /**
+     * Reads a string from the given input
+     */
     public static String string(Listener listener, InputStream in)
     {
-        return string(listener, new InputStreamReader(buffer(in)));
+        return string(listener, new InputStreamReader(bufferInput(in)));
     }
 
+    /**
+     * Reads a string from the given input
+     */
     public static String string(Listener listener, Reader in)
     {
         try
@@ -369,7 +409,6 @@ public class IO
     /**
      * The style to copy in, either buffered or unbuffered
      */
-    @LexakaiJavadoc(complete = true)
     public enum CopyStyle
     {
         BUFFERED,

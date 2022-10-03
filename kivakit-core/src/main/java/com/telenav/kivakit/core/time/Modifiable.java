@@ -21,9 +21,17 @@ package com.telenav.kivakit.core.time;
 import com.telenav.kivakit.core.internal.lexakai.DiagramTime;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
+/**
+ * Interface to an object that has a time of last modification property that can be set
+ *
+ * @author jonathanl (shibo)
+ */
 @UmlClassDiagram(diagram = DiagramTime.class)
 public interface Modifiable
 {
+    /**
+     * Sets the time of last modification
+     */
     default boolean lastModified(Time time)
     {
         throw new UnsupportedOperationException("Modification of " + getClass() + " is not supported");

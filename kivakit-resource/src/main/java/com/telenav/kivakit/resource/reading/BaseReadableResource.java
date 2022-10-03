@@ -18,13 +18,12 @@
 
 package com.telenav.kivakit.resource.reading;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.io.IO;
-import com.telenav.kivakit.core.logging.Logger;
-import com.telenav.kivakit.core.logging.LoggerFactory;
-import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.messaging.repeaters.BaseRepeater;
 import com.telenav.kivakit.core.object.Lazy;
 import com.telenav.kivakit.core.progress.ProgressReporter;
+import com.telenav.kivakit.core.progress.reporters.ProgressiveInputStream;
 import com.telenav.kivakit.core.time.Time;
 import com.telenav.kivakit.filesystem.File;
 import com.telenav.kivakit.filesystem.FilePath;
@@ -37,14 +36,17 @@ import com.telenav.kivakit.resource.compression.codecs.NullCodec;
 import com.telenav.kivakit.resource.internal.lexakai.DiagramFileSystemFile;
 import com.telenav.kivakit.resource.internal.lexakai.DiagramResource;
 import com.telenav.kivakit.resource.writing.WritableResource;
-import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
+import org.jetbrains.annotations.NotNull;
 
 import java.io.InputStream;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.util.Objects;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
 import static com.telenav.kivakit.core.ensure.Ensure.unsupported;
 
 /**
@@ -58,16 +60,16 @@ import static com.telenav.kivakit.core.ensure.Ensure.unsupported;
  */
 @UmlClassDiagram(diagram = DiagramResource.class)
 @UmlClassDiagram(diagram = DiagramFileSystemFile.class)
-@LexakaiJavadoc(complete = true)
+@ApiQuality(stability = API_STABLE_EXTENSIBLE,
+            testing = TESTING_NONE,
+            documentation = DOCUMENTATION_COMPLETE)
 public abstract class BaseReadableResource extends BaseRepeater implements Resource
 {
-    private static final Logger LOGGER = LoggerFactory.newLogger();
-
     /**
      * The temporary cache folder for storing materialized files
      */
     private static final Lazy<Folder> cacheFolder = Lazy.lazy(() ->
-            Folder.temporaryForProcess(Folder.Type.CLEAN_UP_ON_EXIT).ensureExists());
+            Folder.temporaryForProcess(Folder.FolderType.CLEAN_UP_ON_EXIT).ensureExists());
 
     /**
      * Character mapping (default is UTF-8)
@@ -97,12 +99,12 @@ public abstract class BaseReadableResource extends BaseRepeater implements Resou
         path = null;
     }
 
-    protected BaseReadableResource(ResourcePath path)
+    protected BaseReadableResource(@NotNull ResourcePath path)
     {
         this.path = path;
     }
 
-    protected BaseReadableResource(BaseReadableResource that)
+    protected BaseReadableResource(@NotNull BaseReadableResource that)
     {
         path = that.path;
         codec = that.codec;
@@ -134,7 +136,7 @@ public abstract class BaseReadableResource extends BaseRepeater implements Resou
     }
 
     @SuppressWarnings("UnusedReturnValue")
-    public BaseReadableResource codec(Codec codec)
+    public BaseReadableResource codec(@NotNull Codec codec)
     {
         this.codec = codec;
         return this;
@@ -144,7 +146,9 @@ public abstract class BaseReadableResource extends BaseRepeater implements Resou
      * Copies the data in this resource to the destination.
      */
     @Override
-    public void copyTo(Listener listener, WritableResource destination, CopyMode mode, ProgressReporter reporter)
+    public void copyTo(@NotNull WritableResource destination,
+                       @NotNull CopyMode mode,
+                       @NotNull ProgressReporter reporter)
     {
         // If we can copy from this resource to the given resource in this mode,
         if (mode.canCopy(this, destination))
@@ -152,7 +156,7 @@ public abstract class BaseReadableResource extends BaseRepeater implements Resou
             // copy the resource stream (which might involve compression or decompression or both).
             var input = openForReading(reporter);
             var output = destination.openForWriting();
-            if (!IO.copyAndClose(listener, input, output))
+            if (!IO.copyAndClose(this, input, output))
             {
                 throw new IllegalStateException("Unable to copy " + this + " to " + destination);
             }
@@ -183,14 +187,14 @@ public abstract class BaseReadableResource extends BaseRepeater implements Resou
                 }
                 catch (Exception e)
                 {
-                    LOGGER.warning("Unable to dematerialize $", materialized);
+                    warning("Unable to dematerialize $", materialized);
                 }
             }
         }
     }
 
     @Override
-    public boolean equals(final Object object)
+    public boolean equals(Object object)
     {
         if (object instanceof BaseReadableResource)
         {
@@ -235,7 +239,7 @@ public abstract class BaseReadableResource extends BaseRepeater implements Resou
 
     // Ensure the remote resource is locally accessible
     @Override
-    public Resource materialized(ProgressReporter reporter)
+    public Resource materialized(@NotNull ProgressReporter reporter)
     {
         synchronized (uniqueIdentifier())
         {
@@ -248,9 +252,9 @@ public abstract class BaseReadableResource extends BaseRepeater implements Resou
                     {
                         cached.parent().ensureExists();
                         var start = Time.now();
-                        trace("Materializing $ to $", this, cached.path().absolute());
+                        trace("Materializing $ to $", this, cached.path().asAbsolute());
                         safeCopyTo(cached, CopyMode.OVERWRITE, reporter);
-                        trace("Materialized ${debug} ($) from ${debug} in ${debug}", cached.path().absolute(),
+                        trace("Materialized ${debug} ($) from ${debug} in ${debug}", cached.path().asAbsolute(),
                                 cached.sizeInBytes(), this, start.elapsedSince());
                     }
                     materialized = cached;
@@ -262,7 +266,7 @@ public abstract class BaseReadableResource extends BaseRepeater implements Resou
     }
 
     @Override
-    public InputStream openForReading(ProgressReporter reporter)
+    public InputStream openForReading(@NotNull ProgressReporter reporter)
     {
         // Open the input stream,
         var in = onOpenForReading();
@@ -273,20 +277,14 @@ public abstract class BaseReadableResource extends BaseRepeater implements Resou
         }
 
         // add a decompression layer if need be,
-        var decompressed = codec().decompressed(IO.buffer(in));
+        var decompressed = codec().decompressed(IO.bufferInput(in));
 
-        // and if there is a reporter,
-        if (reporter != null)
-        {
-            // start it up
-            reporter.start(fileName().name());
-            reporter.steps(sizeInBytes());
+        // start the reporter
+        reporter.start(fileName().name());
+        reporter.steps(sizeInBytes());
 
-            // and return a progressive input which will call the reporter.
-            return reporter.progressiveInput(decompressed);
-        }
-
-        return decompressed;
+        // and return a progressive input which will call the reporter.
+        return new ProgressiveInputStream(decompressed, reporter);
     }
 
     @Override
@@ -320,7 +318,7 @@ public abstract class BaseReadableResource extends BaseRepeater implements Resou
         if (path instanceof FilePath)
         {
             var filepath = (FilePath) path;
-            return filepath.absolute().toString();
+            return filepath.asAbsolute().toString();
         }
         return path().toString();
     }

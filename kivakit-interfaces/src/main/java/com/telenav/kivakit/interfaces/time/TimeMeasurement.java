@@ -6,8 +6,8 @@ import org.jetbrains.annotations.NotNull;
 
 import java.text.DecimalFormat;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_DEFAULT_EXPANDABLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_DEFAULT_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
 
 /**
@@ -40,9 +40,9 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NE
  *
  * @author jonathanl (shibo)
  */
-@ApiQuality(stability = STABLE_DEFAULT_EXPANDABLE,
+@ApiQuality(stability = API_STABLE_DEFAULT_EXTENSIBLE,
             testing = TESTING_NOT_NEEDED,
-            documentation = FULLY_DOCUMENTED)
+            documentation = DOCUMENTATION_COMPLETE)
 public interface TimeMeasurement extends LongValued
 {
     /**
@@ -173,7 +173,7 @@ public interface TimeMeasurement extends LongValued
     }
 
     /**
-     * @return The number of milliseconds for this time measurement
+     * Returns the number of milliseconds for this time measurement
      */
     default long milliseconds()
     {
@@ -181,7 +181,7 @@ public interface TimeMeasurement extends LongValued
     }
 
     /**
-     * @return The number of nanoseconds for this measurement
+     * Returns the number of nanoseconds for this measurement
      */
     Nanoseconds nanoseconds();
 

@@ -24,15 +24,14 @@ import com.telenav.kivakit.core.messaging.Broadcaster;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.interfaces.comparison.Filter;
 import com.telenav.kivakit.interfaces.messaging.Transmittable;
-import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlAggregation;
 
 import java.util.Objects;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.NOT_PUBLIC;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
-import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
+import static com.telenav.kivakit.annotations.code.ApiStability.API_PRIVATE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
 
 /**
  * A filtered {@link Multicaster} listener
@@ -40,10 +39,9 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramRepeater.class)
-@LexakaiJavadoc(complete = true)
-@ApiQuality(stability = NOT_PUBLIC,
-            testing = UNTESTED,
-            documentation = FULLY_DOCUMENTED)
+@ApiQuality(stability = API_PRIVATE,
+            testing = TESTING_NONE,
+            documentation = DOCUMENTATION_COMPLETE)
 class AudienceMember
 {
     /** The listener */

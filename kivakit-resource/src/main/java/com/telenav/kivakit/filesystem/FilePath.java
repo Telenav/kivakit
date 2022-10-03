@@ -18,6 +18,7 @@
 
 package com.telenav.kivakit.filesystem;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.conversion.BaseStringConverter;
 import com.telenav.kivakit.core.collections.list.StringList;
 import com.telenav.kivakit.core.messaging.Listener;
@@ -31,7 +32,6 @@ import com.telenav.kivakit.resource.Extension;
 import com.telenav.kivakit.resource.FileName;
 import com.telenav.kivakit.resource.ResourcePath;
 import com.telenav.kivakit.resource.internal.lexakai.DiagramResourcePath;
-import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -42,6 +42,12 @@ import java.util.List;
 import java.util.function.Function;
 import java.util.regex.Pattern;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+import static com.telenav.kivakit.core.messaging.Listener.throwingListener;
+
 /**
  * An abstraction for a path on any kind of filesystem or file-related data source.
  *
@@ -51,7 +57,7 @@ import java.util.regex.Pattern;
  * </p>
  *
  * <ul>
- *     <li>{@link #absolute()} - This file path as an absolute path</li>
+ *     <li>{@link #asAbsolute()} - This file path as an absolute path</li>
  *     <li>{@link #asFile()} - This file path as a file</li>
  *     <li>{@link #asStringPath()} - This file path without any root or scheme</li>
  *     <li>{@link #asUnixString()} - This file path as a forward-slash separated string</li>
@@ -82,13 +88,15 @@ import java.util.regex.Pattern;
  */
 @SuppressWarnings({ "unused", "JavadocLinkAsPlainText" })
 @UmlClassDiagram(diagram = DiagramResourcePath.class)
-@LexakaiJavadoc(complete = true)
+@ApiQuality(stability = API_STABLE_EXTENSIBLE,
+            testing = TESTING_NOT_NEEDED,
+            documentation = DOCUMENTATION_COMPLETE)
 public class FilePath extends ResourcePath
 {
     /**
-     * @return A file path for the given URI
+     * Returns file path for the given URI
      */
-    public static FilePath filePath(URI uri)
+    public static FilePath filePath(@NotNull URI uri)
     {
         // If there is a scheme,
         var scheme = uri.getScheme();
@@ -134,43 +142,45 @@ public class FilePath extends ResourcePath
     }
 
     /**
-     * @return A file path for the given {@link java.io.File}
+     * Returns a file path for the given {@link java.io.File}
      */
-    public static FilePath filePath(java.io.File file)
+    public static FilePath filePath(@NotNull java.io.File file)
     {
         return filePath(file.toPath()).withoutFileScheme();
     }
 
     /**
-     * @return A file path for the given {@link java.nio.file.Path}
+     * Returns a file path for the given {@link java.nio.file.Path}
      */
-    public static FilePath filePath(java.nio.file.Path path)
+    public static FilePath filePath(@NotNull java.nio.file.Path path)
     {
         return filePath(path.toUri()).withoutFileScheme();
     }
 
     /**
-     * @return A file path with only the given filename
+     * Returns a file path with only the given filename
      */
-    public static FilePath filePath(FileName name)
+    public static FilePath filePath(@NotNull FileName name)
     {
         var list = new ArrayList<String>();
         list.add(name.name());
-        return new FilePath(null, null, list);
+        return new FilePath(list);
     }
 
     /**
-     * @return A file path for the given string path
+     * Returns a file path for the given string path
      */
-    public static FilePath filePath(StringPath path)
+    public static FilePath filePath(@NotNull StringPath path)
     {
         return new FilePath(StringList.stringList(), path);
     }
 
     /**
-     * @return A file path for the given string
+     * Returns a file path for the given string
      */
-    public static FilePath parseFilePath(Listener listener, String path, Object... arguments)
+    public static FilePath parseFilePath(@NotNull Listener listener,
+                                         @NotNull String path,
+                                         @NotNull Object... arguments)
     {
         if (path.isBlank())
         {
@@ -200,10 +210,12 @@ public class FilePath extends ResourcePath
      *
      * @author jonathanl (shibo)
      */
-    @LexakaiJavadoc(complete = true)
+    @ApiQuality(stability = API_STABLE_EXTENSIBLE,
+                testing = TESTING_NONE,
+                documentation = DOCUMENTATION_COMPLETE)
     public static class Converter extends BaseStringConverter<FilePath>
     {
-        public Converter(Listener listener)
+        public Converter(@NotNull Listener listener)
         {
             super(listener, FilePath::parseFilePath);
         }
@@ -212,7 +224,7 @@ public class FilePath extends ResourcePath
     /**
      * Copy constructor
      */
-    protected FilePath(FilePath that)
+    protected FilePath(@NotNull FilePath that)
     {
         super(that);
     }
@@ -220,7 +232,9 @@ public class FilePath extends ResourcePath
     /**
      * Construct with scheme
      */
-    protected FilePath(StringList schemes, String root, List<String> elements)
+    protected FilePath(StringList schemes,
+                       String root,
+                       @NotNull List<String> elements)
     {
         super(schemes, root, elements);
     }
@@ -228,19 +242,29 @@ public class FilePath extends ResourcePath
     /**
      * Construct with scheme
      */
-    protected FilePath(StringList schemes, StringPath path)
+    protected FilePath(@NotNull List<String> elements)
+    {
+        super(null, null, elements);
+    }
+
+    /**
+     * Construct with scheme
+     */
+    protected FilePath(StringList schemes,
+                       @NotNull StringPath path)
     {
         super(schemes, path.rootElement(), path.elements());
     }
 
     /**
-     * @return This file path as an absolute path
+     * Returns this file path as an absolute path
      */
-    public FilePath absolute()
+    @Override
+    public FilePath asAbsolute()
     {
         if (isCurrentFolder())
         {
-            return Folder.current().path();
+            return Folder.currentFolder().path();
         }
 
         if (schemes().isNonEmpty())
@@ -257,11 +281,11 @@ public class FilePath extends ResourcePath
     @Override
     public File asFile()
     {
-        return File.file(this);
+        return File.file(throwingListener(), this);
     }
 
     /**
-     * @return This filepath as a string
+     * Returns this filepath as a string
      */
     @Override
     public String asString()
@@ -270,7 +294,7 @@ public class FilePath extends ResourcePath
     }
 
     /**
-     * @return This file path without any scheme and root if it is a URI. For example, "https://telenav.com/a/b.html"
+     * Returns this file path without any scheme and root if it is a URI. For example, "https://telenav.com/a/b.html"
      * would have the path "a/b.html"
      */
     public StringPath asStringPath()
@@ -279,7 +303,7 @@ public class FilePath extends ResourcePath
     }
 
     /**
-     * @return Converts this path to a UNIX path string, obeying the rules for Windows bash shell where an absolute path
+     * Returns converts this path to a UNIX path string, obeying the rules for Windows bash shell where an absolute path
      * like "C:\xyz" is represented as "/c/xyz"
      */
     public String asUnixString()
@@ -301,7 +325,7 @@ public class FilePath extends ResourcePath
     }
 
     /**
-     * @return URI for this file path
+     * Returns the URI for this file path
      */
     public URI asUri()
     {
@@ -309,9 +333,9 @@ public class FilePath extends ResourcePath
     }
 
     /**
-     * @return This file path with the given filename appended
+     * Returns this file path with the given filename appended
      */
-    public FilePath file(FileName child)
+    public FilePath file(@NotNull FileName child)
     {
         return withChild(child.name());
     }
@@ -325,7 +349,8 @@ public class FilePath extends ResourcePath
         return (FilePath) super.first(n);
     }
 
-    public boolean hasExtension(Extension extension)
+    @Override
+    public boolean hasExtension(@NotNull Extension extension)
     {
         return extension.ends(this);
     }
@@ -341,11 +366,11 @@ public class FilePath extends ResourcePath
     }
 
     /**
-     * @return True if this path is the current folder, either as '.' or as an absolute path
+     * Returns true if this path is the current folder, either as '.' or as an absolute path
      */
     public boolean isCurrentFolder()
     {
-        return toString().equals(".") || equals(Folder.current().path());
+        return toString().equals(".") || equals(Folder.currentFolder().path());
     }
 
     @Override
@@ -355,8 +380,9 @@ public class FilePath extends ResourcePath
     }
 
     /**
-     * @return The last component of this path
+     * Returns the last component of this path
      */
+    @Override
     public String last()
     {
         // If this path has a trailing slash, it has a final empty component,
@@ -370,9 +396,10 @@ public class FilePath extends ResourcePath
     }
 
     /**
-     * @return True if this path matches the given matcher
+     * Returns true if this path matches the given matcher
      */
-    public boolean matches(Matcher<String> matcher)
+    @Override
+    public boolean matches(@NotNull Matcher<String> matcher)
     {
         return matcher.matches(asString());
     }
@@ -421,6 +448,7 @@ public class FilePath extends ResourcePath
     /**
      * {@inheritDoc}
      */
+    @SuppressWarnings("SpellCheckingInspection")
     @Override
     public FilePath subpath(int start, int end)
     {
@@ -437,7 +465,7 @@ public class FilePath extends ResourcePath
      * {@inheritDoc}
      */
     @Override
-    public FilePath transformed(Function<String, String> consumer)
+    public FilePath transformed(@NotNull Function<String, String> consumer)
     {
         return (FilePath) super.transformed(consumer);
     }
@@ -446,7 +474,7 @@ public class FilePath extends ResourcePath
      * {@inheritDoc}
      */
     @Override
-    public FilePath withChild(String child)
+    public FilePath withChild(@NotNull String child)
     {
         if (hasTrailingSlash())
         {
@@ -459,7 +487,7 @@ public class FilePath extends ResourcePath
      * {@inheritDoc}
      */
     @Override
-    public FilePath withChild(Path<String> that)
+    public FilePath withChild(@NotNull Path<String> that)
     {
         return (FilePath) super.withChild(that);
     }
@@ -468,7 +496,7 @@ public class FilePath extends ResourcePath
      * {@inheritDoc}
      */
     @Override
-    public FilePath withParent(String element)
+    public FilePath withParent(@NotNull String element)
     {
         return (FilePath) super.withParent(element);
     }
@@ -477,31 +505,32 @@ public class FilePath extends ResourcePath
      * {@inheritDoc}
      */
     @Override
-    public FilePath withParent(Path<String> that)
+    public FilePath withParent(@NotNull Path<String> that)
     {
         return (FilePath) super.withParent(that);
     }
 
-    public FilePath withPrefix(String prefix)
+    public FilePath withPrefix(@NotNull String prefix)
     {
-        return parseFilePath(Listener.emptyListener(), prefix + this);
+        return parseFilePath(Listener.nullListener(), prefix + this);
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public FilePath withRoot(String root)
+    public FilePath withRoot(@NotNull String root)
     {
         return (FilePath) super.withRoot(root);
     }
 
-    public FilePath withScheme(String scheme)
+    public FilePath withScheme(@NotNull String scheme)
     {
         return withSchemes(StringList.stringList(scheme));
     }
 
-    public FilePath withSchemes(StringList scheme)
+    @Override
+    public FilePath withSchemes(@NotNull StringList scheme)
     {
         return (FilePath) super.withSchemes(scheme);
     }
@@ -510,13 +539,13 @@ public class FilePath extends ResourcePath
      * {@inheritDoc}
      */
     @Override
-    public FilePath withSeparator(String separator)
+    public FilePath withSeparator(@NotNull String separator)
     {
         return (FilePath) super.withSeparator(separator);
     }
 
     /**
-     * @return This path with a trailing slash
+     * Returns this path with a trailing slash
      */
     public FilePath withTrailingSlash()
     {
@@ -528,7 +557,7 @@ public class FilePath extends ResourcePath
     }
 
     /**
-     * @return This path without file: scheme if that is the only scheme
+     * Returns this path without file: scheme if that is the only scheme
      */
     public FilePath withoutFileScheme()
     {
@@ -561,7 +590,7 @@ public class FilePath extends ResourcePath
      * {@inheritDoc}
      */
     @Override
-    public FilePath withoutOptionalPrefix(Path<String> prefix)
+    public FilePath withoutOptionalPrefix(@NotNull Path<String> prefix)
     {
         return (FilePath) super.withoutOptionalPrefix(prefix);
     }
@@ -570,7 +599,7 @@ public class FilePath extends ResourcePath
      * {@inheritDoc}
      */
     @Override
-    public FilePath withoutOptionalSuffix(Path<String> suffix)
+    public FilePath withoutOptionalSuffix(@NotNull Path<String> suffix)
     {
         return (FilePath) super.withoutOptionalSuffix(suffix);
     }
@@ -579,14 +608,14 @@ public class FilePath extends ResourcePath
      * {@inheritDoc}
      */
     @Override
-    public FilePath withoutPrefix(Path<String> prefix)
+    public FilePath withoutPrefix(@NotNull Path<String> prefix)
     {
         return (FilePath) super.withoutPrefix(prefix);
     }
 
-    public FilePath withoutPrefix(String prefix)
+    public FilePath withoutPrefix(@NotNull String prefix)
     {
-        return parseFilePath(Listener.emptyListener(), Strip.leading(toString(), prefix));
+        return parseFilePath(Listener.nullListener(), Strip.leading(toString(), prefix));
     }
 
     /**
@@ -599,8 +628,9 @@ public class FilePath extends ResourcePath
     }
 
     /**
-     * @return This filepath without any scheme
+     * Returns this filepath without any scheme
      */
+    @Override
     public FilePath withoutSchemes()
     {
         return (FilePath) super.withoutSchemes();
@@ -610,13 +640,13 @@ public class FilePath extends ResourcePath
      * {@inheritDoc}
      */
     @Override
-    public FilePath withoutSuffix(Path<String> suffix)
+    public FilePath withoutSuffix(@NotNull Path<String> suffix)
     {
         return (FilePath) super.withoutSuffix(suffix);
     }
 
     /**
-     * @return This path without any trailing slash, which is represented by a final component that is empty ("")
+     * Returns this path without any trailing slash, which is represented by a final component that is empty ("")
      */
     public FilePath withoutTrailingSlash()
     {
@@ -631,13 +661,14 @@ public class FilePath extends ResourcePath
      * {@inheritDoc}
      */
     @Override
-    protected FilePath onCopy(String root, List<String> elements)
+    protected FilePath onCopy(@NotNull String root,
+                              @NotNull List<String> elements)
     {
         return new FilePath(schemes(), root, elements);
     }
 
     @Nullable
-    private static String authority(URI uri)
+    private static String authority(@NotNull URI uri)
     {
         // Get the host and port of the URI
         var host = uri.getHost();
@@ -663,11 +694,11 @@ public class FilePath extends ResourcePath
     @NotNull
     private static FilePath empty()
     {
-        return new FilePath(null, null, List.of());
+        return new FilePath(List.of());
     }
 
     @NotNull
-    private static FilePath simpleFilePath(URI uri)
+    private static FilePath simpleFilePath(@NotNull URI uri)
     {
         // There's no scheme, so get the URI's simple path
         var path = uri.getPath();

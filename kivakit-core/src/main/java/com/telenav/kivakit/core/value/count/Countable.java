@@ -18,8 +18,12 @@
 
 package com.telenav.kivakit.core.value.count;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.interfaces.numeric.Zeroable;
-import com.telenav.lexakai.annotations.LexakaiJavadoc;
+
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
 
 /**
  * Interface to something that has a {@link Count} value.
@@ -27,7 +31,9 @@ import com.telenav.lexakai.annotations.LexakaiJavadoc;
  * @author jonathanl (shibo)
  * @see Count
  */
-@LexakaiJavadoc(complete = true)
+@ApiQuality(stability = API_STABLE,
+            testing = TESTING_NONE,
+            documentation = DOCUMENTATION_COMPLETE)
 public interface Countable extends Zeroable
 {
     /**

@@ -18,11 +18,16 @@
 
 package com.telenav.kivakit.core.progress.reporters;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramProgress;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.concurrent.atomic.AtomicLong;
+
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
 
 /**
  * A thread-safe subclass of {@link BroadcastingProgressReporter}.
@@ -30,8 +35,12 @@ import java.util.concurrent.atomic.AtomicLong;
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramProgress.class)
+@ApiQuality(stability = API_STABLE_EXTENSIBLE,
+            testing = TESTING_NONE,
+            documentation = DOCUMENTATION_COMPLETE)
 public class ConcurrentBroadcastingProgressReporter extends BroadcastingProgressReporter
 {
+    /** The current step we are at. This storage is thread-safe */
     private final AtomicLong at;
 
     public ConcurrentBroadcastingProgressReporter(BroadcastingProgressReporter that)
@@ -45,34 +54,49 @@ public class ConcurrentBroadcastingProgressReporter extends BroadcastingProgress
         at = new AtomicLong();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void at(long count)
     {
         at.set(count);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public long at()
     {
         return at.get();
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    protected @NotNull
+    BroadcastingProgressReporter copy()
+    {
+        return new ConcurrentBroadcastingProgressReporter(this);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected long increase(long increase)
     {
         return at.addAndGet(increase);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected long increment()
     {
         return at.incrementAndGet();
-    }
-
-    @Override
-    protected @NotNull
-    BroadcastingProgressReporter newInstance()
-    {
-        return new ConcurrentBroadcastingProgressReporter(this);
     }
 }

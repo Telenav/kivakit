@@ -18,9 +18,9 @@
 
 package com.telenav.kivakit.core.time;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramTime;
 import com.telenav.kivakit.core.messaging.Listener;
-import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.time.ZoneId;
@@ -29,13 +29,48 @@ import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+
 /**
  * Utility methods to map between {@link ZoneId}s and their display names
  *
+ * <p><b>Access</b></p>
+ *
+ * <ul>
+ *     <li>{@link #utc()}</li>
+ * </ul>
+ *
+ * <p><b>Display Names</b></p>
+ *
+ * <ul>
+ *     <li>{@link #shortDisplayName(ZoneId)}</li>
+ * </ul>
+ *
+ * <p><b>Parsing</b></p>
+ *
+ * <ul>
+ *     <li>{@link #parseShortDisplayName(Listener, String)}</li>
+ *     <li>{@link #parseZoneId(Listener, String)}</li>
+ *     <li>{@link #parseZoneIdOrDisplayName(Listener, String)}</li>
+ * </ul>
+ *
+ * <p><b>Checks</b></p>
+ *
+ * <ul>
+ *     <li>{@link #isUtc(ZoneId)}</li>
+ *     <li>{@link #isValidShortDisplayName(String)}</li>
+ *     <li>{@link #isValidZoneId(String)}</li>
+ * </ul>
+ *
  * @author jonathanl (shibo)
  */
+@SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramTime.class)
-@LexakaiJavadoc(complete = true)
+@ApiQuality(stability = API_STABLE_EXTENSIBLE,
+            testing = TESTING_NONE,
+            documentation = DOCUMENTATION_COMPLETE)
 public class TimeZones
 {
     /** Map from a short display name (PST) to its zone id (America/Los Angeles) */
@@ -63,7 +98,7 @@ public class TimeZones
      */
     public static boolean isValidShortDisplayName(String identifier)
     {
-        return parseShortDisplayName(Listener.emptyListener(), identifier) != null;
+        return parseShortDisplayName(Listener.nullListener(), identifier) != null;
     }
 
     /**
@@ -71,7 +106,7 @@ public class TimeZones
      */
     public static boolean isValidZoneId(String identifier)
     {
-        return parseZoneId(Listener.emptyListener(), identifier) != null;
+        return parseZoneId(Listener.nullListener(), identifier) != null;
     }
 
     /**
@@ -109,10 +144,10 @@ public class TimeZones
      */
     public static ZoneId parseZoneIdOrDisplayName(Listener listener, String identifier)
     {
-        var zone = parseShortDisplayName(Listener.emptyListener(), identifier);
+        var zone = parseShortDisplayName(Listener.nullListener(), identifier);
         if (zone == null)
         {
-            zone = parseZoneId(Listener.emptyListener(), identifier);
+            zone = parseZoneId(Listener.nullListener(), identifier);
         }
         if (zone == null)
         {

@@ -22,9 +22,9 @@ import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramPrimitive;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_STATIC_EXPANDABLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
-import static com.telenav.kivakit.annotations.code.TestingQuality.FULLY_TESTED;
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_STATIC_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_SUFFICIENT;
 
 /**
  * Utility methods for <i>boolean</i>> values.
@@ -37,9 +37,9 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.FULLY_TESTED;
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramPrimitive.class)
-@ApiQuality(stability = STABLE_STATIC_EXPANDABLE,
-            testing = FULLY_TESTED,
-            documentation = FULLY_DOCUMENTED)
+@ApiQuality(stability = API_STABLE_STATIC_EXTENSIBLE,
+            testing = TESTING_SUFFICIENT,
+            documentation = DOCUMENTATION_COMPLETE)
 public class Booleans
 {
     public static boolean isFalse(String string)

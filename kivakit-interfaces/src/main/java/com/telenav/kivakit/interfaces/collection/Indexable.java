@@ -24,9 +24,9 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.Iterator;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.MORE_EVALUATION_NEEDED;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
-import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
+import static com.telenav.kivakit.annotations.code.ApiStability.API_FURTHER_EVALUATION_NEEDED;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
 
 /**
  * A sequence that has a known size and can be indexed, like a list, although not necessarily a collection. For example,
@@ -40,9 +40,9 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramCollection.class)
-@ApiQuality(stability = MORE_EVALUATION_NEEDED,
-            testing = UNTESTED,
-            documentation = FULLY_DOCUMENTED,
+@ApiQuality(stability = API_FURTHER_EVALUATION_NEEDED,
+            testing = TESTING_NONE,
+            documentation = DOCUMENTATION_COMPLETE,
             reviews = 1,
             reviewers = "shibo")
 public interface Indexable<Value> extends

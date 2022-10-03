@@ -33,7 +33,7 @@ public class ExtractionTest extends CoreUnitTest
     @Test
     public void testExtraction()
     {
-        var extractor = new TestExtractor(Listener.emptyListener());
+        var extractor = new TestExtractor(Listener.nullListener());
         ensureEqual(extractor.extract("12"), 12);
         ensureEqual(extractor.extract("12o"), null);
         ensureEqual(extractor.extract((String) null), null);

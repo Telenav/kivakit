@@ -3,8 +3,8 @@ package com.telenav.kivakit.interfaces.numeric;
 import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.interfaces.value.LongValued;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_DEFAULT_EXPANDABLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_DEFAULT_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
 
 /**
@@ -13,9 +13,9 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NE
  * @param <Value> The integer type
  * @author jonathanl (shibo)
  */
-@ApiQuality(stability = STABLE_DEFAULT_EXPANDABLE,
+@ApiQuality(stability = API_STABLE_DEFAULT_EXTENSIBLE,
             testing = TESTING_NOT_NEEDED,
-            documentation = FULLY_DOCUMENTED)
+            documentation = DOCUMENTATION_COMPLETE)
 public interface Numeric<Value extends LongValued> extends
         Arithmetic<Value>,
         Maximizable<Value>,

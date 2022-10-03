@@ -2,8 +2,8 @@ package com.telenav.kivakit.interfaces.value;
 
 import com.telenav.kivakit.annotations.code.ApiQuality;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_DEFAULT_EXPANDABLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_DEFAULT_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
 
 /**
@@ -13,9 +13,9 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NE
  */
 @FunctionalInterface
 @SuppressWarnings("unused")
-@ApiQuality(stability = STABLE_DEFAULT_EXPANDABLE,
+@ApiQuality(stability = API_STABLE_DEFAULT_EXTENSIBLE,
             testing = TESTING_NOT_NEEDED,
-            documentation = FULLY_DOCUMENTED)
+            documentation = DOCUMENTATION_COMPLETE)
 public interface DoubleValued extends LongValued
 {
     /**
@@ -35,6 +35,8 @@ public interface DoubleValued extends LongValued
     }
 
     /**
+     * Returns the double value for this object
+     *
      * @return The double value for this object
      */
     double doubleValue();
@@ -44,9 +46,20 @@ public interface DoubleValued extends LongValued
      * @param within The tolerance
      * @return True if the difference between this value and that value is within the given tolerance
      */
-    default boolean isApproximately(DoubleValued that, DoubleValued within)
+    default boolean isCloseTo(DoubleValued that, DoubleValued within)
     {
         return absoluteDifference(that) <= within.doubleValue();
+    }
+
+    /**
+     * Returns true if this level is close to the given level, within the given tolerance
+     *
+     * @param that The level to compare with
+     * @param tolerance The amount of maximum amount difference that is still considered "close"
+     */
+    default boolean isCloseTo(DoubleValued that, double tolerance)
+    {
+        return Math.abs(that.doubleValue() - that.doubleValue()) < tolerance;
     }
 
     /**

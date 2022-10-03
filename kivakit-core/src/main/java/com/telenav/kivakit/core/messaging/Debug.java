@@ -26,7 +26,7 @@ import com.telenav.kivakit.core.language.Patterns;
 import com.telenav.kivakit.core.logging.Logger;
 import com.telenav.kivakit.core.logging.LoggerFactory;
 import com.telenav.kivakit.core.messaging.context.CallStack;
-import com.telenav.kivakit.core.project.StartUp;
+import com.telenav.kivakit.core.project.StartUpOptions;
 import com.telenav.kivakit.core.string.AsciiArt;
 import com.telenav.kivakit.interfaces.messaging.Transmittable;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
@@ -34,9 +34,9 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 import java.util.HashMap;
 import java.util.Map;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXPANDABLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
-import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
 import static com.telenav.kivakit.core.project.Project.resolveProject;
 
 /**
@@ -82,9 +82,9 @@ import static com.telenav.kivakit.core.project.Project.resolveProject;
  */
 @SuppressWarnings("SpellCheckingInspection")
 @UmlClassDiagram(diagram = DiagramBroadcaster.class)
-@ApiQuality(stability = STABLE_EXPANDABLE,
-            testing = UNTESTED,
-            documentation = FULLY_DOCUMENTED)
+@ApiQuality(stability = API_STABLE_EXTENSIBLE,
+            testing = TESTING_NONE,
+            documentation = DOCUMENTATION_COMPLETE)
 public final class Debug implements MessageTransceiver
 {
     private static final Logger LOGGER = LoggerFactory.newLogger();
@@ -187,7 +187,7 @@ public final class Debug implements MessageTransceiver
         {
             return (Listener) transceiver;
         }
-        return Listener.emptyListener();
+        return Listener.nullListener();
     }
 
     /**
@@ -269,7 +269,7 @@ public final class Debug implements MessageTransceiver
                 var log = property("KIVAKIT_LOG");
                 var kivakitVersion = resolveProject(KivaKit.class).kivakitVersion();
                 var title = "KivaKit " + kivakitVersion + " (" + resolveProject(KivaKit.class).build() + ")";
-                if (!StartUp.isEnabled(StartUp.Option.QUIET))
+                if (!StartUpOptions.isEnabled(StartUpOptions.StartupOption.QUIET))
                 {
                     LOGGER.information(AsciiArt.textBox(title, "      Logging: https://tinyurl.com/mhc3ss5s\n"
                                     + "    Debugging: https://tinyurl.com/2xycuvph\n"

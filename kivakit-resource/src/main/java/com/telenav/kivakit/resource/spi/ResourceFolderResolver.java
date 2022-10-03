@@ -18,41 +18,50 @@
 
 package com.telenav.kivakit.resource.spi;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.messaging.repeaters.RepeaterMixin;
 import com.telenav.kivakit.filesystem.Folder;
 import com.telenav.kivakit.resource.ResourceFolder;
 import com.telenav.kivakit.resource.ResourceFolderIdentifier;
 import com.telenav.kivakit.resource.ResourceIdentifier;
 import com.telenav.kivakit.resource.internal.lexakai.DiagramResourceService;
-import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ServiceLoader;
+
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE;
+import static com.telenav.kivakit.annotations.code.ApiType.SERVICE_PROVIDER_INTERFACE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
 
 /**
  * A service provider interface that resolves {@link ResourceFolder}s (including {@link Package}s and {@link Folder}s).
  * If the {@link #accepts(ResourceFolderIdentifier)} method returns true, then this resolver can resolve the given
- * {@link ResourceFolderIdentifier} with a call to {@link #resolve(ResourceFolderIdentifier)}. {@link
- * ResourceFolderResolverServiceLoader} iterates through implementations of this interface provided by Java's {@link
- * ServiceLoader} class and resolves {@link ResourceFolderIdentifier}s by calling {@link
- * #accepts(ResourceFolderIdentifier)} to find a resolver that can resolve the identifier.
+ * {@link ResourceFolderIdentifier} with a call to {@link #resolve(ResourceFolderIdentifier)}.
+ * {@link ResourceFolderResolverService} iterates through implementations of this interface provided by Java's
+ * {@link ServiceLoader} class and resolves {@link ResourceFolderIdentifier}s by calling
+ * {@link #accepts(ResourceFolderIdentifier)} to find a resolver that can resolve the identifier.
  *
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramResourceService.class)
 @UmlRelation(label = "parses", referent = ResourceIdentifier.class)
-@LexakaiJavadoc(complete = true)
+@ApiQuality(stability = API_STABLE,
+            documentation = DOCUMENTATION_COMPLETE,
+            testing = TESTING_NOT_NEEDED,
+            type = SERVICE_PROVIDER_INTERFACE)
 public interface ResourceFolderResolver extends RepeaterMixin
 {
     /**
      * @return True if this resource factory understands the given resource identifier
      */
-    boolean accepts(ResourceFolderIdentifier identifier);
+    boolean accepts(@NotNull ResourceFolderIdentifier identifier);
 
     /**
      * @return A new resource for the given resource identifier
      */
     @UmlRelation(label = "creates")
-    ResourceFolder<?> resolve(ResourceFolderIdentifier identifier);
+    ResourceFolder<?> resolve(@NotNull ResourceFolderIdentifier identifier);
 }

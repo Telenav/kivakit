@@ -18,89 +18,68 @@
 
 package com.telenav.kivakit.core.value.mutable;
 
-import com.telenav.kivakit.core.ensure.Ensure;
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramValue;
-import com.telenav.kivakit.core.value.count.Count;
-import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+import static com.telenav.kivakit.core.ensure.Ensure.ensure;
+
 /**
- * A mutable index value for use in lambdas and anonymous inner classes. Can be {@link #increment()}ed, {@link
- * #decrement()}ed, added to with {@link #add(int)}, set with {@link #index(int)} and retrieved with {@link #get()}.
+ * A thread-safe mutable index value for use in lambdas and anonymous inner classes. Can be {@link #increment()}ed,
+ * {@link #decrement()}ed, added to with {@link #offset(int)}, set with {@link #set(int)} and retrieved with
+ * {@link #get()}.
  *
  * @author jonathanl (shibo)
  */
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramValue.class)
-@LexakaiJavadoc(complete = true)
-public class MutableIndex
+@ApiQuality(stability = API_STABLE_EXTENSIBLE,
+            testing = TESTING_NONE,
+            documentation = DOCUMENTATION_COMPLETE)
+public class MutableIndex extends MutableLong
 {
-    private int index;
-
+    /**
+     * Creates an index with the value zero
+     */
     public MutableIndex()
     {
+        this(0);
     }
 
+    /**
+     * Creates an index with the given initial value
+     */
     public MutableIndex(int index)
     {
-        if (index < 0)
-        {
-            Ensure.fail("Negative count ", index);
-        }
-        this.index = index;
+        super(index);
+        ensure(index >= 0, "Negative count ", index);
     }
 
-    @SuppressWarnings("UnusedReturnValue")
-    public int add(int that)
+    /**
+     * Gets the value of this index
+     */
+    public int index()
     {
-        return index + that;
+        return (int) super.get();
     }
 
-    public int decrement()
-    {
-        return index--;
-    }
-
-    @Override
-    public boolean equals(Object object)
-    {
-        if (object instanceof MutableIndex)
-        {
-            var that = (MutableIndex) object;
-            return index == that.index;
-        }
-        return false;
-    }
-
-    public int get()
-    {
-        return index;
-    }
-
-    @Override
-    public int hashCode()
-    {
-        return Integer.hashCode(index);
-    }
-
-    public int increment()
-    {
-        return index++;
-    }
-
+    /**
+     * Gets the value of this index
+     */
     public void index(int index)
     {
-        this.index = index;
+        super.set(index);
     }
 
-    public void set(int index)
+    /**
+     * Adds the given value to this index, returning the new value
+     */
+    @SuppressWarnings("UnusedReturnValue")
+    public int offset(int that)
     {
-        this.index = index;
-    }
-
-    @Override
-    public String toString()
-    {
-        return Count.count(index).asCommaSeparatedString();
+        return (int) super.plus(that);
     }
 }

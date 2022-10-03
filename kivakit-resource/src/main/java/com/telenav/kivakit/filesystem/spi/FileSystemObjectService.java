@@ -18,6 +18,7 @@
 
 package com.telenav.kivakit.filesystem.spi;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.messaging.Repeater;
 import com.telenav.kivakit.core.string.Strings;
@@ -30,12 +31,16 @@ import com.telenav.kivakit.filesystem.loader.FileSystemServiceLoader;
 import com.telenav.kivakit.resource.Deletable;
 import com.telenav.kivakit.resource.ResourcePathed;
 import com.telenav.kivakit.resource.internal.lexakai.DiagramFileSystemService;
-import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeSuperTypes;
+import org.jetbrains.annotations.NotNull;
 
 import java.nio.file.attribute.PosixFilePermission;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.ApiType.SERVICE_PROVIDER_INTERFACE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
 import static com.telenav.kivakit.core.ensure.Ensure.unsupported;
 
 /**
@@ -57,7 +62,10 @@ import static com.telenav.kivakit.core.ensure.Ensure.unsupported;
  */
 @UmlClassDiagram(diagram = DiagramFileSystemService.class)
 @UmlExcludeSuperTypes(ResourcePathed.class)
-@LexakaiJavadoc(complete = true)
+@ApiQuality(stability = API_STABLE_EXTENSIBLE,
+            testing = TESTING_NOT_NEEDED,
+            documentation = DOCUMENTATION_COMPLETE,
+            type = SERVICE_PROVIDER_INTERFACE)
 public interface FileSystemObjectService extends
         Repeater,
         ByteSized,
@@ -68,15 +76,15 @@ public interface FileSystemObjectService extends
         Deletable
 {
     /**
-     * @return True if the permissions were changed
+     * Returns true if the permissions were changed
      */
-    default boolean chmod(PosixFilePermission... permissions)
+    default boolean chmod(@NotNull PosixFilePermission... permissions)
     {
         return unsupported();
     }
 
     /**
-     * @return The disk that this object is on
+     * Returns the disk that this object is on
      */
     default DiskService diskService()
     {
@@ -84,17 +92,17 @@ public interface FileSystemObjectService extends
     }
 
     /**
-     * @return True if this folder exists
+     * Returns true if this folder exists
      */
     boolean exists();
 
-    default FileSystemService fileSystemService(FilePath path)
+    default FileSystemService fileSystemService(@NotNull FilePath path)
     {
         return FileSystemServiceLoader.fileSystem(Listener.throwingListener(), path);
     }
 
     /**
-     * @return The service provider for folders
+     * Returns the service provider for folders
      */
     default FolderService folderService()
     {
@@ -102,7 +110,7 @@ public interface FileSystemObjectService extends
     }
 
     /**
-     * @return True if this is a file, false if it is a folder
+     * Returns true if this is a file, false if it is a folder
      */
     default boolean isFile()
     {
@@ -110,11 +118,11 @@ public interface FileSystemObjectService extends
     }
 
     /**
-     * @return True if this is a folder. If this is a folder, asFolder() will be successful.
+     * Returns true if this is a folder. If this is a folder, asFolder() will be successful.
      */
     boolean isFolder();
 
-    default boolean isOnSameFileSystem(FileSystemObjectService that)
+    default boolean isOnSameFileSystem(@NotNull FileSystemObjectService that)
     {
         var thisService = fileSystemService(path());
         var thatService = fileSystemService(that.path());
@@ -122,7 +130,7 @@ public interface FileSystemObjectService extends
     }
 
     /**
-     * @return True if this folder is remote
+     * Returns true if this folder is remote
      */
     default boolean isRemote()
     {
@@ -130,17 +138,17 @@ public interface FileSystemObjectService extends
     }
 
     /**
-     * @return The parent of this folder or null if none exists
+     * Returns the parent of this folder or null if none exists
      */
     FolderService parentService();
 
     /**
-     * @return The path to this object
+     * Returns the path to this object
      */
     @Override
     FilePath path();
 
-    default FilePath relativePath(FolderService folderService)
+    default FilePath relativePath(@NotNull FolderService folderService)
     {
         var fullName = Strings.ensureEndsWith(path().toString().replace("\\", "/"), "/");
         var folderName = Strings.ensureEndsWith(folderService.path().toString().replace("\\", "/"), "/");
@@ -160,7 +168,7 @@ public interface FileSystemObjectService extends
     }
 
     /**
-     * @return The root folder containing this object
+     * Returns the root folder containing this object
      */
     FolderService root();
 }

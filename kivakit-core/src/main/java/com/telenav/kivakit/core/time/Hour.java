@@ -1,16 +1,19 @@
 package com.telenav.kivakit.core.time;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.interfaces.time.Nanoseconds;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
 import static com.telenav.kivakit.core.ensure.Ensure.ensure;
 import static com.telenav.kivakit.core.time.BaseTime.Topology.CYCLIC;
 import static com.telenav.kivakit.core.time.HourOfWeek.hourOfWeek;
 import static com.telenav.kivakit.core.time.Meridiem.AM;
 import static com.telenav.kivakit.core.time.Meridiem.PM;
-import static com.telenav.kivakit.core.time.Meridiem.meridiemHour;
 import static com.telenav.kivakit.core.time.Minute.nanosecondsPerMinute;
 
 /**
@@ -21,6 +24,7 @@ import static com.telenav.kivakit.core.time.Minute.nanosecondsPerMinute;
  * <ul>
  *     <li>{@link #am(int)} - A morning hour</li>
  *     <li>{@link #militaryHour(int)} - An hour of the day on a 24-hour clock</li>
+ *     <li>{@link #militaryHours()} - All 24 military hours</li>
  *     <li>{@link #hourOfDay(int, Meridiem)} - An hour of the day, AM or PM</li>
  *     <li>{@link #midnight()} - Hour zero</li>
  *     <li>{@link #noon()} - Hour twelve</li>
@@ -43,26 +47,46 @@ import static com.telenav.kivakit.core.time.Minute.nanosecondsPerMinute;
  *
  * @author jonathanl (shibo)
  */
-@SuppressWarnings("unused")
+@SuppressWarnings({ "unused", "SpellCheckingInspection" })
+@ApiQuality(stability = API_STABLE_EXTENSIBLE,
+            testing = TESTING_NONE,
+            documentation = DOCUMENTATION_COMPLETE)
 public class Hour extends BaseTime<Hour>
 {
+    /** The number of nanoseconds in an hour */
     static final Nanoseconds nanosecondsPerHour = nanosecondsPerMinute.times(60);
 
+    /**
+     * Gets the given hour, anti-meridiem
+     */
     public static Hour am(int hour)
     {
         return hourOfDay(hour, AM);
     }
 
+    /**
+     * Gets the hour of the day using the given meridiem
+     *
+     * @param hour The hour
+     * @param meridiem AM or PM
+     * @return The hour
+     */
     public static Hour hourOfDay(int hour, Meridiem meridiem)
     {
         return new Hour(meridiem.asMilitaryHour(hour));
     }
 
+    /**
+     * Returns the midnight hour
+     */
     public static Hour midnight()
     {
         return am(12);
     }
 
+    /**
+     * Returns the given military hour
+     */
     public static Hour militaryHour(int militaryHour)
     {
         ensure(militaryHour >= 0);
@@ -71,6 +95,9 @@ public class Hour extends BaseTime<Hour>
         return new Hour(militaryHour);
     }
 
+    /**
+     * Returns the 24 military hours
+     */
     public static List<Hour> militaryHours()
     {
         var hours = new ArrayList<Hour>();
@@ -81,11 +108,17 @@ public class Hour extends BaseTime<Hour>
         return hours;
     }
 
+    /**
+     * Returns the noon hour
+     */
     public static Hour noon()
     {
         return pm(12);
     }
 
+    /**
+     * Returns the given hour, post-meridiem
+     */
     public static Hour pm(int hour)
     {
         return hourOfDay(hour, PM);
@@ -100,6 +133,9 @@ public class Hour extends BaseTime<Hour>
         super(nanosecondsPerHour.times(militaryHour));
     }
 
+    /**
+     * Returns this hour as an hour of the week
+     */
     public HourOfWeek asHourOfWeek()
     {
         return hourOfWeek(asMilitaryHour());
@@ -110,7 +146,7 @@ public class Hour extends BaseTime<Hour>
      */
     public int asMeridiemHour()
     {
-        return meridiemHour(asMilitaryHour());
+        return Meridiem.asMeridiemHour(asMilitaryHour());
     }
 
     /**
@@ -121,6 +157,9 @@ public class Hour extends BaseTime<Hour>
         return (int) nanoseconds().dividedBy(nanosecondsPerHour);
     }
 
+    /**
+     * Returns the maximum military hour
+     */
     @Override
     public Hour maximum()
     {
@@ -135,18 +174,27 @@ public class Hour extends BaseTime<Hour>
         return asMilitaryHour() <= 11 ? AM : PM;
     }
 
+    /**
+     * Returns the minimum military hou
+     */
     @Override
     public Hour minimum()
     {
         return militaryHour(0);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Nanoseconds nanosecondsPerUnit()
     {
         return nanosecondsPerHour;
     }
 
+    /**
+     * Returns a new Hour for the given nanosecondsv
+     */
     @Override
     public Hour onNewTime(Nanoseconds nanoseconds)
     {
@@ -159,6 +207,9 @@ public class Hour extends BaseTime<Hour>
         return asMeridiemHour() + meridiem().name().toLowerCase();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected Topology topology()
     {

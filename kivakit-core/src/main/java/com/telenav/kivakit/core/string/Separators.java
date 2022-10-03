@@ -18,8 +18,13 @@
 
 package com.telenav.kivakit.core.string;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramString;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
+
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
 
 /**
  * Maintains a list of separators that can be nested when used by list converters and converters with multiple separated
@@ -40,12 +45,17 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramString.class)
+@ApiQuality(stability = API_STABLE_EXTENSIBLE,
+            testing = TESTING_NONE,
+            documentation = DOCUMENTATION_COMPLETE)
 public class Separators
 {
     public static final Separators DEFAULT = new Separators("/", ":", ",");
 
+    /** The separator nesting level */
     private int nestingLevel;
 
+    /** The separators to use */
     private final String[] separators;
 
     public Separators()
@@ -73,16 +83,25 @@ public class Separators
         this.separators = separators;
     }
 
+    /**
+     * Returns the child of this separators object, with the nesting level increased by one
+     */
     public Separators child()
     {
         return new Separators(nestingLevel + 1, separators);
     }
 
+    /**
+     * Returns the separator for the given relative level
+     */
     public String child(int relativeLevel)
     {
         return separators[nestingLevel + relativeLevel];
     }
 
+    /**
+     * Returns the separator for the current level
+     */
     public String current()
     {
         return child(0);

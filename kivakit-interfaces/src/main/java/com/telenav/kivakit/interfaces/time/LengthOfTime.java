@@ -6,6 +6,7 @@ import com.telenav.kivakit.interfaces.internal.lexakai.DiagramTime;
 import com.telenav.kivakit.interfaces.string.StringFormattable;
 import com.telenav.kivakit.interfaces.value.LongValued;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
+import org.jetbrains.annotations.NotNull;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -14,9 +15,9 @@ import java.util.Timer;
 import java.util.TimerTask;
 import java.util.concurrent.TimeUnit;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.STABLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
-import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
 import static com.telenav.kivakit.interfaces.time.WakeState.COMPLETED;
 import static com.telenav.kivakit.interfaces.time.WakeState.INTERRUPTED;
 import static com.telenav.kivakit.interfaces.time.WakeState.TIMED_OUT;
@@ -88,9 +89,9 @@ import static com.telenav.kivakit.interfaces.time.WakeState.TIMED_OUT;
  */
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramTime.class)
-@ApiQuality(stability = STABLE,
-            testing = UNTESTED,
-            documentation = FULLY_DOCUMENTED)
+@ApiQuality(stability = API_STABLE,
+            testing = TESTING_NONE,
+            documentation = DOCUMENTATION_COMPLETE)
 public interface LengthOfTime<Duration extends LongValued & LengthOfTime<Duration>> extends
         LongValued,
         Comparable<LengthOfTime<?>>,
@@ -111,7 +112,7 @@ public interface LengthOfTime<Duration extends LongValued & LengthOfTime<Duratio
      */
     @Override
     @SuppressWarnings({ "SpellCheckingInspection", "DuplicatedCode" })
-    default String asString(Format format)
+    default String asString(@NotNull Format format)
     {
         switch (format)
         {
@@ -213,6 +214,14 @@ public interface LengthOfTime<Duration extends LongValued & LengthOfTime<Duratio
     default Duration dividedBy(double value)
     {
         return newDuration(nanoseconds().dividedBy(value));
+    }
+
+    /**
+     * @return This length of time divided by the given divisor
+     */
+    default Duration dividedBy(Duration that)
+    {
+        return newDuration(nanoseconds().dividedBy(that.nanoseconds().asDouble()));
     }
 
     /**

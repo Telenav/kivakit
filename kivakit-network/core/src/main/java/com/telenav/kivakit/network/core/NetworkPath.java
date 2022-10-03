@@ -18,28 +18,33 @@
 
 package com.telenav.kivakit.network.core;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.commandline.SwitchParser;
 import com.telenav.kivakit.conversion.BaseStringConverter;
 import com.telenav.kivakit.core.collections.list.StringList;
-import com.telenav.kivakit.core.language.reflection.property.KivaKitIncludeProperty;
 import com.telenav.kivakit.core.logging.Logger;
 import com.telenav.kivakit.core.logging.LoggerFactory;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.path.Path;
 import com.telenav.kivakit.core.path.StringPath;
+import com.telenav.kivakit.core.string.KivaKitFormat;
+import com.telenav.kivakit.filesystem.FilePath;
 import com.telenav.kivakit.network.core.internal.lexakai.DiagramNetworkLocation;
 import com.telenav.kivakit.resource.Extension;
 import com.telenav.kivakit.resource.FileName;
-import com.telenav.kivakit.filesystem.FilePath;
-import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
+import org.jetbrains.annotations.NotNull;
 
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
 import java.util.function.Function;
 
-import static com.telenav.kivakit.commandline.SwitchParser.builder;
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE;
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
+import static com.telenav.kivakit.commandline.SwitchParser.switchParserBuilder;
 
 /**
  * An abstraction for network paths.
@@ -49,41 +54,85 @@ import static com.telenav.kivakit.commandline.SwitchParser.builder;
  * clients. Methods that are unique to this class mainly have to do with networks:
  * </p>
  *
+ * <p><b>Path Factory Methods</b></p>
+ *
  * <ul>
- *     <li>{@link #asUri()} - This network path as a URI</li>
- *     <li>{@link #port()} - The port for this network path</li>
+ *     <li>{@link #networkPath(Listener, URI)}</li>
+ *     <li>{@link #networkPath(Listener, Port, String)}</li>
  * </ul>
  *
  * <p><b>Path Parsing Methods</b></p>
  *
  * <ul>
- *     <li>{@link #parseNetworkPath(Listener, String)} - The given string as a network path</li>
+ *     <li>{@link #parseNetworkPath(Listener, String)}</li>
  * </ul>
  *
- * <p><b>Path Factory Methods</b></p>
+ * <p><b>Properties</b></p>
  *
  * <ul>
- *     <li>{@link #networkPath(Listener, URI)} - A network path for the given URI</li>
- *     <li>{@link #networkPath(Listener, Port, String)} - The given port (including host and protocol) and path as a network path</li>
+ *     <li>{@link #parent()}</li>
+ *     <li>{@link #port()}</li>
+ *     <li>{@link #separator()}</li>
+ * </ul>
+ *
+ * <p><b>Conversions</b></p>
+ *
+ * <ul>
+ *     <li>{@link #asAbsolute()}</li>
+ *     <li>{@link #asStringPath()}</li>
+ *     <li>{@link #asUri()}</li>
+ *     <li>{@link #normalized()}</li>
+ * </ul>
+ *
+ * <p><b>Functional</b></p>
+ *
+ * <ul>
+ *     <li>{@link #subpath(int, int)}</li>
+ *     <li>{@link #transformed(Function)}</li>
+ *     <li>{@link #withChild(String)}</li>
+ *     <li>{@link #withChild(Path)}</li>
+ *     <li>{@link #withExtension(Extension)}</li>
+ *     <li>{@link #withParent(String)}</li>
+ *     <li>{@link #withParent(Path)}</li>
+ *     <li>{@link #withRoot(String)}</li>
+ *     <li>{@link #withSeparator(String)}</li>
+ *     <li>{@link #withoutFirst()}</li>
+ *     <li>{@link #withoutLast()}</li>
+ *     <li>{@link #withoutOptionalPrefix(Path)}</li>
+ *     <li>{@link #withoutOptionalSuffix(Path)}</li>
+ *     <li>{@link #withoutPrefix(String)}</li>
+ *     <li>{@link #withoutPrefix(Path)}</li>
+ *     <li>{@link #withoutRoot()}</li>
+ *     <li>{@link #withoutSchemes()}</li>
+ *     <li>{@link #withoutSuffix(Path)}</li>
  * </ul>
  *
  * @author jonathanl (shibo)
  */
+@SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramNetworkLocation.class)
-@LexakaiJavadoc(complete = true)
+@ApiQuality(stability = API_STABLE_EXTENSIBLE,
+            testing = TESTING_NOT_NEEDED,
+            documentation = DOCUMENTATION_COMPLETE)
 public class NetworkPath extends FilePath
 {
     private static final Logger LOGGER = LoggerFactory.newLogger();
 
     /**
+     * Returns a network path for the given URI
+     *
+     * @param listener The listener to call with any problems
      * @return A network path for the given URI
      */
     public static NetworkPath networkPath(Listener listener, URI uri)
     {
-        return networkPath(listener, Port.from(uri), uri.getPath());
+        return networkPath(listener, Port.port(uri), uri.getPath());
     }
 
     /**
+     * Returns a network path for the given port and path
+     *
+     * @param listener The listener to call with any problems
      * @return The given path relative to the given port as a network path
      */
     public static NetworkPath networkPath(Listener listener, Port port, String path)
@@ -92,28 +141,39 @@ public class NetworkPath extends FilePath
         return new NetworkPath(port, StringPath.parseStringPath(listener, path, "/", "/").withRoot(root));
     }
 
+    /**
+     * Returns a switch parser builder for network paths
+     *
+     * @param listener The listener to call with any problems
+     * @param name The name of the switch
+     * @param description The switch description
+     * @return The switch parser builder
+     */
     public static SwitchParser.Builder<NetworkPath> networkPathSwitchParser(Listener listener,
                                                                             String name,
                                                                             String description)
     {
-        return builder(NetworkPath.class)
+        return switchParserBuilder(NetworkPath.class)
                 .name(name)
                 .converter(new NetworkPath.Converter(listener))
                 .description(description);
     }
 
     /**
+     * Parses the given text into a {@link NetworkPath}
+     *
+     * @param text The text to parse
      * @return A network path for the given string
      */
-    public static NetworkPath parseNetworkPath(Listener listener, String path)
+    public static NetworkPath parseNetworkPath(Listener listener, String text)
     {
         try
         {
-            return networkPath(listener, new URI(path));
+            return networkPath(listener, new URI(text));
         }
         catch (URISyntaxException e)
         {
-            listener.problem("Invalid network path: $", path);
+            listener.problem("Invalid network path: $", text);
             return null;
         }
     }
@@ -123,7 +183,9 @@ public class NetworkPath extends FilePath
      *
      * @author jonathanl (shibo)
      */
-    @LexakaiJavadoc(complete = true)
+    @ApiQuality(stability = API_STABLE,
+                testing = TESTING_NOT_NEEDED,
+                documentation = DOCUMENTATION_COMPLETE)
     public static class Converter extends BaseStringConverter<NetworkPath>
     {
         public Converter(Listener listener)
@@ -156,9 +218,9 @@ public class NetworkPath extends FilePath
      * {@inheritDoc}
      */
     @Override
-    public NetworkPath absolute()
+    public NetworkPath asAbsolute()
     {
-        return (NetworkPath) super.absolute();
+        return (NetworkPath) super.asAbsolute();
     }
 
     /**
@@ -173,6 +235,7 @@ public class NetworkPath extends FilePath
     /**
      * @return This network path as a URI
      */
+    @Override
     public URI asUri()
     {
         try
@@ -190,7 +253,7 @@ public class NetworkPath extends FilePath
      * {@inheritDoc}
      */
     @Override
-    public NetworkPath file(FileName child)
+    public NetworkPath file(@NotNull FileName child)
     {
         return (NetworkPath) super.file(child);
     }
@@ -216,7 +279,7 @@ public class NetworkPath extends FilePath
     /**
      * @return The port for this network path (which includes the host and protocol)
      */
-    @KivaKitIncludeProperty
+    @KivaKitFormat
     public Port port()
     {
         return port;
@@ -234,6 +297,7 @@ public class NetworkPath extends FilePath
     /**
      * {@inheritDoc}
      */
+    @SuppressWarnings("SpellCheckingInspection")
     @Override
     public NetworkPath subpath(int start, int end)
     {
@@ -244,7 +308,7 @@ public class NetworkPath extends FilePath
      * {@inheritDoc}
      */
     @Override
-    public NetworkPath transformed(Function<String, String> consumer)
+    public NetworkPath transformed(@NotNull Function<String, String> consumer)
     {
         return (NetworkPath) super.transformed(consumer);
     }
@@ -253,7 +317,7 @@ public class NetworkPath extends FilePath
      * {@inheritDoc}
      */
     @Override
-    public NetworkPath withChild(String child)
+    public NetworkPath withChild(@NotNull String child)
     {
         return (NetworkPath) super.withChild(child);
     }
@@ -262,7 +326,7 @@ public class NetworkPath extends FilePath
      * {@inheritDoc}
      */
     @Override
-    public NetworkPath withChild(Path<String> that)
+    public NetworkPath withChild(@NotNull Path<String> that)
     {
         return (NetworkPath) super.withChild(that);
     }
@@ -271,7 +335,7 @@ public class NetworkPath extends FilePath
      * {@inheritDoc}
      */
     @Override
-    public NetworkPath withExtension(Extension extension)
+    public NetworkPath withExtension(@NotNull Extension extension)
     {
         return (NetworkPath) super.withExtension(extension);
     }
@@ -280,7 +344,7 @@ public class NetworkPath extends FilePath
      * {@inheritDoc}
      */
     @Override
-    public NetworkPath withParent(String element)
+    public NetworkPath withParent(@NotNull String element)
     {
         return (NetworkPath) super.withParent(element);
     }
@@ -289,7 +353,7 @@ public class NetworkPath extends FilePath
      * {@inheritDoc}
      */
     @Override
-    public NetworkPath withParent(Path<String> that)
+    public NetworkPath withParent(@NotNull Path<String> that)
     {
         return (NetworkPath) super.withParent(that);
     }
@@ -298,7 +362,7 @@ public class NetworkPath extends FilePath
      * {@inheritDoc}
      */
     @Override
-    public NetworkPath withRoot(String root)
+    public NetworkPath withRoot(@NotNull String root)
     {
         return (NetworkPath) super.withRoot(root);
     }
@@ -307,7 +371,7 @@ public class NetworkPath extends FilePath
      * {@inheritDoc}
      */
     @Override
-    public NetworkPath withSeparator(String separator)
+    public NetworkPath withSeparator(@NotNull String separator)
     {
         return (NetworkPath) super.withSeparator(separator);
     }
@@ -334,7 +398,7 @@ public class NetworkPath extends FilePath
      * {@inheritDoc}
      */
     @Override
-    public NetworkPath withoutOptionalPrefix(Path<String> prefix)
+    public NetworkPath withoutOptionalPrefix(@NotNull Path<String> prefix)
     {
         return (NetworkPath) super.withoutOptionalPrefix(prefix);
     }
@@ -343,7 +407,7 @@ public class NetworkPath extends FilePath
      * {@inheritDoc}
      */
     @Override
-    public NetworkPath withoutOptionalSuffix(Path<String> suffix)
+    public NetworkPath withoutOptionalSuffix(@NotNull Path<String> suffix)
     {
         return (NetworkPath) super.withoutOptionalSuffix(suffix);
     }
@@ -352,7 +416,7 @@ public class NetworkPath extends FilePath
      * {@inheritDoc}
      */
     @Override
-    public NetworkPath withoutPrefix(Path<String> prefix)
+    public NetworkPath withoutPrefix(@NotNull Path<String> prefix)
     {
         return (NetworkPath) super.withoutPrefix(prefix);
     }
@@ -379,7 +443,7 @@ public class NetworkPath extends FilePath
      * {@inheritDoc}
      */
     @Override
-    public NetworkPath withoutSuffix(Path<String> suffix)
+    public NetworkPath withoutSuffix(@NotNull Path<String> suffix)
     {
         return (NetworkPath) super.withoutSuffix(suffix);
     }
@@ -388,7 +452,7 @@ public class NetworkPath extends FilePath
      * {@inheritDoc}
      */
     @Override
-    protected NetworkPath onCopy(String root, List<String> elements)
+    protected NetworkPath onCopy(@NotNull String root, @NotNull List<String> elements)
     {
         return new NetworkPath(port(), root, elements);
     }

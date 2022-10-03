@@ -18,6 +18,7 @@
 
 package com.telenav.kivakit.core.thread;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramThread;
 import com.telenav.kivakit.core.messaging.repeaters.BaseRepeater;
 import com.telenav.kivakit.core.time.Duration;
@@ -29,6 +30,10 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
+
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
 
 /**
  * A simple state machine with a single state that can be transitioned from one state to another and which allows a
@@ -80,7 +85,11 @@ import java.util.function.Predicate;
  * @author jonathanl (shibo)
  * @see StateWatcher
  */
+@SuppressWarnings({ "unused", "UnusedReturnValue" })
 @UmlClassDiagram(diagram = DiagramThread.class)
+@ApiQuality(stability = API_STABLE_EXTENSIBLE,
+            testing = TESTING_NONE,
+            documentation = DOCUMENTATION_COMPLETE)
 public final class StateMachine<State> extends BaseRepeater
 {
     /** The current state of the receiver */
@@ -104,6 +113,9 @@ public final class StateMachine<State> extends BaseRepeater
         watcher = new StateWatcher<>(initial);
     }
 
+    /**
+     * Returns the current state
+     */
     public State at()
     {
         return at;

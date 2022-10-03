@@ -19,13 +19,13 @@
 package com.telenav.kivakit.network.ftp.secure;
 
 import com.jcraft.jsch.ChannelSftp.LsEntry;
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.collections.watcher.PeriodicCollectionChangeWatcher;
 import com.telenav.kivakit.core.time.Frequency;
 import com.telenav.kivakit.core.time.Time;
 import com.telenav.kivakit.network.core.NetworkAccessConstraints;
 import com.telenav.kivakit.network.core.NetworkPath;
 import com.telenav.kivakit.network.ftp.internal.lexakai.DiagramSecureFtp;
-import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlAggregation;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
@@ -34,6 +34,10 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
+
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
 
 /**
  * A change watcher for an SFTP folder.
@@ -44,7 +48,9 @@ import java.util.Map;
  */
 @UmlClassDiagram(diagram = DiagramSecureFtp.class)
 @UmlRelation(label = "connects with", referent = SecureFtpConnector.class)
-@LexakaiJavadoc(complete = true)
+@ApiQuality(stability = API_STABLE_EXTENSIBLE,
+            testing = TESTING_NONE,
+            documentation = DOCUMENTATION_COMPLETE)
 public class SftpFolderWatcher extends PeriodicCollectionChangeWatcher<NetworkPath>
 {
     private boolean initialized;
@@ -161,7 +167,7 @@ public class SftpFolderWatcher extends PeriodicCollectionChangeWatcher<NetworkPa
     }
 
     /**
-     * @return The SFTP Connector
+     * Returns the SFTP Connector
      */
     private SecureFtpConnector connector()
     {

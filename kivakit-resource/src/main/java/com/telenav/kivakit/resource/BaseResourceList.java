@@ -5,6 +5,7 @@ import com.telenav.kivakit.core.collections.set.ObjectSet;
 import com.telenav.kivakit.core.value.count.Bytes;
 import com.telenav.kivakit.core.value.count.Count;
 import com.telenav.kivakit.interfaces.comparison.Matcher;
+import org.jetbrains.annotations.NotNull;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -14,8 +15,11 @@ import static com.telenav.kivakit.core.collections.set.ObjectSet.objectSet;
 @SuppressWarnings("unused")
 public abstract class BaseResourceList<T extends Resource> extends ObjectList<T>
 {
+    /**
+     * Adds the given resource to this list at the given index
+     */
     @Override
-    public void add(int index, T resource)
+    public void add(int index, @NotNull T resource)
     {
         if (accepts(resource.fileName()))
         {
@@ -23,8 +27,11 @@ public abstract class BaseResourceList<T extends Resource> extends ObjectList<T>
         }
     }
 
+    /**
+     * Adds the given resource to this list
+     */
     @Override
-    public boolean add(T resource)
+    public boolean add(@NotNull T resource)
     {
         if (accepts(resource.fileName()))
         {
@@ -33,12 +40,18 @@ public abstract class BaseResourceList<T extends Resource> extends ObjectList<T>
         return false;
     }
 
+    /**
+     * Returns this list as a set
+     */
     @Override
     public ObjectSet<T> asSet()
     {
         return objectSet(this);
     }
 
+    /**
+     * Returns the number of resources in this list
+     */
     @Override
     public Count count()
     {
@@ -61,11 +74,11 @@ public abstract class BaseResourceList<T extends Resource> extends ObjectList<T>
             for (var resource : this)
             {
                 builder.append("[")
-                        .append(resource.path().absolute())
+                        .append(resource.path().asAbsolute())
                         .append(":")
                         .append(resource.createdAt())
                         .append(":")
-                        .append(resource.modifiedAt())
+                        .append(resource.lastModified())
                         .append(":")
                         .append(resource.sizeInBytes())
                         .append("]");
@@ -79,6 +92,9 @@ public abstract class BaseResourceList<T extends Resource> extends ObjectList<T>
         return null;
     }
 
+    /**
+     * Returns the largest resource in this list
+     */
     public Resource largest()
     {
         Resource largest = null;
@@ -92,7 +108,10 @@ public abstract class BaseResourceList<T extends Resource> extends ObjectList<T>
         return largest;
     }
 
-    public BaseResourceList<T> matching(Extension extension)
+    /**
+     * Returns the resources in this list that match the given extension
+     */
+    public BaseResourceList<T> matching(@NotNull Extension extension)
     {
         return matching(resource ->
         {
@@ -101,8 +120,11 @@ public abstract class BaseResourceList<T extends Resource> extends ObjectList<T>
         });
     }
 
+    /**
+     * Returns the resources in this list that match the given matcher
+     */
     @Override
-    public BaseResourceList<T> matching(Matcher<T> matcher)
+    public BaseResourceList<T> matching(@NotNull Matcher<T> matcher)
     {
         var matches = newResourceList();
         for (var resource : this)
@@ -115,7 +137,10 @@ public abstract class BaseResourceList<T extends Resource> extends ObjectList<T>
         return matches;
     }
 
-    public BaseResourceList<T> relativeTo(ResourceFolder<?> folder)
+    /**
+     * Returns this resource list relative to the given folder
+     */
+    public BaseResourceList<T> relativeTo(@NotNull ResourceFolder<?> folder)
     {
         var resources = newResourceList();
         for (var resource : this)
@@ -127,7 +152,7 @@ public abstract class BaseResourceList<T extends Resource> extends ObjectList<T>
     }
 
     @Override
-    public T set(int index, T resource)
+    public T set(int index, @NotNull T resource)
     {
         if (accepts(resource.fileName()))
         {
@@ -136,6 +161,9 @@ public abstract class BaseResourceList<T extends Resource> extends ObjectList<T>
         return null;
     }
 
+    /**
+     * Returns the smallest resource in this list
+     */
     public Resource smallest()
     {
         Resource smallest = null;
@@ -149,6 +177,9 @@ public abstract class BaseResourceList<T extends Resource> extends ObjectList<T>
         return smallest;
     }
 
+    /**
+     * Returns a list of resources sorted from largest to smallest
+     */
     public BaseResourceList<T> sortedLargestToSmallest()
     {
         var sorted = newResourceList();
@@ -167,6 +198,9 @@ public abstract class BaseResourceList<T extends Resource> extends ObjectList<T>
         return sorted;
     }
 
+    /**
+     * Returns a list of resources sorted from oldest to newest
+     */
     @SuppressWarnings("UnusedReturnValue")
     public BaseResourceList<T> sortedOldestToNewest()
     {
@@ -186,6 +220,9 @@ public abstract class BaseResourceList<T extends Resource> extends ObjectList<T>
         return sorted;
     }
 
+    /**
+     * Returns the total size of all resources in this list
+     */
     public Bytes totalSize()
     {
         var bytes = Bytes._0;
@@ -196,12 +233,21 @@ public abstract class BaseResourceList<T extends Resource> extends ObjectList<T>
         return bytes;
     }
 
-    protected boolean accepts(FileName name)
+    protected boolean accepts(@NotNull FileName name)
     {
         return true;
     }
 
-    protected abstract T newResource(ResourcePath path);
+    /**
+     * Creates a new resource with the given path
+     *
+     * @param path The path
+     * @return The resource
+     */
+    protected abstract T newResource(@NotNull ResourcePath path);
 
+    /**
+     * Creates a new resource list of the subclass type
+     */
     protected abstract BaseResourceList<T> newResourceList();
 }

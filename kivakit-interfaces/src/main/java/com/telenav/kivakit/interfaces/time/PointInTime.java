@@ -4,8 +4,8 @@ import com.telenav.kivakit.annotations.code.ApiQuality;
 
 import java.time.Instant;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_DEFAULT_EXPANDABLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_DEFAULT_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
 
 /**
@@ -79,9 +79,9 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NE
  *
  * @author jonathanl (shibo)
  */
-@ApiQuality(stability = STABLE_DEFAULT_EXPANDABLE,
+@ApiQuality(stability = API_STABLE_DEFAULT_EXTENSIBLE,
             testing = TESTING_NOT_NEEDED,
-            documentation = FULLY_DOCUMENTED)
+            documentation = DOCUMENTATION_COMPLETE)
 public interface PointInTime<Time extends PointInTime<Time, Duration>, Duration extends LengthOfTime<Duration>> extends
         Comparable<PointInTime<?, ?>>,
         TimeMeasurement
@@ -178,6 +178,7 @@ public interface PointInTime<Time extends PointInTime<Time, Duration>, Duration 
     /**
      * @return True if this is time zero
      */
+    @Override
     default boolean isZero()
     {
         return nanoseconds().isZero();
@@ -212,7 +213,7 @@ public interface PointInTime<Time extends PointInTime<Time, Duration>, Duration 
     }
 
     /**
-     * @return This point in time minus the given length of time
+     * Returns this point in time minus the given length of time
      */
     default Time minus(Duration duration)
     {
@@ -236,17 +237,17 @@ public interface PointInTime<Time extends PointInTime<Time, Duration>, Duration 
     }
 
     /**
-     * @return An instance of the class implementing LengthOfTime
+     * Creates an instance of the class implementing LengthOfTime
      */
     Duration newDuration(Nanoseconds nanoseconds);
 
     /**
-     * @return An instance of the class implementing PointInTime
+     * Creates an instance of the class implementing PointInTime
      */
     Time newTime(Nanoseconds nanoseconds);
 
     /**
-     * @return This point in time plus the given duration
+     * Returns this point in time plus the given duration
      */
     default Time plus(Duration that)
     {

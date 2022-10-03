@@ -18,25 +18,31 @@
 
 package com.telenav.kivakit.core.string;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramString;
-import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_STATIC_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+
 /**
- * Heuristic algorithms for pluralizing English words.
+ * Simple heuristic algorithms for pluralizing English words, used to make output a little friendlier.
  *
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramString.class)
-@LexakaiJavadoc(complete = true)
+@ApiQuality(stability = API_STABLE_STATIC_EXTENSIBLE,
+            testing = TESTING_NONE,
+            documentation = DOCUMENTATION_COMPLETE)
 public class Plural
 {
     /**
      * @return The given text, pluralized if size is greater than one
      */
-    public static String pluralize(int size, String text)
+    public static String pluralizeEnglish(int size, String text)
     {
-        return size == 1 ? text : pluralize(text);
+        return size == 1 ? text : pluralizeEnglish(text);
     }
 
     /**
@@ -48,7 +54,7 @@ public class Plural
      *
      * @return The given text as a plural
      */
-    public static String pluralize(String text)
+    public static String pluralizeEnglish(String text)
     {
         if (text.endsWith("y"))
         {

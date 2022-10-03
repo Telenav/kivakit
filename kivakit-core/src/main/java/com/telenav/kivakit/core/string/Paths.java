@@ -18,13 +18,25 @@
 
 package com.telenav.kivakit.core.string;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramString;
+import com.telenav.kivakit.core.path.StringPath;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_STATIC_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+
 /**
+ * Utility methods for working with string paths. In general, prefer {@link StringPath} and subtypes.
+ *
  * @author jonathanl (shibo)
  */
+@SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramString.class)
+@ApiQuality(stability = API_STABLE_STATIC_EXTENSIBLE,
+            testing = TESTING_NONE,
+            documentation = DOCUMENTATION_COMPLETE)
 public class Paths
 {
     /**
@@ -35,7 +47,7 @@ public class Paths
      * @param tails The tails to concatenate to the path
      * @return The concatenated path
      */
-    public static String concatenate(String head, String... tails)
+    public static String pathConcatenate(String head, String... tails)
     {
         var concatenated = new StringBuilder(Strip.trailing(head, "/"));
         for (var tail : tails)
@@ -52,7 +64,7 @@ public class Paths
     /**
      * @return The first element in the given path up to the separator or null if no separator is found
      */
-    public static String head(String path, char separator)
+    public static String pathHead(String path, char separator)
     {
         if (path != null)
         {
@@ -69,7 +81,7 @@ public class Paths
     /**
      * @return The first element in the given path up to the separator or null if the separator is not found
      */
-    public static String head(String path, String separator)
+    public static String pathHead(String path, String separator)
     {
         if (path != null)
         {
@@ -85,23 +97,23 @@ public class Paths
     /**
      * @return The first element in the given path up to the separator or the path itself if the separator is not found
      */
-    public static String optionalHead(String path, String separator)
+    public static String pathOptionalHead(String path, String separator)
     {
-        return StringTo.string(head(path, separator), path);
+        return StringConversions.toString(pathHead(path, separator), path);
     }
 
     /**
      * @return The first element in the given path up to the separator or the path itself if no separator is found
      */
-    public static String optionalHead(String path, char separator)
+    public static String pathOptionalHead(String path, char separator)
     {
-        return StringTo.string(head(path, separator), path);
+        return StringConversions.toString(pathHead(path, separator), path);
     }
 
     /**
      * @return The last element in the given path up to the separator or the path itself if no separator is found
      */
-    public static String optionalSuffix(String path, char separator)
+    public static String pathOptionalSuffix(String path, char separator)
     {
         if (path != null)
         {
@@ -114,7 +126,7 @@ public class Paths
     /**
      * @return All but the first element in the path or null if the separator does not occur
      */
-    public static String tail(String string, String separator)
+    public static String pathTail(String string, String separator)
     {
         if (string != null)
         {
@@ -130,7 +142,7 @@ public class Paths
     /**
      * @return All but the first element in the path or null if the separator does not occur
      */
-    public static String tail(String text, char separator)
+    public static String pathTail(String text, char separator)
     {
         if (text != null)
         {
@@ -143,7 +155,10 @@ public class Paths
         return null;
     }
 
-    public static String toPackage(String path)
+    /**
+     * Returns the given path as a package path
+     */
+    public static String pathToPackage(String path)
     {
         return path.replaceAll("/", ".");
     }
@@ -151,15 +166,15 @@ public class Paths
     /**
      * @return The last element in the given path up to the separator or the path itself if no separator is found
      */
-    public static String withoutOptionalSuffix(String path, char separator)
+    public static String pathWithoutOptionalSuffix(String path, char separator)
     {
-        return StringTo.string(withoutSuffix(path, separator), path);
+        return StringConversions.toString(pathWithoutSuffix(path, separator), path);
     }
 
     /**
      * @return The last element in the given path up to the separator or null if no separator is found
      */
-    public static String withoutSuffix(String path, char separator)
+    public static String pathWithoutSuffix(String path, char separator)
     {
         if (path != null)
         {

@@ -18,6 +18,7 @@
 
 package com.telenav.kivakit.serialization.core;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.code.UncheckedVoidCode;
 import com.telenav.kivakit.core.collections.list.ObjectList;
 import com.telenav.kivakit.core.language.trait.TryTrait;
@@ -44,8 +45,11 @@ import java.io.OutputStream;
 import java.net.Socket;
 import java.util.Collection;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_DEFAULT_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
 import static com.telenav.kivakit.core.ensure.Ensure.ensureFalse;
-import static com.telenav.kivakit.serialization.core.SerializationSession.SessionType.RESOURCE;
+import static com.telenav.kivakit.serialization.core.SerializationSession.SessionType.RESOURCE_SERIALIZATION_SESSION;
 
 /**
  * A high-level abstraction for serialization. This interface allows the serialization of a sequence of
@@ -75,8 +79,9 @@ import static com.telenav.kivakit.serialization.core.SerializationSession.Sessio
  *     <li>{@link #open(Socket, SessionType, Version, ProgressReporter)}</li>
  *     <li>{@link #open(InputStream, OutputStream, SessionType, Version)}</li>
  * </ul>
+ *
  * <p>
- * When a {@link SessionType#CLIENT} or {@link SessionType#SERVER} session is opened, handshaking and
+ * When a {@link SessionType#CLIENT_SOCKET_SERIALIZATION_SESSION} or {@link SessionType#SERVER_SOCKET_SERIALIZATION_SESSION} session is opened, handshaking and
  * exchange for version information will take place.
  * </p>
  *
@@ -89,13 +94,33 @@ import static com.telenav.kivakit.serialization.core.SerializationSession.Sessio
  * <ul>
  *     <li>{@link #read()} - Read a {@link SerializableObject} from input</li>
  *     <li>{@link #read(Class)} - Read an object of the given type from input</li>
+ *     <LI>{@link #readList(Class)}</LI>
+ *     <li>{@link #readResource(Resource, UncheckedVoidCode)}</li>
  *     <li>{@link #write(Object)} - Write an object to output</li>
  *     <li>{@link #write(SerializableObject)} - Write a {@link SerializableObject} to output</li>
+ *     <li>{@link #writeList(Collection)}</li>
+ *     <li>{@link #writeResource(WritableResource, Version, UncheckedVoidCode)}</li>
  * </ul>
  *
  * <p>
  * objects will be read and written to the streams passed to open().
  * </p>
+ *
+ * <p><b>Closing a Session</b></p>
+ *
+ * <ul>
+ *     <li>{@link #close()}</li>
+ *     <li>{@link #onClose()}</li>
+ * </ul>
+ *
+ * <p><b>Properties</b></p>
+ *
+ * <u>
+ *     <li>{@link #isActive()}</li>
+ *     <li>{@link #isReading()}</li>
+ *     <li>{@link #isWriting()}</li>
+ *     <li>{@link #maximumFlushTime()}</li>
+ * </u>
  *
  * <p><b>Example</b></p>
  *
@@ -112,6 +137,9 @@ import static com.telenav.kivakit.serialization.core.SerializationSession.Sessio
  * @see Version
  */
 @SuppressWarnings("unused")
+@ApiQuality(stability = API_STABLE_DEFAULT_EXTENSIBLE,
+            testing = TESTING_NONE,
+            documentation = DOCUMENTATION_COMPLETE)
 public interface SerializationSession extends
         Named,
         Closeable,
@@ -126,15 +154,18 @@ public interface SerializationSession extends
     enum SessionType
     {
         /** This session is interacting with a client socket */
-        CLIENT,
+        CLIENT_SOCKET_SERIALIZATION_SESSION,
 
         /** This session is interacting with a server socket */
-        SERVER,
+        SERVER_SOCKET_SERIALIZATION_SESSION,
 
         /** This session is serializing to a resource */
-        RESOURCE
+        RESOURCE_SERIALIZATION_SESSION
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     default void close()
     {
@@ -142,7 +173,7 @@ public interface SerializationSession extends
     }
 
     /**
-     *
+     * Returns true if this session is reading or writing
      */
     default boolean isActive()
     {
@@ -159,6 +190,9 @@ public interface SerializationSession extends
      */
     boolean isWriting();
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     default Duration maximumFlushTime()
     {
@@ -172,8 +206,9 @@ public interface SerializationSession extends
 
     /**
      * @return Opens the given socket for reading and writing. Version handshaking is performed automatically for
-     * {@link SessionType#SERVER}s and {@link SessionType#CLIENT}s with the version of the connected endpoint returned
-     * to the caller.
+     * {@link SessionType#SERVER_SOCKET_SERIALIZATION_SESSION}s and
+     * {@link SessionType#CLIENT_SOCKET_SERIALIZATION_SESSION}s with the version of the connected endpoint returned to
+     * the caller.
      */
     default Version open(Socket socket,
                          SessionType sessionType,
@@ -214,7 +249,7 @@ public interface SerializationSession extends
      */
     default Version open(InputStream input)
     {
-        return open(input, null, RESOURCE, null);
+        return open(input, null, RESOURCE_SERIALIZATION_SESSION, null);
     }
 
     /**
@@ -230,7 +265,7 @@ public interface SerializationSession extends
      */
     default void open(OutputStream output, Version version)
     {
-        open(output, RESOURCE, version);
+        open(output, RESOURCE_SERIALIZATION_SESSION, version);
     }
 
     /**
@@ -292,7 +327,7 @@ public interface SerializationSession extends
     {
         try (var input = resource.openForReading())
         {
-            open(input, RESOURCE);
+            open(input, RESOURCE_SERIALIZATION_SESSION);
             tryCatchThrow(code, "Error while reading from: $");
             close();
         }
@@ -342,7 +377,7 @@ public interface SerializationSession extends
     {
         try (var output = resource.openForWriting())
         {
-            open(output, RESOURCE, version);
+            open(output, RESOURCE_SERIALIZATION_SESSION, version);
             tryCatchThrow(code, "Error while writing to: $");
             close();
         }

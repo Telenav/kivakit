@@ -18,6 +18,7 @@
 
 package com.telenav.kivakit.core.time;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramTime;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
@@ -25,13 +26,21 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeFormatterBuilder;
 import java.time.temporal.ChronoField;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+
 /**
  * @author jonathanl (shibo)
  */
 @SuppressWarnings("SpellCheckingInspection")
 @UmlClassDiagram(diagram = DiagramTime.class)
+@ApiQuality(stability = API_STABLE_EXTENSIBLE,
+            testing = TESTING_NONE,
+            documentation = DOCUMENTATION_COMPLETE)
 public class TimeFormats
 {
+    /** KivaKit date format, which is compatible with all filesystems */
     public static final DateTimeFormatter KIVAKIT_DATE = builder("yyyy.MM.dd")
             .parseDefaulting(ChronoField.HOUR_OF_DAY, 0)
             .parseDefaulting(ChronoField.MINUTE_OF_HOUR, 0)
@@ -39,18 +48,25 @@ public class TimeFormats
             .parseDefaulting(ChronoField.MILLI_OF_SECOND, 0)
             .toFormatter();
 
+    /** KivaKit time format, which is compatible with all filesystems */
     public static final DateTimeFormatter KIVAKIT_TIME = builder("h.mma")
             .parseDefaulting(ChronoField.YEAR, LocalTime.now().year().asUnits())
             .parseDefaulting(ChronoField.MONTH_OF_YEAR, LocalTime.now().month().monthOfYear())
             .parseDefaulting(ChronoField.DAY_OF_MONTH, LocalTime.now().dayOfMonth().asUnits())
             .toFormatter();
 
+    /** KivaKit date and time format */
     public static final DateTimeFormatter KIVAKIT_DATE_TIME = builder("yyyy.MM.dd_h.mma").toFormatter();
 
+    /** KivaKit date, time, and seconds format */
     public static final DateTimeFormatter KIVAKIT_DATE_TIME_SECONDS = builder("yyyy.MM.dd_h.mm.ssa").toFormatter();
 
+    /** KivaKit date, time, seconds, and milliseconds format */
     public static final DateTimeFormatter KIVAKIT_DATE_TIME_MILLISECONDS = builder("yyyy.MM.dd_h.mm.ss.SSSa").toFormatter();
 
+    /**
+     * Returns a case sensitive {@link DateTimeFormatterBuilder} for the given pattern
+     */
     private static DateTimeFormatterBuilder builder(String pattern)
     {
         return new DateTimeFormatterBuilder()

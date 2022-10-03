@@ -20,12 +20,11 @@ package com.telenav.kivakit.core.bits;
 
 import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramBits;
-import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.STABLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
-import static com.telenav.kivakit.annotations.code.TestingQuality.MORE_TESTING_NEEDED;
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_INSUFFICIENT;
 
 /**
  * A {@link BitDiagram} is a character string that visually depicts one or more bit fields of a primitive value such as
@@ -70,18 +69,16 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.MORE_TESTING_N
  */
 @SuppressWarnings("SpellCheckingInspection")
 @UmlClassDiagram(diagram = DiagramBits.class)
-@LexakaiJavadoc(complete = true)
-@ApiQuality(stability = STABLE,
-            testing = MORE_TESTING_NEEDED,
-            documentation = FULLY_DOCUMENTED)
+@ApiQuality(stability = API_STABLE,
+            testing = TESTING_INSUFFICIENT,
+            documentation = DOCUMENTATION_COMPLETE)
 public class BitDiagram
 {
     /**
      * The bit field for a given character in a bit diagram
      */
     @SuppressWarnings("unused")
-    @LexakaiJavadoc(complete = true)
-    public static class BitField
+        public static class BitField
     {
         /** The mask to access the bit field */
         private long mask;

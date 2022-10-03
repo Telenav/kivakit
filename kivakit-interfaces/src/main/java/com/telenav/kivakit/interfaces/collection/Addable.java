@@ -27,8 +27,8 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Iterator;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.MORE_EVALUATION_NEEDED;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.ApiStability.API_FURTHER_EVALUATION_NEEDED;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
 import static com.telenav.kivakit.interfaces.comparison.Matcher.matchAll;
 
@@ -41,9 +41,9 @@ import static com.telenav.kivakit.interfaces.comparison.Matcher.matchAll;
  */
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramCollection.class)
-@ApiQuality(stability = MORE_EVALUATION_NEEDED,
+@ApiQuality(stability = API_FURTHER_EVALUATION_NEEDED,
             testing = TESTING_NOT_NEEDED,
-            documentation = FULLY_DOCUMENTED,
+            documentation = DOCUMENTATION_COMPLETE,
             reviews = 1,
             reviewers = "shibo")
 public interface Addable<Value> extends SpaceLimited
@@ -146,7 +146,7 @@ public interface Addable<Value> extends SpaceLimited
             var value = values.next();
             if (matcher.matches(value))
             {
-                if (!add(values.next()))
+                if (!add(value))
                 {
                     return -1;
                 }

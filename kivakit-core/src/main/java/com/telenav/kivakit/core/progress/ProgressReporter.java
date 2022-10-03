@@ -18,36 +18,40 @@
 
 package com.telenav.kivakit.core.progress;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramProgress;
 import com.telenav.kivakit.core.progress.reporters.BroadcastingProgressReporter;
-import com.telenav.kivakit.core.progress.reporters.ProgressiveInputStream;
-import com.telenav.kivakit.core.progress.reporters.ProgressiveOutputStream;
 import com.telenav.kivakit.core.value.count.BaseCount;
 import com.telenav.kivakit.core.value.count.Count;
 import com.telenav.kivakit.interfaces.lifecycle.Resettable;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
 
-import java.io.InputStream;
-import java.io.OutputStream;
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_DEFAULT_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
 
 /**
  * Reports the progress of some operation to an end-user in some manner. The operation begins when {@link #start()} is
  * called and ends when {@link #end()} is called. During the operation, each increment of progress can be reported with
  * {@link #next()} or {@link #next(Count)}. As the operation progresses, any {@link ProgressListener} that is registered
- * via {@link #listener(ProgressListener)} is called with the percent-complete.
+ * via {@link #progressReporter(ProgressListener)} is called with the percent-complete.
  *
  * @author jonathanl (shibo)
  * @see BroadcastingProgressReporter
  */
+@SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramProgress.class)
 @UmlRelation(label = "reports progress to", referent = ProgressListener.class)
+@ApiQuality(stability = API_STABLE_DEFAULT_EXTENSIBLE,
+            testing = TESTING_NOT_NEEDED,
+            documentation = DOCUMENTATION_COMPLETE)
 public interface ProgressReporter extends Resettable
 {
     /**
      * A progress reporter that does nothing
      */
-    static ProgressReporter none()
+    static ProgressReporter nullProgressReporter()
     {
         return () ->
         {
@@ -75,15 +79,6 @@ public interface ProgressReporter extends Resettable
     default boolean isIndefinite()
     {
         return steps() == null;
-    }
-
-    /**
-     * Calls a listener with the percent of progress each time it changes. This method is only called if {@link
-     * #steps()} is larger than 0.
-     */
-    default ProgressReporter listener(ProgressListener listener)
-    {
-        return this;
     }
 
     /**
@@ -120,22 +115,13 @@ public interface ProgressReporter extends Resettable
         return this;
     }
 
-    default ProgressiveInputStream progressiveInput(InputStream input)
+    /**
+     * Calls a listener with the percent of progress each time it changes. This method is only called if
+     * {@link #steps()} is larger than 0.
+     */
+    default ProgressReporter progressReporter(ProgressListener listener)
     {
-        if (input instanceof ProgressiveInputStream)
-        {
-            return (ProgressiveInputStream) input;
-        }
-        return new ProgressiveInputStream(input, this);
-    }
-
-    default ProgressiveOutputStream progressiveOutput(OutputStream output)
-    {
-        if (output instanceof ProgressiveOutputStream)
-        {
-            return (ProgressiveOutputStream) output;
-        }
-        return new ProgressiveOutputStream(output, this);
+        return this;
     }
 
     /**

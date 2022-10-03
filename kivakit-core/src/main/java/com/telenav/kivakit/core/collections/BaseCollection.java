@@ -7,7 +7,7 @@ import com.telenav.kivakit.core.collections.list.ObjectList;
 import com.telenav.kivakit.core.collections.list.StringList;
 import com.telenav.kivakit.core.logging.Logger;
 import com.telenav.kivakit.core.logging.LoggerFactory;
-import com.telenav.kivakit.core.string.StringTo;
+import com.telenav.kivakit.core.string.StringConversions;
 import com.telenav.kivakit.core.value.count.Count;
 import com.telenav.kivakit.core.value.count.Countable;
 import com.telenav.kivakit.core.value.count.Maximum;
@@ -29,9 +29,9 @@ import java.util.Set;
 import java.util.function.Function;
 import java.util.function.Predicate;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXPANDABLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
-import static com.telenav.kivakit.annotations.code.TestingQuality.MORE_TESTING_NEEDED;
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_INSUFFICIENT;
 import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
 import static com.telenav.kivakit.interfaces.string.StringFormattable.Format.TO_STRING;
 
@@ -156,9 +156,9 @@ import static com.telenav.kivakit.interfaces.string.StringFormattable.Format.TO_
  * @see StringFormattable
  */
 @SuppressWarnings("unused")
-@ApiQuality(stability = STABLE_EXPANDABLE,
-            testing = MORE_TESTING_NEEDED,
-            documentation = FULLY_DOCUMENTED)
+@ApiQuality(stability = API_STABLE_EXTENSIBLE,
+            testing = TESTING_INSUFFICIENT,
+            documentation = DOCUMENTATION_COMPLETE)
 public abstract class BaseCollection<Value> implements
         Addable<Value>,
         Collection<Value>,
@@ -244,12 +244,12 @@ public abstract class BaseCollection<Value> implements
      */
     @SuppressWarnings("SwitchStatementWithTooFewBranches")
     @Override
-    public String asString(StringFormattable.Format format)
+    public String asString(StringFormattable.@NotNull Format format)
     {
         switch (format)
         {
             case DEBUG:
-                return join(separator(), StringTo::debug);
+                return join(separator(), StringConversions::toDebugString);
 
             default:
                 return join();
@@ -553,6 +553,6 @@ public abstract class BaseCollection<Value> implements
      */
     protected String toString(Value value)
     {
-        return StringTo.string(value);
+        return StringConversions.toString(value);
     }
 }

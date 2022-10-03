@@ -18,21 +18,31 @@
 
 package com.telenav.kivakit.core.os;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.io.IO;
 import com.telenav.kivakit.core.io.ProgressiveStringReader;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.progress.ProgressReporter;
-import com.telenav.lexakai.annotations.LexakaiJavadoc;
+
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_STATIC_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
 
 /**
  * Utility methods that work with Java {@link Process} objects.
  *
  * @author jonathanl (shibo)
  */
-@LexakaiJavadoc(complete = true)
+@ApiQuality(stability = API_STABLE_STATIC_EXTENSIBLE,
+            testing = TESTING_NONE,
+            documentation = DOCUMENTATION_COMPLETE)
 public class Processes
 {
     /**
+     * Captures the output of a process
+     *
+     * @param listener The listener to call with any problems
+     * @param process The process
      * @return The output of the given process as a string
      */
     public static String captureOutput(Listener listener, Process process)
@@ -40,7 +50,7 @@ public class Processes
         var in = process.getInputStream();
         try
         {
-            return new ProgressiveStringReader(listener, in).readString(ProgressReporter.none());
+            return new ProgressiveStringReader(listener, in).readString(ProgressReporter.nullProgressReporter());
         }
         finally
         {
@@ -71,7 +81,7 @@ public class Processes
     /**
      * Waits for the given process to terminate
      */
-    public static void waitFor(Process process)
+    public static void waitForTermination(Process process)
     {
         try
         {

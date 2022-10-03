@@ -18,6 +18,7 @@
 
 package com.telenav.kivakit.launcher;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.collections.list.StringList;
 import com.telenav.kivakit.core.messaging.repeaters.BaseRepeater;
 import com.telenav.kivakit.core.os.OperatingSystem;
@@ -26,19 +27,24 @@ import com.telenav.kivakit.core.progress.ProgressReporter;
 import com.telenav.kivakit.core.thread.KivaKitThread;
 import com.telenav.kivakit.filesystem.File;
 import com.telenav.kivakit.filesystem.Folder;
-import com.telenav.kivakit.resource.Extension;
 import com.telenav.kivakit.properties.PropertyMap;
+import com.telenav.kivakit.resource.Extension;
 import com.telenav.kivakit.resource.Resourceful;
 import com.telenav.kivakit.resource.internal.lexakai.DiagramJarLauncher;
-import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlAggregation;
+import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_ENUM_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
 import static com.telenav.kivakit.core.ensure.Ensure.unsupported;
 import static com.telenav.kivakit.launcher.JarLauncher.ProcessType.CHILD;
 import static com.telenav.kivakit.launcher.JarLauncher.ProcessType.DETACHED;
@@ -78,7 +84,9 @@ import static com.telenav.kivakit.launcher.JarLauncher.ProcessType.DETACHED;
  */
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramJarLauncher.class)
-@LexakaiJavadoc(complete = true)
+@ApiQuality(stability = API_STABLE_EXTENSIBLE,
+            testing = TESTING_NONE,
+            documentation = DOCUMENTATION_COMPLETE)
 public class JarLauncher extends BaseRepeater
 {
     /**
@@ -87,7 +95,9 @@ public class JarLauncher extends BaseRepeater
      * @author jonathanl (shibo)
      */
     @UmlClassDiagram(diagram = DiagramJarLauncher.class)
-    @LexakaiJavadoc(complete = true)
+    @ApiQuality(stability = API_STABLE_ENUM_EXTENSIBLE,
+                testing = TESTING_NOT_NEEDED,
+                documentation = DOCUMENTATION_COMPLETE)
     public enum ProcessType
     {
         DETACHED,
@@ -99,7 +109,9 @@ public class JarLauncher extends BaseRepeater
      *
      * @author jonathanl (shibo)
      */
-    @LexakaiJavadoc(complete = true)
+    @ApiQuality(stability = API_STABLE_ENUM_EXTENSIBLE,
+                testing = TESTING_NOT_NEEDED,
+                documentation = DOCUMENTATION_COMPLETE)
     public enum RedirectTo
     {
         FILE,
@@ -124,7 +136,7 @@ public class JarLauncher extends BaseRepeater
     /**
      * Adds the given resourced object to this launcher as a potential place to load the JAR file from
      */
-    public JarLauncher addJarSource(Resourceful resourced)
+    public JarLauncher addJarSource(@NotNull Resourceful resourced)
     {
         jarSources.add(resourced);
         return this;
@@ -133,7 +145,7 @@ public class JarLauncher extends BaseRepeater
     /**
      * @param arguments The arguments to pass to the launched Java program
      */
-    public JarLauncher arguments(String... arguments)
+    public JarLauncher arguments(@NotNull String... arguments)
     {
         programArguments = StringList.stringList(Arrays.asList(arguments));
         return this;
@@ -142,7 +154,7 @@ public class JarLauncher extends BaseRepeater
     /**
      * @param arguments The arguments to pass to the launched Java program
      */
-    public JarLauncher arguments(StringList arguments)
+    public JarLauncher arguments(@NotNull StringList arguments)
     {
         programArguments = arguments;
         return this;
@@ -170,7 +182,7 @@ public class JarLauncher extends BaseRepeater
     /**
      * @param type The type of process to launch
      */
-    public JarLauncher processType(ProcessType type)
+    public JarLauncher processType(@NotNull ProcessType type)
     {
         processType = type;
         return this;
@@ -179,7 +191,7 @@ public class JarLauncher extends BaseRepeater
     /**
      * @param redirectTo The type of output redirection to perform
      */
-    public JarLauncher redirectTo(RedirectTo redirectTo)
+    public JarLauncher redirectTo(@NotNull RedirectTo redirectTo)
     {
         this.redirectTo = redirectTo;
         return this;
@@ -196,14 +208,14 @@ public class JarLauncher extends BaseRepeater
         for (var source : jarSources)
         {
             // get the resource and materialize it to the local host,
-            var resource = source.resource().materialized(ProgressReporter.none());
+            var resource = source.resource().materialized(ProgressReporter.nullProgressReporter());
             try
             {
                 // get the resource basename,
                 var base = resource.fileName().withoutExtension(Extension.JAR);
 
                 // and create the argument list.
-                var java = OperatingSystem.operatingSystem().java();
+                var java = OperatingSystem.operatingSystem().javaExecutable();
                 var arguments = new StringList();
                 arguments.add(java);
                 if (headless)
@@ -251,7 +263,7 @@ public class JarLauncher extends BaseRepeater
                 var pid = OperatingSystem.operatingSystem().processIdentifier();
 
                 // and launch the jar, redirecting output to
-                var announcement = PropertyMap.create();
+                var announcement = PropertyMap.propertyMap();
                 announcement.put("jar", resource.path().toString());
                 announcement.put("arguments", arguments.join(" "));
                 switch (redirectTo)

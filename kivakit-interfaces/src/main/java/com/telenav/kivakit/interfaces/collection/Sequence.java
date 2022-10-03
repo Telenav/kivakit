@@ -31,9 +31,9 @@ import java.util.List;
 import java.util.Set;
 import java.util.function.Function;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.MORE_EVALUATION_NEEDED;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
-import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
+import static com.telenav.kivakit.annotations.code.ApiStability.API_FURTHER_EVALUATION_NEEDED;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
 
 /**
  * A sequence of values returned by {@link #asIterator()} and {@link #asIterator(Matcher)}.
@@ -98,9 +98,9 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
  */
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramCollection.class)
-@ApiQuality(stability = MORE_EVALUATION_NEEDED,
-            testing = UNTESTED,
-            documentation = FULLY_DOCUMENTED,
+@ApiQuality(stability = API_FURTHER_EVALUATION_NEEDED,
+            testing = TESTING_NONE,
+            documentation = DOCUMENTATION_COMPLETE,
             reviews = 1,
             reviewers = "shibo")
 public interface Sequence<Value> extends
@@ -108,7 +108,7 @@ public interface Sequence<Value> extends
         Joinable<Value>
 {
     /**
-     * @return True if all elements in this sequence match the given matcher
+     * Returns true if all elements in this sequence match the given matcher
      */
     default boolean allMatch(Matcher<Value> matcher)
     {
@@ -123,7 +123,7 @@ public interface Sequence<Value> extends
     }
 
     /**
-     * @return True if any value in this sequence matches the given matcher
+     * Returns true if any value in this sequence matches the given matcher
      */
     default boolean anyMatch(Matcher<Value> matcher)
     {
@@ -131,7 +131,7 @@ public interface Sequence<Value> extends
     }
 
     /**
-     * @return A hash code for the elements in this sequence
+     * Returns a hash code for the elements in this sequence
      */
     default int asHashCode()
     {
@@ -144,7 +144,7 @@ public interface Sequence<Value> extends
     }
 
     /**
-     * @return The elements in this list matching the given matcher
+     * Returns the elements in this list matching the given matcher
      */
     default Iterable<Value> asIterable(Matcher<Value> matcher)
     {
@@ -152,7 +152,7 @@ public interface Sequence<Value> extends
     }
 
     /**
-     * @return An {@link Iterable} over elements in this sequence
+     * Returns an {@link Iterable} over elements in this sequence
      */
     @NotNull
     default Iterable<Value> asIterable()
@@ -161,7 +161,7 @@ public interface Sequence<Value> extends
     }
 
     /**
-     * @return An {@link Iterator} over elements in this sequence
+     * Returns an {@link Iterator} over elements in this sequence
      */
     @NotNull
     default Iterator<Value> asIterator()
@@ -189,7 +189,7 @@ public interface Sequence<Value> extends
     }
 
     /**
-     * @return This sequence as a set
+     * Returns this sequence as a set
      */
     default Set<Value> asSet()
     {
@@ -208,7 +208,7 @@ public interface Sequence<Value> extends
     }
 
     /**
-     * @return The first value that matches the matcher
+     * Returns the first value that matches the matcher
      */
     default Value findFirst(Matcher<Value> matcher)
     {
@@ -223,7 +223,7 @@ public interface Sequence<Value> extends
     }
 
     /**
-     * @return The first item in this sequence, or null if there is none
+     * Returns the first item in this sequence, or null if there is none
      */
     default Value first()
     {
@@ -231,7 +231,7 @@ public interface Sequence<Value> extends
     }
 
     /**
-     * @return The head (first element) of this sequence or null if there is none
+     * Returns the head (first element) of this sequence or null if there is none
      */
     default Value head()
     {
@@ -239,7 +239,7 @@ public interface Sequence<Value> extends
     }
 
     /**
-     * @return The index of the first value in this sequence matching the given matcher. If no value in the sequence
+     * Returns the index of the first value in this sequence matching the given matcher. If no value in the sequence
      * matches then -1 is returned.
      */
     default int indexOfFirst(Matcher<Value> matcher)
@@ -257,7 +257,7 @@ public interface Sequence<Value> extends
     }
 
     /**
-     * @return The index of the given value or -1 if none exists
+     * Returns the index of the given value or -1 if none exists
      */
     default int indexOfFirst(Value value)
     {
@@ -265,7 +265,7 @@ public interface Sequence<Value> extends
     }
 
     /**
-     * @return True if this sequence object and that sequence have all the same elements
+     * Returns true if this sequence object and that sequence have all the same elements
      */
     default boolean isEqualTo(Sequence<Value> that)
     {
@@ -305,7 +305,7 @@ public interface Sequence<Value> extends
     }
 
     /**
-     * @return True if no element in this sequence matches the given matcher
+     * Returns true if no element in this sequence matches the given matcher
      */
     default boolean noneMatch(Matcher<Value> matcher)
     {
@@ -313,7 +313,7 @@ public interface Sequence<Value> extends
     }
 
     /**
-     * @return The tail of this sequence (all elements but the first element). If there is only one element, the tail is
+     * Returns the tail of this sequence (all elements but the first element). If there is only one element, the tail is
      * an empty list.
      */
     default List<Value> tail()

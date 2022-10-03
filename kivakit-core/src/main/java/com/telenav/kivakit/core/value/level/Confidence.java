@@ -30,7 +30,6 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramCount.class)
-@LexakaiJavadoc(complete = true)
 public class Confidence extends Level
 {
     public static final Confidence FULL = new Confidence(1);
@@ -77,9 +76,9 @@ public class Confidence extends Level
     }
 
     @Override
-    public Confidence divide(Level that)
+    public Confidence dividedBy(Level that)
     {
-        return (Confidence) super.divide(that);
+        return (Confidence) super.dividedBy(that);
     }
 
     @Override

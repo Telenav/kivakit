@@ -33,9 +33,9 @@ import java.util.Collection;
 import java.util.Comparator;
 import java.util.function.Function;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXPANDABLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
-import static com.telenav.kivakit.annotations.code.TestingQuality.MORE_TESTING_NEEDED;
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_INSUFFICIENT;
 
 /**
  * A bounded list of objects with overrides of methods from {@link BaseList} to downcast return values to
@@ -66,9 +66,9 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.MORE_TESTING_N
  */
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramCollections.class)
-@ApiQuality(stability = STABLE_EXPANDABLE,
-            testing = MORE_TESTING_NEEDED,
-            documentation = FULLY_DOCUMENTED)
+@ApiQuality(stability = API_STABLE_EXTENSIBLE,
+            testing = TESTING_INSUFFICIENT,
+            documentation = DOCUMENTATION_COMPLETE)
 public class ObjectList<Value> extends BaseList<Value>
 {
     /**

@@ -181,7 +181,7 @@ public abstract class BaseSet<Value> extends BaseCollection<Value> implements
         super(maximumSize);
 
         // If there is room for the initial values,
-        if (hasRoomFor(values.size()))
+        if (values.size() < maximumSize.asInt())
         {
             // save the set.
             this.set = newSet();

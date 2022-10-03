@@ -27,9 +27,9 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.STABLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
-import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
 
 /**
  * An implementation of {@link Iterator} that takes care of the basic logic of an iterator. Subclasses only need to
@@ -40,9 +40,9 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramIteration.class)
-@ApiQuality(stability = STABLE,
-            testing = UNTESTED,
-            documentation = FULLY_DOCUMENTED)
+@ApiQuality(stability = API_STABLE,
+            testing = TESTING_NONE,
+            documentation = DOCUMENTATION_COMPLETE)
 public abstract class BaseIterator<Value> implements Iterator<Value>
 {
     /** The next value in the sequence, if any */

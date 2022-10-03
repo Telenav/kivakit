@@ -18,10 +18,10 @@
 
 package com.telenav.kivakit.core.vm;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramThread;
 import com.telenav.kivakit.core.time.Duration;
 import com.telenav.kivakit.core.time.Time;
-import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlAggregation;
 
@@ -30,14 +30,20 @@ import java.lang.management.ThreadMXBean;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+
 /**
  * Captures a snapshot of {@link ThreadStatus} for all running threads via the Java management API.
  *
  * @author jonathanl (shibo)
  * @see ThreadStatus
  */
-@UmlClassDiagram(diagram = DiagramThread.class)
-@LexakaiJavadoc(complete = true)
+@SuppressWarnings("unused") @UmlClassDiagram(diagram = DiagramThread.class)
+@ApiQuality(stability = API_STABLE_EXTENSIBLE,
+            testing = TESTING_NONE,
+            documentation = DOCUMENTATION_COMPLETE)
 public class ThreadSnapshot
 {
     /** The status of each thread */
@@ -59,11 +65,17 @@ public class ThreadSnapshot
         return capturedAt;
     }
 
+    /**
+     * Returns the CPU time consumed by the current thread
+     */
     public Duration cpuTime()
     {
         return cpuTime(Thread.currentThread());
     }
 
+    /**
+     * Returns the CPU time consumed by the given thread
+     */
     public Duration cpuTime(Thread thread)
     {
         for (var status : threads)

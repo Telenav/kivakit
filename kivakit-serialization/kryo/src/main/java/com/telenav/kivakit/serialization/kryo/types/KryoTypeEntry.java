@@ -20,9 +20,14 @@ package com.telenav.kivakit.serialization.kryo.types;
 
 import com.esotericsoftware.kryo.Kryo;
 import com.esotericsoftware.kryo.Serializer;
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.language.Hash;
 import com.telenav.kivakit.core.string.Strings;
-import com.telenav.lexakai.annotations.LexakaiJavadoc;
+
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.ApiType.PRIVATE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
 
 /**
  * <b>Not public API</b>
@@ -33,7 +38,10 @@ import com.telenav.lexakai.annotations.LexakaiJavadoc;
  *
  * @author jonathanl (shibo)
  */
-@LexakaiJavadoc(complete = true)
+@ApiQuality(stability = API_STABLE_EXTENSIBLE,
+            testing = TESTING_NONE,
+            documentation = DOCUMENTATION_COMPLETE,
+            type = PRIVATE)
 class KryoTypeEntry
 {
     /** The serialized type */
@@ -56,6 +64,9 @@ class KryoTypeEntry
         identifier = that.identifier;
     }
 
+    /**
+     * Returns a copy of this entry
+     */
     public KryoTypeEntry copy()
     {
         return new KryoTypeEntry(this);

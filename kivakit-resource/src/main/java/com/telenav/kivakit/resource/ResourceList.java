@@ -18,13 +18,18 @@
 
 package com.telenav.kivakit.resource;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.collections.iteration.Iterables;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.interfaces.comparison.Matcher;
 import com.telenav.kivakit.resource.internal.lexakai.DiagramResource;
-import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
+import org.jetbrains.annotations.NotNull;
+
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_DEFAULT_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
 
 /**
  * A list of {@link Resource}s. Adds the methods:
@@ -36,18 +41,28 @@ import com.telenav.lexakai.annotations.associations.UmlRelation;
  *     <li>{@link #smallest()} - The smallest resource in this list</li>
  *     <li>{@link #totalSize()} - The total size of the resources in this list</li>
  * </ul>
+ *
+ * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramResource.class)
 @UmlRelation(label = "contains", referent = Resource.class)
-@LexakaiJavadoc(complete = true)
+@ApiQuality(stability = API_STABLE_DEFAULT_EXTENSIBLE,
+            documentation = DOCUMENTATION_COMPLETE,
+            testing = TESTING_NONE)
 public class ResourceList extends BaseResourceList<Resource>
 {
-    public static ResourceList resourceList(Iterable<? extends Resource> resources)
+    /**
+     * Returns a resource list fo the given resources
+     */
+    public static ResourceList resourceList(@NotNull Iterable<? extends Resource> resources)
     {
         return new ResourceList(resources);
     }
 
-    public static ResourceList resourceList(Resource... resources)
+    /**
+     * Returns a resource list fo the given resources
+     */
+    public static ResourceList resourceList(@NotNull Resource... resources)
     {
         return resourceList(Iterables.iterable(resources));
     }
@@ -56,7 +71,7 @@ public class ResourceList extends BaseResourceList<Resource>
     {
     }
 
-    public ResourceList(Iterable<? extends Resource> resources)
+    public ResourceList(@NotNull Iterable<? extends Resource> resources)
     {
         for (var resource : resources)
         {
@@ -64,12 +79,18 @@ public class ResourceList extends BaseResourceList<Resource>
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    protected Resource newResource(final ResourcePath path)
+    protected Resource newResource(@NotNull ResourcePath path)
     {
-        return Resource.resolve(Listener.throwingListener(), path);
+        return Resource.resolveResource(Listener.throwingListener(), path);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected ResourceList newResourceList()
     {

@@ -63,8 +63,6 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
  *     <li>{@link #trace(String, Object...)} - Broadcasts a {@link Trace} message if {@link #isDebugOn()} is true for this component</li>
  * </ul>
  *
- * <hr>
- *
  * @author jonathanl (shibo)
  * @see Repeater
  * @see RegistryTrait

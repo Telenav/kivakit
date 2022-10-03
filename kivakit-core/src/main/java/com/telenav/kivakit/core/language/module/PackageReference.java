@@ -41,8 +41,8 @@ import java.util.stream.Collectors;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_EXPANDABLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
 
 /**
@@ -95,13 +95,13 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NE
  */
 @SuppressWarnings({ "unused", "DuplicatedCode", "SpellCheckingInspection" })
 @UmlClassDiagram(diagram = DiagramPath.class)
-@ApiQuality(stability = STABLE_EXPANDABLE,
+@ApiQuality(stability = API_STABLE_EXTENSIBLE,
             testing = TESTING_NOT_NEEDED,
-            documentation = FULLY_DOCUMENTED)
+            documentation = DOCUMENTATION_COMPLETE)
 public final class PackageReference extends StringPath
 {
     /** Reference to the com.telenav package */
-    public static final PackageReference TELENAV = parsePackageReference(Listener.emptyListener(), "com.telenav");
+    public static final PackageReference TELENAV = parsePackageReference(Listener.nullListener(), "com.telenav");
 
     /**
      * Returns true if the given path is a package reference
@@ -132,7 +132,7 @@ public final class PackageReference extends StringPath
      */
     public static PackageReference packageReference(Class<?> type)
     {
-        return packageReference(type, parseStringPath(Listener.emptyListener(), type.getName(), null, "\\.").withoutLast());
+        return packageReference(type, parseStringPath(Listener.nullListener(), type.getName(), null, "\\.").withoutLast());
     }
 
     /**

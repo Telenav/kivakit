@@ -18,6 +18,7 @@
 
 package com.telenav.kivakit.settings;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.language.Hash;
 import com.telenav.kivakit.core.registry.InstanceIdentifier;
 import com.telenav.kivakit.core.registry.RegistryTrait;
@@ -28,25 +29,32 @@ import com.telenav.lexakai.annotations.visibility.UmlNotPublicApi;
 
 import java.security.Key;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
 import static com.telenav.kivakit.core.ensure.Ensure.ensureFalse;
 import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
-import static com.telenav.kivakit.core.registry.InstanceIdentifier.SINGLETON;
+import static com.telenav.kivakit.core.registry.InstanceIdentifier.instanceIdentifier;
+import static com.telenav.kivakit.core.registry.InstanceIdentifier.singletonInstanceIdentifier;
 
 /**
  * <b>Service Provider API</b>
  *
  * <p>
- * A settings object with a unique type and instance identifier. The {@link Settings} class stores {@link
- * SettingsObject}s in a {@link SettingsStore}.
+ * A settings object with a unique type and instance identifier. The {@link SettingsRegistry} class stores
+ * {@link SettingsObject}s in a {@link SettingsStore}.
  * </p>
  *
  * @author jonathanl (shibo)
- * @see Settings
+ * @see SettingsRegistry
  * @see SettingsStore
  */
 @UmlNotPublicApi
 @UmlExcludeType(Comparable.class)
 @UmlExcludeType
+@ApiQuality(stability = API_STABLE,
+            testing = TESTING_NONE,
+            documentation = DOCUMENTATION_COMPLETE)
 public class SettingsObject implements RegistryTrait
 {
     /**
@@ -59,10 +67,10 @@ public class SettingsObject implements RegistryTrait
      *
      * @author jonathanl (shibo)
      */
-    @UmlNotPublicApi
+    @SuppressWarnings("unused") @UmlNotPublicApi
     @UmlExcludeType(Comparable.class)
     @UmlExcludeType
-    public static class Identifier implements Comparable<Key>
+    public static class SettingsObjectIdentifier implements Comparable<Key>
     {
         /** The type of settings object */
         @UmlAggregation
@@ -75,20 +83,29 @@ public class SettingsObject implements RegistryTrait
         /**
          * @param type The type of settings object
          */
-        public Identifier(Class<?> type)
+        public SettingsObjectIdentifier(Class<?> type)
         {
             this.type = type;
-            instance = SINGLETON;
+            instance = singletonInstanceIdentifier();
         }
 
         /**
          * @param type The type of settings object
          * @param instance The instance of the given type
          */
-        public Identifier(Class<?> type, InstanceIdentifier instance)
+        public SettingsObjectIdentifier(Class<?> type, InstanceIdentifier instance)
         {
             this.type = type;
             this.instance = instance;
+        }
+
+        /**
+         * @param type The type of settings object
+         * @param instance The instance of the given type
+         */
+        public SettingsObjectIdentifier(Class<?> type, Enum<?> instance)
+        {
+            this(type, instanceIdentifier(instance));
         }
 
         @Override
@@ -100,9 +117,9 @@ public class SettingsObject implements RegistryTrait
         @Override
         public boolean equals(Object object)
         {
-            if (object instanceof Identifier)
+            if (object instanceof SettingsObjectIdentifier)
             {
-                var that = (Identifier) object;
+                var that = (SettingsObjectIdentifier) object;
                 return type.equals(that.type) && instance.equals(that.instance);
             }
             return false;
@@ -139,14 +156,14 @@ public class SettingsObject implements RegistryTrait
 
     /** Compound key that uniquely identifies the <i>object</i> */
     @UmlAggregation
-    private final Identifier identifier;
+    private final SettingsObjectIdentifier identifier;
 
     /** The settings object itself */
     private final Object object;
 
     public SettingsObject(Object object)
     {
-        this(object, SINGLETON);
+        this(object, singletonInstanceIdentifier());
     }
 
     public SettingsObject(SerializableObject<?> object)
@@ -165,7 +182,7 @@ public class SettingsObject implements RegistryTrait
         ensureNotNull(object);
         ensureFalse(object instanceof SerializableObject, "Internal error: Unwrapped SerializableObject");
 
-        this.identifier = new Identifier(type, instance);
+        this.identifier = new SettingsObjectIdentifier(type, instance);
         this.object = object;
     }
 
@@ -186,7 +203,7 @@ public class SettingsObject implements RegistryTrait
         return Hash.identityHash(object);
     }
 
-    public Identifier identifier()
+    public SettingsObjectIdentifier identifier()
     {
         return identifier;
     }

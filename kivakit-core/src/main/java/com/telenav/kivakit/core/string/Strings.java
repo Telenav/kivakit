@@ -18,20 +18,67 @@
 
 package com.telenav.kivakit.core.string;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramString;
-import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.regex.Pattern;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_STATIC_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+
 /**
  * General purpose utilities for Java strings.
+ *
+ * <p><b>Equality</b></p>
+ *
+ * <ul>
+ *     <li>{@link #equalsAllowNull(String, String)}</li>
+ *     <li>{@link #equalIgnoringCase(String, String)}</li>
+ * </ul>
+ *
+ * <p><b>Tests</b></p>
+ *
+ * <ul>
+ *     <li>{@link #containsIgnoreCase(String, String)}</li>
+ *     <li>{@link #containsAnyOf(String, String)}</li>
+ *     <li>{@link #isAllBytes(String)}</li>
+ *     <li>{@link #isAscii(String)}</li>
+ *     <li>{@link #isEmpty(String)}</li>
+ *     <li>{@link #isExtendedAscii(String)}</li>
+ *     <li>{@link #isJavaIdentifier(String)}</li>
+ *     <li>{@link #isLowerCase(String)}</li>
+ *     <li>{@link #isNaturalNumber(String)}</li>
+ *     <li>{@link #isOneOf(String, String...)}</li>
+ *     <li>{@link #startsWithIgnoreCase(String, String)}</li>
+ * </ul>
+ *
+ * <p><b>Operations</b></p>
+ *
+ * <ul>
+ *     <li>{@link #digitCount(String)}</li>
+ *     <li>{@link #doubleQuoted(String)}</li>
+ *     <li>{@link #ensureEndsWith(String, String)}</li>
+ *     <li>{@link #extractFirstGroup(String, String)}</li>
+ *     <li>{@link #format(String, Object...)}</li>
+ *     <li>{@link #leading(String, int)}</li>
+ *     <li>{@link #nthCharacter(String, int, char)}</li>
+ *     <li>{@link #occurrences(String, char)}</li>
+ *     <li>{@link #remove(String, int, int)}</li>
+ *     <li>{@link #removeAll(String, char)}</li>
+ *     <li>{@link #replace(String, int, int, String)}</li>
+ *     <li>{@link #replaceAll(String, String, String)}</li>
+ *     <li>{@link #trailing(String, int)}</li>
+ * </ul>
  *
  * @author jonathanl (shibo)
  */
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramString.class)
-@LexakaiJavadoc(complete = true)
+@ApiQuality(stability = API_STABLE_STATIC_EXTENSIBLE,
+            testing = TESTING_NONE,
+            documentation = DOCUMENTATION_COMPLETE)
 public class Strings
 {
     /**
@@ -64,7 +111,7 @@ public class Strings
     /**
      * @return The number of digits in the given text
      */
-    public static int digits(String text)
+    public static int digitCount(String text)
     {
         var digits = 0;
         for (var i = 0; i < text.length(); i++)
@@ -119,7 +166,7 @@ public class Strings
      *
      * @return True if the strings are equal
      */
-    public static boolean equals(String a, String b)
+    public static boolean equalsAllowNull(String a, String b)
     {
         if (a == null || b == null)
         {
@@ -131,7 +178,7 @@ public class Strings
     /**
      * @return Group 1 of the first occurrence of pattern in text
      */
-    public static String extract(String text, String pattern)
+    public static String extractFirstGroup(String text, String pattern)
     {
         var matcher = Pattern.compile(pattern).matcher(text);
         if (matcher.find())
@@ -276,24 +323,6 @@ public class Strings
     public static String notNull(String value)
     {
         return value == null ? "" : value;
-    }
-
-    /**
-     * @return The index of the nth instance of the given character in the given text
-     */
-    public static int nth(String text, int n, char c)
-    {
-        for (var i = 0; i < text.length(); i++)
-        {
-            if (text.charAt(i) == c)
-            {
-                if (--n == 0)
-                {
-                    return i;
-                }
-            }
-        }
-        return -1;
     }
 
     /**

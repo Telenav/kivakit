@@ -18,28 +18,40 @@
 
 package com.telenav.kivakit.core.vm;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramThread;
 import com.telenav.kivakit.core.time.Duration;
-import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
+
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
 
 /**
  * Information about the state of a thread from Java's management API.
  *
  * @author jonathanl (shibo)
  */
+@SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramThread.class)
-@LexakaiJavadoc(complete = true)
+@ApiQuality(stability = API_STABLE_EXTENSIBLE,
+            testing = TESTING_NONE,
+            documentation = DOCUMENTATION_COMPLETE)
 public class ThreadStatus
 {
+    /** The total amount of CPU time consumed so far */
     Duration cpuTime;
 
+    /** The name of the thread */
     String name;
 
+    /** True if the thread is a daemon */
     boolean isDaemon;
 
+    /** The thread state */
     Thread.State state;
 
+    /** The thread identifier */
     long identifier;
 
     /**
@@ -50,6 +62,9 @@ public class ThreadStatus
         return cpuTime;
     }
 
+    /**
+     * Returns the thread identifier
+     */
     public long identifier()
     {
         return identifier;

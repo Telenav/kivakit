@@ -8,9 +8,9 @@ import com.telenav.kivakit.core.messaging.messages.status.Problem;
 
 import java.util.function.Function;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.STABLE_DEFAULT_EXPANDABLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
-import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_DEFAULT_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
 
 /**
  * <p>Adds methods that help in general to extend KivaKit's expressive capabilities in the Java language</p>
@@ -62,9 +62,9 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.UNTESTED;
  * @author jonathanl (shibo)
  */
 @SuppressWarnings("unused")
-@ApiQuality(stability = STABLE_DEFAULT_EXPANDABLE,
-            documentation = FULLY_DOCUMENTED,
-            testing = UNTESTED)
+@ApiQuality(stability = API_STABLE_DEFAULT_EXTENSIBLE,
+            documentation = DOCUMENTATION_COMPLETE,
+            testing = TESTING_NONE)
 public interface LanguageTrait extends Repeater
 {
     /**

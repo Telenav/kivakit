@@ -37,7 +37,6 @@ import java.util.concurrent.ConcurrentHashMap;
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramCollections.class)
-@LexakaiJavadoc(complete = true)
 public class IdentitySet<Value> extends BaseSet<Value>
 {
     private final IdentityHashMap<Value, Value> map = new IdentityHashMap<>();

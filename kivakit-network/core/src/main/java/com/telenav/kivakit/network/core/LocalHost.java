@@ -18,11 +18,11 @@
 
 package com.telenav.kivakit.network.core;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.core.logging.LoggerCodeContext;
 import com.telenav.kivakit.core.object.Lazy;
 import com.telenav.kivakit.core.os.OperatingSystem;
-import com.telenav.kivakit.core.logging.LoggerCodeContext;
 import com.telenav.kivakit.network.core.internal.lexakai.DiagramPort;
-import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.net.Inet4Address;
@@ -30,6 +30,9 @@ import java.net.InetAddress;
 import java.net.NetworkInterface;
 import java.net.UnknownHostException;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
 import static com.telenav.kivakit.core.ensure.Ensure.fail;
 
 /**
@@ -38,9 +41,12 @@ import static com.telenav.kivakit.core.ensure.Ensure.fail;
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramPort.class)
-@LexakaiJavadoc(complete = true)
+@ApiQuality(stability = API_STABLE,
+            testing = TESTING_NOT_NEEDED,
+            documentation = DOCUMENTATION_COMPLETE)
 public class LocalHost extends Host
 {
+    /** The local host */
     private static final Lazy<LocalHost> localhost = Lazy.lazy(LocalHost::new);
 
     static
@@ -48,11 +54,9 @@ public class LocalHost extends Host
         LoggerCodeContext.hostResolver(LocalHost::hostname);
     }
 
-    public static LocalHost get()
-    {
-        return localhost.get();
-    }
-
+    /**
+     * Returns the name of the local host
+     */
     public static String hostname()
     {
         try
@@ -65,13 +69,21 @@ public class LocalHost extends Host
         }
     }
 
+    /**
+     * Returns the local host
+     */
+    public static LocalHost localhost()
+    {
+        return localhost.get();
+    }
+
     protected LocalHost()
     {
         super("localhost");
     }
 
     /**
-     * @return The first non-loopback, non-virtual, IPV4 InetAddress in the list of network interfaces. This is
+     * Returns the first non-loopback, non-virtual, IPV4 InetAddress in the list of network interfaces. This is
      * necessary on the Mac because Oracle broke InetAddress.getLocalhost() on the Mac (and does not intend to fix it)
      */
     @Override

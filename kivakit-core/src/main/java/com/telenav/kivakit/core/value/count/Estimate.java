@@ -18,14 +18,18 @@
 
 package com.telenav.kivakit.core.value.count;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramCount;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.string.Strings;
-import com.telenav.kivakit.interfaces.string.StringFormattable;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.Collection;
 import java.util.Iterator;
+
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
 
 /**
  * A count value that is an estimate. This class mainly exists to clarify APIs by giving a meaning to the count value.
@@ -34,6 +38,9 @@ import java.util.Iterator;
  */
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramCount.class)
+@ApiQuality(stability = API_STABLE_EXTENSIBLE,
+            testing = TESTING_NONE,
+            documentation = DOCUMENTATION_COMPLETE)
 public class Estimate extends BaseCount<Estimate>
 {
     public static final Estimate _0 = new Estimate(0);
@@ -171,16 +178,25 @@ public class Estimate extends BaseCount<Estimate>
         }
     }
 
+    /**
+     * Returns the number of values as an {@link Estimate}
+     */
     public static Estimate estimate(Collection<?> collection)
     {
         return estimate(collection.size());
     }
 
+    /**
+     * Returns the number of values as an {@link Estimate}
+     */
     public static Estimate estimate(Iterable<?> iterable)
     {
         return estimate(iterable.iterator());
     }
 
+    /**
+     * Returns the number of values as an {@link Estimate}
+     */
     public static Estimate estimate(Iterator<?> iterator)
     {
         var count = 0L;
@@ -192,6 +208,9 @@ public class Estimate extends BaseCount<Estimate>
         return estimate(count);
     }
 
+    /**
+     * Returns the value as an {@link Estimate}
+     */
     public static Estimate estimate(long value)
     {
         // If we have a cached value,
@@ -212,18 +231,28 @@ public class Estimate extends BaseCount<Estimate>
         return new Estimate(value);
     }
 
+    /**
+     * Returns the number of array elements as an {@link Estimate}
+     */
     public static <T> Estimate estimate(T[] values)
     {
         return estimate(values.length);
     }
 
-    public static Estimate parseEstimate(Listener listener, String value)
+    /**
+     * Parses the given text into an {@link Estimate}
+     *
+     * @param listener The listener to call with any problems
+     * @param text The text to parse
+     * @return The estimate
+     */
+    public static Estimate parseEstimate(Listener listener, String text)
     {
-        if (value.indexOf(',') > 0)
+        if (text.indexOf(',') > 0)
         {
-            value = Strings.removeAll(value, ',');
+            text = Strings.removeAll(text, ',');
         }
-        return Estimate.estimate(Long.parseLong(value));
+        return Estimate.estimate(Long.parseLong(text));
     }
 
     protected Estimate(long estimate)
@@ -235,14 +264,20 @@ public class Estimate extends BaseCount<Estimate>
     {
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String asString()
     {
         return super.toString() + " (estimate)";
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public Estimate newInstance(long count)
+    public Estimate onNewInstance(long count)
     {
         return estimate(count);
     }

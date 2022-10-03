@@ -18,11 +18,13 @@
 
 package com.telenav.kivakit.core.value.count;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.collections.iteration.BaseIterator;
 import com.telenav.kivakit.core.internal.lexakai.DiagramCount;
 import com.telenav.kivakit.core.language.primitive.Longs;
 import com.telenav.kivakit.core.string.Formatter;
 import com.telenav.kivakit.interfaces.code.Callback;
+import com.telenav.kivakit.interfaces.collection.Contains;
 import com.telenav.kivakit.interfaces.collection.NextIterator;
 import com.telenav.kivakit.interfaces.factory.MapFactory;
 import com.telenav.kivakit.interfaces.numeric.Maximizable;
@@ -34,6 +36,9 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Iterator;
 import java.util.Random;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
 import static com.telenav.kivakit.core.value.count.Range.UpperBound.EXCLUSIVE;
 import static com.telenav.kivakit.core.value.count.Range.UpperBound.INCLUSIVE;
 
@@ -55,7 +60,7 @@ import static com.telenav.kivakit.core.value.count.Range.UpperBound.INCLUSIVE;
  *     <li>{@link #isExclusive()}</li>
  *     <li>{@link #minimum()}</li>
  *     <li>{@link #inclusiveMaximum()}</li>
- *     <li>{@link #exclusiveMaximum()}</li>
+ *     <li>{@link #maximum()}</li>
  * </ul>
  *
  * <p><b>Looping</b></p>
@@ -71,8 +76,8 @@ import static com.telenav.kivakit.core.value.count.Range.UpperBound.INCLUSIVE;
  * <p><b>Operations</b></p>
  *
  * <ul>
- *     <li>{@link #constrain(Value)}</li>
- *     <li>{@link #contains(Value)}</li>
+ *     <li>{@link #constrained(Value)}</li>
+ *     <li>{@link #containsInclusive(Value)}</li>
  *     <li>{@link #randomValue(Random)}</li>
  * </ul>
  *
@@ -82,7 +87,11 @@ import static com.telenav.kivakit.core.value.count.Range.UpperBound.INCLUSIVE;
  */
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramCount.class)
+@ApiQuality(stability = API_STABLE_EXTENSIBLE,
+            testing = TESTING_NONE,
+            documentation = DOCUMENTATION_COMPLETE)
 public class Range<Value extends Numeric<Value>> implements
+        Contains<Value>,
         Comparable<Countable>,
         Countable,
         Iterable<Value>,
@@ -136,6 +145,9 @@ public class Range<Value extends Numeric<Value>> implements
         this.upperBound = upperBound;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public int compareTo(Countable that)
     {
@@ -145,21 +157,44 @@ public class Range<Value extends Numeric<Value>> implements
     /**
      * Forces the given value into this range
      */
-    public Value constrain(Value value)
+    public Value constrained(Value value)
     {
-        var constrainedToMinimum = minimum().maximize(value);
-        return inclusiveMaximum().minimize(constrainedToMinimum);
+        return maximum().minimize(minimum().maximize(value));
     }
 
     /**
-     * True if this range contains the given value
+     * True if this range contains the given value, inclusive or exclusive depending on the value of
+     * {@link #upperBound()}
      */
+    @Override
     public boolean contains(Value value)
+    {
+        return isInclusive()
+                ? containsInclusive(value)
+                : containsExclusive(value);
+    }
+
+    /**
+     * True if this range contains the given value, exclusive
+     */
+    public boolean containsExclusive(Value value)
+    {
+        return value.isGreaterThanOrEqualTo(minimum()) &&
+                value.isLessThan(exclusiveMaximum());
+    }
+
+    /**
+     * True if this range contains the given value, inclusive
+     */
+    public boolean containsInclusive(Value value)
     {
         return value.isGreaterThanOrEqualTo(minimum()) &&
                 value.isLessThanOrEqualTo(inclusiveMaximum());
     }
 
+    /**
+     * The number of elements in this range
+     */
     @Override
     public Count count()
     {
@@ -167,14 +202,14 @@ public class Range<Value extends Numeric<Value>> implements
     }
 
     /**
-     * Returns the exclusive maximum for this range, even if it was constructed as inclusive (for example, inclusive
-     * range of 0 to 9 is the same as an exclusive range of 0-10).
+     * Returns the exclusive maximum for this range, even if it was constructed as inclusive (for example, an inclusive
+     * range of 0-9 is the same as an exclusive range of 0 to 10).
      */
     public Value exclusiveMaximum()
     {
-        return isExclusive()
-                ? maximum
-                : maximum.incremented();
+        return isInclusive()
+                ? maximum.incremented()
+                : maximum;
     }
 
     /**
@@ -184,7 +219,7 @@ public class Range<Value extends Numeric<Value>> implements
      */
     public void forEachInt(Callback<Integer> callback)
     {
-        for (var at = 0; at < exclusiveMaximum().asInt(); at++)
+        for (var at = 0; at < maximum().asInt(); at++)
         {
             callback.call(at);
         }
@@ -228,7 +263,7 @@ public class Range<Value extends Numeric<Value>> implements
             @Override
             protected Value onNext()
             {
-                if (at < exclusiveMaximum().longValue())
+                if (at < maximum().longValue())
                 {
                     at++;
                     return newInstance(at);
@@ -244,6 +279,17 @@ public class Range<Value extends Numeric<Value>> implements
     public void loop(Runnable body)
     {
         forEach(ignored -> body.run());
+    }
+
+    /**
+     * Returns the exclusive maximum for this range, even if it was constructed as inclusive (for example, inclusive
+     * range of 0 to 9 is the same as an exclusive range of 0-10).
+     */
+    public Value maximum()
+    {
+        return isExclusive()
+                ? maximum
+                : maximum.incremented();
     }
 
     /**
@@ -265,7 +311,7 @@ public class Range<Value extends Numeric<Value>> implements
      */
     public Value randomValue(Random random)
     {
-        return minimum.newInstance(Longs.random(random, minimum().asLong(), exclusiveMaximum().asLong()));
+        return minimum.newInstance(Longs.random(random, minimum().asLong(), maximum().asLong()));
     }
 
     /**
@@ -273,7 +319,7 @@ public class Range<Value extends Numeric<Value>> implements
      */
     public int size()
     {
-        return exclusiveMaximum().minus(minimum()).asInt();
+        return maximum().minus(minimum()).asInt();
     }
 
     @Override
@@ -282,7 +328,7 @@ public class Range<Value extends Numeric<Value>> implements
         return Formatter.format("[$ to $, $]", minimum(),
                 isInclusive()
                         ? inclusiveMaximum()
-                        : exclusiveMaximum(),
+                        : maximum(),
                 isInclusive()
                         ? "inclusive"
                         : "exclusive");

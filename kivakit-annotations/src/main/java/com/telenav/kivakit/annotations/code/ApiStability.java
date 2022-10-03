@@ -1,7 +1,7 @@
 package com.telenav.kivakit.annotations.code;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.MORE_EVALUATION_NEEDED;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.FULLY_DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.ApiStability.API_FURTHER_EVALUATION_NEEDED;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
 
 /**
@@ -12,37 +12,37 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NE
  * @author jonathanl (shibo)
  */
 @SuppressWarnings("unused")
-@ApiQuality(stability = MORE_EVALUATION_NEEDED,
+@ApiQuality(stability = API_FURTHER_EVALUATION_NEEDED,
             testing = TESTING_NOT_NEEDED,
-            documentation = FULLY_DOCUMENTED,
+            documentation = DOCUMENTATION_COMPLETE,
             reviews = 1,
             reviewers = "shibo")
 public enum ApiStability
 {
     /** The API is not public, and should not be used outside of the KivaKit framework */
-    NOT_PUBLIC,
+    API_PRIVATE,
 
     /** The API is not expected to change */
-    STABLE,
+    API_STABLE,
 
     /** The API is not expected to change, except that new methods may be added */
-    STABLE_EXPANDABLE,
+    API_STABLE_EXTENSIBLE,
 
     /** The API is not expected to change, except that new static methods may be added */
-    STABLE_STATIC_EXPANDABLE,
+    API_STABLE_STATIC_EXTENSIBLE,
 
     /** The API is not expected to change, except that new default methods may be added */
-    STABLE_DEFAULT_EXPANDABLE,
+    API_STABLE_DEFAULT_EXTENSIBLE,
 
     /** The API is not expected to change, except that new enum values may be added */
-    STABLE_ENUM_EXPANDABLE,
+    API_STABLE_ENUM_EXTENSIBLE,
 
     /** The API may be changed */
-    UNSTABLE,
+    API_UNSTABLE,
 
     /** Requires more evaluation */
-    MORE_EVALUATION_NEEDED,
+    API_FURTHER_EVALUATION_NEEDED,
 
     /** The API has not been evaluated for stability */
-    UNEVALUATED
+    API_UNEVALUATED
 }
