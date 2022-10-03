@@ -279,8 +279,8 @@ public abstract class BaseList<Value> extends BaseCollection<Value> implements
     {
         super(maximumSize);
 
-        // If we have room for the list,
-        if (hasRoomFor(list.size()))
+        // If we have room for the list at all,
+        if (list.size() < maximumSize.asInt())
         {
             // save it.
             if (list instanceof List)

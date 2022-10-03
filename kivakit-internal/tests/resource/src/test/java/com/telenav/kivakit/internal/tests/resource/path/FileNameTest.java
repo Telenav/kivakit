@@ -39,7 +39,7 @@ public class FileNameTest extends UnitTest
         var now = Time.now();
         var local = now.asLocalTime();
         trace("local = ${debug}", local);
-        var utc = now.utc();
+        var utc = now.asUtc();
         trace("utx = ${debug}", utc);
         ensureEqual(local.asMilliseconds(), utc.asMilliseconds());
     }
@@ -83,7 +83,7 @@ public class FileNameTest extends UnitTest
         var localTime = LocalTime.milliseconds(timeZone, 1344025281123L);
         trace("LocalTime: ${debug}", localTime.asMilliseconds());
 
-        final Time time = localTime.utc();
+        final Time time = localTime.asUtc();
         trace("Time:      ${debug}", time.asMilliseconds());
 
         /*

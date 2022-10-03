@@ -19,12 +19,12 @@
 package com.telenav.kivakit.core.messaging.context;
 
 import com.telenav.kivakit.annotations.code.ApiQuality;
-import com.telenav.kivakit.core.collections.list.ObjectList;
 import com.telenav.kivakit.core.internal.lexakai.DiagramContext;
 import com.telenav.kivakit.core.language.reflection.Method;
 import com.telenav.kivakit.core.messaging.Debug;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
@@ -111,9 +111,9 @@ public class CallStack
     }
 
     @SuppressWarnings("unused")
-    public static ObjectList<Method> stack(Thread thread)
+    public static List<Method> stack(Thread thread)
     {
-        var stack = new ObjectList<Method>();
+        var stack = new ArrayList<Method>();
         for (var frame : Thread.currentThread().getStackTrace())
         {
             var method = Method.method(frame);

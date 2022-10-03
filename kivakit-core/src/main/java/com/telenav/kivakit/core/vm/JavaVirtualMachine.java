@@ -22,7 +22,6 @@ import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.collections.map.VariableMap;
 import com.telenav.kivakit.core.internal.lexakai.DiagramLanguage;
 import com.telenav.kivakit.core.messaging.repeaters.BaseRepeater;
-import com.telenav.kivakit.core.object.Lazy;
 import com.telenav.kivakit.core.value.count.Bytes;
 import com.telenav.kivakit.core.value.count.Count;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
@@ -89,7 +88,7 @@ public class JavaVirtualMachine extends BaseRepeater
 
     private static boolean ASSERTIONS_ENABLED;
 
-    private static final Lazy<JavaVirtualMachine> LOCAL = Lazy.lazy(JavaVirtualMachine::new);
+    private static JavaVirtualMachine LOCAL;
 
     static
     {
@@ -100,7 +99,11 @@ public class JavaVirtualMachine extends BaseRepeater
 
     public static JavaVirtualMachine javaVirtualMachine()
     {
-        return LOCAL.get();
+        if (LOCAL == null)
+        {
+            LOCAL = new JavaVirtualMachine();
+        }
+        return LOCAL;
     }
 
     private VariableMap<String> systemProperties;

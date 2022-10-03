@@ -22,8 +22,6 @@ import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.code.UncheckedVoidCode;
 import com.telenav.kivakit.core.ensure.Ensure;
 import com.telenav.kivakit.core.internal.lexakai.DiagramThread;
-import com.telenav.kivakit.core.logging.Logger;
-import com.telenav.kivakit.core.logging.LoggerFactory;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.messaging.Repeater;
 import com.telenav.kivakit.core.messaging.repeaters.BaseRepeater;
@@ -140,20 +138,8 @@ public class KivaKitThread extends BaseRepeater implements
         Stoppable<Duration>,
         Named
 {
-    private static final Logger LOGGER = LoggerFactory.newLogger();
-
     /** Set of all KivaKit thread names */
     private static final Set<String> names = new HashSet<>();
-
-    /**
-     * @return A started thread with the given name that will run the given code at the given frequency.
-     */
-    public static KivaKitThread repeat(String name,
-                                       Frequency every,
-                                       UncheckedVoidCode code)
-    {
-        return repeat(LOGGER, name, every, code);
-    }
 
     /**
      * @return A started thread with the given name that will run the given code at the given frequency.
@@ -164,15 +150,6 @@ public class KivaKitThread extends BaseRepeater implements
                                        UncheckedVoidCode code)
     {
         return run(listener, name, () -> code.loop(listener, every.cycleLength()));
-    }
-
-    /**
-     * @return A started thread with the given name that has been started
-     */
-    public static KivaKitThread run(String name,
-                                    Runnable code)
-    {
-        return run(LOGGER, name, code);
     }
 
     /**
@@ -192,7 +169,7 @@ public class KivaKitThread extends BaseRepeater implements
      *
      * @author jonathanl (shibo)
      */
-        public enum State
+    public enum State
     {
         /** The thread has been created but is not yet running */
         CREATED,

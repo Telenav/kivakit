@@ -512,7 +512,7 @@ public class FilePath extends ResourcePath
 
     public FilePath withPrefix(@NotNull String prefix)
     {
-        return parseFilePath(Listener.emptyListener(), prefix + this);
+        return parseFilePath(Listener.nullListener(), prefix + this);
     }
 
     /**
@@ -615,7 +615,7 @@ public class FilePath extends ResourcePath
 
     public FilePath withoutPrefix(@NotNull String prefix)
     {
-        return parseFilePath(Listener.emptyListener(), Strip.leading(toString(), prefix));
+        return parseFilePath(Listener.nullListener(), Strip.leading(toString(), prefix));
     }
 
     /**

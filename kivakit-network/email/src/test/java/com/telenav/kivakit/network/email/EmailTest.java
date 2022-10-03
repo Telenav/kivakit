@@ -18,14 +18,15 @@
 
 package com.telenav.kivakit.network.email;
 
-import com.telenav.kivakit.testing.UnitTest;
 import com.telenav.kivakit.network.core.EmailAddress;
-import com.telenav.kivakit.network.core.Host;
 import com.telenav.kivakit.network.core.authentication.UserName;
 import com.telenav.kivakit.network.core.authentication.passwords.PlainTextPassword;
 import com.telenav.kivakit.network.email.senders.SmtpEmailSender;
+import com.telenav.kivakit.testing.UnitTest;
 import org.junit.Ignore;
 import org.junit.Test;
+
+import static com.telenav.kivakit.network.core.LocalHost.localhost;
 
 @Ignore
 public class EmailTest extends UnitTest
@@ -47,7 +48,7 @@ public class EmailTest extends UnitTest
                 .body(new EmailBody("this is a test"));
 
         var configuration = new SmtpEmailSender.Configuration()
-                .host(Host.localhost())
+                .host(localhost())
                 .username(UserName.parseUserName(this, ""))
                 .password(PlainTextPassword.parsePlainTextPassword(this, ""));
 

@@ -80,7 +80,7 @@ public class HumanizedLocalDateTimeConverter extends BaseStringConverter<LocalTi
     @Override
     protected String onToString(LocalTime time)
     {
-        return humanizedDate(time) + " " + new LocalTimeConverter(Listener.emptyListener(), time.timeZone()).unconvert(time);
+        return humanizedDate(time) + " " + new LocalTimeConverter(Listener.nullListener(), time.timeZone()).unconvert(time);
     }
 
     /**
@@ -92,7 +92,7 @@ public class HumanizedLocalDateTimeConverter extends BaseStringConverter<LocalTi
         var matcher = HUMANIZED_DATE.matcher(value);
         if (matcher.matches())
         {
-            var localTime = new LocalTimeConverter(Listener.emptyListener(), LocalTime.localTimeZone())
+            var localTime = new LocalTimeConverter(Listener.nullListener(), LocalTime.localTimeZone())
                     .convert(matcher.group("time"));
             if (localTime != null)
             {
@@ -123,7 +123,7 @@ public class HumanizedLocalDateTimeConverter extends BaseStringConverter<LocalTi
                 }
                 if (date != null)
                 {
-                    var localDate = new LocalDateConverter(Listener.emptyListener()).convert(date);
+                    var localDate = new LocalDateConverter(Listener.nullListener()).convert(date);
                     if (localDate != null)
                     {
                         return localTime.withUnixEpochDay(localDate.dayOfUnixEpoch());
@@ -156,6 +156,6 @@ public class HumanizedLocalDateTimeConverter extends BaseStringConverter<LocalTi
             }
         }
 
-        return new LocalDateConverter(Listener.emptyListener()).unconvert(time);
+        return new LocalDateConverter(Listener.nullListener()).unconvert(time);
     }
 }

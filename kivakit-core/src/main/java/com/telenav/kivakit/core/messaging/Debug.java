@@ -187,7 +187,7 @@ public final class Debug implements MessageTransceiver
         {
             return (Listener) transceiver;
         }
-        return Listener.emptyListener();
+        return Listener.nullListener();
     }
 
     /**

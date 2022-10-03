@@ -101,7 +101,7 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NE
 public final class PackageReference extends StringPath
 {
     /** Reference to the com.telenav package */
-    public static final PackageReference TELENAV = parsePackageReference(Listener.emptyListener(), "com.telenav");
+    public static final PackageReference TELENAV = parsePackageReference(Listener.nullListener(), "com.telenav");
 
     /**
      * Returns true if the given path is a package reference
@@ -132,7 +132,7 @@ public final class PackageReference extends StringPath
      */
     public static PackageReference packageReference(Class<?> type)
     {
-        return packageReference(type, parseStringPath(Listener.emptyListener(), type.getName(), null, "\\.").withoutLast());
+        return packageReference(type, parseStringPath(Listener.nullListener(), type.getName(), null, "\\.").withoutLast());
     }
 
     /**

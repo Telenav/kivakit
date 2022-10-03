@@ -124,7 +124,7 @@ public interface Listener extends MessageTransceiver
     /**
      * @return A listener that does nothing with messages. Useful only when you want to discard output from something
      */
-    static Listener emptyListener()
+    static Listener nullListener()
     {
         return ignored ->
         {

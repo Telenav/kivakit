@@ -146,7 +146,7 @@ public interface Addable<Value> extends SpaceLimited
             var value = values.next();
             if (matcher.matches(value))
             {
-                if (!add(values.next()))
+                if (!add(value))
                 {
                     return -1;
                 }

@@ -21,7 +21,6 @@ package com.telenav.kivakit.network.ftp.secure;
 import com.jcraft.jsch.ChannelSftp.LsEntry;
 import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.collections.list.ObjectList;
-import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.progress.ProgressReporter;
 import com.telenav.kivakit.core.value.count.Bytes;
 import com.telenav.kivakit.network.core.BaseNetworkResource;
@@ -78,7 +77,7 @@ public class SecureFtpResource extends BaseNetworkResource
      * Copy this resource to the disk
      */
     @Override
-    public void copyTo(Listener listener, WritableResource destination, CopyMode mode, ProgressReporter reporter)
+    public void copyTo(WritableResource destination, CopyMode mode, ProgressReporter reporter)
     {
         try
         {

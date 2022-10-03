@@ -168,7 +168,7 @@ public interface Broadcaster extends MessageTransceiver
     default void silence()
     {
         clearListeners();
-        addListener(Listener.emptyListener());
+        addListener(Listener.nullListener());
     }
 
     /**

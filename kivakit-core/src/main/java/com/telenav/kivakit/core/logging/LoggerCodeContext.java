@@ -19,9 +19,9 @@
 package com.telenav.kivakit.core.logging;
 
 import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.core.internal.lexakai.DiagramLogging;
 import com.telenav.kivakit.core.messaging.context.CallStack;
 import com.telenav.kivakit.core.messaging.context.CodeContext;
-import com.telenav.kivakit.core.internal.lexakai.DiagramLogging;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.lang.reflect.Method;
@@ -30,6 +30,9 @@ import java.util.Objects;
 import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE;
 import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+import static com.telenav.kivakit.core.messaging.context.CallStack.Matching.EXACT;
+import static com.telenav.kivakit.core.messaging.context.CallStack.Matching.SUBCLASS;
+import static com.telenav.kivakit.core.messaging.context.CallStack.Proximity.IMMEDIATE;
 
 /**
  * Information about the origin of a {@link LogEntry}, including the host and class.
@@ -47,11 +50,7 @@ public class LoggerCodeContext extends CodeContext
         // The logger code context is the immediate caller of any subclass of logger,
         // ignoring any intervening LoggerFactory calls
         super(Objects.requireNonNull(
-                CallStack.callerOf(CallStack.Proximity.IMMEDIATE,
-                        CallStack.Matching.SUBCLASS,
-                        Logger.class,
-                        CallStack.Matching.EXACT,
-                        LoggerFactory.class)).type().type());
+                CallStack.callerOf(IMMEDIATE, SUBCLASS, Logger.class, EXACT, LoggerFactory.class)).type().type());
     }
 
     public LoggerCodeContext(Method callerOf)

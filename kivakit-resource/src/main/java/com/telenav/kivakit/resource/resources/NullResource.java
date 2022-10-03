@@ -30,7 +30,7 @@ import java.io.OutputStream;
 import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
-import static com.telenav.kivakit.core.messaging.Listener.emptyListener;
+import static com.telenav.kivakit.core.messaging.Listener.nullListener;
 import static com.telenav.kivakit.resource.ResourcePath.parseUnixResourcePath;
 
 /**
@@ -48,7 +48,7 @@ public class NullResource extends BaseWritableResource
 {
     public NullResource()
     {
-        super(parseUnixResourcePath(emptyListener(), "/objects/NullResource"));
+        super(parseUnixResourcePath(nullListener(), "/objects/NullResource"));
     }
 
     /**

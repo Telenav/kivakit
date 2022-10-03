@@ -20,7 +20,6 @@ package com.telenav.kivakit.core.language.reflection;
 
 import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.collections.list.ObjectList;
-import com.telenav.kivakit.core.collections.map.ObjectMap;
 import com.telenav.kivakit.core.collections.map.StringMap;
 import com.telenav.kivakit.core.collections.map.VariableMap;
 import com.telenav.kivakit.core.collections.set.ObjectSet;
@@ -48,6 +47,7 @@ import java.util.IdentityHashMap;
 import java.util.LinkedHashSet;
 import java.util.Map;
 import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
 
 import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
@@ -70,15 +70,7 @@ import static com.telenav.kivakit.core.language.reflection.property.PropertyNami
 public class Type<T> implements Named
 {
     /** Map from Class to Type */
-    private static final ObjectMap<Class<?>, Type<?>> types = new ObjectMap<>()
-    {
-        @SuppressWarnings({ "rawtypes", "unchecked" })
-        @Override
-        protected Type<?> onCreateValue(Class<?> key)
-        {
-            return new Type(key);
-        }
-    };
+    private static final Map<Class<?>, Type<?>> types = new ConcurrentHashMap<>();
 
     /**
      * Gets the type of the given object
@@ -97,7 +89,7 @@ public class Type<T> implements Named
     @SuppressWarnings("unchecked")
     public static <T> Type<T> typeForClass(Class<T> type)
     {
-        return (Type<T>) types.getOrCreate(ensureNotNull(type));
+        return (Type<T>) types.computeIfAbsent(type, Type::new);
     }
 
     /**

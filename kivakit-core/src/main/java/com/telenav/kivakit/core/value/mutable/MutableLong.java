@@ -112,7 +112,7 @@ public class MutableLong
      * Adds the given value to this index, returning the new value
      */
     @SuppressWarnings("UnusedReturnValue")
-    public long minus(int that)
+    public long minus(long that)
     {
         return plus(-that);
     }
@@ -121,7 +121,7 @@ public class MutableLong
      * Adds the given value to this index, returning the new value
      */
     @SuppressWarnings("UnusedReturnValue")
-    public long plus(int that)
+    public long plus(long that)
     {
         return value.addAndGet(that);
     }
@@ -129,7 +129,7 @@ public class MutableLong
     /**
      * Sets this index
      */
-    public void set(int index)
+    public void set(long index)
     {
         this.value.set(index);
     }

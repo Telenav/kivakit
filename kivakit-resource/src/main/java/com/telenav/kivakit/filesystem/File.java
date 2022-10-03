@@ -64,7 +64,7 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NE
 import static com.telenav.kivakit.core.collections.set.ObjectSet.objectSet;
 import static com.telenav.kivakit.core.ensure.Ensure.ensure;
 import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
-import static com.telenav.kivakit.core.messaging.Listener.emptyListener;
+import static com.telenav.kivakit.core.messaging.Listener.nullListener;
 import static com.telenav.kivakit.filesystem.loader.FileSystemServiceLoader.fileSystem;
 
 /**
@@ -458,7 +458,7 @@ public class File extends BaseWritableResource implements FileSystemObject
             {
                 return false;
             }
-            return fileSystem(emptyListener(), FilePath.parseFilePath(this, identifier.identifier())) != null;
+            return fileSystem(nullListener(), FilePath.parseFilePath(this, identifier.identifier())) != null;
         }
 
         @Override

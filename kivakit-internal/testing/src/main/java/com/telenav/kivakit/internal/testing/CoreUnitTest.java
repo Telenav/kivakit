@@ -56,7 +56,7 @@ import java.util.function.Supplier;
 import static com.telenav.kivakit.annotations.code.ApiStability.API_UNSTABLE;
 import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
-import static com.telenav.kivakit.core.messaging.Listener.emptyListener;
+import static com.telenav.kivakit.core.messaging.Listener.nullListener;
 import static com.telenav.kivakit.core.os.Console.console;
 import static com.telenav.kivakit.core.project.Project.resolveProject;
 
@@ -235,7 +235,7 @@ public abstract class CoreUnitTest extends TestWatcher implements
      */
     protected <T extends Project> void initializeProject(Class<T> project)
     {
-        emptyListener().listenTo(resolveProject(project)).initialize();
+        nullListener().listenTo(resolveProject(project)).initialize();
     }
 
     /**

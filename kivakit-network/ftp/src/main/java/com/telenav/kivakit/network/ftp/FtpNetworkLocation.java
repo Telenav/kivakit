@@ -28,6 +28,7 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlAggregation;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_ENUM_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
@@ -54,7 +55,7 @@ public class FtpNetworkLocation extends NetworkLocation
      * @see <a href="https://en.wikipedia.org/wiki/File_Transfer_Protocol">FTP documentation</a>
      */
     @UmlClassDiagram(diagram = DiagramFtp.class)
-    @ApiQuality(stability = STABLE_ENUM_EXTENSIBLE,
+    @ApiQuality(stability = API_STABLE_ENUM_EXTENSIBLE,
                 testing = TESTING_NONE,
                 documentation = DOCUMENTATION_COMPLETE)
     public enum Mode

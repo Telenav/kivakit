@@ -123,7 +123,7 @@ import static com.telenav.kivakit.resource.packages.Package.packageForPath;
 public final class PackagePath extends ResourcePath
 {
     /** The com.telenav package */
-    public static final PackagePath TELENAV = parsePackagePath(Listener.emptyListener(), "com.telenav");
+    public static final PackagePath TELENAV = parsePackagePath(Listener.nullListener(), "com.telenav");
 
     /**
      * Returns true if the given path is a valid dot-separated package path
@@ -166,7 +166,7 @@ public final class PackagePath extends ResourcePath
      */
     public static PackagePath packagePath(@NotNull Class<?> type)
     {
-        return packagePath(type, parseStringPath(Listener.emptyListener(), type.getName(), null, "\\.").withoutLast());
+        return packagePath(type, parseStringPath(Listener.nullListener(), type.getName(), null, "\\.").withoutLast());
     }
 
     /**

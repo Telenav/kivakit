@@ -36,7 +36,7 @@ public class KivaKitThreadTest extends CoreUnitTest
     public void testInitialDelay()
     {
         var executedAt = new MutableValue<Time>();
-        KivaKitThread thread = Listener.emptyListener().listenTo(new KivaKitThread("Test")
+        KivaKitThread thread = Listener.nullListener().listenTo(new KivaKitThread("Test")
         {
             @Override
             protected void onRun()

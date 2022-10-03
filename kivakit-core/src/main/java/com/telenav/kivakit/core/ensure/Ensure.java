@@ -52,7 +52,7 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_INSUFF
  * <ul>
  *     <li><b>{@link FailureReporter#assertingFailureReporter()}</b> - Fails with a Java assertion</li>
  *     <li><b>{@link FailureReporter#loggingFailureReporter()}</b> - Logs the failure</li>
- *     <li><b>{@link FailureReporter#emptyListener()}</b> - Does nothing</li>
+ *     <li><b>{@link FailureReporter#nullListener()}</b> - Does nothing</li>
  *     <li><b>{@link FailureReporter#throwingListener()}</b> - Throws an exception</li>
  * </ul>
  *

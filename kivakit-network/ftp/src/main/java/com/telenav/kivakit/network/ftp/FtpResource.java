@@ -21,7 +21,6 @@ package com.telenav.kivakit.network.ftp;
 import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.collections.list.ObjectList;
 import com.telenav.kivakit.core.io.IO;
-import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.progress.ProgressReporter;
 import com.telenav.kivakit.core.value.count.Bytes;
 import com.telenav.kivakit.core.value.count.Count;
@@ -134,7 +133,7 @@ public class FtpResource extends BaseNetworkResource
      * {@inheritDoc}
      */
     @Override
-    public void copyTo(Listener listener, WritableResource destination, CopyMode mode, ProgressReporter reporter)
+    public void copyTo(WritableResource destination, CopyMode mode, ProgressReporter reporter)
     {
         try
         {
@@ -155,7 +154,7 @@ public class FtpResource extends BaseNetworkResource
         }
         catch (IOException e)
         {
-            listener.problem(e, "Unable to download file to " + destination, e);
+            problem(e, "Unable to download file to " + destination, e);
         }
     }
 

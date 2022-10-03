@@ -67,6 +67,14 @@ public class MutableIndex extends MutableLong
     }
 
     /**
+     * Gets the value of this index
+     */
+    public void index(int index)
+    {
+        super.set(index);
+    }
+
+    /**
      * Adds the given value to this index, returning the new value
      */
     @SuppressWarnings("UnusedReturnValue")

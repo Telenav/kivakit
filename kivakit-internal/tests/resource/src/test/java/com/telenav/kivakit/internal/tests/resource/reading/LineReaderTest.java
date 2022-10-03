@@ -28,7 +28,7 @@ public class LineReaderTest extends UnitTest
     {
         var i = 1;
         var resource = packageResource("test.txt");
-        for (String line : resource.reader().linesAsStringList())
+        for (String line : resource.reader().readLines())
         {
             ensureEqual(i++, Integer.parseInt(line));
         }
