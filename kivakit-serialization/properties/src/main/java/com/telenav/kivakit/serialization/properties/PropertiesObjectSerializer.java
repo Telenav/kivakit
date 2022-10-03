@@ -108,11 +108,11 @@ public class PropertiesObjectSerializer implements ObjectSerializer
             }
 
             // get any instance identifier,
-            var instance = InstanceIdentifier.singletonInstance();
+            var instance = InstanceIdentifier.singletonInstanceIdentifier();
             if (Arrays.contains(metadata, OBJECT_INSTANCE))
             {
                 var enumName = properties.getOrDefault("instance",
-                        InstanceIdentifier.singletonInstance().identifier().name());
+                        InstanceIdentifier.singletonInstanceIdentifier().enumIdentifier().name());
                 instance = InstanceIdentifier.instanceIdentifierForEnumName(this, enumName);
             }
 

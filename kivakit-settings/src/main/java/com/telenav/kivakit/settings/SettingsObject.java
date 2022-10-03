@@ -35,7 +35,7 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
 import static com.telenav.kivakit.core.ensure.Ensure.ensureFalse;
 import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
 import static com.telenav.kivakit.core.registry.InstanceIdentifier.instanceIdentifier;
-import static com.telenav.kivakit.core.registry.InstanceIdentifier.singletonInstance;
+import static com.telenav.kivakit.core.registry.InstanceIdentifier.singletonInstanceIdentifier;
 
 /**
  * <b>Service Provider API</b>
@@ -86,7 +86,7 @@ public class SettingsObject implements RegistryTrait
         public SettingsObjectIdentifier(Class<?> type)
         {
             this.type = type;
-            instance = singletonInstance();
+            instance = singletonInstanceIdentifier();
         }
 
         /**
@@ -163,7 +163,7 @@ public class SettingsObject implements RegistryTrait
 
     public SettingsObject(Object object)
     {
-        this(object, singletonInstance());
+        this(object, singletonInstanceIdentifier());
     }
 
     public SettingsObject(SerializableObject<?> object)

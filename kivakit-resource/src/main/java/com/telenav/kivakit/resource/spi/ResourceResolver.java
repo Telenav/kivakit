@@ -29,7 +29,7 @@ import com.telenav.lexakai.annotations.associations.UmlRelation;
 import org.jetbrains.annotations.NotNull;
 
 import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE;
-import static com.telenav.kivakit.annotations.code.ApiType.API_SERVICE_PROVIDER;
+import static com.telenav.kivakit.annotations.code.ApiType.SERVICE_PROVIDER_INTERFACE;
 import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
 
@@ -47,7 +47,7 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NE
 @ApiQuality(stability = API_STABLE,
             testing = TESTING_NOT_NEEDED,
             documentation = DOCUMENTATION_COMPLETE,
-            type = API_SERVICE_PROVIDER)
+            type = SERVICE_PROVIDER_INTERFACE)
 public interface ResourceResolver extends RepeaterMixin
 {
     /**

@@ -36,7 +36,7 @@ import java.util.List;
 import java.util.ServiceLoader;
 
 import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE;
-import static com.telenav.kivakit.annotations.code.ApiType.API_PRIVATE;
+import static com.telenav.kivakit.annotations.code.ApiType.PRIVATE;
 import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
 
@@ -54,7 +54,7 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
 @ApiQuality(stability = API_STABLE,
             testing = TESTING_NONE,
             documentation = DOCUMENTATION_COMPLETE,
-            type = API_PRIVATE)
+            type = PRIVATE)
 public class FileSystemServiceLoader extends BaseRepeater
 {
     /** The local filesystem service */

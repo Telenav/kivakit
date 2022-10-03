@@ -11,7 +11,7 @@ import org.jetbrains.annotations.NotNull;
 import static com.telenav.kivakit.annotations.code.ApiStability.API_UNSTABLE;
 import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
-import static com.telenav.kivakit.core.registry.InstanceIdentifier.singletonInstance;
+import static com.telenav.kivakit.core.registry.InstanceIdentifier.singletonInstanceIdentifier;
 
 /**
  * A serializable object is a versioned object with an optional instance identifier
@@ -23,7 +23,7 @@ import static com.telenav.kivakit.core.registry.InstanceIdentifier.singletonInst
             testing = TESTING_NONE)
 public class SerializableObject<T> extends VersionedObject<T>
 {
-    private InstanceIdentifier instance = singletonInstance();
+    private InstanceIdentifier instance = singletonInstanceIdentifier();
 
     public SerializableObject(@NotNull VersionedObject<T> object)
     {

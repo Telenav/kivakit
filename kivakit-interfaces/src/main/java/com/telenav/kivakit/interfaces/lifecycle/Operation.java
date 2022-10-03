@@ -38,7 +38,7 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NE
 public interface Operation
 {
     /**
-     * @return True if this operation is in progress, false if it has not started yet or if it has been stopped.
+     * Returns true if this operation is in progress, false if it has not started yet or if it has been stopped.
      */
     boolean isRunning();
 }

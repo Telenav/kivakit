@@ -140,7 +140,7 @@ public class GsonObjectSerializer implements
     @NotNull
     private InstanceIdentifier instance(String json, ObjectMetadata[] metadata)
     {
-        var instance = InstanceIdentifier.singletonInstance();
+        var instance = InstanceIdentifier.singletonInstanceIdentifier();
         var instanceMatcher = INSTANCE_PATTERN.matcher(json);
         if (OBJECT_INSTANCE.containedIn(metadata) && instanceMatcher.find())
         {

@@ -7,7 +7,7 @@ import java.lang.annotation.Target;
 
 import static com.telenav.kivakit.annotations.code.ApiStability.API_FURTHER_EVALUATION_NEEDED;
 import static com.telenav.kivakit.annotations.code.ApiStability.API_UNEVALUATED;
-import static com.telenav.kivakit.annotations.code.ApiType.API_PUBLIC;
+import static com.telenav.kivakit.annotations.code.ApiType.PUBLIC_API;
 import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
 
@@ -67,5 +67,5 @@ public @interface ApiQuality
     /**
      * Returns the type of API
      */
-    ApiType type() default API_PUBLIC;
+    ApiType type() default PUBLIC_API;
 }

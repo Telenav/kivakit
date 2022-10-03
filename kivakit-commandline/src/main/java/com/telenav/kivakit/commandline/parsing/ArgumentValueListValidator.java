@@ -27,7 +27,7 @@ import com.telenav.lexakai.annotations.associations.UmlAggregation;
 import com.telenav.lexakai.annotations.visibility.UmlNotPublicApi;
 
 import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.ApiType.API_PRIVATE;
+import static com.telenav.kivakit.annotations.code.ApiType.PRIVATE;
 import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
 
@@ -43,7 +43,7 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
 @ApiQuality(stability = API_STABLE_EXTENSIBLE,
             testing = TESTING_NONE,
             documentation = DOCUMENTATION_COMPLETE,
-            type = API_PRIVATE)
+            type = PRIVATE)
 public class ArgumentValueListValidator extends BaseValidator
 {
     /** The arguments to check */

@@ -12,7 +12,7 @@ import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_DEFAU
 import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
 import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
-import static com.telenav.kivakit.core.registry.InstanceIdentifier.singletonInstance;
+import static com.telenav.kivakit.core.registry.InstanceIdentifier.singletonInstanceIdentifier;
 
 /**
  * <p>
@@ -148,7 +148,7 @@ public interface SettingsRegistryTrait extends Repeater
      */
     default SettingsRegistry registerSettings(Object settings)
     {
-        return registerSettings(settings, singletonInstance());
+        return registerSettings(settings, singletonInstanceIdentifier());
     }
 
     /**
@@ -180,7 +180,7 @@ public interface SettingsRegistryTrait extends Repeater
      */
     default <T> T requireSettings(Class<T> type)
     {
-        return requireSettings(type, singletonInstance());
+        return requireSettings(type, singletonInstanceIdentifier());
     }
 
     /**
@@ -234,7 +234,7 @@ public interface SettingsRegistryTrait extends Repeater
      */
     default boolean saveSettings(SettingsStore store, Object object)
     {
-        return saveSettings(store, object, singletonInstance());
+        return saveSettings(store, object, singletonInstanceIdentifier());
     }
 
     /**

@@ -21,11 +21,10 @@ package com.telenav.kivakit.core.registry;
 import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.collections.map.StringMap;
 import com.telenav.kivakit.core.internal.lexakai.DiagramRegistry;
+import com.telenav.kivakit.core.language.Hash;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeSuperTypes;
-
-import java.util.Objects;
 
 import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE;
 import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
@@ -39,7 +38,7 @@ import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
  * <p><b>Creation</b></p>
  *
  * <ul>
- *     <li>{@link #singletonInstance()}</li>
+ *     <li>{@link #singletonInstanceIdentifier()}</li>
  *     <li>{@link #instanceIdentifier(Enum)}</li>
  * </ul>
  *
@@ -72,6 +71,17 @@ public class InstanceIdentifier
     }
 
     /**
+     * Returns an instance identifier for the given string
+     *
+     * @param string The string value
+     * @return The instance identifier
+     */
+    public static InstanceIdentifier instanceIdentifier(String string)
+    {
+        return new InstanceIdentifier(string);
+    }
+
+    /**
      * Returns the {@link InstanceIdentifier} for the given enum value name
      */
     public static InstanceIdentifier instanceIdentifierForEnumName(Listener listener, String enumValueName)
@@ -87,7 +97,7 @@ public class InstanceIdentifier
     /**
      * Returns an instance identifier for singleton objects
      */
-    public static InstanceIdentifier singletonInstance()
+    public static InstanceIdentifier singletonInstanceIdentifier()
     {
         return SINGLETON;
     }
@@ -97,13 +107,42 @@ public class InstanceIdentifier
         SINGLETON
     }
 
-    private final Enum<?> identifier;
+    /** Any enum value */
+    private final Enum<?> enumIdentifier;
 
-    protected InstanceIdentifier(Enum<?> identifier)
+    /** Any string identifier */
+    private final String stringIdentifier;
+
+    /**
+     * Create an instance identifier for the given enum
+     *
+     * @param enumValue The enum value
+     */
+    protected InstanceIdentifier(Enum<?> enumValue)
     {
-        instanceIdentifierForEnumName.put(identifier.name(), this);
-        instanceIdentifierForEnumName.put(identifier.getClass().getName() + "." + identifier.name(), this);
-        this.identifier = ensureNotNull(identifier, "Instance identifier cannot be null");
+        instanceIdentifierForEnumName.put(enumValue.name(), this);
+        instanceIdentifierForEnumName.put(enumValue.getClass().getName() + "." + enumValue.name(), this);
+        this.enumIdentifier = ensureNotNull(enumValue, "Instance identifier cannot be null");
+        this.stringIdentifier = null;
+    }
+
+    /**
+     * Create an instance identifier for the given string
+     *
+     * @param string The string value
+     */
+    protected InstanceIdentifier(String string)
+    {
+        this.enumIdentifier = null;
+        this.stringIdentifier = ensureNotNull(string);
+    }
+
+    /**
+     * Returns any enum identifier
+     */
+    public Enum<?> enumIdentifier()
+    {
+        return enumIdentifier;
     }
 
     /**
@@ -115,7 +154,9 @@ public class InstanceIdentifier
         if (object instanceof InstanceIdentifier)
         {
             InstanceIdentifier that = (InstanceIdentifier) object;
-            return this.identifier.equals(that.identifier);
+            return com.telenav.kivakit.core.language.Objects.areEqualPairs(
+                    this.enumIdentifier, that.enumIdentifier,
+                    this.stringIdentifier, that.stringIdentifier);
         }
         return false;
     }
@@ -126,16 +167,24 @@ public class InstanceIdentifier
     @Override
     public int hashCode()
     {
-        return Objects.hash();
+        return Hash.hashMany(enumIdentifier, stringIdentifier);
     }
 
-    public Enum<?> identifier()
+    /**
+     * Returns any string identifier
+     */
+    public String stringIdentifier()
     {
-        return identifier;
+        return stringIdentifier;
     }
 
     RegistryKey key(Class<?> at)
     {
-        return new RegistryKey(at.getName() + ":" + identifier.name());
+        return new RegistryKey(at.getName() + ":" + identifier());
+    }
+
+    private String identifier()
+    {
+        return enumIdentifier != null ? enumIdentifier.name() : stringIdentifier;
     }
 }

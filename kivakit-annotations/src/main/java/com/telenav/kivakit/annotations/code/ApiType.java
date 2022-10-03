@@ -20,11 +20,14 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NE
 public enum ApiType
 {
     /** The API is fully public and intended for end-users */
-    API_PUBLIC,
+    PUBLIC_API,
 
     /** The API is not intended for end-users, but is public to service provider implementers */
-    API_SERVICE_PROVIDER,
+    SERVICE_PROVIDER_INTERFACE,
+
+    /** The API fulfills a service provider interface (SPI) */
+    SERVICE_PROVIDER_IMPLEMENTATION,
 
     /** The API is private and should not be used outside the framework */
-    API_PRIVATE
+    PRIVATE
 }

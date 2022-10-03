@@ -145,10 +145,10 @@ public abstract class OperationMessage implements Named, Message
      * @param arguments Formatting arguments
      * @return The message
      */
-    public static <MessageType extends Message> MessageType newInstance(Listener listener,
-                                                                        Class<MessageType> type,
-                                                                        String message,
-                                                                        Object[] arguments)
+    public static <MessageType extends Message> MessageType newMessage(Listener listener,
+                                                                       Class<MessageType> type,
+                                                                       String message,
+                                                                       Object[] arguments)
     {
         try
         {

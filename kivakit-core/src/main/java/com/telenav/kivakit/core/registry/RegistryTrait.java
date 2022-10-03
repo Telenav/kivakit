@@ -7,7 +7,7 @@ import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_DEFAU
 import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
 import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
-import static com.telenav.kivakit.core.registry.InstanceIdentifier.singletonInstance;
+import static com.telenav.kivakit.core.registry.InstanceIdentifier.singletonInstanceIdentifier;
 
 /**
  * <p>
@@ -53,7 +53,7 @@ public interface RegistryTrait
      */
     default <T> T lookup(Class<T> type)
     {
-        return lookup(type, singletonInstance());
+        return lookup(type, singletonInstanceIdentifier());
     }
 
     /**
@@ -88,7 +88,7 @@ public interface RegistryTrait
     {
         for (var at = object.getClass(); at != Object.class; at = at.getSuperclass())
         {
-            register(object, singletonInstance());
+            register(object, singletonInstanceIdentifier());
         }
 
         return object;
@@ -156,7 +156,7 @@ public interface RegistryTrait
      */
     default <T> T require(Class<T> type)
     {
-        return require(type, singletonInstance());
+        return require(type, singletonInstanceIdentifier());
     }
 
     /**
@@ -190,7 +190,7 @@ public interface RegistryTrait
      */
     default void unregister(Object object)
     {
-        unregister(object, singletonInstance());
+        unregister(object, singletonInstanceIdentifier());
     }
 
     /**

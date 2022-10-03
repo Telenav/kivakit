@@ -33,7 +33,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.ServiceLoader;
 
 import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.ApiType.API_PRIVATE;
+import static com.telenav.kivakit.annotations.code.ApiType.PRIVATE;
 import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
 
@@ -73,7 +73,7 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
 @ApiQuality(stability = API_STABLE_EXTENSIBLE,
             documentation = DOCUMENTATION_COMPLETE,
             testing = TESTING_NONE,
-            type = API_PRIVATE)
+            type = PRIVATE)
 public class ResourceResolverService extends BaseRepeater
 {
     /**
