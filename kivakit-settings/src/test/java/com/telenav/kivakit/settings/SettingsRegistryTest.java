@@ -31,6 +31,7 @@ import org.junit.Test;
 import static com.telenav.kivakit.core.registry.InstanceIdentifier.instanceIdentifier;
 import static com.telenav.kivakit.core.time.Duration.ONE_MINUTE;
 import static com.telenav.kivakit.settings.SettingsRegistry.settingsRegistryFor;
+import static com.telenav.kivakit.settings.SettingsRegistryTest.WhichServer.SERVER1;
 
 public class SettingsRegistryTest extends UnitTest implements PackageTrait
 {
@@ -136,12 +137,10 @@ public class SettingsRegistryTest extends UnitTest implements PackageTrait
     @Test
     public void testProperties()
     {
-        var settings = globalSettings();
-
         // Configure
         {
             // Add all properties files in this package to the global set
-            settings.registerSettingsIn(new ResourceFolderSettingsStore(this, packageForThis()));
+            globalSettings().registerSettingsIn(new ResourceFolderSettingsStore(this, packageForThis()));
         }
 
         // Get settings

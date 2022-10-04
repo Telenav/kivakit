@@ -132,6 +132,14 @@ public class Method extends Member
     }
 
     /**
+     * Returns true if this field has an annotation of the given type
+     */
+    public boolean hasAnnotation(Class<? extends Annotation> type)
+    {
+        return annotation(type) != null;
+    }
+
+    /**
      * Invokes this method on the given target object
      *
      * @param target The object on which to call the method

@@ -34,6 +34,7 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
 import static com.telenav.kivakit.core.language.reflection.property.PropertyMemberSelector.ALL_FIELDS_AND_METHODS;
 import static com.telenav.kivakit.core.language.reflection.property.PropertyMemberSelector.KIVAKIT_ANNOTATION_INCLUDED_FIELDS;
 import static com.telenav.kivakit.core.language.reflection.property.PropertyMemberSelector.KIVAKIT_ANNOTATION_INCLUDED_FIELDS_AND_METHODS;
+import static com.telenav.kivakit.core.language.reflection.property.PropertyMemberSelector.KIVAKIT_CONVERTED_FIELDS_AND_METHODS;
 import static com.telenav.kivakit.core.language.reflection.property.PropertyMemberSelector.NON_PUBLIC_METHODS;
 import static com.telenav.kivakit.core.language.reflection.property.PropertyMemberSelector.PUBLIC_METHODS;
 import static com.telenav.kivakit.core.language.reflection.property.PropertyNamingConvention.KIVAKIT_PROPERTY_NAMING;
@@ -291,8 +292,8 @@ public class PropertySet implements PropertyFilter
                 return true;
             }
 
-            if (method.annotation(KivaKitIncludeProperty.class) != null
-                    && selection.contains(KIVAKIT_ANNOTATION_INCLUDED_FIELDS_AND_METHODS))
+            if (selection.contains(KIVAKIT_ANNOTATION_INCLUDED_FIELDS_AND_METHODS)
+                && method.annotation(KivaKitIncludeProperty.class) != null)
             {
                 return true;
             }
