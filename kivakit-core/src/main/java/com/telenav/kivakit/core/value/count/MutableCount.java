@@ -116,12 +116,12 @@ public class MutableCount implements
     }
 
     /**
-     * Returns this count minus one
+     * Post-decrement. Returns this count, updating the count to count minus one.
      */
     public long decrement()
     {
         assert count > 0;
-        return --count;
+        return count--;
     }
 
     @Override
@@ -150,12 +150,12 @@ public class MutableCount implements
     }
 
     /**
-     * Returns this count plus one
+     * Post increment. Returns this count. Increases the count to count plus one
      */
     public long increment()
     {
         assert count + 1 >= 0;
-        return ++count;
+        return count++;
     }
 
     /**
