@@ -1,70 +1,79 @@
 package com.telenav.kivakit.resource.serialization;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.language.Arrays;
 import com.telenav.kivakit.core.messaging.repeaters.RepeaterMixin;
 import com.telenav.kivakit.core.path.StringPath;
 import com.telenav.kivakit.core.progress.ProgressReporter;
+import com.telenav.kivakit.core.progress.reporters.ProgressiveInputStream;
 import com.telenav.kivakit.resource.Resource;
+import org.jetbrains.annotations.NotNull;
 
+import java.io.IOException;
 import java.io.InputStream;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_DEFAULT_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
 import static com.telenav.kivakit.core.ensure.Ensure.ensure;
+import static com.telenav.kivakit.resource.serialization.ObjectMetadata.OBJECT_TYPE;
 
 /**
  * Interface to code that can read {@link SerializableObject}s from a {@link Resource}.
  *
  * @author jonathanl (shibo)
  */
+@ApiQuality(stability = API_STABLE_DEFAULT_EXTENSIBLE,
+            documentation = DOCUMENTATION_COMPLETE,
+            testing = TESTING_NONE)
 public interface ObjectReader extends RepeaterMixin
 {
     /**
-     * Reads an object of the given type from the given {@link InputStream}. If no type is supplied, the type can be
-     * read from the stream by supplying {@link ObjectMetadata#TYPE}. It is required to supply a type or {@link
-     * ObjectMetadata#TYPE}.
+     * Gets the {@link ProgressReporter} to use while reading
      *
-     * @param input The input stream
-     * @param path Path associated with the input stream, for diagnostic purposes
-     * @param type The type to read (if {@link ObjectMetadata#TYPE} is nor supplied
-     * @param metadata The metadata to read
-     * @return The deserialized object
+     * @return The {@link ProgressReporter}
      */
-    <T> SerializableObject<T> read(InputStream input,
-                                   StringPath path,
-                                   Class<T> type,
-                                   ObjectMetadata... metadata);
+    ProgressReporter progressReporter();
 
     /**
      * Reads an object from the given {@link InputStream}. The type to be read must be in the input, and metadata must
-     * specify {@link ObjectMetadata#TYPE}.
+     * specify {@link ObjectMetadata#OBJECT_TYPE}.
      *
      * @param input The input stream
      * @param path The path for the input stream, for diagnostic purposes
      * @param metadata The metadata to read from the input
      */
-    default <T> SerializableObject<T> read(InputStream input,
-                                           StringPath path,
-                                           ObjectMetadata... metadata)
+    default <T> SerializableObject<T> readObject(@NotNull InputStream input,
+                                                 @NotNull StringPath path,
+                                                 @NotNull ObjectMetadata... metadata)
     {
-        ensure(Arrays.contains(metadata, ObjectMetadata.TYPE),
-                "Must specify ObjectMetadata.TYPE, or include an explicit type to read");
+        ensure(Arrays.contains(metadata, OBJECT_TYPE),
+                "Must specify OBJECT_TYPE metadata, or include an explicit type to read");
 
-        return read(input, path, null, metadata);
+        return readObject(new ProgressiveInputStream(input, progressReporter()), path, null, metadata);
     }
 
     /**
      * Reads an object of the given type from the given {@link Resource}.
      *
      * @param resource The resource to read from
-     * @param type The type to read (if {@link ObjectMetadata#TYPE} is not supplied
+     * @param type The type to read (if {@link ObjectMetadata#OBJECT_TYPE} is not supplied
      * @param metadata The metadata to read
-     * @return The deserialized object
+     * @return The deserialized object, or null if it couldn't be read
      */
-    default <T> SerializableObject<T> read(Resource resource,
-                                           Class<T> type,
-                                           ObjectMetadata... metadata)
+    default <T> SerializableObject<T> readObject(@NotNull Resource resource,
+                                                 Class<T> type,
+                                                 ObjectMetadata... metadata)
     {
-        var input = resource.openForReading(); // reporter().progressiveInput(resource.openForReading());
-        return read(input, resource.path(), type, metadata);
+        try (var input = resource.openForReading())
+        {
+            return readObject(input, resource.path(), type, metadata);
+        }
+        catch (IOException e)
+        {
+            problem("Unable to read object from: $", resource);
+            return null;
+        }
     }
 
     /**
@@ -74,16 +83,25 @@ public interface ObjectReader extends RepeaterMixin
      * @param metadata The metadata to read
      * @return The deserialized object
      */
-    default <T> SerializableObject<T> read(Resource resource,
-                                           ObjectMetadata... metadata)
+    default <T> SerializableObject<T> readObject(@NotNull Resource resource,
+                                                 ObjectMetadata... metadata)
     {
-        return read(resource, null, metadata);
+        return readObject(resource, null, metadata);
     }
 
     /**
-     * Gets the {@link ProgressReporter} to use while reading
+     * Reads an object of the given type from the given {@link InputStream}. If no type is supplied, the type can be
+     * read from the stream by supplying {@link ObjectMetadata#OBJECT_TYPE}. It is required to supply a type or
+     * {@link ObjectMetadata#OBJECT_TYPE}.
      *
-     * @return The {@link ProgressReporter}
+     * @param input The input stream
+     * @param path Path associated with the input stream, for diagnostic purposes
+     * @param type The type to read (if {@link ObjectMetadata#OBJECT_TYPE} is nor supplied
+     * @param metadata The metadata to read
+     * @return The deserialized object, or null if it couldn't be read
      */
-    ProgressReporter reporter();
+    <T> SerializableObject<T> readObject(@NotNull InputStream input,
+                                         @NotNull StringPath path,
+                                         Class<T> type,
+                                         @NotNull ObjectMetadata... metadata);
 }

@@ -18,8 +18,8 @@
 
 package com.telenav.kivakit.resource.packages;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.collections.list.StringList;
-import com.telenav.kivakit.core.ensure.Ensure;
 import com.telenav.kivakit.core.language.module.PackageReference;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.path.Path;
@@ -41,6 +41,10 @@ import java.util.function.Function;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_DEFAULT_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+import static com.telenav.kivakit.core.collections.list.StringList.stringList;
 import static com.telenav.kivakit.core.language.module.PackageReference.packageReference;
 import static com.telenav.kivakit.resource.packages.Package.packageForPath;
 
@@ -60,13 +64,48 @@ import static com.telenav.kivakit.resource.packages.Package.packageForPath;
  * <ul>
  *     <li>{@link #packagePath(StringPath)} - The specified package path</li>
  *     <li>{@link #packagePath(Class)} - The package where the given class resides</li>
+ *     <li>{@link #packagePath(PackageReference)}</li>
  *     <li>{@link #packagePath(Class, StringPath)} - The specified path relative to the given class</li>
+ * </ul>
+ *
+ * <p><b>Properties</b></p>
+ *
+ * <ul>
+ *     <li>{@link #parent()}</li>
+ *     <li>{@link #hasPackageType()}</li>
+ *     <li>{@link #packageType()}</li>
+ *     <li>{@link #separator()}</li>
+ * </ul>
+ *
+ * <p><b>Conversions</b></p>
+ *
+ * <ul>
+ *     <li>{@link #asPackage(Listener)}</li>
+ *     <li>{@link #asPackageReference()}</li>
+ * </ul>
+ *
+ * <p><b>Functional</b></p>
+ *
+ * <ul>
+ *     <li>{@link #withChild(Path)}</li>
+ *     <li>{@link #withChild(String)}</li>
+ *     <li>{@link #withPackageType(Class)}</li>
+ *     <li>{@link #withParent(Path)}</li>
+ *     <li>{@link #withParent(String)}</li>
+ *     <li>{@link #withSeparator(String)}</li>
+ *     <li>{@link #withoutFirst()}</li>
+ *     <li>{@link #withoutLast()}</li>
+ *     <li>{@link #withoutOptionalPrefix(Path)}</li>
+ *     <li>{@link #withoutOptionalSuffix(Path)}</li>
+ *     <li>{@link #withoutPrefix(Path)}</li>
+ *     <li>{@link #withoutSuffix(Path)}</li>
+ *     <li>{@link #withoutRoot()}</li>
  * </ul>
  *
  * <p><b>Examples</b></p>
  *
  * <pre>
- * PackagePath.of(MyClass.class)
+ * PackagePath.packagePath(MyClass.class)
  * PackagePath.parsePackagePath(MyClass.class, "resources/images")
  * PackagePath.parsePackagePath(MyClass.class, "resources.images")
  * PackagePath.parsePackagePath(getClass(), "resources/images")
@@ -76,62 +115,76 @@ import static com.telenav.kivakit.resource.packages.Package.packageForPath;
  *
  * @author jonathanl (shibo)
  */
-@SuppressWarnings({ "unused", "DuplicatedCode" })
+@SuppressWarnings({ "unused", "DuplicatedCode", "SpellCheckingInspection" })
 @UmlClassDiagram(diagram = DiagramResource.class)
 @UmlClassDiagram(diagram = DiagramResourcePath.class)
+@ApiQuality(stability = API_STABLE_DEFAULT_EXTENSIBLE,
+            documentation = DOCUMENTATION_COMPLETE,
+            testing = TESTING_NONE)
 public final class PackagePath extends ResourcePath
 {
-    public static final PackagePath TELENAV = parsePackagePath(Listener.emptyListener(), "com.telenav");
+    /** The com.telenav package */
+    public static final PackagePath TELENAV = parsePackagePath(Listener.nullListener(), "com.telenav");
 
-    public static boolean isPackagePath(String path)
+    /**
+     * Returns true if the given path is a valid dot-separated package path
+     *
+     * @param path The path
+     * @return True if the path is a package path
+     */
+    public static boolean isPackagePath(@NotNull String path)
     {
         return path.matches("(?x) [a-z][a-z0-9_]* ( \\. [a-z][a-z0-9_]* ) *");
     }
 
     /**
-     * @return A package path for the package that contains the given class
+     * Returns a package path for the package that contains the given class
      */
-    public static PackagePath packagePath(Class<?> type, StringPath path)
+    public static PackagePath packagePath(@NotNull Class<?> type,
+                                          @NotNull StringPath path)
     {
         return new PackagePath(type, path);
     }
 
     /**
-     * @return A package path for the package that contains the given class
+     * Returns a package path for the package that contains the given class
      */
-    public static PackagePath packagePath(PackageReference reference)
+    public static PackagePath packagePath(@NotNull PackageReference reference)
     {
         return new PackagePath(reference.packageType(), reference);
     }
 
     /**
-     * @return Package path for the given Java path object
+     * Returns package path for the given Java path object
      */
-    public static PackagePath packagePath(StringPath path)
+    public static PackagePath packagePath(@NotNull StringPath path)
     {
         return new PackagePath(null, path);
     }
 
     /**
-     * @return A package path for the package that contains the given class
+     * Returns a package path for the package that contains the given class
      */
-    public static PackagePath packagePath(Class<?> type)
+    public static PackagePath packagePath(@NotNull Class<?> type)
     {
-        return packagePath(type, parseStringPath(Listener.emptyListener(), type.getName(), null, "\\.").withoutLast());
+        return packagePath(type, parseStringPath(Listener.nullListener(), type.getName(), null, "\\.").withoutLast());
     }
 
     /**
-     * @return The package path specified by the given path. The path may be separated by either '.' or '/'.
+     * Returns the package path specified by the given path. The path may be separated by either '.' or '/'.
      */
-    public static PackagePath parsePackagePath(Listener listener, String path)
+    public static PackagePath parsePackagePath(@NotNull Listener listener,
+                                               @NotNull String path)
     {
         return packagePath(path(path));
     }
 
     /**
-     * @return A package path relative to the package containing the given class
+     * Returns a package path relative to the package containing the given class
      */
-    public static PackagePath parsePackagePath(Listener listener, Class<?> type, String relativePath)
+    public static PackagePath parsePackagePath(@NotNull Listener listener,
+                                               @NotNull Class<?> type,
+                                               @NotNull String relativePath)
     {
         var parent = parseStringPath(listener, type.getPackageName(), "\\.");
         var child = parsePackagePath(listener, relativePath);
@@ -141,35 +194,44 @@ public final class PackagePath extends ResourcePath
     /** A class where the package is defined */
     private Class<?> packageType;
 
-    private PackagePath(Class<?> packageType, Path<String> path)
+    private PackagePath(Class<?> packageType,
+                        @NotNull Path<String> path)
     {
-        super(StringList.stringList(), path.elements());
+        super(stringList(), path.elements());
         this.packageType = packageType;
     }
 
     /**
      * Copy constructor
      */
-    private PackagePath(PackagePath that)
+    private PackagePath(@NotNull PackagePath that)
     {
         super(that);
         packageType = that.packageType;
     }
 
-    public Package asPackage(Listener listener)
+    /**
+     * Returns the package for this path
+     *
+     * @param listener The listener to call with any errors
+     */
+    public Package asPackage(@NotNull Listener listener)
     {
         return packageForPath(listener, this);
     }
 
+    /**
+     * Returns this package path as a package reference
+     */
     public PackageReference asPackageReference()
     {
         return packageReference(packageType, this);
     }
 
     /**
-     * @return A list of sub packages under this package from the directories in classpath
+     * Returns a list of sub packages under this package from the directories in classpath
      */
-    public Set<PackagePath> directorySubPackages()
+    public Set<PackagePath> directorySubPackages(@NotNull Listener listener)
     {
         // Get the code source for the package type class,
         var packages = new HashSet<PackagePath>();
@@ -188,6 +250,7 @@ public final class PackagePath extends ResourcePath
 
                     if (Files.exists(directory))
                     {
+                        //noinspection resource
                         Files.list(directory)
                                 .filter(Files::isDirectory)
                                 .forEach(path -> packages.add(withChild(path.getFileName().toString())));
@@ -196,7 +259,7 @@ public final class PackagePath extends ResourcePath
             }
             catch (Exception ignored)
             {
-                Ensure.warning("Exception thrown while searching directory sub packages from $", this);
+                listener.warning("Exception thrown while searching directory sub packages from $", this);
             }
         }
         return packages;
@@ -212,7 +275,7 @@ public final class PackagePath extends ResourcePath
     }
 
     /**
-     * @return Returns true if this path has an associated type
+     * Returns returns true if this path has an associated type
      */
     public boolean hasPackageType()
     {
@@ -220,9 +283,9 @@ public final class PackagePath extends ResourcePath
     }
 
     /**
-     * @return A list of sub packages under this package from the jars in classpath
+     * Returns a list of sub packages under this package from the jars in classpath
      */
-    public Set<PackagePath> jarSubPackages()
+    public Set<PackagePath> jarSubPackages(@NotNull Listener listener)
     {
         // Get the code source for the package type class,
         var packages = new HashSet<PackagePath>();
@@ -276,12 +339,15 @@ public final class PackagePath extends ResourcePath
             }
             catch (Exception ignored)
             {
-                Ensure.warning("Exception thrown while searching jar sub packages from $", this);
+                listener.warning("Exception thrown while searching jar sub packages from $", this);
             }
         }
         return packages;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public PackagePath last(int n)
     {
@@ -289,7 +355,7 @@ public final class PackagePath extends ResourcePath
     }
 
     /**
-     * @return A type within the package
+     * Returns a type within the package
      */
     public Class<?> packageType()
     {
@@ -305,6 +371,9 @@ public final class PackagePath extends ResourcePath
         return (PackagePath) super.parent();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public PackagePath root()
     {
@@ -333,7 +402,7 @@ public final class PackagePath extends ResourcePath
      * {@inheritDoc}
      */
     @Override
-    public PackagePath transformed(Function<String, String> consumer)
+    public PackagePath transformed(@NotNull Function<String, String> consumer)
     {
         return (PackagePath) super.transformed(consumer);
     }
@@ -342,7 +411,7 @@ public final class PackagePath extends ResourcePath
      * {@inheritDoc}
      */
     @Override
-    public PackagePath withChild(Path<String> that)
+    public PackagePath withChild(@NotNull Path<String> that)
     {
         return (PackagePath) super.withChild(that);
     }
@@ -351,12 +420,12 @@ public final class PackagePath extends ResourcePath
      * {@inheritDoc}
      */
     @Override
-    public PackagePath withChild(String path)
+    public PackagePath withChild(@NotNull String path)
     {
         return (PackagePath) super.withChild(path(path));
     }
 
-    public PackagePath withPackageType(Class<?> type)
+    public PackagePath withPackageType(@NotNull Class<?> type)
     {
         var copy = (PackagePath) copy();
         copy.packageType = type;
@@ -367,7 +436,7 @@ public final class PackagePath extends ResourcePath
      * {@inheritDoc}
      */
     @Override
-    public PackagePath withParent(String path)
+    public PackagePath withParent(@NotNull String path)
     {
         return (PackagePath) super.withParent(PackagePath.parsePackagePath(Listener.throwingListener(), path));
     }
@@ -376,7 +445,7 @@ public final class PackagePath extends ResourcePath
      * {@inheritDoc}
      */
     @Override
-    public PackagePath withParent(Path<String> that)
+    public PackagePath withParent(@NotNull Path<String> that)
     {
         return (PackagePath) super.withParent(that);
     }
@@ -385,7 +454,7 @@ public final class PackagePath extends ResourcePath
      * {@inheritDoc}
      */
     @Override
-    public PackagePath withRoot(String root)
+    public PackagePath withRoot(@NotNull String root)
     {
         return (PackagePath) super.withRoot(root);
     }
@@ -394,7 +463,7 @@ public final class PackagePath extends ResourcePath
      * {@inheritDoc}
      */
     @Override
-    public PackagePath withSeparator(String separator)
+    public PackagePath withSeparator(@NotNull String separator)
     {
         return (PackagePath) super.withSeparator(separator);
     }
@@ -421,7 +490,7 @@ public final class PackagePath extends ResourcePath
      * {@inheritDoc}
      */
     @Override
-    public PackagePath withoutOptionalPrefix(Path<String> prefix)
+    public PackagePath withoutOptionalPrefix(@NotNull Path<String> prefix)
     {
         return (PackagePath) super.withoutOptionalPrefix(prefix);
     }
@@ -430,7 +499,7 @@ public final class PackagePath extends ResourcePath
      * {@inheritDoc}
      */
     @Override
-    public PackagePath withoutOptionalSuffix(Path<String> suffix)
+    public PackagePath withoutOptionalSuffix(@NotNull Path<String> suffix)
     {
         return (PackagePath) super.withoutOptionalSuffix(suffix);
     }
@@ -439,7 +508,7 @@ public final class PackagePath extends ResourcePath
      * {@inheritDoc}
      */
     @Override
-    public PackagePath withoutPrefix(Path<String> prefix)
+    public PackagePath withoutPrefix(@NotNull Path<String> prefix)
     {
         return (PackagePath) super.withoutPrefix(prefix);
     }
@@ -457,7 +526,7 @@ public final class PackagePath extends ResourcePath
      * {@inheritDoc}
      */
     @Override
-    public PackagePath withoutSuffix(Path<String> suffix)
+    public PackagePath withoutSuffix(@NotNull Path<String> suffix)
     {
         return (PackagePath) super.withoutSuffix(suffix);
     }
@@ -466,13 +535,14 @@ public final class PackagePath extends ResourcePath
      * {@inheritDoc}
      */
     @Override
-    protected PackagePath onCopy(String root, List<String> elements)
+    protected PackagePath onCopy(String root,
+                                 @NotNull List<String> elements)
     {
         return new PackagePath(packageType, stringPath(root, elements));
     }
 
     @NotNull
-    private static StringPath path(String path)
+    private static StringPath path(@NotNull String path)
     {
         if (path.contains("/"))
         {

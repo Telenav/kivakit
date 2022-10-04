@@ -32,9 +32,9 @@ public class VersionTest extends CoreUnitTest
         ensure(Version.parseVersion(this, "1.9.3").isNewerThan(Version.parseVersion(this, "1.9.1-rc")));
         ensure(Version.parseVersion(this, "1.9.2-m3").isOlderThan(Version.parseVersion(this, "1.9.3")));
         ensure(Version.parseVersion(this, "4.9.1-beta").isNewerThan(Version.parseVersion(this, "1.9.3")));
-        ensure(Version.of(1, 0).isNewerThan(Version.of(0, 9)));
+        ensure(Version.version(1, 0).isNewerThan(Version.version(0, 9)));
         ensure(Version.parseVersion(this, "1.9").isNewerThan(Version.parseVersion(this, "0.9")));
-        ensureEqual(Version.of(1, 0, 0), Version.parseVersion(this, "1.0.0"));
+        ensureEqual(Version.version(1, 0, 0), Version.parseVersion(this, "1.0.0"));
         ensureEqual("1.0.0", Version.parseVersion(this, "1.0.0").toString());
         ensureEqual(Version.parseVersion(this, "1.0.5-SNAPSHOT"), Version.parseVersion(this, "1.0.5-SNAPSHOT"));
         ensure(!Version.parseVersion(this, "1.0.5-SNAPSHOT").isNewerThan(Version.parseVersion(this, "1.0.5-SNAPSHOT")));

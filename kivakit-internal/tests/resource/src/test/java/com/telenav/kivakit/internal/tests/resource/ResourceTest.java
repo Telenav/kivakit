@@ -28,7 +28,7 @@ public class ResourceTest extends UnitTest
     @Test
     public void testResolution()
     {
-        var properties = Resource.resolve(this, "classpath:com/telenav/kivakit/internal/tests/resource/ResourceTest.properties");
-        ensureEqual("b", PropertyMap.load(this, properties).get("a"));
+        var properties = Resource.resolveResource(this, "classpath:com/telenav/kivakit/internal/tests/resource/ResourceTest.properties");
+        ensureEqual("b", PropertyMap.loadPropertyMap(this, properties).get("a"));
     }
 }

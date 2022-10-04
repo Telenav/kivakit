@@ -18,13 +18,18 @@
 
 package com.telenav.kivakit.core.collections.iteration;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramCollections;
-import com.telenav.kivakit.interfaces.collection.NextValue;
+import com.telenav.kivakit.interfaces.collection.NextIterator;
 import com.telenav.kivakit.interfaces.comparison.Filter;
 import com.telenav.kivakit.interfaces.comparison.Matcher;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.Iterator;
+
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
 
 /**
  * An {@link Iterable} that wraps and filters the elements of another {@link Iterable} producing only elements that
@@ -35,32 +40,44 @@ import java.util.Iterator;
  * @see Filter
  */
 @UmlClassDiagram(diagram = DiagramCollections.class)
-public class FilteredIterable<Element> extends BaseIterable<Element>
+@ApiQuality(stability = API_STABLE,
+            testing = TESTING_NONE,
+            documentation = DOCUMENTATION_COMPLETE)
+public class FilteredIterable<Value> extends BaseIterable<Value>
 {
-    private final Matcher<Element> filter;
+    /** The matcher that must be satisfied for iterated objects */
+    private final Matcher<Value> matcher;
 
-    private final Iterable<Element> iterable;
+    /** The iterable to filter */
+    private final Iterable<Value> iterable;
 
-    public FilteredIterable(Iterable<Element> iterable, Matcher<Element> filter)
+    /**
+     * @param iterable The iterable to filter
+     * @param matcher The matcher that must be satisfied to include values in the iteration
+     */
+    public FilteredIterable(Iterable<Value> iterable, Matcher<Value> matcher)
     {
         this.iterable = iterable;
-        this.filter = filter;
+        this.matcher = matcher;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    protected NextValue<Element> newNext()
+    protected NextIterator<Value> newNextIterator()
     {
-        return new NextValue<>()
+        return new NextIterator<>()
         {
-            private final Iterator<Element> iterator = iterable.iterator();
+            private final Iterator<Value> iterator = iterable.iterator();
 
             @Override
-            public Element next()
+            public Value next()
             {
                 while (iterator.hasNext())
                 {
                     var next = iterator.next();
-                    if (filter.matches(next))
+                    if (matcher.matches(next))
                     {
                         return next;
                     }

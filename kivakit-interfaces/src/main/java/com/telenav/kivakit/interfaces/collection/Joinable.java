@@ -1,12 +1,12 @@
 package com.telenav.kivakit.interfaces.collection;
 
-import com.telenav.kivakit.annotations.code.CodeQuality;
+import com.telenav.kivakit.annotations.code.ApiQuality;
 
 import java.util.function.Function;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.STABLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.UNNECESSARY;
+import static com.telenav.kivakit.annotations.code.ApiStability.API_FURTHER_EVALUATION_NEEDED;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
 
 /**
  * An object that is {@link Joinable} is {@link Iterable}. Objects are iterated through and joined by separator values
@@ -25,12 +25,19 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.UNNECESSARY;
  *
  * @author jonathanl (shibo)
  */
-@SuppressWarnings("unused")
-@CodeQuality(stability = STABLE,
-             testing = UNNECESSARY,
-             documentation = COMPLETE)
+@SuppressWarnings({ "unused", "SpellCheckingInspection" })
+@ApiQuality(stability = API_FURTHER_EVALUATION_NEEDED,
+            testing = TESTING_NONE,
+            documentation = DOCUMENTATION_COMPLETE,
+            reviews = 1,
+            reviewers = "shibo")
 public interface Joinable<Element> extends Iterable<Element>
 {
+    default String join()
+    {
+        return join(separator());
+    }
+
     /**
      * @return The elements in this sequence joined as a string with the given separator
      */
@@ -76,5 +83,10 @@ public interface Joinable<Element> extends Iterable<Element>
             return defaultValue;
         }
         return join(separator, Object::toString);
+    }
+
+    default String separator()
+    {
+        return ", ";
     }
 }

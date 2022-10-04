@@ -18,19 +18,26 @@
 
 package com.telenav.kivakit.filesystem;
 
-import com.telenav.kivakit.core.logging.Logger;
-import com.telenav.kivakit.core.logging.LoggerFactory;
+import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.core.messaging.repeaters.BaseRepeater;
 import com.telenav.kivakit.core.thread.RepeatingThread;
 import com.telenav.kivakit.core.time.Duration;
 import com.telenav.kivakit.core.time.Frequency;
 import com.telenav.kivakit.core.value.count.Bytes;
 import com.telenav.kivakit.core.value.level.Percent;
 import com.telenav.kivakit.interfaces.comparison.Matcher;
+import com.telenav.kivakit.interfaces.lifecycle.Startable;
+import com.telenav.kivakit.interfaces.lifecycle.Stoppable;
 import com.telenav.kivakit.resource.ResourcePathed;
 import com.telenav.kivakit.resource.internal.lexakai.DiagramFileSystemFolder;
-import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
+import org.jetbrains.annotations.NotNull;
+
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
+import static com.telenav.kivakit.core.time.Duration.seconds;
 
 /**
  * Removes nested files matching {@link #matcher(Matcher)} from the given folder when they meet expiration criteria.
@@ -43,15 +50,37 @@ import com.telenav.lexakai.annotations.associations.UmlRelation;
  * {@link #capacity(Bytes)}.
  * </p>
  *
+ * <p><b>Lifecycle</b></p>
+ *
+ * <ul>
+ *     <li>{@link #isRunning()}</li>
+ *     <li>{@link #start()}</li>
+ *     <li>{@link #stop(Duration)}</li>
+ *     <li>{@link #maximumStopTime()}</li>
+ * </ul>
+ *
+ * <p><b>Pruning Criteria</b></p>
+ *
+ * <ul>
+ *     <li>{@link #capacity()}</li>
+ *     <li>{@link #capacity(Bytes)}</li>
+ *     <li>{@link #matcher()}</li>
+ *     <li>{@link #matcher(Matcher)}</li>
+ *     <li>{@link #maximumAge(Duration)}</li>
+ *     <li>{@link #minimumUsableDiskSpace(Percent)}</li>
+ * </ul>
+ *
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramFileSystemFolder.class)
 @UmlRelation(label = "prunes old files from", referent = Folder.class)
-@LexakaiJavadoc(complete = true)
-public class FolderPruner
+@ApiQuality(stability = API_STABLE_EXTENSIBLE,
+            testing = TESTING_NOT_NEEDED,
+            documentation = DOCUMENTATION_COMPLETE)
+public class FolderPruner extends BaseRepeater implements
+        Startable,
+        Stoppable<Duration>
 {
-    private static final Logger LOGGER = LoggerFactory.newLogger();
-
     /** The maximum folder capacity */
     private volatile Bytes capacity = Bytes.MAXIMUM;
 
@@ -70,9 +99,9 @@ public class FolderPruner
     /** The pruner thread */
     private final RepeatingThread thread;
 
-    public FolderPruner(Folder folder, Frequency frequency)
+    public FolderPruner(@NotNull Folder folder, @NotNull Frequency frequency)
     {
-        thread = new RepeatingThread(LOGGER, getClass().getSimpleName(), frequency)
+        thread = new RepeatingThread(this, getClass().getSimpleName(), frequency)
         {
             @Override
             protected void onRun()
@@ -107,46 +136,80 @@ public class FolderPruner
                 }
                 catch (Exception e)
                 {
-                    LOGGER.problem(e, "Folder pruner threw exception");
+                    problem(e, "Folder pruner threw exception");
                 }
             }
         };
         thread.daemon(true);
-        thread.addListener(LOGGER);
+        thread.addListener(this);
     }
 
-    public void capacity(Bytes capacity)
+    /**
+     * Sets the capacity of the folder before pruning occurs
+     */
+    public void capacity(@NotNull Bytes capacity)
     {
         this.capacity = capacity;
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public boolean isRunning()
     {
         return running;
     }
 
-    public void matcher(Matcher<ResourcePathed> matcher)
+    /**
+     * Sets the matcher to use when selecting resources to prune
+     */
+    public void matcher(@NotNull Matcher<ResourcePathed> matcher)
     {
         this.matcher = matcher;
     }
 
-    public void maximumAge(Duration maximumAge)
+    /**
+     * Sets the maximum age at which resources can be expired
+     */
+    public void maximumAge(@NotNull Duration maximumAge)
     {
         this.maximumAge = maximumAge;
     }
 
-    public void minimumUsableDiskSpace(Percent minimumUsableDiskSpace)
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Duration maximumStopTime()
+    {
+        return seconds(30);
+    }
+
+    /**
+     * Sets the minimum usable disk space below which pruning occurs
+     */
+    public void minimumUsableDiskSpace(@NotNull Percent minimumUsableDiskSpace)
     {
         this.minimumUsableDiskSpace = minimumUsableDiskSpace;
     }
 
-    public void start()
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public boolean start()
     {
         thread.start();
         running = true;
+        return true;
     }
 
-    public void stop(Duration maximumWaitTime)
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void stop(@NotNull Duration maximumWaitTime)
     {
         thread.stop(maximumWaitTime);
         running = false;
@@ -156,9 +219,9 @@ public class FolderPruner
      * Allows subclass to determine the file age (because it may want to infer the date of the file from the filename or
      * some other source instead of using the OS time)
      */
-    protected Duration age(File file)
+    protected Duration age(@NotNull File file)
     {
-        return file.modifiedAt().elapsedSince();
+        return file.lastModified().elapsedSince();
     }
 
     /**
@@ -167,7 +230,8 @@ public class FolderPruner
      * @return True if the candidate file can be removed
      */
     @SuppressWarnings({ "SameReturnValue", "unused" })
-    protected boolean canRemove(File candidate, FileList files)
+    protected boolean canRemove(@NotNull File candidate,
+                                @NotNull FileList files)
     {
         return true;
     }
@@ -192,8 +256,11 @@ public class FolderPruner
         return minimumUsableDiskSpace;
     }
 
-    protected void onFileRemoved(File file)
+    /**
+     * Called when files are removed
+     */
+    protected void onFileRemoved(@NotNull File file)
     {
-        LOGGER.warning("FolderPruner removing $", file);
+        warning("FolderPruner removing $", file);
     }
 }

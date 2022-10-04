@@ -18,21 +18,27 @@
 
 package com.telenav.kivakit.core.messaging.context;
 
-import com.telenav.kivakit.core.collections.list.ObjectList;
+import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.core.internal.lexakai.DiagramContext;
 import com.telenav.kivakit.core.language.reflection.Method;
 import com.telenav.kivakit.core.messaging.Debug;
-import com.telenav.kivakit.core.internal.lexakai.DiagramContext;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+
 /**
- * A stack of KivaKit {@link Method} objects for a given thread ({@link #stack(Thread)} or the current thread {@link
- * #stack()}.
+ * A stack of KivaKit {@link Method} objects for a given thread ({@link #stack(Thread)} or the current thread
+ * {@link #stack()}.
  * <p>
- * The caller of a given class on the stack (the "callee") can be determined with {@link #callerOf(Proximity, Matching,
- * Class, Matching, Class[])}, which takes the callee type and a variable number of classes to ignore. Matching of the
- * caller and its distance from the callee are specified by the first and second parameters respectively.
+ * The caller of a given class on the stack (the "callee") can be determined with
+ * {@link #callerOf(Proximity, Matching, Class, Matching, Class[])}, which takes the callee type and a variable number
+ * of classes to ignore. Matching of the caller and its distance from the callee are specified by the first and second
+ * parameters respectively.
  * <p>
  * For example, the class <b>A</b> might want to determine who called it (for a concrete example see {@link Debug},
  * which finds its caller in order to switch on/off debugging for that class). This makes class <b>A</b> the callee. It
@@ -43,6 +49,9 @@ import java.util.List;
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramContext.class)
+@ApiQuality(stability = API_STABLE_EXTENSIBLE,
+            testing = TESTING_NONE,
+            documentation = DOCUMENTATION_COMPLETE)
 public class CallStack
 {
     public static Method callerOf(Proximity proximity, Matching matching, Class<?> calleeType)
@@ -101,12 +110,13 @@ public class CallStack
         return stack(Thread.currentThread());
     }
 
-    public static ObjectList<Method> stack(Thread thread)
+    @SuppressWarnings("unused")
+    public static List<Method> stack(Thread thread)
     {
-        var stack = new ObjectList<Method>();
+        var stack = new ArrayList<Method>();
         for (var frame : Thread.currentThread().getStackTrace())
         {
-            var method = Method.of(frame);
+            var method = Method.method(frame);
             if (method != null)
             {
                 stack.add(method);
@@ -143,7 +153,9 @@ public class CallStack
         var index = 0;
         for (var method : stack)
         {
-            var matches = matching == Matching.EXACT ? calleeType.equals(method.typeClass()) : calleeType.isAssignableFrom(method.typeClass());
+            var matches = matching == Matching.EXACT
+                    ? calleeType.equals(method.parentType().type())
+                    : calleeType.isAssignableFrom(method.parentType().type());
 
             switch (proximity)
             {
@@ -183,7 +195,7 @@ public class CallStack
         {
             for (var ignore : ignores)
             {
-                if ((exact && ignore == caller.typeClass()) || (!exact && ignore.isAssignableFrom(caller.typeClass())))
+                if ((exact && ignore == caller.parentType().type()) || (!exact && ignore.isAssignableFrom(caller.parentType().type())))
                 {
                     ignored = true;
                 }

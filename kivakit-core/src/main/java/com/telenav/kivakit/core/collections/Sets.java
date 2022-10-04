@@ -18,24 +18,54 @@
 
 package com.telenav.kivakit.core.collections;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.core.collections.set.ObjectSet;
 import com.telenav.kivakit.core.ensure.Ensure;
-import com.telenav.kivakit.interfaces.comparison.Matcher;
 import com.telenav.kivakit.interfaces.factory.Factory;
 
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
-import java.util.IdentityHashMap;
 import java.util.Set;
 import java.util.function.Function;
-import java.util.stream.Collectors;
+
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_STATIC_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
 
 /**
- * Set utility methods.
+ * Set utility methods for working on sets. Prefer {@link ObjectSet} when possible.
+ *
+ * <p><b>Construction</b></p>
+ *
+ * <ul>
+ *     <li>{@link #empty()}</li>
+ *     <li>{@link #hashSet(Object[])}</li>
+ *     <li>{@link #hashSet(Iterable)}</li>
+ *     <li>{@link #hashSet(Collection)}</li>
+ * </ul>
+ *
+ * <p><b>Copying</b></p>
+ *
+ * <ul>
+ *     <li>{@link #copy(Factory, Set)}</li>
+ *     <li>{@link #deepCopy(Factory, Set, Function)}</li>
+ * </ul>
+ *
+ * <p><b>Other</b></p>
+ *
+ * <ul>
+ *     <li>{@link #first(Set)}</li>
+ *     <li>{@link #union(Set, Set)}</li>
+ * </ul>
  *
  * @author jonathanl (shibo)
  */
+@SuppressWarnings("unused")
+@ApiQuality(stability = API_STABLE_STATIC_EXTENSIBLE,
+            testing = TESTING_NOT_NEEDED,
+            documentation = DOCUMENTATION_COMPLETE)
 public class Sets
 {
     /**
@@ -65,57 +95,52 @@ public class Sets
         return copy;
     }
 
-    public static <T> Set<T> empty()
+    /**
+     * Returns the empty set.
+     */
+    public static <Value> Set<Value> empty()
     {
         return Collections.emptySet();
     }
 
-    public static <T> T first(Set<T> set)
+    /**
+     * Returns the first available value in the set or null. Which value is returned is not defined.
+     */
+    public static <Value> Value first(Set<Value> set)
     {
         return set.isEmpty() ? null : set.iterator().next();
     }
 
-    public static <T> Set<T> fromIterable(Iterable<T> iterable)
+    /**
+     * Constructs a hash set from an iterable
+     */
+    public static <T> Set<T> hashSet(Iterable<T> iterable)
     {
-        Set<T> set = new HashSet<>();
+        var set = new HashSet<T>();
         iterable.forEach(set::add);
         return set;
     }
 
-    public static <T> HashSet<T> hashset(Collection<T> collection)
+    /**
+     * Constructs a hash set from a collection
+     */
+    public static <T> HashSet<T> hashSet(Collection<T> collection)
     {
         return new HashSet<>(collection);
     }
 
+    /**
+     * Constructs a hash set from a variable number of values
+     */
     @SafeVarargs
-    public static <T> HashSet<T> hashset(T... values)
+    public static <T> Set<T> hashSet(T... values)
     {
-        return new HashSet<>(Set.of(values));
+        return new HashSet<>(Arrays.asList(values));
     }
 
-    public static <T> Set<T> identitySet()
-    {
-        return Collections.newSetFromMap(new IdentityHashMap<>());
-    }
-
-    public static <T> Set<T> matching(Set<T> values, Matcher<T> matcher)
-    {
-        return values.stream()
-                .filter(matcher)
-                .collect(Collectors.toSet());
-    }
-
-    public static <T> Set<T> nonNull(Set<T> set)
-    {
-        return set == null ? empty() : set;
-    }
-
-    @SafeVarargs
-    public static <T> Set<T> of(T... list)
-    {
-        return new HashSet<>(Arrays.asList(list));
-    }
-
+    /**
+     * Returns the union of the two given sets
+     */
     public static <T> Set<T> union(Set<T> a, Set<T> b)
     {
         var union = new HashSet<T>();

@@ -18,26 +18,41 @@
 
 package com.telenav.kivakit.conversion.core.time;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.conversion.internal.lexakai.DiagramConversionTime;
 import com.telenav.kivakit.core.messaging.Listener;
-import com.telenav.kivakit.core.time.TimeFormats;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.time.ZoneId;
+
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+import static com.telenav.kivakit.core.time.TimeFormats.KIVAKIT_DATE_TIME_MILLISECONDS;
 
 /**
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramConversionTime.class)
+@ApiQuality(stability = API_STABLE,
+            testing = TESTING_NONE,
+            documentation = DOCUMENTATION_COMPLETE)
 public class LocalDateTimeWithMillisecondsConverter extends BaseFormattedLocalTimeConverter
 {
+    /**
+     * @param listener The listener to report problems to
+     */
     public LocalDateTimeWithMillisecondsConverter(Listener listener)
     {
-        super(listener, TimeFormats.KIVAKIT_DATE_TIME_MILLISECONDS);
+        super(listener, KIVAKIT_DATE_TIME_MILLISECONDS);
     }
 
+    /**
+     * @param listener The listener to report problems to
+     * @param zone The timezone
+     */
     public LocalDateTimeWithMillisecondsConverter(Listener listener, ZoneId zone)
     {
-        super(listener, TimeFormats.KIVAKIT_DATE_TIME_MILLISECONDS, zone);
+        super(listener, KIVAKIT_DATE_TIME_MILLISECONDS, zone);
     }
 }

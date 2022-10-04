@@ -18,6 +18,7 @@
 
 package com.telenav.kivakit.core.logging.loggers;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.collections.set.ObjectSet;
 import com.telenav.kivakit.core.internal.lexakai.DiagramLogging;
 import com.telenav.kivakit.core.logging.Log;
@@ -25,19 +26,32 @@ import com.telenav.kivakit.core.logging.logs.text.ConsoleLog;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeMember;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
 import static com.telenav.kivakit.core.collections.set.ObjectSet.objectSet;
 
 /**
- * A simple logger for bootstrapping purposes (the logging system itself may need to do logging, for example, which can
- * lead to problems)
+ * A simple logger that writes to the console. This is useful for bootstrapping purposes (the logging system itself may
+ * need to do logging, for example, which can lead to problems)
  *
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramLogging.class)
+@ApiQuality(stability = API_STABLE,
+            testing = TESTING_NONE,
+            documentation = DOCUMENTATION_COMPLETE)
 public class ConsoleLogger extends BaseLogger
 {
+    /** The console log to write to */
     private final Log log = new ConsoleLog();
 
+    /**
+     * Returns the console log to write to
+     * <p>
+     * {@inheritDoc}
+     * </p>
+     */
     @Override
     @UmlExcludeMember
     protected ObjectSet<Log> logs()

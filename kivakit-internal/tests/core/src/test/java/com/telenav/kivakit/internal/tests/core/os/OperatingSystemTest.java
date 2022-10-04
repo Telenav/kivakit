@@ -26,7 +26,7 @@ public class OperatingSystemTest extends CoreUnitTest
     @Test
     public void test()
     {
-        var os = OperatingSystem.get();
+        var os = OperatingSystem.operatingSystem();
         ensure(os.isMac() || os.isUnix() || os.isWindows());
     }
 }

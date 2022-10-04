@@ -18,13 +18,12 @@
 
 package com.telenav.kivakit.network.socket.server;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.messaging.repeaters.BaseRepeater;
 import com.telenav.kivakit.core.thread.KivaKitThread;
 import com.telenav.kivakit.core.thread.Threads;
 import com.telenav.kivakit.core.time.Duration;
 import com.telenav.kivakit.core.value.count.Maximum;
-import com.telenav.kivakit.network.socket.internal.lexakai.DiagramSocketServer;
-import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.net.BindException;
 import java.net.ServerSocket;
@@ -32,19 +31,28 @@ import java.net.Socket;
 import java.util.concurrent.ExecutorService;
 import java.util.function.Consumer;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+
 /**
  * Listens for client connections on a given port. Each new connection is passed to the socket {@link Consumer} passed
  * to {@link #listen(Consumer)} on an {@link ExecutorService}.
  *
  * @author jonathanl (shibo)
  */
-@UmlClassDiagram(diagram = DiagramSocketServer.class)
+@ApiQuality(stability = API_STABLE_EXTENSIBLE,
+            testing = TESTING_NONE,
+            documentation = DOCUMENTATION_COMPLETE)
 public class ConnectionListener extends BaseRepeater
 {
+    /** The port to listen on */
     private final int port;
 
+    /** The number of times to retry if socket listener binding fails */
     private final int retries;
 
+    /** The executor service to listen for connections */
     private final ExecutorService executor = Threads.threadPool("Listener");
 
     public ConnectionListener(int port)
@@ -58,7 +66,13 @@ public class ConnectionListener extends BaseRepeater
         this.retries = retries.asInt();
     }
 
-    public void listen(Consumer<Socket> listener)
+    /**
+     * Listens for socket connections and calls the given listener when they occur
+     *
+     * @param connectionListener The socket connection listener
+     */
+    @SuppressWarnings("InfiniteLoopStatement")
+    public void listen(Consumer<Socket> connectionListener)
     {
         var outer = this;
         KivaKitThread.run(this, "ConnectionListener", () ->
@@ -66,10 +80,9 @@ public class ConnectionListener extends BaseRepeater
             int bindFailures = 0;
             while (bindFailures < retries)
             {
-                trace("Creating server socket on port $", port());
-                try (var serverSocket = new ServerSocket(port()))
+                trace("Creating server socket on port $", port);
+                try (var serverSocket = new ServerSocket(port))
                 {
-                    //noinspection InfiniteLoopStatement
                     while (true)
                     {
                         try
@@ -81,7 +94,7 @@ public class ConnectionListener extends BaseRepeater
                                 trace("Accepted connection on $", socket);
                                 socket.setSoTimeout(Integer.MAX_VALUE);
                                 socket.setKeepAlive(true);
-                                outer.executor.execute(() -> listener.accept(socket));
+                                outer.executor.execute(() -> connectionListener.accept(socket));
                             }
                             else
                             {
@@ -106,10 +119,5 @@ public class ConnectionListener extends BaseRepeater
                 Duration.seconds(1).sleep();
             }
         });
-    }
-
-    private int port()
-    {
-        return port;
     }
 }

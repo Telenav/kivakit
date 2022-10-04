@@ -1,50 +1,69 @@
 package com.telenav.kivakit.resource.serialization;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.language.Hash;
 import com.telenav.kivakit.core.language.Objects;
 import com.telenav.kivakit.core.registry.InstanceIdentifier;
 import com.telenav.kivakit.core.version.Version;
 import com.telenav.kivakit.core.version.VersionedObject;
+import org.jetbrains.annotations.NotNull;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.API_UNSTABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+import static com.telenav.kivakit.core.registry.InstanceIdentifier.singletonInstanceIdentifier;
+
+/**
+ * A serializable object is a versioned object with an optional instance identifier
+ *
+ * @author jonathanl (shibo)
+ */
+@ApiQuality(stability = API_UNSTABLE,
+            documentation = DOCUMENTATION_COMPLETE,
+            testing = TESTING_NONE)
 public class SerializableObject<T> extends VersionedObject<T>
 {
-    private InstanceIdentifier instance;
+    private InstanceIdentifier instance = singletonInstanceIdentifier();
 
-    public SerializableObject(VersionedObject<T> object)
+    public SerializableObject(@NotNull VersionedObject<T> object)
     {
         this(object.object(), object.version());
     }
 
-    public SerializableObject(VersionedObject<T> object, InstanceIdentifier instance)
+    public SerializableObject(@NotNull VersionedObject<T> object,
+                              @NotNull InstanceIdentifier instance)
     {
         this(object.object(), object.version(), instance);
     }
 
-    public SerializableObject(T object, Version version, InstanceIdentifier instance)
+    public SerializableObject(@NotNull T object,
+                              Version version,
+                              @NotNull InstanceIdentifier instance)
     {
         super(object, version);
         this.instance = instance;
     }
 
-    public SerializableObject(T object, Version version)
+    public SerializableObject(@NotNull T object,
+                              Version version)
     {
         super(object, version);
     }
 
-    public SerializableObject(T object)
+    public SerializableObject(@NotNull T object)
     {
-        this(object, null);
+        super(object, null);
     }
 
     @Override
-    public boolean equals(final Object object)
+    public boolean equals(Object object)
     {
         if (super.equals(object))
         {
             if (object instanceof SerializableObject)
             {
                 var that = (SerializableObject<?>) object;
-                return Objects.equalPairs(this.instance, that.instance);
+                return Objects.areEqualPairs(this.instance, that.instance);
             }
         }
         return false;
@@ -53,7 +72,7 @@ public class SerializableObject<T> extends VersionedObject<T>
     @Override
     public int hashCode()
     {
-        return Hash.many(super.hashCode(), this.instance);
+        return Hash.hashMany(super.hashCode(), this.instance);
     }
 
     public InstanceIdentifier instance()

@@ -1,14 +1,28 @@
 package com.telenav.kivakit.core.language.reflection;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
+
 import java.lang.annotation.Annotation;
 import java.util.List;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
+
+/**
+ * Defines methods common to {@link Field}s and {@link Method}s.
+ *
+ * @author jonathanl (shibo)
+ */
+@ApiQuality(stability = API_STABLE_EXTENSIBLE,
+            testing = TESTING_NOT_NEEDED,
+            documentation = DOCUMENTATION_COMPLETE)
 public abstract class Member
 {
-    public <T extends Annotation> T annotation(Class<T> annotationClass)
-    {
-        return type().annotation(annotationClass);
-    }
+    /**
+     * Gets any annotation of the given type from this member
+     */
+    public abstract <T extends Annotation> T annotation(Class<T> annotationClass);
 
     /**
      * Gets this member's element type, if it is an array. The element type for arrays is the component type, and for
@@ -26,7 +40,13 @@ public abstract class Member
      */
     public abstract <T> List<Type<T>> genericTypeParameters();
 
+    /**
+     * Returns the name of this member
+     */
     public abstract String name();
 
-    public abstract Type<?> type();
+    /**
+     * Returns the type to which this member belongs
+     */
+    public abstract Type<?> parentType();
 }

@@ -18,19 +18,23 @@
 
 package com.telenav.kivakit.core.messaging.listeners;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.collections.list.ObjectList;
 import com.telenav.kivakit.core.collections.list.StringList;
+import com.telenav.kivakit.core.internal.lexakai.DiagramListenerType;
 import com.telenav.kivakit.core.messaging.Broadcaster;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.messaging.Message;
-import com.telenav.kivakit.core.internal.lexakai.DiagramListenerType;
-import com.telenav.kivakit.core.string.Formatter;
+import com.telenav.kivakit.core.messaging.MessageFormat;
 import com.telenav.kivakit.core.value.count.Count;
 import com.telenav.kivakit.core.value.count.Maximum;
 import com.telenav.kivakit.interfaces.comparison.Filter;
 import com.telenav.kivakit.interfaces.comparison.Matcher;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
 import static com.telenav.kivakit.core.ensure.Ensure.unsupported;
 
 /**
@@ -52,13 +56,17 @@ import static com.telenav.kivakit.core.ensure.Ensure.unsupported;
  *
  * @author jonathanl (shibo)
  */
+@SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramListenerType.class)
+@ApiQuality(stability = API_STABLE_EXTENSIBLE,
+            testing = TESTING_NONE,
+            documentation = DOCUMENTATION_COMPLETE)
 public class MessageList extends ObjectList<Message> implements MessageCounter
 {
     private static final MessageList EMPTY = new MessageList()
     {
         @Override
-        public void onMessage(final Message message)
+        public void onMessage(Message message)
         {
             unsupported("The message list returned by empty() is read-only");
         }
@@ -69,6 +77,7 @@ public class MessageList extends ObjectList<Message> implements MessageCounter
         return EMPTY;
     }
 
+    /** The message filter to include messages in this list */
     private Matcher<Message> filter;
 
     public MessageList(Matcher<Message> filter)
@@ -78,7 +87,7 @@ public class MessageList extends ObjectList<Message> implements MessageCounter
 
     public MessageList()
     {
-        this(Filter.acceptingAll());
+        this(Filter.acceptAll());
     }
 
     public MessageList(Maximum maximumSize, Matcher<Message> filter)
@@ -87,6 +96,9 @@ public class MessageList extends ObjectList<Message> implements MessageCounter
         this.filter = filter;
     }
 
+    /**
+     * Transmits all the messages in this list to the given listener
+     */
     public void broadcastTo(Listener listener)
     {
         forEach(listener::receive);
@@ -172,7 +184,7 @@ public class MessageList extends ObjectList<Message> implements MessageCounter
         var messages = new StringList(maximumSize());
         for (var message : this)
         {
-            messages.add(message.formatted(Formatter.Format.WITH_EXCEPTION));
+            messages.add(message.formatted(MessageFormat.WITH_EXCEPTION));
         }
         return messages;
     }

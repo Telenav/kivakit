@@ -18,10 +18,14 @@
 
 package com.telenav.kivakit.core.math;
 
-import com.telenav.kivakit.core.language.object.KivaKitFormatProperty;
-import com.telenav.kivakit.core.language.object.ObjectFormatter;
+import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.core.string.KivaKitFormat;
+import com.telenav.kivakit.core.string.ObjectFormatter;
 import com.telenav.kivakit.interfaces.lifecycle.Resettable;
-import com.telenav.lexakai.annotations.LexakaiJavadoc;
+
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_INSUFFICIENT;
 
 /**
  * Computes a simple average, as well as a minimum and maximum value from a series of <i>double</i> sample values.
@@ -29,17 +33,26 @@ import com.telenav.lexakai.annotations.LexakaiJavadoc;
  *
  * @author jonathanl (shibo)
  */
-@LexakaiJavadoc(complete = true)
+@ApiQuality(stability = API_STABLE_EXTENSIBLE,
+            testing = TESTING_INSUFFICIENT,
+            documentation = DOCUMENTATION_COMPLETE)
 public class Average implements Resettable
 {
+    /** The total of all samples added */
     private double total;
 
+    /** The number of samples added */
     private int samples;
 
+    /** The maximum value of all samples */
     private double maximum = Double.MIN_VALUE;
 
+    /** The minimum value of all samples */
     private double minimum = Double.MAX_VALUE;
 
+    /**
+     * Combines the given average to this average
+     */
     public void add(Average that)
     {
         minimum = Math.min(minimum, that.minimum);
@@ -68,7 +81,7 @@ public class Average implements Resettable
     /**
      * @return The average of all samples that have been added
      */
-    @KivaKitFormatProperty
+    @KivaKitFormat
     public double average()
     {
         if (samples > 0)
@@ -81,7 +94,7 @@ public class Average implements Resettable
     /**
      * @return The largest sample
      */
-    @KivaKitFormatProperty
+    @KivaKitFormat
     public double maximum()
     {
         return maximum;
@@ -90,7 +103,7 @@ public class Average implements Resettable
     /**
      * @return The smallest sample
      */
-    @KivaKitFormatProperty
+    @KivaKitFormat
     public double minimum()
     {
         return minimum;
@@ -109,7 +122,7 @@ public class Average implements Resettable
     /**
      * @return The number of samples in this average
      */
-    @KivaKitFormatProperty
+    @KivaKitFormat
     public int samples()
     {
         return samples;
@@ -124,7 +137,7 @@ public class Average implements Resettable
     /**
      * @return The total of all samples in this average
      */
-    @KivaKitFormatProperty
+    @KivaKitFormat
     public double total()
     {
         return total;

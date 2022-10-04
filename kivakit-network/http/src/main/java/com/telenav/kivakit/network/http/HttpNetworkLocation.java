@@ -18,6 +18,7 @@
 
 package com.telenav.kivakit.network.http;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.conversion.BaseStringConverter;
 import com.telenav.kivakit.core.collections.map.VariableMap;
 import com.telenav.kivakit.core.messaging.Listener;
@@ -28,7 +29,6 @@ import com.telenav.kivakit.network.core.QueryParameters;
 import com.telenav.kivakit.network.http.internal.lexakai.DiagramHttp;
 import com.telenav.kivakit.resource.Resource;
 import com.telenav.kivakit.resource.Resourceful;
-import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
 
@@ -38,6 +38,9 @@ import java.net.URISyntaxException;
 import java.net.http.HttpRequest;
 import java.util.List;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
 import static com.telenav.kivakit.core.ensure.Ensure.ensure;
 
 /**
@@ -51,6 +54,7 @@ import static com.telenav.kivakit.core.ensure.Ensure.ensure;
  * </p>
  *
  * <ul>
+ *     <li>{@link #content(Listener)}</li>
  *     <li>{@link #get()} - A {@link HttpGetResource} with default content type and access constraints</li>
  *     <li>{@link #get(String)} - A {@link HttpGetResource} with the given content type</li>
  *     <li>{@link #get(NetworkAccessConstraints)} - A {@link HttpGetResource}  with the given access constraints</li>
@@ -62,15 +66,26 @@ import static com.telenav.kivakit.core.ensure.Ensure.ensure;
  *     <li>{@link #post(NetworkAccessConstraints, String, String)} - A {@link HttpPostResource} with the given constraints, content type and content to post</li>
  *     <li>{@link #put(String, String)} - A {@link HttpPutResource} with the given content type and content to put</li>
  *     <li>{@link #put(NetworkAccessConstraints, String, String)} - A {@link HttpPutResource} with the given access constraints, content type and content to put</li>
+ *     <li>{@link #resource()}</li>
+ * </ul>
+ *
+ * <p><b>Functional</b></p>
+ *
+ * <ul>
+ *     <li>{@link #withInterpolatedVariables(VariableMap)}</li>
+ *     <li>{@link #withPath(NetworkPath)}</li>
+ *     <li>{@link #withQueryParameters(QueryParameters)}</li>
  * </ul>
  *
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramHttp.class)
-@LexakaiJavadoc(complete = true)
+@ApiQuality(stability = API_STABLE_EXTENSIBLE,
+            testing = TESTING_NONE,
+            documentation = DOCUMENTATION_COMPLETE)
 public class HttpNetworkLocation extends NetworkLocation implements Resourceful
 {
-    public static HttpNetworkLocation parse(Listener listener, String path)
+    public static HttpNetworkLocation parseHttpNetworkLocation(Listener listener, String path)
     {
         return new Converter(listener).convert(path);
     }
@@ -80,7 +95,9 @@ public class HttpNetworkLocation extends NetworkLocation implements Resourceful
      *
      * @author jonathanl (shibo)
      */
-    @LexakaiJavadoc(complete = true)
+    @ApiQuality(stability = API_STABLE_EXTENSIBLE,
+                testing = TESTING_NONE,
+                documentation = DOCUMENTATION_COMPLETE)
     public static class Converter extends BaseStringConverter<HttpNetworkLocation>
     {
         public Converter(Listener listener)
@@ -100,7 +117,7 @@ public class HttpNetworkLocation extends NetworkLocation implements Resourceful
                 var query = url.getQuery();
                 if (query != null)
                 {
-                    location.queryParameters(QueryParameters.parse(this, query));
+                    location.queryParameters(QueryParameters.parseQueryParameters(this, query));
                 }
                 location.reference(url.getRef());
                 return location;
@@ -130,22 +147,37 @@ public class HttpNetworkLocation extends NetworkLocation implements Resourceful
         return withPath(networkPath().withChild(child));
     }
 
+    /**
+     * Returns any text content at this network location
+     *
+     * @param listener The listener to call with any problems
+     * @return The context
+     */
     public String content(Listener listener)
     {
         return listener.listenTo(get()).asString();
     }
 
+    /**
+     * Returns an {@link HttpGetResource}
+     */
     public HttpGetResource get()
     {
         return get(NetworkAccessConstraints.DEFAULT);
     }
 
+    /**
+     * Returns an {@link HttpGetResource} with the given access constraints
+     */
     @UmlRelation(label = "creates")
     public HttpGetResource get(NetworkAccessConstraints constraints)
     {
         return get(constraints, null);
     }
 
+    /**
+     * Returns an {@link HttpGetResource} with the given access constraints and content type
+     */
     public HttpGetResource get(NetworkAccessConstraints constraints, String contentType)
     {
         return new HttpGetResource(this, constraints)
@@ -161,32 +193,51 @@ public class HttpNetworkLocation extends NetworkLocation implements Resourceful
         };
     }
 
+    /**
+     * Returns an {@link HttpGetResource} with the given content type
+     */
     public HttpGetResource get(String contentType)
     {
         return get(NetworkAccessConstraints.DEFAULT, contentType);
     }
 
+    /**
+     * Returns the parent network location
+     */
     public HttpNetworkLocation parent()
     {
         return withPath(networkPath().parent());
     }
 
+    /**
+     * Returns an {@link HttpPostResource}
+     */
     @UmlRelation(label = "creates")
     public HttpPostResource post()
     {
         return post(NetworkAccessConstraints.DEFAULT);
     }
 
+    /**
+     * Returns an {@link HttpPostResource} with the given access constraints
+     */
     public HttpPostResource post(NetworkAccessConstraints constraints)
     {
         return new HttpPostResource(this, constraints);
     }
 
+    /**
+     * Returns an {@link HttpPostResource} with the given access constraints that will post the given content
+     */
     public HttpPostResource post(NetworkAccessConstraints constraints, String content)
     {
         return post(constraints, null, content);
     }
 
+    /**
+     * Returns an {@link HttpPostResource} with the given access constraints that will post the given content of the
+     * given content type
+     */
     public HttpPostResource post(NetworkAccessConstraints constraints,
                                  String contentType,
                                  String content)
@@ -210,11 +261,17 @@ public class HttpNetworkLocation extends NetworkLocation implements Resourceful
         };
     }
 
+    /**
+     * Returns an {@link HttpPostResource} that will post the given content
+     */
     public HttpPostResource post(String content)
     {
         return post(NetworkAccessConstraints.DEFAULT, content);
     }
 
+    /**
+     * Returns an {@link HttpPostResource} that will post the given content of the given content type
+     */
     public HttpPostResource post(String contentType, String content)
     {
         return post(NetworkAccessConstraints.DEFAULT, contentType, content);
@@ -246,6 +303,9 @@ public class HttpNetworkLocation extends NetworkLocation implements Resourceful
         return put(NetworkAccessConstraints.DEFAULT, contentType, content);
     }
 
+    /**
+     * Returns the text resource at this location
+     */
     @Override
     public Resource resource()
     {

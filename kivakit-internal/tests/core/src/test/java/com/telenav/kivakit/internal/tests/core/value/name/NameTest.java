@@ -29,7 +29,7 @@ public class NameTest extends CoreUnitTest
         final Name bob = new Name("Bob");
         ensureEqual(new Name("Bob"), bob);
         ensureEqual("Bob", bob.name());
-        ensureEqual(new Name("bob"), bob.lowerCase());
+        ensureEqual(new Name("bob"), bob.asLowerCaseName());
         ensureEqual("Bob", bob.toString());
     }
 }

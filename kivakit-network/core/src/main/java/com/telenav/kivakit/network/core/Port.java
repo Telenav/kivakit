@@ -18,17 +18,18 @@
 
 package com.telenav.kivakit.network.core;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.commandline.SwitchParser;
 import com.telenav.kivakit.conversion.BaseStringConverter;
 import com.telenav.kivakit.conversion.core.language.primitive.IntegerConverter;
 import com.telenav.kivakit.core.language.Hash;
-import com.telenav.kivakit.core.language.reflection.property.KivaKitIncludeProperty;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.string.AsString;
+import com.telenav.kivakit.core.string.KivaKitFormat;
 import com.telenav.kivakit.network.core.internal.lexakai.DiagramPort;
-import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlAggregation;
+import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -38,32 +39,74 @@ import java.net.Socket;
 import java.net.URI;
 import java.net.URISyntaxException;
 
-import static com.telenav.kivakit.commandline.SwitchParser.builder;
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE;
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+import static com.telenav.kivakit.commandline.SwitchParser.switchParserBuilder;
 import static com.telenav.kivakit.network.core.Protocol.HTTP;
 import static com.telenav.kivakit.network.core.Protocol.HTTPS;
 
 /**
- * A host, port and protocol. The port has a number, accessible with {@link #number()}, it exists on a {@link Host} and
- * it speaks a given {@link #protocol()}.
+ * A host, port and protocol. The port has a number, accessible with {@link #portNumber()}, it exists on a {@link Host}
+ * and it speaks a given {@link #protocol()}.
+ *
+ * <p><b>Creation</b></p>
+ * 
+ * <ul>
+ *     <li>{@link #port(URI)}</li>
+ * </ul>
+ * 
+ * <p><b>Parsing</b></p>
+ *
+ * <ul>
+ *     <li>{@link #parsePort(Listener, String)}</li>
+ *     <li>{@link #portSwitchParser(Listener, String, String)}</li>
+ * </ul>
+ *
+ * <p><b>Properties</b></p>
+ *
+ * <ul>
+ *     <li>{@link #defaultProtocol()}</li>
+ *     <li>{@link #host()}</li>
+ *     <li>{@link #isAvailable()}</li>
+ *     <li>{@link #isHttp()}</li>
+ *     <li>{@link #portNumber()}</li>
+ *     <li>{@link #protocol()}</li>
+ *     <li>{@link #protocol(Protocol)}</li>
+ * </ul>
+ *
+ * <p><b>Paths</b></p>
+ *
+ * <ul>
+ *     <li>{@link #path(Listener, String)}</li>
+ * </ul>
+ * 
+ * <p><b>Conversions</b></p>
+ * 
+ * <ul>
+ *     <li>{@link #asUri(Listener)}</li>
+ *     <li>{@link #asString(Format)}</li>
+ * </ul>
+ *
+ * <p><b>Operations</b></p>
+ *
+ * <ul>
+ *     <li>{@link #open(Listener)}</li>
+ *     <li>{@link #resolve()}</li>
+ *     <li>{@link #socket()}</li>
+ * </ul>
  *
  * @author jonathanl (shibo)
  */
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramPort.class)
+@ApiQuality(stability = API_STABLE_EXTENSIBLE,
+            testing = TESTING_NONE,
+            documentation = DOCUMENTATION_COMPLETE)
 public class Port implements AsString
 {
-    /**
-     * @return A port object from the given {@link URI}
-     */
-    public static Port from(URI uri)
-    {
-        var host = new Host(uri.getHost());
-        var scheme = uri.getScheme();
-        var port = uri.getPort();
-        var protocol = Protocol.parse(Listener.consoleListener(), scheme);
-        return new Port(host, protocol, port);
-    }
-
     /**
      * Parses a port of the form "[host]:[port-number]". If the port number is omitted, port 80 is assumed.
      *
@@ -74,9 +117,29 @@ public class Port implements AsString
         return new Converter(listener).convert(port);
     }
 
+    /**
+     * @return A port object from the given {@link URI}
+     */
+    public static Port port(URI uri)
+    {
+        var host = new Host(uri.getHost());
+        var scheme = uri.getScheme();
+        var port = uri.getPort();
+        var protocol = Protocol.parseProtocol(Listener.consoleListener(), scheme);
+        return new Port(host, port, protocol);
+    }
+
+    /**
+     * Returns a switch parser builder for parsing ports
+     *
+     * @param listener The listener to send problems to
+     * @param name The name of the switch
+     * @param description The switch description
+     * @return The switch parser builder
+     */
     public static SwitchParser.Builder<Port> portSwitchParser(Listener listener, String name, String description)
     {
-        return builder(Port.class)
+        return switchParserBuilder(Port.class)
                 .name(name)
                 .converter(new Port.Converter(listener))
                 .description(description);
@@ -87,11 +150,15 @@ public class Port implements AsString
      *
      * @author jonathanl (shibo)
      */
-    @LexakaiJavadoc(complete = true)
+    @ApiQuality(stability = API_STABLE,
+                testing = TESTING_NOT_NEEDED,
+                documentation = DOCUMENTATION_COMPLETE)
     public static class Converter extends BaseStringConverter<Port>
     {
+        /** Host converter */
         private final Host.Converter hostConverter;
 
+        /** Integer converter for port numbers */
         private final IntegerConverter integerConverter;
 
         public Converter(Listener listener)
@@ -121,38 +188,63 @@ public class Port implements AsString
         }
     }
 
+    /** The host */
     @UmlAggregation
     private Host host;
 
-    private int port;
+    /** The port */
+    private int portNumber;
 
+    /** The protocol that this port speaks */
     @UmlAggregation(label = "speaks")
     private Protocol protocol;
 
-    public Port(Host host, int port)
+    /**
+     * @param host The host
+     * @param portNumber The port
+     */
+    public Port(Host host, int portNumber)
     {
-        this(host, Protocol.forPort(port), port);
+        this(host, portNumber, Protocol.defaultProtocolForPort(portNumber));
     }
 
-    public Port(Host host, Protocol protocol, int port)
+    /**
+     * @param host The host
+     * @param portNumber The port
+     * @param protocol The protocol
+     */
+    public Port(Host host, int portNumber, Protocol protocol)
     {
         this.host = host;
         this.protocol = protocol == null ? Protocol.UNKNOWN : protocol;
-        this.port = port;
+        this.portNumber = portNumber;
     }
 
+    /**
+     * @param address The internet address
+     * @param protocol The communication protocol
+     * @param hostDescription The host description
+     */
     public Port(InetSocketAddress address, Protocol protocol, String hostDescription)
     {
-        this(new Host(address.getAddress(), hostDescription), protocol, address.getPort());
+        this(new Host(address.getAddress(), hostDescription), address.getPort(), protocol);
     }
 
     protected Port()
     {
     }
 
+    /**
+     * @return The socket address for this port
+     */
+    public InetSocketAddress asInetSocketAddress()
+    {
+        return new InetSocketAddress(host().address(), portNumber());
+    }
+
     @Override
     @SuppressWarnings("SwitchStatementWithTooFewBranches")
-    public String asString(Format format)
+    public String asString(@NotNull Format format)
     {
         switch (format)
         {
@@ -162,14 +254,6 @@ public class Port implements AsString
             default:
                 return toString();
         }
-    }
-
-    /**
-     * @return The socket address for this port
-     */
-    public InetSocketAddress asInetSocketAddress()
-    {
-        return new InetSocketAddress(host().address(), number());
     }
 
     /**
@@ -193,7 +277,7 @@ public class Port implements AsString
      */
     public Protocol defaultProtocol()
     {
-        return Protocol.forPort(port);
+        return Protocol.defaultProtocolForPort(portNumber);
     }
 
     @Override
@@ -202,7 +286,7 @@ public class Port implements AsString
         if (object instanceof Port)
         {
             var that = (Port) object;
-            return port == that.port && host.equals(that.host);
+            return portNumber == that.portNumber && host.equals(that.host);
         }
         return false;
     }
@@ -210,13 +294,13 @@ public class Port implements AsString
     @Override
     public int hashCode()
     {
-        return Hash.many(port, host);
+        return Hash.hashMany(portNumber, host);
     }
 
     /**
      * @return The host that owns this port
      */
-    @KivaKitIncludeProperty
+    @KivaKitFormat
     public Host host()
     {
         return host;
@@ -230,7 +314,7 @@ public class Port implements AsString
         try
         {
             // Open the port and close it. If this doesn't throw an exception, the port is not bound.
-            new ServerSocket(port).close();
+            new ServerSocket(portNumber).close();
             return true;
         }
         catch (Exception e)
@@ -245,15 +329,6 @@ public class Port implements AsString
     public boolean isHttp()
     {
         return protocol().equals(HTTP) || protocol().equals(HTTPS);
-    }
-
-    /**
-     * @return The port number
-     */
-    @KivaKitIncludeProperty
-    public int number()
-    {
-        return port;
     }
 
     /**
@@ -281,15 +356,19 @@ public class Port implements AsString
         return NetworkPath.networkPath(listener, this, path);
     }
 
+    /**
+     * @return The port number
+     */
+    @KivaKitFormat
     public int portNumber()
     {
-        return port;
+        return portNumber;
     }
 
     /**
      * @return The protocol spoken by this port
      */
-    @KivaKitIncludeProperty
+    @KivaKitFormat
     public Protocol protocol()
     {
         return protocol;
@@ -309,7 +388,7 @@ public class Port implements AsString
      */
     public Port resolve()
     {
-        return new Port(host, protocol, port);
+        return new Port(host, portNumber, protocol);
     }
 
     /**
@@ -319,7 +398,7 @@ public class Port implements AsString
     {
         try
         {
-            var socket = new Socket(host.address(), port);
+            var socket = new Socket(host.address(), portNumber);
             socket.setSoTimeout(Integer.MAX_VALUE);
             socket.setKeepAlive(true);
             return socket;
@@ -333,10 +412,10 @@ public class Port implements AsString
     @Override
     public String toString()
     {
-        if (number() == -1 || number() == protocol().defaultPort())
+        if (portNumber() == -1 || portNumber() == protocol().defaultPort())
         {
             return host().name();
         }
-        return host().name() + ":" + number();
+        return host().name() + ":" + portNumber();
     }
 }

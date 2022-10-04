@@ -3,6 +3,7 @@ package com.telenav.kivakit.serialization.kryo;
 import com.esotericsoftware.kryo.Kryo;
 import com.esotericsoftware.kryo.io.Input;
 import com.esotericsoftware.kryo.io.Output;
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.language.trait.TryTrait;
 import com.telenav.kivakit.core.path.StringPath;
 import com.telenav.kivakit.core.progress.ProgressReporter;
@@ -11,20 +12,28 @@ import com.telenav.kivakit.resource.serialization.ObjectMetadata;
 import com.telenav.kivakit.resource.serialization.ObjectSerializer;
 import com.telenav.kivakit.resource.serialization.SerializableObject;
 import com.telenav.kivakit.serialization.kryo.types.KryoTypes;
+import org.jetbrains.annotations.NotNull;
 
 import java.io.InputStream;
 import java.io.OutputStream;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
 import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
 import static com.telenav.kivakit.core.ensure.Ensure.fail;
-import static com.telenav.kivakit.resource.serialization.ObjectMetadata.TYPE;
-import static com.telenav.kivakit.resource.serialization.ObjectMetadata.VERSION;
+import static com.telenav.kivakit.resource.serialization.ObjectMetadata.OBJECT_TYPE;
+import static com.telenav.kivakit.resource.serialization.ObjectMetadata.OBJECT_VERSION;
 
 /**
  * {@link Kryo} {@link ObjectSerializer} provider.
  *
  * @author jonathanl (shibo)
+ * @see ObjectSerializer
  */
+@ApiQuality(stability = API_STABLE_EXTENSIBLE,
+            testing = TESTING_NONE,
+            documentation = DOCUMENTATION_COMPLETE)
 public class KryoObjectSerializer implements
         ObjectSerializer,
         TryTrait
@@ -35,23 +44,46 @@ public class KryoObjectSerializer implements
 
     private final ThreadLocal<Kryo> kryo = ThreadLocal.withInitial(this::newKryo);
 
+    /**
+     * Creates a Kryo object serializer for the given Kryo-registered types
+     *
+     * @param types The types to register with Kryo
+     */
     public KryoObjectSerializer(KryoTypes types)
     {
-        this(types, ProgressReporter.none());
+        this(types, ProgressReporter.nullProgressReporter());
     }
 
+    /**
+     * Creates a Kryo object serializer for the given Kryo-registered types
+     *
+     * @param types The types to register with Kryo
+     * @param reporter The reporter to call as data is serialized
+     */
     public KryoObjectSerializer(KryoTypes types, ProgressReporter reporter)
     {
         this.types = types;
         this.reporter = reporter;
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public ProgressReporter progressReporter()
+    {
+        return reporter;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     @SuppressWarnings("unchecked")
     @Override
-    public <T> SerializableObject<T> read(InputStream inputStream,
-                                          StringPath path,
-                                          Class<T> type,
-                                          ObjectMetadata... metadata)
+    public <T> SerializableObject<T> readObject(@NotNull InputStream inputStream,
+                                                @NotNull StringPath path,
+                                                Class<T> type,
+                                                ObjectMetadata @NotNull ... metadata)
     {
         try
         {
@@ -59,7 +91,7 @@ public class KryoObjectSerializer implements
             var input = new Input(inputStream);
 
             // read any type from the input,
-            if (type == null && TYPE.containedIn(metadata))
+            if (type == null && OBJECT_TYPE.containedIn(metadata))
             {
                 type = (Class<T>) kryo.get().readObject(input, Class.class);
             }
@@ -68,7 +100,7 @@ public class KryoObjectSerializer implements
 
             // read any version,
             Version version = null;
-            if (VERSION.containedIn(metadata))
+            if (OBJECT_VERSION.containedIn(metadata))
             {
                 version = kryo.get().readObject(input, Version.class);
             }
@@ -85,17 +117,14 @@ public class KryoObjectSerializer implements
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public ProgressReporter reporter()
-    {
-        return reporter;
-    }
-
-    @Override
-    public <T> void write(OutputStream outputStream,
-                          StringPath path,
-                          SerializableObject<T> object,
-                          ObjectMetadata... metadata)
+    public <T> void writeObject(@NotNull OutputStream outputStream,
+                                @NotNull StringPath path,
+                                @NotNull SerializableObject<T> object,
+                                ObjectMetadata @NotNull ... metadata)
     {
         tryCatchThrow(() ->
         {
@@ -103,13 +132,13 @@ public class KryoObjectSerializer implements
             var output = new Output(outputStream);
 
             // write any type,
-            if (TYPE.containedIn(metadata))
+            if (OBJECT_TYPE.containedIn(metadata))
             {
                 kryo.get().writeObject(output, object.object().getClass());
             }
 
             // write any version,
-            if (VERSION.containedIn(metadata))
+            if (OBJECT_VERSION.containedIn(metadata))
             {
                 kryo.get().writeObject(output, object.version());
             }

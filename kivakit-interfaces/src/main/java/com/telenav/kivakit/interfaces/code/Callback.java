@@ -18,13 +18,15 @@
 
 package com.telenav.kivakit.interfaces.code;
 
-import com.telenav.kivakit.annotations.code.CodeQuality;
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.interfaces.internal.lexakai.DiagramCode;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.STABLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.UNNECESSARY;
+import java.util.function.Consumer;
+
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
 
 /**
  * A simple callback interface. There are other similar interfaces, but sometimes the best name is callback.
@@ -32,22 +34,21 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.UNNECESSARY;
  * @param <Value> The type of object to be passed to the callback
  * @author jonathanl (shibo)
  */
-@FunctionalInterface
 @UmlClassDiagram(diagram = DiagramCode.class)
-@CodeQuality(stability = STABLE,
-             testing = UNNECESSARY,
-             documentation = COMPLETE)
-public interface Callback<Value>
+@ApiQuality(stability = API_STABLE,
+            testing = TESTING_NOT_NEEDED,
+            documentation = DOCUMENTATION_COMPLETE,
+            reviews = 1,
+            reviewers = "shibo")
+public interface Callback<Value> extends Consumer<Value>
 {
-    default void callback(Value value)
-    {
-        onCallback(value);
-    }
-
     /**
-     * The callback implementation
+     * Calls this callback with the given value
      *
-     * @param value The value passed to the callback code
+     * @param value The value
      */
-    void onCallback(Value value);
+    default void call(Value value)
+    {
+        accept(value);
+    }
 }

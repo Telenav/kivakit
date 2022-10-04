@@ -18,19 +18,37 @@
 
 package com.telenav.kivakit.core.io;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.core.internal.lexakai.DiagramIo;
 import com.telenav.kivakit.core.value.count.ByteSized;
 import com.telenav.kivakit.core.value.count.Bytes;
-import com.telenav.kivakit.core.internal.lexakai.DiagramIo;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
+import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
 import java.io.OutputStream;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
+
+/**
+ * An output stream that keeps track of how many bytes have been written. The number of bytes written is available
+ * through {@link #sizeInBytes()}
+ *
+ * @author jonathanl (shibo)
+ */
 @UmlClassDiagram(diagram = DiagramIo.class)
+@ApiQuality(stability = API_STABLE,
+            testing = TESTING_NOT_NEEDED,
+            documentation = DOCUMENTATION_COMPLETE)
+
 public class ByteSizedOutputStream extends OutputStream implements ByteSized
 {
+    /** The underlying output stream */
     private final OutputStream out;
 
+    /** The number of bytes written */
     private long size;
 
     public ByteSizedOutputStream(OutputStream out)
@@ -38,38 +56,56 @@ public class ByteSizedOutputStream extends OutputStream implements ByteSized
         this.out = out;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void close() throws IOException
     {
         out.close();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void flush() throws IOException
     {
         out.flush();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Bytes sizeInBytes()
     {
         return Bytes.bytes(size);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public void write(byte[] b) throws IOException
+    public void write(byte @NotNull [] b) throws IOException
     {
         out.write(b);
         size += b.length;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public void write(byte[] b, int off, int length) throws IOException
+    public void write(byte @NotNull [] b, int off, int length) throws IOException
     {
         out.write(b, off, length);
         size += length;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void write(int b) throws IOException
     {

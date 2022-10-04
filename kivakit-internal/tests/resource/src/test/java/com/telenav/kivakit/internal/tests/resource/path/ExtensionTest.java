@@ -19,40 +19,26 @@
 package com.telenav.kivakit.internal.tests.resource.path;
 
 import com.telenav.kivakit.testing.UnitTest;
-import com.telenav.kivakit.resource.Extension;
-import com.telenav.kivakit.resource.FileName;
 import org.junit.Test;
+
+import static com.telenav.kivakit.resource.FileName.parseFileName;
 
 public class ExtensionTest extends UnitTest
 {
     @Test
-    public void testKnown()
-    {
-        Extension previous = null;
-        for (Extension extension : Extension.known())
-        {
-            if (previous != null)
-            {
-                ensure(previous.length().isGreaterThanOrEqualTo(extension.length()));
-            }
-            previous = extension;
-        }
-    }
-
-    @Test
     public void testWithoutKnownExtension()
     {
-        ensureEqual(FileName.parseFileName(this, "a"), FileName.parseFileName(this, "a.txt").withoutKnownExtensions());
-        ensureEqual(FileName.parseFileName(this, "a"), FileName.parseFileName(this, "a.txt.gz").withoutKnownExtensions());
-        ensureEqual(FileName.parseFileName(this, "a"), FileName.parseFileName(this, "a.osm.pbf").withoutKnownExtensions());
-        ensureEqual(FileName.parseFileName(this, "a"), FileName.parseFileName(this, "a.osm").withoutKnownExtensions());
-        ensureEqual(FileName.parseFileName(this, "a"), FileName.parseFileName(this, "a.pbf").withoutKnownExtensions());
-        ensureEqual(FileName.parseFileName(this, "a.unknown"), FileName.parseFileName(this, "a.unknown").withoutKnownExtensions());
-        ensureEqual(FileName.parseFileName(this, "a.b.c"), FileName.parseFileName(this, "a.b.c.txt").withoutKnownExtensions());
-        ensureEqual(FileName.parseFileName(this, "a.b.c"), FileName.parseFileName(this, "a.b.c.txt.gz").withoutKnownExtensions());
-        ensureEqual(FileName.parseFileName(this, "a.b.c"), FileName.parseFileName(this, "a.b.c.osm.pbf").withoutKnownExtensions());
-        ensureEqual(FileName.parseFileName(this, "a.b.c"), FileName.parseFileName(this, "a.b.c.osm").withoutKnownExtensions());
-        ensureEqual(FileName.parseFileName(this, "a.b.c"), FileName.parseFileName(this, "a.b.c.pbf").withoutKnownExtensions());
-        ensureEqual(FileName.parseFileName(this, "a.b.c.unknown"), FileName.parseFileName(this, "a.b.c.unknown").withoutKnownExtensions());
+        ensureEqual(parseFileName(this, "a"), parseFileName(this, "a.txt").withoutKnownExtensions());
+        ensureEqual(parseFileName(this, "a"), parseFileName(this, "a.txt.gz").withoutKnownExtensions());
+        ensureEqual(parseFileName(this, "a"), parseFileName(this, "a.osm.pbf").withoutKnownExtensions());
+        ensureEqual(parseFileName(this, "a"), parseFileName(this, "a.osm").withoutKnownExtensions());
+        ensureEqual(parseFileName(this, "a"), parseFileName(this, "a.pbf").withoutKnownExtensions());
+        ensureEqual(parseFileName(this, "a.unknown"), parseFileName(this, "a.unknown").withoutKnownExtensions());
+        ensureEqual(parseFileName(this, "a.b.c"), parseFileName(this, "a.b.c.txt").withoutKnownExtensions());
+        ensureEqual(parseFileName(this, "a.b.c"), parseFileName(this, "a.b.c.txt.gz").withoutKnownExtensions());
+        ensureEqual(parseFileName(this, "a.b.c"), parseFileName(this, "a.b.c.osm.pbf").withoutKnownExtensions());
+        ensureEqual(parseFileName(this, "a.b.c"), parseFileName(this, "a.b.c.osm").withoutKnownExtensions());
+        ensureEqual(parseFileName(this, "a.b.c"), parseFileName(this, "a.b.c.pbf").withoutKnownExtensions());
+        ensureEqual(parseFileName(this, "a.b.c.unknown"), parseFileName(this, "a.b.c.unknown").withoutKnownExtensions());
     }
 }

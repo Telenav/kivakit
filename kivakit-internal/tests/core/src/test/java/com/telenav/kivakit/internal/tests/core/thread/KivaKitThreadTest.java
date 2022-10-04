@@ -21,7 +21,6 @@ package com.telenav.kivakit.internal.tests.core.thread;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.thread.KivaKitThread;
 import com.telenav.kivakit.core.time.Time;
-import com.telenav.kivakit.core.value.mutable.ConcurrentMutableValue;
 import com.telenav.kivakit.core.value.mutable.MutableValue;
 import com.telenav.kivakit.internal.testing.CoreUnitTest;
 import org.junit.Test;
@@ -36,8 +35,8 @@ public class KivaKitThreadTest extends CoreUnitTest
     @Test
     public void testInitialDelay()
     {
-        var executedAt = new ConcurrentMutableValue<Time>();
-        KivaKitThread thread = Listener.emptyListener().listenTo(new KivaKitThread("Test")
+        var executedAt = new MutableValue<Time>();
+        KivaKitThread thread = Listener.nullListener().listenTo(new KivaKitThread("Test")
         {
             @Override
             protected void onRun()
@@ -51,8 +50,8 @@ public class KivaKitThreadTest extends CoreUnitTest
         thread.startSynchronously();
         thread.waitFor(EXITED);
         ensure(thread.stateMachine().is(EXITED));
-        ensure(thread.startedAt().elapsedSince().isApproximately(milliseconds(50), seconds(0.5)));
-        ensure(executedAt.get().elapsedSince().isApproximately(ZERO_DURATION, seconds(0.1)));
+        ensure(thread.startedAt().elapsedSince().isCloseTo(milliseconds(50), seconds(0.5)));
+        ensure(executedAt.get().elapsedSince().isCloseTo(ZERO_DURATION, seconds(0.1)));
     }
 
     @Test

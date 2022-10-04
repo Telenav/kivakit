@@ -18,35 +18,125 @@
 
 package com.telenav.kivakit.core.value.mutable;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramValue;
-import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
+import java.util.concurrent.atomic.AtomicLong;
+
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+import static com.telenav.kivakit.core.value.count.Count.count;
+
 /**
- * A long value that can be changed. Useful for mutating something other than a field from within a lambda expression.
+ * A thread-safe long value that can be changed. Useful for mutating something other than a field from within a lambda
+ * expression.
  *
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramValue.class)
-@LexakaiJavadoc(complete = true)
-public class MutableLong extends MutableValue<Long>
+@ApiQuality(stability = API_STABLE_EXTENSIBLE,
+            testing = TESTING_NONE,
+            documentation = DOCUMENTATION_COMPLETE)
+public class MutableLong
 {
+    /** The index */
+    private final AtomicLong value;
+
+    /**
+     * Creates an index with the value zero
+     */
     public MutableLong()
     {
+        this(0);
     }
 
-    public MutableLong(Long value)
+    /**
+     * Creates an index with the given initial value
+     */
+    public MutableLong(int value)
     {
-        super(value);
+        this.value = new AtomicLong(value);
     }
 
-    public void maximum(long value)
+    /**
+     * This long value as an int
+     */
+    public int asInt()
     {
-        set(Math.max(get(), value));
+        return (int) get();
     }
 
-    public void minimum(long value)
+    /**
+     * Decrements this index, returning the new value
+     */
+    public long decrement()
     {
-        set(Math.min(get(), value));
+        return value.getAndDecrement();
+    }
+
+    @SuppressWarnings("EqualsWhichDoesntCheckParameterClass")
+    @Override
+    public boolean equals(Object object)
+    {
+        return value.equals(object);
+    }
+
+    /**
+     * Gets the value of this index
+     */
+    public long get()
+    {
+        return value.get();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public int hashCode()
+    {
+        return value.hashCode();
+    }
+
+    /**
+     * Increments this index, returning the new value
+     */
+    public long increment()
+    {
+        return value.getAndIncrement();
+    }
+
+    /**
+     * Adds the given value to this index, returning the new value
+     */
+    @SuppressWarnings("UnusedReturnValue")
+    public long minus(long that)
+    {
+        return plus(-that);
+    }
+
+    /**
+     * Adds the given value to this index, returning the new value
+     */
+    @SuppressWarnings("UnusedReturnValue")
+    public long plus(long that)
+    {
+        return value.addAndGet(that);
+    }
+
+    /**
+     * Sets this index
+     */
+    public void set(long index)
+    {
+        this.value.set(index);
+    }
+
+    @Override
+    public String toString()
+    {
+        return count(get()).asCommaSeparatedString();
     }
 }

@@ -18,9 +18,13 @@
 
 package com.telenav.kivakit.core.value.level;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramCount;
-import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
+
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
 
 /**
  * A weight from 0 to 1 for parametric weighting in mathematics.
@@ -28,12 +32,17 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramCount.class)
-@LexakaiJavadoc(complete = true)
+@ApiQuality(stability = API_STABLE_EXTENSIBLE,
+            testing = TESTING_NONE,
+            documentation = DOCUMENTATION_COMPLETE)
 public class Weight extends Level
 {
-    public static Weight weight(double value)
+    /**
+     * Returns a weight
+     */
+    public static Weight weight(double weight)
     {
-        return new Weight(value);
+        return new Weight(weight);
     }
 
     protected Weight()
@@ -47,9 +56,9 @@ public class Weight extends Level
     }
 
     @Override
-    public Weight divide(Level that)
+    public Weight dividedBy(Level that)
     {
-        return (Weight) super.divide(that);
+        return (Weight) super.dividedBy(that);
     }
 
     @Override

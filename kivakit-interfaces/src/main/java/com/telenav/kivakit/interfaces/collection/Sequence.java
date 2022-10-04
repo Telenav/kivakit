@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.interfaces.collection;
 
-import com.telenav.kivakit.annotations.code.CodeQuality;
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.interfaces.comparison.Matcher;
 import com.telenav.kivakit.interfaces.internal.lexakai.DiagramCollection;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
@@ -31,10 +31,9 @@ import java.util.List;
 import java.util.Set;
 import java.util.function.Function;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.STABLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.NONE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.UNNECESSARY;
+import static com.telenav.kivakit.annotations.code.ApiStability.API_FURTHER_EVALUATION_NEEDED;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
 
 /**
  * A sequence of values returned by {@link #asIterator()} and {@link #asIterator(Matcher)}.
@@ -57,7 +56,7 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.UNNECESSARY;
  * <p><b>Finding Elements and Subsequences</b></p>
  *
  * <ul>
- *     <li>{@link #find(Matcher)} - The first matching element in this sequence</li>
+ *     <li>{@link #findFirst(Matcher)} - The first matching element in this sequence</li>
  *     <li>{@link #first()} - The first element in the sequence, or null if there is none</li>
  *     <li>{@link #head()} - The same as first()</li>
  *     <li>{@link #tail()} - All elements in the sequence except the first one as a list</li>
@@ -99,15 +98,19 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.UNNECESSARY;
  */
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramCollection.class)
-@CodeQuality(stability = STABLE,
-             testing = NONE,
-             documentation = COMPLETE)
-public interface Sequence<Element> extends Iterable<Element>, Joinable<Element>
+@ApiQuality(stability = API_FURTHER_EVALUATION_NEEDED,
+            testing = TESTING_NONE,
+            documentation = DOCUMENTATION_COMPLETE,
+            reviews = 1,
+            reviewers = "shibo")
+public interface Sequence<Value> extends
+        Iterable<Value>,
+        Joinable<Value>
 {
     /**
-     * @return True if all elements in this sequence match the given matcher
+     * Returns true if all elements in this sequence match the given matcher
      */
-    default boolean allMatch(Matcher<Element> matcher)
+    default boolean allMatch(Matcher<Value> matcher)
     {
         for (var element : this)
         {
@@ -120,15 +123,15 @@ public interface Sequence<Element> extends Iterable<Element>, Joinable<Element>
     }
 
     /**
-     * @return True if any value in this sequence matches the given matcher
+     * Returns true if any value in this sequence matches the given matcher
      */
-    default boolean anyMatch(Matcher<Element> matcher)
+    default boolean anyMatch(Matcher<Value> matcher)
     {
-        return find(matcher) != null;
+        return findFirst(matcher) != null;
     }
 
     /**
-     * @return A hash code for the elements in this sequence
+     * Returns a hash code for the elements in this sequence
      */
     default int asHashCode()
     {
@@ -141,66 +144,73 @@ public interface Sequence<Element> extends Iterable<Element>, Joinable<Element>
     }
 
     /**
-     * @return The elements in this list matching the given matcher
+     * Returns the elements in this list matching the given matcher
      */
-    default Iterable<Element> asIterable(Matcher<Element> matcher)
+    default Iterable<Value> asIterable(Matcher<Value> matcher)
     {
         return () -> asIterator(matcher);
     }
 
     /**
-     * @return An {@link Iterable} over elements in this sequence
+     * Returns an {@link Iterable} over elements in this sequence
      */
     @NotNull
-    default Iterable<Element> asIterable()
+    default Iterable<Value> asIterable()
     {
         return this::asIterator;
     }
 
     /**
-     * @return An {@link Iterator} over elements in this sequence
+     * Returns an {@link Iterator} over elements in this sequence
      */
     @NotNull
-    default Iterator<Element> asIterator()
+    default Iterator<Value> asIterator()
     {
-        return asIterator(element -> true);
+        return asIterator(value -> true);
     }
 
     /**
-     * @return An {@link Iterator} over elements in this sequence
+     * Returns an iterator over all the values in this sequence that match the given matcher
+     *
+     * @param matcher The matcher to match values against
+     * @return An {@link Iterator} over values in this sequence
      */
     @NotNull
-    Iterator<Element> asIterator(Matcher<Element> matcher);
+    Iterator<Value> asIterator(Matcher<Value> matcher);
 
     /**
-     * @return This sequence as a list
+     * Returns this sequence as a list
      */
-    default List<Element> asList()
+    default List<Value> asList()
     {
-        var list = new ArrayList<Element>();
+        var list = new ArrayList<Value>();
         forEach(list::add);
         return list;
     }
 
     /**
-     * @return This sequence as a set
+     * Returns this sequence as a set
      */
-    default Set<Element> asSet()
+    default Set<Value> asSet()
     {
-        var list = new HashSet<Element>();
+        var list = new HashSet<Value>();
         forEach(list::add);
         return list;
     }
 
-    default Element find(Class<? extends Element> type)
+    /**
+     * @param type The type to search for
+     * @return The first element of the given type
+     */
+    default Value findFirst(Class<? extends Value> type)
     {
-        return find(at -> type.isAssignableFrom(at.getClass()));
+        return findFirst(at -> type.isAssignableFrom(at.getClass()));
     }
 
     /**
-     * @return The first value that matches the matcher
+     * Returns the first value that matches the matcher
      */
-    default Element find(Matcher<Element> matcher)
+    default Value findFirst(Matcher<Value> matcher)
     {
         for (var element : this)
         {
@@ -213,26 +223,26 @@ public interface Sequence<Element> extends Iterable<Element>, Joinable<Element>
     }
 
     /**
-     * @return The first item in this sequence, or null if there is none
+     * Returns the first item in this sequence, or null if there is none
      */
-    default Element first()
+    default Value first()
     {
         return asIterator().next();
     }
 
     /**
-     * @return The head (first element) of this sequence or null if there is none
+     * Returns the head (first element) of this sequence or null if there is none
      */
-    default Element head()
+    default Value head()
     {
         return first();
     }
 
     /**
-     * @return The index of the first value in this sequence matching the given matcher. If no value in the sequence
+     * Returns the index of the first value in this sequence matching the given matcher. If no value in the sequence
      * matches then -1 is returned.
      */
-    default int indexOfFirst(Matcher<Element> matcher)
+    default int indexOfFirst(Matcher<Value> matcher)
     {
         int index = 0;
         for (var element : this)
@@ -247,17 +257,17 @@ public interface Sequence<Element> extends Iterable<Element>, Joinable<Element>
     }
 
     /**
-     * @return The index of the given value or -1 if none exists
+     * Returns the index of the given value or -1 if none exists
      */
-    default int indexOfFirst(Element value)
+    default int indexOfFirst(Value value)
     {
         return indexOfFirst(element -> element.equals(value));
     }
 
     /**
-     * @return True if this sequence object and that sequence have all the same elements
+     * Returns true if this sequence object and that sequence have all the same elements
      */
-    default boolean isEqualTo(Sequence<Element> that)
+    default boolean isEqualTo(Sequence<Value> that)
     {
         var thisIterator = asIterator();
         var thatIterator = that.asIterator();
@@ -289,26 +299,26 @@ public interface Sequence<Element> extends Iterable<Element>, Joinable<Element>
     }
 
     @Override
-    default Iterator<Element> iterator()
+    default Iterator<Value> iterator()
     {
         return asIterator();
     }
 
     /**
-     * @return True if no element in this sequence matches the given matcher
+     * Returns true if no element in this sequence matches the given matcher
      */
-    default boolean noneMatch(Matcher<Element> matcher)
+    default boolean noneMatch(Matcher<Value> matcher)
     {
-        return find(matcher) == null;
+        return findFirst(matcher) == null;
     }
 
     /**
-     * @return The tail of this sequence (all elements but the first element). If there is only one element, the tail is
+     * Returns the tail of this sequence (all elements but the first element). If there is only one element, the tail is
      * an empty list.
      */
-    default List<Element> tail()
+    default List<Value> tail()
     {
-        var tail = new ArrayList<Element>();
+        var tail = new ArrayList<Value>();
         int index = 0;
         for (var element : this)
         {

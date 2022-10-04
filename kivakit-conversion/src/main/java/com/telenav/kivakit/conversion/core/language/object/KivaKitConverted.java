@@ -18,6 +18,7 @@
 
 package com.telenav.kivakit.conversion.core.language.object;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.conversion.Converter;
 import com.telenav.kivakit.conversion.core.language.IdentityConverter;
 import com.telenav.kivakit.conversion.internal.lexakai.DiagramConversion;
@@ -28,12 +29,25 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
+
 /**
- * Specifies the KivaKit {@link Converter} to use when populating the annotated field or method.
+ * Specifies the KivaKit {@link Converter} to use when populating the annotated field or method. For example:
+ *
+ * <pre>
+ * {@literal @}KivaKitConverted(DurationConverter.class)
+ *  Duration timeToLaunch;</pre>
+ *
+ * @author jonathanl (shibo)
  */
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ ElementType.FIELD, ElementType.METHOD })
 @UmlClassDiagram(diagram = DiagramConversion.class)
+@ApiQuality(stability = API_STABLE,
+            testing = TESTING_NOT_NEEDED,
+            documentation = DOCUMENTATION_COMPLETE)
 public @interface KivaKitConverted
 {
     /**

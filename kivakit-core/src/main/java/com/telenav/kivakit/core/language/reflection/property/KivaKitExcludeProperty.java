@@ -26,6 +26,8 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
+import static com.telenav.kivakit.core.language.reflection.property.PropertyPurpose.FORMATTING;
+
 /**
  * Marks a field or method as excluded from property operations
  *
@@ -39,5 +41,5 @@ public @interface KivaKitExcludeProperty
     /**
      * @return The purpose for which this property is being included
      */
-    PropertyPurpose[] purpose() default { PropertyPurpose.FORMATTING };
+    PropertyPurpose[] purpose() default { FORMATTING };
 }

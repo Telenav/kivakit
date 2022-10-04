@@ -18,15 +18,20 @@
 
 package com.telenav.kivakit.core.collections.map;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.collections.list.StringList;
-import com.telenav.kivakit.core.language.reflection.property.Property;
-import com.telenav.kivakit.core.language.reflection.property.PropertyValues;
 import com.telenav.kivakit.core.internal.lexakai.DiagramCollections;
+import com.telenav.kivakit.core.language.reflection.property.Property;
+import com.telenav.kivakit.core.language.reflection.property.PropertyValue;
 import com.telenav.kivakit.core.value.count.Maximum;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.HashSet;
 import java.util.Map;
+
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_INSUFFICIENT;
 
 /**
  * A bounded map from string to value which supports variable interpolation into a string via {@link #expand(String)}.
@@ -37,8 +42,12 @@ import java.util.Map;
  *
  * @author jonathanl (shibo)
  */
+@SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramCollections.class)
-public class VariableMap<Value> extends BaseStringMap<Value> implements PropertyValues
+@ApiQuality(stability = API_STABLE_EXTENSIBLE,
+            testing = TESTING_INSUFFICIENT,
+            documentation = DOCUMENTATION_COMPLETE)
+public class VariableMap<Value> extends StringMap<Value> implements PropertyValue
 {
     /**
      * @return A string variable map for the given string-to-string map
@@ -85,23 +94,31 @@ public class VariableMap<Value> extends BaseStringMap<Value> implements Property
         super(maximum);
     }
 
-    public VariableMap<Value> add(String name, Value object)
+    /**
+     * Add the given variable to this variable map
+     */
+    public VariableMap<Value> add(String name, Value value)
     {
-        super.put(name, object);
+        super.put(name, value);
         return this;
     }
 
+    /**
+     * Add the given variables to this variable map
+     */
     public VariableMap<Value> addAll(VariableMap<Value> variables)
     {
         super.putAll(variables);
         return this;
     }
 
+    /**
+     * Returns a copy of this variable map
+     */
+    @Override
     public VariableMap<Value> copy()
     {
-        var copy = new VariableMap<Value>();
-        copy.addAll(this);
-        return copy;
+        return (VariableMap<Value>) super.copy();
     }
 
     /**
@@ -209,7 +226,7 @@ public class VariableMap<Value> extends BaseStringMap<Value> implements Property
      * {@inheritDoc}
      */
     @Override
-    public Object valueFor(final Property property)
+    public Object propertyValue(Property property)
     {
         return get(property.name());
     }

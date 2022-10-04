@@ -18,15 +18,19 @@
 
 package com.telenav.kivakit.network.email;
 
-import com.telenav.kivakit.core.language.object.ObjectFormatter;
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.language.reflection.property.KivaKitIncludeProperty;
 import com.telenav.kivakit.core.messaging.messages.status.Problem;
+import com.telenav.kivakit.core.string.ObjectFormatter;
 import com.telenav.kivakit.network.email.internal.lexakai.DiagramEmail;
-import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeBodyPart;
+
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
 
 /**
  * The body of an email in plain text.
@@ -34,11 +38,11 @@ import javax.mail.internet.MimeBodyPart;
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramEmail.class)
-@LexakaiJavadoc(complete = true)
+@ApiQuality(stability = API_STABLE_EXTENSIBLE,
+            testing = TESTING_NONE,
+            documentation = DOCUMENTATION_COMPLETE)
 public class EmailBody
 {
-    public static final String MIME_TYPE = "text/plain";
-
     final MimeBodyPart bodyPart = new MimeBodyPart();
 
     private final String text;
@@ -59,7 +63,7 @@ public class EmailBody
     @KivaKitIncludeProperty
     public String mimeType()
     {
-        return MIME_TYPE;
+        return "text/plain";
     }
 
     @KivaKitIncludeProperty

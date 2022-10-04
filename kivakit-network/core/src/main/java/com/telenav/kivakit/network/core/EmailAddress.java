@@ -18,35 +18,56 @@
 
 package com.telenav.kivakit.network.core;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.conversion.BaseStringConverter;
 import com.telenav.kivakit.core.messaging.Listener;
-import com.telenav.lexakai.annotations.LexakaiJavadoc;
 
 import java.util.regex.Pattern;
+
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE;
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
 
 /**
  * An email address, according to RFC 5322.
  *
+ * <p><b>Parsing</b></p>
+ *
+ * <ul>
+ *     <li>{@link #parseEmailAddress(Listener, String)}</li>
+ * </ul>
+ *
+ * <p><b>Properties</b></p>
+ *
+ * <ul>
+ *     <li>{@link #email()}</li>
+ * </ul>
+ *
  * @author jonathanl (shibo)
  */
-@LexakaiJavadoc(complete = true)
+@ApiQuality(stability = API_STABLE_EXTENSIBLE,
+            testing = TESTING_NOT_NEEDED,
+            documentation = DOCUMENTATION_COMPLETE)
 public class EmailAddress
 {
-    // See RFC 5322
+    /** Email pattern. See RFC 5322 */
     private static final Pattern EMAIL_PATTERN = Pattern.compile("^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$");
 
     /**
+     * Parses the given text into an email address
+     *
      * @return An email address for the given string, or null if the string is not an email address
      */
-    public static EmailAddress parseEmail(Listener listener, String email)
+    public static EmailAddress parseEmailAddress(Listener listener, String text)
     {
-        assert email != null;
+        assert text != null;
 
-        if (EMAIL_PATTERN.matcher(email).matches())
+        if (EMAIL_PATTERN.matcher(text).matches())
         {
-            return new EmailAddress(email);
+            return new EmailAddress(text);
         }
-        listener.warning("Invalid email address: $", email);
+        listener.warning("Invalid email address: $", text);
         return null;
     }
 
@@ -55,15 +76,18 @@ public class EmailAddress
      *
      * @author jonathanl (shibo)
      */
-    @LexakaiJavadoc(complete = true)
+    @ApiQuality(stability = API_STABLE,
+                testing = TESTING_NOT_NEEDED,
+                documentation = DOCUMENTATION_COMPLETE)
     public static class Converter extends BaseStringConverter<EmailAddress>
     {
         protected Converter(Listener listener)
         {
-            super(listener, EmailAddress::parseEmail);
+            super(listener, EmailAddress::parseEmailAddress);
         }
     }
 
+    /** The email address */
     private String email;
 
     protected EmailAddress(String email)
@@ -75,6 +99,9 @@ public class EmailAddress
     {
     }
 
+    /**
+     * Returns this email address as a string
+     */
     public String email()
     {
         return email;

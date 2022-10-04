@@ -18,21 +18,18 @@
 
 package com.telenav.kivakit.interfaces.model;
 
-import com.telenav.kivakit.interfaces.numeric.Quantizable;
 import com.telenav.kivakit.interfaces.internal.lexakai.DiagramModel;
-import com.telenav.kivakit.interfaces.numeric.QuantumComparable;
+import com.telenav.kivakit.interfaces.value.LongValued;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 /**
- * An object which has an identifier and is also {@link Quantizable} as are many objects.
+ * An object which has an identifier and is also {@link LongValued} as are many objects.
  *
  * @author jonathanl (shibo)
- * @see Quantizable
+ * @see LongValued
  */
 @UmlClassDiagram(diagram = DiagramModel.class)
-public interface Identifiable extends
-        Quantizable,
-        QuantumComparable<Identifiable>
+public interface Identifiable extends LongValued
 {
     /**
      * @return The identifier for this object
@@ -43,7 +40,7 @@ public interface Identifiable extends
      * @return The identifier as a quantum
      */
     @Override
-    default long quantum()
+    default long longValue()
     {
         return identifier();
     }

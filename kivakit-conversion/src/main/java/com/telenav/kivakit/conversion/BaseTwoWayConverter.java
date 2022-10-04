@@ -18,6 +18,7 @@
 
 package com.telenav.kivakit.conversion;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.conversion.internal.lexakai.DiagramConversion;
 import com.telenav.kivakit.core.messaging.Broadcaster;
 import com.telenav.kivakit.core.messaging.Listener;
@@ -27,6 +28,10 @@ import com.telenav.kivakit.core.messaging.messages.status.Problem;
 import com.telenav.kivakit.core.messaging.messages.status.Warning;
 import com.telenav.kivakit.core.messaging.repeaters.BaseRepeater;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
+
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
 
 /**
  * Base class for implementing two-way converters.
@@ -46,14 +51,24 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
  * @see Warning
  * @see Glitch
  */
+@SuppressWarnings("SpellCheckingInspection")
 @UmlClassDiagram(diagram = DiagramConversion.class)
+@ApiQuality(stability = API_STABLE_EXTENSIBLE,
+            testing = TESTING_NONE,
+            documentation = DOCUMENTATION_COMPLETE)
 public abstract class BaseTwoWayConverter<From, To> extends BaseConverter<From, To> implements TwoWayConverter<From, To>
 {
+    /**
+     * @param listener Listener to report problems to
+     */
     protected BaseTwoWayConverter(Listener listener)
     {
         super(listener);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public From unconvert(To value)
     {
@@ -87,10 +102,16 @@ public abstract class BaseTwoWayConverter<From, To> extends BaseConverter<From, 
         }
     }
 
+    /**
+     * Returns logical value to use for null
+     */
     protected From nullValue()
     {
         return null;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     protected abstract From onUnconvert(To to);
 }

@@ -27,7 +27,7 @@ import com.telenav.kivakit.core.string.Indent;
 import com.telenav.kivakit.core.string.Paths;
 import com.telenav.kivakit.core.string.Split;
 import com.telenav.kivakit.core.string.StringSimilarity;
-import com.telenav.kivakit.core.string.StringTo;
+import com.telenav.kivakit.core.string.StringConversions;
 import com.telenav.kivakit.core.string.Strings;
 import com.telenav.kivakit.internal.testing.CoreUnitTest;
 import org.junit.Test;
@@ -84,31 +84,31 @@ public class StringsTest extends CoreUnitTest
     @Test
     public void testEqual()
     {
-        ensure(Strings.equals("foo", "foo"));
-        ensureFalse(Strings.equals("foo", "fooe"));
-        ensureFalse(Strings.equals(null, "foo"));
-        ensureFalse(Strings.equals("foo", null));
-        ensure(Strings.equals(null, null));
+        ensure(Strings.equalsAllowNull("foo", "foo"));
+        ensureFalse(Strings.equalsAllowNull("foo", "fooe"));
+        ensureFalse(Strings.equalsAllowNull(null, "foo"));
+        ensureFalse(Strings.equalsAllowNull("foo", null));
+        ensure(Strings.equalsAllowNull(null, null));
     }
 
     @Test
     public void testEscapeXml()
     {
-        ensureEqual("a &lt; b", Escape.xml("a < b"));
-        ensureEqual("a &lt; b", Escape.xml("a &lt; b"));
+        ensureEqual("a &lt; b", Escape.escapeXml("a < b"));
+        ensureEqual("a &lt; b", Escape.escapeXml("a &lt; b"));
     }
 
     @Test
     public void testFirstPathComponent()
     {
-        ensureEqual("foo", Paths.optionalHead("foo/bar/baz", '/'));
+        ensureEqual("foo", Paths.pathOptionalHead("foo/bar/baz", '/'));
     }
 
     @Test
     public void testIndented()
     {
-        ensureEqual("  a\n  b", Indent.by(2, "a\nb"));
-        ensureEqual("\n  a\n  b", Indent.by(2, "\na\nb"));
+        ensureEqual("  a\n  b", Indent.indentBy(2, "a\nb"));
+        ensureEqual("\n  a\n  b", Indent.indentBy(2, "\na\nb"));
     }
 
     @Test
@@ -159,25 +159,25 @@ public class StringsTest extends CoreUnitTest
     @Test
     public void testOptional()
     {
-        ensureEqual("", StringTo.nonNullString(null));
-        ensureEqual("foo", StringTo.nonNullString("foo"));
-        ensureEqual("1", StringTo.nonNullString(1));
+        ensureEqual("", StringConversions.nonNullString(null));
+        ensureEqual("foo", StringConversions.nonNullString("foo"));
+        ensureEqual("1", StringConversions.nonNullString(1));
     }
 
     @Test
     public void testOptionalHead()
     {
-        ensureEqual("abc", Paths.optionalHead("abc-x-def", "-x-"));
-        ensureEqual("abc", Paths.optionalHead("abc", "x"));
-        ensureEqual("abc", Paths.optionalHead("abc", "a"));
+        ensureEqual("abc", Paths.pathOptionalHead("abc-x-def", "-x-"));
+        ensureEqual("abc", Paths.pathOptionalHead("abc", "x"));
+        ensureEqual("abc", Paths.pathOptionalHead("abc", "a"));
     }
 
     @Test
     public void testOptionalSuffix()
     {
-        ensureEqual("baz", Paths.optionalSuffix("foo/bar/baz", '/'));
-        ensureEqual("foobaz", Paths.optionalSuffix("foobaz", '/'));
-        ensureEqual(null, Paths.optionalSuffix(null, '/'));
+        ensureEqual("baz", Paths.pathOptionalSuffix("foo/bar/baz", '/'));
+        ensureEqual("foobaz", Paths.pathOptionalSuffix("foobaz", '/'));
+        ensureEqual(null, Paths.pathOptionalSuffix(null, '/'));
     }
 
     @Test
@@ -221,19 +221,19 @@ public class StringsTest extends CoreUnitTest
     @Test
     public void testTail()
     {
-        ensureEqual("def", Paths.tail("abc-x-def", "-x-"));
-        ensureEqual(null, Paths.tail("abc", "x"));
-        ensureEqual(null, Paths.tail("abc", "c"));
+        ensureEqual("def", Paths.pathTail("abc-x-def", "-x-"));
+        ensureEqual(null, Paths.pathTail("abc", "x"));
+        ensureEqual(null, Paths.pathTail("abc", "c"));
     }
 
     @Test
     public void testToBinaryString()
     {
-        ensureEqual("001", StringTo.binary(1, 3));
-        ensureEqual("010", StringTo.binary(2, 3));
-        ensureEqual("111", StringTo.binary(7, 3));
-        ensureEqual("111", StringTo.binary(15, 3));
-        ensureEqual("11", StringTo.binary(7, 2));
+        ensureEqual("001", StringConversions.toBinaryString(1, 3));
+        ensureEqual("010", StringConversions.toBinaryString(2, 3));
+        ensureEqual("111", StringConversions.toBinaryString(7, 3));
+        ensureEqual("111", StringConversions.toBinaryString(15, 3));
+        ensureEqual("11", StringConversions.toBinaryString(7, 2));
     }
 
     @SuppressWarnings("SpellCheckingInspection")
@@ -268,8 +268,8 @@ public class StringsTest extends CoreUnitTest
     @Test
     public void testWithoutSuffix()
     {
-        ensureEqual("a.b", Paths.withoutSuffix("a.b.c", '.'));
-        ensureEqual(null, Paths.withoutSuffix("a.b.c", 'x'));
-        ensureEqual(null, Paths.withoutSuffix(null, '.'));
+        ensureEqual("a.b", Paths.pathWithoutSuffix("a.b.c", '.'));
+        ensureEqual(null, Paths.pathWithoutSuffix("a.b.c", 'x'));
+        ensureEqual(null, Paths.pathWithoutSuffix(null, '.'));
     }
 }

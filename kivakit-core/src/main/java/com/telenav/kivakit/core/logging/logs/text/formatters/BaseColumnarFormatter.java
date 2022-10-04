@@ -1,53 +1,88 @@
 package com.telenav.kivakit.core.logging.logs.text.formatters;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.collections.list.StringList;
 import com.telenav.kivakit.core.logging.logs.text.LogFormatter;
 import com.telenav.kivakit.core.string.AsciiArt;
 import com.telenav.kivakit.core.string.Strings;
 import com.telenav.kivakit.core.value.count.Maximum;
-import com.telenav.kivakit.core.vm.JavaVirtualMachine;
-import com.telenav.lexakai.annotations.LexakaiJavadoc;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_ENUM_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+
+/**
+ * A columnar log formatter. {@link Column} models can be created by subclasses and added to the {@link LineOutput} with
+ * {@link LineOutput#addColumnText(Column, String)}. When text has been added for all columns, the
+ * {@link LineOutput#format()} method can be called to get the formatted text.
+ *
+ * @author jonathanl (shibo)
+ */
+@ApiQuality(stability = API_STABLE_EXTENSIBLE,
+            testing = TESTING_NONE,
+            documentation = DOCUMENTATION_COMPLETE)
 public abstract class BaseColumnarFormatter implements LogFormatter
 {
-    private static final String KIVAKIT_LOG_FORMATTER = JavaVirtualMachine.local().variables().get("KIVAKIT_LOG_FORMATTER");
-
-    public static LogFormatter get()
-    {
-        return "Wide".equalsIgnoreCase(KIVAKIT_LOG_FORMATTER)
-                ? WideLogFormatter.INSTANCE
-                : NarrowLogFormatter.INSTANCE;
-    }
-
     /**
-     * Layout rule to use when lines are too wide for the column they are in
+     * ColumnLayout rules to use when lines are too wide for the column they are in
      */
-    @LexakaiJavadoc(complete = true)
-    protected enum Layout
+    @ApiQuality(stability = API_STABLE_ENUM_EXTENSIBLE,
+                testing = TESTING_NOT_NEEDED,
+                documentation = DOCUMENTATION_COMPLETE)
+    protected enum ColumnLayout
     {
+        /** Column should wrap */
         WRAP,
+
+        /** Column should be clipped on the right */
         CLIP_RIGHT,
+
+        /** Column should be clipped on the left */
         CLIP_LEFT
     }
 
+    /**
+     * Data structure for modeling a text column
+     */
+    @ApiQuality(stability = API_STABLE_EXTENSIBLE,
+                testing = TESTING_NONE,
+                documentation = DOCUMENTATION_COMPLETE)
     protected static class Column
     {
-        private final Layout layout;
+        /** The layout of the column */
+        private final ColumnLayout layout;
 
+        /** The maximum width of the column */
         private final int maximumWidth;
 
+        /** The current width of the column */
         private int width;
 
-        protected Column(int minimumWidth, int maximumWidth, Layout layout)
+        /**
+         * Creates a column
+         *
+         * @param initialWidth The initial width of the column in characters
+         * @param maximumWidth The maximum width of the column in characters
+         * @param layout The layout rule for the column
+         */
+        protected Column(int initialWidth, int maximumWidth, ColumnLayout layout)
         {
             this.maximumWidth = maximumWidth;
-            width = minimumWidth;
+            width = initialWidth;
             this.layout = layout;
         }
 
+        /**
+         * Returns the string as a list of lines, formatted according to the rules
+         *
+         * @param value The value to format
+         * @return The list of lines
+         */
         private StringList format(String value)
         {
             var rows = new StringList();
@@ -58,6 +93,12 @@ public abstract class BaseColumnarFormatter implements LogFormatter
             return rows;
         }
 
+        /**
+         * Formats a single text value into a list of lines, clipping or wrapping as necessary
+         *
+         * @param value The value to format
+         * @return The list of lines
+         */
         private StringList formatLine(String value)
         {
             var rows = new StringList();
@@ -107,16 +148,27 @@ public abstract class BaseColumnarFormatter implements LogFormatter
     /**
      * The output for a line as it is populated by column
      */
-    @LexakaiJavadoc(complete = true)
+    @ApiQuality(stability = API_STABLE_EXTENSIBLE,
+                testing = TESTING_NONE,
+                documentation = DOCUMENTATION_COMPLETE)
     protected static class LineOutput
     {
+        /** The column definitions */
         private final List<Column> columns = new ArrayList<>();
 
+        /** The maximum number of rows */
         private int maximumRows = 1;
 
+        /** The output */
         private final List<StringList> output = new ArrayList<>();
 
-        protected void add(Column column, String value)
+        /**
+         * Adds the given value for the given column
+         *
+         * @param column The column
+         * @param value The text value
+         */
+        protected void addColumnText(Column column, String value)
         {
             columns.add(column);
             var rows = column.format(value);

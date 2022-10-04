@@ -18,7 +18,9 @@
 
 package com.telenav.kivakit.resource.writing;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.io.IO;
+import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.progress.ProgressReporter;
 import com.telenav.kivakit.resource.CopyMode;
 import com.telenav.kivakit.resource.Resource;
@@ -26,39 +28,53 @@ import com.telenav.kivakit.resource.ResourcePath;
 import com.telenav.kivakit.resource.internal.lexakai.DiagramFileSystemFile;
 import com.telenav.kivakit.resource.internal.lexakai.DiagramResource;
 import com.telenav.kivakit.resource.reading.BaseReadableResource;
+import com.telenav.kivakit.resource.reading.ReadableResource;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
+import org.jetbrains.annotations.NotNull;
 
 import java.io.BufferedOutputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+
 /**
  * Extends {@link BaseReadableResource} and provides a base implementation of the {@link WritableResource} interface.
- * Adds the following methods:
+ *
+ * <p><b>Writing</b></p>
  *
  * <ul>
  *     <li>{@link #copyFrom(Resource, CopyMode, ProgressReporter)} - Copies to this resource from the given resource</li>
- *     <li>{@link #delete()} - Deletes this resource</li>
- *     <li>{@link #println(String)} - Prints the given string to this resource</li>
- *     <li>{@link #save(InputStream, ProgressReporter)} - Copies the given input to this resource</li>
+ *     <li>{@link #save(Listener, InputStream, ProgressReporter)} - Copies the given input to this resource</li>
+ *     <li>{@link #saveText(String)}</li>
  * </ul>
- * <p>
- * All other methods are documented in the {@link Resource} superinterface.
+ *
+ * @author jonathanl (shibo)
+ * @see Resource
+ * @see WritableResource
+ * @see ReadableResource
+ * @see BaseReadableResource
  */
+@SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramFileSystemFile.class)
 @UmlClassDiagram(diagram = DiagramResource.class)
+@ApiQuality(stability = API_STABLE_EXTENSIBLE,
+            documentation = DOCUMENTATION_COMPLETE,
+            testing = TESTING_NONE)
 public abstract class BaseWritableResource extends BaseReadableResource implements WritableResource
 {
     protected BaseWritableResource()
     {
     }
 
-    protected BaseWritableResource(BaseWritableResource that)
+    protected BaseWritableResource(@NotNull BaseWritableResource that)
     {
         super(that);
     }
 
-    protected BaseWritableResource(ResourcePath path)
+    protected BaseWritableResource(@NotNull ResourcePath path)
     {
         super(path);
     }
@@ -68,7 +84,9 @@ public abstract class BaseWritableResource extends BaseReadableResource implemen
      *
      * @param source The resource to copy from
      */
-    public void copyFrom(Resource source, CopyMode mode, ProgressReporter reporter)
+    public void copyFrom(@NotNull Resource source,
+                         @NotNull CopyMode mode,
+                         @NotNull ProgressReporter reporter)
     {
         source.copyTo(this, mode, reporter);
     }
@@ -83,37 +101,28 @@ public abstract class BaseWritableResource extends BaseReadableResource implemen
     }
 
     /**
+     * Saves the given input stream into this file
+     */
+    public void save(@NotNull Listener listener,
+                     @NotNull InputStream in,
+                     @NotNull ProgressReporter reporter)
+    {
+        var out = openForWriting(reporter);
+        IO.copyAndClose(listener, in, out);
+        IO.close(listener, out);
+    }
+
+    /**
      * Prints the given text to this resource
      *
      * @param text The text to print
      */
-    public Resource print(String text)
+    public Resource saveText(@NotNull String text)
     {
         try (var out = printWriter())
         {
             out.print(text);
         }
         return this;
-    }
-
-    /**
-     * Prints the given text to this resource followed by a newline
-     *
-     * @param text The text to print
-     */
-    public Resource println(String text)
-    {
-        print(text + "\n");
-        return this;
-    }
-
-    /**
-     * Saves the given input stream into this file
-     */
-    public void save(InputStream in, ProgressReporter reporter)
-    {
-        var out = openForWriting(reporter);
-        IO.copyAndClose(in, out);
-        IO.close(out);
     }
 }

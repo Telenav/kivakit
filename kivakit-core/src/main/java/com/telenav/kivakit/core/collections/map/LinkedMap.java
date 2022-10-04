@@ -18,12 +18,16 @@
 
 package com.telenav.kivakit.core.collections.map;
 
-import com.telenav.kivakit.core.value.count.Maximum;
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramCollections;
-import com.telenav.lexakai.annotations.LexakaiJavadoc;
+import com.telenav.kivakit.core.value.count.Maximum;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.LinkedHashMap;
+
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_INSUFFICIENT;
 
 /**
  * A {@link BaseMap} with {@link LinkedHashMap} as the implementation.
@@ -31,8 +35,10 @@ import java.util.LinkedHashMap;
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramCollections.class)
-@LexakaiJavadoc(complete = true)
-public class LinkedMap<Key, Value> extends BaseMap<Key, Value>
+@ApiQuality(stability = API_STABLE_EXTENSIBLE,
+            testing = TESTING_INSUFFICIENT,
+            documentation = DOCUMENTATION_COMPLETE)
+public class LinkedMap<Key, Value> extends ObjectMap<Key, Value>
 {
     public LinkedMap()
     {
@@ -42,6 +48,5 @@ public class LinkedMap<Key, Value> extends BaseMap<Key, Value>
     public LinkedMap(Maximum maximumSize)
     {
         super(maximumSize, new LinkedHashMap<>());
-        checkSize(0);
     }
 }

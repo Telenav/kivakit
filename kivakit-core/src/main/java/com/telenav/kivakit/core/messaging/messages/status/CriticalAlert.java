@@ -18,12 +18,17 @@
 
 package com.telenav.kivakit.core.messaging.messages.status;
 
-import com.telenav.kivakit.core.messaging.Message;
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramMessageType;
+import com.telenav.kivakit.core.messaging.Message;
 import com.telenav.kivakit.core.messaging.messages.OperationStatusMessage;
 import com.telenav.kivakit.core.messaging.messages.Severity;
-import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
+
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
+import static com.telenav.kivakit.core.messaging.messages.Severity.CRITICAL;
 
 /**
  * A high priority {@link Alert} that needs immediate attention. A proposed solution for IT staff can be added with
@@ -49,7 +54,9 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramMessageType.class)
-@LexakaiJavadoc(complete = true)
+@ApiQuality(stability = API_STABLE,
+            testing = TESTING_NOT_NEEDED,
+            documentation = DOCUMENTATION_COMPLETE)
 public class CriticalAlert extends Alert
 {
     public CriticalAlert(String solution, String message, Object... arguments)
@@ -59,7 +66,7 @@ public class CriticalAlert extends Alert
 
     public CriticalAlert(String solution, Throwable cause, String message, Object... arguments)
     {
-        super(solution, message + ": " + Message.escape(cause.getMessage()), arguments);
+        super(solution, message + ": " + Message.escapeMessageText(cause.getMessage()), arguments);
         cause(cause);
         arguments(arguments);
     }
@@ -68,12 +75,18 @@ public class CriticalAlert extends Alert
     {
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Severity severity()
     {
-        return Severity.CRITICAL;
+        return CRITICAL;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public CriticalAlert solution(String solution)
     {

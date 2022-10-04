@@ -18,28 +18,56 @@
 
 package com.telenav.kivakit.core.language.reflection.property;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramReflection;
+import com.telenav.kivakit.core.language.reflection.Field;
+import com.telenav.kivakit.core.language.reflection.Method;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
-import java.lang.reflect.Field;
-import java.lang.reflect.Method;
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+import static com.telenav.kivakit.core.language.reflection.property.PropertyNamingConvention.ANY_NAMING_CONVENTION;
+import static com.telenav.kivakit.core.language.reflection.property.PropertyNamingConvention.JAVA_BEANS_NAMING;
+import static com.telenav.kivakit.core.language.reflection.property.PropertyNamingConvention.KIVAKIT_PROPERTY_NAMING;
 
 /**
  * A filter that determines how a {@link Property} field or method can be accessed.
  *
  * @author jonathanl (shibo)
  */
+@SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramReflection.class)
+@ApiQuality(stability = API_STABLE,
+            testing = TESTING_NONE,
+            documentation = DOCUMENTATION_COMPLETE)
 public interface PropertyFilter
 {
-    static PropertyFilter beansProperties(PropertyMembers... included)
+    /**
+     * Returns the specified members as a property filter, which selects only these members. Both Java Beans and KivaKit
+     * style properties are included.
+     */
+    static PropertyFilter allProperties(PropertyMemberSelector... included)
     {
-        return new PropertyFilterSet(PropertyNamingConvention.JAVA_BEANS, included);
+        return new PropertySet(ANY_NAMING_CONVENTION, included);
     }
 
-    static PropertyFilter kivakitProperties(PropertyMembers... included)
+    /**
+     * Returns the specified members as a property filter, which selects only these members. Only JavaBeans properties
+     * are included.
+     */
+    static PropertyFilter beansProperties(PropertyMemberSelector... included)
     {
-        return new PropertyFilterSet(PropertyNamingConvention.KIVAKIT, included);
+        return new PropertySet(JAVA_BEANS_NAMING, included);
+    }
+
+    /**
+     * Returns the specified members as a property filter, which selects only these members. Only KivaKit style
+     * properties are included.
+     */
+    static PropertyFilter kivakitProperties(PropertyMemberSelector... included)
+    {
+        return new PropertySet(KIVAKIT_PROPERTY_NAMING, included);
     }
 
     /** True if the given method should be included as a property getter */

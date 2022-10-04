@@ -18,9 +18,15 @@
 
 package com.telenav.kivakit.network.http;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
+
 import java.net.URI;
 import java.net.http.HttpRequest;
 import java.util.List;
+
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_DEFAULT_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
 
 /**
  * Allows customization of an {@link HttpRequest} through the {@link HttpRequest.Builder} interface as well as through
@@ -28,6 +34,9 @@ import java.util.List;
  *
  * @author jonathanl (shibo)
  */
+@ApiQuality(stability = API_STABLE_DEFAULT_EXTENSIBLE,
+            testing = TESTING_NONE,
+            documentation = DOCUMENTATION_COMPLETE)
 public interface HttpRequestFactory
 {
     /**
@@ -46,9 +55,16 @@ public interface HttpRequestFactory
         return request;
     }
 
-    default void header(HttpRequest request, String name, String value)
+    /**
+     * Sets the given header value in the request
+     *
+     * @param request The HTTP request
+     * @param key The header key
+     * @param value The header value
+     */
+    default void header(HttpRequest request, String key, String value)
     {
-        request.headers().map().put(name, List.of(value));
+        request.headers().map().put(key, List.of(value));
     }
 
     /**

@@ -1,14 +1,12 @@
 package com.telenav.kivakit.internal.tests.core.value.count;
 
-import com.telenav.kivakit.internal.testing.CoreUnitTest;
 import com.telenav.kivakit.core.value.count.MutableCount;
 import com.telenav.kivakit.core.value.count.Range;
+import com.telenav.kivakit.internal.testing.CoreUnitTest;
 import org.junit.Test;
 
 import static com.telenav.kivakit.core.value.count.Range.rangeExclusive;
 import static com.telenav.kivakit.core.value.count.Range.rangeInclusive;
-import static com.telenav.kivakit.interfaces.code.FilteredLoopBody.FilterAction.ACCEPT;
-import static com.telenav.kivakit.interfaces.code.FilteredLoopBody.FilterAction.REJECT;
 
 /**
  * Unit test for {@link Range}
@@ -23,13 +21,13 @@ public class RangeTest extends CoreUnitTest
         var inclusiveRange = rangeInclusive(count(100), count(200));
         for (int i = 0; i < 1000; i++)
         {
-            ensure(inclusiveRange.constrain(count(i)).isBetweenInclusive(count(100), count(200)));
+            ensure(inclusiveRange.constrained(count(i)).isBetweenInclusive(count(100), count(200)));
         }
 
         var exclusiveRange = rangeExclusive(count(100), count(200));
         for (int i = 0; i < 1000; i++)
         {
-            ensure(exclusiveRange.constrain(count(i)).isBetweenInclusive(count(100), count(199)));
+            ensure(exclusiveRange.constrained(count(i)).isBetweenInclusive(count(100), count(199)));
         }
     }
 
@@ -38,17 +36,17 @@ public class RangeTest extends CoreUnitTest
     {
         for (int i = 1; i <= 10; i++)
         {
-            ensure(rangeInclusive(count(1), count(10)).contains(count(i)));
+            ensure(rangeInclusive(count(1), count(10)).containsInclusive(count(i)));
         }
-        ensure(!rangeInclusive(count(1), count(10)).contains(count(0)));
-        ensure(!rangeInclusive(count(1), count(10)).contains(count(11)));
+        ensure(!rangeInclusive(count(1), count(10)).containsInclusive(count(0)));
+        ensure(!rangeInclusive(count(1), count(10)).containsInclusive(count(11)));
 
         for (int i = 1; i < 10; i++)
         {
-            ensure(rangeExclusive(count(1), count(10)).contains(count(i)));
+            ensure(rangeExclusive(count(1), count(10)).containsInclusive(count(i)));
         }
-        ensure(!rangeExclusive(count(1), count(10)).contains(count(0)));
-        ensure(!rangeExclusive(count(1), count(10)).contains(count(10)));
+        ensure(!rangeExclusive(count(1), count(10)).containsInclusive(count(0)));
+        ensure(!rangeExclusive(count(1), count(10)).containsInclusive(count(10)));
     }
 
     @Test
@@ -58,36 +56,6 @@ public class RangeTest extends CoreUnitTest
         ensureEqual(range.minimum(), count(0));
         ensureEqual(range.inclusiveMaximum(), count(9));
         ensureEqual(range.exclusiveMaximum(), count(10));
-    }
-
-    @Test
-    public void testForCount()
-    {
-        var exclusiveRange = rangeExclusive(count(0), count(10));
-        var counter = new MutableCount();
-        exclusiveRange.forCount(count(6), value ->
-        {
-            var acceptable = value.asInt() % 2 == 0;
-            if (acceptable)
-            {
-                counter.increment();
-            }
-            return acceptable ? ACCEPT : REJECT;
-        });
-        ensureEqual(counter.asCount(), count(5));
-
-        var inclusiveRange = rangeInclusive(count(0), count(10));
-        counter.set(0);
-        inclusiveRange.forCount(count(6), value ->
-        {
-            var acceptable = value.asInt() % 2 == 0;
-            if (acceptable)
-            {
-                counter.increment();
-            }
-            return acceptable ? ACCEPT : REJECT;
-        });
-        ensureEqual(counter.asCount(), count(6));
     }
 
     @Test

@@ -1,13 +1,12 @@
 package com.telenav.kivakit.interfaces.time;
 
-import com.telenav.kivakit.annotations.code.CodeQuality;
-import com.telenav.kivakit.interfaces.string.Stringable;
+import com.telenav.kivakit.annotations.code.ApiQuality;
 
 import java.time.Instant;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.STABLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.UNNECESSARY;
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_DEFAULT_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
 
 /**
  * Interface to an object having a length of time, measured in milliseconds.
@@ -80,12 +79,11 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.UNNECESSARY;
  *
  * @author jonathanl (shibo)
  */
-@CodeQuality(stability = STABLE,
-             testing = UNNECESSARY,
-             documentation = COMPLETE)
+@ApiQuality(stability = API_STABLE_DEFAULT_EXTENSIBLE,
+            testing = TESTING_NOT_NEEDED,
+            documentation = DOCUMENTATION_COMPLETE)
 public interface PointInTime<Time extends PointInTime<Time, Duration>, Duration extends LengthOfTime<Duration>> extends
         Comparable<PointInTime<?, ?>>,
-        Stringable,
         TimeMeasurement
 {
     /**
@@ -169,11 +167,18 @@ public interface PointInTime<Time extends PointInTime<Time, Duration>, Duration 
         return nanoseconds().isLessThanOrEqualTo(that.nanoseconds());
     }
 
+    /**
+     * @return True if this is a negative point in time
+     */
     default boolean isNegative()
     {
         return nanoseconds().isNegative();
     }
 
+    /**
+     * @return True if this is time zero
+     */
+    @Override
     default boolean isZero()
     {
         return nanoseconds().isZero();
@@ -185,7 +190,7 @@ public interface PointInTime<Time extends PointInTime<Time, Duration>, Duration 
     Time maximum();
 
     /**
-     * @return The larger of this point in time and the given point in time
+     * @return The largest of this point in time and the given point in time
      */
     @SuppressWarnings("unchecked")
     default Time maximum(Time that)
@@ -199,7 +204,7 @@ public interface PointInTime<Time extends PointInTime<Time, Duration>, Duration 
     Time minimum();
 
     /**
-     * @return The smaller of this point in time and the given point in time
+     * @return The smallest of this point in time and the given point in time
      */
     @SuppressWarnings("unchecked")
     default Time minimum(Time that)
@@ -208,7 +213,7 @@ public interface PointInTime<Time extends PointInTime<Time, Duration>, Duration 
     }
 
     /**
-     * @return This point in time minus the given length of time
+     * Returns this point in time minus the given length of time
      */
     default Time minus(Duration duration)
     {
@@ -232,17 +237,17 @@ public interface PointInTime<Time extends PointInTime<Time, Duration>, Duration 
     }
 
     /**
-     * @return An instance of the class implementing LengthOfTime
+     * Creates an instance of the class implementing LengthOfTime
      */
     Duration newDuration(Nanoseconds nanoseconds);
 
     /**
-     * @return An instance of the class implementing PointInTime
+     * Creates an instance of the class implementing PointInTime
      */
     Time newTime(Nanoseconds nanoseconds);
 
     /**
-     * @return This point in time plus the given duration
+     * Returns this point in time plus the given duration
      */
     default Time plus(Duration that)
     {

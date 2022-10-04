@@ -18,14 +18,13 @@
 
 package com.telenav.kivakit.filesystem;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.commandline.ArgumentParser;
 import com.telenav.kivakit.commandline.SwitchParser;
 import com.telenav.kivakit.conversion.BaseStringConverter;
 import com.telenav.kivakit.core.collections.map.VariableMap;
 import com.telenav.kivakit.core.collections.set.ObjectSet;
 import com.telenav.kivakit.core.ensure.Ensure;
-import com.telenav.kivakit.core.logging.Logger;
-import com.telenav.kivakit.core.logging.LoggerFactory;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.progress.ProgressReporter;
 import com.telenav.kivakit.core.string.Paths;
@@ -46,10 +45,10 @@ import com.telenav.kivakit.resource.internal.lexakai.DiagramFileSystemFile;
 import com.telenav.kivakit.resource.internal.lexakai.DiagramResourceService;
 import com.telenav.kivakit.resource.spi.ResourceResolver;
 import com.telenav.kivakit.resource.writing.BaseWritableResource;
-import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlAggregation;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeMember;
+import org.jetbrains.annotations.NotNull;
 
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -57,10 +56,15 @@ import java.net.URI;
 import java.nio.charset.Charset;
 import java.nio.file.attribute.PosixFilePermission;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE;
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_INSUFFICIENT;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
 import static com.telenav.kivakit.core.collections.set.ObjectSet.objectSet;
 import static com.telenav.kivakit.core.ensure.Ensure.ensure;
 import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
-import static com.telenav.kivakit.core.messaging.Listener.emptyListener;
+import static com.telenav.kivakit.core.messaging.Listener.nullListener;
 import static com.telenav.kivakit.filesystem.loader.FileSystemServiceLoader.fileSystem;
 
 /**
@@ -68,22 +72,36 @@ import static com.telenav.kivakit.filesystem.loader.FileSystemServiceLoader.file
  * methods. File system service providers for this abstraction are in <i>com.telenav.kivakit.filesystem.local</i> (the
  * local filesystem provider) and in the <i>kivakit-filesystems</i> module.
  *
+ * <p><b>Creation</b></p>
+ *
  * <p>
  * Files can be created with several static factory methods, including:
+ * </p>
  *
  * <ul>
  *     <li>{@link #parseFile(Listener listener, String)}</li>
+ *     <li>{@link #parseFile(Listener, String, VariableMap)}</li>
  *     <li>{@link #file(Listener, URI)}</li>
- *     <li>{@link #file(FilePath)}</li>
- *     <li>{@link #file(java.io.File)}</li>
+ *     <li>{@link #file(Listener, FilePath)}</li>
+ *     <li>{@link #file(Listener, java.io.File)}</li>
  * </ul>
+ *
+ * <p><b>Command Line Parsing</b></p>
  *
  * <p>
  * Static methods that produce switch and argument builders are available, and files add the following groups of
  * methods to the base methods provided by {@link BaseWritableResource}.
  * </p>
  *
- * <p><b>Path Methods</b></p>
+ * <ul>
+ *     <li>{@link #fileArgumentParser(Listener, String)}</li>
+ *     <li>{@link #fileListArgumentParser(Listener, String, Extension)}</li>
+ *     <li>{@link #fileListSwitchParser(Listener, String, String, Extension)}</li>
+ *     <li>{@link #filePathSwitchParser(Listener, String, String)}</li>
+ *     <li>{@link #fileSwitchParser(Listener, String, String)}</li>
+ * </ul>
+ *
+ * <p><b>Path-Related Methods</b></p>
  *
  * <ul>
  *     <li>{@link #absolute()}</li>
@@ -93,10 +111,33 @@ import static com.telenav.kivakit.filesystem.loader.FileSystemServiceLoader.file
  *     <li>{@link #root()}</li>
  * </ul>
  *
+ * <p><b>Properties</b></p>
+ *
+ * <ul>
+ *     <li>{@link #age()}</li>
+ *     <li>{@link #createdAt()}</li>
+ *     <li>{@link #lastModified(Time)}</li>
+ *     <li>{@link #lastModified()}</li>
+ *     <li>{@link #parent()}</li>
+ *     <li>{@link #path()}</li>
+ *     <li>{@link #root()}</li>
+ *     <li>{@link #sizeInBytes()}</li>
+ * </ul>
+ *
+ * <p><b>Materialization</b></p>
+ *
+ * <ul>
+ *     <li>{@link #dematerialize()}</li>
+ *     <li>{@link #isMaterializable()}</li>
+ *     <li>{@link #materialized(ProgressReporter)}</li>
+ * </ul>
+ *
  * <p><b>Operations</b></p>
  *
  * <ul>
  *     <li>{@link #chmod(PosixFilePermission...)}</li>
+ *     <li>{@link #delete()}</li>
+ *     <li>{@link #saveText(String)}</li>
  *     <li>{@link #renameTo(Resource)}</li>
  *     <li>{@link #safeCopyFrom(Resource, CopyMode, ProgressReporter)}</li>
  * </ul>
@@ -104,12 +145,22 @@ import static com.telenav.kivakit.filesystem.loader.FileSystemServiceLoader.file
  * <p><b>Checks</b></p>
  *
  * <ul>
+ *     <li>{@link #can()}</li>
+ *     <li>{@link #can(Action)}</li>
+ *     <li>{@link #ensureExists()}</li>
  *     <li>{@link #ensureReadable()}</li>
  *     <li>{@link #ensureWritable()}</li>
+ *     <li>{@link #exists()}</li>
  *     <li>{@link #isFile()}</li>
  *     <li>{@link #isFolder()}</li>
+ *     <li>{@link #isNewerThan(Duration)}</li>
  *     <li>{@link #isNewerThan(File)}</li>
+ *     <li>{@link #isOlderThan(Duration)}</li>
  *     <li>{@link #isOlderThan(File)}</li>
+ *     <li>{@link #isOlderThan(Resource)}</li>
+ *     <li>{@link #isReadable()}</li>
+ *     <li>{@link #isRemote()}</li>
+ *     <li>{@link #isWritable()}</li>
  * </ul>
  *
  * <p><b>Conversion Methods</b></p>
@@ -117,6 +168,8 @@ import static com.telenav.kivakit.filesystem.loader.FileSystemServiceLoader.file
  * <ul>
  *     <li>{@link #asFolder()}</li>
  *     <li>{@link #asJavaFile()}</li>
+ *     <li>{@link #asJavaPath()}</li>
+ *     <li>{@link #asWritable()}</li>
  * </ul>
  *
  * <p><b>Functional Methods</b></p>
@@ -128,7 +181,7 @@ import static com.telenav.kivakit.filesystem.loader.FileSystemServiceLoader.file
  *     <li>{@link #withExtension(Extension)}</li>
  *     <li>{@link #withoutExtension()}</li>
  *     <li>{@link #withoutCompoundExtension()}</li>
- *     <li>{@link #withoutKnownExtensions()}</li>
+ *     <li>{@link #withoutAllKnownExtensions()}</li>
  *     <li>{@link #withoutOverwriting()}</li>
  * </ul>
  *
@@ -136,11 +189,11 @@ import static com.telenav.kivakit.filesystem.loader.FileSystemServiceLoader.file
  */
 @SuppressWarnings({ "SameParameterValue", "unused" })
 @UmlClassDiagram(diagram = DiagramFileSystemFile.class)
-@LexakaiJavadoc(complete = true)
+@ApiQuality(stability = API_STABLE_EXTENSIBLE,
+            testing = TESTING_INSUFFICIENT,
+            documentation = DOCUMENTATION_COMPLETE)
 public class File extends BaseWritableResource implements FileSystemObject
 {
-    private static final Logger LOGGER = LoggerFactory.newLogger();
-
     public static PosixFilePermission[] ACCESS_ALL = { PosixFilePermission.OWNER_READ,
             PosixFilePermission.OWNER_WRITE, PosixFilePermission.OWNER_EXECUTE, PosixFilePermission.GROUP_READ,
             PosixFilePermission.GROUP_WRITE, PosixFilePermission.GROUP_EXECUTE, PosixFilePermission.OTHERS_READ,
@@ -153,38 +206,50 @@ public class File extends BaseWritableResource implements FileSystemObject
 
     private static long temporaryFileNumber = System.currentTimeMillis();
 
-    public static File file(Listener listener, URI uri)
+    /**
+     * Returns a file for the given URI
+     *
+     * @param listener The listener to call with any problems
+     */
+    public static File file(@NotNull Listener listener, @NotNull URI uri)
     {
         // Ensure our many preconditions
         if (!uri.isAbsolute())
         {
-            Ensure.illegalArgument("URI is not absolute");
+            listener.problem("URI is not absolute");
+            return null;
         }
         if (uri.isOpaque())
         {
-            Ensure.illegalArgument("URI is not hierarchical");
+            listener.problem("URI is not hierarchical");
+            return null;
         }
         var scheme = uri.getScheme();
         if (!"file".equalsIgnoreCase(scheme))
         {
-            Ensure.illegalArgument("URI scheme is not \"file\"");
+            listener.problem("URI scheme is not \"file\"");
+            return null;
         }
         if (uri.getAuthority() != null)
         {
-            Ensure.illegalArgument("URI has an authority component");
+            listener.problem("URI has an authority component");
+            return null;
         }
         if (uri.getFragment() != null)
         {
-            Ensure.illegalArgument("URI has a fragment component");
+            listener.problem("URI has a fragment component");
+            return null;
         }
         if (uri.getQuery() != null)
         {
-            Ensure.illegalArgument("URI has a query component");
+            listener.problem("URI has a query component");
+            return null;
         }
         var path = uri.getPath();
         if ("".equals(path))
         {
-            Ensure.illegalArgument("URI path component is empty");
+            listener.problem("URI path component is empty");
+            return null;
         }
         path = path.replaceFirst("^/", "");
 
@@ -196,99 +261,165 @@ public class File extends BaseWritableResource implements FileSystemObject
         return new File(service);
     }
 
-    public static File file(java.io.File file)
+    /**
+     * Returns a file for the given Java file
+     *
+     * @param listener The listener to call with any problems
+     */
+    public static File file(@NotNull Listener listener, @NotNull java.io.File file)
     {
-        return parseFile(Listener.throwingListener(), file.getAbsolutePath());
+        return parseFile(listener, file.getAbsolutePath());
     }
 
-    public static File file(FilePath path)
+    /**
+     * Returns a file for the given path
+     *
+     * @param listener The listener to call with any problems
+     * @param path The path
+     */
+    public static File file(@NotNull Listener listener, @NotNull FilePath path)
     {
-        var filesystem = fileSystem(Listener.throwingListener(), path);
+        var filesystem = fileSystem(listener, path);
         return new File(ensureNotNull(filesystem).fileService(path));
     }
 
-    public static ArgumentParser.Builder<File> fileArgumentParser(Listener listener, String description)
+    /**
+     * Returns a file argument parser builder with the given description
+     *
+     * @param listener The listener to call with any problems
+     * @param description The argument description
+     * @return The argument parser builder
+     */
+    public static ArgumentParser.Builder<File> fileArgumentParser(@NotNull Listener listener,
+                                                                  @NotNull String description)
     {
-        return ArgumentParser.builder(File.class)
-                .converter(new File.Converter(LOGGER))
+        return ArgumentParser.argumentParserBuilder(File.class)
+                .converter(new File.Converter(listener))
                 .description(description);
     }
 
-    public static ArgumentParser.Builder<FileList> fileListArgumentParser(Listener listener,
-                                                                          String description,
-                                                                          Extension extension)
+    /**
+     * Returns a {@link FileList} argument parser builder with the given description
+     *
+     * @param listener The listener to call with any problems
+     * @param description The argument description
+     * @param extension The extension to match for files in the file list
+     * @return The argument parser builder
+     */
+    public static ArgumentParser.Builder<FileList> fileListArgumentParser(@NotNull Listener listener,
+                                                                          @NotNull String description,
+                                                                          @NotNull Extension extension)
     {
-        return ArgumentParser.builder(FileList.class)
-                .converter(new FileList.Converter(LOGGER, extension))
+        return ArgumentParser.argumentParserBuilder(FileList.class)
+                .converter(new FileList.Converter(listener, extension))
                 .description(description);
     }
 
-    public static SwitchParser.Builder<FileList> fileListSwitchParser(Listener listener,
-                                                                      String name,
-                                                                      String description,
-                                                                      Extension extension)
+    /**
+     * Returns a {@link FileList} switch parser builder with the given name and description
+     *
+     * @param listener The listener to call with any problems
+     * @param name The switch name
+     * @param description The switch description
+     * @param extension The extension to match for files in the file list
+     * @return The switch parser builder
+     */
+    public static SwitchParser.Builder<FileList> fileListSwitchParser(@NotNull Listener listener,
+                                                                      @NotNull String name,
+                                                                      @NotNull String description,
+                                                                      @NotNull Extension extension)
     {
-        return SwitchParser.builder(FileList.class)
+        return SwitchParser.switchParserBuilder(FileList.class)
                 .name(name)
-                .converter(new FileList.Converter(LOGGER, extension))
+                .converter(new FileList.Converter(listener, extension))
                 .description(description);
     }
 
-    public static SwitchParser.Builder<FilePath> filePathSwitchParser(Listener listener,
-                                                                      String name,
-                                                                      String description)
+    /**
+     * Returns a {@link FilePath} switch parser builder with the given name and description
+     *
+     * @param listener The listener to call with any problems
+     * @param name The switch name
+     * @param description The switch description
+     * @return The switch parser builder
+     */
+    public static SwitchParser.Builder<FilePath> filePathSwitchParser(@NotNull Listener listener,
+                                                                      @NotNull String name,
+                                                                      @NotNull String description)
     {
-        return SwitchParser.builder(FilePath.class)
+        return SwitchParser.switchParserBuilder(FilePath.class)
                 .name(name)
-                .converter(new FilePath.Converter(LOGGER))
+                .converter(new FilePath.Converter(listener))
                 .description(description);
     }
 
-    public static SwitchParser.Builder<File> fileSwitchParser(Listener listener,
-                                                              String name,
-                                                              String description)
+    /**
+     * Returns a {@link File} switch parser builder with the given name and description
+     *
+     * @param listener The listener to call with any problems
+     * @param name The switch name
+     * @param description The switch description
+     * @return The switch parser builder
+     */
+    public static SwitchParser.Builder<File> fileSwitchParser(@NotNull Listener listener,
+                                                              @NotNull String name,
+                                                              @NotNull String description)
     {
-        return SwitchParser.builder(File.class)
+        return SwitchParser.switchParserBuilder(File.class)
                 .name(name)
-                .converter(new File.Converter(LOGGER))
+                .converter(new File.Converter(listener))
                 .description(description);
     }
 
-    public static SwitchParser.Builder<File> inputFileSwitchParser(Listener listener)
-    {
-        return fileSwitchParser(listener, "input", "The input file to process");
-    }
-
-    public static SwitchParser.Builder<File> outputFile(Listener listener)
-    {
-        return fileSwitchParser(listener, "output", "The output file to target");
-    }
-
-    public static File parseFile(Listener listener, String path, VariableMap<String> variables)
+    /**
+     * Parses a path into a {@link File}, interpolating variables from the given variable map
+     *
+     * @param listener The listener to call with any problems
+     * @param path The path to parse
+     * @param variables The variables to expand
+     * @return The file
+     */
+    public static File parseFile(@NotNull Listener listener,
+                                 @NotNull String path,
+                                 @NotNull VariableMap<String> variables)
     {
         return parseFile(listener, variables.expand(path));
     }
 
-    public static File parseFile(Listener listener, String path)
+    /**
+     * Parses a path into a {@link File}
+     *
+     * @param listener The listener to call with any problems
+     * @param path The path to parse
+     * @return The file
+     */
+    public static File parseFile(@NotNull Listener listener, @NotNull String path)
     {
         // If there is a KivaKit scheme, like "s3", "hdfs" or "java",
-        var scheme = Paths.head(path, ":");
+        var scheme = Paths.pathHead(path, ":");
         if (scheme != null)
         {
             // parse the rest of the path into a FilePath,
-            var filePath = FilePath.parseFilePath(listener, Paths.tail(path, ":"));
+            var filePath = FilePath.parseFilePath(listener, Paths.pathTail(path, ":"));
 
             // then prepend the KivaKit scheme to the list of schemes in the parsed FilePath,
-            var schemes = filePath.schemes().copy().prepend(scheme);
+            var schemes = filePath.schemes().copy();
+            schemes.prepend(scheme);
 
             // and create the file.
-            return File.file(filePath.withSchemes(schemes));
+            return File.file(listener, filePath.withSchemes(schemes));
         }
 
-        return File.file(FilePath.parseFilePath(listener, path));
+        return File.file(listener, FilePath.parseFilePath(listener, path));
     }
 
-    public static File temporary(Extension extension)
+    /**
+     * Returns a temporary file in the {@link Folder#kivakitTemporary()} folder with the given extension
+     *
+     * @param extension The extension
+     * @return The temporary file
+     */
+    public static File temporary(@NotNull Extension extension)
     {
         return Folder.kivakitTemporary().file("temp-" + temporaryFileNumber++ + extension);
     }
@@ -298,10 +429,12 @@ public class File extends BaseWritableResource implements FileSystemObject
      *
      * @author jonathanl (shibo)
      */
-    @LexakaiJavadoc(complete = true)
+    @ApiQuality(stability = API_STABLE,
+                testing = TESTING_NOT_NEEDED,
+                documentation = DOCUMENTATION_COMPLETE)
     public static class Converter extends BaseStringConverter<File>
     {
-        public Converter(Listener listener)
+        public Converter(@NotNull Listener listener)
         {
             super(listener, File::parseFile);
         }
@@ -313,21 +446,23 @@ public class File extends BaseWritableResource implements FileSystemObject
      * @author jonathanl (shibo)
      */
     @UmlClassDiagram(diagram = DiagramResourceService.class)
-    @LexakaiJavadoc(complete = true)
+    @ApiQuality(stability = API_STABLE,
+                testing = TESTING_NOT_NEEDED,
+                documentation = DOCUMENTATION_COMPLETE)
     public static class Resolver implements ResourceResolver
     {
         @Override
-        public boolean accepts(ResourceIdentifier identifier)
+        public boolean accepts(@NotNull ResourceIdentifier identifier)
         {
             if (identifier.identifier().matches("^(http|https|classpath):.*"))
             {
                 return false;
             }
-            return fileSystem(emptyListener(), FilePath.parseFilePath(this, identifier.identifier())) != null;
+            return fileSystem(nullListener(), FilePath.parseFilePath(this, identifier.identifier())) != null;
         }
 
         @Override
-        public Resource resolve(ResourceIdentifier identifier)
+        public Resource resolve(@NotNull ResourceIdentifier identifier)
         {
             return File.parseFile(this, identifier.identifier());
         }
@@ -340,7 +475,7 @@ public class File extends BaseWritableResource implements FileSystemObject
      * <b>Not public API</b>
      */
     @UmlExcludeMember
-    File(FileService file)
+    File(@NotNull FileService file)
     {
         service = file;
     }
@@ -349,20 +484,23 @@ public class File extends BaseWritableResource implements FileSystemObject
      * <b>Not public API</b>
      */
     @UmlExcludeMember
-    private File(File that)
+    private File(@NotNull File that)
     {
         super(that);
         service = that.service;
     }
 
     /**
-     * @return This file with an absolute path
+     * Returns this file with an absolute path
      */
     public File absolute()
     {
-        return File.file(path().absolute());
+        return File.file(this, path().asAbsolute());
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Duration age()
     {
@@ -370,7 +508,7 @@ public class File extends BaseWritableResource implements FileSystemObject
     }
 
     /**
-     * @return This file as a folder
+     * Returns this file as a folder
      */
     public Folder asFolder()
     {
@@ -378,7 +516,7 @@ public class File extends BaseWritableResource implements FileSystemObject
     }
 
     /**
-     * @return This file as a {@link java.io.File}
+     * Returns this file as a {@link java.io.File}
      */
     @Override
     public java.io.File asJavaFile()
@@ -392,9 +530,9 @@ public class File extends BaseWritableResource implements FileSystemObject
     }
 
     @Override
-    public ObjectSet<Can> can()
+    public ObjectSet<Action> can()
     {
-        return objectSet(Can.DELETE, Can.RENAME);
+        return objectSet(Action.DELETE, Action.RENAME);
     }
 
     /**
@@ -404,11 +542,14 @@ public class File extends BaseWritableResource implements FileSystemObject
      * @return True if permissions were successfully changed
      */
     @SuppressWarnings("UnusedReturnValue")
-    public boolean chmod(PosixFilePermission... permissions)
+    public boolean chmod(@NotNull PosixFilePermission... permissions)
     {
         return service.chmod(permissions);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Time createdAt()
     {
@@ -416,7 +557,7 @@ public class File extends BaseWritableResource implements FileSystemObject
     }
 
     /**
-     * @return True if this file was deleted
+     * Returns true if this file was deleted
      */
     @Override
     public boolean delete()
@@ -476,7 +617,7 @@ public class File extends BaseWritableResource implements FileSystemObject
     }
 
     /**
-     * @return True if this file exists
+     * Returns true if this file exists
      */
     @Override
     public boolean exists()
@@ -491,7 +632,7 @@ public class File extends BaseWritableResource implements FileSystemObject
     }
 
     /**
-     * @return True if this is, in fact, a file and not a folder
+     * Returns true if this is, in fact, a file and not a folder
      */
     public boolean isFile()
     {
@@ -499,7 +640,7 @@ public class File extends BaseWritableResource implements FileSystemObject
     }
 
     /**
-     * @return True if this is actually a folder instead of a file
+     * Returns true if this is actually a folder instead of a file
      */
     public boolean isFolder()
     {
@@ -507,20 +648,20 @@ public class File extends BaseWritableResource implements FileSystemObject
     }
 
     /**
-     * @return True if this file is newer than the given file
+     * Returns true if this file is newer than the given file
      */
-    public boolean isNewerThan(File that)
+    public boolean isNewerThan(@NotNull File that)
     {
-        return service.modifiedAt().isAfter(that.service.modifiedAt());
+        return service.lastModified().isAfter(that.service.lastModified());
     }
 
-    public boolean isNewerThan(Duration duration)
+    public boolean isNewerThan(@NotNull Duration duration)
     {
         return age().isLessThan(duration);
     }
 
     /**
-     * @return True if this file exists and has at least one byte in it
+     * Returns true if this file exists and has at least one byte in it
      */
     public boolean isNonEmpty()
     {
@@ -528,20 +669,20 @@ public class File extends BaseWritableResource implements FileSystemObject
     }
 
     /**
-     * @return True if this file is older than the given file
+     * Returns true if this file is older than the given file
      */
-    public boolean isOlderThan(File that)
+    public boolean isOlderThan(@NotNull File that)
     {
-        return service.modifiedAt().isBefore(that.service.modifiedAt());
+        return service.lastModified().isBefore(that.service.lastModified());
     }
 
-    public boolean isOlderThan(Duration duration)
+    public boolean isOlderThan(@NotNull Duration duration)
     {
         return age().isGreaterThan(duration);
     }
 
     /**
-     * @return True if this file can be read
+     * Returns true if this file can be read
      */
     @Override
     public boolean isReadable()
@@ -550,7 +691,7 @@ public class File extends BaseWritableResource implements FileSystemObject
     }
 
     /**
-     * @return True if this file is not on the local host
+     * Returns true if this file is not on the local host
      */
     @Override
     public boolean isRemote()
@@ -559,7 +700,7 @@ public class File extends BaseWritableResource implements FileSystemObject
     }
 
     /**
-     * @return True if this file can be written to
+     * Returns true if this file can be written to
      */
     @Override
     public Boolean isWritable()
@@ -571,9 +712,20 @@ public class File extends BaseWritableResource implements FileSystemObject
      * Sets the last modified timestamp on this file
      */
     @Override
-    public boolean lastModified(Time modified)
+    public boolean lastModified(@NotNull Time modified)
     {
         return service.lastModified(modified);
+    }
+
+    /**
+     * Returns the last time of modification of this file
+     */
+    @Override
+    public Time lastModified()
+    {
+        var lastModified = service.lastModified();
+        trace("Last modified time of $ is $", this, lastModified);
+        return lastModified;
     }
 
     /**
@@ -585,7 +737,7 @@ public class File extends BaseWritableResource implements FileSystemObject
      * @return This file, or if it is remote, a file on the local filesystem that has the contents of this file
      */
     @Override
-    public File materialized(ProgressReporter reporter)
+    public File materialized(@NotNull ProgressReporter reporter)
     {
         if (service.isRemote())
         {
@@ -608,23 +760,13 @@ public class File extends BaseWritableResource implements FileSystemObject
     }
 
     /**
-     * @return The last time of modification of this file
-     */
-    @Override
-    public Time modifiedAt()
-    {
-        var lastModified = service.modifiedAt();
-        trace("Last modified time of $ is $", this, lastModified);
-        return lastModified;
-    }
-
-    /**
-     * @return This file with a normalized path
+     * Returns this file with a normalized path
+     *
      * @see ResourcePath#normalized()
      */
     public File normalized()
     {
-        return File.file(service.path().normalized());
+        return File.file(this, service.path().normalized());
     }
 
     @Override
@@ -640,7 +782,7 @@ public class File extends BaseWritableResource implements FileSystemObject
     }
 
     /**
-     * @return The parent folder that contains this file
+     * Returns the parent folder that contains this file
      */
     @Override
     public Folder parent()
@@ -649,7 +791,7 @@ public class File extends BaseWritableResource implements FileSystemObject
     }
 
     /**
-     * @return The path to this file
+     * Returns the path to this file
      */
     @Override
     public FilePath path()
@@ -657,40 +799,40 @@ public class File extends BaseWritableResource implements FileSystemObject
         return service.path();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public File print(String text)
+    public File saveText(@NotNull String text)
     {
-        return (File) super.print(text);
+        return (File) super.saveText(text);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public File println(String text)
-    {
-        return (File) super.println(text);
-    }
-
-    @Override
-    public File relativeTo(ResourceFolder<?> folder)
+    public File relativeTo(@NotNull ResourceFolder<?> folder)
     {
         var service = ((Folder) folder).service();
-        return File.file(this.service.relativePath(service).withoutTrailingSlash());
+        return File.file(this, this.service.relativePath(service).withoutTrailingSlash());
     }
 
     /**
      * Renames this file to the given file. Both files must be on the same filesystem for this method to succeed.
-     *
-     * @return True if this file was renamed to the given file
+     * <p>
+     * Returns true if this file was renamed to the given file
      */
     @Override
     @SuppressWarnings("UnusedReturnValue")
-    public boolean renameTo(Resource that)
+    public boolean renameTo(@NotNull Resource that)
     {
         trace("Rename $ to $", this, that);
         return service.renameTo(((File) that).service);
     }
 
     /**
-     * @return The root folder containing this file
+     * Returns the root folder containing this file
      */
     public Folder root()
     {
@@ -703,13 +845,15 @@ public class File extends BaseWritableResource implements FileSystemObject
      * file in the same folder. If the copy operation is successful, the destination file is then removed and the
      * temporary file is renamed to the destination file's name.
      */
-    public void safeCopyFrom(Resource resource, CopyMode mode, ProgressReporter reporter)
+    public void safeCopyFrom(@NotNull Resource resource,
+                             @NotNull CopyMode mode,
+                             @NotNull ProgressReporter reporter)
     {
         resource.safeCopyTo(this, mode, reporter);
     }
 
     /**
-     * @return The size of this file
+     * {@inheritDoc}
      */
     @Override
     public Bytes sizeInBytes()
@@ -717,6 +861,9 @@ public class File extends BaseWritableResource implements FileSystemObject
         return service.sizeInBytes();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String toString()
     {
@@ -724,11 +871,11 @@ public class File extends BaseWritableResource implements FileSystemObject
     }
 
     /**
-     * @return This file with the given basename (but the same path and extension)
+     * Returns this file with the given basename (but the same path and extension)
      */
-    public File withBaseName(String name)
+    public File withBaseName(@NotNull String name)
     {
-        var file = File.file(path().parent().withChild(name));
+        var file = File.file(this, path().parent().withChild(name));
         if (extension() != null)
         {
             return file.withExtension(extension());
@@ -737,9 +884,9 @@ public class File extends BaseWritableResource implements FileSystemObject
     }
 
     /**
-     * @return This file with the given {@link Charset}
+     * Returns this file with the given {@link Charset}
      */
-    public File withCharset(Charset charset)
+    public File withCharset(@NotNull Charset charset)
     {
         var file = new File(this);
         file.charset(charset);
@@ -747,9 +894,9 @@ public class File extends BaseWritableResource implements FileSystemObject
     }
 
     /**
-     * @return This file with the given compression / decompression codec
+     * Returns this file with the given compression / decompression codec
      */
-    public File withCodec(Codec codec)
+    public File withCodec(@NotNull Codec codec)
     {
         var file = new File(this);
         file.codec(codec);
@@ -757,15 +904,39 @@ public class File extends BaseWritableResource implements FileSystemObject
     }
 
     /**
-     * @return This file with the given extension
+     * Returns this file with the given extension
      */
-    public File withExtension(Extension extension)
+    public File withExtension(@NotNull Extension extension)
     {
         return parseFile(this, path().toString() + extension);
     }
 
     /**
-     * @return This file without any extensions at all, taking into account compound extensions like ".tar.gz"
+     * Returns this file with any known extensions removed
+     */
+    @UmlExcludeMember
+    public File withoutAllKnownExtensions()
+    {
+        var file = this;
+        boolean removedOne;
+        do
+        {
+            removedOne = false;
+            for (var extension : Extension.allWellKnownExtensions())
+            {
+                if (file.fileName().endsWith(extension))
+                {
+                    file = parseFile(this, Strip.ending(path().toString(), extension.toString()));
+                    removedOne = true;
+                }
+            }
+        }
+        while (removedOne);
+        return file;
+    }
+
+    /**
+     * Returns this file without any extensions at all, taking into account compound extensions like ".tar.gz"
      */
     @UmlExcludeMember
     public File withoutCompoundExtension()
@@ -796,45 +967,21 @@ public class File extends BaseWritableResource implements FileSystemObject
     }
 
     /**
-     * @return This file with no extension
+     * Returns this file with no extension
      */
     public File withoutExtension()
     {
         var extension = extension();
         if (extension != null)
         {
-            var withoutExtension = Paths.withoutOptionalSuffix(path().toString(), '.');
+            var withoutExtension = Paths.pathWithoutOptionalSuffix(path().toString(), '.');
             return parseFile(this, withoutExtension);
         }
         return this;
     }
 
     /**
-     * @return This file with any known extensions removed
-     */
-    @UmlExcludeMember
-    public File withoutKnownExtensions()
-    {
-        var file = this;
-        boolean removedOne;
-        do
-        {
-            removedOne = false;
-            for (var extension : Extension.known())
-            {
-                if (file.fileName().endsWith(extension))
-                {
-                    file = parseFile(this, Strip.ending(path().toString(), extension.toString()));
-                    removedOne = true;
-                }
-            }
-        }
-        while (removedOne);
-        return file;
-    }
-
-    /**
-     * @return A file that can be written to without overwriting data
+     * Returns a file that can be written to without overwriting data
      */
     public File withoutOverwriting()
     {

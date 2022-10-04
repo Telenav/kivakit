@@ -18,46 +18,42 @@
 
 package com.telenav.kivakit.core.collections.iteration;
 
-import com.telenav.kivakit.interfaces.comparison.Matcher;
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.ensure.Ensure;
 import com.telenav.kivakit.core.internal.lexakai.DiagramIteration;
+import com.telenav.kivakit.interfaces.comparison.Matcher;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+
 /**
  * An implementation of {@link Iterator} that takes care of the basic logic of an iterator. Subclasses only need to
- * implement {@link #onNext()} by returning the next value, or null if there is not any next value.
+ * implement {@link #onNext()} by returning the next value, or null if there is not any next value. The sequence of
+ * objects returned can be filtered to only those objects matching a {@link Matcher} * specified by
+ * {@link #matching(Matcher)}.
  *
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramIteration.class)
-public abstract class BaseIterator<T> implements Iterator<T>
+@ApiQuality(stability = API_STABLE,
+            testing = TESTING_NONE,
+            documentation = DOCUMENTATION_COMPLETE)
+public abstract class BaseIterator<Value> implements Iterator<Value>
 {
     /** The next value in the sequence, if any */
-    private T next;
+    private Value next;
 
     /** A filter to restrict values in the sequence */
-    private Matcher<T> filter;
+    private Matcher<Value> matcher;
 
     /**
-     * @return The match filter
+     * {@inheritDoc}
      */
-    public Matcher<T> filter()
-    {
-        return filter;
-    }
-
-    /**
-     * @param filter The filter to apply to this sequence
-     */
-    public BaseIterator<T> filter(Matcher<T> filter)
-    {
-        this.filter = filter;
-        return this;
-    }
-
     @Override
     public final boolean hasNext()
     {
@@ -70,8 +66,25 @@ public abstract class BaseIterator<T> implements Iterator<T>
         return next != null;
     }
 
+    /**
+     * @return The matcher that must be satisfied for each object iterated
+     */
+    public Matcher<Value> matcher()
+    {
+        return matcher;
+    }
+
+    /**
+     * @param matcher The filter to apply to this sequence
+     */
+    public BaseIterator<Value> matching(Matcher<Value> matcher)
+    {
+        this.matcher = matcher;
+        return this;
+    }
+
     @Override
-    public final T next()
+    public final Value next()
     {
         // If the next was already fetched by hasNext(), we return that. If
         // not, we call findNext() to locate the next value,
@@ -97,7 +110,7 @@ public abstract class BaseIterator<T> implements Iterator<T>
         Ensure.unsupported();
     }
 
-    protected T findNext()
+    protected Value findNext()
     {
         while (true)
         {
@@ -111,7 +124,7 @@ public abstract class BaseIterator<T> implements Iterator<T>
             }
 
             // otherwise, return the element if there's no filter or the element matches the filter
-            if (filter == null || filter.matches(next))
+            if (matcher == null || matcher.matches(next))
             {
                 return next;
             }
@@ -121,5 +134,5 @@ public abstract class BaseIterator<T> implements Iterator<T>
     /**
      * @return The next value in the sequence or null if there is none
      */
-    protected abstract T onNext();
+    protected abstract Value onNext();
 }

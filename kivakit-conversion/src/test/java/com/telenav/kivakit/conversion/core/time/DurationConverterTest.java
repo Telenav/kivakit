@@ -36,6 +36,6 @@ public class DurationConverterTest extends CoreUnitTest
     @Test
     public void testSecondsConverter()
     {
-        ensureEqual(Duration.seconds(5), new SecondsConverter(Listener.emptyListener()).convert("5"));
+        ensureEqual(Duration.seconds(5), new SecondsConverter(Listener.nullListener()).convert("5"));
     }
 }

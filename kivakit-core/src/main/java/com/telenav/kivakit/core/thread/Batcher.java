@@ -18,24 +18,33 @@
 
 package com.telenav.kivakit.core.thread;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.code.UncheckedCode;
+import com.telenav.kivakit.core.collections.iteration.BaseIterator;
 import com.telenav.kivakit.core.internal.lexakai.DiagramThread;
 import com.telenav.kivakit.core.messaging.repeaters.BaseRepeater;
 import com.telenav.kivakit.core.time.Time;
 import com.telenav.kivakit.core.value.count.BaseCount;
 import com.telenav.kivakit.core.value.count.Count;
 import com.telenav.kivakit.interfaces.collection.Addable;
-import com.telenav.lexakai.annotations.LexakaiJavadoc;
+import com.telenav.kivakit.interfaces.collection.Sequence;
+import com.telenav.kivakit.interfaces.comparison.Matcher;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Set;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.ExecutorService;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE;
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
 import static com.telenav.kivakit.core.ensure.Ensure.ensure;
 
 /**
@@ -45,19 +54,19 @@ import static com.telenav.kivakit.core.ensure.Ensure.ensure;
  *
  * <p>
  * New elements are added via a {@link BatchAdder} object that is <i>not</i> thread-safe and should be kept only in a
- * local variable or on a per-thread basis using {@link ThreadLocal}. A batch adder is created by a call to {@link
- * #adder()} and objects are added to the adder with {@link BatchAdder#add(Object)}. When the batch adder's batch is
- * full, the batch is added to the queue and a new batch is started.
+ * local variable or on a per-thread basis using {@link ThreadLocal}. A batch adder is created by a call to
+ * {@link #adder()} and objects are added to the adder with {@link BatchAdder#add(Object)}. When the batch adder's batch
+ * is full, the batch is added to the queue and a new batch is started.
  * </p>
  *
  * <p><b>Processing Elements</b></p>
  *
  * <p>
  * A batcher has a set of worker threads that are started with {@link #start(Count)}, passing in the desired number of
- * threads. Worker threads pull batches out of the queue and call {@link Batch#process()} which calls {@link
- * #onBatch(Batch)} to let the subclass process the batch of elements. When the thread(s) that are adding elements to
- * the batcher are done, they must call {@link #stop()}, to shut down the batcher and wait until the processing of all
- * batches is complete.
+ * threads. Worker threads pull batches out of the queue and call {@link Batch#process()} which calls
+ * {@link #onBatch(Batch)} to let the subclass process the batch of elements. When the thread(s) that are adding
+ * elements to the batcher are done, they must call {@link #stop()}, to shut down the batcher and wait until the
+ * processing of all batches is complete.
  * </p>
  *
  * <p><b>Example</b></p>
@@ -91,9 +100,12 @@ import static com.telenav.kivakit.core.ensure.Ensure.ensure;
  *
  * @author jonathanl (shibo)
  */
-@SuppressWarnings("SpellCheckingInspection")
+@SuppressWarnings({ "SpellCheckingInspection", "unused" })
 @UmlClassDiagram(diagram = DiagramThread.class)
-public class Batcher<Element> extends BaseRepeater
+@ApiQuality(stability = API_STABLE_EXTENSIBLE,
+            testing = TESTING_NONE,
+            documentation = DOCUMENTATION_COMPLETE)
+public class Batcher<Value> extends BaseRepeater
 {
     /**
      * @return Creates a new batcher
@@ -115,8 +127,10 @@ public class Batcher<Element> extends BaseRepeater
     /**
      * A batch of elements for processing
      */
-    @LexakaiJavadoc(complete = true)
-    public class Batch extends ArrayList<Element>
+    @ApiQuality(stability = API_STABLE,
+                testing = TESTING_NONE,
+                documentation = DOCUMENTATION_COMPLETE)
+    public class Batch extends ArrayList<Value>
     {
         boolean isFull()
         {
@@ -152,16 +166,38 @@ public class Batcher<Element> extends BaseRepeater
      * shared among threads, and therefore it would have to be synchronized. Having each thread add elements to its own
      * thread-local batch adder reduces lock contention.
      */
-    public class BatchAdder implements Addable<Element>
+    @ApiQuality(stability = API_STABLE,
+                testing = TESTING_NONE,
+                documentation = DOCUMENTATION_COMPLETE)
+    public class BatchAdder implements Addable<Value>, Sequence<Value>
     {
         /** The batch to fill with elements */
         private Batch batch = new Batch();
+
+        @Override
+        public @NotNull Iterator<Value> asIterator(Matcher<Value> matcher)
+        {
+            return new BaseIterator<>()
+            {
+                private final Iterator<Value> iterator = batch.iterator();
+
+                @Override
+                protected Value onNext()
+                {
+                    if (iterator.hasNext())
+                    {
+                        return iterator.next();
+                    }
+                    return null;
+                }
+            };
+        }
 
         /**
          * Adds the given item to a batch and enqueues the batch if it is full
          */
         @Override
-        public boolean add(Element item)
+        public boolean onAdd(Value item)
         {
             var outer = Batcher.this;
 
@@ -178,6 +214,12 @@ public class Batcher<Element> extends BaseRepeater
                 enqueue();
             }
             return true;
+        }
+
+        @Override
+        public int size()
+        {
+            return batch.size();
         }
 
         /**
@@ -236,7 +278,7 @@ public class Batcher<Element> extends BaseRepeater
     {
     }
 
-    protected Batcher(Batcher<Element> that)
+    protected Batcher(Batcher<Value> that)
     {
         name = that.name;
         batchSize = that.batchSize;
@@ -301,7 +343,7 @@ public class Batcher<Element> extends BaseRepeater
             // shut down the executor, interrupting waiting threads and waiting for them to exit,
             trace("$: Stopping", name);
             var pending = executor.shutdownNow();
-            Threads.await(executor);
+            Threads.awaitTermination(executor);
             trace("$: Stopped", name);
 
             // then run any tasks that never started executing,
@@ -334,42 +376,42 @@ public class Batcher<Element> extends BaseRepeater
         }
     }
 
-    public Batcher<Element> withBatchFullPredicate(Predicate<Batch> predicate)
+    public Batcher<Value> withBatchFullPredicate(Predicate<Batch> predicate)
     {
         var copy = copy();
         copy.batchFullPredicate = predicate;
         return copy;
     }
 
-    public Batcher<Element> withBatchSize(Count size)
+    public Batcher<Value> withBatchSize(Count size)
     {
         var copy = copy();
         copy.batchSize = size.asInt();
         return copy;
     }
 
-    public Batcher<Element> withConsumer(Consumer<Batch> consumer)
+    public Batcher<Value> withConsumer(Consumer<Batch> consumer)
     {
         var copy = copy();
         copy.consumer = consumer;
         return copy;
     }
 
-    public Batcher<Element> withName(String name)
+    public Batcher<Value> withName(String name)
     {
         var copy = copy();
         copy.name = name;
         return copy;
     }
 
-    public Batcher<Element> withQueueSize(BaseCount<?> size)
+    public Batcher<Value> withQueueSize(BaseCount<?> size)
     {
         var copy = copy();
         copy.queueSize = size.asInt();
         return copy;
     }
 
-    protected Batcher<Element> copy()
+    protected Batcher<Value> copy()
     {
         return new Batcher<>(this);
     }
@@ -387,6 +429,6 @@ public class Batcher<Element> extends BaseRepeater
      */
     private Batch nextBatch()
     {
-        return UncheckedCode.of(() -> queue.take()).orDefault(Batch::new);
+        return UncheckedCode.unchecked(() -> queue.take()).orDefault(Batch::new);
     }
 }

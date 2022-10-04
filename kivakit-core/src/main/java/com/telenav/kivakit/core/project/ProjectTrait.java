@@ -1,8 +1,12 @@
 package com.telenav.kivakit.core.project;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.KivaKit;
 import com.telenav.kivakit.core.version.Version;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_DEFAULT_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
 import static com.telenav.kivakit.core.project.Project.resolveProject;
 
 /**
@@ -11,10 +15,14 @@ import static com.telenav.kivakit.core.project.Project.resolveProject;
  * @author jonathanl (shibo)
  */
 @SuppressWarnings("unused")
+@ApiQuality(stability = API_STABLE_DEFAULT_EXTENSIBLE,
+            testing = TESTING_NOT_NEEDED,
+            documentation = DOCUMENTATION_COMPLETE)
 public interface ProjectTrait
 {
     /**
      * Returns the {@link KivaKit} project
+     *
      * @return The {@link KivaKit} project
      */
     default Project kivakit()
@@ -24,6 +32,7 @@ public interface ProjectTrait
 
     /**
      * Returns the version of KivaKit in use
+     *
      * @return The version of KivaKit
      */
     default Version kivakitVersion()
@@ -35,8 +44,8 @@ public interface ProjectTrait
      * Returns the {@link Project} object of the given type
      *
      * @param type The {@link Project} class
-     * @return The project
      * @param <T> The type of project
+     * @return The project
      */
     default <T extends Project> T project(Class<T> type)
     {

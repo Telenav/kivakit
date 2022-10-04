@@ -18,12 +18,16 @@
 
 package com.telenav.kivakit.core.string;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramString;
-import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_STATIC_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
 
 /**
  * Converts between different styles of casing:
@@ -37,8 +41,11 @@ import java.util.regex.Pattern;
  *
  * @author jonathanl (shibo)
  */
+@SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramString.class)
-@LexakaiJavadoc(complete = true)
+@ApiQuality(stability = API_STABLE_STATIC_EXTENSIBLE,
+            testing = TESTING_NONE,
+            documentation = DOCUMENTATION_COMPLETE)
 public class CaseFormat
 {
     /**
@@ -131,6 +138,9 @@ public class CaseFormat
         return text.contains("-");
     }
 
+    /**
+     * Returns true if the given text is in lowercase
+     */
     public static boolean isLowercase(String text)
     {
         return text.equals(text.toLowerCase());

@@ -48,7 +48,7 @@ public class FilePathTest extends UnitTest
     @SuppressWarnings("SpellCheckingInspection")
     public void testFilePath()
     {
-        ensureEqual(FilePath.parseFilePath(this, "TestFile1.txt").absolute(), FilePath.parseFilePath(this, "TestFile1.txt").absolute());
+        ensureEqual(FilePath.parseFilePath(this, "TestFile1.txt").asAbsolute(), FilePath.parseFilePath(this, "TestFile1.txt").asAbsolute());
 
         var filePath1 = FilePath.parseFilePath(this, "TestFile1.txt");
         var filePath1a = FilePath.parseFilePath(this, "TestFile1.txt");
@@ -63,7 +63,7 @@ public class FilePathTest extends UnitTest
         var filePath3 = FilePath.parseFilePath(this, directoryName).withChild(fileName);
         ensureEqual(filePath3.toString(), directoryName + filePath1.separator() + fileName);
 
-        ensure(FilePath.parseFilePath(this, fileName).absolute().toString().endsWith(FilePath.parseFilePath(this, fileName).separator() + fileName));
+        ensure(FilePath.parseFilePath(this, fileName).asAbsolute().toString().endsWith(FilePath.parseFilePath(this, fileName).separator() + fileName));
     }
 
     @Test
@@ -95,7 +95,7 @@ public class FilePathTest extends UnitTest
     @Test
     public void testJoin()
     {
-        if (OperatingSystem.get().isWindows())
+        if (OperatingSystem.operatingSystem().isWindows())
         {
             var rawPath = "C:\\this\\is\\a\\test\\path";
             var path = FilePath.parseFilePath(this, rawPath);
@@ -156,7 +156,7 @@ public class FilePathTest extends UnitTest
     @Test
     public void testRoot()
     {
-        if (OperatingSystem.get().isWindows())
+        if (OperatingSystem.operatingSystem().isWindows())
         {
             var path = ResourcePath.parseResourcePath(this, "c:\\");
             ensure(path.isRoot());
@@ -171,12 +171,12 @@ public class FilePathTest extends UnitTest
     @Test
     public void testRootFolder()
     {
-        if (OperatingSystem.get().isWindows())
+        if (OperatingSystem.operatingSystem().isWindows())
         {
             var rawPath = "C:\\this\\is\\a\\test\\path";
             var path = FilePath.parseFilePath(this, rawPath);
-            var root = Objects.requireNonNull(Folder.parseFolder(this, "C:\\")).path().absolute();
-            var root2 = path.root().absolute();
+            var root = Objects.requireNonNull(Folder.parseFolder(this, "C:\\")).path().asAbsolute();
+            var root2 = path.root().asAbsolute();
             ensureEqual(root, root2);
         }
         else
@@ -209,7 +209,7 @@ public class FilePathTest extends UnitTest
     @Test
     public void testToString()
     {
-        if (OperatingSystem.get().isWindows())
+        if (OperatingSystem.operatingSystem().isWindows())
         {
             ensureEqual(path("a/b/c").toString(), "a\\b\\c");
         }

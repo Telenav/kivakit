@@ -18,10 +18,12 @@
 
 package com.telenav.kivakit.core.collections.list;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.collections.map.VariableMap;
 import com.telenav.kivakit.core.internal.lexakai.DiagramString;
+import com.telenav.kivakit.core.os.Console;
 import com.telenav.kivakit.core.string.AsciiArt;
-import com.telenav.kivakit.core.string.StringTo;
+import com.telenav.kivakit.core.string.StringConversions;
 import com.telenav.kivakit.core.string.Strings;
 import com.telenav.kivakit.core.value.count.Count;
 import com.telenav.kivakit.core.value.count.Maximum;
@@ -33,10 +35,14 @@ import java.util.Comparator;
 import java.util.Iterator;
 import java.util.function.Function;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_INSUFFICIENT;
+
 /**
  * A list of strings, adding useful string operations to {@link ObjectList}. Inherited methods that return lists are
  * overridden with down-casting methods for convenience. String lists can be constructed using the constructors, but
- * also using factory methods:
+ * also using factory methods. Inherited methods are documented in {@link ObjectList} and {@link BaseList}.
  *
  * <p><b>Factory Methods</b></p>
  *
@@ -60,6 +66,7 @@ import java.util.function.Function;
  *
  * <ul>
  *     <li>{@link #asStringArray()} - This string list as a string array</li>
+ *     <li>{@link #asVariableMap()}</li>
  * </ul>
  *
  * <p><b>String Operations</b></p>
@@ -71,9 +78,13 @@ import java.util.function.Function;
  *     <li>{@link #prefixedWith(String)} - This string list with each element prefixed with the given string</li>
  *     <li>{@link #singleQuoted()} - This string list with all strings in single quotes</li>
  *     <li>{@link #titledBox(String)} - This string list in a titled box</li>
+ *     <li>{@link #println()} - Prints this list, separated by newlines</li>
  * </ul>
  */
-@UmlClassDiagram(diagram = DiagramString.class)
+@SuppressWarnings("unused") @UmlClassDiagram(diagram = DiagramString.class)
+@ApiQuality(stability = API_STABLE_EXTENSIBLE,
+            testing = TESTING_INSUFFICIENT,
+            documentation = DOCUMENTATION_COMPLETE)
 public class StringList extends ObjectList<String>
 {
     /**
@@ -90,8 +101,8 @@ public class StringList extends ObjectList<String>
     }
 
     /**
-     * @return The list of strings resulting from splitting the given string on a delimiter character. The {@link
-     * StringList} is unbounded for backwards compatibility.
+     * @return The list of strings resulting from splitting the given string on a delimiter character. The
+     * {@link StringList} is unbounded for backwards compatibility.
      */
     public static StringList split(String string, char delimiter)
     {
@@ -99,8 +110,8 @@ public class StringList extends ObjectList<String>
     }
 
     /**
-     * @return The list of strings resulting from splitting the given string on a delimiter string. The {@link
-     * StringList} is unbounded for backwards compatibility.
+     * @return The list of strings resulting from splitting the given string on a delimiter string. The
+     * {@link StringList} is unbounded for backwards compatibility.
      */
     public static StringList split(String string, String delimiter)
     {
@@ -300,27 +311,15 @@ public class StringList extends ObjectList<String>
     }
 
     @Override
-    public StringList append(String s)
+    public StringList appendThen(String value)
     {
-        return (StringList) super.append(s);
+        return (StringList) super.appendThen(value);
     }
 
     @Override
-    public StringList appendAll(Iterable<? extends String> objects)
+    public StringList appendAllThen(Iterable<? extends String> values)
     {
-        return (StringList) super.appendAll(objects);
-    }
-
-    @Override
-    public StringList appendAll(Iterator<? extends String> objects)
-    {
-        return (StringList) super.appendAll(objects);
-    }
-
-    @Override
-    public StringList appendAll(String[] objects)
-    {
-        return (StringList) super.appendAll(objects);
+        return (StringList) super.appendAllThen(values);
     }
 
     public String[] asStringArray()
@@ -494,20 +493,11 @@ public class StringList extends ObjectList<String>
     }
 
     /**
-     * {@inheritDoc}
-     */
-    @Override
-    public StringList prepend(String element)
-    {
-        return (StringList) super.prepend(element);
-    }
-
-    /**
-     * Prints the values in this string list to the console
+     * Prints the values in this string list to the console, separated by newlines
      */
     public StringList println()
     {
-        System.out.println(join("\n"));
+        Console.println(join("\n"));
         return this;
     }
 
@@ -583,6 +573,18 @@ public class StringList extends ObjectList<String>
      * {@inheritDoc}
      */
     @Override
+    public StringList with(String value)
+    {
+        var copy = new StringList();
+        copy.addAll(this);
+        copy.add(value);
+        return copy;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public StringList without(Matcher<String> matcher)
     {
         return (StringList) super.without(matcher);
@@ -590,6 +592,6 @@ public class StringList extends ObjectList<String>
 
     protected String objectToString(Object object)
     {
-        return StringTo.string(object);
+        return StringConversions.toString(object);
     }
 }

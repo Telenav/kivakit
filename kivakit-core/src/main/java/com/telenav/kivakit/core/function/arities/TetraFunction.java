@@ -1,7 +1,13 @@
 package com.telenav.kivakit.core.function.arities;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
+
 import java.util.function.BiFunction;
 import java.util.function.Function;
+
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
 
 /**
  * Represents a function that accepts two arguments and produces a result. This is the four-arity specialization of
@@ -18,6 +24,9 @@ import java.util.function.Function;
  * @see BiFunction
  */
 @FunctionalInterface
+@ApiQuality(stability = API_STABLE,
+            testing = TESTING_NOT_NEEDED,
+            documentation = DOCUMENTATION_COMPLETE)
 public interface TetraFunction<Argument1, Argument2, Argument3, Argument4, Result>
 {
     /**

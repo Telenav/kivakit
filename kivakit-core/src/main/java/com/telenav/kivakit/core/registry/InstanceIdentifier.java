@@ -18,49 +18,180 @@
 
 package com.telenav.kivakit.core.registry;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.core.collections.map.StringMap;
 import com.telenav.kivakit.core.internal.lexakai.DiagramRegistry;
-import com.telenav.kivakit.core.value.identifier.StringIdentifier;
+import com.telenav.kivakit.core.language.Hash;
+import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeSuperTypes;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
 import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
 
 /**
  * An identifier for a particular instance of a class. Used by {@link Registry} when locating an object by class which
  * has more than one instance.
  *
+ * <p><b>Creation</b></p>
+ *
+ * <ul>
+ *     <li>{@link #singletonInstanceIdentifier()}</li>
+ *     <li>{@link #instanceIdentifier(Enum)}</li>
+ * </ul>
+ *
  * @author jonathanl (shibo)
  * @see Registry
  */
+@SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramRegistry.class)
 @UmlExcludeSuperTypes
-public class InstanceIdentifier extends StringIdentifier
+@ApiQuality(stability = API_STABLE,
+            testing = TESTING_NOT_NEEDED,
+            documentation = DOCUMENTATION_COMPLETE)
+public class InstanceIdentifier
 {
     /** Identifies the one and only instance of a singleton */
-    public static final InstanceIdentifier SINGLETON = InstanceIdentifier.of("SINGLETON");
+    private static InstanceIdentifier SINGLETON;
 
-    public static InstanceIdentifier of(Class<?> value)
+    /** Map from enum name (both simple and fully-qualified) to instance identifier */
+    private static final StringMap<InstanceIdentifier> instanceIdentifierForEnumName = new StringMap<>();
+
+    /**
+     * Returns an instance identifier for the given enum value
+     *
+     * @param enumValue The enum value
+     * @return The instance identifier
+     */
+    public static InstanceIdentifier instanceIdentifier(Enum<?> enumValue)
     {
-        return of(value.getSimpleName());
+        return new InstanceIdentifier(enumValue);
     }
 
-    public static InstanceIdentifier of(Enum<?> value)
+    /**
+     * Returns an instance identifier for the given string
+     *
+     * @param string The string value
+     * @return The instance identifier
+     */
+    public static InstanceIdentifier instanceIdentifier(String string)
     {
-        return of(value.name());
+        return new InstanceIdentifier(string);
     }
 
-    public static InstanceIdentifier of(String value)
+    /**
+     * Returns the {@link InstanceIdentifier} for the given enum value name
+     */
+    public static InstanceIdentifier instanceIdentifierForEnumName(Listener listener, String enumValueName)
     {
-        return new InstanceIdentifier(value);
+        var identifier = instanceIdentifierForEnumName.get(enumValueName);
+        if (identifier == null)
+        {
+            listener.problem("Invalid instance identifier: $", enumValueName);
+        }
+        return identifier;
     }
 
+    /**
+     * Returns an instance identifier for singleton objects
+     */
+    public static InstanceIdentifier singletonInstanceIdentifier()
+    {
+        if (SINGLETON == null)
+        {
+            SINGLETON = new InstanceIdentifier("SINGLETON");
+        }
+        return SINGLETON;
+    }
+
+    /** Any enum value */
+    private final Enum<?> enumIdentifier;
+
+    /** Any string identifier */
+    private final String stringIdentifier;
+
+    /**
+     * Create an instance identifier for the given enum
+     *
+     * @param enumValue The enum value
+     */
+    protected InstanceIdentifier(Enum<?> enumValue)
+    {
+        instanceIdentifierForEnumName.put(enumValue.name(), this);
+        instanceIdentifierForEnumName.put(enumValue.getClass().getName() + "." + enumValue.name(), this);
+        this.enumIdentifier = ensureNotNull(enumValue, "Instance identifier cannot be null");
+        this.stringIdentifier = null;
+    }
+
+    /**
+     * Create an instance identifier for the given string
+     *
+     * @param string The string value
+     */
     protected InstanceIdentifier(String string)
     {
-        super(ensureNotNull(string, "Instance identifier cannot be null"));
+        this.enumIdentifier = null;
+        this.stringIdentifier = ensureNotNull(string);
+    }
+
+    /**
+     * Returns any enum identifier
+     */
+    public Enum<?> enumIdentifier()
+    {
+        return enumIdentifier;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public boolean equals(Object object)
+    {
+        if (object instanceof InstanceIdentifier)
+        {
+            InstanceIdentifier that = (InstanceIdentifier) object;
+            return com.telenav.kivakit.core.language.Objects.areEqualPairs(
+                    this.enumIdentifier, that.enumIdentifier,
+                    this.stringIdentifier, that.stringIdentifier);
+        }
+        return false;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public int hashCode()
+    {
+        return Hash.hashMany(enumIdentifier, stringIdentifier);
+    }
+
+    /**
+     * Return the name of this identifier
+     */
+    public String name()
+    {
+        return enumIdentifier != null ? enumIdentifier.name() : stringIdentifier;
+    }
+
+    /**
+     * Returns any string identifier
+     */
+    public String stringIdentifier()
+    {
+        return stringIdentifier;
     }
 
     RegistryKey key(Class<?> at)
     {
         return new RegistryKey(at.getName() + ":" + identifier());
+    }
+
+    private String identifier()
+    {
+        return enumIdentifier != null ? enumIdentifier.name() : stringIdentifier;
     }
 }

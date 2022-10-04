@@ -18,27 +18,37 @@
 
 package com.telenav.kivakit.core.string;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramString;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_STATIC_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+
 /**
+ * Methods for indenting text
+ *
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramString.class)
+@ApiQuality(stability = API_STABLE_STATIC_EXTENSIBLE,
+            testing = TESTING_NONE,
+            documentation = DOCUMENTATION_COMPLETE)
 public class Indent
 {
     /**
      * @return The given text indented by the given number of spaces
      */
-    public static String by(int spaces, String text)
+    public static String indentBy(int spaces, String text)
     {
-        return with(AsciiArt.repeat(spaces, ' '), text);
+        return indentWith(AsciiArt.repeat(spaces, ' '), text);
     }
 
     /**
      * @return The given text indented with the given indentation string
      */
-    public static String with(String indentation, String text)
+    public static String indentWith(String indentation, String text)
     {
         return (text.startsWith("\n") ? "" : indentation) + text.replaceAll("\n", "\n" + indentation);
     }

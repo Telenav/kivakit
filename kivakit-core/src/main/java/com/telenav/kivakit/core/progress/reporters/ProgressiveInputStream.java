@@ -18,15 +18,19 @@
 
 package com.telenav.kivakit.core.progress.reporters;
 
-import com.telenav.kivakit.core.progress.ProgressReporter;
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramIo;
 import com.telenav.kivakit.core.internal.lexakai.DiagramProgress;
-import com.telenav.lexakai.annotations.LexakaiJavadoc;
+import com.telenav.kivakit.core.progress.ProgressReporter;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
 import java.io.InputStream;
+
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
 
 /**
  * An {@link InputStream} that reports progress as bytes are read.
@@ -35,30 +39,41 @@ import java.io.InputStream;
  */
 @UmlClassDiagram(diagram = DiagramIo.class)
 @UmlClassDiagram(diagram = DiagramProgress.class)
-@LexakaiJavadoc(complete = true)
+@ApiQuality(stability = API_STABLE_EXTENSIBLE,
+            testing = TESTING_NONE,
+            documentation = DOCUMENTATION_COMPLETE)
 public class ProgressiveInputStream extends InputStream
 {
+    /** The underlying input stream */
     private final InputStream input;
 
+    /** The progress reporter to notify as the stream is read */
     private final ProgressReporter reporter;
 
+    /**
+     * Creates a progressive input stream that reports bytes read from the given input stream to the given reporter
+     *
+     * @param input The input stream
+     * @param reporter The reporter
+     */
     public ProgressiveInputStream(InputStream input, ProgressReporter reporter)
     {
         this.input = input;
         this.reporter = reporter;
     }
 
-    public ProgressiveInputStream(InputStream input)
-    {
-        this(input, BroadcastingProgressReporter.create());
-    }
-
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public int available() throws IOException
     {
         return input.available();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void close() throws IOException
     {
@@ -66,6 +81,9 @@ public class ProgressiveInputStream extends InputStream
         reporter.end();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public int read(byte @NotNull [] bytes, int offset, int length) throws IOException
     {
@@ -77,6 +95,9 @@ public class ProgressiveInputStream extends InputStream
         return read;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public int read(byte @NotNull [] bytes) throws IOException
     {
@@ -88,6 +109,9 @@ public class ProgressiveInputStream extends InputStream
         return read;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public int read() throws IOException
     {
@@ -99,6 +123,9 @@ public class ProgressiveInputStream extends InputStream
         return read;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public synchronized void reset()
     {

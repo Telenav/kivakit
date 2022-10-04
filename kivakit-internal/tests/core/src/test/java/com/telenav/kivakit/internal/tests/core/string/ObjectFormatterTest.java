@@ -18,16 +18,18 @@
 
 package com.telenav.kivakit.internal.tests.core.string;
 
-import com.telenav.kivakit.core.language.object.ObjectFormatter;
-import com.telenav.kivakit.core.language.reflection.property.KivaKitIncludeProperty;import com.telenav.kivakit.internal.testing.CoreUnitTest;
+import com.telenav.kivakit.core.string.KivaKitFormat;
+import com.telenav.kivakit.core.string.ObjectFormatter;
+import com.telenav.kivakit.internal.testing.CoreUnitTest;
 import org.junit.Assert;
 import org.junit.Test;
 
+@SuppressWarnings("unused")
 public class ObjectFormatterTest extends CoreUnitTest
 {
     public static class Bean
     {
-        @KivaKitIncludeProperty
+        @KivaKitFormat
         final int y = 7;
 
         public int getY()
@@ -44,7 +46,7 @@ public class ObjectFormatterTest extends CoreUnitTest
 
     final Bean bean = new Bean();
 
-    @KivaKitIncludeProperty
+    @KivaKitFormat
     public Bean bean()
     {
         return bean;

@@ -18,10 +18,11 @@
 
 package com.telenav.kivakit.core.thread;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.code.UncheckedCode;
 import com.telenav.kivakit.core.ensure.Ensure;
-import com.telenav.kivakit.core.language.reflection.Type;
 import com.telenav.kivakit.core.internal.lexakai.DiagramThread;
+import com.telenav.kivakit.core.language.reflection.Type;
 import com.telenav.kivakit.core.logging.Logger;
 import com.telenav.kivakit.core.logging.LoggerFactory;
 import com.telenav.kivakit.core.messaging.Listener;
@@ -29,19 +30,35 @@ import com.telenav.kivakit.core.messaging.repeaters.BaseRepeater;
 import com.telenav.kivakit.core.time.Duration;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+
 /**
  * Retry running a {@link Runnable}
  *
  * @author matthieun
  * @author jonathanl
  */
+@SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramThread.class)
+@ApiQuality(stability = API_STABLE_EXTENSIBLE,
+            testing = TESTING_NONE,
+            documentation = DOCUMENTATION_COMPLETE)
 public class Retry extends BaseRepeater
 {
     private static final Logger LOGGER = LoggerFactory.newLogger();
 
-    public static final int MAXIMUM_NUMBER_RETRIES = 5;
+    public static final int DEFAULT_RETRIES = 5;
 
+    /**
+     * Retries the given code the given number of times with the given delay between attempts.
+     *
+     * @param code The code to run
+     * @param times The number of times to run it
+     * @param delay The delay between attempts
+     * @param beforeRetry Any code to run before retrying
+     */
     public static <T> UncheckedCode<T> retry(UncheckedCode<T> code,
                                              int times,
                                              Duration delay,
@@ -67,7 +84,7 @@ public class Retry extends BaseRepeater
      */
     public Retry(Listener listener)
     {
-        this(listener, MAXIMUM_NUMBER_RETRIES, Duration.ZERO_DURATION, Throwable.class);
+        this(listener, DEFAULT_RETRIES, Duration.ZERO_DURATION, Throwable.class);
     }
 
     /**
@@ -134,15 +151,15 @@ public class Retry extends BaseRepeater
         {
             return Ensure.fail("Cannot have a negative " + totalRetries + " total number of retries.");
         }
-        if (numberOfRetries > MAXIMUM_NUMBER_RETRIES)
+        if (numberOfRetries > DEFAULT_RETRIES)
         {
             // Protect against excessive retry.
-            numberOfRetries = MAXIMUM_NUMBER_RETRIES;
+            numberOfRetries = DEFAULT_RETRIES;
         }
-        if (totalRetries > MAXIMUM_NUMBER_RETRIES)
+        if (totalRetries > DEFAULT_RETRIES)
         {
             // Protect against excessive retry.
-            totalRetries = MAXIMUM_NUMBER_RETRIES;
+            totalRetries = DEFAULT_RETRIES;
         }
         if (numberOfRetries > 0)
         {
@@ -160,7 +177,7 @@ public class Retry extends BaseRepeater
             }
             catch (Exception e)
             {
-                Type<? extends Exception> errorType = Type.of(e);
+                Type<? extends Exception> errorType = Type.type(e);
                 var shouldRetry = false;
                 if (errorType.isDescendantOf(exceptionType))
                 {

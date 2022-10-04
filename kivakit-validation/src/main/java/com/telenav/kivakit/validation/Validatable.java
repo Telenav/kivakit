@@ -18,13 +18,20 @@
 
 package com.telenav.kivakit.validation;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.validation.internal.lexakai.DiagramValidation;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+import static com.telenav.kivakit.validation.ValidationType.validateAll;
+
 /**
- * An object that is {@link Validatable} can create a {@link Validator} for a given kind of {@link ValidationType}.
+ * An object that is {@link Validatable} can create a {@link Validator} for a given type of validation, represented by
+ * {@link ValidationType}.
  *
  * @author jonathanl (shibo)
  * @see Validator
@@ -33,18 +40,11 @@ import com.telenav.lexakai.annotations.associations.UmlRelation;
 @UmlClassDiagram(diagram = DiagramValidation.class)
 @UmlRelation(label = "how to validate", referent = ValidationType.class)
 @UmlRelation(label = "provides", referent = Validator.class)
+@ApiQuality(stability = API_STABLE,
+            testing = TESTING_NONE,
+            documentation = DOCUMENTATION_COMPLETE)
 public interface Validatable
 {
-    /**
-     * Determines if this object is valid by using the default validator
-     *
-     * @see Validator#validate()
-     */
-    default boolean isValid()
-    {
-        return validator().validate();
-    }
-
     /**
      * Determines if this object is valid by using the default validator
      *
@@ -56,14 +56,14 @@ public interface Validatable
     }
 
     /**
-     * Gets the {@link Validator} for this validatable.
+     * Gets the {@link Validator} for this validatable that validates all values.
      *
      * @return A validator for full validation, if any. Although it cannot be final, this method should not be
      * overridden. Instead, override {@link #validator(ValidationType)}
      */
     default Validator validator()
     {
-        return validator(ValidationType.VALIDATE_ALL);
+        return validator(validateAll());
     }
 
     /**

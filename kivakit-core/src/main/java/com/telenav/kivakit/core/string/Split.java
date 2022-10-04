@@ -18,8 +18,8 @@
 
 package com.telenav.kivakit.core.string;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramString;
-import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.ArrayList;
@@ -27,13 +27,19 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_STATIC_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+
 /**
  * String splitting utilities.
  *
  * @author jonathanl (shibo)
  */
 @SuppressWarnings("DuplicatedCode") @UmlClassDiagram(diagram = DiagramString.class)
-@LexakaiJavadoc(complete = true)
+@ApiQuality(stability = API_STABLE_STATIC_EXTENSIBLE,
+            testing = TESTING_NONE,
+            documentation = DOCUMENTATION_COMPLETE)
 public class Split
 {
     /**
@@ -50,25 +56,9 @@ public class Split
     }
 
     /**
-     * @return The two strings resulting from splitting the given text using the given separator
-     */
-    public static String[] splitOnFirst(String text, char separator)
-    {
-        var index = text.indexOf(separator);
-        if (index >= 0)
-        {
-            var values = new String[2];
-            values[0] = text.substring(0, index);
-            values[1] = text.substring(index + 1);
-            return values;
-        }
-        return null;
-    }
-
-    /**
      * @return A list of words from the given text with word breaks occurring on whitespace
      */
-    public static List<String> words(String text)
+    public static List<String> splitIntoWords(String text)
     {
         var list = new ArrayList<String>();
 
@@ -103,5 +93,21 @@ public class Split
         }
 
         return list;
+    }
+
+    /**
+     * @return The two strings resulting from splitting the given text using the given separator
+     */
+    public static String[] splitOnFirst(String text, char separator)
+    {
+        var index = text.indexOf(separator);
+        if (index >= 0)
+        {
+            var values = new String[2];
+            values[0] = text.substring(0, index);
+            values[1] = text.substring(index + 1);
+            return values;
+        }
+        return null;
     }
 }

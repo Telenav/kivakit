@@ -24,7 +24,7 @@ import org.junit.Test;
 
 import java.util.Arrays;
 
-@SuppressWarnings("ConstantConditions")
+@SuppressWarnings({ "ConstantConditions", "SameParameterValue" })
 public class StringListTest extends CoreUnitTest
 {
     @Test
@@ -58,13 +58,7 @@ public class StringListTest extends CoreUnitTest
     @Test
     public void testMaximum()
     {
-        StringList list = new StringList(Maximum._1)
-        {
-            @Override
-            protected void onOutOfRoom()
-            {
-            }
-        };
+        StringList list = new StringList(Maximum._1);
         list.add("a");
         list.add("b");
         ensureEqual(1, list.size());

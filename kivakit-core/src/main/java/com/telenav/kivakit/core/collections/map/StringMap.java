@@ -18,11 +18,16 @@
 
 package com.telenav.kivakit.core.collections.map;
 
-import com.telenav.kivakit.core.value.count.Maximum;
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramCollections;
+import com.telenav.kivakit.core.value.count.Maximum;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.TreeMap;
+
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_INSUFFICIENT;
 
 /**
  * A bounded string map using a {@link TreeMap} implementation.
@@ -30,7 +35,10 @@ import java.util.TreeMap;
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramCollections.class)
-public class StringMap<T> extends BaseStringMap<T>
+@ApiQuality(stability = API_STABLE_EXTENSIBLE,
+            testing = TESTING_INSUFFICIENT,
+            documentation = DOCUMENTATION_COMPLETE)
+public class StringMap<Value> extends BaseStringMap<Value>
 {
     public StringMap()
     {
@@ -40,5 +48,15 @@ public class StringMap<T> extends BaseStringMap<T>
     public StringMap(Maximum maximumSize)
     {
         super(maximumSize, new TreeMap<>());
+    }
+
+    /**
+     * Returns a copy of this string map
+     */
+    public StringMap<Value> copy()
+    {
+        var copy = new StringMap<Value>();
+        copy.putAll(this);
+        return copy;
     }
 }

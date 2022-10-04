@@ -18,8 +18,9 @@
 
 package com.telenav.kivakit.core.messaging.listeners;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.collections.list.StringList;
-import com.telenav.kivakit.core.value.count.Count;
+import com.telenav.kivakit.core.internal.lexakai.DiagramListenerType;
 import com.telenav.kivakit.core.language.Classes;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.messaging.Message;
@@ -27,10 +28,14 @@ import com.telenav.kivakit.core.messaging.messages.OperationMessage;
 import com.telenav.kivakit.core.messaging.messages.status.Problem;
 import com.telenav.kivakit.core.messaging.messages.status.Quibble;
 import com.telenav.kivakit.core.messaging.messages.status.Warning;
-import com.telenav.kivakit.core.internal.lexakai.DiagramListenerType;
 import com.telenav.kivakit.core.string.Align;
 import com.telenav.kivakit.core.string.Plural;
+import com.telenav.kivakit.core.value.count.Count;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
+
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
 
 /**
  * A {@link Listener}, such as {@link MessageList} that is able to report how many of different kinds of messages it has
@@ -62,7 +67,7 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
  * <pre>
  * var statistics = statistics(Warning.class, Problem.class)</pre>
  *
- * <p><b>Counting Messages by Status</b></p>
+ * <p><b>Counting MessageTransceiver by Status</b></p>
  *
  * <p>
  * The {@link #count(Message.Status)} method returns the number of messages of a given {@link Message.Status} type it
@@ -77,7 +82,10 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
  * @see Message.Status
  * @see MessageList
  */
-@UmlClassDiagram(diagram = DiagramListenerType.class)
+@SuppressWarnings("unused") @UmlClassDiagram(diagram = DiagramListenerType.class)
+@ApiQuality(stability = API_STABLE_EXTENSIBLE,
+            testing = TESTING_NONE,
+            documentation = DOCUMENTATION_COMPLETE)
 public interface MessageCounter extends Listener
 {
     /**
@@ -109,7 +117,7 @@ public interface MessageCounter extends Listener
      */
     default Count countWorseThanOrEqualTo(Class<? extends Message> type)
     {
-        return countWorseThanOrEqualTo(OperationMessage.of(type).status());
+        return countWorseThanOrEqualTo(OperationMessage.message(type).status());
     }
 
     /**
@@ -133,8 +141,8 @@ public interface MessageCounter extends Listener
     }
 
     /**
-     * If the counted message represent failure, as determined by {@link #failed()}, throws an {@link
-     * IllegalStateException} with the statistics for messages.
+     * If the counted message represent failure, as determined by {@link #failed()}, throws an
+     * {@link IllegalStateException} with the statistics for messages.
      */
     @SuppressWarnings("unchecked")
     default void ifFailedThrow()
@@ -155,8 +163,9 @@ public interface MessageCounter extends Listener
         var statistics = new StringList();
         for (var status : statuses)
         {
-            statistics.append(Align.right(status.name(), 24, ' '))
-                    .append(": ").append(count(status).quantumAsCommaSeparatedString());
+            statistics.append(Align.right(status.name(), 24, ' '));
+            statistics.append(": ");
+            statistics.append(count(status).asCommaSeparatedString());
         }
         return statistics;
     }
@@ -176,8 +185,8 @@ public interface MessageCounter extends Listener
             var count = count(type);
             if (count != null)
             {
-                statistics.append(Align.right(Plural.pluralize(Classes.simpleName(type)), 24, ' ')
-                        + ": " + count.quantumAsCommaSeparatedString());
+                statistics.append(Align.right(Plural.pluralizeEnglish(Classes.simpleName(type)), 24, ' ')
+                        + ": " + count.asCommaSeparatedString());
             }
         }
         return statistics;

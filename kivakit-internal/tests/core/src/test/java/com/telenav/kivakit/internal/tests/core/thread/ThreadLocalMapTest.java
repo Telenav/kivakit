@@ -24,6 +24,6 @@ public class ThreadLocalMapTest extends CoreUnitTest
                 ensureEqual(i, map.get(i));
             }
         }));
-        Threads.shutdownAndAwait(executor);
+        Threads.shutdownAndAwaitTermination(executor);
     }
 }

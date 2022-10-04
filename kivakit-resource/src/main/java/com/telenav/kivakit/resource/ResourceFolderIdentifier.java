@@ -18,28 +18,35 @@
 
 package com.telenav.kivakit.resource;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.filesystem.Folder;
 import com.telenav.kivakit.resource.internal.lexakai.DiagramResourceService;
 import com.telenav.kivakit.resource.packages.Package;
-import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
+import org.jetbrains.annotations.NotNull;
+
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
 
 /**
  * An identifier for a {@link ResourceFolder} implementation, including either a {@link Package} or a {@link Folder}.
  * The {@link ResourceFolder} can be resolved by searching for an implementation which accepts the identifier, with
- * {@link #resolve(Listener)} or {@link ResourceFolder#resolve(Listener, ResourceFolderIdentifier)}.
+ * {@link #resolve(Listener)} or {@link ResourceFolder#resolveResourceFolder(Listener, ResourceFolderIdentifier)}.
  *
  * @author jonathanl (shibo)
  * @see ResourceFolder
  */
 @UmlClassDiagram(diagram = DiagramResourceService.class)
-@LexakaiJavadoc(complete = true)
+@ApiQuality(stability = API_STABLE_EXTENSIBLE,
+            testing = TESTING_NONE,
+            documentation = DOCUMENTATION_COMPLETE)
 public class ResourceFolderIdentifier
 {
     private final String identifier;
 
-    public ResourceFolderIdentifier(String identifier)
+    public ResourceFolderIdentifier(@NotNull String identifier)
     {
         this.identifier = identifier;
     }
@@ -49,9 +56,9 @@ public class ResourceFolderIdentifier
         return identifier;
     }
 
-    public ResourceFolder<?> resolve(Listener listener)
+    public ResourceFolder<?> resolve(@NotNull Listener listener)
     {
-        return ResourceFolder.resolve(listener, this);
+        return ResourceFolder.resolveResourceFolder(listener, this);
     }
 
     @Override
