@@ -561,7 +561,7 @@ public class Duration implements
     }
 
     @Override
-    public Duration dividedBy(Duration that)
+    public double dividedBy(Duration that)
     {
         return LengthOfTime.super.dividedBy(that);
     }

@@ -32,6 +32,7 @@ import java.util.function.Predicate;
 import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_INSUFFICIENT;
+import static com.telenav.kivakit.core.collections.list.ObjectList.objectList;
 import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
 import static com.telenav.kivakit.interfaces.string.StringFormattable.Format.TO_STRING;
 
@@ -270,7 +271,7 @@ public abstract class BaseCollection<Value> implements
     @Override
     public void clear()
     {
-        collection().clear();
+        backingCollection().clear();
     }
 
     /**
@@ -279,7 +280,7 @@ public abstract class BaseCollection<Value> implements
     @Override
     public boolean contains(Object that)
     {
-        return collection().contains(that);
+        return backingCollection().contains(that);
     }
 
     /**
@@ -288,7 +289,7 @@ public abstract class BaseCollection<Value> implements
     @Override
     public boolean containsAll(@NotNull Collection<?> collection)
     {
-        return new HashSet<>(collection()).containsAll(collection);
+        return new HashSet<>(backingCollection()).containsAll(collection);
     }
 
     /**
@@ -307,7 +308,7 @@ public abstract class BaseCollection<Value> implements
     @Override
     public boolean equals(Object object)
     {
-        return collection().equals(object);
+        return backingCollection().equals(object);
     }
 
     /**
@@ -316,7 +317,7 @@ public abstract class BaseCollection<Value> implements
     @Override
     public int hashCode()
     {
-        return collection().hashCode();
+        return backingCollection().hashCode();
     }
 
     @Override
@@ -331,11 +332,11 @@ public abstract class BaseCollection<Value> implements
     @Override
     public Iterator<Value> iterator()
     {
-        return collection().iterator();
+        return backingCollection().iterator();
     }
 
     /**
-     * @return This bounded list with all elements mapped by the given mapper to the mapper's target type
+     * Returns this bounded list with all elements mapped by the given mapper to the mapper's target type
      */
     @SuppressWarnings("unchecked")
     public <Output> BaseCollection<Output> mapped(Function<Value, Output> mapper)
@@ -356,7 +357,7 @@ public abstract class BaseCollection<Value> implements
      */
     public Iterable<Value> matchingAsIterable(Matcher<Value> matcher)
     {
-        return new FilteredIterable<>(collection(), matcher);
+        return new FilteredIterable<>(backingCollection(), matcher);
     }
 
     /**
@@ -373,7 +374,7 @@ public abstract class BaseCollection<Value> implements
     @Override
     public boolean onAdd(Value value)
     {
-        return collection().add(value);
+        return backingCollection().add(value);
     }
 
     /**
@@ -395,7 +396,7 @@ public abstract class BaseCollection<Value> implements
     @Override
     public boolean remove(Object element)
     {
-        return collection().remove(element);
+        return backingCollection().remove(element);
     }
 
     /**
@@ -404,7 +405,7 @@ public abstract class BaseCollection<Value> implements
     @Override
     public boolean removeAll(@NotNull Collection<?> collection)
     {
-        return collection().removeAll(collection);
+        return backingCollection().removeAll(collection);
     }
 
     /**
@@ -421,7 +422,7 @@ public abstract class BaseCollection<Value> implements
     @Override
     public boolean retainAll(@NotNull Collection<?> collection)
     {
-        return collection().retainAll(collection);
+        return backingCollection().retainAll(collection);
     }
 
     /**
@@ -439,7 +440,7 @@ public abstract class BaseCollection<Value> implements
     @Override
     public int size()
     {
-        return collection().size();
+        return backingCollection().size();
     }
 
     /**
@@ -447,8 +448,7 @@ public abstract class BaseCollection<Value> implements
      */
     public ObjectList<Value> sorted(Comparator<Value> comparator)
     {
-        var sorted = ObjectList.objectList(this);
-        sorted.addAll(this);
+        var sorted = objectList(this);
         sorted.sort(comparator);
         return sorted;
     }
@@ -456,11 +456,17 @@ public abstract class BaseCollection<Value> implements
     /**
      * @return An {@link ObjectList} with the values in this collection in sorted order.
      */
+    @SuppressWarnings("unchecked")
     public ObjectList<Value> sorted()
     {
-        var list = ObjectList.objectList(this);
-        list.sorted();
-        return list;
+        return sorted((a, b) ->
+        {
+            if (a instanceof Comparable)
+            {
+                return ((Comparable<Value>) a).compareTo(b);
+            }
+            throw new IllegalStateException("Cannot sort list of values that don't implement Comparable");
+        });
     }
 
     /**
@@ -469,7 +475,7 @@ public abstract class BaseCollection<Value> implements
     @Override
     public Object[] toArray()
     {
-        return collection().toArray();
+        return backingCollection().toArray();
     }
 
     /**
@@ -479,7 +485,7 @@ public abstract class BaseCollection<Value> implements
     @Override
     public <E> E[] toArray(E @NotNull [] array)
     {
-        return collection().toArray(array);
+        return backingCollection().toArray(array);
     }
 
     /**
@@ -508,7 +514,7 @@ public abstract class BaseCollection<Value> implements
         var copy = newCollection();
         copy.addAll(this);
         copy.addAll(that);
-        return this;
+        return copy;
     }
 
     /**
@@ -522,13 +528,13 @@ public abstract class BaseCollection<Value> implements
         var copy = newCollection();
         copy.addAll(this);
         copy.add(value);
-        return this;
+        return copy;
     }
 
     /**
-     * @return The collection being wrapped
+     * Returns the collection being wrapped
      */
-    protected abstract Collection<Value> collection();
+    protected abstract Collection<Value> backingCollection();
 
     /**
      * Creates a new collection of the subtype class

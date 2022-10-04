@@ -18,6 +18,7 @@
 
 package com.telenav.kivakit.core.collections.list;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.collections.map.VariableMap;
 import com.telenav.kivakit.core.internal.lexakai.DiagramString;
 import com.telenav.kivakit.core.os.Console;
@@ -33,6 +34,10 @@ import java.util.Arrays;
 import java.util.Comparator;
 import java.util.Iterator;
 import java.util.function.Function;
+
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_INSUFFICIENT;
 
 /**
  * A list of strings, adding useful string operations to {@link ObjectList}. Inherited methods that return lists are
@@ -77,6 +82,9 @@ import java.util.function.Function;
  * </ul>
  */
 @SuppressWarnings("unused") @UmlClassDiagram(diagram = DiagramString.class)
+@ApiQuality(stability = API_STABLE_EXTENSIBLE,
+            testing = TESTING_INSUFFICIENT,
+            documentation = DOCUMENTATION_COMPLETE)
 public class StringList extends ObjectList<String>
 {
     /**
@@ -303,15 +311,15 @@ public class StringList extends ObjectList<String>
     }
 
     @Override
-    public StringList appendThen(String value)
+    public StringList appendAllThen(String value)
     {
-        return (StringList) super.appendThen(value);
+        return (StringList) super.appendAllThen(value);
     }
 
     @Override
-    public StringList appendThen(Iterable<? extends String> values)
+    public StringList appendAllThen(Iterable<? extends String> values)
     {
-        return (StringList) super.appendThen(values);
+        return (StringList) super.appendAllThen(values);
     }
 
     public String[] asStringArray()

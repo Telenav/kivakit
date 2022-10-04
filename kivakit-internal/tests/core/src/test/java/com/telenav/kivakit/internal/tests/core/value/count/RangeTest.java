@@ -1,8 +1,8 @@
 package com.telenav.kivakit.internal.tests.core.value.count;
 
-import com.telenav.kivakit.internal.testing.CoreUnitTest;
 import com.telenav.kivakit.core.value.count.MutableCount;
 import com.telenav.kivakit.core.value.count.Range;
+import com.telenav.kivakit.internal.testing.CoreUnitTest;
 import org.junit.Test;
 
 import static com.telenav.kivakit.core.value.count.Range.rangeExclusive;
@@ -55,9 +55,9 @@ public class RangeTest extends CoreUnitTest
         var range = rangeExclusive(count(0), count(10));
         ensureEqual(range.minimum(), count(0));
         ensureEqual(range.inclusiveMaximum(), count(9));
-        ensureEqual(range.maximum(), count(10));
+        ensureEqual(range.exclusiveMaximum(), count(10));
     }
-    
+
     @Test
     public void testForEach()
     {
@@ -74,7 +74,7 @@ public class RangeTest extends CoreUnitTest
         var range = rangeInclusive(count(0), count(10));
         ensureEqual(range.minimum(), count(0));
         ensureEqual(range.inclusiveMaximum(), count(10));
-        ensureEqual(range.maximum(), count(11));
+        ensureEqual(range.exclusiveMaximum(), count(11));
     }
 
     @Test

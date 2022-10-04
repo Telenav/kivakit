@@ -1,9 +1,9 @@
 package com.telenav.kivakit.internal.tests.core.time;
 
-import com.telenav.kivakit.internal.testing.CoreUnitTest;
 import com.telenav.kivakit.core.time.DayOfWeek;
 import com.telenav.kivakit.core.time.Hour;
 import com.telenav.kivakit.core.time.HourOfWeek;
+import com.telenav.kivakit.internal.testing.CoreUnitTest;
 import org.junit.Test;
 
 import java.time.ZoneId;
@@ -75,7 +75,7 @@ public class HourOfWeekTest extends CoreUnitTest
             var range = random().rangeExclusive(0, 7 * 24);
             ensure(range.isExclusive());
             ensure(range.size() <= 168);
-            ensure(range.maximum().asInt() <= 168);
+            ensure(range.exclusiveMaximum().asInt() <= 168);
             range.forEach(HourOfWeek::hourOfWeek);
             range.forEach(at -> hourOfWeek(at.asInt()));
         });

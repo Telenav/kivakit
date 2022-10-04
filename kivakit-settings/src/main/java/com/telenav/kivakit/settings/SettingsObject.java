@@ -178,7 +178,10 @@ public class SettingsObject implements RegistryTrait
 
     public SettingsObject(Object object, Class<?> type, InstanceIdentifier instance)
     {
-        ensureNotNull(instance);
+        if (instance == null)
+        {
+            instance = singletonInstanceIdentifier();
+        }
         ensureNotNull(object);
         ensureFalse(object instanceof SerializableObject, "Internal error: Unwrapped SerializableObject");
 

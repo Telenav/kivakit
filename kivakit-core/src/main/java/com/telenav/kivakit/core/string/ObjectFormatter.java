@@ -22,7 +22,6 @@ import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.collections.list.StringList;
 import com.telenav.kivakit.core.internal.lexakai.DiagramReflection;
 import com.telenav.kivakit.core.language.reflection.Type;
-import com.telenav.kivakit.core.language.reflection.property.PropertyFilter;
 import com.telenav.kivakit.interfaces.string.StringFormattable;
 import com.telenav.kivakit.interfaces.string.StringFormattable.Format;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
@@ -34,6 +33,8 @@ import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENT
 import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_INSUFFICIENT;
 import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
 import static com.telenav.kivakit.core.ensure.Ensure.fail;
+import static com.telenav.kivakit.core.language.reflection.property.PropertyFilter.allProperties;
+import static com.telenav.kivakit.core.language.reflection.property.PropertyMemberSelector.ALL_FIELDS_AND_METHODS;
 import static com.telenav.kivakit.core.string.ObjectFormatter.ObjectFormat.SINGLE_LINE;
 
 /**
@@ -88,7 +89,7 @@ public class ObjectFormatter
 
         Type<?> type = Type.type(object);
         var strings = new StringList();
-        for (var property : type.properties(PropertyFilter.allProperties()))
+        for (var property : type.properties(allProperties(ALL_FIELDS_AND_METHODS)))
         {
             if (!"class".equals(property.name()))
             {

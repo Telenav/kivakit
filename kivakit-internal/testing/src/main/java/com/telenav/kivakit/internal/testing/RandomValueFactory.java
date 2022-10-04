@@ -26,7 +26,6 @@ import com.telenav.kivakit.core.language.primitive.Longs;
 import com.telenav.kivakit.core.logging.Logger;
 import com.telenav.kivakit.core.logging.LoggerFactory;
 import com.telenav.kivakit.core.messaging.Debug;
-import com.telenav.kivakit.core.value.count.BaseCount;
 import com.telenav.kivakit.core.value.count.Count;
 import com.telenav.kivakit.core.value.count.Range;
 import com.telenav.kivakit.core.value.identifier.Identifier;
@@ -365,7 +364,9 @@ public class RandomValueFactory implements RandomNumeric
         return rangeExclusive(count(minimum), count(exclusiveMaximum), minimumWidth);
     }
 
-    public <T extends BaseCount<T>> Range<T> rangeExclusive(T minimum, T exclusiveMaximum, long minimumWidth)
+    public Range<Count> rangeExclusive(Count minimum,
+                                       Count exclusiveMaximum,
+                                       long minimumWidth)
     {
         ensure(minimum.isLessThan(exclusiveMaximum));
 
@@ -375,15 +376,16 @@ public class RandomValueFactory implements RandomNumeric
         var randomMinimum = randomLongExclusive(minimum.asLong(), exclusiveMaximum.asLong() - randomWidth);
         var randomExclusiveMaximum = randomMinimum + randomWidth;
 
-        return Range.rangeExclusive(minimum.onNewInstance(randomMinimum), minimum.onNewInstance(randomExclusiveMaximum));
+        return Range.rangeExclusive(minimum.onNewInstance(randomMinimum),
+                minimum.onNewInstance(randomExclusiveMaximum));
     }
 
-    public <T extends BaseCount<T>> Range<T> rangeExclusive(T minimum, T exclusiveMaximum)
+    public Range<Count> rangeExclusive(Count minimum, Count exclusiveMaximum)
     {
         return rangeInclusive(minimum, exclusiveMaximum.incremented(), 0);
     }
 
-    public <T extends BaseCount<T>> Range<T> rangeInclusive(T minimum, T inclusiveMaximum)
+    public Range<Count> rangeInclusive(Count minimum, Count inclusiveMaximum)
     {
         return rangeInclusive(minimum, inclusiveMaximum, 0);
     }
@@ -393,7 +395,7 @@ public class RandomValueFactory implements RandomNumeric
         return rangeInclusive(minimum, inclusiveMaximum, 0);
     }
 
-    public <T extends BaseCount<T>> Range<T> rangeInclusive(T minimum, T inclusiveMaximum, long minimumWidth)
+    public Range<Count> rangeInclusive(Count minimum, Count inclusiveMaximum, long minimumWidth)
     {
         ensure(minimum.isLessThanOrEqualTo(inclusiveMaximum));
 

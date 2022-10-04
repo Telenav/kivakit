@@ -82,7 +82,7 @@ public enum Meridiem
      */
     public int asMilitaryHour(int meridiemHour)
     {
-        ensure(Ints.isBetweenInclusive(meridiemHour, 1, 12));
+        ensure(Ints.isBetweenInclusive(meridiemHour, 1, 12), "Invalid meridiem hour: $", meridiemHour);
 
         switch (this)
         {

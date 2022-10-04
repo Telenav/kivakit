@@ -95,8 +95,8 @@ import static com.telenav.kivakit.core.collections.list.ObjectList.objectList;
  *     <li>{@link #appendAll(Iterable)}</li>
  *     <li>{@link #appendAll(Iterator)}</li>
  *     <li>{@link #appendAll(Object[])}</li>
- *     <li>{@link #appendThen(Object)}</li>
- *     <li>{@link #appendThen(Iterable)}</li>
+ *     <li>{@link #appendAllThen(Object)}</li>
+ *     <li>{@link #appendAllThen(Iterable)}</li>
  *     <li>{@link #prepend(Object)}</li>
  *     <li>{@link #prependIfNotNull(Object)}</li>
  *     <li>{@link #prependAll(Collection)}</li>
@@ -344,19 +344,19 @@ public abstract class BaseList<Value> extends BaseCollection<Value> implements
     }
 
     @Override
-    public BaseList<Value> appendThen(Value value)
+    public BaseList<Value> appendAllThen(Value value)
     {
-        return (BaseList<Value>) Appendable.super.appendThen(value);
+        return (BaseList<Value>) Appendable.super.appendAllThen(value);
     }
 
     @Override
-    public BaseList<Value> appendThen(Iterable<? extends Value> values)
+    public BaseList<Value> appendAllThen(Iterable<? extends Value> values)
     {
-        return (BaseList<Value>) Appendable.super.appendThen(values);
+        return (BaseList<Value>) Appendable.super.appendAllThen(values);
     }
 
     /**
-     * @return This list with braces around it indented by 4 spaces
+     * Returns this list with braces around it indented by 4 spaces
      */
     public String bracketed()
     {
@@ -364,7 +364,7 @@ public abstract class BaseList<Value> extends BaseCollection<Value> implements
     }
 
     /**
-     * @return This list with braces around it indented by the given number of spaces
+     * Returns this list with braces around it indented by the given number of spaces
      */
     public String bracketed(int indent)
     {
@@ -372,7 +372,7 @@ public abstract class BaseList<Value> extends BaseCollection<Value> implements
     }
 
     /**
-     * @return The items in this list in a bulleted ASCII art representation
+     * Returns the items in this list in a bulleted ASCII art representation
      */
     public String bulleted()
     {
@@ -380,7 +380,7 @@ public abstract class BaseList<Value> extends BaseCollection<Value> implements
     }
 
     /**
-     * @return The items in this list in a bulleted ASCII art representation with the given indent
+     * Returns the items in this list in a bulleted ASCII art representation with the given indent
      */
     public String bulleted(int indent)
     {
@@ -430,7 +430,7 @@ public abstract class BaseList<Value> extends BaseCollection<Value> implements
     }
 
     /**
-     * @return The first count elements of this list
+     * Returns the first count elements of this list
      */
     public BaseList<Value> first(Count count)
     {
@@ -465,7 +465,7 @@ public abstract class BaseList<Value> extends BaseCollection<Value> implements
     }
 
     /**
-     * @return The last count values of this list
+     * Returns the last count values of this list
      */
     public BaseList<Value> last(Count count)
     {
@@ -510,7 +510,7 @@ public abstract class BaseList<Value> extends BaseCollection<Value> implements
     }
 
     /**
-     * @return This list reversed if reverse is true, or the list itself if it is false
+     * Returns this list reversed if reverse is true, or the list itself if it is false
      */
     public BaseList<Value> maybeReversed(boolean reverse)
     {
@@ -526,6 +526,9 @@ public abstract class BaseList<Value> extends BaseCollection<Value> implements
         return onAdd(value);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public BaseList<Value> onNewInstance()
     {
@@ -552,7 +555,7 @@ public abstract class BaseList<Value> extends BaseCollection<Value> implements
     }
 
     /**
-     * @return The last value in this list, after removing it
+     * Returns the last value in this list, after removing it
      */
     public Value pop()
     {
@@ -578,7 +581,7 @@ public abstract class BaseList<Value> extends BaseCollection<Value> implements
     }
 
     /**
-     * @return Removes the last element in this list
+     * Returns removes the last element in this list
      */
     public Value removeLast()
     {
@@ -609,7 +612,7 @@ public abstract class BaseList<Value> extends BaseCollection<Value> implements
     }
 
     /**
-     * @return This list reversed
+     * Returns this list reversed
      */
     public BaseList<Value> reversed()
     {
@@ -618,6 +621,9 @@ public abstract class BaseList<Value> extends BaseCollection<Value> implements
         return copy;
     }
 
+    /**
+     * Returns the values to the right of the given index
+     */
     @Override
     public BaseList<Value> rightOf(int index)
     {
@@ -688,7 +694,7 @@ public abstract class BaseList<Value> extends BaseCollection<Value> implements
     }
 
     /**
-     * @return This list of objects as an ASCII art text box with the given title
+     * Returns this list of objects as an ASCII art text box with the given title
      */
     public String titledBox(String title)
     {
@@ -696,7 +702,7 @@ public abstract class BaseList<Value> extends BaseCollection<Value> implements
     }
 
     /**
-     * @return This list of objects as an ASCII art text box with the given title
+     * Returns this list of objects as an ASCII art text box with the given title
      */
     public String titledBox(String title, Object... arguments)
     {
@@ -704,7 +710,7 @@ public abstract class BaseList<Value> extends BaseCollection<Value> implements
     }
 
     /**
-     * @return A copy of this list with only unique elements in it
+     * Returns a copy of this list with only unique elements in it
      */
     @SuppressWarnings("SpellCheckingInspection")
     public BaseList<Value> uniqued()
@@ -715,13 +721,13 @@ public abstract class BaseList<Value> extends BaseCollection<Value> implements
     }
 
     @Override
-    protected Collection<Value> collection()
+    protected Collection<Value> backingCollection()
     {
         return list;
     }
 
     /**
-     * @return The wrapped list
+     * Returns the wrapped list
      */
     protected List<Value> list()
     {
@@ -729,11 +735,12 @@ public abstract class BaseList<Value> extends BaseCollection<Value> implements
     }
 
     /**
-     * Creates a list of the subclass type
-     *
-     * @return The new list
+     * Returns a new {@link BaseList} subclass
      */
-    protected abstract BaseList<Value> newList();
+    protected final BaseList<Value> newList()
+    {
+        return onNewList();
+    }
 
     /**
      * {@inheritDoc}
@@ -743,4 +750,11 @@ public abstract class BaseList<Value> extends BaseCollection<Value> implements
     {
         return newList();
     }
+
+    /**
+     * Creates a list of the subclass type
+     *
+     * @return The new list
+     */
+    protected abstract BaseList<Value> onNewList();
 }

@@ -18,6 +18,7 @@
 
 package com.telenav.kivakit.core.collections.set;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.collections.BaseCollection;
 import com.telenav.kivakit.core.value.count.Countable;
 import com.telenav.kivakit.core.value.count.Maximum;
@@ -30,11 +31,15 @@ import com.telenav.kivakit.interfaces.factory.Factory;
 import com.telenav.kivakit.interfaces.string.StringFormattable;
 
 import java.util.Collection;
-import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 import java.util.function.Function;
 import java.util.function.Predicate;
+
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_INSUFFICIENT;
+import static java.util.Collections.emptySet;
 
 /**
  * A set with a maximum size. Adds useful methods to the usual {@link Set} operations, as well as implementing:
@@ -154,13 +159,15 @@ import java.util.function.Predicate;
  * @see Set
  */
 @SuppressWarnings("unused")
+@ApiQuality(stability = API_STABLE_EXTENSIBLE,
+            testing = TESTING_INSUFFICIENT,
+            documentation = DOCUMENTATION_COMPLETE)
 public abstract class BaseSet<Value> extends BaseCollection<Value> implements
         Copyable<Value, BaseSet<Value>>,
-        Factory<BaseSet<Value>>,
         Set<Value>
 {
     /** The backing set */
-    private final Set<Value> set;
+    private final Set<Value> backingSet;
 
     /**
      * Construct a set with a maximum number of elements
@@ -169,7 +176,7 @@ public abstract class BaseSet<Value> extends BaseCollection<Value> implements
      */
     protected BaseSet(Maximum maximumSize)
     {
-        this(maximumSize, new HashSet<>());
+        this(maximumSize, emptySet());
     }
 
     /**
@@ -184,8 +191,8 @@ public abstract class BaseSet<Value> extends BaseCollection<Value> implements
         if (values.size() < maximumSize.asInt())
         {
             // save the set.
-            this.set = newSet();
-            this.set.addAll(values);
+            this.backingSet = newBackingSet();
+            this.backingSet.addAll(values);
         }
         else
         {
@@ -193,7 +200,7 @@ public abstract class BaseSet<Value> extends BaseCollection<Value> implements
             onOutOfRoom(values.size());
 
             // and leave the set empty.
-            this.set = newSet();
+            this.backingSet = newBackingSet();
         }
     }
 
@@ -202,24 +209,45 @@ public abstract class BaseSet<Value> extends BaseCollection<Value> implements
         this(Maximum.MAXIMUM);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public BaseSet<Value> copy()
     {
         return Copyable.super.copy();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public <Output> BaseSet<Output> mapped(Function<Value, Output> mapper)
     {
         return (BaseSet<Output>) super.mapped(mapper);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public BaseSet<Value> matching(Matcher<Value> matcher)
     {
         return Copyable.super.matching(matcher);
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public final BaseSet<Value> onNewInstance()
+    {
+        return (BaseSet<Value>) newCollection();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public BaseSet<Value> with(Value value)
     {
@@ -227,7 +255,7 @@ public abstract class BaseSet<Value> extends BaseCollection<Value> implements
     }
 
     /**
-     * Returns this list with the given values
+     * {@inheritDoc}
      */
     @Override
     public BaseSet<Value> with(Collection<Value> that)
@@ -235,16 +263,25 @@ public abstract class BaseSet<Value> extends BaseCollection<Value> implements
         return (BaseSet<Value>) super.with(that);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    protected Set<Value> collection()
+    protected final Set<Value> backingCollection()
     {
-        return set;
+        return backingSet;
     }
 
-    protected abstract Set<Value> newSet();
-
-    protected Set<Value> set()
+    /**
+     * Returns a new backing set to store values in
+     */
+    protected final Set<Value> newBackingSet()
     {
-        return set;
+        return onNewBackingSet();
     }
+
+    /**
+     * Returns a new backing set to store values in
+     */
+    protected abstract Set<Value> onNewBackingSet();
 }

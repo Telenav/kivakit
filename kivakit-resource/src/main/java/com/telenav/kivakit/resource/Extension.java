@@ -89,7 +89,8 @@ import static com.telenav.kivakit.core.messaging.Listener.throwingListener;
             documentation = DOCUMENTATION_COMPLETE)
 public class Extension implements
         Named,
-        Matchable<ResourcePathed>
+        Matchable<ResourcePathed>,
+        Comparable<Extension>
 {
     public static final Extension CLASS = parseExtension(".class");
 
@@ -243,6 +244,15 @@ public class Extension implements
             return new ZipCodec();
         }
         return new NullCodec();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public int compareTo(@NotNull Extension that)
+    {
+        return name().compareTo(that.name());
     }
 
     /**
