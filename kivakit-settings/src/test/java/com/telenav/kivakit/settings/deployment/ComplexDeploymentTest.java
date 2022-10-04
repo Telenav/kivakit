@@ -20,37 +20,44 @@ package com.telenav.kivakit.settings.deployment;
 
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.registry.InstanceIdentifier;
-import com.telenav.kivakit.testing.UnitTest;
 import com.telenav.kivakit.core.time.Duration;
 import com.telenav.kivakit.settings.Deployment;
 import com.telenav.kivakit.settings.ServerSettings;
-import com.telenav.kivakit.settings.Settings;
-import com.telenav.kivakit.settings.SettingsTrait;
+import com.telenav.kivakit.settings.SettingsRegistry;
+import com.telenav.kivakit.settings.SettingsRegistryTrait;
+import com.telenav.kivakit.testing.UnitTest;
 import org.junit.Test;
 
 public class ComplexDeploymentTest extends UnitTest
 {
-    private static final InstanceIdentifier SERVER1 = InstanceIdentifier.of("SERVER1");
+    private static final InstanceIdentifier SERVER1 = InstanceIdentifier.instanceIdentifier(WhichServer.SERVER1);
 
-    private static final InstanceIdentifier SERVER2 = InstanceIdentifier.of("SERVER2");
+    private static final InstanceIdentifier SERVER2 = InstanceIdentifier.instanceIdentifier(WhichServer.SERVER2);
 
-    public static class Development extends Deployment implements SettingsTrait
+    enum WhichServer
+    {
+        SERVER1,
+        SERVER2
+    }
+
+    public static class Development extends Deployment implements SettingsRegistryTrait
     {
         public Development()
         {
             super(Listener.throwingListener(), "development", "test development deployment");
-            registerSettingsObject(new Server1(), SERVER1);
-            registerSettingsObject(new Server2(), SERVER2);
+            registerSettings(new Server1(), SERVER1);
+            registerSettings(new Server2(), SERVER2);
         }
     }
 
-    public static class Production extends Deployment implements SettingsTrait
+    @SuppressWarnings("unused")
+    public static class Production extends Deployment implements SettingsRegistryTrait
     {
         public Production()
         {
-            super(Listener.throwingListener(),"production", "test production deployment");
-            registerSettingsObject(new Server3(), SERVER1);
-            registerSettingsObject(new Server4(), SERVER2);
+            super(Listener.throwingListener(), "production", "test production deployment");
+            registerSettings(new Server3(), SERVER1);
+            registerSettings(new Server4(), SERVER2);
         }
     }
 
@@ -93,13 +100,13 @@ public class ComplexDeploymentTest extends UnitTest
     @Test
     public void testDevelopment()
     {
-        Settings.global().registerSettingsIn(new Development());
+        SettingsRegistry.global().registerSettingsIn(new Development());
 
-        var server1 = Settings.of(this).requireSettings(ServerSettings.class, SERVER1);
+        var server1 = SettingsRegistry.settingsRegistryFor(this).requireSettings(ServerSettings.class, SERVER1);
         ensureEqual(9001, server1.port());
         ensureEqual(Duration.ONE_MINUTE, server1.timeout());
 
-        var server2 = Settings.of(this).requireSettings(ServerSettings.class, SERVER2);
+        var server2 = SettingsRegistry.settingsRegistryFor(this).requireSettings(ServerSettings.class, SERVER2);
         ensureEqual(9002, server2.port());
         ensureEqual(Duration.ONE_MINUTE, server2.timeout());
     }

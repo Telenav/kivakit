@@ -18,15 +18,21 @@
 
 package com.telenav.kivakit.core.collections.map;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramCollections;
 import com.telenav.kivakit.core.time.Duration;
 import com.telenav.kivakit.core.time.Time;
 import com.telenav.kivakit.core.value.count.Maximum;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
+
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_INSUFFICIENT;
 
 /**
  * A map that has a fixed size and that deletes the oldest entries when that size is exceeded. It also removes entries
@@ -37,6 +43,9 @@ import java.util.Map;
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramCollections.class)
+@ApiQuality(stability = API_STABLE_EXTENSIBLE,
+            testing = TESTING_INSUFFICIENT,
+            documentation = DOCUMENTATION_COMPLETE)
 public class CacheMap<Key, Value> extends BaseMap<Key, Value>
 {
     /** The maximum allowed age of an entry */
@@ -45,13 +54,16 @@ public class CacheMap<Key, Value> extends BaseMap<Key, Value>
     /** The time that each entry was added or updated */
     private final Map<Key, Time> updated = new HashMap<>();
 
+    /**
+     * Constructs a cache map with the given maximum size
+     */
     public CacheMap(Maximum cacheSize)
     {
         this(cacheSize, Duration.MAXIMUM);
     }
 
     /**
-     * Constructor
+     * /** Constructs a cache map of the given maximum size
      *
      * @param cacheSize The size after which the eldest entry will be deleted to leave room for new entries.
      * @param maximumEntryAge The maximum age of an entry before it is expired
@@ -70,9 +82,12 @@ public class CacheMap<Key, Value> extends BaseMap<Key, Value>
         this.maximumEntryAge = maximumEntryAge;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @SuppressWarnings("unchecked")
     @Override
-    public Value get(final Object key)
+    public Value get(Object key)
     {
         if (expireOldEntries())
         {
@@ -93,8 +108,11 @@ public class CacheMap<Key, Value> extends BaseMap<Key, Value>
         return super.get(key);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public Value put(final Key key, final Value value)
+    public Value put(Key key, Value value)
     {
         if (expireOldEntries())
         {
@@ -103,8 +121,11 @@ public class CacheMap<Key, Value> extends BaseMap<Key, Value>
         return super.put(key, value);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public Value remove(final Object key)
+    public Value remove(@NotNull Object key)
     {
         if (expireOldEntries())
         {

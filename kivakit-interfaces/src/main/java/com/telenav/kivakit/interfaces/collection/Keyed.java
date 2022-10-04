@@ -18,11 +18,11 @@
 
 package com.telenav.kivakit.interfaces.collection;
 
-import com.telenav.kivakit.annotations.code.CodeQuality;
+import com.telenav.kivakit.annotations.code.ApiQuality;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.STABLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.UNNECESSARY;
+import static com.telenav.kivakit.annotations.code.ApiStability.API_FURTHER_EVALUATION_NEEDED;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
 
 /**
  * An object which can retrieve a value given a key.
@@ -31,14 +31,28 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.UNNECESSARY;
  * @param <Value> The type of value
  * @author jonathanl (shibo)
  */
+@SuppressWarnings("unused")
 @FunctionalInterface
-@CodeQuality(stability = STABLE,
-             testing = UNNECESSARY,
-             documentation = COMPLETE)
+@ApiQuality(stability = API_FURTHER_EVALUATION_NEEDED,
+            testing = TESTING_NOT_NEEDED,
+            documentation = DOCUMENTATION_COMPLETE,
+            reviews = 1,
+            reviewers = "shibo")
 public interface Keyed<Key, Value>
 {
     /**
      * @return The value for the given key
      */
     Value get(Key key);
+
+    /**
+     * @param key The key to access
+     * @param defaultValue The default value to use if there is no value for the key
+     * @return The value for the given key, or if it is null, the default value
+     */
+    default Value getOrDefault(Key key, Value defaultValue)
+    {
+        var value = get(key);
+        return value == null ? defaultValue : value;
+    }
 }

@@ -18,6 +18,7 @@
 
 package com.telenav.kivakit.core.registry;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramRegistry;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
@@ -25,14 +26,17 @@ import com.telenav.lexakai.annotations.associations.UmlRelation;
 import java.util.HashMap;
 import java.util.Map;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
 import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
 
 /**
  * <p>
  * The {@link Registry} class allows code to register and locate objects by class and instance (if there is more than
  * one instance). The methods {@link #register(Object)} and {@link #register(Object, Enum)} are used to install an
- * object in the lookup and {@link #lookup(Class)}, {@link #lookup(Class, Enum)}, {@link #require(Class)} and {@link
- * #require(Class, Enum)} are used to find an object that has been registered.
+ * object in the lookup and {@link #lookup(Class)}, {@link #lookup(Class, Enum)}, {@link #require(Class)} and
+ * {@link #require(Class, Enum)} are used to find an object that has been registered.
  * </p>
  *
  * <p><b>RegistryTrait</b></p>
@@ -73,27 +77,34 @@ import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
  */
 @UmlClassDiagram(diagram = DiagramRegistry.class)
 @UmlRelation(label = "locates instances with", referent = InstanceIdentifier.class)
+@ApiQuality(stability = API_STABLE_EXTENSIBLE,
+            testing = TESTING_NOT_NEEDED,
+            documentation = DOCUMENTATION_COMPLETE)
 public class Registry implements RegistryTrait
 {
     /** The global lookup */
-    private static final Registry GLOBAL = new Registry();
+    private static final Registry GLOBAL_REGISTRY = new Registry();
 
     /**
-     * NOTE: This method should only be called from static methods
+     * Returns the global registry
      *
      * @return The global registry
      */
-    public static Registry global()
+    public static Registry globalRegistry()
     {
-        return GLOBAL;
+        return GLOBAL_REGISTRY;
     }
 
     /**
+     * Returns the registry to use for the given object. Currently this simply returns the global registry. In the
+     * future, it may return registries specific to different objects.
+     *
      * @return The lookup for the given object
      */
-    public static Registry of(Object object)
+    @SuppressWarnings("unused")
+    public static Registry registryFor(Object object)
     {
-        return global();
+        return globalRegistry();
     }
 
     /** Map from class and instance to type for multi-instance objects */

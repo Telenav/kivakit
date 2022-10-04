@@ -18,27 +18,30 @@
 
 package com.telenav.kivakit.core.collections.list;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramCollections;
-import com.telenav.kivakit.core.string.AsciiArt;
-import com.telenav.kivakit.core.string.Formatter;
 import com.telenav.kivakit.core.value.count.Count;
 import com.telenav.kivakit.core.value.count.Maximum;
 import com.telenav.kivakit.interfaces.comparison.Matcher;
 import com.telenav.kivakit.interfaces.factory.IntMapFactory;
 import com.telenav.kivakit.interfaces.factory.LongMapFactory;
-import com.telenav.kivakit.interfaces.numeric.Quantizable;
+import com.telenav.kivakit.interfaces.value.LongValued;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.Comparator;
 import java.util.Iterator;
 import java.util.function.Function;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_INSUFFICIENT;
+
 /**
- * A bounded list of objects with overrides of methods from {@link BaseList} to downcast return values to {@link
- * ObjectList} for convenience. New instances of {@link ObjectList} are created by {@link BaseList} by calling {@link
- * #onNewInstance()}, allowing functional logic to reside in the base class.
+ * A bounded list of objects with overrides of methods from {@link BaseList} to downcast return values to
+ * {@link ObjectList} for convenience. New instances of {@link ObjectList} are created by {@link BaseList} by calling
+ * {@link #onNewInstance()}, allowing functional logic to reside in the base class. For details on the methods inherited
+ * from {@link BaseList}, see that class.
  *
  * <p><b>Partitioning</b></p>
  *
@@ -50,26 +53,28 @@ import java.util.function.Function;
  * The methods {@link #objectList(Object[])} and {@link #objectList(Maximum, Object[])} can be used to construct constant lists.
  * The factory methods {@link #objectListFromInts(IntMapFactory, int...)} and {@link #objectListFromLongs(LongMapFactory, long...)}
  * construct lists of objects from integer and long values using the given map factories to convert the values into
- * objects. The method {@link #objectList(Iterable, LongMapFactory)} iterates through the given {@link Quantizable}
+ * objects. The method {@link #objectList(Iterable, LongMapFactory)} iterates through the given {@link LongValued} object
  * values, passing each quantum to the given primitive map factory and adding the resulting object to a new object list.
  * </p>
  *
- * @param <Element> The object type
+ * @param <Value> The object type
  * @author jonathanl (shibo)
  * @see BaseList
- * @see Quantizable
  * @see LongMapFactory
  * @see LongMapFactory
  * @see IntMapFactory
  */
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramCollections.class)
-public class ObjectList<Element> extends BaseList<Element>
+@ApiQuality(stability = API_STABLE_EXTENSIBLE,
+            testing = TESTING_INSUFFICIENT,
+            documentation = DOCUMENTATION_COMPLETE)
+public class ObjectList<Value> extends BaseList<Value>
 {
     /**
      * @return An empty object list
      */
-    public static <T> ObjectList<T> emptyList()
+    public static <T> ObjectList<T> emptyObjectList()
     {
         return new ObjectList<>(Maximum._0);
     }
@@ -79,18 +84,30 @@ public class ObjectList<Element> extends BaseList<Element>
      */
     public static <T> ObjectList<T> objectList(Iterable<T> values)
     {
-        return new ObjectList<T>().appendAll(values);
+        var list = new ObjectList<T>();
+        list.appendAll(values);
+        return list;
+    }
+
+    /**
+     * @return A list of objects from the given iterator
+     */
+    public static <T> ObjectList<T> objectList(Iterator<T> values)
+    {
+        var list = new ObjectList<T>();
+        list.appendAll(values);
+        return list;
     }
 
     /**
      * @return A list of elements from the given integers created using the given map factory
      */
-    public static <T> ObjectList<T> objectList(Iterable<Quantizable> values, LongMapFactory<T> factory)
+    public static <T> ObjectList<T> objectList(Iterable<LongValued> values, LongMapFactory<T> factory)
     {
         var objects = new ObjectList<T>();
         for (var value : values)
         {
-            objects.add(factory.newInstance(value.quantum()));
+            objects.add(factory.newInstance(value.longValue()));
         }
         return objects;
     }
@@ -177,7 +194,7 @@ public class ObjectList<Element> extends BaseList<Element>
     /**
      * A list of objects with the given upper bound
      */
-    public ObjectList(Collection<Element> collection)
+    public ObjectList(Collection<Value> collection)
     {
         super(collection);
     }
@@ -186,46 +203,18 @@ public class ObjectList<Element> extends BaseList<Element>
      * {@inheritDoc}
      */
     @Override
-    public ObjectList<Element> append(Element element)
+    public ObjectList<Value> appendAllThen(Iterable<? extends Value> values)
     {
-        super.append(element);
-        return this;
+        return (ObjectList<Value>) super.appendAllThen(values);
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public ObjectList<Element> appendAll(Iterable<? extends Element> objects)
+    public ObjectList<Value> appendThen(Value value)
     {
-        super.appendAll(objects);
-        return this;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public ObjectList<Element> appendAll(Iterator<? extends Element> objects)
-    {
-        super.appendAll(objects);
-        return this;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public ObjectList<Element> appendAll(Element[] objects)
-    {
-        super.appendAll(objects);
-        return this;
-    }
-
-    @Override
-    public StringList asStringList()
-    {
-        return StringList.stringList(this);
+        return (ObjectList<Value>) super.appendThen(value);
     }
 
     /**
@@ -234,31 +223,52 @@ public class ObjectList<Element> extends BaseList<Element>
      * @return The copy
      */
     @Override
-    public ObjectList<Element> copy()
+    public ObjectList<Value> copy()
     {
-        return (ObjectList<Element>) super.copy();
+        return (ObjectList<Value>) super.copy();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public ObjectList<Element> first(Count count)
+    public ObjectList<Value> first(Count count)
     {
-        return (ObjectList<Element>) super.first(count);
+        return (ObjectList<Value>) super.first(count);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public ObjectList<Element> first(int count)
+    public ObjectList<Value> first(int count)
     {
-        return (ObjectList<Element>) super.first(count);
+        return (ObjectList<Value>) super.first(count);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public ObjectList<Element> leftOf(int index)
+    public ObjectList<Value> last(int count)
     {
-        return (ObjectList<Element>) super.leftOf(index);
+        return (ObjectList<Value>) super.last(count);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public <To> ObjectList<To> mapped(Function<Element, To> mapper)
+    public ObjectList<Value> leftOf(int index)
+    {
+        return (ObjectList<Value>) super.leftOf(index);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public <To> ObjectList<To> mapped(Function<Value, To> mapper)
     {
         return (ObjectList<To>) super.mapped(mapper);
     }
@@ -270,15 +280,27 @@ public class ObjectList<Element> extends BaseList<Element>
      * @return The list of elements matching the matcher
      */
     @Override
-    public ObjectList<Element> matching(Matcher<Element> matcher)
+    public ObjectList<Value> matching(Matcher<Value> matcher)
     {
-        return (ObjectList<Element>) super.matching(matcher);
+        return (ObjectList<Value>) super.matching(matcher);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public ObjectList<Element> maybeReversed(boolean reverse)
+    public ObjectList<Value> maybeReversed(boolean reverse)
     {
-        return (ObjectList<Element>) super.maybeReversed(reverse);
+        return (ObjectList<Value>) super.maybeReversed(reverse);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public boolean onAppend(Value value)
+    {
+        return super.add(value);
     }
 
     /**
@@ -287,7 +309,7 @@ public class ObjectList<Element> extends BaseList<Element>
      * @return The new list
      */
     @Override
-    public ObjectList<Element> onNewInstance()
+    public ObjectList<Value> onNewInstance()
     {
         return new ObjectList<>();
     }
@@ -295,9 +317,9 @@ public class ObjectList<Element> extends BaseList<Element>
     /**
      * @return This object list partitioned in to n object lists
      */
-    public ObjectList<ObjectList<Element>> partition(Count partitions)
+    public ObjectList<ObjectList<Value>> partition(Count partitions)
     {
-        var lists = new ObjectList<ObjectList<Element>>(maximumSize());
+        var lists = new ObjectList<ObjectList<Value>>(maximumSize());
         var i = 0;
         var list = -1;
         var every = (int) Math.round((double) size() / (double) partitions.asInt());
@@ -313,50 +335,22 @@ public class ObjectList<Element> extends BaseList<Element>
         return lists;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public ObjectList<Element> prepend(Element element)
+    public ObjectList<Value> reversed()
     {
-        return (ObjectList<Element>) super.prepend(element);
-    }
-
-    @Override
-    public ObjectList<Element> reversed()
-    {
-        return (ObjectList<Element>) super.reversed();
-    }
-
-    @Override
-    public ObjectList<Element> rightOf(int index)
-    {
-        return (ObjectList<Element>) super.rightOf(index);
-    }
-
-    @Override
-    public ObjectList<Element> sorted()
-    {
-        return (ObjectList<Element>) super.sorted();
-    }
-
-    @Override
-    public ObjectList<Element> sorted(Comparator<Element> comparator)
-    {
-        return (ObjectList<Element>) super.sorted(comparator);
+        return (ObjectList<Value>) super.reversed();
     }
 
     /**
-     * @return This list of objects as an ASCII art text box with the given title
+     * {@inheritDoc}
      */
-    public String titledBox(String title)
+    @Override
+    public ObjectList<Value> rightOf(int index)
     {
-        return AsciiArt.textBox(title, join("\n"));
-    }
-
-    /**
-     * @return This list of objects as an ASCII art text box with the given title
-     */
-    public String titledBox(String title, Object... arguments)
-    {
-        return titledBox(Formatter.format(title, arguments));
+        return (ObjectList<Value>) super.rightOf(index);
     }
 
     /**
@@ -366,23 +360,35 @@ public class ObjectList<Element> extends BaseList<Element>
      */
     @Override
     @SuppressWarnings("SpellCheckingInspection")
-    public ObjectList<Element> uniqued()
+    public ObjectList<Value> uniqued()
     {
-        return (ObjectList<Element>) super.uniqued();
+        return (ObjectList<Value>) super.uniqued();
     }
 
-    @SuppressWarnings({ "unchecked", "rawtypes" })
-    public <T> ObjectList<T> with(T value)
-    {
-        var copy = new ObjectList();
-        copy.addAll(this);
-        copy.add(value);
-        return copy;
-    }
-
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public ObjectList<Element> without(Matcher<Element> matcher)
+    public ObjectList<Value> with(Value value)
     {
-        return (ObjectList<Element>) super.without(matcher);
+        return (ObjectList<Value>) super.with(value);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public ObjectList<Value> without(Matcher<Value> matcher)
+    {
+        return (ObjectList<Value>) super.without(matcher);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    protected BaseList<Value> onNewList()
+    {
+        return objectList();
     }
 }

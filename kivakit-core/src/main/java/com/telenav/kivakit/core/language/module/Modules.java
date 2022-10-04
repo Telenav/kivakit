@@ -18,6 +18,7 @@
 
 package com.telenav.kivakit.core.language.module;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramModule;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.path.StringPath;
@@ -33,17 +34,25 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_STATIC_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
+
 /**
- * Provides easy access to module resources. The {@link #moduleResource(Listener listener, StringPath)}, {@link
- * #moduleResources(Listener listener, PackageReference)}, {@link #nestedModuleResources(Listener listener,
- * PackageReference)} and {@link #nestedModuleResources(Listener listener, PackageReference, Matcher)} methods find
- * resources and return them as {@link ModuleResource} object(s).
+ * Provides easy access to module resources. The {@link #moduleResource(Listener listener, StringPath)},
+ * {@link #moduleResources(Listener listener, PackageReference)},
+ * {@link #nestedModuleResources(Listener listener, PackageReference)} and
+ * {@link #nestedModuleResources(Listener listener, PackageReference, Matcher)} methods find resources and return them
+ * as {@link ModuleResource} object(s).
  *
  * @author jonathanl (shibo)
  * @see ModuleResource
  */
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramModule.class)
+@ApiQuality(stability = API_STABLE_STATIC_EXTENSIBLE,
+            testing = TESTING_NOT_NEEDED,
+            documentation = DOCUMENTATION_COMPLETE)
 public class Modules
 {
     /**
@@ -201,7 +210,8 @@ public class Modules
     /**
      * @return A list of all {@link ModuleResource}s under the given package
      */
-    public synchronized static List<ModuleResource> nestedModuleResources(Listener listener, PackageReference packageReference)
+    public synchronized static List<ModuleResource> nestedModuleResources(Listener listener,
+                                                                          PackageReference packageReference)
     {
         return nestedModuleResources(listener, packageReference, Matcher.matchAll());
     }

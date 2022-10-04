@@ -18,31 +18,42 @@
 
 package com.telenav.kivakit.resource.resources;
 
-import com.telenav.kivakit.core.messaging.Listener;
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.value.count.Bytes;
-import com.telenav.kivakit.resource.ResourcePath;
 import com.telenav.kivakit.resource.internal.lexakai.DiagramResourceType;
 import com.telenav.kivakit.resource.writing.BaseWritableResource;
-import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.io.InputStream;
 import java.io.OutputStream;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+import static com.telenav.kivakit.core.messaging.Listener.nullListener;
+import static com.telenav.kivakit.resource.ResourcePath.parseUnixResourcePath;
+
 /**
- * A writable resource that accepts anything you write and destroys it, so when you read there is nothing to be seen.
+ * A writable resource that accepts anything you write and destroys it, so when you read there is nothing to be seen. It
+ * also has no contents when read.
  *
  * @author matthieun
+ * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramResourceType.class)
-@LexakaiJavadoc(complete = true)
+@ApiQuality(stability = API_STABLE_EXTENSIBLE,
+            documentation = DOCUMENTATION_COMPLETE,
+            testing = TESTING_NONE)
 public class NullResource extends BaseWritableResource
 {
     public NullResource()
     {
-        super(ResourcePath.parseUnixResourcePath(Listener.emptyListener(), "/objects/NullResource"));
+        super(parseUnixResourcePath(nullListener(), "/objects/NullResource"));
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Boolean isWritable()
     {
@@ -50,6 +61,9 @@ public class NullResource extends BaseWritableResource
         return true;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public InputStream onOpenForReading()
     {
@@ -63,6 +77,9 @@ public class NullResource extends BaseWritableResource
         };
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public OutputStream onOpenForWriting()
     {
@@ -75,6 +92,9 @@ public class NullResource extends BaseWritableResource
         };
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Bytes sizeInBytes()
     {

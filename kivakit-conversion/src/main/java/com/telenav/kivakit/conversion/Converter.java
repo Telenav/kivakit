@@ -18,12 +18,17 @@
 
 package com.telenav.kivakit.conversion;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.conversion.internal.lexakai.DiagramConversion;
 import com.telenav.kivakit.core.messaging.Repeater;
 import com.telenav.kivakit.core.messaging.Transceiver;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.Collection;
+
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
 
 /**
  * A converter converts from one type to another. Converters are message {@link Repeater}s, relaying information about
@@ -35,7 +40,11 @@ import java.util.Collection;
  * @see Repeater
  * @see Transceiver
  */
+@SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramConversion.class)
+@ApiQuality(stability = API_STABLE_EXTENSIBLE,
+            testing = TESTING_NONE,
+            documentation = DOCUMENTATION_COMPLETE)
 public interface Converter<From, To> extends Repeater
 {
     /**
@@ -59,6 +68,8 @@ public interface Converter<From, To> extends Repeater
     }
 
     /**
+     * Joins a collection of values, each converted by this converter, with the given separator
+     *
      * @return The given collection of values converted using the given converter and separated by the given separator
      */
     default String join(Collection<From> values, String separator)
@@ -78,6 +89,8 @@ public interface Converter<From, To> extends Repeater
     }
 
     /**
+     * Joins a collection of values, each converted by this converter, with commas
+     *
      * @return The given collection of values as comma separated text
      */
     default String join(Collection<From> values)

@@ -18,12 +18,16 @@
 
 package com.telenav.kivakit.core.value.count;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramCount;
 import com.telenav.kivakit.core.value.level.Percent;
-import com.telenav.kivakit.interfaces.numeric.Quantizable;
-import com.telenav.kivakit.interfaces.numeric.QuantumComparable;
+import com.telenav.kivakit.interfaces.collection.Clearable;
+import com.telenav.kivakit.interfaces.value.LongValued;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
 import static com.telenav.kivakit.core.ensure.Ensure.ensure;
 
 /**
@@ -33,11 +37,16 @@ import static com.telenav.kivakit.core.ensure.Ensure.ensure;
  *
  * @author jonathanl (shibo)
  */
+@SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramCount.class)
+@ApiQuality(stability = API_STABLE_EXTENSIBLE,
+            testing = TESTING_NONE,
+            documentation = DOCUMENTATION_COMPLETE)
 public class MutableCount implements
         Countable,
-        Comparable<Countable>,
-        QuantumComparable<Countable>
+        Clearable,
+        LongValued,
+        Comparable<Countable>
 {
     private long count;
 
@@ -53,38 +62,62 @@ public class MutableCount implements
         this.count = count;
     }
 
+    /**
+     * Returns this count as a {@link Count}
+     */
     public Count asCount()
     {
         return Count.count(count);
     }
 
+    /**
+     * Returns this count as an int
+     */
+    @Override
     public int asInt()
     {
         return (int) count;
     }
 
+    /**
+     * Returns this count as a long value
+     */
+    @Override
     public long asLong()
     {
         return count;
     }
 
+    /**
+     * Clears this count
+     */
+    @Override
     public void clear()
     {
         count = 0;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public int compareTo(Countable that)
     {
-        return (int) (quantum() - that.quantum());
+        return (int) (longValue() - that.count().longValue());
     }
 
+    /**
+     * Returns this mutable count as a {@link Count}
+     */
     @Override
     public Count count()
     {
         return Count.count(asLong());
     }
 
+    /**
+     * Post-decrement. Returns this count, updating the count to count minus one.
+     */
     public long decrement()
     {
         assert count > 0;
@@ -102,6 +135,9 @@ public class MutableCount implements
         return false;
     }
 
+    /**
+     * Returns this count
+     */
     public long get()
     {
         return count;
@@ -113,30 +149,36 @@ public class MutableCount implements
         return Long.hashCode(get());
     }
 
+    /**
+     * Post increment. Returns this count. Increases the count to count plus one
+     */
     public long increment()
     {
         assert count + 1 >= 0;
         return count++;
     }
 
-    @Override
-    public boolean isGreaterThan(Quantizable that)
-    {
-        return asLong() > that.quantum();
-    }
-
-    @Override
-    public boolean isLessThan(Quantizable that)
-    {
-        return asLong() < that.quantum();
-    }
-
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean isZero()
     {
         return asLong() == 0L;
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public long longValue()
+    {
+        return count;
+    }
+
+    /**
+     * Returns this count minus the given value
+     */
     public long minus(long that)
     {
         count -= that;
@@ -144,6 +186,9 @@ public class MutableCount implements
         return count;
     }
 
+    /**
+     * Returns the percentage of the given count that this count represents
+     */
     public Percent percentOf(Count total)
     {
         if (total.isZero())
@@ -153,6 +198,9 @@ public class MutableCount implements
         return Percent.percent(asLong() * 100.0 / total.asLong());
     }
 
+    /**
+     * Returns this count plus the given value
+     */
     public long plus(long that)
     {
         count += that;
@@ -160,11 +208,17 @@ public class MutableCount implements
         return count;
     }
 
-    public long plus(Quantizable that)
+    /**
+     * Returns this count plus the given value
+     */
+    public long plus(LongValued that)
     {
-        return plus(that.quantum());
+        return plus(that.longValue());
     }
 
+    /**
+     * Sets this count
+     */
     public void set(long count)
     {
         assert count >= 0;
@@ -172,14 +226,8 @@ public class MutableCount implements
     }
 
     @Override
-    public int size()
-    {
-        return asInt();
-    }
-
-    @Override
     public String toString()
     {
-        return asCount().quantumAsCommaSeparatedString();
+        return asCount().toString();
     }
 }

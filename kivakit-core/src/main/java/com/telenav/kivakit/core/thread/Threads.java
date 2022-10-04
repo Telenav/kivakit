@@ -18,12 +18,12 @@
 
 package com.telenav.kivakit.core.thread;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.core.code.UncheckedCode;
+import com.telenav.kivakit.core.internal.lexakai.DiagramThread;
 import com.telenav.kivakit.core.value.count.Count;
 import com.telenav.kivakit.core.value.count.MutableCount;
-import com.telenav.kivakit.core.code.UncheckedCode;
 import com.telenav.kivakit.core.vm.JavaVirtualMachine;
-import com.telenav.kivakit.core.internal.lexakai.DiagramThread;
-import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.ArrayList;
@@ -31,6 +31,9 @@ import java.util.Arrays;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_STATIC_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
 import static java.util.concurrent.TimeUnit.MILLISECONDS;
 
 /**
@@ -39,9 +42,14 @@ import static java.util.concurrent.TimeUnit.MILLISECONDS;
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramThread.class)
-@LexakaiJavadoc(complete = true)
+@ApiQuality(stability = API_STABLE_STATIC_EXTENSIBLE,
+            testing = TESTING_NONE,
+            documentation = DOCUMENTATION_COMPLETE)
 public class Threads
 {
+    /**
+     * Returns all threads in the virtual machine
+     */
     public static Iterable<Thread> all()
     {
         // Get the root thread group
@@ -65,11 +73,17 @@ public class Threads
         return new ArrayList<>(Arrays.asList(enumerated).subList(0, count));
     }
 
-    public static void await(ExecutorService executor)
+    /**
+     * Awaits termination of the given executor
+     */
+    public static void awaitTermination(ExecutorService executor)
     {
-        UncheckedCode.of(() -> executor.awaitTermination(Long.MAX_VALUE, MILLISECONDS)).orNull();
+        UncheckedCode.unchecked(() -> executor.awaitTermination(Long.MAX_VALUE, MILLISECONDS)).orNull();
     }
 
+    /**
+     * Returns the root thread group
+     */
     public static ThreadGroup rootGroup()
     {
         ThreadGroup root = null;
@@ -80,15 +94,21 @@ public class Threads
         return root;
     }
 
-    public static void shutdownAndAwait(ExecutorService executor)
+    /**
+     * Tells the given executor to shutdown, then waits for it to do so
+     */
+    public static void shutdownAndAwaitTermination(ExecutorService executor)
     {
         executor.shutdown();
         if (!executor.isShutdown() && !executor.isTerminated())
         {
-            await(executor);
+            awaitTermination(executor);
         }
     }
 
+    /**
+     * Returns an {@link ExecutorService} with the given name and thread count
+     */
     public static ExecutorService threadPool(String name, Count threads)
     {
         var identifier = new MutableCount(1);
@@ -96,8 +116,11 @@ public class Threads
                 new Thread(runnable, "KivaKit-" + name + "-" + identifier.increment()));
     }
 
+    /**
+     * Returns a thread pool with the given name and one thread per processor
+     */
     public static ExecutorService threadPool(String name)
     {
-        return threadPool(name, JavaVirtualMachine.local().processors());
+        return threadPool(name, JavaVirtualMachine.javaVirtualMachine().processors());
     }
 }

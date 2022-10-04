@@ -18,15 +18,14 @@
 
 package com.telenav.kivakit.core.bits;
 
-import com.telenav.kivakit.annotations.code.CodeQuality;
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramBits;
 import com.telenav.kivakit.core.value.count.Countable;
-import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.STABLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.NONE;
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_STATIC_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
 
 /**
  * Utility methods for manipulating bits.
@@ -40,15 +39,14 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.NONE;
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramBits.class)
-@LexakaiJavadoc(complete = true)
-@CodeQuality(stability = STABLE,
-             testing = NONE,
-             documentation = COMPLETE)
+@ApiQuality(stability = API_STABLE_STATIC_EXTENSIBLE,
+            testing = TESTING_NONE,
+            documentation = DOCUMENTATION_COMPLETE)
 public class Bits
 {
     /**
-     * @return A long value containting the given number of one bits, starting from the least-significant bit.
-     * For example, if count is 5, the return value would be 0b11111.
+     * @return A long value containing the given number of 1 bits, starting from the least-significant bit. For
+     * example, if count is 5, the return value would be 0b11111.
      */
     public static long oneBits(Countable count)
     {

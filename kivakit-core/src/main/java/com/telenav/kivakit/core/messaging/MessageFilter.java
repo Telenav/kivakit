@@ -18,10 +18,15 @@
 
 package com.telenav.kivakit.core.messaging;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramMessaging;
 import com.telenav.kivakit.interfaces.comparison.Filter;
 import com.telenav.kivakit.interfaces.messaging.Transmittable;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
+
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_DEFAULT_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
 
 /**
  * Filters {@link Transmittable} objects down to {@link Message}s only
@@ -29,18 +34,28 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramMessaging.class)
+@ApiQuality(stability = API_STABLE_DEFAULT_EXTENSIBLE,
+            testing = TESTING_NOT_NEEDED,
+            documentation = DOCUMENTATION_COMPLETE)
 public interface MessageFilter extends Filter<Transmittable>
 {
+    @SuppressWarnings("GrazieInspection")
     @Override
     default boolean accepts(Transmittable message)
     {
+        // If the transmittable is a message,
         if (message instanceof Message)
         {
+            // then return, whether or not we accept it.
             return accepts((Message) message);
         }
+
         return false;
     }
 
+    /**
+     * Returns true if the message is accepted by this filter
+     */
     default boolean accepts(Message message)
     {
         return false;

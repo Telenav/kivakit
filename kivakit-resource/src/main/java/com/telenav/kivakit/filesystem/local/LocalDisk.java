@@ -18,12 +18,18 @@
 
 package com.telenav.kivakit.filesystem.local;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.value.count.Bytes;
 import com.telenav.kivakit.filesystem.spi.DiskService;
 import com.telenav.kivakit.resource.internal.lexakai.DiagramFileSystemService;
-import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.visibility.UmlNotPublicApi;
+import org.jetbrains.annotations.NotNull;
+
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.ApiType.PRIVATE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
 
 /**
  * Implementation of {@link DiskService} provider interface for the local filesystem.
@@ -31,13 +37,16 @@ import com.telenav.lexakai.annotations.visibility.UmlNotPublicApi;
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramFileSystemService.class)
-@LexakaiJavadoc(complete = true)
 @UmlNotPublicApi
+@ApiQuality(stability = API_STABLE_EXTENSIBLE,
+            testing = TESTING_NONE,
+            documentation = DOCUMENTATION_COMPLETE,
+            type = PRIVATE)
 public class LocalDisk implements DiskService
 {
     private final LocalFolder root;
 
-    public LocalDisk(LocalFolder folder)
+    public LocalDisk(@NotNull LocalFolder folder)
     {
         // Go up the folder hierarchy until we find a partition mount point
         var at = folder;
@@ -48,30 +57,45 @@ public class LocalDisk implements DiskService
         root = at;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Bytes free()
     {
         return Bytes.bytes(root.asJavaFile().getFreeSpace());
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public LocalFolder root()
     {
         return root;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Bytes size()
     {
         return Bytes.bytes(root.asJavaFile().getTotalSpace());
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String toString()
     {
         return root.toString();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Bytes usable()
     {

@@ -18,17 +18,22 @@
 
 package com.telenav.kivakit.network.ftp.secure;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.io.IO;
+import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.value.count.Bytes;
 import com.telenav.kivakit.network.core.NetworkLocation;
 import com.telenav.kivakit.network.ftp.internal.lexakai.DiagramSecureFtp;
-import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlAggregation;
 
 import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
 
 /**
  * <b>Not public API</b>
@@ -39,17 +44,11 @@ import java.io.InputStream;
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramSecureFtp.class)
-@LexakaiJavadoc(complete = true)
+@ApiQuality(stability = API_STABLE_EXTENSIBLE,
+            testing = TESTING_NONE,
+            documentation = DOCUMENTATION_COMPLETE)
 class SecureFtpInput extends InputStream
 {
-    protected static SecureFtpInput forConnectorAndLocation(SecureFtpConnector connector,
-                                                            NetworkLocation networkLocation)
-    {
-        InputStream in = new BufferedInputStream(connector.get(networkLocation),
-                (int) getBufferSize().asBytes());
-        return new SecureFtpInput(connector, in);
-    }
-
     /**
      * JSch does not do any buffering, so we need to do it ourselves. When the round-trip time gets around 300 ms, and
      * you're doing one round-trip for every read, it really matters that your buffer size is not just 8 KB, which is
@@ -61,6 +60,14 @@ class SecureFtpInput extends InputStream
     public static Bytes getBufferSize()
     {
         return Bytes.kilobytes(512);
+    }
+
+    protected static SecureFtpInput secureFtpInput(SecureFtpConnector connector,
+                                                   NetworkLocation networkLocation)
+    {
+        InputStream in = new BufferedInputStream(connector.get(networkLocation),
+                (int) getBufferSize().asBytes());
+        return new SecureFtpInput(connector, in);
     }
 
     @UmlAggregation(label = "connects with")
@@ -78,7 +85,7 @@ class SecureFtpInput extends InputStream
     public void close()
     {
         // Close the wrapped input stream, and disconnect.
-        IO.close(in);
+        IO.close((Listener) this, in);
         connector.safeDisconnect();
     }
 

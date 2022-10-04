@@ -18,40 +18,63 @@
 
 package com.telenav.kivakit.core.logging.filters;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.collections.list.StringList;
 import com.telenav.kivakit.core.language.Classes;
-import com.telenav.kivakit.core.messaging.Message;
 import com.telenav.kivakit.core.logging.LogEntry;
+import com.telenav.kivakit.core.messaging.Message;
 import com.telenav.kivakit.interfaces.comparison.Filter;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+
+/**
+ * A {@link LogEntry} filter based on message types
+ *
+ * @author jonathanl (shibo)
+ */
+@SuppressWarnings("unused")
+@ApiQuality(stability = API_STABLE,
+            testing = TESTING_NONE,
+            documentation = DOCUMENTATION_COMPLETE)
 public class LogEntriesOfType implements Filter<LogEntry>
 {
-    private final Class<? extends Message>[] types;
+    /** The message types to include */
+    private final Class<? extends Message>[] include;
 
-    private final List<Class<?>> includedClasses = new ArrayList<>();
+    /** Code contexts where messages should be included */
+    private final List<Class<?>> includedCodeContexts = new ArrayList<>();
 
+    /**
+     * Constructs a filter that includes only the given message types
+     */
     @SafeVarargs
-    public LogEntriesOfType(Class<? extends Message>... types)
+    public LogEntriesOfType(Class<? extends Message>... include)
     {
-        this.types = types;
+        this.include = include;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public boolean accepts(LogEntry value)
+    public boolean accepts(LogEntry entry)
     {
-        if (!includedClasses.isEmpty())
+        if (!includedCodeContexts.isEmpty())
         {
-            if (!includedClasses.contains(value.context().type()))
+            if (!includedCodeContexts.contains(entry.context().type()))
             {
                 return false;
             }
         }
-        for (var type : types)
+
+        for (var type : include)
         {
-            if (type.equals(value.message().getClass()))
+            if (type.equals(entry.message().getClass()))
             {
                 return true;
             }
@@ -59,19 +82,25 @@ public class LogEntriesOfType implements Filter<LogEntry>
         return false;
     }
 
-    public void fromClass(Class<?> within)
+    /**
+     * Includes the given class for accepting log entries by code context
+     */
+    public void includeCodeContext(Class<?> within)
     {
-        includedClasses.add(within);
+        includedCodeContexts.add(within);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String toString()
     {
         var names = new StringList();
-        for (var type : types)
+        for (var type : include)
         {
             names.add(Classes.simpleName(type));
         }
-        return "logEntriesOfType(" + names + ")";
+        return names.join();
     }
 }

@@ -18,14 +18,22 @@
 
 package com.telenav.kivakit.core.value.count;
 
-import com.telenav.kivakit.core.language.primitive.Doubles;
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramCount;
+import com.telenav.kivakit.core.language.primitive.Doubles;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.string.Strings;
+import com.telenav.kivakit.interfaces.value.DoubleValued;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
+import org.jetbrains.annotations.NotNull;
 
 import java.lang.reflect.Array;
 import java.util.regex.Pattern;
+
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+import static com.telenav.kivakit.interfaces.string.StringFormattable.Format.USER_LABEL;
 
 /**
  * Represents an immutable byte count. These static factory methods allow easy construction of value objects using
@@ -73,9 +81,18 @@ import java.util.regex.Pattern;
  * units for the given value.
  *
  * @author Jonathan Locke
+ * @see Countable
+ * @see BaseCount
+ * @see ByteSized
  */
+@SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramCount.class)
-public final class Bytes extends BaseCount<Bytes> implements ByteSized
+@ApiQuality(stability = API_STABLE_EXTENSIBLE,
+            testing = TESTING_NONE,
+            documentation = DOCUMENTATION_COMPLETE)
+public final class Bytes extends BaseCount<Bytes> implements
+        ByteSized,
+        DoubleValued
 {
     /** Pattern for string parsing. */
     private static final Pattern PATTERN = Pattern.compile("([0-9]+([.,][0-9]+)?)\\s*(|K|M|G|T)B?",
@@ -87,69 +104,112 @@ public final class Bytes extends BaseCount<Bytes> implements ByteSized
     /** Maximum bytes value */
     public static final Bytes MAXIMUM = bytes(Long.MAX_VALUE);
 
+    /**
+     * Returns the given number of bytes
+     */
     public static Bytes bytes(double bytes)
     {
         return new Bytes((long) bytes);
     }
 
+    /**
+     * Returns the given number of bytes
+     */
     public static Bytes bytes(long bytes)
     {
         return new Bytes(bytes);
     }
 
+    /**
+     * Returns the number of bytes consumed by the given array
+     */
     public static Bytes bytes(long[] array)
     {
         return new Bytes(array.length * 8L);
     }
 
+    /**
+     * Returns the number of bytes consumed by the given array
+     */
     public static Bytes bytes(int[] array)
     {
         return new Bytes(array.length * 4L);
     }
 
+    /**
+     * Returns the number of bytes consumed by the given array
+     */
     public static Bytes bytes(byte[] array)
     {
         return new Bytes(array.length);
     }
 
+    /**
+     * Returns the given count as a number of bytes
+     */
     public static Bytes bytes(Count count)
     {
         return bytes(count.get());
     }
 
+    /**
+     * Returns the number of bytes for the given number of gigabytes
+     */
     public static Bytes gigabytes(double gigabytes)
     {
         return megabytes(gigabytes * 1024.0);
     }
 
+    /**
+     * Returns the number of bytes for the given number of gigabytes
+     */
     public static Bytes gigabytes(long gigabytes)
     {
         return megabytes(gigabytes * 1024);
     }
 
+    /**
+     * Returns the number of bytes for the given number of kilobytes
+     */
     public static Bytes kilobytes(double kilobytes)
     {
         return bytes(kilobytes * 1024.0);
     }
 
+    /**
+     * Returns the number of bytes for the given number of kilobytes
+     */
     public static Bytes kilobytes(long kilobytes)
     {
         return bytes(kilobytes * 1024);
     }
 
+    /**
+     * Returns the number of bytes for the given number of megabytes
+     */
     public static Bytes megabytes(double megabytes)
     {
         return kilobytes(megabytes * 1024.0);
     }
 
+    /**
+     * Returns the number of bytes for the given number of megabytes
+     */
     public static Bytes megabytes(long megabytes)
     {
         return kilobytes(megabytes * 1024);
     }
 
-    public static Bytes parseBytes(Listener listener, String value)
+    /**
+     * Parses the given text into a number of bytes.  For example, "6 kb" or "1.5M", etc.
+     *
+     * @param listener The listener to notify of any problems
+     * @param text The text to parse
+     * @return The number of bytes
+     */
+    public static Bytes parseBytes(Listener listener, String text)
     {
-        var matcher = PATTERN.matcher(value);
+        var matcher = PATTERN.matcher(text);
 
         // Valid input?
         if (matcher.matches())
@@ -182,13 +242,13 @@ public final class Bytes extends BaseCount<Bytes> implements ByteSized
             }
             else
             {
-                listener.problem("Unrecognized units: ${debug}", value);
+                listener.problem("Unrecognized units: ${debug}", text);
                 return null;
             }
         }
         else
         {
-            listener.problem("Unable to parse: ${debug}", value);
+            listener.problem("Unable to parse: ${debug}", text);
             return null;
         }
     }
@@ -241,26 +301,17 @@ public final class Bytes extends BaseCount<Bytes> implements ByteSized
         return null;
     }
 
-    public static void reverse(byte[] array)
-    {
-        reverse(array, 0, array.length);
-    }
-
-    public static void reverse(byte[] array, int fromIndex, int toIndex)
-    {
-        for (int i = fromIndex, j = toIndex - 1; i < j; i++, j--)
-        {
-            byte temporary = array[i];
-            array[i] = array[j];
-            array[j] = temporary;
-        }
-    }
-
+    /**
+     * Returns the number of bytes for the given number of terabytes
+     */
     public static Bytes terabytes(double terabytes)
     {
         return gigabytes(terabytes * 1024.0);
     }
 
+    /**
+     * Returns the number of bytes for the given number of terabytes
+     */
     public static Bytes terabytes(long terabytes)
     {
         return gigabytes(terabytes * 1024);
@@ -320,6 +371,41 @@ public final class Bytes extends BaseCount<Bytes> implements ByteSized
         return asKilobytes() / 1024.0;
     }
 
+    @Override
+    public String asString(@NotNull Format format)
+    {
+        switch (format)
+        {
+            case USER_LABEL:
+            case USER_SINGLE_LINE:
+            case USER_MULTILINE:
+            case TO_STRING:
+            case TEXT:
+            case HTML:
+            case DEBUG:
+                if (asGigabytes() >= 1000)
+                {
+                    return unitString(asTerabytes(), "T");
+                }
+                if (asMegabytes() >= 1000)
+                {
+                    return unitString(asGigabytes(), "G");
+                }
+                if (asKilobytes() >= 1000)
+                {
+                    return unitString(asMegabytes(), "M");
+                }
+                if (asBytes() >= 1000)
+                {
+                    return unitString(asKilobytes(), "K");
+                }
+                return asBytes() + " bytes";
+
+            default:
+                return super.asString(format);
+        }
+    }
+
     /**
      * Gets the byte count in terabytes.
      *
@@ -330,12 +416,27 @@ public final class Bytes extends BaseCount<Bytes> implements ByteSized
         return asGigabytes() / 1024.0;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public Bytes newInstance(long count)
+    public double doubleValue()
+    {
+        return asBytes();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Bytes onNewInstance(long count)
     {
         return bytes(count);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Bytes sizeInBytes()
     {
@@ -350,23 +451,7 @@ public final class Bytes extends BaseCount<Bytes> implements ByteSized
     @Override
     public String toString()
     {
-        if (asGigabytes() >= 1000)
-        {
-            return unitString(asTerabytes(), "T");
-        }
-        if (asMegabytes() >= 1000)
-        {
-            return unitString(asGigabytes(), "G");
-        }
-        if (asKilobytes() >= 1000)
-        {
-            return unitString(asMegabytes(), "M");
-        }
-        if (asBytes() >= 1000)
-        {
-            return unitString(asKilobytes(), "K");
-        }
-        return asBytes() + " bytes";
+        return asString(USER_LABEL);
     }
 
     /**

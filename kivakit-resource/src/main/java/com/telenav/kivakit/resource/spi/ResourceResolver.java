@@ -18,19 +18,25 @@
 
 package com.telenav.kivakit.resource.spi;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.messaging.repeaters.RepeaterMixin;
 import com.telenav.kivakit.resource.Resource;
 import com.telenav.kivakit.resource.ResourceFolderIdentifier;
 import com.telenav.kivakit.resource.ResourceIdentifier;
 import com.telenav.kivakit.resource.internal.lexakai.DiagramResourceService;
-import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
+import org.jetbrains.annotations.NotNull;
+
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE;
+import static com.telenav.kivakit.annotations.code.ApiType.SERVICE_PROVIDER_INTERFACE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
 
 /**
- * Service provider interface that resolves resource identifiers to resources. If the resolver returns true from {@link
- * #accepts(ResourceIdentifier)}, then the resource identifier can be resolved to a {@link Resource} by {@link
- * #resolve(ResourceIdentifier)}. Resource resolution permits a very broad abstraction to be used when denoting
+ * Service provider interface that resolves resource identifiers to resources. If the resolver returns true from
+ * {@link #accepts(ResourceIdentifier)}, then the resource identifier can be resolved to a {@link Resource} by
+ * {@link #resolve(ResourceIdentifier)}. Resource resolution permits a very broad abstraction to be used when denoting
  * resources with strings. In particular, it is possible to accept an arbitrary string, like a command line switch, and
  * convert this value into a {@link Resource} that can subsequently be read.
  *
@@ -38,17 +44,20 @@ import com.telenav.lexakai.annotations.associations.UmlRelation;
  */
 @UmlClassDiagram(diagram = DiagramResourceService.class)
 @UmlRelation(label = "parses", referent = ResourceFolderIdentifier.class)
-@LexakaiJavadoc(complete = true)
+@ApiQuality(stability = API_STABLE,
+            testing = TESTING_NOT_NEEDED,
+            documentation = DOCUMENTATION_COMPLETE,
+            type = SERVICE_PROVIDER_INTERFACE)
 public interface ResourceResolver extends RepeaterMixin
 {
     /**
-     * @return True if this resource factory understands the given resource identifier
+     * Returns true if this resource factory understands the given resource identifier
      */
-    boolean accepts(ResourceIdentifier identifier);
+    boolean accepts(@NotNull ResourceIdentifier identifier);
 
     /**
-     * @return A new resource for the given resource identifier
+     * Returns a new resource for the given resource identifier
      */
     @UmlRelation(label = "creates")
-    Resource resolve(ResourceIdentifier identifier);
+    Resource resolve(@NotNull ResourceIdentifier identifier);
 }

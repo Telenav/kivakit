@@ -18,41 +18,59 @@
 
 package com.telenav.kivakit.collections.watcher;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.collections.internal.lexakai.DiagramWatcher;
+import com.telenav.kivakit.core.collections.list.ObjectList;
 import com.telenav.kivakit.core.messaging.repeaters.BaseRepeater;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
-import java.util.ArrayList;
-import java.util.List;
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
 
 /**
- * A base implementation of {@link CollectionChangeWatcher}. Change listeners can be added and removed with {@link
- * #addListener(CollectionChangeListener)} and {@link #removeListener(CollectionChangeListener)}. A thread can then wait
- * for a change with {@link #waitForChange()}. Subclasses receive notification of changes with {@link #onAdded(Object)},
- * {@link #onModified(Object)} and {@link #onRemoved(Object)}.
+ * A base implementation of {@link CollectionChangeWatcher}. Change listeners can be added and removed with
+ * {@link #addListener(CollectionChangeListener)} and {@link #removeListener(CollectionChangeListener)}. A thread can
+ * then wait for a change with {@link #waitForChange()}. Subclasses receive notification of changes with
+ * {@link #onAdded(Object)}, {@link #onModified(Object)} and {@link #onRemoved(Object)}.
  *
  * @author jonathanl (shibo)
  * @see CollectionChangeWatcher
  */
+@SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramWatcher.class)
+@ApiQuality(stability = API_STABLE_EXTENSIBLE,
+            testing = TESTING_NONE,
+            documentation = DOCUMENTATION_COMPLETE)
 public abstract class BaseCollectionChangeWatcher<T> extends BaseRepeater implements CollectionChangeWatcher<T>
 {
-    private final List<CollectionChangeListener<T>> listeners = new ArrayList<>();
+    /** The list of listeners to notify if this collection changes */
+    private final ObjectList<CollectionChangeListener<T>> listeners = new ObjectList<>();
 
+    /** True if this collection has changed */
     private boolean changed;
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void addListener(CollectionChangeListener<T> listener)
     {
         listeners.add(listener);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void removeListener(CollectionChangeListener<T> listener)
     {
         listeners.remove(listener);
     }
 
+    /**
+     * Waits for a change to occur
+     */
     public synchronized void waitForChange()
     {
         trace("Waiting for a change");
@@ -71,6 +89,9 @@ public abstract class BaseCollectionChangeWatcher<T> extends BaseRepeater implem
         changed = false;
     }
 
+    /**
+     * Called when a change has occurred to the watched collection
+     */
     protected synchronized void changed()
     {
         trace("Notifying listeners of a change");

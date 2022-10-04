@@ -18,14 +18,17 @@
 
 package com.telenav.kivakit.core.path;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.KivaKit;
 import com.telenav.kivakit.core.collections.list.StringList;
-import com.telenav.kivakit.core.language.reflection.property.KivaKitIncludeProperty;
 import com.telenav.kivakit.core.internal.lexakai.DiagramPath;
+import com.telenav.kivakit.core.language.reflection.property.KivaKitIncludeProperty;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.string.Strings;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
+import org.jetbrains.annotations.NotNull;
 
+import java.io.File;
 import java.net.URI;
 import java.util.HashMap;
 import java.util.List;
@@ -33,6 +36,9 @@ import java.util.Map;
 import java.util.function.Function;
 import java.util.regex.Pattern;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_INSUFFICIENT;
 import static com.telenav.kivakit.core.project.Project.resolveProject;
 
 /**
@@ -44,13 +50,13 @@ import static com.telenav.kivakit.core.project.Project.resolveProject;
  *
  * <ul>
  *     <li>{@link #asContraction(int)} - This path as a contracted string of the given maximum length </li>
- *     <li>{@link #asString()} - This path as a string</li>
  *     <li>{@link #asJavaPath()} - This path as a {@link java.nio.file.Path}</li>
- *     <li>{@link #separator()} - The separator string for this path, by default this is a forward slash</li>
+ *     <li>{@link #asString()} - This path as a string</li>
+ *     <li>{@link #endsWith(String)} - True if this path ends with the given suffix when joined</li>
  *     <li>{@link #join()} - This path joined by the path {@link #separator()}</li>
  *     <li>{@link #join(String)} - This path joined with the given separator</li>
+ *     <li>{@link #separator()} - The separator string for this path, by default this is a forward slash</li>
  *     <li>{@link #startsWith(String)} - True if this path starts with the given prefix when joined</li>
- *     <li>{@link #endsWith(String)} - True if this path ends with the given suffix when joined</li>
  *     <li>{@link #withSeparator(String)} - This path with the given separator string</li>
  * </ul>
  *
@@ -70,8 +76,13 @@ import static com.telenav.kivakit.core.project.Project.resolveProject;
  * </ul>
  *
  * @author jonathanl (shibo)
+ * @see Path
  */
+@SuppressWarnings({ "SpellCheckingInspection", "SwitchStatementWithTooFewBranches" })
 @UmlClassDiagram(diagram = DiagramPath.class)
+@ApiQuality(stability = API_STABLE_EXTENSIBLE,
+            testing = TESTING_INSUFFICIENT,
+            documentation = DOCUMENTATION_COMPLETE)
 public class StringPath extends Path<String>
 {
     private static final Map<String, Pattern> patterns = new HashMap<>();
@@ -82,6 +93,7 @@ public class StringPath extends Path<String>
      * @param separatorPattern The Java regular expression used to split path elements
      * @return A string path for the given string, root pattern and separator pattern
      */
+    @SuppressWarnings("unused")
     public static StringPath parseStringPath(Listener listener,
                                              String path,
                                              String rootPattern,
@@ -168,23 +180,26 @@ public class StringPath extends Path<String>
     /** By default, paths are separated by slashes */
     private String separator = "/";
 
-    protected StringPath(List<String> elements)
+    protected StringPath(@NotNull List<String> elements)
     {
         this(null, elements);
     }
 
-    protected StringPath(String root, List<String> elements)
+    protected StringPath(String root, @NotNull List<String> elements)
     {
         super(root, substituteSystemVariables(elements));
     }
 
-    protected StringPath(StringPath path)
+    protected StringPath(@NotNull StringPath path)
     {
         this(path.rootElement(), path.elements());
         separator = path.separator;
     }
 
     /**
+     * Returns this path with middle elements removed to ensure the path is shorter than the given maximum length
+     *
+     * @param maximumLength The maximum length of the contracted path in characters
      * @return A contraction of this path as a string. Middle elements are removed until the length is less than the
      * given maximum length.
      */
@@ -230,13 +245,29 @@ public class StringPath extends Path<String>
     }
 
     /**
-     * @return This path as a String
+     * Returns this path as a String
      */
     @Override
     @KivaKitIncludeProperty
     public String asString()
     {
         return join();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public String asString(@NotNull Format format)
+    {
+        switch (format)
+        {
+            case FILESYSTEM:
+                return join(File.separator);
+
+            default:
+                return join();
+        }
     }
 
     /**
@@ -266,7 +297,7 @@ public class StringPath extends Path<String>
     }
 
     /**
-     * @return This path joined by the given separator
+     * Returns this path joined by the given separator
      */
     public final String join(String separator)
     {
@@ -277,7 +308,7 @@ public class StringPath extends Path<String>
     }
 
     /**
-     * @return This path joined by the path {@link #separator()}
+     * Returns this path joined by the path {@link #separator()}
      */
     public String join()
     {
@@ -312,7 +343,7 @@ public class StringPath extends Path<String>
     }
 
     /**
-     * @return The separator to use when converting the path to string representation
+     * Returns the path separator to use when converting to string representation
      */
     public String separator()
     {
@@ -337,7 +368,7 @@ public class StringPath extends Path<String>
     }
 
     /**
-     * @return This path joined by the path {@link #separator()}
+     * Returns this path joined by the path {@link #separator()}
      */
     @Override
     public String toString()
@@ -400,7 +431,7 @@ public class StringPath extends Path<String>
     }
 
     /**
-     * @return This string path with the given separator
+     * Returns this string path with the given separator
      */
     public StringPath withSeparator(String separator)
     {
@@ -494,10 +525,7 @@ public class StringPath extends Path<String>
 
     private static List<String> substituteSystemVariables(List<String> elements)
     {
-        for (int i = 0; i < elements.size(); i++)
-        {
-            elements.set(i, resolveProject(KivaKit.class).properties().expand(elements.get(i)));
-        }
+        elements.replaceAll(text -> resolveProject(KivaKit.class).properties().expand(text));
         return elements;
     }
 }

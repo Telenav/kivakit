@@ -18,27 +18,42 @@
 
 package com.telenav.kivakit.conversion.core.language.object;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.conversion.internal.lexakai.DiagramConversionLanguage;
-import com.telenav.kivakit.core.ensure.Ensure;
 import com.telenav.kivakit.core.language.reflection.Type;
 import com.telenav.kivakit.core.language.reflection.property.PropertyFilter;
-import com.telenav.kivakit.core.language.reflection.property.PropertyValues;
+import com.telenav.kivakit.core.language.reflection.property.PropertyValue;
+import com.telenav.kivakit.core.messaging.repeaters.BaseRepeater;
 import com.telenav.kivakit.interfaces.value.Source;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
+
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
 
 /**
  * Populates object properties given a property filter and a source of property values.
  *
  * @author jonathanl (shibo)
  */
+@SuppressWarnings("SpellCheckingInspection")
 @UmlClassDiagram(diagram = DiagramConversionLanguage.class)
-public class ObjectPopulator
+@ApiQuality(stability = API_STABLE,
+            testing = TESTING_NONE,
+            documentation = DOCUMENTATION_COMPLETE)
+public class ObjectPopulator extends BaseRepeater
 {
-    private final Source<PropertyValues> source;
+    /** The property value source */
+    private final Source<PropertyValue> source;
 
+    /** The property filter */
     private final PropertyFilter filter;
 
-    public ObjectPopulator(PropertyFilter filter, Source<PropertyValues> source)
+    /**
+     * @param filter The property filter to select which properties to populate
+     * @param source The source of property values
+     */
+    public ObjectPopulator(PropertyFilter filter, Source<PropertyValue> source)
     {
         this.filter = filter;
         this.source = source;
@@ -53,10 +68,10 @@ public class ObjectPopulator
     public <T> T populate(T object)
     {
         // Go through each property on the object,
-        for (var property : Type.of(object).properties(filter))
+        for (var property : Type.type(object).properties(filter))
         {
             // get any value for the given property,
-            var value = source.get().valueFor(property);
+            var value = source.get().propertyValue(property);
 
             // and if the value is non-null,
             if (value != null)
@@ -68,14 +83,14 @@ public class ObjectPopulator
                 if (error != null)
                 {
                     // notify any listeners.
-                    Ensure.warning(error.toString());
+                    warning(error.toString());
                 }
             }
             else
             {
                 if (!property.isOptional())
                 {
-                    Ensure.warning("No value found for property: " + property.name());
+                    warning("No value found for property: " + property.name());
                 }
             }
         }

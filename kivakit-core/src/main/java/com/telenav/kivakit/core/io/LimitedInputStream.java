@@ -18,24 +18,38 @@
 
 package com.telenav.kivakit.core.io;
 
-import com.telenav.kivakit.core.value.count.Bytes;
 import com.telenav.kivakit.core.internal.lexakai.DiagramIo;
+import com.telenav.kivakit.core.messaging.Listener;
+import com.telenav.kivakit.core.value.count.Bytes;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.io.IOException;
 import java.io.InputStream;
 
+/**
+ * An input stream that limits reading to a given number of bytes. This can be useful in defending against certain kinds
+ * of attacks.
+ *
+ * @author jonathanl (shibo)
+ */
 @UmlClassDiagram(diagram = DiagramIo.class)
 public class LimitedInputStream extends InputStream
 {
+    /** Listener to report any errors to */
+    private final Listener listener;
+
+    /** The underlying input */
     private InputStream in;
 
+    /** The maximum number of bytes to read */
     private final Bytes limit;
 
+    /** The number of bytes that have been read */
     private long read;
 
-    public LimitedInputStream(InputStream in, Bytes limit)
+    public LimitedInputStream(Listener listener, InputStream in, Bytes limit)
     {
+        this.listener = listener;
         this.in = in;
         this.limit = limit;
     }
@@ -43,7 +57,7 @@ public class LimitedInputStream extends InputStream
     @Override
     public void close()
     {
-        IO.close(in);
+        IO.close(listener, in);
         in = null;
     }
 

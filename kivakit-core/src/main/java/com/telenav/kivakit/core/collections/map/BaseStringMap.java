@@ -18,10 +18,11 @@
 
 package com.telenav.kivakit.core.collections.map;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.collections.list.StringList;
+import com.telenav.kivakit.core.internal.lexakai.DiagramCollections;
 import com.telenav.kivakit.core.language.primitive.Booleans;
 import com.telenav.kivakit.core.language.trait.TryTrait;
-import com.telenav.kivakit.core.internal.lexakai.DiagramCollections;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.messaging.messages.status.Problem;
 import com.telenav.kivakit.core.messaging.repeaters.RepeaterMixin;
@@ -45,6 +46,10 @@ import java.util.Map;
 import java.util.function.BiFunction;
 import java.util.function.Function;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_INSUFFICIENT;
+
 /**
  * A bounded map from string to value. Because KivaKit string maps support type conversion convenience methods, they
  * implement {@link RepeaterMixin} and broadcast {@link Problem}s when conversions fail.
@@ -53,83 +58,111 @@ import java.util.function.Function;
  */
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramCollections.class)
+@ApiQuality(stability = API_STABLE_EXTENSIBLE,
+            testing = TESTING_INSUFFICIENT,
+            documentation = DOCUMENTATION_COMPLETE)
 public abstract class BaseStringMap<Value> extends BaseMap<String, Value> implements
         RepeaterMixin,
         TryTrait
 {
+    /**
+     * Constructs a map with the given maximum size
+     */
     protected BaseStringMap(Maximum maximumSize)
     {
         super(maximumSize);
     }
 
-    protected BaseStringMap(Maximum maximumSize, Map<String, Value> map)
+    /**
+     * Constructs a map with the given maximum size and initial values
+     */
+    protected BaseStringMap(Maximum maximumSize, Map<String, Value> that)
     {
-        super(maximumSize, map);
+        super(maximumSize, that);
     }
 
-    public boolean asBoolean(String key)
+    /**
+     * Retrieves the value for the given key as a boolean. If the conversion from String to object fails, a problem is
+     * transmitted.
+     *
+     * @return The boolean value for the given key, or the default value if there is no value for the key
+     */
+    public Boolean asBoolean(String key, boolean defaultValue)
     {
-        return Booleans.isTrue((String) get(key));
+        var value = asBoolean(key);
+        return value != null ? value : defaultValue;
     }
 
-    public boolean asBoolean(String key, boolean defaultValue)
-    {
-        var value = get(key);
-        return value == null
-                ? defaultValue
-                : Booleans.isTrue((String) value);
-    }
-
-    public Boolean asBooleanObject(String key)
+    /**
+     * Retrieves the value for the given key as a {@link Boolean}. If the conversion from String to object fails, a
+     * problem is transmitted.
+     *
+     * @return The {@link Boolean} value for the given key, or null if there is no value for the key
+     */
+    public Boolean asBoolean(String key)
     {
         return convert(key, Booleans::isTrue, Boolean.class);
     }
 
+    /**
+     * Retrieves the value for the given key as a {@link Bytes} object. If the conversion from String to object fails, a
+     * problem is transmitted.
+     *
+     * @return The {@link Bytes} value for the given key, or null if there is no value for the key
+     */
     public Bytes asBytes(String key)
     {
         return convert(this, key, Bytes::parseBytes, Bytes.class);
     }
 
+    /**
+     * Retrieves the value for the given key as a {@link Count} object. If the conversion from String to object fails, a
+     * problem is transmitted.
+     *
+     * @return The {@link Count} value for the given key, or null if there is no value for the key
+     */
     public Count asCount(String key)
     {
         return convert(this, key, Count::parseCount, Count.class);
     }
 
     /**
-     * @return The value of the given key as a double, or an exception is thrown if the value is invalid or missing
+     * @return The value of the given key as a double. If the conversion from String to object fails, a problem is
+     * transmitted.
      */
-    public double asDouble(String key)
-    {
-        return Double.parseDouble(key);
-    }
-
-    /**
-     * Returns the value of the given key as a {@link Double} object, or broadcasts a {@link Problem} and returns null
-     * if the value is invalid or missing
-     */
-    public Double asDoubleObject(String key)
+    public Double asDouble(String key)
     {
         return convert(key, Double::parseDouble, Double.class);
     }
 
+    /**
+     * Retrieves the value for the given key as an {@link Estimate} object. If the conversion from String to object
+     * fails, a problem is transmitted.
+     *
+     * @return The {@link Estimate} value for the given key, or null if there is no value for the key
+     */
     public Estimate asEstimate(String key)
     {
         return convert(this, key, Estimate::parseEstimate, Estimate.class);
     }
 
+    /**
+     * Retrieves the value for the given key as an {@link Identifier} object. If the conversion from String to object
+     * fails, a problem is transmitted.
+     *
+     * @return The {@link Estimate} value for the given key, or null if there is no value for the key
+     */
     public Identifier asIdentifier(String key)
     {
         return convert(key, value -> new Identifier(Long.parseLong(value)), Identifier.class);
     }
 
     /**
-     * @return The value of the given key as an integer, or an exception is thrown if the value is invalid or missing
+     * Retrieves the value for the given key as an {@link IntegerIdentifier} object. If the conversion from String to
+     * object fails, a problem is transmitted.
+     *
+     * @return The {@link IntegerIdentifier} value for the given key, or null if there is no value for the key
      */
-    public int asInt(String key)
-    {
-        return Integer.parseInt(asString(key));
-    }
-
     public IntegerIdentifier asIntegerIdentifier(String key)
     {
         return convert(key, value -> new IntegerIdentifier(Integer.parseInt(value)), IntegerIdentifier.class);
@@ -145,42 +178,48 @@ public abstract class BaseStringMap<Value> extends BaseMap<String, Value> implem
     }
 
     /**
-     * @return The value of the given key as a long, or an exception is thrown if the value is invalid or missing
-     */
-    public long asLong(String key)
-    {
-        return Long.parseLong(asString(key));
-    }
-
-    /**
      * Returns the value of the given key as a {@link Long} object, or broadcasts a {@link Problem} and returns null if
      * the value is invalid or missing
      */
-    public Long asLongObject(String key)
+    public Long asLong(String key)
     {
         return convert(key, Long::parseLong, Long.class);
     }
 
+    /**
+     * Returns the value of the given key as a {@link Maximum} object, or broadcasts a {@link Problem} and returns null
+     * if the value is invalid or missing
+     */
     public Maximum asMaximum(String key)
     {
         return convert(this, key, Maximum::parseMaximum, Maximum.class);
     }
 
+    /**
+     * Returns the value of the given key as a {@link Minimum} object, or broadcasts a {@link Problem} and returns null
+     * if the value is invalid or missing
+     */
     public Minimum asMinimum(String key)
     {
         return convert(this, key, Minimum::parseMinimum, Minimum.class);
     }
 
     /**
+     * Returns the value of the given key as a {@link String} path, with no trailing slash, or broadcasts a
+     * {@link Problem} and returns null if the value is invalid or missing
+     *
      * @return The given key as a path with no trailing slash
      */
-    public String asPath(String key)
+    public String asPathString(String key)
     {
         var value = asString(key);
         return value == null ? null : Strip.trailing(value, "/");
     }
 
     /**
+     * Returns the value of the given key as a {@link Percent} object, or broadcasts a {@link Problem} and returns null
+     * if the value is invalid or missing
+     *
      * @return The given value as a {@link Percent}
      */
     public Percent asPercent(String key)
@@ -188,17 +227,28 @@ public abstract class BaseStringMap<Value> extends BaseMap<String, Value> implem
         return convert(this, key, Percent::parsePercent, Percent.class);
     }
 
+    /**
+     * Returns the value of the given key as string
+     */
     public String asString(String key)
     {
         return (String) super.get(key);
     }
 
+    /**
+     * Returns the value of the given key as a {@link StringIdentifier} object, or broadcasts a {@link Problem} and
+     * returns null if the value is invalid or missing
+     */
     public StringIdentifier asStringIdentifier(String key)
     {
         var value = get(key).toString();
         return new StringIdentifier(value);
     }
 
+    /**
+     * Returns the value of the given key as a sorted {@link StringList} object, or broadcasts a {@link Problem} and
+     * returns null if the value is invalid or missing
+     */
     public StringList asStringList()
     {
         var entries = new StringList();
@@ -212,6 +262,9 @@ public abstract class BaseStringMap<Value> extends BaseMap<String, Value> implem
     }
 
     /**
+     * Returns the value of the given key as a {@link URI} object, or broadcasts a {@link Problem} and returns null if
+     * the value is invalid or missing
+     *
      * @return The given value as a {@link URI}
      */
     public URI asUri(String key)
@@ -220,6 +273,9 @@ public abstract class BaseStringMap<Value> extends BaseMap<String, Value> implem
     }
 
     /**
+     * Returns the value of the given key as a {@link Version} object, or broadcasts a {@link Problem} and returns null
+     * if the value is invalid or missing
+     *
      * @return The given value as a {@link Version}
      */
     public Version asVersion(String key)
@@ -228,20 +284,10 @@ public abstract class BaseStringMap<Value> extends BaseMap<String, Value> implem
     }
 
     /**
-     * @return The keys and values of this map separated by the given separator
+     * Converts the value of the given key using the given function to the given type, or broadcasts a {@link Problem}
+     * and returns null if the value is invalid or missing
      */
-    public String join(String separator)
-    {
-        return asStringList().join(separator);
-    }
-
-    @Override
-    public String toString()
-    {
-        return join("\n");
-    }
-
-    private <T> T convert(String key, Function<String, T> converter, Class<T> type)
+    public <T> T convert(String key, Function<String, T> converter, Class<T> type)
     {
         if (key != null)
         {
@@ -263,7 +309,11 @@ public abstract class BaseStringMap<Value> extends BaseMap<String, Value> implem
         return null;
     }
 
-    private <T> T convert(Listener listener, String key, BiFunction<Listener, String, T> converter, Class<T> type)
+    /**
+     * Converts the value of the given key using the given function to the given type, or broadcasts a {@link Problem}
+     * and returns null if the value is invalid or missing
+     */
+    public <T> T convert(Listener listener, String key, BiFunction<Listener, String, T> converter, Class<T> type)
     {
         if (key != null)
         {
@@ -283,5 +333,22 @@ public abstract class BaseStringMap<Value> extends BaseMap<String, Value> implem
             problem("Null key");
         }
         return null;
+    }
+
+    /**
+     * @return The keys and values of this map separated by the given separator
+     */
+    public String join(String separator)
+    {
+        return asStringList().join(separator);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public String toString()
+    {
+        return join("\n");
     }
 }

@@ -18,13 +18,13 @@
 
 package com.telenav.kivakit.core.thread;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramThread;
 import com.telenav.kivakit.core.thread.locks.Lock;
 import com.telenav.kivakit.core.time.Duration;
 import com.telenav.kivakit.core.time.Time;
 import com.telenav.kivakit.interfaces.code.Code;
 import com.telenav.kivakit.interfaces.time.WakeState;
-import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.ArrayList;
@@ -33,6 +33,9 @@ import java.util.List;
 import java.util.concurrent.locks.Condition;
 import java.util.function.Predicate;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
 import static com.telenav.kivakit.core.time.Duration.seconds;
 import static com.telenav.kivakit.interfaces.time.WakeState.COMPLETED;
 import static com.telenav.kivakit.interfaces.time.WakeState.INTERRUPTED;
@@ -40,8 +43,8 @@ import static com.telenav.kivakit.interfaces.time.WakeState.TERMINATED;
 import static com.telenav.kivakit.interfaces.time.WakeState.TIMED_OUT;
 
 /**
- * Allows a thread to wait for a particular state or for predicate to be satisfied by some other thread calling {@link
- * #signal(Object)}.
+ * Allows a thread to wait for a particular state or for predicate to be satisfied by some other thread calling
+ * {@link #signal(Object)}.
  *
  * <p>
  * A thread waiting for a particular value calls one of:
@@ -64,26 +67,27 @@ import static com.telenav.kivakit.interfaces.time.WakeState.TIMED_OUT;
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramThread.class)
-@LexakaiJavadoc(complete = true)
+@ApiQuality(stability = API_STABLE_EXTENSIBLE,
+            testing = TESTING_NONE,
+            documentation = DOCUMENTATION_COMPLETE)
 public final class StateWatcher<State>
 {
     /**
      * A thread that is waiting for its predicate to be satisfied
      */
-    @LexakaiJavadoc(complete = true)
-    private class Waiter
+        private class Waiter
     {
-        private Waiter(Predicate<State> predicate, Condition condition)
-        {
-            this.predicate = predicate;
-            this.condition = condition;
-        }
-
         /** The predicate that must be satisfied */
         final Predicate<State> predicate;
 
         /** The condition variable to wait on and signal */
         final Condition condition;
+
+        private Waiter(Predicate<State> predicate, Condition condition)
+        {
+            this.predicate = predicate;
+            this.condition = condition;
+        }
     }
 
     /** The most recently reported state */

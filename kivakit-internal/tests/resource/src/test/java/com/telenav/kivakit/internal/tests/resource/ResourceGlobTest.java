@@ -1,5 +1,6 @@
 package com.telenav.kivakit.internal.tests.resource;
 
+import com.telenav.kivakit.core.os.Console;
 import com.telenav.kivakit.core.vm.JavaTrait;
 import com.telenav.kivakit.resource.packages.PackageTrait;
 import com.telenav.kivakit.testing.UnitTest;
@@ -19,10 +20,10 @@ public class ResourceGlobTest extends UnitTest implements PackageTrait, JavaTrai
     @Test
     public void test()
     {
-        var here = thisPackage();
+        var here = packageForThis();
         for (var at : here.resources(TXT::matches))
         {
-            println("at = $", at);
+            Console.println("at = $", at);
         }
     }
 }

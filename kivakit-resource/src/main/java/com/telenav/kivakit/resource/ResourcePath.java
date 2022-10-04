@@ -18,11 +18,10 @@
 
 package com.telenav.kivakit.resource;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.commandline.SwitchParser;
 import com.telenav.kivakit.conversion.BaseStringConverter;
 import com.telenav.kivakit.core.collections.list.StringList;
-import com.telenav.kivakit.core.logging.Logger;
-import com.telenav.kivakit.core.logging.LoggerFactory;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.path.Path;
 import com.telenav.kivakit.core.path.StringPath;
@@ -31,12 +30,17 @@ import com.telenav.kivakit.filesystem.File;
 import com.telenav.kivakit.filesystem.FilePath;
 import com.telenav.kivakit.resource.internal.lexakai.DiagramResource;
 import com.telenav.kivakit.resource.internal.lexakai.DiagramResourcePath;
-import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
+import org.jetbrains.annotations.NotNull;
 
 import java.net.URI;
 import java.util.List;
 import java.util.function.Function;
+
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+import static com.telenav.kivakit.core.messaging.Listener.consoleListener;
 
 /**
  * A path to a resource of any kind. By default, the separator character for a resource is forward slash. But in the
@@ -71,16 +75,18 @@ import java.util.function.Function;
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramResource.class)
 @UmlClassDiagram(diagram = DiagramResourcePath.class)
+@ApiQuality(stability = API_STABLE_EXTENSIBLE,
+            documentation = DOCUMENTATION_COMPLETE,
+            testing = TESTING_NONE)
 public class ResourcePath extends StringPath implements
         UriIdentified,
         ResourcePathed
 {
-    private static final Logger LOGGER = LoggerFactory.newLogger();
-
     /**
      * @return A resource path for the given string
      */
-    public static ResourcePath parseResourcePath(Listener listener, String path)
+    public static ResourcePath parseResourcePath(@NotNull Listener listener,
+                                                 @NotNull String path)
     {
         return FilePath.parseFilePath(listener, path);
     }
@@ -88,7 +94,8 @@ public class ResourcePath extends StringPath implements
     /**
      * @return A UNIX-style resource path for the given string
      */
-    public static ResourcePath parseUnixResourcePath(Listener listener, String path)
+    public static ResourcePath parseUnixResourcePath(@NotNull Listener listener,
+                                                     @NotNull String path)
     {
         String root = null;
         if (path.startsWith("/"))
@@ -102,16 +109,16 @@ public class ResourcePath extends StringPath implements
     /**
      * @return A resource path for the given string path
      */
-    public static ResourcePath resourcePath(StringPath path)
+    public static ResourcePath resourcePath(@NotNull StringPath path)
     {
         return new ResourcePath(new StringList(), path.rootElement(), path.elements());
     }
 
-    public static SwitchParser.Builder<ResourcePath> resourcePathSwitchParser(Listener listener,
-                                                                              String name,
-                                                                              String description)
+    public static SwitchParser.Builder<ResourcePath> resourcePathSwitchParser(@NotNull Listener listener,
+                                                                              @NotNull String name,
+                                                                              @NotNull String description)
     {
-        return SwitchParser.builder(ResourcePath.class)
+        return SwitchParser.switchParserBuilder(ResourcePath.class)
                 .name(name)
                 .converter(new ResourcePath.Converter(listener))
                 .description(description);
@@ -122,10 +129,12 @@ public class ResourcePath extends StringPath implements
      *
      * @author jonathanl (shibo)
      */
-    @LexakaiJavadoc(complete = true)
+    @ApiQuality(stability = API_STABLE_EXTENSIBLE,
+                testing = TESTING_NONE,
+                documentation = DOCUMENTATION_COMPLETE)
     public static class Converter extends BaseStringConverter<ResourcePath>
     {
-        public Converter(Listener listener)
+        public Converter(@NotNull Listener listener)
         {
             super(listener);
         }
@@ -145,7 +154,7 @@ public class ResourcePath extends StringPath implements
      * @param root The root element
      * @param elements The path elements
      */
-    protected ResourcePath(StringList schemes, String root, List<String> elements)
+    protected ResourcePath(StringList schemes, String root, @NotNull List<String> elements)
     {
         super(root, elements);
 
@@ -162,42 +171,49 @@ public class ResourcePath extends StringPath implements
     /**
      * Copy constructor
      */
-    protected ResourcePath(ResourcePath that)
+    protected ResourcePath(@NotNull ResourcePath that)
     {
         super(that);
         schemes = that.schemes.copy();
     }
 
-    protected ResourcePath(StringList schemes, List<String> elements)
+    protected ResourcePath(@NotNull StringList schemes, @NotNull List<String> elements)
     {
         super(elements);
         this.schemes = schemes.copy();
     }
 
-    public ResourcePath absolute()
+    public ResourcePath asAbsolute()
     {
         return this;
     }
 
     /**
-     * @return This resource path as a file
+     * Returns this resource path as a file
      */
     public File asFile()
     {
-        return File.parseFile(LOGGER, asString());
+        return File.parseFile(consoleListener(), asString());
     }
 
     /**
-     * @return This resource path as a file path
+     * Returns this resource path as a file path
      */
     public FilePath asFilePath()
     {
-        return FilePath.parseFilePath(LOGGER, asString());
+        return FilePath.parseFilePath(consoleListener(), asString());
+    }
+
+    @Override
+    public java.io.File asJavaFile()
+    {
+        return new java.io.File(asString());
     }
 
     /**
      * @return The file extension of this resource path's filename
      */
+    @Override
     public Extension extension()
     {
         return fileName().extension();
@@ -206,10 +222,11 @@ public class ResourcePath extends StringPath implements
     /**
      * @return The file name of this resource path
      */
+    @Override
     public FileName fileName()
     {
         var last = last();
-        return last == null ? null : FileName.parseFileName(LOGGER, last);
+        return last == null ? null : FileName.parseFileName(consoleListener(), last);
     }
 
     /**
@@ -253,7 +270,7 @@ public class ResourcePath extends StringPath implements
     }
 
     /**
-     * @return This path without characters that are unacceptable in a resource path
+     * Returns this path without characters that are unacceptable in a resource path
      */
     public ResourcePath normalized()
     {
@@ -279,13 +296,7 @@ public class ResourcePath extends StringPath implements
         return asFilePath();
     }
 
-    @Override
-    public java.io.File asJavaFile()
-    {
-        return new java.io.File(asString());
-    }
-
-    public ResourcePath relativeTo(ResourcePath path)
+    public ResourcePath relativeTo(@NotNull ResourcePath path)
     {
         if (startsWith(path))
         {
@@ -315,6 +326,7 @@ public class ResourcePath extends StringPath implements
     /**
      * {@inheritDoc}
      */
+    @SuppressWarnings("SpellCheckingInspection")
     @Override
     public ResourcePath subpath(int start, int end)
     {
@@ -325,7 +337,7 @@ public class ResourcePath extends StringPath implements
      * {@inheritDoc}
      */
     @Override
-    public ResourcePath transformed(Function<String, String> consumer)
+    public ResourcePath transformed(@NotNull Function<String, String> consumer)
     {
         return (ResourcePath) super.transformed(consumer);
     }
@@ -343,7 +355,7 @@ public class ResourcePath extends StringPath implements
      * {@inheritDoc}
      */
     @Override
-    public ResourcePath withChild(Path<String> that)
+    public ResourcePath withChild(@NotNull Path<String> that)
     {
         return (ResourcePath) super.withChild(that);
     }
@@ -352,15 +364,15 @@ public class ResourcePath extends StringPath implements
      * {@inheritDoc}
      */
     @Override
-    public ResourcePath withChild(String element)
+    public ResourcePath withChild(@NotNull String element)
     {
         return (ResourcePath) super.withChild(element);
     }
 
     /**
-     * @return This resource path with the given extension
+     * Returns this resource path with the given extension
      */
-    public FilePath withExtension(Extension extension)
+    public FilePath withExtension(@NotNull Extension extension)
     {
         return (FilePath) withoutLast().withChild(last() + extension);
     }
@@ -369,7 +381,7 @@ public class ResourcePath extends StringPath implements
      * {@inheritDoc}
      */
     @Override
-    public ResourcePath withParent(String element)
+    public ResourcePath withParent(@NotNull String element)
     {
         return (ResourcePath) super.withParent(element);
     }
@@ -378,7 +390,7 @@ public class ResourcePath extends StringPath implements
      * {@inheritDoc}
      */
     @Override
-    public ResourcePath withParent(Path<String> that)
+    public ResourcePath withParent(@NotNull Path<String> that)
     {
         return (ResourcePath) super.withParent(that);
     }
@@ -387,12 +399,12 @@ public class ResourcePath extends StringPath implements
      * {@inheritDoc}
      */
     @Override
-    public ResourcePath withRoot(String root)
+    public ResourcePath withRoot(@NotNull String root)
     {
         return (ResourcePath) super.withRoot(root);
     }
 
-    public ResourcePath withSchemes(StringList schemes)
+    public ResourcePath withSchemes(@NotNull StringList schemes)
     {
         var copy = (ResourcePath) copy();
         copy.schemes = schemes.copy();
@@ -403,7 +415,7 @@ public class ResourcePath extends StringPath implements
      * {@inheritDoc}
      */
     @Override
-    public ResourcePath withSeparator(String separator)
+    public ResourcePath withSeparator(@NotNull String separator)
     {
         return (ResourcePath) super.withSeparator(separator);
     }
@@ -430,7 +442,7 @@ public class ResourcePath extends StringPath implements
      * {@inheritDoc}
      */
     @Override
-    public ResourcePath withoutOptionalPrefix(Path<String> prefix)
+    public ResourcePath withoutOptionalPrefix(@NotNull Path<String> prefix)
     {
         return (ResourcePath) super.withoutOptionalPrefix(prefix);
     }
@@ -439,7 +451,7 @@ public class ResourcePath extends StringPath implements
      * {@inheritDoc}
      */
     @Override
-    public ResourcePath withoutOptionalSuffix(Path<String> suffix)
+    public ResourcePath withoutOptionalSuffix(@NotNull Path<String> suffix)
     {
         return (ResourcePath) super.withoutOptionalSuffix(suffix);
     }
@@ -448,7 +460,7 @@ public class ResourcePath extends StringPath implements
      * {@inheritDoc}
      */
     @Override
-    public ResourcePath withoutPrefix(Path<String> prefix)
+    public ResourcePath withoutPrefix(@NotNull Path<String> prefix)
     {
         return (ResourcePath) super.withoutPrefix(prefix);
     }
@@ -463,7 +475,7 @@ public class ResourcePath extends StringPath implements
     }
 
     /**
-     * @return This filepath without any scheme
+     * Returns this filepath without any scheme
      */
     public ResourcePath withoutSchemes()
     {
@@ -476,7 +488,7 @@ public class ResourcePath extends StringPath implements
      * {@inheritDoc}
      */
     @Override
-    public ResourcePath withoutSuffix(Path<String> suffix)
+    public ResourcePath withoutSuffix(@NotNull Path<String> suffix)
     {
         return (ResourcePath) super.withoutSuffix(suffix);
     }
@@ -485,7 +497,8 @@ public class ResourcePath extends StringPath implements
      * {@inheritDoc}
      */
     @Override
-    protected ResourcePath onCopy(String root, List<String> elements)
+    protected ResourcePath onCopy(String root,
+                                  @NotNull List<String> elements)
     {
         return new ResourcePath(schemes(), root, elements);
     }

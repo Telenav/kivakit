@@ -18,18 +18,19 @@
 
 package com.telenav.kivakit.internal.testing;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.ensure.Ensure;
+import com.telenav.kivakit.core.ensure.EnsureTrait;
 import com.telenav.kivakit.core.ensure.Failure;
+import com.telenav.kivakit.core.function.ResultTrait;
 import com.telenav.kivakit.core.language.primitive.Booleans;
 import com.telenav.kivakit.core.language.trait.LanguageTrait;
 import com.telenav.kivakit.core.logging.Logger;
 import com.telenav.kivakit.core.logging.LoggerFactory;
 import com.telenav.kivakit.core.messaging.Broadcaster;
-import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.messaging.Message;
 import com.telenav.kivakit.core.messaging.Repeater;
 import com.telenav.kivakit.core.messaging.repeaters.RepeaterMixin;
-import com.telenav.kivakit.core.os.ConsoleWriter;
 import com.telenav.kivakit.core.os.OperatingSystem;
 import com.telenav.kivakit.core.project.Project;
 import com.telenav.kivakit.core.project.ProjectTrait;
@@ -52,6 +53,11 @@ import java.util.Collection;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.API_UNSTABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
+import static com.telenav.kivakit.core.messaging.Listener.nullListener;
+import static com.telenav.kivakit.core.os.Console.console;
 import static com.telenav.kivakit.core.project.Project.resolveProject;
 
 /**
@@ -155,17 +161,24 @@ import static com.telenav.kivakit.core.project.Project.resolveProject;
 @UmlClassDiagram(diagram = DiagramTest.class)
 @UmlRelation(label = "uses", referent = RandomValueFactory.class)
 @UmlRelation(label = "reports validation failures with", referent = JUnitFailureReporter.class)
+@ApiQuality(stability = API_UNSTABLE,
+            testing = TESTING_NOT_NEEDED,
+            documentation = DOCUMENTATION_COMPLETE)
 public abstract class CoreUnitTest extends TestWatcher implements
         RepeaterMixin,
+        ResultTrait,
         JavaTrait,
         ProjectTrait,
+        EnsureTrait,
         RegistryTrait,
         LanguageTrait,
         Repeater,
         NamedObject
 {
+    /** True if this is a quick test */
     private static boolean quickTest;
 
+    /** Logger for test output */
     private static final Logger LOGGER = LoggerFactory.newLogger();
 
     @BeforeClass
@@ -176,14 +189,13 @@ public abstract class CoreUnitTest extends TestWatcher implements
         Failure.reporterFactory(messageType -> new JUnitFailureReporter());
     }
 
-
+    /** Watches for unit test failures and reports the random value factory seed value so failed tests can be reproduced */
     @Rule
     public UnitTestWatcher watcher = new UnitTestWatcher(this);
 
-    private final ConsoleWriter console = new ConsoleWriter();
-
     private final ThreadLocal<RandomValueFactory> randomValueFactory = ThreadLocal.withInitial(this::newRandomValueFactory);
 
+    /** An index variable for use by subclasses */
     protected int index;
 
     protected CoreUnitTest()
@@ -194,11 +206,11 @@ public abstract class CoreUnitTest extends TestWatcher implements
     @Override
     public void onMessage(Message message)
     {
-        console.receive(message);
+        console().receive(message);
     }
 
     @Override
-    public <T> T register(final T object)
+    public <T> T register(T object)
     {
         return RegistryTrait.super.register(object);
     }
@@ -218,190 +230,57 @@ public abstract class CoreUnitTest extends TestWatcher implements
         return Count.count(value);
     }
 
-    protected <T> T ensure(Supplier<Boolean> valid, String message, Object... arguments)
-    {
-        return ensure(valid.get(), message, arguments);
-    }
-
-    protected <T> T ensure(boolean condition, Throwable e, String message, Object... arguments)
-    {
-        return Ensure.ensure(condition, e, message, arguments);
-    }
-
-    protected boolean ensure(boolean condition)
-    {
-        return Ensure.ensure(condition);
-    }
-
-    protected <T> T ensure(boolean condition, String message, Object... arguments)
-    {
-        return Ensure.ensure(condition, message, arguments);
-    }
-
-    protected double ensureBetween(double actual, double low, double high)
-    {
-        return Ensure.ensureBetween(actual, low, high);
-    }
-
-    protected long ensureBetweenExclusive(long value, long minimum, long maximum)
-    {
-        return Ensure.ensureBetweenExclusive(value, minimum, maximum);
-    }
-
-    protected long ensureBetweenExclusive(long value, long minimum, long maximum, String message, Object... arguments)
-    {
-        return Ensure.ensureBetweenExclusive(value, minimum, maximum, message, arguments);
-    }
-
-    protected long ensureBetweenInclusive(long value, long minimum, long maximum, String message, Object... arguments)
-    {
-        return Ensure.ensureBetweenInclusive(value, minimum, maximum, message, arguments);
-    }
-
-    protected long ensureBetweenInclusive(long value, long minimum, long maximum)
-    {
-        return Ensure.ensureBetweenInclusive(value, minimum, maximum);
-    }
-
-    protected <T extends Broadcaster> void ensureBroadcastsNoProblem(T broadcaster, Consumer<T> code)
-    {
-        Ensure.ensureBroadcastsNoProblem(broadcaster, code);
-    }
-
-    protected <T extends Broadcaster> void ensureBroadcastsProblem(T broadcaster, Consumer<T> code)
-    {
-        Ensure.ensureBroadcastsProblem(broadcaster, code);
-    }
-
-    protected void ensureClose(Number expected, Number actual, int numberOfDecimalsToMatch)
-    {
-        Ensure.ensureClose(expected, actual, numberOfDecimalsToMatch);
-    }
-
-    @SuppressWarnings("UnusedReturnValue")
-    protected boolean ensureClose(Duration given, Duration expected)
-    {
-        return given.isApproximately(expected, Duration.seconds(0.5));
-    }
-
-    protected <T> void ensureEqual(T given, T expected)
-    {
-        Ensure.ensureEqual(given, expected);
-    }
-
-    protected <T> void ensureEqual(T given, T expected, String message, Object... arguments)
-    {
-        Ensure.ensureEqual(given, expected, message, arguments);
-    }
-
-    protected void ensureEqualArray(byte[] a, byte[] b)
-    {
-        Ensure.ensureEqualArray(a, b);
-    }
-
-    protected <T> void ensureEqualArray(T[] a, T[] b)
-    {
-        Ensure.ensureEqualArray(a, b);
-    }
-
-    protected boolean ensureFalse(boolean condition)
-    {
-        return Ensure.ensureFalse(condition);
-    }
-
-    protected void ensureFalse(boolean condition, String message, Object... arguments)
-    {
-        Ensure.ensureFalse(condition, message, arguments);
-    }
-
-    protected void ensureNonZero(Number value)
-    {
-        Ensure.ensureNonZero(value);
-    }
-
-    protected <T> T ensureNotEqual(T given, T expected)
-    {
-        return Ensure.ensureNotEqual(given, expected);
-    }
-
-    protected <T> T ensureNotEqual(T given, T expected, String message, Object... objects)
-    {
-        return Ensure.ensureNotEqual(given, expected, message, objects);
-    }
-
-    protected <T> T ensureNotNull(T object, String message, Object... objects)
-    {
-        return Ensure.ensureNotNull(object, message, objects);
-    }
-
-    protected <T> T ensureNotNull(T object)
-    {
-        return Ensure.ensureNotNull(object);
-    }
-
-    protected <T> T ensureNull(T object, String message, Object... arguments)
-    {
-        return Ensure.ensureNull(object, message, arguments);
-    }
-
-    protected <T> T ensureNull(T object)
-    {
-        return Ensure.ensureNull(object);
-    }
-
-    protected void ensureThrows(Runnable code)
-    {
-        Ensure.ensureThrows(code);
-    }
-
-    protected void ensureWithin(double expected, double actual, double maximumDifference)
-    {
-        Ensure.ensureWithin(expected, actual, maximumDifference);
-    }
-
-    protected void ensureZero(Number value)
-    {
-        Ensure.ensureZero(value);
-    }
-
-    protected void fail(String message, Object... arguments)
-    {
-        Ensure.fail(message, arguments);
-    }
-
+    /**
+     * Initialized the given project
+     */
     protected <T extends Project> void initializeProject(Class<T> project)
     {
-        Listener.emptyListener().listenTo(resolveProject(project)).initialize();
+        nullListener().listenTo(resolveProject(project)).initialize();
     }
 
+    /**
+     * Returns true if this is running on a mac
+     */
     protected boolean isMac()
     {
-        return OperatingSystem.get().isMac();
+        return OperatingSystem.operatingSystem().isMac();
     }
 
+    /**
+     * Returns true if this is a quick test
+     */
     protected boolean isQuickTest()
     {
         return quickTest;
     }
 
+    /**
+     * Returns true if this is a randomized test
+     */
     protected boolean isRandomTest()
     {
         return randomValueFactory.get() != null;
     }
 
+    /**
+     * Returns true if this is running on UNIX (other than MacOS)
+     */
+    protected boolean isUnix()
+    {
+        return OperatingSystem.operatingSystem().isUnix();
+    }
+
+    /**
+     * Returns true if this is running on Windows
+     */
     protected boolean isWindows()
     {
-        return OperatingSystem.get().isWindows();
+        return OperatingSystem.operatingSystem().isWindows();
     }
 
-    protected Count iterations()
+    protected Maximum maximum(long maximum)
     {
-        return random().iterations();
-    }
-
-    protected Maximum maximum(long minimum)
-    {
-        return Maximum.maximum(minimum);
+        return Maximum.maximum(maximum);
     }
 
     protected Minimum minimum(long minimum)
@@ -414,8 +293,19 @@ public abstract class CoreUnitTest extends TestWatcher implements
         return new RandomValueFactory();
     }
 
+    /**
+     * Gets a random value factory (or subclass)
+     */
     protected RandomValueFactory random()
     {
         return randomValueFactory.get();
+    }
+
+    /**
+     * Returns a random number of iterations
+     */
+    protected Count randomIterations()
+    {
+        return random().iterations();
     }
 }

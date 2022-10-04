@@ -18,10 +18,10 @@
 
 package com.telenav.kivakit.core.messaging;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramBroadcaster;
 import com.telenav.kivakit.core.internal.lexakai.DiagramListener;
 import com.telenav.kivakit.core.internal.lexakai.DiagramLogging;
-import com.telenav.kivakit.core.messaging.context.CodeContext;
 import com.telenav.kivakit.core.messaging.messages.lifecycle.OperationHalted;
 import com.telenav.kivakit.core.messaging.messages.status.Announcement;
 import com.telenav.kivakit.core.messaging.messages.status.FatalProblem;
@@ -33,7 +33,6 @@ import com.telenav.kivakit.core.messaging.messages.status.Quibble;
 import com.telenav.kivakit.core.messaging.messages.status.Trace;
 import com.telenav.kivakit.core.messaging.messages.status.Warning;
 import com.telenav.kivakit.core.messaging.repeaters.BaseRepeater;
-import com.telenav.kivakit.core.time.Frequency;
 import com.telenav.kivakit.interfaces.messaging.Receiver;
 import com.telenav.kivakit.interfaces.messaging.Transmittable;
 import com.telenav.kivakit.interfaces.messaging.Transmitter;
@@ -41,15 +40,18 @@ import com.telenav.kivakit.interfaces.naming.NamedObject;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.UmlNote;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
-import com.telenav.lexakai.annotations.visibility.UmlExcludeMember;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeSuperTypes;
+
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
 
 /**
  * Functionality that is common to {@link Broadcaster}s, {@link Listener}s, {@link Repeater}s and potentially other
  * classes that are involved in handling messages. The {@link #isTransmitting()} method returns true if transmitting is
  * enabled. The {@link #isReceiving()} method returns true if receiving is enabled. When enabled, the
- * {@link #receive(Transmittable)} method calls {@link #onReceive(Transmittable)} (Transmittable)} to allow the subclass
- * to handle the message.
+ * {@link #receive(Transmittable)} method calls {@link #onReceive(Transmittable)} to allow the subclass to handle the
+ * message.
  *
  * <p><b>Convenience Methods</b></p>
  * <p>
@@ -68,15 +70,6 @@ import com.telenav.lexakai.annotations.visibility.UmlExcludeSuperTypes;
  *     <li>halted*() - The sends a formatted {@link OperationHalted} message to this {@link Transceiver}</li>
  * </ul>
  *
- * <p><b>Debugging</b></p>
- * <p>
- * A {@link Transceiver} provides access to a {@link Debug} object which has the class context (also {@link
- * CodeContext}) provided by the method {@link #debugClassContext()}.
- * <p>
- * The {@link #isDebugOn()} provides convenient access to {@link Debug#isDebugOn()} and the {@link #ifDebug(Runnable)}
- * executes the given code if debugging is on. Several convenience methods also provide tracing which originates {@link
- * Trace} messages only if debugging is on.
- * </p>
  * <p>
  * Because {@link Broadcaster}s, {@link Listener}s and {@link Repeater}s are debug transceivers, they inherit all the
  * methods in this class. This means that a subclass of {@link BaseRepeater} can simply call a trace() or glitch()
@@ -108,272 +101,21 @@ import com.telenav.lexakai.annotations.visibility.UmlExcludeSuperTypes;
  * @see Problem
  * @see OperationHalted
  */
-@SuppressWarnings({ "unused", "UnusedReturnValue" }) @UmlClassDiagram(diagram = DiagramLogging.class)
+@SuppressWarnings({ "unused", "UnusedReturnValue", "SpellCheckingInspection" })
+@UmlClassDiagram(diagram = DiagramLogging.class)
 @UmlClassDiagram(diagram = DiagramBroadcaster.class)
 @UmlClassDiagram(diagram = DiagramListener.class)
 @UmlRelation(label = "delegates to", referent = Debug.class)
 @UmlExcludeSuperTypes({ NamedObject.class })
 @UmlNote(text = "Functionality common to transmitters and receivers")
+@ApiQuality(stability = API_STABLE,
+            testing = TESTING_NOT_NEEDED,
+            documentation = DOCUMENTATION_COMPLETE)
 public interface Transceiver extends
         NamedObject,
         Receiver,
         Transmitter
 {
-    /**
-     * Sends a formatted {@link Announcement} message to this {@link Transceiver}
-     *
-     * @param text The message to format
-     * @param arguments The arguments
-     * @return The message
-     */
-    default Announcement announce(String text, Object... arguments)
-    {
-        return receive(new Announcement(text, arguments));
-    }
-
-    /**
-     * @return Debug object for this
-     */
-    default Debug debug()
-    {
-        return Debug.of(debugClassContext(), this);
-    }
-
-    /**
-     * @return The class where this transceiver is
-     */
-    @UmlExcludeMember
-    default Class<?> debugClassContext()
-    {
-        return getClass();
-    }
-
-    /**
-     * <b>Not public API</b>
-     *
-     * @return The context of this broadcaster in code
-     */
-    @UmlExcludeMember
-    default CodeContext debugCodeContext()
-    {
-        return new CodeContext(debugClassContext());
-    }
-
-    /**
-     * <b>Not public API</b>
-     *
-     * @param context The context in code
-     */
-    @UmlExcludeMember
-    default void debugCodeContext(CodeContext context)
-    {
-    }
-
-    /**
-     * Throws a formatted {@link FatalProblem} message as an {@link IllegalStateException}
-     *
-     * @param text The message to format
-     * @param arguments The arguments
-     * @return The message
-     */
-    default <T> T fatal(String text, Object... arguments)
-    {
-        var problem = new FatalProblem(text, arguments);
-        receive(problem);
-        problem.throwAsIllegalStateException();
-        return null;
-    }
-
-    /**
-     * Throws a formatted {@link FatalProblem} message as an {@link IllegalStateException}
-     *
-     * @param cause The cause of the fatal problem
-     * @param text The message to format
-     * @param arguments The arguments
-     * @param <T> The type of message
-     * @return The message
-     */
-    default <T> T fatal(Throwable cause, String text, Object... arguments)
-    {
-        var problem = new FatalProblem(cause, text, arguments);
-        receive(problem);
-        problem.throwAsIllegalStateException();
-        return null;
-    }
-
-    /**
-     * Sends a formatted {@link Glitch} message to this {@link Transceiver}
-     *
-     * @param maximumFrequency The maximum frequency at which this message should be appear
-     * @param text The message to format
-     * @param arguments The arguments
-     * @return The message
-     */
-    default Glitch glitch(Frequency maximumFrequency, String text, Object... arguments)
-    {
-        return (Glitch) receive(new Glitch(text, arguments).maximumFrequency(maximumFrequency));
-    }
-
-    /**
-     * Sends a formatted {@link Glitch} message to this {@link Transceiver}
-     *
-     * @param maximumFrequency The maximum frequency at which this message should be logged
-     * @param cause The cause of the fatal problem
-     * @param text The message to format
-     * @param arguments The arguments
-     * @return The message
-     */
-    default Glitch glitch(Frequency maximumFrequency, Throwable cause, String text,
-                          Object... arguments)
-    {
-        return (Glitch) receive(new Glitch(cause, text, arguments).maximumFrequency(maximumFrequency));
-    }
-
-    /**
-     * Sends a formatted {@link Glitch} message to this {@link Transceiver}
-     *
-     * @param text The message to format
-     * @param arguments The arguments
-     * @return The message
-     */
-    default Glitch glitch(String text, Object... arguments)
-    {
-        return receive(new Glitch(text, arguments));
-    }
-
-    /**
-     * Sends a formatted {@link Glitch} message to this {@link Transceiver}
-     *
-     * @param cause The cause of the fatal problem
-     * @param text The message to format
-     * @param arguments The arguments
-     * @return The message
-     */
-    default Glitch glitch(Throwable cause, String text, Object... arguments)
-    {
-        if (isDebugOn())
-        {
-            return receive(new Glitch(cause, text, arguments));
-        }
-        return null;
-    }
-
-    /**
-     * Sends a formatted {@link OperationHalted} message to this {@link Transceiver}
-     *
-     * @param text The message to format
-     * @param arguments The arguments
-     * @return The message
-     */
-    default OperationHalted halted(String text, Object... arguments)
-    {
-        return receive(new OperationHalted(text, arguments));
-    }
-
-    /**
-     * Sends a formatted {@link OperationHalted} message to this {@link Transceiver}
-     *
-     * @param cause The cause of the fatal problem
-     * @param text The message to format
-     * @param arguments The arguments
-     * @return The message
-     */
-    default OperationHalted halted(Throwable cause, String text, Object... arguments)
-    {
-        return receive(new OperationHalted(cause, text, arguments));
-    }
-
-    /**
-     * Runs the given code if debug is turned on for this {@link Transceiver}
-     *
-     * @param code The code to run if debug is off
-     */
-    default void ifDebug(Runnable code)
-    {
-        if (isDebugOn())
-        {
-            code.run();
-        }
-    }
-
-    /**
-     * Throws an {@link IllegalArgumentException} with the given formatted message
-     *
-     * @param text The message to format
-     * @param arguments The arguments
-     * @param <T> The type of message
-     * @return Return value is null because the compiler cannot determine that an exception is thrown
-     */
-    default <T> T illegalArgument(String text, Object... arguments)
-    {
-        var problem = new Problem(text, arguments);
-        receive(problem);
-        problem.throwAsIllegalArgumentException();
-        return null;
-    }
-
-    /**
-     * Throws an {@link IllegalStateException} with the given formatted message
-     *
-     * @param <T> The type of message
-     * @return Return value is null because the compiler cannot determine that an exception is thrown
-     */
-    default <T> T illegalState(String message, Object... arguments)
-    {
-        var problem = new Problem(message, arguments);
-        receive(problem);
-        problem.throwAsIllegalStateException();
-        return null;
-    }
-
-    /**
-     * Throws an {@link IllegalStateException} with the given exception and formatted message
-     *
-     * @param cause The cause of the fatal problem
-     * @param text The message to format
-     * @param arguments The arguments
-     * @return Return value is null because the compiler cannot determine that an exception is thrown
-     */
-    default <T> T illegalState(Throwable cause, String text, Object... arguments)
-    {
-        var problem = new Problem(cause, text, arguments);
-        receive(problem);
-        problem.throwAsIllegalStateException();
-        return null;
-    }
-
-    /**
-     * Sends a formatted {@link Information} message to this {@link Transceiver}
-     *
-     * @param text The message to format
-     * @param arguments The arguments
-     * @return The message
-     */
-    default Information information(String text, Object... arguments)
-    {
-        return receive(new Information(text, arguments));
-    }
-
-    /**
-     * @return True if debugging is on for this {@link Transceiver}
-     */
-    default boolean isDebugOn()
-    {
-        return debug().isDebugOn();
-    }
-
-    /**
-     * Sends a formatted {@link Narration} message to this {@link Transceiver}
-     *
-     * @param text The message to format
-     * @param arguments The arguments
-     * @return The message
-     */
-    default Narration narrate(String text, Object... arguments)
-    {
-        return receive(new Narration(text, arguments));
-    }
-
     /**
      * {@inheritDoc}
      */
@@ -382,250 +124,9 @@ public interface Transceiver extends
     {
     }
 
-    /**
-     * Sends a formatted {@link Problem} message to this {@link Transceiver}
-     *
-     * @return The message
-     */
-    default Problem problem(String text, Object... arguments)
+    @Override
+    default void onTransmit(Transmittable message)
     {
-        return receive(new Problem(text, arguments));
-    }
-
-    /**
-     * Sends a formatted {@link Problem} message to this {@link Transceiver}
-     *
-     * @param maximumFrequency The maximum frequency at which this message should be logged
-     * @param text The message to format
-     * @param arguments The arguments
-     * @return The message
-     */
-    default Problem problem(Frequency maximumFrequency, String text, Object... arguments)
-    {
-        return (Problem) receive(new Problem(text, arguments).maximumFrequency(maximumFrequency));
-    }
-
-    /**
-     * Sends a formatted {@link Problem} message to this {@link Transceiver}
-     *
-     * @param maximumFrequency The maximum frequency at which this message should be logged
-     * @param cause The cause of the fatal problem
-     * @param text The message to format
-     * @param arguments The arguments
-     * @return The message
-     */
-    default Problem problem(Frequency maximumFrequency, Throwable cause, String text,
-                            Object... arguments)
-    {
-        return (Problem) receive(new Problem(cause, text, arguments).maximumFrequency(maximumFrequency));
-    }
-
-    /**
-     * Sends a formatted {@link Problem} message to this {@link Transceiver}
-     *
-     * @param cause The cause of the fatal problem
-     * @param text The message to format
-     * @param arguments The arguments
-     * @return The message
-     */
-    default Problem problem(Throwable cause, String text, Object... arguments)
-    {
-        return receive(new Problem(cause, text, arguments));
-    }
-
-    /**
-     * Broadcasts a problem if the given value is null
-     *
-     * @param value The value to check
-     * @param text The message to format
-     * @param arguments The arguments
-     * @return The value
-     */
-    default <T> T problemIfNull(T value, String text, Object... arguments)
-    {
-        if (value == null)
-        {
-            problem(text, arguments);
-        }
-        return value;
-    }
-
-    /**
-     * Sends a formatted {@link Quibble} message to this {@link Transceiver}
-     *
-     * @param maximumFrequency The maximum frequency at which this message should be logged
-     * @param text The message to format
-     * @param arguments The arguments
-     * @return The message
-     */
-    default Quibble quibble(Frequency maximumFrequency, String text, Object... arguments)
-    {
-        return (Quibble) receive(new Quibble(text, arguments).maximumFrequency(maximumFrequency));
-    }
-
-    /**
-     * Sends a formatted {@link Quibble} message to this {@link Transceiver}
-     *
-     * @param maximumFrequency The maximum frequency at which this message should be logged
-     * @param cause The cause of the fatal problem
-     * @param text The message to format
-     * @param arguments The arguments
-     * @return The message
-     */
-    default Quibble quibble(Frequency maximumFrequency, Throwable cause, String text,
-                            Object... arguments)
-    {
-        return (Quibble) receive(new Quibble(cause, text, arguments).maximumFrequency(maximumFrequency));
-    }
-
-    /**
-     * Sends a formatted {@link Quibble} message to this {@link Transceiver}
-     *
-     * @param text The message to format
-     * @param arguments The arguments
-     * @return The message
-     */
-    default Quibble quibble(String text, Object... arguments)
-    {
-        return receive(new Quibble(text, arguments));
-    }
-
-    /**
-     * Sends a formatted {@link Quibble} message to this {@link Transceiver}
-     *
-     * @param cause The cause of the fatal problem
-     * @param text The message to format
-     * @param arguments The arguments
-     * @return The message
-     */
-    default Quibble quibble(Throwable cause, String text, Object... arguments)
-    {
-        if (isDebugOn())
-        {
-            return receive(new Quibble(cause, text, arguments));
-        }
-        return null;
-    }
-
-    /**
-     * Sends a formatted {@link Trace} message to this {@link Transceiver}
-     *
-     * @param text The message to format
-     * @param arguments The arguments
-     * @return The message
-     */
-    default Trace trace(String text, Object... arguments)
-    {
-        if (isDebugOn())
-        {
-            return receive(new Trace(text, arguments));
-        }
-        return null;
-    }
-
-    /**
-     * Sends a formatted {@link Trace} message to this {@link Transceiver}
-     *
-     * @param cause The cause of the fatal problem
-     * @param text The message to format
-     * @param arguments The arguments
-     * @return The message
-     */
-    default Trace trace(Throwable cause, String text, Object... arguments)
-    {
-        if (isDebugOn())
-        {
-            return receive(new Trace(cause, text, arguments));
-        }
-        return null;
-    }
-
-    /**
-     * Sends a formatted {@link Trace} message to this {@link Transceiver}
-     *
-     * @param maximumFrequency The maximum frequency at which this message should be logged
-     * @param text The message to format
-     * @param arguments The arguments
-     * @return The message
-     */
-    default Trace trace(Frequency maximumFrequency, String text, Object... arguments)
-    {
-        if (isDebugOn())
-        {
-            return (Trace) receive(new Trace(text, arguments).maximumFrequency(maximumFrequency));
-        }
-        return null;
-    }
-
-    /**
-     * Sends a formatted {@link Trace} message to this {@link Transceiver}
-     *
-     * @param maximumFrequency The maximum frequency at which this message should be logged
-     * @param cause The cause of the fatal problem
-     * @param text The message to format
-     * @param arguments The arguments
-     * @return The message
-     */
-    default Trace trace(Frequency maximumFrequency, Throwable cause, String text,
-                        Object... arguments)
-    {
-        if (isDebugOn())
-        {
-            return (Trace) receive(new Trace(cause, text, arguments).maximumFrequency(maximumFrequency));
-        }
-        return null;
-    }
-
-    /**
-     * Sends a formatted {@link Warning} message to this {@link Transceiver}
-     *
-     * @param maximumFrequency The maximum frequency at which this message should be logged
-     * @param text The message to format
-     * @param arguments The arguments
-     * @return The message
-     */
-    default Warning warning(Frequency maximumFrequency, String text, Object... arguments)
-    {
-        return (Warning) receive(new Warning(text, arguments).maximumFrequency(maximumFrequency));
-    }
-
-    /**
-     * Sends a formatted {@link Warning} message to this {@link Transceiver}
-     *
-     * @param maximumFrequency The maximum frequency at which this message should be logged
-     * @param cause The cause of the fatal problem
-     * @param text The message to format
-     * @param arguments The arguments
-     * @return The message
-     */
-    default Warning warning(Frequency maximumFrequency, Throwable cause, String text,
-                            Object... arguments)
-    {
-        return (Warning) receive(new Warning(cause, text, arguments).maximumFrequency(maximumFrequency));
-    }
-
-    /**
-     * Sends a formatted {@link Warning} message to this {@link Transceiver}
-     *
-     * @param text The message to format
-     * @param arguments The arguments
-     * @return The message
-     */
-    default Warning warning(String text, Object... arguments)
-    {
-        return receive(new Warning(text, arguments));
-    }
-
-    /**
-     * Sends a formatted {@link Warning} message to this {@link Transceiver}
-     *
-     * @param cause The cause of the fatal problem
-     * @param text The message to format
-     * @param arguments The arguments
-     * @return The message
-     */
-    default Warning warning(Throwable cause, String text, Object... arguments)
-    {
-        return receive(new Warning(cause, text, arguments));
+        receive(message);
     }
 }

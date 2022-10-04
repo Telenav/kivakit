@@ -18,19 +18,27 @@
 
 package com.telenav.kivakit.core.language.reflection.filters.method;
 
-import com.telenav.kivakit.core.language.reflection.property.PropertyNamingConvention;
-import com.telenav.kivakit.core.language.Hash;
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramReflection;
+import com.telenav.kivakit.core.language.Hash;
+import com.telenav.kivakit.core.language.reflection.Method;
+import com.telenav.kivakit.core.language.reflection.property.PropertyNamingConvention;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
-import java.lang.reflect.Method;
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
 
 /**
  * This filter matches a field with a particular name
  */
 @UmlClassDiagram(diagram = DiagramReflection.class)
+@ApiQuality(stability = API_STABLE,
+            testing = TESTING_NOT_NEEDED,
+            documentation = DOCUMENTATION_COMPLETE)
 public class NamedMethod extends AllMethods
 {
+    /** The method name */
     private final String name;
 
     public NamedMethod(PropertyNamingConvention convention, String name)
@@ -39,6 +47,9 @@ public class NamedMethod extends AllMethods
         this.name = name;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean equals(Object object)
     {
@@ -50,15 +61,22 @@ public class NamedMethod extends AllMethods
         return false;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public int hashCode()
     {
-        return Hash.many(name);
+        return Hash.hashMany(name);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean includeAsGetter(Method method)
     {
-        return super.includeAsGetter(method) && method.getName().equals(name);
+        // Include getter if the name matches
+        return super.includeAsGetter(method) && method.name().equals(name);
     }
 }

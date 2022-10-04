@@ -18,9 +18,10 @@
 
 package com.telenav.kivakit.core.value.identifier;
 
-import com.telenav.kivakit.core.language.reflection.property.KivaKitIncludeProperty;
 import com.telenav.kivakit.core.internal.lexakai.DiagramIdentifier;
+import com.telenav.kivakit.core.language.reflection.property.KivaKitIncludeProperty;
 import com.telenav.kivakit.interfaces.model.Identifiable;
+import com.telenav.kivakit.interfaces.value.LongValued;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
@@ -30,26 +31,29 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramIdentifier.class)
-@LexakaiJavadoc(complete = true)
-public class IntegerIdentifier implements Comparable<IntegerIdentifier>, Identifiable
+public class IntegerIdentifier implements
+        Comparable<IntegerIdentifier>,
+        LongValued,
+        Identifiable
 {
+    private int identifier;
 
-    private int value;
-
-    public IntegerIdentifier(int value)
+    public IntegerIdentifier(int identifier)
     {
-        this.value = value;
+        this.identifier = identifier;
     }
 
     protected IntegerIdentifier()
     {
     }
 
+    @Override
     public int asInt()
     {
-        return value;
+        return identifier;
     }
 
+    @Override
     public long asLong()
     {
         return asInt();
@@ -58,7 +62,7 @@ public class IntegerIdentifier implements Comparable<IntegerIdentifier>, Identif
     @Override
     public int compareTo(IntegerIdentifier that)
     {
-        return Integer.compare(value, that.value);
+        return Integer.compare(identifier, that.identifier);
     }
 
     @Override
@@ -67,7 +71,7 @@ public class IntegerIdentifier implements Comparable<IntegerIdentifier>, Identif
         if (object instanceof IntegerIdentifier)
         {
             var that = (IntegerIdentifier) object;
-            return value == that.value;
+            return identifier == that.identifier;
         }
         return false;
     }
@@ -75,29 +79,19 @@ public class IntegerIdentifier implements Comparable<IntegerIdentifier>, Identif
     @Override
     public int hashCode()
     {
-        return value;
+        return identifier;
     }
 
     @KivaKitIncludeProperty
     @Override
     public long identifier()
     {
-        return value;
-    }
-
-    public boolean isGreaterThan(IntegerIdentifier identifier)
-    {
-        return value > identifier.value;
-    }
-
-    public boolean isLessThan(IntegerIdentifier identifier)
-    {
-        return value < identifier.value;
+        return identifier;
     }
 
     @Override
     public String toString()
     {
-        return Integer.toString(value);
+        return Integer.toString(identifier);
     }
 }

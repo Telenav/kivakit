@@ -7,7 +7,7 @@ import org.junit.Test;
 import static com.telenav.kivakit.core.time.Meridiem.AM;
 import static com.telenav.kivakit.core.time.Meridiem.PM;
 import static com.telenav.kivakit.core.time.Meridiem.meridiem;
-import static com.telenav.kivakit.core.time.Meridiem.meridiemHour;
+import static com.telenav.kivakit.core.time.Meridiem.asMeridiemHour;
 
 /**
  * Unit test for {@link Hour}
@@ -68,32 +68,32 @@ public class MeridiemTest extends CoreUnitTest
     @Test
     public void testMeridiemHour()
     {
-        ensureThrows(() -> meridiemHour(-1));
-        ensureThrows(() -> meridiemHour(24));
+        ensureThrows(() -> asMeridiemHour(-1));
+        ensureThrows(() -> asMeridiemHour(24));
 
-        ensureEqual(meridiemHour(0), 12);
-        ensureEqual(meridiemHour(1), 1);
-        ensureEqual(meridiemHour(2), 2);
-        ensureEqual(meridiemHour(3), 3);
-        ensureEqual(meridiemHour(4), 4);
-        ensureEqual(meridiemHour(5), 5);
-        ensureEqual(meridiemHour(6), 6);
-        ensureEqual(meridiemHour(7), 7);
-        ensureEqual(meridiemHour(8), 8);
-        ensureEqual(meridiemHour(9), 9);
-        ensureEqual(meridiemHour(10), 10);
-        ensureEqual(meridiemHour(11), 11);
-        ensureEqual(meridiemHour(12), 12);
-        ensureEqual(meridiemHour(13), 1);
-        ensureEqual(meridiemHour(14), 2);
-        ensureEqual(meridiemHour(15), 3);
-        ensureEqual(meridiemHour(16), 4);
-        ensureEqual(meridiemHour(17), 5);
-        ensureEqual(meridiemHour(18), 6);
-        ensureEqual(meridiemHour(19), 7);
-        ensureEqual(meridiemHour(20), 8);
-        ensureEqual(meridiemHour(21), 9);
-        ensureEqual(meridiemHour(22), 10);
-        ensureEqual(meridiemHour(23), 11);
+        ensureEqual(asMeridiemHour(0), 12);
+        ensureEqual(asMeridiemHour(1), 1);
+        ensureEqual(asMeridiemHour(2), 2);
+        ensureEqual(asMeridiemHour(3), 3);
+        ensureEqual(asMeridiemHour(4), 4);
+        ensureEqual(asMeridiemHour(5), 5);
+        ensureEqual(asMeridiemHour(6), 6);
+        ensureEqual(asMeridiemHour(7), 7);
+        ensureEqual(asMeridiemHour(8), 8);
+        ensureEqual(asMeridiemHour(9), 9);
+        ensureEqual(asMeridiemHour(10), 10);
+        ensureEqual(asMeridiemHour(11), 11);
+        ensureEqual(asMeridiemHour(12), 12);
+        ensureEqual(asMeridiemHour(13), 1);
+        ensureEqual(asMeridiemHour(14), 2);
+        ensureEqual(asMeridiemHour(15), 3);
+        ensureEqual(asMeridiemHour(16), 4);
+        ensureEqual(asMeridiemHour(17), 5);
+        ensureEqual(asMeridiemHour(18), 6);
+        ensureEqual(asMeridiemHour(19), 7);
+        ensureEqual(asMeridiemHour(20), 8);
+        ensureEqual(asMeridiemHour(21), 9);
+        ensureEqual(asMeridiemHour(22), 10);
+        ensureEqual(asMeridiemHour(23), 11);
     }
 }

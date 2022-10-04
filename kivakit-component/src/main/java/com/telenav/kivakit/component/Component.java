@@ -1,10 +1,6 @@
 package com.telenav.kivakit.component;
 
 import com.telenav.kivakit.component.internal.lexakai.DiagramComponent;
-import com.telenav.kivakit.core.code.UncheckedCode;
-import com.telenav.kivakit.core.code.UncheckedVoidCode;
-import com.telenav.kivakit.core.function.Result;
-import com.telenav.kivakit.core.language.trait.LanguageTrait;
 import com.telenav.kivakit.core.messaging.Broadcaster;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.messaging.Repeater;
@@ -15,21 +11,10 @@ import com.telenav.kivakit.core.messaging.messages.status.Problem;
 import com.telenav.kivakit.core.messaging.messages.status.Quibble;
 import com.telenav.kivakit.core.messaging.messages.status.Trace;
 import com.telenav.kivakit.core.messaging.messages.status.Warning;
-import com.telenav.kivakit.core.project.ProjectTrait;
 import com.telenav.kivakit.core.registry.Registry;
 import com.telenav.kivakit.core.registry.RegistryTrait;
-import com.telenav.kivakit.core.vm.JavaTrait;
-import com.telenav.kivakit.interfaces.code.Code;
 import com.telenav.kivakit.interfaces.naming.NamedObject;
-import com.telenav.kivakit.resource.Resource;
-import com.telenav.kivakit.resource.packages.Package;
-import com.telenav.kivakit.resource.packages.PackageTrait;
-import com.telenav.kivakit.settings.Settings;
-import com.telenav.kivakit.settings.SettingsStore;
-import com.telenav.kivakit.settings.SettingsTrait;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
-
-import java.util.function.Function;
 
 /**
  * A composite interface providing convenient functionality to KivaKit components.
@@ -37,29 +22,16 @@ import java.util.function.Function;
  * <p><b>Sub-Interfaces</b></p>
  *
  * <ul>
- *     <li>{@link PackageTrait} - Access to packages and packaged resources</li>
- *     <li>{@link SettingsTrait} - Component settings</li>
- *     <li>{@link RegistryTrait} - Service {@link Registry} access</li>
- *     <li>{@link LanguageTrait} - Enhancements that reduce language verbosity</li>
+ *     <li>{@link RegistryTrait} - Object {@link Registry} access</li>
  *     <li>{@link Repeater} - Message broadcasting, listening and repeating</li>
  *     <li>{@link NamedObject} - Object naming</li>
  * </ul>
  *
- * <hr>
- *
- * <p><b>Packaging</b></p>
- *
- * <p>
- * Classes implementing this interface are provided with easy access to packages and package resources relative to the
- * class' package:
- * </p>
+ * <p><b>Naming</b></p>
  *
  * <ul>
- *     <li>{@link #packageResource(String)} - Returns a {@link Resource} for the given path relative to the class implementing this interface</li>
- *     <li>{@link #relativePackage(String)} - Returns a KivaKit {@link Package} for the given path relative to the class implementing this interface</li>
+ *     <li>{@link #objectName()} - The name of this object</li>
  * </ul>
- *
- * <hr>
  *
  * <p><b>Registry</b></p>
  *
@@ -77,65 +49,6 @@ import java.util.function.Function;
  *     <li>{@link #registry()} - Retrieves the lookup {@link Registry} for this component</li>
  * </ul>
  *
- * <hr>
- *
- * <p><b>Language</b></p>
- *
- * <p>Adds methods that help in general to extend KivaKit's expressive capabilities in the Java language</p>
- *
- * <p><i>Functions</i></p>
- * <ul>
- *     <li>{@link #ifNonNullApply(Object, Function)} - Null-safe version of Function.apply()</li>
- *     <li>{@link #ifNullDefault(Object, Object)} - The given value if it is non-null, the default value otherwise.</li>
- * </ul>
- *
- * <p><i>Validation</i></p>
- *
- * <ul>
- *     <li>{@link #isFalseOr(boolean, String, Object...)} - Broadcasts a {@link Problem} if the given value is not false</li>
- *     <li>{@link #isTrueOr(boolean, String, Object...)} - Broadcasts a {@link Problem} if the given value is not true</li>
- *     <li>{@link #isNonNullOr(Object, String, Object...)} - Broadcasts a {@link Problem} if the given value is null</li>
- * </ul>
- *
- * <p><i>Exceptions</i></p>
- *
- * <ul>
- *     <li>{@link #tryCatch(UncheckedCode, String, Object...)} - Executes the given code, broadcasting a problem if it throws an exception</li>
- *     <li>{@link #tryCatchThrow(UncheckedCode, String, Object...)} - Executes the given code, rethrowing any exceptions</li>
- *     <li>{@link #tryCatchDefault(UncheckedCode, Object)} - Executes the given code, returning the given default if an exception occurs</li>
- *     <li>{@link #tryFinally(UncheckedVoidCode, Runnable)} - Execute the given code, always running the given {@link Runnable} afterwards</li>
- *     <li>{@link #tryFinally(UncheckedCode, UncheckedVoidCode)} - Executes the given code, always running the given {@link UncheckedVoidCode} after execution</li>
- * </ul>
- *
- * <p><i>Result</i></p>
- *
- * <ul>
- *     <li>{@link #run(Code)} - Executes the given code, capturing any messages broadcast during execution in a {@link Result} object</li>
- * </ul>
- *
- * <hr>
- *
- * <p><b>Settings</b></p>
- *
- * <p>
- * Settings for a component can be retrieved with {@link #settingsRegistry()}. This provides a simplified interface to load
- * settings objects specified by the user while also allowing for default settings when they are not specified. See
- * {@link Settings} for details.
- * </p>
- *
- * <ul>
- *     <li>{@link #settingsRegistry()} - Retrieves the {@link Settings} registry for this component</li>
- *     <li>{@link #lookupSettings(Class)} - A settings object of the specified class or null if none exists</li>
- *     <li>{@link #lookupSettings(Class, Enum)} - Get any given instance of the given settings object type</li>
- *     <li>{@link #requireSettings(Class)} - Gets the given settings object or fails</li>
- *     <li>{@link #requireSettings(Class, Enum)} - Gets the settings object of the given instance or fails</li>
- *     <li>{@link #registerSettingsObject(Object)}  - Adds the given settings object</li>
- *     <li>{@link #registerSettingsObject(Object, Enum)} - Adds the given settings object</li>
- *     <li>{@link #registerSettingsIn(SettingsStore)} - Adds settings objects from the given settings store</li>
- * </ul>
- *
- * <hr>
- *
  * <p><b>Repeater</b></p>
  *
  * <ul>
@@ -150,25 +63,15 @@ import java.util.function.Function;
  *     <li>{@link #trace(String, Object...)} - Broadcasts a {@link Trace} message if {@link #isDebugOn()} is true for this component</li>
  * </ul>
  *
- * <hr>
- *
  * @author jonathanl (shibo)
  * @see Repeater
- * @see SettingsTrait
  * @see RegistryTrait
- * @see LanguageTrait
- * @see PackageTrait
  * @see Registry
- * @see Settings
  */
 @UmlClassDiagram(diagram = DiagramComponent.class)
 public interface Component extends
-        JavaTrait,
-        ProjectTrait,
-        PackageTrait,
+        Repeater,
         RegistryTrait,
-        LanguageTrait,
-        SettingsTrait,
-        Repeater
+        NamedObject
 {
 }

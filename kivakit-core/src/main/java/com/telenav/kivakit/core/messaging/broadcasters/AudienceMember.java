@@ -18,15 +18,20 @@
 
 package com.telenav.kivakit.core.messaging.broadcasters;
 
-import com.telenav.kivakit.core.messaging.Listener;
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramRepeater;
+import com.telenav.kivakit.core.messaging.Broadcaster;
+import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.interfaces.comparison.Filter;
 import com.telenav.kivakit.interfaces.messaging.Transmittable;
-import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlAggregation;
 
 import java.util.Objects;
+
+import static com.telenav.kivakit.annotations.code.ApiStability.API_PRIVATE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
 
 /**
  * A filtered {@link Multicaster} listener
@@ -34,21 +39,35 @@ import java.util.Objects;
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramRepeater.class)
-@LexakaiJavadoc(complete = true)
+@ApiQuality(stability = API_PRIVATE,
+            testing = TESTING_NONE,
+            documentation = DOCUMENTATION_COMPLETE)
 class AudienceMember
 {
+    /** The listener */
     @UmlAggregation
     private final Listener listener;
 
+    /** Any filter */
     @UmlAggregation
     private final Filter<Transmittable> filter;
 
+    /**
+     * Creates an audience member for a {@link Broadcaster} that listens to messages from the given listener. The
+     * messages are filtered by the given filter.
+     *
+     * @param listener The listener
+     * @param filter The filter
+     */
     AudienceMember(Listener listener, Filter<Transmittable> filter)
     {
         this.listener = listener;
         this.filter = filter;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean equals(Object object)
     {
@@ -60,17 +79,26 @@ class AudienceMember
         return false;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public int hashCode()
     {
         return Objects.hash(listener);
     }
 
+    /**
+     * The listener
+     */
     public Listener listener()
     {
         return listener;
     }
 
+    /**
+     * If the given filter accepts the message, transmits it to the listener.
+     */
     public void receive(Transmittable message)
     {
         if (filter.accepts(message))

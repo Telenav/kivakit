@@ -18,12 +18,17 @@
 
 package com.telenav.kivakit.core.collections.iteration;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramCollections;
 import com.telenav.kivakit.interfaces.comparison.Filter;
 import com.telenav.kivakit.interfaces.comparison.Matcher;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.Iterator;
+
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
 
 /**
  * An {@link Iterator} that wraps and filters the values of another {@link Iterator}.
@@ -33,25 +38,37 @@ import java.util.Iterator;
  * @see Filter
  */
 @UmlClassDiagram(diagram = DiagramCollections.class)
-public class FilteredIterator<Element> extends BaseIterator<Element>
+@ApiQuality(stability = API_STABLE,
+            testing = TESTING_NONE,
+            documentation = DOCUMENTATION_COMPLETE)
+public class FilteredIterator<Value> extends BaseIterator<Value>
 {
-    private final Iterator<Element> iterator;
+    /** The iterator to filter */
+    private final Iterator<Value> iterator;
 
-    private final Matcher<Element> filter;
+    /** The matcher that must be satisfied for iterated objects */
+    private final Matcher<Value> matcher;
 
-    public FilteredIterator(Iterator<Element> iterator, Matcher<Element> filter)
+    /**
+     * @param iterator The iterator to filter
+     * @param matcher The matcher that must be satisfied to include values in the iteration
+     */
+    public FilteredIterator(Iterator<Value> iterator, Matcher<Value> matcher)
     {
         this.iterator = iterator;
-        this.filter = filter;
+        this.matcher = matcher;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    protected Element onNext()
+    protected Value onNext()
     {
         while (iterator.hasNext())
         {
             var next = iterator.next();
-            if (filter.matches(next))
+            if (matcher.matches(next))
             {
                 return next;
             }

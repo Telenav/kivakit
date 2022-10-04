@@ -18,11 +18,15 @@
 
 package com.telenav.kivakit.core.string;
 
-import com.telenav.kivakit.core.language.primitive.Doubles;
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramString;
+import com.telenav.kivakit.core.language.primitive.Doubles;
 import com.telenav.kivakit.core.value.level.Percent;
-import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
+
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_STATIC_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
 
 /**
  * Methods for comparing strings, including by <a href="https://en.wikipedia.org/wiki/Levenshtein_distance">Levenshtein
@@ -30,8 +34,11 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
  *
  * @author jonathanl (shibo)
  */
+@SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramString.class)
-@LexakaiJavadoc(complete = true)
+@ApiQuality(stability = API_STABLE_STATIC_EXTENSIBLE,
+            testing = TESTING_NONE,
+            documentation = DOCUMENTATION_COMPLETE)
 public class StringSimilarity
 {
     /**
@@ -78,6 +85,7 @@ public class StringSimilarity
      * @param target The target String
      * @return The Levenshtein Distance between source and target
      */
+    @SuppressWarnings("JavadocLinkAsPlainText")
     public static int levenshteinDistance(String source, String target)
     {
         var sourceLength = source.length();

@@ -18,6 +18,7 @@
 
 package com.telenav.kivakit.conversion.core.language.primitive;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.conversion.BaseStringConverter;
 import com.telenav.kivakit.conversion.internal.lexakai.DiagramConversionPrimitive;
 import com.telenav.kivakit.core.messaging.Listener;
@@ -27,12 +28,19 @@ import com.telenav.lexakai.annotations.visibility.UmlExcludeMember;
 import java.text.DecimalFormat;
 import java.text.ParseException;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+
 /**
  * Converts an Integer to and from a formatted string.
  *
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramConversionPrimitive.class)
+@ApiQuality(stability = API_STABLE,
+            testing = TESTING_NONE,
+            documentation = DOCUMENTATION_COMPLETE)
 public class FormattedIntegerConverter extends BaseStringConverter<Integer>
 {
     /** The format for conversion */

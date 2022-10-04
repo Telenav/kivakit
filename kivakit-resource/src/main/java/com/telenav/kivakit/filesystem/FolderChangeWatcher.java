@@ -18,45 +18,80 @@
 
 package com.telenav.kivakit.filesystem;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.collections.watcher.CollectionChangeListener;
 import com.telenav.kivakit.collections.watcher.PeriodicCollectionChangeWatcher;
 import com.telenav.kivakit.core.time.Frequency;
 import com.telenav.kivakit.core.time.Time;
 import com.telenav.kivakit.resource.internal.lexakai.DiagramFileSystemFolder;
-import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.HashSet;
 import java.util.Set;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
+
 /**
  * Watches for changes to the contents of a {@link Folder}. {@link CollectionChangeListener}s are notified when changes
- * occur and can be added with {@link #addListener(CollectionChangeListener)} and removed with {@link
- * #removeListener(CollectionChangeListener)}.
+ * occur. Listeners can be added with {@link #addListener(CollectionChangeListener)} and removed with
+ * {@link #removeListener(CollectionChangeListener)}.
+ *
+ * <p><b>Collection Change Listeners</b></p>
+ *
+ * <ul>
+ *     <li>{@link #addListener(CollectionChangeListener)}</li>
+ *     <li>{@link #removeListener(CollectionChangeListener)}</li>
+ * </ul>
+ *
+ * <p><b>Protected Callbacks</b></p>
+ *
+ * <ul>
+ *     <li>{@link #onAdded(Object)}</li>
+ *     <li>{@link #onModified(Object)}</li>
+ *     <li>{@link #onRemoved(Object)}</li>
+ * </ul>
  *
  * @author jonathanl (shibo)
  * @see PeriodicCollectionChangeWatcher
  */
 @UmlClassDiagram(diagram = DiagramFileSystemFolder.class)
 @UmlRelation(label = "watches", referent = Folder.class)
-@LexakaiJavadoc(complete = true)
+@ApiQuality(stability = API_STABLE_EXTENSIBLE,
+            testing = TESTING_NOT_NEEDED,
+            documentation = DOCUMENTATION_COMPLETE)
 public class FolderChangeWatcher extends PeriodicCollectionChangeWatcher<FileSystemObject>
 {
+    /** The folder to watch */
     private final Folder folder;
 
-    public FolderChangeWatcher(Folder folder, Frequency frequency)
+    /**
+     * Watches the given folder for changes
+     *
+     * @param folder The folder to watch
+     * @param frequency The frequency to inspect the folder at
+     */
+    public FolderChangeWatcher(@NotNull Folder folder, @NotNull Frequency frequency)
     {
         super(frequency);
         this.folder = folder;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    protected Time lastModified(FileSystemObject object)
+    protected Time lastModified(@NotNull FileSystemObject object)
     {
-        return object.modifiedAt();
+        return object.lastModified();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected Set<FileSystemObject> objects()
     {

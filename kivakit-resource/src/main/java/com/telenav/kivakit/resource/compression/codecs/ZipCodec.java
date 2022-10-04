@@ -18,15 +18,20 @@
 
 package com.telenav.kivakit.resource.compression.codecs;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.resource.compression.Codec;
 import com.telenav.kivakit.resource.internal.lexakai.DiagramResourceCompression;
-import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
+import org.jetbrains.annotations.NotNull;
 
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.zip.ZipInputStream;
 import java.util.zip.ZipOutputStream;
+
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
 
 /**
  * Codec for zip compression.
@@ -34,17 +39,25 @@ import java.util.zip.ZipOutputStream;
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramResourceCompression.class)
-@LexakaiJavadoc(complete = true)
+@ApiQuality(stability = API_STABLE,
+            testing = TESTING_NONE,
+            documentation = DOCUMENTATION_COMPLETE)
 public class ZipCodec implements Codec
 {
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public OutputStream compressed(OutputStream out)
+    public OutputStream compressed(@NotNull OutputStream out)
     {
         return new ZipOutputStream(out);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public InputStream decompressed(InputStream in)
+    public InputStream decompressed(@NotNull InputStream in)
     {
         return new ZipInputStream(in);
     }

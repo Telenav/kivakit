@@ -18,22 +18,28 @@
 
 package com.telenav.kivakit.core.value.count;
 
-import com.telenav.kivakit.core.language.primitive.Longs;
+import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.core.collections.iteration.BaseIterator;
 import com.telenav.kivakit.core.internal.lexakai.DiagramCount;
+import com.telenav.kivakit.core.language.primitive.Longs;
 import com.telenav.kivakit.core.string.Formatter;
-import com.telenav.kivakit.core.testing.Tested;
-import com.telenav.kivakit.interfaces.code.FilteredLoopBody;
-import com.telenav.kivakit.interfaces.code.LoopBody;
-import com.telenav.kivakit.interfaces.collection.NextValue;
-import com.telenav.kivakit.interfaces.numeric.IntegerNumeric;
+import com.telenav.kivakit.interfaces.code.Callback;
+import com.telenav.kivakit.interfaces.collection.Contains;
+import com.telenav.kivakit.interfaces.collection.NextIterator;
+import com.telenav.kivakit.interfaces.factory.MapFactory;
 import com.telenav.kivakit.interfaces.numeric.Maximizable;
 import com.telenav.kivakit.interfaces.numeric.Minimizable;
-import com.telenav.kivakit.interfaces.numeric.QuantumComparable;
+import com.telenav.kivakit.interfaces.numeric.Numeric;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
+import org.jetbrains.annotations.NotNull;
 
+import java.util.Iterator;
 import java.util.Random;
-import java.util.function.Consumer;
+import java.util.function.Function;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
 import static com.telenav.kivakit.core.value.count.Range.UpperBound.EXCLUSIVE;
 import static com.telenav.kivakit.core.value.count.Range.UpperBound.INCLUSIVE;
 
@@ -43,13 +49,13 @@ import static com.telenav.kivakit.core.value.count.Range.UpperBound.INCLUSIVE;
  * <p>Creation and Properties</p>
  *
  * <p>
- * Ranges can be created in two ways, as {@link #rangeExclusive(IntegerNumeric, IntegerNumeric)} ranges which do not
- * include their maximum value, and as {@link #rangeInclusive(IntegerNumeric, IntegerNumeric)} ranges which do.
+ * Ranges can be created in two ways, as {@link #rangeExclusive(Numeric, Numeric, Function)} ranges which do not include
+ * their maximum value, and as {@link #rangeInclusive(Numeric, Numeric, Function)} ranges which do.
  * </p>
  *
  * <ul>
- *     <li>{@link #rangeInclusive(IntegerNumeric, IntegerNumeric)}</li>
- *     <li>{@link #rangeExclusive(IntegerNumeric, IntegerNumeric)}</li>
+ *     <li>{@link #rangeInclusive(Numeric, Numeric, Function)}</li>
+ *     <li>{@link #rangeExclusive(Numeric, Numeric, Function)}</li>
  *     <li>{@link #upperBound()}</li>
  *     <li>{@link #isInclusive()}</li>
  *     <li>{@link #isExclusive()}</li>
@@ -65,51 +71,71 @@ import static com.telenav.kivakit.core.value.count.Range.UpperBound.INCLUSIVE;
  * </p>
  *
  * <ul>
- *     <li>{@link #forEach(LoopBody)}</li>
- *     <li>{@link #forCount(Count, FilteredLoopBody)} </li>
  *     <li>{@link #loop(Runnable)}</li>
  * </ul>
  *
  * <p><b>Operations</b></p>
  *
  * <ul>
- *     <li>{@link #constrain(Value)}</li>
- *     <li>{@link #contains(Value)}</li>
+ *     <li>{@link #constrained(Value)}</li>
+ *     <li>{@link #containsInclusive(Value)}</li>
  *     <li>{@link #randomValue(Random)}</li>
  * </ul>
  *
- * @param <Value> A value that is {@link IntegerNumeric}, which includes {@link Minimizable}, {@link Maximizable},
- * {@link Comparable}, and {@link NextValue}.
+ * @param <Value> A value that is {@link Numeric}, which includes {@link Minimizable}, {@link Maximizable},
+ * {@link Comparable}, and {@link NextIterator}.
  * @author jonathanl (shibo)
- * @see LoopBody
  */
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramCount.class)
-public class Range<Value extends IntegerNumeric<Value>> implements
+@ApiQuality(stability = API_STABLE_EXTENSIBLE,
+            testing = TESTING_NONE,
+            documentation = DOCUMENTATION_COMPLETE)
+public class Range<Value extends Numeric<Value>> implements
+        Contains<Value>,
         Comparable<Countable>,
-        QuantumComparable<Countable>,
-        Countable
+        Countable,
+        Iterable<Value>,
+        MapFactory<Long, Value>
 {
     /**
      * Constructs a range that excludes the given maximum value.
      */
-    @Tested
-    public static <Value extends IntegerNumeric<Value>>
+    public static <Value extends Numeric<Value>>
     Range<Value> rangeExclusive(Value minimum,
-                                Value exclusiveMaximum)
+                                Value exclusiveMaximum,
+                                Function<Long, Value> newInstance)
     {
-        return new Range<>(minimum, exclusiveMaximum, EXCLUSIVE);
+        return new Range<>(minimum, exclusiveMaximum, EXCLUSIVE, newInstance);
     }
 
     /**
      * Constructs a range that includes the given maximum value.
      */
-    @Tested
-    public static <Value extends IntegerNumeric<Value>>
-    Range<Value> rangeInclusive(Value minimum,
-                                Value inclusiveMaximum)
+    public static Range<Count> rangeExclusive(Count minimum,
+                                              Count inclusiveMaximum)
     {
-        return new Range<>(minimum, inclusiveMaximum, INCLUSIVE);
+        return new Range<>(minimum, inclusiveMaximum, EXCLUSIVE, Count::count);
+    }
+
+    /**
+     * Constructs a range that includes the given maximum value.
+     */
+    public static Range<Count> rangeInclusive(Count minimum,
+                                              Count inclusiveMaximum)
+    {
+        return new Range<>(minimum, inclusiveMaximum, INCLUSIVE, Count::count);
+    }
+
+    /**
+     * Constructs a range that includes the given maximum value.
+     */
+    public static <Value extends Numeric<Value>>
+    Range<Value> rangeInclusive(Value minimum,
+                                Value inclusiveMaximum,
+                                Function<Long, Value> newInstance)
+    {
+        return new Range<>(minimum, inclusiveMaximum, INCLUSIVE, newInstance);
     }
 
     /**
@@ -133,92 +159,104 @@ public class Range<Value extends IntegerNumeric<Value>> implements
     /** The type of upper bound that this range has, either inclusive or exclusive of the end point */
     private final UpperBound upperBound;
 
-    protected Range(Value minimum, Value maximum, UpperBound upperBound)
+    /** The function to create new value instances */
+    private final Function<Long, Value> newInstance;
+
+    protected Range(Value minimum,
+                    Value maximum,
+                    UpperBound upperBound,
+                    Function<Long, Value> newInstance)
     {
         this.minimum = minimum;
         this.maximum = maximum;
         this.upperBound = upperBound;
+        this.newInstance = newInstance;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public int compareTo(Countable that)
     {
-        return Long.compare(quantum(), that.quantum());
+        return Long.compare(count().longValue(), that.count().longValue());
     }
 
     /**
      * Forces the given value into this range
      */
-    @Tested
-    public Value constrain(Value value)
+    public Value constrained(Value value)
     {
-        var constrainedToMinimum = minimum().maximum(value);
-        return inclusiveMaximum().minimum(constrainedToMinimum);
+        return inclusiveMaximum().minimize(minimum().maximize(value));
     }
 
     /**
-     * True if this range contains the given value
+     * True if this range contains the given value, inclusive or exclusive depending on the value of
+     * {@link #upperBound()}
      */
-    @Tested
+    @Override
     public boolean contains(Value value)
+    {
+        return isInclusive()
+                ? containsInclusive(value)
+                : containsExclusive(value);
+    }
+
+    /**
+     * True if this range contains the given value, exclusive
+     */
+    public boolean containsExclusive(Value value)
+    {
+        return value.isGreaterThanOrEqualTo(minimum()) &&
+                value.isLessThan(exclusiveMaximum());
+    }
+
+    /**
+     * True if this range contains the given value, inclusive
+     */
+    public boolean containsInclusive(Value value)
     {
         return value.isGreaterThanOrEqualTo(minimum()) &&
                 value.isLessThanOrEqualTo(inclusiveMaximum());
     }
 
     /**
-     * Returns the exclusive maximum for this range, even if it was constructed as inclusive (for example, inclusive
-     * range of 0 to 9 is the same as an exclusive range of 0-10).
+     * The number of elements in this range
      */
-    @Tested
+    @Override
+    public Count count()
+    {
+        return Count.count(size());
+    }
+
+    /**
+     * Returns the exclusive maximum for this range, even if it was constructed as inclusive (for example, an inclusive
+     * range of 0-9 is the same as an exclusive range of 0 to 10).
+     */
     public Value exclusiveMaximum()
     {
-        return isExclusive()
-                ? maximum
-                : maximum.incremented();
+        return isInclusive()
+                ? maximum.incremented()
+                : maximum;
     }
 
     /**
-     * Executes the loop starting at the minimum value, calling the {@link FilteredLoopBody} until the given number of
-     * values are accepted.
+     * Calls the callback with each int in this range
      *
-     * @param body The loop body to invoke
+     * @param callback The callback to call
      */
-    @Tested
-    public void forCount(Count count, FilteredLoopBody<Value> body)
+    public void forEachInt(Callback<Integer> callback)
     {
-        body.forCount(minimum(), exclusiveMaximum(), count.asLong());
-    }
-
-    /**
-     * Calls the given {@link LoopBody} with each value from the minimum to the maximum (inclusive or exclusive,
-     * depending on construction of the range)
-     *
-     * @param body The loop body to invoke
-     */
-    @Tested
-    public void forEach(LoopBody<Value> body)
-    {
-        body.forEachInclusive(minimum(), inclusiveMaximum());
-    }
-
-    /**
-     * Calls the given {@link LoopBody} with each value from the minimum to the maximum (inclusive or exclusive,
-     * depending on construction of the range)
-     *
-     * @param body The loop body to invoke
-     */
-    @Tested
-    public void forEachInt(Consumer<Integer> body)
-    {
-        forEach(at -> body.accept(at.asInt()));
+        for (var at = minimum().asInt(); at < exclusiveMaximum().asInt(); at++)
+        {
+            callback.call(at);
+        }
     }
 
     /**
      * Returns the inclusive maximum for this range, even if it was constructed as exclusive (for example, an exclusive
      * range of 0-10 is the same as an inclusive range of 0 to 9).
      */
-    @Tested
     public Value inclusiveMaximum()
     {
         return isInclusive()
@@ -229,7 +267,6 @@ public class Range<Value extends IntegerNumeric<Value>> implements
     /**
      * @return True if this is an exclusive range
      */
-    @Tested
     public boolean isExclusive()
     {
         return upperBound == EXCLUSIVE;
@@ -238,16 +275,35 @@ public class Range<Value extends IntegerNumeric<Value>> implements
     /**
      * @return True if this is an inclusive range
      */
-    @Tested
     public boolean isInclusive()
     {
         return upperBound == INCLUSIVE;
     }
 
+    @NotNull
+    @Override
+    public Iterator<Value> iterator()
+    {
+        return new BaseIterator<>()
+        {
+            long at = minimum.longValue();
+
+            @Override
+            protected Value onNext()
+            {
+                if (at < exclusiveMaximum().longValue())
+                {
+                    at++;
+                    return newInstance(at);
+                }
+                return null;
+            }
+        };
+    }
+
     /**
      * Executes the given code body once for each value in this range
      */
-    @Tested
     public void loop(Runnable body)
     {
         forEach(ignored -> body.run());
@@ -256,16 +312,20 @@ public class Range<Value extends IntegerNumeric<Value>> implements
     /**
      * Returns the minimum value in this range.
      */
-    @Tested
     public Value minimum()
     {
         return minimum;
     }
 
+    @Override
+    public Value newInstance(Long value)
+    {
+        return newInstance.apply(value);
+    }
+
     /**
      * Returns a random value in this range
      */
-    @Tested
     public Value randomValue(Random random)
     {
         return minimum.newInstance(Longs.random(random, minimum().asLong(), exclusiveMaximum().asLong()));
@@ -274,8 +334,6 @@ public class Range<Value extends IntegerNumeric<Value>> implements
     /**
      * Returns the size of this range in values
      */
-    @Override
-    @Tested
     public int size()
     {
         return exclusiveMaximum().minus(minimum()).asInt();
@@ -296,7 +354,6 @@ public class Range<Value extends IntegerNumeric<Value>> implements
     /**
      * Returns the kind of {@link UpperBound} that was used to construct this range.
      */
-    @Tested
     public UpperBound upperBound()
     {
         return upperBound;

@@ -18,11 +18,18 @@
 
 package com.telenav.kivakit.core.messaging.messages.status;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramMessageType;
 import com.telenav.kivakit.core.messaging.Message;
 import com.telenav.kivakit.core.messaging.messages.OperationStatusMessage;
 import com.telenav.kivakit.core.messaging.messages.Severity;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
+
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
+import static com.telenav.kivakit.core.messaging.Message.Status.RESULT_COMPROMISED;
+import static com.telenav.kivakit.core.messaging.messages.Severity.LOW;
 
 /**
  * A glitch is an issue that represents a temporary problem where recovery will happen. Unlike a {@link Warning},
@@ -52,6 +59,9 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramMessageType.class)
+@ApiQuality(stability = API_STABLE,
+            testing = TESTING_NOT_NEEDED,
+            documentation = DOCUMENTATION_COMPLETE)
 public class Glitch extends OperationStatusMessage
 {
     public Glitch(String message, Object... arguments)
@@ -62,7 +72,7 @@ public class Glitch extends OperationStatusMessage
 
     public Glitch(Throwable cause, String message, Object... arguments)
     {
-        super(message + ": " + Message.escape(cause.getMessage()));
+        super(message + ": " + Message.escapeMessageText(cause.getMessage()));
         cause(cause);
         arguments(arguments);
     }
@@ -71,15 +81,21 @@ public class Glitch extends OperationStatusMessage
     {
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Severity severity()
     {
-        return Severity.LOW;
+        return LOW;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Status status()
     {
-        return Status.RESULT_COMPROMISED;
+        return RESULT_COMPROMISED;
     }
 }

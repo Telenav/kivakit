@@ -18,6 +18,7 @@
 
 package com.telenav.kivakit.properties;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.conversion.StringConverter;
 import com.telenav.kivakit.conversion.core.language.object.ObjectPopulator;
 import com.telenav.kivakit.core.collections.list.StringList;
@@ -25,20 +26,20 @@ import com.telenav.kivakit.core.collections.map.VariableMap;
 import com.telenav.kivakit.core.language.reflection.Type;
 import com.telenav.kivakit.core.language.reflection.property.PropertyFilter;
 import com.telenav.kivakit.core.locale.Locale;
+import com.telenav.kivakit.core.locale.LocaleLanguage;
 import com.telenav.kivakit.core.messaging.Listener;
-import com.telenav.kivakit.core.progress.ProgressReporter;
 import com.telenav.kivakit.core.string.AsciiArt;
 import com.telenav.kivakit.core.value.count.Count;
 import com.telenav.kivakit.filesystem.File;
 import com.telenav.kivakit.filesystem.Folder;
 import com.telenav.kivakit.resource.Resource;
 import com.telenav.kivakit.resource.ResourceFolder;
-import com.telenav.kivakit.resource.writing.WritableResource;
 import com.telenav.kivakit.resource.internal.lexakai.DiagramResourceType;
 import com.telenav.kivakit.resource.packages.PackagePath;
 import com.telenav.kivakit.resource.resources.InputResource;
-import com.telenav.lexakai.annotations.LexakaiJavadoc;
+import com.telenav.kivakit.resource.writing.WritableResource;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
+import org.jetbrains.annotations.NotNull;
 
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -47,6 +48,10 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Pattern;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+import static com.telenav.kivakit.core.progress.ProgressReporter.nullProgressReporter;
 import static com.telenav.kivakit.resource.packages.PackageResource.packageResource;
 
 /**
@@ -59,23 +64,31 @@ import static com.telenav.kivakit.resource.packages.PackageResource.packageResou
  * </p>
  *
  * <ul>
- *     <li>{@link #create()} - Creates an empty property map</li>
+ *     <li>{@link #propertyMap()} - Creates an empty property map</li>
  *     <li>{@link #propertyMap(VariableMap)} - Creates a property map from the given variable map</li>
- *     <li>{@link #load(Listener, Resource)} - Loads a property map from the given resource</li>
- *     <li>{@link #load(Listener, InputStream)} - Loads property map from the given input stream</li>
- *     <li>{@link #load(Listener, ResourceFolder, String)} - Loads property map from the given package path and relative path</li>
- *     <li>{@link #localized(Listener, PackagePath, Locale)} - Loads a property map from the given package with a relative path
- *      from the given {@link Locale} of the form "locales/[language-name](/[country-name])?.</li>
+ *     <li>{@link #loadPropertyMap(Listener, Resource)} - Loads a property map from the given resource</li>
+ *     <li>{@link #loadPropertyMap(Listener, InputStream)} - Loads property map from the given input stream</li>
+ *     <li>{@link #loadPropertyMap(Listener, ResourceFolder, String)} - Loads property map from the given package path and relative path</li>
+ *     <li>{@link #loadLocalizedPropertyMap(Listener, PackagePath, Locale, LocaleLanguage)}</li>
+ * </ul>
+ *
+ * <p><b>Access</b></p>
+ *
+ * <ul>
+ *     <li>{@link #get(String, StringConverter)}</li>
+ *     <li>{@link #get(String, StringConverter, Object)}</li>
  * </ul>
  *
  * <p><b>Conversions</b></p>
  *
  * <ul>
  *     <li>{@link #copy()} - A copy of this property map using {@link ObjectPopulator}</li>
- *     <li>{@link #asInt(String)} - The given value as an int</li>
  *     <li>{@link #asLong(String)} - The given value as a long</li>
  *     <li>{@link #asDouble(String)} - The given value as a double</li>
  *     <li>{@link #asCount(String)} - The given value as a {@link Count}</li>
+ *     <li>{@link #asFile(String)}</li>
+ *     <li>{@link #asFolder(String)}</li>
+ *     <li>{@link #asJson()}</li>
  * </ul>
  *
  * <p><b>Adding to Property Maps</b></p>
@@ -86,15 +99,22 @@ import static com.telenav.kivakit.resource.packages.PackageResource.packageResou
  *
  * <ul>
  *     <li>{@link #comment(String, String)} - Attaches the given comment to the given key</li>
- *     <li>{@link #add(Object, PropertyFilter)} - Adds the properties of the given object that match the filter to this map</li>
+ *     <li>{@link #addProperties(Object, PropertyFilter)} - Adds the properties of the given object that match the filter to this map</li>
  * </ul>
  *
  *
- * <p><b>Saving Property Maps</b></p>
+ * <p><b>Saving</b></p>
  *
  * <ul>
  *     <li>{@link #save(WritableResource)} - Saves this property map to the given resource</li>
- *     <li>{@link #save(String, WritableResource)} - Saves this property map to the given resource with the given heading</li>
+ *     <li>{@link #save(WritableResource, String)} - Saves this property map to the given resource with the given heading</li>
+ * </ul>
+ *
+ * <p><b>Expansion</b></p>
+ *
+ * <ul>
+ *     <li>{@link #expanded()}</li>
+ *     <li>{@link #expandedWith(VariableMap)}</li>
  * </ul>
  *
  * @author jonathanl (shibo)
@@ -102,36 +122,60 @@ import static com.telenav.kivakit.resource.packages.PackageResource.packageResou
  */
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramResourceType.class)
-@LexakaiJavadoc(complete = true)
+@ApiQuality(stability = API_STABLE_EXTENSIBLE,
+            testing = TESTING_NONE,
+            documentation = DOCUMENTATION_COMPLETE)
 public class PropertyMap extends VariableMap<String>
 {
     /**
-     * @return An empty property map
+     * Loads and returns the property map stored at the given package path. Expansion markers like "${XYZ}" will be
+     * expanded using the system properties and environment variables available.
+     *
+     * @param listener The listener to call with any problems
+     * @param path The package path
+     * @param locale The KivaKit locale
+     * @param languageName The language within the locale
+     * @return The loaded property map
      */
-    public static PropertyMap create()
+    public static PropertyMap loadLocalizedPropertyMap(@NotNull Listener listener,
+                                                       @NotNull PackagePath path,
+                                                       @NotNull Locale locale,
+                                                       @NotNull LocaleLanguage languageName)
     {
-        return new PropertyMap();
-    }
-
-    public static PropertyMap load(Listener listener, InputStream input)
-    {
-        return load(listener, listener.listenTo(new InputResource(input)));
-    }
-
-    public static PropertyMap load(Listener listener, ResourceFolder<?> folder, String resourcePath)
-    {
-        return load(listener, listener.listenTo(folder.resource(resourcePath)));
+        return PropertyMap.loadPropertyMap(listener, packageResource(listener, path, locale.path(languageName).join("/")));
     }
 
     /**
-     * @return Loads the given .properties resource, interpolating system variables into each value
+     * Loads and returns the property map stored in the given folder at the given path. Expansion markers like "${XYZ}"
+     * will be expanded using the system properties and environment variables available.
+     *
+     * @param listener The listener to call with any problems
+     * @param folder The folder where the property map is stored
+     * @param path The relative path to the property map
+     * @return The loaded property map
      */
-    public static PropertyMap load(Listener listener, Resource resource)
+    public static PropertyMap loadPropertyMap(@NotNull Listener listener,
+                                              @NotNull ResourceFolder<?> folder,
+                                              @NotNull String path)
+    {
+        return loadPropertyMap(listener, listener.listenTo(folder.resource(path)));
+    }
+
+    /**
+     * Loads and returns the property map stored in the given resource. Expansion markers like "${XYZ}" will be expanded
+     * using the system properties and environment variables available.
+     *
+     * @param listener The listener to call with any problems
+     * @param resource The resource where the property map is stored
+     * @return The loaded property map
+     */
+    public static PropertyMap loadPropertyMap(@NotNull Listener listener,
+                                              @NotNull Resource resource)
     {
         var properties = new PropertyMap();
         var linePattern = Pattern.compile("(?<key>[^=]*?)\\s*=\\s*(?<value>[^=]*)");
         int lineNumber = 1;
-        for (var line : resource.reader().lines(ProgressReporter.none()))
+        for (var line : resource.reader().readLines(nullProgressReporter()))
         {
             var trimmed = line.trim();
             if (!trimmed.isEmpty() && !trimmed.startsWith("#") && !trimmed.startsWith("//"))
@@ -153,14 +197,35 @@ public class PropertyMap extends VariableMap<String>
         return properties;
     }
 
-    public static PropertyMap localized(Listener listener, PackagePath path, Locale locale)
+    /**
+     * Loads a property map from the given input stream
+     *
+     * @param listener The listener to call with problems
+     * @param input The input stream to read
+     * @return The property map
+     */
+    public static PropertyMap loadPropertyMap(Listener listener, InputStream input)
     {
-        return PropertyMap.load(listener, packageResource(listener, path, locale.path().join("/")));
+        return loadPropertyMap(listener, listener.listenTo(new InputResource(input)));
     }
 
-    public static PropertyMap propertyMap(VariableMap<String> variables)
+    /**
+     * Returns an empty property map
+     */
+    public static PropertyMap propertyMap()
     {
-        var map = create();
+        return new PropertyMap();
+    }
+
+    /**
+     * Returns a property map with the given variables
+     *
+     * @param variables The variables
+     * @return The property map
+     */
+    public static PropertyMap propertyMap(@NotNull VariableMap<String> variables)
+    {
+        var map = propertyMap();
         for (var key : variables.keySet())
         {
             map.put(key, variables.get(key));
@@ -174,9 +239,16 @@ public class PropertyMap extends VariableMap<String>
     {
     }
 
-    public void add(Object object, PropertyFilter filter)
+    /**
+     * Adds properties of the given object matching the given filter to this property map
+     *
+     * @param object The object
+     * @param filter The property filter
+     */
+    public void addProperties(@NotNull Object object,
+                              @NotNull PropertyFilter filter)
     {
-        Type<?> type = Type.of(object);
+        Type<?> type = Type.type(object);
         for (var property : type.properties(filter))
         {
             if (!"class".equals(property.name()))
@@ -195,23 +267,23 @@ public class PropertyMap extends VariableMap<String>
     }
 
     /**
-     * @return The given value as a {@link Folder}
+     * Returns the given value as a {@link Folder}
      */
-    public File asFile(String key)
+    public File asFile(@NotNull String key)
     {
         return File.parseFile(this, get(key));
     }
 
     /**
-     * @return The given value as a {@link Folder}
+     * Returns the given value as a {@link Folder}
      */
-    public Folder asFolder(String key)
+    public Folder asFolder(@NotNull String key)
     {
-        return Folder.parseFolder(this, asPath(key));
+        return Folder.parseFolder(this, asPathString(key));
     }
 
     /**
-     * @return This property map as a JSON string
+     * Returns this property map as a JSON string
      */
     public String asJson()
     {
@@ -219,14 +291,18 @@ public class PropertyMap extends VariableMap<String>
     }
 
     /**
-     * @return Associate a comment with the given key. The comment will be written out when the property map is saved.
+     * Returns associate a comment with the given key. The comment will be written out when the property map is saved.
      */
-    public PropertyMap comment(String key, String comment)
+    public PropertyMap comment(@NotNull String key,
+                               @NotNull String comment)
     {
         comments.put(key, comment);
         return this;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public PropertyMap copy()
     {
@@ -238,6 +314,9 @@ public class PropertyMap extends VariableMap<String>
         return map;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public PropertyMap expanded()
     {
@@ -245,9 +324,9 @@ public class PropertyMap extends VariableMap<String>
     }
 
     /**
-     * @return This property map with all values expanded using the values in the given property map
+     * Returns this property map with all values expanded using the values in the given property map
      */
-    public PropertyMap expandedWith(VariableMap<String> that)
+    public PropertyMap expandedWith(@NotNull VariableMap<String> that)
     {
         var map = new PropertyMap();
         for (var key : keySet())
@@ -258,7 +337,15 @@ public class PropertyMap extends VariableMap<String>
         return map;
     }
 
-    public <T> T get(String key, StringConverter<T> converter)
+    /**
+     * Returns the value for the given key converted with the given converter
+     *
+     * @param key The key
+     * @param converter The converter
+     * @return The value
+     */
+    public <T> T get(@NotNull String key,
+                     @NotNull StringConverter<T> converter)
     {
         if (converter.listeners().isEmpty())
         {
@@ -267,14 +354,31 @@ public class PropertyMap extends VariableMap<String>
         return converter.convert(get(key));
     }
 
-    public <T> T get(String key, StringConverter<T> converter, T defaultValue)
+    /**
+     * Returns the value for the given key converted with the given converter, or the default value if there is no value
+     * for the key
+     *
+     * @param key The key
+     * @param converter The converter
+     * @param defaultValue The default value to use if there is no value for the key
+     * @return The value
+     */
+    public <T> T get(@NotNull String key,
+                     @NotNull StringConverter<T> converter,
+                     @NotNull T defaultValue)
     {
         var converted = get(key, converter);
         return converted == null ? defaultValue : converted;
     }
 
+    /**
+     * Returns this property map as a string joined with the given separator
+     *
+     * @param separator The separator
+     * @return A string with all key/value pairs
+     */
     @Override
-    public String join(String separator)
+    public String join(@NotNull String separator)
     {
         var entries = new StringList();
         var keys = new ArrayList<>(keySet());
@@ -292,12 +396,23 @@ public class PropertyMap extends VariableMap<String>
         return entries.join(separator);
     }
 
-    public void save(WritableResource resource)
+    /**
+     * Saves this property map to the given writable resource
+     *
+     * @param resource The resource
+     */
+    public void save(@NotNull WritableResource resource)
     {
-        save(resource.baseName().name(), resource);
+        save(resource, resource.baseFileName().name());
     }
 
-    public void save(String heading, WritableResource resource)
+    /**
+     * Saves this property map to the given writable resource with the given heading
+     *
+     * @param resource The resource
+     * @param heading The heading
+     */
+    public void save(@NotNull WritableResource resource, @NotNull String heading)
     {
         var out = resource.printWriter();
         out.println(AsciiArt.box(heading, '#', '#'));
@@ -309,6 +424,6 @@ public class PropertyMap extends VariableMap<String>
     @Override
     protected VariableMap<String> newStringMap()
     {
-        return PropertyMap.create();
+        return PropertyMap.propertyMap();
     }
 }

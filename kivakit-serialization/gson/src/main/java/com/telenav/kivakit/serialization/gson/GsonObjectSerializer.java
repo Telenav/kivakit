@@ -22,14 +22,16 @@ import java.io.OutputStream;
 import java.util.regex.Pattern;
 
 import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
-import static com.telenav.kivakit.resource.serialization.ObjectMetadata.INSTANCE;
-import static com.telenav.kivakit.resource.serialization.ObjectMetadata.TYPE;
-import static com.telenav.kivakit.resource.serialization.ObjectMetadata.VERSION;
+import static com.telenav.kivakit.core.progress.ProgressReporter.nullProgressReporter;
+import static com.telenav.kivakit.resource.serialization.ObjectMetadata.OBJECT_INSTANCE;
+import static com.telenav.kivakit.resource.serialization.ObjectMetadata.OBJECT_TYPE;
+import static com.telenav.kivakit.resource.serialization.ObjectMetadata.OBJECT_VERSION;
 
 /**
- * JSON {@link ObjectSerializer} using Google Gson library.
+ * JSON {@link ObjectSerializer} implementation using Google Gson library.
  *
  * @author jonathanl (shibo)
+ * @see ObjectSerializer
  */
 public class GsonObjectSerializer implements
         ObjectSerializer,
@@ -42,36 +44,55 @@ public class GsonObjectSerializer implements
 
     private static final Pattern VERSION_PATTERN = Pattern.compile("\"(version)\"\\s*:\\s*\"(?<version>.+)\"");
 
-    private final ProgressReporter reporter;
+    /** The progress reporter to notify as serialization proceeds */
+    private final ProgressReporter progressReporter;
 
+    /** The Gson object factory */
     private final GsonFactory factory = require(GsonFactory.class);
 
+    /**
+     * Create a Gson object serializer
+     */
     public GsonObjectSerializer()
     {
-        this(ProgressReporter.none());
+        this(nullProgressReporter());
     }
 
-    public GsonObjectSerializer(ProgressReporter reporter)
+    /**
+     * Create a Gson object serializer
+     *
+     * @param progressReporter The progress reporter to update as serialization proceeds
+     */
+    public GsonObjectSerializer(ProgressReporter progressReporter)
     {
-        this.reporter = reporter;
+        this.progressReporter = progressReporter;
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public <T> SerializableObject<T> read(InputStream input,
-                                          StringPath path,
-                                          Class<T> typeToRead,
-                                          ObjectMetadata... metadata)
+    public ProgressReporter progressReporter()
+    {
+        return progressReporter;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public <T> SerializableObject<T> readObject(@NotNull InputStream input,
+                                                @NotNull StringPath path,
+                                                @NotNull Class<T> typeToRead,
+                                                ObjectMetadata @NotNull ... metadata)
     {
         return tryCatchThrow(() ->
         {
             // Read JSON from input,
-            var json = IO.string(input);
+            var json = IO.string(this, input);
 
             // get the type to read,
-            var type = Arrays.contains(metadata, TYPE)
+            var type = Arrays.contains(metadata, OBJECT_TYPE)
                     ? ensureNotNull(type(json, metadata, typeToRead))
                     : typeToRead;
 
@@ -81,66 +102,63 @@ public class GsonObjectSerializer implements
         }, "Unable to read from $", path);
     }
 
-    @Override
-    public ProgressReporter reporter()
-    {
-        return reporter;
-    }
-
     /**
      * {@inheritDoc}
      */
     @Override
-    public <T> void write(OutputStream output,
-                          StringPath path,
-                          SerializableObject<T> object,
-                          ObjectMetadata... metadata)
+    public <T> void writeObject(@NotNull OutputStream output,
+                                @NotNull StringPath path,
+                                @NotNull SerializableObject<T> object,
+                                ObjectMetadata @NotNull ... metadata)
     {
         tryCatchThrow(() ->
         {
             var json = factory.gson().toJson(object);
 
-            if (TYPE.containedIn(metadata))
+            if (OBJECT_TYPE.containedIn(metadata))
             {
                 json = json.replaceAll("\\s*\\{", "{\n\"type\": \"" + object.object().getClass().getName() + "\"");
             }
 
-            if (VERSION.containedIn(metadata))
+            if (OBJECT_VERSION.containedIn(metadata))
             {
                 json = json.replaceAll("\\s*\\{", "{\n\"version\": \"" + object.version() + "\"");
             }
 
-            if (INSTANCE.containedIn(metadata) && object.instance() != null)
+            if (OBJECT_INSTANCE.containedIn(metadata) && object.instance() != null)
             {
                 json = json.replaceAll("\\s*\\{", "{\n\"instance\": \"" + object.instance() + "\"");
             }
 
-            new OutputResource(output).printWriter().println(json);
+            try (var out = new OutputResource(output).printWriter())
+            {
+                out.println(json);
+            }
         }, "Unable to write to: $", path);
     }
 
     @NotNull
-    private InstanceIdentifier instance(final String json, final ObjectMetadata[] metadata)
+    private InstanceIdentifier instance(String json, ObjectMetadata[] metadata)
     {
-        var instance = InstanceIdentifier.SINGLETON;
+        var instance = InstanceIdentifier.singletonInstanceIdentifier();
         var instanceMatcher = INSTANCE_PATTERN.matcher(json);
-        if (INSTANCE.containedIn(metadata) && instanceMatcher.find())
+        if (OBJECT_INSTANCE.containedIn(metadata) && instanceMatcher.find())
         {
-            instance = InstanceIdentifier.of(instanceMatcher.group("instance"));
+            instance = InstanceIdentifier.instanceIdentifierForEnumName(this, instanceMatcher.group("instance"));
         }
         return instance;
     }
 
     @Nullable
-    private <T> Class<T> type(final String json, final ObjectMetadata[] metadata, final Class<T> typeToRead)
+    private <T> Class<T> type(String json, ObjectMetadata[] metadata, Class<T> typeToRead)
     {
         Class<T> type = typeToRead;
-        if (type == null && TYPE.containedIn(metadata))
+        if (type == null && OBJECT_TYPE.containedIn(metadata))
         {
             var typeMatcher = TYPE_PATTERN.matcher(json);
             if (typeMatcher.find())
             {
-                type = Classes.forName(typeMatcher.group("type"));
+                type = Classes.classForName(typeMatcher.group("type"));
             }
         }
 
@@ -148,7 +166,7 @@ public class GsonObjectSerializer implements
     }
 
     @Nullable
-    private Version version(final String json)
+    private Version version(String json)
     {
         Version version = null;
         var versionMatcher = VERSION_PATTERN.matcher(json);

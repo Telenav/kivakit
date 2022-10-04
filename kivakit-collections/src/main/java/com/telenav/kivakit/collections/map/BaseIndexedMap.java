@@ -18,6 +18,7 @@
 
 package com.telenav.kivakit.collections.map;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.collections.internal.lexakai.DiagramMap;
 import com.telenav.kivakit.core.collections.list.ObjectList;
 import com.telenav.kivakit.core.collections.map.BaseMap;
@@ -34,6 +35,10 @@ import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+
 /**
  * A map that allows access to data by both index and key. Note that {@link LinkedHashMap} preserves the order of values
  * in the map, but it does not allow indexing of the map.
@@ -43,8 +48,14 @@ import java.util.Map;
  */
 @UmlClassDiagram(diagram = DiagramMap.class)
 @UmlExcludeSuperTypes(Iterable.class)
-public class BaseIndexedMap<Key, Value> extends BaseMap<Key, Value> implements Iterable<Value>, Indexable<Value>
+@ApiQuality(stability = API_STABLE_EXTENSIBLE,
+            testing = TESTING_NONE,
+            documentation = DOCUMENTATION_COMPLETE)
+public class BaseIndexedMap<Key, Value> extends BaseMap<Key, Value> implements
+        Iterable<Value>,
+        Indexable<Value>
 {
+    /** The list of values in insertion order */
     private final ObjectList<Value> list;
 
     public BaseIndexedMap(Maximum maximumSize)
@@ -98,16 +109,16 @@ public class BaseIndexedMap<Key, Value> extends BaseMap<Key, Value> implements I
     }
 
     @Override
-    public void putAll(Map<? extends Key, ? extends Value> map)
+    public void putAll(@NotNull Map<? extends Key, ? extends Value> that)
     {
-        for (Map.Entry<? extends Key, ? extends Value> entry : map.entrySet())
+        for (Map.Entry<? extends Key, ? extends Value> entry : that.entrySet())
         {
             put(entry.getKey(), entry.getValue());
         }
     }
 
     @Override
-    public Value remove(Object key)
+    public Value remove(@NotNull Object key)
     {
         list.remove(get(key));
         return super.remove(key);

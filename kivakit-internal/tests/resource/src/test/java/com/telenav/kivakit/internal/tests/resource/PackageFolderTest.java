@@ -34,7 +34,7 @@ public class PackageFolderTest extends UnitTest implements PackageTrait
     {
         if (!isQuickTest())
         {
-            var folder = thisPackage();
+            var folder = packageForThis();
             int textFiles = 0;
             for (var ignored : folder.resources(TXT::matches))
             {

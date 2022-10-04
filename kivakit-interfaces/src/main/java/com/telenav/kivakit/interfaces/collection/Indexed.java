@@ -18,42 +18,29 @@
 
 package com.telenav.kivakit.interfaces.collection;
 
-import com.telenav.kivakit.annotations.code.CodeQuality;
-import com.telenav.kivakit.interfaces.numeric.Quantizable;
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.interfaces.internal.lexakai.DiagramCollection;
-import com.telenav.kivakit.interfaces.numeric.QuantumComparable;
-import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.STABLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.UNNECESSARY;
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
 
 /**
- * An object which has an index and is also {@link Quantizable} as are many objects.
+ * An object which has an index.
  *
  * @author jonathanl (shibo)
- * @see Quantizable
  */
 @UmlClassDiagram(diagram = DiagramCollection.class)
-@CodeQuality(stability = STABLE,
-             testing = UNNECESSARY,
-             documentation = COMPLETE)
-public interface Indexed extends
-        Quantizable,
-        QuantumComparable<Indexed>
+@ApiQuality(stability = API_STABLE,
+            testing = TESTING_NOT_NEEDED,
+            documentation = DOCUMENTATION_COMPLETE,
+            reviews = 1,
+            reviewers = "shibo")
+public interface Indexed
 {
     /**
      * @return The index
      */
     int index();
-
-    /**
-     * @return The index as a quantum value
-     */
-    @Override
-    default long quantum()
-    {
-        return index();
-    }
 }

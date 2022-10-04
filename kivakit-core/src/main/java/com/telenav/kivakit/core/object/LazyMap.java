@@ -18,12 +18,17 @@
 
 package com.telenav.kivakit.core.object;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramObject;
 import com.telenav.kivakit.interfaces.factory.MapFactory;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
+
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
 
 /**
  * A lazy-initializing map.
@@ -47,6 +52,9 @@ import java.util.concurrent.ConcurrentHashMap;
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramObject.class)
+@ApiQuality(stability = API_STABLE_EXTENSIBLE,
+            testing = TESTING_NOT_NEEDED,
+            documentation = DOCUMENTATION_COMPLETE)
 public class LazyMap<Key, Value>
 {
     /**

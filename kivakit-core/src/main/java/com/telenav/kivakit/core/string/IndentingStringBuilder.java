@@ -18,29 +18,38 @@
 
 package com.telenav.kivakit.core.string;
 
-import com.telenav.kivakit.core.value.count.Count;
+import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.core.collections.list.StringList;
 import com.telenav.kivakit.core.ensure.Ensure;
 import com.telenav.kivakit.core.internal.lexakai.DiagramString;
+import com.telenav.kivakit.core.value.count.Count;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
 import static com.telenav.kivakit.core.string.IndentingStringBuilder.Style.HTML;
 import static com.telenav.kivakit.core.string.IndentingStringBuilder.Style.TEXT;
 
 /**
  * Builds a string with indentation levels. The constructor {@link #IndentingStringBuilder(Style, Indentation)} takes
  * the number of spaces per indentation level. Strings can be added to the builder with {@link #appendLine(String)} and
- * {@link #appendLines(String)}. When {@link #indent()} is called the indentation level is increased and when {@link
- * #unindent()} is called the indentation level is decreased. The indentation level can be retrieved with {@link
- * #indentationLevel()} and {@link #isIndented()}, and it can be set with {@link #level(int)}.
+ * {@link #appendLines(String)}. When {@link #indent()} is called the indentation level is increased and when
+ * {@link #unindent()} is called the indentation level is decreased. The indentation level can be retrieved with
+ * {@link #indentationLevel()} and {@link #isIndented()}, and it can be set with {@link #level(int)}.
  *
  * @author jonathanl (shibo)
  */
+@SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramString.class)
+@ApiQuality(stability = API_STABLE_EXTENSIBLE,
+            testing = TESTING_NONE,
+            documentation = DOCUMENTATION_COMPLETE)
 public class IndentingStringBuilder
 {
+    /**
+     * Returns a text indenter that indents by 4 spaces
+     */
     public static IndentingStringBuilder defaultTextIndenter()
     {
         return new IndentingStringBuilder(TEXT, new Indentation(4));
@@ -52,9 +61,12 @@ public class IndentingStringBuilder
         HTML
     }
 
+    /**
+     * A level of indentation in spaces
+     */
     public static class Indentation
     {
-        public static Indentation of(int spaces)
+        public static Indentation indentation(int spaces)
         {
             return new Indentation(spaces);
         }
@@ -72,17 +84,21 @@ public class IndentingStringBuilder
         }
     }
 
-    private final List<String> lines = new ArrayList<>();
+    /** The indented lines */
+    private final StringList lines = new StringList();
 
+    /** The style of indentation */
     private final Style style;
 
+    /** The indentation size */
     private final Indentation indentation;
 
+    /** The level of indentation */
     private int level;
 
     public IndentingStringBuilder()
     {
-        this(TEXT, Indentation.of(4));
+        this(TEXT, Indentation.indentation(4));
     }
 
     public IndentingStringBuilder(Indentation indentation)
@@ -99,15 +115,21 @@ public class IndentingStringBuilder
         this.indentation = indentation;
     }
 
-    public IndentingStringBuilder appendLine(String value)
+    /**
+     * Appends the given line to the list of indented lines
+     */
+    public IndentingStringBuilder appendLine(String line)
     {
-        lines.add(AsciiArt.repeat(level * indentation.asInt(), " ") + value);
+        lines.add(AsciiArt.repeat(level * indentation.asInt(), " ") + line);
         return this;
     }
 
-    public IndentingStringBuilder appendLines(String value)
+    /**
+     * Appends the given lines to the list of indented lines
+     */
+    public IndentingStringBuilder appendLines(String lines)
     {
-        for (var line : Split.split(value, "\n"))
+        for (var line : Split.split(lines, "\n"))
         {
             appendLine(line);
         }
@@ -119,22 +141,34 @@ public class IndentingStringBuilder
         return lines.contains(line);
     }
 
+    /**
+     * Increases the indent level
+     */
     public IndentingStringBuilder indent()
     {
         level++;
         return this;
     }
 
+    /**
+     * The current indentation level
+     */
     public int indentationLevel()
     {
         return level;
     }
 
+    /**
+     * Returns true if we are indented
+     */
     public boolean isIndented()
     {
         return level > 0;
     }
 
+    /**
+     * Sets the level of indentation
+     */
     public IndentingStringBuilder level(int level)
     {
         Ensure.ensure(level >= 0);
@@ -142,11 +176,25 @@ public class IndentingStringBuilder
         return this;
     }
 
-    public Count lines()
+    /**
+     * Returns the number of indented lines
+     */
+    public Count lineCount()
     {
         return Count.count(lines);
     }
 
+    /**
+     * The indented lines as a string list
+     */
+    public StringList lines()
+    {
+        return lines;
+    }
+
+    /**
+     * Numbers the indented lines
+     */
     public IndentingStringBuilder numbered()
     {
         for (int index = 0; index < lines.size(); index++)
@@ -156,6 +204,9 @@ public class IndentingStringBuilder
         return this;
     }
 
+    /**
+     * Removes the last line
+     */
     public IndentingStringBuilder removeLastLine()
     {
         if (!lines.isEmpty())
@@ -171,6 +222,9 @@ public class IndentingStringBuilder
         return Join.join(lines, style == HTML ? "<br/>" : "\n");
     }
 
+    /**
+     * Decreases the indent level
+     */
     @SuppressWarnings("SpellCheckingInspection")
     public IndentingStringBuilder unindent()
     {

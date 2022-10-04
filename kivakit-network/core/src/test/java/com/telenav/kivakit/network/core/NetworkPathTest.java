@@ -21,12 +21,14 @@ package com.telenav.kivakit.network.core;
 import com.telenav.kivakit.testing.UnitTest;
 import org.junit.Test;
 
+import static com.telenav.kivakit.network.core.LocalHost.localhost;
+
 public class NetworkPathTest extends UnitTest
 {
     @Test
     public void test()
     {
-        var port = Host.local().http(8080);
+        var port = localhost().http(8080);
         var path = port.path(this, "/foo/bar");
         ensureEqual("/", path.separator());
         ensure(path.isAbsolute());

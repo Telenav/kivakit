@@ -18,16 +18,29 @@
 
 package com.telenav.kivakit.core.language;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramPrimitive;
-import com.telenav.kivakit.interfaces.numeric.Quantizable;
-import com.telenav.lexakai.annotations.LexakaiJavadoc;
+import com.telenav.kivakit.interfaces.value.LongValued;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.lang.reflect.Array;
 import java.util.Collection;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_STATIC_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+
 /**
  * Utility methods for working with arrays.
+ *
+ * <p><b>Creation</b></p>
+ *
+ * <ul>
+ *     <li>{@link #intArray(Collection)}</li>
+ *     <li>{@link #longArray(Collection)}</li>
+ * </ul>
+ *
+ * <p><b>Ordering</b></p>
  *
  * <ul>
  *     <li>{@link #reverse(int[])}</li>
@@ -38,7 +51,9 @@ import java.util.Collection;
  * @author jonathanl (shibo)
  */
 @SuppressWarnings("unused") @UmlClassDiagram(diagram = DiagramPrimitive.class)
-@LexakaiJavadoc(complete = true)
+@ApiQuality(stability = API_STABLE_STATIC_EXTENSIBLE,
+            testing = TESTING_NONE,
+            documentation = DOCUMENTATION_COMPLETE)
 public class Arrays
 {
     /**
@@ -54,16 +69,22 @@ public class Arrays
         return builder.toString();
     }
 
-    public static <T> T[] concatenate(T[] a, T[] b)
+    /**
+     * Returns the concatenation of the two given arrays, as an array.
+     */
+    public static <Value> Value[] concatenate(Value[] a, Value[] b)
     {
         @SuppressWarnings("unchecked")
-        T[] concatenated = (T[]) Array.newInstance(a.getClass().getComponentType(), a.length + b.length);
+        Value[] concatenated = (Value[]) Array.newInstance(a.getClass().getComponentType(), a.length + b.length);
         System.arraycopy(a, 0, concatenated, 0, a.length);
         System.arraycopy(b, 0, concatenated, a.length, b.length);
         return concatenated;
     }
 
-    public static <T> boolean contains(T[] array, T object)
+    /**
+     * Returns true if the given array contains the given object
+     */
+    public static <Value> boolean contains(Value[] array, Value object)
     {
         for (var at : array)
         {
@@ -75,26 +96,53 @@ public class Arrays
         return false;
     }
 
-    static int[] intArray(Collection<? extends Quantizable> values)
+    /**
+     * Creates an int[] for the given {@link LongValued} collections
+     */
+    static int[] intArray(Collection<? extends LongValued> values)
     {
         var array = new int[values.size()];
         var index = 0;
-        for (Quantizable value : values)
+        for (var value : values)
         {
-            array[index++] = (int) value.quantum();
+            array[index++] = (int) value.longValue();
         }
         return array;
     }
 
-    static long[] longArray(Collection<? extends Quantizable> values)
+    /**
+     * Creates a long[] for the given {@link LongValued} collections
+     */
+    static long[] longArray(Collection<? extends LongValued> values)
     {
         var array = new long[values.size()];
         var index = 0;
-        for (Quantizable value : values)
+        for (var value : values)
         {
-            array[index++] = value.quantum();
+            array[index++] = value.longValue();
         }
         return array;
+    }
+
+    /**
+     * Reverses the elements in the given array
+     */
+    public static void reverse(byte[] array)
+    {
+        reverse(array, 0, array.length);
+    }
+
+    /**
+     * Reverses the region of elements in the given array
+     */
+    public static void reverse(byte[] array, int fromIndex, int toIndex)
+    {
+        for (int i = fromIndex, j = toIndex - 1; i < j; i++, j--)
+        {
+            byte temporary = array[i];
+            array[i] = array[j];
+            array[j] = temporary;
+        }
     }
 
     /**

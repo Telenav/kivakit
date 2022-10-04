@@ -1,9 +1,13 @@
 package com.telenav.kivakit.core.code;
 
-import com.telenav.kivakit.core.logging.Logger;
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.messaging.repeaters.RepeaterMixin;
 import com.telenav.kivakit.interfaces.value.Source;
+
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_DEFAULT_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
 
 /**
  * Removes exception handling from code that can throw a checked (or unchecked) {@link Exception}.
@@ -24,10 +28,20 @@ import com.telenav.kivakit.interfaces.value.Source;
  *
  * @author jonathanl (shibo)
  */
+@SuppressWarnings("unused")
 @FunctionalInterface
+@ApiQuality(stability = API_STABLE_DEFAULT_EXTENSIBLE,
+            testing = TESTING_NONE,
+            documentation = DOCUMENTATION_COMPLETE)
 public interface UncheckedCode<Value> extends RepeaterMixin
 {
-    static <T> UncheckedCode<T> of(UncheckedCode<T> code)
+    /**
+     * Removes exception checking from the given code
+     *
+     * @param code The code
+     * @return The unchecked code
+     */
+    static <T> UncheckedCode<T> unchecked(UncheckedCode<T> code)
     {
         return code;
     }
@@ -48,37 +62,6 @@ public interface UncheckedCode<Value> extends RepeaterMixin
     }
 
     /**
-     * @param defaultValue A default value to return if the code throws an exception
-     * @param message A warning message to give to the listener if an exception is thrown
-     * @param arguments Arguments to interpolate into the message
-     * @return The value returned by the code, or the given default value if an exception is thrown
-     */
-    default Value orDefault(Value defaultValue, String message, Object... arguments)
-    {
-        return orDefault(Logger.logger(), defaultValue, message, arguments);
-    }
-
-    /**
-     * @param defaultValue A default value to return if the code throws an exception
-     * @param listener A listener to broadcast a warning message to if an exception is thrown
-     * @param message A warning message to give to the listener if an exception is thrown
-     * @param arguments Arguments to interpolate into the message
-     * @return The value returned by the code, or the given default value if an exception is thrown
-     */
-    default Value orDefault(Listener listener, Value defaultValue, String message, Object... arguments)
-    {
-        try
-        {
-            return run();
-        }
-        catch (Exception e)
-        {
-            listener.warning(e, message, arguments);
-            return defaultValue;
-        }
-    }
-
-    /**
      * @return The value returned by the code, or a default value if an exception is thrown
      */
     default Value orDefault(Value defaultValue)
@@ -93,12 +76,36 @@ public interface UncheckedCode<Value> extends RepeaterMixin
         }
     }
 
+    /**
+     * @param defaultValue A default value to return if the code throws an exception
+     * @param listener A listener to broadcast a warning message to if an exception is thrown
+     * @param message A warning message to give to the listener if an exception is thrown
+     * @param arguments Arguments to interpolate into the message
+     * @return The value returned by the code, or the given default value if an exception is thrown
+     */
+    default Value orDefaultAndProblem(Value defaultValue, Listener listener, String message, Object... arguments)
+    {
+        try
+        {
+            return run();
+        }
+        catch (Exception e)
+        {
+            listener.warning(e, message, arguments);
+            return defaultValue;
+        }
+    }
+
+    /**
+     * @return The value returned by this code, or null if an exception is thrown.
+     */
     default Value orNull()
     {
         return orDefault((Value) null);
     }
 
     /**
+     * Runs this code
      * @return The value returned by the checked code
      * @throws Exception The exception that might be thrown by the code
      */

@@ -18,10 +18,11 @@
 
 package com.telenav.kivakit.core.messaging;
 
-import com.telenav.kivakit.core.language.Classes;
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramBroadcaster;
 import com.telenav.kivakit.core.internal.lexakai.DiagramListener;
 import com.telenav.kivakit.core.internal.lexakai.DiagramMessaging;
+import com.telenav.kivakit.core.language.Classes;
 import com.telenav.kivakit.core.messaging.context.CodeContext;
 import com.telenav.kivakit.core.messaging.context.StackTrace;
 import com.telenav.kivakit.core.messaging.messages.Importance;
@@ -38,7 +39,7 @@ import com.telenav.kivakit.core.messaging.messages.status.Information;
 import com.telenav.kivakit.core.messaging.messages.status.Problem;
 import com.telenav.kivakit.core.messaging.messages.status.Trace;
 import com.telenav.kivakit.core.messaging.messages.status.Warning;
-import com.telenav.kivakit.core.messaging.messages.status.activity.Activity;
+import com.telenav.kivakit.core.messaging.messages.status.activity.Step;
 import com.telenav.kivakit.core.messaging.messages.status.activity.StepFailure;
 import com.telenav.kivakit.core.messaging.messages.status.activity.StepIncomplete;
 import com.telenav.kivakit.core.messaging.messages.status.activity.StepSuccess;
@@ -48,19 +49,23 @@ import com.telenav.kivakit.core.time.Frequency;
 import com.telenav.kivakit.core.time.Time;
 import com.telenav.kivakit.interfaces.messaging.Transmittable;
 import com.telenav.kivakit.interfaces.naming.Named;
-import com.telenav.kivakit.interfaces.string.Stringable;
+import com.telenav.kivakit.interfaces.string.StringFormattable;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeMember;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeSuperTypes;
 
-import static com.telenav.kivakit.core.string.Formatter.Format.WITHOUT_EXCEPTION;
-import static com.telenav.kivakit.core.string.Formatter.Format.WITH_EXCEPTION;
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+import static com.telenav.kivakit.core.messaging.MessageFormat.FORMATTED;
+import static com.telenav.kivakit.core.messaging.MessageFormat.WITHOUT_EXCEPTION;
+import static com.telenav.kivakit.core.messaging.MessageFormat.WITH_EXCEPTION;
 
 /**
  * An interface to retrieve the basic attributes of a message, find out what it means and format it as text. A message's
  * text is un-formatted when it is created. The message text and any arguments must be passed to {@link Formatter} to
- * produce a final formatted message, which can be retrieved with {@link #formatted(Formatter.Format)}. This is a useful
+ * produce a final formatted message, which can be retrieved with {@link #formatted(MessageFormat[])}. This is a useful
  * design because it is cheaper to construct messages if the formatting is delayed until the formatted string is need,
  * for example, when a log message is added to a formatted text log.
  * <p>
@@ -75,11 +80,11 @@ import static com.telenav.kivakit.core.string.Formatter.Format.WITH_EXCEPTION;
  *     <li>{@link #status()} - The status of a step in an ongoing operation that the message relates to, if any</li>
  * </ul>
  * <p>
- * <b>Types of Messages</b>
+ * <b>Types of MessageTransceiver</b>
  * <p>
- * Different types of messages relate to different aspects of a running program. Messages relating to a larger goal
+ * Different types of messages relate to different aspects of a running program. MessageTransceiver relating to a larger goal
  * of the program, such as converting a file or computing a route are <i>operation lifecycle</i> messages and extend
- * {@link OperationLifecycleMessage}. Messages that relate to the smaller steps required to achieve an operation are
+ * {@link OperationLifecycleMessage}. MessageTransceiver that relate to the smaller steps required to achieve an operation are
  * <i>status</i> messages and extend {@link OperationStatusMessage}. If the {@link #operationStatus()} method returns a non-null
  * value, the message relates to the operation lifecycle. If the {@link #status()} method returns a non-null value the
  * message relates to the most recent step in the current operation.
@@ -90,7 +95,7 @@ import static com.telenav.kivakit.core.string.Formatter.Format.WITH_EXCEPTION;
  * even if it did so imperfectly. Inspection of message classes will reveal what their meaning is with respect to
  * operations and the steps used to complete them.
  * <p>
- * <b>Operation Lifecycle Messages</b>
+ * <b>Operation Lifecycle MessageTransceiver</b>
  * <p>
  * An {@link OperationStatus} lifecycle message relates to a state change in the status of an operation. Operations start,
  * run and then complete with some kind of result:
@@ -102,11 +107,11 @@ import static com.telenav.kivakit.core.string.Formatter.Format.WITH_EXCEPTION;
  *     <li>{@link OperationStatus#HALTED} - The operation was unable to complete</li>
  * </ul>
  * <p>
- * <b>Operation Status Messages</b>
+ * <b>Operation Status MessageTransceiver</b>
  * <p>
  * A {@link Status} message relates to the result of executing a step in a larger operation:
  * <ul>
- *     <li>{@link Status#SUCCEEDED} - The step succeeded and the message is reporting progress: {@link Activity}, {@link Information}, {@link StepSuccess}, {@link Trace}</li>
+ *     <li>{@link Status#SUCCEEDED} - The step succeeded and the message is reporting progress: {@link Step}, {@link Information}, {@link StepSuccess}, {@link Trace}</li>
  *     <li>{@link Status#COMPLETED} - The step completed and produced a result but there was an actual or potential negative effect that should be noted: {{@link Warning}}</li>
  *     <li>{@link Status#RESULT_COMPROMISED} - The step completed successfully amd data was not discarded, but the result may be partly invalid: {@link Glitch}</li>
  *     <li>{@link Status#RESULT_INCOMPLETE} - The step completed but some aspect of the result had to be discarded: {@link StepIncomplete}</li>
@@ -120,18 +125,21 @@ import static com.telenav.kivakit.core.string.Formatter.Format.WITH_EXCEPTION;
 @UmlClassDiagram(diagram = DiagramBroadcaster.class)
 @UmlClassDiagram(diagram = DiagramMessaging.class)
 @UmlClassDiagram(diagram = DiagramListener.class)
-@UmlExcludeSuperTypes({ Stringable.class })
+@UmlExcludeSuperTypes({ StringFormattable.class })
 @UmlRelation(label = "formats with", diagram = DiagramMessaging.class, referent = Formatter.class)
+@ApiQuality(stability = API_STABLE,
+            testing = TESTING_NONE,
+            documentation = DOCUMENTATION_COMPLETE)
 public interface Message extends
         Transmittable,
         Triaged,
-        Stringable,
+        StringFormattable,
         Named
 {
     /**
-     * @return The given string with single quotes escaped
+     * @return The given string with message markers escaped
      */
-    static String escape(String text)
+    static String escapeMessageText(String text)
     {
         return Strings.replaceAll(text, "$", "$$");
     }
@@ -141,7 +149,7 @@ public interface Message extends
      */
     static Message parseMessageName(Listener listener, String name)
     {
-        return OperationMessage.parse(listener, name);
+        return OperationMessage.parseMessageType(listener, name);
     }
 
     /**
@@ -283,11 +291,11 @@ public interface Message extends
     /**
      * @return Formatted message, including any stack trace information
      */
-    String formatted(Formatter.Format format);
+    String formatted(MessageFormat... format);
 
     default String formatted()
     {
-        return formatted(WITHOUT_EXCEPTION);
+        return formatted(FORMATTED, WITHOUT_EXCEPTION);
     }
 
     /**
@@ -304,13 +312,13 @@ public interface Message extends
     @UmlExcludeMember
     default boolean isMoreImportantThan(Class<? extends Message> type)
     {
-        return importance().isGreaterThan(Importance.importance(type));
+        return importance().isGreaterThan(Importance.importanceOfMessage(type));
     }
 
     @UmlExcludeMember
     default boolean isMoreImportantThanOrEqualTo(Class<? extends Message> type)
     {
-        return importance().isGreaterThanOrEqualTo(Importance.importance(type));
+        return importance().isGreaterThanOrEqualTo(Importance.importanceOfMessage(type));
     }
 
     /**

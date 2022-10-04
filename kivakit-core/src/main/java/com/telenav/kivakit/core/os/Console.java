@@ -1,5 +1,8 @@
 package com.telenav.kivakit.core.os;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.core.messaging.Listener;
+import com.telenav.kivakit.core.messaging.Message;
 import com.telenav.kivakit.core.string.Strings;
 import com.telenav.kivakit.core.time.Duration;
 import com.telenav.kivakit.interfaces.io.Flushable;
@@ -7,14 +10,30 @@ import com.telenav.kivakit.interfaces.io.Flushable;
 import java.io.PrintStream;
 import java.io.PrintWriter;
 
-import static com.telenav.kivakit.core.os.Console.OutputType.ERROR;
-import static com.telenav.kivakit.core.os.Console.OutputType.NORMAL;
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
+import static com.telenav.kivakit.core.os.Console.OutputStream.ERROR;
+import static com.telenav.kivakit.core.os.Console.OutputStream.NORMAL;
 
-public class Console implements Flushable<Duration>
+/**
+ * Simple console access
+ *
+ * @author jonathanl (shibo)
+ */
+@SuppressWarnings("resource")
+@ApiQuality(stability = API_STABLE_EXTENSIBLE,
+            testing = TESTING_NOT_NEEDED,
+            documentation = DOCUMENTATION_COMPLETE)
+public class Console implements
+        Flushable<Duration>,
+        Listener
 {
-    public static Console get()
+    private static final Console console = new Console();
+
+    public static Console console()
     {
-        return new Console();
+        return console;
     }
 
     public static void print(String text, Object... arguments)
@@ -22,7 +41,7 @@ public class Console implements Flushable<Duration>
         print(NORMAL, text, arguments);
     }
 
-    public static void print(OutputType output, String text, Object... arguments)
+    public static void print(OutputStream output, String text, Object... arguments)
     {
         output.stream().print(Strings.format(text, arguments));
     }
@@ -37,14 +56,20 @@ public class Console implements Flushable<Duration>
         println(NORMAL, text, arguments);
     }
 
-    public static void println(OutputType output, String text, Object... arguments)
+    public static void println(OutputStream output, String text, Object... arguments)
     {
         output.stream().println(Strings.format(text, arguments));
     }
 
-    public enum OutputType
+    /**
+     * The output stream type
+     */
+    public enum OutputStream
     {
+        /** stdout */
         NORMAL,
+
+        /** stderr */
         ERROR;
 
         PrintStream stream()
@@ -53,6 +78,9 @@ public class Console implements Flushable<Duration>
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void flush(Duration maximumWaitTime)
     {
@@ -60,9 +88,37 @@ public class Console implements Flushable<Duration>
         ERROR.stream().flush();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Duration maximumFlushTime()
     {
         return Duration.MAXIMUM;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void onMessage(Message message)
+    {
+        switch (message.operationStatus())
+        {
+            case FAILED:
+            case HALTED:
+                print(ERROR, message.asString());
+                return;
+        }
+
+        switch (message.status())
+        {
+            case FAILED:
+            case PROBLEM:
+                print(ERROR, message.asString());
+                return;
+        }
+
+        print(NORMAL, message.asString());
     }
 }

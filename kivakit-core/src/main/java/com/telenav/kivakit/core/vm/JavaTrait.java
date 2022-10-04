@@ -1,39 +1,52 @@
 package com.telenav.kivakit.core.vm;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.language.primitive.Booleans;
-import com.telenav.kivakit.core.os.Console;
-import com.telenav.kivakit.core.string.Formatter;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_DEFAULT_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+
+/**
+ * Trait providing access to the Java virtual machine, system properties and environment variables
+ *
+ * @author jonathanl (shibo)
+ */
 @SuppressWarnings("unused")
+@ApiQuality(stability = API_STABLE_DEFAULT_EXTENSIBLE,
+            testing = TESTING_NONE,
+            documentation = DOCUMENTATION_COMPLETE)
 public interface JavaTrait
 {
-    default String format(String message, Object... arguments)
+    /**
+     * Returns true if the given property is true
+     */
+    default boolean isSystemPropertyOrEnvironmentVariableTrue(String key)
     {
-        return Formatter.format(message, arguments);
+        return Booleans.isTrue(systemPropertyOrEnvironmentVariable(key));
     }
 
-    default boolean isSystemPropertyTrue(String key)
-    {
-        return Booleans.isTrue(systemProperty(key));
-    }
-
+    /**
+     * Returns the Java virtual machine
+     */
     default JavaVirtualMachine javaVirtualMachine()
     {
-        return JavaVirtualMachine.local();
+        return JavaVirtualMachine.javaVirtualMachine();
     }
 
-    default void println(String message, Object... arguments)
+    /**
+     * Returns the given property
+     */
+    default String systemPropertyOrEnvironmentVariable(String key)
     {
-        Console.println(message, arguments);
+        return Properties.systemPropertyOrEnvironmentVariable(key);
     }
 
-    default String systemProperty(String key)
+    /**
+     * Returns the given property or a default value
+     */
+    default String systemPropertyOrEnvironmentVariable(String key, String defaultValue)
     {
-        return Properties.property(key);
-    }
-
-    default String systemProperty(String key, String defaultValue)
-    {
-        return Properties.property(key, defaultValue);
+        return Properties.systemPropertyOrEnvironmentVariable(key, defaultValue);
     }
 }

@@ -1,22 +1,29 @@
 package com.telenav.kivakit.conversion.core.language.object;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.conversion.BaseConverter;
 import com.telenav.kivakit.conversion.StringConverter;
 import com.telenav.kivakit.core.language.Classes;
 import com.telenav.kivakit.core.language.reflection.Type;
 import com.telenav.kivakit.core.language.reflection.property.KivaKitOptionalProperty;
-import com.telenav.kivakit.core.language.reflection.property.PropertyValues;
+import com.telenav.kivakit.core.language.reflection.property.PropertyValue;
 import com.telenav.kivakit.core.messaging.Listener;
 
-import static com.telenav.kivakit.core.language.reflection.property.PropertyMembers.CONVERTED_FIELDS_AND_METHODS;
-import static com.telenav.kivakit.core.language.reflection.property.PropertyNamingConvention.KIVAKIT;
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+import static com.telenav.kivakit.core.language.reflection.property.PropertyMemberSelector.KIVAKIT_CONVERTED_FIELDS_AND_METHODS;
+import static com.telenav.kivakit.core.language.reflection.property.PropertyNamingConvention.KIVAKIT_PROPERTY_NAMING;
 
 /**
- * Converts a {@link PropertyValues} to an object of a given Value type.
+ * Converts a {@link PropertyValue} to an object of a given Value type.
  *
  * @author jonathanl (shibo)
  */
-public class ObjectConverter<Value> extends BaseConverter<PropertyValues, Value>
+@ApiQuality(stability = API_STABLE,
+            testing = TESTING_NONE,
+            documentation = DOCUMENTATION_COMPLETE)
+public class ObjectConverter<Value> extends BaseConverter<PropertyValue, Value>
 {
     /** The object type to convert to */
     private final Class<Value> type;
@@ -35,15 +42,15 @@ public class ObjectConverter<Value> extends BaseConverter<PropertyValues, Value>
      * {@inheritDoc}
      */
     @Override
-    protected Value onConvert(PropertyValues values)
+    protected Value onConvert(PropertyValue values)
     {
         try
         {
             // Create an object of the given type,
-            var object = Type.forClass(type).newInstance();
+            var object = Type.typeForClass(type).newInstance();
 
             // and a filter that matches converted fields and methods,
-            var filter = new ConversionPropertyFilterSet(KIVAKIT, CONVERTED_FIELDS_AND_METHODS);
+            var filter = new KivaKitConversionPropertySet(KIVAKIT_PROPERTY_NAMING, KIVAKIT_CONVERTED_FIELDS_AND_METHODS);
 
             // and populate the object with converted values.
             new ObjectPopulator(filter, () -> convertedValues(values)).populate(object);
@@ -57,7 +64,7 @@ public class ObjectConverter<Value> extends BaseConverter<PropertyValues, Value>
         }
     }
 
-    private PropertyValues convertedValues(final PropertyValues values)
+    private PropertyValue convertedValues(final PropertyValue values)
     {
         var outer = this;
         return property ->
@@ -72,7 +79,7 @@ public class ObjectConverter<Value> extends BaseConverter<PropertyValues, Value>
                     {
                         var constructor = Classes.constructor(annotation.value(), Listener.class);
                         var converter = (StringConverter<?>) constructor.newInstance(outer);
-                        var value = values.valueFor(property);
+                        var value = values.propertyValue(property);
                         if (setter.hasAnnotation(KivaKitOptionalProperty.class) && value == null)
                         {
                             return null;

@@ -18,14 +18,17 @@
 
 package com.telenav.kivakit.core.value.name;
 
-import com.telenav.kivakit.core.language.reflection.property.KivaKitIncludeProperty;
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramValue;
 import com.telenav.kivakit.interfaces.naming.Nameable;
 import com.telenav.kivakit.interfaces.naming.Named;
 import com.telenav.kivakit.interfaces.naming.NamedObject;
-import com.telenav.kivakit.interfaces.string.StringSource;
-import com.telenav.lexakai.annotations.LexakaiJavadoc;
+import com.telenav.kivakit.interfaces.string.AsString;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
+
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
 
 /**
  * A name value.
@@ -33,11 +36,13 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramValue.class)
-@LexakaiJavadoc(complete = true)
+@ApiQuality(stability = API_STABLE_EXTENSIBLE,
+            testing = TESTING_NONE,
+            documentation = DOCUMENTATION_COMPLETE)
 public class Name implements
         Named,
         Nameable,
-        StringSource
+        AsString
 {
     /**
      * Extracts a name for the given object by trying the following in order:
@@ -49,7 +54,7 @@ public class Name implements
      *
      * @return A lowercase hyphenated name for the given object
      */
-    public static String of(Object object)
+    public static String nameOf(Object object)
     {
         String name = null;
         if (object instanceof NamedObject)
@@ -67,8 +72,12 @@ public class Name implements
         return name;
     }
 
+    /** The name */
     private String name;
 
+    /**
+     * Constructs a name
+     */
     public Name(String name)
     {
         this.name = name;
@@ -78,12 +87,35 @@ public class Name implements
     {
     }
 
+    /**
+     * Returns this name in lowercase
+     */
+    public Name asLowerCaseName()
+    {
+        return new Name(name.toLowerCase());
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String asString()
     {
         return name();
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void assignName(String name)
+    {
+        this.name = name;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean equals(Object object)
     {
@@ -95,30 +127,27 @@ public class Name implements
         return false;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public int hashCode()
     {
         return name().hashCode();
     }
 
-    public Name lowerCase()
-    {
-        return new Name(name.toLowerCase());
-    }
-
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    @KivaKitIncludeProperty
     public String name()
     {
         return name;
     }
 
-    @Override
-    public void assignName(final String name)
-    {
-        this.name = name;
-    }
-
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String toString()
     {

@@ -18,27 +18,48 @@
 
 package com.telenav.kivakit.resource.reading;
 
-import com.telenav.kivakit.core.value.count.ByteSized;
-import com.telenav.kivakit.core.value.count.Bytes;
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.io.IO;
 import com.telenav.kivakit.core.progress.ProgressReporter;
 import com.telenav.kivakit.core.progress.reporters.ProgressiveInputStream;
-import com.telenav.lexakai.annotations.LexakaiJavadoc;
+import com.telenav.kivakit.core.value.count.ByteSized;
+import com.telenav.kivakit.core.value.count.Bytes;
+import org.jetbrains.annotations.NotNull;
 
 import java.io.InputStream;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_DEFAULT_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
+
 /**
- * Interface to something which can be opened for reading. The input stream can be obtained with {@link
- * #openForReading()} or {@link #openForReading(ProgressReporter)}. The latter method will report progress to the given
- * reporter as bytes are read from the input.
+ * Interface to something which can be opened for reading. The input stream can be obtained with
+ * {@link #openForReading()} or {@link #openForReading(ProgressReporter)}. The latter method will report progress to the
+ * given reporter as bytes are read from the input.
+ *
+ * <p><b>Opening to Read</b></p>
+ *
+ * <ul>
+ *     <li>{@link #openForReading()}</li>
+ *     <li>{@link #openForReading(ProgressReporter)}</li>
+ * </ul>
+ *
+ * <p><b>Properties</b></p>
+ *
+ * <ul>
+ *     <li>{@link #isReadable()}</li>
+ *     <li>{@link #sizeInBytes()}</li>
+ * </ul>
  *
  * @author jonathanl (shibo)
  */
-@LexakaiJavadoc(complete = true)
+@ApiQuality(stability = API_STABLE_DEFAULT_EXTENSIBLE,
+            testing = TESTING_NOT_NEEDED,
+            documentation = DOCUMENTATION_COMPLETE)
 public interface Readable extends ByteSized
 {
     /**
-     * @return True if reading is possible
+     * Returns true if reading is possible
      */
     default boolean isReadable()
     {
@@ -59,7 +80,7 @@ public interface Readable extends ByteSized
      * @param reporter A progress reporter that is called for each byte that is read
      * @return The input stream to read from
      */
-    default InputStream openForReading(ProgressReporter reporter)
+    default InputStream openForReading(@NotNull ProgressReporter reporter)
     {
         // Get the size of this resource
         var size = sizeInBytes();
@@ -80,12 +101,13 @@ public interface Readable extends ByteSized
      */
     default InputStream openForReading()
     {
-        return IO.buffer(onOpenForReading());
+        return IO.bufferInput(onOpenForReading());
     }
 
     /**
-     * @return The number of bytes that can be read
+     * Returns the number of bytes that can be read
      */
+    @Override
     default Bytes sizeInBytes()
     {
         return null;

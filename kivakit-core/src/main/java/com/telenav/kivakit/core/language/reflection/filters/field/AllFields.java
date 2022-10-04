@@ -18,41 +18,61 @@
 
 package com.telenav.kivakit.core.language.reflection.filters.field;
 
-import com.telenav.kivakit.core.language.reflection.property.PropertyFilterSet;
-import com.telenav.kivakit.core.language.reflection.property.PropertyNamingConvention;
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramReflection;
+import com.telenav.kivakit.core.language.reflection.Field;
+import com.telenav.kivakit.core.language.reflection.Method;
+import com.telenav.kivakit.core.language.reflection.property.PropertySet;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
-import java.lang.reflect.Field;
-import java.lang.reflect.Method;
-import java.lang.reflect.Modifier;
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+import static com.telenav.kivakit.core.language.reflection.property.PropertyNamingConvention.ANY_NAMING_CONVENTION;
 
 /**
- * A filter that includes all non-static fields of the given naming convention
+ * A filter that includes all non-static fields
+ *
+ * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramReflection.class)
-public class AllFields extends PropertyFilterSet
+@ApiQuality(stability = API_STABLE,
+            testing = TESTING_NONE,
+            documentation = DOCUMENTATION_COMPLETE)
+public class AllFields extends PropertySet
 {
-    public AllFields(PropertyNamingConvention convention)
+    /**
+     * Constructs a property filter that matches all fields with the given naming convention
+     */
+    public AllFields()
     {
-        super(convention);
+        super(ANY_NAMING_CONVENTION);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean includeAsGetter(Method method)
     {
         return false;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean includeAsSetter(Method method)
     {
         return false;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean includeField(Field field)
     {
-        return !Modifier.isStatic(field.getModifiers());
+        return !field.isStatic();
     }
 }

@@ -18,10 +18,18 @@
 
 package com.telenav.kivakit.core.logging.logs.text;
 
-import com.telenav.kivakit.core.logging.LogEntry;
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramLogs;
-import com.telenav.kivakit.core.string.Formatter;
+import com.telenav.kivakit.core.logging.LogEntry;
+import com.telenav.kivakit.core.logging.logs.text.formatters.NarrowLogFormatter;
+import com.telenav.kivakit.core.logging.logs.text.formatters.WideLogFormatter;
+import com.telenav.kivakit.core.messaging.MessageFormat;
+import com.telenav.kivakit.core.vm.JavaVirtualMachine;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
+
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
 
 /**
  * Something that formats log entries in a text log
@@ -29,7 +37,28 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramLogs.class)
+@ApiQuality(stability = API_STABLE,
+            testing = TESTING_NOT_NEEDED,
+            documentation = DOCUMENTATION_COMPLETE)
 public interface LogFormatter
 {
-    String format(LogEntry entry, Formatter.Format format);
+    /**
+     * Returns the log formatter specified by the KIVAKIT_LOG_FORMATTER property or environment variable
+     */
+    static LogFormatter formatter()
+    {
+        var formatter = JavaVirtualMachine.javaVirtualMachine().systemPropertiesAndEnvironmentVariables().get("KIVAKIT_LOG_FORMATTER");
+        return "Wide".equalsIgnoreCase(formatter)
+                ? new WideLogFormatter()
+                : new NarrowLogFormatter();
+    }
+
+    /**
+     * Formats a log entry in the given format
+     *
+     * @param entry The log entry to format
+     * @param formats The format to use (formatted or un-formatted, and with or without an exception)
+     * @return The formatted text
+     */
+    String format(LogEntry entry, MessageFormat... formats);
 }

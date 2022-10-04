@@ -32,7 +32,7 @@ public class BoundedListTest extends CoreUnitTest
     public void testAdd()
     {
         // First make sure that we can add an element to a list with room.
-        BaseList<Integer> list = getPopulatedList(100, 99);
+        BaseList<Integer> list = populatedList(100, 99);
         list.add(11);
 
         // Now make sure we can't add anything to a full list.
@@ -48,8 +48,8 @@ public class BoundedListTest extends CoreUnitTest
     @Test
     public void testAddAll()
     {
-        BaseList<Integer> list = getPopulatedList(100, 75);
-        List<Integer> listToAdd = getPopulatedList(25, 25);
+        BaseList<Integer> list = populatedList(100, 75);
+        List<Integer> listToAdd = populatedList(25, 25);
 
         // We should be able to add the list once.
         list.addAll(listToAdd);
@@ -65,7 +65,7 @@ public class BoundedListTest extends CoreUnitTest
     {
         // First make sure that we can add an element to a list with room and
         // then verify that the value was set.
-        BaseList<Integer> list = getPopulatedList(100, 99);
+        BaseList<Integer> list = populatedList(100, 99);
         list.add(25, 11);
         Assert.assertEquals(Integer.valueOf(11), list.get(25));
 
@@ -79,15 +79,9 @@ public class BoundedListTest extends CoreUnitTest
         list.add(12, 33);
     }
 
-    private BaseList<Integer> getPopulatedList(int maximumSize, int currentLevel)
+    private BaseList<Integer> populatedList(int maximumSize, int currentLevel)
     {
-        ObjectList<Integer> list = new ObjectList<>(Maximum.maximum(maximumSize))
-        {
-            @Override
-            protected void onOutOfRoom()
-            {
-            }
-        };
+        ObjectList<Integer> list = new ObjectList<>(Maximum.maximum(maximumSize));
         for (var i = 0; i < currentLevel; i++)
         {
             list.add(i);

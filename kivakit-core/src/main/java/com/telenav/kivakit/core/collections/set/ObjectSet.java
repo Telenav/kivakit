@@ -18,95 +18,175 @@
 
 package com.telenav.kivakit.core.collections.set;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.core.collections.BaseCollection;
 import com.telenav.kivakit.core.collections.list.ObjectList;
 import com.telenav.kivakit.core.value.count.Maximum;
 import com.telenav.kivakit.interfaces.comparison.Matcher;
 
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.Set;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_INSUFFICIENT;
+import static com.telenav.kivakit.core.value.count.Maximum.MAXIMUM;
+
 /**
+ * A set of objects with an arbitrary backing set. See {@link BaseSet} for details on available methods.
+ *
+ * <p><b>Creation</b></p>
+ *
+ * <ul>
+ *     <li>{@link #objectSet(Object[])}</li>
+ *     <li>{@link #objectSet(Collection)}</li>
+ *     <li>{@link #emptyObjectSet()}</li>
+ *     <li>{@link ObjectSet#ObjectSet()}</li>
+ *     <li>{@link ObjectSet#ObjectSet(Maximum)}</li>
+ *     <li>{@link ObjectSet#ObjectSet(Maximum, Collection)}</li>
+ * </ul>
+ *
  * @author jonathanl (shibo)
+ * @see BaseSet
  */
-public class ObjectSet<T> extends BaseSet<T>
+@ApiQuality(stability = API_STABLE_EXTENSIBLE,
+            testing = TESTING_INSUFFICIENT,
+            documentation = DOCUMENTATION_COMPLETE)
+public class ObjectSet<Value> extends BaseSet<Value>
 {
+    /**
+     * Returns an empty {@link ObjectSet}.
+     */
     public static <T> ObjectSet<T> emptyObjectSet()
     {
         return new ObjectSet<>();
     }
 
+    /**
+     * Returns an {@link ObjectSet} with the given values in it
+     *
+     * @param values The values to add to the set
+     */
     @SafeVarargs
-    public static <T> ObjectSet<T> objectSet(T... objects)
+    public static <T> ObjectSet<T> objectSet(T... values)
     {
         var set = new ObjectSet<T>();
-        set.addAll(objects);
+        set.addAll(values);
         return set;
     }
 
-    public static <T> ObjectSet<T> objectSet(Collection<T> objects)
+    /**
+     * Returns an {@link ObjectSet} with the given values in it
+     *
+     * @param values The values to add to the set
+     */
+    public static <T> ObjectSet<T> objectSet(Collection<T> values)
     {
         var set = new ObjectSet<T>();
-        set.addAll(objects);
+        set.addAll(values);
         return set;
     }
 
+    /**
+     * Creates an object set
+     *
+     * @param maximumSize The maximum size of the set
+     */
     public ObjectSet(Maximum maximumSize)
     {
         super(maximumSize);
     }
 
-    public ObjectSet(Maximum maximumSize, Set<T> set)
+    /**
+     * Creates an object set
+     *
+     * @param maximumSize The maximum size of the set
+     * @param values The initial values to add to the set
+     */
+    public ObjectSet(Maximum maximumSize, Collection<Value> values)
     {
-        super(maximumSize, set);
+        super(maximumSize, values);
     }
 
-    public ObjectSet(Set<T> set)
+    /**
+     * Creates an object set
+     *
+     * @param values The initial values to add to the set
+     */
+    public ObjectSet(Collection<Value> values)
     {
-        super(Maximum.MAXIMUM, set);
+        super(MAXIMUM, values);
     }
 
+    /**
+     * Creates an empty object set with no maximum size
+     */
     public ObjectSet()
     {
-        this(Maximum.MAXIMUM);
+        this(MAXIMUM);
     }
 
-    public boolean addIfNotNull(T object)
-    {
-        if (object != null)
-        {
-            return add(object);
-        }
-        return false;
-    }
-
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public ObjectSet<T> copy()
+    public ObjectList<Value> asList()
     {
-        return (ObjectSet<T>) super.copy();
+        return (ObjectList<Value>) super.asList();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public ObjectSet<T> matching(final Matcher<T> matcher)
+    public ObjectSet<Value> copy()
     {
-        return (ObjectSet<T>) super.matching(matcher);
+        return (ObjectSet<Value>) super.copy();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public ObjectSet<T> onNewInstance()
+    public ObjectSet<Value> matching(Matcher<Value> matcher)
     {
-        return new ObjectSet<>();
+        return (ObjectSet<Value>) super.matching(matcher);
     }
 
-    public ObjectList<T> sorted()
-    {
-        var list = ObjectList.objectList(this);
-        list.sorted();
-        return list;
-    }
-
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public ObjectSet<T> with(Collection<T> that)
+    public ObjectSet<Value> with(Value value)
     {
-        return (ObjectSet<T>) super.with(that);
+        return (ObjectSet<Value>) super.with(value);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public ObjectSet<Value> with(Collection<Value> that)
+    {
+        return (ObjectSet<Value>) super.with(that);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    protected Set<Value> onNewBackingSet()
+    {
+        return new HashSet<>();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    protected BaseCollection<Value> onNewCollection()
+    {
+        return objectSet();
     }
 }

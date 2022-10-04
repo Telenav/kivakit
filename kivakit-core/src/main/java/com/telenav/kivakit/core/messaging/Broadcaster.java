@@ -18,6 +18,7 @@
 
 package com.telenav.kivakit.core.messaging;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramBroadcaster;
 import com.telenav.kivakit.core.internal.lexakai.DiagramRepeater;
 import com.telenav.kivakit.interfaces.comparison.Filter;
@@ -26,6 +27,10 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
 
 import java.util.List;
+
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_DEFAULT_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
 
 /**
  * Broadcasts a message to zero or more listeners via {@link #transmit(Transmittable)}. Listeners can be added with
@@ -53,7 +58,10 @@ import java.util.List;
 @UmlClassDiagram(diagram = DiagramBroadcaster.class)
 @UmlClassDiagram(diagram = DiagramRepeater.class)
 @UmlRelation(label = "transmits", referent = Listener.class, refereeCardinality = "1", referentCardinality = "*")
-public interface Broadcaster extends Transceiver
+@ApiQuality(stability = API_STABLE_DEFAULT_EXTENSIBLE,
+            testing = TESTING_NONE,
+            documentation = DOCUMENTATION_COMPLETE)
+public interface Broadcaster extends MessageTransceiver
 {
     /**
      * Adds a listener to this broadcaster that wants to receive future messages. This is the mirror method of
@@ -79,7 +87,7 @@ public interface Broadcaster extends Transceiver
      */
     default void addListener(Listener listener)
     {
-        addListener(listener, Filter.acceptingAll());
+        addListener(listener, Filter.acceptAll());
     }
 
     /**
@@ -90,7 +98,7 @@ public interface Broadcaster extends Transceiver
     /**
      * Copies the listeners of another broadcaster
      */
-    default void copyListeners(Broadcaster that)
+    default void copyListenersFrom(Broadcaster that)
     {
         that.listeners().forEach(this::addListener);
     }
@@ -127,12 +135,15 @@ public interface Broadcaster extends Transceiver
     /**
      * Allows subclass to transmit message to listeners
      */
+    @Override
     default void onTransmit(Transmittable message)
     {
+        receive(message);
     }
 
     /**
      * Allows subclass to process a message after it is transmitted
+     *
      * @param message The message
      */
     default void onTransmitted(Transmittable message)
@@ -157,7 +168,7 @@ public interface Broadcaster extends Transceiver
     default void silence()
     {
         clearListeners();
-        addListener(Listener.emptyListener());
+        addListener(Listener.nullListener());
     }
 
     /**
