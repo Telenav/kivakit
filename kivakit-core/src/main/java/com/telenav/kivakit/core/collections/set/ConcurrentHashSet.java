@@ -18,16 +18,21 @@
 
 package com.telenav.kivakit.core.collections.set;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramCollections;
 import com.telenav.kivakit.core.value.count.Maximum;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.AbstractSet;
 import java.util.Collection;
-import java.util.Collections;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
+
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_INSUFFICIENT;
 
 /**
  * A convenient implementation of {@link Set} using {@link ConcurrentHashMap}.
@@ -35,8 +40,12 @@ import java.util.concurrent.ConcurrentHashMap;
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramCollections.class)
+@ApiQuality(stability = API_STABLE_EXTENSIBLE,
+            testing = TESTING_INSUFFICIENT,
+            documentation = DOCUMENTATION_COMPLETE)
 public class ConcurrentHashSet<Value> extends BaseSet<Value>
 {
+    /** The backing map */
     private final ConcurrentHashMap<Value, Value> map = new ConcurrentHashMap<>();
 
     public ConcurrentHashSet()
@@ -46,7 +55,7 @@ public class ConcurrentHashSet<Value> extends BaseSet<Value>
 
     public ConcurrentHashSet(Maximum maximumSize)
     {
-        this(maximumSize, Collections.emptySet());
+        this(maximumSize, new HashSet<>());
     }
 
     public ConcurrentHashSet(Maximum maximumSize, Collection<Value> values)
@@ -65,12 +74,6 @@ public class ConcurrentHashSet<Value> extends BaseSet<Value>
         return map.get(prototype);
     }
 
-    @Override
-    public ConcurrentHashSet<Value> onNewInstance()
-    {
-        return (ConcurrentHashSet<Value>) newSet();
-    }
-
     /**
      * Takes any object matching the given prototype out of the set, returning the set's value (but not necessarily the
      * prototype).
@@ -83,8 +86,11 @@ public class ConcurrentHashSet<Value> extends BaseSet<Value>
         return map.remove(prototype);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    protected Set<Value> newSet()
+    protected Set<Value> onNewBackingSet()
     {
         return new AbstractSet<>()
         {
@@ -128,15 +134,12 @@ public class ConcurrentHashSet<Value> extends BaseSet<Value>
         };
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected ConcurrentHashSet<Value> onNewCollection()
     {
         return new ConcurrentHashSet<>();
-    }
-
-    @Override
-    protected ConcurrentHashSet<Value> set()
-    {
-        return (ConcurrentHashSet<Value>) super.set();
     }
 }

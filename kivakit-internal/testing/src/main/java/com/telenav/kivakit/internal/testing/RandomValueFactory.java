@@ -26,7 +26,6 @@ import com.telenav.kivakit.core.language.primitive.Longs;
 import com.telenav.kivakit.core.logging.Logger;
 import com.telenav.kivakit.core.logging.LoggerFactory;
 import com.telenav.kivakit.core.messaging.Debug;
-import com.telenav.kivakit.core.value.count.BaseCount;
 import com.telenav.kivakit.core.value.count.Count;
 import com.telenav.kivakit.core.value.count.Range;
 import com.telenav.kivakit.core.value.identifier.Identifier;
@@ -49,7 +48,6 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
 import static com.telenav.kivakit.core.ensure.Ensure.ensure;
 import static com.telenav.kivakit.core.language.primitive.Longs.inRangeInclusive;
 import static com.telenav.kivakit.core.value.count.Count._256;
-import static com.telenav.kivakit.core.value.count.Count._65_536;
 import static com.telenav.kivakit.core.value.count.Count.count;
 import static com.telenav.kivakit.internal.testing.Repeats.ALLOW_REPEATS;
 import static com.telenav.kivakit.internal.testing.Repeats.NO_REPEATS;
@@ -365,7 +363,9 @@ public class RandomValueFactory implements RandomNumeric
         return rangeExclusive(count(minimum), count(exclusiveMaximum), minimumWidth);
     }
 
-    public <T extends BaseCount<T>> Range<T> rangeExclusive(T minimum, T exclusiveMaximum, long minimumWidth)
+    public Range<Count> rangeExclusive(Count minimum,
+                                       Count exclusiveMaximum,
+                                       long minimumWidth)
     {
         ensure(minimum.isLessThan(exclusiveMaximum));
 
@@ -375,15 +375,16 @@ public class RandomValueFactory implements RandomNumeric
         var randomMinimum = randomLongExclusive(minimum.asLong(), exclusiveMaximum.asLong() - randomWidth);
         var randomExclusiveMaximum = randomMinimum + randomWidth;
 
-        return Range.rangeExclusive(minimum.onNewInstance(randomMinimum), minimum.onNewInstance(randomExclusiveMaximum));
+        return Range.rangeExclusive(minimum.onNewInstance(randomMinimum),
+                minimum.onNewInstance(randomExclusiveMaximum));
     }
 
-    public <T extends BaseCount<T>> Range<T> rangeExclusive(T minimum, T exclusiveMaximum)
+    public Range<Count> rangeExclusive(Count minimum, Count exclusiveMaximum)
     {
         return rangeInclusive(minimum, exclusiveMaximum.incremented(), 0);
     }
 
-    public <T extends BaseCount<T>> Range<T> rangeInclusive(T minimum, T inclusiveMaximum)
+    public Range<Count> rangeInclusive(Count minimum, Count inclusiveMaximum)
     {
         return rangeInclusive(minimum, inclusiveMaximum, 0);
     }
@@ -393,7 +394,7 @@ public class RandomValueFactory implements RandomNumeric
         return rangeInclusive(minimum, inclusiveMaximum, 0);
     }
 
-    public <T extends BaseCount<T>> Range<T> rangeInclusive(T minimum, T inclusiveMaximum, long minimumWidth)
+    public Range<Count> rangeInclusive(Count minimum, Count inclusiveMaximum, long minimumWidth)
     {
         ensure(minimum.isLessThanOrEqualTo(inclusiveMaximum));
 
@@ -509,35 +510,20 @@ public class RandomValueFactory implements RandomNumeric
         if (repeats == NO_REPEATS)
         {
             var values = new ObjectSet<T>();
-            if (count.isLessThanOrEqualTo(_65_536))
+            count.loop(() ->
             {
-                var added = 0;
-                for (var at = 0; added < count.asInt(); at++)
+                var included = false;
+                do
                 {
-                    var value = cast(at, type);
-                    while (include.matches(value))
+                    var randomValue = cast(randomLongExclusive(minimum, exclusiveMaximum), type);
+                    included = !values.contains(randomValue) && include.matches(randomValue);
+                    if (included)
                     {
-                        values.add(value);
+                        values.add(randomValue);
                     }
                 }
-            }
-            else
-            {
-                count.loop(() ->
-                {
-                    var included = false;
-                    do
-                    {
-                        var randomValue = cast(randomLongExclusive(minimum, exclusiveMaximum), type);
-                        included = !values.contains(randomValue) && include.matches(randomValue);
-                        if (included)
-                        {
-                            values.add(randomValue);
-                        }
-                    }
-                    while (!included);
-                });
-            }
+                while (!included);
+            });
 
             var list = new ObjectList<>(values);
             list.shuffle(random);

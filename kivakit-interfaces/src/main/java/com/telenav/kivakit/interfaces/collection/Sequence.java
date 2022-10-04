@@ -179,7 +179,7 @@ public interface Sequence<Value> extends
     Iterator<Value> asIterator(Matcher<Value> matcher);
 
     /**
-     * @return This sequence as a list
+     * Returns this sequence as a list
      */
     default List<Value> asList()
     {

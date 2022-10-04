@@ -463,7 +463,8 @@ public class Type<T> implements Named
             {
                 if (filter.includeField(field))
                 {
-                    properties.put(filter.nameForField(field), new Property(filter.nameForField(field), new FieldGetter(field), new FieldSetter(field)));
+                    var fieldName = filter.nameForField(field);
+                    properties.put("field-" + fieldName, new Property(fieldName, new FieldGetter(field), new FieldSetter(field)));
                 }
             }
 
@@ -485,7 +486,7 @@ public class Type<T> implements Named
                     var property = properties.get(name);
                     if (property == null)
                     {
-                        properties.put(name, new Property(name, new MethodGetter(method), null));
+                        properties.put("get-" + name, new Property(name, new MethodGetter(method), null));
                     }
                     else
                     {
@@ -499,7 +500,7 @@ public class Type<T> implements Named
                     var property = properties.get(name);
                     if (property == null)
                     {
-                        properties.put(name, new Property(name, null, new MethodSetter(method)));
+                        properties.put("set-" + name, new Property(name, null, new MethodSetter(method)));
                     }
                     else
                     {

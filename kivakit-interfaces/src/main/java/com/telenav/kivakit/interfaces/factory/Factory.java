@@ -43,7 +43,7 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NE
 public interface Factory<Value>
 {
     /**
-     * @return A new instance of the given type
+     * Returns a new instance of the given type
      */
     default Value newInstance()
     {
@@ -51,7 +51,7 @@ public interface Factory<Value>
     }
 
     /**
-     * @return A new instance of the given type
+     * Returns a new instance of the given type
      */
     Value onNewInstance();
 }

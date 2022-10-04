@@ -60,9 +60,11 @@ public interface Indexable<Value> extends
         }
         else
         {
-            for (var i = that.size() - 1; i >= 0; i--)
+            var thisIndex = this.size() - 1;
+            var thatIndex = that.size() - 1;
+            for (; thatIndex >= 0 && thisIndex >= 0; thisIndex--, thatIndex--)
             {
-                if (!get(i).equals(that.get(i)))
+                if (!get(thisIndex).equals(that.get(thatIndex)))
                 {
                     return false;
                 }

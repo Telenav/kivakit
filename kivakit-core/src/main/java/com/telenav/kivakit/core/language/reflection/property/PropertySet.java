@@ -31,6 +31,13 @@ import java.util.Set;
 import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+import static com.telenav.kivakit.core.language.reflection.property.PropertyMemberSelector.ALL_FIELDS_AND_METHODS;
+import static com.telenav.kivakit.core.language.reflection.property.PropertyMemberSelector.KIVAKIT_ANNOTATION_INCLUDED_FIELDS;
+import static com.telenav.kivakit.core.language.reflection.property.PropertyMemberSelector.KIVAKIT_ANNOTATION_INCLUDED_FIELDS_AND_METHODS;
+import static com.telenav.kivakit.core.language.reflection.property.PropertyMemberSelector.KIVAKIT_CONVERTED_FIELDS_AND_METHODS;
+import static com.telenav.kivakit.core.language.reflection.property.PropertyMemberSelector.NON_PUBLIC_METHODS;
+import static com.telenav.kivakit.core.language.reflection.property.PropertyMemberSelector.PUBLIC_METHODS;
+import static com.telenav.kivakit.core.language.reflection.property.PropertyNamingConvention.KIVAKIT_PROPERTY_NAMING;
 
 /**
  * Base class for property filters. Supports Java Beans and KivaKit style accessor naming conventions with the enum
@@ -206,22 +213,16 @@ public class PropertySet implements PropertyFilter
         if (method.parameterTypes().length == 0)
         {
             // then determine if it's a getter in the given style
-            var name = method.name();
             switch (convention)
             {
                 case JAVA_BEANS_NAMING:
-                    if (!"getClass".equals(method.name()))
-                    {
-                        if (name.startsWith("get") && name.matches("get[A-Z].*")
-                                || name.startsWith("is") && name.matches("is[A-Z].*"))
-                        {
-                            return name.matches("is[A-Z].*");
-                        }
-                    }
-                    break;
+                    return isJavaBeansGetterMethod(method);
 
                 case KIVAKIT_PROPERTY_NAMING:
-                    return method.returnType() != Void.class && method.parameterTypes().length == 0;
+                    return isKivaKitGetterMethod(method);
+
+                case ANY_NAMING_CONVENTION:
+                    return isJavaBeansGetterMethod(method) || isKivaKitGetterMethod(method);
 
                 default:
                     return false;
@@ -269,8 +270,12 @@ public class PropertySet implements PropertyFilter
     {
         if (!field.isSynthetic() && !field.isStatic())
         {
+            if (selection.contains(ALL_FIELDS_AND_METHODS))
+            {
+                return true;
+            }
             return field.annotation(KivaKitIncludeProperty.class) != null &&
-                    selection.contains(PropertyMemberSelector.KIVAKIT_ANNOTATION_INCLUDED_FIELDS);
+                    selection.contains(KIVAKIT_ANNOTATION_INCLUDED_FIELDS);
         }
         return false;
     }
@@ -282,18 +287,23 @@ public class PropertySet implements PropertyFilter
     {
         if (!method.isSynthetic() && !method.isStatic())
         {
-            if (method.annotation(KivaKitIncludeProperty.class) != null
-                    && selection.contains(PropertyMemberSelector.KIVAKIT_ANNOTATION_INCLUDED_FIELDS_AND_METHODS))
+            if (selection.contains(ALL_FIELDS_AND_METHODS))
             {
                 return true;
             }
 
-            if (selection.contains(PropertyMemberSelector.PUBLIC_METHODS) && method.isPublic())
+            if (selection.contains(KIVAKIT_ANNOTATION_INCLUDED_FIELDS_AND_METHODS)
+                && method.annotation(KivaKitIncludeProperty.class) != null)
             {
                 return true;
             }
 
-            return selection.contains(PropertyMemberSelector.NON_PUBLIC_METHODS);
+            if (selection.contains(PUBLIC_METHODS) && method.isPublic())
+            {
+                return true;
+            }
+
+            return selection.contains(NON_PUBLIC_METHODS);
         }
         return false;
     }
@@ -306,9 +316,28 @@ public class PropertySet implements PropertyFilter
         // If the method takes one parameter, and it's not static,
         if (method.parameterTypes().length == 1)
         {
-            return convention == PropertyNamingConvention.KIVAKIT_PROPERTY_NAMING ||
+            return convention == KIVAKIT_PROPERTY_NAMING ||
                     method.name().startsWith("set");
         }
         return false;
+    }
+
+    private boolean isJavaBeansGetterMethod(Method method)
+    {
+        var name = method.name();
+        if (!"getClass".equals(name))
+        {
+            if (name.startsWith("get") && name.matches("get[A-Z].*")
+                    || name.startsWith("is") && name.matches("is[A-Z].*"))
+            {
+                return name.matches("is[A-Z].*");
+            }
+        }
+        return false;
+    }
+
+    private boolean isKivaKitGetterMethod(Method method)
+    {
+        return method.returnType() != Void.class && method.parameterTypes().length == 0;
     }
 }

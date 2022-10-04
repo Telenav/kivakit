@@ -26,12 +26,12 @@ import com.telenav.kivakit.core.value.count.Maximum;
 import com.telenav.kivakit.interfaces.collection.NextIterator;
 
 import java.util.Iterator;
-import java.util.Map;
 import java.util.Set;
 
 import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+import static com.telenav.kivakit.core.value.count.Maximum.MAXIMUM;
 
 /**
  * A map from key to an {@link ObjectSet} of values. Values can be added with {@link #add(Object, Object)}. A flattened
@@ -59,26 +59,27 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
             documentation = DOCUMENTATION_COMPLETE)
 public class MultiSet<Key, Value> extends BaseMap<Key, ObjectSet<Value>>
 {
+    /** The maximum number of values in the set for each key */
     private final Maximum maximumValues;
 
+    /**
+     * Creates a "multi-set" where each key has a set of values rather than a single value
+     *
+     * @param maximumKeys The maximum number of keys
+     * @param maximumValues The maximum number of values in the set for each key
+     */
     public MultiSet(Maximum maximumKeys, Maximum maximumValues)
     {
         super(maximumKeys);
         this.maximumValues = maximumValues;
     }
 
+    /**
+     * Creates an unbounded "multi-set" where each key has a set of values rather than a single value
+     */
     public MultiSet()
     {
-        this(Maximum.MAXIMUM, Maximum.MAXIMUM);
-    }
-
-    /**
-     * In case another implementation wants to control the type of map used underneath
-     */
-    protected MultiSet(Maximum maximumKeys, Maximum maximumValues, Map<Key, ObjectSet<Value>> map)
-    {
-        super(maximumKeys, map);
-        this.maximumValues = maximumValues;
+        this(MAXIMUM, MAXIMUM);
     }
 
     /**
@@ -93,7 +94,7 @@ public class MultiSet<Key, Value> extends BaseMap<Key, ObjectSet<Value>>
     }
 
     /**
-     * Returns a list with all values in this multi-map
+     * Returns a list with all values in this multimap
      */
     public Iterable<Value> flatValues()
     {

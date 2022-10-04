@@ -497,7 +497,7 @@ public class ResourcePath extends StringPath implements
      * {@inheritDoc}
      */
     @Override
-    protected ResourcePath onCopy(@NotNull String root,
+    protected ResourcePath onCopy(String root,
                                   @NotNull List<String> elements)
     {
         return new ResourcePath(schemes(), root, elements);

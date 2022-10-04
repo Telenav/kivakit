@@ -30,6 +30,8 @@ import org.junit.Test;
 
 import java.util.Collections;
 
+import static com.telenav.kivakit.core.collections.list.ObjectList.objectList;
+
 public class IteratorTest extends CoreUnitTest
 {
     @Test
@@ -53,8 +55,8 @@ public class IteratorTest extends CoreUnitTest
                         return null;
                     }
                 });
-        ensureEqual(values(2, 4, 8, 16, 32, 64, 128, 256, 512, 1024), new ObjectList<>().appendAll(iterable));
-        ensureEqual(values(2, 4, 8, 16, 32, 64, 128, 256, 512, 1024), new ObjectList<>().appendAll(iterable));
+        ensureEqual(values(2, 4, 8, 16, 32, 64, 128, 256, 512, 1024), new ObjectList<>().appendAllThen(iterable));
+        ensureEqual(values(2, 4, 8, 16, 32, 64, 128, 256, 512, 1024), new ObjectList<>().appendAllThen(iterable));
     }
 
     @Test
@@ -77,7 +79,7 @@ public class IteratorTest extends CoreUnitTest
                 return null;
             }
         };
-        ensureEqual(values(2, 4, 8, 16, 32, 64, 128, 256, 512, 1024), new ObjectList<>().appendAll(iterator));
+        ensureEqual(values(2, 4, 8, 16, 32, 64, 128, 256, 512, 1024), objectList(iterator));
     }
 
     @Test
@@ -88,7 +90,8 @@ public class IteratorTest extends CoreUnitTest
         var both = new CompoundIterator<Integer>();
         both.add(odd.iterator());
         both.add(even.iterator());
-        var compound = new ObjectList<Integer>(Maximum.MAXIMUM).appendAll(both);
+        var compound = new ObjectList<Integer>();
+        compound.appendAll(both);
         ensureEqual(values(1, 3, 5, 7, 9, 2, 4, 6, 8, 10), compound);
     }
 

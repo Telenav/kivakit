@@ -15,7 +15,7 @@ public interface Copyable<Value, Copy extends Addable<Value> & Sequence<Value>> 
         Factory<Copy>
 {
     /**
-     * @return A copy of this object
+     * Returns a copy of this object
      */
     default Copy copy()
     {
@@ -25,7 +25,7 @@ public interface Copyable<Value, Copy extends Addable<Value> & Sequence<Value>> 
     }
 
     /**
-     * @return This bounded list filtered to only the elements that match the given matcher
+     * Returns this bounded list filtered to only the elements that match the given matcher
      */
     default Copy matching(Matcher<Value> matcher)
     {
@@ -35,7 +35,7 @@ public interface Copyable<Value, Copy extends Addable<Value> & Sequence<Value>> 
     }
 
     /**
-     * @return This list without the matching elements
+     * Returns this list without the matching elements
      */
     default Copy without(Matcher<Value> matcher)
     {

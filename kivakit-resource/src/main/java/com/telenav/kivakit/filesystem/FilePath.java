@@ -44,8 +44,8 @@ import java.util.regex.Pattern;
 
 import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
 import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
 import static com.telenav.kivakit.core.messaging.Listener.throwingListener;
 
 /**
@@ -661,7 +661,7 @@ public class FilePath extends ResourcePath
      * {@inheritDoc}
      */
     @Override
-    protected FilePath onCopy(@NotNull String root,
+    protected FilePath onCopy(String root,
                               @NotNull List<String> elements)
     {
         return new FilePath(schemes(), root, elements);

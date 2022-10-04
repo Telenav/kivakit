@@ -30,7 +30,7 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.Comparator;
+import java.util.Iterator;
 import java.util.function.Function;
 
 import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
@@ -83,6 +83,16 @@ public class ObjectList<Value> extends BaseList<Value>
      * @return A list of objects from the given iterable
      */
     public static <T> ObjectList<T> objectList(Iterable<T> values)
+    {
+        var list = new ObjectList<T>();
+        list.appendAll(values);
+        return list;
+    }
+
+    /**
+     * @return A list of objects from the given iterator
+     */
+    public static <T> ObjectList<T> objectList(Iterator<T> values)
     {
         var list = new ObjectList<T>();
         list.appendAll(values);
@@ -193,18 +203,18 @@ public class ObjectList<Value> extends BaseList<Value>
      * {@inheritDoc}
      */
     @Override
-    public ObjectList<Value> appendThen(Value value)
+    public ObjectList<Value> appendAllThen(Value value)
     {
-        return (ObjectList<Value>) super.appendThen(value);
+        return (ObjectList<Value>) super.appendAllThen(value);
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public ObjectList<Value> appendThen(Iterable<? extends Value> values)
+    public ObjectList<Value> appendAllThen(Iterable<? extends Value> values)
     {
-        return (ObjectList<Value>) super.appendThen(values);
+        return (ObjectList<Value>) super.appendAllThen(values);
     }
 
     /**
@@ -344,24 +354,6 @@ public class ObjectList<Value> extends BaseList<Value>
     }
 
     /**
-     * {@inheritDoc}
-     */
-    @Override
-    public ObjectList<Value> sorted()
-    {
-        return (ObjectList<Value>) super.sorted();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public ObjectList<Value> sorted(Comparator<Value> comparator)
-    {
-        return (ObjectList<Value>) super.sorted(comparator);
-    }
-
-    /**
      * Creates a list containing the unique objects in this list
      *
      * @return The unique objects
@@ -391,18 +383,12 @@ public class ObjectList<Value> extends BaseList<Value>
         return (ObjectList<Value>) super.without(matcher);
     }
 
-    @Override
-    protected BaseList<Value> newList()
-    {
-        return objectList();
-    }
-
     /**
      * {@inheritDoc}
      */
     @Override
-    protected BaseList<Value> onNewCollection()
+    protected BaseList<Value> onNewList()
     {
-        return newList();
+        return objectList();
     }
 }

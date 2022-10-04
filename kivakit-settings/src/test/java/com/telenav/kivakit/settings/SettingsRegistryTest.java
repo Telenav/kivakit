@@ -28,11 +28,16 @@ import org.jetbrains.annotations.NotNull;
 import org.junit.Before;
 import org.junit.Test;
 
+import static com.telenav.kivakit.core.registry.InstanceIdentifier.instanceIdentifier;
+import static com.telenav.kivakit.core.time.Duration.ONE_MINUTE;
+import static com.telenav.kivakit.settings.SettingsRegistry.settingsRegistryFor;
+import static com.telenav.kivakit.settings.SettingsRegistryTest.WhichServer.SERVER1;
+
 public class SettingsRegistryTest extends UnitTest implements PackageTrait
 {
-    private static final InstanceIdentifier SERVER1 = InstanceIdentifier.instanceIdentifier(WhichServer.SERVER1);
+    private static final InstanceIdentifier SERVER1 = instanceIdentifier(WhichServer.SERVER1);
 
-    private static final InstanceIdentifier SERVER2 = InstanceIdentifier.instanceIdentifier(WhichServer.SERVER2);
+    private static final InstanceIdentifier SERVER2 = instanceIdentifier(WhichServer.SERVER2);
 
     enum WhichServer
     {
@@ -56,18 +61,18 @@ public class SettingsRegistryTest extends UnitTest implements PackageTrait
         {
             // Script or startup code creates configuration
             var server = new ServerSettings();
-            server.timeout(Duration.ONE_MINUTE);
+            server.timeout(ONE_MINUTE);
             server.port(9000);
 
             // and adds it to global configuration set
-            SettingsRegistry.settingsRegistryFor(this).registerSettings(server);
+            settingsRegistryFor(this).registerSettings(server);
         }
 
         // Get configuration
         {
             // Client code, possibly in a library class, later retrieves the configuration
-            var server = SettingsRegistry.settingsRegistryFor(this).requireSettings(ServerSettings.class);
-            ensureEqual(Duration.ONE_MINUTE, server.timeout());
+            var server = settingsRegistryFor(this).requireSettings(ServerSettings.class);
+            ensureEqual(ONE_MINUTE, server.timeout());
             ensureEqual(9000, server.port());
         }
     }
@@ -101,7 +106,7 @@ public class SettingsRegistryTest extends UnitTest implements PackageTrait
         {
             // Script or startup code creates settings
             var server1 = new ServerSettings();
-            server1.timeout(Duration.ONE_MINUTE);
+            server1.timeout(ONE_MINUTE);
             server1.port(8080);
 
             // and adds it to the global settings set with the given enum key
@@ -109,7 +114,7 @@ public class SettingsRegistryTest extends UnitTest implements PackageTrait
 
             // Script can register a second settings of the same class
             var server2 = new ServerSettings();
-            server2.timeout(Duration.ONE_MINUTE);
+            server2.timeout(ONE_MINUTE);
             server2.port(80);
 
             // under a different key
@@ -119,12 +124,12 @@ public class SettingsRegistryTest extends UnitTest implements PackageTrait
         // Get settings
         {
             // Client code can then retrieve both settings
-            var server1 = SettingsRegistry.settingsRegistryFor(this).requireSettings(ServerSettings.class, SERVER1);
-            ensureEqual(Duration.ONE_MINUTE, server1.timeout());
+            var server1 = settingsRegistryFor(this).requireSettings(ServerSettings.class, SERVER1);
+            ensureEqual(ONE_MINUTE, server1.timeout());
             ensureEqual(8080, server1.port());
 
-            var server2 = SettingsRegistry.settingsRegistryFor(this).requireSettings(ServerSettings.class, SERVER2);
-            ensureEqual(Duration.ONE_MINUTE, server2.timeout());
+            var server2 = settingsRegistryFor(this).requireSettings(ServerSettings.class, SERVER2);
+            ensureEqual(ONE_MINUTE, server2.timeout());
             ensureEqual(80, server2.port());
         }
     }
@@ -132,19 +137,17 @@ public class SettingsRegistryTest extends UnitTest implements PackageTrait
     @Test
     public void testProperties()
     {
-        var settings = globalSettings();
-
         // Configure
         {
             // Add all properties files in this package to the global set
-            settings.registerSettingsIn(new ResourceFolderSettingsStore(this, packageForThis()));
+            globalSettings().registerSettingsIn(new ResourceFolderSettingsStore(this, packageForThis()));
         }
 
         // Get settings
         {
             // Client code, possibly in a library class, later retrieves the settings
-            var serverSettings = SettingsRegistry.settingsRegistryFor(this).requireSettings(ServerSettings.class);
-            ensureEqual(Duration.ONE_MINUTE, serverSettings.timeout());
+            var serverSettings = settingsRegistryFor(this).requireSettings(ServerSettings.class);
+            ensureEqual(ONE_MINUTE, serverSettings.timeout());
             ensureEqual(7000, serverSettings.port());
         }
     }
@@ -152,7 +155,7 @@ public class SettingsRegistryTest extends UnitTest implements PackageTrait
     @NotNull
     private SettingsRegistry globalSettings()
     {
-        var global = SettingsRegistry.settingsRegistryFor(this);
+        var global = settingsRegistryFor(this);
         global.unload();
         global.clearListeners();
         global.addListener(this);

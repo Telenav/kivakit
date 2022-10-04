@@ -1,6 +1,6 @@
 {
   "class": "com.telenav.kivakit.settings.ClientSettings",
-  "instance": "banana",
+  "instance": "SERVER1",
   "port": 9999,
   "timeout": "6 seconds"
 }

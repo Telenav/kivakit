@@ -27,7 +27,6 @@ import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.string.Strip;
 import com.telenav.kivakit.core.time.Time;
 import com.telenav.kivakit.core.value.count.Bytes;
-import com.telenav.kivakit.filesystem.FilePath;
 import com.telenav.kivakit.interfaces.comparison.Matcher;
 import com.telenav.kivakit.resource.FileName;
 import com.telenav.kivakit.resource.Resource;
@@ -51,6 +50,7 @@ import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTEN
 import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
 import static com.telenav.kivakit.core.language.module.Modules.moduleResource;
+import static com.telenav.kivakit.filesystem.FilePath.parseFilePath;
 import static com.telenav.kivakit.resource.FileName.parseFileName;
 import static com.telenav.kivakit.resource.ResourcePath.resourcePath;
 import static com.telenav.kivakit.resource.packages.PackagePath.packagePath;
@@ -121,7 +121,7 @@ public class PackageResource extends BaseReadableResource
                                                   @NotNull PackagePath packagePath,
                                                   @NotNull String path)
     {
-        return packageResource(listener, packagePath, FilePath.parseFilePath(listener, path));
+        return packageResource(listener, packagePath, parseFilePath(listener, path.replaceAll("\\$", ".")));
     }
 
     /**
@@ -187,7 +187,7 @@ public class PackageResource extends BaseReadableResource
         @Override
         public Resource resolve(@NotNull ResourceIdentifier identifier)
         {
-            var filepath = FilePath.parseFilePath(this, Strip.leading(identifier.identifier(), SCHEME));
+            var filepath = parseFilePath(this, Strip.leading(identifier.identifier(), SCHEME));
             var parent = filepath.parent();
             if (parent != null)
             {

@@ -54,7 +54,7 @@ import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
 public class InstanceIdentifier
 {
     /** Identifies the one and only instance of a singleton */
-    private static final InstanceIdentifier SINGLETON = InstanceIdentifier.instanceIdentifier(Singleton.SINGLETON);
+    private static InstanceIdentifier SINGLETON;
 
     /** Map from enum name (both simple and fully-qualified) to instance identifier */
     private static final StringMap<InstanceIdentifier> instanceIdentifierForEnumName = new StringMap<>();
@@ -99,12 +99,11 @@ public class InstanceIdentifier
      */
     public static InstanceIdentifier singletonInstanceIdentifier()
     {
+        if (SINGLETON == null)
+        {
+            SINGLETON = new InstanceIdentifier("SINGLETON");
+        }
         return SINGLETON;
-    }
-
-    public enum Singleton
-    {
-        SINGLETON
     }
 
     /** Any enum value */
@@ -168,6 +167,14 @@ public class InstanceIdentifier
     public int hashCode()
     {
         return Hash.hashMany(enumIdentifier, stringIdentifier);
+    }
+
+    /**
+     * Return the name of this identifier
+     */
+    public String name()
+    {
+        return enumIdentifier != null ? enumIdentifier.name() : stringIdentifier;
     }
 
     /**
