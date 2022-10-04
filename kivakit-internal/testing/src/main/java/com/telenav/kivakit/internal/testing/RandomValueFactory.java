@@ -48,7 +48,6 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
 import static com.telenav.kivakit.core.ensure.Ensure.ensure;
 import static com.telenav.kivakit.core.language.primitive.Longs.inRangeInclusive;
 import static com.telenav.kivakit.core.value.count.Count._256;
-import static com.telenav.kivakit.core.value.count.Count._65_536;
 import static com.telenav.kivakit.core.value.count.Count.count;
 import static com.telenav.kivakit.internal.testing.Repeats.ALLOW_REPEATS;
 import static com.telenav.kivakit.internal.testing.Repeats.NO_REPEATS;
@@ -511,35 +510,20 @@ public class RandomValueFactory implements RandomNumeric
         if (repeats == NO_REPEATS)
         {
             var values = new ObjectSet<T>();
-            if (count.isLessThanOrEqualTo(_65_536))
+            count.loop(() ->
             {
-                var added = 0;
-                for (var at = 0; added < count.asInt(); at++)
+                var included = false;
+                do
                 {
-                    var value = cast(at, type);
-                    while (include.matches(value))
+                    var randomValue = cast(randomLongExclusive(minimum, exclusiveMaximum), type);
+                    included = !values.contains(randomValue) && include.matches(randomValue);
+                    if (included)
                     {
-                        values.add(value);
+                        values.add(randomValue);
                     }
                 }
-            }
-            else
-            {
-                count.loop(() ->
-                {
-                    var included = false;
-                    do
-                    {
-                        var randomValue = cast(randomLongExclusive(minimum, exclusiveMaximum), type);
-                        included = !values.contains(randomValue) && include.matches(randomValue);
-                        if (included)
-                        {
-                            values.add(randomValue);
-                        }
-                    }
-                    while (!included);
-                });
-            }
+                while (!included);
+            });
 
             var list = new ObjectList<>(values);
             list.shuffle(random);
