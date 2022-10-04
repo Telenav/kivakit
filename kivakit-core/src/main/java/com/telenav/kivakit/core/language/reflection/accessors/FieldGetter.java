@@ -113,6 +113,6 @@ public class FieldGetter implements Getter
     @Override
     public Type<?> type()
     {
-        return field.type();
+        return field.parentType();
     }
 }

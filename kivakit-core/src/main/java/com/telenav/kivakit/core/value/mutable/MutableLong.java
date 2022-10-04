@@ -73,7 +73,7 @@ public class MutableLong
      */
     public long decrement()
     {
-        return value.decrementAndGet();
+        return value.getAndDecrement();
     }
 
     @SuppressWarnings("EqualsWhichDoesntCheckParameterClass")
@@ -105,7 +105,7 @@ public class MutableLong
      */
     public long increment()
     {
-        return value.incrementAndGet();
+        return value.getAndIncrement();
     }
 
     /**

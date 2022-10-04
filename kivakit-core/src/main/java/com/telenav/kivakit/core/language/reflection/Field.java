@@ -52,28 +52,28 @@ public class Field extends Member
     private final java.lang.reflect.Field field;
 
     /** The object where the field should be accessed */
-    private final Object object;
+    private Object parentObject;
 
     /** The type where this field is defined */
-    private final Type<?> type;
+    private final Type<?> parentType;
 
     /**
      * Constructs a field of a particular object
      */
-    public Field(Object object, java.lang.reflect.Field field)
+    public Field(Object parentObject, java.lang.reflect.Field field)
     {
-        this.type = Type.type(object);
-        this.object = object;
+        this.parentType = Type.type(parentObject);
+        this.parentObject = parentObject;
         this.field = field;
     }
 
     /**
      * Constructs a field of any object
      */
-    public Field(Type<?> type, java.lang.reflect.Field field)
+    public Field(Type<?> parentType, java.lang.reflect.Field field)
     {
-        this.type = type;
-        this.object = null;
+        this.parentType = parentType;
+        this.parentObject = null;
         this.field = field;
     }
 
@@ -112,7 +112,7 @@ public class Field extends Member
         if (object instanceof Field)
         {
             var that = (Field) object;
-            return this.object == that.object && field.equals(that.field);
+            return this.parentObject == that.parentObject && field.equals(that.field);
         }
         return false;
     }
@@ -169,11 +169,11 @@ public class Field extends Member
      */
     public Object get()
     {
-        if (object == null)
+        if (parentObject == null)
         {
             return new ReflectionProblem("No object to get from");
         }
-        return get(object);
+        return get(parentObject);
     }
 
     /**
@@ -190,7 +190,7 @@ public class Field extends Member
     @Override
     public int hashCode()
     {
-        return Hash.hashMany(System.identityHashCode(object), field);
+        return Hash.hashMany(System.identityHashCode(parentObject), field);
     }
 
     /**
@@ -253,7 +253,26 @@ public class Field extends Member
     }
 
     /**
-     * Gets the value of this field the given object
+     * Sets the object for this field
+     *
+     * @param object The object
+     */
+    public void object(Object object)
+    {
+        this.parentObject = object;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Type<?> parentType()
+    {
+        return parentType;
+    }
+
+    /**
+     * Sets the value of this field on the given object
      *
      * @return The value or an instance of {@link ReflectionProblem} if something went wrong
      */
@@ -282,11 +301,11 @@ public class Field extends Member
      */
     public Object set(Object value)
     {
-        if (object == null)
+        if (parentObject == null)
         {
             return new ReflectionProblem("No object to set to");
         }
-        return set(object, value);
+        return set(parentObject, value);
     }
 
     /**
@@ -295,19 +314,18 @@ public class Field extends Member
     @Override
     public String toString()
     {
-        if (object == null)
+        if (parentObject == null)
         {
             return field.getName();
         }
-        return Classes.simpleName(object.getClass()) + "." + field.getName() + " = " + object;
+        return Classes.simpleName(parentObject.getClass()) + "." + field.getName() + " = " + parentObject;
     }
 
     /**
-     * {@inheritDoc}
+     * Returns the type of this field
      */
-    @Override
     public Type<?> type()
     {
-        return type;
+        return Type.typeForClass(field.getType());
     }
 }

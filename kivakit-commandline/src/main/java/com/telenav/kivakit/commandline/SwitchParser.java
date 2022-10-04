@@ -165,7 +165,7 @@ public class SwitchParser<T> implements Named
     public static class Builder<T>
     {
         /** The switch parser we're building */
-        private SwitchParser<T> parser;
+        private final SwitchParser<T> parser = new SwitchParser<>();
 
         private Builder()
         {

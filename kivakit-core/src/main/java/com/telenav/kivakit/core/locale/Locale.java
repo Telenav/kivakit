@@ -26,6 +26,7 @@ import com.telenav.kivakit.core.path.StringPath;
 import com.telenav.kivakit.core.string.StringConversions;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlAggregation;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Collection;
 
@@ -62,7 +63,7 @@ public class Locale
      * @param region The region
      * @param languages The languages spoken in this locale
      */
-    public Locale(LocaleRegion region, Collection<LocaleLanguage> languages)
+    public Locale(LocaleRegion region, @NotNull Collection<LocaleLanguage> languages)
     {
         this.region = region;
         this.languages = objectList(languages);

@@ -311,9 +311,9 @@ public class StringList extends ObjectList<String>
     }
 
     @Override
-    public StringList appendAllThen(String value)
+    public StringList appendThen(String value)
     {
-        return (StringList) super.appendAllThen(value);
+        return (StringList) super.appendThen(value);
     }
 
     @Override

@@ -32,6 +32,7 @@ import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENT
 import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
 import static com.telenav.kivakit.core.collections.list.ObjectList.objectList;
 import static com.telenav.kivakit.core.ensure.Ensure.ensure;
+import static com.telenav.kivakit.core.locale.LocaleRegion.WORLD;
 
 /**
  * ISO-2 and ISO-3 codes for the most common languages in the world. There are, of course, vastly more than just these.
@@ -332,6 +333,6 @@ public class LocaleLanguage extends Name implements Comparable<LocaleLanguage>
      */
     public Locale world()
     {
-        return new Locale(null, LocaleLanguage.allLanguages());
+        return new Locale(WORLD, LocaleLanguage.allLanguages());
     }
 }

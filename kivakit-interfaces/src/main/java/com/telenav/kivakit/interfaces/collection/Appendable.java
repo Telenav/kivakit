@@ -150,7 +150,7 @@ public interface Appendable<Value> extends SpaceLimited
      * @param value The value to append
      * @return This object, for chaining
      */
-    default Appendable<Value> appendAllThen(Value value)
+    default Appendable<Value> appendThen(Value value)
     {
         append(value);
         return this;

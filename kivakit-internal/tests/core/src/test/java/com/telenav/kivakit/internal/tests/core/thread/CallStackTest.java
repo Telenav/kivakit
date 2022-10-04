@@ -38,13 +38,13 @@ public class CallStackTest extends CoreUnitTest
     {
         public Class<?> testExact()
         {
-            return CallStack.callerOf(IMMEDIATE, Matching.EXACT, Nested.class).type().type();
+            return CallStack.callerOf(IMMEDIATE, Matching.EXACT, Nested.class).parentType().type();
         }
 
         @Override
         public Class<?> testSubClass()
         {
-            return CallStack.callerOf(IMMEDIATE, Matching.SUBCLASS, TestInterface.class).type().type();
+            return CallStack.callerOf(IMMEDIATE, Matching.SUBCLASS, TestInterface.class).parentType().type();
         }
     }
 

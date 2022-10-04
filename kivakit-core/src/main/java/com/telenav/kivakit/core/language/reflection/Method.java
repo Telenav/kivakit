@@ -251,7 +251,7 @@ public class Method extends Member
      * {@inheritDoc}
      */
     @Override
-    public Type<?> type()
+    public Type<?> parentType()
     {
         return type;
     }

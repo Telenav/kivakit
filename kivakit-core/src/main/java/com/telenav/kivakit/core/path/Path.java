@@ -40,6 +40,7 @@ import java.util.stream.Stream;
 import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
 
 /**
  * Abstraction of an immutable path of elements of a given type with an optional root element. Functional methods in
@@ -169,9 +170,8 @@ public abstract class Path<Element extends Comparable<Element>> implements
      */
     protected Path(Element root, List<Element> elements)
     {
-        assert elements != null;
         this.root = root;
-        this.elements.addAll(elements);
+        this.elements.addAll(ensureNotNull(elements));
     }
 
     /**

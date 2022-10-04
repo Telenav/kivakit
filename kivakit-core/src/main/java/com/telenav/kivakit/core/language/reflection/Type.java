@@ -746,13 +746,14 @@ public class Type<T> implements Named
                 {
                     for (var field : type.allFields())
                     {
-                        if (field.type().type().getDeclaringClass().getModule().isOpen(field.type().type().getDeclaringClass().getPackageName()))
+                        if (!field.isPrimitive() && !field.isStatic())
                         {
-                            if (matcher.matches(field))
+                            if (field.parentType().type().getModule().isOpen(field.parentType().type().getPackageName()))
                             {
-                                if (!field.isPrimitive())
+                                var value = field.get(root);
+                                field.object(root);
+                                if (matcher.matches(field))
                                 {
-                                    var value = field.get(root);
                                     if (value != null && !visited.contains(field))
                                     {
                                         visited.add(field);

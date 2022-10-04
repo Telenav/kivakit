@@ -28,7 +28,6 @@ import com.telenav.kivakit.core.language.reflection.property.PropertyFilter;
 import com.telenav.kivakit.core.locale.Locale;
 import com.telenav.kivakit.core.locale.LocaleLanguage;
 import com.telenav.kivakit.core.messaging.Listener;
-import com.telenav.kivakit.core.progress.ProgressReporter;
 import com.telenav.kivakit.core.string.AsciiArt;
 import com.telenav.kivakit.core.value.count.Count;
 import com.telenav.kivakit.filesystem.File;
@@ -52,6 +51,7 @@ import java.util.regex.Pattern;
 import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+import static com.telenav.kivakit.core.progress.ProgressReporter.nullProgressReporter;
 import static com.telenav.kivakit.resource.packages.PackageResource.packageResource;
 
 /**
@@ -175,7 +175,7 @@ public class PropertyMap extends VariableMap<String>
         var properties = new PropertyMap();
         var linePattern = Pattern.compile("(?<key>[^=]*?)\\s*=\\s*(?<value>[^=]*)");
         int lineNumber = 1;
-        for (var line : resource.reader().readLines(ProgressReporter.nullProgressReporter()))
+        for (var line : resource.reader().readLines(nullProgressReporter()))
         {
             var trimmed = line.trim();
             if (!trimmed.isEmpty() && !trimmed.startsWith("#") && !trimmed.startsWith("//"))

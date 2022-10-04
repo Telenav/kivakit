@@ -50,7 +50,7 @@ public class LoggerCodeContext extends CodeContext
         // The logger code context is the immediate caller of any subclass of logger,
         // ignoring any intervening LoggerFactory calls
         super(Objects.requireNonNull(
-                CallStack.callerOf(IMMEDIATE, SUBCLASS, Logger.class, EXACT, LoggerFactory.class)).type().type());
+                CallStack.callerOf(IMMEDIATE, SUBCLASS, Logger.class, EXACT, LoggerFactory.class)).parentType().type());
     }
 
     public LoggerCodeContext(Method callerOf)

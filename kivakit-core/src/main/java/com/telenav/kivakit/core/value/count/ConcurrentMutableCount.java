@@ -164,7 +164,7 @@ public class ConcurrentMutableCount implements
      */
     public long increment()
     {
-        return count.incrementAndGet();
+        return count.getAndIncrement();
     }
 
     /**

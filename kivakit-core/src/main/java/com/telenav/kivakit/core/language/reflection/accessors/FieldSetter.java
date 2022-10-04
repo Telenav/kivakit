@@ -108,6 +108,6 @@ public class FieldSetter implements Setter
     @Override
     public Type<?> type()
     {
-        return field.type();
+        return field.parentType();
     }
 }

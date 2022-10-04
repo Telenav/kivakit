@@ -44,6 +44,7 @@ import java.util.zip.ZipInputStream;
 import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_DEFAULT_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+import static com.telenav.kivakit.core.collections.list.StringList.stringList;
 import static com.telenav.kivakit.core.language.module.PackageReference.packageReference;
 import static com.telenav.kivakit.resource.packages.Package.packageForPath;
 
@@ -196,7 +197,7 @@ public final class PackagePath extends ResourcePath
     private PackagePath(Class<?> packageType,
                         @NotNull Path<String> path)
     {
-        super(StringList.stringList(), path.elements());
+        super(stringList(), path.elements());
         this.packageType = packageType;
     }
 
@@ -534,7 +535,7 @@ public final class PackagePath extends ResourcePath
      * {@inheritDoc}
      */
     @Override
-    protected PackagePath onCopy(@NotNull String root,
+    protected PackagePath onCopy(String root,
                                  @NotNull List<String> elements)
     {
         return new PackagePath(packageType, stringPath(root, elements));

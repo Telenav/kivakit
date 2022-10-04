@@ -203,18 +203,18 @@ public class ObjectList<Value> extends BaseList<Value>
      * {@inheritDoc}
      */
     @Override
-    public ObjectList<Value> appendAllThen(Value value)
+    public ObjectList<Value> appendAllThen(Iterable<? extends Value> values)
     {
-        return (ObjectList<Value>) super.appendAllThen(value);
+        return (ObjectList<Value>) super.appendAllThen(values);
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public ObjectList<Value> appendAllThen(Iterable<? extends Value> values)
+    public ObjectList<Value> appendThen(Value value)
     {
-        return (ObjectList<Value>) super.appendAllThen(values);
+        return (ObjectList<Value>) super.appendThen(value);
     }
 
     /**

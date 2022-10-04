@@ -116,6 +116,6 @@ public class MethodGetter implements Getter
     @Override
     public Type<?> type()
     {
-        return method.type();
+        return method.parentType();
     }
 }

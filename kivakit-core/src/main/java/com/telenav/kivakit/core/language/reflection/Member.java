@@ -48,5 +48,5 @@ public abstract class Member
     /**
      * Returns the type to which this member belongs
      */
-    public abstract Type<?> type();
+    public abstract Type<?> parentType();
 }

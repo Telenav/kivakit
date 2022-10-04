@@ -95,7 +95,7 @@ import static com.telenav.kivakit.core.collections.list.ObjectList.objectList;
  *     <li>{@link #appendAll(Iterable)}</li>
  *     <li>{@link #appendAll(Iterator)}</li>
  *     <li>{@link #appendAll(Object[])}</li>
- *     <li>{@link #appendAllThen(Object)}</li>
+ *     <li>{@link #appendThen(Object)}</li>
  *     <li>{@link #appendAllThen(Iterable)}</li>
  *     <li>{@link #prepend(Object)}</li>
  *     <li>{@link #prependIfNotNull(Object)}</li>
@@ -344,9 +344,9 @@ public abstract class BaseList<Value> extends BaseCollection<Value> implements
     }
 
     @Override
-    public BaseList<Value> appendAllThen(Value value)
+    public BaseList<Value> appendThen(Value value)
     {
-        return (BaseList<Value>) Appendable.super.appendAllThen(value);
+        return (BaseList<Value>) Appendable.super.appendThen(value);
     }
 
     @Override
