@@ -1,18 +1,22 @@
 package com.telenav.kivakit.settings.stores;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.conversion.core.language.object.KivaKitConverted;
 import com.telenav.kivakit.conversion.core.language.object.ObjectPopulator;
 import com.telenav.kivakit.core.registry.Registry;
 import com.telenav.kivakit.core.registry.RegistryTrait;
 import com.telenav.kivakit.resource.Resource;
 import com.telenav.kivakit.resource.serialization.ObjectReader;
-import com.telenav.kivakit.resource.serialization.ObjectSerializers;
+import com.telenav.kivakit.resource.serialization.ObjectSerializerRegistry;
 import com.telenav.kivakit.settings.BaseSettingsStore;
 import com.telenav.kivakit.settings.SettingsObject;
 import com.telenav.kivakit.settings.SettingsStore;
 
-import static com.telenav.kivakit.resource.serialization.ObjectMetadata.INSTANCE;
-import static com.telenav.kivakit.resource.serialization.ObjectMetadata.TYPE;
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+import static com.telenav.kivakit.resource.serialization.ObjectMetadata.OBJECT_INSTANCE;
+import static com.telenav.kivakit.resource.serialization.ObjectMetadata.OBJECT_TYPE;
 
 /**
  * <b>Service Provider API</b>
@@ -22,10 +26,10 @@ import static com.telenav.kivakit.resource.serialization.ObjectMetadata.TYPE;
  * </p>
  *
  * <p>
- * This class is the base class for {@link ResourceFolderSettingsStore}, which loads settings
- * information from <i>.properties</i> files in folders and packages. Settings objects are loaded when
- * they are requested, and each <i>.properties</i> resource describes <i>just one settings object</i>. This means that a
- * settings folder or package will often have more than one <i>.properties</i> resource in it, such as:
+ * This class is the base class for {@link ResourceFolderSettingsStore}, which loads settings information from
+ * <i>.properties</i> files in folders and packages. Settings objects are loaded when they are requested, and each
+ * <i>.properties</i> resource describes <i>just one settings object</i>. This means that a settings folder or package
+ * will often have more than one <i>.properties</i> resource in it, such as:
  * </p>
  *
  * <pre>
@@ -104,6 +108,9 @@ import static com.telenav.kivakit.resource.serialization.ObjectMetadata.TYPE;
  * @see SettingsStore
  * @see ResourceFolderSettingsStore
  */
+@ApiQuality(stability = API_STABLE_EXTENSIBLE,
+            testing = TESTING_NONE,
+            documentation = DOCUMENTATION_COMPLETE)
 public abstract class BaseResourceSettingsStore extends BaseSettingsStore implements
         SettingsStore,
         RegistryTrait
@@ -116,11 +123,11 @@ public abstract class BaseResourceSettingsStore extends BaseSettingsStore implem
      */
     protected SettingsObject read(Resource resource)
     {
-        var reader = require(ObjectSerializers.class, ObjectSerializers::new)
+        var reader = require(ObjectSerializerRegistry.class, ObjectSerializerRegistry::new)
                 .serializer(resource.extension());
         if (reader != null)
         {
-            var object = reader.read(resource, TYPE, INSTANCE);
+            var object = reader.readObject(resource, OBJECT_TYPE, OBJECT_INSTANCE);
             if (object != null)
             {
                 return new SettingsObject(object);

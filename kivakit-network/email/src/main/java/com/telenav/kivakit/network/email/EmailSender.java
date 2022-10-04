@@ -18,6 +18,7 @@
 
 package com.telenav.kivakit.network.email;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.language.Classes;
 import com.telenav.kivakit.core.messaging.repeaters.BaseRepeater;
 import com.telenav.kivakit.core.thread.RepeatingThread;
@@ -33,7 +34,6 @@ import com.telenav.kivakit.interfaces.lifecycle.Startable;
 import com.telenav.kivakit.interfaces.lifecycle.Stoppable;
 import com.telenav.kivakit.network.email.internal.lexakai.DiagramEmail;
 import com.telenav.kivakit.network.email.senders.SmtpEmailSender;
-import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlAggregation;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
@@ -44,12 +44,16 @@ import javax.mail.Session;
 import javax.mail.internet.MimeMessage;
 import java.util.Properties;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+
 /**
  * An email sender. Emails can be added with {@link #enqueue(Email)} and they will be sent as soon as possible. Emails
  * are not persisted, so if the process terminates, enqueued emails will be lost. The {@link #close()} method will shut
  * down the queue so that no further emails can be enqueued and then attempt to send any remaining emails before
- * stopping. For testing purposes {@link #sendingOn(boolean)} can be called with false and emails will be processed but
- * not actually sent to their destination.
+ * stopping. For testing purposes {@link #enableSending(boolean)} can be called with false and emails will be processed
+ * but not actually sent to their destination.
  * <p>
  * SMTP is currently the only protocol supported. In the future, IMAP may be added when the need arises.
  * </p>
@@ -57,10 +61,12 @@ import java.util.Properties;
  * @author jonathanl (shibo)
  * @see SmtpEmailSender
  */
-@UmlClassDiagram(diagram = DiagramEmail.class)
+@SuppressWarnings("unused") @UmlClassDiagram(diagram = DiagramEmail.class)
 @UmlRelation(label = "sends", referent = Email.class)
 @UmlRelation(label = "configured by", referent = EmailSender.Configuration.class)
-@LexakaiJavadoc(complete = true)
+@ApiQuality(stability = API_STABLE_EXTENSIBLE,
+            testing = TESTING_NONE,
+            documentation = DOCUMENTATION_COMPLETE)
 public abstract class EmailSender extends BaseRepeater implements
         Startable,
         Stoppable<Duration>,
@@ -73,7 +79,9 @@ public abstract class EmailSender extends BaseRepeater implements
      * @author jonathanl (shibo)
      */
     @UmlClassDiagram(diagram = DiagramEmail.class)
-    @LexakaiJavadoc(complete = true)
+    @ApiQuality(stability = API_STABLE_EXTENSIBLE,
+                testing = TESTING_NONE,
+                documentation = DOCUMENTATION_COMPLETE)
     public static class Configuration
     {
         private Rate maximumSendRate;
@@ -106,7 +114,7 @@ public abstract class EmailSender extends BaseRepeater implements
 
     private volatile boolean running;
 
-    private boolean sendingOn = true;
+    private boolean enabled = true;
 
     private final RepeatingThread thread = new RepeatingThread(this, Classes.simpleName(EmailSender.class), Frequency.CONTINUOUSLY)
     {
@@ -121,7 +129,7 @@ public abstract class EmailSender extends BaseRepeater implements
                 {
                     if (email.tries().isLessThan(maximumRetries))
                     {
-                        if (!queue().offer(email, Duration.seconds(5)))
+                        if (!queue().enqueue(email, Duration.seconds(5)))
                         {
                             warning("Unable to re-queue email");
                         }
@@ -129,12 +137,12 @@ public abstract class EmailSender extends BaseRepeater implements
                 }
                 else
                 {
-                    queue().sent(email);
+                    queue().markSent(email);
                 }
             }
             if (queue().isEmpty())
             {
-                queueEmpty.completed();
+                queueEmpty.threadCompleted();
             }
         }
 
@@ -163,11 +171,17 @@ public abstract class EmailSender extends BaseRepeater implements
         closed = true;
     }
 
+    public EmailSender enableSending(boolean on)
+    {
+        enabled = on;
+        return this;
+    }
+
     public void enqueue(Email email)
     {
         if (!closed)
         {
-            if (!queue().offer(email, Duration.seconds(5)))
+            if (!queue().enqueue(email, Duration.seconds(5)))
             {
                 if (!queue().isClosed())
                 {
@@ -185,7 +199,7 @@ public abstract class EmailSender extends BaseRepeater implements
     public void flush(Duration maximumWaitTime)
     {
         trace("Flushing queue within ${debug}", maximumWaitTime);
-        queueEmpty.waitForCompletion();
+        queueEmpty.waitForAllThreadsToComplete();
         trace("Flushed");
     }
 
@@ -200,6 +214,12 @@ public abstract class EmailSender extends BaseRepeater implements
         return running;
     }
 
+    @Override
+    public Duration maximumFlushTime()
+    {
+        return Duration.MAXIMUM;
+    }
+
     public EmailSender maximumRetries(Maximum maximumRetries)
     {
         this.maximumRetries = maximumRetries;
@@ -207,7 +227,7 @@ public abstract class EmailSender extends BaseRepeater implements
     }
 
     @Override
-    public Duration maximumWaitTime()
+    public Duration maximumStopTime()
     {
         return Duration.MAXIMUM;
     }
@@ -215,12 +235,6 @@ public abstract class EmailSender extends BaseRepeater implements
     public EmailSender retryPeriod(Duration durationBetweenRetries)
     {
         retryPeriod = durationBetweenRetries;
-        return this;
-    }
-
-    public EmailSender sendingOn(boolean on)
-    {
-        sendingOn = on;
         return this;
     }
 
@@ -273,7 +287,7 @@ public abstract class EmailSender extends BaseRepeater implements
             try
             {
                 trace("Sending email $", email);
-                if (sendingOn)
+                if (enabled)
                 {
                     var session = Session.getDefaultInstance(getMailSessionProperties(), authenticator());
                     session.setDebug(debug().isDebugOn());

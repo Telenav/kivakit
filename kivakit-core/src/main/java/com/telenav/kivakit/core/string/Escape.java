@@ -18,23 +18,30 @@
 
 package com.telenav.kivakit.core.string;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramString;
-import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
+
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_STATIC_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
 
 /**
  * Escapes different kinds of strings for JavaScript, SQL and XML.
  *
  * @author jonathanl (shibo)
  */
+@SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramString.class)
-@LexakaiJavadoc(complete = true)
+@ApiQuality(stability = API_STABLE_STATIC_EXTENSIBLE,
+            testing = TESTING_NONE,
+            documentation = DOCUMENTATION_COMPLETE)
 public class Escape
 {
     /**
      * @return The given text with single quotes escaped
      */
-    public static String javaScriptString(String text)
+    public static String escapeJavaScript(String text)
     {
         return Strings.replaceAll(text, "'", "\\'");
     }
@@ -42,9 +49,21 @@ public class Escape
     /**
      * @return The given string with single quotes escaped
      */
-    public static String sqlString(String text)
+    public static String escapeSql(String text)
     {
         return Strings.replaceAll(text, "'", "''");
+    }
+
+    /**
+     * @return The given XML text with special characters escaped
+     */
+    public static String escapeXml(String xml)
+    {
+        var u1 = Strings.replaceAll(unescapeXml(xml), "\"", "&quot;");
+        var u2 = Strings.replaceAll(u1, "&", "&amp;");
+        var u3 = Strings.replaceAll(u2, "'", "&apos;");
+        var u4 = Strings.replaceAll(u3, "<", "&lt;");
+        return Strings.replaceAll(u4, ">", "&gt;");
     }
 
     /**
@@ -57,17 +76,5 @@ public class Escape
         var u3 = Strings.replaceAll(u2, "&apos;", "'");
         var u4 = Strings.replaceAll(u3, "&lt;", "<");
         return Strings.replaceAll(u4, "&gt;", ">");
-    }
-
-    /**
-     * @return The given XML text with special characters escaped
-     */
-    public static String xml(String xml)
-    {
-        var u1 = Strings.replaceAll(unescapeXml(xml), "\"", "&quot;");
-        var u2 = Strings.replaceAll(u1, "&", "&amp;");
-        var u3 = Strings.replaceAll(u2, "'", "&apos;");
-        var u4 = Strings.replaceAll(u3, "<", "&lt;");
-        return Strings.replaceAll(u4, ">", "&gt;");
     }
 }

@@ -18,10 +18,14 @@
 
 package com.telenav.kivakit.interfaces.io;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.interfaces.internal.lexakai.DiagramIo;
 import com.telenav.kivakit.interfaces.time.LengthOfTime;
-import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
+
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
 
 /**
  * An object that can be flushed, like a queue or output stream.
@@ -29,28 +33,30 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramIo.class)
-@LexakaiJavadoc(complete = true)
-public interface Flushable<T extends LengthOfTime<T>>
+@ApiQuality(stability = API_STABLE,
+            testing = TESTING_NOT_NEEDED,
+            documentation = DOCUMENTATION_COMPLETE)
+public interface Flushable<Duration extends LengthOfTime<Duration>>
 {
     /**
      * Flushes the object waiting not more than the give duration for this to occur.
      *
-     * @param maximumWaitTime The amount of time to wait before giving up on flushing. To achieve a blocking flush,
+     * @param maximumFlushTime The amount of time to wait before giving up on flushing. To achieve a blocking flush,
      * simply pass in a maximal length of time as the wait time, or call {@link #flush()}.
      */
-    void flush(T maximumWaitTime);
+    void flush(Duration maximumFlushTime);
 
     /**
      * Flush the object, waiting until finished doing so.
      */
     default void flush()
     {
-        flush(maximumWaitTime());
+        flush(maximumFlushTime());
     }
 
     /**
      * @return The maximum time to wait when {@link #flush()} is called. Normally this is the largest duration possible,
      * which for all practical purposes is "forever".
      */
-    T maximumWaitTime();
+    Duration maximumFlushTime();
 }

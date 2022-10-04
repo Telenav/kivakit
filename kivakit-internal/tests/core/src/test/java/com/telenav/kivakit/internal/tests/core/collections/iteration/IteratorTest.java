@@ -22,13 +22,15 @@ import com.telenav.kivakit.core.collections.iteration.BaseIterator;
 import com.telenav.kivakit.core.collections.iteration.CompoundIterator;
 import com.telenav.kivakit.core.collections.iteration.DeduplicatingIterator;
 import com.telenav.kivakit.core.collections.iteration.Iterables;
-import com.telenav.kivakit.core.collections.list.BaseList;
-import com.telenav.kivakit.core.collections.list.ObjectList;import com.telenav.kivakit.internal.testing.CoreUnitTest;
+import com.telenav.kivakit.core.collections.list.ObjectList;
 import com.telenav.kivakit.core.value.count.Maximum;
-import com.telenav.kivakit.interfaces.collection.NextValue;
+import com.telenav.kivakit.interfaces.collection.NextIterator;
+import com.telenav.kivakit.internal.testing.CoreUnitTest;
 import org.junit.Test;
 
 import java.util.Collections;
+
+import static com.telenav.kivakit.core.collections.list.ObjectList.objectList;
 
 public class IteratorTest extends CoreUnitTest
 {
@@ -36,7 +38,7 @@ public class IteratorTest extends CoreUnitTest
     public void abstractIterableTest()
     {
         var iterable = Iterables.iterable(() -> new
-                NextValue<Integer>()
+                NextIterator<Integer>()
                 {
                     int i;
 
@@ -53,8 +55,8 @@ public class IteratorTest extends CoreUnitTest
                         return null;
                     }
                 });
-        ensureEqual(values(2, 4, 8, 16, 32, 64, 128, 256, 512, 1024), new ObjectList<>().appendAll(iterable));
-        ensureEqual(values(2, 4, 8, 16, 32, 64, 128, 256, 512, 1024), new ObjectList<>().appendAll(iterable));
+        ensureEqual(values(2, 4, 8, 16, 32, 64, 128, 256, 512, 1024), new ObjectList<>().appendAllThen(iterable));
+        ensureEqual(values(2, 4, 8, 16, 32, 64, 128, 256, 512, 1024), new ObjectList<>().appendAllThen(iterable));
     }
 
     @Test
@@ -77,7 +79,7 @@ public class IteratorTest extends CoreUnitTest
                 return null;
             }
         };
-        ensureEqual(values(2, 4, 8, 16, 32, 64, 128, 256, 512, 1024), new ObjectList<>().appendAll(iterator));
+        ensureEqual(values(2, 4, 8, 16, 32, 64, 128, 256, 512, 1024), objectList(iterator));
     }
 
     @Test
@@ -88,7 +90,8 @@ public class IteratorTest extends CoreUnitTest
         var both = new CompoundIterator<Integer>();
         both.add(odd.iterator());
         both.add(even.iterator());
-        var compound = new ObjectList<Integer>(Maximum.MAXIMUM).appendAll(both);
+        var compound = new ObjectList<Integer>();
+        compound.appendAll(both);
         ensureEqual(values(1, 3, 5, 7, 9, 2, 4, 6, 8, 10), compound);
     }
 
@@ -97,7 +100,8 @@ public class IteratorTest extends CoreUnitTest
     {
         var values = values(2, 3, 2, 5, 2, 7, 2);
         var iterator = new DeduplicatingIterator<>(values.iterator());
-        BaseList<Integer> deduplicated = new ObjectList<Integer>(Maximum.MAXIMUM).appendAll(iterator);
+        var deduplicated = new ObjectList<Integer>(Maximum.MAXIMUM);
+        deduplicated.appendAll(iterator);
         ensureEqual(values(2, 3, 5, 7), deduplicated);
     }
 

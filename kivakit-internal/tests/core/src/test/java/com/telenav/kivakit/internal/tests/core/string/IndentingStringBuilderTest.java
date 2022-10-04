@@ -29,7 +29,7 @@ public class IndentingStringBuilderTest extends CoreUnitTest
     @Test
     public void test()
     {
-        var builder = new IndentingStringBuilder(TEXT, Indentation.of(2));
+        var builder = new IndentingStringBuilder(TEXT, Indentation.indentation(2));
         builder.appendLine("<a>");
         builder.indent();
         builder.appendLine("<b>");

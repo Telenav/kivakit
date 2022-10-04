@@ -18,38 +18,55 @@
 
 package com.telenav.kivakit.core.language.reflection.filters.method;
 
-import com.telenav.kivakit.core.language.reflection.property.PropertyFilterSet;
-import com.telenav.kivakit.core.language.reflection.property.PropertyNamingConvention;
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramReflection;
+import com.telenav.kivakit.core.language.reflection.Field;
+import com.telenav.kivakit.core.language.reflection.Method;
+import com.telenav.kivakit.core.language.reflection.property.PropertyNamingConvention;
+import com.telenav.kivakit.core.language.reflection.property.PropertySet;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
-import java.lang.reflect.Field;
-import java.lang.reflect.Method;
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
 
 /**
- * A filter that includes all methods with no parameters and a return value other than void as getters and all methods
- * with a void return type and one parameter as setters.
+ * A filter that includes all methods with the given naming convention.
+ *
+ * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramReflection.class)
-public class AllMethods extends PropertyFilterSet
+@ApiQuality(stability = API_STABLE,
+            testing = TESTING_NONE,
+            documentation = DOCUMENTATION_COMPLETE)
+public class AllMethods extends PropertySet
 {
     public AllMethods(PropertyNamingConvention convention)
     {
         super(convention);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean includeAsGetter(Method method)
     {
-        return method.getParameterTypes().length == 0 && method.getReturnType() != Void.class;
+        return method.parameterTypes().length == 0 && method.returnType() != Void.class;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean includeAsSetter(Method method)
     {
-        return method.getReturnType() == Void.class && method.getParameterTypes().length == 1;
+        return method.returnType() == Void.class && method.parameterTypes().length == 1;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean includeField(Field field)
     {

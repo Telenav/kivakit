@@ -18,67 +18,35 @@
 
 package com.telenav.kivakit.core.collections;
 
-import java.util.ArrayList;
+import com.telenav.kivakit.annotations.code.ApiQuality;
+
 import java.util.Collection;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_STATIC_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
 
 /**
  * Collection utility methods
  *
  * @author jonathanl (shibo)
  */
+@SuppressWarnings("unused")
+@ApiQuality(stability = API_STABLE_STATIC_EXTENSIBLE,
+            testing = TESTING_NOT_NEEDED,
+            documentation = DOCUMENTATION_COMPLETE)
 public class Collections
 {
     /**
-     * Returns true if the given collection returns the given reference. This can be used when the objects in a list
-     * don't implement {@link #equals(Object)}.
+     * Returns the first value in a collection of values, or null if the collection is empty. If the collection is not
+     * ordered, which value is returned is not defined.
      *
-     * @param list The list to search
-     * @param reference The reference to fine
-     * @return True if the list contains the given reference
+     * @param values The values
+     * @return The first value
      */
-    public static <T> boolean containsReference(Collection<T> list, T reference)
+    public static <T> T first(Collection<T> values)
     {
-        for (var at : list)
-        {
-            if (at == reference)
-            {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public static <T> T first(Collection<T> collection)
-    {
-        var iterator = collection.iterator();
+        var iterator = values.iterator();
         return iterator.hasNext() ? iterator.next() : null;
-    }
-
-    public static <T> void repeatedAdd(Collection<T> collection, T value, int times)
-    {
-        for (var index = 0; index < times; index++)
-        {
-            collection.add(value);
-        }
-    }
-
-    public static <T extends Comparable<T>> List<T> sorted(Collection<T> collection)
-    {
-        var list = new ArrayList<>(collection == null ? Set.of() : collection);
-        java.util.Collections.sort(list);
-        return list;
-    }
-
-    public <T> List<T> toList(Collection<T> collection)
-    {
-        return new ArrayList<>(collection);
-    }
-
-    public <T> Set<T> toSet(Collection<T> collection)
-    {
-        return new HashSet<>(collection);
     }
 }

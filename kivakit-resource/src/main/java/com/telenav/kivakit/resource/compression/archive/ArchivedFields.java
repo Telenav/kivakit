@@ -18,28 +18,31 @@
 
 package com.telenav.kivakit.resource.compression.archive;
 
-import com.telenav.kivakit.core.language.reflection.property.PropertyNamingConvention;
+import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.core.language.reflection.Field;
 import com.telenav.kivakit.core.language.reflection.filters.field.AllFields;
-import com.telenav.lexakai.annotations.LexakaiJavadoc;
+import org.jetbrains.annotations.NotNull;
 
-import java.lang.reflect.Field;
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_DEFAULT_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
 
 /**
  * A filter that matches all fields annotated with {@link KivaKitArchivedField}
  *
  * @author jonathanl (shibo)
  */
-@LexakaiJavadoc(complete = true)
+@ApiQuality(stability = API_STABLE_DEFAULT_EXTENSIBLE,
+            testing = TESTING_NOT_NEEDED,
+            documentation = DOCUMENTATION_COMPLETE)
 class ArchivedFields extends AllFields
 {
-    public ArchivedFields(PropertyNamingConvention convention)
-    {
-        super(convention);
-    }
-
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public boolean includeField(Field field)
+    public boolean includeField(@NotNull Field field)
     {
-        return field.getAnnotation(KivaKitArchivedField.class) != null;
+        return field.hasAnnotation(KivaKitArchivedField.class);
     }
 }

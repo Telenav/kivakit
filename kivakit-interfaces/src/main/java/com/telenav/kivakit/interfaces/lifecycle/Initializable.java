@@ -18,14 +18,24 @@
 
 package com.telenav.kivakit.interfaces.lifecycle;
 
-import com.telenav.lexakai.annotations.LexakaiJavadoc;
+import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.interfaces.internal.lexakai.DiagramLifeCycle;
+import com.telenav.lexakai.annotations.UmlClassDiagram;
+
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
 
 /**
  * Initializes an object
  *
  * @author jonathanl (shibo)
  */
-@LexakaiJavadoc(complete = true)
+@SuppressWarnings("SpellCheckingInspection")
+@UmlClassDiagram(diagram = DiagramLifeCycle.class)
+@ApiQuality(stability = API_STABLE,
+            testing = TESTING_NOT_NEEDED,
+            documentation = DOCUMENTATION_COMPLETE)
 public interface Initializable
 {
     /**
@@ -34,17 +44,6 @@ public interface Initializable
     default void initialize()
     {
         onInitialize();
-    }
-
-    /**
-     * Initializes the given object by calling {@link #initialize()} on it
-     *
-     * @return The initialized object
-     */
-    default <T extends Initializable> T initialize(T object)
-    {
-        object.initialize();
-        return object;
     }
 
     /**

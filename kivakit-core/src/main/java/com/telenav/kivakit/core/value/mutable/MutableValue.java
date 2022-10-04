@@ -18,30 +18,45 @@
 
 package com.telenav.kivakit.core.value.mutable;
 
-import com.telenav.kivakit.core.internal.lexakai.DiagramValue;
-import com.telenav.lexakai.annotations.LexakaiJavadoc;
+import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.core.internal.lexakai.DiagramMutable;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
+import java.util.concurrent.atomic.AtomicReference;
 import java.util.function.Function;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+
 /**
- * A value that can be retrieved with {@link #get()} and mutated with {@link #set(Object)} or {@link #update(Function)}.
+ * A value that can be retrieved with {@link #get()} and mutated with {@link #set(Object)} or
+ * {@link #update(Function)}.
  *
  * @author jonathanl (shibo)
  */
-@UmlClassDiagram(diagram = DiagramValue.class)
-@LexakaiJavadoc(complete = true)
+@UmlClassDiagram(diagram = DiagramMutable.class)
+@ApiQuality(stability = API_STABLE_EXTENSIBLE,
+            testing = TESTING_NONE,
+            documentation = DOCUMENTATION_COMPLETE)
 public class MutableValue<T>
 {
-    private T value;
+    /** The value */
+    private final AtomicReference<T> value = new AtomicReference<>();
 
+    /**
+     * Create with no initial value
+     */
     public MutableValue()
     {
     }
 
+    /**
+     * Create with an initial value
+     */
     public MutableValue(T value)
     {
-        this.value = value;
+        this.value.set(value);
     }
 
     @Override
@@ -50,14 +65,17 @@ public class MutableValue<T>
         if (object instanceof MutableValue)
         {
             var that = (MutableValue<?>) object;
-            return value.equals(that.value);
+            return value.get().equals(that.value.get());
         }
         return false;
     }
 
+    /**
+     * Returns the value
+     */
     public T get()
     {
-        return value;
+        return value.get();
     }
 
     @Override
@@ -66,13 +84,19 @@ public class MutableValue<T>
         return value.hashCode();
     }
 
+    /**
+     * Sets the value
+     */
     public void set(T value)
     {
-        this.value = value;
+        this.value.set(value);
     }
 
+    /**
+     * Updates the value
+     */
     public void update(Function<T, T> updater)
     {
-        value = updater.apply(value);
+        value.getAndUpdate(updater::apply);
     }
 }

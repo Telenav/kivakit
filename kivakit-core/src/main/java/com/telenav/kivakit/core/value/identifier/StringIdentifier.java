@@ -18,10 +18,14 @@
 
 package com.telenav.kivakit.core.value.identifier;
 
-import com.telenav.kivakit.core.language.reflection.property.KivaKitIncludeProperty;
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramIdentifier;
-import com.telenav.lexakai.annotations.LexakaiJavadoc;
+import com.telenav.kivakit.core.string.KivaKitFormat;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
+
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
 
 /**
  * An identifier whose value is a {@link String}.
@@ -29,9 +33,12 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramIdentifier.class)
-@LexakaiJavadoc(complete = true)
+@ApiQuality(stability = API_STABLE_EXTENSIBLE,
+            testing = TESTING_NONE,
+            documentation = DOCUMENTATION_COMPLETE)
 public class StringIdentifier implements Comparable<StringIdentifier>
 {
+    /** The identifier */
     private String identifier;
 
     public StringIdentifier(String identifier)
@@ -71,7 +78,7 @@ public class StringIdentifier implements Comparable<StringIdentifier>
         return identifier.hashCode();
     }
 
-    @KivaKitIncludeProperty
+    @KivaKitFormat
     public String identifier()
     {
         return identifier;

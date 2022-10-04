@@ -18,53 +18,96 @@
 
 package com.telenav.kivakit.network.core;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.collections.list.StringList;
 import com.telenav.kivakit.core.collections.map.VariableMap;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.network.core.internal.lexakai.DiagramNetworkLocation;
-import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+
 /**
  * Query parameters, as used in HTTP URLs.
+ *
+ * <p><b>Creation</b></p>
+ *
+ * <ul>
+ *     <li>{@link QueryParameters#QueryParameters }</li>
+ * </ul>
+ *
+ * <p><b>Parsing</b></p>
+ *
+ * <ul>
+ *     <li>{@link #parseQueryParameters(Listener, String)}</li>
+ * </ul>
+ *
+ * <p><b>Conversion</b></p>
+ *
+ * <ul>
+ *     <li>{@link #asVariableMap()}</li>
+ * </ul>
  *
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramNetworkLocation.class)
-@LexakaiJavadoc(complete = true)
+@ApiQuality(stability = API_STABLE_EXTENSIBLE,
+            testing = TESTING_NONE,
+            documentation = DOCUMENTATION_COMPLETE)
 public class QueryParameters
 {
-    public static QueryParameters parse(Listener listener, String string)
+    /**
+     * Parses the given text into query parameters
+     *
+     * @param listener The listener to call with any problems
+     * @param text The text to parse
+     * @return The query parameters
+     */
+    @SuppressWarnings("unused")
+    public static QueryParameters parseQueryParameters(Listener listener, String text)
     {
-        return new QueryParameters(string);
+        return new QueryParameters(text);
     }
 
+    /** True to sort the parameters */
     private boolean sorted;
 
-    private String string;
+    /** The text parsed to create this object */
+    private String text;
 
+    /** The variable map of parameters */
     private VariableMap<String> map;
 
+    /**
+     * Creates query parameters using the given variable map
+     *
+     * @param map The variables to include in query parameters
+     */
     public QueryParameters(VariableMap<String> map)
     {
         this.map = map;
     }
 
-    protected QueryParameters(String string)
+    protected QueryParameters(String text)
     {
-        this.string = string;
+        this.text = text;
     }
 
-    public VariableMap<String> asMap()
+    /**
+     * Returns these query parameters as a variable map
+     */
+    public VariableMap<String> asVariableMap()
     {
         if (map == null)
         {
             map = new VariableMap<>();
-            for (var assignment : StringList.split(string, "&"))
+            for (var assignment : StringList.split(text, "&"))
             {
                 var split = StringList.split(assignment, "=");
                 if (split.size() == 2)
@@ -82,7 +125,7 @@ public class QueryParameters
         if (object instanceof QueryParameters)
         {
             var that = (QueryParameters) object;
-            return asMap().equals(that.asMap());
+            return asVariableMap().equals(that.asVariableMap());
         }
         return false;
     }
@@ -90,12 +133,12 @@ public class QueryParameters
     @Override
     public int hashCode()
     {
-        return asMap().hashCode();
+        return asVariableMap().hashCode();
     }
 
     public boolean isEmpty()
     {
-        return asMap().isEmpty();
+        return asVariableMap().isEmpty();
     }
 
     @Override
@@ -105,7 +148,7 @@ public class QueryParameters
         {
             if (map == null)
             {
-                map = asMap();
+                map = asVariableMap();
             }
             var assignments = new StringList();
             List<String> keys = new ArrayList<>(map.keySet());
@@ -114,9 +157,9 @@ public class QueryParameters
             {
                 assignments.add(key + "=" + map.get(key));
             }
-            string = assignments.join("&");
+            text = assignments.join("&");
             sorted = true;
         }
-        return string;
+        return text;
     }
 }

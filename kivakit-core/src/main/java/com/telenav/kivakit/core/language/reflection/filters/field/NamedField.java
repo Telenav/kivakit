@@ -18,27 +18,39 @@
 
 package com.telenav.kivakit.core.language.reflection.filters.field;
 
-import com.telenav.kivakit.core.language.reflection.property.PropertyNamingConvention;
-import com.telenav.kivakit.core.language.Hash;
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramReflection;
+import com.telenav.kivakit.core.language.Hash;
+import com.telenav.kivakit.core.language.reflection.Field;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
-import java.lang.reflect.Field;
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
 
 /**
- * This filter matches a field with a particular name in a given naming convention
+ * This filter matches a field with a particular name
+ *
+ * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramReflection.class)
+@ApiQuality(stability = API_STABLE,
+            testing = TESTING_NONE,
+            documentation = DOCUMENTATION_COMPLETE)
 public class NamedField extends AllFields
 {
+    /** The field name */
     private final String name;
 
-    public NamedField(PropertyNamingConvention convention, String name)
+    public NamedField(String name)
     {
-        super(convention);
-        this.name = name;
+        this.name = ensureNotNull(name);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean equals(Object object)
     {
@@ -50,15 +62,22 @@ public class NamedField extends AllFields
         return false;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public int hashCode()
     {
-        return Hash.many(name);
+        return Hash.hashMany(name);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean includeField(Field field)
     {
-        return field.getName().equals(name);
+        // Include the field if its name matches
+        return field.name().equals(name);
     }
 }

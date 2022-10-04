@@ -18,24 +18,40 @@
 
 package com.telenav.kivakit.network.email;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.time.Duration;
 import com.telenav.kivakit.core.time.Time;
-import com.telenav.kivakit.interfaces.io.Closeable;
 import com.telenav.kivakit.network.email.internal.lexakai.DiagramEmail;
-import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.TimeUnit;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+
 /**
  * A simple email queue implemented with {@link ArrayBlockingQueue}, with no persistent backing.
+ *
+ * <p><b>Queueing</b></p>
+ *
+ * <ul>
+ *     <li>{@link #close()}</li>
+ *     <li>{@link #enqueue(Email, Duration)}</li>
+ *     <li>{@link #isClosed()}</li>
+ *     <li>{@link #isEmpty()}</li>
+ *     <li>{@link #markSent(Email)}</li>
+ *     <li>{@link #take()}</li>
+ * </ul>
  *
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramEmail.class)
-@LexakaiJavadoc(complete = true)
-class EmailQueue implements Closeable
+@ApiQuality(stability = API_STABLE_EXTENSIBLE,
+            testing = TESTING_NONE,
+            documentation = DOCUMENTATION_COMPLETE)
+class EmailQueue
 {
     private volatile boolean closed;
 
@@ -44,23 +60,13 @@ class EmailQueue implements Closeable
     /**
      * Closes the queue to new entries
      */
-    @Override
     public void close()
     {
         closed = true;
     }
 
-    public boolean isClosed()
-    {
-        return closed;
-    }
-
-    public boolean isEmpty()
-    {
-        return queue.isEmpty();
-    }
-
-    public boolean offer(Email email, Duration maximumWait)
+    @SuppressWarnings("BooleanMethodIsAlwaysInverted")
+    public boolean enqueue(Email email, Duration maximumWait)
     {
         if (!closed)
         {
@@ -75,7 +81,17 @@ class EmailQueue implements Closeable
         return false;
     }
 
-    public void sent(Email email)
+    public boolean isClosed()
+    {
+        return closed;
+    }
+
+    public boolean isEmpty()
+    {
+        return queue.isEmpty();
+    }
+
+    public void markSent(Email email)
     {
         email.sentAt = Time.now();
     }

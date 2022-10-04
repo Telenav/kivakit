@@ -1,25 +1,42 @@
 package com.telenav.kivakit.interfaces.code;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
+
 import java.util.IdentityHashMap;
 import java.util.Map;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.API_FURTHER_EVALUATION_NEEDED;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+
 /**
- * Quick hack to debug code to see how often it is being executed. The {@link #tripwireTripEvery(int)} method can be called with
- * the number of times the method itself should be called before the {@link #tripwireTripped(int)} method is called.
+ * Quick hack to debug code to see how often it is being executed. The {@link #tripwireTripEvery(int)} method can be
+ * called with the number of times the method itself should be called before the {@link #tripwireTripped(int)} method is
+ * called.
  *
  * @author jonathanl (shibo)
  */
 @SuppressWarnings("unused")
+@ApiQuality(stability = API_FURTHER_EVALUATION_NEEDED,
+            testing = TESTING_NONE,
+            documentation = DOCUMENTATION_COMPLETE,
+            reviews = 1,
+            reviewers = "shibo")
 public interface TripwireTrait
 {
     /** Map from this trait's implementing class to the current method invocation count */
     Map<Class<?>, Integer> classToCount = new IdentityHashMap<>();
 
     /**
-     * Map from this trait's implementing class to the number of times {@link #tripwireTripEvery(int)} must be called before
-     * {@link #tripwireTripped(int)} is called
+     * Map from this trait's implementing class to the number of times {@link #tripwireTripEvery(int)} must be called
+     * before {@link #tripwireTripped(int)} is called
      */
     Map<Class<?>, Integer> classToTimes = new IdentityHashMap<>();
+
+    default void tripwireReset()
+    {
+        classToCount.put(getClass(), 0);
+    }
 
     /**
      * The first time this method is called, sets an invocation threshold to set off the tripwire. For each call to this
@@ -46,11 +63,6 @@ public interface TripwireTrait
         {
             classToCount.put(getClass(), count + 1);
         }
-    }
-
-    default void tripwireReset()
-    {
-        classToCount.put(getClass(), 0);
     }
 
     /**

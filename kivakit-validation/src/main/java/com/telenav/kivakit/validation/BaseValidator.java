@@ -18,6 +18,7 @@
 
 package com.telenav.kivakit.validation;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.language.primitive.Ints;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.messaging.Message;
@@ -36,6 +37,9 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.Collection;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
 import static com.telenav.kivakit.core.thread.ReentrancyTracker.Reentrancy.ENTERED;
 import static com.telenav.kivakit.core.thread.ReentrancyTracker.Reentrancy.REENTERED;
 
@@ -103,6 +107,36 @@ import static com.telenav.kivakit.core.thread.ReentrancyTracker.Reentrancy.REENT
  * <p>
  * Status-by-step comments that detail this approach are {@link #validate(Listener)} below.
  *
+ * <p><b>Reporting Issues</b></p>
+ *
+ * <ul>
+ *     <li>{@link #addGlitch(String, Object...)}</li>
+ *     <li>{@link #addProblem(String, Object...)}</li>
+ *     <li>{@link #addQuibble(String, Object...)}</li>
+ *     <li>{@link #addWarning(String, Object...)}</li>
+ *     <li>{@link #glitch(String, Object...)}</li>
+ *     <li>{@link #glitchIf(boolean, String, Object...)}</li>
+ *     <li>{@link #halt(String, Object...)}</li>
+ *     <li>{@link #problem(String, Object...)}</li>
+ *     <li>{@link #problemIf(boolean, String, Object...)}</li>
+ *     <li>{@link #problemIfNotInRangeExclusive(int, String, int, int)}</li>
+ *     <li>{@link #problemIfNotInRangeInclusive(int, String, int, int)}</li>
+ *     <li>{@link #problemIfNull(Object, String, Object...)}</li>
+ *     <li>{@link #quibble(String, Object...)}</li>
+ *     <li>{@link #quibbleIf(boolean, String, Object...)}</li>
+ *     <li>{@link #warning(String, Object...)}</li>
+ *     <li>{@link #warningIf(boolean, String, Object...)}</li>
+ * </ul>
+ *
+ * <p><b>Validation</b></p>
+ *
+ * <ul>
+ *     <li>{@link #validate(Listener)}</li>
+ *     <li>{@link #validate(Validator)}</li>
+ *     <li>{@link #shouldShowValidationReport()}</li>
+ *     <li>{@link #validationTarget()}</li>
+ * </ul>
+ *
  * @author jonathanl (shibo)
  * @see Validator
  * @see Problem
@@ -111,14 +145,18 @@ import static com.telenav.kivakit.core.thread.ReentrancyTracker.Reentrancy.REENT
  * @see ReentrancyTracker
  * @see ThreadLocal
  */
+@SuppressWarnings({ "unused", "UnusedReturnValue" })
 @UmlClassDiagram(diagram = DiagramValidation.class)
+@ApiQuality(stability = API_STABLE_EXTENSIBLE,
+            testing = TESTING_NONE,
+            documentation = DOCUMENTATION_COMPLETE)
 public abstract class BaseValidator implements Validator
 {
     /** Track if we are validating within a validation */
     private static final ReentrancyTracker reentrancy = new ReentrancyTracker();
 
     /** Per-thread validation statistics */
-    private static final ThreadLocal<ValidationIssues> issues = ThreadLocal.withInitial(ValidationIssues::new);
+    private static final ThreadLocal<ValidationIssues> threadLocalIssues = ThreadLocal.withInitial(ValidationIssues::new);
 
     /** The listener while validation is going on */
     private Listener listener;
@@ -132,7 +170,7 @@ public abstract class BaseValidator implements Validator
     {
     }
 
-    public BaseValidator(final Validator parent)
+    public BaseValidator(Validator parent)
     {
         this.parent = parent;
     }
@@ -151,6 +189,14 @@ public abstract class BaseValidator implements Validator
     public boolean isValid()
     {
         return !isInvalid();
+    }
+
+    /**
+     * Returns the validation issues for the validation that occurred on this thread
+     */
+    public ValidationIssues issues()
+    {
+        return threadLocalIssues.get();
     }
 
     /**
@@ -195,11 +241,11 @@ public abstract class BaseValidator implements Validator
                 this.listener = null;
 
                 // and if a validation report is desired,
-                if (validationReport())
+                if (shouldShowValidationReport())
                 {
                     // we broadcast a short summary of the validation results.
                     listener.information("Validated $ ($ problems, $ glitches, $ warnings)",
-                            Name.of(validationTarget()), problems, glitches, warnings);
+                            Name.nameOf(validationTarget()), problems, glitches, warnings);
                 }
             }
 
@@ -219,7 +265,7 @@ public abstract class BaseValidator implements Validator
      */
     protected Glitch addGlitch(String message, Object... parameters)
     {
-        return addIfNotNull(new Glitch(message, parameters));
+        return addIssueIfNotNull(new Glitch(message, parameters));
     }
 
     /**
@@ -227,7 +273,7 @@ public abstract class BaseValidator implements Validator
      */
     protected Problem addProblem(String message, Object... parameters)
     {
-        return addIfNotNull(new Problem(message, parameters));
+        return addIssueIfNotNull(new Problem(message, parameters));
     }
 
     /**
@@ -235,7 +281,7 @@ public abstract class BaseValidator implements Validator
      */
     protected Quibble addQuibble(String message, Object... parameters)
     {
-        return addIfNotNull(new Quibble(message, parameters));
+        return addIssueIfNotNull(new Quibble(message, parameters));
     }
 
     /**
@@ -243,7 +289,7 @@ public abstract class BaseValidator implements Validator
      */
     protected Warning addWarning(String message, Object... parameters)
     {
-        return addIfNotNull(new Warning(message, parameters));
+        return addIssueIfNotNull(new Warning(message, parameters));
     }
 
     /**
@@ -251,7 +297,7 @@ public abstract class BaseValidator implements Validator
      */
     protected Glitch glitch(String message, Object... parameters)
     {
-        return addIfNotNull(listener.glitch(message, parameters));
+        return addIssueIfNotNull(listener.glitch(message, parameters));
     }
 
     /**
@@ -306,9 +352,9 @@ public abstract class BaseValidator implements Validator
 
     /**
      * This method is implemented by the subclass. It may call {@link #validate(Validator)} on its superclass, and it
-     * must call {@link #problemIf(boolean, String, Object...)}, {@link #warningIf(boolean, String, Object...)}, {@link
-     * #problem(String, Object...)} or {@link #warning(String, Object...)} if there are any validation issues to report.
-     * If the problem methods are not called then the validation is valid.
+     * must call {@link #problemIf(boolean, String, Object...)}, {@link #warningIf(boolean, String, Object...)},
+     * {@link #problem(String, Object...)} or {@link #warning(String, Object...)} if there are any validation issues to
+     * report. If the problem methods are not called then the validation is valid.
      */
     protected abstract void onValidate();
 
@@ -317,7 +363,7 @@ public abstract class BaseValidator implements Validator
      */
     protected Problem problem(String message, Object... parameters)
     {
-        return addIfNotNull(listener.problem(message, parameters));
+        return addIssueIfNotNull(listener.problem(message, parameters));
     }
 
     /**
@@ -334,16 +380,25 @@ public abstract class BaseValidator implements Validator
         return null;
     }
 
+    /**
+     * Broadcasts a {@link Problem} if the given value is not in range
+     */
     protected void problemIfNotInRangeExclusive(int value, String name, int minimum, int maximum)
     {
         problemIf(!Ints.isBetweenExclusive(value, minimum, maximum), "Invalid " + name);
     }
 
+    /**
+     * Broadcasts a {@link Problem} if the given value is not in range
+     */
     protected void problemIfNotInRangeInclusive(int value, String name, int minimum, int maximum)
     {
         problemIf(!Ints.isBetweenInclusive(value, minimum, maximum), "Invalid " + name);
     }
 
+    /**
+     * Broadcasts a {@link Problem} if the given object is null
+     */
     protected final Problem problemIfNull(Object object, String message, Object... parameters)
     {
         return problemIf(object == null, message, parameters);
@@ -354,7 +409,7 @@ public abstract class BaseValidator implements Validator
      */
     protected Quibble quibble(String message, Object... parameters)
     {
-        return addIfNotNull(listener.quibble(message, parameters));
+        return addIssueIfNotNull(listener.quibble(message, parameters));
     }
 
     /**
@@ -367,6 +422,14 @@ public abstract class BaseValidator implements Validator
             return quibble(message, parameters);
         }
         return null;
+    }
+
+    /**
+     * @return True if this validator should report results when it completes
+     */
+    protected boolean shouldShowValidationReport()
+    {
+        return false;
     }
 
     /**
@@ -414,14 +477,6 @@ public abstract class BaseValidator implements Validator
     }
 
     /**
-     * @return True if this validator should report results when it completes
-     */
-    protected boolean validationReport()
-    {
-        return false;
-    }
-
-    /**
      * @return The name of what was validated when reporting validation results
      */
     protected String validationTarget()
@@ -434,7 +489,7 @@ public abstract class BaseValidator implements Validator
      */
     protected Warning warning(String message, Object... parameters)
     {
-        return addIfNotNull(listener.warning(message, parameters));
+        return addIssueIfNotNull(listener.warning(message, parameters));
     }
 
     /**
@@ -449,18 +504,13 @@ public abstract class BaseValidator implements Validator
         return null;
     }
 
-    private static ValidationIssues issues()
+    private <T extends Message> T addIssueIfNotNull(T issue)
     {
-        return issues.get();
-    }
-
-    private <T extends Message> T addIfNotNull(T message)
-    {
-        if (message != null)
+        if (issue != null)
         {
-            issues().add(message);
+            issues().add(issue);
         }
-        return message;
+        return issue;
     }
 
     /**

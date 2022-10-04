@@ -18,37 +18,38 @@
 
 package com.telenav.kivakit.core.string;
 
-import com.telenav.kivakit.core.language.object.ObjectFormatter;
-import com.telenav.kivakit.interfaces.string.Stringable;
+import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.interfaces.string.StringFormattable;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
+import org.jetbrains.annotations.NotNull;
+
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
 
 /**
  * Interface to an object that can produce one or more different kinds of string representations. This can be useful
  * when the {@link Object#toString()} method is already being used or when other kinds of strings are needed for
  * specific purposes.
  * <p>
- * The {@link Format} enum defines different kinds of string representations which can be retrieved with {@link
- * #asString(Format)}. The object can override this method to provide multiple string representations for specific
- * purposes.
+ * The {@link Format} enum defines different kinds of string representations which can be retrieved with
+ * {@link #asString(Format)}. The object can override this method to provide multiple string representations for
+ * specific purposes.
  *
  * @author jonathanl (shibo)
  */
-@UmlRelation(label = "formats with", referent = Stringable.Format.class)
-public interface AsString extends Stringable
+@UmlRelation(label = "formats with", referent = StringFormattable.Format.class)
+@ApiQuality(stability = API_STABLE,
+            testing = TESTING_NONE,
+            documentation = DOCUMENTATION_COMPLETE)
+public interface AsString extends StringFormattable
 {
     /**
      * @return A string representation of this object that is suitable for the given purpose
      */
-    default String asString(Format format)
+    @Override
+    default String asString(@NotNull Format format)
     {
-        switch (format)
-        {
-            case DEBUG:
-            case LOG:
-                return new ObjectFormatter(this).toString();
-
-            default:
-                return toString();
-        }
+        return toString();
     }
 }

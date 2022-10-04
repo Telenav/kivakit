@@ -18,13 +18,18 @@
 
 package com.telenav.kivakit.core.messaging.context;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.core.internal.lexakai.DiagramThread;
 import com.telenav.kivakit.core.language.Classes;
 import com.telenav.kivakit.core.language.module.PackageReference;
-import com.telenav.kivakit.core.internal.lexakai.DiagramThread;
 import com.telenav.kivakit.interfaces.value.Source;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.lang.reflect.Method;
+
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
 
 /**
  * Information about a location in code, including the host and class. Line numbers are not available.
@@ -32,21 +37,33 @@ import java.lang.reflect.Method;
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramThread.class)
+@ApiQuality(stability = API_STABLE_EXTENSIBLE,
+            testing = TESTING_NONE,
+            documentation = DOCUMENTATION_COMPLETE)
 public class CodeContext
 {
     private static Source<String> hostResolver = () -> "localhost";
 
+    /**
+     * Sets the resolver to use to find hosts
+     *
+     * @param resolver The host resolver
+     */
     public static void hostResolver(Source<String> resolver)
     {
         hostResolver = resolver;
     }
 
+    /** The class */
     private transient Class<?> type;
 
+    /** The full name of the class */
     private String fullTypeName;
 
+    /** The short name of the class */
     private String typeName;
 
+    /** The host */
     private final String host = hostResolver.get();
 
     public CodeContext(Class<?> type)
@@ -77,36 +94,54 @@ public class CodeContext
     {
     }
 
+    /**
+     * Returns the full name of the code context's type
+     */
     public String fullTypeName()
     {
         return fullTypeName;
     }
 
+    /**
+     * Returns code context's host
+     */
     public String host()
     {
         return host;
     }
 
+    /**
+     * Returns the package for the code context's type
+     */
     public PackageReference packagePath()
     {
         return PackageReference.packageReference(type);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String toString()
     {
         return typeName();
     }
 
+    /**
+     * Returns the code context class
+     */
     public Class<?> type()
     {
         if (type == null)
         {
-            type = Classes.forName(fullTypeName);
+            type = Classes.classForName(fullTypeName);
         }
         return type;
     }
 
+    /**
+     * Returns the simple type name for this code context
+     */
     public String typeName()
     {
         return typeName;

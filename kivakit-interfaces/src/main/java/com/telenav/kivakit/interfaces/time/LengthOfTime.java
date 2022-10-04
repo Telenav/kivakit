@@ -1,11 +1,12 @@
 package com.telenav.kivakit.interfaces.time;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.interfaces.code.Callback;
 import com.telenav.kivakit.interfaces.internal.lexakai.DiagramTime;
-import com.telenav.kivakit.interfaces.numeric.Quantizable;
-import com.telenav.kivakit.interfaces.numeric.QuantumComparable;
-import com.telenav.kivakit.interfaces.string.Stringable;
+import com.telenav.kivakit.interfaces.string.StringFormattable;
+import com.telenav.kivakit.interfaces.value.LongValued;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
+import org.jetbrains.annotations.NotNull;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -14,6 +15,9 @@ import java.util.Timer;
 import java.util.TimerTask;
 import java.util.concurrent.TimeUnit;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
 import static com.telenav.kivakit.interfaces.time.WakeState.COMPLETED;
 import static com.telenav.kivakit.interfaces.time.WakeState.INTERRUPTED;
 import static com.telenav.kivakit.interfaces.time.WakeState.TIMED_OUT;
@@ -35,6 +39,8 @@ import static com.telenav.kivakit.interfaces.time.WakeState.TIMED_OUT;
  * </p>
  *
  * <ul>
+ *     <li>{@link #asString()}</li>
+ *     <li>{@link #asString(Format)}</li>
  *     <li>{@link #asNanoseconds()}</li>
  *     <li>{@link #asMicroseconds()}</li>
  *     <li>{@link #asMilliseconds()}</li>
@@ -60,11 +66,11 @@ import static com.telenav.kivakit.interfaces.time.WakeState.TIMED_OUT;
  *
  * <ul>
  *     <li>{@link #compareTo(LengthOfTime)}</li>
- *     <li>{@link #isLessThan(Quantizable)}</li>
- *     <li>{@link #isLessThanOrEqualTo(Quantizable)}</li>
- *     <li>{@link #isGreaterThan(Quantizable)}</li>
- *     <li>{@link #isLessThanOrEqualTo(Quantizable)}</li>
- *     <li>{@link #isApproximately(Quantizable, Quantizable)}</li>
+ *     <li>{@link #isLessThan(Duration)}</li>
+ *     <li>{@link #isLessThanOrEqualTo(Duration)}</li>
+ *     <li>{@link #isGreaterThan(Duration)}</li>
+ *     <li>{@link #isLessThanOrEqualTo(Duration)}</li>
+ *     <li>{@link #isApproximately(Duration, Duration)}</li>
  *     <li>{@link #isZero()}</li>
  *     <li>{@link #isNonZero()}</li>
  * </ul>
@@ -83,10 +89,13 @@ import static com.telenav.kivakit.interfaces.time.WakeState.TIMED_OUT;
  */
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramTime.class)
-public interface LengthOfTime<Duration extends LengthOfTime<Duration>> extends
-        QuantumComparable<LengthOfTime<?>>,
+@ApiQuality(stability = API_STABLE,
+            testing = TESTING_NONE,
+            documentation = DOCUMENTATION_COMPLETE)
+public interface LengthOfTime<Duration extends LongValued & LengthOfTime<Duration>> extends
+        LongValued,
         Comparable<LengthOfTime<?>>,
-        Stringable,
+        StringFormattable,
         TimeMeasurement
 {
 
@@ -103,7 +112,7 @@ public interface LengthOfTime<Duration extends LengthOfTime<Duration>> extends
      */
     @Override
     @SuppressWarnings({ "SpellCheckingInspection", "DuplicatedCode" })
-    default String asString(Format format)
+    default String asString(@NotNull Format format)
     {
         switch (format)
         {
@@ -210,9 +219,26 @@ public interface LengthOfTime<Duration extends LengthOfTime<Duration>> extends
     /**
      * @return This length of time divided by the given divisor
      */
+    default double dividedBy(Duration that)
+    {
+        return nanoseconds().dividedBy(that.nanoseconds());
+    }
+
+    /**
+     * @return This length of time divided by the given divisor
+     */
     default Duration dividedBy(long value)
     {
         return dividedBy((double) value);
+    }
+
+    /**
+     * @return The number of milliseconds
+     */
+    @Override
+    default long longValue()
+    {
+        return milliseconds();
     }
 
     /**
@@ -226,7 +252,7 @@ public interface LengthOfTime<Duration extends LengthOfTime<Duration>> extends
     /**
      * @return This length of time modulus the given length of time
      */
-    default Duration modulus(Duration that)
+    default Duration modulo(Duration that)
     {
         return newDuration(nanoseconds().modulo(that.nanoseconds()));
     }
@@ -260,7 +286,7 @@ public interface LengthOfTime<Duration extends LengthOfTime<Duration>> extends
             @Override
             public void run()
             {
-                onTimer.callback(timer);
+                onTimer.call(timer);
             }
         }, 0L, milliseconds());
     }
@@ -355,7 +381,7 @@ public interface LengthOfTime<Duration extends LengthOfTime<Duration>> extends
             @Override
             public void run()
             {
-                onTimer.callback(timer);
+                onTimer.call(timer);
             }
         }, milliseconds());
     }

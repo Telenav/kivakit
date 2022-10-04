@@ -18,14 +18,15 @@
 
 package com.telenav.kivakit.core.messaging;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.KivaKit;
 import com.telenav.kivakit.core.ensure.Ensure;
-import com.telenav.kivakit.core.language.Patterns;
 import com.telenav.kivakit.core.internal.lexakai.DiagramBroadcaster;
+import com.telenav.kivakit.core.language.Patterns;
 import com.telenav.kivakit.core.logging.Logger;
 import com.telenav.kivakit.core.logging.LoggerFactory;
 import com.telenav.kivakit.core.messaging.context.CallStack;
-import com.telenav.kivakit.core.project.StartUp;
+import com.telenav.kivakit.core.project.StartUpOptions;
 import com.telenav.kivakit.core.string.AsciiArt;
 import com.telenav.kivakit.interfaces.messaging.Transmittable;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
@@ -33,6 +34,9 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 import java.util.HashMap;
 import java.util.Map;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
 import static com.telenav.kivakit.core.project.Project.resolveProject;
 
 /**
@@ -76,8 +80,12 @@ import static com.telenav.kivakit.core.project.Project.resolveProject;
  * @author jonathanl (shibo)
  * @see <a href="https://tinyurl.com/2xycuvph">KivaKit Debugging Documentation</a>
  */
+@SuppressWarnings("SpellCheckingInspection")
 @UmlClassDiagram(diagram = DiagramBroadcaster.class)
-public final class Debug implements Transceiver
+@ApiQuality(stability = API_STABLE_EXTENSIBLE,
+            testing = TESTING_NONE,
+            documentation = DOCUMENTATION_COMPLETE)
+public final class Debug implements MessageTransceiver
 {
     private static final Logger LOGGER = LoggerFactory.newLogger();
 
@@ -125,7 +133,7 @@ public final class Debug implements Transceiver
     public Debug(Transceiver transceiver)
     {
         // The class where debug was constructed is the most immediate caller of the class Debug
-        this(CallStack.callerOf(CallStack.Proximity.IMMEDIATE, CallStack.Matching.EXACT, Debug.class).typeClass(), transceiver);
+        this(CallStack.callerOf(CallStack.Proximity.IMMEDIATE, CallStack.Matching.EXACT, Debug.class).parentType().type(), transceiver);
     }
 
     private Debug(Class<?> type, Transceiver transceiver)
@@ -136,37 +144,55 @@ public final class Debug implements Transceiver
         this.transceiver = transceiver;
     }
 
+    /**
+     * Returns this debug object
+     */
     @Override
     public Debug debug()
     {
         return this;
     }
 
+    /**
+     * Turns debugging output off
+     */
     public void debugOff()
     {
         debugOn = false;
     }
 
+    /**
+     * Turns debugging output on
+     */
     public void debugOn()
     {
         debugOn = true;
     }
 
+    /**
+     * Returns true if debugging output is on
+     */
     @Override
     public boolean isDebugOn()
     {
         return debugOn;
     }
 
+    /**
+     * Returns a listener for this debug object based on its enable state
+     */
     public Listener listener()
     {
         if (debugOn)
         {
             return (Listener) transceiver;
         }
-        return Listener.emptyListener();
+        return Listener.nullListener();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void onReceive(Transmittable message)
     {
@@ -226,8 +252,8 @@ public final class Debug implements Transceiver
     }
 
     /**
-     * @return Boolean.TRUE if the class is enabled for debugging, Boolean.FALSE if it is explicitly disabled and null
-     * if the class is simply available for enabling.
+     * @return {@link Boolean#TRUE} if the class is enabled for debugging, {@link Boolean#FALSE} if it is explicitly
+     * disabled and null if the class is simply available for enabling.
      */
     private static boolean isDebugOn(Class<?> type)
     {
@@ -243,7 +269,7 @@ public final class Debug implements Transceiver
                 var log = property("KIVAKIT_LOG");
                 var kivakitVersion = resolveProject(KivaKit.class).kivakitVersion();
                 var title = "KivaKit " + kivakitVersion + " (" + resolveProject(KivaKit.class).build() + ")";
-                if (!StartUp.isEnabled(StartUp.Option.QUIET))
+                if (!StartUpOptions.isEnabled(StartUpOptions.StartupOption.QUIET))
                 {
                     LOGGER.information(AsciiArt.textBox(title, "      Logging: https://tinyurl.com/mhc3ss5s\n"
                                     + "    Debugging: https://tinyurl.com/2xycuvph\n"
@@ -254,7 +280,7 @@ public final class Debug implements Transceiver
                 }
             }
 
-            // Get the enable state for the type parameter
+            // Get enable state for the type parameter
             var enabled = debugEnableState(type);
 
             // and pick a description of the state
@@ -272,7 +298,7 @@ public final class Debug implements Transceiver
                 state = "disabled";
             }
 
-            // then show the enable state to the user
+            // then show enable state to the user
             if (debugging == Boolean.TRUE)
             {
                 LOGGER.information("Debug output is $ for $ ($)", state, type.getSimpleName(), type.getPackage().getName());

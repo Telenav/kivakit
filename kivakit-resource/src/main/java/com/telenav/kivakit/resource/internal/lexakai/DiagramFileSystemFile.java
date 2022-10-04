@@ -24,7 +24,6 @@ import com.telenav.lexakai.annotations.diagrams.UmlDiagramIdentifier;
 /**
  * @author jonathanl (shibo)
  */
-@LexakaiJavadoc(complete = true)
 public class DiagramFileSystemFile implements UmlDiagramIdentifier
 {
 }

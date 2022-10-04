@@ -18,9 +18,7 @@
 
 package com.telenav.kivakit.interfaces.comparison;
 
-import com.telenav.kivakit.interfaces.comparison.matchers.Anything;
-import com.telenav.kivakit.interfaces.comparison.matchers.Nothing;
-import com.telenav.kivakit.interfaces.comparison.matchers.PatternMatcher;
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.interfaces.internal.lexakai.DiagramComparison;
 import com.telenav.kivakit.interfaces.naming.Named;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
@@ -28,40 +26,92 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 import java.util.function.Predicate;
 import java.util.regex.Pattern;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_DEFAULT_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
+
 /**
- * A matcher when the term predicate is often not the right meaning to use. Implements Predicate for interoperation.
+ * A matcher implements {@link Predicate}, but adds some KivaKit-specific functionality.
+ *
+ * <p><b>Interface Methods</b></p>
+ *
+ * <ul>
+ *     <li>boolean matches(Value value) - Functional interface that matches against a single value, returning
+ *     true if it matches and false if it does not</li>
+ *     <li>{@link #matcher()} - Default method that implements {@link Matchable} so that all {@link Matcher}s
+ *      are {@link Matchable}</li>
+ * </ul>
+ *
+ * <p><b>Factories</b></p>
+ *
+ * <ul>
+ *     <li>{@link #matchAll()} - Matches all values</li>
+ *     <li>{@link #matchNothing()} - Matches nothing</li>
+ *     <li>{@link #matching(Pattern)} - Matches the given regular expression {@link Pattern}</li>
+ *     <li>{@link #matching(Predicate)} - Matches the given {@link Predicate}</li>
+ *     <li>{@link #matchObjectNamed(String)} - Matches any {@link Named} object with the given name</li>
+ * </ul>
  *
  * @param <Value> The type of value to match
  * @author jonathanl (shibo)
  */
+@SuppressWarnings("unused")
+@FunctionalInterface
 @UmlClassDiagram(diagram = DiagramComparison.class)
-public interface Matcher<Value> extends Matchable<Value>
+@ApiQuality(stability = API_STABLE_DEFAULT_EXTENSIBLE,
+            testing = TESTING_NOT_NEEDED,
+            documentation = DOCUMENTATION_COMPLETE)
+public interface Matcher<Value> extends
+        Matchable<Value>,
+        Predicate<Value>
 {
+    /**
+     * @return A matcher that matches all values
+     */
     static <T> Matcher<T> matchAll()
     {
-        return new Anything<>();
+        return ignored -> true;
     }
 
+    /**
+     * @return A matcher that matches nothing
+     */
     static <T> Matcher<T> matchNothing()
     {
-        return new Nothing<>();
+        return ignored -> false;
     }
 
-    static Matcher<String> matching(Pattern pattern)
-    {
-        return new PatternMatcher(pattern);
-    }
-
-    static <T extends Named> Matcher<T> named(String name)
+    /**
+     * A matcher that matches against a {@link Named} object (case independent).
+     *
+     * @param name The string to match
+     * @return The matcher that performs the match
+     */
+    static <T extends Named> Matcher<T> matchObjectNamed(String name)
     {
         return named -> named.name().equalsIgnoreCase(name);
     }
 
-    default Predicate<Value> asPredicate()
+    /**
+     * @return A matcher matching the given predicate
+     */
+    static <T> Matcher<T> matching(Predicate<T> predicate)
     {
-        return this::matches;
+        return predicate::test;
     }
 
+    /**
+     * @param pattern The pattern
+     * @return A matcher that matches a regular expression {@link Pattern}
+     */
+    static Matcher<String> matching(Pattern pattern)
+    {
+        return value -> pattern.matcher(value).matches();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     @Override
     default Matcher<Value> matcher()
     {
@@ -69,7 +119,14 @@ public interface Matcher<Value> extends Matchable<Value>
     }
 
     /**
-     * @return True if the given value matches
+     * @return True if the given value matches this matcher
      */
+    @Override
     boolean matches(Value value);
+
+    @Override
+    default boolean test(Value value)
+    {
+        return matches(value);
+    }
 }

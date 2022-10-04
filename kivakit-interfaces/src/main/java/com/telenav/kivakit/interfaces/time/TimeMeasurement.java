@@ -1,9 +1,14 @@
 package com.telenav.kivakit.interfaces.time;
 
-import com.telenav.kivakit.interfaces.numeric.Quantizable;
+import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.interfaces.value.LongValued;
 import org.jetbrains.annotations.NotNull;
 
 import java.text.DecimalFormat;
+
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_DEFAULT_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
 
 /**
  * Interface for all time measurements, whether a {@link LengthOfTime} or a {@link PointInTime}.
@@ -35,7 +40,10 @@ import java.text.DecimalFormat;
  *
  * @author jonathanl (shibo)
  */
-public interface TimeMeasurement extends Quantizable
+@ApiQuality(stability = API_STABLE_DEFAULT_EXTENSIBLE,
+            testing = TESTING_NOT_NEEDED,
+            documentation = DOCUMENTATION_COMPLETE)
+public interface TimeMeasurement extends LongValued
 {
     /**
      * @return The number of days for this time measurement
@@ -156,7 +164,16 @@ public interface TimeMeasurement extends Quantizable
     }
 
     /**
-     * @return The number of milliseconds for this time measurement
+     * {@inheritDoc}
+     */
+    @Override
+    default long longValue()
+    {
+        return milliseconds();
+    }
+
+    /**
+     * Returns the number of milliseconds for this time measurement
      */
     default long milliseconds()
     {
@@ -164,18 +181,9 @@ public interface TimeMeasurement extends Quantizable
     }
 
     /**
-     * @return The number of nanoseconds for this measurement
+     * Returns the number of nanoseconds for this measurement
      */
     Nanoseconds nanoseconds();
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    default long quantum()
-    {
-        return milliseconds();
-    }
 
     /**
      * Converts a value to a unit-suffixed value, taking care of English singular/plural suffix.

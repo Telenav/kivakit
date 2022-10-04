@@ -1,9 +1,9 @@
 package com.telenav.kivakit.internal.tests.core.time;
 
-import com.telenav.kivakit.internal.testing.CoreUnitTest;
 import com.telenav.kivakit.core.time.DayOfWeek;
 import com.telenav.kivakit.core.time.Hour;
 import com.telenav.kivakit.core.time.HourOfWeek;
+import com.telenav.kivakit.internal.testing.CoreUnitTest;
 import org.junit.Test;
 
 import java.time.ZoneId;

@@ -18,6 +18,7 @@
 
 package com.telenav.kivakit.core.language;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.string.Paths;
 
 import java.io.InputStream;
@@ -26,16 +27,137 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_STATIC_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
 import static com.telenav.kivakit.core.ensure.Ensure.ensure;
 
 /**
  * Class utility methods
  *
+ * <p><b>Classes</b></p>
+ *
+ * <ul>
+ *     <li>{@link #loadClass(ClassLoader, String)}</li>
+ *     <li>{@link #classForName(String)}</li>
+ *     <li>{@link #constructor(Class, Class[])}</li>
+ *     <li>{@link #newInstance(Class, Object...)}</li>
+ *     <li>{@link #simpleName(Class)}</li>
+ * </ul>>
+ *
+ * <p><b>Resources</b></p>
+ *
+ * <ul>
+ *      <li>{@link #openResource(Class, String)}</li>
+ *      <li>{@link #resourceUri(Class, String)}</li>
+ *      <li>{@link #resourceUrl(Class, String)}</li>
+ * </ul>
+ *
  * @author jonathanl (shibo)
  */
-@SuppressWarnings("unchecked")
+@SuppressWarnings({ "unchecked", "unused" })
+@ApiQuality(stability = API_STABLE_STATIC_EXTENSIBLE,
+            testing = TESTING_NONE,
+            documentation = DOCUMENTATION_COMPLETE)
 public class Classes
 {
+    /**
+     * Returns true if the given class can be assigned to the given class, taking into account primitive types
+     *
+     * @param from The class to assign from
+     * @param to The class to assign to
+     */
+    @SuppressWarnings("DuplicatedCode")
+    public static boolean canAssign(Class<?> from, Class<?> to)
+    {
+        if (to.isAssignableFrom(from))
+        {
+            return true;
+        }
+        if (to.isPrimitive())
+        {
+            if (to == Integer.TYPE && from == Integer.class)
+            {
+                return true;
+            }
+            if (to == Long.TYPE && from == Long.class)
+            {
+                return true;
+            }
+            if (to == Character.TYPE && from == Character.class)
+            {
+                return true;
+            }
+            if (to == Boolean.TYPE && from == Boolean.class)
+            {
+                return true;
+            }
+            if (to == Short.TYPE && from == Short.class)
+            {
+                return true;
+            }
+            if (to == Byte.TYPE && from == Byte.class)
+            {
+                return true;
+            }
+            if (to == Double.TYPE && from == Double.class)
+            {
+                return true;
+            }
+            if (to == Float.TYPE && from == Float.class)
+            {
+                return true;
+            }
+        }
+        if (from.isPrimitive())
+        {
+            if (to == Integer.class && from == Integer.TYPE)
+            {
+                return true;
+            }
+            if (to == Long.class && from == Long.TYPE)
+            {
+                return true;
+            }
+            if (to == Character.class && from == Character.TYPE)
+            {
+                return true;
+            }
+            if (to == Boolean.class && from == Boolean.TYPE)
+            {
+                return true;
+            }
+            if (to == Short.class && from == Short.TYPE)
+            {
+                return true;
+            }
+            if (to == Byte.class && from == Byte.TYPE)
+            {
+                return true;
+            }
+            return to == Float.class && from == Float.TYPE;
+        }
+        return false;
+    }
+
+    /**
+     * Gets the named class by loading it.
+     */
+    public static <T> Class<T> classForName(String name)
+    {
+        try
+        {
+            return (Class<T>) Class.forName(name);
+        }
+        catch (Exception e)
+        {
+            return null;
+        }
+    }
+
+    /**
+     * Gets the constructor for the given type with the given arguments
+     */
     public static <T> Constructor<T> constructor(Class<T> type, Class<?>... arguments)
     {
         try
@@ -48,25 +170,16 @@ public class Classes
         }
     }
 
-    public static <T> Class<T> forName(ClassLoader loader, String name)
+    /**
+     * Gets the named class by loading it.
+     */
+    public static <T> Class<T> loadClass(ClassLoader loader, String name)
     {
         try
         {
             return (Class<T>) loader.loadClass(name);
         }
         catch (ClassNotFoundException e)
-        {
-            return null;
-        }
-    }
-
-    public static <T> Class<T> forName(String name)
-    {
-        try
-        {
-            return (Class<T>) Class.forName(name);
-        }
-        catch (Exception e)
         {
             return null;
         }
@@ -101,7 +214,7 @@ public class Classes
                 var argumentIndex = index * 2;
 
                 ensure(arguments[argumentIndex] instanceof Class);
-                
+
                 types[index] = (Class<?>) arguments[argumentIndex];
                 values[index] = arguments[argumentIndex + 1];
             }
@@ -116,6 +229,9 @@ public class Classes
         }
     }
 
+    /**
+     * Returns an open input stream to the resource at the given path relative to the base class
+     */
     public static InputStream openResource(Class<?> base, String path)
     {
         var in = base.getResourceAsStream(path);
@@ -142,6 +258,9 @@ public class Classes
         return in;
     }
 
+    /**
+     * Returns The URI to the resource at the given path relative to the base class
+     */
     public static URI resourceUri(Class<?> base, String path)
     {
         try
@@ -154,6 +273,9 @@ public class Classes
         }
     }
 
+    /**
+     * Returns The URL to the resource at the given path relative to the base class
+     */
     public static URL resourceUrl(Class<?> base, String path)
     {
         var resource = base.getResource(path);
@@ -172,6 +294,9 @@ public class Classes
         return resource;
     }
 
+    /**
+     * Returns the simple name for the given type
+     */
     public static String simpleName(Class<?> type)
     {
         if (type != null)
@@ -180,17 +305,20 @@ public class Classes
             {
                 return type.getSimpleName();
             }
-            return Paths.optionalSuffix(type.getName(), '.').replace('$', '.');
+            return Paths.pathOptionalSuffix(type.getName(), '.').replace('$', '.');
         }
         return "Unknown";
     }
 
+    /**
+     * Returns the simple name of the top-level class (without any anonymous / nested classes)
+     */
     public static String simpleTopLevelClass(Class<?> type)
     {
-        var name = Paths.optionalSuffix(type.getName(), '.');
+        var name = Paths.pathOptionalSuffix(type.getName(), '.');
         if (name.contains("$"))
         {
-            return Paths.optionalHead(name, '$');
+            return Paths.pathOptionalHead(name, '$');
         }
         return name;
     }

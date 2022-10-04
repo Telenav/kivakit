@@ -18,6 +18,7 @@
 
 package com.telenav.kivakit.core.messaging;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramRepeater;
 import com.telenav.kivakit.core.messaging.repeaters.BaseRepeater;
 import com.telenav.kivakit.interfaces.messaging.Receiver;
@@ -25,15 +26,19 @@ import com.telenav.kivakit.interfaces.messaging.Transmittable;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import org.jetbrains.annotations.MustBeInvokedByOverriders;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_DEFAULT_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
+
 /**
- * A repeater is both a {@link Listener} and a {@link Broadcaster}, receiving messages in {@link
- * #receive(Transmittable)} and rebroadcasting them to its own listeners with {@link #transmit(Transmittable)}.
+ * A repeater is both a {@link Listener} and a {@link Broadcaster}, receiving messages in
+ * {@link #receive(Transmittable)} and rebroadcasting them to its own listeners with {@link #transmit(Transmittable)}.
  * <p>
- * A variety of convenient methods are accessible when an object implements {@link Repeater} by extending {@link
- * BaseRepeater}. In the example below, EmployeeLoader is a repeater which transmits a warning to all of its registered
- * listeners. The PayrollProcessor class is also a {@link Repeater} which listens to messages transmitted by the
- * EmployeeLoader and re-transmits them to its own listeners. Clients of the PayrollProcessor can listen to it in turn
- * and they will receive the warning transmitted EmployeeLoader, when it is repeated by the PayrollProcessor. This
+ * A variety of convenient methods are accessible when an object implements {@link Repeater} by extending
+ * {@link BaseRepeater}. In the example below, EmployeeLoader is a repeater which transmits a warning to all of its
+ * registered listeners. The PayrollProcessor class is also a {@link Repeater} which listens to messages transmitted by
+ * the EmployeeLoader and re-transmits them to its own listeners. Clients of the PayrollProcessor can listen to it in
+ * turn and they will receive the warning transmitted EmployeeLoader, when it is repeated by the PayrollProcessor. This
  * pattern creates a chain of repeaters that terminates in one or more listeners. The final listener is often, but not
  * always a logger. The base Application class in kivakit-application, for example, is a {@link Repeater} which logs the
  * messages it receives by default.
@@ -72,6 +77,9 @@ import org.jetbrains.annotations.MustBeInvokedByOverriders;
  * @see Listener
  */
 @UmlClassDiagram(diagram = DiagramRepeater.class)
+@ApiQuality(stability = API_STABLE_DEFAULT_EXTENSIBLE,
+            testing = TESTING_NOT_NEEDED,
+            documentation = DOCUMENTATION_COMPLETE)
 public interface Repeater extends
         Listener,
         Broadcaster,

@@ -18,19 +18,21 @@
 
 package com.telenav.kivakit.resource.compression.archive;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.code.UncheckedCode;
 import com.telenav.kivakit.core.io.IO;
-import com.telenav.kivakit.core.language.object.ObjectFormatter;
-import com.telenav.kivakit.core.language.reflection.property.KivaKitIncludeProperty;
+import com.telenav.kivakit.core.string.KivaKitFormat;
+import com.telenav.kivakit.core.string.ObjectFormatter;
 import com.telenav.kivakit.core.time.Time;
 import com.telenav.kivakit.core.value.count.Bytes;
 import com.telenav.kivakit.filesystem.FilePath;
+import com.telenav.kivakit.interfaces.io.Closeable;
 import com.telenav.kivakit.resource.internal.lexakai.DiagramResourceArchive;
 import com.telenav.kivakit.resource.writing.BaseWritableResource;
 import com.telenav.kivakit.resource.writing.WritableResource;
-import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeSuperTypes;
+import org.jetbrains.annotations.NotNull;
 
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -39,19 +41,34 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.attribute.BasicFileAttributes;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
 import static java.nio.file.StandardOpenOption.CREATE;
 import static java.nio.file.StandardOpenOption.WRITE;
 
 /**
  * A zip entry in a {@link ZipArchive} that is a {@link WritableResource}.
  *
+ * <p><b>Properties</b></p>
+ *
+ * <ul>
+ *     <li>{@link #createdAt()}</li>
+ *     <li>{@link #isWritable()}</li>
+ *     <li>{@link #lastModified()}</li>
+ *     <li>{@link #path()}</li>
+ *     <li>{@link #sizeInBytes()}</li>
+ * </ul>
+ *
  * @author jonathanl (shibo)
  * @see ZipArchive
  */
 @UmlClassDiagram(diagram = DiagramResourceArchive.class)
 @UmlExcludeSuperTypes({ AutoCloseable.class })
-@LexakaiJavadoc(complete = true)
-public class ZipEntry extends BaseWritableResource implements AutoCloseable
+@ApiQuality(stability = API_STABLE_EXTENSIBLE,
+            testing = TESTING_NONE,
+            documentation = DOCUMENTATION_COMPLETE)
+public class ZipEntry extends BaseWritableResource implements Closeable
 {
     private InputStream in;
 
@@ -59,50 +76,67 @@ public class ZipEntry extends BaseWritableResource implements AutoCloseable
 
     private final Path path;
 
-    public ZipEntry(FileSystem filesystem, Path path)
+    public ZipEntry(@NotNull FileSystem filesystem,
+                    @NotNull Path path)
     {
         this.path = filesystem.getPath(path.toString());
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void close()
     {
-        IO.close(in);
+        IO.close(this, in);
         in = null;
 
-        IO.close(out);
+        IO.close(this, out);
         out = null;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
+    @KivaKitFormat
     public Time createdAt()
     {
-        return UncheckedCode.of(() -> Time.epochMilliseconds(Files.readAttributes(path, BasicFileAttributes.class)
+        return UncheckedCode.unchecked(() -> Time.epochMilliseconds(Files.readAttributes(path, BasicFileAttributes.class)
                 .creationTime().toMillis())).orNull();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Boolean isWritable()
     {
         return false;
     }
 
-    @KivaKitIncludeProperty
+    /**
+     * {@inheritDoc}
+     */
+    @KivaKitFormat
     @Override
-    public Time modifiedAt()
+    public Time lastModified()
     {
-        return UncheckedCode.of(() -> Time.epochMilliseconds(Files.getLastModifiedTime(path).toMillis())).orNull();
+        return UncheckedCode.unchecked(() -> Time.epochMilliseconds(Files.getLastModifiedTime(path).toMillis())).orNull();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public InputStream onOpenForReading()
     {
         if (in == null)
         {
-            var in = UncheckedCode.of(() -> Files.newInputStream(path)).orNull();
+            var in = UncheckedCode.unchecked(() -> Files.newInputStream(path)).orNull();
             if (in != null)
             {
-                this.in = IO.buffer(in);
+                this.in = IO.bufferInput(in);
             }
             else
             {
@@ -112,6 +146,9 @@ public class ZipEntry extends BaseWritableResource implements AutoCloseable
         return in;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public OutputStream onOpenForWriting()
     {
@@ -128,7 +165,7 @@ public class ZipEntry extends BaseWritableResource implements AutoCloseable
                 out = Files.newOutputStream(path, CREATE, WRITE);
                 if (out != null)
                 {
-                    this.out = IO.buffer(out);
+                    this.out = IO.bufferOutput(out);
                 }
                 else
                 {
@@ -143,20 +180,29 @@ public class ZipEntry extends BaseWritableResource implements AutoCloseable
         return out;
     }
 
-    @KivaKitIncludeProperty
+    /**
+     * {@inheritDoc}
+     */
+    @KivaKitFormat
     @Override
     public FilePath path()
     {
         return FilePath.filePath(path);
     }
 
-    @KivaKitIncludeProperty
+    /**
+     * {@inheritDoc}
+     */
+    @KivaKitFormat
     @Override
     public Bytes sizeInBytes()
     {
-        return UncheckedCode.of(() -> Bytes.bytes(Files.size(path))).orNull();
+        return UncheckedCode.unchecked(() -> Bytes.bytes(Files.size(path))).orNull();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String toString()
     {

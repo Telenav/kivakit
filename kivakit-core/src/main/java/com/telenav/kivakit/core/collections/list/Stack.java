@@ -18,19 +18,28 @@
 
 package com.telenav.kivakit.core.collections.list;
 
-import com.telenav.kivakit.core.value.count.Maximum;
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramCollections;
-import com.telenav.lexakai.annotations.LexakaiJavadoc;
+import com.telenav.kivakit.core.value.count.Maximum;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
+import java.util.Collection;
+
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_INSUFFICIENT;
+
 /**
- * An object list with {@link #push(Object)} and {@link #pop()} methods added.
+ * {@link ObjectList} already contains push and pop functionality, but this class can make it clear when an
+ * {@link ObjectList} is being used as a stack.
  *
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramCollections.class)
-@LexakaiJavadoc(complete = true)
-public class Stack<T> extends ObjectList<T>
+@ApiQuality(stability = API_STABLE_EXTENSIBLE,
+            testing = TESTING_INSUFFICIENT,
+            documentation = DOCUMENTATION_COMPLETE)
+public class Stack<Value> extends ObjectList<Value>
 {
     public Stack()
     {
@@ -41,19 +50,8 @@ public class Stack<T> extends ObjectList<T>
         super(maximumSize);
     }
 
-    /**
-     * @return Pop the value off of the top of the stack
-     */
-    public T pop()
+    public Stack(Collection<Value> values)
     {
-        return isEmpty() ? null : removeLast();
-    }
-
-    /**
-     * Push the given value onto the top of the stack
-     */
-    public void push(T value)
-    {
-        add(value);
+        super(values);
     }
 }

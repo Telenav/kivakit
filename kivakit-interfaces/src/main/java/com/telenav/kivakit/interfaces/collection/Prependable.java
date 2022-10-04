@@ -18,24 +18,114 @@
 
 package com.telenav.kivakit.interfaces.collection;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.interfaces.internal.lexakai.DiagramCollection;
-import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
+
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.LinkedList;
+
+import static com.telenav.kivakit.annotations.code.ApiStability.API_FURTHER_EVALUATION_NEEDED;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
 
 /**
  * An object, often a collection or related type, to which objects can be prepended.
  *
  * @author jonathanl (shibo)
  */
-@FunctionalInterface
+@SuppressWarnings({ "SpellCheckingInspection", "unused" })
 @UmlClassDiagram(diagram = DiagramCollection.class)
-@LexakaiJavadoc(complete = true)
-public interface Prependable<T>
+@ApiQuality(stability = API_FURTHER_EVALUATION_NEEDED,
+            testing = TESTING_NONE,
+            documentation = DOCUMENTATION_COMPLETE,
+            reviews = 1,
+            reviewers = "shibo")
+public interface Prependable<Value> extends SpaceLimited
 {
     /**
      * Adds the given value
      *
-     * @return Self reference for chaining of append calls
+     * @return True if the prepending succeeded, false otherwise
      */
-    Prependable<T> prepend(T value);
+    boolean onPrepend(Value value);
+
+    /**
+     * Adds the given value
+     *
+     * @return True if the prepending succeeded, false otherwise
+     */
+    default boolean prepend(Value value)
+    {
+        return hasRoomFor(1) && onPrepend(value);
+    }
+
+    /**
+     * @param values A sequence of values to prepend, in order
+     * @return True if the prepending succeeded, false otherwise
+     */
+    default boolean prependAll(Iterator<? extends Value> values)
+    {
+        var reversed = new LinkedList<Value>();
+        while (values.hasNext())
+        {
+            reversed.add(0, values.next());
+        }
+        for (var value : reversed)
+        {
+            if (!prepend(value))
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    /**
+     * @param values A sequence of values to prepend, in order
+     * @return True if the prepending succeeded, false otherwise
+     */
+    default boolean prependAll(Iterable<? extends Value> values)
+    {
+        return prependAll(values.iterator());
+    }
+
+    /**
+     * @param values A sequence of values to prepend, in order
+     * @return True if the prepending succeeded, false otherwise
+     */
+    default boolean prependAll(Collection<? extends Value> values)
+    {
+        if (hasRoomFor(values.size()))
+        {
+            return prependAll(values.iterator());
+        }
+        return false;
+    }
+
+    /**
+     * @param values A sequence of values to prepend, in order
+     * @return True if the prepending succeeded, false otherwise
+     */
+    default boolean prependAll(Value[] values)
+    {
+        return prependAll(Arrays.asList(values));
+    }
+
+    /**
+     * Prepends the given value if it is not null
+     *
+     * @param value The value to prepend
+     * @return True if the value was added, false otherwise
+     */
+    default boolean prependIfNotNull(Value value)
+    {
+        if (value != null)
+        {
+            return prepend(value);
+        }
+        return true;
+    }
 }

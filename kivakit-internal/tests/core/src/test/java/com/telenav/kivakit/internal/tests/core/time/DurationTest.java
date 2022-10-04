@@ -127,9 +127,9 @@ public class DurationTest extends CoreUnitTest
     @Test
     public void testIsApproximately()
     {
-        ensure(ONE_SECOND.isApproximately(ONE_SECOND, ZERO_DURATION));
-        ensure(ONE_SECOND.isApproximately(seconds(1.01), seconds(0.1)));
-        ensureFalse(ONE_SECOND.isApproximately(seconds(1.01), seconds(0.0001)));
+        ensure(ONE_SECOND.isCloseTo(ONE_SECOND, ZERO_DURATION));
+        ensure(ONE_SECOND.isCloseTo(seconds(1.01), seconds(0.1)));
+        ensureFalse(ONE_SECOND.isCloseTo(seconds(1.01), seconds(0.0001)));
     }
 
     @Test
@@ -199,7 +199,7 @@ public class DurationTest extends CoreUnitTest
     @Test
     public void testModulus()
     {
-        ensureEqual(ONE_SECOND, ONE_MINUTE.plus(ONE_SECOND).modulus(ONE_MINUTE));
+        ensureEqual(ONE_SECOND, ONE_MINUTE.plus(ONE_SECOND).modulo(ONE_MINUTE));
     }
 
     @Test

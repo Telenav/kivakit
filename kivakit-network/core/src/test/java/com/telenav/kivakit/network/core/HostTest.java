@@ -22,18 +22,20 @@ import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.testing.UnitTest;
 import org.junit.Test;
 
+import static com.telenav.kivakit.network.core.LocalHost.localhost;
+
 public class HostTest extends UnitTest
 {
     @Test
     public void test()
     {
-        ensureEqual(Host.local(), Host.local());
+        ensureEqual(localhost(), localhost());
     }
 
     @Test
     public void testConverter()
     {
         ensureEqual(new Host("google.com"),
-                new Host.Converter(Listener.emptyListener()).convert("google.com"));
+                new Host.Converter(Listener.nullListener()).convert("google.com"));
     }
 }

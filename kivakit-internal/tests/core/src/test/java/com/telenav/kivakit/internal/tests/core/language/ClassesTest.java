@@ -27,7 +27,7 @@ public class ClassesTest extends CoreUnitTest
     @Test
     public void testForName()
     {
-        ensureEqual(Integer.class, Classes.forName("java.lang.Integer"));
+        ensureEqual(Integer.class, Classes.classForName("java.lang.Integer"));
     }
 
     @Test

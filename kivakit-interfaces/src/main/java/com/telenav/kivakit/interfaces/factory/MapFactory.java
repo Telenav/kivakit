@@ -18,8 +18,13 @@
 
 package com.telenav.kivakit.interfaces.factory;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.interfaces.internal.lexakai.DiagramFactory;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
+
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
 
 /**
  * A factory that creates an object given a parameter (it "maps" from the parameter to the new object).
@@ -33,6 +38,9 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
  */
 @FunctionalInterface
 @UmlClassDiagram(diagram = DiagramFactory.class)
+@ApiQuality(stability = API_STABLE,
+            testing = TESTING_NOT_NEEDED,
+            documentation = DOCUMENTATION_COMPLETE)
 public interface MapFactory<Parameter, Value>
 {
     /**

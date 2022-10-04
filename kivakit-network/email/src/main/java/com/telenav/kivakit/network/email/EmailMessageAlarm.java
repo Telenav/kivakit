@@ -1,6 +1,6 @@
 package com.telenav.kivakit.network.email;
 
-import com.telenav.kivakit.core.messaging.alarms.BaseMessageAlarm;
+import com.telenav.kivakit.core.messaging.listeners.MessageAlarm;
 import com.telenav.kivakit.core.registry.RegistryTrait;
 import com.telenav.kivakit.core.time.Rate;
 
@@ -9,8 +9,9 @@ import com.telenav.kivakit.core.time.Rate;
  * implementation.
  *
  * @author jonathanl (shibo)
+ * @see MessageAlarm
  */
-public abstract class EmailMessageAlarm extends BaseMessageAlarm implements RegistryTrait
+public abstract class EmailMessageAlarm extends MessageAlarm implements RegistryTrait
 {
     /**
      * Composes the alarm email to send. For example:
@@ -32,6 +33,7 @@ public abstract class EmailMessageAlarm extends BaseMessageAlarm implements Regi
      * Composes and sends an email for this alarm
      * </p>
      */
+    @SuppressWarnings("resource")
     @Override
     protected void onTrigger(Rate rate)
     {

@@ -18,20 +18,27 @@
 
 package com.telenav.kivakit.interfaces.value;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.interfaces.factory.Factory;
-import com.telenav.lexakai.annotations.LexakaiJavadoc;
 
 import java.util.function.Supplier;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
+
 /**
- * A source of values.
+ * A source of values. This interface trivially extends {@link Supplier} to provide a better name for some
+ * applications.
  *
  * @param <Value> The object type
  * @author jonathanl (shibo)
  * @see Factory
  */
 @FunctionalInterface
-@LexakaiJavadoc(complete = true)
+@ApiQuality(stability = API_STABLE,
+            testing = TESTING_NOT_NEEDED,
+            documentation = DOCUMENTATION_COMPLETE)
 public interface Source<Value> extends Supplier<Value>
 {
 }

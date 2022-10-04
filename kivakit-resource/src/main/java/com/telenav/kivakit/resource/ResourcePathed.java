@@ -18,44 +18,85 @@
 
 package com.telenav.kivakit.resource;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.messaging.messages.status.Problem;
 import com.telenav.kivakit.interfaces.comparison.Matcher;
 import com.telenav.kivakit.resource.internal.lexakai.DiagramResource;
 import com.telenav.kivakit.resource.internal.lexakai.DiagramResourcePath;
-import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
+import org.jetbrains.annotations.NotNull;
 
 import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URL;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_DEFAULT_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+
 /**
  * An object which has a {@link ResourcePath}, as returned by {@link #path()}. Convenience methods provide access to the
  * path's filename and extension(s).
  *
+ * <p><b>Properties</b></p>
+ *
+ * <ul>
+ *     <li>{@link #path()}</li>
+ *     <li>{@link #uri()}</li>
+ *     <li>{@link #url()}</li>
+ * </ul>
+ *
+ * <p><b>Matching</b></p>
+ *
+ * <ul>
+ *     <li>{@link #matches(Matcher)}</li>
+ * </ul>
+ *
+ * <p><b>File Names</b></p>
+ *
+ * <ul>
+ *     <li>{@link #baseFileName()}</li>
+ *     <li>{@link #compoundExtension()}</li>
+ *     <li>{@link #extension()}</li>
+ *     <li>{@link #fileName()}</li>
+ *     <li>{@link #hasExtension(Extension)}</li>
+ * </ul>
+ *
+ * <p><b>Conversions</b></p>
+ *
+ * <ul>
+ *     <li>{@link #asJavaFile()}</li>
+ * </ul>
+ *
  * @author jonathanl (shibo)
  */
+@SuppressWarnings("SpellCheckingInspection")
 @UmlClassDiagram(diagram = DiagramResourcePath.class)
 @UmlClassDiagram(diagram = DiagramResource.class)
-@LexakaiJavadoc(complete = true)
+@ApiQuality(stability = API_STABLE_DEFAULT_EXTENSIBLE,
+            testing = TESTING_NONE,
+            documentation = DOCUMENTATION_COMPLETE)
 public interface ResourcePathed extends UriIdentified
 {
+    /**
+     * Returns this path as a java.io.File
+     */
     default java.io.File asJavaFile()
     {
         return path().asJavaFile();
     }
 
     /**
-     * @return The base name of the file name of this object
+     * Returns the base name of the file name of this object
      */
-    default FileName baseName()
+    default FileName baseFileName()
     {
-        return fileName().base();
+        return fileName().baseName();
     }
 
     /**
-     * @return The compound extension of this file named object (for example, ".xml", ".osm.pbf" or ".txd.gz")
+     * Returns the compound extension of this file named object (for example, ".xml", ".osm.pbf" or ".txd.gz")
      */
     default Extension compoundExtension()
     {
@@ -63,7 +104,7 @@ public interface ResourcePathed extends UriIdentified
     }
 
     /**
-     * @return The extension of this resource
+     * Returns the extension of this resource
      */
     default Extension extension()
     {
@@ -71,7 +112,7 @@ public interface ResourcePathed extends UriIdentified
     }
 
     /**
-     * @return The file name of this resource
+     * Returns the file name of this resource
      */
     default FileName fileName()
     {
@@ -79,23 +120,23 @@ public interface ResourcePathed extends UriIdentified
     }
 
     /**
-     * @return True if this resource ends with the given extension
+     * Returns true if this resource ends with the given extension
      */
-    default boolean hasExtension(Extension extension)
+    default boolean hasExtension(@NotNull Extension extension)
     {
         return fileName().endsWith(extension);
     }
 
     /**
-     * @return True if the resource path matches the given matcher
+     * Returns true if the resource path matches the given matcher
      */
-    default boolean matches(Matcher<String> matcher)
+    default boolean matches(@NotNull Matcher<String> matcher)
     {
         return matcher.matches(path().asString());
     }
 
     /**
-     * @return The path to this object
+     * Returns the path for this object
      */
     @UmlRelation(label = "supplies")
     ResourcePath path();
@@ -109,6 +150,9 @@ public interface ResourcePathed extends UriIdentified
         return path().uri();
     }
 
+    /**
+     * Returns the path for this object as a URL
+     */
     default URL url()
     {
         try

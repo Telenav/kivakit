@@ -18,10 +18,15 @@
 
 package com.telenav.kivakit.core.messaging.messages.lifecycle;
 
-import com.telenav.kivakit.core.messaging.messages.OperationLifecycleMessage;
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramMessageType;
-import com.telenav.lexakai.annotations.LexakaiJavadoc;
+import com.telenav.kivakit.core.messaging.messages.OperationLifecycleMessage;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
+
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
+import static com.telenav.kivakit.core.messaging.Message.OperationStatus.STARTED;
 
 /**
  * An operation has started
@@ -29,14 +34,14 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramMessageType.class)
-@LexakaiJavadoc(complete = true)
+@ApiQuality(stability = API_STABLE,
+            testing = TESTING_NOT_NEEDED,
+            documentation = DOCUMENTATION_COMPLETE)
 public class OperationStarted extends OperationLifecycleMessage
 {
-    public static final OperationStarted INSTANCE = new OperationStarted();
-
     public OperationStarted()
     {
-        super("OperationSucceeded");
+        super("OperationStarted");
     }
 
     protected OperationStarted(String message, Object... arguments)
@@ -44,9 +49,12 @@ public class OperationStarted extends OperationLifecycleMessage
         super(message, arguments);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public OperationStatus operationStatus()
     {
-        return OperationStatus.STARTED;
+        return STARTED;
     }
 }

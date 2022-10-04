@@ -18,27 +18,59 @@
 
 package com.telenav.kivakit.network.core;
 
-import com.telenav.kivakit.core.collections.map.NameMap;
+import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.core.collections.map.StringMap;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.value.name.Name;
 import com.telenav.kivakit.network.core.internal.lexakai.DiagramPort;
-import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
-import com.telenav.lexakai.annotations.visibility.UmlExcludeMember;
 
 import java.util.HashMap;
 import java.util.Map;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
+
 /**
  * An identifier for a particular named protocol
  *
+ * <p><b>Access</b></p>
+ *
+ * <ul>
+ *     <li>{@link #defaultProtocolForPort(int)}</li>
+ *     <li>{@link #defaultPort()}</li>
+ * </ul>
+ *
+ * <p><b>Parsing</b></p>
+ *
+ * <ul>
+ *     <li>{@link #parseProtocol(Listener, String)}</li>
+ * </ul>
+ *
+ * <p><b>Common Ports</b></p>
+ *
+ * <ul>
+ *     <li>FTP</li>
+ *     <li>HAZELCAST</li>
+ *     <li>HTTP</li>
+ *     <li>HTTPS</li>
+ *     <li>MEMCACHE</li>
+ *     <li>MONGO</li>
+ *     <li>MYSQL</li>
+ *     <li>SFTP</li>
+ * </ul>
+ *
  * @author jonathanl (shibo)
  */
+@SuppressWarnings({ "unused", "SpellCheckingInspection" })
 @UmlClassDiagram(diagram = DiagramPort.class)
-@LexakaiJavadoc(complete = true)
+@ApiQuality(stability = API_STABLE_EXTENSIBLE,
+            testing = TESTING_NOT_NEEDED,
+            documentation = DOCUMENTATION_COMPLETE)
 public class Protocol extends Name
 {
-    private static final NameMap<Protocol> nameToProtocol = new NameMap<>();
+    private static final StringMap<Protocol> nameToProtocol = new StringMap<>();
 
     private static final Map<Integer, Protocol> portToProtocol = new HashMap<>();
 
@@ -61,17 +93,21 @@ public class Protocol extends Name
     public static final Protocol MONGO = new Protocol("mongo", 27017);
 
     /**
+     * Returns the protocol for the given port
+     *
      * @return The protocol for the given port number
      */
-    public static Protocol forPort(int port)
+    public static Protocol defaultProtocolForPort(int port)
     {
         return portToProtocol.get(port);
     }
 
     /**
+     * Parses the given protocol name into a {@link Protocol}
+     *
      * @return The protocol with the given name, or null if name doesn't represent a known protocol
      */
-    public static Protocol parse(Listener listener, String name)
+    public static Protocol parseProtocol(Listener listener, String name)
     {
         return nameToProtocol.get(name);
     }
@@ -83,11 +119,10 @@ public class Protocol extends Name
     {
         super(name);
         this.defaultPort = defaultPort;
-        nameToProtocol.add(this);
+        nameToProtocol.put(name(), this);
         portToProtocol.put(defaultPort, this);
     }
 
-    @UmlExcludeMember
     protected Protocol()
     {
     }

@@ -18,16 +18,83 @@
 
 package com.telenav.kivakit.core.language;
 
-import com.telenav.kivakit.core.ensure.Ensure;
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramObject;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.Arrays;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_STATIC_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_INSUFFICIENT;
+import static com.telenav.kivakit.core.ensure.Ensure.fail;
+
+/**
+ * Object convenience methods.
+ *
+ * <p><b>Equality</b></p>
+ *
+ * <ul>
+ *     <li>{@link #isEqual(Object, Object)}</li>
+ *     <li>{@link #areEqualPairs(Object...)}</li>
+ * </ul>
+ *
+ * <p><b>Nullity</b></p>
+ *
+ * <ul>
+ *     <li>{@link #isAnyNull(Object...)}</li>
+ *     <li>{@link #isNotNull(Object)}</li>
+ *     <li>{@link #isNull(Object)}</li>
+ *     <li>{@link #nonNullOr(Object, Object)}</li>
+ * </ul>
+ *
+ * @author jonathanl (shibo)
+ */
 @UmlClassDiagram(diagram = DiagramObject.class)
+@ApiQuality(stability = API_STABLE_STATIC_EXTENSIBLE,
+            testing = TESTING_INSUFFICIENT,
+            documentation = DOCUMENTATION_COMPLETE)
 public class Objects
 {
-    public static boolean equal(Object a, Object b)
+    /**
+     * Returns true if the given variable number of values contains a series of equal pairs
+     */
+    public static boolean areEqualPairs(Object... values)
+    {
+        if (values.length % 2 != 0)
+        {
+            fail("Must supply an even number of objects");
+            return false;
+        }
+        for (var i = 0; i < values.length; i += 2)
+        {
+            if (!isEqual(values[i], values[i + 1]))
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    /**
+     * Returns true if any of the given objects is null.
+     */
+    public static boolean isAnyNull(Object... objects)
+    {
+        for (var object : objects)
+        {
+            if (object == null)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Returns true if the given objects are equal, taking into account primitive arrays.
+     */
+    public static boolean isEqual(Object a, Object b)
     {
         if (a == b)
         {
@@ -76,59 +143,25 @@ public class Objects
         return false;
     }
 
-    @SuppressWarnings("StringEquality")
-    public static boolean equalIgnoringCase(String a, String b)
-    {
-        if (a == b)
-        {
-            return true;
-        }
-        if (a != null && b != null)
-        {
-            return a.equalsIgnoreCase(b);
-        }
-        return false;
-    }
-
-    public static boolean equalPairs(Object... objects)
-    {
-        if (objects.length % 2 != 0)
-        {
-            Ensure.fail("Must supply an even number of objects");
-            return false;
-        }
-        for (var i = 0; i < objects.length; i += 2)
-        {
-            if (!equal(objects[i], objects[i + 1]))
-            {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    public static boolean isAnyNull(Object... objects)
-    {
-        for (var object : objects)
-        {
-            if (object == null)
-            {
-                return true;
-            }
-        }
-        return false;
-    }
-
+    /**
+     * Returns true if the given object is not null
+     */
     public static boolean isNotNull(Object object)
     {
         return object != null;
     }
 
+    /**
+     * Returns true if the given object is null
+     */
     public static boolean isNull(Object object)
     {
         return object == null;
     }
 
+    /**
+     * Returns the value, or defaultValue if the value is null
+     */
     public static <Value> Value nonNullOr(Value value, Value defaultValue)
     {
         return (value != null) ? value : defaultValue;

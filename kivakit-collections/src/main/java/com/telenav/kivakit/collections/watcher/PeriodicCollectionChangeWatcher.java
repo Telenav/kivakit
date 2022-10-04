@@ -18,6 +18,7 @@
 
 package com.telenav.kivakit.collections.watcher;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.collections.internal.lexakai.DiagramWatcher;
 import com.telenav.kivakit.core.time.Frequency;
 import com.telenav.kivakit.core.time.Time;
@@ -28,24 +29,37 @@ import java.util.Collection;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+
 /**
  * A {@link CollectionChangeWatcher} that checks for changes at a given {@link Frequency}. After being started with
  * {@link #start()} the object returned by {@link #objects()} is monitored for changes at the given frequency. If there
- * are changes, the change watchers are notified via {@link #onAdded(Object)}, {@link #onModified(Object)} and {@link
- * #onRemoved(Object)}. Modification of objects is determined by the timestamp returned by {@link
- * #lastModified(Object)}.
+ * are changes, the change watchers are notified via {@link #onAdded(Object)}, {@link #onModified(Object)} and
+ * {@link #onRemoved(Object)}. Modification of objects is determined by the timestamp returned by
+ * {@link #lastModified(Object)}.
  *
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramWatcher.class)
-public abstract class PeriodicCollectionChangeWatcher<T> extends BaseCollectionChangeWatcher<T> implements Runnable, Startable
+@ApiQuality(stability = API_STABLE_EXTENSIBLE,
+            testing = TESTING_NONE,
+            documentation = DOCUMENTATION_COMPLETE)
+public abstract class PeriodicCollectionChangeWatcher<T> extends BaseCollectionChangeWatcher<T> implements
+        Runnable,
+        Startable
 {
+    /** The collection of objects to watch */
     private Collection<T> objects;
 
+    /** The last time each object was modified */
     private final Map<T, Time> previousLastModified = new ConcurrentHashMap<>();
 
+    /** The frequency to check for changes */
     private final Frequency frequency;
 
+    /** True if this watcher is running */
     private boolean running;
 
     protected PeriodicCollectionChangeWatcher(Frequency frequency)
@@ -53,7 +67,65 @@ public abstract class PeriodicCollectionChangeWatcher<T> extends BaseCollectionC
         this.frequency = frequency;
     }
 
-    public void compare()
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public boolean isRunning()
+    {
+        return running;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @SuppressWarnings("InfiniteLoopStatement")
+    @Override
+    public void run()
+    {
+        while (true)
+        {
+            try
+            {
+                compare();
+            }
+            catch (Exception ignored)
+            {
+            }
+            frequency.cycleLength().sleep();
+        }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public boolean start()
+    {
+        if (!running)
+        {
+            objects = objects();
+            for (var object : objects)
+            {
+                previousLastModified.put(object, lastModified(object));
+            }
+            new Thread(this).start();
+            running = true;
+        }
+        return true;
+    }
+
+    /**
+     * Sets the last time the given object was modified
+     */
+    protected abstract Time lastModified(T object);
+
+    /**
+     * Returns the collection to watch
+     */
+    protected abstract Collection<T> objects();
+
+    private void compare()
     {
         // Get new set of objects
         var newObjects = objects();
@@ -98,53 +170,4 @@ public abstract class PeriodicCollectionChangeWatcher<T> extends BaseCollectionC
         // Update current objects
         objects = newObjects;
     }
-
-    @Override
-    public boolean isRunning()
-    {
-        return running;
-    }
-
-    @SuppressWarnings("InfiniteLoopStatement")
-    @Override
-    public void run()
-    {
-        while (true)
-        {
-            try
-            {
-                compare();
-            }
-            catch (Exception ignored)
-            {
-            }
-            frequency.cycleLength().sleep();
-        }
-    }
-
-    @Override
-    public boolean start()
-    {
-        if (!running)
-        {
-            objects = objects();
-            for (var object : objects)
-            {
-                previousLastModified.put(object, lastModified(object));
-            }
-            new Thread(this).start();
-            running = true;
-        }
-        return true;
-    }
-
-    /**
-     * @return The last time the given object was modified
-     */
-    protected abstract Time lastModified(T object);
-
-    /**
-     * @return The collection to watch
-     */
-    protected abstract Collection<T> objects();
 }

@@ -19,7 +19,7 @@
 package com.telenav.kivakit.internal.tests.core.string;
 
 import com.telenav.kivakit.core.language.reflection.property.KivaKitIncludeProperty;import com.telenav.kivakit.core.string.AsIndentedString;
-import com.telenav.kivakit.core.string.AsStringIndenter;
+import com.telenav.kivakit.core.string.ObjectIndenter;
 import com.telenav.kivakit.internal.testing.CoreUnitTest;
 import com.telenav.kivakit.core.value.count.Maximum;
 import org.junit.Test;
@@ -84,7 +84,7 @@ public class AsIndentedStringTest extends CoreUnitTest implements AsIndentedStri
     @Test
     public void testPrune()
     {
-        var indenter = new AsStringIndenter(Format.TEXT)
+        var indenter = new ObjectIndenter(Format.TEXT)
                 .levels(Maximum._4)
                 .pruneAt(Bar.class);
         asString(Format.TEXT, indenter);

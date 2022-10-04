@@ -1,11 +1,15 @@
 package com.telenav.kivakit.settings.stores;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.settings.BaseSettingsStore;
 import com.telenav.kivakit.settings.SettingsObject;
 import com.telenav.kivakit.settings.SettingsStore;
 
 import java.util.Set;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
 import static com.telenav.kivakit.core.ensure.Ensure.unsupported;
 import static com.telenav.kivakit.settings.SettingsStore.AccessMode.DELETE;
 import static com.telenav.kivakit.settings.SettingsStore.AccessMode.INDEX;
@@ -18,6 +22,9 @@ import static com.telenav.kivakit.settings.SettingsStore.AccessMode.UNLOAD;
  * @see SettingsStore
  * @see SettingsObject
  */
+@ApiQuality(stability = API_STABLE,
+            testing = TESTING_NONE,
+            documentation = DOCUMENTATION_COMPLETE)
 public class MemorySettingsStore extends BaseSettingsStore
 {
     /**
@@ -29,18 +36,27 @@ public class MemorySettingsStore extends BaseSettingsStore
         return Set.of(INDEX, DELETE, UNLOAD);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected boolean onDelete(SettingsObject object)
     {
         return unsupported();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected Set<SettingsObject> onLoad()
     {
         return unsupported();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected boolean onSave(SettingsObject object)
     {

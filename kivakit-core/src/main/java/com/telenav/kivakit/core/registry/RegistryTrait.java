@@ -1,9 +1,13 @@
 package com.telenav.kivakit.core.registry;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.interfaces.factory.Factory;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_DEFAULT_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
 import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
-import static com.telenav.kivakit.core.registry.InstanceIdentifier.SINGLETON;
+import static com.telenav.kivakit.core.registry.InstanceIdentifier.singletonInstanceIdentifier;
 
 /**
  * <p>
@@ -17,21 +21,18 @@ import static com.telenav.kivakit.core.registry.InstanceIdentifier.SINGLETON;
  * <p><b>Lookup methods</b></p>
  * <ul>
  *     <li>{@link #lookup(Class)} - Locates the registered instance of the given class</li>
- *     <li>{@link #lookup(Class, String)} - Locates the specified registered instance of the given class</li>
  *     <li>{@link #lookup(Class, Enum)} - Locates the specified registered instance of the given class</li>
  * </ul>
  *
  * <p><b>Register methods</b></p>
  * <ul>
  *     <li>{@link #register(Object)} - Registers the given object</li>
- *     <li>{@link #register(Object, String)} - Registers the given identified object instance</li>
  *     <li>{@link #register(Object, Enum)} - Registers the given identified object instance</li>
  * </ul>
  *
  * <p><b>Require methods</b></p>
  * <ul>
  *     <li>{@link #require(Class)} - Locates the registered instance of the given class or fails</li>
- *     <li>{@link #require(Class, String)} - Locates the specified registered instance of the given class or fails</li>
  *     <li>{@link #require(Class, Enum)} - Locates the specified registered instance of the given class or fails</li>
  * </ul>
  *
@@ -39,6 +40,9 @@ import static com.telenav.kivakit.core.registry.InstanceIdentifier.SINGLETON;
  * @see Registry
  */
 @SuppressWarnings("unused")
+@ApiQuality(stability = API_STABLE_DEFAULT_EXTENSIBLE,
+            testing = TESTING_NOT_NEEDED,
+            documentation = DOCUMENTATION_COMPLETE)
 public interface RegistryTrait
 {
     /**
@@ -49,7 +53,7 @@ public interface RegistryTrait
      */
     default <T> T lookup(Class<T> type)
     {
-        return lookup(type, SINGLETON);
+        return lookup(type, singletonInstanceIdentifier());
     }
 
     /**
@@ -61,19 +65,7 @@ public interface RegistryTrait
      */
     default <T> T lookup(Class<T> type, Enum<?> instance)
     {
-        return lookup(type, InstanceIdentifier.of(instance));
-    }
-
-    /**
-     * Convenience method
-     *
-     * @param type The type of object to look up
-     * @param instance The instance to find
-     * @return The object
-     */
-    default <T> T lookup(Class<T> type, String instance)
-    {
-        return lookup(type, InstanceIdentifier.of(instance));
+        return lookup(type, InstanceIdentifier.instanceIdentifier(instance));
     }
 
     /**
@@ -96,7 +88,7 @@ public interface RegistryTrait
     {
         for (var at = object.getClass(); at != Object.class; at = at.getSuperclass())
         {
-            register(object, SINGLETON);
+            register(object, singletonInstanceIdentifier());
         }
 
         return object;
@@ -109,21 +101,9 @@ public interface RegistryTrait
      * @param instance Which instance is being registered
      * @return The object
      */
-    default <T> T register(T object, String instance)
-    {
-        return register(object, InstanceIdentifier.of(instance));
-    }
-
-    /**
-     * Registers the specified instance of the given object's type in the lookup
-     *
-     * @param object The object to register
-     * @param instance Which instance is being registered
-     * @return The object
-     */
     default <T> T register(T object, Enum<?> instance)
     {
-        return register(object, InstanceIdentifier.of(instance));
+        return register(object, InstanceIdentifier.instanceIdentifier(instance));
     }
 
     /**
@@ -145,7 +125,7 @@ public interface RegistryTrait
      */
     default Registry registry()
     {
-        return Registry.of(this);
+        return Registry.registryFor(this);
     }
 
     /**
@@ -176,7 +156,7 @@ public interface RegistryTrait
      */
     default <T> T require(Class<T> type)
     {
-        return require(type, SINGLETON);
+        return require(type, singletonInstanceIdentifier());
     }
 
     /**
@@ -188,19 +168,7 @@ public interface RegistryTrait
      */
     default <T> T require(Class<T> type, Enum<?> instance)
     {
-        return require(type, InstanceIdentifier.of(instance));
-    }
-
-    /**
-     * Convenience method to look up the given object and fail if it isn't found
-     *
-     * @param type The object to find
-     * @param instance Which instance to find
-     * @return The object
-     */
-    default <T> T require(Class<T> type, String instance)
-    {
-        return require(type, InstanceIdentifier.of(instance));
+        return require(type, InstanceIdentifier.instanceIdentifier(instance));
     }
 
     /**
@@ -222,7 +190,7 @@ public interface RegistryTrait
      */
     default void unregister(Object object)
     {
-        unregister(object, SINGLETON);
+        unregister(object, singletonInstanceIdentifier());
     }
 
     /**
@@ -244,18 +212,7 @@ public interface RegistryTrait
      */
     default void unregister(Object object, Enum<?> instance)
     {
-        unregister(object, InstanceIdentifier.of(instance));
-    }
-
-    /**
-     * Unregisters the given instance of the given object
-     *
-     * @param object The object to unregister
-     * @param instance Which instance to unregister
-     */
-    default void unregister(Object object, String instance)
-    {
-        unregister(object, InstanceIdentifier.of(instance));
+        unregister(object, InstanceIdentifier.instanceIdentifier(instance));
     }
 
     /**

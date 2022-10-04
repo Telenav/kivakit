@@ -18,11 +18,12 @@
 
 package com.telenav.kivakit.core.logging;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.collections.map.VariableMap;
-import com.telenav.kivakit.core.logging.logs.text.ConsoleLog;
-import com.telenav.kivakit.core.messaging.messages.Severity;
 import com.telenav.kivakit.core.internal.lexakai.DiagramLogging;
 import com.telenav.kivakit.core.internal.lexakai.DiagramLogs;
+import com.telenav.kivakit.core.logging.logs.text.ConsoleLog;
+import com.telenav.kivakit.core.messaging.messages.Severity;
 import com.telenav.kivakit.core.time.Duration;
 import com.telenav.kivakit.interfaces.comparison.Filtered;
 import com.telenav.kivakit.interfaces.io.Closeable;
@@ -32,12 +33,16 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeSuperTypes;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_DEFAULT_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+
 /**
- * Accepts log entries for some purpose, such as writing them to a file or displaying them in a terminal window. {@link
- * Logger} implementations write log entries to one or more {@link Log}s via {@link #log(LogEntry)}. Which log entries
- * are logged can be controlled with filters returned from {@link Filtered#filters()} and by setting a minimum severity
- * level with {@link #level(Severity)}. Some logs are configurable with a string-to-string property map via {@link
- * #configure(VariableMap)}. Logs are also {@link Closeable}, {@link Flushable} and {@link Named}.
+ * Accepts log entries for some purpose, such as writing them to a file or displaying them in a terminal window.
+ * {@link Logger} implementations write log entries to one or more {@link Log}s via {@link #log(LogEntry)}. Which log
+ * entries are logged can be controlled with filters returned from {@link Filtered#filters()} and by setting a minimum
+ * severity level with {@link #level(Severity)}. Some logs are configurable with a string-to-string property map via
+ * {@link #configure(VariableMap)}. Logs are also {@link Closeable}, {@link Flushable} and {@link Named}.
  * <p>
  * <b>Wiki Documentation</b>
  * <p>
@@ -68,6 +73,9 @@ import com.telenav.lexakai.annotations.visibility.UmlExcludeSuperTypes;
 @UmlClassDiagram(diagram = DiagramLogging.class)
 @UmlRelation(label = "logs", referent = LogEntry.class)
 @UmlExcludeSuperTypes({ Named.class, Flushable.class })
+@ApiQuality(stability = API_STABLE_DEFAULT_EXTENSIBLE,
+            testing = TESTING_NONE,
+            documentation = DOCUMENTATION_COMPLETE)
 public interface Log extends
         Named,
         Filtered<LogEntry>,
@@ -92,4 +100,13 @@ public interface Log extends
      * Logs the given entry
      */
     void log(LogEntry entry);
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    default Duration maximumFlushTime()
+    {
+        return Duration.seconds(30);
+    }
 }

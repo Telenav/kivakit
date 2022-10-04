@@ -18,23 +18,26 @@
 
 package com.telenav.kivakit.core.messaging;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramBroadcaster;
 import com.telenav.kivakit.core.internal.lexakai.DiagramListener;
 import com.telenav.kivakit.core.internal.lexakai.DiagramRepeater;
 import com.telenav.kivakit.core.logging.Logger;
 import com.telenav.kivakit.core.messaging.listeners.ThrowingListener;
 import com.telenav.kivakit.core.messaging.messages.status.Problem;
-import com.telenav.kivakit.core.os.ConsoleWriter;
+import com.telenav.kivakit.core.os.Console;
 import com.telenav.kivakit.interfaces.messaging.Transmittable;
 import com.telenav.kivakit.interfaces.naming.NamedObject;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeMember;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeSuperTypes;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+
 /**
  * Handles messages through {@link #onMessage(Message)}.
- *
- * <hr>
  *
  * <p><b>Listening to Broadcasters</b></p>
  *
@@ -42,8 +45,6 @@ import com.telenav.lexakai.annotations.visibility.UmlExcludeSuperTypes;
  * A listener can listen to a particular {@link Broadcaster} with {@link #listenTo(Broadcaster)}. Conversely, a listener
  * can be added to a broadcaster with {@link Broadcaster#addListener(Listener)}. Both methods achieve the same result.
  * </p>
- *
- * <hr>
  *
  * <p><b>Convenience Methods and Logging</b></p>
  *
@@ -56,7 +57,6 @@ import com.telenav.lexakai.annotations.visibility.UmlExcludeSuperTypes;
  * <pre>
  * problem("Unable to read $", file);</pre>
  *
- * <hr>
  *
  * <p><b>Repeater Chains</b></p>
  *
@@ -99,8 +99,6 @@ import com.telenav.lexakai.annotations.visibility.UmlExcludeSuperTypes;
  * &nbsp;&nbsp;&nbsp;&nbsp;<b>EmployeeLoader ==> PayrollProcessor ==> Logger</b>
  * </p>
  *
- * <hr>
- *
  * @author jonathanl (shibo)
  * @see Broadcaster
  * @see <a href="https://state-of-the-art.org#broadcaster">State(Art) Blog Article</a>
@@ -110,20 +108,23 @@ import com.telenav.lexakai.annotations.visibility.UmlExcludeSuperTypes;
 @UmlClassDiagram(diagram = DiagramListener.class)
 @UmlExcludeSuperTypes({ NamedObject.class })
 @FunctionalInterface
-public interface Listener extends Transceiver
+@ApiQuality(stability = API_STABLE_EXTENSIBLE,
+            testing = TESTING_NONE,
+            documentation = DOCUMENTATION_COMPLETE)
+public interface Listener extends MessageTransceiver
 {
     /**
      * @return A listener that writes the messages it hears to the console
      */
     static Listener consoleListener()
     {
-        return new ConsoleWriter();
+        return Console.console();
     }
 
     /**
      * @return A listener that does nothing with messages. Useful only when you want to discard output from something
      */
-    static Listener emptyListener()
+    static Listener nullListener()
     {
         return ignored ->
         {
@@ -149,6 +150,7 @@ public interface Listener extends Transceiver
 
     /**
      * Registers this listener with the given broadcaster in being interested in transmitted messages
+     *
      * @param broadcaster The broadcaster that should send to this listener
      * @param filter The message filter to apply
      * @return The broadcaster
@@ -161,6 +163,7 @@ public interface Listener extends Transceiver
 
     /**
      * Registers this listener with the given broadcaster in being interested in transmitted messages
+     *
      * @param broadcaster The broadcaster that should send to this listener
      * @return The broadcaster
      */

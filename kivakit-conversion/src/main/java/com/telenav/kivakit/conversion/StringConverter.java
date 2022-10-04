@@ -18,12 +18,17 @@
 
 package com.telenav.kivakit.conversion;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.conversion.internal.lexakai.DiagramConversion;
 import com.telenav.kivakit.core.collections.list.ObjectList;
 import com.telenav.kivakit.core.collections.list.StringList;
 import com.telenav.kivakit.core.collections.set.ObjectSet;
-import com.telenav.kivakit.interfaces.string.StringMapper;
+import com.telenav.kivakit.interfaces.string.Parsable;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
+
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
 
 /**
  * A bidirectional converter between {@link String} values and values of the given type. The {@link Converter} interface
@@ -34,13 +39,17 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
  * @author jonathanl (shibo)
  * @see BaseStringConverter
  */
+@SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramConversion.class)
+@ApiQuality(stability = API_STABLE_EXTENSIBLE,
+            testing = TESTING_NONE,
+            documentation = DOCUMENTATION_COMPLETE)
 public interface StringConverter<Value> extends
         TwoWayConverter<String, Value>,
-        StringMapper<Value>
+        Parsable<Value>
 {
     /**
-     * Converts the given delimited string to a list
+     * Converts the given delimited string to a list of objects using this converter
      *
      * @param value The string to convert
      * @param delimiter The delimiter
@@ -52,7 +61,7 @@ public interface StringConverter<Value> extends
     }
 
     /**
-     * Converts the given {@link Iterable} of strings to a list of objects
+     * Converts the given {@link Iterable} of strings to a list of objects using this string converter
      *
      * @return The given string list with each string converted to an object using this converter
      */
@@ -67,7 +76,7 @@ public interface StringConverter<Value> extends
     }
 
     /**
-     * Converts the given delimited string to a set
+     * Converts the given delimited string to a set of objects using this string converter
      *
      * @param value The string to convert
      * @param delimiter The delimiter
@@ -79,7 +88,7 @@ public interface StringConverter<Value> extends
     }
 
     /**
-     * Converts the given {@link Iterable} of strings to a set of objects
+     * Converts the given {@link Iterable} of strings to a set of objects using this string converter
      *
      * @return The given string list with each string converted to an object using this converter
      */
@@ -93,26 +102,39 @@ public interface StringConverter<Value> extends
         return objects;
     }
 
+    /**
+     * Returns a list converter that uses the given delimiter
+     *
+     * @param delimiter The delimiter
+     */
     default StringConverter<ObjectList<Value>> listConverter(String delimiter)
     {
         var outer = this;
         return new BaseStringConverter<>(this)
         {
             @Override
-            protected ObjectList<Value> onToValue(final String value)
+            protected ObjectList<Value> onToValue(String value)
             {
                 return outer.convertToList(value, delimiter);
             }
         };
     }
 
+    /**
+     * Returns a list converter that separates items with commas
+     */
     default StringConverter<ObjectList<Value>> listConverter()
     {
         return listConverter(",");
     }
 
+    /**
+     * Parses the given text into a value using this converter
+     *
+     * @param text The text
+     */
     @Override
-    default Value map(String text)
+    default Value parse(String text)
     {
         return convert(text);
     }
@@ -122,6 +144,7 @@ public interface StringConverter<Value> extends
      *
      * @return A list of strings, one for each unconverted value
      */
+    @SuppressWarnings("SpellCheckingInspection")
     default StringList unconvertCollection(Iterable<Value> values)
     {
         var list = new StringList();

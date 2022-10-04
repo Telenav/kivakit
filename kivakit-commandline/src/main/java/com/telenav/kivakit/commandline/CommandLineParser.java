@@ -18,13 +18,13 @@
 
 package com.telenav.kivakit.commandline;
 
-import com.telenav.kivakit.commandline.parsing.ArgumentListValidator;
-import com.telenav.kivakit.commandline.parsing.ArgumentParserList;
-import com.telenav.kivakit.commandline.parsing.SwitchList;
-import com.telenav.kivakit.commandline.parsing.SwitchListValidator;
-import com.telenav.kivakit.commandline.parsing.SwitchParserList;
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.commandline.internal.lexakai.DiagramArgument;
 import com.telenav.kivakit.commandline.internal.lexakai.DiagramCommandLine;
+import com.telenav.kivakit.commandline.parsing.ArgumentParserList;
+import com.telenav.kivakit.commandline.parsing.ArgumentValueListValidator;
+import com.telenav.kivakit.commandline.parsing.SwitchParserList;
+import com.telenav.kivakit.commandline.parsing.SwitchValueListValidator;
 import com.telenav.kivakit.core.KivaKit;
 import com.telenav.kivakit.core.messaging.listeners.MessageList;
 import com.telenav.kivakit.core.messaging.messages.OperationMessage;
@@ -38,23 +38,27 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlAggregation;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeMember;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Collection;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
 import static com.telenav.kivakit.core.project.Project.resolveProject;
 
 /**
- * Parses an array of command line arguments into a list of {@link SwitchList} of the form "-switch=value" and a list of
- * remaining non-switch arguments in an {@link ArgumentList}. Normally, this class does not need to be used directly, as
- * the Application base class provides easier access to the same functionality.
+ * Parses an array of command line arguments into a list of {@link SwitchValueList} of the form "-switch=value" and a
+ * list of remaining non-switch arguments in an {@link ArgumentValueList}. Normally, this class does not need to be used
+ * directly, as the Application base class provides easier access to the same functionality.
  *
  * <p><b>Parsing a Command Line</b></p>
  *
  * <p>
- * Parsers for individual switches and arguments can be added with {@link #add(SwitchParser)} and {@link
- * #add(ArgumentParser)}, respectively. The command line may then be parsed with {@link #parse(String[])}, taking the
- * array of arguments passed to the program's main(String[] arguments) method and returning a {@link CommandLine} object
- * representing the parsed command line.
+ * Parsers for individual switches and arguments can be added with {@link #add(SwitchParser)} and
+ * {@link #add(ArgumentParser)}, respectively. The command line may then be parsed with {@link #parse(String[])}, taking
+ * the array of arguments passed to the program's main(String[] arguments) method and returning a {@link CommandLine}
+ * object representing the parsed command line.
  * </p>
  *
  * <p><b>Switch Conventions</b></p>
@@ -116,8 +120,11 @@ import static com.telenav.kivakit.core.project.Project.resolveProject;
 @SuppressWarnings("UseOfSystemOutOrSystemErr")
 @UmlClassDiagram(diagram = DiagramArgument.class)
 @UmlClassDiagram(diagram = DiagramCommandLine.class)
-@UmlRelation(label = "validates", referent = ArgumentList.class)
-@UmlRelation(diagram = DiagramCommandLine.class, label = "validates", referent = SwitchList.class)
+@UmlRelation(label = "validates", referent = ArgumentValueList.class)
+@UmlRelation(diagram = DiagramCommandLine.class, label = "validates", referent = SwitchValueList.class)
+@ApiQuality(stability = API_STABLE_EXTENSIBLE,
+            testing = TESTING_NONE,
+            documentation = DOCUMENTATION_COMPLETE)
 public class CommandLineParser
 {
     /** Parsers for arguments */
@@ -134,7 +141,7 @@ public class CommandLineParser
     /**
      * @param application The application's class
      */
-    public CommandLineParser(ApplicationMetadata application)
+    public CommandLineParser(@NotNull ApplicationMetadata application)
     {
         this.application = application;
     }
@@ -142,7 +149,7 @@ public class CommandLineParser
     /**
      * Adds the given argument parser to this command line parser
      */
-    public <T> CommandLineParser add(ArgumentParser<T> parser)
+    public <T> CommandLineParser add(@NotNull ArgumentParser<T> parser)
     {
         argumentParsers.add(parser);
         parser.parent(this);
@@ -152,7 +159,7 @@ public class CommandLineParser
     /**
      * Adds the given switch parser to this command line parser
      */
-    public <T> CommandLineParser add(SwitchParser<T> parser)
+    public <T> CommandLineParser add(@NotNull SwitchParser<T> parser)
     {
         switchParsers.add(parser);
         parser.parent(this);
@@ -163,7 +170,7 @@ public class CommandLineParser
      * Adds the given argument parsers to this command line parser
      */
     @UmlExcludeMember
-    public CommandLineParser addArgumentParsers(Collection<ArgumentParser<?>> parsers)
+    public CommandLineParser addArgumentParsers(@NotNull Collection<ArgumentParser<?>> parsers)
     {
         for (var parser : parsers)
         {
@@ -176,7 +183,7 @@ public class CommandLineParser
      * Adds the given switch parsers to this command line parser
      */
     @UmlExcludeMember
-    public CommandLineParser addSwitchParsers(Collection<SwitchParser<?>> parsers)
+    public CommandLineParser addSwitchParsers(@NotNull Collection<SwitchParser<?>> parsers)
     {
         for (var parser : parsers)
         {
@@ -192,7 +199,7 @@ public class CommandLineParser
      * @return The parsed command line
      */
     @UmlRelation(label = "creates")
-    public CommandLine parse(String[] arguments)
+    public CommandLine parse(@NotNull String[] arguments)
     {
         return new CommandLine(this, arguments);
     }
@@ -200,7 +207,8 @@ public class CommandLineParser
     /**
      * Exits the program displaying the given message and command line help for the user
      */
-    protected void exit(String message, Object... arguments)
+    protected void exit(@NotNull String message,
+                        Object... arguments)
     {
         var formatted = Strings.format(message, arguments);
         System.err.println("\n" + AsciiArt.textBox("COMMAND LINE ERROR(S)", formatted));
@@ -225,7 +233,8 @@ public class CommandLineParser
      * Validates the given list of switches and the given list of arguments, using the available switch parsers and
      * argument parsers.
      */
-    void validate(SwitchList switches, ArgumentList arguments)
+    void validate(@NotNull SwitchValueList switches,
+                  @NotNull ArgumentValueList arguments)
     {
         var messages = new MessageList(Matcher.matchAll());
 
@@ -234,8 +243,8 @@ public class CommandLineParser
             @Override
             protected void onValidate()
             {
-                validate(new SwitchListValidator(switchParsers, switches));
-                validate(new ArgumentListValidator(argumentParsers, arguments));
+                validate(new SwitchValueListValidator(switchParsers, switches));
+                validate(new ArgumentValueListValidator(argumentParsers, arguments));
             }
         };
 

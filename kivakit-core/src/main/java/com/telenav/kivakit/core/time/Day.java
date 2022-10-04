@@ -1,10 +1,12 @@
 package com.telenav.kivakit.core.time;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.language.primitive.Ints;
-import com.telenav.kivakit.core.testing.NoTestRequired;
-import com.telenav.kivakit.core.testing.Tested;
 import com.telenav.kivakit.interfaces.time.Nanoseconds;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
 import static com.telenav.kivakit.core.ensure.Ensure.ensure;
 import static com.telenav.kivakit.core.ensure.Ensure.unsupported;
 import static com.telenav.kivakit.core.time.BaseTime.Topology.CYCLIC;
@@ -23,15 +25,17 @@ import static java.lang.Integer.MAX_VALUE;
  * @author jonathanl (shibo)
  */
 @SuppressWarnings("unused")
-@Tested
+@ApiQuality(stability = API_STABLE_EXTENSIBLE,
+            testing = TESTING_NONE,
+            documentation = DOCUMENTATION_COMPLETE)
 public class Day extends BaseTime<Day>
 {
+    /** The number of nanoseconds per day */
     static final Nanoseconds nanosecondsPerDay = nanosecondsPerHour.times(24);
 
     /**
      * @return An absolute day from 0 to n
      */
-    @Tested
     public static Day day(int day)
     {
         return new Day(DAY, day);
@@ -40,7 +44,6 @@ public class Day extends BaseTime<Day>
     /**
      * @return A day since the start of a month, from 1 to 31
      */
-    @Tested
     public static Day dayOfMonth(int day)
     {
         return new Day(DAY_OF_MONTH, day - 1);
@@ -49,7 +52,6 @@ public class Day extends BaseTime<Day>
     /**
      * @return A day since the start of the UNIX epoch, from 0 to n
      */
-    @Tested
     public static Day dayOfUnixEpoch(int day)
     {
         return new Day(DAY_OF_UNIX_EPOCH, day);
@@ -58,7 +60,6 @@ public class Day extends BaseTime<Day>
     /**
      * @return A day since the start of the year, from 0 to 365 (in leap years)
      */
-    @Tested
     public static Day dayOfYear(int day)
     {
         return new Day(DAY_OF_YEAR, day);
@@ -67,7 +68,6 @@ public class Day extends BaseTime<Day>
     /**
      * @return A day since the start of the week as an ISO ordinal
      */
-    @Tested
     public static Day isoDayOfWeek(int day)
     {
         return new Day(DAY_OF_WEEK, day);
@@ -76,7 +76,6 @@ public class Day extends BaseTime<Day>
     /**
      * @return A day since the start of the week as a Java ordinal
      */
-    @Tested
     public static Day javaDayOfWeek(int day)
     {
         return new Day(DAY_OF_WEEK, day - 1);
@@ -85,7 +84,6 @@ public class Day extends BaseTime<Day>
     /**
      * The type of day
      */
-    @NoTestRequired
     public enum Type
     {
         /** A number of days */
@@ -115,7 +113,6 @@ public class Day extends BaseTime<Day>
      * @param type The type of day
      * @param day A zero-based ordinal value
      */
-    @NoTestRequired
     protected Day(Type type, int day)
     {
         super(nanosecondsPerDay.times(day));
@@ -128,7 +125,6 @@ public class Day extends BaseTime<Day>
     /**
      * @return This day as a day of the week if it is a day of the week, otherwise, an exception will be thrown.
      */
-    @Tested
     public DayOfWeek asDayOfWeek()
     {
         ensure(type() == DAY_OF_WEEK);
@@ -139,12 +135,16 @@ public class Day extends BaseTime<Day>
     /**
      * @return This day as a zero-based index
      */
-    @Tested
     public int asIndex()
     {
         return super.asUnits();
     }
 
+    /**
+     * The number of days (zero based), or the day of the month (one based)
+     * <p>
+     * {@inheritDoc}
+     */
     @Override
     public int asUnits()
     {
@@ -170,7 +170,6 @@ public class Day extends BaseTime<Day>
      * @return False if this day is invalid, true if it might be valid. If true is returned, the day might still be
      * invalid in some context, for example, the 31st day of the month doesn't exist for all months.
      */
-    @Tested
     public boolean isValid()
     {
         switch (type)
@@ -195,6 +194,9 @@ public class Day extends BaseTime<Day>
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Day maximum()
     {
@@ -214,33 +216,57 @@ public class Day extends BaseTime<Day>
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Day minimum()
     {
-        return day(0);
+        switch (type)
+        {
+            case DAY_OF_MONTH:
+            case DAY_OF_YEAR:
+                return unsupported();
+
+            default:
+                return day(0);
+        }
     }
 
+    /**
+     * Returns the number of nanoseconds per day
+     */
     @Override
     public Nanoseconds nanosecondsPerUnit()
     {
         return nanosecondsPerDay;
     }
 
+    /**
+     * Creates a day object for the given nanoseconds
+     */
     @Override
     public Day onNewTime(Nanoseconds nanoseconds)
     {
         return new Day(type, (int) nanosecondsToUnits(nanoseconds));
     }
 
-    @Tested
+    /**
+     * Returns the type of day this object is representing
+     */
     public Type type()
     {
         return type;
     }
 
+    /**
+     * Returns the topology (linearity or circularity) of this time object
+     */
     @Override
     protected Topology topology()
     {
-        return type() == DAY || type() == DAY_OF_UNIX_EPOCH ? LINEAR : CYCLIC;
+        return type() == DAY || type() == DAY_OF_UNIX_EPOCH
+                ? LINEAR
+                : CYCLIC;
     }
 }

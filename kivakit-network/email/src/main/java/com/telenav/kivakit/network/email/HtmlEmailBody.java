@@ -18,9 +18,13 @@
 
 package com.telenav.kivakit.network.email;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.network.email.internal.lexakai.DiagramEmail;
-import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
+
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
 
 /**
  * The body of an email in HTML.
@@ -28,11 +32,11 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramEmail.class)
-@LexakaiJavadoc(complete = true)
+@ApiQuality(stability = API_STABLE_EXTENSIBLE,
+            testing = TESTING_NONE,
+            documentation = DOCUMENTATION_COMPLETE)
 public class HtmlEmailBody extends EmailBody
 {
-    public static final String MIME_TYPE = "text/html";
-
     public HtmlEmailBody(String text)
     {
         super(text);
@@ -41,6 +45,6 @@ public class HtmlEmailBody extends EmailBody
     @Override
     public String mimeType()
     {
-        return MIME_TYPE;
+        return "text/html";
     }
 }

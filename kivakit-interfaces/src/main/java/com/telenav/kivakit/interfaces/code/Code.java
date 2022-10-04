@@ -18,30 +18,27 @@
 
 package com.telenav.kivakit.interfaces.code;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
+
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
+
 /**
  * Code that can be executed, returning a value, as opposed to {@link Runnable} which does not return a value.
  *
  * @author jonathanl (shibo)
  */
 @FunctionalInterface
+@ApiQuality(stability = API_STABLE,
+            testing = TESTING_NOT_NEEDED,
+            documentation = DOCUMENTATION_COMPLETE,
+            reviews = 1,
+            reviewers = "shibo")
 public interface Code<Value>
 {
-    static <T> Code<T> of(Code<T> code)
-    {
-        return code;
-    }
-
-    static <T> Code<T> of(Runnable code)
-    {
-        return of(() ->
-        {
-            code.run();
-            return null;
-        });
-    }
-
     /**
-     * @return Executes the code
+     * @return The value returned by the code
      */
     Value run();
 }

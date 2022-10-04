@@ -1,10 +1,20 @@
 package com.telenav.kivakit.interfaces.numeric;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.interfaces.value.LongValued;
+
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
+
 /**
- * Utility methods to cast numbers
+ * Utility methods to cast numbers, and to discover the minimum and maximum values for the type of number
  *
  * @author jonathanl (shibo)
  */
+@ApiQuality(stability = API_STABLE,
+            testing = TESTING_NOT_NEEDED,
+            documentation = DOCUMENTATION_COMPLETE)
 public interface CastTrait
 {
     /**
@@ -41,7 +51,7 @@ public interface CastTrait
     /**
      * Returns the given number cast to the given number type
      */
-    default <T extends Number> T cast(Castable number, Class<T> type)
+    default <T extends Number> T cast(LongValued number, Class<T> type)
     {
         return cast(number.asLong(), type);
     }

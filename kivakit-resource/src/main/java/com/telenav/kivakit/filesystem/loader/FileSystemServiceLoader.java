@@ -18,21 +18,27 @@
 
 package com.telenav.kivakit.filesystem.loader;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.messaging.repeaters.BaseRepeater;
 import com.telenav.kivakit.filesystem.FilePath;
 import com.telenav.kivakit.filesystem.local.LocalFileSystemService;
 import com.telenav.kivakit.filesystem.spi.FileSystemService;
 import com.telenav.kivakit.resource.internal.lexakai.DiagramFileSystemService;
-import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlAggregation;
 import com.telenav.lexakai.annotations.visibility.UmlNotPublicApi;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ServiceLoader;
+
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE;
+import static com.telenav.kivakit.annotations.code.ApiType.PRIVATE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
 
 /**
  * Loads {@link FileSystemService}s with the Java {@link ServiceLoader} and chooses a {@link FileSystemService}
@@ -45,9 +51,13 @@ import java.util.ServiceLoader;
  */
 @UmlClassDiagram(diagram = DiagramFileSystemService.class)
 @UmlNotPublicApi
-@LexakaiJavadoc(complete = true)
+@ApiQuality(stability = API_STABLE,
+            testing = TESTING_NONE,
+            documentation = DOCUMENTATION_COMPLETE,
+            type = PRIVATE)
 public class FileSystemServiceLoader extends BaseRepeater
 {
+    /** The local filesystem service */
     private static final LocalFileSystemService LOCAL = new LocalFileSystemService();
 
     /** Loaded filesystem services */
@@ -55,13 +65,12 @@ public class FileSystemServiceLoader extends BaseRepeater
     private static List<FileSystemService> services;
 
     /**
-     * @return The {@link FileSystemService} to use for the given path
+     * Returns the {@link FileSystemService} to use for the given path
      */
     @Nullable
-    public static FileSystemService fileSystem(Listener listener, FilePath path)
+    public static FileSystemService fileSystem(@NotNull Listener listener,
+                                               @NotNull FilePath path)
     {
-        assert path != null;
-
         // For each loaded filesystem service
         for (var service : services(listener))
         {
@@ -85,7 +94,7 @@ public class FileSystemServiceLoader extends BaseRepeater
         return null;
     }
 
-    private static synchronized List<FileSystemService> services(Listener listener)
+    private static synchronized List<FileSystemService> services(@NotNull Listener listener)
     {
         if (services == null)
         {

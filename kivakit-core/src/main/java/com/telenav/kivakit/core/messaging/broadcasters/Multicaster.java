@@ -18,8 +18,9 @@
 
 package com.telenav.kivakit.core.messaging.broadcasters;
 
-import com.telenav.kivakit.core.language.Classes;
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramRepeater;
+import com.telenav.kivakit.core.language.Classes;
 import com.telenav.kivakit.core.logging.Logger;
 import com.telenav.kivakit.core.logging.loggers.ConsoleLogger;
 import com.telenav.kivakit.core.messaging.Broadcaster;
@@ -31,7 +32,6 @@ import com.telenav.kivakit.core.string.IndentingStringBuilder;
 import com.telenav.kivakit.core.string.IndentingStringBuilder.Indentation;
 import com.telenav.kivakit.core.thread.locks.ReadWriteLock;
 import com.telenav.kivakit.core.vm.Properties;
-import com.telenav.kivakit.interfaces.code.Code;
 import com.telenav.kivakit.interfaces.comparison.Filter;
 import com.telenav.kivakit.interfaces.messaging.Transmittable;
 import com.telenav.kivakit.interfaces.naming.NamedObject;
@@ -44,14 +44,17 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
 import static com.telenav.kivakit.core.ensure.Ensure.ensure;
 import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
 import static com.telenav.kivakit.core.string.IndentingStringBuilder.Style.TEXT;
 
 /**
  * A multicaster is a broadcaster which can have more than one listener. As with any broadcaster, listeners can be added
- * to a multicaster with {@link #addListener(Listener)} and can be cleared with {@link #clearListeners()}. Messages can
- * be broadcast to all listeners with {@link #transmit(Transmittable)}.
+ * to a multicaster with {@link #addListener(Listener)} and can be cleared with {@link #clearListeners()}.
+ * MessageTransceiver can be broadcast to all listeners with {@link #transmit(Transmittable)}.
  * <p>
  * If a class is already extending some other base class (and since Java does not support mix-ins) an instance of
  * {@link Multicaster} can be aggregated and its methods delegated to implement the {@link Broadcaster} interface This
@@ -87,25 +90,36 @@ import static com.telenav.kivakit.core.string.IndentingStringBuilder.Style.TEXT;
  * @see Broadcaster
  * @see Listener
  */
+@SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramRepeater.class)
+@ApiQuality(stability = API_STABLE,
+            testing = TESTING_NONE,
+            documentation = DOCUMENTATION_COMPLETE)
 public class Multicaster implements Broadcaster
 {
+    /** Console logger for serious messaging problems */
     private static final Logger LOGGER = new ConsoleLogger();
 
     /** This multi-caster audience */
     @UmlAggregation
     private final transient List<AudienceMember> audience = new ArrayList<>();
 
+    /** The class context for any debug object associated with this multicaster */
     private final transient Class<?> debugClassContext;
 
+    /** The code context for any debug object associated with this multicaster */
     private transient CodeContext debugCodeContext;
 
+    /** Lock for synchronizing access to the audience across threads */
     private transient ReadWriteLock lock;
 
+    /** The name of this object */
     private final transient String objectName;
 
+    /** Any broadcaster that is sending messages through this multicaster */
     private transient Broadcaster source;
 
+    /** True if this multicaster is enabled to transmit */
     private transient boolean transmitting;
 
     public Multicaster(String objectName, Class<?> debugClassContext)
@@ -187,18 +201,27 @@ public class Multicaster implements Broadcaster
         lock().write(audience::clear);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Class<?> debugClassContext()
     {
         return debugClassContext;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public CodeContext debugCodeContext()
     {
         return debugCodeContext;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void debugCodeContext(CodeContext context)
     {
@@ -232,6 +255,9 @@ public class Multicaster implements Broadcaster
         });
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean isTransmitting()
     {
@@ -262,7 +288,7 @@ public class Multicaster implements Broadcaster
      */
     public String listenerTree()
     {
-        var builder = new IndentingStringBuilder(TEXT, Indentation.of(4));
+        var builder = new IndentingStringBuilder(TEXT, Indentation.indentation(4));
         listenerTree(builder);
         return builder.toString();
     }
@@ -279,18 +305,27 @@ public class Multicaster implements Broadcaster
                 .collect(Collectors.toList()));
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Broadcaster messageSource()
     {
         return source;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void messageSource(Broadcaster source)
     {
         this.source = source;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String objectName()
     {
@@ -348,7 +383,7 @@ public class Multicaster implements Broadcaster
                 }
 
                 // Notify that there was nowhere to send the message.
-                if (Properties.isPropertyFalse("KIVAKIT_IGNORE_MISSING_LISTENERS"))
+                if (Properties.isSystemPropertyOrEnvironmentVariableFalse("KIVAKIT_IGNORE_MISSING_LISTENERS"))
                 {
                     var text = new IndentingStringBuilder();
                     for (var at : listenerChain())
@@ -363,18 +398,13 @@ public class Multicaster implements Broadcaster
         return message;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public <T> T withoutTransmitting(Code<T> code)
+    public void transmitting(boolean transmitting)
     {
-        transmitting = false;
-        try
-        {
-            return code.run();
-        }
-        finally
-        {
-            transmitting = true;
-        }
+        this.transmitting = transmitting;
     }
 
     private void listenerTree(IndentingStringBuilder builder)

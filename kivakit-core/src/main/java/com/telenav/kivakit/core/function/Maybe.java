@@ -1,14 +1,13 @@
 package com.telenav.kivakit.core.function;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.code.UncheckedVoidCode;
 import com.telenav.kivakit.core.function.arities.PentaFunction;
 import com.telenav.kivakit.core.function.arities.TetraFunction;
 import com.telenav.kivakit.core.function.arities.TriFunction;
-import com.telenav.kivakit.core.language.trait.SilentTryTrait;
+import com.telenav.kivakit.core.language.trait.TryCatchTrait;
 import com.telenav.kivakit.core.messaging.Repeater;
 import com.telenav.kivakit.core.messaging.messages.status.Problem;
-import com.telenav.kivakit.core.testing.Tested;
-import com.telenav.kivakit.interfaces.function.BooleanFunction;
 import com.telenav.kivakit.interfaces.monads.Presence;
 import com.telenav.kivakit.interfaces.value.Source;
 
@@ -19,6 +18,9 @@ import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.stream.Stream;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_INSUFFICIENT;
 import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
 
 /**
@@ -73,8 +75,8 @@ import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
  * <p><b>Conditionals</b></p>
  *
  * <ul>
- *     <li>{@link #absentIf(BooleanFunction)} - Applies the given function to this value, returning this value if it is true, or {@link #absent()} if it is false</li>
- *     <li>{@link #presentIf(BooleanFunction)} - Applies the given function to this value, returning this value if it is true, or {@link #absent()} if it is false</li>
+ *     <li>{@link #absentIf(Function)} - Applies the given function to this value, returning this value if it is true, or {@link #absent()} if it is false</li>
+ *     <li>{@link #presentIf(Function)} - Applies the given function to this value, returning this value if it is true, or {@link #absent()} if it is false</li>
  *     <li>{@link #ifPresent(Consumer)} - Calls the given consumer if a value is present</li>
  *     <li>{@link #ifPresentOr(Consumer, UncheckedVoidCode)} - Calls the given consumer if a value is present, otherwise calls the given code</li>
  * </ul>
@@ -85,14 +87,16 @@ import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
  * @author viniciusluisr
  * @see <a href="https://github.com/viniciusluisr/improved-optional">improved-optional</a>
  */
+@ApiQuality(stability = API_STABLE_EXTENSIBLE,
+            testing = TESTING_INSUFFICIENT,
+            documentation = DOCUMENTATION_COMPLETE)
 public class Maybe<Value> implements
         Presence,
-        SilentTryTrait
+        TryCatchTrait
 {
     /**
      * @return Maybe value for null
      */
-    @Tested
     public static <Value> Maybe<Value> absent()
     {
         return new Maybe<>();
@@ -101,7 +105,6 @@ public class Maybe<Value> implements
     /**
      * @return Maybe for the given (null or non-null) value
      */
-    @Tested
     public static <Value> Maybe<Value> maybe(Value value)
     {
         return value == null ? absent() : new Maybe<>(ensureNotNull(value));
@@ -110,7 +113,6 @@ public class Maybe<Value> implements
     /**
      * @return Maybe for the given non-null value
      */
-    @Tested
     public static <Value> Maybe<Value> present(Value value)
     {
         return new Maybe<>(ensureNotNull(value));
@@ -141,10 +143,9 @@ public class Maybe<Value> implements
      * @param predicate The predicate to test any non-null value
      * @return This value or a null value
      */
-    @Tested
-    public Maybe<Value> absentIf(BooleanFunction<Value> predicate)
+    public Maybe<Value> absentIf(Function<Value, Boolean> predicate)
     {
-        return tryCatch(() -> value != null && ensureNotNull(predicate).isTrue(value)
+        return tryCatch(() -> value != null && ensureNotNull(predicate).apply(value)
                 ? newAbsent()
                 : this);
     }
@@ -183,10 +184,10 @@ public class Maybe<Value> implements
      * <p><b>Important Note</b></p>
      *
      * <p>
-     * Notice that the first sentence of the description for this method is exactly the same as that provided for {@link
-     * #map(Function)}. The difference between the two methods is that the function passed to this method produces
-     * Maybe&lt;ResultType&gt; directly (which allows function nesting), while the function passed to {@link
-     * #map(Function)} just maps the value to the ResultType type, which is then wrapped in a {@link Maybe}.
+     * Notice that the first sentence of the description for this method is exactly the same as that provided for
+     * {@link #map(Function)}. The difference between the two methods is that the function passed to this method
+     * produces Maybe&lt;ResultType&gt; directly (which allows function nesting), while the function passed to
+     * {@link #map(Function)} just maps the value to the ResultType type, which is then wrapped in a {@link Maybe}.
      * </p>
      *
      * @param function A function mapping from Value to Maybe&lt;ResultType&gt;
@@ -194,7 +195,6 @@ public class Maybe<Value> implements
      * @return The mapped value as a {@link Maybe} object, or {@link #absent()} if no value was present
      */
     @SuppressWarnings("unchecked")
-    @Tested
     public <Output> Maybe<Output> apply(Function<? super Value, ? extends Maybe<? extends Output>> function)
     {
         return tryCatchDefault(() -> isPresent()
@@ -207,12 +207,12 @@ public class Maybe<Value> implements
      *
      * @return This value as a {@link Stream}
      */
-    @Tested
     public Stream<Value> asStream()
     {
         return isPresent() ? Stream.of(value) : Stream.empty();
     }
 
+    @Override
     public boolean equals(Object object)
     {
         if (object instanceof Maybe)
@@ -226,7 +226,6 @@ public class Maybe<Value> implements
     /**
      * Returns any value that might be present, or null if there is none
      */
-    @Tested
     public Value get()
     {
         return value;
@@ -235,7 +234,6 @@ public class Maybe<Value> implements
     /**
      * Returns true if a value is present
      */
-    @Tested
     public boolean has()
     {
         return isPresent();
@@ -253,7 +251,6 @@ public class Maybe<Value> implements
      * @param consumer The consumer for any non-null value
      * @return This {@link Maybe} for chaining
      */
-    @Tested
     public Maybe<Value> ifPresent(Consumer<Value> consumer)
     {
         if (isPresent())
@@ -271,7 +268,6 @@ public class Maybe<Value> implements
      * @param runnable The code to run
      * @return This value for chaining
      */
-    @Tested
     public Maybe<Value> ifPresentOr(Consumer<Value> consumer, UncheckedVoidCode runnable)
     {
         if (isPresent())
@@ -290,7 +286,6 @@ public class Maybe<Value> implements
      * Returns true if there is no value present
      */
     @Override
-    @Tested
     public boolean isAbsent()
     {
         return value == null;
@@ -299,7 +294,7 @@ public class Maybe<Value> implements
     /**
      * Returns true if there is a value present
      */
-    @Tested
+    @Override
     public boolean isPresent()
     {
         return value != null;
@@ -308,7 +303,6 @@ public class Maybe<Value> implements
     /**
      * Returns true if this object is valid
      */
-    @Tested
     public boolean isValid()
     {
         return true;
@@ -322,17 +316,17 @@ public class Maybe<Value> implements
      * <p><b>Important Note</b></p>
      *
      * <p>
-     * Notice that the first sentence of the description for this method is exactly the same as that provided for {@link
-     * #apply(Function)}. The difference between the two methods is that the function passed to {@link #apply(Function)}
-     * produces Maybe&lt;ResultType&gt; directly (which allows function nesting), while the function passed to this
-     * method just maps the value to the ResultType type, which is then wrapped in a {@link Maybe}.
+     * Notice that the first sentence of the description for this method is exactly the same as that provided for
+     * {@link #apply(Function)}. The difference between the two methods is that the function passed to
+     * {@link #apply(Function)} produces Maybe&lt;ResultType&gt; directly (which allows function nesting), while the
+     * function passed to this method just maps the value to the ResultType type, which is then wrapped in a
+     * {@link Maybe}.
      * </p>
      *
      * @param mapper A function mapping from Value to ResultType
      * @param <ResultType> The type that Value is being mapped to
      * @return The mapped value or {@link #absent()}
      */
-    @Tested
     public <ResultType> Maybe<ResultType> map(
             Function<? super Value, ? extends ResultType> mapper)
     {
@@ -350,7 +344,6 @@ public class Maybe<Value> implements
      * @return The combination of this value and the given argument, if both values are non-null, otherwise, returns
      * {@link #absent()}.
      */
-    @Tested
     public <Argument2, ResultType> Maybe<ResultType> map(
             BiFunction<Value, Argument2, ResultType> function,
             Argument2 argument2)
@@ -373,7 +366,6 @@ public class Maybe<Value> implements
      * @return The combination of this value and the given arguments, if all arguments are non-null, otherwise, returns
      * {@link #absent()}.
      */
-    @Tested
     public <Argument2, Argument3, ResultType> Maybe<ResultType> map(
             TriFunction<Value, Argument2, Argument3, ResultType> function,
             Argument2 argument2,
@@ -398,7 +390,6 @@ public class Maybe<Value> implements
      * @return The combination of this value and the given arguments, if all arguments are non-null, otherwise, returns
      * {@link #absent()}.
      */
-    @Tested
     public <Argument2, Argument3, Argument4, ResultType> Maybe<ResultType> map(
             TetraFunction<Value, Argument2, Argument3, Argument4, ResultType> function,
             Argument2 argument2,
@@ -425,7 +416,6 @@ public class Maybe<Value> implements
      * @return The combination of this value and the given arguments, if all arguments are non-null, otherwise, returns
      * {@link #absent()}.
      */
-    @Tested
     public <Argument2, Argument3, Argument4, Argument5, ResultType> Maybe<ResultType> map(
             PentaFunction<Value, Argument2, Argument3, Argument4, Argument5, ResultType> function,
             Argument2 argument2,
@@ -447,7 +437,6 @@ public class Maybe<Value> implements
      * @param defaultValue The default value to return if there is no value
      * @return The value
      */
-    @Tested
     public Value orDefaultTo(Value defaultValue)
     {
         return tryCatch(() -> isPresent()
@@ -461,7 +450,6 @@ public class Maybe<Value> implements
      * @param defaultValue The default value to return if there is no value
      * @return The value
      */
-    @Tested
     public Value orDefaultTo(Source<Value> defaultValue)
     {
         return tryCatch(() -> isPresent()
@@ -475,7 +463,6 @@ public class Maybe<Value> implements
      * @param source A source of a value, if there is no value present
      * @return This value or the value produced by the given source
      */
-    @Tested
     public Maybe<Value> orMaybe(Source<Value> source)
     {
         return tryCatch(() -> isPresent()
@@ -489,7 +476,6 @@ public class Maybe<Value> implements
      * @param value A source of a {@link Maybe} if there is no value present
      * @return This value or the value produced by the given source
      */
-    @Tested
     public Maybe<Value> orMaybe(Value value)
     {
         return tryCatch(() -> isPresent()
@@ -502,7 +488,6 @@ public class Maybe<Value> implements
      *
      * @return The value
      */
-    @Tested
     public Value orThrow()
     {
         return orThrow("No value present");
@@ -515,7 +500,6 @@ public class Maybe<Value> implements
      * @param arguments The message arguments
      * @return The value
      */
-    @Tested
     public Value orThrow(String message, Object... arguments)
     {
         if (isAbsent())
@@ -533,10 +517,9 @@ public class Maybe<Value> implements
      * @param predicate The predicate to test any non-null value
      * @return This value or a null value
      */
-    @Tested
-    public Maybe<Value> presentIf(BooleanFunction<Value> predicate)
+    public Maybe<Value> presentIf(Function<Value, Boolean> predicate)
     {
-        return tryCatch(() -> value != null && ensureNotNull(predicate).isTrue(value)
+        return tryCatch(() -> value != null && ensureNotNull(predicate).apply(value)
                 ? this
                 : newAbsent());
     }
@@ -564,7 +547,6 @@ public class Maybe<Value> implements
      * @return The combination of this value and the given arguments, if all arguments are non-null, otherwise, returns
      * {@link #absent()}.
      */
-    @Tested
     public <Argument2, Argument3, Argument4, Argument5> Maybe<Value> then(
             PentaFunction<Value, Argument2, Argument3, Argument4, Argument5, Value> function,
             Argument2 argument2,
@@ -591,7 +573,6 @@ public class Maybe<Value> implements
      * @return The combination of this value and the given arguments. if all arguments are non-null, otherwise, returns
      * {@link #absent()}.
      */
-    @Tested
     public <Argument2, Argument3, Argument4> Maybe<Value> then(
             TetraFunction<Value, Argument2, Argument3, Argument4, Value> function,
             Argument2 argument2,
@@ -616,7 +597,6 @@ public class Maybe<Value> implements
      * @return The combination of this value and the given arguments, if all arguments are non-null, otherwise, returns
      * {@link #absent()}.
      */
-    @Tested
     public <Argument2, Argument3> Maybe<Value> then(
             TriFunction<Value, Argument2, Argument3, Value> function,
             Argument2 argument2,
@@ -639,7 +619,6 @@ public class Maybe<Value> implements
      * @return The combination of this value and the given argument, if both values are non-null, otherwise, returns
      * {@link #absent()}.
      */
-    @Tested
     public <Argument2> Maybe<Value> then(
             BiFunction<Value, Argument2, Value> function,
             Argument2 argument2)
@@ -658,12 +637,12 @@ public class Maybe<Value> implements
      * @param function The function to apply
      * @return The value produced by the given function when applied to this value
      */
-    @Tested
     public Maybe<Value> then(Function<Value, Value> function)
     {
         return map(function);
     }
 
+    @Override
     public String toString()
     {
         return "[Maybe value = " + value + "]";

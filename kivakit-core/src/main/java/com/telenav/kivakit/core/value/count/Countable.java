@@ -18,8 +18,12 @@
 
 package com.telenav.kivakit.core.value.count;
 
-import com.telenav.kivakit.interfaces.collection.Sized;
-import com.telenav.lexakai.annotations.LexakaiJavadoc;
+import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.interfaces.numeric.Zeroable;
+
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
 
 /**
  * Interface to something that has a {@link Count} value.
@@ -27,16 +31,24 @@ import com.telenav.lexakai.annotations.LexakaiJavadoc;
  * @author jonathanl (shibo)
  * @see Count
  */
-@LexakaiJavadoc(complete = true)
-public interface Countable extends Sized
+@ApiQuality(stability = API_STABLE,
+            testing = TESTING_NONE,
+            documentation = DOCUMENTATION_COMPLETE)
+public interface Countable extends Zeroable
 {
     /**
-     * The size of this object as a {@link Count}
+     * Retrieves the count for this object
      *
-     * @return This object's size as a {@link Count}
+     * @return The count for this object
      */
-    default Count count()
+    Count count();
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    default boolean isZero()
     {
-        return Count.count(size());
+        return count().isZero();
     }
 }

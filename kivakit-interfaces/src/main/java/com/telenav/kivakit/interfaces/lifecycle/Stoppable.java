@@ -18,10 +18,14 @@
 
 package com.telenav.kivakit.interfaces.lifecycle;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.interfaces.internal.lexakai.DiagramLifeCycle;
 import com.telenav.kivakit.interfaces.time.LengthOfTime;
-import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
+
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
 
 /**
  * An operation that can be stopped
@@ -29,21 +33,26 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramLifeCycle.class)
-@LexakaiJavadoc(complete = true)
-public interface Stoppable<T extends LengthOfTime<T>> extends Operation
+@ApiQuality(stability = API_STABLE,
+            testing = TESTING_NOT_NEEDED,
+            documentation = DOCUMENTATION_COMPLETE)
+public interface Stoppable<Duration extends LengthOfTime<Duration>> extends Operation
 {
     /**
-     * Stops this task, waiting no more than the given wait time before giving up.
+     * Returns the maximum time to wait when stopping
      */
-    void stop(T wait);
+    Duration maximumStopTime();
 
     /**
      * Stops this task, blocking until the operation is completed
      */
     default void stop()
     {
-        stop(maximumWaitTime());
+        stop(maximumStopTime());
     }
 
-    T maximumWaitTime();
+    /**
+     * Stops this task, waiting no more than the given wait time before giving up.
+     */
+    void stop(Duration wait);
 }

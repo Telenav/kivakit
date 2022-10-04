@@ -19,7 +19,8 @@
 package com.telenav.kivakit.internal.tests.core.thread;
 
 import com.telenav.kivakit.core.messaging.context.CallStack;
-import com.telenav.kivakit.core.messaging.context.CallStack.Matching;import com.telenav.kivakit.internal.testing.CoreUnitTest;
+import com.telenav.kivakit.core.messaging.context.CallStack.Matching;
+import com.telenav.kivakit.internal.testing.CoreUnitTest;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -27,6 +28,7 @@ import static com.telenav.kivakit.core.messaging.context.CallStack.Proximity.IMM
 
 public class CallStackTest extends CoreUnitTest
 {
+    @SuppressWarnings("unused")
     public interface TestInterface
     {
         Class<?> testSubClass();
@@ -36,13 +38,13 @@ public class CallStackTest extends CoreUnitTest
     {
         public Class<?> testExact()
         {
-            return CallStack.callerOf(IMMEDIATE, Matching.EXACT, Nested.class).typeClass();
+            return CallStack.callerOf(IMMEDIATE, Matching.EXACT, Nested.class).parentType().type();
         }
 
         @Override
         public Class<?> testSubClass()
         {
-            return CallStack.callerOf(IMMEDIATE, Matching.SUBCLASS, TestInterface.class).typeClass();
+            return CallStack.callerOf(IMMEDIATE, Matching.SUBCLASS, TestInterface.class).parentType().type();
         }
     }
 

@@ -18,31 +18,51 @@
 
 package com.telenav.kivakit.interfaces.naming;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.interfaces.internal.lexakai.DiagramNaming;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
+
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
 
 /**
  * An object with a <i>programmatic</i> name. An object that is a {@link NamedObject} differs from an object that is
  * {@link Named} in that its name is meant for use by programmers and not end users. If {@link #objectName()} is not
  * implemented, a synthetic name for the object is created with {@link #syntheticName(Object)}.
+ * <p>
+ * By default, {@link NamedObject}s are not {@link Nameable} unless the object implementing this interface allows it.
+ * </p>
  *
  * @author jonathanl (shibo)
  */
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramNaming.class)
-public interface NamedObject
+@ApiQuality(stability = API_STABLE,
+            testing = TESTING_NOT_NEEDED,
+            documentation = DOCUMENTATION_COMPLETE)
+public interface NamedObject extends Nameable
 {
+    /**
+     * @return True if the given name is synthetic
+     */
     static boolean isSyntheticName(String name)
     {
-        return name != null && name.startsWith("synthetic:");
+        return name != null && name.startsWith("object:");
     }
 
+    /**
+     * @return Returns a synthetic name for the given object
+     */
     static String syntheticName(Object object)
     {
         return "object:" + object.getClass().getSimpleName()
                 + ":" + Integer.toString(System.identityHashCode(object), 16);
     }
 
+    /**
+     * @return True if this object has a synthetic name
+     */
     default boolean hasSyntheticName()
     {
         return isSyntheticName(objectName());
@@ -59,6 +79,7 @@ public interface NamedObject
 
     /**
      * Sets the name of this object
+     *
      * @param name The object's new name
      */
     default void objectName(String name)

@@ -1,17 +1,22 @@
 package com.telenav.kivakit.mixins;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.interfaces.factory.Factory;
 import com.telenav.kivakit.mixins.internal.lexakai.DiagramMixin;
-import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+
 /**
- * A poor-man's implementation of mixins, also known as <a href="https://scg.unibe.ch/archive/papers/Berg07aStatefulTraits.pdf">stateful
- * traits</a>, in Java. Interfaces that extend the {@link Mixin} superinterface can retrieve state values for the mixin
- * with {@link #mixin(Class, Factory)}. This obviates the need for hand delegation of an aggregate value when providing
- * an interface implementation for an object that already has a base class. For example, the <i>BaseRepeater</i>> class
- * can be used when there is no base class for an object, or <i>RepeaterMixin</i> can be used if there is already a base
- * class. Both achieve the same result, namely implementing the <i>Repeater</i> interface.
+ * A poor-man's implementation of mixins, also known as <a
+ * href="https://scg.unibe.ch/archive/papers/Berg07aStatefulTraits.pdf">stateful traits</a>, in Java. Interfaces that
+ * extend the {@link Mixin} superinterface can retrieve state values for the mixin with {@link #mixin(Class, Factory)}.
+ * This obviates the need for hand delegation of an aggregate value when providing an interface implementation for an
+ * object that already has a base class. For example, the <i>BaseRepeater</i>> class can be used when there is no base
+ * class for an object, or <i>RepeaterMixin</i> can be used if there is already a base class. Both achieve the same
+ * result, namely implementing the <i>Repeater</i> interface.
  *
  * <p><b>Performance Note</b></p>
  * <p>
@@ -20,8 +25,11 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
  *
  * @author jonathanl (shibo)
  */
-@LexakaiJavadoc(complete = true)
+@SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramMixin.class)
+@ApiQuality(stability = API_STABLE,
+            testing = TESTING_NONE,
+            documentation = DOCUMENTATION_COMPLETE)
 public interface Mixin
 {
     /**

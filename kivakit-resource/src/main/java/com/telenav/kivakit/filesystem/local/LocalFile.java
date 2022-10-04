@@ -18,6 +18,7 @@
 
 package com.telenav.kivakit.filesystem.local;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.time.Time;
 import com.telenav.kivakit.core.value.count.Bytes;
@@ -27,9 +28,9 @@ import com.telenav.kivakit.filesystem.spi.FileService;
 import com.telenav.kivakit.filesystem.spi.FolderService;
 import com.telenav.kivakit.resource.internal.lexakai.DiagramFileSystemService;
 import com.telenav.kivakit.resource.writing.BaseWritableResource;
-import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.visibility.UmlNotPublicApi;
+import org.jetbrains.annotations.NotNull;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -43,58 +44,67 @@ import java.nio.file.attribute.PosixFilePermission;
 import java.util.Arrays;
 import java.util.HashSet;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.ApiType.PRIVATE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+
 /**
  * Implementation of {@link FileService} provider interface for the local filesystem.
- *
- * @author jonathanl (shibo)
  */
+@SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramFileSystemService.class)
 @UmlNotPublicApi
-@LexakaiJavadoc(complete = true)
+@ApiQuality(stability = API_STABLE_EXTENSIBLE,
+            testing = TESTING_NONE,
+            documentation = DOCUMENTATION_COMPLETE,
+            type = PRIVATE)
 public class LocalFile extends BaseWritableResource implements FileService
 {
-    public static boolean isFile(FilePath path)
-    {
-        return new java.io.File(path.join()).isFile();
-    }
-
+    /** The underlying Java file */
     private final java.io.File file;
 
-    public LocalFile(FilePath path)
+    public LocalFile(@NotNull FilePath path)
     {
         super(path.withoutFileScheme());
         file = new java.io.File(path.join());
     }
 
-    public LocalFile(java.io.File file)
+    public LocalFile(@NotNull java.io.File file)
     {
         this(FilePath.filePath(file));
     }
 
-    public LocalFile(LocalFile that)
+    public LocalFile(@NotNull LocalFile that)
     {
         super(that);
         file = that.file;
     }
 
-    public LocalFile(LocalFolder folder, String name)
+    public LocalFile(@NotNull LocalFolder folder, @NotNull String name)
     {
         this(folder.path().withoutTrailingSlash().withChild(name));
     }
 
-    public LocalFile(String path)
+    public LocalFile(@NotNull String path)
     {
         this(FilePath.parseFilePath(Listener.consoleListener(), path));
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public java.io.File asJavaFile()
     {
         return file;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public boolean chmod(PosixFilePermission... permissions)
+    public boolean chmod(@NotNull PosixFilePermission... permissions)
     {
         try
         {
@@ -107,6 +117,9 @@ public class LocalFile extends BaseWritableResource implements FileService
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Time createdAt()
     {
@@ -122,6 +135,9 @@ public class LocalFile extends BaseWritableResource implements FileService
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public synchronized boolean delete()
     {
@@ -135,12 +151,18 @@ public class LocalFile extends BaseWritableResource implements FileService
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public DiskService diskService()
     {
         return root().diskService();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean equals(Object object)
     {
@@ -152,30 +174,45 @@ public class LocalFile extends BaseWritableResource implements FileService
         return false;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean exists()
     {
         return file.exists();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public LocalFolder folderService()
     {
         return new LocalFolder(file);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public int hashCode()
     {
         return file.hashCode();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean isFolder()
     {
         return file.isDirectory();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Boolean isWritable()
     {
@@ -191,18 +228,27 @@ public class LocalFile extends BaseWritableResource implements FileService
         return parentService().exists() && parentService().isWritable() && !file.exists();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public boolean lastModified(Time time)
+    public boolean lastModified(@NotNull Time time)
     {
         return file.setLastModified(time.milliseconds());
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public Time modifiedAt()
+    public Time lastModified()
     {
         return Time.epochMilliseconds(file.lastModified());
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public InputStream onOpenForReading()
     {
@@ -216,6 +262,9 @@ public class LocalFile extends BaseWritableResource implements FileService
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public OutputStream onOpenForWriting()
     {
@@ -229,20 +278,29 @@ public class LocalFile extends BaseWritableResource implements FileService
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public LocalFolder parentService()
     {
-        return new LocalFolder(path().absolute().parent());
+        return new LocalFolder(path().asAbsolute().parent());
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public FilePath path()
     {
         return (FilePath) super.path();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public boolean renameTo(FileService file)
+    public boolean renameTo(@NotNull FileService file)
     {
         if (isOnSameFileSystem(file))
         {
@@ -251,18 +309,27 @@ public class LocalFile extends BaseWritableResource implements FileService
         return fatal("Cannot rename across filesystems");
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public FolderService root()
     {
         return new LocalFolder(path().rootElement());
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Bytes sizeInBytes()
     {
         return Bytes.bytes(file.length());
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String toString()
     {

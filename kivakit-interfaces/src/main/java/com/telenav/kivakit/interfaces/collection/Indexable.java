@@ -18,10 +18,15 @@
 
 package com.telenav.kivakit.interfaces.collection;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.interfaces.internal.lexakai.DiagramCollection;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.Iterator;
+
+import static com.telenav.kivakit.annotations.code.ApiStability.API_FURTHER_EVALUATION_NEEDED;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
 
 /**
  * A sequence that has a known size and can be indexed, like a list, although not necessarily a collection. For example,
@@ -29,25 +34,63 @@ import java.util.Iterator;
  * the file.
  * <p>
  * Provides a default implementation of {@link Iterable} and {@link Iterator} accessible through {@link #asIterable()}
- * and {@link #asIterator()} as well as equals and hashcode accessible through {@link #isEqualTo(Indexable)} and {@link
- * Object#hashCode()}.
+ * and {@link #asIterator()} as well as equals and hashcode accessible through {@link #isEqualTo(Indexable)} and
+ * {@link Object#hashCode()}.
  *
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramCollection.class)
-public interface Indexable<Element> extends
+@ApiQuality(stability = API_FURTHER_EVALUATION_NEEDED,
+            testing = TESTING_NONE,
+            documentation = DOCUMENTATION_COMPLETE,
+            reviews = 1,
+            reviewers = "shibo")
+public interface Indexable<Value> extends
         Sized,
-        Sequence<Element>
+        Sequence<Value>
 {
+    /**
+     * @return True if this list starts with the given list
+     */
+    default boolean endsWith(Indexable<Value> that)
+    {
+        if (that == null || that.size() > size())
+        {
+            return false;
+        }
+        else
+        {
+            var thisIndex = this.size() - 1;
+            var thatIndex = that.size() - 1;
+            for (; thatIndex >= 0 && thisIndex >= 0; thisIndex--, thatIndex--)
+            {
+                if (!get(thisIndex).equals(that.get(thatIndex)))
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+    }
+
+    /**
+     * @return The first item in this indexable object, or null if there is none
+     */
+    @Override
+    default Value first()
+    {
+        return isEmpty() ? null : get(0);
+    }
+
     /**
      * @return The value for the given index
      */
-    Element get(int index);
+    Value get(int index);
 
     /**
      * @return The value at the given index or the default value if that index does not exist
      */
-    default Element getOrDefault(int index, Element defaultValue)
+    default Value getOrDefault(int index, Value defaultValue)
     {
         return index < size() ? get(index) : defaultValue;
     }
@@ -55,7 +98,7 @@ public interface Indexable<Element> extends
     /**
      * @return True if this indexable object and that indexable object have all the same values
      */
-    default boolean isEqualTo(Indexable<Element> that)
+    default boolean isEqualTo(Indexable<Value> that)
     {
         if (size() == that.size())
         {
@@ -74,8 +117,30 @@ public interface Indexable<Element> extends
     /**
      * @return The last item in this indexable object, or null if there is none
      */
-    default Element last()
+    default Value last()
     {
         return isEmpty() ? null : get(size() - 1);
+    }
+
+    /**
+     * @return True if this list starts with the given list
+     */
+    default boolean startsWith(Indexable<Value> that)
+    {
+        if (that == null || that.size() > size())
+        {
+            return false;
+        }
+        else
+        {
+            for (var i = 0; i < that.size(); i++)
+            {
+                if (!get(i).equals(that.get(i)))
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
     }
 }

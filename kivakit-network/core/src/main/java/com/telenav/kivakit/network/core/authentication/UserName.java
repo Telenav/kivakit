@@ -18,25 +18,39 @@
 
 package com.telenav.kivakit.network.core.authentication;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.conversion.BaseStringConverter;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.value.name.Name;
 import com.telenav.kivakit.network.core.internal.lexakai.DiagramAuthentication;
-import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
+
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_DEFAULT_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
 
 /**
  * A username for use in authentication.
  *
  * @author jonathanl (shibo)
  */
+@SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramAuthentication.class)
-@LexakaiJavadoc(complete = true)
+@ApiQuality(stability = API_STABLE_DEFAULT_EXTENSIBLE,
+            testing = TESTING_NONE,
+            documentation = DOCUMENTATION_COMPLETE)
 public class UserName extends Name
 {
-    public static UserName parse(Listener listener, String name)
+    /**
+     * Returns the given text parsed into a {@link UserName}
+     *
+     * @param listener The listener to notify of any problems
+     * @param text The text to parse
+     */
+    public static UserName parseUserName(Listener listener, String text)
     {
-        return new UserName(name);
+        return new UserName(text);
     }
 
     /**
@@ -44,7 +58,9 @@ public class UserName extends Name
      *
      * @author jonathanl (shibo)
      */
-    @LexakaiJavadoc(complete = true)
+    @ApiQuality(stability = API_STABLE_EXTENSIBLE,
+                testing = TESTING_NONE,
+                documentation = DOCUMENTATION_COMPLETE)
     public static class Converter extends BaseStringConverter<UserName>
     {
         public Converter(Listener listener)
@@ -55,7 +71,7 @@ public class UserName extends Name
         @Override
         protected UserName onToValue(String value)
         {
-            return parse(this, value);
+            return UserName.parseUserName(this, value);
         }
     }
 

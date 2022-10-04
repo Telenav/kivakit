@@ -1,6 +1,7 @@
 open module kivakit.interfaces
 {
     // Annotations
+    requires transitive kivakit.annotations;
     requires transitive lexakai.annotations;
     requires transitive org.jetbrains.annotations;
 
@@ -9,7 +10,6 @@ open module kivakit.interfaces
     exports com.telenav.kivakit.interfaces.collection;
     exports com.telenav.kivakit.interfaces.comparison;
     exports com.telenav.kivakit.interfaces.factory;
-    exports com.telenav.kivakit.interfaces.function;
     exports com.telenav.kivakit.interfaces.io;
     exports com.telenav.kivakit.interfaces.lifecycle;
     exports com.telenav.kivakit.interfaces.loading;

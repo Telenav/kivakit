@@ -1,9 +1,15 @@
 package com.telenav.kivakit.interfaces.time;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.interfaces.numeric.Zeroable;
+
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.Objects;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_DEFAULT_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
 import static java.lang.Math.addExact;
 import static java.lang.Math.subtractExact;
 
@@ -14,7 +20,12 @@ import static java.lang.Math.subtractExact;
  * @author jonathanl (shibo)
  */
 @SuppressWarnings("DuplicatedCode")
-public class Nanoseconds implements Comparable<Nanoseconds>
+@ApiQuality(stability = API_STABLE_DEFAULT_EXTENSIBLE,
+            testing = TESTING_NONE,
+            documentation = DOCUMENTATION_COMPLETE)
+public class Nanoseconds implements
+        Comparable<Nanoseconds>,
+        Zeroable
 {
     /** The number of nanoseconds in a second */
     private static final long NANOSECONDS_PER_SECOND = (long) 1E9;
@@ -143,6 +154,10 @@ public class Nanoseconds implements Comparable<Nanoseconds>
         return seconds * 1E9 + nanoseconds;
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public int compareTo(Nanoseconds that)
     {
         int result = Long.compare(seconds, that.seconds);
@@ -191,7 +206,7 @@ public class Nanoseconds implements Comparable<Nanoseconds>
     }
 
     @Override
-    public boolean equals(final Object object)
+    public boolean equals(Object object)
     {
         if (object instanceof Nanoseconds)
         {
@@ -207,26 +222,41 @@ public class Nanoseconds implements Comparable<Nanoseconds>
         return Objects.hash(seconds(), nanoseconds());
     }
 
+    /**
+     * @return True if this is greater than that
+     */
     public boolean isGreaterThan(Nanoseconds that)
     {
         return compareTo(that) > 0;
     }
 
+    /**
+     * @return True if this is greater than or equal to that
+     */
     public boolean isGreaterThanOrEqualTo(Nanoseconds that)
     {
         return compareTo(that) >= 0;
     }
 
+    /**
+     * @return True if this is less than that
+     */
     public boolean isLessThan(Nanoseconds that)
     {
         return compareTo(that) < 0;
     }
 
+    /**
+     * @return True if this is less than or equal to that
+     */
     public boolean isLessThanOrEqualTo(Nanoseconds that)
     {
         return compareTo(that) <= 0;
     }
 
+    /**
+     * @return True if this is a negative number of nanoseconds
+     */
     public boolean isNegative()
     {
         return isLessThan(ZERO);
@@ -235,6 +265,7 @@ public class Nanoseconds implements Comparable<Nanoseconds>
     /**
      * @return True if this is zero nanoseconds
      */
+    @Override
     public boolean isZero()
     {
         return equals(ZERO);
@@ -343,6 +374,7 @@ public class Nanoseconds implements Comparable<Nanoseconds>
         return nanoseconds(asBigDecimal().multiply(BigDecimal.valueOf(factor)));
     }
 
+    @Override
     public String toString()
     {
         return String.format("%d.%09d", seconds(), nanoseconds());

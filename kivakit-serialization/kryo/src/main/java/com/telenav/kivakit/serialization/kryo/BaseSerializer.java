@@ -4,13 +4,16 @@ import com.esotericsoftware.kryo.Kryo;
 import com.esotericsoftware.kryo.Serializer;
 import com.esotericsoftware.kryo.io.Input;
 import com.esotericsoftware.kryo.io.Output;
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.version.Version;
 import com.telenav.kivakit.serialization.kryo.internal.lexakai.DiagramKryo;
-import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.Objects;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
 import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
 import static com.telenav.kivakit.core.ensure.Ensure.unsupported;
 
@@ -20,12 +23,18 @@ import static com.telenav.kivakit.core.ensure.Ensure.unsupported;
  *
  * @author jonathanl (shibo)
  */
+@SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramKryo.class)
-@LexakaiJavadoc(complete = true)
+@ApiQuality(stability = API_STABLE_EXTENSIBLE,
+            testing = TESTING_NONE,
+            documentation = DOCUMENTATION_COMPLETE)
 public abstract class BaseSerializer<Value> extends Serializer<Value>
 {
     private static final ThreadLocal<Version> threadLocalVersion = new ThreadLocal<>();
 
+    /**
+     * Sets the version being serialized for access through a thread-local. This reduces parameter passing
+     */
     public static void version(Version version)
     {
         threadLocalVersion.set(Objects.requireNonNull(version));
@@ -50,7 +59,7 @@ public abstract class BaseSerializer<Value> extends Serializer<Value>
     @Override
     public Value read(Kryo kryo, Input input, Class<? extends Value> type)
     {
-        return onRead(KryoSerializationSession.session(kryo));
+        return onRead(KryoSerializationSession.kryoSerializationSession(kryo));
     }
 
     /**
@@ -69,7 +78,7 @@ public abstract class BaseSerializer<Value> extends Serializer<Value>
     @Override
     public final void write(Kryo kryo, Output output, Value value)
     {
-        onWrite(KryoSerializationSession.session(kryo), value);
+        onWrite(KryoSerializationSession.kryoSerializationSession(kryo), value);
     }
 
     /**

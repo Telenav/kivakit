@@ -33,13 +33,13 @@ public class ConverterTest extends CoreUnitTest
     public void testBadInputs()
     {
         new MessageChecker().expect(Problem.class).check(() ->
-                ensureEqual(null, new SecondsConverter(Listener.emptyListener()).convert(null)));
+                ensureEqual(null, new SecondsConverter(Listener.nullListener()).convert(null)));
 
         new MessageChecker().expect(Problem.class).check(() ->
-                ensureEqual(null, new SecondsConverter(Listener.emptyListener()).convert("")));
+                ensureEqual(null, new SecondsConverter(Listener.nullListener()).convert("")));
 
         new MessageChecker().expect(Problem.class).check(() ->
-                ensureEqual(null, new SecondsConverter(Listener.emptyListener()).convert("x")));
+                ensureEqual(null, new SecondsConverter(Listener.nullListener()).convert("x")));
     }
 
     @Test

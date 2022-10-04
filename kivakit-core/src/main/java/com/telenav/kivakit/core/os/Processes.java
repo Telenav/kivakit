@@ -18,59 +18,70 @@
 
 package com.telenav.kivakit.core.os;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.io.IO;
-import com.telenav.kivakit.core.io.StringReader;
+import com.telenav.kivakit.core.io.ProgressiveStringReader;
+import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.progress.ProgressReporter;
-import com.telenav.lexakai.annotations.LexakaiJavadoc;
+
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_STATIC_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
 
 /**
  * Utility methods that work with Java {@link Process} objects.
  *
  * @author jonathanl (shibo)
  */
-@LexakaiJavadoc(complete = true)
+@ApiQuality(stability = API_STABLE_STATIC_EXTENSIBLE,
+            testing = TESTING_NONE,
+            documentation = DOCUMENTATION_COMPLETE)
 public class Processes
 {
     /**
+     * Captures the output of a process
+     *
+     * @param listener The listener to call with any problems
+     * @param process The process
      * @return The output of the given process as a string
      */
-    public static String captureOutput(Process process)
+    public static String captureOutput(Listener listener, Process process)
     {
         var in = process.getInputStream();
         try
         {
-            return new StringReader(in).readString(ProgressReporter.none());
+            return new ProgressiveStringReader(listener, in).readString(ProgressReporter.nullProgressReporter());
         }
         finally
         {
-            IO.close(in);
+            IO.close(listener, in);
         }
     }
 
     /**
      * Redirects the output of the given process to the console
      */
-    public static void redirectStandardErrorToConsole(Process process)
+    public static void redirectStandardErrorToConsole(Listener listener, Process process)
     {
         var input = process.getErrorStream();
-        IO.copy(input, System.err, IO.CopyStyle.UNBUFFERED);
-        IO.flush(System.err);
+        IO.copy(listener, input, System.err, IO.CopyStyle.UNBUFFERED);
+        IO.flush(listener, System.err);
     }
 
     /**
      * Redirects the output of the given process to the console
      */
-    public static void redirectStandardOutToConsole(Process process)
+    public static void redirectStandardOutToConsole(Listener listener, Process process)
     {
         var input = process.getInputStream();
-        IO.copy(input, System.out, IO.CopyStyle.UNBUFFERED);
-        IO.flush(System.out);
+        IO.copy(listener, input, System.out, IO.CopyStyle.UNBUFFERED);
+        IO.flush(listener, System.out);
     }
 
     /**
      * Waits for the given process to terminate
      */
-    public static void waitFor(Process process)
+    public static void waitForTermination(Process process)
     {
         try
         {

@@ -18,6 +18,7 @@
 
 package com.telenav.kivakit.resource.compression.archive;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.code.UncheckedCode;
 import com.telenav.kivakit.core.collections.map.VariableMap;
 import com.telenav.kivakit.core.io.IO;
@@ -35,15 +36,16 @@ import com.telenav.kivakit.core.value.count.MutableCount;
 import com.telenav.kivakit.core.version.VersionedObject;
 import com.telenav.kivakit.filesystem.File;
 import com.telenav.kivakit.interfaces.code.Callback;
+import com.telenav.kivakit.interfaces.io.Closeable;
 import com.telenav.kivakit.resource.Resource;
 import com.telenav.kivakit.resource.internal.lexakai.DiagramResourceArchive;
 import com.telenav.kivakit.resource.serialization.ObjectReader;
 import com.telenav.kivakit.resource.serialization.ObjectWriter;
 import com.telenav.kivakit.resource.serialization.SerializableObject;
-import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeSuperTypes;
+import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
 import java.io.OutputStream;
@@ -52,20 +54,27 @@ import java.nio.file.FileSystem;
 import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 import java.util.regex.Pattern;
 import java.util.zip.ZipFile;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_DEFAULT_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_ENUM_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
 import static com.telenav.kivakit.core.ensure.Ensure.fail;
-import static com.telenav.kivakit.resource.compression.archive.ZipArchive.Mode.READ;
-import static com.telenav.kivakit.resource.serialization.ObjectMetadata.TYPE;
-import static com.telenav.kivakit.resource.serialization.ObjectMetadata.VERSION;
+import static com.telenav.kivakit.resource.compression.archive.ZipArchive.AccessMode.READ;
+import static com.telenav.kivakit.resource.serialization.ObjectMetadata.OBJECT_TYPE;
+import static com.telenav.kivakit.resource.serialization.ObjectMetadata.OBJECT_VERSION;
 
 /**
  * A wrapper around the JDK zip filesystem that makes it easier to use. A {@link ZipArchive} can be created with
- * {@link #open(Listener, File, Mode)}, which returns the open zip archive or null if the operation fails. Adds the
- * ability to save and load objects into zip entries using an {@link ObjectWriter}, and {@link ObjectReader},
+ * {@link #zipArchive(Listener, File, AccessMode)}, which returns the open zip archive or null if the operation fails.
+ * Adds the ability to save and load objects into zip entries using an {@link ObjectWriter}, and {@link ObjectReader},
  * respectively. A zip archive contains entries wrapped by {@link ZipEntry} and a {@link ZipArchive} is {@link Iterable}
  * to make it easy to enumerate zip entries:
  * <pre>
@@ -76,25 +85,50 @@ import static com.telenav.kivakit.resource.serialization.ObjectMetadata.VERSION;
  * }
  * </pre>
  *
+ * <p><b>Opening Zip Files</b></p>
+ *
+ * <ul>
+ *     <li>{@link #isZipArchive(Listener, File)}</li>
+ *     <li>{@link #zipArchive(Listener, File, AccessMode)}</li>
+ * </ul>
+ *
+ * <p><b>Reading Entries</b></p>
+ *
+ * <ul>
+ *     <li>{@link #close()}</li>
+ *     <li>{@link #entries(Pattern)}</li>
+ *     <li>{@link #entry(String)}</li>
+ *     <li>{@link #iterator()}</li>
+ *     <li>{@link #loadVersionedObject(ObjectReader, String)} - Loads the object from the named entry using the given object reader</li>
+ * </ul>
+ *
+ * <p><b>Properties</b></p>
+ *
+ * <ul>
+ *     <li>{@link #file()}</li>
+ *     <li>{@link #resource()}</li>
+ *     <li>{@link #sizeInBytes()}</li>
+ * </ul>
+ *
  * <p><b>Adding Files</b></p>
  *
  * <p>
- * Files can be added to the archive with {@link #add(List, ProgressReporter)}. To do this, the zip file must be opened
- * in {@link Mode#WRITE}.
+ * Files can be added to the archive with {@link #add(Collection, ProgressReporter)}. To do this, the zip file must be
+ * opened in {@link AccessMode#WRITE}.
  * </p>
  *
- * <p><b>Saving</b></p>
+ * <ul>
+ *     <li>{@link #add(Collection)}</li>
+ *     <li>{@link #add(Collection, ProgressReporter)}</li>
+ * </ul>
+ *
+ * <p><b>Saving Entries</b></p>
  *
  * <ul>
  *     <li>{@link #save(String, Resource)} - Saves the given resources into the named zip entry</li>
  *     <li>{@link #save(ObjectWriter, String, VersionedObject)} - Writes the object to the given entry</li>
  *     <li>{@link #saveEntry(String, Callback)} - Saves to the named entry calling the callback to do the work</li>
- * </ul>
- *
- * <p><b>Loading</b></p>
- *
- * <ul>
- *     <li>{@link #load(ObjectReader, String)} - Loads the object from the named entry using the given serializer </li>
+ *     <li>{@link #close()}</li>
  * </ul>
  *
  * @author jonathanl (shibo)
@@ -106,18 +140,20 @@ import static com.telenav.kivakit.resource.serialization.ObjectMetadata.VERSION;
  */
 @UmlClassDiagram(diagram = DiagramResourceArchive.class)
 @UmlRelation(label = "stores", referent = ZipEntry.class)
-@UmlRelation(label = "opens for access", referent = ZipArchive.Mode.class)
+@UmlRelation(label = "opens for access", referent = ZipArchive.AccessMode.class)
 @UmlExcludeSuperTypes({ AutoCloseable.class, Iterable.class })
-@LexakaiJavadoc(complete = true)
+@ApiQuality(stability = API_STABLE_DEFAULT_EXTENSIBLE,
+            testing = TESTING_NONE,
+            documentation = DOCUMENTATION_COMPLETE)
 public final class ZipArchive extends BaseRepeater implements
         Iterable<ZipEntry>,
-        AutoCloseable,
+        Closeable,
         ByteSized
 {
     /**
-     * @return True if the resource is a zip archive
+     * Returns true if the resource is a zip archive
      */
-    public static boolean is(Listener listener, File file)
+    public static boolean isZipArchive(@NotNull Listener listener, @NotNull File file)
     {
         if (file.isRemote())
         {
@@ -127,7 +163,7 @@ public final class ZipArchive extends BaseRepeater implements
         {
             if (file.exists())
             {
-                var zip = open(listener, file, READ);
+                var zip = zipArchive(listener, file, READ);
                 if (zip != null)
                 {
                     zip.close();
@@ -138,7 +174,17 @@ public final class ZipArchive extends BaseRepeater implements
         return false;
     }
 
-    public static ZipArchive open(Listener listener, File file, Mode mode)
+    /**
+     * Creates a {@link ZipArchive} object for the given file and access mode
+     *
+     * @param listener The listener to call with any problems
+     * @param file The zip file
+     * @param mode The access mode
+     * @return The {@link ZipArchive} object
+     */
+    public static ZipArchive zipArchive(@NotNull Listener listener,
+                                        @NotNull File file,
+                                        @NotNull AccessMode mode)
     {
         if (file.isRemote())
         {
@@ -161,35 +207,52 @@ public final class ZipArchive extends BaseRepeater implements
      * @author jonathanl (shibo)
      */
     @UmlClassDiagram(diagram = DiagramResourceArchive.class)
-    @LexakaiJavadoc(complete = true)
-    public enum Mode
+    @ApiQuality(stability = API_STABLE_ENUM_EXTENSIBLE,
+                testing = TESTING_NOT_NEEDED,
+                documentation = DOCUMENTATION_COMPLETE)
+    public enum AccessMode
     {
         READ,
         WRITE
     }
 
-    private final File file;
+    /** The underlying zip file */
+    private final File zipFile;
 
+    /** The Java zip filesystem */
     private FileSystem filesystem;
 
-    public ZipArchive(FileSystem filesystem, File file)
+    /**
+     * @param filesystem The zip filesystem
+     * @param zipFile The zip file to access
+     */
+    private ZipArchive(@NotNull FileSystem filesystem,
+                       @NotNull File zipFile)
     {
-        assert file != null;
-        assert filesystem != null;
+        ensureNotNull(filesystem);
+        ensureNotNull(zipFile);
 
-        this.file = file.materialized(BroadcastingProgressReporter.create(this));
+        this.zipFile = zipFile.materialized(BroadcastingProgressReporter.createProgressReporter(this));
         this.filesystem = filesystem;
     }
 
-    public void add(List<File> files)
+    /**
+     * Adds the given files to this archive
+     */
+    public void add(@NotNull Collection<File> files)
     {
-        add(files, ProgressReporter.none());
+        add(files, ProgressReporter.nullProgressReporter());
     }
 
     /**
      * Adds the given list of files to this archive, calling the progress reporter as the operation proceeds
+     *
+     * @param files The files to add
+     * @param reporter The progress reporter to call as each file is added
      */
-    public void add(List<File> files, ProgressReporter reporter)
+    @SuppressWarnings("resource")
+    public void add(@NotNull Collection<File> files,
+                    @NotNull ProgressReporter reporter)
     {
         for (var file : files)
         {
@@ -198,18 +261,21 @@ public final class ZipArchive extends BaseRepeater implements
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public synchronized void close()
     {
-        Nio.close(filesystem);
-        IO.close(filesystem);
+        Nio.close(this, filesystem);
+        IO.close(this, filesystem);
         filesystem = null;
     }
 
     /**
-     * @return The entries that match the given pattern
+     * Returns the entries that match the given pattern
      */
-    public List<ZipEntry> entries(Pattern compile)
+    public List<ZipEntry> entries(@NotNull Pattern compile)
     {
         var entries = new ArrayList<ZipEntry>();
         for (var entry : this)
@@ -228,9 +294,9 @@ public final class ZipArchive extends BaseRepeater implements
      *
      * @return The entry, if any, for the given name
      */
-    public synchronized ZipEntry entry(String pathname)
+    public synchronized ZipEntry entry(@NotNull String pathname)
     {
-        var path = UncheckedCode.of(() -> filesystem.getPath(pathname)).orNull();
+        var path = UncheckedCode.unchecked(() -> filesystem.getPath(pathname)).orNull();
         if (path != null)
         {
             return new ZipEntry(filesystem, path);
@@ -240,21 +306,21 @@ public final class ZipArchive extends BaseRepeater implements
     }
 
     /**
-     * @return The zip file for this archive, if any
+     * Returns the zip file for this archive, if any
      */
     public File file()
     {
-        return file;
+        return zipFile;
     }
 
     /**
-     * @return The zip entries in this archive
+     * Returns the zip entries in this archive
      */
     @SuppressWarnings("NullableProblems")
     @Override
     public Iterator<ZipEntry> iterator()
     {
-        var files = UncheckedCode.of(() -> Files.walk(filesystem.getPath("/"))).orNull();
+        var files = UncheckedCode.unchecked(() -> Files.walk(filesystem.getPath("/"))).orNull();
         return files == null ? null : files
                 .filter(path -> !Files.isDirectory(path))
                 .map(path -> new ZipEntry(filesystem, path))
@@ -262,18 +328,23 @@ public final class ZipArchive extends BaseRepeater implements
     }
 
     /**
-     * @return The versioned object loaded from the given archive entry using the given serialization
+     * Returns the versioned object loaded from the given archive entry using the given serialization
+     *
+     * @param reader The object reader
+     * @param entryName The zip file entry to read
      */
-    public synchronized <T> VersionedObject<T> load(ObjectReader reader, String entryName)
+    @SuppressWarnings("resource")
+    public synchronized <T> VersionedObject<T> loadVersionedObject(@NotNull ObjectReader reader,
+                                                                   @NotNull String entryName)
     {
         try
         {
             var entry = entry(entryName);
             if (entry != null)
             {
-                try (var input = new ProgressiveInputStream(entry.openForReading(reader.reporter())))
+                try (var input = new ProgressiveInputStream(entry.openForReading(reader.progressReporter()), reader.progressReporter()))
                 {
-                    return reader.read(input, StringPath.stringPath(entryName), TYPE, VERSION);
+                    return reader.readObject(input, StringPath.stringPath(entryName), OBJECT_TYPE, OBJECT_VERSION);
                 }
             }
         }
@@ -285,11 +356,11 @@ public final class ZipArchive extends BaseRepeater implements
     }
 
     /**
-     * @return The archive resource
+     * Returns the archive resource
      */
     public Resource resource()
     {
-        return file;
+        return zipFile;
     }
 
     /**
@@ -298,13 +369,13 @@ public final class ZipArchive extends BaseRepeater implements
      * @param entryName The entry name
      * @param resource The resource to save
      */
-    public ZipArchive save(String entryName, Resource resource)
+    public ZipArchive save(@NotNull String entryName, @NotNull Resource resource)
     {
         saveEntry(entryName, output ->
         {
             var input = resource.openForReading();
-            IO.copy(input, output);
-            IO.close(input);
+            IO.copy(this, input, output);
+            IO.close(this, input);
         });
         return this;
     }
@@ -312,18 +383,20 @@ public final class ZipArchive extends BaseRepeater implements
     /**
      * Saves the given object to the zip archive under the given entry name using the given serialization
      */
-    public <T> void save(ObjectWriter writer, String entryName, VersionedObject<T> object)
+    public <T> void save(@NotNull ObjectWriter writer,
+                         @NotNull String entryName,
+                         @NotNull VersionedObject<T> object)
     {
         saveEntry(entryName, output ->
         {
             try
             {
-                writer.write(new ProgressiveOutputStream(output, writer.reporter()),
-                        StringPath.stringPath(entryName), new SerializableObject<>(object), TYPE, VERSION);
+                writer.writeObject(new ProgressiveOutputStream(output, writer.progressReporter()),
+                        StringPath.stringPath(entryName), new SerializableObject<>(object), OBJECT_TYPE, OBJECT_VERSION);
             }
             finally
             {
-                IO.flush(output);
+                IO.flush(this, output);
             }
         });
     }
@@ -331,7 +404,8 @@ public final class ZipArchive extends BaseRepeater implements
     /**
      * Saves to the given archive entry, calling the callback with the output stream to write to
      */
-    public void saveEntry(String entryName, Callback<OutputStream> onWrite)
+    public void saveEntry(@NotNull String entryName,
+                          @NotNull Callback<OutputStream> onWrite)
     {
         try
         {
@@ -340,7 +414,7 @@ public final class ZipArchive extends BaseRepeater implements
             {
                 try (var output = entry.openForWriting())
                 {
-                    onWrite.onCallback(output);
+                    onWrite.call(output);
                 }
                 entry.close();
             }
@@ -351,6 +425,9 @@ public final class ZipArchive extends BaseRepeater implements
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Bytes sizeInBytes()
     {
@@ -365,10 +442,12 @@ public final class ZipArchive extends BaseRepeater implements
     @Override
     public String toString()
     {
-        return file.path().toString();
+        return zipFile.path().toString();
     }
 
-    private static FileSystem filesystem(Listener listener, File file, Mode mode)
+    private static FileSystem filesystem(@NotNull Listener listener,
+                                         @NotNull File file,
+                                         @NotNull AccessMode mode)
     {
         var fileUri = file.asJavaFile().toURI();
         var uri = URI.create("jar:" + fileUri);
@@ -378,14 +457,14 @@ public final class ZipArchive extends BaseRepeater implements
             {
                 var environment = new VariableMap<String>();
                 environment.put("create", "true");
-                return UncheckedCode.of(() -> Nio.filesystem(listener, uri, environment)).orNull();
+                return UncheckedCode.unchecked(() -> Nio.filesystem(listener, uri, environment)).orNull();
             }
 
             case READ:
             {
                 if (file.exists())
                 {
-                    var filesystem = UncheckedCode.of(() -> FileSystems.getFileSystem(uri)).orNull();
+                    var filesystem = UncheckedCode.unchecked(() -> FileSystems.getFileSystem(uri)).orNull();
                     if (filesystem != null)
                     {
                         return filesystem;

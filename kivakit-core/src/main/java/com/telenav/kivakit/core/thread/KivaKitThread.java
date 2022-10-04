@@ -18,11 +18,10 @@
 
 package com.telenav.kivakit.core.thread;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.code.UncheckedVoidCode;
 import com.telenav.kivakit.core.ensure.Ensure;
 import com.telenav.kivakit.core.internal.lexakai.DiagramThread;
-import com.telenav.kivakit.core.logging.Logger;
-import com.telenav.kivakit.core.logging.LoggerFactory;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.messaging.Repeater;
 import com.telenav.kivakit.core.messaging.repeaters.BaseRepeater;
@@ -35,13 +34,15 @@ import com.telenav.kivakit.interfaces.lifecycle.Startable;
 import com.telenav.kivakit.interfaces.lifecycle.Stoppable;
 import com.telenav.kivakit.interfaces.naming.Named;
 import com.telenav.kivakit.interfaces.time.WakeState;
-import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import org.jetbrains.annotations.MustBeInvokedByOverriders;
 
 import java.util.HashSet;
 import java.util.Set;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
 import static com.telenav.kivakit.core.thread.KivaKitThread.State.CREATED;
 import static com.telenav.kivakit.core.thread.KivaKitThread.State.EXITED;
 import static com.telenav.kivakit.core.thread.KivaKitThread.State.RAN;
@@ -80,9 +81,9 @@ import static com.telenav.kivakit.core.thread.KivaKitThread.State.WAITING;
  *
  * <ul>
  *     <li>{@link #daemon(boolean)} - Makes this thread a daemon if true, must be set before the thread is started</li>
- *     <li>{@link #highPriority()} - Makes this thread high priority</li>
+ *     <li>{@link #makeHighPriority()} - Makes this thread high priority</li>
  *     <li>{@link #initialDelay(Duration)} - Sets a delay that should pass before this thread starts to execute user code</li>
- *     <li>{@link #lowPriority()} - Makes this thread low priority</li>
+ *     <li>{@link #makeLowPriority()} - Makes this thread low priority</li>
  *     <li>{@link #startedAt()} - The time at which this thread transitioned to {@link State#RUNNING}</li>
  *     <li>{@link #stateMachine()} - The current state of the thread as a {@link StateMachine} that can be waited on</li>
  *     <li>{@link #thread()} - The underlying Java thread object</li>
@@ -126,29 +127,19 @@ import static com.telenav.kivakit.core.thread.KivaKitThread.State.WAITING;
  * @see Stoppable
  * @see Repeater
  */
-@SuppressWarnings("UnusedReturnValue")
+@SuppressWarnings({ "UnusedReturnValue", "unused" })
 @UmlClassDiagram(diagram = DiagramThread.class)
-@LexakaiJavadoc(complete = true)
+@ApiQuality(stability = API_STABLE_EXTENSIBLE,
+            testing = TESTING_NONE,
+            documentation = DOCUMENTATION_COMPLETE)
 public class KivaKitThread extends BaseRepeater implements
         Startable,
         Runnable,
         Stoppable<Duration>,
         Named
 {
-    private static final Logger LOGGER = LoggerFactory.newLogger();
-
     /** Set of all KivaKit thread names */
     private static final Set<String> names = new HashSet<>();
-
-    /**
-     * @return A started thread with the given name that will run the given code at the given frequency.
-     */
-    public static KivaKitThread repeat(String name,
-                                       Frequency every,
-                                       UncheckedVoidCode code)
-    {
-        return repeat(LOGGER, name, every, code);
-    }
 
     /**
      * @return A started thread with the given name that will run the given code at the given frequency.
@@ -159,15 +150,6 @@ public class KivaKitThread extends BaseRepeater implements
                                        UncheckedVoidCode code)
     {
         return run(listener, name, () -> code.loop(listener, every.cycleLength()));
-    }
-
-    /**
-     * @return A started thread with the given name that has been started
-     */
-    public static KivaKitThread run(String name,
-                                    Runnable code)
-    {
-        return run(LOGGER, name, code);
     }
 
     /**
@@ -187,7 +169,6 @@ public class KivaKitThread extends BaseRepeater implements
      *
      * @author jonathanl (shibo)
      */
-    @LexakaiJavadoc(complete = true)
     public enum State
     {
         /** The thread has been created but is not yet running */
@@ -241,7 +222,7 @@ public class KivaKitThread extends BaseRepeater implements
      */
     public KivaKitThread(String name, Runnable code)
     {
-        super(name("Kiva-" + name));
+        super(threadName("Kiva-" + name));
 
         thread = new Thread(this, objectName());
         thread.setDaemon(true);
@@ -267,15 +248,6 @@ public class KivaKitThread extends BaseRepeater implements
     public KivaKitThread daemon(boolean daemon)
     {
         thread.setDaemon(daemon);
-        return this;
-    }
-
-    /**
-     * Makes this thread high priority
-     */
-    public KivaKitThread highPriority()
-    {
-        thread.setPriority(Thread.MAX_PRIORITY);
         return this;
     }
 
@@ -329,16 +301,25 @@ public class KivaKitThread extends BaseRepeater implements
     }
 
     /**
+     * Makes this thread high priority
+     */
+    public KivaKitThread makeHighPriority()
+    {
+        thread.setPriority(Thread.MAX_PRIORITY);
+        return this;
+    }
+
+    /**
      * Makes this a low priority thread
      */
-    public KivaKitThread lowPriority()
+    public KivaKitThread makeLowPriority()
     {
         thread.setPriority(Thread.MIN_PRIORITY);
         return this;
     }
 
     @Override
-    public Duration maximumWaitTime()
+    public Duration maximumStopTime()
     {
         return Duration.MAXIMUM;
     }
@@ -550,7 +531,7 @@ public class KivaKitThread extends BaseRepeater implements
         initialDelay.sleep();
     }
 
-    private static String name(String name)
+    private static String threadName(String name)
     {
         int number = 1;
         while (names.contains(name))

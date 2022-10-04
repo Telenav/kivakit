@@ -18,25 +18,58 @@
 
 package com.telenav.kivakit.core.collections.iteration;
 
-import com.telenav.kivakit.core.language.Hash;
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramIteration;
-import com.telenav.lexakai.annotations.LexakaiJavadoc;
+import com.telenav.kivakit.core.language.Hash;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Iterator;
 import java.util.Objects;
 import java.util.function.Supplier;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_STATIC_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+
 /**
  * Utility methods that operate on {@link Iterator}s.
+ *
+ * <p><b>Hash/Equals</b></p>
+ *
+ * <ul>
+ *     <li>{@link #hashCode(Iterator)}</li>
+ *     <li>{@link #equals(Iterator, Iterator)}</li>
+ * </ul>
+ *
+ * <p><b>Size</b></p>
+ *
+ * <ul>
+ *     <li>{@link #size(Iterator)}</li>
+ *     <li>{@link #isEmpty(Iterator)}</li>
+ * </ul>
+ *
+ * <p><b>Construction</b></p>
+ *
+ * <ul>
+ *     <li>{@link #iterator(Supplier)}</li>
+ *     <li>{@link #emptyIterator()} </li>
+ *     <li>{@link #singletonIterator(Object)}</li>
+ * </ul>
  *
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramIteration.class)
-@LexakaiJavadoc(complete = true)
+@ApiQuality(stability = API_STABLE_STATIC_EXTENSIBLE,
+            testing = TESTING_NONE,
+            documentation = DOCUMENTATION_COMPLETE)
 public class Iterators
 {
-    public static <T> Iterator<T> empty()
+
+    /**
+     * Returns an empty iterator
+     */
+    public static <T> Iterator<T> emptyIterator()
     {
         return new Iterator<>()
         {
@@ -57,17 +90,15 @@ public class Iterators
     /**
      * @return True if the two sequences are equal
      */
-    public static <T> boolean equals(Iterator<T> iteratorA, Iterator<T> iteratorB)
+    public static <T> boolean equals(Iterator<T> a, Iterator<T> b)
     {
         while (true)
         {
-            var aHasNext = iteratorA.hasNext();
-            var bHasNext = iteratorB.hasNext();
+            var aHasNext = a.hasNext();
+            var bHasNext = b.hasNext();
             if (aHasNext && bHasNext)
             {
-                var a = iteratorA.next();
-                var b = iteratorB.next();
-                if (!Objects.equals(a, b))
+                if (!Objects.equals(a.next(), b.next()))
                 {
                     return false;
                 }
@@ -94,6 +125,14 @@ public class Iterators
             }
         }
         return hashCode;
+    }
+
+    /**
+     * @return True if the given iterable has no values
+     */
+    public static boolean isEmpty(@NotNull Iterator<?> iterator)
+    {
+        return !iterator.hasNext();
     }
 
     /**
@@ -132,5 +171,20 @@ public class Iterators
                 return null;
             }
         };
+    }
+
+    /**
+     * @param iterator An iterator
+     * @return The number of items produced by this iterator
+     */
+    public static int size(Iterator<?> iterator)
+    {
+        var counter = 0;
+        while (iterator.hasNext())
+        {
+            iterator.next();
+            counter++;
+        }
+        return counter;
     }
 }

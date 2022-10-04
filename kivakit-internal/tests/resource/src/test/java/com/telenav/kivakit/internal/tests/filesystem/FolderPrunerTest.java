@@ -26,6 +26,7 @@ import com.telenav.kivakit.filesystem.File;
 import com.telenav.kivakit.filesystem.Folder;
 import com.telenav.kivakit.filesystem.FolderPruner;
 import com.telenav.kivakit.testing.UnitTest;
+import org.jetbrains.annotations.NotNull;
 import org.junit.Ignore;
 import org.junit.Test;
 
@@ -41,7 +42,7 @@ public class FolderPrunerTest extends UnitTest
 
         // Save file abc
         var file1 = folder.file("abc");
-        file1.writer().save("abc");
+        file1.writer().saveText("abc");
         ensure(file1.exists());
 
         // Start folder pruner
@@ -49,9 +50,9 @@ public class FolderPrunerTest extends UnitTest
         FolderPruner pruner = new FolderPruner(folder, Duration.milliseconds(1).asFrequency())
         {
             @Override
-            protected void onFileRemoved(File file)
+            protected void onFileRemoved(@NotNull File file)
             {
-                removed.completed();
+                removed.threadCompleted();
             }
         };
         pruner.capacity(Bytes.bytes(4));
@@ -63,10 +64,10 @@ public class FolderPrunerTest extends UnitTest
 
         // Save file def
         var file2 = folder.file("def");
-        file2.writer().save("def");
+        file2.writer().saveText("def");
 
         // Wait for a file to get removed
-        removed.waitForCompletion();
+        removed.waitForAllThreadsToComplete();
 
         // Because of file system time granularity either file could get removed, but not both
         ensure(file1.exists() || file2.exists());
@@ -81,11 +82,11 @@ public class FolderPrunerTest extends UnitTest
         {
             var folder = folder("disk-space-test");
             var file = folder.file("temp1");
-            file.writer().save("test");
+            file.writer().saveText("test");
             FolderPruner pruner = new FolderPruner(folder, Duration.milliseconds(25).asFrequency())
             {
                 @Override
-                protected void onFileRemoved(File file)
+                protected void onFileRemoved(@NotNull File file)
                 {
                 }
             };

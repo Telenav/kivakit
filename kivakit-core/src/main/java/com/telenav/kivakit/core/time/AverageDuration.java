@@ -18,10 +18,12 @@
 
 package com.telenav.kivakit.core.time;
 
+import com.telenav.kivakit.annotations.code.ApiQuality;
 import com.telenav.kivakit.core.math.Average;
-import com.telenav.kivakit.core.testing.Tested;
-import com.telenav.lexakai.annotations.LexakaiJavadoc;
 
+import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
 import static com.telenav.kivakit.core.time.Duration.milliseconds;
 
 /**
@@ -30,40 +32,55 @@ import static com.telenav.kivakit.core.time.Duration.milliseconds;
  * @author jonathanl (shibo)
  */
 @SuppressWarnings("unused")
-@LexakaiJavadoc(complete = true)
+@ApiQuality(stability = API_STABLE_EXTENSIBLE,
+            testing = TESTING_NONE,
+            documentation = DOCUMENTATION_COMPLETE)
 public class AverageDuration extends Average
 {
-    @Tested
+    /**
+     * Adds the given duration to this average
+     */
     public void add(Duration duration)
     {
         super.add(duration.asMilliseconds());
     }
 
-    @Tested
+    /**
+     * Returns the average duration so far
+     */
     public Duration averageDuration()
     {
         return milliseconds(average());
     }
 
-    @Tested
+    /**
+     * Returns the maximum duration
+     */
     public Duration maximumDuration()
     {
         return milliseconds(super.maximum());
     }
 
-    @Tested
+    /**
+     * Returns the minimum duration
+     */
     public Duration minimumDuration()
     {
         return milliseconds(super.minimum());
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String toString()
     {
         return averageDuration().toString();
     }
 
-    @Tested
+    /**
+     * Returns the total duration
+     */
     public Duration totalDuration()
     {
         return milliseconds(super.total());
