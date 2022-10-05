@@ -2,6 +2,34 @@
 
 -----------------------------------------------------------------------------------------------------------------------
 
+## Version 1.8.0 (2022.10.05) "yellow sneakers"
+
+### Major Review
+
+Version 1.8 of KivaKit marks a major review and code stability release
+in preparation for the 2.0 version, which will freeze the KivaKit API
+and limit incompatible changes as much as possible. Numerous changes were
+made in this version, but were limited primarily to name changes and fixes
+for code that never worked correctly. Code annotated with @ApiQuality
+expresses the evaluation.
+
+```
+@ApiQuality(stability = API_FURTHER_EVALUATION_NEEDED,
+            testing = TESTING_NOT_NEEDED,
+            documentation = DOCUMENTATION_COMPLETE,
+            reviews = 1,
+            reviewers = "shibo")
+```
+
+Much testing remains to be done, as indicated by @ApiQuality annotations
+with testing marked as TESTING_INSUFFICIENT or TESTING_NONE.
+
+The primary remaining code instability is the handling of OpenAPI / Swagger 
+documentation in the kivakit-microservice project. This will be resolved
+for the final 2.0 release, but will likely involve significant changes.
+
+-----------------------------------------------------------------------------------------------------------------------
+
 ## Version 1.7.0 (2022.09.07) "yellow gorilla"
 
 ### Build
