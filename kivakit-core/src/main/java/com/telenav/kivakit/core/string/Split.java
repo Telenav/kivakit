@@ -18,18 +18,19 @@
 
 package com.telenav.kivakit.core.string;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.CodeQuality;
+import com.telenav.kivakit.core.collections.list.StringList;
 import com.telenav.kivakit.core.internal.lexakai.DiagramString;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 import java.util.stream.Collectors;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_STATIC_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.CodeStability.CODE_STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+import static com.telenav.kivakit.core.collections.list.StringList.stringList;
 
 /**
  * String splitting utilities.
@@ -37,9 +38,9 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
  * @author jonathanl (shibo)
  */
 @SuppressWarnings("DuplicatedCode") @UmlClassDiagram(diagram = DiagramString.class)
-@ApiQuality(stability = API_STABLE_STATIC_EXTENSIBLE,
-            testing = TESTING_NONE,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = CODE_STABLE_EXTENSIBLE,
+             testing = TESTING_NONE,
+             documentation = DOCUMENTATION_COMPLETE)
 public class Split
 {
     /**
@@ -49,16 +50,16 @@ public class Split
      * @param delimiter The delimiter to split on
      * @return The list of strings
      */
-    public static List<String> split(String text, String delimiter)
+    public static StringList split(String text, String delimiter)
     {
-        return Arrays.stream(text.split(delimiter, Integer.MAX_VALUE))
-                .collect(Collectors.toList());
+        return stringList(Arrays.stream(text.split(delimiter, Integer.MAX_VALUE))
+                .collect(Collectors.toList()));
     }
 
     /**
      * @return A list of words from the given text with word breaks occurring on whitespace
      */
-    public static List<String> splitIntoWords(String text)
+    public static StringList splitIntoWords(String text)
     {
         var list = new ArrayList<String>();
 
@@ -92,7 +93,7 @@ public class Split
             list.add(text.substring(startOfWord));
         }
 
-        return list;
+        return stringList(list);
     }
 
     /**

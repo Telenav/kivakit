@@ -18,16 +18,14 @@
 
 package com.telenav.kivakit.settings;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.CodeQuality;
 import com.telenav.kivakit.commandline.SwitchParser;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.messaging.repeaters.BaseRepeater;
 import com.telenav.kivakit.core.registry.RegistryTrait;
-import com.telenav.kivakit.core.vm.JavaVirtualMachine;
 import com.telenav.kivakit.properties.PropertyMap;
 import com.telenav.kivakit.resource.Resource;
 import com.telenav.kivakit.resource.ResourceFolder;
-import com.telenav.kivakit.resource.packages.Package;
 import com.telenav.kivakit.settings.internal.lexakai.DiagramSettings;
 import com.telenav.kivakit.settings.stores.ResourceFolderSettingsStore;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
@@ -38,9 +36,12 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.CodeStability.CODE_STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+import static com.telenav.kivakit.core.vm.JavaVirtualMachine.javaVirtualMachine;
+import static com.telenav.kivakit.properties.PropertyMap.propertyMap;
+import static com.telenav.kivakit.resource.packages.Package.parsePackage;
 
 /**
  * A set of {@link Deployment} objects, each being a set of settings objects. Deployments can be added to the set from a
@@ -81,9 +82,9 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
  */
 @SuppressWarnings({ "UnusedReturnValue", "unused" })
 @UmlClassDiagram(diagram = DiagramSettings.class)
-@ApiQuality(stability = API_STABLE_EXTENSIBLE,
-            testing = TESTING_NONE,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = CODE_STABLE_EXTENSIBLE,
+             testing = TESTING_NONE,
+             documentation = DOCUMENTATION_COMPLETE)
 public class DeploymentSet extends BaseRepeater implements RegistryTrait
 {
     /**
@@ -113,7 +114,7 @@ public class DeploymentSet extends BaseRepeater implements RegistryTrait
         var deployments = listener.listenTo(new DeploymentSet());
 
         // and if there is a root package called 'deployments' in the application,
-        var settings = Package.parsePackage(listener, relativeTo, "deployments");
+        var settings = parsePackage(listener, relativeTo, "deployments");
         if (settings != null)
         {
             // then add all the deployments in that package,
@@ -121,7 +122,7 @@ public class DeploymentSet extends BaseRepeater implements RegistryTrait
         }
 
         // and if a deployment folder was specified, and it exists,
-        var deploymentFolder = PropertyMap.propertyMap(JavaVirtualMachine.javaVirtualMachine().systemProperties())
+        var deploymentFolder = propertyMap(javaVirtualMachine().systemProperties())
                 .asFolder("KIVAKIT_DEPLOYMENT_FOLDER");
         if (deploymentFolder != null && deploymentFolder.exists())
         {

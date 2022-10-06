@@ -1,6 +1,7 @@
 package com.telenav.kivakit.annotations.code;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_FURTHER_EVALUATION_NEEDED;
+import static com.telenav.kivakit.annotations.code.CodeStability.CODE_STABLE;
+import static com.telenav.kivakit.annotations.code.CodeType.CODE_PUBLIC;
 import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
 
@@ -12,22 +13,23 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NE
  * @author jonathanl (shibo)
  */
 @SuppressWarnings("unused")
-@ApiQuality(stability = API_FURTHER_EVALUATION_NEEDED,
-            testing = TESTING_NOT_NEEDED,
-            documentation = DOCUMENTATION_COMPLETE,
-            reviews = 1,
-            reviewers = "shibo")
-public enum ApiType
+@CodeQuality(stability = CODE_STABLE,
+             type = CODE_PUBLIC,
+             testing = TESTING_NOT_NEEDED,
+             documentation = DOCUMENTATION_COMPLETE,
+             reviews = 1,
+             reviewers = "shibo")
+public enum CodeType
 {
     /** The API is fully public and intended for end-users */
-    PUBLIC_API,
+    CODE_PUBLIC,
 
     /** The API is not intended for end-users, but is public to service provider implementers */
-    SERVICE_PROVIDER_INTERFACE,
+    CODE_SERVICE_PROVIDER_INTERFACE,
 
     /** The API fulfills a service provider interface (SPI) */
-    SERVICE_PROVIDER_IMPLEMENTATION,
+    CODE_SERVICE_PROVIDER_IMPLEMENTATION,
 
     /** The API is private and should not be used outside the framework */
-    PRIVATE
+    CODE_PRIVATE
 }

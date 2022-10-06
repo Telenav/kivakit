@@ -1,11 +1,11 @@
 package com.telenav.kivakit.core.string;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.CodeQuality;
 
 import java.util.ArrayList;
 import java.util.stream.Collectors;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_STATIC_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.CodeStability.CODE_STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
 import static com.telenav.kivakit.core.string.Join.join;
@@ -17,15 +17,28 @@ import static com.telenav.kivakit.core.string.Split.split;
  * @author jonathanl (shibo)
  */
 @SuppressWarnings("unused")
-@ApiQuality(stability = API_STABLE_STATIC_EXTENSIBLE,
-            testing = TESTING_NONE,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = CODE_STABLE_EXTENSIBLE,
+             testing = TESTING_NONE,
+             documentation = DOCUMENTATION_COMPLETE)
 public class Packages
 {
     /**
      * Returns the prefix of the given type name
      */
     public static String packagePrefix(String type)
+    {
+        var list = Split.split(type, "\\.")
+                .stream()
+                .filter(Strings::isLowerCase)
+                .collect(Collectors.toList());
+
+        return Join.join(list, ".");
+    }
+
+    /**
+     * Returns the prefix of the given type name
+     */
+    public static String packageType(String type)
     {
         var list = Split.split(type, "\\.")
                 .stream()

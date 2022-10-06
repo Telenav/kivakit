@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.commandline;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.CodeQuality;
 import com.telenav.kivakit.commandline.internal.lexakai.DiagramArgument;
 import com.telenav.kivakit.commandline.internal.lexakai.DiagramCommandLine;
 import com.telenav.kivakit.conversion.Converter;
@@ -31,7 +31,7 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlAggregation;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.CodeStability.CODE_STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
 import static com.telenav.kivakit.commandline.Quantifier.ONE_OR_MORE;
@@ -96,9 +96,9 @@ import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
 @SuppressWarnings({ "unused", "DuplicatedCode" })
 @UmlClassDiagram(diagram = DiagramArgument.class)
 @UmlClassDiagram(diagram = DiagramCommandLine.class, includeMembers = false)
-@ApiQuality(stability = API_STABLE_EXTENSIBLE,
-            testing = TESTING_NONE,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = CODE_STABLE_EXTENSIBLE,
+             testing = TESTING_NONE,
+             documentation = DOCUMENTATION_COMPLETE)
 public class ArgumentParser<T>
 {
     /**
@@ -126,13 +126,13 @@ public class ArgumentParser<T>
      */
     @SuppressWarnings("DuplicatedCode")
     @UmlClassDiagram(diagram = DiagramArgument.class)
-    @ApiQuality(stability = API_STABLE_EXTENSIBLE,
-                testing = TESTING_NONE,
-                documentation = DOCUMENTATION_COMPLETE)
+    @CodeQuality(stability = CODE_STABLE_EXTENSIBLE,
+                 testing = TESTING_NONE,
+                 documentation = DOCUMENTATION_COMPLETE)
     public static class Builder<T>
     {
         /** The parser that we're building */
-        private ArgumentParser<T> parser;
+        private final ArgumentParser<T> parser = new ArgumentParser<>();
 
         @UmlRelation(label = "creates")
         public ArgumentParser<T> build()
@@ -231,6 +231,11 @@ public class ArgumentParser<T>
         this.converter = converter;
         this.type = type;
         this.description = description;
+    }
+
+    private ArgumentParser()
+    {
+        this(null, null, null, null);
     }
 
     /**

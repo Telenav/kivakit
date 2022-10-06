@@ -32,14 +32,14 @@ configuration management and object registration and lookup.
 
 ### Dependencies <a name="dependencies"></a> &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/dependencies-32.png" srcset="https://telenav.github.io/telenav-assets/images/icons/dependencies-32-2x.png 2x"/>
 
-[*Dependency Diagram*](https://www.kivakit.org/1.7.0/lexakai/kivakit/kivakit-application/documentation/diagrams/dependencies.svg)
+[*Dependency Diagram*](https://www.kivakit.org/1.7.1-SNAPSHOT/lexakai/kivakit/kivakit-application/documentation/diagrams/dependencies.svg)
 
 #### Maven Dependency
 
     <dependency>
         <groupId>com.telenav.kivakit</groupId>
         <artifactId>kivakit-application</artifactId>
-        <version>1.7.0</version>
+        <version>1.7.1-SNAPSHOT</version>
     </dependency>
 
 <img src="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128.png" srcset="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128-2x.png 2x"/>
@@ -69,41 +69,39 @@ browse the [**Javadoc**](#javadoc).
 
 ### Class Diagrams <a name="class-diagrams"></a> &nbsp; &nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/diagram-40.png" srcset="https://telenav.github.io/telenav-assets/images/icons/diagram-40-2x.png 2x"/>
 
-[*Applications*](https://www.kivakit.org/1.7.0/lexakai/kivakit/kivakit-application/documentation/diagrams/diagram-application.svg)
+[*Applications*](https://www.kivakit.org/1.7.1-SNAPSHOT/lexakai/kivakit/kivakit-application/documentation/diagrams/diagram-application.svg)
 
 <img src="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128.png" srcset="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128-2x.png 2x"/>
 
 ### Package Diagrams <a name="package-diagrams"></a> &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/box-24.png" srcset="https://telenav.github.io/telenav-assets/images/icons/box-24-2x.png 2x"/>
 
-[*com.telenav.kivakit.application*](https://www.kivakit.org/1.7.0/lexakai/kivakit/kivakit-application/documentation/diagrams/com.telenav.kivakit.application.svg)  
-[*com.telenav.kivakit.application.internal.lexakai*](https://www.kivakit.org/1.7.0/lexakai/kivakit/kivakit-application/documentation/diagrams/com.telenav.kivakit.application.internal.lexakai.svg)
+[*com.telenav.kivakit.application*](https://www.kivakit.org/1.7.1-SNAPSHOT/lexakai/kivakit/kivakit-application/documentation/diagrams/com.telenav.kivakit.application.svg)  
+[*com.telenav.kivakit.application.internal.lexakai*](https://www.kivakit.org/1.7.1-SNAPSHOT/lexakai/kivakit/kivakit-application/documentation/diagrams/com.telenav.kivakit.application.internal.lexakai.svg)
 
 <img src="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128.png" srcset="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128-2x.png 2x"/>
 
 ### Javadoc <a name="javadoc"></a> &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/books-24.png" srcset="https://telenav.github.io/telenav-assets/images/icons/books-24-2x.png 2x"/>
 
-Javadoc coverage for this project is 76.1%.  
+Javadoc coverage for this project is 85.7%.  
   
-&nbsp; &nbsp; <img src="https://telenav.github.io/telenav-assets/images/meters/meter-80-96.png" srcset="https://telenav.github.io/telenav-assets/images/meters/meter-80-96-2x.png 2x"/>
-
-
+&nbsp; &nbsp; <img src="https://telenav.github.io/telenav-assets/images/meters/meter-90-96.png" srcset="https://telenav.github.io/telenav-assets/images/meters/meter-90-96-2x.png 2x"/>
 
 
 | Class | Documentation Sections |
 |---|---|
-| [*Application*](https://www.kivakit.org/1.7.0/javadoc/kivakit/kivakit.application////////////////////////////////////////////.html) | Application Metadata |  
+| [*Application*](https://www.kivakit.org/1.7.1-SNAPSHOT/javadoc/kivakit/kivakit.application////////////////////////////////////////////.html) | Application Metadata |  
 | | Application Environment |  
 | | Project Initialization |  
 | | Execution |  
 | | Messaging and Logging |  
 | | Creating an Application |  
 | | Command Line Parsing |  
-| [*Application.Identifier*](https://www.kivakit.org/1.7.0/javadoc/kivakit/kivakit.application///////////////////////////////////////////////////////.html) |  |  
-| [*Application.State*](https://www.kivakit.org/1.7.0/javadoc/kivakit/kivakit.application//////////////////////////////////////////////////.html) |  |  
-| [*ApplicationExit*](https://www.kivakit.org/1.7.0/javadoc/kivakit/kivakit.application////////////////////////////////////////////////.html) |  |  
-| [*DiagramApplication*](https://www.kivakit.org/1.7.0/javadoc/kivakit/kivakit.application////////////////////////////////////////////////////////////////////.html) |  |  
-| [*ExitCode*](https://www.kivakit.org/1.7.0/javadoc/kivakit/kivakit.application/////////////////////////////////////////.html) |  |  
-| [*Server*](https://www.kivakit.org/1.7.0/javadoc/kivakit/kivakit.application///////////////////////////////////////.html) |  |  
+| [*Application.ExecutionState*](https://www.kivakit.org/1.7.1-SNAPSHOT/javadoc/kivakit/kivakit.application///////////////////////////////////////////////////////////.html) |  |  
+| [*Application.Identifier*](https://www.kivakit.org/1.7.1-SNAPSHOT/javadoc/kivakit/kivakit.application///////////////////////////////////////////////////////.html) |  |  
+| [*ApplicationExit*](https://www.kivakit.org/1.7.1-SNAPSHOT/javadoc/kivakit/kivakit.application////////////////////////////////////////////////.html) |  |  
+| [*DiagramApplication*](https://www.kivakit.org/1.7.1-SNAPSHOT/javadoc/kivakit/kivakit.application////////////////////////////////////////////////////////////////////.html) |  |  
+| [*ExitCode*](https://www.kivakit.org/1.7.1-SNAPSHOT/javadoc/kivakit/kivakit.application/////////////////////////////////////////.html) |  |  
+| [*Server*](https://www.kivakit.org/1.7.1-SNAPSHOT/javadoc/kivakit/kivakit.application///////////////////////////////////////.html) |  |  
 
 [//]: # (start-user-text)
 

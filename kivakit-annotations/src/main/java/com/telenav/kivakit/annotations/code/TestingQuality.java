@@ -1,6 +1,6 @@
 package com.telenav.kivakit.annotations.code;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_FURTHER_EVALUATION_NEEDED;
+import static com.telenav.kivakit.annotations.code.CodeStability.CODE_FURTHER_EVALUATION_NEEDED;
 import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
 
@@ -8,11 +8,11 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NE
  * The quality of tests for a given class, as evaluated by a developer. This is different from a simple code coverage
  * metric because there are many methods and even whole classes that do not need full testing.
  */
-@ApiQuality(stability = API_FURTHER_EVALUATION_NEEDED,
-            testing = TESTING_NOT_NEEDED,
-            documentation = DOCUMENTATION_COMPLETE,
-            reviews = 1,
-            reviewers = "shibo")
+@CodeQuality(stability = CODE_FURTHER_EVALUATION_NEEDED,
+             testing = TESTING_NOT_NEEDED,
+             documentation = DOCUMENTATION_COMPLETE,
+             reviews = 1,
+             reviewers = "shibo")
 public enum TestingQuality
 {
     /** All needed tests are implemented */

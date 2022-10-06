@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.core.collections.list;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.CodeQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramCollections;
 import com.telenav.kivakit.core.value.count.Count;
 import com.telenav.kivakit.core.value.count.Maximum;
@@ -33,9 +33,10 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.function.Function;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.CodeStability.CODE_STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_INSUFFICIENT;
+import static com.telenav.kivakit.core.value.count.Maximum.MAXIMUM;
 
 /**
  * A bounded list of objects with overrides of methods from {@link BaseList} to downcast return values to
@@ -66,9 +67,9 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_INSUFF
  */
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramCollections.class)
-@ApiQuality(stability = API_STABLE_EXTENSIBLE,
-            testing = TESTING_INSUFFICIENT,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = CODE_STABLE_EXTENSIBLE,
+             testing = TESTING_INSUFFICIENT,
+             documentation = DOCUMENTATION_COMPLETE)
 public class ObjectList<Value> extends BaseList<Value>
 {
     /**
@@ -87,6 +88,14 @@ public class ObjectList<Value> extends BaseList<Value>
         var list = new ObjectList<T>();
         list.appendAll(values);
         return list;
+    }
+
+    /**
+     * @return A list of objects from the given iterable
+     */
+    public static <T> ObjectList<T> objectList(Collection<T> values)
+    {
+        return new ObjectList<T>(values);
     }
 
     /**
@@ -180,7 +189,7 @@ public class ObjectList<Value> extends BaseList<Value>
      */
     public ObjectList()
     {
-        this(Maximum.MAXIMUM);
+        this(MAXIMUM);
     }
 
     /**
@@ -304,17 +313,6 @@ public class ObjectList<Value> extends BaseList<Value>
     }
 
     /**
-     * Creates an empty new list. Subclasses can return a subclass list type.
-     *
-     * @return The new list
-     */
-    @Override
-    public ObjectList<Value> onNewInstance()
-    {
-        return new ObjectList<>();
-    }
-
-    /**
      * @return This object list partitioned in to n object lists
      */
     public ObjectList<ObjectList<Value>> partition(Count partitions)
@@ -327,7 +325,7 @@ public class ObjectList<Value> extends BaseList<Value>
         {
             if (i++ % every == 0 && list < partitions.asInt() - 1)
             {
-                lists.add(new ObjectList<>(Maximum.MAXIMUM));
+                lists.add(new ObjectList<>(MAXIMUM));
                 list++;
             }
             lists.get(list).add(object);
@@ -351,6 +349,15 @@ public class ObjectList<Value> extends BaseList<Value>
     public ObjectList<Value> rightOf(int index)
     {
         return (ObjectList<Value>) super.rightOf(index);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public ObjectList<Value> sorted()
+    {
+        return (ObjectList<Value>) super.sorted();
     }
 
     /**

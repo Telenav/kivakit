@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.resource.spi;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.CodeQuality;
 import com.telenav.kivakit.core.messaging.repeaters.RepeaterMixin;
 import com.telenav.kivakit.filesystem.Folder;
 import com.telenav.kivakit.resource.ResourceFolder;
@@ -31,8 +31,8 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.ServiceLoader;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE;
-import static com.telenav.kivakit.annotations.code.ApiType.SERVICE_PROVIDER_INTERFACE;
+import static com.telenav.kivakit.annotations.code.CodeStability.CODE_STABLE;
+import static com.telenav.kivakit.annotations.code.CodeType.CODE_SERVICE_PROVIDER_INTERFACE;
 import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
 
@@ -48,10 +48,10 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NE
  */
 @UmlClassDiagram(diagram = DiagramResourceService.class)
 @UmlRelation(label = "parses", referent = ResourceIdentifier.class)
-@ApiQuality(stability = API_STABLE,
-            documentation = DOCUMENTATION_COMPLETE,
-            testing = TESTING_NOT_NEEDED,
-            type = SERVICE_PROVIDER_INTERFACE)
+@CodeQuality(stability = CODE_STABLE,
+             documentation = DOCUMENTATION_COMPLETE,
+             testing = TESTING_NOT_NEEDED,
+             type = CODE_SERVICE_PROVIDER_INTERFACE)
 public interface ResourceFolderResolver extends RepeaterMixin
 {
     /**

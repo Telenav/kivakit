@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.core.collections.list;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.CodeQuality;
 import com.telenav.kivakit.core.collections.map.VariableMap;
 import com.telenav.kivakit.core.internal.lexakai.DiagramString;
 import com.telenav.kivakit.core.os.Console;
@@ -31,13 +31,15 @@ import com.telenav.kivakit.interfaces.comparison.Matcher;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.Comparator;
 import java.util.Iterator;
 import java.util.function.Function;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.CodeStability.CODE_STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_INSUFFICIENT;
+import static com.telenav.kivakit.core.value.count.Maximum.MAXIMUM;
 
 /**
  * A list of strings, adding useful string operations to {@link ObjectList}. Inherited methods that return lists are
@@ -82,9 +84,9 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_INSUFF
  * </ul>
  */
 @SuppressWarnings("unused") @UmlClassDiagram(diagram = DiagramString.class)
-@ApiQuality(stability = API_STABLE_EXTENSIBLE,
-            testing = TESTING_INSUFFICIENT,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = CODE_STABLE_EXTENSIBLE,
+             testing = TESTING_INSUFFICIENT,
+             documentation = DOCUMENTATION_COMPLETE)
 public class StringList extends ObjectList<String>
 {
     /**
@@ -106,7 +108,7 @@ public class StringList extends ObjectList<String>
      */
     public static StringList split(String string, char delimiter)
     {
-        return split(Maximum.MAXIMUM, string, delimiter);
+        return split(MAXIMUM, string, delimiter);
     }
 
     /**
@@ -115,7 +117,7 @@ public class StringList extends ObjectList<String>
      */
     public static StringList split(String string, String delimiter)
     {
-        return split(Maximum.MAXIMUM, string, delimiter);
+        return split(MAXIMUM, string, delimiter);
     }
 
     /**
@@ -183,6 +185,14 @@ public class StringList extends ObjectList<String>
         var list = new StringList();
         list.addAll(text.split(pattern));
         return list;
+    }
+
+    /**
+     * @return A list of strings from the given iterable
+     */
+    public static <T> StringList stringList(Collection<T> values)
+    {
+        return new StringList(values);
     }
 
     /**
@@ -259,17 +269,22 @@ public class StringList extends ObjectList<String>
 
     public StringList()
     {
-        this(Maximum.MAXIMUM);
+        this(MAXIMUM);
     }
 
     public StringList(Iterable<?> iterable)
     {
-        this(Maximum.MAXIMUM, iterable);
+        this(MAXIMUM, iterable);
+    }
+
+    public StringList(Collection<String> collection)
+    {
+        super(collection);
     }
 
     public StringList(Iterator<?> iterator)
     {
-        this(Maximum.MAXIMUM, iterator);
+        this(MAXIMUM, iterator);
     }
 
     public StringList(Maximum maximumSize)
@@ -311,15 +326,15 @@ public class StringList extends ObjectList<String>
     }
 
     @Override
-    public StringList appendThen(String value)
-    {
-        return (StringList) super.appendThen(value);
-    }
-
-    @Override
     public StringList appendAllThen(Iterable<? extends String> values)
     {
         return (StringList) super.appendAllThen(values);
+    }
+
+    @Override
+    public StringList appendThen(String value)
+    {
+        return (StringList) super.appendThen(value);
     }
 
     public String[] asStringArray()
@@ -593,5 +608,14 @@ public class StringList extends ObjectList<String>
     protected String objectToString(Object object)
     {
         return StringConversions.toString(object);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    protected StringList onNewList()
+    {
+        return new StringList();
     }
 }
