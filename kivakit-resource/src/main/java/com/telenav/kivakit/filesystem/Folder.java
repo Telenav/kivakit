@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.filesystem;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.CodeQuality;
 import com.telenav.kivakit.commandline.ArgumentParser;
 import com.telenav.kivakit.commandline.SwitchParser;
 import com.telenav.kivakit.conversion.BaseStringConverter;
@@ -72,13 +72,14 @@ import java.util.prefs.Preferences;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE;
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_ENUM_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.CodeStability.CODE_STABLE;
+import static com.telenav.kivakit.annotations.code.CodeStability.CODE_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.CodeStability.CODE_STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_INSUFFICIENT;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
 import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
+import static com.telenav.kivakit.commandline.ArgumentParser.argumentParserBuilder;
 import static com.telenav.kivakit.core.collections.list.ObjectList.objectList;
 import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
 import static com.telenav.kivakit.core.ensure.Ensure.fail;
@@ -225,9 +226,9 @@ import static com.telenav.kivakit.resource.ResourceList.resourceList;
  */
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramFileSystemFolder.class)
-@ApiQuality(stability = API_STABLE_EXTENSIBLE,
-            testing = TESTING_INSUFFICIENT,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = CODE_STABLE_EXTENSIBLE,
+             testing = TESTING_INSUFFICIENT,
+             documentation = DOCUMENTATION_COMPLETE)
 public class Folder extends BaseRepeater implements
         FileSystemObject,
         Comparable<Folder>,
@@ -336,7 +337,7 @@ public class Folder extends BaseRepeater implements
     public static ArgumentParser.Builder<Folder> folderArgumentParser(@NotNull Listener listener,
                                                                       @NotNull String description)
     {
-        return ArgumentParser.argumentParserBuilder(Folder.class)
+        return argumentParserBuilder(Folder.class)
                 .converter(new Folder.Converter(listener))
                 .description(description);
     }
@@ -351,7 +352,7 @@ public class Folder extends BaseRepeater implements
     public static ArgumentParser.Builder<FolderList> folderListArgumentParser(@NotNull Listener listener,
                                                                               @NotNull String description)
     {
-        return ArgumentParser.argumentParserBuilder(FolderList.class)
+        return argumentParserBuilder(FolderList.class)
                 .converter(new FolderList.Converter(listener))
                 .description(description);
     }
@@ -459,7 +460,7 @@ public class Folder extends BaseRepeater implements
      * @param arguments Any arguments to format the path with
      * @return The folder
      */
-    public static Folder parseFolder(@NotNull Listener listener, @NotNull String path, Object... arguments)
+    public static Folder parseFolder(@NotNull Listener listener, String path, Object... arguments)
     {
         if (Strings.isEmpty(path))
         {
@@ -510,9 +511,9 @@ public class Folder extends BaseRepeater implements
     /**
      * Type of folder
      */
-    @ApiQuality(stability = API_STABLE_ENUM_EXTENSIBLE,
-                testing = TESTING_NOT_NEEDED,
-                documentation = DOCUMENTATION_COMPLETE)
+    @CodeQuality(stability = CODE_STABLE_EXTENSIBLE,
+                 testing = TESTING_NOT_NEEDED,
+                 documentation = DOCUMENTATION_COMPLETE)
     public enum FolderType
     {
         NORMAL,
@@ -522,9 +523,9 @@ public class Folder extends BaseRepeater implements
     /**
      * Type of traversal to perform
      */
-    @ApiQuality(stability = API_STABLE_ENUM_EXTENSIBLE,
-                testing = TESTING_NOT_NEEDED,
-                documentation = DOCUMENTATION_COMPLETE)
+    @CodeQuality(stability = CODE_STABLE_EXTENSIBLE,
+                 testing = TESTING_NOT_NEEDED,
+                 documentation = DOCUMENTATION_COMPLETE)
     public enum Traversal
     {
         RECURSE,
@@ -536,9 +537,9 @@ public class Folder extends BaseRepeater implements
      *
      * @author jonathanl (shibo)
      */
-    @ApiQuality(stability = API_STABLE,
-                testing = TESTING_NONE,
-                documentation = DOCUMENTATION_COMPLETE)
+    @CodeQuality(stability = CODE_STABLE,
+                 testing = TESTING_NONE,
+                 documentation = DOCUMENTATION_COMPLETE)
     public static class Converter extends BaseStringConverter<Folder>
     {
         private boolean ensureExists;
@@ -573,9 +574,9 @@ public class Folder extends BaseRepeater implements
      * @author jonathanl (shibo)
      */
     @UmlClassDiagram(diagram = DiagramResourceService.class)
-    @ApiQuality(stability = API_STABLE,
-                testing = TESTING_NONE,
-                documentation = DOCUMENTATION_COMPLETE)
+    @CodeQuality(stability = CODE_STABLE,
+                 testing = TESTING_NONE,
+                 documentation = DOCUMENTATION_COMPLETE)
     public static class Resolver implements ResourceFolderResolver
     {
         @Override

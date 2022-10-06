@@ -1,6 +1,6 @@
 package com.telenav.kivakit.core.logging.logs.text.formatters;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.CodeQuality;
 import com.telenav.kivakit.core.collections.list.StringList;
 import com.telenav.kivakit.core.logging.logs.text.LogFormatter;
 import com.telenav.kivakit.core.string.AsciiArt;
@@ -10,8 +10,8 @@ import com.telenav.kivakit.core.value.count.Maximum;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_ENUM_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.CodeStability.CODE_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.CodeStability.CODE_STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
 import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
@@ -23,17 +23,17 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
  *
  * @author jonathanl (shibo)
  */
-@ApiQuality(stability = API_STABLE_EXTENSIBLE,
-            testing = TESTING_NONE,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = CODE_STABLE_EXTENSIBLE,
+             testing = TESTING_NONE,
+             documentation = DOCUMENTATION_COMPLETE)
 public abstract class BaseColumnarFormatter implements LogFormatter
 {
     /**
      * ColumnLayout rules to use when lines are too wide for the column they are in
      */
-    @ApiQuality(stability = API_STABLE_ENUM_EXTENSIBLE,
-                testing = TESTING_NOT_NEEDED,
-                documentation = DOCUMENTATION_COMPLETE)
+    @CodeQuality(stability = CODE_STABLE_EXTENSIBLE,
+                 testing = TESTING_NOT_NEEDED,
+                 documentation = DOCUMENTATION_COMPLETE)
     protected enum ColumnLayout
     {
         /** Column should wrap */
@@ -49,9 +49,9 @@ public abstract class BaseColumnarFormatter implements LogFormatter
     /**
      * Data structure for modeling a text column
      */
-    @ApiQuality(stability = API_STABLE_EXTENSIBLE,
-                testing = TESTING_NONE,
-                documentation = DOCUMENTATION_COMPLETE)
+    @CodeQuality(stability = CODE_STABLE_EXTENSIBLE,
+                 testing = TESTING_NONE,
+                 documentation = DOCUMENTATION_COMPLETE)
     protected static class Column
     {
         /** The layout of the column */
@@ -148,9 +148,9 @@ public abstract class BaseColumnarFormatter implements LogFormatter
     /**
      * The output for a line as it is populated by column
      */
-    @ApiQuality(stability = API_STABLE_EXTENSIBLE,
-                testing = TESTING_NONE,
-                documentation = DOCUMENTATION_COMPLETE)
+    @CodeQuality(stability = CODE_STABLE_EXTENSIBLE,
+                 testing = TESTING_NONE,
+                 documentation = DOCUMENTATION_COMPLETE)
     protected static class LineOutput
     {
         /** The column definitions */

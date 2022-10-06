@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.network.email;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.CodeQuality;
 import com.telenav.kivakit.core.language.Classes;
 import com.telenav.kivakit.core.messaging.repeaters.BaseRepeater;
 import com.telenav.kivakit.core.thread.RepeatingThread;
@@ -44,7 +44,7 @@ import javax.mail.Session;
 import javax.mail.internet.MimeMessage;
 import java.util.Properties;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.CodeStability.CODE_STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
 
@@ -64,9 +64,9 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
 @SuppressWarnings("unused") @UmlClassDiagram(diagram = DiagramEmail.class)
 @UmlRelation(label = "sends", referent = Email.class)
 @UmlRelation(label = "configured by", referent = EmailSender.Configuration.class)
-@ApiQuality(stability = API_STABLE_EXTENSIBLE,
-            testing = TESTING_NONE,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = CODE_STABLE_EXTENSIBLE,
+             testing = TESTING_NONE,
+             documentation = DOCUMENTATION_COMPLETE)
 public abstract class EmailSender extends BaseRepeater implements
         Startable,
         Stoppable<Duration>,
@@ -79,9 +79,9 @@ public abstract class EmailSender extends BaseRepeater implements
      * @author jonathanl (shibo)
      */
     @UmlClassDiagram(diagram = DiagramEmail.class)
-    @ApiQuality(stability = API_STABLE_EXTENSIBLE,
-                testing = TESTING_NONE,
-                documentation = DOCUMENTATION_COMPLETE)
+    @CodeQuality(stability = CODE_STABLE_EXTENSIBLE,
+                 testing = TESTING_NONE,
+                 documentation = DOCUMENTATION_COMPLETE)
     public static class Configuration
     {
         private Rate maximumSendRate;

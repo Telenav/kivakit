@@ -20,14 +20,14 @@ This module contains functionality for unit testing.
 
 ### Dependencies <a name="dependencies"></a> &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/dependencies-32.png" srcset="https://telenav.github.io/telenav-assets/images/icons/dependencies-32-2x.png 2x"/>
 
-[*Dependency Diagram*](https://www.kivakit.org/1.7.0/lexakai/kivakit/kivakit-testing/documentation/diagrams/dependencies.svg)
+[*Dependency Diagram*](https://www.kivakit.org/1.7.1-SNAPSHOT/lexakai/kivakit/kivakit-testing/documentation/diagrams/dependencies.svg)
 
 #### Maven Dependency
 
     <dependency>
         <groupId>com.telenav.kivakit</groupId>
         <artifactId>kivakit-testing</artifactId>
-        <version>1.7.0</version>
+        <version>1.7.1-SNAPSHOT</version>
     </dependency>
 
 <img src="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128.png" srcset="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128-2x.png 2x"/>
@@ -48,24 +48,22 @@ None
 
 ### Package Diagrams <a name="package-diagrams"></a> &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/box-24.png" srcset="https://telenav.github.io/telenav-assets/images/icons/box-24-2x.png 2x"/>
 
-[*com.telenav.kivakit.testing*](https://www.kivakit.org/1.7.0/lexakai/kivakit/kivakit-testing/documentation/diagrams/com.telenav.kivakit.testing.svg)
+[*com.telenav.kivakit.testing*](https://www.kivakit.org/1.7.1-SNAPSHOT/lexakai/kivakit/kivakit-testing/documentation/diagrams/com.telenav.kivakit.testing.svg)
 
 <img src="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128.png" srcset="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128-2x.png 2x"/>
 
 ### Javadoc <a name="javadoc"></a> &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/books-24.png" srcset="https://telenav.github.io/telenav-assets/images/icons/books-24-2x.png 2x"/>
 
-Javadoc coverage for this project is 50.0%.  
+Javadoc coverage for this project is 0.0%.  
   
-&nbsp; &nbsp; <img src="https://telenav.github.io/telenav-assets/images/meters/meter-50-96.png" srcset="https://telenav.github.io/telenav-assets/images/meters/meter-50-96-2x.png 2x"/>
-
-
+&nbsp; &nbsp; <img src="https://telenav.github.io/telenav-assets/images/meters/meter-0-96.png" srcset="https://telenav.github.io/telenav-assets/images/meters/meter-0-96-2x.png 2x"/>
 
 
 | Class | Documentation Sections |
 |---|---|
-| [*QuickTest*](https://www.kivakit.org/1.7.0/javadoc/kivakit/kivakit.testing//////////////////////////////////////.html) |  |  
-| [*SlowTest*](https://www.kivakit.org/1.7.0/javadoc/kivakit/kivakit.testing/////////////////////////////////////.html) |  |  
-| [*UnitTest*](https://www.kivakit.org/1.7.0/javadoc/kivakit/kivakit.testing/////////////////////////////////////.html) | Ensure Behavior |  
+| [*QuickTest*](https://www.kivakit.org/1.7.1-SNAPSHOT/javadoc/kivakit/kivakit.testing//////////////////////////////////////.html) |  |  
+| [*SlowTest*](https://www.kivakit.org/1.7.1-SNAPSHOT/javadoc/kivakit/kivakit.testing/////////////////////////////////////.html) |  |  
+| [*UnitTest*](https://www.kivakit.org/1.7.1-SNAPSHOT/javadoc/kivakit/kivakit.testing/////////////////////////////////////.html) | Ensure Behavior |  
 | | Ensure Equality |  
 | | Test Methods |  
 | | Quick Tests |  

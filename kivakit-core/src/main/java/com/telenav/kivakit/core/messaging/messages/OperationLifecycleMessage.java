@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.core.messaging.messages;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.CodeQuality;
 import com.telenav.kivakit.core.messaging.Message;
 import com.telenav.kivakit.core.messaging.messages.lifecycle.OperationFailed;
 import com.telenav.kivakit.core.messaging.messages.lifecycle.OperationHalted;
@@ -27,7 +27,7 @@ import com.telenav.kivakit.core.messaging.messages.lifecycle.OperationSucceeded;
 import com.telenav.kivakit.core.internal.lexakai.DiagramMessageType;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE;
+import static com.telenav.kivakit.annotations.code.CodeStability.CODE_STABLE;
 import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
 
@@ -42,9 +42,9 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NE
  * @see OperationHalted
  */
 @UmlClassDiagram(diagram = DiagramMessageType.class)
-@ApiQuality(stability = API_STABLE,
-            testing = TESTING_NOT_NEEDED,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = CODE_STABLE,
+             testing = TESTING_NOT_NEEDED,
+             documentation = DOCUMENTATION_COMPLETE)
 public abstract class OperationLifecycleMessage extends OperationMessage
 {
     protected OperationLifecycleMessage()

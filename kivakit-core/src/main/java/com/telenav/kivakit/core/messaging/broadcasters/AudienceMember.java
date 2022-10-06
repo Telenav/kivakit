@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.core.messaging.broadcasters;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.CodeQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramRepeater;
 import com.telenav.kivakit.core.messaging.Broadcaster;
 import com.telenav.kivakit.core.messaging.Listener;
@@ -29,7 +29,7 @@ import com.telenav.lexakai.annotations.associations.UmlAggregation;
 
 import java.util.Objects;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_PRIVATE;
+import static com.telenav.kivakit.annotations.code.CodeStability.CODE_PRIVATE;
 import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
 
@@ -39,9 +39,9 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramRepeater.class)
-@ApiQuality(stability = API_PRIVATE,
-            testing = TESTING_NONE,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = CODE_PRIVATE,
+             testing = TESTING_NONE,
+             documentation = DOCUMENTATION_COMPLETE)
 class AudienceMember
 {
     /** The listener */

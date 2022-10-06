@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.settings;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.CodeQuality;
 import com.telenav.kivakit.core.language.Hash;
 import com.telenav.kivakit.core.registry.InstanceIdentifier;
 import com.telenav.kivakit.core.registry.RegistryTrait;
@@ -29,7 +29,7 @@ import com.telenav.lexakai.annotations.visibility.UmlNotPublicApi;
 
 import java.security.Key;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE;
+import static com.telenav.kivakit.annotations.code.CodeStability.CODE_STABLE;
 import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
 import static com.telenav.kivakit.core.ensure.Ensure.ensureFalse;
@@ -52,9 +52,9 @@ import static com.telenav.kivakit.core.registry.InstanceIdentifier.singletonInst
 @UmlNotPublicApi
 @UmlExcludeType(Comparable.class)
 @UmlExcludeType
-@ApiQuality(stability = API_STABLE,
-            testing = TESTING_NONE,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = CODE_STABLE,
+             testing = TESTING_NONE,
+             documentation = DOCUMENTATION_COMPLETE)
 public class SettingsObject implements RegistryTrait
 {
     /**

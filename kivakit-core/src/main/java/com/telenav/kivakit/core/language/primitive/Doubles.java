@@ -18,11 +18,11 @@
 
 package com.telenav.kivakit.core.language.primitive;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.CodeQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramPrimitive;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_STATIC_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.CodeStability.CODE_STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_SUFFICIENT;
 
@@ -41,9 +41,9 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_SUFFIC
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramPrimitive.class)
-@ApiQuality(stability = API_STABLE_STATIC_EXTENSIBLE,
-            testing = TESTING_SUFFICIENT,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = CODE_STABLE_EXTENSIBLE,
+             testing = TESTING_SUFFICIENT,
+             documentation = DOCUMENTATION_COMPLETE)
 public class Doubles
 {
     /** Default invalid value */

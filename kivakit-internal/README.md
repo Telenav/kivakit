@@ -4,7 +4,7 @@
 
 [//]: # (end-user-text)
 
-# kivakit-internal &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/box-32.png" srcset="https://telenav.github.io/telenav-assets/images/icons/box-32-2x.png 2x"/>
+# kivakit-internal &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/box-64.png" srcset="https://telenav.github.io/telenav-assets/images/icons/box-64-2x.png 2x"/>
 
 This module contains internal code for testing.
 
@@ -25,11 +25,11 @@ This module contains internal code for testing.
 
 ### Javadoc Coverage <a name = "javadoc-coverage"></a> &nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/bargraph-24.png" srcset="https://telenav.github.io/telenav-assets/images/icons/bargraph-24-2x.png 2x"/>
 
-&nbsp; <img src="https://telenav.github.io/telenav-assets/images/meters/meter-90-96.png" srcset="https://telenav.github.io/telenav-assets/images/meters/meter-90-96-2x.png 2x"/>
+&nbsp; <img src="https://telenav.github.io/telenav-assets/images/meters/meter-100-96.png" srcset="https://telenav.github.io/telenav-assets/images/meters/meter-100-96-2x.png 2x"/>
  &nbsp; &nbsp; [**kivakit-internal-testing**](testing/README.md)  
-&nbsp; <img src="https://telenav.github.io/telenav-assets/images/meters/meter-50-96.png" srcset="https://telenav.github.io/telenav-assets/images/meters/meter-50-96-2x.png 2x"/>
+&nbsp; <img src="https://telenav.github.io/telenav-assets/images/meters/meter-0-96.png" srcset="https://telenav.github.io/telenav-assets/images/meters/meter-0-96-2x.png 2x"/>
  &nbsp; &nbsp; [**kivakit-internal-tests-core**](tests/core/README.md)  
-&nbsp; <img src="https://telenav.github.io/telenav-assets/images/meters/meter-50-96.png" srcset="https://telenav.github.io/telenav-assets/images/meters/meter-50-96-2x.png 2x"/>
+&nbsp; <img src="https://telenav.github.io/telenav-assets/images/meters/meter-0-96.png" srcset="https://telenav.github.io/telenav-assets/images/meters/meter-0-96-2x.png 2x"/>
  &nbsp; &nbsp; [**kivakit-internal-tests-resource**](tests/resource/README.md)
 
 [//]: # (start-user-text)

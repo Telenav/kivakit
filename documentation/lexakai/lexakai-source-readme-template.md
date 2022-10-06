@@ -56,8 +56,6 @@ ${package-diagram-index}
 
 Javadoc coverage for this project is ${project-javadoc-coverage}
 
-${project-undocumented-classes}
-
 | Class | Documentation Sections |
 |---|---|
 ${javadoc-index}

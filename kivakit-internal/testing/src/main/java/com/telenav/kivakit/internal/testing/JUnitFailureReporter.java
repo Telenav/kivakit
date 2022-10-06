@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.internal.testing;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.CodeQuality;
 import com.telenav.kivakit.core.ensure.Ensure;
 import com.telenav.kivakit.core.ensure.FailureReporter;
 import com.telenav.kivakit.core.messaging.Message;
@@ -26,7 +26,7 @@ import com.telenav.kivakit.internal.testing.internal.lexakai.DiagramTest;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import org.junit.Assert;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE;
+import static com.telenav.kivakit.annotations.code.CodeStability.CODE_STABLE;
 import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
 import static com.telenav.kivakit.core.messaging.MessageFormat.WITH_EXCEPTION;
@@ -38,9 +38,9 @@ import static com.telenav.kivakit.core.messaging.MessageFormat.WITH_EXCEPTION;
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramTest.class)
-@ApiQuality(stability = API_STABLE,
-            testing = TESTING_NONE,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = CODE_STABLE,
+             testing = TESTING_NONE,
+             documentation = DOCUMENTATION_COMPLETE)
 public class JUnitFailureReporter implements FailureReporter
 {
     @Override

@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.resource.compression.archive;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.CodeQuality;
 import com.telenav.kivakit.core.code.UncheckedCode;
 import com.telenav.kivakit.core.io.IO;
 import com.telenav.kivakit.core.string.KivaKitFormat;
@@ -41,7 +41,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.attribute.BasicFileAttributes;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.CodeStability.CODE_STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
 import static java.nio.file.StandardOpenOption.CREATE;
@@ -65,9 +65,9 @@ import static java.nio.file.StandardOpenOption.WRITE;
  */
 @UmlClassDiagram(diagram = DiagramResourceArchive.class)
 @UmlExcludeSuperTypes({ AutoCloseable.class })
-@ApiQuality(stability = API_STABLE_EXTENSIBLE,
-            testing = TESTING_NONE,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = CODE_STABLE_EXTENSIBLE,
+             testing = TESTING_NONE,
+             documentation = DOCUMENTATION_COMPLETE)
 public class ZipEntry extends BaseWritableResource implements Closeable
 {
     private InputStream in;

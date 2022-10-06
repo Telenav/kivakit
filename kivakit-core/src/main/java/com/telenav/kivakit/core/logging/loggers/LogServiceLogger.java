@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.core.logging.loggers;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.CodeQuality;
 import com.telenav.kivakit.core.collections.Sets;
 import com.telenav.kivakit.core.collections.map.VariableMap;
 import com.telenav.kivakit.core.collections.set.ObjectSet;
@@ -38,7 +38,7 @@ import com.telenav.lexakai.annotations.visibility.UmlExcludeMember;
 import java.util.Set;
 import java.util.regex.Pattern;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE;
+import static com.telenav.kivakit.annotations.code.CodeStability.CODE_STABLE;
 import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
 import static com.telenav.kivakit.core.collections.set.ObjectSet.objectSet;
@@ -59,9 +59,9 @@ import static com.telenav.kivakit.core.ensure.Ensure.fail;
 @UmlClassDiagram(diagram = DiagramLogging.class)
 @UmlRelation(label = "configures", referent = Log.class)
 @UmlRelation(label = "loads log services with", referent = LogServiceLoader.class)
-@ApiQuality(stability = API_STABLE,
-            testing = TESTING_NONE,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = CODE_STABLE,
+             testing = TESTING_NONE,
+             documentation = DOCUMENTATION_COMPLETE)
 public class LogServiceLogger extends BaseLogger
 {
     /** List of logs to log to, initially just a console log, unless logs are specified with KIVAKIT_LOG */

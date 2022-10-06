@@ -18,13 +18,13 @@
 
 package com.telenav.kivakit.interfaces.collection;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.CodeQuality;
 import com.telenav.kivakit.interfaces.internal.lexakai.DiagramCollection;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.Iterator;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_FURTHER_EVALUATION_NEEDED;
+import static com.telenav.kivakit.annotations.code.CodeStability.CODE_FURTHER_EVALUATION_NEEDED;
 import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
 
@@ -40,11 +40,11 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramCollection.class)
-@ApiQuality(stability = API_FURTHER_EVALUATION_NEEDED,
-            testing = TESTING_NONE,
-            documentation = DOCUMENTATION_COMPLETE,
-            reviews = 1,
-            reviewers = "shibo")
+@CodeQuality(stability = CODE_FURTHER_EVALUATION_NEEDED,
+             testing = TESTING_NONE,
+             documentation = DOCUMENTATION_COMPLETE,
+             reviews = 1,
+             reviewers = "shibo")
 public interface Indexable<Value> extends
         Sized,
         Sequence<Value>

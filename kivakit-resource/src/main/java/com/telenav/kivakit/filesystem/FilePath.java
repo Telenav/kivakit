@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.filesystem;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.CodeQuality;
 import com.telenav.kivakit.conversion.BaseStringConverter;
 import com.telenav.kivakit.core.collections.list.StringList;
 import com.telenav.kivakit.core.messaging.Listener;
@@ -42,7 +42,7 @@ import java.util.List;
 import java.util.function.Function;
 import java.util.regex.Pattern;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.CodeStability.CODE_STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
 import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
@@ -88,9 +88,9 @@ import static com.telenav.kivakit.core.messaging.Listener.throwingListener;
  */
 @SuppressWarnings({ "unused", "JavadocLinkAsPlainText" })
 @UmlClassDiagram(diagram = DiagramResourcePath.class)
-@ApiQuality(stability = API_STABLE_EXTENSIBLE,
-            testing = TESTING_NOT_NEEDED,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = CODE_STABLE_EXTENSIBLE,
+             testing = TESTING_NOT_NEEDED,
+             documentation = DOCUMENTATION_COMPLETE)
 public class FilePath extends ResourcePath
 {
     /**
@@ -184,7 +184,7 @@ public class FilePath extends ResourcePath
     {
         if (path.isBlank())
         {
-            return empty();
+            return emptyFilePath();
         }
 
         path = Strings.format(path, arguments);
@@ -210,9 +210,9 @@ public class FilePath extends ResourcePath
      *
      * @author jonathanl (shibo)
      */
-    @ApiQuality(stability = API_STABLE_EXTENSIBLE,
-                testing = TESTING_NONE,
-                documentation = DOCUMENTATION_COMPLETE)
+    @CodeQuality(stability = CODE_STABLE_EXTENSIBLE,
+                 testing = TESTING_NONE,
+                 documentation = DOCUMENTATION_COMPLETE)
     public static class Converter extends BaseStringConverter<FilePath>
     {
         public Converter(@NotNull Listener listener)
@@ -692,9 +692,9 @@ public class FilePath extends ResourcePath
     }
 
     @NotNull
-    private static FilePath empty()
+    private static FilePath emptyFilePath()
     {
-        return new FilePath(List.of());
+        return new FilePath(new ArrayList<>());
     }
 
     @NotNull

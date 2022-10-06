@@ -1,8 +1,9 @@
 package com.telenav.kivakit.core.collections;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.CodeQuality;
 import com.telenav.kivakit.core.collections.iteration.BaseIterator;
 import com.telenav.kivakit.core.collections.iteration.FilteredIterable;
+import com.telenav.kivakit.core.collections.list.BaseList;
 import com.telenav.kivakit.core.collections.list.ObjectList;
 import com.telenav.kivakit.core.collections.list.StringList;
 import com.telenav.kivakit.core.logging.Logger;
@@ -29,10 +30,9 @@ import java.util.Set;
 import java.util.function.Function;
 import java.util.function.Predicate;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.CodeStability.CODE_STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_INSUFFICIENT;
-import static com.telenav.kivakit.core.collections.list.ObjectList.objectList;
 import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
 import static com.telenav.kivakit.interfaces.string.StringFormattable.Format.TO_STRING;
 
@@ -157,9 +157,9 @@ import static com.telenav.kivakit.interfaces.string.StringFormattable.Format.TO_
  * @see StringFormattable
  */
 @SuppressWarnings("unused")
-@ApiQuality(stability = API_STABLE_EXTENSIBLE,
-            testing = TESTING_INSUFFICIENT,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = CODE_STABLE_EXTENSIBLE,
+             testing = TESTING_INSUFFICIENT,
+             documentation = DOCUMENTATION_COMPLETE)
 public abstract class BaseCollection<Value> implements
         Addable<Value>,
         Collection<Value>,
@@ -446,9 +446,10 @@ public abstract class BaseCollection<Value> implements
     /**
      * @return A copy of this collection sorted by the given comparator
      */
-    public ObjectList<Value> sorted(Comparator<Value> comparator)
+    public BaseList<Value> sorted(Comparator<Value> comparator)
     {
-        var sorted = objectList(this);
+        var sorted = (BaseList<Value>) newCollection();
+        sorted.addAll(this);
         sorted.sort(comparator);
         return sorted;
     }
@@ -457,7 +458,7 @@ public abstract class BaseCollection<Value> implements
      * @return An {@link ObjectList} with the values in this collection in sorted order.
      */
     @SuppressWarnings("unchecked")
-    public ObjectList<Value> sorted()
+    public BaseList<Value> sorted()
     {
         return sorted((a, b) ->
         {

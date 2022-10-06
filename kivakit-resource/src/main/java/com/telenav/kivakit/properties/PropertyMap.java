@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.properties;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.CodeQuality;
 import com.telenav.kivakit.conversion.StringConverter;
 import com.telenav.kivakit.conversion.core.language.object.ObjectPopulator;
 import com.telenav.kivakit.core.collections.list.StringList;
@@ -48,10 +48,12 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Pattern;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.CodeStability.CODE_STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
 import static com.telenav.kivakit.core.progress.ProgressReporter.nullProgressReporter;
+import static com.telenav.kivakit.filesystem.File.parseFile;
+import static com.telenav.kivakit.filesystem.Folder.parseFolder;
 import static com.telenav.kivakit.resource.packages.PackageResource.packageResource;
 
 /**
@@ -122,9 +124,9 @@ import static com.telenav.kivakit.resource.packages.PackageResource.packageResou
  */
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramResourceType.class)
-@ApiQuality(stability = API_STABLE_EXTENSIBLE,
-            testing = TESTING_NONE,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = CODE_STABLE_EXTENSIBLE,
+             testing = TESTING_NONE,
+             documentation = DOCUMENTATION_COMPLETE)
 public class PropertyMap extends VariableMap<String>
 {
     /**
@@ -271,7 +273,7 @@ public class PropertyMap extends VariableMap<String>
      */
     public File asFile(@NotNull String key)
     {
-        return File.parseFile(this, get(key));
+        return parseFile(this, get(key));
     }
 
     /**
@@ -279,7 +281,7 @@ public class PropertyMap extends VariableMap<String>
      */
     public Folder asFolder(@NotNull String key)
     {
-        return Folder.parseFolder(this, asPathString(key));
+        return parseFolder(this, asPathString(key));
     }
 
     /**

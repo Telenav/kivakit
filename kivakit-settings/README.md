@@ -30,14 +30,14 @@ This module contains the KivaKit settings mini-framework
 
 ### Dependencies <a name="dependencies"></a> &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/dependencies-32.png" srcset="https://telenav.github.io/telenav-assets/images/icons/dependencies-32-2x.png 2x"/>
 
-[*Dependency Diagram*](https://www.kivakit.org/1.7.0/lexakai/kivakit/kivakit-settings/documentation/diagrams/dependencies.svg)
+[*Dependency Diagram*](https://www.kivakit.org/1.7.1-SNAPSHOT/lexakai/kivakit/kivakit-settings/documentation/diagrams/dependencies.svg)
 
 #### Maven Dependency
 
     <dependency>
         <groupId>com.telenav.kivakit</groupId>
         <artifactId>kivakit-settings</artifactId>
-        <version>1.7.0</version>
+        <version>1.7.1-SNAPSHOT</version>
     </dependency>
 
 <img src="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128.png" srcset="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128-2x.png 2x"/>
@@ -56,52 +56,56 @@ Details on how to use the *kivakit-core configuration* API are available in the 
 
 ### Class Diagrams <a name="class-diagrams"></a> &nbsp; &nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/diagram-40.png" srcset="https://telenav.github.io/telenav-assets/images/icons/diagram-40-2x.png 2x"/>
 
-[*Settings*](https://www.kivakit.org/1.7.0/lexakai/kivakit/kivakit-settings/documentation/diagrams/diagram-settings.svg)
+[*Settings*](https://www.kivakit.org/1.7.1-SNAPSHOT/lexakai/kivakit/kivakit-settings/documentation/diagrams/diagram-settings.svg)
 
 <img src="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128.png" srcset="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128-2x.png 2x"/>
 
 ### Package Diagrams <a name="package-diagrams"></a> &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/box-24.png" srcset="https://telenav.github.io/telenav-assets/images/icons/box-24-2x.png 2x"/>
 
-[*com.telenav.kivakit.settings*](https://www.kivakit.org/1.7.0/lexakai/kivakit/kivakit-settings/documentation/diagrams/com.telenav.kivakit.settings.svg)  
-[*com.telenav.kivakit.settings.internal.lexakai*](https://www.kivakit.org/1.7.0/lexakai/kivakit/kivakit-settings/documentation/diagrams/com.telenav.kivakit.settings.internal.lexakai.svg)  
-[*com.telenav.kivakit.settings.stores*](https://www.kivakit.org/1.7.0/lexakai/kivakit/kivakit-settings/documentation/diagrams/com.telenav.kivakit.settings.stores.svg)
+[*com.telenav.kivakit.settings*](https://www.kivakit.org/1.7.1-SNAPSHOT/lexakai/kivakit/kivakit-settings/documentation/diagrams/com.telenav.kivakit.settings.svg)  
+[*com.telenav.kivakit.settings.internal.lexakai*](https://www.kivakit.org/1.7.1-SNAPSHOT/lexakai/kivakit/kivakit-settings/documentation/diagrams/com.telenav.kivakit.settings.internal.lexakai.svg)  
+[*com.telenav.kivakit.settings.stores*](https://www.kivakit.org/1.7.1-SNAPSHOT/lexakai/kivakit/kivakit-settings/documentation/diagrams/com.telenav.kivakit.settings.stores.svg)
 
 <img src="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128.png" srcset="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128-2x.png 2x"/>
 
 ### Javadoc <a name="javadoc"></a> &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/books-24.png" srcset="https://telenav.github.io/telenav-assets/images/icons/books-24-2x.png 2x"/>
 
-Javadoc coverage for this project is 83.0%.  
+Javadoc coverage for this project is 92.9%.  
   
-&nbsp; &nbsp; <img src="https://telenav.github.io/telenav-assets/images/meters/meter-80-96.png" srcset="https://telenav.github.io/telenav-assets/images/meters/meter-80-96-2x.png 2x"/>
-
-
+&nbsp; &nbsp; <img src="https://telenav.github.io/telenav-assets/images/meters/meter-90-96.png" srcset="https://telenav.github.io/telenav-assets/images/meters/meter-90-96-2x.png 2x"/>
 
 
 | Class | Documentation Sections |
 |---|---|
-| [*BaseResourceSettingsStore*](https://www.kivakit.org/1.7.0/javadoc/kivakit/kivakit.settings//////////////////////////////////////////////////////////////.html) | JSON File Format |  
+| [*BaseResourceSettingsStore*](https://www.kivakit.org/1.7.1-SNAPSHOT/javadoc/kivakit/kivakit.settings//////////////////////////////////////////////////////////////.html) | JSON File Format |  
 | | Properties File Format |  
-| [*BaseSettingsStore*](https://www.kivakit.org/1.7.0/javadoc/kivakit/kivakit.settings///////////////////////////////////////////////.html) | Provided Stores |  
+| [*BaseSettingsStore*](https://www.kivakit.org/1.7.1-SNAPSHOT/javadoc/kivakit/kivakit.settings///////////////////////////////////////////////.html) | Provided Stores |  
 | | Providers |  
-| [*Deployment*](https://www.kivakit.org/1.7.0/javadoc/kivakit/kivakit.settings////////////////////////////////////////.html) | Deploying Applications |  
+| [*Deployment*](https://www.kivakit.org/1.7.1-SNAPSHOT/javadoc/kivakit/kivakit.settings////////////////////////////////////////.html) | Deploying Applications |  
 | | Example |  
-| [*Deployment.Converter*](https://www.kivakit.org/1.7.0/javadoc/kivakit/kivakit.settings//////////////////////////////////////////////////.html) |  |  
-| [*DeploymentSet*](https://www.kivakit.org/1.7.0/javadoc/kivakit/kivakit.settings///////////////////////////////////////////.html) |  |  
-| [*DiagramSettings*](https://www.kivakit.org/1.7.0/javadoc/kivakit/kivakit.settings//////////////////////////////////////////////////////////////.html) |  |  
-| [*MemorySettingsStore*](https://www.kivakit.org/1.7.0/javadoc/kivakit/kivakit.settings////////////////////////////////////////////////////////.html) |  |  
-| [*ResourceFolderSettingsStore*](https://www.kivakit.org/1.7.0/javadoc/kivakit/kivakit.settings////////////////////////////////////////////////////////////////.html) |  |  
-| [*Settings*](https://www.kivakit.org/1.7.0/javadoc/kivakit/kivakit.settings//////////////////////////////////////.html) | The Easiest Way to Register Settings |  
+| [*Deployment.Converter*](https://www.kivakit.org/1.7.1-SNAPSHOT/javadoc/kivakit/kivakit.settings//////////////////////////////////////////////////.html) |  |  
+| [*DeploymentSet*](https://www.kivakit.org/1.7.1-SNAPSHOT/javadoc/kivakit/kivakit.settings///////////////////////////////////////////.html) | Adding Deployments |  
+| | Creation |  
+| | Loading |  
+| | Accessing Deployments |  
+| [*DiagramSettings*](https://www.kivakit.org/1.7.1-SNAPSHOT/javadoc/kivakit/kivakit.settings//////////////////////////////////////////////////////////////.html) |  |  
+| [*MemorySettingsStore*](https://www.kivakit.org/1.7.1-SNAPSHOT/javadoc/kivakit/kivakit.settings////////////////////////////////////////////////////////.html) |  |  
+| [*ResourceFolderSettingsStore*](https://www.kivakit.org/1.7.1-SNAPSHOT/javadoc/kivakit/kivakit.settings////////////////////////////////////////////////////////////////.html) |  |  
+| [*SettingsObject*](https://www.kivakit.org/1.7.1-SNAPSHOT/javadoc/kivakit/kivakit.settings////////////////////////////////////////////.html) |  |  
+| [*SettingsObject.SettingsObjectIdentifier*](https://www.kivakit.org/1.7.1-SNAPSHOT/javadoc/kivakit/kivakit.settings/////////////////////////////////////////////////////////////////////.html) |  |  
+| [*SettingsProject*](https://www.kivakit.org/1.7.1-SNAPSHOT/javadoc/kivakit/kivakit.settings/////////////////////////////////////////////.html) |  |  
+| [*SettingsRegistry*](https://www.kivakit.org/1.7.1-SNAPSHOT/javadoc/kivakit/kivakit.settings//////////////////////////////////////////////.html) | The Easiest Way to Register Settings |  
 | | How Settings are Registered |  
 | | How Settings are Looked Up |  
 | | Settings |  
-| [*SettingsObject*](https://www.kivakit.org/1.7.0/javadoc/kivakit/kivakit.settings////////////////////////////////////////////.html) |  |  
-| [*SettingsObject.Identifier*](https://www.kivakit.org/1.7.0/javadoc/kivakit/kivakit.settings///////////////////////////////////////////////////////.html) |  |  
-| [*SettingsProject*](https://www.kivakit.org/1.7.0/javadoc/kivakit/kivakit.settings/////////////////////////////////////////////.html) |  |  
-| [*SettingsStore*](https://www.kivakit.org/1.7.0/javadoc/kivakit/kivakit.settings///////////////////////////////////////////.html) | Hash/Equals Contract |  
-| | Loading and Saving |  
-| [*SettingsStore.AccessMode*](https://www.kivakit.org/1.7.0/javadoc/kivakit/kivakit.settings//////////////////////////////////////////////////////.html) |  |  
-| [*SettingsTrait*](https://www.kivakit.org/1.7.0/javadoc/kivakit/kivakit.settings///////////////////////////////////////////.html) | Register methods |  
+| [*SettingsRegistryTrait*](https://www.kivakit.org/1.7.1-SNAPSHOT/javadoc/kivakit/kivakit.settings///////////////////////////////////////////////////.html) | Loading |  
+| | Register methods |  
+| | Saving |  
+| | Registry Access |  
 | | Lookup methods |  
+| [*SettingsStore*](https://www.kivakit.org/1.7.1-SNAPSHOT/javadoc/kivakit/kivakit.settings///////////////////////////////////////////.html) | Hash/Equals Contract |  
+| | Loading and Saving |  
+| [*SettingsStore.AccessMode*](https://www.kivakit.org/1.7.1-SNAPSHOT/javadoc/kivakit/kivakit.settings//////////////////////////////////////////////////////.html) |  |  
 
 [//]: # (start-user-text)
 
