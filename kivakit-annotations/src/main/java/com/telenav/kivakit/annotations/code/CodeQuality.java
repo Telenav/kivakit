@@ -59,12 +59,12 @@ public @interface CodeQuality
     /**
      * Returns the subjective likelihood of future API stability, as evaluated by a developer
      */
-    CodeStability[] stability() default CODE_UNEVALUATED;
+    CodeStability stability() default CODE_UNEVALUATED;
 
     /**
      * Returns the level of testing provided based versus the level needed, as evaluated by a developer
      */
-    TestingQuality[] testing() default TESTING_UNEVALUATED;
+    TestingQuality testing() default TESTING_UNEVALUATED;
 
     /**
      * Returns the type of API

@@ -29,7 +29,8 @@ import com.telenav.lexakai.annotations.associations.UmlAggregation;
 
 import java.util.Objects;
 
-import static com.telenav.kivakit.annotations.code.CodeStability.CODE_PRIVATE;
+import static com.telenav.kivakit.annotations.code.CodeStability.CODE_STABLE;
+import static com.telenav.kivakit.annotations.code.CodeType.CODE_INTERNAL;
 import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
 
@@ -39,9 +40,10 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramRepeater.class)
-@CodeQuality(stability = CODE_PRIVATE,
+@CodeQuality(stability = CODE_STABLE,
              testing = TESTING_NONE,
-             documentation = DOCUMENTATION_COMPLETE)
+             documentation = DOCUMENTATION_COMPLETE,
+             type = CODE_INTERNAL)
 class AudienceMember
 {
     /** The listener */

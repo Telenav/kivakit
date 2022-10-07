@@ -47,12 +47,12 @@ public class Split
      * Splits the given text on the given delimiter, returning a list of strings
      *
      * @param text The text to split
-     * @param delimiter The delimiter to split on
+     * @param pattern The regular expression to split on
      * @return The list of strings
      */
-    public static StringList split(String text, String delimiter)
+    public static StringList split(String text, String pattern)
     {
-        return stringList(Arrays.stream(text.split(delimiter, Integer.MAX_VALUE))
+        return stringList(Arrays.stream(text.split(pattern, Integer.MAX_VALUE))
                 .collect(Collectors.toList()));
     }
 

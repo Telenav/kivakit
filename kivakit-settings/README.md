@@ -24,7 +24,7 @@ This module contains the KivaKit settings mini-framework
 
 [**Summary**](#summary)  
 
-[**Dependencies**](#dependencies) | [**Class Diagrams**](#class-diagrams) | [**Package Diagrams**](#package-diagrams) | [**Javadoc**](#javadoc)
+[**Dependencies**](#dependencies) | [**Code Quality**](#code-quality) | [**Class Diagrams**](#class-diagrams) | [**Package Diagrams**](#package-diagrams)
 
 <img src="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-512.png" srcset="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-512-2x.png 2x"/>
 
@@ -54,6 +54,24 @@ Details on how to use the *kivakit-core configuration* API are available in the 
 
 <img src="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128.png" srcset="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128-2x.png 2x"/>
 
+### Code Quality <a name="code-quality"></a> &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/ruler-32.png" srcset="https://telenav.github.io/telenav-assets/images/icons/ruler-32-2x.png 2x"/>
+
+Code quality for this project is 64.3%.  
+  
+&nbsp; &nbsp; <img src="https://telenav.github.io/telenav-assets/images/meters/meter-60-96.png" srcset="https://telenav.github.io/telenav-assets/images/meters/meter-60-96-2x.png 2x"/>
+
+
+| Measurement   | Value                    |
+|---------------|--------------------------|
+| Stability     | 92.9%&nbsp; &nbsp; <img src="https://telenav.github.io/telenav-assets/images/meters/meter-90-96.png" srcset="https://telenav.github.io/telenav-assets/images/meters/meter-90-96-2x.png 2x"/>
+     |
+| Testing       | 7.1%&nbsp; &nbsp; <img src="https://telenav.github.io/telenav-assets/images/meters/meter-10-96.png" srcset="https://telenav.github.io/telenav-assets/images/meters/meter-10-96-2x.png 2x"/>
+       |
+| Documentation | 92.9%&nbsp; &nbsp; <img src="https://telenav.github.io/telenav-assets/images/meters/meter-90-96.png" srcset="https://telenav.github.io/telenav-assets/images/meters/meter-90-96-2x.png 2x"/>
+ |
+
+<img src="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128.png" srcset="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128-2x.png 2x"/>
+
 ### Class Diagrams <a name="class-diagrams"></a> &nbsp; &nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/diagram-40.png" srcset="https://telenav.github.io/telenav-assets/images/icons/diagram-40-2x.png 2x"/>
 
 [*Settings*](https://www.kivakit.org/1.7.1-SNAPSHOT/lexakai/kivakit/kivakit-settings/documentation/diagrams/diagram-settings.svg)
@@ -66,17 +84,10 @@ Details on how to use the *kivakit-core configuration* API are available in the 
 [*com.telenav.kivakit.settings.internal.lexakai*](https://www.kivakit.org/1.7.1-SNAPSHOT/lexakai/kivakit/kivakit-settings/documentation/diagrams/com.telenav.kivakit.settings.internal.lexakai.svg)  
 [*com.telenav.kivakit.settings.stores*](https://www.kivakit.org/1.7.1-SNAPSHOT/lexakai/kivakit/kivakit-settings/documentation/diagrams/com.telenav.kivakit.settings.stores.svg)
 
-<img src="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128.png" srcset="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128-2x.png 2x"/>
+### Javadoc <a name="code-quality"></a> &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/books-24.png" srcset="https://telenav.github.io/telenav-assets/images/icons/books-24-2x.png 2x"/>
 
-### Javadoc <a name="javadoc"></a> &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/books-24.png" srcset="https://telenav.github.io/telenav-assets/images/icons/books-24-2x.png 2x"/>
-
-Javadoc coverage for this project is 92.9%.  
-  
-&nbsp; &nbsp; <img src="https://telenav.github.io/telenav-assets/images/meters/meter-90-96.png" srcset="https://telenav.github.io/telenav-assets/images/meters/meter-90-96-2x.png 2x"/>
-
-
-| Class | Documentation Sections |
-|---|---|
+| Class | Documentation Sections  |
+|-------|-------------------------|
 | [*BaseResourceSettingsStore*](https://www.kivakit.org/1.7.1-SNAPSHOT/javadoc/kivakit/kivakit.settings//////////////////////////////////////////////////////////////.html) | JSON File Format |  
 | | Properties File Format |  
 | [*BaseSettingsStore*](https://www.kivakit.org/1.7.1-SNAPSHOT/javadoc/kivakit/kivakit.settings///////////////////////////////////////////////.html) | Provided Stores |  

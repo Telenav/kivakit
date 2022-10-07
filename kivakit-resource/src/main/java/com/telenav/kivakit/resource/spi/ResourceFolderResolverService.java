@@ -31,7 +31,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.ServiceLoader;
 
 import static com.telenav.kivakit.annotations.code.CodeStability.CODE_STABLE_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.CodeType.CODE_PRIVATE;
+import static com.telenav.kivakit.annotations.code.CodeType.CODE_INTERNAL;
 import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
 
@@ -63,7 +63,7 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
 @CodeQuality(stability = CODE_STABLE_EXTENSIBLE,
              documentation = DOCUMENTATION_COMPLETE,
              testing = TESTING_NONE,
-             type = CODE_PRIVATE)
+             type = CODE_INTERNAL)
 public class ResourceFolderResolverService extends BaseRepeater
 {
     @UmlAggregation

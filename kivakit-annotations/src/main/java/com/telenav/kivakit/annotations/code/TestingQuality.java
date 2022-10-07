@@ -8,6 +8,7 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NE
  * The quality of tests for a given class, as evaluated by a developer. This is different from a simple code coverage
  * metric because there are many methods and even whole classes that do not need full testing.
  */
+@SuppressWarnings("unused")
 @CodeQuality(stability = CODE_FURTHER_EVALUATION_NEEDED,
              testing = TESTING_NOT_NEEDED,
              documentation = DOCUMENTATION_COMPLETE,
@@ -31,5 +32,15 @@ public enum TestingQuality
     TESTING_EVALUATION_NEEDED,
 
     /** Testing status has not been evaluated */
-    TESTING_UNEVALUATED
+    TESTING_UNEVALUATED;
+
+    public boolean isTested()
+    {
+        return this == TESTING_SUFFICIENT || this == TESTING_NOT_NEEDED;
+    }
+
+    public boolean isUntested()
+    {
+        return !isTested();
+    }
 }

@@ -10,6 +10,7 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NE
  *
  * @author jonathanl (shibo)
  */
+@SuppressWarnings("unused")
 @CodeQuality(stability = CODE_FURTHER_EVALUATION_NEEDED,
              testing = TESTING_NOT_NEEDED,
              documentation = DOCUMENTATION_COMPLETE,
@@ -27,5 +28,15 @@ public enum DocumentationQuality
     DOCUMENTATION_NONE,
 
     /** Documentation status has not been evaluated */
-    DOCUMENTATION_UNEVALUATED
+    DOCUMENTATION_UNEVALUATED;
+
+    public boolean isComplete()
+    {
+        return this == DOCUMENTATION_COMPLETE;
+    }
+
+    public boolean isIncomplete()
+    {
+        return !isComplete();
+    }
 }

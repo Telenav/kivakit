@@ -27,7 +27,7 @@ This module provides HTTP and HTTPS resources.
 [**Authentication**](#authentication)  
 [**Encryption**](#encryption)  
 
-[**Dependencies**](#dependencies) | [**Class Diagrams**](#class-diagrams) | [**Package Diagrams**](#package-diagrams) | [**Javadoc**](#javadoc)
+[**Dependencies**](#dependencies) | [**Code Quality**](#code-quality) | [**Class Diagrams**](#class-diagrams) | [**Package Diagrams**](#package-diagrams)
 
 <img src="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-512.png" srcset="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-512-2x.png 2x"/>
 
@@ -78,6 +78,24 @@ The *SecureHttpNetworkLocation*, *SecureHttpGetResource* and *SecureHttpPostReso
 
 <img src="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128.png" srcset="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128-2x.png 2x"/>
 
+### Code Quality <a name="code-quality"></a> &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/ruler-32.png" srcset="https://telenav.github.io/telenav-assets/images/icons/ruler-32-2x.png 2x"/>
+
+Code quality for this project is 70.4%.  
+  
+&nbsp; &nbsp; <img src="https://telenav.github.io/telenav-assets/images/meters/meter-70-96.png" srcset="https://telenav.github.io/telenav-assets/images/meters/meter-70-96-2x.png 2x"/>
+
+
+| Measurement   | Value                    |
+|---------------|--------------------------|
+| Stability     | 100.0%&nbsp; &nbsp; <img src="https://telenav.github.io/telenav-assets/images/meters/meter-100-96.png" srcset="https://telenav.github.io/telenav-assets/images/meters/meter-100-96-2x.png 2x"/>
+     |
+| Testing       | 11.1%&nbsp; &nbsp; <img src="https://telenav.github.io/telenav-assets/images/meters/meter-10-96.png" srcset="https://telenav.github.io/telenav-assets/images/meters/meter-10-96-2x.png 2x"/>
+       |
+| Documentation | 100.0%&nbsp; &nbsp; <img src="https://telenav.github.io/telenav-assets/images/meters/meter-100-96.png" srcset="https://telenav.github.io/telenav-assets/images/meters/meter-100-96-2x.png 2x"/>
+ |
+
+<img src="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128.png" srcset="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128-2x.png 2x"/>
+
 ### Class Diagrams <a name="class-diagrams"></a> &nbsp; &nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/diagram-40.png" srcset="https://telenav.github.io/telenav-assets/images/icons/diagram-40-2x.png 2x"/>
 
 [*HTTP*](https://www.kivakit.org/1.7.1-SNAPSHOT/lexakai/kivakit/kivakit-network/http/documentation/diagrams/diagram-http.svg)  
@@ -92,17 +110,10 @@ The *SecureHttpNetworkLocation*, *SecureHttpGetResource* and *SecureHttpPostReso
 [*com.telenav.kivakit.network.http.internal.lexakai*](https://www.kivakit.org/1.7.1-SNAPSHOT/lexakai/kivakit/kivakit-network/http/documentation/diagrams/com.telenav.kivakit.network.http.internal.lexakai.svg)  
 [*com.telenav.kivakit.network.http.secure*](https://www.kivakit.org/1.7.1-SNAPSHOT/lexakai/kivakit/kivakit-network/http/documentation/diagrams/com.telenav.kivakit.network.http.secure.svg)
 
-<img src="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128.png" srcset="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128-2x.png 2x"/>
+### Javadoc <a name="code-quality"></a> &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/books-24.png" srcset="https://telenav.github.io/telenav-assets/images/icons/books-24-2x.png 2x"/>
 
-### Javadoc <a name="javadoc"></a> &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/books-24.png" srcset="https://telenav.github.io/telenav-assets/images/icons/books-24-2x.png 2x"/>
-
-Javadoc coverage for this project is 100.0%.  
-  
-&nbsp; &nbsp; <img src="https://telenav.github.io/telenav-assets/images/meters/meter-100-96.png" srcset="https://telenav.github.io/telenav-assets/images/meters/meter-100-96-2x.png 2x"/>
-
-
-| Class | Documentation Sections |
-|---|---|
+| Class | Documentation Sections  |
+|-------|-------------------------|
 | [*BaseHttpResource*](https://www.kivakit.org/1.7.1-SNAPSHOT/javadoc/kivakit/kivakit.network.http//////////////////////////////////////////////////.html) | Conversions |  
 | | Content |  
 | | Headers |  

@@ -24,7 +24,7 @@ This module provides integration of the Kryo serialization framework with KivaKi
 
 [**Summary**](#summary)  
 
-[**Dependencies**](#dependencies) | [**Class Diagrams**](#class-diagrams) | [**Package Diagrams**](#package-diagrams) | [**Javadoc**](#javadoc)
+[**Dependencies**](#dependencies) | [**Code Quality**](#code-quality) | [**Class Diagrams**](#class-diagrams) | [**Package Diagrams**](#package-diagrams)
 
 <img src="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-512.png" srcset="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-512-2x.png 2x"/>
 
@@ -52,6 +52,24 @@ This module is a serialization provider for the *kivakit-core-serialization-core
 
 <img src="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128.png" srcset="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128-2x.png 2x"/>
 
+### Code Quality <a name="code-quality"></a> &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/ruler-32.png" srcset="https://telenav.github.io/telenav-assets/images/icons/ruler-32-2x.png 2x"/>
+
+Code quality for this project is 70.8%.  
+  
+&nbsp; &nbsp; <img src="https://telenav.github.io/telenav-assets/images/meters/meter-70-96.png" srcset="https://telenav.github.io/telenav-assets/images/meters/meter-70-96-2x.png 2x"/>
+
+
+| Measurement   | Value                    |
+|---------------|--------------------------|
+| Stability     | 100.0%&nbsp; &nbsp; <img src="https://telenav.github.io/telenav-assets/images/meters/meter-100-96.png" srcset="https://telenav.github.io/telenav-assets/images/meters/meter-100-96-2x.png 2x"/>
+     |
+| Testing       | 12.5%&nbsp; &nbsp; <img src="https://telenav.github.io/telenav-assets/images/meters/meter-10-96.png" srcset="https://telenav.github.io/telenav-assets/images/meters/meter-10-96-2x.png 2x"/>
+       |
+| Documentation | 100.0%&nbsp; &nbsp; <img src="https://telenav.github.io/telenav-assets/images/meters/meter-100-96.png" srcset="https://telenav.github.io/telenav-assets/images/meters/meter-100-96-2x.png 2x"/>
+ |
+
+<img src="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128.png" srcset="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128-2x.png 2x"/>
+
 ### Class Diagrams <a name="class-diagrams"></a> &nbsp; &nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/diagram-40.png" srcset="https://telenav.github.io/telenav-assets/images/icons/diagram-40-2x.png 2x"/>
 
 [*diagram-kryo*](https://www.kivakit.org/1.7.1-SNAPSHOT/lexakai/kivakit/kivakit-serialization/kryo/documentation/diagrams/diagram-kryo.svg)
@@ -64,17 +82,10 @@ This module is a serialization provider for the *kivakit-core-serialization-core
 [*com.telenav.kivakit.serialization.kryo.internal.lexakai*](https://www.kivakit.org/1.7.1-SNAPSHOT/lexakai/kivakit/kivakit-serialization/kryo/documentation/diagrams/com.telenav.kivakit.serialization.kryo.internal.lexakai.svg)  
 [*com.telenav.kivakit.serialization.kryo.types*](https://www.kivakit.org/1.7.1-SNAPSHOT/lexakai/kivakit/kivakit-serialization/kryo/documentation/diagrams/com.telenav.kivakit.serialization.kryo.types.svg)
 
-<img src="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128.png" srcset="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128-2x.png 2x"/>
+### Javadoc <a name="code-quality"></a> &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/books-24.png" srcset="https://telenav.github.io/telenav-assets/images/icons/books-24-2x.png 2x"/>
 
-### Javadoc <a name="javadoc"></a> &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/books-24.png" srcset="https://telenav.github.io/telenav-assets/images/icons/books-24-2x.png 2x"/>
-
-Javadoc coverage for this project is 100.0%.  
-  
-&nbsp; &nbsp; <img src="https://telenav.github.io/telenav-assets/images/meters/meter-100-96.png" srcset="https://telenav.github.io/telenav-assets/images/meters/meter-100-96-2x.png 2x"/>
-
-
-| Class | Documentation Sections |
-|---|---|
+| Class | Documentation Sections  |
+|-------|-------------------------|
 | [*BaseSerializer*](https://www.kivakit.org/1.7.1-SNAPSHOT/javadoc/kivakit/kivakit.serialization.kryo//////////////////////////////////////////////////////.html) |  |  
 | [*DebugKryo*](https://www.kivakit.org/1.7.1-SNAPSHOT/javadoc/kivakit/kivakit.serialization.kryo/////////////////////////////////////////////////.html) |  |  
 | [*DiagramKryo*](https://www.kivakit.org/1.7.1-SNAPSHOT/javadoc/kivakit/kivakit.serialization.kryo////////////////////////////////////////////////////////////////////.html) |  |  

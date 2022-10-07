@@ -19,9 +19,6 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NE
              reviewers = "shibo")
 public enum CodeStability
 {
-    /** The code is not public, and should not be used outside of the KivaKit framework */
-    CODE_PRIVATE,
-
     /** The code is not expected to change */
     CODE_STABLE,
 
@@ -35,5 +32,15 @@ public enum CodeStability
     CODE_FURTHER_EVALUATION_NEEDED,
 
     /** The code has not been evaluated for stability */
-    CODE_UNEVALUATED
+    CODE_UNEVALUATED;
+
+    public boolean isStable()
+    {
+        return this == CODE_STABLE || this == CODE_STABLE_EXTENSIBLE;
+    }
+
+    public boolean isUnstable()
+    {
+        return this == CODE_UNSTABLE;
+    }
 }

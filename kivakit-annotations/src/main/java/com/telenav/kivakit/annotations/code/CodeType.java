@@ -21,15 +21,25 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NE
              reviewers = "shibo")
 public enum CodeType
 {
-    /** The API is fully public and intended for end-users */
+    /** The annotated code is fully public and intended for end-users */
     CODE_PUBLIC,
 
-    /** The API is not intended for end-users, but is public to service provider implementers */
+    /** The annotated code is not intended for end-users, but is public to service provider implementers */
     CODE_SERVICE_PROVIDER_INTERFACE,
 
-    /** The API fulfills a service provider interface (SPI) */
+    /** The annotated code fulfills a service provider interface (SPI) */
     CODE_SERVICE_PROVIDER_IMPLEMENTATION,
 
-    /** The API is private and should not be used outside the framework */
-    CODE_PRIVATE
+    /** The annotated code is private and should not be used outside the framework */
+    CODE_INTERNAL;
+
+    public boolean isPrivate()
+    {
+        return !isPublic();
+    }
+
+    public boolean isPublic()
+    {
+        return this == CODE_PUBLIC || this == CODE_SERVICE_PROVIDER_INTERFACE;
+    }
 }

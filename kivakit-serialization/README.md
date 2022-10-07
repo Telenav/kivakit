@@ -26,17 +26,17 @@ This module provides an abstraction for serialization.
 
 <img src="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128.png" srcset="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128-2x.png 2x"/>
 
-### Javadoc Coverage <a name = "javadoc-coverage"></a> &nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/bargraph-24.png" srcset="https://telenav.github.io/telenav-assets/images/icons/bargraph-24-2x.png 2x"/>
+### Code Quality <a name = "code-quality"></a> &nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/ruler-32.png" srcset="https://telenav.github.io/telenav-assets/images/icons/ruler-32-2x.png 2x"/>
 
-&nbsp; <img src="https://telenav.github.io/telenav-assets/images/meters/meter-100-96.png" srcset="https://telenav.github.io/telenav-assets/images/meters/meter-100-96-2x.png 2x"/>
+&nbsp; <img src="https://telenav.github.io/telenav-assets/images/meters/meter-70-96.png" srcset="https://telenav.github.io/telenav-assets/images/meters/meter-70-96-2x.png 2x"/>
  &nbsp; &nbsp; [**kivakit-serialization-core**](core/README.md)  
-&nbsp; <img src="https://telenav.github.io/telenav-assets/images/meters/meter-80-96.png" srcset="https://telenav.github.io/telenav-assets/images/meters/meter-80-96-2x.png 2x"/>
+&nbsp; <img src="https://telenav.github.io/telenav-assets/images/meters/meter-50-96.png" srcset="https://telenav.github.io/telenav-assets/images/meters/meter-50-96-2x.png 2x"/>
  &nbsp; &nbsp; [**kivakit-serialization-gson**](gson/README.md)  
-&nbsp; <img src="https://telenav.github.io/telenav-assets/images/meters/meter-100-96.png" srcset="https://telenav.github.io/telenav-assets/images/meters/meter-100-96-2x.png 2x"/>
+&nbsp; <img src="https://telenav.github.io/telenav-assets/images/meters/meter-70-96.png" srcset="https://telenav.github.io/telenav-assets/images/meters/meter-70-96-2x.png 2x"/>
  &nbsp; &nbsp; [**kivakit-serialization-kryo**](kryo/README.md)  
 &nbsp; <img src="https://telenav.github.io/telenav-assets/images/meters/meter-0-96.png" srcset="https://telenav.github.io/telenav-assets/images/meters/meter-0-96-2x.png 2x"/>
  &nbsp; &nbsp; [**kivakit-serialization-kryo-testing**](kryo-testing/README.md)  
-&nbsp; <img src="https://telenav.github.io/telenav-assets/images/meters/meter-100-96.png" srcset="https://telenav.github.io/telenav-assets/images/meters/meter-100-96-2x.png 2x"/>
+&nbsp; <img src="https://telenav.github.io/telenav-assets/images/meters/meter-70-96.png" srcset="https://telenav.github.io/telenav-assets/images/meters/meter-70-96-2x.png 2x"/>
  &nbsp; &nbsp; [**kivakit-serialization-properties**](properties/README.md)
 
 [//]: # (start-user-text)

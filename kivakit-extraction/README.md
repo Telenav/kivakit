@@ -14,7 +14,7 @@ This module contains the KivaKit extraction mini-framework
 
 
 
-[**Dependencies**](#dependencies) | [**Class Diagrams**](#class-diagrams) | [**Package Diagrams**](#package-diagrams) | [**Javadoc**](#javadoc)
+[**Dependencies**](#dependencies) | [**Code Quality**](#code-quality) | [**Class Diagrams**](#class-diagrams) | [**Package Diagrams**](#package-diagrams)
 
 <img src="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-512.png" srcset="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-512-2x.png 2x"/>
 
@@ -40,6 +40,24 @@ This module contains the KivaKit extraction mini-framework
 
 <img src="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128.png" srcset="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128-2x.png 2x"/>
 
+### Code Quality <a name="code-quality"></a> &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/ruler-32.png" srcset="https://telenav.github.io/telenav-assets/images/icons/ruler-32-2x.png 2x"/>
+
+Code quality for this project is 77.8%.  
+  
+&nbsp; &nbsp; <img src="https://telenav.github.io/telenav-assets/images/meters/meter-80-96.png" srcset="https://telenav.github.io/telenav-assets/images/meters/meter-80-96-2x.png 2x"/>
+
+
+| Measurement   | Value                    |
+|---------------|--------------------------|
+| Stability     | 100.0%&nbsp; &nbsp; <img src="https://telenav.github.io/telenav-assets/images/meters/meter-100-96.png" srcset="https://telenav.github.io/telenav-assets/images/meters/meter-100-96-2x.png 2x"/>
+     |
+| Testing       | 33.3%&nbsp; &nbsp; <img src="https://telenav.github.io/telenav-assets/images/meters/meter-30-96.png" srcset="https://telenav.github.io/telenav-assets/images/meters/meter-30-96-2x.png 2x"/>
+       |
+| Documentation | 100.0%&nbsp; &nbsp; <img src="https://telenav.github.io/telenav-assets/images/meters/meter-100-96.png" srcset="https://telenav.github.io/telenav-assets/images/meters/meter-100-96-2x.png 2x"/>
+ |
+
+<img src="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128.png" srcset="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128-2x.png 2x"/>
+
 ### Class Diagrams <a name="class-diagrams"></a> &nbsp; &nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/diagram-40.png" srcset="https://telenav.github.io/telenav-assets/images/icons/diagram-40-2x.png 2x"/>
 
 [*Extraction*](https://www.kivakit.org/1.7.1-SNAPSHOT/lexakai/kivakit/kivakit-extraction/documentation/diagrams/diagram-extraction.svg)
@@ -51,17 +69,10 @@ This module contains the KivaKit extraction mini-framework
 [*com.telenav.kivakit.extraction*](https://www.kivakit.org/1.7.1-SNAPSHOT/lexakai/kivakit/kivakit-extraction/documentation/diagrams/com.telenav.kivakit.extraction.svg)  
 [*com.telenav.kivakit.extraction.internal.lexakai*](https://www.kivakit.org/1.7.1-SNAPSHOT/lexakai/kivakit/kivakit-extraction/documentation/diagrams/com.telenav.kivakit.extraction.internal.lexakai.svg)
 
-<img src="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128.png" srcset="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128-2x.png 2x"/>
+### Javadoc <a name="code-quality"></a> &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/books-24.png" srcset="https://telenav.github.io/telenav-assets/images/icons/books-24-2x.png 2x"/>
 
-### Javadoc <a name="javadoc"></a> &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/books-24.png" srcset="https://telenav.github.io/telenav-assets/images/icons/books-24-2x.png 2x"/>
-
-Javadoc coverage for this project is 100.0%.  
-  
-&nbsp; &nbsp; <img src="https://telenav.github.io/telenav-assets/images/meters/meter-100-96.png" srcset="https://telenav.github.io/telenav-assets/images/meters/meter-100-96-2x.png 2x"/>
-
-
-| Class | Documentation Sections |
-|---|---|
+| Class | Documentation Sections  |
+|-------|-------------------------|
 | [*BaseExtractor*](https://www.kivakit.org/1.7.1-SNAPSHOT/javadoc/kivakit/kivakit.extraction/////////////////////////////////////////////.html) |  |  
 | [*DiagramExtraction*](https://www.kivakit.org/1.7.1-SNAPSHOT/javadoc/kivakit/kivakit.extraction//////////////////////////////////////////////////////////////////.html) |  |  
 | [*Extractor*](https://www.kivakit.org/1.7.1-SNAPSHOT/javadoc/kivakit/kivakit.extraction/////////////////////////////////////////.html) | Object Extraction |  

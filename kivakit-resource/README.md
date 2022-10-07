@@ -30,7 +30,7 @@ This module contains abstractions for accessing the filesystem and arbitrary res
 [**Launching Jar Resources**](#launching-jar-resources)  
 [**Other Resources**](#other-resources)  
 
-[**Dependencies**](#dependencies) | [**Class Diagrams**](#class-diagrams) | [**Package Diagrams**](#package-diagrams) | [**Javadoc**](#javadoc)
+[**Dependencies**](#dependencies) | [**Code Quality**](#code-quality) | [**Class Diagrams**](#class-diagrams) | [**Package Diagrams**](#package-diagrams)
 
 <img src="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-512.png" srcset="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-512-2x.png 2x"/>
 
@@ -226,6 +226,24 @@ A wide variety of other resources are available and new ones are easy to write. 
 
 <img src="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128.png" srcset="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128-2x.png 2x"/>
 
+### Code Quality <a name="code-quality"></a> &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/ruler-32.png" srcset="https://telenav.github.io/telenav-assets/images/icons/ruler-32-2x.png 2x"/>
+
+Code quality for this project is 74.4%.  
+  
+&nbsp; &nbsp; <img src="https://telenav.github.io/telenav-assets/images/meters/meter-70-96.png" srcset="https://telenav.github.io/telenav-assets/images/meters/meter-70-96-2x.png 2x"/>
+
+
+| Measurement   | Value                    |
+|---------------|--------------------------|
+| Stability     | 91.3%&nbsp; &nbsp; <img src="https://telenav.github.io/telenav-assets/images/meters/meter-90-96.png" srcset="https://telenav.github.io/telenav-assets/images/meters/meter-90-96-2x.png 2x"/>
+     |
+| Testing       | 39.8%&nbsp; &nbsp; <img src="https://telenav.github.io/telenav-assets/images/meters/meter-40-96.png" srcset="https://telenav.github.io/telenav-assets/images/meters/meter-40-96-2x.png 2x"/>
+       |
+| Documentation | 92.2%&nbsp; &nbsp; <img src="https://telenav.github.io/telenav-assets/images/meters/meter-90-96.png" srcset="https://telenav.github.io/telenav-assets/images/meters/meter-90-96-2x.png 2x"/>
+ |
+
+<img src="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128.png" srcset="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128-2x.png 2x"/>
+
 ### Class Diagrams <a name="class-diagrams"></a> &nbsp; &nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/diagram-40.png" srcset="https://telenav.github.io/telenav-assets/images/icons/diagram-40-2x.png 2x"/>
 
 [*File System - File System Services*](https://www.kivakit.org/1.7.1-SNAPSHOT/lexakai/kivakit/kivakit-resource/documentation/diagrams/diagram-file-system-service.svg)  
@@ -261,17 +279,10 @@ A wide variety of other resources are available and new ones are easy to write. 
 [*com.telenav.kivakit.resource.spi*](https://www.kivakit.org/1.7.1-SNAPSHOT/lexakai/kivakit/kivakit-resource/documentation/diagrams/com.telenav.kivakit.resource.spi.svg)  
 [*com.telenav.kivakit.resource.writing*](https://www.kivakit.org/1.7.1-SNAPSHOT/lexakai/kivakit/kivakit-resource/documentation/diagrams/com.telenav.kivakit.resource.writing.svg)
 
-<img src="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128.png" srcset="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128-2x.png 2x"/>
+### Javadoc <a name="code-quality"></a> &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/books-24.png" srcset="https://telenav.github.io/telenav-assets/images/icons/books-24-2x.png 2x"/>
 
-### Javadoc <a name="javadoc"></a> &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/books-24.png" srcset="https://telenav.github.io/telenav-assets/images/icons/books-24-2x.png 2x"/>
-
-Javadoc coverage for this project is 99.0%.  
-  
-&nbsp; &nbsp; <img src="https://telenav.github.io/telenav-assets/images/meters/meter-100-96.png" srcset="https://telenav.github.io/telenav-assets/images/meters/meter-100-96-2x.png 2x"/>
-
-
-| Class | Documentation Sections |
-|---|---|
+| Class | Documentation Sections  |
+|-------|-------------------------|
 | [*ArchivedFields*](https://www.kivakit.org/1.7.1-SNAPSHOT/javadoc/kivakit/kivakit.resource////////////////////////////////////////////////////////////////.html) |  |  
 | [*BaseReadableResource*](https://www.kivakit.org/1.7.1-SNAPSHOT/javadoc/kivakit/kivakit.resource//////////////////////////////////////////////////////////.html) |  |  
 | [*BaseResourceList*](https://www.kivakit.org/1.7.1-SNAPSHOT/javadoc/kivakit/kivakit.resource//////////////////////////////////////////////.html) |  |  

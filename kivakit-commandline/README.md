@@ -24,7 +24,7 @@ This project facilitates object-oriented parsing of command line arguments and s
 
 [**Summary**](#summary)  
 
-[**Dependencies**](#dependencies) | [**Class Diagrams**](#class-diagrams) | [**Package Diagrams**](#package-diagrams) | [**Javadoc**](#javadoc)
+[**Dependencies**](#dependencies) | [**Code Quality**](#code-quality) | [**Class Diagrams**](#class-diagrams) | [**Package Diagrams**](#package-diagrams)
 
 <img src="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-512.png" srcset="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-512-2x.png 2x"/>
 
@@ -54,6 +54,24 @@ arguments and switches is available in the Javadoc for the [*Application*](https
 
 <img src="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128.png" srcset="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128-2x.png 2x"/>
 
+### Code Quality <a name="code-quality"></a> &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/ruler-32.png" srcset="https://telenav.github.io/telenav-assets/images/icons/ruler-32-2x.png 2x"/>
+
+Code quality for this project is 60.6%.  
+  
+&nbsp; &nbsp; <img src="https://telenav.github.io/telenav-assets/images/meters/meter-60-96.png" srcset="https://telenav.github.io/telenav-assets/images/meters/meter-60-96-2x.png 2x"/>
+
+
+| Measurement   | Value                    |
+|---------------|--------------------------|
+| Stability     | 81.8%&nbsp; &nbsp; <img src="https://telenav.github.io/telenav-assets/images/meters/meter-80-96.png" srcset="https://telenav.github.io/telenav-assets/images/meters/meter-80-96-2x.png 2x"/>
+     |
+| Testing       | 18.2%&nbsp; &nbsp; <img src="https://telenav.github.io/telenav-assets/images/meters/meter-20-96.png" srcset="https://telenav.github.io/telenav-assets/images/meters/meter-20-96-2x.png 2x"/>
+       |
+| Documentation | 81.8%&nbsp; &nbsp; <img src="https://telenav.github.io/telenav-assets/images/meters/meter-80-96.png" srcset="https://telenav.github.io/telenav-assets/images/meters/meter-80-96-2x.png 2x"/>
+ |
+
+<img src="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128.png" srcset="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128-2x.png 2x"/>
+
 ### Class Diagrams <a name="class-diagrams"></a> &nbsp; &nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/diagram-40.png" srcset="https://telenav.github.io/telenav-assets/images/icons/diagram-40-2x.png 2x"/>
 
 [*Argument Parsing*](https://www.kivakit.org/1.7.1-SNAPSHOT/lexakai/kivakit/kivakit-commandline/documentation/diagrams/diagram-argument.svg)  
@@ -69,17 +87,10 @@ arguments and switches is available in the Javadoc for the [*Application*](https
 [*com.telenav.kivakit.commandline.internal.lexakai*](https://www.kivakit.org/1.7.1-SNAPSHOT/lexakai/kivakit/kivakit-commandline/documentation/diagrams/com.telenav.kivakit.commandline.internal.lexakai.svg)  
 [*com.telenav.kivakit.commandline.parsing*](https://www.kivakit.org/1.7.1-SNAPSHOT/lexakai/kivakit/kivakit-commandline/documentation/diagrams/com.telenav.kivakit.commandline.parsing.svg)
 
-<img src="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128.png" srcset="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128-2x.png 2x"/>
+### Javadoc <a name="code-quality"></a> &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/books-24.png" srcset="https://telenav.github.io/telenav-assets/images/icons/books-24-2x.png 2x"/>
 
-### Javadoc <a name="javadoc"></a> &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/books-24.png" srcset="https://telenav.github.io/telenav-assets/images/icons/books-24-2x.png 2x"/>
-
-Javadoc coverage for this project is 100.0%.  
-  
-&nbsp; &nbsp; <img src="https://telenav.github.io/telenav-assets/images/meters/meter-100-96.png" srcset="https://telenav.github.io/telenav-assets/images/meters/meter-100-96-2x.png 2x"/>
-
-
-| Class | Documentation Sections |
-|---|---|
+| Class | Documentation Sections  |
+|-------|-------------------------|
 | [*ApplicationMetadata*](https://www.kivakit.org/1.7.1-SNAPSHOT/javadoc/kivakit/kivakit.commandline////////////////////////////////////////////////////.html) |  |  
 | [*ArgumentParser*](https://www.kivakit.org/1.7.1-SNAPSHOT/javadoc/kivakit/kivakit.commandline///////////////////////////////////////////////.html) | Example |  
 | | Parser Builders |  

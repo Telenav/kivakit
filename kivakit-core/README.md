@@ -24,7 +24,7 @@ This module provides extensions to the JDK and other packages for everyday Java 
 
 [**Summary**](#summary)  
 
-[**Dependencies**](#dependencies) | [**Class Diagrams**](#class-diagrams) | [**Package Diagrams**](#package-diagrams) | [**Javadoc**](#javadoc)
+[**Dependencies**](#dependencies) | [**Code Quality**](#code-quality) | [**Class Diagrams**](#class-diagrams) | [**Package Diagrams**](#package-diagrams)
 
 <img src="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-512.png" srcset="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-512-2x.png 2x"/>
 
@@ -79,6 +79,24 @@ KivaKit kernel is consists of several integrated frameworks in a number of diffe
 [**Projects**](documentation/project.md)
 
 [//]: # (end-user-text)
+
+<img src="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128.png" srcset="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128-2x.png 2x"/>
+
+### Code Quality <a name="code-quality"></a> &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/ruler-32.png" srcset="https://telenav.github.io/telenav-assets/images/icons/ruler-32-2x.png 2x"/>
+
+Code quality for this project is 70.9%.  
+  
+&nbsp; &nbsp; <img src="https://telenav.github.io/telenav-assets/images/meters/meter-70-96.png" srcset="https://telenav.github.io/telenav-assets/images/meters/meter-70-96-2x.png 2x"/>
+
+
+| Measurement   | Value                    |
+|---------------|--------------------------|
+| Stability     | 91.6%&nbsp; &nbsp; <img src="https://telenav.github.io/telenav-assets/images/meters/meter-90-96.png" srcset="https://telenav.github.io/telenav-assets/images/meters/meter-90-96-2x.png 2x"/>
+     |
+| Testing       | 30.0%&nbsp; &nbsp; <img src="https://telenav.github.io/telenav-assets/images/meters/meter-30-96.png" srcset="https://telenav.github.io/telenav-assets/images/meters/meter-30-96-2x.png 2x"/>
+       |
+| Documentation | 91.3%&nbsp; &nbsp; <img src="https://telenav.github.io/telenav-assets/images/meters/meter-90-96.png" srcset="https://telenav.github.io/telenav-assets/images/meters/meter-90-96-2x.png 2x"/>
+ |
 
 <img src="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128.png" srcset="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128-2x.png 2x"/>
 
@@ -182,17 +200,10 @@ KivaKit kernel is consists of several integrated frameworks in a number of diffe
 [*com.telenav.kivakit.core.version*](https://www.kivakit.org/1.7.1-SNAPSHOT/lexakai/kivakit/kivakit-core/documentation/diagrams/com.telenav.kivakit.core.version.svg)  
 [*com.telenav.kivakit.core.vm*](https://www.kivakit.org/1.7.1-SNAPSHOT/lexakai/kivakit/kivakit-core/documentation/diagrams/com.telenav.kivakit.core.vm.svg)
 
-<img src="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128.png" srcset="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128-2x.png 2x"/>
+### Javadoc <a name="code-quality"></a> &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/books-24.png" srcset="https://telenav.github.io/telenav-assets/images/icons/books-24-2x.png 2x"/>
 
-### Javadoc <a name="javadoc"></a> &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/books-24.png" srcset="https://telenav.github.io/telenav-assets/images/icons/books-24-2x.png 2x"/>
-
-Javadoc coverage for this project is 91.3%.  
-  
-&nbsp; &nbsp; <img src="https://telenav.github.io/telenav-assets/images/meters/meter-90-96.png" srcset="https://telenav.github.io/telenav-assets/images/meters/meter-90-96-2x.png 2x"/>
-
-
-| Class | Documentation Sections |
-|---|---|
+| Class | Documentation Sections  |
+|-------|-------------------------|
 | [*Alert*](https://www.kivakit.org/1.7.1-SNAPSHOT/javadoc/kivakit/kivakit.core/////////////////////////////////////////////////////////.html) |  |  
 | [*Align*](https://www.kivakit.org/1.7.1-SNAPSHOT/javadoc/kivakit/kivakit.core//////////////////////////////////////.html) |  |  
 | [*AllFields*](https://www.kivakit.org/1.7.1-SNAPSHOT/javadoc/kivakit/kivakit.core/////////////////////////////////////////////////////////////////////.html) |  |  

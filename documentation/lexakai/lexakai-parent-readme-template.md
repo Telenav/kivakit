@@ -22,9 +22,9 @@ ${child-projects}
 
 <img src="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128.png" srcset="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128-2x.png 2x"/>
 
-### Javadoc Coverage <a name = "javadoc-coverage"></a> &nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/bargraph-24.png" srcset="https://telenav.github.io/telenav-assets/images/icons/bargraph-24-2x.png 2x"/>
+### Code Quality <a name = "code-quality"></a> &nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/ruler-32.png" srcset="https://telenav.github.io/telenav-assets/images/icons/ruler-32-2x.png 2x"/>
 
-${project-javadoc-coverage}
+${child-project-quality}
 
 [//]: # (start-user-text)
 
