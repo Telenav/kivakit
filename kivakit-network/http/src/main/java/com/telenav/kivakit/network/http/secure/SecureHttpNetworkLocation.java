@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.network.http.secure;
 
-import com.telenav.kivakit.annotations.code.CodeQuality;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.network.core.NetworkPath;
 import com.telenav.kivakit.network.http.HttpGetResource;
 import com.telenav.kivakit.network.http.HttpNetworkLocation;
@@ -27,9 +27,9 @@ import com.telenav.kivakit.network.http.internal.lexakai.DiagramHttps;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
 
-import static com.telenav.kivakit.annotations.code.CodeStability.CODE_STABLE_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABILITY_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NONE;
 import static com.telenav.kivakit.core.ensure.Ensure.ensure;
 import static com.telenav.kivakit.network.core.Protocol.HTTPS;
 
@@ -41,7 +41,7 @@ import static com.telenav.kivakit.network.core.Protocol.HTTPS;
 @UmlClassDiagram(diagram = DiagramHttps.class)
 @UmlRelation(label = "creates", referent = SecureHttpGetResource.class)
 @UmlRelation(label = "creates", referent = SecureHttpPostResource.class)
-@CodeQuality(stability = CODE_STABLE_EXTENSIBLE,
+@CodeQuality(stability = STABILITY_STABLE_EXTENSIBLE,
              testing = TESTING_NONE,
              documentation = DOCUMENTATION_COMPLETE)
 public class SecureHttpNetworkLocation extends HttpNetworkLocation

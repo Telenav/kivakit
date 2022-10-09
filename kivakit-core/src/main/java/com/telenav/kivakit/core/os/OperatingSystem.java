@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.core.os;
 
-import com.telenav.kivakit.annotations.code.CodeQuality;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.collections.map.VariableMap;
 import com.telenav.kivakit.core.internal.lexakai.DiagramOs;
 import com.telenav.kivakit.core.messaging.Listener;
@@ -28,9 +28,9 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 import java.io.File;
 import java.io.IOException;
 
-import static com.telenav.kivakit.annotations.code.CodeStability.CODE_STABLE_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABILITY_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NONE;
 import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
 import static com.telenav.kivakit.core.os.OperatingSystem.OperatingSystemType.MACOS;
 import static com.telenav.kivakit.core.os.OperatingSystem.OperatingSystemType.OTHER_OS;
@@ -75,7 +75,7 @@ import static com.telenav.kivakit.core.os.OperatingSystem.ProcessorArchitecture.
  */
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramOs.class)
-@CodeQuality(stability = CODE_STABLE_EXTENSIBLE,
+@CodeQuality(stability = STABILITY_STABLE_EXTENSIBLE,
              testing = TESTING_NONE,
              documentation = DOCUMENTATION_COMPLETE)
 public class OperatingSystem implements Named

@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.network.core.authentication.passwords;
 
-import com.telenav.kivakit.annotations.code.CodeQuality;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.conversion.BaseStringConverter;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.string.AsciiArt;
@@ -29,9 +29,9 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeSuperTypes;
 import org.jetbrains.annotations.NotNull;
 
-import static com.telenav.kivakit.annotations.code.CodeStability.CODE_STABLE_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABILITY_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NONE;
 
 /**
  * A plain text password, which can be tested against a given password using {@link #matches(Password)}.
@@ -41,7 +41,7 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramAuthentication.class)
 @UmlExcludeSuperTypes({ StringFormattable.class })
-@CodeQuality(stability = CODE_STABLE_EXTENSIBLE,
+@CodeQuality(stability = STABILITY_STABLE_EXTENSIBLE,
              testing = TESTING_NONE,
              documentation = DOCUMENTATION_COMPLETE)
 public class PlainTextPassword implements Password, StringFormattable
@@ -62,7 +62,7 @@ public class PlainTextPassword implements Password, StringFormattable
      *
      * @author jonathanl (shibo)
      */
-    @CodeQuality(stability = CODE_STABLE_EXTENSIBLE,
+    @CodeQuality(stability = STABILITY_STABLE_EXTENSIBLE,
                  testing = TESTING_NONE,
                  documentation = DOCUMENTATION_COMPLETE)
     public static class Converter extends BaseStringConverter<Password>

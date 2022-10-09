@@ -1,22 +1,23 @@
-package com.telenav.kivakit.annotations.code;
+package com.telenav.kivakit.annotations.code.quality;
 
-import static com.telenav.kivakit.annotations.code.CodeStability.CODE_FURTHER_EVALUATION_NEEDED;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABILITY_UNDETERMINED;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
 
 /**
  * An evaluation of the quality of documentation for this class, as determined by a developer. Some classes need more
  * documentation, some less, so subjective opinion is necessary to determine documentation quality level.
  *
  * @author jonathanl (shibo)
+ * @see CodeQuality
  */
 @SuppressWarnings("unused")
-@CodeQuality(stability = CODE_FURTHER_EVALUATION_NEEDED,
+@CodeQuality(stability = STABILITY_UNDETERMINED,
              testing = TESTING_NOT_NEEDED,
              documentation = DOCUMENTATION_COMPLETE,
              reviews = 1,
              reviewers = "shibo")
-public enum DocumentationQuality
+public enum Documentation
 {
     /** Documentation is complete */
     DOCUMENTATION_COMPLETE,
@@ -28,7 +29,7 @@ public enum DocumentationQuality
     DOCUMENTATION_NONE,
 
     /** Documentation status has not been evaluated */
-    DOCUMENTATION_UNEVALUATED;
+    DOCUMENTATION_UNDETERMINED;
 
     public boolean isComplete()
     {

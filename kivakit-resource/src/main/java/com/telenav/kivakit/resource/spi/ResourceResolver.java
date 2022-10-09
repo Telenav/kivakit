@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.resource.spi;
 
-import com.telenav.kivakit.annotations.code.CodeQuality;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.messaging.repeaters.RepeaterMixin;
 import com.telenav.kivakit.resource.Resource;
 import com.telenav.kivakit.resource.ResourceFolderIdentifier;
@@ -28,10 +28,10 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
 import org.jetbrains.annotations.NotNull;
 
-import static com.telenav.kivakit.annotations.code.CodeStability.CODE_STABLE;
-import static com.telenav.kivakit.annotations.code.CodeType.CODE_SERVICE_PROVIDER_INTERFACE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABILITY_STABLE;
+import static com.telenav.kivakit.annotations.code.quality.Audience.AUDIENCE_SERVICE_PROVIDER_INTERFACE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
 
 /**
  * Service provider interface that resolves resource identifiers to resources. If the resolver returns true from
@@ -44,10 +44,10 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NE
  */
 @UmlClassDiagram(diagram = DiagramResourceService.class)
 @UmlRelation(label = "parses", referent = ResourceFolderIdentifier.class)
-@CodeQuality(stability = CODE_STABLE,
+@CodeQuality(stability = STABILITY_STABLE,
              testing = TESTING_NOT_NEEDED,
              documentation = DOCUMENTATION_COMPLETE,
-             type = CODE_SERVICE_PROVIDER_INTERFACE)
+             audience = AUDIENCE_SERVICE_PROVIDER_INTERFACE)
 public interface ResourceResolver extends RepeaterMixin
 {
     /**

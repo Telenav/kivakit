@@ -1,6 +1,6 @@
 package com.telenav.kivakit.mixins;
 
-import com.telenav.kivakit.annotations.code.CodeQuality;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.interfaces.factory.Factory;
 import com.telenav.kivakit.interfaces.naming.NamedObject;
 import com.telenav.kivakit.mixins.internal.lexakai.DiagramMixin;
@@ -11,9 +11,9 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.concurrent.ConcurrentHashMap;
 
-import static com.telenav.kivakit.annotations.code.CodeStability.CODE_STABLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABILITY_STABLE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NONE;
 
 /**
  * Stores the state objects for {@link Mixin}s, allowing {@link Mixin} interfaces to be stateful by having associated
@@ -23,7 +23,7 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
  * @see Mixin
  */
 @UmlClassDiagram(diagram = DiagramMixin.class)
-@CodeQuality(stability = CODE_STABLE,
+@CodeQuality(stability = STABILITY_STABLE,
              testing = TESTING_NONE,
              documentation = DOCUMENTATION_COMPLETE)
 public class Mixins
@@ -86,6 +86,7 @@ public class Mixins
     /**
      * @author jonathanl (shibo)
      */
+    @SuppressWarnings("SpellCheckingInspection")
     private static class MixinKey
     {
         private final Object attachTo;

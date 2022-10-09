@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.core.messaging;
 
-import com.telenav.kivakit.annotations.code.CodeQuality;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramBroadcaster;
 import com.telenav.kivakit.core.internal.lexakai.DiagramListener;
 import com.telenav.kivakit.core.internal.lexakai.DiagramMessaging;
@@ -55,9 +55,9 @@ import com.telenav.lexakai.annotations.associations.UmlRelation;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeMember;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeSuperTypes;
 
-import static com.telenav.kivakit.annotations.code.CodeStability.CODE_STABLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABILITY_STABLE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NONE;
 import static com.telenav.kivakit.core.messaging.MessageFormat.FORMATTED;
 import static com.telenav.kivakit.core.messaging.MessageFormat.WITHOUT_EXCEPTION;
 import static com.telenav.kivakit.core.messaging.MessageFormat.WITH_EXCEPTION;
@@ -127,7 +127,7 @@ import static com.telenav.kivakit.core.messaging.MessageFormat.WITH_EXCEPTION;
 @UmlClassDiagram(diagram = DiagramListener.class)
 @UmlExcludeSuperTypes({ StringFormattable.class })
 @UmlRelation(label = "formats with", diagram = DiagramMessaging.class, referent = Formatter.class)
-@CodeQuality(stability = CODE_STABLE,
+@CodeQuality(stability = STABILITY_STABLE,
              testing = TESTING_NONE,
              documentation = DOCUMENTATION_COMPLETE)
 public interface Message extends

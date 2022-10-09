@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.core.collections.iteration;
 
-import com.telenav.kivakit.annotations.code.CodeQuality;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramCollections;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
@@ -27,9 +27,9 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 
-import static com.telenav.kivakit.annotations.code.CodeStability.CODE_STABLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABILITY_STABLE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NONE;
 
 /**
  * An {@link Iterator} that wraps and iterates through all objects in each of a sequence of {@link Iterator}s in the
@@ -39,7 +39,7 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
  * @see BaseIterator
  */
 @UmlClassDiagram(diagram = DiagramCollections.class)
-@CodeQuality(stability = CODE_STABLE,
+@CodeQuality(stability = STABILITY_STABLE,
              testing = TESTING_NONE,
              documentation = DOCUMENTATION_COMPLETE)
 public class CompoundIterator<Value> extends BaseIterator<Value>

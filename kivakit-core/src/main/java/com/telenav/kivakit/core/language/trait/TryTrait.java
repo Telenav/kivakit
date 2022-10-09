@@ -1,13 +1,13 @@
 package com.telenav.kivakit.core.language.trait;
 
-import com.telenav.kivakit.annotations.code.CodeQuality;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.code.UncheckedCode;
 import com.telenav.kivakit.core.code.UncheckedVoidCode;
 import com.telenav.kivakit.core.messaging.Broadcaster;
 
-import static com.telenav.kivakit.annotations.code.CodeStability.CODE_STABLE_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABILITY_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NONE;
 
 /**
  * Provides methods that execute code, stripping off checked exceptions. This interface extends {@link Broadcaster} as
@@ -44,7 +44,7 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
  * @see TryCatchTrait
  */
 @SuppressWarnings("unused")
-@CodeQuality(stability = CODE_STABLE_EXTENSIBLE,
+@CodeQuality(stability = STABILITY_STABLE_EXTENSIBLE,
              documentation = DOCUMENTATION_COMPLETE,
              testing = TESTING_NONE)
 public interface TryTrait extends

@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.core.language.reflection.accessors;
 
-import com.telenav.kivakit.annotations.code.CodeQuality;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramReflection;
 import com.telenav.kivakit.core.language.reflection.Field;
 import com.telenav.kivakit.core.language.reflection.ReflectionProblem;
@@ -27,9 +27,9 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.lang.annotation.Annotation;
 
-import static com.telenav.kivakit.annotations.code.CodeStability.CODE_STABLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABILITY_STABLE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NONE;
 
 /**
  * Set the value of a field
@@ -37,7 +37,7 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramReflection.class)
-@CodeQuality(stability = CODE_STABLE,
+@CodeQuality(stability = STABILITY_STABLE,
              testing = TESTING_NONE,
              documentation = DOCUMENTATION_COMPLETE)
 public class FieldSetter implements Setter

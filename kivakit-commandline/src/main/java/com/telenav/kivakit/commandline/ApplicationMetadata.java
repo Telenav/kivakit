@@ -18,19 +18,19 @@
 
 package com.telenav.kivakit.commandline;
 
-import com.telenav.kivakit.annotations.code.CodeQuality;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.version.Versioned;
 
-import static com.telenav.kivakit.annotations.code.CodeStability.CODE_STABLE_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABILITY_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NONE;
 
 /**
  * Application metadata used in formulating command line usage help.
  *
  * @author jonathanl (shibo)
  */
-@CodeQuality(stability = CODE_STABLE_EXTENSIBLE,
+@CodeQuality(stability = STABILITY_STABLE_EXTENSIBLE,
              testing = TESTING_NONE,
              documentation = DOCUMENTATION_COMPLETE)
 public interface ApplicationMetadata extends Versioned
@@ -39,7 +39,7 @@ public interface ApplicationMetadata extends Versioned
      * Returns true if command line parsing problems should result in a call to {@link System#exit(int)}. The default
      * return value for this method is *true* to ensure that the VM isn't prevented from exiting by non-daemon threads.
      */
-    default boolean callSystemExitOnUnrecoverableError()
+    default boolean callSystemExitOnCommandLineError()
     {
         return true;
     }

@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.filesystem;
 
-import com.telenav.kivakit.annotations.code.CodeQuality;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.conversion.BaseStringConverter;
 import com.telenav.kivakit.core.collections.iteration.Iterables;
 import com.telenav.kivakit.core.collections.list.ObjectList;
@@ -36,10 +36,10 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
-import static com.telenav.kivakit.annotations.code.CodeStability.CODE_STABLE_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABILITY_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
+import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NONE;
 import static com.telenav.kivakit.core.messaging.Listener.throwingListener;
 import static com.telenav.kivakit.filesystem.FilePath.filePath;
 
@@ -84,7 +84,7 @@ import static com.telenav.kivakit.filesystem.FilePath.filePath;
  */
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramFileSystemFile.class)
-@CodeQuality(stability = CODE_STABLE_EXTENSIBLE,
+@CodeQuality(stability = STABILITY_STABLE_EXTENSIBLE,
              testing = TESTING_NOT_NEEDED,
              documentation = DOCUMENTATION_COMPLETE)
 public class FileList extends BaseResourceList<File> implements Iterable<File>
@@ -130,7 +130,7 @@ public class FileList extends BaseResourceList<File> implements Iterable<File>
      *
      * @author jonathanl (shibo)
      */
-    @CodeQuality(stability = CODE_STABLE_EXTENSIBLE,
+    @CodeQuality(stability = STABILITY_STABLE_EXTENSIBLE,
                  testing = TESTING_NONE,
                  documentation = DOCUMENTATION_COMPLETE)
     public static class Converter extends BaseStringConverter<FileList>

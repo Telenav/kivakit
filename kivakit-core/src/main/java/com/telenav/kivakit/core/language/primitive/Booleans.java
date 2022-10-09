@@ -18,13 +18,13 @@
 
 package com.telenav.kivakit.core.language.primitive;
 
-import com.telenav.kivakit.annotations.code.CodeQuality;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramPrimitive;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
-import static com.telenav.kivakit.annotations.code.CodeStability.CODE_STABLE_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_SUFFICIENT;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABILITY_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_SUFFICIENT;
 
 /**
  * Utility methods for <i>boolean</i>> values.
@@ -37,7 +37,7 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_SUFFIC
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramPrimitive.class)
-@CodeQuality(stability = CODE_STABLE_EXTENSIBLE,
+@CodeQuality(stability = STABILITY_STABLE_EXTENSIBLE,
              testing = TESTING_SUFFICIENT,
              documentation = DOCUMENTATION_COMPLETE)
 public class Booleans

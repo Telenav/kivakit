@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.commandline;
 
-import com.telenav.kivakit.annotations.code.CodeQuality;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.commandline.internal.lexakai.DiagramCommandLine;
 import com.telenav.kivakit.commandline.internal.lexakai.DiagramSwitch;
 import com.telenav.kivakit.conversion.BaseStringConverter;
@@ -43,9 +43,9 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.Set;
 
-import static com.telenav.kivakit.annotations.code.CodeStability.CODE_STABLE_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABILITY_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NONE;
 import static com.telenav.kivakit.commandline.Quantifier.OPTIONAL;
 import static com.telenav.kivakit.commandline.Quantifier.REQUIRED;
 import static com.telenav.kivakit.core.collections.set.ObjectSet.objectSet;
@@ -127,7 +127,7 @@ import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
 @UmlClassDiagram(diagram = DiagramSwitch.class)
 @UmlClassDiagram(diagram = DiagramCommandLine.class, includeMembers = false)
 @UmlExcludeSuperTypes
-@CodeQuality(stability = CODE_STABLE_EXTENSIBLE,
+@CodeQuality(stability = STABILITY_STABLE_EXTENSIBLE,
              testing = TESTING_NONE,
              documentation = DOCUMENTATION_COMPLETE)
 public class SwitchParser<T> implements Named
@@ -159,7 +159,7 @@ public class SwitchParser<T> implements Named
      * @author jonathanl (shibo)
      */
     @SuppressWarnings("DuplicatedCode")
-    @CodeQuality(stability = CODE_STABLE_EXTENSIBLE,
+    @CodeQuality(stability = STABILITY_STABLE_EXTENSIBLE,
                  testing = TESTING_NONE,
                  documentation = DOCUMENTATION_COMPLETE)
     public static class Builder<T>

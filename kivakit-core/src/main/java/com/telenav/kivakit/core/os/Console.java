@@ -1,6 +1,6 @@
 package com.telenav.kivakit.core.os;
 
-import com.telenav.kivakit.annotations.code.CodeQuality;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.messaging.Message;
 import com.telenav.kivakit.core.string.Strings;
@@ -10,9 +10,9 @@ import com.telenav.kivakit.interfaces.io.Flushable;
 import java.io.PrintStream;
 import java.io.PrintWriter;
 
-import static com.telenav.kivakit.annotations.code.CodeStability.CODE_STABLE_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABILITY_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
 import static com.telenav.kivakit.core.os.Console.OutputStream.ERROR;
 import static com.telenav.kivakit.core.os.Console.OutputStream.NORMAL;
 
@@ -22,7 +22,7 @@ import static com.telenav.kivakit.core.os.Console.OutputStream.NORMAL;
  * @author jonathanl (shibo)
  */
 @SuppressWarnings("resource")
-@CodeQuality(stability = CODE_STABLE_EXTENSIBLE,
+@CodeQuality(stability = STABILITY_STABLE_EXTENSIBLE,
              testing = TESTING_NOT_NEEDED,
              documentation = DOCUMENTATION_COMPLETE)
 public class Console implements

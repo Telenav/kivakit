@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.filesystem;
 
-import com.telenav.kivakit.annotations.code.CodeQuality;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.commandline.ArgumentParser;
 import com.telenav.kivakit.commandline.SwitchParser;
 import com.telenav.kivakit.conversion.BaseStringConverter;
@@ -56,11 +56,11 @@ import java.net.URI;
 import java.nio.charset.Charset;
 import java.nio.file.attribute.PosixFilePermission;
 
-import static com.telenav.kivakit.annotations.code.CodeStability.CODE_STABLE;
-import static com.telenav.kivakit.annotations.code.CodeStability.CODE_STABLE_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_INSUFFICIENT;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABILITY_STABLE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABILITY_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_INSUFFICIENT;
+import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
 import static com.telenav.kivakit.core.collections.set.ObjectSet.objectSet;
 import static com.telenav.kivakit.core.ensure.Ensure.ensure;
 import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
@@ -189,7 +189,7 @@ import static com.telenav.kivakit.filesystem.loader.FileSystemServiceLoader.file
  */
 @SuppressWarnings({ "SameParameterValue", "unused" })
 @UmlClassDiagram(diagram = DiagramFileSystemFile.class)
-@CodeQuality(stability = CODE_STABLE_EXTENSIBLE,
+@CodeQuality(stability = STABILITY_STABLE_EXTENSIBLE,
              testing = TESTING_INSUFFICIENT,
              documentation = DOCUMENTATION_COMPLETE)
 public class File extends BaseWritableResource implements FileSystemObject
@@ -429,7 +429,7 @@ public class File extends BaseWritableResource implements FileSystemObject
      *
      * @author jonathanl (shibo)
      */
-    @CodeQuality(stability = CODE_STABLE,
+    @CodeQuality(stability = STABILITY_STABLE,
                  testing = TESTING_NOT_NEEDED,
                  documentation = DOCUMENTATION_COMPLETE)
     public static class Converter extends BaseStringConverter<File>
@@ -446,7 +446,7 @@ public class File extends BaseWritableResource implements FileSystemObject
      * @author jonathanl (shibo)
      */
     @UmlClassDiagram(diagram = DiagramResourceService.class)
-    @CodeQuality(stability = CODE_STABLE,
+    @CodeQuality(stability = STABILITY_STABLE,
                  testing = TESTING_NOT_NEEDED,
                  documentation = DOCUMENTATION_COMPLETE)
     public static class Resolver implements ResourceResolver

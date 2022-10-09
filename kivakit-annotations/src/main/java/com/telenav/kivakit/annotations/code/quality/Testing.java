@@ -1,20 +1,24 @@
-package com.telenav.kivakit.annotations.code;
+package com.telenav.kivakit.annotations.code.quality;
 
-import static com.telenav.kivakit.annotations.code.CodeStability.CODE_FURTHER_EVALUATION_NEEDED;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABILITY_UNDETERMINED;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
 
 /**
  * The quality of tests for a given class, as evaluated by a developer. This is different from a simple code coverage
- * metric because there are many methods and even whole classes that do not need full testing.
+ * metric because there are many methods and even whole classes that do not need full testing. Some don't need testing
+ * at all, for example, most interfaces.
+ *
+ * @author jonathanl (shibo)
+ * @see CodeQuality
  */
 @SuppressWarnings("unused")
-@CodeQuality(stability = CODE_FURTHER_EVALUATION_NEEDED,
+@CodeQuality(stability = STABILITY_UNDETERMINED,
              testing = TESTING_NOT_NEEDED,
              documentation = DOCUMENTATION_COMPLETE,
              reviews = 1,
              reviewers = "shibo")
-public enum TestingQuality
+public enum Testing
 {
     /** All needed tests are implemented */
     TESTING_SUFFICIENT,
@@ -28,11 +32,8 @@ public enum TestingQuality
     /** No tests have been implemented */
     TESTING_NONE,
 
-    /** More evaluation of testing status is needed */
-    TESTING_EVALUATION_NEEDED,
-
     /** Testing status has not been evaluated */
-    TESTING_UNEVALUATED;
+    TESTING_UNDETERMINED;
 
     public boolean isTested()
     {

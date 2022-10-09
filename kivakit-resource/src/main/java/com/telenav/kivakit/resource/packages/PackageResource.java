@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.resource.packages;
 
-import com.telenav.kivakit.annotations.code.CodeQuality;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.language.Hash;
 import com.telenav.kivakit.core.language.Objects;
 import com.telenav.kivakit.core.language.module.ModuleResource;
@@ -46,9 +46,9 @@ import java.io.InputStream;
 import java.lang.module.ModuleReference;
 import java.net.URI;
 
-import static com.telenav.kivakit.annotations.code.CodeStability.CODE_STABLE_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABILITY_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NONE;
 import static com.telenav.kivakit.core.language.module.Modules.moduleResource;
 import static com.telenav.kivakit.filesystem.FilePath.parseFilePath;
 import static com.telenav.kivakit.resource.FileName.parseFileName;
@@ -99,7 +99,7 @@ import static com.telenav.kivakit.resource.packages.PackagePath.packagePath;
  * @see BaseReadableResource
  */
 @UmlClassDiagram(diagram = DiagramResourceType.class)
-@CodeQuality(stability = CODE_STABLE_EXTENSIBLE,
+@CodeQuality(stability = STABILITY_STABLE_EXTENSIBLE,
              testing = TESTING_NONE,
              documentation = DOCUMENTATION_COMPLETE)
 public class PackageResource extends BaseReadableResource
@@ -171,7 +171,7 @@ public class PackageResource extends BaseReadableResource
      * @author jonathanl (shibo)
      */
     @UmlClassDiagram(diagram = DiagramResourceService.class)
-    @CodeQuality(stability = CODE_STABLE_EXTENSIBLE,
+    @CodeQuality(stability = STABILITY_STABLE_EXTENSIBLE,
                  testing = TESTING_NONE,
                  documentation = DOCUMENTATION_COMPLETE)
     public static class PackageResolver implements ResourceResolver

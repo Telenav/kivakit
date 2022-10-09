@@ -18,24 +18,39 @@
 
 package com.telenav.kivakit.collections.map;
 
-import com.telenav.kivakit.annotations.code.CodeQuality;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.collections.internal.lexakai.DiagramMap;
 import com.telenav.kivakit.core.value.count.Maximum;
 import com.telenav.kivakit.interfaces.naming.Named;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
-import static com.telenav.kivakit.annotations.code.CodeStability.CODE_STABLE_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABILITY_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NONE;
 
 /**
- * Stores named values by name and also makes them accessible by index.
+ * Stores named values by name and also makes them accessible by index in the order in which the valAues were added,
+ * where <i>0</i> is the first value and <i>n-1</i> is the last value in a map with <i>n</i> entries.
+ *
+ * <p><b>Example</b></p>
+ *
+ * <pre>  class Fruit implements Named
+ * class Apple extends Fruit
+ * class Banana extends Fruit
+ *
+ * var map = new IndexedNameMap&lt;Fruit&gt;();
+ * map.add(new Apple());
+ * map.add(new Banana());
+ *
+ * map.get(0);        // Apple
+ * map.get("Apple");  // Apple
+ * </pre>
  *
  * @param <T> The type implementing {@link Named}
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramMap.class)
-@CodeQuality(stability = CODE_STABLE_EXTENSIBLE,
+@CodeQuality(stability = STABILITY_STABLE_EXTENSIBLE,
              testing = TESTING_NONE,
              documentation = DOCUMENTATION_COMPLETE)
 public class IndexedNameMap<T extends Named> extends BaseIndexedMap<String, T>
@@ -50,13 +65,16 @@ public class IndexedNameMap<T extends Named> extends BaseIndexedMap<String, T>
         super(maximumSize);
     }
 
-    public final T forName(String name)
-    {
-        return get(name);
-    }
-
-    public void put(T value)
+    /**
+     * {@inheritDoc}
+     *
+     * @param value The value to add
+     * @return True if the value was added
+     */
+    @Override
+    public boolean onAdd(T value)
     {
         put(value.name(), value);
+        return true;
     }
 }

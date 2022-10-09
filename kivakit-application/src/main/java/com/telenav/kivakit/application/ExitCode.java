@@ -1,33 +1,35 @@
 package com.telenav.kivakit.application;
 
-import com.telenav.kivakit.annotations.code.CodeQuality;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 
-import static com.telenav.kivakit.annotations.code.CodeStability.CODE_STABLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABILITY_STABLE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NONE;
 
 /**
- * Represents the success or failure of an application
+ * Represents the success or failure of an application under UNIX, where an exit code of 0 represents success and any
+ * non-zero value represents failure.
  *
  * @author jonathanl (shibo)
  */
-@CodeQuality(stability = CODE_STABLE,
+@CodeQuality(stability = STABILITY_STABLE,
              testing = TESTING_NONE,
              documentation = DOCUMENTATION_COMPLETE)
-public enum ExitCode
+public class ExitCode
 {
     /** UNIX exit code of 0 represents success */
-    SUCCEEDED(0),
+    public static ExitCode SUCCEEDED = new ExitCode(0);
 
     /** Generic failure exit code */
-    FAILED(1);
+    public static ExitCode FAILED = new ExitCode(1);
 
+    /** The UNIX exit code */
     private final int code;
 
     /**
      * Creates an {@link ExitCode} for the given code
      */
-    ExitCode(int code)
+    public ExitCode(int code)
     {
         this.code = code;
     }
