@@ -34,7 +34,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicLong;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABILITY_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_INSUFFICIENT;
 
@@ -84,7 +84,7 @@ import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_INSUF
  */
 @SuppressWarnings({ "UnusedReturnValue", "unused" })
 @UmlClassDiagram(diagram = DiagramCollections.class)
-@CodeQuality(stability = STABILITY_STABLE_EXTENSIBLE,
+@CodeQuality(stability = STABLE_EXTENSIBLE,
              testing = TESTING_INSUFFICIENT,
              documentation = DOCUMENTATION_COMPLETE)
 public class CountMap<Key> extends ObjectMap<Key, ConcurrentMutableCount>
@@ -109,7 +109,7 @@ public class CountMap<Key> extends ObjectMap<Key, ConcurrentMutableCount>
     }
 
     /**
-     * @return Entries sorted in ascending order with the given comparator
+     * Returns entries sorted in ascending order with the given comparator
      */
     public ObjectList<Map.Entry<Key, ConcurrentMutableCount>> ascendingEntries(
             Maximum maximum,
@@ -164,7 +164,7 @@ public class CountMap<Key> extends ObjectMap<Key, ConcurrentMutableCount>
     }
 
     /**
-     * @return Entries sorted in descending order with the given comparator
+     * Returns entries sorted in descending order with the given comparator
      */
     public ObjectList<Map.Entry<Key, ConcurrentMutableCount>> descendingEntries(
             Maximum maximum,

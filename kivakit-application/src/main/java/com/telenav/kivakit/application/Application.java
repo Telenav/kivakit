@@ -91,10 +91,10 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABILITY_STABLE;
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABILITY_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.application.Application.ExecutionState.CONSTRUCTING;
 import static com.telenav.kivakit.application.Application.ExecutionState.INITIALIZING;
 import static com.telenav.kivakit.application.Application.ExecutionState.READY;
@@ -109,6 +109,7 @@ import static com.telenav.kivakit.commandline.SwitchParsers.booleanSwitchParser;
 import static com.telenav.kivakit.core.collections.set.ObjectSet.objectSet;
 import static com.telenav.kivakit.core.ensure.Ensure.ensure;
 import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
+import static com.telenav.kivakit.properties.PropertyMap.loadLocalizedPropertyMap;
 
 /**
  * Base class for KivaKit applications.
@@ -259,8 +260,8 @@ import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
  */
 @SuppressWarnings({ "unused", "BooleanMethodIsAlwaysInverted" })
 @UmlClassDiagram(diagram = DiagramApplication.class)
-@CodeQuality(stability = STABILITY_STABLE_EXTENSIBLE,
-             testing = TESTING_NONE,
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = UNTESTED,
              documentation = DOCUMENTATION_COMPLETE)
 public abstract class Application extends BaseComponent implements
         PackageTrait,
@@ -276,7 +277,7 @@ public abstract class Application extends BaseComponent implements
     private static final Logger LOGGER = LoggerFactory.newLogger();
 
     /**
-     * @return The currently running application
+     * Returns the currently running application
      */
     public static Application get()
     {
@@ -346,8 +347,8 @@ public abstract class Application extends BaseComponent implements
      */
     @UmlClassDiagram(diagram = DiagramApplication.class)
     @UmlExcludeSuperTypes
-    @CodeQuality(stability = STABILITY_STABLE,
-                 testing = TESTING_NONE,
+    @CodeQuality(stability = STABLE,
+                 testing = UNTESTED,
                  documentation = DOCUMENTATION_COMPLETE)
     public static class Identifier extends StringIdentifier
     {
@@ -409,7 +410,7 @@ public abstract class Application extends BaseComponent implements
     }
 
     /**
-     * @return The non-switch argument at the given index parsed using the given argument parser
+     * Returns the non-switch argument at the given index parsed using the given argument parser
      */
     public <T> T argument(int index, ArgumentParser<T> parser)
     {
@@ -417,7 +418,7 @@ public abstract class Application extends BaseComponent implements
     }
 
     /**
-     * @return The first non-switch argument parsed using the given argument parser
+     * Returns the first non-switch argument parsed using the given argument parser
      */
     public <T> T argument(ArgumentParser<T> parser)
     {
@@ -425,7 +426,7 @@ public abstract class Application extends BaseComponent implements
     }
 
     /**
-     * @return All non-switch command line arguments
+     * Returns all non-switch command line arguments
      */
     public ArgumentValueList argumentList()
     {
@@ -433,7 +434,7 @@ public abstract class Application extends BaseComponent implements
     }
 
     /**
-     * @return A list of parsed arguments
+     * Returns a list of parsed arguments
      */
     public <T> ObjectList<T> arguments(ArgumentParser<T> parser)
     {
@@ -450,7 +451,7 @@ public abstract class Application extends BaseComponent implements
     }
 
     /**
-     * @return The application version as specified in the resource "/project.properties"
+     * Returns the application version as specified in the resource "/project.properties"
      */
     public Build build()
     {
@@ -458,7 +459,7 @@ public abstract class Application extends BaseComponent implements
     }
 
     /**
-     * @return The parsed command line
+     * Returns the parsed command line
      */
     @UmlRelation(label = "parses arguments into")
     public CommandLine commandLine()
@@ -468,7 +469,7 @@ public abstract class Application extends BaseComponent implements
     }
 
     /**
-     * @return A description of the application for use in help
+     * Returns a description of the application for use in help
      */
     @Override
     public String description()
@@ -489,7 +490,7 @@ public abstract class Application extends BaseComponent implements
     }
 
     /**
-     * @return The value for the command line switch parsed by the given switch parser, if any
+     * Returns the value for the command line switch parsed by the given switch parser, if any
      */
 
     public <T> T get(SwitchParser<T> parser)
@@ -498,7 +499,7 @@ public abstract class Application extends BaseComponent implements
     }
 
     /**
-     * @return The value for the command line switch parsed by given switch parser or the default value if the switch
+     * Returns the value for the command line switch parsed by given switch parser or the default value if the switch
      * does not exist
      */
     public <T> T get(SwitchParser<T> parser, T defaultValue)
@@ -507,7 +508,7 @@ public abstract class Application extends BaseComponent implements
     }
 
     /**
-     * @return True if this application has a value for the command line switch parsed by the given parser
+     * Returns true if this application has a value for the command line switch parsed by the given parser
      */
     public <T> boolean has(SwitchParser<T> parser)
     {
@@ -527,7 +528,7 @@ public abstract class Application extends BaseComponent implements
 
     public PropertyMap localizedProperties(Locale locale, LocaleLanguage language)
     {
-        return PropertyMap.loadLocalizedPropertyMap(this, packageForThis().path(), locale, language);
+        return loadLocalizedPropertyMap(this, packageForThis().path(), locale, language);
     }
 
     /**
@@ -546,6 +547,9 @@ public abstract class Application extends BaseComponent implements
         return PropertyMap.propertyMap(Properties.allProperties(getClass()));
     }
 
+    /**
+     * Transitions this application to the {@link ExecutionState#READY} state
+     */
     public void ready()
     {
         state.transitionTo(READY);
@@ -699,7 +703,7 @@ public abstract class Application extends BaseComponent implements
     }
 
     /**
-     * @return This command line in a text box intended for user feedback when starting an application
+     * Returns this command line in a text box intended for user feedback when starting an application
      */
     public String startupInformation(String title)
     {
@@ -750,7 +754,7 @@ public abstract class Application extends BaseComponent implements
     }
 
     /**
-     * @return The application version as specified in the resource "/project.properties"
+     * Returns the application version as specified in the resource "/project.properties"
      */
     @Override
     public Version version()
@@ -768,7 +772,7 @@ public abstract class Application extends BaseComponent implements
     }
 
     /**
-     * @return The argument parsers for this application
+     * Returns the argument parsers for this application
      */
     protected List<ArgumentParser<?>> argumentParsers()
     {
@@ -862,7 +866,7 @@ public abstract class Application extends BaseComponent implements
     }
 
     /**
-     * @return The switch parsers for this application
+     * Returns the switch parsers for this application
      */
     protected ObjectSet<SwitchParser<?>> switchParsers()
     {

@@ -24,9 +24,9 @@ import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.messaging.Message;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABILITY_STABLE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 
 /**
  * Listens to {@link Message}s of a given type. All problems are logged. All failure messages result in an exception
@@ -35,8 +35,8 @@ import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NONE;
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramListenerType.class)
-@CodeQuality(stability = STABILITY_STABLE,
-             testing = TESTING_NONE,
+@CodeQuality(stability = STABLE,
+             testing = UNTESTED,
              documentation = DOCUMENTATION_COMPLETE)
 public class ThrowingListener implements Listener
 {

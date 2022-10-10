@@ -39,11 +39,11 @@ import java.net.Socket;
 import java.net.URI;
 import java.net.URISyntaxException;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABILITY_STABLE;
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABILITY_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
-import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.commandline.SwitchParser.switchParserBuilder;
 import static com.telenav.kivakit.network.core.Protocol.HTTP;
 import static com.telenav.kivakit.network.core.Protocol.HTTPS;
@@ -102,8 +102,8 @@ import static com.telenav.kivakit.network.core.Protocol.HTTPS;
  */
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramPort.class)
-@CodeQuality(stability = STABILITY_STABLE_EXTENSIBLE,
-             testing = TESTING_NONE,
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = UNTESTED,
              documentation = DOCUMENTATION_COMPLETE)
 public class Port implements AsString
 {
@@ -118,7 +118,7 @@ public class Port implements AsString
     }
 
     /**
-     * @return A port object from the given {@link URI}
+     * Returns a port object from the given {@link URI}
      */
     public static Port port(URI uri)
     {
@@ -150,7 +150,7 @@ public class Port implements AsString
      *
      * @author jonathanl (shibo)
      */
-    @CodeQuality(stability = STABILITY_STABLE,
+    @CodeQuality(stability = STABLE,
                  testing = TESTING_NOT_NEEDED,
                  documentation = DOCUMENTATION_COMPLETE)
     public static class Converter extends BaseStringConverter<Port>
@@ -235,7 +235,7 @@ public class Port implements AsString
     }
 
     /**
-     * @return The socket address for this port
+     * Returns the socket address for this port
      */
     public InetSocketAddress asInetSocketAddress()
     {
@@ -257,7 +257,7 @@ public class Port implements AsString
     }
 
     /**
-     * @return The URI for this port
+     * Returns the URI for this port
      */
     public URI asUri(Listener listener)
     {
@@ -273,7 +273,7 @@ public class Port implements AsString
     }
 
     /**
-     * @return The default protocol for this port based on the port number
+     * Returns the default protocol for this port based on the port number
      */
     public Protocol defaultProtocol()
     {
@@ -298,7 +298,7 @@ public class Port implements AsString
     }
 
     /**
-     * @return The host that owns this port
+     * Returns the host that owns this port
      */
     @KivaKitFormat
     public Host host()
@@ -307,7 +307,7 @@ public class Port implements AsString
     }
 
     /**
-     * @return True if this port's port number is not claimed on the local host
+     * Returns true if this port's port number is not claimed on the local host
      */
     public boolean isAvailable()
     {
@@ -324,7 +324,7 @@ public class Port implements AsString
     }
 
     /**
-     * @return True if this port speaks HTTP
+     * Returns true if this port speaks HTTP
      */
     public boolean isHttp()
     {
@@ -332,7 +332,7 @@ public class Port implements AsString
     }
 
     /**
-     * @return A socket input stream for this port
+     * Returns a socket input stream for this port
      */
     public InputStream open(Listener listener)
     {
@@ -349,7 +349,7 @@ public class Port implements AsString
     }
 
     /**
-     * @return The {@link NetworkPath} at the given path on this host and port
+     * Returns the {@link NetworkPath} at the given path on this host and port
      */
     public NetworkPath path(Listener listener, String path)
     {
@@ -357,7 +357,7 @@ public class Port implements AsString
     }
 
     /**
-     * @return The port number
+     * Returns the port number
      */
     @KivaKitFormat
     public int portNumber()
@@ -366,7 +366,7 @@ public class Port implements AsString
     }
 
     /**
-     * @return The protocol spoken by this port
+     * Returns the protocol spoken by this port
      */
     @KivaKitFormat
     public Protocol protocol()
@@ -384,7 +384,7 @@ public class Port implements AsString
     }
 
     /**
-     * @return This port resolved
+     * Returns this port resolved
      */
     public Port resolve()
     {

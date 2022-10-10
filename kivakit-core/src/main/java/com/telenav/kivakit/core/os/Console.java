@@ -10,7 +10,7 @@ import com.telenav.kivakit.interfaces.io.Flushable;
 import java.io.PrintStream;
 import java.io.PrintWriter;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABILITY_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
 import static com.telenav.kivakit.core.os.Console.OutputStream.ERROR;
@@ -22,7 +22,7 @@ import static com.telenav.kivakit.core.os.Console.OutputStream.NORMAL;
  * @author jonathanl (shibo)
  */
 @SuppressWarnings("resource")
-@CodeQuality(stability = STABILITY_STABLE_EXTENSIBLE,
+@CodeQuality(stability = STABLE_EXTENSIBLE,
              testing = TESTING_NOT_NEEDED,
              documentation = DOCUMENTATION_COMPLETE)
 public class Console implements

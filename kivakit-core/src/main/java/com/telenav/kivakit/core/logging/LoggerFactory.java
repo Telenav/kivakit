@@ -25,9 +25,9 @@ import com.telenav.kivakit.interfaces.factory.Factory;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABILITY_STABLE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 
 /**
  * Creates new {@link Logger} instances via {@link #newLogger()}. By default, instances of {@link LogServiceLogger} are
@@ -39,8 +39,8 @@ import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NONE;
  */
 @UmlClassDiagram(diagram = DiagramLogging.class)
 @UmlRelation(label = "creates", referent = Logger.class)
-@CodeQuality(stability = STABILITY_STABLE,
-             testing = TESTING_NONE,
+@CodeQuality(stability = STABLE,
+             testing = UNTESTED,
              documentation = DOCUMENTATION_COMPLETE)
 public class LoggerFactory
 {
@@ -58,7 +58,7 @@ public class LoggerFactory
     }
 
     /**
-     * @return A new logger instance, created using the current logger factory
+     * Returns a new logger instance, created using the current logger factory
      */
     public static Logger newLogger()
     {

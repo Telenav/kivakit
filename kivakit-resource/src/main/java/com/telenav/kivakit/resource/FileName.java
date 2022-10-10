@@ -37,9 +37,9 @@ import org.jetbrains.annotations.NotNull;
 import java.time.ZoneId;
 import java.util.regex.Pattern;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABILITY_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.messaging.Listener.throwingListener;
 
 /**
@@ -94,8 +94,8 @@ import static com.telenav.kivakit.core.messaging.Listener.throwingListener;
  */
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramResourcePath.class)
-@CodeQuality(stability = STABILITY_STABLE_EXTENSIBLE,
-             testing = TESTING_NONE,
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = UNTESTED,
              documentation = DOCUMENTATION_COMPLETE)
 public class FileName implements Named, Comparable<FileName>
 {
@@ -324,7 +324,7 @@ public class FileName implements Named, Comparable<FileName>
     }
 
     /**
-     * @return The {@link LocalTime} object for this filename
+     * Returns the {@link LocalTime} object for this filename
      */
     public LocalTime localDateTime()
     {
@@ -346,7 +346,7 @@ public class FileName implements Named, Comparable<FileName>
     }
 
     /**
-     * @return A matcher for files with this filename
+     * Returns a matcher for files with this filename
      */
     public Matcher<Resource> matcher()
     {
@@ -354,7 +354,7 @@ public class FileName implements Named, Comparable<FileName>
     }
 
     /**
-     * @return True if this filename matches the given {@link Pattern}
+     * Returns true if this filename matches the given {@link Pattern}
      */
     public boolean matches(@NotNull Pattern pattern)
     {
@@ -387,7 +387,7 @@ public class FileName implements Named, Comparable<FileName>
     }
 
     /**
-     * @return True if this filename starts with the given prefix
+     * Returns true if this filename starts with the given prefix
      */
     public boolean startsWith(@NotNull String prefix)
     {

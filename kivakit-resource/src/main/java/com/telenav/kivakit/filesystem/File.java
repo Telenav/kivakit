@@ -56,8 +56,8 @@ import java.net.URI;
 import java.nio.charset.Charset;
 import java.nio.file.attribute.PosixFilePermission;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABILITY_STABLE;
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABILITY_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_INSUFFICIENT;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
@@ -189,7 +189,7 @@ import static com.telenav.kivakit.filesystem.loader.FileSystemServiceLoader.file
  */
 @SuppressWarnings({ "SameParameterValue", "unused" })
 @UmlClassDiagram(diagram = DiagramFileSystemFile.class)
-@CodeQuality(stability = STABILITY_STABLE_EXTENSIBLE,
+@CodeQuality(stability = STABLE_EXTENSIBLE,
              testing = TESTING_INSUFFICIENT,
              documentation = DOCUMENTATION_COMPLETE)
 public class File extends BaseWritableResource implements FileSystemObject
@@ -429,7 +429,7 @@ public class File extends BaseWritableResource implements FileSystemObject
      *
      * @author jonathanl (shibo)
      */
-    @CodeQuality(stability = STABILITY_STABLE,
+    @CodeQuality(stability = STABLE,
                  testing = TESTING_NOT_NEEDED,
                  documentation = DOCUMENTATION_COMPLETE)
     public static class Converter extends BaseStringConverter<File>
@@ -446,7 +446,7 @@ public class File extends BaseWritableResource implements FileSystemObject
      * @author jonathanl (shibo)
      */
     @UmlClassDiagram(diagram = DiagramResourceService.class)
-    @CodeQuality(stability = STABILITY_STABLE,
+    @CodeQuality(stability = STABLE,
                  testing = TESTING_NOT_NEEDED,
                  documentation = DOCUMENTATION_COMPLETE)
     public static class Resolver implements ResourceResolver

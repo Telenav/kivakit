@@ -23,7 +23,7 @@ import com.telenav.kivakit.interfaces.internal.lexakai.DiagramIo;
 import com.telenav.kivakit.interfaces.time.LengthOfTime;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABILITY_STABLE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
 
@@ -33,7 +33,7 @@ import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_N
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramIo.class)
-@CodeQuality(stability = STABILITY_STABLE,
+@CodeQuality(stability = STABLE,
              testing = TESTING_NOT_NEEDED,
              documentation = DOCUMENTATION_COMPLETE)
 public interface Flushable<Duration extends LengthOfTime<Duration>>
@@ -55,7 +55,7 @@ public interface Flushable<Duration extends LengthOfTime<Duration>>
     }
 
     /**
-     * @return The maximum time to wait when {@link #flush()} is called. Normally this is the largest duration possible,
+     * Returns the maximum time to wait when {@link #flush()} is called. Normally this is the largest duration possible,
      * which for all practical purposes is "forever".
      */
     Duration maximumFlushTime();

@@ -30,7 +30,7 @@ import java.util.Set;
 import java.util.function.Function;
 import java.util.function.Predicate;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABILITY_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_INSUFFICIENT;
 import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
@@ -157,7 +157,7 @@ import static com.telenav.kivakit.interfaces.string.StringFormattable.Format.TO_
  * @see StringFormattable
  */
 @SuppressWarnings("unused")
-@CodeQuality(stability = STABILITY_STABLE_EXTENSIBLE,
+@CodeQuality(stability = STABLE_EXTENSIBLE,
              testing = TESTING_INSUFFICIENT,
              documentation = DOCUMENTATION_COMPLETE)
 public abstract class BaseCollection<Value> implements
@@ -204,7 +204,7 @@ public abstract class BaseCollection<Value> implements
     }
 
     /**
-     * @return This list as an array
+     * Returns this list as an array
      */
     @SuppressWarnings({ "unchecked" })
     public Value[] asArray(Class<Value> type)
@@ -258,7 +258,7 @@ public abstract class BaseCollection<Value> implements
     }
 
     /**
-     * @return This list as a string list
+     * Returns this list as a string list
      */
     public StringList asStringList()
     {
@@ -361,7 +361,7 @@ public abstract class BaseCollection<Value> implements
     }
 
     /**
-     * @return The maximum size of this bounded list
+     * Returns the maximum size of this bounded list
      */
     public final Maximum maximumSize()
     {
@@ -426,7 +426,7 @@ public abstract class BaseCollection<Value> implements
     }
 
     /**
-     * @return The separator to use when joining this list
+     * Returns the separator to use when joining this list
      */
     @Override
     public String separator()
@@ -444,7 +444,7 @@ public abstract class BaseCollection<Value> implements
     }
 
     /**
-     * @return A copy of this collection sorted by the given comparator
+     * Returns a copy of this collection sorted by the given comparator
      */
     public BaseList<Value> sorted(Comparator<Value> comparator)
     {
@@ -455,7 +455,7 @@ public abstract class BaseCollection<Value> implements
     }
 
     /**
-     * @return An {@link ObjectList} with the values in this collection in sorted order.
+     * Returns an {@link ObjectList} with the values in this collection in sorted order.
      */
     @SuppressWarnings("unchecked")
     public BaseList<Value> sorted()

@@ -20,17 +20,18 @@ package com.telenav.kivakit.interfaces.code;
 
 import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABILITY_STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
 
 /**
- * Code that can be executed, returning a value, as opposed to {@link Runnable} which does not return a value.
+ * Code that can be executed, returning a value (and not throwing an exception), as opposed to {@link Runnable} which
+ * does not return a value.
  *
  * @author jonathanl (shibo)
  */
 @FunctionalInterface
-@CodeQuality(stability = STABILITY_STABLE,
+@CodeQuality(stability = STABLE,
              testing = TESTING_NOT_NEEDED,
              documentation = DOCUMENTATION_COMPLETE,
              reviews = 1,
@@ -38,7 +39,7 @@ import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_N
 public interface Code<Value>
 {
     /**
-     * @return The value returned by the code
+     * Returns the value returned by the code
      */
     Value run();
 }

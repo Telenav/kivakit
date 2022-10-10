@@ -3,9 +3,9 @@ package com.telenav.kivakit.core.vm;
 import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.language.primitive.Booleans;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABILITY_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 
 /**
  * Trait providing access to the Java virtual machine, system properties and environment variables
@@ -13,8 +13,8 @@ import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NONE;
  * @author jonathanl (shibo)
  */
 @SuppressWarnings("unused")
-@CodeQuality(stability = STABILITY_STABLE_EXTENSIBLE,
-             testing = TESTING_NONE,
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = UNTESTED,
              documentation = DOCUMENTATION_COMPLETE)
 public interface JavaTrait
 {

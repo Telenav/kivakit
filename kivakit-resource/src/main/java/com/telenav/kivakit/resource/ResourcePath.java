@@ -37,9 +37,9 @@ import java.net.URI;
 import java.util.List;
 import java.util.function.Function;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABILITY_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.messaging.Listener.consoleListener;
 
 /**
@@ -75,15 +75,15 @@ import static com.telenav.kivakit.core.messaging.Listener.consoleListener;
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramResource.class)
 @UmlClassDiagram(diagram = DiagramResourcePath.class)
-@CodeQuality(stability = STABILITY_STABLE_EXTENSIBLE,
+@CodeQuality(stability = STABLE_EXTENSIBLE,
              documentation = DOCUMENTATION_COMPLETE,
-             testing = TESTING_NONE)
+             testing = UNTESTED)
 public class ResourcePath extends StringPath implements
         UriIdentified,
         ResourcePathed
 {
     /**
-     * @return A resource path for the given string
+     * Returns a resource path for the given string
      */
     public static ResourcePath parseResourcePath(@NotNull Listener listener,
                                                  @NotNull String path)
@@ -92,7 +92,7 @@ public class ResourcePath extends StringPath implements
     }
 
     /**
-     * @return A UNIX-style resource path for the given string
+     * Returns a UNIX-style resource path for the given string
      */
     public static ResourcePath parseUnixResourcePath(@NotNull Listener listener,
                                                      @NotNull String path)
@@ -107,7 +107,7 @@ public class ResourcePath extends StringPath implements
     }
 
     /**
-     * @return A resource path for the given string path
+     * Returns a resource path for the given string path
      */
     public static ResourcePath resourcePath(@NotNull StringPath path)
     {
@@ -129,8 +129,8 @@ public class ResourcePath extends StringPath implements
      *
      * @author jonathanl (shibo)
      */
-    @CodeQuality(stability = STABILITY_STABLE_EXTENSIBLE,
-                 testing = TESTING_NONE,
+    @CodeQuality(stability = STABLE_EXTENSIBLE,
+                 testing = UNTESTED,
                  documentation = DOCUMENTATION_COMPLETE)
     public static class Converter extends BaseStringConverter<ResourcePath>
     {
@@ -211,7 +211,7 @@ public class ResourcePath extends StringPath implements
     }
 
     /**
-     * @return The file extension of this resource path's filename
+     * Returns the file extension of this resource path's filename
      */
     @Override
     public Extension extension()
@@ -220,7 +220,7 @@ public class ResourcePath extends StringPath implements
     }
 
     /**
-     * @return The file name of this resource path
+     * Returns the file name of this resource path
      */
     @Override
     public FileName fileName()
@@ -230,7 +230,7 @@ public class ResourcePath extends StringPath implements
     }
 
     /**
-     * @return True if this file path has a scheme
+     * Returns true if this file path has a scheme
      */
     public boolean hasScheme()
     {
@@ -315,7 +315,7 @@ public class ResourcePath extends StringPath implements
     }
 
     /**
-     * @return Any schemes for this filepath. For example, a file such as "jar:file:/test.zip" would have the schemes
+     * Returns any schemes for this filepath. For example, a file such as "jar:file:/test.zip" would have the schemes
      * "jar" and "file". In "s3://telenav/file.txt", there is only one scheme, "s3".
      */
     public StringList schemes()

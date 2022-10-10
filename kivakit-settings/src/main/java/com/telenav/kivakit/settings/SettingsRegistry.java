@@ -32,9 +32,9 @@ import com.telenav.kivakit.settings.stores.MemorySettingsStore;
 import com.telenav.kivakit.settings.stores.ResourceFolderSettingsStore;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABILITY_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.ensure.Ensure.fail;
 import static com.telenav.kivakit.settings.SettingsStore.AccessMode.LOAD;
 
@@ -126,8 +126,8 @@ import static com.telenav.kivakit.settings.SettingsStore.AccessMode.LOAD;
  * @see ResourceFolderSettingsStore
  */
 @UmlClassDiagram(diagram = DiagramSettings.class)
-@CodeQuality(stability = STABILITY_STABLE_EXTENSIBLE,
-             testing = TESTING_NONE,
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = UNTESTED,
              documentation = DOCUMENTATION_COMPLETE)
 public class SettingsRegistry extends MemorySettingsStore implements
         SettingsRegistryTrait,
@@ -147,7 +147,7 @@ public class SettingsRegistry extends MemorySettingsStore implements
             }));
 
     /**
-     * @return The global settings object
+     * Returns the global settings object
      */
     public static SettingsRegistry global()
     {
@@ -165,7 +165,7 @@ public class SettingsRegistry extends MemorySettingsStore implements
     }
 
     /**
-     * @return The settings object of the requested type from the global {@link Registry} or from the package of default
+     * Returns the settings object of the requested type from the global {@link Registry} or from the package of default
      * settings if it is not found there.
      */
     @Override
@@ -200,7 +200,7 @@ public class SettingsRegistry extends MemorySettingsStore implements
     }
 
     /**
-     * @return The settings object for the given type and instance identifier
+     * Returns the settings object for the given type and instance identifier
      */
     @Override
     public <T> T lookupSettings(Class<T> type, InstanceIdentifier instance)
@@ -209,7 +209,7 @@ public class SettingsRegistry extends MemorySettingsStore implements
     }
 
     /**
-     * @return Adds the given instance of a settings object to this set
+     * Returns adds the given instance of a settings object to this set
      */
     @Override
     public synchronized SettingsRegistry registerSettings(Object settings, InstanceIdentifier instance)

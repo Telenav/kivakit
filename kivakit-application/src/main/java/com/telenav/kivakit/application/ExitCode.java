@@ -3,8 +3,8 @@ package com.telenav.kivakit.application;
 import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABILITY_STABLE;
-import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
 
 /**
  * Represents the success or failure of an application under UNIX, where an exit code of 0 represents success and any
@@ -12,8 +12,8 @@ import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NONE;
  *
  * @author jonathanl (shibo)
  */
-@CodeQuality(stability = STABILITY_STABLE,
-             testing = TESTING_NONE,
+@CodeQuality(stability = STABLE,
+             testing = TESTING_NOT_NEEDED,
              documentation = DOCUMENTATION_COMPLETE)
 public class ExitCode
 {

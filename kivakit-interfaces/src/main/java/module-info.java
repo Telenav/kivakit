@@ -20,5 +20,5 @@ open module kivakit.interfaces
     exports com.telenav.kivakit.interfaces.string;
     exports com.telenav.kivakit.interfaces.time;
     exports com.telenav.kivakit.interfaces.value;
-    exports com.telenav.kivakit.interfaces.monads;
+    exports com.telenav.kivakit.interfaces.function;
 }

@@ -27,9 +27,9 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABILITY_STABLE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 
 /**
  * This annotation signals that a missing property value should not be considered a problem.
@@ -39,8 +39,8 @@ import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NONE;
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ ElementType.FIELD, ElementType.METHOD })
 @UmlClassDiagram(diagram = DiagramReflection.class)
-@CodeQuality(stability = STABILITY_STABLE,
-             testing = TESTING_NONE,
+@CodeQuality(stability = STABLE,
+             testing = UNTESTED,
              documentation = DOCUMENTATION_COMPLETE)
 public @interface KivaKitOptionalProperty
 {

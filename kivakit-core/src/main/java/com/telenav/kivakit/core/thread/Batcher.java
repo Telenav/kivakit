@@ -41,10 +41,10 @@ import java.util.concurrent.ExecutorService;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABILITY_STABLE;
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABILITY_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.ensure.Ensure.ensure;
 
 /**
@@ -102,13 +102,13 @@ import static com.telenav.kivakit.core.ensure.Ensure.ensure;
  */
 @SuppressWarnings({ "SpellCheckingInspection", "unused" })
 @UmlClassDiagram(diagram = DiagramThread.class)
-@CodeQuality(stability = STABILITY_STABLE_EXTENSIBLE,
-             testing = TESTING_NONE,
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = UNTESTED,
              documentation = DOCUMENTATION_COMPLETE)
 public class Batcher<Value> extends BaseRepeater
 {
     /**
-     * @return Creates a new batcher
+     * Returns creates a new batcher
      */
     public static <Element> Batcher<Element> create()
     {
@@ -127,8 +127,8 @@ public class Batcher<Value> extends BaseRepeater
     /**
      * A batch of elements for processing
      */
-    @CodeQuality(stability = STABILITY_STABLE,
-                 testing = TESTING_NONE,
+    @CodeQuality(stability = STABLE,
+                 testing = UNTESTED,
                  documentation = DOCUMENTATION_COMPLETE)
     public class Batch extends ArrayList<Value>
     {
@@ -166,8 +166,8 @@ public class Batcher<Value> extends BaseRepeater
      * shared among threads, and therefore it would have to be synchronized. Having each thread add elements to its own
      * thread-local batch adder reduces lock contention.
      */
-    @CodeQuality(stability = STABILITY_STABLE,
-                 testing = TESTING_NONE,
+    @CodeQuality(stability = STABLE,
+                 testing = UNTESTED,
                  documentation = DOCUMENTATION_COMPLETE)
     public class BatchAdder implements Addable<Value>, Sequence<Value>
     {
@@ -291,7 +291,7 @@ public class Batcher<Value> extends BaseRepeater
     }
 
     /**
-     * @return An object that adds to an un-synchronized batch and enqueues it when full
+     * Returns an object that adds to an un-synchronized batch and enqueues it when full
      */
     public synchronized BatchAdder adder()
     {
@@ -425,7 +425,7 @@ public class Batcher<Value> extends BaseRepeater
     }
 
     /**
-     * @return The next batch from the queue, or an empty batch if interrupted
+     * Returns the next batch from the queue, or an empty batch if interrupted
      */
     private Batch nextBatch()
     {

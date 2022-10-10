@@ -11,9 +11,9 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.Objects;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABILITY_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
 import static com.telenav.kivakit.core.ensure.Ensure.unsupported;
 
@@ -25,8 +25,8 @@ import static com.telenav.kivakit.core.ensure.Ensure.unsupported;
  */
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramKryo.class)
-@CodeQuality(stability = STABILITY_STABLE_EXTENSIBLE,
-             testing = TESTING_NONE,
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = UNTESTED,
              documentation = DOCUMENTATION_COMPLETE)
 public abstract class BaseSerializer<Value> extends Serializer<Value>
 {
@@ -63,7 +63,7 @@ public abstract class BaseSerializer<Value> extends Serializer<Value>
     }
 
     /**
-     * @return The type to serialize
+     * Returns the type to serialize
      */
     public final Class<?> type()
     {
@@ -82,7 +82,7 @@ public abstract class BaseSerializer<Value> extends Serializer<Value>
     }
 
     /**
-     * @return The value as read by the subclass of this serializer using the given session
+     * Returns the value as read by the subclass of this serializer using the given session
      */
     protected abstract Value onRead(KryoSerializationSession session);
 
@@ -100,7 +100,7 @@ public abstract class BaseSerializer<Value> extends Serializer<Value>
     }
 
     /**
-     * @return The version of the serialization session in progress
+     * Returns the version of the serialization session in progress
      */
     protected Version version()
     {

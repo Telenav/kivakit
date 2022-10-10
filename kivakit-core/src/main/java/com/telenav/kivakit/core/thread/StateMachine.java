@@ -31,9 +31,9 @@ import java.util.Optional;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABILITY_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 
 /**
  * A simple state machine with a single state that can be transitioned from one state to another and which allows a
@@ -87,8 +87,8 @@ import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NONE;
  */
 @SuppressWarnings({ "unused", "UnusedReturnValue" })
 @UmlClassDiagram(diagram = DiagramThread.class)
-@CodeQuality(stability = STABILITY_STABLE_EXTENSIBLE,
-             testing = TESTING_NONE,
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = UNTESTED,
              documentation = DOCUMENTATION_COMPLETE)
 public final class StateMachine<State> extends BaseRepeater
 {
@@ -122,7 +122,7 @@ public final class StateMachine<State> extends BaseRepeater
     }
 
     /**
-     * @return True if the current state is the given state
+     * Returns true if the current state is the given state
      */
     public boolean is(State state)
     {
@@ -130,7 +130,7 @@ public final class StateMachine<State> extends BaseRepeater
     }
 
     /**
-     * @return True if the current state is the given state
+     * Returns true if the current state is the given state
      */
     public boolean is(Predicate<State> predicate)
     {
@@ -138,7 +138,7 @@ public final class StateMachine<State> extends BaseRepeater
     }
 
     /**
-     * @return True if the current state is the given state
+     * Returns true if the current state is the given state
      */
     public boolean isNot(Predicate<State> predicate)
     {
@@ -146,7 +146,7 @@ public final class StateMachine<State> extends BaseRepeater
     }
 
     /**
-     * @return True if the current state is not the given state
+     * Returns true if the current state is not the given state
      */
     public boolean isNot(State state)
     {

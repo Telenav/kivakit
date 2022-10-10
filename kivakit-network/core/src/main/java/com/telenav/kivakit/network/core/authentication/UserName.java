@@ -25,9 +25,9 @@ import com.telenav.kivakit.core.value.name.Name;
 import com.telenav.kivakit.network.core.internal.lexakai.DiagramAuthentication;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABILITY_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 
 /**
  * A username for use in authentication.
@@ -36,8 +36,8 @@ import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NONE;
  */
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramAuthentication.class)
-@CodeQuality(stability = STABILITY_STABLE_EXTENSIBLE,
-             testing = TESTING_NONE,
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = UNTESTED,
              documentation = DOCUMENTATION_COMPLETE)
 public class UserName extends Name
 {
@@ -57,8 +57,8 @@ public class UserName extends Name
      *
      * @author jonathanl (shibo)
      */
-    @CodeQuality(stability = STABILITY_STABLE_EXTENSIBLE,
-                 testing = TESTING_NONE,
+    @CodeQuality(stability = STABLE_EXTENSIBLE,
+                 testing = UNTESTED,
                  documentation = DOCUMENTATION_COMPLETE)
     public static class Converter extends BaseStringConverter<UserName>
     {

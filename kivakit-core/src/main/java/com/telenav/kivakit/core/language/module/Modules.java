@@ -34,7 +34,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABILITY_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
 
@@ -50,7 +50,7 @@ import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_N
  */
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramModule.class)
-@CodeQuality(stability = STABILITY_STABLE_EXTENSIBLE,
+@CodeQuality(stability = STABLE_EXTENSIBLE,
              testing = TESTING_NOT_NEEDED,
              documentation = DOCUMENTATION_COMPLETE)
 public class Modules
@@ -71,7 +71,7 @@ public class Modules
     private static List<ModuleResource> allResources;
 
     /**
-     * @return A list of all resources within the current search scope
+     * Returns a list of all resources within the current search scope
      */
     static synchronized List<ModuleResource> allModuleResources(Listener listener)
     {
@@ -128,7 +128,7 @@ public class Modules
     }
 
     /**
-     * @return A list of all {@link ModuleResource}s under the given package
+     * Returns a list of all {@link ModuleResource}s under the given package
      */
     public static synchronized List<ModuleResource> allNestedModuleResources(Listener listener,
                                                                              PackageReference packageReference)
@@ -151,7 +151,7 @@ public class Modules
     }
 
     /**
-     * @return A single {@link ModuleResource} for the given path or null if no resource is found
+     * Returns a single {@link ModuleResource} for the given path or null if no resource is found
      */
     public static ModuleResource moduleResource(Listener listener, StringPath path)
     {
@@ -187,7 +187,7 @@ public class Modules
     }
 
     /**
-     * @return A list of the {@link ModuleResource}s in the given package (but not any below it)
+     * Returns a list of the {@link ModuleResource}s in the given package (but not any below it)
      */
     public static List<ModuleResource> moduleResources(Listener listener, PackageReference packageReference)
     {
@@ -195,7 +195,7 @@ public class Modules
     }
 
     /**
-     * @return A list of {@link ModuleResource}s under the given package that match the given matcher
+     * Returns a list of {@link ModuleResource}s under the given package that match the given matcher
      */
     public synchronized static List<ModuleResource> nestedModuleResources(Listener listener,
                                                                           PackageReference packageReference,
@@ -208,7 +208,7 @@ public class Modules
     }
 
     /**
-     * @return A list of all {@link ModuleResource}s under the given package
+     * Returns a list of all {@link ModuleResource}s under the given package
      */
     public synchronized static List<ModuleResource> nestedModuleResources(Listener listener,
                                                                           PackageReference packageReference)
@@ -217,7 +217,7 @@ public class Modules
     }
 
     /**
-     * @return A list of all available {@link ModuleReference}s
+     * Returns a list of all available {@link ModuleReference}s
      */
     private synchronized static List<ModuleReference> moduleReferences(Listener listener)
     {

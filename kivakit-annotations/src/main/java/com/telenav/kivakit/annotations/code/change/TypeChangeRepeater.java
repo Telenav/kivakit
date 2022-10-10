@@ -9,7 +9,7 @@ import java.lang.annotation.Target;
 
 import static com.telenav.kivakit.annotations.code.quality.Audience.AUDIENCE_INTERNAL;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABILITY_STABLE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
 
 /**
@@ -24,7 +24,7 @@ import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_N
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ ElementType.TYPE })
 @CodeQuality(audience = AUDIENCE_INTERNAL,
-             stability = STABILITY_STABLE,
+             stability = STABLE,
              testing = TESTING_NOT_NEEDED,
              documentation = DOCUMENTATION_COMPLETE,
              reviews = 1,

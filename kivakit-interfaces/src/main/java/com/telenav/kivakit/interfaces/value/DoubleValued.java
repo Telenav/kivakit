@@ -2,7 +2,7 @@ package com.telenav.kivakit.interfaces.value;
 
 import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABILITY_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
 
@@ -13,13 +13,13 @@ import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_N
  */
 @FunctionalInterface
 @SuppressWarnings("unused")
-@CodeQuality(stability = STABILITY_STABLE_EXTENSIBLE,
+@CodeQuality(stability = STABLE_EXTENSIBLE,
              testing = TESTING_NOT_NEEDED,
              documentation = DOCUMENTATION_COMPLETE)
 public interface DoubleValued extends LongValued
 {
     /**
-     * @return The absolute difference between this double value and that double value
+     * Returns the absolute difference between this double value and that double value
      */
     default double absoluteDifference(DoubleValued that)
     {
@@ -27,7 +27,7 @@ public interface DoubleValued extends LongValued
     }
 
     /**
-     * @return A {@link Comparable} that compares this object to another {@link DoubleValued} object.
+     * Returns a {@link Comparable} that compares this object to another {@link DoubleValued} object.
      */
     default Comparable<DoubleValued> doubleComparable()
     {
@@ -63,7 +63,7 @@ public interface DoubleValued extends LongValued
     }
 
     /**
-     * @return True if this > that
+     * Returns true if this > that
      */
     default boolean isGreaterThan(DoubleValued that)
     {
@@ -71,7 +71,7 @@ public interface DoubleValued extends LongValued
     }
 
     /**
-     * @return True if this >= that
+     * Returns true if this >= that
      */
     default boolean isGreaterThanOrEqualTo(DoubleValued that)
     {
@@ -79,7 +79,7 @@ public interface DoubleValued extends LongValued
     }
 
     /**
-     * @return True if this < that
+     * Returns true if this < that
      */
 
     default boolean isLessThan(DoubleValued that)
@@ -88,7 +88,7 @@ public interface DoubleValued extends LongValued
     }
 
     /**
-     * @return True if this <= that
+     * Returns true if this <= that
      */
     default boolean isLessThanOrEqualTo(DoubleValued that)
     {

@@ -42,7 +42,7 @@ import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_N
 public interface Contains<Value>
 {
     /**
-     * @return True if the given value is contained in this object
+     * Returns true if the given value is contained in this object
      */
     boolean contains(Value value);
 

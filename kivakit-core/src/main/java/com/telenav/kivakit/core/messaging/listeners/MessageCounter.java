@@ -33,9 +33,9 @@ import com.telenav.kivakit.core.string.Plural;
 import com.telenav.kivakit.core.value.count.Count;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABILITY_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 
 /**
  * A {@link Listener}, such as {@link MessageList} that is able to report how many of different kinds of messages it has
@@ -83,8 +83,8 @@ import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NONE;
  * @see MessageList
  */
 @SuppressWarnings("unused") @UmlClassDiagram(diagram = DiagramListenerType.class)
-@CodeQuality(stability = STABILITY_STABLE_EXTENSIBLE,
-             testing = TESTING_NONE,
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = UNTESTED,
              documentation = DOCUMENTATION_COMPLETE)
 public interface MessageCounter extends Listener
 {

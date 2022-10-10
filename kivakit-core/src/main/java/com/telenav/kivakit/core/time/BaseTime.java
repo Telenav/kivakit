@@ -9,11 +9,11 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.Objects;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABILITY_STABLE;
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABILITY_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
-import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.ensure.Ensure.ensure;
 import static com.telenav.kivakit.core.time.BaseTime.Topology.CYCLIC;
 
@@ -137,14 +137,14 @@ import static com.telenav.kivakit.core.time.BaseTime.Topology.CYCLIC;
  * @see Second
  */
 @SuppressWarnings("unused")
-@CodeQuality(stability = STABILITY_STABLE_EXTENSIBLE,
-             testing = TESTING_NONE,
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = UNTESTED,
              documentation = DOCUMENTATION_COMPLETE)
 public abstract class BaseTime<TimeType extends BaseTime<TimeType>> implements
         PointInTime<TimeType, Duration>,
         StringFormattable
 {
-    @CodeQuality(stability = STABILITY_STABLE,
+    @CodeQuality(stability = STABLE,
                  testing = TESTING_NOT_NEEDED,
                  documentation = DOCUMENTATION_COMPLETE)
     public enum Topology
@@ -166,7 +166,7 @@ public abstract class BaseTime<TimeType extends BaseTime<TimeType>> implements
     }
 
     /**
-     * @return This point in time in units
+     * Returns this point in time in units
      */
     public double asPreciseUnits()
     {
@@ -188,7 +188,7 @@ public abstract class BaseTime<TimeType extends BaseTime<TimeType>> implements
     }
 
     /**
-     * @return This time minus one unit
+     * Returns this time minus one unit
      */
     public TimeType decremented()
     {
@@ -213,7 +213,7 @@ public abstract class BaseTime<TimeType extends BaseTime<TimeType>> implements
     }
 
     /**
-     * @return This time plus one unit
+     * Returns this time plus one unit
      */
     public TimeType incremented()
     {
@@ -245,7 +245,7 @@ public abstract class BaseTime<TimeType extends BaseTime<TimeType>> implements
     }
 
     /**
-     * @return This time minus the given number of units
+     * Returns this time minus the given number of units
      */
     public TimeType minusUnits(double units)
     {
@@ -285,7 +285,7 @@ public abstract class BaseTime<TimeType extends BaseTime<TimeType>> implements
     }
 
     /**
-     * @return This time plus one unit
+     * Returns this time plus one unit
      */
     public TimeType next()
     {
@@ -298,7 +298,7 @@ public abstract class BaseTime<TimeType extends BaseTime<TimeType>> implements
     public abstract TimeType onNewTime(Nanoseconds nanoseconds);
 
     /**
-     * @return This time plus the given number of units
+     * Returns this time plus the given number of units
      */
     public TimeType plusUnits(double units)
     {
@@ -351,7 +351,7 @@ public abstract class BaseTime<TimeType extends BaseTime<TimeType>> implements
     }
 
     /**
-     * @return The kind of time this is, either {@link Topology#LINEAR} or {@link Topology#CYCLIC}
+     * Returns the kind of time this is, either {@link Topology#LINEAR} or {@link Topology#CYCLIC}
      */
     protected abstract Topology topology();
 

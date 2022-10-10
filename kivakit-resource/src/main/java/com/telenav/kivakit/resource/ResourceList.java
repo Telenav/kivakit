@@ -27,9 +27,9 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
 import org.jetbrains.annotations.NotNull;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABILITY_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 
 /**
  * A list of {@link Resource}s. Adds the methods:
@@ -46,9 +46,9 @@ import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NONE;
  */
 @UmlClassDiagram(diagram = DiagramResource.class)
 @UmlRelation(label = "contains", referent = Resource.class)
-@CodeQuality(stability = STABILITY_STABLE_EXTENSIBLE,
+@CodeQuality(stability = STABLE_EXTENSIBLE,
              documentation = DOCUMENTATION_COMPLETE,
-             testing = TESTING_NONE)
+             testing = UNTESTED)
 public class ResourceList extends BaseResourceList<Resource>
 {
     /**

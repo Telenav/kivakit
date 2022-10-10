@@ -27,7 +27,7 @@ import com.telenav.kivakit.interfaces.lifecycle.Resettable;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABILITY_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
 
@@ -43,7 +43,7 @@ import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_N
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramProgress.class)
 @UmlRelation(label = "reports progress to", referent = ProgressListener.class)
-@CodeQuality(stability = STABILITY_STABLE_EXTENSIBLE,
+@CodeQuality(stability = STABLE_EXTENSIBLE,
              testing = TESTING_NOT_NEEDED,
              documentation = DOCUMENTATION_COMPLETE)
 public interface ProgressReporter extends Resettable
@@ -74,7 +74,7 @@ public interface ProgressReporter extends Resettable
     }
 
     /**
-     * @return True if progress is indefinite because the number of steps in not known
+     * Returns true if progress is indefinite because the number of steps in not known
      */
     default boolean isIndefinite()
     {

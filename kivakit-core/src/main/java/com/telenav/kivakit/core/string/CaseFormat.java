@@ -25,9 +25,9 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABILITY_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 
 /**
  * Converts between different styles of casing:
@@ -43,8 +43,8 @@ import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NONE;
  */
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramString.class)
-@CodeQuality(stability = STABILITY_STABLE_EXTENSIBLE,
-             testing = TESTING_NONE,
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = UNTESTED,
              documentation = DOCUMENTATION_COMPLETE)
 public class CaseFormat
 {
@@ -119,7 +119,7 @@ public class CaseFormat
     }
 
     /**
-     * @return True if the text starts with an uppercase letter or non-letter, false otherwise
+     * Returns true if the text starts with an uppercase letter or non-letter, false otherwise
      */
     public static boolean isCapitalized(String text)
     {
@@ -131,7 +131,7 @@ public class CaseFormat
     }
 
     /**
-     * @return True if the given text contains a hyphen
+     * Returns true if the given text contains a hyphen
      */
     public static boolean isHyphenated(String text)
     {

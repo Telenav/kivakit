@@ -38,9 +38,9 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABILITY_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.ensure.Ensure.fail;
 
 /**
@@ -103,8 +103,8 @@ import static com.telenav.kivakit.core.ensure.Ensure.fail;
  * @see KryoSerializationSession
  */
 @SuppressWarnings({ "unused", "UnusedReturnValue" })
-@CodeQuality(stability = STABILITY_STABLE_EXTENSIBLE,
-             testing = TESTING_NONE,
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = UNTESTED,
              documentation = DOCUMENTATION_COMPLETE)
 public class KryoTypes implements Named
 {
@@ -135,7 +135,7 @@ public class KryoTypes implements Named
     }
 
     /**
-     * @return A deep copy of the given type set
+     * Returns a deep copy of the given type set
      */
     public KryoTypes deepCopy()
     {
@@ -177,7 +177,7 @@ public class KryoTypes implements Named
     }
 
     /**
-     * @return The identifier for the given type
+     * Returns the identifier for the given type
      */
     public int identifier(Class<?> type)
     {
@@ -185,7 +185,7 @@ public class KryoTypes implements Named
     }
 
     /**
-     * @return A new type set that contains the entries from this type set and those from the given set
+     * Returns a new type set that contains the entries from this type set and those from the given set
      */
     public KryoTypes mergedWith(KryoTypes that)
     {
@@ -283,7 +283,7 @@ public class KryoTypes implements Named
     }
 
     /**
-     * @return The set of all registered types
+     * Returns the set of all registered types
      */
     public Set<Class<?>> registeredTypes()
     {

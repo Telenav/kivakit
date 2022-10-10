@@ -41,7 +41,7 @@ import com.telenav.lexakai.annotations.visibility.UmlExcludeSuperTypes;
 import java.util.HashSet;
 import java.util.Set;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABILITY_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
 
@@ -102,7 +102,7 @@ import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_N
  */
 @UmlClassDiagram(diagram = DiagramProject.class)
 @UmlExcludeSuperTypes({ Named.class })
-@CodeQuality(stability = STABILITY_STABLE_EXTENSIBLE,
+@CodeQuality(stability = STABLE_EXTENSIBLE,
              testing = TESTING_NOT_NEEDED,
              documentation = DOCUMENTATION_COMPLETE)
 public abstract class Project extends BaseRepeater implements
@@ -145,7 +145,7 @@ public abstract class Project extends BaseRepeater implements
     private boolean initialized;
 
     /**
-     * @return The maven artifactId of this project
+     * Returns the maven artifactId of this project
      */
     public String artifactId()
     {
@@ -153,7 +153,7 @@ public abstract class Project extends BaseRepeater implements
     }
 
     /**
-     * @return Build information about this project
+     * Returns build information about this project
      */
     public Build build()
     {
@@ -186,7 +186,7 @@ public abstract class Project extends BaseRepeater implements
     }
 
     /**
-     * @return The maven groupId for this project
+     * Returns the maven groupId for this project
      */
     public String groupId()
     {
@@ -231,7 +231,7 @@ public abstract class Project extends BaseRepeater implements
     }
 
     /**
-     * @return The KivaKit version in use
+     * Returns the KivaKit version in use
      */
     @Override
     public final Version kivakitVersion()
@@ -240,7 +240,7 @@ public abstract class Project extends BaseRepeater implements
     }
 
     /**
-     * @return The maven project name for this project
+     * Returns the maven project name for this project
      */
     @Override
     public String name()
@@ -271,7 +271,7 @@ public abstract class Project extends BaseRepeater implements
     }
 
     /**
-     * @return The version of this project
+     * Returns the version of this project
      */
     public Version projectVersion()
     {
@@ -279,7 +279,7 @@ public abstract class Project extends BaseRepeater implements
     }
 
     /**
-     * @return System properties, environment variables and build properties for this project
+     * Returns system properties, environment variables and build properties for this project
      */
     public VariableMap<String> properties()
     {
@@ -287,7 +287,7 @@ public abstract class Project extends BaseRepeater implements
     }
 
     /**
-     * @return The project property for the given key
+     * Returns the project property for the given key
      */
     public String property(String key)
     {

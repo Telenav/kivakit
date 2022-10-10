@@ -46,9 +46,9 @@ import java.io.InputStream;
 import java.lang.module.ModuleReference;
 import java.net.URI;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABILITY_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.language.module.Modules.moduleResource;
 import static com.telenav.kivakit.filesystem.FilePath.parseFilePath;
 import static com.telenav.kivakit.resource.FileName.parseFileName;
@@ -99,8 +99,8 @@ import static com.telenav.kivakit.resource.packages.PackagePath.packagePath;
  * @see BaseReadableResource
  */
 @UmlClassDiagram(diagram = DiagramResourceType.class)
-@CodeQuality(stability = STABILITY_STABLE_EXTENSIBLE,
-             testing = TESTING_NONE,
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = UNTESTED,
              documentation = DOCUMENTATION_COMPLETE)
 public class PackageResource extends BaseReadableResource
 {
@@ -171,8 +171,8 @@ public class PackageResource extends BaseReadableResource
      * @author jonathanl (shibo)
      */
     @UmlClassDiagram(diagram = DiagramResourceService.class)
-    @CodeQuality(stability = STABILITY_STABLE_EXTENSIBLE,
-                 testing = TESTING_NONE,
+    @CodeQuality(stability = STABLE_EXTENSIBLE,
+                 testing = UNTESTED,
                  documentation = DOCUMENTATION_COMPLETE)
     public static class PackageResolver implements ResourceResolver
     {

@@ -26,7 +26,7 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 import java.util.function.Predicate;
 import java.util.regex.Pattern;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABILITY_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
 
@@ -58,7 +58,7 @@ import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_N
 @SuppressWarnings("unused")
 @FunctionalInterface
 @UmlClassDiagram(diagram = DiagramComparison.class)
-@CodeQuality(stability = STABILITY_STABLE_EXTENSIBLE,
+@CodeQuality(stability = STABLE_EXTENSIBLE,
              testing = TESTING_NOT_NEEDED,
              documentation = DOCUMENTATION_COMPLETE)
 public interface Matcher<Value> extends
@@ -66,7 +66,7 @@ public interface Matcher<Value> extends
         Predicate<Value>
 {
     /**
-     * @return A matcher that matches all values
+     * Returns a matcher that matches all values
      */
     static <T> Matcher<T> matchAll()
     {
@@ -74,7 +74,7 @@ public interface Matcher<Value> extends
     }
 
     /**
-     * @return A matcher that matches nothing
+     * Returns a matcher that matches nothing
      */
     static <T> Matcher<T> matchNothing()
     {
@@ -93,7 +93,7 @@ public interface Matcher<Value> extends
     }
 
     /**
-     * @return A matcher matching the given predicate
+     * Returns a matcher matching the given predicate
      */
     static <T> Matcher<T> matching(Predicate<T> predicate)
     {
@@ -119,7 +119,7 @@ public interface Matcher<Value> extends
     }
 
     /**
-     * @return True if the given value matches this matcher
+     * Returns true if the given value matches this matcher
      */
     @Override
     boolean matches(Value value);

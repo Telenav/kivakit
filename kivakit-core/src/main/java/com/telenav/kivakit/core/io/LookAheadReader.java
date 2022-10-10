@@ -26,7 +26,7 @@ import org.jetbrains.annotations.NotNull;
 import java.io.IOException;
 import java.io.Reader;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABILITY_STABLE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_INSUFFICIENT;
 
@@ -37,7 +37,7 @@ import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_INSUF
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramIo.class)
-@CodeQuality(stability = STABILITY_STABLE,
+@CodeQuality(stability = STABLE,
              testing = TESTING_INSUFFICIENT,
              documentation = DOCUMENTATION_COMPLETE)
 public class LookAheadReader extends Reader
@@ -112,7 +112,7 @@ public class LookAheadReader extends Reader
     }
 
     /**
-     * @return The current character in the stream or END_OF_STREAM if the stream is out of input
+     * Returns the current character in the stream or END_OF_STREAM if the stream is out of input
      */
     public final int current()
     {
@@ -120,7 +120,7 @@ public class LookAheadReader extends Reader
     }
 
     /**
-     * @return True if the stream can be advanced with {@link #next()}
+     * Returns true if the stream can be advanced with {@link #next()}
      */
     public final boolean hasNext()
     {

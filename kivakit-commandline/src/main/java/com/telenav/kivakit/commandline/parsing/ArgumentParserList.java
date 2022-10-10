@@ -33,10 +33,10 @@ import com.telenav.lexakai.annotations.visibility.UmlNotPublicApi;
 
 import java.util.Iterator;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABILITY_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Audience.AUDIENCE_INTERNAL;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 
 /**
  * <b>Not Public API</b>
@@ -52,8 +52,8 @@ import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NONE;
 @UmlClassDiagram(diagram = DiagramCommandLine.class)
 @UmlNotPublicApi
 @UmlExcludeSuperTypes({ Iterable.class })
-@CodeQuality(stability = STABILITY_STABLE_EXTENSIBLE,
-             testing = TESTING_NONE,
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = UNTESTED,
              documentation = DOCUMENTATION_COMPLETE,
              audience = AUDIENCE_INTERNAL)
 public class ArgumentParserList implements Iterable<ArgumentParser<?>>
@@ -88,7 +88,7 @@ public class ArgumentParserList implements Iterable<ArgumentParser<?>>
     }
 
     /**
-     * @return A help string describing each argument in this list of argument parsers
+     * Returns a help string describing each argument in this list of argument parsers
      */
     public String help()
     {

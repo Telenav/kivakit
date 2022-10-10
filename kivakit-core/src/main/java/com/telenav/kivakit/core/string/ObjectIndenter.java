@@ -35,9 +35,9 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.function.Consumer;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABILITY_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.language.reflection.property.PropertyMemberSelector.KIVAKIT_ANNOTATION_INCLUDED_FIELDS;
 import static com.telenav.kivakit.core.language.reflection.property.PropertyMemberSelector.KIVAKIT_ANNOTATION_INCLUDED_FIELDS_AND_METHODS;
 import static com.telenav.kivakit.core.string.IndentingStringBuilder.Indentation;
@@ -66,8 +66,8 @@ import static com.telenav.kivakit.core.string.IndentingStringBuilder.Indentation
  * @see Type
  */
 @UmlClassDiagram(diagram = DiagramString.class)
-@CodeQuality(stability = STABILITY_STABLE_EXTENSIBLE,
-             testing = TESTING_NONE,
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = UNTESTED,
              documentation = DOCUMENTATION_COMPLETE)
 public class ObjectIndenter
 {
@@ -233,7 +233,7 @@ public class ObjectIndenter
     }
 
     /**
-     * @return True if it is allowable to recurse on the given object
+     * Returns true if it is allowable to recurse on the given object
      */
     public boolean canExplore(Object value)
     {
@@ -241,7 +241,7 @@ public class ObjectIndenter
     }
 
     /**
-     * @return True if the given object has already been visited
+     * Returns true if the given object has already been visited
      */
     public boolean haveVisited(Object object)
     {
@@ -361,7 +361,7 @@ public class ObjectIndenter
     }
 
     /**
-     * @return The indented debug string
+     * Returns the indented debug string
      */
     @Override
     public String toString()

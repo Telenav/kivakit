@@ -22,9 +22,9 @@ import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramCount;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABILITY_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 
 /**
  * A number of bits and various associated methods.
@@ -39,8 +39,8 @@ import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NONE;
  */
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramCount.class)
-@CodeQuality(stability = STABILITY_STABLE_EXTENSIBLE,
-             testing = TESTING_NONE,
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = UNTESTED,
              documentation = DOCUMENTATION_COMPLETE)
 public class BitCount extends BaseCount<BitCount>
 {
@@ -271,7 +271,7 @@ public class BitCount extends BaseCount<BitCount>
     }
 
     /**
-     * @return A mask for the values this number of bits can take on
+     * Returns a mask for the values this number of bits can take on
      */
     public long mask()
     {
@@ -312,7 +312,7 @@ public class BitCount extends BaseCount<BitCount>
     }
 
     /**
-     * @return The number of values this bit count can take on (2^n)
+     * Returns the number of values this bit count can take on (2^n)
      */
     public long values()
     {

@@ -29,7 +29,7 @@ import java.util.LinkedList;
 
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABILITY_UNDETERMINED;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 
 /**
  * An object, often a collection or related type, to which objects can be prepended.
@@ -39,7 +39,7 @@ import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NONE;
 @SuppressWarnings({ "SpellCheckingInspection", "unused" })
 @UmlClassDiagram(diagram = DiagramCollection.class)
 @CodeQuality(stability = STABILITY_UNDETERMINED,
-             testing = TESTING_NONE,
+             testing = UNTESTED,
              documentation = DOCUMENTATION_COMPLETE,
              reviews = 1,
              reviewers = "shibo")

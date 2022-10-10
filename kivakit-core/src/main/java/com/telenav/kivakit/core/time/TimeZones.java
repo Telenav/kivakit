@@ -29,9 +29,9 @@ import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABILITY_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 
 /**
  * Utility methods to map between {@link ZoneId}s and their display names
@@ -68,8 +68,8 @@ import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NONE;
  */
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramTime.class)
-@CodeQuality(stability = STABILITY_STABLE_EXTENSIBLE,
-             testing = TESTING_NONE,
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = UNTESTED,
              documentation = DOCUMENTATION_COMPLETE)
 public class TimeZones
 {
@@ -86,7 +86,7 @@ public class TimeZones
     }
 
     /**
-     * @return True if the given zone id represents UTC time
+     * Returns true if the given zone id represents UTC time
      */
     public static boolean isUtc(ZoneId zone)
     {
@@ -94,23 +94,23 @@ public class TimeZones
     }
 
     /**
-     * @return True if the given identifier is a valid short display name (PST)
+     * Returns true if the given identifier is a valid short display name (PST)
      */
     public static boolean isValidShortDisplayName(String identifier)
     {
         return parseShortDisplayName(Listener.nullListener(), identifier) != null;
     }
 
-    /**
-     * @return True if the given identifier is a valid zone id (America/Los Angeles)
-     */
+        /**
+     * Returns true if the given identifier is a valid zone id (America/Los Angeles)
+
     public static boolean isValidZoneId(String identifier)
     {
         return parseZoneId(Listener.nullListener(), identifier) != null;
     }
 
     /**
-     * @return The zone id (America/Los Angeles) for the given short display name (PST), or null if there is none
+     * Returns the zone id (America/Los Angeles) for the given short display name (PST), or null if there is none
      */
     public static ZoneId parseShortDisplayName(Listener listener, String displayName)
     {
@@ -124,7 +124,7 @@ public class TimeZones
     }
 
     /**
-     * @return The zone id (America/Los Angeles) for the given identifier, or null if there is none
+     * Returns the zone id (America/Los Angeles) for the given identifier, or null if there is none
      */
     public static ZoneId parseZoneId(Listener listener, String identifier)
     {
@@ -140,7 +140,7 @@ public class TimeZones
     }
 
     /**
-     * @return The zone id for the given identifier (America/Los Angeles, or PST), or null if there is none
+     * Returns the zone id for the given identifier (America/Los Angeles, or PST), or null if there is none
      */
     public static ZoneId parseZoneIdOrDisplayName(Listener listener, String identifier)
     {
@@ -157,7 +157,7 @@ public class TimeZones
     }
 
     /**
-     * @return The short display name (PST) for the given zone id (America/Los Angeles)
+     * Returns the short display name (PST) for the given zone id (America/Los Angeles)
      */
     public static String shortDisplayName(ZoneId zone)
     {

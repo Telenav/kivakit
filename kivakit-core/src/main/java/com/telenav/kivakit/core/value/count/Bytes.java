@@ -30,9 +30,9 @@ import org.jetbrains.annotations.NotNull;
 import java.lang.reflect.Array;
 import java.util.regex.Pattern;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABILITY_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.interfaces.string.StringFormattable.Format.USER_LABEL;
 
 /**
@@ -87,8 +87,8 @@ import static com.telenav.kivakit.interfaces.string.StringFormattable.Format.USE
  */
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramCount.class)
-@CodeQuality(stability = STABILITY_STABLE_EXTENSIBLE,
-             testing = TESTING_NONE,
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = UNTESTED,
              documentation = DOCUMENTATION_COMPLETE)
 public final class Bytes extends BaseCount<Bytes> implements
         ByteSized,
@@ -254,7 +254,7 @@ public final class Bytes extends BaseCount<Bytes> implements
     }
 
     /**
-     * @return The rough size of the primitive object or array in bytes
+     * Returns the rough size of the primitive object or array in bytes
      */
     public static Bytes primitiveSize(Object object)
     {

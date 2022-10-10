@@ -28,9 +28,9 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 import java.util.function.BiFunction;
 import java.util.function.Function;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABILITY_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.ensure.Ensure.ensure;
 
 /**
@@ -68,8 +68,8 @@ import static com.telenav.kivakit.core.ensure.Ensure.ensure;
 @SuppressWarnings({ "unused", "SpellCheckingInspection" })
 @UmlClassDiagram(diagram = DiagramConversion.class)
 @UmlClassDiagram(diagram = DiagramConversionPrimitive.class, includeMembers = false)
-@CodeQuality(stability = STABILITY_STABLE_EXTENSIBLE,
-             testing = TESTING_NONE,
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = UNTESTED,
              documentation = DOCUMENTATION_COMPLETE)
 public abstract class BaseStringConverter<Value> extends BaseConverter<String, Value> implements StringConverter<Value>
 {
@@ -118,7 +118,7 @@ public abstract class BaseStringConverter<Value> extends BaseConverter<String, V
     }
 
     /**
-     * @return True if this string converter allows empty strings
+     * Returns true if this string converter allows empty strings
      */
     public boolean allowsEmpty()
     {
@@ -186,7 +186,7 @@ public abstract class BaseStringConverter<Value> extends BaseConverter<String, V
     }
 
     /**
-     * @return The string representation of a null value. By default, this value is null, not "null".
+     * Returns the string representation of a null value. By default, this value is null, not "null".
      */
     protected String nullString()
     {

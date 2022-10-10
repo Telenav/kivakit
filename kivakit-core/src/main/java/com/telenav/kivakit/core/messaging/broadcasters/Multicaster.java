@@ -44,9 +44,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABILITY_STABLE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.ensure.Ensure.ensure;
 import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
 import static com.telenav.kivakit.core.string.IndentingStringBuilder.Style.TEXT;
@@ -92,8 +92,8 @@ import static com.telenav.kivakit.core.string.IndentingStringBuilder.Style.TEXT;
  */
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramRepeater.class)
-@CodeQuality(stability = STABILITY_STABLE,
-             testing = TESTING_NONE,
+@CodeQuality(stability = STABLE,
+             testing = UNTESTED,
              documentation = DOCUMENTATION_COMPLETE)
 public class Multicaster implements Broadcaster
 {
@@ -238,7 +238,7 @@ public class Multicaster implements Broadcaster
     }
 
     /**
-     * @return True if no listeners can hear any messages
+     * Returns true if no listeners can hear any messages
      */
     public boolean isDeaf()
     {
@@ -265,7 +265,7 @@ public class Multicaster implements Broadcaster
     }
 
     /**
-     * @return The chain of broadcasters that leads to this {@link Multicaster}.
+     * Returns the chain of broadcasters that leads to this {@link Multicaster}.
      */
     @NotNull
     public List<String> listenerChain()
@@ -284,7 +284,7 @@ public class Multicaster implements Broadcaster
     }
 
     /**
-     * @return An indented tree of listeners to this multi-caster
+     * Returns an indented tree of listeners to this multi-caster
      */
     public String listenerTree()
     {
@@ -294,7 +294,7 @@ public class Multicaster implements Broadcaster
     }
 
     /**
-     * @return The listener or listener chain
+     * Returns the listener or listener chain
      */
     @Override
     public List<Listener> listeners()

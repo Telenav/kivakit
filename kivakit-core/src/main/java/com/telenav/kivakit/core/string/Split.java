@@ -27,9 +27,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.stream.Collectors;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABILITY_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.collections.list.StringList.stringList;
 
 /**
@@ -38,8 +38,8 @@ import static com.telenav.kivakit.core.collections.list.StringList.stringList;
  * @author jonathanl (shibo)
  */
 @SuppressWarnings("DuplicatedCode") @UmlClassDiagram(diagram = DiagramString.class)
-@CodeQuality(stability = STABILITY_STABLE_EXTENSIBLE,
-             testing = TESTING_NONE,
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = UNTESTED,
              documentation = DOCUMENTATION_COMPLETE)
 public class Split
 {
@@ -57,7 +57,7 @@ public class Split
     }
 
     /**
-     * @return A list of words from the given text with word breaks occurring on whitespace
+     * Returns a list of words from the given text with word breaks occurring on whitespace
      */
     public static StringList splitIntoWords(String text)
     {
@@ -97,7 +97,7 @@ public class Split
     }
 
     /**
-     * @return The two strings resulting from splitting the given text using the given separator
+     * Returns the two strings resulting from splitting the given text using the given separator
      */
     public static String[] splitOnFirst(String text, char separator)
     {

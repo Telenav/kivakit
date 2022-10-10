@@ -5,7 +5,7 @@ import com.telenav.kivakit.interfaces.factory.Factory;
 
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABILITY_UNDETERMINED;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 
 /**
  * Retrieves different subsections from an {@link Indexable}.
@@ -16,7 +16,7 @@ import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NONE;
  */
 @SuppressWarnings({ "SpellCheckingInspection", "unused" })
 @CodeQuality(stability = STABILITY_UNDETERMINED,
-             testing = TESTING_NONE,
+             testing = UNTESTED,
              documentation = DOCUMENTATION_COMPLETE,
              reviews = 1,
              reviewers = "shibo")
@@ -26,7 +26,7 @@ public interface Sectionable<Value, Section extends Addable<Value> & Indexable<V
         Factory<Section>
 {
     /**
-     * @return The first n values in this object. If there are fewer than count values, all values are returned.
+     * Returns the first n values in this object. If there are fewer than count values, all values are returned.
      */
     default Section first(int count)
     {
@@ -39,7 +39,7 @@ public interface Sectionable<Value, Section extends Addable<Value> & Indexable<V
     }
 
     /**
-     * @return The last n values in this object. If there are fewer than count values, all values are returned.
+     * Returns the last n values in this object. If there are fewer than count values, all values are returned.
      */
     default Section last(int count)
     {
@@ -52,7 +52,7 @@ public interface Sectionable<Value, Section extends Addable<Value> & Indexable<V
     }
 
     /**
-     * @return The values in this object to the left of the index, exclusive
+     * Returns the values in this object to the left of the index, exclusive
      */
     default Section leftOf(int index)
     {
@@ -65,7 +65,7 @@ public interface Sectionable<Value, Section extends Addable<Value> & Indexable<V
     }
 
     /**
-     * @return The values in this object to the right of the index, exclusive
+     * Returns the values in this object to the right of the index, exclusive
      */
     default Section rightOf(int index)
     {

@@ -22,7 +22,7 @@ import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramBits;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABILITY_STABLE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_INSUFFICIENT;
 
@@ -69,7 +69,7 @@ import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_INSUF
  */
 @SuppressWarnings("SpellCheckingInspection")
 @UmlClassDiagram(diagram = DiagramBits.class)
-@CodeQuality(stability = STABILITY_STABLE,
+@CodeQuality(stability = STABLE,
              testing = TESTING_INSUFFICIENT,
              documentation = DOCUMENTATION_COMPLETE)
 public class BitDiagram
@@ -241,7 +241,7 @@ public class BitDiagram
     }
 
     /**
-     * @return The {@link BitField} from this bit diagram for the given bit field character. For example, in a bit
+     * Returns the {@link BitField} from this bit diagram for the given bit field character. For example, in a bit
      * diagram of "AAA BBB", <i>field("A")</i> would return a bit field accessor for the top three bits, the "A"
      * bitfield.
      */

@@ -46,7 +46,7 @@ import java.util.Map;
 import java.util.function.BiFunction;
 import java.util.function.Function;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABILITY_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_INSUFFICIENT;
 
@@ -58,7 +58,7 @@ import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_INSUF
  */
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramCollections.class)
-@CodeQuality(stability = STABILITY_STABLE_EXTENSIBLE,
+@CodeQuality(stability = STABLE_EXTENSIBLE,
              testing = TESTING_INSUFFICIENT,
              documentation = DOCUMENTATION_COMPLETE)
 public abstract class BaseStringMap<Value> extends BaseMap<String, Value> implements
@@ -127,7 +127,7 @@ public abstract class BaseStringMap<Value> extends BaseMap<String, Value> implem
     }
 
     /**
-     * @return The value of the given key as a double. If the conversion from String to object fails, a problem is
+     * Returns the value of the given key as a double. If the conversion from String to object fails, a problem is
      * transmitted.
      */
     public Double asDouble(String key)
@@ -336,7 +336,7 @@ public abstract class BaseStringMap<Value> extends BaseMap<String, Value> implem
     }
 
     /**
-     * @return The keys and values of this map separated by the given separator
+     * Returns the keys and values of this map separated by the given separator
      */
     public String join(String separator)
     {

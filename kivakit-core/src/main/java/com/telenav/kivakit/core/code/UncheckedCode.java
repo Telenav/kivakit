@@ -5,9 +5,9 @@ import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.messaging.repeaters.RepeaterMixin;
 import com.telenav.kivakit.interfaces.value.Source;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABILITY_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 
 /**
  * Removes exception handling from code that can throw a checked (or unchecked) {@link Exception}.
@@ -30,8 +30,8 @@ import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NONE;
  */
 @SuppressWarnings("unused")
 @FunctionalInterface
-@CodeQuality(stability = STABILITY_STABLE_EXTENSIBLE,
-             testing = TESTING_NONE,
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = UNTESTED,
              documentation = DOCUMENTATION_COMPLETE)
 public interface UncheckedCode<Value> extends RepeaterMixin
 {
@@ -47,7 +47,7 @@ public interface UncheckedCode<Value> extends RepeaterMixin
     }
 
     /**
-     * @return The value returned by the code, or a default value if an exception is thrown
+     * Returns the value returned by the code, or a default value if an exception is thrown
      */
     default Value orDefault(Source<Value> defaultValue)
     {
@@ -62,7 +62,7 @@ public interface UncheckedCode<Value> extends RepeaterMixin
     }
 
     /**
-     * @return The value returned by the code, or a default value if an exception is thrown
+     * Returns the value returned by the code, or a default value if an exception is thrown
      */
     default Value orDefault(Value defaultValue)
     {
@@ -97,7 +97,7 @@ public interface UncheckedCode<Value> extends RepeaterMixin
     }
 
     /**
-     * @return The value returned by this code, or null if an exception is thrown.
+     * Returns the value returned by this code, or null if an exception is thrown.
      */
     default Value orNull()
     {

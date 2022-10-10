@@ -29,9 +29,9 @@ import java.time.ZoneOffset;
 import java.time.ZonedDateTime;
 import java.util.Objects;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABILITY_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.ensure.Ensure.unsupported;
 import static com.telenav.kivakit.core.time.DayOfWeek.javaDayOfWeek;
 import static com.telenav.kivakit.core.time.Hour.militaryHour;
@@ -141,8 +141,8 @@ import static java.time.temporal.ChronoField.MINUTE_OF_HOUR;
  */
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramTime.class)
-@CodeQuality(stability = STABILITY_STABLE_EXTENSIBLE,
-             testing = TESTING_NONE,
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = UNTESTED,
              documentation = DOCUMENTATION_COMPLETE)
 public class LocalTime extends Time
 {
@@ -456,7 +456,7 @@ public class LocalTime extends Time
     }
 
     /**
-     * @return The day of year from 0-365 (or 366 in leap years)
+     * Returns the day of year from 0-365 (or 366 in leap years)
      */
     public Day dayOfMonth()
     {
@@ -472,7 +472,7 @@ public class LocalTime extends Time
     }
 
     /**
-     * @return The day of week from 0-6
+     * Returns the day of week from 0-6
      */
     public DayOfWeek dayOfWeek()
     {
@@ -480,7 +480,7 @@ public class LocalTime extends Time
     }
 
     /**
-     * @return The day of year from 0-365 (or 366 in leap years)
+     * Returns the day of year from 0-365 (or 366 in leap years)
      */
     public Day dayOfYear()
     {
@@ -530,7 +530,7 @@ public class LocalTime extends Time
     }
 
     /**
-     * @return The hour of day from 0 to 23
+     * Returns the hour of day from 0 to 23
      */
     public Hour hourOfDay()
     {
@@ -570,7 +570,7 @@ public class LocalTime extends Time
     }
 
     /**
-     * @return The minute from 0-59
+     * Returns the minute from 0-59
      */
     public Minute minute()
     {
@@ -578,7 +578,7 @@ public class LocalTime extends Time
     }
 
     /**
-     * @return The minute of the day from 0-1439
+     * Returns the minute of the day from 0-1439
      */
     public int minuteOfDay()
     {
@@ -676,7 +676,7 @@ public class LocalTime extends Time
     }
 
     /**
-     * @return The week of year in 0-51-52 format. NOTE: Java week of year starts at 1.
+     * Returns the week of year in 0-51-52 format. NOTE: Java week of year starts at 1.
      */
     public int weekOfYear()
     {
@@ -684,7 +684,7 @@ public class LocalTime extends Time
     }
 
     /**
-     * @return This local time on the given day
+     * Returns this local time on the given day
      */
     public LocalTime withDay(Day day)
     {

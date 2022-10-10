@@ -89,7 +89,7 @@ Code quality for this project is 90.1%.
 [*com.telenav.kivakit.interfaces.loading*](https://www.kivakit.org/1.7.1-SNAPSHOT/lexakai/kivakit/kivakit-interfaces/documentation/diagrams/com.telenav.kivakit.interfaces.loading.svg)  
 [*com.telenav.kivakit.interfaces.messaging*](https://www.kivakit.org/1.7.1-SNAPSHOT/lexakai/kivakit/kivakit-interfaces/documentation/diagrams/com.telenav.kivakit.interfaces.messaging.svg)  
 [*com.telenav.kivakit.interfaces.model*](https://www.kivakit.org/1.7.1-SNAPSHOT/lexakai/kivakit/kivakit-interfaces/documentation/diagrams/com.telenav.kivakit.interfaces.model.svg)  
-[*com.telenav.kivakit.interfaces.monads*](https://www.kivakit.org/1.7.1-SNAPSHOT/lexakai/kivakit/kivakit-interfaces/documentation/diagrams/com.telenav.kivakit.interfaces.monads.svg)  
+[*com.telenav.kivakit.interfaces.function*](https://www.kivakit.org/1.7.1-SNAPSHOT/lexakai/kivakit/kivakit-interfaces/documentation/diagrams/com.telenav.kivakit.interfaces.monads.svg)  
 [*com.telenav.kivakit.interfaces.naming*](https://www.kivakit.org/1.7.1-SNAPSHOT/lexakai/kivakit/kivakit-interfaces/documentation/diagrams/com.telenav.kivakit.interfaces.naming.svg)  
 [*com.telenav.kivakit.interfaces.numeric*](https://www.kivakit.org/1.7.1-SNAPSHOT/lexakai/kivakit/kivakit-interfaces/documentation/diagrams/com.telenav.kivakit.interfaces.numeric.svg)  
 [*com.telenav.kivakit.interfaces.string*](https://www.kivakit.org/1.7.1-SNAPSHOT/lexakai/kivakit/kivakit-interfaces/documentation/diagrams/com.telenav.kivakit.interfaces.string.svg)  

@@ -32,7 +32,7 @@ public class KivaKitConversionPropertySet extends PropertySet
     }
 
     /**
-     * @return True if the field is marked with {@link KivaKitIncludeProperty}
+     * Returns true if the field is marked with {@link KivaKitIncludeProperty}
      */
     @Override
     protected boolean isKivaKitIncluded(Field field)
@@ -49,7 +49,7 @@ public class KivaKitConversionPropertySet extends PropertySet
     }
 
     /**
-     * @return True if the method is marked with {@link KivaKitIncludeProperty}
+     * Returns true if the method is marked with {@link KivaKitIncludeProperty}
      */
     @Override
     protected boolean isKivaKitIncluded(Method method)

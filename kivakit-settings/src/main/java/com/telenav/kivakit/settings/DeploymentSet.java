@@ -36,9 +36,9 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABILITY_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.vm.JavaVirtualMachine.javaVirtualMachine;
 import static com.telenav.kivakit.properties.PropertyMap.propertyMap;
 import static com.telenav.kivakit.resource.packages.Package.parsePackage;
@@ -82,8 +82,8 @@ import static com.telenav.kivakit.resource.packages.Package.parsePackage;
  */
 @SuppressWarnings({ "UnusedReturnValue", "unused" })
 @UmlClassDiagram(diagram = DiagramSettings.class)
-@CodeQuality(stability = STABILITY_STABLE_EXTENSIBLE,
-             testing = TESTING_NONE,
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = UNTESTED,
              documentation = DOCUMENTATION_COMPLETE)
 public class DeploymentSet extends BaseRepeater implements RegistryTrait
 {
@@ -181,7 +181,7 @@ public class DeploymentSet extends BaseRepeater implements RegistryTrait
     }
 
     /**
-     * @return The named deployment
+     * Returns the named deployment
      */
     public Deployment deployment(String name)
     {
@@ -196,7 +196,7 @@ public class DeploymentSet extends BaseRepeater implements RegistryTrait
     }
 
     /**
-     * @return The deployments in this set
+     * Returns the deployments in this set
      */
     public Set<Deployment> deployments()
     {
@@ -204,7 +204,7 @@ public class DeploymentSet extends BaseRepeater implements RegistryTrait
     }
 
     /**
-     * @return True if this deployment set is empty
+     * Returns true if this deployment set is empty
      */
     public boolean isEmpty()
     {
@@ -212,7 +212,7 @@ public class DeploymentSet extends BaseRepeater implements RegistryTrait
     }
 
     /**
-     * @return The number of deployments in this set
+     * Returns the number of deployments in this set
      */
     public int size()
     {

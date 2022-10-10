@@ -28,9 +28,9 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.Iterator;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABILITY_STABLE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 
 /**
  * Implements the {@link Iterable} interface by using a {@link NextIterator} object to find the next value when
@@ -40,8 +40,8 @@ import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NONE;
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramIteration.class)
-@CodeQuality(stability = STABILITY_STABLE,
-             testing = TESTING_NONE,
+@CodeQuality(stability = STABLE,
+             testing = UNTESTED,
              documentation = DOCUMENTATION_COMPLETE)
 public abstract class BaseIterable<Value> implements Iterable<Value>
 {
@@ -74,7 +74,7 @@ public abstract class BaseIterable<Value> implements Iterable<Value>
     }
 
     /**
-     * @return The matcher that must be satisfied for each object iterated
+     * Returns the matcher that must be satisfied for each object iterated
      */
     public Matcher<Value> matcher()
     {
@@ -91,7 +91,7 @@ public abstract class BaseIterable<Value> implements Iterable<Value>
     }
 
     /**
-     * @return A new {@link NextIterator} implementation for finding the next value in a sequence
+     * Returns a new {@link NextIterator} implementation for finding the next value in a sequence
      */
     @UmlRelation(label = "creates")
     protected abstract NextIterator<Value> newNextIterator();

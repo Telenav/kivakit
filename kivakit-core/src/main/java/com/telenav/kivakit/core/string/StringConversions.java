@@ -26,9 +26,9 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.ArrayList;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABILITY_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.string.Join.join;
 
 /**
@@ -38,13 +38,13 @@ import static com.telenav.kivakit.core.string.Join.join;
  */
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramString.class)
-@CodeQuality(stability = STABILITY_STABLE_EXTENSIBLE,
-             testing = TESTING_NONE,
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = UNTESTED,
              documentation = DOCUMENTATION_COMPLETE)
 public class StringConversions
 {
     /**
-     * @return The value as a string or an empty string if it is null
+     * Returns the value as a string or an empty string if it is null
      */
     public static String nonNullString(Object value)
     {
@@ -52,7 +52,7 @@ public class StringConversions
     }
 
     /**
-     * @return The lowest bits of the given value as a binary string
+     * Returns the lowest bits of the given value as a binary string
      */
     public static String toBinaryString(int value, int bits)
     {
@@ -84,7 +84,7 @@ public class StringConversions
     }
 
     /**
-     * @return The given enum value as a displayable string
+     * Returns the given enum value as a displayable string
      */
     public static String toDisplayString(Enum<?> enumValue)
     {
@@ -98,7 +98,7 @@ public class StringConversions
     }
 
     /**
-     * @return The given text trivially converted to HTML
+     * Returns the given text trivially converted to HTML
      */
     public static String toHtmlString(String text)
     {
@@ -106,7 +106,7 @@ public class StringConversions
     }
 
     /**
-     * @return The given object as a string or the given value if it is null
+     * Returns the given object as a string or the given value if it is null
      */
     public static String toString(Object object, String defaultValue)
     {
@@ -132,7 +132,7 @@ public class StringConversions
     }
 
     /**
-     * @return The given object as a string or "null" if it is null
+     * Returns the given object as a string or "null" if it is null
      */
     public static String toString(Object object)
     {

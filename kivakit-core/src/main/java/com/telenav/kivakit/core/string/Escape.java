@@ -22,9 +22,9 @@ import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramString;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABILITY_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 
 /**
  * Escapes different kinds of strings for JavaScript, SQL and XML.
@@ -33,13 +33,13 @@ import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NONE;
  */
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramString.class)
-@CodeQuality(stability = STABILITY_STABLE_EXTENSIBLE,
-             testing = TESTING_NONE,
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = UNTESTED,
              documentation = DOCUMENTATION_COMPLETE)
 public class Escape
 {
     /**
-     * @return The given text with single quotes escaped
+     * Returns the given text with single quotes escaped
      */
     public static String escapeJavaScript(String text)
     {
@@ -47,7 +47,7 @@ public class Escape
     }
 
     /**
-     * @return The given string with single quotes escaped
+     * Returns the given string with single quotes escaped
      */
     public static String escapeSql(String text)
     {
@@ -55,7 +55,7 @@ public class Escape
     }
 
     /**
-     * @return The given XML text with special characters escaped
+     * Returns the given XML text with special characters escaped
      */
     public static String escapeXml(String xml)
     {
@@ -67,7 +67,7 @@ public class Escape
     }
 
     /**
-     * @return The given xml string with escaping removed
+     * Returns the given xml string with escaping removed
      */
     public static String unescapeXml(String xml)
     {

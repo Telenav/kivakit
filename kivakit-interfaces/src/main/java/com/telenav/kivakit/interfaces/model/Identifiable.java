@@ -32,12 +32,12 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 public interface Identifiable extends LongValued
 {
     /**
-     * @return The identifier for this object
+     * Returns the identifier for this object
      */
     long identifier();
 
     /**
-     * @return The identifier as a quantum
+     * Returns the identifier as a long value
      */
     @Override
     default long longValue()

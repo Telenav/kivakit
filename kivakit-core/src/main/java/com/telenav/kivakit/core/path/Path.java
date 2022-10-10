@@ -37,9 +37,9 @@ import java.util.List;
 import java.util.function.Function;
 import java.util.stream.Stream;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABILITY_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
 
 /**
@@ -150,8 +150,8 @@ import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
  */
 @SuppressWarnings({ "UnusedReturnValue", "SpellCheckingInspection", "SwitchStatementWithTooFewBranches" })
 @UmlClassDiagram(diagram = DiagramPath.class)
-@CodeQuality(stability = STABILITY_STABLE_EXTENSIBLE,
-             testing = TESTING_NONE,
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = UNTESTED,
              documentation = DOCUMENTATION_COMPLETE)
 public abstract class Path<Element extends Comparable<Element>> implements
         Iterable<Element>,
@@ -245,7 +245,7 @@ public abstract class Path<Element extends Comparable<Element>> implements
     }
 
     /**
-     * @return True if this path ends with the given suffix
+     * Returns true if this path ends with the given suffix
      */
     public boolean endsWith(Path<Element> suffix)
     {
@@ -310,7 +310,7 @@ public abstract class Path<Element extends Comparable<Element>> implements
     }
 
     /**
-     * @return True if this path is an absolute path with a root element
+     * Returns true if this path is an absolute path with a root element
      */
     public boolean isAbsolute()
     {
@@ -318,7 +318,7 @@ public abstract class Path<Element extends Comparable<Element>> implements
     }
 
     /**
-     * @return True if this path has no elements
+     * Returns true if this path has no elements
      */
     @Override
     public boolean isEmpty()
@@ -327,7 +327,7 @@ public abstract class Path<Element extends Comparable<Element>> implements
     }
 
     /**
-     * @return True if this is a relative path, having no root element
+     * Returns true if this is a relative path, having no root element
      */
     public boolean isRelative()
     {
@@ -335,7 +335,7 @@ public abstract class Path<Element extends Comparable<Element>> implements
     }
 
     /**
-     * @return True if this path is a root path (there is more than one on Windows)
+     * Returns true if this path is a root path (there is more than one on Windows)
      */
     public boolean isRoot()
     {
@@ -432,7 +432,7 @@ public abstract class Path<Element extends Comparable<Element>> implements
     }
 
     /**
-     * @return True if this path starts with the given path
+     * Returns true if this path starts with the given path
      */
     public boolean startsWith(Path<Element> prefix)
     {

@@ -7,9 +7,9 @@ import com.telenav.kivakit.core.string.Formatter;
 
 import java.time.ZoneId;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABILITY_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
 import static com.telenav.kivakit.core.time.HourOfWeek.hourOfWeek;
 
@@ -50,8 +50,8 @@ import static com.telenav.kivakit.core.time.HourOfWeek.hourOfWeek;
  * @author jonathanl (shibo)
  */
 @SuppressWarnings("unused")
-@CodeQuality(stability = STABILITY_STABLE_EXTENSIBLE,
-             testing = TESTING_NONE,
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = UNTESTED,
              documentation = DOCUMENTATION_COMPLETE)
 public class HourOfWeekSpan
 {
@@ -109,7 +109,7 @@ public class HourOfWeekSpan
     }
 
     /**
-     * @return This UTC span of hours in local time
+     * Returns this UTC span of hours in local time
      */
     public HourOfWeekSpan asLocalTime(ZoneId zone)
     {
@@ -121,7 +121,7 @@ public class HourOfWeekSpan
     }
 
     /**
-     * @return This localtime span of hours in UTC time
+     * Returns this localtime span of hours in UTC time
      */
     public HourOfWeekSpan asUtc()
     {
@@ -133,7 +133,7 @@ public class HourOfWeekSpan
     }
 
     /**
-     * @return The end of this span of hours
+     * Returns the end of this span of hours
      */
     public HourOfWeek endHourOfWeek()
     {
@@ -185,7 +185,7 @@ public class HourOfWeekSpan
     }
 
     /**
-     * @return True if this span is in localtime
+     * Returns true if this span is in localtime
      */
     public boolean isLocal()
     {
@@ -193,7 +193,7 @@ public class HourOfWeekSpan
     }
 
     /**
-     * @return True if this span of hours is in UTC
+     * Returns true if this span of hours is in UTC
      */
     public boolean isUtc()
     {
@@ -215,7 +215,7 @@ public class HourOfWeekSpan
     }
 
     /**
-     * @return The time zone identifier of this span of hours
+     * Returns the time zone identifier of this span of hours
      */
     public ZoneId zoneId()
     {

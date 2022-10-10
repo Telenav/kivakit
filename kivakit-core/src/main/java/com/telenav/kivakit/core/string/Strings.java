@@ -24,9 +24,9 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.regex.Pattern;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABILITY_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 
 /**
  * General purpose utilities for Java strings.
@@ -76,13 +76,13 @@ import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NONE;
  */
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramString.class)
-@CodeQuality(stability = STABILITY_STABLE_EXTENSIBLE,
-             testing = TESTING_NONE,
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = UNTESTED,
              documentation = DOCUMENTATION_COMPLETE)
 public class Strings
 {
     /**
-     * @return True if the given text contains any character in the given set of characters
+     * Returns true if the given text contains any character in the given set of characters
      */
     public static boolean containsAnyOf(String text, String characters)
     {
@@ -101,7 +101,7 @@ public class Strings
     }
 
     /**
-     * @return True if string a contains b ignoring case differences
+     * Returns true if string a contains b ignoring case differences
      */
     public static boolean containsIgnoreCase(String a, String b)
     {
@@ -109,7 +109,7 @@ public class Strings
     }
 
     /**
-     * @return The number of digits in the given text
+     * Returns the number of digits in the given text
      */
     public static int digitCount(String text)
     {
@@ -125,7 +125,7 @@ public class Strings
     }
 
     /**
-     * @return The given string in double quotes
+     * Returns the given string in double quotes
      */
     public static String doubleQuoted(String string)
     {
@@ -133,7 +133,7 @@ public class Strings
     }
 
     /**
-     * @return The given text with the terminator appended if it doesn't already end in the terminator
+     * Returns the given text with the terminator appended if it doesn't already end in the terminator
      */
     public static String ensureEndsWith(String text, String terminator)
     {
@@ -176,7 +176,7 @@ public class Strings
     }
 
     /**
-     * @return Group 1 of the first occurrence of pattern in text
+     * Returns group 1 of the first occurrence of pattern in text
      */
     public static String extractFirstGroup(String text, String pattern)
     {
@@ -194,7 +194,7 @@ public class Strings
     }
 
     /**
-     * @return True if every character in the given text is a byte value
+     * Returns true if every character in the given text is a byte value
      */
     public static boolean isAllBytes(String text)
     {
@@ -209,7 +209,7 @@ public class Strings
     }
 
     /**
-     * @return True if every character in the given text is an ASCII value
+     * Returns true if every character in the given text is an ASCII value
      */
     public static boolean isAscii(String text)
     {
@@ -224,7 +224,7 @@ public class Strings
     }
 
     /**
-     * @return True if the string is null, empty or contains only whitespace
+     * Returns true if the string is null, empty or contains only whitespace
      */
     public static boolean isEmpty(String text)
     {
@@ -232,7 +232,7 @@ public class Strings
     }
 
     /**
-     * @return True if every character in the given string is an ASCII value
+     * Returns true if every character in the given string is an ASCII value
      */
     public static boolean isExtendedAscii(String value)
     {
@@ -247,7 +247,7 @@ public class Strings
     }
 
     /**
-     * @return True if the given text is a Java identifier
+     * Returns true if the given text is a Java identifier
      */
     public static boolean isJavaIdentifier(String text)
     {
@@ -297,7 +297,7 @@ public class Strings
     }
 
     /**
-     * @return True if the given value is one of the given options
+     * Returns true if the given value is one of the given options
      */
     public static boolean isOneOf(String value, String... options)
     {
@@ -312,7 +312,7 @@ public class Strings
     }
 
     /**
-     * @return The leading n characters of the given text
+     * Returns the leading n characters of the given text
      */
     public static String leading(String text, int n)
     {
@@ -326,7 +326,7 @@ public class Strings
     }
 
     /**
-     * @return The index of the nth instance of the given character in the given text
+     * Returns the index of the nth instance of the given character in the given text
      */
     public static int nthCharacter(String text, int n, char c)
     {
@@ -344,7 +344,7 @@ public class Strings
     }
 
     /**
-     * @return The number of occurrences of the given character in the given text
+     * Returns the number of occurrences of the given character in the given text
      */
     public static int occurrences(String text, char character)
     {
@@ -360,7 +360,7 @@ public class Strings
     }
 
     /**
-     * @return The given text with the given range removed (end is exclusive)
+     * Returns the given text with the given range removed (end is exclusive)
      */
     public static String remove(String text, int start, int end)
     {
@@ -368,7 +368,7 @@ public class Strings
     }
 
     /**
-     * @return The given string with all occurrences of the given character removed
+     * Returns the given string with all occurrences of the given character removed
      */
     public static String removeAll(String string, char remove)
     {
@@ -385,7 +385,7 @@ public class Strings
     }
 
     /**
-     * @return The given string with a range of characters replaced by the given replacement
+     * Returns the given string with a range of characters replaced by the given replacement
      */
     public static String replace(String string, int start, int end, String replacement)
     {
@@ -466,7 +466,7 @@ public class Strings
     }
 
     /**
-     * @return True if the given text starts with the given prefix, ignoring case differences
+     * Returns true if the given text starts with the given prefix, ignoring case differences
      */
     public static boolean startsWithIgnoreCase(String text, String prefix)
     {
@@ -474,7 +474,7 @@ public class Strings
     }
 
     /**
-     * @return The trailing n characters of the given string
+     * Returns the trailing n characters of the given string
      */
     public static String trailing(String string, int n)
     {
@@ -483,7 +483,7 @@ public class Strings
     }
 
     /**
-     * @return The index of the given search string in the given text, starting at the given position
+     * Returns the index of the given search string in the given text, starting at the given position
      */
     private static int search(CharSequence text, String searchString, int position)
     {

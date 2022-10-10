@@ -28,9 +28,9 @@ import java.util.Iterator;
 import java.util.Objects;
 import java.util.function.Supplier;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABILITY_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 
 /**
  * Utility methods that operate on {@link Iterator}s.
@@ -60,8 +60,8 @@ import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NONE;
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramIteration.class)
-@CodeQuality(stability = STABILITY_STABLE_EXTENSIBLE,
-             testing = TESTING_NONE,
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = UNTESTED,
              documentation = DOCUMENTATION_COMPLETE)
 public class Iterators
 {
@@ -88,7 +88,7 @@ public class Iterators
     }
 
     /**
-     * @return True if the two sequences are equal
+     * Returns true if the two sequences are equal
      */
     public static <T> boolean equals(Iterator<T> a, Iterator<T> b)
     {
@@ -111,7 +111,7 @@ public class Iterators
     }
 
     /**
-     * @return A hash code for the objects in a sequence
+     * Returns a hash code for the objects in a sequence
      */
     public static <T> int hashCode(Iterator<T> iterator)
     {
@@ -128,7 +128,7 @@ public class Iterators
     }
 
     /**
-     * @return True if the given iterable has no values
+     * Returns true if the given iterable has no values
      */
     public static boolean isEmpty(@NotNull Iterator<?> iterator)
     {
@@ -136,7 +136,7 @@ public class Iterators
     }
 
     /**
-     * @return An iterator that provides more values until the supplier returns null
+     * Returns an iterator that provides more values until the supplier returns null
      */
     public static <T> Iterator<T> iterator(Supplier<T> supplier)
     {

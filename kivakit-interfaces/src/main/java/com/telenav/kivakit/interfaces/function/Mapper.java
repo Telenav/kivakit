@@ -16,32 +16,32 @@
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-package com.telenav.kivakit.interfaces.factory;
+package com.telenav.kivakit.interfaces.function;
 
 import com.telenav.kivakit.annotations.code.quality.CodeQuality;
+import com.telenav.kivakit.interfaces.factory.Factory;
 import com.telenav.kivakit.interfaces.internal.lexakai.DiagramFactory;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABILITY_STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
 
 /**
- * A factory that creates an object given a parameter (it "maps" from the parameter to the new object).
+ * Interface to code that maps a parameter value to a result
  * <p>
  * For factories that do not need a parameter, see {@link Factory}
  *
  * @param <Value> The type of object to create
- * @param <Parameter> A parametric value for the implementation to use when creating the object
  * @author jonathanl (shibo)
  * @see Factory
  */
 @FunctionalInterface
 @UmlClassDiagram(diagram = DiagramFactory.class)
-@CodeQuality(stability = STABILITY_STABLE,
+@CodeQuality(stability = STABLE,
              testing = TESTING_NOT_NEEDED,
              documentation = DOCUMENTATION_COMPLETE)
-public interface MapFactory<Parameter, Value>
+public interface Mapper<Parameter, Value>
 {
     /**
      * Creates a value by constructing an object with the given parameter
@@ -49,5 +49,5 @@ public interface MapFactory<Parameter, Value>
      * @param parameter The constructor parameter for creating a new object
      * @return The new object instance
      */
-    Value newInstance(Parameter parameter);
+    Value map(Parameter parameter);
 }

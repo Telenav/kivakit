@@ -32,9 +32,9 @@ import com.telenav.kivakit.core.time.Frequency;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeMember;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABILITY_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 
 /**
  * Base class for implementing converters. The inherited {@link Converter#convert(Object)} method converts from the
@@ -66,8 +66,8 @@ import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NONE;
  * @see Glitch
  */
 @UmlClassDiagram(diagram = DiagramConversion.class)
-@CodeQuality(stability = STABILITY_STABLE_EXTENSIBLE,
-             testing = TESTING_NONE,
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = UNTESTED,
              documentation = DOCUMENTATION_COMPLETE)
 public abstract class BaseConverter<From, To> extends BaseRepeater implements Converter<From, To>
 {
@@ -94,7 +94,7 @@ public abstract class BaseConverter<From, To> extends BaseRepeater implements Co
     }
 
     /**
-     * @return True if this converter allows null values, false if a problem will be broadcast when a null value is
+     * Returns true if this converter allows null values, false if a problem will be broadcast when a null value is
      * encountered.
      */
     public boolean allowsNull()
@@ -145,7 +145,7 @@ public abstract class BaseConverter<From, To> extends BaseRepeater implements Co
     protected abstract To onConvert(From value);
 
     /**
-     * @return The maximum {@link Frequency} to broadcast problems at, for example, every minute or once an hour
+     * Returns the maximum {@link Frequency} to broadcast problems at, for example, every minute or once an hour
      */
     @UmlExcludeMember
     protected Frequency problemBroadcastFrequency()

@@ -35,9 +35,9 @@ import java.lang.management.ThreadMXBean;
 import java.math.BigDecimal;
 import java.util.regex.Pattern;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABILITY_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.string.Strings.isOneOf;
 import static com.telenav.kivakit.core.time.Duration.Restriction.FORCE_POSITIVE;
 import static com.telenav.kivakit.core.time.Duration.Restriction.THROW_IF_NEGATIVE;
@@ -154,8 +154,8 @@ import static java.util.regex.Pattern.CASE_INSENSITIVE;
  */
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramTime.class)
-@CodeQuality(stability = STABILITY_STABLE_EXTENSIBLE,
-             testing = TESTING_NONE,
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = UNTESTED,
              documentation = DOCUMENTATION_COMPLETE)
 public class Duration implements
         LengthOfTime<Duration>,
@@ -646,7 +646,7 @@ public class Duration implements
     }
 
     /**
-     * @return This duration minus that duration, but never a negative value
+     * Returns this duration minus that duration, but never a negative value
      */
     public Duration minus(Duration that)
     {
@@ -654,7 +654,7 @@ public class Duration implements
     }
 
     /**
-     * @return This duration minus that duration, but restricted to the given range
+     * Returns this duration minus that duration, but restricted to the given range
      */
     public Duration minus(Duration that, Restriction restriction)
     {
@@ -713,7 +713,7 @@ public class Duration implements
     }
 
     /**
-     * @return The sum of this duration and that one, but never a negative value.
+     * Returns the sum of this duration and that one, but never a negative value.
      */
     public Duration plus(Duration that)
     {
@@ -721,7 +721,7 @@ public class Duration implements
     }
 
     /**
-     * @return The sum of this duration and that duration, but restricted to the given range
+     * Returns the sum of this duration and that duration, but restricted to the given range
      */
     public Duration plus(Duration that, Restriction restriction)
     {

@@ -37,9 +37,9 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.Collection;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABILITY_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.thread.ReentrancyTracker.Reentrancy.ENTERED;
 import static com.telenav.kivakit.core.thread.ReentrancyTracker.Reentrancy.REENTERED;
 
@@ -147,8 +147,8 @@ import static com.telenav.kivakit.core.thread.ReentrancyTracker.Reentrancy.REENT
  */
 @SuppressWarnings({ "unused", "UnusedReturnValue" })
 @UmlClassDiagram(diagram = DiagramValidation.class)
-@CodeQuality(stability = STABILITY_STABLE_EXTENSIBLE,
-             testing = TESTING_NONE,
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = UNTESTED,
              documentation = DOCUMENTATION_COMPLETE)
 public abstract class BaseValidator implements Validator
 {
@@ -176,7 +176,7 @@ public abstract class BaseValidator implements Validator
     }
 
     /**
-     * @return True if the validation in progress is invalid
+     * Returns true if the validation in progress is invalid
      */
     public boolean isInvalid()
     {
@@ -184,7 +184,7 @@ public abstract class BaseValidator implements Validator
     }
 
     /**
-     * @return True if this validator is valid
+     * Returns true if this validator is valid
      */
     public boolean isValid()
     {
@@ -425,7 +425,7 @@ public abstract class BaseValidator implements Validator
     }
 
     /**
-     * @return True if this validator should report results when it completes
+     * Returns true if this validator should report results when it completes
      */
     protected boolean shouldShowValidationReport()
     {
@@ -477,7 +477,7 @@ public abstract class BaseValidator implements Validator
     }
 
     /**
-     * @return The name of what was validated when reporting validation results
+     * Returns the name of what was validated when reporting validation results
      */
     protected String validationTarget()
     {

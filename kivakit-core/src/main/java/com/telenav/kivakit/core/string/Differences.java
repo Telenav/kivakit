@@ -29,9 +29,9 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlAggregation;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeMember;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABILITY_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 
 /**
  * Tracks the difference between objects that are compared with {@link #compare(String, Object, Object)} or
@@ -42,8 +42,8 @@ import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NONE;
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramLanguage.class)
-@CodeQuality(stability = STABILITY_STABLE_EXTENSIBLE,
-             testing = TESTING_NONE,
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = UNTESTED,
              documentation = DOCUMENTATION_COMPLETE)
 public class Differences implements Sized
 {
@@ -104,7 +104,7 @@ public class Differences implements Sized
     }
 
     /**
-     * @return True if any differences have been found
+     * Returns true if any differences have been found
      */
     public boolean isDifferent()
     {
@@ -112,7 +112,7 @@ public class Differences implements Sized
     }
 
     /**
-     * @return True if no differences have been found
+     * Returns true if no differences have been found
      */
     public boolean isIdentical()
     {
@@ -120,7 +120,7 @@ public class Differences implements Sized
     }
 
     /**
-     * @return The number of differences that have been found
+     * Returns the number of differences that have been found
      */
     @Override
     @UmlExcludeMember

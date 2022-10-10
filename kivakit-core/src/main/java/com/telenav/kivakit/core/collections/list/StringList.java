@@ -36,7 +36,7 @@ import java.util.Comparator;
 import java.util.Iterator;
 import java.util.function.Function;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABILITY_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_INSUFFICIENT;
 import static com.telenav.kivakit.core.value.count.Maximum.MAXIMUM;
@@ -84,13 +84,13 @@ import static com.telenav.kivakit.core.value.count.Maximum.MAXIMUM;
  * </ul>
  */
 @SuppressWarnings("unused") @UmlClassDiagram(diagram = DiagramString.class)
-@CodeQuality(stability = STABILITY_STABLE_EXTENSIBLE,
+@CodeQuality(stability = STABLE_EXTENSIBLE,
              testing = TESTING_INSUFFICIENT,
              documentation = DOCUMENTATION_COMPLETE)
 public class StringList extends ObjectList<String>
 {
     /**
-     * @return A string list of the given text repeated the given number of times
+     * Returns a string list of the given text repeated the given number of times
      */
     public static StringList repeat(String text, int times)
     {
@@ -103,7 +103,7 @@ public class StringList extends ObjectList<String>
     }
 
     /**
-     * @return The list of strings resulting from splitting the given string on a delimiter character. The
+     * Returns the list of strings resulting from splitting the given string on a delimiter character. The
      * {@link StringList} is unbounded for backwards compatibility.
      */
     public static StringList split(String string, char delimiter)
@@ -112,7 +112,7 @@ public class StringList extends ObjectList<String>
     }
 
     /**
-     * @return The list of strings resulting from splitting the given string on a delimiter string. The
+     * Returns the list of strings resulting from splitting the given string on a delimiter string. The
      * {@link StringList} is unbounded for backwards compatibility.
      */
     public static StringList split(String string, String delimiter)
@@ -121,7 +121,7 @@ public class StringList extends ObjectList<String>
     }
 
     /**
-     * @return A string list of the given maximum size from the given text split on the given delimiter
+     * Returns a string list of the given maximum size from the given text split on the given delimiter
      */
     public static StringList split(Maximum maximumSize, String string, char delimiter)
     {
@@ -149,7 +149,7 @@ public class StringList extends ObjectList<String>
     }
 
     /**
-     * @return A string list of the given maximum size from the given text split on the given delimiter
+     * Returns a string list of the given maximum size from the given text split on the given delimiter
      */
     public static StringList split(Maximum maximumSize, String text, String delimiter)
     {
@@ -178,7 +178,7 @@ public class StringList extends ObjectList<String>
     }
 
     /**
-     * @return A string list split from the given text using a regular expression pattern
+     * Returns a string list split from the given text using a regular expression pattern
      */
     public static StringList splitOnPattern(String text, String pattern)
     {
@@ -188,7 +188,7 @@ public class StringList extends ObjectList<String>
     }
 
     /**
-     * @return A list of strings from the given iterable
+     * Returns a list of strings from the given iterable
      */
     public static <T> StringList stringList(Collection<T> values)
     {
@@ -196,7 +196,7 @@ public class StringList extends ObjectList<String>
     }
 
     /**
-     * @return A list of strings from the given iterable
+     * Returns a list of strings from the given iterable
      */
     public static <T> StringList stringList(Iterable<T> values)
     {
@@ -209,7 +209,7 @@ public class StringList extends ObjectList<String>
     }
 
     /**
-     * @return The given list of objects with a maximum size
+     * Returns the given list of objects with a maximum size
      */
     public static StringList stringList(Maximum maximumSize, String... strings)
     {
@@ -219,7 +219,7 @@ public class StringList extends ObjectList<String>
     }
 
     /**
-     * @return The given list of objects
+     * Returns the given list of objects
      */
     public static StringList stringList(String... strings)
     {
@@ -227,7 +227,7 @@ public class StringList extends ObjectList<String>
     }
 
     /**
-     * @return A list of words from the given text with word breaks occurring on whitespace
+     * Returns a list of words from the given text with word breaks occurring on whitespace
      */
     @SuppressWarnings("DuplicatedCode")
     public static StringList words(String text)
@@ -317,7 +317,7 @@ public class StringList extends ObjectList<String>
     }
 
     /**
-     * @return Adds the given formatted message to this string list
+     * Returns adds the given formatted message to this string list
      */
     public StringList add(String message, Object... arguments)
     {
@@ -343,7 +343,7 @@ public class StringList extends ObjectList<String>
     }
 
     /**
-     * @return This list of strings as a variable map where the even elements are keys and the odd elements are values.
+     * Returns this list of strings as a variable map where the even elements are keys and the odd elements are values.
      */
     public VariableMap<String> asVariableMap()
     {
@@ -368,7 +368,7 @@ public class StringList extends ObjectList<String>
     }
 
     /**
-     * @return This string list with each element in double quotes
+     * Returns this string list with each element in double quotes
      */
     public StringList doubleQuoted()
     {
@@ -399,7 +399,7 @@ public class StringList extends ObjectList<String>
     }
 
     /**
-     * @return This string list indented the given number of spaces
+     * Returns this string list indented the given number of spaces
      */
     public StringList indented(int spaces)
     {
@@ -422,7 +422,7 @@ public class StringList extends ObjectList<String>
     }
 
     /**
-     * @return The length of the longest string in this list
+     * Returns the length of the longest string in this list
      */
     public Count longest()
     {
@@ -471,7 +471,7 @@ public class StringList extends ObjectList<String>
     }
 
     /**
-     * @return This list with all elements numbered starting at 1
+     * Returns this list with all elements numbered starting at 1
      */
     public StringList numbered()
     {
@@ -495,7 +495,7 @@ public class StringList extends ObjectList<String>
     }
 
     /**
-     * @return This string list with each element prefixed with the given prefix
+     * Returns this string list with each element prefixed with the given prefix
      */
     public StringList prefixedWith(String prefix)
     {
@@ -535,7 +535,7 @@ public class StringList extends ObjectList<String>
     }
 
     /**
-     * @return This string list with each element in single quotes
+     * Returns this string list with each element in single quotes
      */
     public StringList singleQuoted()
     {

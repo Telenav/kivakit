@@ -36,10 +36,10 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABILITY_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
-import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.messaging.Listener.throwingListener;
 import static com.telenav.kivakit.filesystem.FilePath.filePath;
 
@@ -84,7 +84,7 @@ import static com.telenav.kivakit.filesystem.FilePath.filePath;
  */
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramFileSystemFile.class)
-@CodeQuality(stability = STABILITY_STABLE_EXTENSIBLE,
+@CodeQuality(stability = STABLE_EXTENSIBLE,
              testing = TESTING_NOT_NEEDED,
              documentation = DOCUMENTATION_COMPLETE)
 public class FileList extends BaseResourceList<File> implements Iterable<File>
@@ -130,8 +130,8 @@ public class FileList extends BaseResourceList<File> implements Iterable<File>
      *
      * @author jonathanl (shibo)
      */
-    @CodeQuality(stability = STABILITY_STABLE_EXTENSIBLE,
-                 testing = TESTING_NONE,
+    @CodeQuality(stability = STABLE_EXTENSIBLE,
+                 testing = UNTESTED,
                  documentation = DOCUMENTATION_COMPLETE)
     public static class Converter extends BaseStringConverter<FileList>
     {

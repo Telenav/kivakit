@@ -19,25 +19,26 @@
 package com.telenav.kivakit.interfaces.factory;
 
 import com.telenav.kivakit.annotations.code.quality.CodeQuality;
+import com.telenav.kivakit.interfaces.function.Mapper;
 import com.telenav.kivakit.interfaces.internal.lexakai.DiagramFactory;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABILITY_STABLE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
 
 /**
  * A factory that creates an object.
  * <p>
- * For factories that require a parameter to create the object, see {@link MapFactory}.
+ * For factories that require a parameter to create the object, see {@link Mapper}.
  *
  * @param <Value> The type of object to create
  * @author jonathanl (shibo)
- * @see MapFactory
+ * @see Mapper
  */
 @FunctionalInterface
 @UmlClassDiagram(diagram = DiagramFactory.class)
-@CodeQuality(stability = STABILITY_STABLE,
+@CodeQuality(stability = STABLE,
              testing = TESTING_NOT_NEEDED,
              documentation = DOCUMENTATION_COMPLETE)
 public interface Factory<Value>

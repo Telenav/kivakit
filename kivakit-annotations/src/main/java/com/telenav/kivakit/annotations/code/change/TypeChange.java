@@ -48,17 +48,17 @@ public @interface TypeChange
     }
 
     /**
-     * @return The change
+     * Returns the change
      */
     Change change();
 
     /**
-     * @return The type that was renamed or moved, or the signature of the method that was removed
+     * Returns the type that was renamed or moved, or the signature of the method that was removed
      */
     String previously() default "";
 
     /**
-     * @return The version when the change occurred
+     * Returns the version when the change occurred
      */
     String version();
 }

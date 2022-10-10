@@ -32,8 +32,8 @@ import com.telenav.kivakit.resource.packages.Package;
 import com.telenav.kivakit.resource.writing.WritableResource;
 import org.jetbrains.annotations.NotNull;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABILITY_STABLE;
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABILITY_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
 import static com.telenav.kivakit.core.ensure.Ensure.unsupported;
@@ -100,7 +100,7 @@ import static com.telenav.kivakit.resource.spi.ResourceFolderResolverService.res
  * @author jonathanl (shibo)
  */
 @SuppressWarnings("unused")
-@CodeQuality(stability = STABILITY_STABLE_EXTENSIBLE,
+@CodeQuality(stability = STABLE_EXTENSIBLE,
              testing = TESTING_NOT_NEEDED,
              documentation = DOCUMENTATION_COMPLETE)
 public interface ResourceFolder<T extends ResourceFolder<T>> extends
@@ -131,7 +131,7 @@ public interface ResourceFolder<T extends ResourceFolder<T>> extends
      *
      * @author jonathanl (shibo)
      */
-    @CodeQuality(stability = STABILITY_STABLE,
+    @CodeQuality(stability = STABLE,
                  testing = TESTING_NOT_NEEDED,
                  documentation = DOCUMENTATION_COMPLETE)
     class Converter extends BaseStringConverter<ResourceFolder<?>>
@@ -206,7 +206,7 @@ public interface ResourceFolder<T extends ResourceFolder<T>> extends
     boolean exists();
 
     /**
-     * @return The child resource container at the given relative path
+     * Returns the child resource container at the given relative path
      */
     T folder(String path);
 
@@ -324,7 +324,7 @@ public interface ResourceFolder<T extends ResourceFolder<T>> extends
     }
 
     /**
-     * @return Any matching files that are recursively contained in this folder
+     * Returns any matching files that are recursively contained in this folder
      */
     default ResourceList nestedResources(@NotNull Matcher<ResourcePathed> matcher)
     {
@@ -382,7 +382,7 @@ public interface ResourceFolder<T extends ResourceFolder<T>> extends
     ResourceFolderIdentifier resourceFolderIdentifier();
 
     /**
-     * @return The resources in this folder matching the given matcher
+     * Returns the resources in this folder matching the given matcher
      */
     ResourceList resources(@NotNull Matcher<ResourcePathed> matcher);
 

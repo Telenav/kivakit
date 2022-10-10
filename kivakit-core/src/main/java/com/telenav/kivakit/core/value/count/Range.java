@@ -26,7 +26,7 @@ import com.telenav.kivakit.core.string.Formatter;
 import com.telenav.kivakit.interfaces.code.Callback;
 import com.telenav.kivakit.interfaces.collection.Contains;
 import com.telenav.kivakit.interfaces.collection.NextIterator;
-import com.telenav.kivakit.interfaces.factory.MapFactory;
+import com.telenav.kivakit.interfaces.function.Mapper;
 import com.telenav.kivakit.interfaces.numeric.Maximizable;
 import com.telenav.kivakit.interfaces.numeric.Minimizable;
 import com.telenav.kivakit.interfaces.numeric.Numeric;
@@ -37,9 +37,9 @@ import java.util.Iterator;
 import java.util.Random;
 import java.util.function.Function;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABILITY_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.value.count.Range.UpperBound.EXCLUSIVE;
 import static com.telenav.kivakit.core.value.count.Range.UpperBound.INCLUSIVE;
 
@@ -88,15 +88,15 @@ import static com.telenav.kivakit.core.value.count.Range.UpperBound.INCLUSIVE;
  */
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramCount.class)
-@CodeQuality(stability = STABILITY_STABLE_EXTENSIBLE,
-             testing = TESTING_NONE,
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = UNTESTED,
              documentation = DOCUMENTATION_COMPLETE)
 public class Range<Value extends Numeric<Value>> implements
         Contains<Value>,
         Comparable<Countable>,
         Countable,
         Iterable<Value>,
-        MapFactory<Long, Value>
+        Mapper<Long, Value>
 {
     /**
      * Constructs a range that excludes the given maximum value.
@@ -265,7 +265,7 @@ public class Range<Value extends Numeric<Value>> implements
     }
 
     /**
-     * @return True if this is an exclusive range
+     * Returns true if this is an exclusive range
      */
     public boolean isExclusive()
     {
@@ -273,7 +273,7 @@ public class Range<Value extends Numeric<Value>> implements
     }
 
     /**
-     * @return True if this is an inclusive range
+     * Returns true if this is an inclusive range
      */
     public boolean isInclusive()
     {
@@ -294,7 +294,7 @@ public class Range<Value extends Numeric<Value>> implements
                 if (at < exclusiveMaximum().longValue())
                 {
                     at++;
-                    return newInstance(at);
+                    return map(at);
                 }
                 return null;
             }
@@ -318,7 +318,7 @@ public class Range<Value extends Numeric<Value>> implements
     }
 
     @Override
-    public Value newInstance(Long value)
+    public Value map(Long value)
     {
         return newInstance.apply(value);
     }
@@ -328,7 +328,7 @@ public class Range<Value extends Numeric<Value>> implements
      */
     public Value randomValue(Random random)
     {
-        return minimum.newInstance(Longs.random(random, minimum().asLong(), exclusiveMaximum().asLong()));
+        return minimum.map(Longs.random(random, minimum().asLong(), exclusiveMaximum().asLong()));
     }
 
     /**

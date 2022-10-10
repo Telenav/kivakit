@@ -28,9 +28,9 @@ import com.telenav.kivakit.resource.FileName;
 import com.telenav.kivakit.resource.Resource;
 import org.jetbrains.annotations.NotNull;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABILITY_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.ensure.Ensure.ensure;
 import static com.telenav.kivakit.core.time.Frequency.EVERY_30_SECONDS;
 import static com.telenav.kivakit.core.value.level.Percent.percent;
@@ -67,8 +67,8 @@ import static com.telenav.kivakit.core.value.level.Percent.percent;
  * @author jonathanl (shibo)
  */
 @SuppressWarnings("unused")
-@CodeQuality(stability = STABILITY_STABLE_EXTENSIBLE,
-             testing = TESTING_NONE,
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = UNTESTED,
              documentation = DOCUMENTATION_COMPLETE)
 public class FileCache extends BaseRepeater
 {
@@ -152,7 +152,7 @@ public class FileCache extends BaseRepeater
     }
 
     /**
-     * @return The given file in this cache
+     * Returns the given file in this cache
      */
     public File file(@NotNull FileName name)
     {
@@ -160,7 +160,7 @@ public class FileCache extends BaseRepeater
     }
 
     /**
-     * @return A sub-folder in the cache folder with the given name
+     * Returns a sub-folder in the cache folder with the given name
      */
     public Folder folder(@NotNull String name)
     {

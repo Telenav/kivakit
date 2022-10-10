@@ -40,9 +40,9 @@ import org.jetbrains.annotations.MustBeInvokedByOverriders;
 import java.util.HashSet;
 import java.util.Set;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABILITY_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.thread.KivaKitThread.State.CREATED;
 import static com.telenav.kivakit.core.thread.KivaKitThread.State.EXITED;
 import static com.telenav.kivakit.core.thread.KivaKitThread.State.RAN;
@@ -129,8 +129,8 @@ import static com.telenav.kivakit.core.thread.KivaKitThread.State.WAITING;
  */
 @SuppressWarnings({ "UnusedReturnValue", "unused" })
 @UmlClassDiagram(diagram = DiagramThread.class)
-@CodeQuality(stability = STABILITY_STABLE_EXTENSIBLE,
-             testing = TESTING_NONE,
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = UNTESTED,
              documentation = DOCUMENTATION_COMPLETE)
 public class KivaKitThread extends BaseRepeater implements
         Startable,
@@ -142,7 +142,7 @@ public class KivaKitThread extends BaseRepeater implements
     private static final Set<String> names = new HashSet<>();
 
     /**
-     * @return A started thread with the given name that will run the given code at the given frequency.
+     * Returns a started thread with the given name that will run the given code at the given frequency.
      */
     public static KivaKitThread repeat(Listener listener,
                                        String name,
@@ -153,7 +153,7 @@ public class KivaKitThread extends BaseRepeater implements
     }
 
     /**
-     * @return A started thread with the given name that has been started
+     * Returns a started thread with the given name that has been started
      */
     public static KivaKitThread run(Listener listener,
                                     String name,
@@ -270,7 +270,7 @@ public class KivaKitThread extends BaseRepeater implements
     }
 
     /**
-     * @return True if this thread is in the given state at the time this method is called.
+     * Returns true if this thread is in the given state at the time this method is called.
      */
     public boolean is(State state)
     {
@@ -278,7 +278,7 @@ public class KivaKitThread extends BaseRepeater implements
     }
 
     /**
-     * @return True if this thread is in the {@link State#RUNNING} state
+     * Returns true if this thread is in the {@link State#RUNNING} state
      */
     @Override
     public boolean isRunning()
@@ -325,7 +325,7 @@ public class KivaKitThread extends BaseRepeater implements
     }
 
     /**
-     * @return This thread's name
+     * Returns this thread's name
      */
     @Override
     public String name()
@@ -401,7 +401,7 @@ public class KivaKitThread extends BaseRepeater implements
     }
 
     /**
-     * @return The time at which this thread started
+     * Returns the time at which this thread started
      */
     public Time startedAt()
     {
@@ -409,7 +409,7 @@ public class KivaKitThread extends BaseRepeater implements
     }
 
     /**
-     * @return The state that this thread is in
+     * Returns the state that this thread is in
      */
     public StateMachine<State> stateMachine()
     {
@@ -511,7 +511,7 @@ public class KivaKitThread extends BaseRepeater implements
     }
 
     /**
-     * @return The thread object for this KivaKit thread
+     * Returns the thread object for this KivaKit thread
      */
     protected Thread thread()
     {

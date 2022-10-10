@@ -28,9 +28,9 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Arrays;
 import java.util.Collection;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABILITY_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 
 /**
  * Utility methods that operate on {@link Iterable}s.
@@ -77,8 +77,8 @@ import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NONE;
  */
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramIteration.class)
-@CodeQuality(stability = STABILITY_STABLE_EXTENSIBLE,
-             testing = TESTING_NONE,
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = UNTESTED,
              documentation = DOCUMENTATION_COMPLETE)
 public class Iterables
 {
@@ -91,7 +91,7 @@ public class Iterables
     }
 
     /**
-     * @return True if the two sequences are equal
+     * Returns true if the two sequences are equal
      */
     public static <T> boolean equals(Iterable<T> a, Iterable<T> b)
     {
@@ -103,7 +103,7 @@ public class Iterables
     }
 
     /**
-     * @return A hash code for the objects in a sequence
+     * Returns a hash code for the objects in a sequence
      */
     public static <T> int hashCode(Iterable<T> iterable)
     {
@@ -111,7 +111,7 @@ public class Iterables
     }
 
     /**
-     * @return True if the given iterable has no values
+     * Returns true if the given iterable has no values
      */
     public static boolean isEmpty(@NotNull Iterable<?> iterable)
     {
@@ -119,7 +119,7 @@ public class Iterables
     }
 
     /**
-     * @return An iterable for the given array of values
+     * Returns an iterable for the given array of values
      */
     public static <T> Iterable<T> iterable(T[] values)
     {
@@ -127,7 +127,7 @@ public class Iterables
     }
 
     /**
-     * @return An iterable for the given {@link NextIterator} factory
+     * Returns an iterable for the given {@link NextIterator} factory
      */
     public static <T> Iterable<T> iterable(Factory<NextIterator<T>> factory)
     {

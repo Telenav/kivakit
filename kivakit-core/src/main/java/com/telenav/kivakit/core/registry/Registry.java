@@ -26,7 +26,7 @@ import com.telenav.lexakai.annotations.associations.UmlRelation;
 import java.util.HashMap;
 import java.util.Map;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABILITY_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
 import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
@@ -77,7 +77,7 @@ import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
  */
 @UmlClassDiagram(diagram = DiagramRegistry.class)
 @UmlRelation(label = "locates instances with", referent = InstanceIdentifier.class)
-@CodeQuality(stability = STABILITY_STABLE_EXTENSIBLE,
+@CodeQuality(stability = STABLE_EXTENSIBLE,
              testing = TESTING_NOT_NEEDED,
              documentation = DOCUMENTATION_COMPLETE)
 public class Registry implements RegistryTrait
@@ -111,7 +111,7 @@ public class Registry implements RegistryTrait
     private final Map<RegistryKey, Object> registered = new HashMap<>();
 
     /**
-     * @return Any registered object of the given type with the given instance identifier
+     * Returns any registered object of the given type with the given instance identifier
      */
     @Override
     @SuppressWarnings({ "unchecked" })

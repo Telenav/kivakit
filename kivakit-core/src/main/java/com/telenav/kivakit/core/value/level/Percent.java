@@ -29,9 +29,9 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.Objects;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABILITY_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 
 /**
  * A percentage of any range (not only from 0 to 100%). A percent object can be created with {@link #percent(double)},
@@ -61,8 +61,8 @@ import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NONE;
  * @author jonathanl (shibo)
  */
 @SuppressWarnings("unused") @UmlClassDiagram(diagram = DiagramCount.class)
-@CodeQuality(stability = STABILITY_STABLE_EXTENSIBLE,
-             testing = TESTING_NONE,
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = UNTESTED,
              documentation = DOCUMENTATION_COMPLETE)
 public final class Percent implements
         Comparable<Percent>,
@@ -140,7 +140,7 @@ public final class Percent implements
     }
 
     /**
-     * @return This percentage as a value from 0 to 1, both inclusive.
+     * Returns this percentage as a value from 0 to 1, both inclusive.
      */
     public double asZeroToOne()
     {

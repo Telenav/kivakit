@@ -29,9 +29,9 @@ import com.telenav.kivakit.interfaces.naming.Named;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABILITY_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 
 /**
  * Information about a build, from the resource classpath resource /build.properties. The build information for a
@@ -51,13 +51,13 @@ import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NONE;
  * @author jonathanl (shibo)
  */
 @SuppressWarnings("unused")
-@CodeQuality(stability = STABILITY_STABLE_EXTENSIBLE,
-             testing = TESTING_NONE,
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = UNTESTED,
              documentation = DOCUMENTATION_COMPLETE)
 public class Build implements Named
 {
     /**
-     * @return Build information for the given class in the root of the project. This is typically the {@link Project}
+     * Returns build information for the given class in the root of the project. This is typically the {@link Project}
      * or Application class.
      */
     public static Build build(Class<?> projectType)
@@ -78,7 +78,7 @@ public class Build implements Named
     }
 
     /**
-     * @return The build day in number of days since the start of the UNIX epoch
+     * Returns the build day in number of days since the start of the UNIX epoch
      */
     public int buildEpochDay()
     {
@@ -86,7 +86,7 @@ public class Build implements Named
     }
 
     /**
-     * @return The UTC date of this build in standard [year].[month].[day-of-month] format
+     * Returns the UTC date of this build in standard [year].[month].[day-of-month] format
      */
     public String buildFormattedDate()
     {
@@ -94,7 +94,7 @@ public class Build implements Named
     }
 
     /**
-     * @return The date of this build in UTC time
+     * Returns the date of this build in UTC time
      */
     public LocalDate buildJavaUtcDate()
     {
@@ -102,7 +102,7 @@ public class Build implements Named
     }
 
     /**
-     * @return The KivaKit build number for the calling project in days since December 5, 2020
+     * Returns the KivaKit build number for the calling project in days since December 5, 2020
      */
     public int buildNumber()
     {
@@ -110,7 +110,7 @@ public class Build implements Named
     }
 
     /**
-     * @return The date of the build in UTC time
+     * Returns the date of the build in UTC time
      */
     public LocalTime buildUtcTime()
     {
@@ -118,7 +118,7 @@ public class Build implements Named
     }
 
     /**
-     * @return The name of this build, such as "sparkling piglet"
+     * Returns the name of this build, such as "sparkling piglet"
      */
     @Override
     public String name()
@@ -127,7 +127,7 @@ public class Build implements Named
     }
 
     /**
-     * @return Project properties
+     * Returns project properties
      */
     public VariableMap<String> properties()
     {
@@ -135,7 +135,7 @@ public class Build implements Named
     }
 
     /**
-     * @return The project property for the given key
+     * Returns the project property for the given key
      */
     public String property(String key)
     {

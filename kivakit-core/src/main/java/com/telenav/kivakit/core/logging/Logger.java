@@ -99,7 +99,7 @@ public interface Logger extends
     Logger LOGGER = LoggerFactory.newLogger();
 
     /**
-     * @return A logger instance for use in contexts where it is too awkward to implement or pass in a {@link Listener}.
+     * Returns a logger instance for use in contexts where it is too awkward to implement or pass in a {@link Listener}.
      * For example, some trivial classes and static methods may need to report problems, but are not important enough to
      * justify the complexity of reporting those problems an external listener.
      */
@@ -153,7 +153,7 @@ public interface Logger extends
     }
 
     /**
-     * @return The time this logger was constructed
+     * Returns the time this logger was constructed
      */
     @UmlExcludeMember
     Time startTime();

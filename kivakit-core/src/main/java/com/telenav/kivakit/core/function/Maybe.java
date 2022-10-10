@@ -8,7 +8,7 @@ import com.telenav.kivakit.core.function.arities.TriFunction;
 import com.telenav.kivakit.core.language.trait.TryCatchTrait;
 import com.telenav.kivakit.core.messaging.Repeater;
 import com.telenav.kivakit.core.messaging.messages.status.Problem;
-import com.telenav.kivakit.interfaces.monads.Presence;
+import com.telenav.kivakit.interfaces.function.Presence;
 import com.telenav.kivakit.interfaces.value.Source;
 
 import java.util.Objects;
@@ -18,7 +18,7 @@ import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.stream.Stream;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABILITY_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_INSUFFICIENT;
 import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
@@ -87,7 +87,7 @@ import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
  * @author viniciusluisr
  * @see <a href="https://github.com/viniciusluisr/improved-optional">improved-optional</a>
  */
-@CodeQuality(stability = STABILITY_STABLE_EXTENSIBLE,
+@CodeQuality(stability = STABLE_EXTENSIBLE,
              testing = TESTING_INSUFFICIENT,
              documentation = DOCUMENTATION_COMPLETE)
 public class Maybe<Value> implements
@@ -95,7 +95,7 @@ public class Maybe<Value> implements
         TryCatchTrait
 {
     /**
-     * @return Maybe value for null
+     * Returns maybe value for null
      */
     public static <Value> Maybe<Value> absent()
     {
@@ -103,7 +103,7 @@ public class Maybe<Value> implements
     }
 
     /**
-     * @return Maybe for the given (null or non-null) value
+     * Returns maybe for the given (null or non-null) value
      */
     public static <Value> Maybe<Value> maybe(Value value)
     {
@@ -111,7 +111,7 @@ public class Maybe<Value> implements
     }
 
     /**
-     * @return Maybe for the given non-null value
+     * Returns maybe for the given non-null value
      */
     public static <Value> Maybe<Value> present(Value value)
     {

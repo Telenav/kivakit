@@ -22,7 +22,7 @@ import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.interfaces.internal.lexakai.DiagramNaming;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABILITY_STABLE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
 
@@ -38,13 +38,13 @@ import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_N
  */
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramNaming.class)
-@CodeQuality(stability = STABILITY_STABLE,
+@CodeQuality(stability = STABLE,
              testing = TESTING_NOT_NEEDED,
              documentation = DOCUMENTATION_COMPLETE)
 public interface NamedObject extends Nameable
 {
     /**
-     * @return True if the given name is synthetic
+     * Returns true if the given name is synthetic
      */
     static boolean isSyntheticName(String name)
     {
@@ -52,7 +52,7 @@ public interface NamedObject extends Nameable
     }
 
     /**
-     * @return Returns a synthetic name for the given object
+     * Returns returns a synthetic name for the given object
      */
     static String syntheticName(Object object)
     {
@@ -61,7 +61,7 @@ public interface NamedObject extends Nameable
     }
 
     /**
-     * @return True if this object has a synthetic name
+     * Returns true if this object has a synthetic name
      */
     default boolean hasSyntheticName()
     {
@@ -69,7 +69,7 @@ public interface NamedObject extends Nameable
     }
 
     /**
-     * @return The name of this object for use in programming and debugging. If this method is not overridden, the name
+     * Returns the name of this object for use in programming and debugging. If this method is not overridden, the name
      * will be the simple class name in hyphenated form followed by this object's identity hash code in hexadecimal.
      */
     default String objectName()

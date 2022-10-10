@@ -14,7 +14,7 @@ import com.telenav.kivakit.core.messaging.messages.status.Trace;
 import com.telenav.kivakit.core.messaging.messages.status.Warning;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeMember;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABILITY_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
 
@@ -24,7 +24,7 @@ import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_N
  * @author jonathanl (shibo)
  */
 @SuppressWarnings({ "unused", "UnusedReturnValue" })
-@CodeQuality(stability = STABILITY_STABLE_EXTENSIBLE,
+@CodeQuality(stability = STABLE_EXTENSIBLE,
              testing = TESTING_NOT_NEEDED,
              documentation = DOCUMENTATION_COMPLETE)
 public interface MessageTransceiver extends Transceiver
@@ -42,7 +42,7 @@ public interface MessageTransceiver extends Transceiver
     }
 
     /**
-     * @return Debug object for this
+     * Returns debug object for this
      */
     default Debug debug()
     {
@@ -50,7 +50,7 @@ public interface MessageTransceiver extends Transceiver
     }
 
     /**
-     * @return The class where this transceiver is
+     * Returns the class where this transceiver is
      */
     @UmlExcludeMember
     default Class<?> debugClassContext()
@@ -191,7 +191,7 @@ public interface MessageTransceiver extends Transceiver
     }
 
     /**
-     * @return True if debugging is on for this {@link Transceiver}
+     * Returns true if debugging is on for this {@link Transceiver}
      */
     default boolean isDebugOn()
     {

@@ -49,9 +49,9 @@ import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABILITY_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.collections.list.ObjectList.objectList;
 import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
 import static com.telenav.kivakit.core.ensure.Ensure.illegalArgument;
@@ -65,8 +65,8 @@ import static com.telenav.kivakit.core.language.reflection.property.PropertyNami
  */
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramReflection.class)
-@CodeQuality(stability = STABILITY_STABLE_EXTENSIBLE,
-             testing = TESTING_NONE,
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = UNTESTED,
              documentation = DOCUMENTATION_COMPLETE)
 public class Type<T> implements Named
 {
@@ -448,7 +448,7 @@ public class Type<T> implements Named
     }
 
     /**
-     * @return Set of properties matching the given filter, where setter methods are preferred to direct field access
+     * Returns set of properties matching the given filter, where setter methods are preferred to direct field access
      */
     public ObjectList<Property> properties(PropertyFilter filter)
     {
@@ -719,7 +719,7 @@ public class Type<T> implements Named
     }
 
     /**
-     * @return The underlying Java type
+     * Returns the underlying Java type
      */
     public Class<T> type()
     {

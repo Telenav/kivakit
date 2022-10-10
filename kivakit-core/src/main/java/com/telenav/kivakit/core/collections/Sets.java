@@ -30,7 +30,7 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.function.Function;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABILITY_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
 
@@ -63,13 +63,13 @@ import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_N
  * @author jonathanl (shibo)
  */
 @SuppressWarnings("unused")
-@CodeQuality(stability = STABILITY_STABLE_EXTENSIBLE,
+@CodeQuality(stability = STABLE_EXTENSIBLE,
              testing = TESTING_NOT_NEEDED,
              documentation = DOCUMENTATION_COMPLETE)
 public class Sets
 {
     /**
-     * @return A copy of the given set
+     * Returns a copy of the given set
      */
     public static <Value> Set<Value> copy(Factory<Set<Value>> factory,
                                           Set<Value> set)
@@ -78,7 +78,7 @@ public class Sets
     }
 
     /**
-     * @return A copy of the given set
+     * Returns a copy of the given set
      */
     public static <Value> Set<Value> deepCopy(Factory<Set<Value>> factory,
                                               Set<Value> set,

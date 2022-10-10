@@ -25,9 +25,9 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.time.ZoneId;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABILITY_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
 import static com.telenav.kivakit.core.time.BaseTime.Topology.LINEAR;
 import static com.telenav.kivakit.core.time.Duration.ZERO_DURATION;
@@ -107,8 +107,8 @@ import static com.telenav.kivakit.core.time.Second.second;
  */
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramTime.class)
-@CodeQuality(stability = STABILITY_STABLE_EXTENSIBLE,
-             testing = TESTING_NONE,
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = UNTESTED,
              documentation = DOCUMENTATION_COMPLETE)
 public class Time extends BaseTime<Time>
 {
@@ -247,7 +247,7 @@ public class Time extends BaseTime<Time>
     }
 
     /**
-     * @return True if this time value is newer than the given {@link Duration}
+     * Returns true if this time value is newer than the given {@link Duration}
      */
     public boolean isNewerThan(Duration duration)
     {
@@ -255,7 +255,7 @@ public class Time extends BaseTime<Time>
     }
 
     /**
-     * @return True if this time value is newer than the given time value
+     * Returns true if this time value is newer than the given time value
      */
     public boolean isNewerThan(Time that)
     {
@@ -263,7 +263,7 @@ public class Time extends BaseTime<Time>
     }
 
     /**
-     * @return True if this time value is newer than or equal to the given duration
+     * Returns true if this time value is newer than or equal to the given duration
      */
     public boolean isNewerThanOrEqual(Duration duration)
     {
@@ -271,7 +271,7 @@ public class Time extends BaseTime<Time>
     }
 
     /**
-     * @return True if this time value is newer than or equal to the given time value
+     * Returns true if this time value is newer than or equal to the given time value
      */
     public boolean isNewerThanOrEqualTo(Time that)
     {
@@ -305,7 +305,7 @@ public class Time extends BaseTime<Time>
     }
 
     /**
-     * @return The amount of time left until the given amount of time has elapsed
+     * Returns the amount of time left until the given amount of time has elapsed
      */
     public Duration leftUntil(Duration elapsed)
     {

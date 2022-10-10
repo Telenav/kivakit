@@ -12,9 +12,9 @@ import org.jetbrains.annotations.NotNull;
 import java.io.IOException;
 import java.io.InputStream;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABILITY_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.ensure.Ensure.ensure;
 import static com.telenav.kivakit.resource.serialization.ObjectMetadata.OBJECT_TYPE;
 
@@ -23,9 +23,9 @@ import static com.telenav.kivakit.resource.serialization.ObjectMetadata.OBJECT_T
  *
  * @author jonathanl (shibo)
  */
-@CodeQuality(stability = STABILITY_STABLE_EXTENSIBLE,
+@CodeQuality(stability = STABLE_EXTENSIBLE,
              documentation = DOCUMENTATION_COMPLETE,
-             testing = TESTING_NONE)
+             testing = UNTESTED)
 public interface ObjectReader extends RepeaterMixin
 {
     /**

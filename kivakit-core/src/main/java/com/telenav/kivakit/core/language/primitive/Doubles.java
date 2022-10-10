@@ -22,9 +22,9 @@ import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramPrimitive;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABILITY_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_SUFFICIENT;
+import static com.telenav.kivakit.annotations.code.quality.Testing.TESTED;
 
 /**
  * Utility methods for working with <i>double</i> values
@@ -41,8 +41,8 @@ import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_SUFFI
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramPrimitive.class)
-@CodeQuality(stability = STABILITY_STABLE_EXTENSIBLE,
-             testing = TESTING_SUFFICIENT,
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = TESTED,
              documentation = DOCUMENTATION_COMPLETE)
 public class Doubles
 {
@@ -81,7 +81,7 @@ public class Doubles
     }
 
     /**
-     * @return The double value formatted with only one decimal place
+     * Returns the double value formatted with only one decimal place
      */
     public static String format(double value)
     {
@@ -89,7 +89,7 @@ public class Doubles
     }
 
     /**
-     * @return The double value formatted with the given number of decimal places
+     * Returns the double value formatted with the given number of decimal places
      */
     public static String format(double value, int decimals)
     {

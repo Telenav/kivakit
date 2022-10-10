@@ -26,9 +26,9 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.Objects;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABILITY_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.time.Duration.ZERO_DURATION;
 import static com.telenav.kivakit.core.time.Duration.parseDuration;
 
@@ -67,8 +67,8 @@ import static com.telenav.kivakit.core.time.Duration.parseDuration;
  */
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramTime.class)
-@CodeQuality(stability = STABILITY_STABLE_EXTENSIBLE,
-             testing = TESTING_NONE,
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = UNTESTED,
              documentation = DOCUMENTATION_COMPLETE)
 public class Frequency
 {
@@ -155,8 +155,8 @@ public class Frequency
      * The start time of a cycle. The {@link #next()} method returns the time at which this cycle will repeat. The
      * amount of time before this time is returned by {@link #waitTimeBeforeNextCycle()}
      */
-    @CodeQuality(stability = STABILITY_STABLE_EXTENSIBLE,
-                 testing = TESTING_NONE,
+    @CodeQuality(stability = STABLE_EXTENSIBLE,
+                 testing = UNTESTED,
                  documentation = DOCUMENTATION_COMPLETE)
     public class Cycle
     {
@@ -202,7 +202,7 @@ public class Frequency
     }
 
     /**
-     * @return The duration of one cycle
+     * Returns the duration of one cycle
      */
     public Duration cycleLength()
     {
@@ -242,7 +242,7 @@ public class Frequency
     }
 
     /**
-     * @return A {@link Cycle} object which provides the wait time until the next cycle
+     * Returns a {@link Cycle} object which provides the wait time until the next cycle
      */
     public Cycle start()
     {

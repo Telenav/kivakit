@@ -25,9 +25,9 @@ import com.telenav.kivakit.interfaces.factory.Factory;
 import com.telenav.kivakit.interfaces.value.Source;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABILITY_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 
 /**
  * A lazy-initializing value. Given a factory that creates a value, only creates the object when {@link #get()} is
@@ -45,8 +45,8 @@ import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NONE;
  * @author Sergiy Yevtushenko
  */
 @UmlClassDiagram(diagram = DiagramObject.class)
-@CodeQuality(stability = STABILITY_STABLE_EXTENSIBLE,
-             testing = TESTING_NONE,
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = UNTESTED,
              documentation = DOCUMENTATION_COMPLETE)
 public class Lazy<Value> implements Clearable
 {
@@ -85,7 +85,7 @@ public class Lazy<Value> implements Clearable
     }
 
     /**
-     * @return The lazy-loaded value
+     * Returns the lazy-loaded value
      */
     public final Value get()
     {

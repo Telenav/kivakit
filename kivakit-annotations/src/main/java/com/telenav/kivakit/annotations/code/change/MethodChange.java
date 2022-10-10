@@ -27,7 +27,7 @@ import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_N
  *     }
  *
  *    {@literal @}MethodChange(change = METHOD_RENAMED,
- *                            previousSignature = "void myOldMethod()"
+ *                            previously = "void myOldMethod()"
  *                            version = "1.8.0")
  *     default myRenamedMethod()
  *     {
@@ -58,17 +58,17 @@ public @interface MethodChange
     }
 
     /**
-     * @return The change
+     * Returns the change
      */
     Change change();
 
     /**
-     * @return Any previous signature of the method, if it was renamed or its signature changed
+     * Returns any previous signature of the method, if it was renamed or its signature changed
      */
     String previously() default "";
 
     /**
-     * @return The API version when the change occurred
+     * Returns the version when the change occurred
      */
     String version();
 }

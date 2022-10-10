@@ -29,9 +29,9 @@ import com.telenav.kivakit.validation.validators.NullValidator;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABILITY_STABLE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 
 /**
  * When {@link #validate(Listener)} is called, a {@link Validator} validates itself, using the listener parameter to
@@ -48,8 +48,8 @@ import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NONE;
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramValidation.class)
 @UmlRelation(label = "reports to", referent = Listener.class)
-@CodeQuality(stability = STABILITY_STABLE,
-             testing = TESTING_NONE,
+@CodeQuality(stability = STABLE,
+             testing = UNTESTED,
              documentation = DOCUMENTATION_COMPLETE)
 public interface Validator
 {

@@ -1,8 +1,8 @@
 package com.telenav.kivakit.annotations.code.quality;
 
 import static com.telenav.kivakit.annotations.code.quality.Audience.AUDIENCE_PUBLIC;
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABILITY_UNDETERMINED;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABILITY_UNDETERMINED;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
 
 /**
@@ -22,25 +22,37 @@ import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_N
              reviewers = "shibo")
 public enum Stability
 {
-    /** The code is not expected to change */
-    STABILITY_STABLE,
+    /** The annotated type is not expected to change */
+    STABLE,
 
-    /** The code is not expected to change, except that new methods may be added */
-    STABILITY_STABLE_EXTENSIBLE,
+    /**
+     * The type is not expected to change, except that new methods may be added. Adding new methods to a type can
+     * sometimes cause problems with compatibility if a method with the same name already exists in a subtype.
+     */
+    STABLE_EXTENSIBLE,
 
-    /** The code may be changed */
-    STABILITY_UNSTABLE,
+    /**
+     * It is expected that this type will change incompatibly in the future. Using this type may require some
+     * refactoring or other code adaptation in the future.
+     */
+    UNSTABLE,
 
-    /** Requires more evaluation */
+    /** The stability of this type requires more evaluation */
     STABILITY_UNDETERMINED;
 
+    /**
+     * Returns true if this value is STABLE or STABLE_EXTENSIBLE.
+     */
     public boolean isStable()
     {
-        return this == STABILITY_STABLE || this == STABILITY_STABLE_EXTENSIBLE;
+        return this == STABLE || this == STABLE_EXTENSIBLE;
     }
 
+    /**
+     * Returns the opposite of {@link #isStable()}
+     */
     public boolean isUnstable()
     {
-        return this == STABILITY_UNSTABLE;
+        return !isStable();
     }
 }

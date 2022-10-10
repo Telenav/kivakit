@@ -24,9 +24,9 @@ import java.net.URI;
 import java.net.http.HttpRequest;
 import java.util.List;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABILITY_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 
 /**
  * Allows customization of an {@link HttpRequest} through the {@link HttpRequest.Builder} interface as well as through
@@ -34,8 +34,8 @@ import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NONE;
  *
  * @author jonathanl (shibo)
  */
-@CodeQuality(stability = STABILITY_STABLE_EXTENSIBLE,
-             testing = TESTING_NONE,
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = UNTESTED,
              documentation = DOCUMENTATION_COMPLETE)
 public interface HttpRequestFactory
 {

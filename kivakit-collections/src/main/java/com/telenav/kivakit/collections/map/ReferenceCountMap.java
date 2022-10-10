@@ -27,9 +27,9 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 import java.util.IdentityHashMap;
 import java.util.Map;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABILITY_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 
 /**
  * A non-thread-safe map of reference counts. Counts are increased by calling {@link #reference(Object)}, and decreased
@@ -39,8 +39,8 @@ import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NONE;
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramMap.class)
-@CodeQuality(stability = STABILITY_STABLE_EXTENSIBLE,
-             testing = TESTING_NONE,
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = UNTESTED,
              documentation = DOCUMENTATION_COMPLETE)
 public class ReferenceCountMap<Key>
 {
@@ -48,7 +48,7 @@ public class ReferenceCountMap<Key>
     private final Map<Key, MutableCount> referenceCount = new IdentityHashMap<>();
 
     /**
-     * @return The reference count for the given object
+     * Returns the reference count for the given object
      */
     public Count count(Key object)
     {
@@ -78,7 +78,7 @@ public class ReferenceCountMap<Key>
     }
 
     /**
-     * @return True if the given object is referenced
+     * Returns true if the given object is referenced
      */
     public boolean isReferenced(Key object)
     {

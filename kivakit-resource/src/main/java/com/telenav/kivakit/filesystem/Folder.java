@@ -72,11 +72,11 @@ import java.util.prefs.Preferences;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABILITY_STABLE;
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABILITY_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_INSUFFICIENT;
-import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
 import static com.telenav.kivakit.commandline.ArgumentParser.argumentParserBuilder;
 import static com.telenav.kivakit.core.collections.list.ObjectList.objectList;
@@ -225,7 +225,7 @@ import static com.telenav.kivakit.resource.ResourceList.resourceList;
  */
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramFileSystemFolder.class)
-@CodeQuality(stability = STABILITY_STABLE_EXTENSIBLE,
+@CodeQuality(stability = STABLE_EXTENSIBLE,
              testing = TESTING_INSUFFICIENT,
              documentation = DOCUMENTATION_COMPLETE)
 public class Folder extends BaseRepeater implements
@@ -471,7 +471,7 @@ public class Folder extends BaseRepeater implements
     }
 
     /**
-     * @return unique temporary folder per process
+     * Returns unique temporary folder per process
      */
     public static Folder temporaryForProcess(@NotNull FolderType type)
     {
@@ -510,7 +510,7 @@ public class Folder extends BaseRepeater implements
     /**
      * Type of folder
      */
-    @CodeQuality(stability = STABILITY_STABLE_EXTENSIBLE,
+    @CodeQuality(stability = STABLE_EXTENSIBLE,
                  testing = TESTING_NOT_NEEDED,
                  documentation = DOCUMENTATION_COMPLETE)
     public enum FolderType
@@ -522,7 +522,7 @@ public class Folder extends BaseRepeater implements
     /**
      * Type of traversal to perform
      */
-    @CodeQuality(stability = STABILITY_STABLE_EXTENSIBLE,
+    @CodeQuality(stability = STABLE_EXTENSIBLE,
                  testing = TESTING_NOT_NEEDED,
                  documentation = DOCUMENTATION_COMPLETE)
     public enum Traversal
@@ -536,8 +536,8 @@ public class Folder extends BaseRepeater implements
      *
      * @author jonathanl (shibo)
      */
-    @CodeQuality(stability = STABILITY_STABLE,
-                 testing = TESTING_NONE,
+    @CodeQuality(stability = STABLE,
+                 testing = UNTESTED,
                  documentation = DOCUMENTATION_COMPLETE)
     public static class Converter extends BaseStringConverter<Folder>
     {
@@ -573,8 +573,8 @@ public class Folder extends BaseRepeater implements
      * @author jonathanl (shibo)
      */
     @UmlClassDiagram(diagram = DiagramResourceService.class)
-    @CodeQuality(stability = STABILITY_STABLE,
-                 testing = TESTING_NONE,
+    @CodeQuality(stability = STABLE,
+                 testing = UNTESTED,
                  documentation = DOCUMENTATION_COMPLETE)
     public static class Resolver implements ResourceFolderResolver
     {
@@ -779,7 +779,7 @@ public class Folder extends BaseRepeater implements
     }
 
     /**
-     * @return The {@link Disk} where this folder exists
+     * Returns the {@link Disk} where this folder exists
      */
     @UmlRelation(label = "exists on")
     public Disk disk()
@@ -823,7 +823,7 @@ public class Folder extends BaseRepeater implements
     }
 
     /**
-     * @return True if this folder exists
+     * Returns true if this folder exists
      */
     @Override
     public boolean exists()
@@ -1044,7 +1044,7 @@ public class Folder extends BaseRepeater implements
     }
 
     /**
-     * @return True if the given folder has changed since the last time this method was called
+     * Returns true if the given folder has changed since the last time this method was called
      */
     public boolean hasChanged()
     {
@@ -1187,7 +1187,7 @@ public class Folder extends BaseRepeater implements
     }
 
     /**
-     * @return Any matching files that are recursively contained in this folder
+     * Returns any matching files that are recursively contained in this folder
      */
     public FileList nestedFiles(@NotNull Matcher<ResourcePathed> matcher)
     {
@@ -1197,7 +1197,7 @@ public class Folder extends BaseRepeater implements
     }
 
     /**
-     * @return Any matching folders that are recursively contained in this folder
+     * Returns any matching folders that are recursively contained in this folder
      */
     @Override
     public FolderList nestedFolders(@NotNull Matcher<Folder> matcher)

@@ -5,12 +5,12 @@ import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import java.util.IdentityHashMap;
 import java.util.Map;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABILITY_UNDETERMINED;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABILITY_UNDETERMINED;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 
 /**
- * Quick hack to debug code to see how often it is being executed. The {@link #tripwireTripEvery(int)} method can be
+ * A quick hack to debug code to see how often it is being executed. The {@link #tripwireTripEvery(int)} method can be
  * called with the number of times the method itself should be called before the {@link #tripwireTripped(int)} method is
  * called.
  *
@@ -18,7 +18,7 @@ import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NONE;
  */
 @SuppressWarnings("unused")
 @CodeQuality(stability = STABILITY_UNDETERMINED,
-             testing = TESTING_NONE,
+             testing = UNTESTED,
              documentation = DOCUMENTATION_COMPLETE,
              reviews = 1,
              reviewers = "shibo")

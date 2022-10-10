@@ -23,9 +23,9 @@ import com.telenav.kivakit.core.internal.lexakai.DiagramString;
 import com.telenav.kivakit.core.path.StringPath;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABILITY_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 
 /**
  * Utility methods for working with string paths. In general, prefer {@link StringPath} and subtypes.
@@ -34,8 +34,8 @@ import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NONE;
  */
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramString.class)
-@CodeQuality(stability = STABILITY_STABLE_EXTENSIBLE,
-             testing = TESTING_NONE,
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = UNTESTED,
              documentation = DOCUMENTATION_COMPLETE)
 public class Paths
 {
@@ -62,7 +62,7 @@ public class Paths
     }
 
     /**
-     * @return The first element in the given path up to the separator or null if no separator is found
+     * Returns the first element in the given path up to the separator or null if no separator is found
      */
     public static String pathHead(String path, char separator)
     {
@@ -79,7 +79,7 @@ public class Paths
     }
 
     /**
-     * @return The first element in the given path up to the separator or null if the separator is not found
+     * Returns the first element in the given path up to the separator or null if the separator is not found
      */
     public static String pathHead(String path, String separator)
     {
@@ -95,7 +95,7 @@ public class Paths
     }
 
     /**
-     * @return The first element in the given path up to the separator or the path itself if the separator is not found
+     * Returns the first element in the given path up to the separator or the path itself if the separator is not found
      */
     public static String pathOptionalHead(String path, String separator)
     {
@@ -103,7 +103,7 @@ public class Paths
     }
 
     /**
-     * @return The first element in the given path up to the separator or the path itself if no separator is found
+     * Returns the first element in the given path up to the separator or the path itself if no separator is found
      */
     public static String pathOptionalHead(String path, char separator)
     {
@@ -111,7 +111,7 @@ public class Paths
     }
 
     /**
-     * @return The last element in the given path up to the separator or the path itself if no separator is found
+     * Returns the last element in the given path up to the separator or the path itself if no separator is found
      */
     public static String pathOptionalSuffix(String path, char separator)
     {
@@ -124,7 +124,7 @@ public class Paths
     }
 
     /**
-     * @return All but the first element in the path or null if the separator does not occur
+     * Returns all but the first element in the path or null if the separator does not occur
      */
     public static String pathTail(String string, String separator)
     {
@@ -140,7 +140,7 @@ public class Paths
     }
 
     /**
-     * @return All but the first element in the path or null if the separator does not occur
+     * Returns all but the first element in the path or null if the separator does not occur
      */
     public static String pathTail(String text, char separator)
     {
@@ -164,7 +164,7 @@ public class Paths
     }
 
     /**
-     * @return The last element in the given path up to the separator or the path itself if no separator is found
+     * Returns the last element in the given path up to the separator or the path itself if no separator is found
      */
     public static String pathWithoutOptionalSuffix(String path, char separator)
     {
@@ -172,7 +172,7 @@ public class Paths
     }
 
     /**
-     * @return The last element in the given path up to the separator or null if no separator is found
+     * Returns the last element in the given path up to the separator or null if no separator is found
      */
     public static String pathWithoutSuffix(String path, char separator)
     {

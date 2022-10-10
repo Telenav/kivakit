@@ -28,9 +28,9 @@ import com.telenav.lexakai.annotations.associations.UmlAggregation;
 
 import java.util.Set;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABILITY_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.language.reflection.property.PropertyMemberSelector.ALL_FIELDS_AND_METHODS;
 import static com.telenav.kivakit.core.language.reflection.property.PropertyMemberSelector.KIVAKIT_ANNOTATION_INCLUDED_FIELDS;
 import static com.telenav.kivakit.core.language.reflection.property.PropertyMemberSelector.KIVAKIT_ANNOTATION_INCLUDED_FIELDS_AND_METHODS;
@@ -71,8 +71,8 @@ import static com.telenav.kivakit.core.language.reflection.property.PropertyNami
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramReflection.class)
-@CodeQuality(stability = STABILITY_STABLE_EXTENSIBLE,
-             testing = TESTING_NONE,
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = UNTESTED,
              documentation = DOCUMENTATION_COMPLETE)
 public class PropertySet implements PropertyFilter
 {
@@ -204,7 +204,7 @@ public class PropertySet implements PropertyFilter
     }
 
     /**
-     * @return True if the method is a getter in the filter's {@link PropertyNamingConvention}
+     * Returns true if the method is a getter in the filter's {@link PropertyNamingConvention}
      */
     protected boolean isGetter(Method method)
     {
@@ -231,7 +231,7 @@ public class PropertySet implements PropertyFilter
     }
 
     /**
-     * @return True if the field is included under the set of inclusions
+     * Returns true if the field is included under the set of inclusions
      */
     protected boolean isIncluded(Field field)
     {
@@ -239,7 +239,7 @@ public class PropertySet implements PropertyFilter
     }
 
     /**
-     * @return True if the field is included under the set of inclusions
+     * Returns true if the field is included under the set of inclusions
      */
     protected boolean isIncluded(Method method)
     {
@@ -247,7 +247,7 @@ public class PropertySet implements PropertyFilter
     }
 
     /**
-     * @return True if the method is marked with {@link KivaKitExcludeProperty}
+     * Returns true if the method is marked with {@link KivaKitExcludeProperty}
      */
     protected boolean isKivaKitExcluded(Method method)
     {
@@ -255,7 +255,7 @@ public class PropertySet implements PropertyFilter
     }
 
     /**
-     * @return True if the field is marked with {@link KivaKitExcludeProperty}
+     * Returns true if the field is marked with {@link KivaKitExcludeProperty}
      */
     protected boolean isKivaKitExcluded(Field field)
     {
@@ -263,7 +263,7 @@ public class PropertySet implements PropertyFilter
     }
 
     /**
-     * @return True if the field is marked with {@link KivaKitIncludeProperty}
+     * Returns true if the field is marked with {@link KivaKitIncludeProperty}
      */
     protected boolean isKivaKitIncluded(Field field)
     {
@@ -280,7 +280,7 @@ public class PropertySet implements PropertyFilter
     }
 
     /**
-     * @return True if the method is marked with {@link KivaKitIncludeProperty}
+     * Returns true if the method is marked with {@link KivaKitIncludeProperty}
      */
     protected boolean isKivaKitIncluded(Method method)
     {
@@ -308,7 +308,7 @@ public class PropertySet implements PropertyFilter
     }
 
     /**
-     * @return True if the method is a getter in the filter's {@link PropertyNamingConvention}
+     * Returns true if the method is a getter in the filter's {@link PropertyNamingConvention}
      */
     protected boolean isSetter(Method method)
     {

@@ -25,7 +25,7 @@ import com.telenav.lexakai.annotations.associations.UmlRelation;
 
 import java.util.function.Consumer;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABILITY_STABLE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
 
@@ -44,13 +44,13 @@ import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_N
 @UmlClassDiagram(diagram = DiagramMessaging.class)
 @UmlRelation(label = "receives", referent = Transmittable.class)
 @FunctionalInterface
-@CodeQuality(stability = STABILITY_STABLE,
+@CodeQuality(stability = STABLE,
              testing = TESTING_NOT_NEEDED,
              documentation = DOCUMENTATION_COMPLETE)
 public interface Receiver
 {
     /**
-     * @return True if this receiver is enabled
+     * Returns true if this receiver is enabled
      */
     default boolean isReceiving()
     {

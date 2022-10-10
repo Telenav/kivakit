@@ -6,7 +6,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.text.DecimalFormat;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABILITY_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
 
@@ -40,13 +40,13 @@ import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_N
  *
  * @author jonathanl (shibo)
  */
-@CodeQuality(stability = STABILITY_STABLE_EXTENSIBLE,
+@CodeQuality(stability = STABLE_EXTENSIBLE,
              testing = TESTING_NOT_NEEDED,
              documentation = DOCUMENTATION_COMPLETE)
 public interface TimeMeasurement extends LongValued
 {
     /**
-     * @return The number of days for this time measurement
+     * Returns the number of days for this time measurement
      */
     default double asDays()
     {
@@ -54,7 +54,7 @@ public interface TimeMeasurement extends LongValued
     }
 
     /**
-     * @return The number of hours for this time measurement
+     * Returns the number of hours for this time measurement
      */
     default double asHours()
     {
@@ -108,7 +108,7 @@ public interface TimeMeasurement extends LongValued
     }
 
     /**
-     * @return The number of microseconds for this time measurement
+     * Returns the number of microseconds for this time measurement
      */
     default double asMicroseconds()
     {
@@ -116,7 +116,7 @@ public interface TimeMeasurement extends LongValued
     }
 
     /**
-     * @return The number of milliseconds for this time measurement
+     * Returns the number of milliseconds for this time measurement
      */
     default double asMilliseconds()
     {
@@ -124,7 +124,7 @@ public interface TimeMeasurement extends LongValued
     }
 
     /**
-     * @return The number of minutes for this time measurement
+     * Returns the number of minutes for this time measurement
      */
     default double asMinutes()
     {
@@ -132,7 +132,7 @@ public interface TimeMeasurement extends LongValued
     }
 
     /**
-     * @return The number of nanoseconds for this time measurement
+     * Returns the number of nanoseconds for this time measurement
      */
     default double asNanoseconds()
     {
@@ -140,7 +140,7 @@ public interface TimeMeasurement extends LongValued
     }
 
     /**
-     * @return The number of seconds for this time measurement
+     * Returns the number of seconds for this time measurement
      */
     default double asSeconds()
     {
@@ -148,7 +148,7 @@ public interface TimeMeasurement extends LongValued
     }
 
     /**
-     * @return The number of weeks for this time measurement
+     * Returns the number of weeks for this time measurement
      */
     default double asWeeks()
     {
@@ -156,7 +156,7 @@ public interface TimeMeasurement extends LongValued
     }
 
     /**
-     * @return The number of years for this time measurement
+     * Returns the number of years for this time measurement
      */
     default double asYears()
     {

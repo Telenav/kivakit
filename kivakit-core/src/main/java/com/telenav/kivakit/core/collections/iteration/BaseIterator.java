@@ -27,9 +27,9 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABILITY_STABLE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 
 /**
  * An implementation of {@link Iterator} that takes care of the basic logic of an iterator. Subclasses only need to
@@ -40,8 +40,8 @@ import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NONE;
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramIteration.class)
-@CodeQuality(stability = STABILITY_STABLE,
-             testing = TESTING_NONE,
+@CodeQuality(stability = STABLE,
+             testing = UNTESTED,
              documentation = DOCUMENTATION_COMPLETE)
 public abstract class BaseIterator<Value> implements Iterator<Value>
 {
@@ -67,7 +67,7 @@ public abstract class BaseIterator<Value> implements Iterator<Value>
     }
 
     /**
-     * @return The matcher that must be satisfied for each object iterated
+     * Returns the matcher that must be satisfied for each object iterated
      */
     public Matcher<Value> matcher()
     {
@@ -132,7 +132,7 @@ public abstract class BaseIterator<Value> implements Iterator<Value>
     }
 
     /**
-     * @return The next value in the sequence or null if there is none
+     * Returns the next value in the sequence or null if there is none
      */
     protected abstract Value onNext();
 }

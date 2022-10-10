@@ -28,9 +28,9 @@ import com.telenav.kivakit.interfaces.collection.Keyed;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeMember;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABILITY_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 
 /**
  * A base implementation for extractors that handles edge conditions like exceptions as well as extracting lists from
@@ -39,8 +39,8 @@ import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NONE;
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramExtraction.class)
-@CodeQuality(stability = STABILITY_STABLE_EXTENSIBLE,
-             testing = TESTING_NONE,
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = UNTESTED,
              documentation = DOCUMENTATION_COMPLETE)
 public abstract class BaseExtractor<Value, From> extends BaseRepeater implements Extractor<Value, From>
 {
@@ -53,7 +53,7 @@ public abstract class BaseExtractor<Value, From> extends BaseRepeater implements
     }
 
     /**
-     * @return The value extracted from the given object, or null if an exception is thrown
+     * Returns the value extracted from the given object, or null if an exception is thrown
      */
     @Override
     @UmlExcludeMember
@@ -71,7 +71,7 @@ public abstract class BaseExtractor<Value, From> extends BaseRepeater implements
     }
 
     /**
-     * @return A list of values extracted from the given array of objects
+     * Returns a list of values extracted from the given array of objects
      */
     public ObjectList<Value> extract(From[] values)
     {
@@ -84,7 +84,7 @@ public abstract class BaseExtractor<Value, From> extends BaseRepeater implements
     }
 
     /**
-     * @return A list of values extracted from the given array of objects
+     * Returns a list of values extracted from the given array of objects
      */
     @SuppressWarnings("unchecked")
     public ObjectList<Value> extract(StringList values)
@@ -98,7 +98,7 @@ public abstract class BaseExtractor<Value, From> extends BaseRepeater implements
     }
 
     /**
-     * @return Called to extract a value from the given object
+     * Returns called to extract a value from the given object
      */
     public abstract Value onExtract(From object);
 }

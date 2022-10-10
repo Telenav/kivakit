@@ -23,8 +23,8 @@ import com.telenav.kivakit.core.internal.lexakai.DiagramCollections;
 import com.telenav.kivakit.core.value.count.Count;
 import com.telenav.kivakit.core.value.count.Maximum;
 import com.telenav.kivakit.interfaces.comparison.Matcher;
-import com.telenav.kivakit.interfaces.factory.IntMapFactory;
-import com.telenav.kivakit.interfaces.factory.LongMapFactory;
+import com.telenav.kivakit.interfaces.function.IntMapper;
+import com.telenav.kivakit.interfaces.function.LongMapper;
 import com.telenav.kivakit.interfaces.value.LongValued;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
@@ -33,7 +33,7 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.function.Function;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABILITY_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_INSUFFICIENT;
 import static com.telenav.kivakit.core.value.count.Maximum.MAXIMUM;
@@ -52,28 +52,28 @@ import static com.telenav.kivakit.core.value.count.Maximum.MAXIMUM;
  *
  * <p>
  * The methods {@link #objectList(Object[])} and {@link #objectList(Maximum, Object[])} can be used to construct constant lists.
- * The factory methods {@link #objectListFromInts(IntMapFactory, int...)} and {@link #objectListFromLongs(LongMapFactory, long...)}
+ * The factory methods {@link #objectListFromInts(IntMapper, int...)} and {@link #objectListFromLongs(LongMapper, long...)}
  * construct lists of objects from integer and long values using the given map factories to convert the values into
- * objects. The method {@link #objectList(Iterable, LongMapFactory)} iterates through the given {@link LongValued} object
+ * objects. The method {@link #objectList(Iterable, LongMapper)} iterates through the given {@link LongValued} object
  * values, passing each quantum to the given primitive map factory and adding the resulting object to a new object list.
  * </p>
  *
  * @param <Value> The object type
  * @author jonathanl (shibo)
  * @see BaseList
- * @see LongMapFactory
- * @see LongMapFactory
- * @see IntMapFactory
+ * @see LongMapper
+ * @see LongMapper
+ * @see IntMapper
  */
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramCollections.class)
-@CodeQuality(stability = STABILITY_STABLE_EXTENSIBLE,
+@CodeQuality(stability = STABLE_EXTENSIBLE,
              testing = TESTING_INSUFFICIENT,
              documentation = DOCUMENTATION_COMPLETE)
 public class ObjectList<Value> extends BaseList<Value>
 {
     /**
-     * @return An empty object list
+     * Returns an empty object list
      */
     public static <T> ObjectList<T> emptyObjectList()
     {
@@ -81,7 +81,7 @@ public class ObjectList<Value> extends BaseList<Value>
     }
 
     /**
-     * @return A list of objects from the given iterable
+     * Returns a list of objects from the given iterable
      */
     public static <T> ObjectList<T> objectList(Iterable<T> values)
     {
@@ -91,7 +91,7 @@ public class ObjectList<Value> extends BaseList<Value>
     }
 
     /**
-     * @return A list of objects from the given iterable
+     * Returns a list of objects from the given iterable
      */
     public static <T> ObjectList<T> objectList(Collection<T> values)
     {
@@ -99,7 +99,7 @@ public class ObjectList<Value> extends BaseList<Value>
     }
 
     /**
-     * @return A list of objects from the given iterator
+     * Returns a list of objects from the given iterator
      */
     public static <T> ObjectList<T> objectList(Iterator<T> values)
     {
@@ -109,20 +109,20 @@ public class ObjectList<Value> extends BaseList<Value>
     }
 
     /**
-     * @return A list of elements from the given integers created using the given map factory
+     * Returns a list of elements from the given integers created using the given map factory
      */
-    public static <T> ObjectList<T> objectList(Iterable<LongValued> values, LongMapFactory<T> factory)
+    public static <T> ObjectList<T> objectList(Iterable<LongValued> values, LongMapper<T> factory)
     {
         var objects = new ObjectList<T>();
         for (var value : values)
         {
-            objects.add(factory.newInstance(value.longValue()));
+            objects.add(factory.map(value.longValue()));
         }
         return objects;
     }
 
     /**
-     * @return The given list of objects with a maximum size
+     * Returns the given list of objects with a maximum size
      */
     @SafeVarargs
     public static <T> ObjectList<T> objectList(Maximum maximumSize, T... objects)
@@ -133,7 +133,7 @@ public class ObjectList<Value> extends BaseList<Value>
     }
 
     /**
-     * @return The given list of objects
+     * Returns the given list of objects
      */
     @SafeVarargs
     public static <T> ObjectList<T> objectList(T... objects)
@@ -159,27 +159,27 @@ public class ObjectList<Value> extends BaseList<Value>
     }
 
     /**
-     * @return A list of elements from the given integers created using the given map factory
+     * Returns a list of elements from the given integers created using the given map factory
      */
-    public static <T> ObjectList<T> objectListFromInts(IntMapFactory<T> factory, int... values)
+    public static <T> ObjectList<T> objectListFromInts(IntMapper<T> factory, int... values)
     {
         var objects = new ObjectList<T>();
         for (var value : values)
         {
-            objects.add(factory.newInstance(value));
+            objects.add(factory.map(value));
         }
         return objects;
     }
 
     /**
-     * @return A list of elements from the given integers created using the given map factory
+     * Returns a list of elements from the given integers created using the given map factory
      */
-    public static <T> ObjectList<T> objectListFromLongs(LongMapFactory<T> factory, long... values)
+    public static <T> ObjectList<T> objectListFromLongs(LongMapper<T> factory, long... values)
     {
         var objects = new ObjectList<T>();
         for (var value : values)
         {
-            objects.add(factory.newInstance(value));
+            objects.add(factory.map(value));
         }
         return objects;
     }
@@ -313,7 +313,7 @@ public class ObjectList<Value> extends BaseList<Value>
     }
 
     /**
-     * @return This object list partitioned in to n object lists
+     * Returns this object list partitioned in to n object lists
      */
     public ObjectList<ObjectList<Value>> partition(Count partitions)
     {

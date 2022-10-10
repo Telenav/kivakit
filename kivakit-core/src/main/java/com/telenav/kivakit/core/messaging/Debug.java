@@ -34,9 +34,9 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 import java.util.HashMap;
 import java.util.Map;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABILITY_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.project.Project.resolveProject;
 
 /**
@@ -82,8 +82,8 @@ import static com.telenav.kivakit.core.project.Project.resolveProject;
  */
 @SuppressWarnings("SpellCheckingInspection")
 @UmlClassDiagram(diagram = DiagramBroadcaster.class)
-@CodeQuality(stability = STABILITY_STABLE_EXTENSIBLE,
-             testing = TESTING_NONE,
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = UNTESTED,
              documentation = DOCUMENTATION_COMPLETE)
 public final class Debug implements MessageTransceiver
 {
@@ -200,7 +200,7 @@ public final class Debug implements MessageTransceiver
     }
 
     /**
-     * @return {@link Boolean#TRUE} if the class is enabled by KIVAKIT_DEBUG, {@link Boolean#FALSE} if it is explicitly
+     * Returns {@link Boolean#TRUE} if the class is enabled by KIVAKIT_DEBUG, {@link Boolean#FALSE} if it is explicitly
      * disabled and null if the class is simply available for enabling.
      */
     private static Boolean debugEnableState(Class<?> type)
@@ -252,7 +252,7 @@ public final class Debug implements MessageTransceiver
     }
 
     /**
-     * @return {@link Boolean#TRUE} if the class is enabled for debugging, {@link Boolean#FALSE} if it is explicitly
+     * Returns {@link Boolean#TRUE} if the class is enabled for debugging, {@link Boolean#FALSE} if it is explicitly
      * disabled and null if the class is simply available for enabling.
      */
     private static boolean isDebugOn(Class<?> type)

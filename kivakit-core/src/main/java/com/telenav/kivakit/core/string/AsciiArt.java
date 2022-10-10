@@ -27,9 +27,9 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Arrays;
 import java.util.Collection;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABILITY_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.string.Join.join;
 
 /**
@@ -45,8 +45,8 @@ import static com.telenav.kivakit.core.string.Join.join;
  * @author jonathanl (shibo)
  */
 @SuppressWarnings("unused") @UmlClassDiagram(diagram = DiagramString.class)
-@CodeQuality(stability = STABILITY_STABLE_EXTENSIBLE,
-             testing = TESTING_NONE,
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = UNTESTED,
              documentation = DOCUMENTATION_COMPLETE)
 public class AsciiArt
 {
@@ -114,7 +114,7 @@ public class AsciiArt
     }
 
     /**
-     * @return A box using the given horizontal and vertical line drawing characters that contains the given message
+     * Returns a box using the given horizontal and vertical line drawing characters that contains the given message
      */
     public static String box(String message, char horizontal, char vertical)
     {
@@ -137,7 +137,7 @@ public class AsciiArt
     }
 
     /**
-     * @return An ASCII art box containing the given message
+     * Returns an ASCII art box containing the given message
      */
     public static String box(String message, Object... arguments)
     {
@@ -145,7 +145,7 @@ public class AsciiArt
     }
 
     /**
-     * @return The string to use as a bullet
+     * Returns the string to use as a bullet
      */
     public static String bullet()
     {
@@ -153,7 +153,7 @@ public class AsciiArt
     }
 
     /**
-     * @return Collection of values as a bulleted list
+     * Returns collection of values as a bulleted list
      */
     public static String bulleted(Collection<?> values)
     {
@@ -161,7 +161,7 @@ public class AsciiArt
     }
 
     /**
-     * @return Collection of values as a bulleted list using the given bullet
+     * Returns collection of values as a bulleted list using the given bullet
      */
     public static String bulleted(Collection<?> values, String bullet)
     {
@@ -169,7 +169,7 @@ public class AsciiArt
     }
 
     /**
-     * @return Collection of values as an indented bulleted list
+     * Returns collection of values as an indented bulleted list
      */
     public static String bulleted(int indent, Collection<?> values)
     {
@@ -177,7 +177,7 @@ public class AsciiArt
     }
 
     /**
-     * @return Collection of values as an indented bulleted list using the given bullet
+     * Returns collection of values as an indented bulleted list using the given bullet
      */
     public static String bulleted(int indent, Collection<?> values, String bullet)
     {
@@ -193,7 +193,7 @@ public class AsciiArt
     }
 
     /**
-     * @return The given text clipped at n characters with "[...]" appended if it is longer than n characters
+     * Returns the given text clipped at n characters with "[...]" appended if it is longer than n characters
      */
     public static String clip(String text, int n)
     {
@@ -206,7 +206,7 @@ public class AsciiArt
     }
 
     /**
-     * @return A line
+     * Returns a line
      */
     public static String line()
     {
@@ -214,7 +214,7 @@ public class AsciiArt
     }
 
     /**
-     * @return A line of the given number of characters
+     * Returns a line of the given number of characters
      */
     public static String line(int length)
     {
@@ -222,7 +222,7 @@ public class AsciiArt
     }
 
     /**
-     * @return A left-justified line with the given message
+     * Returns a left-justified line with the given message
      */
     public static String line(String message)
     {
@@ -230,7 +230,7 @@ public class AsciiArt
     }
 
     /**
-     * @return The number of lines in the string
+     * Returns the number of lines in the string
      */
     public static int lineCount(String string)
     {
@@ -262,7 +262,7 @@ public class AsciiArt
     }
 
     /**
-     * @return The given number of spaces
+     * Returns the given number of spaces
      */
     public static String spaces(int count)
     {
@@ -270,7 +270,7 @@ public class AsciiArt
     }
 
     /**
-     * @return An ASCII art box with the given title and message
+     * Returns an ASCII art box with the given title and message
      */
     public static String textBox(String title, String message, Object... arguments)
     {
@@ -311,7 +311,7 @@ public class AsciiArt
     }
 
     /**
-     * @return The length of the widest line in potentially multi-line text
+     * Returns the length of the widest line in potentially multi-line text
      */
     public static int widestLine(String text)
     {

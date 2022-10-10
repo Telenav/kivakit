@@ -28,9 +28,9 @@ import com.telenav.lexakai.annotations.associations.UmlRelation;
 
 import java.util.List;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABILITY_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 
 /**
  * Broadcasts a message to zero or more listeners via {@link #transmit(Transmittable)}. Listeners can be added with
@@ -58,8 +58,8 @@ import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NONE;
 @UmlClassDiagram(diagram = DiagramBroadcaster.class)
 @UmlClassDiagram(diagram = DiagramRepeater.class)
 @UmlRelation(label = "transmits", referent = Listener.class, refereeCardinality = "1", referentCardinality = "*")
-@CodeQuality(stability = STABILITY_STABLE_EXTENSIBLE,
-             testing = TESTING_NONE,
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = UNTESTED,
              documentation = DOCUMENTATION_COMPLETE)
 public interface Broadcaster extends MessageTransceiver
 {
@@ -104,12 +104,12 @@ public interface Broadcaster extends MessageTransceiver
     }
 
     /**
-     * @return True if this broadcaster has any listeners
+     * Returns true if this broadcaster has any listeners
      */
     boolean hasListeners();
 
     /**
-     * @return The listeners to this broadcaster
+     * Returns the listeners to this broadcaster
      */
     List<Listener> listeners();
 

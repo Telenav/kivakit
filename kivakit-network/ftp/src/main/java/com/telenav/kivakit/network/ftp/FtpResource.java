@@ -44,9 +44,9 @@ import java.io.BufferedOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABILITY_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 
 /**
  * Simple FTP downloader. Note that this is made to download a single FTP file and then close the connection. At this
@@ -56,8 +56,8 @@ import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NONE;
  */
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramFtp.class)
-@CodeQuality(stability = STABILITY_STABLE_EXTENSIBLE,
-             testing = TESTING_NONE,
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = UNTESTED,
              documentation = DOCUMENTATION_COMPLETE)
 public class FtpResource extends BaseNetworkResource
 {
@@ -66,8 +66,8 @@ public class FtpResource extends BaseNetworkResource
      *
      * @author ericg
      */
-    @CodeQuality(stability = STABILITY_STABLE_EXTENSIBLE,
-                 testing = TESTING_NONE,
+    @CodeQuality(stability = STABLE_EXTENSIBLE,
+                 testing = UNTESTED,
                  documentation = DOCUMENTATION_COMPLETE)
     private static class FtpInput extends InputStream
     {
@@ -186,7 +186,7 @@ public class FtpResource extends BaseNetworkResource
     }
 
     /**
-     * @return The files present in the given folder.
+     * Returns the files present in the given folder.
      */
     public ObjectList<FTPFile> listOfFiles(NetworkPath path)
     {
@@ -233,7 +233,7 @@ public class FtpResource extends BaseNetworkResource
     }
 
     /**
-     * @return An input stream for reading a binary file on an FTP server (i.e. a gzipped file)
+     * Returns an input stream for reading a binary file on an FTP server (i.e. a gzipped file)
      */
     public InputStream openBinaryFileForReading()
     {

@@ -40,8 +40,8 @@ import java.net.URISyntaxException;
 import java.util.List;
 import java.util.function.Function;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABILITY_STABLE;
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABILITY_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
 import static com.telenav.kivakit.commandline.SwitchParser.switchParserBuilder;
@@ -111,7 +111,7 @@ import static com.telenav.kivakit.commandline.SwitchParser.switchParserBuilder;
  */
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramNetworkLocation.class)
-@CodeQuality(stability = STABILITY_STABLE_EXTENSIBLE,
+@CodeQuality(stability = STABLE_EXTENSIBLE,
              testing = TESTING_NOT_NEEDED,
              documentation = DOCUMENTATION_COMPLETE)
 public class NetworkPath extends FilePath
@@ -183,7 +183,7 @@ public class NetworkPath extends FilePath
      *
      * @author jonathanl (shibo)
      */
-    @CodeQuality(stability = STABILITY_STABLE,
+    @CodeQuality(stability = STABLE,
                  testing = TESTING_NOT_NEEDED,
                  documentation = DOCUMENTATION_COMPLETE)
     public static class Converter extends BaseStringConverter<NetworkPath>
@@ -233,7 +233,7 @@ public class NetworkPath extends FilePath
     }
 
     /**
-     * @return This network path as a URI
+     * Returns this network path as a URI
      */
     @Override
     public URI asUri()
@@ -277,7 +277,7 @@ public class NetworkPath extends FilePath
     }
 
     /**
-     * @return The port for this network path (which includes the host and protocol)
+     * Returns the port for this network path (which includes the host and protocol)
      */
     @KivaKitFormat
     public Port port()

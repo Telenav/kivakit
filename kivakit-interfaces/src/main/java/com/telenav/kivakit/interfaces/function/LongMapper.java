@@ -16,34 +16,34 @@
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-package com.telenav.kivakit.interfaces.factory;
+package com.telenav.kivakit.interfaces.function;
 
 import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.interfaces.internal.lexakai.DiagramFactory;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABILITY_STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
 
 /**
- * A {@link MapFactory} that maps a primitive int value to an object.
+ * An interface to code that maps a primitive <i>long</i> value to an object, whether new or cached.
  *
- * @param <Value> The type of object to create
+ * @param <Value> The type of object to map to
  * @author jonathanl (shibo)
  */
 @FunctionalInterface
 @UmlClassDiagram(diagram = DiagramFactory.class)
-@CodeQuality(stability = STABILITY_STABLE,
+@CodeQuality(stability = STABLE,
              testing = TESTING_NOT_NEEDED,
              documentation = DOCUMENTATION_COMPLETE)
-public interface IntMapFactory<Value>
+public interface LongMapper<Value>
 {
     /**
-     * Creates a value by constructing an object with the given parameter
+     * Maps the given parameter to a value
      *
      * @param parameter The constructor parameter for creating a new object
      * @return The new object instance
      */
-    Value newInstance(int parameter);
+    Value map(long parameter);
 }

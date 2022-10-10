@@ -49,8 +49,8 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.ServiceLoader;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABILITY_STABLE;
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABILITY_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
 import static com.telenav.kivakit.core.collections.set.ObjectSet.emptyObjectSet;
@@ -140,7 +140,7 @@ import static com.telenav.kivakit.resource.spi.ResourceResolverService.resourceR
 @SuppressWarnings({ "unused", "SpellCheckingInspection" })
 @UmlClassDiagram(diagram = DiagramFileSystemFile.class)
 @UmlClassDiagram(diagram = DiagramResource.class)
-@CodeQuality(stability = STABILITY_STABLE_EXTENSIBLE,
+@CodeQuality(stability = STABLE_EXTENSIBLE,
              testing = TESTING_NOT_NEEDED,
              documentation = DOCUMENTATION_COMPLETE)
 public interface Resource extends
@@ -249,7 +249,7 @@ public interface Resource extends
     /**
      * Represents the ability to do something with this resource (or not)
      */
-    @CodeQuality(stability = STABILITY_STABLE_EXTENSIBLE,
+    @CodeQuality(stability = STABLE_EXTENSIBLE,
                  testing = TESTING_NOT_NEEDED,
                  documentation = DOCUMENTATION_COMPLETE)
     enum Action
@@ -266,7 +266,7 @@ public interface Resource extends
      *
      * @author jonathanl (shibo)
      */
-    @CodeQuality(stability = STABILITY_STABLE,
+    @CodeQuality(stability = STABLE,
                  testing = TESTING_NOT_NEEDED,
                  documentation = DOCUMENTATION_COMPLETE)
     class Converter extends BaseStringConverter<Resource>
@@ -346,7 +346,7 @@ public interface Resource extends
     }
 
     /**
-     * @return True if the resource exists
+     * Returns true if the resource exists
      */
     boolean exists();
 
@@ -389,7 +389,7 @@ public interface Resource extends
     }
 
     /**
-     * @return True if this resource is in a JAR file
+     * Returns true if this resource is in a JAR file
      */
     default boolean isPackaged()
     {
@@ -397,7 +397,7 @@ public interface Resource extends
     }
 
     /**
-     * @return True if this resource is on a remote filesystem
+     * Returns true if this resource is on a remote filesystem
      */
     default boolean isRemote()
     {
@@ -405,7 +405,7 @@ public interface Resource extends
     }
 
     /**
-     * @return True if the given resource has the same last modified time and the same size
+     * Returns true if the given resource has the same last modified time and the same size
      */
     default boolean isSame(@NotNull Resource that)
     {

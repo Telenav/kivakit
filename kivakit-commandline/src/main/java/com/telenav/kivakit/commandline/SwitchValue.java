@@ -26,9 +26,9 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
 import org.jetbrains.annotations.NotNull;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABILITY_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 
 /**
  * <b>Not public API</b>
@@ -39,8 +39,8 @@ import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NONE;
  */
 @UmlClassDiagram(diagram = DiagramSwitch.class)
 @UmlRelation(label = "gets value with", referent = SwitchParser.class)
-@CodeQuality(stability = STABILITY_STABLE_EXTENSIBLE,
-             testing = TESTING_NONE,
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = UNTESTED,
              documentation = DOCUMENTATION_COMPLETE)
 public class SwitchValue extends ArgumentValue implements Named
 {
@@ -73,7 +73,7 @@ public class SwitchValue extends ArgumentValue implements Named
     }
 
     /**
-     * @return The typed value of this switch converted using the given switch parser
+     * Returns the typed value of this switch converted using the given switch parser
      */
     public <T> T get(@NotNull SwitchParser<T> parser)
     {

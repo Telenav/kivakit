@@ -28,9 +28,9 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABILITY_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.ensure.Ensure.ensureBetweenInclusive;
 import static com.telenav.kivakit.core.time.BaseTime.Topology.CYCLIC;
 import static com.telenav.kivakit.core.time.Day.nanosecondsPerDay;
@@ -62,8 +62,8 @@ import static com.telenav.kivakit.interfaces.string.StringFormattable.Format.USE
  * @see java.time.DayOfWeek
  */
 @SuppressWarnings("unused") @UmlClassDiagram(diagram = DiagramTime.class)
-@CodeQuality(stability = STABILITY_STABLE_EXTENSIBLE,
-             testing = TESTING_NONE,
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = UNTESTED,
              documentation = DOCUMENTATION_COMPLETE)
 public class DayOfWeek extends BaseTime<DayOfWeek>
 {
@@ -147,7 +147,7 @@ public class DayOfWeek extends BaseTime<DayOfWeek>
     }
 
     /**
-     * @return This day of the week as a zero-based ISO-8601 ordinal value
+     * Returns this day of the week as a zero-based ISO-8601 ordinal value
      */
     public int asIsoOrdinal()
     {

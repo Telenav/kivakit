@@ -32,10 +32,10 @@ import com.telenav.lexakai.annotations.visibility.UmlNotPublicApi;
 import java.util.Comparator;
 import java.util.Iterator;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABILITY_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Audience.AUDIENCE_INTERNAL;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 
 /**
  * <b>Not Public API</b>
@@ -49,8 +49,8 @@ import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NONE;
 @UmlClassDiagram(diagram = DiagramValidation.class)
 @UmlClassDiagram(diagram = DiagramCommandLine.class)
 @UmlExcludeSuperTypes
-@CodeQuality(stability = STABILITY_STABLE_EXTENSIBLE,
-             testing = TESTING_NONE,
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = UNTESTED,
              documentation = DOCUMENTATION_COMPLETE,
              audience = AUDIENCE_INTERNAL)
 public class SwitchParserList implements Iterable<SwitchParser<?>>
@@ -69,7 +69,7 @@ public class SwitchParserList implements Iterable<SwitchParser<?>>
     }
 
     /**
-     * @return The switch parser with the given name
+     * Returns the switch parser with the given name
      */
     public SwitchParser<?> forName(String name)
     {
@@ -77,7 +77,7 @@ public class SwitchParserList implements Iterable<SwitchParser<?>>
     }
 
     /**
-     * @return The help for the switch list
+     * Returns the help for the switch list
      */
     public String help()
     {

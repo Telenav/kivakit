@@ -26,7 +26,7 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 import java.text.NumberFormat;
 import java.util.Locale;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABILITY_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_INSUFFICIENT;
 
@@ -90,7 +90,7 @@ import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_INSUF
  * @author jonathanl (shibo)
  */
 @SuppressWarnings("unused") @UmlClassDiagram(diagram = DiagramPrimitive.class)
-@CodeQuality(stability = STABILITY_STABLE_EXTENSIBLE,
+@CodeQuality(stability = STABLE_EXTENSIBLE,
              testing = TESTING_INSUFFICIENT,
              documentation = DOCUMENTATION_COMPLETE)
 public class Ints
@@ -171,7 +171,7 @@ public class Ints
     }
 
     /**
-     * @return An integer value or {@link #INVALID} if the string is not a valid integer
+     * Returns an integer value or {@link #INVALID} if the string is not a valid integer
      */
     public static int parseFast(String text)
     {
@@ -202,7 +202,7 @@ public class Ints
     }
 
     /**
-     * @return An integer value or throws an exception if the string is not a valid integer
+     * Returns an integer value or throws an exception if the string is not a valid integer
      */
     public static int parseInt(Listener listener, String text)
     {
@@ -217,7 +217,7 @@ public class Ints
     }
 
     /**
-     * @return 10^power for values of power up to 32
+     * Returns 10^power for values of power up to 32
      */
     public static int powerOfTen(int power)
     {

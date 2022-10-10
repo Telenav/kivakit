@@ -40,12 +40,12 @@ public @interface KivaKitIncludeProperty
 {
 
     /**
-     * @return Optional alternate name of property
+     * Returns optional alternate name of property
      */
     String name() default "";
 
     /**
-     * @return The purpose for which this property is being included
+     * Returns the purpose for which this property is being included
      */
     PropertyPurpose[] purpose() default FORMATTING;
 }

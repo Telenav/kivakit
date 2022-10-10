@@ -26,7 +26,7 @@ import java.util.Iterator;
 
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABILITY_UNDETERMINED;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 
 /**
  * A sequence that has a known size and can be indexed, like a list, although not necessarily a collection. For example,
@@ -41,7 +41,7 @@ import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NONE;
  */
 @UmlClassDiagram(diagram = DiagramCollection.class)
 @CodeQuality(stability = STABILITY_UNDETERMINED,
-             testing = TESTING_NONE,
+             testing = UNTESTED,
              documentation = DOCUMENTATION_COMPLETE,
              reviews = 1,
              reviewers = "shibo")
@@ -50,7 +50,7 @@ public interface Indexable<Value> extends
         Sequence<Value>
 {
     /**
-     * @return True if this list starts with the given list
+     * Returns true if this list starts with the given list
      */
     default boolean endsWith(Indexable<Value> that)
     {
@@ -74,7 +74,7 @@ public interface Indexable<Value> extends
     }
 
     /**
-     * @return The first item in this indexable object, or null if there is none
+     * Returns the first item in this indexable object, or null if there is none
      */
     @Override
     default Value first()
@@ -83,12 +83,12 @@ public interface Indexable<Value> extends
     }
 
     /**
-     * @return The value for the given index
+     * Returns the value for the given index
      */
     Value get(int index);
 
     /**
-     * @return The value at the given index or the default value if that index does not exist
+     * Returns the value at the given index or the default value if that index does not exist
      */
     default Value getOrDefault(int index, Value defaultValue)
     {
@@ -96,7 +96,7 @@ public interface Indexable<Value> extends
     }
 
     /**
-     * @return True if this indexable object and that indexable object have all the same values
+     * Returns true if this indexable object and that indexable object have all the same values
      */
     default boolean isEqualTo(Indexable<Value> that)
     {
@@ -115,7 +115,7 @@ public interface Indexable<Value> extends
     }
 
     /**
-     * @return The last item in this indexable object, or null if there is none
+     * Returns the last item in this indexable object, or null if there is none
      */
     default Value last()
     {
@@ -123,7 +123,7 @@ public interface Indexable<Value> extends
     }
 
     /**
-     * @return True if this list starts with the given list
+     * Returns true if this list starts with the given list
      */
     default boolean startsWith(Indexable<Value> that)
     {

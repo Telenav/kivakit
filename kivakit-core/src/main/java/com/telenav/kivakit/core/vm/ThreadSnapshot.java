@@ -30,9 +30,9 @@ import java.lang.management.ThreadMXBean;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABILITY_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 
 /**
  * Captures a snapshot of {@link ThreadStatus} for all running threads via the Java management API.
@@ -41,8 +41,8 @@ import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NONE;
  * @see ThreadStatus
  */
 @SuppressWarnings("unused") @UmlClassDiagram(diagram = DiagramThread.class)
-@CodeQuality(stability = STABILITY_STABLE_EXTENSIBLE,
-             testing = TESTING_NONE,
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = UNTESTED,
              documentation = DOCUMENTATION_COMPLETE)
 public class ThreadSnapshot
 {
@@ -58,7 +58,7 @@ public class ThreadSnapshot
     }
 
     /**
-     * @return The time at which this snapshot was captured
+     * Returns the time at which this snapshot was captured
      */
     public Time capturedAt()
     {
@@ -89,7 +89,7 @@ public class ThreadSnapshot
     }
 
     /**
-     * @return The status of all threads captured in the snapshot
+     * Returns the status of all threads captured in the snapshot
      */
     public List<ThreadStatus> snapshot()
     {
@@ -97,7 +97,7 @@ public class ThreadSnapshot
     }
 
     /**
-     * @return The total CPU time of all threads
+     * Returns the total CPU time of all threads
      */
     public Duration totalCpuTime()
     {
@@ -110,7 +110,7 @@ public class ThreadSnapshot
     }
 
     /**
-     * @return Updates this thread snapshot
+     * Returns updates this thread snapshot
      */
     public ThreadSnapshot update()
     {

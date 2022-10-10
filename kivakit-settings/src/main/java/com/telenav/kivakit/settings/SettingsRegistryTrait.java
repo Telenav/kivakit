@@ -8,9 +8,9 @@ import com.telenav.kivakit.core.registry.InstanceIdentifier;
 import com.telenav.kivakit.resource.ResourceFolder;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABILITY_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
 import static com.telenav.kivakit.core.registry.InstanceIdentifier.singletonInstanceIdentifier;
 
@@ -78,13 +78,13 @@ import static com.telenav.kivakit.core.registry.InstanceIdentifier.singletonInst
  * @see SettingsRegistry
  */
 @SuppressWarnings({ "unused", "UnusedReturnValue" })
-@CodeQuality(stability = STABILITY_STABLE_EXTENSIBLE,
-             testing = TESTING_NONE,
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = UNTESTED,
              documentation = DOCUMENTATION_COMPLETE)
 public interface SettingsRegistryTrait extends Repeater
 {
     /**
-     * @return True if this set has a settings object of the given type
+     * Returns true if this set has a settings object of the given type
      */
     default boolean hasSettings(Class<?> type)
     {
@@ -92,7 +92,7 @@ public interface SettingsRegistryTrait extends Repeater
     }
 
     /**
-     * @return True if this set has the specified instance of the settings object specified by the given type
+     * Returns true if this set has the specified instance of the settings object specified by the given type
      */
     default boolean hasSettings(Class<?> type, InstanceIdentifier instance)
     {
@@ -100,7 +100,7 @@ public interface SettingsRegistryTrait extends Repeater
     }
 
     /**
-     * @return True if this set has the specified instance of the settings object specified by the given type
+     * Returns true if this set has the specified instance of the settings object specified by the given type
      */
     default boolean hasSettings(Class<?> type, Enum<?> instance)
     {
@@ -108,7 +108,7 @@ public interface SettingsRegistryTrait extends Repeater
     }
 
     /**
-     * @return The settings object of the given type
+     * Returns the settings object of the given type
      */
     @UmlRelation(label = "gets values")
     default <T> T lookupSettings(Class<T> type)
@@ -117,7 +117,7 @@ public interface SettingsRegistryTrait extends Repeater
     }
 
     /**
-     * @return The settings object for the given class and instance identifier. If the settings object can't be found,
+     * Returns the settings object for the given class and instance identifier. If the settings object can't be found,
      * the given default settings package is searched.
      */
     default <T> T lookupSettings(Class<T> settingsClass,
@@ -128,7 +128,7 @@ public interface SettingsRegistryTrait extends Repeater
     }
 
     /**
-     * @return The settings object for the given type and instance identifier
+     * Returns the settings object for the given type and instance identifier
      */
     default <T> T lookupSettings(Class<T> type, InstanceIdentifier instance)
     {
@@ -136,7 +136,7 @@ public interface SettingsRegistryTrait extends Repeater
     }
 
     /**
-     * @return The settings object for the given type and instance identifier
+     * Returns the settings object for the given type and instance identifier
      */
     default <T> T lookupSettings(Class<T> type, Enum<?> instance)
     {
@@ -144,7 +144,7 @@ public interface SettingsRegistryTrait extends Repeater
     }
 
     /**
-     * @return Add the given settings object to this set
+     * Returns add the given settings object to this set
      */
     default SettingsRegistry registerSettings(Object settings)
     {
@@ -152,7 +152,7 @@ public interface SettingsRegistryTrait extends Repeater
     }
 
     /**
-     * @return Adds the given instance of a settings object to this set
+     * Returns adds the given instance of a settings object to this set
      */
     default SettingsRegistry registerSettings(Object settings, Enum<?> instance)
     {
@@ -160,7 +160,7 @@ public interface SettingsRegistryTrait extends Repeater
     }
 
     /**
-     * @return Adds the given instance of a settings object to this set
+     * Returns adds the given instance of a settings object to this set
      */
     default SettingsRegistry registerSettings(Object settings, InstanceIdentifier instance)
     {
@@ -192,7 +192,7 @@ public interface SettingsRegistryTrait extends Repeater
     }
 
     /**
-     * @return The object of the given instance and type, or {@link Ensure#fail()} if there is no such object
+     * Returns the object of the given instance and type, or {@link Ensure#fail()} if there is no such object
      */
     default <T> T requireSettings(Class<T> type, InstanceIdentifier instance)
     {
@@ -253,7 +253,7 @@ public interface SettingsRegistryTrait extends Repeater
     }
 
     /**
-     * @return True if all settings were cleared
+     * Returns true if all settings were cleared
      */
     default boolean unloadSettings()
     {

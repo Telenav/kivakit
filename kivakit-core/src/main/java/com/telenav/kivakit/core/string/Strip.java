@@ -22,9 +22,9 @@ import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramString;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABILITY_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 
 /**
  * Strips leading and ending values, package prefixes and quotes from strings.
@@ -32,8 +32,8 @@ import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NONE;
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramString.class)
-@CodeQuality(stability = STABILITY_STABLE_EXTENSIBLE,
-             testing = TESTING_NONE,
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = UNTESTED,
              documentation = DOCUMENTATION_COMPLETE)
 public class Strip
 {
@@ -78,7 +78,7 @@ public class Strip
     }
 
     /**
-     * @return The text with the leading string stripped if it exists
+     * Returns the text with the leading string stripped if it exists
      */
     public static String leading(String text, String leading)
     {
@@ -104,7 +104,7 @@ public class Strip
     }
 
     /**
-     * @return The text with the trailing string stripped if it exists
+     * Returns the text with the trailing string stripped if it exists
      */
     public static String trailing(String text, String trailer)
     {

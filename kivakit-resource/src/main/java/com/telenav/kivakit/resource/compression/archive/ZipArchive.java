@@ -60,10 +60,10 @@ import java.util.List;
 import java.util.regex.Pattern;
 import java.util.zip.ZipFile;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABILITY_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
-import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
 import static com.telenav.kivakit.core.ensure.Ensure.fail;
 import static com.telenav.kivakit.resource.compression.archive.ZipArchive.AccessMode.READ;
@@ -141,8 +141,8 @@ import static com.telenav.kivakit.resource.serialization.ObjectMetadata.OBJECT_V
 @UmlRelation(label = "stores", referent = ZipEntry.class)
 @UmlRelation(label = "opens for access", referent = ZipArchive.AccessMode.class)
 @UmlExcludeSuperTypes({ AutoCloseable.class, Iterable.class })
-@CodeQuality(stability = STABILITY_STABLE_EXTENSIBLE,
-             testing = TESTING_NONE,
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = UNTESTED,
              documentation = DOCUMENTATION_COMPLETE)
 public final class ZipArchive extends BaseRepeater implements
         Iterable<ZipEntry>,
@@ -206,7 +206,7 @@ public final class ZipArchive extends BaseRepeater implements
      * @author jonathanl (shibo)
      */
     @UmlClassDiagram(diagram = DiagramResourceArchive.class)
-    @CodeQuality(stability = STABILITY_STABLE_EXTENSIBLE,
+    @CodeQuality(stability = STABLE_EXTENSIBLE,
                  testing = TESTING_NOT_NEEDED,
                  documentation = DOCUMENTATION_COMPLETE)
     public enum AccessMode

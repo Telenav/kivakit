@@ -36,7 +36,7 @@ import java.util.Map;
 import java.util.function.Function;
 import java.util.regex.Pattern;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABILITY_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_INSUFFICIENT;
 import static com.telenav.kivakit.core.project.Project.resolveProject;
@@ -80,7 +80,7 @@ import static com.telenav.kivakit.core.project.Project.resolveProject;
  */
 @SuppressWarnings({ "SpellCheckingInspection", "SwitchStatementWithTooFewBranches" })
 @UmlClassDiagram(diagram = DiagramPath.class)
-@CodeQuality(stability = STABILITY_STABLE_EXTENSIBLE,
+@CodeQuality(stability = STABLE_EXTENSIBLE,
              testing = TESTING_INSUFFICIENT,
              documentation = DOCUMENTATION_COMPLETE)
 public class StringPath extends Path<String>
@@ -112,7 +112,7 @@ public class StringPath extends Path<String>
     }
 
     /**
-     * @return A string path for the given string and separator pattern
+     * Returns a string path for the given string and separator pattern
      */
     public static StringPath parseStringPath(Listener listener, String path, String separatorPattern)
     {
@@ -120,7 +120,7 @@ public class StringPath extends Path<String>
     }
 
     /**
-     * @return A path (sans scheme) for the given URI
+     * Returns a path (sans scheme) for the given URI
      */
     public static StringPath stringPath(List<String> elements)
     {
@@ -128,7 +128,7 @@ public class StringPath extends Path<String>
     }
 
     /**
-     * @return A path (sans scheme) for the given URI
+     * Returns a path (sans scheme) for the given URI
      */
     public static StringPath stringPath(String root, List<String> elements)
     {
@@ -136,7 +136,7 @@ public class StringPath extends Path<String>
     }
 
     /**
-     * @return A path for the given strings
+     * Returns a path for the given strings
      */
     public static StringPath stringPath(String first, String... rest)
     {
@@ -156,7 +156,7 @@ public class StringPath extends Path<String>
     }
 
     /**
-     * @return A path (sans scheme) for the given URI
+     * Returns a path (sans scheme) for the given URI
      */
     public static StringPath stringPath(URI uri)
     {
@@ -164,7 +164,7 @@ public class StringPath extends Path<String>
     }
 
     /**
-     * @return A path for the given NIO path
+     * Returns a path for the given NIO path
      */
     public static StringPath stringPath(java.nio.file.Path path)
     {
@@ -233,7 +233,7 @@ public class StringPath extends Path<String>
     }
 
     /**
-     * @return A Java NIO {@link Path} object for this path
+     * Returns a Java NIO {@link Path} object for this path
      */
     public java.nio.file.Path asJavaPath()
     {
@@ -280,7 +280,7 @@ public class StringPath extends Path<String>
     }
 
     /**
-     * @return True if this path ends with the given suffix
+     * Returns true if this path ends with the given suffix
      */
     public boolean endsWith(String suffix)
     {
@@ -351,7 +351,7 @@ public class StringPath extends Path<String>
     }
 
     /**
-     * @return True if this path starts with the given prefix
+     * Returns true if this path starts with the given prefix
      */
     public boolean startsWith(String prefix)
     {

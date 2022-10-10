@@ -24,9 +24,9 @@ import com.telenav.kivakit.core.language.primitive.Doubles;
 import com.telenav.kivakit.core.value.level.Percent;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABILITY_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 
 /**
  * Methods for comparing strings, including by <a href="https://en.wikipedia.org/wiki/Levenshtein_distance">Levenshtein
@@ -36,8 +36,8 @@ import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NONE;
  */
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramString.class)
-@CodeQuality(stability = STABILITY_STABLE_EXTENSIBLE,
-             testing = TESTING_NONE,
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = UNTESTED,
              documentation = DOCUMENTATION_COMPLETE)
 public class StringSimilarity
 {
@@ -64,7 +64,7 @@ public class StringSimilarity
     }
 
     /**
-     * @return The percentage difference between the two strings using the Levenshtein distance algorithm
+     * Returns the percentage difference between the two strings using the Levenshtein distance algorithm
      */
     public static Percent levenshteinDifference(String a, String b)
     {
@@ -140,7 +140,7 @@ public class StringSimilarity
     }
 
     /**
-     * @return The similarity of the two strings
+     * Returns the similarity of the two strings
      * @see StringSimilarity#levenshteinDifference(String, String)
      */
     public static Percent levenshteinSimilarity(String a, String b)
@@ -149,7 +149,7 @@ public class StringSimilarity
     }
 
     /**
-     * @return The minimum of the three values
+     * Returns the minimum of the three values
      */
     private static int minimum(int a, int b, int c)
     {

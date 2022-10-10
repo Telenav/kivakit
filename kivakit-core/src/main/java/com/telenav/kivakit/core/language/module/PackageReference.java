@@ -41,7 +41,7 @@ import java.util.stream.Collectors;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABILITY_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
 
@@ -95,7 +95,7 @@ import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_N
  */
 @SuppressWarnings({ "unused", "DuplicatedCode", "SpellCheckingInspection" })
 @UmlClassDiagram(diagram = DiagramPath.class)
-@CodeQuality(stability = STABILITY_STABLE_EXTENSIBLE,
+@CodeQuality(stability = STABLE_EXTENSIBLE,
              testing = TESTING_NOT_NEEDED,
              documentation = DOCUMENTATION_COMPLETE)
 public final class PackageReference extends StringPath
@@ -112,7 +112,7 @@ public final class PackageReference extends StringPath
     }
 
     /**
-     * @return A package path for the package that contains the given class
+     * Returns a package path for the package that contains the given class
      */
     public static PackageReference packageReference(Class<?> type, StringPath path)
     {
@@ -120,7 +120,7 @@ public final class PackageReference extends StringPath
     }
 
     /**
-     * @return Package path for the given Java path object
+     * Returns package path for the given Java path object
      */
     public static PackageReference packageReference(StringPath path)
     {
@@ -128,7 +128,7 @@ public final class PackageReference extends StringPath
     }
 
     /**
-     * @return A package path for the package that contains the given class
+     * Returns a package path for the package that contains the given class
      */
     public static PackageReference packageReference(Class<?> type)
     {
@@ -136,7 +136,7 @@ public final class PackageReference extends StringPath
     }
 
     /**
-     * @return The package path specified by the given path. The path may be separated by either '.' or '/'.
+     * Returns the package path specified by the given path. The path may be separated by either '.' or '/'.
      */
     public static PackageReference parsePackageReference(Listener listener, String path)
     {
@@ -144,7 +144,7 @@ public final class PackageReference extends StringPath
     }
 
     /**
-     * @return A package path relative to the package containing the given class
+     * Returns a package path relative to the package containing the given class
      */
     public static PackageReference parsePackageReference(Listener listener, Class<?> type, String relativePath)
     {
@@ -172,7 +172,7 @@ public final class PackageReference extends StringPath
     }
 
     /**
-     * @return True if the given resource is in this package
+     * Returns true if the given resource is in this package
      */
     public boolean contains(ModuleResource resource)
     {
@@ -180,7 +180,7 @@ public final class PackageReference extends StringPath
     }
 
     /**
-     * @return True if the given resource is in this package or any sub-package
+     * Returns true if the given resource is in this package or any sub-package
      */
     public boolean containsNested(ModuleResource resource)
     {
@@ -188,7 +188,7 @@ public final class PackageReference extends StringPath
     }
 
     /**
-     * @return A list of sub packages under this package from the directories in classpath
+     * Returns a list of sub packages under this package from the directories in classpath
      */
     public Set<PackageReference> filesystemSubPackages(Listener listener)
     {
@@ -235,7 +235,7 @@ public final class PackageReference extends StringPath
     }
 
     /**
-     * @return True if this reference is relative to some class in the referenced package (the "package type")
+     * Returns true if this reference is relative to some class in the referenced package (the "package type")
      */
     public boolean hasPackageType()
     {
@@ -243,7 +243,7 @@ public final class PackageReference extends StringPath
     }
 
     /**
-     * @return A list of sub packages under this package from the jars in classpath
+     * Returns a list of sub packages under this package from the jars in classpath
      */
     public Set<PackageReference> jarSubPackages(Listener listener)
     {
@@ -312,7 +312,7 @@ public final class PackageReference extends StringPath
     }
 
     /**
-     * @return The named resource in this package for the given path or null if it cannot be found. The relative path
+     * Returns the named resource in this package for the given path or null if it cannot be found. The relative path
      * must be separated by slashes, not dots because the filename may contain dots (like "a.txt").
      */
     public ModuleResource moduleResource(Listener listener, String relativePath)
@@ -323,7 +323,7 @@ public final class PackageReference extends StringPath
     }
 
     /**
-     * @return An input stream to access the given resource
+     * Returns an input stream to access the given resource
      */
     public InputStream moduleResourceStream(String path)
     {
@@ -331,7 +331,7 @@ public final class PackageReference extends StringPath
     }
 
     /**
-     * @return A list of the resources directly in the package specified by this path
+     * Returns a list of the resources directly in the package specified by this path
      */
     public List<ModuleResource> moduleResources(Listener listener)
     {
@@ -339,7 +339,7 @@ public final class PackageReference extends StringPath
     }
 
     /**
-     * @return A list of resources in and under this package
+     * Returns a list of resources in and under this package
      */
     public List<ModuleResource> nestedModuleResources(Listener listener)
     {
@@ -360,7 +360,7 @@ public final class PackageReference extends StringPath
     }
 
     /**
-     * @return A type within the package
+     * Returns a type within the package
      */
     public Class<?> packageType()
     {
@@ -394,7 +394,7 @@ public final class PackageReference extends StringPath
     }
 
     /**
-     * @return A list of resources in and under this package
+     * Returns a list of resources in and under this package
      */
     public Set<PackageReference> subPackages(Listener listener)
     {

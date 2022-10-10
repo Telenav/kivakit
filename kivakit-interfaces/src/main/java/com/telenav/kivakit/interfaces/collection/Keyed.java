@@ -41,7 +41,7 @@ import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_N
 public interface Keyed<Key, Value>
 {
     /**
-     * @return The value for the given key
+     * Returns the value for the given key
      */
     Value get(Key key);
 

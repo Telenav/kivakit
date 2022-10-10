@@ -39,7 +39,7 @@ import static com.telenav.kivakit.core.language.reflection.property.PropertyPurp
 public @interface KivaKitExcludeProperty
 {
     /**
-     * @return The purpose for which this property is being included
+     * Returns the purpose for which this property is being included
      */
     PropertyPurpose[] purpose() default { FORMATTING };
 }

@@ -27,9 +27,9 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 import java.util.HashMap;
 import java.util.Map;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABILITY_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.collections.list.ObjectList.objectList;
 import static com.telenav.kivakit.core.ensure.Ensure.ensure;
 import static com.telenav.kivakit.core.locale.LocaleRegion.WORLD;
@@ -41,8 +41,8 @@ import static com.telenav.kivakit.core.locale.LocaleRegion.WORLD;
  */
 @SuppressWarnings({ "unused", "SpellCheckingInspection" })
 @UmlClassDiagram(diagram = DiagramLocale.class)
-@CodeQuality(stability = STABILITY_STABLE_EXTENSIBLE,
-             testing = TESTING_NONE,
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = UNTESTED,
              documentation = DOCUMENTATION_COMPLETE)
 public class LocaleLanguage extends Name implements Comparable<LocaleLanguage>
 {
@@ -236,7 +236,7 @@ public class LocaleLanguage extends Name implements Comparable<LocaleLanguage>
     }
 
     /**
-     * @return The language for a two character ISO-639-1 code
+     * Returns the language for a two character ISO-639-1 code
      */
     public static LocaleLanguage languageForIso2Code(String code)
     {
@@ -244,7 +244,7 @@ public class LocaleLanguage extends Name implements Comparable<LocaleLanguage>
     }
 
     /**
-     * @return The language for a three character ISO-639-2/T language code
+     * Returns the language for a three character ISO-639-2/T language code
      */
     public static LocaleLanguage languageForIso3Code(String code)
     {

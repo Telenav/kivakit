@@ -26,7 +26,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Objects;
 import java.util.regex.Pattern;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABILITY_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_INSUFFICIENT;
 import static com.telenav.kivakit.core.ensure.Ensure.fail;
@@ -82,7 +82,7 @@ import static java.util.regex.Pattern.CASE_INSENSITIVE;
  * @see <a href=https://semver.org>*Semantic Versioning*</a>
  */
 @SuppressWarnings("unused")
-@CodeQuality(stability = STABILITY_STABLE_EXTENSIBLE,
+@CodeQuality(stability = STABLE_EXTENSIBLE,
              testing = TESTING_INSUFFICIENT,
              documentation = DOCUMENTATION_COMPLETE)
 public class Version
@@ -149,7 +149,7 @@ public class Version
     }
 
     /**
-     * @return A version for the given major, minor and patch values, as in 8.0.1
+     * Returns a version for the given major, minor and patch values, as in 8.0.1
      */
     public static Version version(int major, int minor, int patch)
     {
@@ -157,7 +157,7 @@ public class Version
     }
 
     /**
-     * @return A version for the given major, minor, patch and release values, as in 8.0.1-Beta
+     * Returns a version for the given major, minor, patch and release values, as in 8.0.1-Beta
      */
     public static Version version(int major,
                                   int minor,
@@ -169,7 +169,7 @@ public class Version
     }
 
     /**
-     * @return A version for the given major and minor values, as in 8.0
+     * Returns a version for the given major and minor values, as in 8.0
      */
     public static Version version(int major, int minor)
     {
@@ -177,7 +177,7 @@ public class Version
     }
 
     /**
-     * @return A version for the given major and minor values, as in 8.0
+     * Returns a version for the given major and minor values, as in 8.0
      */
     public static Version version(int major)
     {
@@ -224,7 +224,7 @@ public class Version
     }
 
     /**
-     * @return This version as a double. For example, if major is 1 and minor is 9, the return value will be 1.9.
+     * Returns this version as a double. For example, if major is 1 and minor is 9, the return value will be 1.9.
      */
     public double asDouble()
     {
@@ -381,7 +381,7 @@ public class Version
     }
 
     /**
-     * @return The patch number, as in [major].[minor].[patch], or NO_PATCH if there is no patch number
+     * Returns the patch number, as in [major].[minor].[patch], or NO_PATCH if there is no patch number
      */
     public int patch()
     {
@@ -407,7 +407,7 @@ public class Version
     }
 
     /**
-     * @return This version without the patch number
+     * Returns this version without the patch number
      */
     public Version withoutPatch()
     {
@@ -415,7 +415,7 @@ public class Version
     }
 
     /**
-     * @return This version without the {@link ReleaseType}
+     * Returns this version without the {@link ReleaseType}
      */
     public Version withoutRelease()
     {
@@ -423,7 +423,7 @@ public class Version
     }
 
     /**
-     * @return This version as a non-snapshot
+     * Returns this version as a non-snapshot
      */
     public Version withoutSnapshot()
     {

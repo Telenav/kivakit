@@ -52,7 +52,7 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeSuperTypes;
 import org.jetbrains.annotations.NotNull;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABILITY_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
 import static com.telenav.kivakit.core.messaging.MessageFormat.WITH_EXCEPTION;
@@ -113,7 +113,7 @@ import static com.telenav.kivakit.core.thread.ReentrancyTracker.Reentrancy.REENT
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramMessageType.class)
 @UmlExcludeSuperTypes({ Named.class })
-@CodeQuality(stability = STABILITY_STABLE_EXTENSIBLE,
+@CodeQuality(stability = STABLE_EXTENSIBLE,
              testing = TESTING_NOT_NEEDED,
              documentation = DOCUMENTATION_COMPLETE)
 public abstract class OperationMessage implements Named, Message
@@ -308,7 +308,7 @@ public abstract class OperationMessage implements Named, Message
     }
 
     /**
-     * @return The formatted message without any stack trace information
+     * Returns the formatted message without any stack trace information
      */
     @Override
     public String description()
@@ -335,7 +335,7 @@ public abstract class OperationMessage implements Named, Message
     }
 
     /**
-     * @return The fully formatted message including stack trace information
+     * Returns the fully formatted message including stack trace information
      */
     @Override
     public String formatted(MessageFormat... formats)

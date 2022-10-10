@@ -32,9 +32,9 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeMember;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeSuperTypes;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABILITY_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 
 /**
  * Handles messages through {@link #onMessage(Message)}.
@@ -108,13 +108,13 @@ import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NONE;
 @UmlClassDiagram(diagram = DiagramListener.class)
 @UmlExcludeSuperTypes({ NamedObject.class })
 @FunctionalInterface
-@CodeQuality(stability = STABILITY_STABLE_EXTENSIBLE,
-             testing = TESTING_NONE,
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = UNTESTED,
              documentation = DOCUMENTATION_COMPLETE)
 public interface Listener extends MessageTransceiver
 {
     /**
-     * @return A listener that writes the messages it hears to the console
+     * Returns a listener that writes the messages it hears to the console
      */
     static Listener consoleListener()
     {
@@ -122,7 +122,7 @@ public interface Listener extends MessageTransceiver
     }
 
     /**
-     * @return A listener that does nothing with messages. Useful only when you want to discard output from something
+     * Returns a listener that does nothing with messages. Useful only when you want to discard output from something
      */
     static Listener nullListener()
     {
@@ -132,7 +132,7 @@ public interface Listener extends MessageTransceiver
     }
 
     /**
-     * @return A listener that throws exceptions
+     * Returns a listener that throws exceptions
      */
     static Listener throwingListener()
     {
@@ -140,7 +140,7 @@ public interface Listener extends MessageTransceiver
     }
 
     /**
-     * @return True if this listener doesn't do anything with the messages it gets
+     * Returns true if this listener doesn't do anything with the messages it gets
      */
     @UmlExcludeMember
     default boolean isDeaf()

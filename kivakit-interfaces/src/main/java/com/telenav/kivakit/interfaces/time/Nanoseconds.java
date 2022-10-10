@@ -7,9 +7,9 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.Objects;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABILITY_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static java.lang.Math.addExact;
 import static java.lang.Math.subtractExact;
 
@@ -20,8 +20,8 @@ import static java.lang.Math.subtractExact;
  * @author jonathanl (shibo)
  */
 @SuppressWarnings("DuplicatedCode")
-@CodeQuality(stability = STABILITY_STABLE_EXTENSIBLE,
-             testing = TESTING_NONE,
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = UNTESTED,
              documentation = DOCUMENTATION_COMPLETE)
 public class Nanoseconds implements
         Comparable<Nanoseconds>,
@@ -223,7 +223,7 @@ public class Nanoseconds implements
     }
 
     /**
-     * @return True if this is greater than that
+     * Returns true if this is greater than that
      */
     public boolean isGreaterThan(Nanoseconds that)
     {
@@ -231,7 +231,7 @@ public class Nanoseconds implements
     }
 
     /**
-     * @return True if this is greater than or equal to that
+     * Returns true if this is greater than or equal to that
      */
     public boolean isGreaterThanOrEqualTo(Nanoseconds that)
     {
@@ -239,7 +239,7 @@ public class Nanoseconds implements
     }
 
     /**
-     * @return True if this is less than that
+     * Returns true if this is less than that
      */
     public boolean isLessThan(Nanoseconds that)
     {
@@ -247,7 +247,7 @@ public class Nanoseconds implements
     }
 
     /**
-     * @return True if this is less than or equal to that
+     * Returns true if this is less than or equal to that
      */
     public boolean isLessThanOrEqualTo(Nanoseconds that)
     {
@@ -255,7 +255,7 @@ public class Nanoseconds implements
     }
 
     /**
-     * @return True if this is a negative number of nanoseconds
+     * Returns true if this is a negative number of nanoseconds
      */
     public boolean isNegative()
     {
@@ -263,7 +263,7 @@ public class Nanoseconds implements
     }
 
     /**
-     * @return True if this is zero nanoseconds
+     * Returns true if this is zero nanoseconds
      */
     @Override
     public boolean isZero()
@@ -381,7 +381,7 @@ public class Nanoseconds implements
     }
 
     /**
-     * @return The number of nanoseconds, not including any seconds
+     * Returns the number of nanoseconds, not including any seconds
      */
     private long nanoseconds()
     {
@@ -389,7 +389,7 @@ public class Nanoseconds implements
     }
 
     /**
-     * @return The number of seconds, including any seconds in the nanoseconds field
+     * Returns the number of seconds, including any seconds in the nanoseconds field
      */
     private long seconds()
     {

@@ -23,7 +23,7 @@ import com.telenav.kivakit.core.string.KivaKitFormat;
 import com.telenav.kivakit.core.string.ObjectFormatter;
 import com.telenav.kivakit.interfaces.lifecycle.Resettable;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABILITY_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_INSUFFICIENT;
 
@@ -33,7 +33,7 @@ import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_INSUF
  *
  * @author jonathanl (shibo)
  */
-@CodeQuality(stability = STABILITY_STABLE_EXTENSIBLE,
+@CodeQuality(stability = STABLE_EXTENSIBLE,
              testing = TESTING_INSUFFICIENT,
              documentation = DOCUMENTATION_COMPLETE)
 public class Average implements Resettable
@@ -79,7 +79,7 @@ public class Average implements Resettable
     }
 
     /**
-     * @return The average of all samples that have been added
+     * Returns the average of all samples that have been added
      */
     @KivaKitFormat
     public double average()
@@ -92,7 +92,7 @@ public class Average implements Resettable
     }
 
     /**
-     * @return The largest sample
+     * Returns the largest sample
      */
     @KivaKitFormat
     public double maximum()
@@ -101,7 +101,7 @@ public class Average implements Resettable
     }
 
     /**
-     * @return The smallest sample
+     * Returns the smallest sample
      */
     @KivaKitFormat
     public double minimum()
@@ -120,7 +120,7 @@ public class Average implements Resettable
     }
 
     /**
-     * @return The number of samples in this average
+     * Returns the number of samples in this average
      */
     @KivaKitFormat
     public int samples()
@@ -135,7 +135,7 @@ public class Average implements Resettable
     }
 
     /**
-     * @return The total of all samples in this average
+     * Returns the total of all samples in this average
      */
     @KivaKitFormat
     public double total()

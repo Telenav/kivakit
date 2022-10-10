@@ -12,9 +12,9 @@ import com.telenav.kivakit.core.time.Rate;
 import com.telenav.kivakit.core.time.RateCalculator;
 import com.telenav.kivakit.core.time.Time;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABILITY_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.time.Duration.ONE_MINUTE;
 
 /**
@@ -55,8 +55,8 @@ import static com.telenav.kivakit.core.time.Duration.ONE_MINUTE;
  * @author jonathanl (shibo)
  */
 @SuppressWarnings("unused")
-@CodeQuality(stability = STABILITY_STABLE_EXTENSIBLE,
-             testing = TESTING_NONE,
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = UNTESTED,
              documentation = DOCUMENTATION_COMPLETE)
 public abstract class MessageAlarm implements Listener
 {
@@ -138,7 +138,7 @@ public abstract class MessageAlarm implements Listener
     }
 
     /**
-     * @return The rate above which this alarm will be triggered
+     * Returns the rate above which this alarm will be triggered
      */
     public Rate triggerRate()
     {
@@ -164,7 +164,7 @@ public abstract class MessageAlarm implements Listener
     protected abstract void onTrigger(Rate rate);
 
     /**
-     * @return The current rate of error messages
+     * Returns the current rate of error messages
      */
     protected Rate rate()
     {
@@ -172,7 +172,7 @@ public abstract class MessageAlarm implements Listener
     }
 
     /**
-     * @return True if it's allowed to trigger the alarm at this time
+     * Returns true if it's allowed to trigger the alarm at this time
      */
     private boolean isTriggerAllowedNow()
     {
@@ -201,7 +201,7 @@ public abstract class MessageAlarm implements Listener
     }
 
     /**
-     * @return The time at which this alarm can next be triggered
+     * Returns the time at which this alarm can next be triggered
      */
     private Time nextAllowedTriggerTime()
     {

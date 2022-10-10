@@ -40,10 +40,10 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABILITY_STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
-import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.ensure.Ensure.unsupported;
 import static com.telenav.kivakit.launcher.JarLauncher.ProcessType.CHILD;
 import static com.telenav.kivakit.launcher.JarLauncher.ProcessType.DETACHED;
@@ -83,8 +83,8 @@ import static com.telenav.kivakit.launcher.JarLauncher.ProcessType.DETACHED;
  */
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramJarLauncher.class)
-@CodeQuality(stability = STABILITY_STABLE_EXTENSIBLE,
-             testing = TESTING_NONE,
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = UNTESTED,
              documentation = DOCUMENTATION_COMPLETE)
 public class JarLauncher extends BaseRepeater
 {
@@ -94,7 +94,7 @@ public class JarLauncher extends BaseRepeater
      * @author jonathanl (shibo)
      */
     @UmlClassDiagram(diagram = DiagramJarLauncher.class)
-    @CodeQuality(stability = STABILITY_STABLE_EXTENSIBLE,
+    @CodeQuality(stability = STABLE_EXTENSIBLE,
                  testing = TESTING_NOT_NEEDED,
                  documentation = DOCUMENTATION_COMPLETE)
     public enum ProcessType
@@ -108,7 +108,7 @@ public class JarLauncher extends BaseRepeater
      *
      * @author jonathanl (shibo)
      */
-    @CodeQuality(stability = STABILITY_STABLE_EXTENSIBLE,
+    @CodeQuality(stability = STABLE_EXTENSIBLE,
                  testing = TESTING_NOT_NEEDED,
                  documentation = DOCUMENTATION_COMPLETE)
     public enum RedirectTo
