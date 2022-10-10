@@ -32,8 +32,8 @@ import com.telenav.lexakai.annotations.visibility.UmlExcludeMember;
 import org.jetbrains.annotations.MustBeInvokedByOverriders;
 import org.jetbrains.annotations.NotNull;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.ensure.Ensure.unsupported;
 import static com.telenav.kivakit.core.messaging.MessageFormat.FORMATTED;
@@ -43,6 +43,13 @@ import static com.telenav.kivakit.core.messaging.MessageFormat.WITH_EXCEPTION;
 
 /**
  * Base class for text logs
+ *
+ * <p><b>Logging</b></p>
+ *
+ * <p>
+ * More details about logging are available in <a
+ * href="../../../../../../../../../kivakit-core/documentation/logging.md">kivakit-core</a>.
+ * </p>
  *
  * @author jonathanl (shibo)
  */

@@ -29,7 +29,6 @@ import com.telenav.kivakit.core.logging.logs.text.ConsoleLog;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.messaging.Messages;
 import com.telenav.kivakit.core.string.Strings;
-import com.telenav.kivakit.core.vm.Properties;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlAggregation;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
@@ -38,21 +37,32 @@ import com.telenav.lexakai.annotations.visibility.UmlExcludeMember;
 import java.util.Set;
 import java.util.regex.Pattern;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.collections.set.ObjectSet.objectSet;
 import static com.telenav.kivakit.core.ensure.Ensure.fail;
+import static com.telenav.kivakit.core.vm.Properties.systemPropertyOrEnvironmentVariable;
 
 /**
  * A Java Services logger that creates loggers by inspecting the KIVAKIT_LOG and KIVAKIT_LOG_LEVEL environment
  * variables. Log providers specified by comma separated descriptors in the KIVAKIT_LOG variable are loaded by
  * {@link LogServiceLoader} as services. They are then configured and added to the list of logs. Configuration
  * properties are specified as key value pairs.
+ *
  * <pre>
- * -DKIVAKIT_LOG="console level=warning,file level=information file=log.txt"
- * </pre>
+ * -DKIVAKIT_LOG="console level=warning,file level=information file=log.txt"</pre>
+ *
+ * <p>
  * This command line sends warnings to the console and information messages (and higher) to the specified log file.
+ * </p>
+ *
+ * <p><b>Logging</b></p>
+ *
+ * <p>
+ * More details about logging are available in <a
+ * href="../../../../../../../../../kivakit-core/documentation/logging.md">kivakit-core</a>.
+ * </p>
  *
  * @author jonathanl (shibo)
  */
@@ -98,7 +108,7 @@ public class LogServiceLogger extends BaseLogger
             loaded = true;
 
             // so get log service descriptors
-            var descriptors = Properties.systemPropertyOrEnvironmentVariable("KIVAKIT_LOG");
+            var descriptors = systemPropertyOrEnvironmentVariable("KIVAKIT_LOG");
             if (descriptors != null)
             {
                 // and for each descriptor,

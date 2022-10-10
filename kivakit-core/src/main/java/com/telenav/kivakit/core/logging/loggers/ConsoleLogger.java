@@ -35,6 +35,13 @@ import static com.telenav.kivakit.core.collections.set.ObjectSet.objectSet;
  * A simple logger that writes to the console. This is useful for bootstrapping purposes (the logging system itself may
  * need to do logging, for example, which can lead to problems)
  *
+ * <p><b>Logging</b></p>
+ *
+ * <p>
+ * More details about logging are available in <a
+ * href="../../../../../../../../../kivakit-core/documentation/logging.md">kivakit-core</a>.
+ * </p>
+ *
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramLogging.class)

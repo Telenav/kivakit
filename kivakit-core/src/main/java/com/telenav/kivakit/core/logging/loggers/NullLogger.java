@@ -38,6 +38,13 @@ import static com.telenav.kivakit.core.collections.set.ObjectSet.objectSet;
  * <pre>
  * LogFactory.factory(NullLogger::new)</pre>
  *
+ * <p><b>Logging</b></p>
+ *
+ * <p>
+ * More details about logging are available in <a
+ * href="../../../../../../../../../kivakit-core/documentation/logging.md">kivakit-core</a>.
+ * </p>
+ *
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramLogging.class)

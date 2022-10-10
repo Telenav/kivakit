@@ -93,6 +93,13 @@ import com.telenav.lexakai.annotations.visibility.UmlExcludeSuperTypes;
  *     <li>{@link #filters()} - Returns the list of filters for this log</li>
  * </ul>
  *
+ * <p><b>Logging</b></p>
+ *
+ * <p>
+ * More details about logging are available in <a
+ * href="../../../../../../../../../kivakit-core/documentation/logging.md">kivakit-core</a>.
+ * </p>
+ *
  * @author jonathanl (shibo)
  * @see <a href="https://tinyurl.com/mhc3ss5s">KivaKit Logging Documentation</a>
  * @see LogEntry

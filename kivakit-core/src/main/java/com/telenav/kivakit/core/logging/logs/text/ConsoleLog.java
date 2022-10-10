@@ -39,6 +39,13 @@ import static com.telenav.kivakit.core.os.Console.console;
  * specified from the command line as "formatter=columnar" or "formatter=unformatted". See {@link LogServiceLogger} for
  * details.
  *
+ * <p><b>Logging</b></p>
+ *
+ * <p>
+ * More details about logging are available in <a
+ * href="../../../../../../../../../kivakit-core/documentation/logging.md">kivakit-core</a>.
+ * </p>
+ *
  * @author jonathanl (shibo)
  * @see Console
  * @see LogEntry

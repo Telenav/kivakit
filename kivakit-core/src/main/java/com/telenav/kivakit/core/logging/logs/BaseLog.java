@@ -101,6 +101,13 @@ import static com.telenav.kivakit.core.vm.ShutdownHook.Order.LAST;
  *     <li>{@link #isRunning()}</li>
  * </ul>
  *
+ * <p><b>Logging</b></p>
+ *
+ * <p>
+ * More details about logging are available in <a
+ * href="../../../../../../../../../kivakit-core/documentation/logging.md">kivakit-core</a>.
+ * </p>
+ *
  * @author jonathanl (shibo)
  */
 @SuppressWarnings("UseOfSystemOutOrSystemErr")
