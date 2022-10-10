@@ -246,7 +246,7 @@ public final class StateMachine<State> extends BaseRepeater
                                            State waitFor,
                                            Runnable before)
     {
-        return transition(from, to, waitFor, Duration.MAXIMUM, before);
+        return transition(from, to, waitFor, Duration.FOREVER, before);
     }
 
     public void transitionAndWaitForNot(State state)
@@ -296,7 +296,7 @@ public final class StateMachine<State> extends BaseRepeater
      */
     public WakeState waitFor(State state)
     {
-        return waitFor(state, Duration.MAXIMUM);
+        return waitFor(state, Duration.FOREVER);
     }
 
     /**
@@ -318,7 +318,7 @@ public final class StateMachine<State> extends BaseRepeater
      */
     public WakeState waitFor(Predicate<State> predicate)
     {
-        return waitFor(predicate, Duration.MAXIMUM);
+        return waitFor(predicate, Duration.FOREVER);
     }
 
     /**
@@ -361,7 +361,7 @@ public final class StateMachine<State> extends BaseRepeater
      */
     public WakeState waitForNot(State state)
     {
-        return waitForNot(state, Duration.MAXIMUM);
+        return waitForNot(state, Duration.FOREVER);
     }
 
     /**

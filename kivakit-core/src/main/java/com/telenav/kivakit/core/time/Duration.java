@@ -161,8 +161,8 @@ public class Duration implements
         LengthOfTime<Duration>,
         DoubleValued
 {
-    /** Constant for maximum duration. */
-    public static final Duration MAXIMUM = nanoseconds(Long.MAX_VALUE);
+    /** Constant for maximum duration, essentially "forever" */
+    public static final Duration FOREVER = nanoseconds(Long.MAX_VALUE);
 
     /** Constant for no duration. */
     public static final Duration ZERO_DURATION = nanoseconds(0);
@@ -612,7 +612,7 @@ public class Duration implements
      */
     public boolean isMaximum()
     {
-        return equals(Duration.MAXIMUM);
+        return equals(Duration.FOREVER);
     }
 
     @Override

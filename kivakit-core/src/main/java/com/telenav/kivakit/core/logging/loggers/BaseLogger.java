@@ -171,7 +171,7 @@ public abstract class BaseLogger implements Logger
     @Override
     public Duration maximumFlushTime()
     {
-        return Duration.MAXIMUM;
+        return Duration.FOREVER;
     }
 
     /**

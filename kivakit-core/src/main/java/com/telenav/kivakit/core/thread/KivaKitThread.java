@@ -321,7 +321,7 @@ public class KivaKitThread extends BaseRepeater implements
     @Override
     public Duration maximumStopTime()
     {
-        return Duration.MAXIMUM;
+        return Duration.FOREVER;
     }
 
     /**

@@ -196,7 +196,7 @@ public interface SerializationSession extends
     @Override
     default Duration maximumFlushTime()
     {
-        return Duration.MAXIMUM;
+        return Duration.FOREVER;
     }
 
     /**

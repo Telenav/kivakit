@@ -50,7 +50,7 @@ public class InitializationLatch
      */
     public boolean awaitInitialization()
     {
-        return awaitInitialization(Duration.MAXIMUM);
+        return awaitInitialization(Duration.FOREVER);
     }
 
     /**

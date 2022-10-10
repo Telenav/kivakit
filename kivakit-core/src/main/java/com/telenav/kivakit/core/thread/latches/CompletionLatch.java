@@ -108,6 +108,6 @@ public class CompletionLatch
 
     public WakeState waitForAllThreadsToComplete()
     {
-        return waitForAllThreadsToComplete(Duration.MAXIMUM);
+        return waitForAllThreadsToComplete(Duration.FOREVER);
     }
 }

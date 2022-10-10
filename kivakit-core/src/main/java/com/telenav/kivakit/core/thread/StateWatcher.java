@@ -134,7 +134,7 @@ public final class StateWatcher<State>
      */
     public WakeState waitFor(Predicate<State> predicate)
     {
-        return waitFor(predicate, Duration.MAXIMUM);
+        return waitFor(predicate, Duration.FOREVER);
     }
 
     /**
@@ -195,7 +195,7 @@ public final class StateWatcher<State>
      */
     public WakeState waitFor(State desired)
     {
-        return waitFor(desired, Duration.MAXIMUM);
+        return waitFor(desired, Duration.FOREVER);
     }
 
     /**

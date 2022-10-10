@@ -93,7 +93,7 @@ public class Console implements
     @Override
     public Duration maximumFlushTime()
     {
-        return Duration.MAXIMUM;
+        return Duration.FOREVER;
     }
 
     /**

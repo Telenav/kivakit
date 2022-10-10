@@ -59,7 +59,7 @@ public class CacheMap<Key, Value> extends BaseMap<Key, Value>
      */
     public CacheMap(Maximum cacheSize)
     {
-        this(cacheSize, Duration.MAXIMUM);
+        this(cacheSize, Duration.FOREVER);
     }
 
     /**

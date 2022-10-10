@@ -217,7 +217,7 @@ public abstract class EmailSender extends BaseRepeater implements
     @Override
     public Duration maximumFlushTime()
     {
-        return Duration.MAXIMUM;
+        return Duration.FOREVER;
     }
 
     public EmailSender maximumRetries(Maximum maximumRetries)
@@ -229,7 +229,7 @@ public abstract class EmailSender extends BaseRepeater implements
     @Override
     public Duration maximumStopTime()
     {
-        return Duration.MAXIMUM;
+        return Duration.FOREVER;
     }
 
     public EmailSender retryPeriod(Duration durationBetweenRetries)

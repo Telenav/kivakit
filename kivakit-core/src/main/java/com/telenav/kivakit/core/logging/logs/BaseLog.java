@@ -345,7 +345,7 @@ public abstract class BaseLog implements
     @Override
     public final Duration maximumStopTime()
     {
-        return Duration.MAXIMUM;
+        return Duration.FOREVER;
     }
 
     /**
