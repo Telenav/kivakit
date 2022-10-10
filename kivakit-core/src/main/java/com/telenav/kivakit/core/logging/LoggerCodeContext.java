@@ -25,14 +25,14 @@ import com.telenav.kivakit.core.messaging.context.CodeContext;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.lang.reflect.Method;
-import java.util.Objects;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.messaging.context.CallStack.Matching.EXACT;
 import static com.telenav.kivakit.core.messaging.context.CallStack.Matching.SUBCLASS;
 import static com.telenav.kivakit.core.messaging.context.CallStack.Proximity.IMMEDIATE;
+import static java.util.Objects.requireNonNull;
 
 /**
  * Information about the origin of a {@link LogEntry}, including the host and class.
@@ -49,7 +49,7 @@ public class LoggerCodeContext extends CodeContext
     {
         // The logger code context is the immediate caller of any subclass of logger,
         // ignoring any intervening LoggerFactory calls
-        super(Objects.requireNonNull(
+        super(requireNonNull(
                 CallStack.callerOf(IMMEDIATE, SUBCLASS, Logger.class, EXACT, LoggerFactory.class)).parentType().type());
     }
 

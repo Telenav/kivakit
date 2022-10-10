@@ -31,7 +31,7 @@ import com.telenav.kivakit.core.logging.LoggerCodeContext;
 import com.telenav.kivakit.core.logging.filters.LogEntriesWithSeverityGreaterThanOrEqualTo;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.messaging.Message;
-import com.telenav.kivakit.core.messaging.messages.OperationMessage;
+import com.telenav.kivakit.core.messaging.Messages;
 import com.telenav.kivakit.core.messaging.messages.Severity;
 import com.telenav.kivakit.core.time.Duration;
 import com.telenav.kivakit.core.time.Time;
@@ -256,7 +256,7 @@ public abstract class BaseLogger implements Logger
             var levelName = System.getProperty("KIVAKIT_LOG_LEVEL");
             if (levelName != null)
             {
-                Message message = OperationMessage.parseMessageType(Listener.consoleListener(), levelName);
+                Message message = Messages.parseMessageType(Listener.consoleListener(), levelName);
                 if (message != null)
                 {
                     level = message.severity();

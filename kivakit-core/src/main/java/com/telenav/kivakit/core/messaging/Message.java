@@ -27,7 +27,6 @@ import com.telenav.kivakit.core.messaging.context.CodeContext;
 import com.telenav.kivakit.core.messaging.context.StackTrace;
 import com.telenav.kivakit.core.messaging.messages.Importance;
 import com.telenav.kivakit.core.messaging.messages.OperationLifecycleMessage;
-import com.telenav.kivakit.core.messaging.messages.OperationMessage;
 import com.telenav.kivakit.core.messaging.messages.OperationStatusMessage;
 import com.telenav.kivakit.core.messaging.messages.Severity;
 import com.telenav.kivakit.core.messaging.messages.Triaged;
@@ -149,7 +148,7 @@ public interface Message extends
      */
     static Message parseMessageName(Listener listener, String name)
     {
-        return OperationMessage.parseMessageType(listener, name);
+        return Messages.parseMessageType(listener, name);
     }
 
     /**

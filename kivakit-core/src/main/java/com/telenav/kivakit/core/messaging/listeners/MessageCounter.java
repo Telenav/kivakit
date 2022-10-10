@@ -24,7 +24,7 @@ import com.telenav.kivakit.core.internal.lexakai.DiagramListenerType;
 import com.telenav.kivakit.core.language.Classes;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.messaging.Message;
-import com.telenav.kivakit.core.messaging.messages.OperationMessage;
+import com.telenav.kivakit.core.messaging.Messages;
 import com.telenav.kivakit.core.messaging.messages.status.Problem;
 import com.telenav.kivakit.core.messaging.messages.status.Quibble;
 import com.telenav.kivakit.core.messaging.messages.status.Warning;
@@ -117,7 +117,7 @@ public interface MessageCounter extends Listener
      */
     default Count countWorseThanOrEqualTo(Class<? extends Message> type)
     {
-        return countWorseThanOrEqualTo(OperationMessage.message(type).status());
+        return countWorseThanOrEqualTo(Messages.messageForType(type).status());
     }
 
     /**

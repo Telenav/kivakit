@@ -27,7 +27,7 @@ import com.telenav.kivakit.core.logging.Log;
 import com.telenav.kivakit.core.logging.LoggerCodeContext;
 import com.telenav.kivakit.core.logging.logs.text.ConsoleLog;
 import com.telenav.kivakit.core.messaging.Listener;
-import com.telenav.kivakit.core.messaging.messages.OperationMessage;
+import com.telenav.kivakit.core.messaging.Messages;
 import com.telenav.kivakit.core.string.Strings;
 import com.telenav.kivakit.core.vm.Properties;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
@@ -176,7 +176,7 @@ public class LogServiceLogger extends BaseLogger
                 var message = configuration.asString("level");
                 if (message != null)
                 {
-                    log.level(OperationMessage.parseMessageType(Listener.consoleListener(), message).severity());
+                    log.level(Messages.parseMessageType(Listener.consoleListener(), message).severity());
                 }
 
                 // and then let the log configure itself with the remaining properties

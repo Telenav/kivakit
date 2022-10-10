@@ -72,6 +72,27 @@ import com.telenav.lexakai.annotations.visibility.UmlExcludeSuperTypes;
  * implementation(s) are loaded for use in an application can be chosen by the end-user from the command line with the
  * system property KIVAKIT_LOG.
  *
+ * <p><b>Factory Methods</b></p>
+ *
+ * <ul>
+ *     <li>{@link #logger()} - Returns a new logger instance</li>
+ * </ul>
+ *
+ * <p><b>Logging</b></p>
+ *
+ * <ul>
+ *     <li>{@link #codeContext()} - The code context for this logger</li>
+ *     <li>{@link #log(Message)} - Logs the given message</li>
+ *     <li>{@link #startTime()} - The time of creation for this logger</li>
+ * </ul>
+ *
+ * <p><b>Filtering</b></p>
+ *
+ * <ul>
+ *     <li>{@link #addFilter(Filter)} - Adds the given filter to this log</li>
+ *     <li>{@link #filters()} - Returns the list of filters for this log</li>
+ * </ul>
+ *
  * @author jonathanl (shibo)
  * @see <a href="https://tinyurl.com/mhc3ss5s">KivaKit Logging Documentation</a>
  * @see LogEntry

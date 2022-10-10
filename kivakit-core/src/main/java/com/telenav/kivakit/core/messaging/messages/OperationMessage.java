@@ -19,7 +19,6 @@
 package com.telenav.kivakit.core.messaging.messages;
 
 import com.telenav.kivakit.annotations.code.quality.CodeQuality;
-import com.telenav.kivakit.core.collections.map.StringMap;
 import com.telenav.kivakit.core.internal.lexakai.DiagramMessageType;
 import com.telenav.kivakit.core.language.Arrays;
 import com.telenav.kivakit.core.language.Hash;
@@ -29,20 +28,9 @@ import com.telenav.kivakit.core.logging.Logger;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.messaging.Message;
 import com.telenav.kivakit.core.messaging.MessageFormat;
+import com.telenav.kivakit.core.messaging.Messages;
 import com.telenav.kivakit.core.messaging.context.CodeContext;
 import com.telenav.kivakit.core.messaging.context.StackTrace;
-import com.telenav.kivakit.core.messaging.messages.lifecycle.OperationFailed;
-import com.telenav.kivakit.core.messaging.messages.lifecycle.OperationHalted;
-import com.telenav.kivakit.core.messaging.messages.lifecycle.OperationStarted;
-import com.telenav.kivakit.core.messaging.messages.lifecycle.OperationSucceeded;
-import com.telenav.kivakit.core.messaging.messages.status.Alert;
-import com.telenav.kivakit.core.messaging.messages.status.CriticalAlert;
-import com.telenav.kivakit.core.messaging.messages.status.Glitch;
-import com.telenav.kivakit.core.messaging.messages.status.Information;
-import com.telenav.kivakit.core.messaging.messages.status.Problem;
-import com.telenav.kivakit.core.messaging.messages.status.Trace;
-import com.telenav.kivakit.core.messaging.messages.status.Warning;
-import com.telenav.kivakit.core.messaging.messages.status.activity.Step;
 import com.telenav.kivakit.core.string.Strings;
 import com.telenav.kivakit.core.thread.ReentrancyTracker;
 import com.telenav.kivakit.core.time.Frequency;
@@ -52,8 +40,8 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeSuperTypes;
 import org.jetbrains.annotations.NotNull;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
 import static com.telenav.kivakit.core.messaging.MessageFormat.WITH_EXCEPTION;
 import static com.telenav.kivakit.core.messaging.messages.Importance.importanceOfMessage;
@@ -91,7 +79,7 @@ import static com.telenav.kivakit.core.thread.ReentrancyTracker.Reentrancy.REENT
  *     <li>{@link #importance()}</li>
  *     <li>{@link #maximumFrequency()}</li>
  *     <li>{@link #maximumFrequency(Frequency)}</li>
- *     <li>{@link #message(String)}</li>
+ *     <li>{@link #messageForType(String)}</li>
  *     <li>{@link #severity()}</li>
  *     <li>{@link #stackTrace()}</li>
  *     <li>{@link #stackTrace(StackTrace)}</li>
@@ -118,23 +106,10 @@ import static com.telenav.kivakit.core.thread.ReentrancyTracker.Reentrancy.REENT
              documentation = DOCUMENTATION_COMPLETE)
 public abstract class OperationMessage implements Named, Message
 {
-    /** Map from string to message prototype */
-    private static StringMap<OperationMessage> messagePrototypes;
-
     private static final ReentrancyTracker reentrancy = new ReentrancyTracker();
 
     /** This flag can be helpful in detecting infinite recursion of message formatting */
     private static final boolean DETECT_REENTRANCY = false;
-
-    /**
-     * Gets a message prototype for the given type
-     *
-     * @param type The type of message
-     */
-    public static Message message(Class<? extends Message> type)
-    {
-        return parseMessageType(Listener.throwingListener(), type.getSimpleName());
-    }
 
     /**
      * Returns a new message instance
@@ -159,19 +134,6 @@ public abstract class OperationMessage implements Named, Message
             listener.problem(e, "Unable to create instance: $", type);
             return null;
         }
-    }
-
-    /**
-     * Parses the given message type
-     *
-     * @param listener The listener to report errors to
-     * @param typeName The message type name
-     */
-    public static Message parseMessageType(Listener listener, String typeName)
-    {
-        initialize();
-
-        return listener.problemIfNull(messagePrototypes.get(typeName), "Invalid message name: $", typeName);
     }
 
     /** Formatting arguments */
@@ -201,12 +163,12 @@ public abstract class OperationMessage implements Named, Message
     protected OperationMessage(String message)
     {
         this.message = message;
-        messages().put(name(), this);
+        Messages.builtInMessages().put(name(), this);
     }
 
     protected OperationMessage()
     {
-        messages().put(name(), this);
+        Messages.builtInMessages().put(name(), this);
     }
 
     /**
@@ -408,7 +370,7 @@ public abstract class OperationMessage implements Named, Message
     /**
      * Sets the message text
      */
-    public void message(String message)
+    public void messageForType(String message)
     {
         this.message = message;
     }
@@ -464,35 +426,5 @@ public abstract class OperationMessage implements Named, Message
     public String toString()
     {
         return formatted(WITH_EXCEPTION);
-    }
-
-    private static void initialize()
-    {
-        // Pre-populate the name map
-
-        // Lifecycle messages
-        new OperationStarted();
-        new OperationSucceeded();
-        new OperationFailed();
-        new OperationHalted();
-
-        // Progress messages
-        new Step();
-        new Alert();
-        new CriticalAlert();
-        new Information();
-        new Problem();
-        new Glitch();
-        new Trace();
-        new Warning();
-    }
-
-    private static StringMap<OperationMessage> messages()
-    {
-        if (messagePrototypes == null)
-        {
-            messagePrototypes = new StringMap<>();
-        }
-        return messagePrototypes;
     }
 }

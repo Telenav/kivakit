@@ -78,7 +78,7 @@ public class Failure
     {
         var failureMessage = (OperationMessage) Classes.newInstance(type);
         failureMessage.cause(e);
-        failureMessage.message(message);
+        failureMessage.messageForType(message);
         failureMessage.arguments(arguments);
         reporter(type).report(failureMessage);
     }
