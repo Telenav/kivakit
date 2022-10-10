@@ -30,7 +30,6 @@ import com.telenav.kivakit.core.logging.filters.LogEntriesWithSeverityGreaterTha
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.messaging.messages.Severity;
 import com.telenav.kivakit.core.messaging.messages.status.Problem;
-import com.telenav.kivakit.core.os.Console;
 import com.telenav.kivakit.core.string.ObjectFormatter;
 import com.telenav.kivakit.core.string.Plural;
 import com.telenav.kivakit.core.thread.RepeatingThread;
@@ -49,11 +48,12 @@ import java.util.List;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.atomic.AtomicBoolean;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
 import static com.telenav.kivakit.core.messaging.messages.Severity.NONE;
+import static com.telenav.kivakit.core.os.Console.console;
 import static com.telenav.kivakit.core.thread.KivaKitThread.State.STOP_REQUESTED;
 import static com.telenav.kivakit.core.time.Frequency.CONTINUOUSLY;
 import static com.telenav.kivakit.core.vm.ShutdownHook.Order.LAST;
@@ -422,7 +422,7 @@ public abstract class BaseLog implements
             }
 
             {
-                addListener(new Console());
+                addListener(console());
             }
         };
         return writerThread.start();

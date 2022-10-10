@@ -1,12 +1,12 @@
 package com.telenav.kivakit.internal.tests.resource;
 
-import com.telenav.kivakit.core.os.Console;
 import com.telenav.kivakit.core.vm.JavaTrait;
 import com.telenav.kivakit.resource.packages.PackageTrait;
 import com.telenav.kivakit.testing.UnitTest;
 import org.junit.Ignore;
 import org.junit.Test;
 
+import static com.telenav.kivakit.core.os.Console.console;
 import static com.telenav.kivakit.resource.Extension.TXT;
 
 /**
@@ -15,7 +15,9 @@ import static com.telenav.kivakit.resource.Extension.TXT;
  * @author jonathanl (shibo)
  */
 @Ignore
-public class ResourceGlobTest extends UnitTest implements PackageTrait, JavaTrait
+public class ResourceGlobTest extends UnitTest implements
+        PackageTrait,
+        JavaTrait
 {
     @Test
     public void test()
@@ -23,7 +25,7 @@ public class ResourceGlobTest extends UnitTest implements PackageTrait, JavaTrai
         var here = packageForThis();
         for (var at : here.resources(TXT::matches))
         {
-            Console.println("at = $", at);
+            console().println("at = $", at);
         }
     }
 }

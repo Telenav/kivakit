@@ -27,11 +27,12 @@ import com.telenav.kivakit.core.time.Duration;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeMember;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
-import static com.telenav.kivakit.core.os.Console.OutputStream.ERROR;
-import static com.telenav.kivakit.core.os.Console.OutputStream.NORMAL;
+import static com.telenav.kivakit.core.os.Console.OutputType.ERROR;
+import static com.telenav.kivakit.core.os.Console.OutputType.NORMAL;
+import static com.telenav.kivakit.core.os.Console.console;
 
 /**
  * A text log that logs to the console. Severe log entries are logged to stderr, others to stdout. The formatter can be
@@ -52,7 +53,7 @@ import static com.telenav.kivakit.core.os.Console.OutputStream.NORMAL;
 public class ConsoleLog extends BaseTextLog
 {
     /** The console to log to */
-    private final Console console = new Console();
+    private final Console console = console();
 
     /**
      * {@inheritDoc}
@@ -80,7 +81,6 @@ public class ConsoleLog extends BaseTextLog
      */
     @Override
     @UmlExcludeMember
-    @SuppressWarnings("AccessStaticViaInstance")
     public synchronized void onLog(LogEntry entry)
     {
         var outputType = entry.isSevere() ? ERROR : NORMAL;

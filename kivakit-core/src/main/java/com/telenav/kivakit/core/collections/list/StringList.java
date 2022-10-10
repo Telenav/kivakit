@@ -21,7 +21,6 @@ package com.telenav.kivakit.core.collections.list;
 import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.collections.map.VariableMap;
 import com.telenav.kivakit.core.internal.lexakai.DiagramString;
-import com.telenav.kivakit.core.os.Console;
 import com.telenav.kivakit.core.string.AsciiArt;
 import com.telenav.kivakit.core.string.StringConversions;
 import com.telenav.kivakit.core.string.Strings;
@@ -36,9 +35,10 @@ import java.util.Comparator;
 import java.util.Iterator;
 import java.util.function.Function;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_INSUFFICIENT;
+import static com.telenav.kivakit.core.os.Console.console;
 import static com.telenav.kivakit.core.value.count.Maximum.MAXIMUM;
 
 /**
@@ -512,7 +512,7 @@ public class StringList extends ObjectList<String>
      */
     public StringList println()
     {
-        Console.println(join("\n"));
+        console().println(join("\n"));
         return this;
     }
 
