@@ -41,7 +41,7 @@ import static com.telenav.kivakit.interfaces.time.WakeState.TIMED_OUT;
  * Adds <i>ordered</i> execution of shutdown hooks to the functionality provided by
  * {@link Runtime#addShutdownHook(Thread)}. When the virtual machine shuts down, the hooks registered with
  * {@link ShutdownHook} will be called sequentially according to the ordering provided when the hooks were registered
- * with {@link #register(String, Order, Duration, Runnable)}.
+ * with {@link #registerShutdownHook(String, Order, Duration, Runnable)}.
  *
  * <p>
  * Hooks can request that they be run {@link Order#FIRST}, {@link Order#MIDDLE} or {@link Order#LAST}. The order of
@@ -106,19 +106,19 @@ public class ShutdownHook implements Comparable<ShutdownHook>
         }, "KivaKit-Shutdown"));
     }
 
-    public static void register(String name, Order order, Runnable code)
+    public static void registerShutdownHook(String name, Order order, Runnable code)
     {
-        register(name, order, Duration.minutes(1), code);
+        registerShutdownHook(name, order, Duration.minutes(1), code);
     }
 
-    public static void register(String name, Duration maximumWait, Runnable code)
+    public static void registerShutdownHook(String name, Duration maximumWait, Runnable code)
     {
-        register(name, MIDDLE, maximumWait, code);
+        registerShutdownHook(name, MIDDLE, maximumWait, code);
     }
 
-    public static void register(String name, Runnable code)
+    public static void registerShutdownHook(String name, Runnable code)
     {
-        register(name, MIDDLE, code);
+        registerShutdownHook(name, MIDDLE, code);
     }
 
     /**
@@ -130,7 +130,7 @@ public class ShutdownHook implements Comparable<ShutdownHook>
      * @param maximumWait The maximum time to wait for the hook's code to complete
      * @param code The shutdown hook code to run when the VM shuts down.
      */
-    public static void register(String name, Order order, Duration maximumWait, Runnable code)
+    public static void registerShutdownHook(String name, Order order, Duration maximumWait, Runnable code)
     {
         synchronized (hooks())
         {

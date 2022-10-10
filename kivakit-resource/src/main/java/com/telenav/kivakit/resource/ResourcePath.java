@@ -118,7 +118,7 @@ public class ResourcePath extends StringPath implements
                                                                               @NotNull String name,
                                                                               @NotNull String description)
     {
-        return SwitchParser.switchParserBuilder(ResourcePath.class)
+        return SwitchParser.switchParser(ResourcePath.class)
                 .name(name)
                 .converter(new ResourcePath.Converter(listener))
                 .description(description);

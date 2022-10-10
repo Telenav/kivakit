@@ -30,10 +30,11 @@ import java.util.List;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static java.lang.Thread.currentThread;
 
 /**
- * A stack of KivaKit {@link Method} objects for a given thread ({@link #stack(Thread)} or the current thread
- * {@link #stack()}.
+ * A stack of KivaKit {@link Method} objects for a given thread ({@link #callstack(Thread)} or the current thread
+ * {@link #callstack()}.
  * <p>
  * The caller of a given class on the stack (the "callee") can be determined with
  * {@link #callerOf(Proximity, Matching, Class, Matching, Class[])}, which takes the callee type and a variable number
@@ -83,7 +84,7 @@ public class CallStack
                                   Class<?>... ignores)
     {
         // Get call stack
-        var stack = stack();
+        var stack = callstack();
 
         // Find the index of the callee on the stack using the matching rules
         var callee = calleeType == null ? 0 : findCallee(matching, proximity, stack, calleeType);
@@ -105,16 +106,16 @@ public class CallStack
         return null;
     }
 
-    public static List<Method> stack()
+    public static List<Method> callstack()
     {
-        return stack(Thread.currentThread());
+        return callstack(currentThread());
     }
 
     @SuppressWarnings("unused")
-    public static List<Method> stack(Thread thread)
+    public static List<Method> callstack(Thread thread)
     {
         var stack = new ArrayList<Method>();
-        for (var frame : Thread.currentThread().getStackTrace())
+        for (var frame : currentThread().getStackTrace())
         {
             var method = Method.method(frame);
             if (method != null)

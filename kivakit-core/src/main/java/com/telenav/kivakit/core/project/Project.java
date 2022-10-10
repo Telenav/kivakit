@@ -114,7 +114,7 @@ public abstract class Project extends BaseRepeater implements
         RegistryTrait
 {
     /** Map from project class to project instance used by {@link #resolveProject(Class)} */
-    private static final LazyMap<Class<? extends Project>, Project> projects = LazyMap.of(Project::newProject);
+    private static final LazyMap<Class<? extends Project>, Project> projects = LazyMap.lazyMap(Project::newProject);
 
     /**
      * Resolves the given Project class to a singleton instance.
@@ -217,7 +217,7 @@ public abstract class Project extends BaseRepeater implements
             onInitializing();
 
             // initialize the project
-            if (!StartUpOptions.isEnabled(StartUpOptions.StartupOption.QUIET))
+            if (!StartUpOptions.isStartupOptionEnabled(StartUpOptions.StartupOption.QUIET))
             {
                 announce("Loading$ $ build $",
                         Align.right(getClass().getSimpleName(), 40, '.'),

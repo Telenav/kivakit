@@ -64,8 +64,8 @@ import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
  *
  * <p>
  * Here, settings objects in the "production" {@link Deployment} will be installed into the global settings registry. At
- * a later point, the application can look up those objects with {@link SettingsRegistryTrait#lookupSettings(Class)} and
- * {@link SettingsRegistryTrait#lookupSettings(Class, InstanceIdentifier)}, both of which are provided by the
+ * a later point, the application can look up those objects with {@link SettingsTrait#lookupSettings(Class)} and
+ * {@link SettingsTrait#lookupSettings(Class, InstanceIdentifier)}, both of which are provided by the
  * <i>Component</i> class in the <i>kivakit-component</i> project.
  * </p>
  *
@@ -174,7 +174,7 @@ public class Deployment extends MemorySettingsStore implements Serializable
                                                                           DeploymentSet deployments,
                                                                           String switchName)
     {
-        return SwitchParser.switchParserBuilder(Deployment.class)
+        return SwitchParser.switchParser(Deployment.class)
                 .name("deployment")
                 .validValues(deployments.deployments())
                 .converter(new Deployment.Converter(listener, deployments))

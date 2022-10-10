@@ -268,7 +268,7 @@ public interface ResourceFolder<T extends ResourceFolder<T>> extends
      */
     default Folder materialize()
     {
-        return materializeTo(Folder.temporaryForProcess(NORMAL));
+        return materializeTo(Folder.temporaryFolderForProcess(NORMAL));
     }
 
     /**

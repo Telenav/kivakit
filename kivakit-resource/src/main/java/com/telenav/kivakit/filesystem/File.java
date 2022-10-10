@@ -63,6 +63,7 @@ import static com.telenav.kivakit.core.collections.set.ObjectSet.objectSet;
 import static com.telenav.kivakit.core.ensure.Ensure.ensure;
 import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
 import static com.telenav.kivakit.core.messaging.Listener.nullListener;
+import static com.telenav.kivakit.filesystem.Folders.kivakitTemporaryFolder;
 import static com.telenav.kivakit.filesystem.loader.FileSystemServiceLoader.fileSystem;
 
 /**
@@ -309,14 +310,14 @@ public class File extends BaseWritableResource implements FileSystemObject
     }
 
     /**
-     * Returns a temporary file in the {@link Folders#kivakitTemporary()} folder with the given extension
+     * Returns a temporary file in the {@link Folders#kivakitTemporaryFolder()} folder with the given extension
      *
      * @param extension The extension
      * @return The temporary file
      */
-    public static File temporary(@NotNull Extension extension)
+    public static File temporaryFile(@NotNull Extension extension)
     {
-        return Folders.kivakitTemporary().file("temp-" + temporaryFileNumber++ + extension);
+        return kivakitTemporaryFolder().file("temp-" + temporaryFileNumber++ + extension);
     }
 
     /**
@@ -817,7 +818,7 @@ public class File extends BaseWritableResource implements FileSystemObject
         do
         {
             removedOne = false;
-            for (var extension : Extension.allWellKnownExtensions())
+            for (var extension : Extension.allExtensions())
             {
                 if (file.fileName().endsWith(extension))
                 {

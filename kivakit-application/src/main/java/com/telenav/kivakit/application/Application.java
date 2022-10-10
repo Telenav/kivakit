@@ -77,7 +77,7 @@ import com.telenav.kivakit.serialization.gson.GsonObjectSerializer;
 import com.telenav.kivakit.serialization.properties.PropertiesObjectSerializer;
 import com.telenav.kivakit.settings.Deployment;
 import com.telenav.kivakit.settings.DeploymentSet;
-import com.telenav.kivakit.settings.SettingsRegistryTrait;
+import com.telenav.kivakit.settings.SettingsTrait;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlAggregation;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
@@ -133,7 +133,7 @@ import static com.telenav.kivakit.properties.PropertyMap.loadLocalizedPropertyMa
  *
  * <ul>
  *     <li>{@link PackageTrait} - Provides access to packages and packaged resources</li>
- *     <li>{@link SettingsRegistryTrait} - Loads settings objects and deployment configurations</li>
+ *     <li>{@link SettingsTrait} - Loads settings objects and deployment configurations</li>
  *     <li>{@link RegistryTrait} - Service {@link Registry} access</li>
  *     <li>{@link LanguageTrait} - Enhancements that reduce language verbosity</li>
  *     <li>{@link Repeater} - Message broadcasting, listening and repeating</li>
@@ -266,12 +266,12 @@ import static com.telenav.kivakit.properties.PropertyMap.loadLocalizedPropertyMa
 public abstract class Application extends BaseComponent implements
         PackageTrait,
         ProjectTrait,
-        SettingsRegistryTrait,
+        SettingsTrait,
         Named,
         ApplicationMetadata
 {
     /** The one and only application running in this process */
-    private static Application instance;
+    private static Application application;
 
     /** The default final destination for messages that bubble up to the application level */
     private static final Logger LOGGER = LoggerFactory.newLogger();
@@ -279,9 +279,9 @@ public abstract class Application extends BaseComponent implements
     /**
      * Returns the currently running application
      */
-    public static Application get()
+    public static Application application()
     {
-        return instance;
+        return application;
     }
 
     /**
@@ -391,7 +391,7 @@ public abstract class Application extends BaseComponent implements
         register(this);
         register(LOGGER);
 
-        instance = this;
+        application = this;
     }
 
     /**
@@ -587,7 +587,7 @@ public abstract class Application extends BaseComponent implements
             }
 
             // Enable start-up options,
-            startupOptions().forEach(StartUpOptions::enable);
+            startupOptions().forEach(StartUpOptions::enableStartupOption);
 
             // signal that we are initializing,
             state.transitionTo(INITIALIZING);
@@ -649,7 +649,7 @@ public abstract class Application extends BaseComponent implements
                 registerSettingsIn(get(DEPLOYMENT));
             }
 
-            if (!StartUpOptions.isEnabled(StartupOption.QUIET))
+            if (!StartUpOptions.isStartupOptionEnabled(StartupOption.QUIET))
             {
                 showStartupInformation();
             }

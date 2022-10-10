@@ -24,10 +24,10 @@ import com.telenav.kivakit.network.http.HttpGetResource;
 import com.telenav.kivakit.network.http.internal.lexakai.DiagramHttps;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
-import static com.telenav.kivakit.network.core.NetworkAccessConstraints.DEFAULT;
+import static com.telenav.kivakit.network.core.NetworkAccessConstraints.defaultNetworkAccessConstraints;
 
 /**
  * A resource accessed by HTTPS GET at the given network location using the given access constraints.
@@ -47,6 +47,6 @@ public class SecureHttpGetResource extends HttpGetResource
 
     public SecureHttpGetResource(SecureHttpNetworkLocation location)
     {
-        super(location, DEFAULT);
+        super(location, defaultNetworkAccessConstraints());
     }
 }

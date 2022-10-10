@@ -44,7 +44,7 @@ import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTE
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
-import static com.telenav.kivakit.commandline.SwitchParser.switchParserBuilder;
+import static com.telenav.kivakit.commandline.SwitchParser.switchParser;
 import static com.telenav.kivakit.network.core.Protocol.HTTP;
 import static com.telenav.kivakit.network.core.Protocol.HTTPS;
 
@@ -139,7 +139,7 @@ public class Port implements AsString
      */
     public static SwitchParser.Builder<Port> portSwitchParser(Listener listener, String name, String description)
     {
-        return switchParserBuilder(Port.class)
+        return switchParser(Port.class)
                 .name(name)
                 .converter(new Port.Converter(listener))
                 .description(description);

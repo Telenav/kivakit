@@ -22,8 +22,8 @@ import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 
 import java.util.Collection;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
 
 /**
@@ -44,7 +44,7 @@ public class Collections
      * @param values The values
      * @return The first value
      */
-    public static <T> T first(Collection<T> values)
+    public static <T> T pickOne(Collection<T> values)
     {
         var iterator = values.iterator();
         return iterator.hasNext() ? iterator.next() : null;

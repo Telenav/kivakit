@@ -102,7 +102,7 @@ import static com.telenav.kivakit.resource.ResourceList.resourceList;
  *     <li>{@link #folder(URI)} - A folder for the given URI</li>
  *     <li>{@link #folder(URL)} - A folder for the given URL</li>
  *     <li>{@link #folder(java.io.File)} - A folder for the given Java file</li>
- *     <li>{@link Folders#kivakitTest(Class)} - Folder for test files for the given class</li>
+ *     <li>{@link Folders#kivakitTestFolder(Class)} - Folder for test files for the given class</li>
  *     <li>{@link #parseFolder(Listener, String, Object...)} - A folder for the given string</li>
  *     <li>{@link #parseFolder(String, Object...)}</li>
  * </ul>
@@ -325,12 +325,12 @@ public class Folder extends BaseRepeater implements
     /**
      * Returns unique temporary folder per process
      */
-    public static Folder temporaryForProcess(@NotNull FolderType type)
+    public static Folder temporaryFolderForProcess(@NotNull FolderType type)
     {
         synchronized (temporaryLock)
         {
             var name = "kivakit-process-" + OperatingSystem.operatingSystem().processIdentifier();
-            var temporary = Folders.kivakitTemporary()
+            var temporary = Folders.kivakitTemporaryFolder()
                     .folder("processes")
                     .folder(name)
                     .mkdirs();

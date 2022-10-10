@@ -64,7 +64,7 @@ import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
  *
  * <p>
  * New switches can be created with the switch parser {@link Builder}, which can be accessed through
- * {@link #switchParserBuilder(Class)}. The type parameter is the type of the switch being built. For example, a float
+ * {@link #switchParser(Class)}. The type parameter is the type of the switch being built. For example, a float
  * switch would be of type Float.class. The builder then allows attributes of the switch parser to be specified:
  * <ul>
  *     <li>{@link Builder#name(String)} - The name of the switch on the command line, like "input"</li>
@@ -138,7 +138,7 @@ public class SwitchParser<T> implements Named
      * @param type The type
      * @return The builder
      */
-    public static <T> Builder<T> switchParserBuilder(Class<T> type)
+    public static <T> Builder<T> switchParser(Class<T> type)
     {
         return new Builder<T>().type(type);
     }

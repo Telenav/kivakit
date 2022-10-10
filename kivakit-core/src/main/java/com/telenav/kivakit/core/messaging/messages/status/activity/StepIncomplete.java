@@ -40,8 +40,6 @@ import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_N
              documentation = DOCUMENTATION_COMPLETE)
 public class StepIncomplete extends OperationStatusMessage
 {
-    public static final StepIncomplete INSTANCE = new StepIncomplete();
-
     public StepIncomplete(String message, Object... arguments)
     {
         super(message);

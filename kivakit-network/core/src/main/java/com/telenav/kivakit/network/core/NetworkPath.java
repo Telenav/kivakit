@@ -44,7 +44,7 @@ import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
-import static com.telenav.kivakit.commandline.SwitchParser.switchParserBuilder;
+import static com.telenav.kivakit.commandline.SwitchParser.switchParser;
 
 /**
  * An abstraction for network paths.
@@ -153,7 +153,7 @@ public class NetworkPath extends FilePath
                                                                             String name,
                                                                             String description)
     {
-        return switchParserBuilder(NetworkPath.class)
+        return switchParser(NetworkPath.class)
                 .name(name)
                 .converter(new NetworkPath.Converter(listener))
                 .description(description);

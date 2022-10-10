@@ -46,7 +46,7 @@ public interface MessageTransceiver extends Transceiver
      */
     default Debug debug()
     {
-        return Debug.of(debugClassContext(), this);
+        return Debug.registerDebug(debugClassContext(), this);
     }
 
     /**

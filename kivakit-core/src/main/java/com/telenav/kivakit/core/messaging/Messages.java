@@ -14,6 +14,8 @@ import com.telenav.kivakit.core.messaging.messages.status.Trace;
 import com.telenav.kivakit.core.messaging.messages.status.Warning;
 import com.telenav.kivakit.core.messaging.messages.status.activity.Step;
 
+import static com.telenav.kivakit.core.messaging.Listener.throwingListener;
+
 /**
  * Factory methods and parsing for messages.
  *
@@ -27,7 +29,7 @@ import com.telenav.kivakit.core.messaging.messages.status.activity.Step;
  *
  * <ul>
  *     <li>{@link #messageForType(Class)}</li>
- *     <li>{@link #builtInMessages()}</li>
+ *     <li>{@link #messages()}</li>
  * </ul>
  *
  * @author jonathanl (shibo)
@@ -38,9 +40,23 @@ public class Messages
     private static StringMap<Message> messagePrototypes;
 
     /**
-     * Returns a map of KivaKit's built-in messages
+     * Gets a message prototype for the given type
+     *
+     * @param type The type of message
      */
-    public static StringMap<Message> builtInMessages()
+    public static Message messageForType(Class<? extends Message> type)
+    {
+        return parseMessageType(throwingListener(), type.getSimpleName());
+    }
+
+    /**
+     * <b>Not public API</b>
+     *
+     * <p>
+     * Returns a map of KivaKit's built-in messages
+     * </p>
+     */
+    public static StringMap<Message> messages()
     {
         if (messagePrototypes == null)
         {
@@ -50,13 +66,28 @@ public class Messages
     }
 
     /**
-     * Gets a message prototype for the given type
+     * Returns a new message instance
      *
-     * @param type The type of message
+     * @param listener The listener to call with any problems
+     * @param type The type of message to create
+     * @param message The message text
+     * @param arguments Formatting arguments
+     * @return The message
      */
-    public static Message messageForType(Class<? extends Message> type)
+    public static <MessageType extends Message> MessageType newMessage(Listener listener,
+                                                                       Class<MessageType> type,
+                                                                       String message,
+                                                                       Object[] arguments)
     {
-        return parseMessageType(Listener.throwingListener(), type.getSimpleName());
+        try
+        {
+            return type.getConstructor(String.class, Object[].class).newInstance(message, arguments);
+        }
+        catch (Exception e)
+        {
+            listener.problem(e, "Unable to create instance: $", type);
+            return null;
+        }
     }
 
     /**
@@ -74,7 +105,7 @@ public class Messages
 
     private static void initialize()
     {
-        // Pre-populate the name map
+        // Pre-populate message prototypes
 
         // Lifecycle messages
         new OperationStarted();

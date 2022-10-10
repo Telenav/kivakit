@@ -32,9 +32,10 @@ import com.telenav.kivakit.validation.Validator;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlAggregation;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static com.telenav.kivakit.core.time.Duration.seconds;
 
 /**
  * Access constraints for network requests, including {@link #timeout()} and basic authentication requirements.
@@ -47,7 +48,13 @@ import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
              documentation = DOCUMENTATION_COMPLETE)
 public class NetworkAccessConstraints implements Validatable
 {
-    public static final NetworkAccessConstraints DEFAULT = new NetworkAccessConstraints().timeout(Duration.seconds(60));
+    /**
+     * Returns the default constraints to use for network access
+     */
+    public static NetworkAccessConstraints defaultNetworkAccessConstraints()
+    {
+        return new NetworkAccessConstraints().timeout(seconds(60));
+    }
 
     @UmlAggregation
     private Duration timeout;

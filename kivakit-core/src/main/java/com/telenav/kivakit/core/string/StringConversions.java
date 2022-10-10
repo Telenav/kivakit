@@ -26,8 +26,8 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.ArrayList;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.string.Join.join;
 
@@ -43,14 +43,6 @@ import static com.telenav.kivakit.core.string.Join.join;
              documentation = DOCUMENTATION_COMPLETE)
 public class StringConversions
 {
-    /**
-     * Returns the value as a string or an empty string if it is null
-     */
-    public static String nonNullString(Object value)
-    {
-        return value == null ? "" : toString(value);
-    }
-
     /**
      * Returns the lowest bits of the given value as a binary string
      */
@@ -103,6 +95,14 @@ public class StringConversions
     public static String toHtmlString(String text)
     {
         return text.replaceAll("\n", "<br/>").replaceAll(" ", "&nbsp;");
+    }
+
+    /**
+     * Returns the value as a string or an empty string if it is null
+     */
+    public static String toNonNullString(Object value)
+    {
+        return value == null ? "" : toString(value);
     }
 
     /**

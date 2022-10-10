@@ -49,6 +49,7 @@ import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_N
  *
  * @author jonathanl (shibo)
  */
+@SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramMessaging.class)
 @CodeQuality(stability = STABLE,
              testing = TESTING_NOT_NEEDED,
@@ -103,7 +104,7 @@ public class Importance extends Level
      * @param high The higher importance message class
      * @return The importance between the two message classes
      */
-    public static Importance register(Class<? extends Message> low, Class<? extends Message> high)
+    public static Importance registerImportance(Class<? extends Message> low, Class<? extends Message> high)
     {
         var lowValue = levels.get(low).asZeroToOne();
         var highValue = levels.get(high).asZeroToOne();

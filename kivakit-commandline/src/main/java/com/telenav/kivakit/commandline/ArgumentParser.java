@@ -48,7 +48,7 @@ import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
  *
  * <p>
  * New argument parsers can be created with the argument parser {@link Builder}, which can be accessed through
- * {@link #argumentParserBuilder(Class)}. The type parameter is the type of the argument parser being built. For
+ * {@link #argumentParser(Class)}. The type parameter is the type of the argument parser being built. For
  * example, a float switch would be of type Float.class. The builder then allows attributes of the argument parser to be
  * specified:
  * <ul>
@@ -107,7 +107,7 @@ public class ArgumentParser<T>
      * @param type The type of object the argument parser will produce
      * @return The parser builder
      */
-    public static <T> Builder<T> argumentParserBuilder(Class<T> type)
+    public static <T> Builder<T> argumentParser(Class<T> type)
     {
         return new Builder<T>().type(type);
     }

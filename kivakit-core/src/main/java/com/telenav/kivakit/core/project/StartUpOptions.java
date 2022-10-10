@@ -5,8 +5,8 @@ import com.telenav.kivakit.core.collections.set.ConcurrentHashSet;
 
 import java.util.Set;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
 
 /**
@@ -24,22 +24,22 @@ public class StartUpOptions
     private static final Set<StartupOption> options = new ConcurrentHashSet<>();
 
     /** Disables the given option */
-    public static void disable(StartupOption option)
+    public static void disableStartupOption(StartupOption option)
     {
         options.remove(option);
     }
 
     /** Enables the given option */
-    public static void enable(StartupOption option)
+    public static void enableStartupOption(StartupOption option)
     {
-        disable(option);
+        disableStartupOption(option);
         options.add(option);
     }
 
     /**
      * Returns true if the given option is enabled
      */
-    public static boolean isEnabled(StartupOption option)
+    public static boolean isStartupOptionEnabled(StartupOption option)
     {
         return options.contains(option);
     }

@@ -212,8 +212,8 @@ public class KryoTypes implements Named
             }
         }
 
-        var thisFirstEntry = Collections.first(entries.values());
-        var thatFirstEntry = Collections.first(that.entries.values());
+        var thisFirstEntry = Collections.pickOne(entries.values());
+        var thatFirstEntry = Collections.pickOne(that.entries.values());
 
         assert thisFirstEntry != null;
         assert thatFirstEntry != null;

@@ -34,8 +34,8 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 import java.util.HashMap;
 import java.util.Map;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.project.Project.resolveProject;
 
@@ -103,7 +103,7 @@ public final class Debug implements MessageTransceiver
         debugging = debugEnableState(Debug.class);
     }
 
-    public static Debug of(Class<?> type, Transceiver transceiver)
+    public static Debug registerDebug(Class<?> type, Transceiver transceiver)
     {
         synchronized (classToDebug)
         {
@@ -116,7 +116,7 @@ public final class Debug implements MessageTransceiver
         }
     }
 
-    public static void unregister(Class<?> type)
+    public static void unregisterDebug(Class<?> type)
     {
         synchronized (classToDebug)
         {
@@ -269,7 +269,7 @@ public final class Debug implements MessageTransceiver
                 var log = property("KIVAKIT_LOG");
                 var kivakitVersion = resolveProject(KivaKit.class).kivakitVersion();
                 var title = "KivaKit " + kivakitVersion + " (" + resolveProject(KivaKit.class).build() + ")";
-                if (!StartUpOptions.isEnabled(StartUpOptions.StartupOption.QUIET))
+                if (!StartUpOptions.isStartupOptionEnabled(StartUpOptions.StartupOption.QUIET))
                 {
                     LOGGER.information(AsciiArt.textBox(title, "      Logging: https://tinyurl.com/mhc3ss5s\n"
                                     + "    Debugging: https://tinyurl.com/2xycuvph\n"
@@ -312,7 +312,7 @@ public final class Debug implements MessageTransceiver
 
     private static boolean matches(Class<?> type, String simplifiedPattern, boolean checkParent)
     {
-        var pattern = Patterns.simplified(simplifiedPattern);
+        var pattern = Patterns.simplifiedPattern(simplifiedPattern);
         if (checkParent)
         {
             for (var at = type; at != null; at = at.getSuperclass())

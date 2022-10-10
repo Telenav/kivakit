@@ -27,8 +27,8 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Arrays;
 import java.util.Collection;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.string.Join.join;
 
@@ -111,37 +111,6 @@ public class AsciiArt
     public static String bottomLine()
     {
         return bottomLine(LINE_LENGTH);
-    }
-
-    /**
-     * Returns a box using the given horizontal and vertical line drawing characters that contains the given message
-     */
-    public static String box(String message, char horizontal, char vertical)
-    {
-        var builder = new StringBuilder();
-        var width = widestLine(message);
-        builder.append(repeat(width + 6, horizontal));
-        builder.append('\n');
-        var lines = message.split("\n");
-        for (var line : lines)
-        {
-            builder.append(vertical);
-            builder.append("  ");
-            builder.append(Align.left(line, width, ' '));
-            builder.append("  ");
-            builder.append(vertical);
-            builder.append('\n');
-        }
-        builder.append(repeat(width + 6, horizontal));
-        return builder.toString();
-    }
-
-    /**
-     * Returns an ASCII art box containing the given message
-     */
-    public static String box(String message, Object... arguments)
-    {
-        return box(Strings.format(message, arguments), HORIZONTAL_LINE_CHARACTER, VERTICAL_LINE_CHARACTER);
     }
 
     /**
@@ -267,6 +236,37 @@ public class AsciiArt
     public static String spaces(int count)
     {
         return repeat(count, ' ');
+    }
+
+    /**
+     * Returns a box using the given horizontal and vertical line drawing characters that contains the given message
+     */
+    public static String textBox(String message, char horizontal, char vertical)
+    {
+        var builder = new StringBuilder();
+        var width = widestLine(message);
+        builder.append(repeat(width + 6, horizontal));
+        builder.append('\n');
+        var lines = message.split("\n");
+        for (var line : lines)
+        {
+            builder.append(vertical);
+            builder.append("  ");
+            builder.append(Align.left(line, width, ' '));
+            builder.append("  ");
+            builder.append(vertical);
+            builder.append('\n');
+        }
+        builder.append(repeat(width + 6, horizontal));
+        return builder.toString();
+    }
+
+    /**
+     * Returns an ASCII art box containing the given message
+     */
+    public static String textBox(String message, Object... arguments)
+    {
+        return textBox(Strings.format(message, arguments), HORIZONTAL_LINE_CHARACTER, VERTICAL_LINE_CHARACTER);
     }
 
     /**

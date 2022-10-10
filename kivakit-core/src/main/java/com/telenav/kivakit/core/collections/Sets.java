@@ -54,7 +54,7 @@ import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
  * <p><b>Other</b></p>
  *
  * <ul>
- *     <li>{@link #first(Set)}</li>
+ *     <li>{@link #pickOne(Set)}</li>
  *     <li>{@link #unionOf(Set, Set)}</li>
  * </ul>
  *
@@ -99,7 +99,7 @@ public class Sets
     /**
      * Returns the first available value in the set or null. Which value is returned is not defined.
      */
-    public static <Value> Value first(Set<Value> set)
+    public static <Value> Value pickOne(Set<Value> set)
     {
         return set.isEmpty() ? null : set.iterator().next();
     }

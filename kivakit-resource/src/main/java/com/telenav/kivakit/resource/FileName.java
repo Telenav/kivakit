@@ -61,8 +61,8 @@ import static com.telenav.kivakit.core.messaging.Listener.throwingListener;
  *     <li>{@link #fileNameForDateTime(LocalTime, ZoneId)}</li>
  *     <li>{@link #fileNameForTime(LocalTime)}</li>
  *     <li>{@link #fileNameForTime(LocalTime, ZoneId)}</li>
- *     <li>{@link #parseDateTime(Listener, String)}</li>
- *     <li>{@link #parseDateTime(Listener, String, ZoneId)}</li>
+ *     <li>{@link #parseDateTimeFileName(Listener, String)}</li>
+ *     <li>{@link #parseDateTimeFileName(Listener, String, ZoneId)}</li>
  *     <li>{@link #parseFileName(Listener, String)}</li>
  * </ul>
  *
@@ -201,8 +201,8 @@ public class FileName implements Named, Comparable<FileName>
      * @param listener The listener to call with any problems
      * @param text The text to parse
      */
-    public static LocalTime parseDateTime(@NotNull Listener listener,
-                                          @NotNull String text)
+    public static LocalTime parseDateTimeFileName(@NotNull Listener listener,
+                                                  @NotNull String text)
     {
         return new LocalDateTimeConverter(listener).convert(text);
     }
@@ -214,9 +214,9 @@ public class FileName implements Named, Comparable<FileName>
      * @param text The text to parse
      * @param zone The timezone
      */
-    public static LocalTime parseDateTime(@NotNull Listener listener,
-                                          @NotNull String text,
-                                          @NotNull ZoneId zone)
+    public static LocalTime parseDateTimeFileName(@NotNull Listener listener,
+                                                  @NotNull String text,
+                                                  @NotNull ZoneId zone)
     {
         return new LocalDateTimeConverter(listener, zone).convert(text);
     }
@@ -502,7 +502,7 @@ public class FileName implements Named, Comparable<FileName>
         do
         {
             removedOne = false;
-            for (var extension : Extension.allWellKnownExtensions())
+            for (var extension : Extension.allExtensions())
             {
                 if (name.endsWith(extension))
                 {

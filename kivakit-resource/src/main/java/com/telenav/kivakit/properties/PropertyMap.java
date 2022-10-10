@@ -417,7 +417,7 @@ public class PropertyMap extends VariableMap<String>
     public void save(@NotNull WritableResource resource, @NotNull String heading)
     {
         var out = resource.printWriter();
-        out.println(AsciiArt.box(heading, '#', '#'));
+        out.println(AsciiArt.textBox(heading, '#', '#'));
         out.println("");
         out.println(this);
         out.close();

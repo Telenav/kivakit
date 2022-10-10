@@ -9,7 +9,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
 
-import static com.telenav.kivakit.commandline.ArgumentParser.argumentParserBuilder;
+import static com.telenav.kivakit.commandline.ArgumentParser.argumentParser;
 import static com.telenav.kivakit.core.ensure.Ensure.fail;
 import static com.telenav.kivakit.core.messaging.Listener.throwingListener;
 import static com.telenav.kivakit.core.project.Project.resolveProject;
@@ -22,11 +22,11 @@ import static com.telenav.kivakit.core.project.Project.resolveProject;
  * <ul>
  *     <li>{@link #currentFolder()}</li>
  *     <li>{@link #desktopFolder()}</li>
- *     <li>{@link #kivakitCache()}</li>
+ *     <li>{@link #kivakitCacheFolder()}</li>
  *     <li>{@link #kivakitExtensionsHome()}</li>
  *     <li>{@link #kivakitHome()}</li>
- *     <li>{@link #kivakitTemporary()}</li>
- *     <li>{@link #kivakitTest(Class)}</li>
+ *     <li>{@link #kivakitTemporaryFolder()}</li>
+ *     <li>{@link #kivakitTestFolder(Class)}</li>
  * </ul>
  *
  * <p><b>Command Line Parsing</b></p>
@@ -75,7 +75,7 @@ public class Folders
     public static ArgumentParser.Builder<Folder> folderArgumentParser(@NotNull Listener listener,
                                                                       @NotNull String description)
     {
-        return argumentParserBuilder(Folder.class)
+        return argumentParser(Folder.class)
                 .converter(new Folder.Converter(listener))
                 .description(description);
     }
@@ -90,7 +90,7 @@ public class Folders
     public static ArgumentParser.Builder<FolderList> folderListArgumentParser(@NotNull Listener listener,
                                                                               @NotNull String description)
     {
-        return argumentParserBuilder(FolderList.class)
+        return argumentParser(FolderList.class)
                 .converter(new FolderList.Converter(listener))
                 .description(description);
     }
@@ -107,7 +107,7 @@ public class Folders
                                                                           @NotNull String name,
                                                                           @NotNull String description)
     {
-        return SwitchParser.switchParserBuilder(FolderList.class)
+        return SwitchParser.switchParser(FolderList.class)
                 .name(name)
                 .converter(new FolderList.Converter(listener))
                 .description(description);
@@ -124,7 +124,7 @@ public class Folders
                                                                   @NotNull String name,
                                                                   @NotNull String description)
     {
-        return SwitchParser.switchParserBuilder(Folder.class)
+        return SwitchParser.switchParser(Folder.class)
                 .name(name)
                 .converter(new Folder.Converter(listener))
                 .description(description);
@@ -133,9 +133,9 @@ public class Folders
     /**
      * Returns the KivaKit cache folder
      */
-    public static Folder kivakitCache()
+    public static Folder kivakitCacheFolder()
     {
-        return Folder.folder(resolveProject(KivaKit.class).cacheFolderPath()).mkdirs();
+        return Folder.folder(resolveProject(KivaKit.class).kivakitCacheFolderPath()).mkdirs();
     }
 
     /**
@@ -151,7 +151,7 @@ public class Folders
      */
     public static Folder kivakitHome()
     {
-        var home = resolveProject(KivaKit.class).homeFolderPath();
+        var home = resolveProject(KivaKit.class).kivakitHomeFolderPath();
         if (home != null)
         {
             return Folder.folder(home);
@@ -162,9 +162,9 @@ public class Folders
     /**
      * Returns the KivaKit temporary folder
      */
-    public static Folder kivakitTemporary()
+    public static Folder kivakitTemporaryFolder()
     {
-        return kivakitCache().folder("temporary").mkdirs();
+        return kivakitCacheFolder().folder("temporary").mkdirs();
     }
 
     /**
@@ -173,9 +173,9 @@ public class Folders
      * @param type The type to use as a sub-folder name
      * @return The folder
      */
-    public static Folder kivakitTest(@NotNull Class<?> type)
+    public static Folder kivakitTestFolder(@NotNull Class<?> type)
     {
-        return kivakitTemporary().folder("test").folder(type.getSimpleName()).mkdirs();
+        return kivakitTemporaryFolder().folder("test").folder(type.getSimpleName()).mkdirs();
     }
 
     /**

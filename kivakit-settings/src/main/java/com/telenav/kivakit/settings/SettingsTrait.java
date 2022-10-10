@@ -8,17 +8,19 @@ import com.telenav.kivakit.core.registry.InstanceIdentifier;
 import com.telenav.kivakit.resource.ResourceFolder;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
 import static com.telenav.kivakit.core.registry.InstanceIdentifier.singletonInstanceIdentifier;
+import static com.telenav.kivakit.settings.SettingsRegistry.settingsFor;
 
 /**
  * <p>
- * A stateless trait for accessing the {@link SettingsRegistry} for the implementing component. Settings for a component can be
- * retrieved with {@link #settingsRegistry()}. This provides a simplified interface to load settings objects specified
- * by the user while also allowing for default settings when they are not specified. See {@link SettingsRegistry} for details.
+ * A stateless trait for accessing the {@link SettingsRegistry} for the implementing component. Settings for a component
+ * can be retrieved with {@link #settingsForThis()}. This provides a simplified interface to load settings objects
+ * specified by the user while also allowing for default settings when they are not specified. See
+ * {@link SettingsRegistry} for details.
  * </p>
  *
  * <p>
@@ -31,7 +33,7 @@ import static com.telenav.kivakit.core.registry.InstanceIdentifier.singletonInst
  * <p><b>Registry Access</b></p>
  *
  * <ul>
- *     <li>{@link #settingsRegistry()}</li>
+ *     <li>{@link #settingsForThis()}</li>
  * </ul>
  *
  * <p><b>Register methods</b></p>
@@ -56,7 +58,7 @@ import static com.telenav.kivakit.core.registry.InstanceIdentifier.singletonInst
  *     <li>{@link #requireSettings(Class)} - Locates the registered instance of the given class or fails</li>
  *     <li>{@link #requireSettings(Class, Enum)} - Locates the specified registered instance of the given class or fails</li>
  *     <li>{@link #requireSettings(Class, InstanceIdentifier)} - Locates the specified registered instance of the given class or fails</li>
- *     <li>{@link #settingsRegistry()} - The {@link SettingsRegistry} for this object</li>
+ *     <li>{@link #settingsForThis()} - The {@link SettingsRegistry} for this object</li>
  * </ul>
  *
  * <p><b>Loading</b></p>
@@ -81,7 +83,7 @@ import static com.telenav.kivakit.core.registry.InstanceIdentifier.singletonInst
 @CodeQuality(stability = STABLE_EXTENSIBLE,
              testing = UNTESTED,
              documentation = DOCUMENTATION_COMPLETE)
-public interface SettingsRegistryTrait extends Repeater
+public interface SettingsTrait extends Repeater
 {
     /**
      * Returns true if this set has a settings object of the given type
@@ -113,7 +115,7 @@ public interface SettingsRegistryTrait extends Repeater
     @UmlRelation(label = "gets values")
     default <T> T lookupSettings(Class<T> type)
     {
-        return settingsRegistry().lookupSettings(type);
+        return settingsForThis().lookupSettings(type);
     }
 
     /**
@@ -124,7 +126,7 @@ public interface SettingsRegistryTrait extends Repeater
                                  InstanceIdentifier instance,
                                  ResourceFolder<?> defaultSettings)
     {
-        return settingsRegistry().lookupSettings(settingsClass, instance, defaultSettings);
+        return settingsForThis().lookupSettings(settingsClass, instance, defaultSettings);
     }
 
     /**
@@ -132,7 +134,7 @@ public interface SettingsRegistryTrait extends Repeater
      */
     default <T> T lookupSettings(Class<T> type, InstanceIdentifier instance)
     {
-        return settingsRegistry().lookupSettings(type, instance);
+        return settingsForThis().lookupSettings(type, instance);
     }
 
     /**
@@ -140,7 +142,7 @@ public interface SettingsRegistryTrait extends Repeater
      */
     default <T> T lookupSettings(Class<T> type, Enum<?> instance)
     {
-        return settingsRegistry().lookupSettings(type, InstanceIdentifier.instanceIdentifier(instance));
+        return settingsForThis().lookupSettings(type, InstanceIdentifier.instanceIdentifier(instance));
     }
 
     /**
@@ -164,7 +166,7 @@ public interface SettingsRegistryTrait extends Repeater
      */
     default SettingsRegistry registerSettings(Object settings, InstanceIdentifier instance)
     {
-        return settingsRegistry().registerSettings(settings, instance);
+        return settingsForThis().registerSettings(settings, instance);
     }
 
     /**
@@ -172,7 +174,7 @@ public interface SettingsRegistryTrait extends Repeater
      */
     default SettingsRegistry registerSettingsIn(SettingsStore settings)
     {
-        return settingsRegistry().registerSettingsIn(settings);
+        return settingsForThis().registerSettingsIn(settings);
     }
 
     /**
@@ -238,6 +240,14 @@ public interface SettingsRegistryTrait extends Repeater
     }
 
     /**
+     * Returns the setting registry for this object. Normally, this is the global settings registry.
+     */
+    default SettingsRegistry settingsForThis()
+    {
+        return settingsFor(this);
+    }
+
+    /**
      * Returns the settings objects in the given store
      *
      * @return The settings in the given store
@@ -247,16 +257,11 @@ public interface SettingsRegistryTrait extends Repeater
         return store.indexed();
     }
 
-    default SettingsRegistry settingsRegistry()
-    {
-        return SettingsRegistry.settingsFor(this);
-    }
-
     /**
      * Returns true if all settings were cleared
      */
     default boolean unloadSettings()
     {
-        return settingsRegistry().unload();
+        return settingsForThis().unload();
     }
 }

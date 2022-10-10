@@ -46,7 +46,7 @@ public class StringSimilarity
      *
      * @return Comparison value for the two strings
      */
-    public static int compare(String a, String b)
+    public static int compareStrings(String a, String b)
     {
         if (a == null && b == null)
         {

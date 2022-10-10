@@ -25,8 +25,8 @@ import com.telenav.kivakit.interfaces.factory.Factory;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 
 /**
@@ -37,6 +37,7 @@ import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
  * @see Logger
  * @see LogServiceLogger
  */
+@SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramLogging.class)
 @UmlRelation(label = "creates", referent = Logger.class)
 @CodeQuality(stability = STABLE,
@@ -52,7 +53,7 @@ public class LoggerFactory
      *
      * @param factory The logger factory to use
      */
-    public static void factory(Factory<Logger> factory)
+    public static void globalLoggerFactory(Factory<Logger> factory)
     {
         LoggerFactory.factory = factory;
     }

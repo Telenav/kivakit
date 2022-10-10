@@ -38,10 +38,12 @@ import java.net.URISyntaxException;
 import java.net.http.HttpRequest;
 import java.util.List;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.ensure.Ensure.ensure;
+import static com.telenav.kivakit.network.core.NetworkAccessConstraints.defaultNetworkAccessConstraints;
 
 /**
  * An HTTP network location.
@@ -79,6 +81,7 @@ import static com.telenav.kivakit.core.ensure.Ensure.ensure;
  *
  * @author jonathanl (shibo)
  */
+@SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramHttp.class)
 @CodeQuality(stability = STABLE_EXTENSIBLE,
              testing = UNTESTED,
@@ -95,7 +98,7 @@ public class HttpNetworkLocation extends NetworkLocation implements Resourceful
      *
      * @author jonathanl (shibo)
      */
-    @CodeQuality(stability = STABLE_EXTENSIBLE,
+    @CodeQuality(stability = STABLE,
                  testing = UNTESTED,
                  documentation = DOCUMENTATION_COMPLETE)
     public static class Converter extends BaseStringConverter<HttpNetworkLocation>
@@ -163,7 +166,7 @@ public class HttpNetworkLocation extends NetworkLocation implements Resourceful
      */
     public HttpGetResource get()
     {
-        return get(NetworkAccessConstraints.DEFAULT);
+        return get(defaultNetworkAccessConstraints());
     }
 
     /**
@@ -198,7 +201,7 @@ public class HttpNetworkLocation extends NetworkLocation implements Resourceful
      */
     public HttpGetResource get(String contentType)
     {
-        return get(NetworkAccessConstraints.DEFAULT, contentType);
+        return get(defaultNetworkAccessConstraints(), contentType);
     }
 
     /**
@@ -215,7 +218,7 @@ public class HttpNetworkLocation extends NetworkLocation implements Resourceful
     @UmlRelation(label = "creates")
     public HttpPostResource post()
     {
-        return post(NetworkAccessConstraints.DEFAULT);
+        return post(defaultNetworkAccessConstraints());
     }
 
     /**
@@ -266,7 +269,7 @@ public class HttpNetworkLocation extends NetworkLocation implements Resourceful
      */
     public HttpPostResource post(String content)
     {
-        return post(NetworkAccessConstraints.DEFAULT, content);
+        return post(defaultNetworkAccessConstraints(), content);
     }
 
     /**
@@ -274,7 +277,7 @@ public class HttpNetworkLocation extends NetworkLocation implements Resourceful
      */
     public HttpPostResource post(String contentType, String content)
     {
-        return post(NetworkAccessConstraints.DEFAULT, contentType, content);
+        return post(defaultNetworkAccessConstraints(), contentType, content);
     }
 
     public HttpPutResource put(NetworkAccessConstraints constraints,
@@ -300,7 +303,7 @@ public class HttpNetworkLocation extends NetworkLocation implements Resourceful
     @UmlRelation(label = "creates")
     public HttpPutResource put(String contentType, String content)
     {
-        return put(NetworkAccessConstraints.DEFAULT, contentType, content);
+        return put(defaultNetworkAccessConstraints(), contentType, content);
     }
 
     /**

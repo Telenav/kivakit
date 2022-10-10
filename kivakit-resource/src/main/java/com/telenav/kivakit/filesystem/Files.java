@@ -39,7 +39,7 @@ public class Files
     public static ArgumentParser.Builder<File> fileArgumentParser(@NotNull Listener listener,
                                                                   @NotNull String description)
     {
-        return ArgumentParser.argumentParserBuilder(File.class)
+        return ArgumentParser.argumentParser(File.class)
                 .converter(new File.Converter(listener))
                 .description(description);
     }
@@ -56,7 +56,7 @@ public class Files
                                                                           @NotNull String description,
                                                                           @NotNull Extension extension)
     {
-        return ArgumentParser.argumentParserBuilder(FileList.class)
+        return ArgumentParser.argumentParser(FileList.class)
                 .converter(new FileList.Converter(listener, extension))
                 .description(description);
     }
@@ -75,7 +75,7 @@ public class Files
                                                                       @NotNull String description,
                                                                       @NotNull Extension extension)
     {
-        return SwitchParser.switchParserBuilder(FileList.class)
+        return SwitchParser.switchParser(FileList.class)
                 .name(name)
                 .converter(new FileList.Converter(listener, extension))
                 .description(description);
@@ -93,7 +93,7 @@ public class Files
                                                                       @NotNull String name,
                                                                       @NotNull String description)
     {
-        return SwitchParser.switchParserBuilder(FilePath.class)
+        return SwitchParser.switchParser(FilePath.class)
                 .name(name)
                 .converter(new FilePath.Converter(listener))
                 .description(description);
@@ -111,7 +111,7 @@ public class Files
                                                               @NotNull String name,
                                                               @NotNull String description)
     {
-        return SwitchParser.switchParserBuilder(File.class)
+        return SwitchParser.switchParser(File.class)
                 .name(name)
                 .converter(new File.Converter(listener))
                 .description(description);

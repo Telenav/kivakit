@@ -31,8 +31,8 @@ import java.util.Arrays;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static java.util.concurrent.TimeUnit.MILLISECONDS;
 
@@ -41,6 +41,7 @@ import static java.util.concurrent.TimeUnit.MILLISECONDS;
  *
  * @author jonathanl (shibo)
  */
+@SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramThread.class)
 @CodeQuality(stability = STABLE_EXTENSIBLE,
              testing = UNTESTED,
@@ -50,10 +51,10 @@ public class Threads
     /**
      * Returns all threads in the virtual machine
      */
-    public static Iterable<Thread> all()
+    public static Iterable<Thread> allThreads()
     {
         // Get the root thread group
-        var rootGroup = rootGroup();
+        var rootGroup = rootThreadGroup();
 
         // Initially expect the larger of 8 or the number of active threads
         var expected = Math.max(8, rootGroup.activeCount());
@@ -84,7 +85,7 @@ public class Threads
     /**
      * Returns the root thread group
      */
-    public static ThreadGroup rootGroup()
+    public static ThreadGroup rootThreadGroup()
     {
         ThreadGroup root = null;
         for (var current = Thread.currentThread().getThreadGroup(); current != null; current = current.getParent())

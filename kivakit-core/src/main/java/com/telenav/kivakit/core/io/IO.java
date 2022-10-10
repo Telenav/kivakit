@@ -38,8 +38,8 @@ import java.io.Writer;
 import java.util.stream.Collectors;
 import java.util.zip.ZipFile;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
 import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
 import static com.telenav.kivakit.core.io.IO.CopyStyle.BUFFERED;
@@ -61,8 +61,8 @@ import static com.telenav.kivakit.core.io.IO.CopyStyle.BUFFERED;
  *     <li>{@link #readByte(Listener, InputStream)}</li>
  *     <li>{@link #readBytes(Listener, InputStream)}</li>
  *     <li>{@link #skip(Listener, InputStream, long)}</li>
- *     <li>{@link #string(Listener, Reader)}</li>
- *     <li>{@link #string(Listener, InputStream)}</li>
+ *     <li>{@link #readString(Listener, Reader)}</li>
+ *     <li>{@link #readString(Listener, InputStream)}</li>
  * </ul>
  *
  * <p><b>Copying</b></p>
@@ -364,33 +364,17 @@ public class IO
     }
 
     /**
-     * Skips the given number of bytes in the given input stream
+     * Reads a string from the given input
      */
-    @SuppressWarnings("ResultOfMethodCallIgnored")
-    public static void skip(Listener listener, InputStream in, long offset)
+    public static String readString(Listener listener, InputStream in)
     {
-        try
-        {
-            in.skip(offset);
-        }
-        catch (IOException e)
-        {
-            listener.problem(e, "Can't skip bytes on input stream");
-        }
+        return readString(listener, new InputStreamReader(bufferInput(in)));
     }
 
     /**
      * Reads a string from the given input
      */
-    public static String string(Listener listener, InputStream in)
-    {
-        return string(listener, new InputStreamReader(bufferInput(in)));
-    }
-
-    /**
-     * Reads a string from the given input
-     */
-    public static String string(Listener listener, Reader in)
+    public static String readString(Listener listener, Reader in)
     {
         try
         {
@@ -403,6 +387,22 @@ public class IO
         {
             listener.problem(e, "Unable to read string from input stream");
             return null;
+        }
+    }
+
+    /**
+     * Skips the given number of bytes in the given input stream
+     */
+    @SuppressWarnings("ResultOfMethodCallIgnored")
+    public static void skip(Listener listener, InputStream in, long offset)
+    {
+        try
+        {
+            in.skip(offset);
+        }
+        catch (IOException e)
+        {
+            listener.problem(e, "Can't skip bytes on input stream");
         }
     }
 

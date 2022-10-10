@@ -35,8 +35,8 @@ import com.telenav.kivakit.core.value.level.Percent;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import org.jetbrains.annotations.NotNull;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.time.Duration.seconds;
 
@@ -102,19 +102,19 @@ public class BroadcastingProgressReporter extends Multicaster implements Progres
     /** The fastest rate at which we should report progress */
     private static final Duration REPORT_FASTEST = seconds(0.25);
 
-    public static BroadcastingProgressReporter createConcurrentProgressReporter(Listener listener)
+    public static BroadcastingProgressReporter concurrentProgressReporter(Listener listener)
     {
-        return createConcurrentProgressReporter(listener, "items");
+        return concurrentProgressReporter(listener, "items");
     }
 
-    public static BroadcastingProgressReporter createConcurrentProgressReporter(Listener listener, String itemName)
+    public static BroadcastingProgressReporter concurrentProgressReporter(Listener listener, String itemName)
     {
-        return createConcurrentProgressReporter(listener, itemName, null);
+        return concurrentProgressReporter(listener, itemName, null);
     }
 
-    public static BroadcastingProgressReporter createConcurrentProgressReporter(Listener listener,
-                                                                                String itemName,
-                                                                                BaseCount<?> steps)
+    public static BroadcastingProgressReporter concurrentProgressReporter(Listener listener,
+                                                                          String itemName,
+                                                                          BaseCount<?> steps)
     {
         return listener.listenTo(new ConcurrentBroadcastingProgressReporter()
                 .withUnits(itemName)
@@ -126,27 +126,27 @@ public class BroadcastingProgressReporter extends Multicaster implements Progres
      * @param itemName The item that is being processed, like "bytes"
      * @param steps The number of steps in the operation
      */
-    public static BroadcastingProgressReporter createProgressReporter(Listener listener, String itemName,
-                                                                      BaseCount<?> steps)
+    public static BroadcastingProgressReporter progressReporter(Listener listener, String itemName,
+                                                                BaseCount<?> steps)
     {
         return listener.listenTo(new BroadcastingProgressReporter()
                 .withUnits(itemName)
                 .withSteps(steps));
     }
 
-    public static BroadcastingProgressReporter createProgressReporter()
+    public static BroadcastingProgressReporter progressReporter()
     {
-        return BroadcastingProgressReporter.createProgressReporter(Listener.nullListener());
+        return BroadcastingProgressReporter.progressReporter(Listener.nullListener());
     }
 
-    public static BroadcastingProgressReporter createProgressReporter(Listener listener)
+    public static BroadcastingProgressReporter progressReporter(Listener listener)
     {
-        return createProgressReporter(listener, "items");
+        return progressReporter(listener, "items");
     }
 
-    public static BroadcastingProgressReporter createProgressReporter(Listener listener, String itemName)
+    public static BroadcastingProgressReporter progressReporter(Listener listener, String itemName)
     {
-        return createProgressReporter(listener, itemName, null);
+        return progressReporter(listener, itemName, null);
     }
 
     /** The current step */
@@ -246,16 +246,6 @@ public class BroadcastingProgressReporter extends Multicaster implements Progres
      * {@inheritDoc}
      */
     @Override
-    public BroadcastingProgressReporter progressReporter(ProgressListener listener)
-    {
-        this.listener = listener;
-        return this;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
     public void next()
     {
         // HOTSPOT: This method has been determined to be a hotspot by YourKit profiling
@@ -308,6 +298,16 @@ public class BroadcastingProgressReporter extends Multicaster implements Progres
     {
         this.phase = phase;
         reset();
+        return this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public BroadcastingProgressReporter progressReporter(ProgressListener listener)
+    {
+        this.listener = listener;
         return this;
     }
 

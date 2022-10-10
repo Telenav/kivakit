@@ -24,8 +24,8 @@ import com.telenav.kivakit.core.messaging.messages.OperationStatusMessage;
 import com.telenav.kivakit.core.messaging.messages.Severity;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
 import static com.telenav.kivakit.core.messaging.Message.Status.SUCCEEDED;
 import static com.telenav.kivakit.core.messaging.messages.Severity.NONE;
@@ -41,8 +41,6 @@ import static com.telenav.kivakit.core.messaging.messages.Severity.NONE;
              documentation = DOCUMENTATION_COMPLETE)
 public class StepSuccess extends OperationStatusMessage
 {
-    public static final StepSuccess INSTANCE = new StepSuccess();
-
     public StepSuccess(String message, Object... arguments)
     {
         super(message);

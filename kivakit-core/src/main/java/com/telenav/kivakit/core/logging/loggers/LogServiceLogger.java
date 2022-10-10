@@ -26,8 +26,6 @@ import com.telenav.kivakit.core.internal.lexakai.DiagramLogging;
 import com.telenav.kivakit.core.logging.Log;
 import com.telenav.kivakit.core.logging.LoggerCodeContext;
 import com.telenav.kivakit.core.logging.logs.text.ConsoleLog;
-import com.telenav.kivakit.core.messaging.Listener;
-import com.telenav.kivakit.core.messaging.Messages;
 import com.telenav.kivakit.core.string.Strings;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlAggregation;
@@ -42,6 +40,10 @@ import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.collections.set.ObjectSet.objectSet;
 import static com.telenav.kivakit.core.ensure.Ensure.fail;
+import static com.telenav.kivakit.core.logging.loggers.LogServiceLoader.logForName;
+import static com.telenav.kivakit.core.messaging.Listener.consoleListener;
+import static com.telenav.kivakit.core.messaging.Messages.parseMessageType;
+import static com.telenav.kivakit.core.os.Console.console;
 import static com.telenav.kivakit.core.vm.Properties.systemPropertyOrEnvironmentVariable;
 
 /**
@@ -179,20 +181,24 @@ public class LogServiceLogger extends BaseLogger
             }
 
             // load the log as a Java Service
-            var log = LogServiceLoader.log(logName);
+            var log = logForName(console(), logName);
             if (log != null)
             {
                 // then override if the individual log has a level=<message> identifier
                 var message = configuration.asString("level");
                 if (message != null)
                 {
-                    log.level(Messages.parseMessageType(Listener.consoleListener(), message).severity());
+                    log.level(parseMessageType(consoleListener(), message).severity());
                 }
 
                 // and then let the log configure itself with the remaining properties
                 log.configure(configuration);
 
                 return log;
+            }
+            else
+            {
+                fail("Could not find log named: $", logName);
             }
         }
         else

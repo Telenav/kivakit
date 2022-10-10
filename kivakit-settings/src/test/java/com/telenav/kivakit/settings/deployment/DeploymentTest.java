@@ -24,12 +24,12 @@ import com.telenav.kivakit.testing.UnitTest;
 import com.telenav.kivakit.core.time.Duration;
 import com.telenav.kivakit.settings.Deployment;
 import com.telenav.kivakit.settings.ServerSettings;
-import com.telenav.kivakit.settings.SettingsRegistryTrait;
+import com.telenav.kivakit.settings.SettingsTrait;
 import org.junit.Test;
 
-public class DeploymentTest extends UnitTest implements SettingsRegistryTrait
+public class DeploymentTest extends UnitTest implements SettingsTrait
 {
-    public static class China extends Deployment implements SettingsRegistryTrait
+    public static class China extends Deployment implements SettingsTrait
     {
         public China()
         {
@@ -43,7 +43,7 @@ public class DeploymentTest extends UnitTest implements SettingsRegistryTrait
         }
     }
 
-    public static class Development extends Deployment implements SettingsRegistryTrait
+    public static class Development extends Deployment implements SettingsTrait
     {
         public Development()
         {
@@ -57,7 +57,7 @@ public class DeploymentTest extends UnitTest implements SettingsRegistryTrait
         }
     }
 
-    public static class Production extends Deployment implements SettingsRegistryTrait
+    public static class Production extends Deployment implements SettingsTrait
     {
         public Production()
         {

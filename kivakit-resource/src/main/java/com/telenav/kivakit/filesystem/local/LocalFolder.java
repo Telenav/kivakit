@@ -48,9 +48,9 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Audience.AUDIENCE_INTERNAL;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
 import static com.telenav.kivakit.core.ensure.Ensure.fail;
 
@@ -70,11 +70,6 @@ public class LocalFolder extends BaseRepeater implements FolderService
 {
     // Monitor for serializing the creation of temporary files
     private static final Monitor temporaryLock = new Monitor();
-
-    public static LocalFolder home()
-    {
-        return new LocalFolder(System.getProperty("user.home"));
-    }
 
     /** The underlying Java file */
     private final java.io.File file;

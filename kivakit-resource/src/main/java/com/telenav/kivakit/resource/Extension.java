@@ -192,7 +192,7 @@ public class Extension implements
      * Returns all extensions that are well-known (to KivaKit)
      */
     @SuppressWarnings("DuplicatedCode")
-    public static ObjectList<Extension> allWellKnownExtensions()
+    public static ObjectList<Extension> allExtensions()
     {
         return objectList(CLASS, CSV, GEOJSON, GRAPH, GRAPH_GZIP,
                 GZIP, JAR, JAVA, JSON, KRYO, MARKDOWN, MD5, OSM, OSMPP,

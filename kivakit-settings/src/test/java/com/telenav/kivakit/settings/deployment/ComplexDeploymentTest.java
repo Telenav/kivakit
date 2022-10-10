@@ -24,7 +24,7 @@ import com.telenav.kivakit.core.time.Duration;
 import com.telenav.kivakit.settings.Deployment;
 import com.telenav.kivakit.settings.ServerSettings;
 import com.telenav.kivakit.settings.SettingsRegistry;
-import com.telenav.kivakit.settings.SettingsRegistryTrait;
+import com.telenav.kivakit.settings.SettingsTrait;
 import com.telenav.kivakit.testing.UnitTest;
 import org.junit.Test;
 
@@ -40,7 +40,7 @@ public class ComplexDeploymentTest extends UnitTest
         SERVER2
     }
 
-    public static class Development extends Deployment implements SettingsRegistryTrait
+    public static class Development extends Deployment implements SettingsTrait
     {
         public Development()
         {
@@ -51,7 +51,7 @@ public class ComplexDeploymentTest extends UnitTest
     }
 
     @SuppressWarnings("unused")
-    public static class Production extends Deployment implements SettingsRegistryTrait
+    public static class Production extends Deployment implements SettingsTrait
     {
         public Production()
         {

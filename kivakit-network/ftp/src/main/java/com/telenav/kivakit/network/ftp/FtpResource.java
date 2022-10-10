@@ -45,9 +45,10 @@ import java.io.BufferedOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static com.telenav.kivakit.network.core.NetworkAccessConstraints.defaultNetworkAccessConstraints;
 
 /**
  * Simple FTP downloader. Note that this is made to download a single FTP file and then close the connection. At this
@@ -134,7 +135,8 @@ public class FtpResource extends BaseNetworkResource
      * {@inheritDoc}
      */
     @Override
-    public void copyTo(@NotNull WritableResource destination, @NotNull CopyMode mode, @NotNull ProgressReporter reporter)
+    public void copyTo(@NotNull WritableResource destination, @NotNull CopyMode mode,
+                       @NotNull ProgressReporter reporter)
     {
         try
         {
@@ -270,7 +272,7 @@ public class FtpResource extends BaseNetworkResource
                 location.mode(((FtpNetworkLocation) networkLocation).mode());
             }
 
-            resources.add(new FtpResource(location, NetworkAccessConstraints.DEFAULT));
+            resources.add(new FtpResource(location, defaultNetworkAccessConstraints()));
         }
         return resources;
     }

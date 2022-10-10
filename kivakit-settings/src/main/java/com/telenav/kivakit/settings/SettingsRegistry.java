@@ -49,17 +49,17 @@ import static com.telenav.kivakit.settings.SettingsStore.AccessMode.LOAD;
  * The global {@link SettingsRegistry} registry is returned by {@link #globalSettings()}, and it is the default registry
  * returned by {@link #settingsFor(Object)}. The global settings registry is normally the central point of settings
  * registration and lookup for an application. It allows settings objects to be easily queried from client code
- * anywhere. Convenient access to the global settings registry is provided by {@link SettingsRegistryTrait}, and by the
+ * anywhere. Convenient access to the global settings registry is provided by {@link SettingsTrait}, and by the
  * <i>Component</i> class in
- * <i>kivakit-component</i>, which implements {@link SettingsRegistryTrait}. A component can have its own settings
- * registry (not a common use case) by overriding the {@link SettingsRegistryTrait#settingsRegistry()} method (which
+ * <i>kivakit-component</i>, which implements {@link SettingsTrait}. A component can have its own settings
+ * registry (not a common use case) by overriding the {@link SettingsTrait#settingsForThis()} method (which
  * returns the global settings registry by default).
  * </p>
  *
  * <p><b>How Settings are Registered</b></p>
  *
  * <p>
- * A component can easily register settings objects with the {@link SettingsRegistryTrait} <i>registerSettings*()</i>
+ * A component can easily register settings objects with the {@link SettingsTrait} <i>registerSettings*()</i>
  * methods. In particular, they can be registered from a {@link SettingsStore} with the method
  * {@link #registerSettingsIn(SettingsStore)}. A typical way for a component to register the settings objects in a
  * {@link SettingsStore} is something like:
@@ -101,7 +101,7 @@ import static com.telenav.kivakit.settings.SettingsStore.AccessMode.LOAD;
  * <p><b>How Settings are Looked Up</b></p>
  *
  * <p>
- * The <i>lookupSettings*()</i> and <i>requireSettings*()</i> methods provided by {@link SettingsRegistryTrait} can be used to locate settings
+ * The <i>lookupSettings*()</i> and <i>requireSettings*()</i> methods provided by {@link SettingsTrait} can be used to locate settings
  * objects from any Component (see the <i>kivakit-component</i> project). Settings are located according to this
  * series of steps:
  * <ol>
@@ -119,7 +119,7 @@ import static com.telenav.kivakit.settings.SettingsStore.AccessMode.LOAD;
  * </p>
  *
  * @author jonathanl (shibo)
- * @see SettingsRegistryTrait
+ * @see SettingsTrait
  * @see Registry
  * @see Deployment
  * @see MemorySettingsStore
@@ -130,7 +130,7 @@ import static com.telenav.kivakit.settings.SettingsStore.AccessMode.LOAD;
              testing = UNTESTED,
              documentation = DOCUMENTATION_COMPLETE)
 public class SettingsRegistry extends MemorySettingsStore implements
-        SettingsRegistryTrait,
+        SettingsTrait,
         JavaTrait
 {
     private static final Logger LOGGER = LoggerFactory.newLogger();

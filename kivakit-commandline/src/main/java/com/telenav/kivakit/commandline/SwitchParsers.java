@@ -36,6 +36,7 @@ import java.util.regex.Pattern;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static com.telenav.kivakit.commandline.SwitchParser.switchParser;
 import static com.telenav.kivakit.core.ensure.Ensure.illegalArgument;
 
 /**
@@ -85,7 +86,7 @@ public class SwitchParsers
                                                                     @NotNull String name,
                                                                     @NotNull String description)
     {
-        return SwitchParser.switchParserBuilder(Boolean.class)
+        return switchParser(Boolean.class)
                 .name(name)
                 .converter(new BooleanConverter(listener))
                 .description(description);
@@ -95,7 +96,7 @@ public class SwitchParsers
                                                                 @NotNull String name,
                                                                 @NotNull String description)
     {
-        return SwitchParser.switchParserBuilder(Bytes.class)
+        return switchParser(Bytes.class)
                 .name(name)
                 .converter(new BytesConverter(listener))
                 .description(description);
@@ -105,7 +106,7 @@ public class SwitchParsers
                                                                 @NotNull String name,
                                                                 @NotNull String description)
     {
-        return SwitchParser.switchParserBuilder(Count.class)
+        return switchParser(Count.class)
                 .name(name)
                 .converter(new CountConverter(listener))
                 .description(description);
@@ -115,7 +116,7 @@ public class SwitchParsers
                                                                   @NotNull String name,
                                                                   @NotNull String description)
     {
-        return SwitchParser.switchParserBuilder(Double.class)
+        return switchParser(Double.class)
                 .name(name)
                 .converter(new DoubleConverter(listener))
                 .description(description);
@@ -125,7 +126,7 @@ public class SwitchParsers
                                                                       @NotNull String name,
                                                                       @NotNull String description)
     {
-        return SwitchParser.switchParserBuilder(Duration.class)
+        return switchParser(Duration.class)
                 .name(name)
                 .description(description)
                 .converter(new DurationConverter(listener));
@@ -144,7 +145,7 @@ public class SwitchParsers
                 options.add(CaseFormat.upperUnderscoreToLowerHyphen(option.name()));
             }
             var help = description + "\n\n" + options.bulleted(4) + "\n";
-            return SwitchParser.switchParserBuilder(type)
+            return switchParser(type)
                     .name(name)
                     .converter(new EnumConverter<>(listener, type))
                     .description(help);
@@ -157,7 +158,7 @@ public class SwitchParsers
                                                                     @NotNull String name,
                                                                     @NotNull String description)
     {
-        return SwitchParser.switchParserBuilder(Integer.class)
+        return switchParser(Integer.class)
                 .name(name)
                 .converter(new IntegerConverter(listener))
                 .description(description);
@@ -167,7 +168,7 @@ public class SwitchParsers
                                                                         @NotNull String name,
                                                                         @NotNull String description)
     {
-        return SwitchParser.switchParserBuilder(LocalTime.class)
+        return switchParser(LocalTime.class)
                 .name(name)
                 .description(description)
                 .converter(new LocalDateConverter(listener));
@@ -177,7 +178,7 @@ public class SwitchParsers
                                                                             @NotNull String name,
                                                                             @NotNull String description)
     {
-        return SwitchParser.switchParserBuilder(LocalTime.class)
+        return switchParser(LocalTime.class)
                 .name(name)
                 .description(description)
                 .converter(new LocalDateTimeConverter(listener));
@@ -187,7 +188,7 @@ public class SwitchParsers
                                                               @NotNull String name,
                                                               @NotNull String description)
     {
-        return SwitchParser.switchParserBuilder(Long.class)
+        return switchParser(Long.class)
                 .name(name)
                 .converter(new LongConverter(listener))
                 .description(description);
@@ -197,7 +198,7 @@ public class SwitchParsers
                                                                     @NotNull String name,
                                                                     @NotNull String description)
     {
-        return SwitchParser.switchParserBuilder(Maximum.class)
+        return switchParser(Maximum.class)
                 .name(name)
                 .converter(new MaximumConverter(listener))
                 .description(description);
@@ -207,7 +208,7 @@ public class SwitchParsers
                                                                     @NotNull String name,
                                                                     @NotNull String description)
     {
-        return SwitchParser.switchParserBuilder(Minimum.class)
+        return switchParser(Minimum.class)
                 .name(name)
                 .converter(new MinimumConverter(listener))
                 .description(description);
@@ -217,7 +218,7 @@ public class SwitchParsers
                                                                     @NotNull String name,
                                                                     @NotNull String description)
     {
-        return SwitchParser.switchParserBuilder(Pattern.class)
+        return switchParser(Pattern.class)
                 .name(name)
                 .converter(new PatternConverter(listener))
                 .description(description);
@@ -227,7 +228,7 @@ public class SwitchParsers
                                                                     @NotNull String name,
                                                                     @NotNull String description)
     {
-        return SwitchParser.switchParserBuilder(Percent.class)
+        return switchParser(Percent.class)
                 .name(name)
                 .converter(new PercentConverter(listener))
                 .description(description);
@@ -237,7 +238,7 @@ public class SwitchParsers
                                                                   @NotNull String name,
                                                                   @NotNull String description)
     {
-        return SwitchParser.switchParserBuilder(String.class)
+        return switchParser(String.class)
                 .name(name)
                 .converter(new IdentityConverter(listener))
                 .description(description);
@@ -257,7 +258,7 @@ public class SwitchParsers
                                                                     @NotNull String name,
                                                                     @NotNull String description)
     {
-        return SwitchParser.switchParserBuilder(Version.class)
+        return switchParser(Version.class)
                 .name(name)
                 .converter(new VersionConverter(listener))
                 .description(description);

@@ -50,7 +50,7 @@ public class Properties
             var build = Build.build(projectRoot);
 
             properties = JavaVirtualMachine.javaVirtualMachine().systemPropertiesAndEnvironmentVariables();
-            properties.addAll(VariableMap.variableMap(BuildMetadata.of(projectRoot).projectProperties()));
+            properties.addAll(VariableMap.variableMap(BuildMetadata.buildMetaData(projectRoot).projectProperties()));
             properties.put("version", properties.get("project-version"));
             properties.putIfNotNull("build-name", build.name());
             properties.putIfNotNull("build-date", build.buildFormattedDate());

@@ -211,7 +211,7 @@ public interface Resource extends
     static ArgumentParser.Builder<Resource> resourceArgumentParser(@NotNull Listener listener,
                                                                    @NotNull String description)
     {
-        return ArgumentParser.argumentParserBuilder(Resource.class)
+        return ArgumentParser.argumentParser(Resource.class)
                 .converter(new Resource.Converter(listener))
                 .description(description);
     }
@@ -240,7 +240,7 @@ public interface Resource extends
             @NotNull String name,
             @NotNull String description)
     {
-        return SwitchParser.switchParserBuilder(Resource.class)
+        return SwitchParser.switchParser(Resource.class)
                 .name(name)
                 .converter(new Resource.Converter(listener))
                 .description(description);

@@ -111,31 +111,6 @@ public abstract class OperationMessage implements Named, Message
     /** This flag can be helpful in detecting infinite recursion of message formatting */
     private static final boolean DETECT_REENTRANCY = false;
 
-    /**
-     * Returns a new message instance
-     *
-     * @param listener The listener to call with any problems
-     * @param type The type of message to create
-     * @param message The message text
-     * @param arguments Formatting arguments
-     * @return The message
-     */
-    public static <MessageType extends Message> MessageType newMessage(Listener listener,
-                                                                       Class<MessageType> type,
-                                                                       String message,
-                                                                       Object[] arguments)
-    {
-        try
-        {
-            return type.getConstructor(String.class, Object[].class).newInstance(message, arguments);
-        }
-        catch (Exception e)
-        {
-            listener.problem(e, "Unable to create instance: $", type);
-            return null;
-        }
-    }
-
     /** Formatting arguments */
     private Object[] arguments;
 
@@ -163,12 +138,12 @@ public abstract class OperationMessage implements Named, Message
     protected OperationMessage(String message)
     {
         this.message = message;
-        Messages.builtInMessages().put(name(), this);
+        Messages.messages().put(name(), this);
     }
 
     protected OperationMessage()
     {
-        Messages.builtInMessages().put(name(), this);
+        Messages.messages().put(name(), this);
     }
 
     /**

@@ -185,7 +185,7 @@ public abstract class BaseLog implements
         if (isAsynchronous())
         {
             // when the VM shuts down
-            ShutdownHook.register(getClass().getSimpleName() + ".flush()", LAST, () ->
+            ShutdownHook.registerShutdownHook(getClass().getSimpleName() + ".flush()", LAST, () ->
             {
                 // flush asynchronous entries for up to one minute
                 flush(Duration.ONE_MINUTE);

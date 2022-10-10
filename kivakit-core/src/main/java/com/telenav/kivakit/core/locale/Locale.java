@@ -170,6 +170,6 @@ public class Locale
     @Override
     public String toString()
     {
-        return "[region = " + StringConversions.nonNullString(region.name()) + ": " + languages().join(", ") + "]";
+        return "[region = " + StringConversions.toNonNullString(region.name()) + ": " + languages().join(", ") + "]";
     }
 }

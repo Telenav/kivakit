@@ -19,7 +19,7 @@ import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
              documentation = DOCUMENTATION_COMPLETE)
 public class Patterns
 {
-    private static final LazyMap<String, Pattern> patterns = LazyMap.of(Pattern::compile);
+    private static final LazyMap<String, Pattern> patterns = LazyMap.lazyMap(Pattern::compile);
 
     /**
      * Matches the given text against the given pattern
@@ -33,7 +33,7 @@ public class Patterns
      * Transforms the given pattern string into a simplified pattern, where "." means a literal dot, and "*" means ".*"
      * (anything but newline)
      */
-    public static Pattern simplified(String pattern)
+    public static Pattern simplifiedPattern(String pattern)
     {
         return patterns.get(pattern
                 .replaceAll("\\.", "\\\\.")

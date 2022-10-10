@@ -62,7 +62,7 @@ public class Build implements Named
      */
     public static Build build(Class<?> projectType)
     {
-        return new Build(BuildMetadata.of(projectType));
+        return new Build(BuildMetadata.buildMetaData(projectType));
     }
 
     /** The metadata for this build */

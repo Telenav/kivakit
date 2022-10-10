@@ -55,7 +55,7 @@ public class KivaKit extends Project
     /**
      * Returns the cache folder for KivaKit
      */
-    public StringPath cacheFolderPath()
+    public StringPath kivakitCacheFolderPath()
     {
         var version = projectVersion();
         if (version != null)
@@ -75,7 +75,7 @@ public class KivaKit extends Project
      *
      * @return Path to KivaKit home if it's available in the environment or as a system property.
      */
-    public StringPath homeFolderPath()
+    public StringPath kivakitHomeFolderPath()
     {
         var home = systemPropertyOrEnvironmentVariable("KIVAKIT_HOME");
         if (home == null)

@@ -231,7 +231,7 @@ public final class ZipArchive extends BaseRepeater implements
         ensureNotNull(filesystem);
         ensureNotNull(zipFile);
 
-        this.zipFile = zipFile.materialized(BroadcastingProgressReporter.createProgressReporter(this));
+        this.zipFile = zipFile.materialized(BroadcastingProgressReporter.progressReporter(this));
         this.filesystem = filesystem;
     }
 

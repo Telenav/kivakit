@@ -21,7 +21,7 @@ import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
  *
  * <p>
  * <i>NOTE: This store object should not be accessed directly by user code. Instead, use
- * {@link SettingsRegistryTrait}.</i>
+ * {@link SettingsTrait}.</i>
  * </p>
  *
  * <p><b>Loading and Saving</b></p>

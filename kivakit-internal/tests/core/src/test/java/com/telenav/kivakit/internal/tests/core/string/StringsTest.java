@@ -159,9 +159,9 @@ public class StringsTest extends CoreUnitTest
     @Test
     public void testOptional()
     {
-        ensureEqual("", StringConversions.nonNullString(null));
-        ensureEqual("foo", StringConversions.nonNullString("foo"));
-        ensureEqual("1", StringConversions.nonNullString(1));
+        ensureEqual("", StringConversions.toNonNullString(null));
+        ensureEqual("foo", StringConversions.toNonNullString("foo"));
+        ensureEqual("1", StringConversions.toNonNullString(1));
     }
 
     @Test

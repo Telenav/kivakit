@@ -41,12 +41,12 @@ import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.Objects;
 
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
-import static com.telenav.kivakit.commandline.SwitchParser.switchParserBuilder;
+import static com.telenav.kivakit.commandline.SwitchParser.switchParser;
 import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
 import static com.telenav.kivakit.network.core.Protocol.FTP;
 import static com.telenav.kivakit.network.core.Protocol.HAZELCAST;
@@ -83,7 +83,7 @@ import static com.telenav.kivakit.network.core.Protocol.UNKNOWN;
  * <ul>
  *     <li>{@link LocalHost#localhost()}</li>
  *     <li>{@link Loopback#loopback()}</li>
- *     <li>{@link #none()}</li>
+ *     <li>{@link #nullHost()}</li>
  * </ul>
  *
  * <p><b>Properties</b></p>
@@ -158,7 +158,7 @@ public class Host extends BaseRepeater implements
      */
     public static SwitchParser.Builder<Host> hostSwitchParser(Listener listener, String name, String description)
     {
-        return switchParserBuilder(Host.class)
+        return switchParser(Host.class)
                 .name(name)
                 .converter(new Host.Converter(listener))
                 .description(description);
@@ -167,7 +167,7 @@ public class Host extends BaseRepeater implements
     /**
      * Returns a value representing no host
      */
-    public static Host none()
+    public static Host nullHost()
     {
         return new Host("[No Host]");
     }
