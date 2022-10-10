@@ -46,8 +46,8 @@ import java.io.InputStream;
 import java.lang.module.ModuleReference;
 import java.net.URI;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.language.module.Modules.moduleResource;
 import static com.telenav.kivakit.filesystem.FilePath.parseFilePath;
@@ -105,7 +105,11 @@ import static com.telenav.kivakit.resource.packages.PackagePath.packagePath;
 public class PackageResource extends BaseReadableResource
 {
     /**
+     * <b>Not public API</b>
+     *
+     * <p>
      * Returns a package resource for the given module resource
+     * </p>
      */
     public static PackageResource packageResource(@NotNull Listener listener,
                                                   @NotNull ModuleResource resource)

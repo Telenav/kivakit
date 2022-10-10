@@ -60,8 +60,8 @@ import java.util.stream.Collectors;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.ensure.Ensure.fail;
 import static com.telenav.kivakit.core.ensure.Ensure.unsupported;
@@ -98,6 +98,33 @@ import static com.telenav.kivakit.resource.packages.PackageResource.packageResou
  * {@link ResourceFolder#safeCopyTo(ResourceFolder, CopyMode, ProgressReporter)}.
  * </p>
  *
+ * <p><b>Properties</b></p>
+ *
+ * <ul>
+ *     <li>{@link #exists()}</li>
+ *     <li>{@link #folders()}</li>
+ *     <li>{@link #isMaterialized()}</li>
+ *     <li>{@link #parent()}</li>
+ *     <li>{@link #path()}</li>
+ *     <li>{@link #reference()}</li>
+ *     <li>{@link #uri()}</li>
+ * </ul>
+ *
+ * <p><b>Access</b></p>
+ *
+ * <ul>
+ *     <li>{@link #child(String)}</li>
+ *     <li>{@link #folder(String)}</li>
+ *     <li>{@link #localizedProperties(Listener, Locale, LocaleLanguage)}</li>
+ *     <li>{@link #relativeTo(ResourceFolder)}</li>
+ *     <li>{@link #resource(FileName)}</li>
+ *     <li>{@link #resource(ResourcePathed)}</li>
+ *     <li>{@link #resource(String)}</li>
+ *     <li>{@link #resourceFolderIdentifier()}</li>
+ *     <li>{@link #resources()}</li>
+ *     <li>{@link #resources(Matcher)}</li>
+ * </ul>
+ *
  * @author jonathanl (shibo)
  * @see PackageReference
  * @see PackageResource
@@ -114,8 +141,8 @@ public class Package extends BaseRepeater implements ResourceFolder<Package>
      *
      * @param listener The listener to call with any problems
      */
-    public static Package packageContaining(@NotNull Listener listener,
-                                            @NotNull Class<?> packageType)
+    public static Package packageFor(@NotNull Listener listener,
+                                     @NotNull Class<?> packageType)
     {
         return new Package(listener, packagePath(packageType));
     }
@@ -438,9 +465,10 @@ public class Package extends BaseRepeater implements ResourceFolder<Package>
     }
 
     /**
-     * List of resources loaded from this package folder in any directory classpath that might contain this class.
+     * Returns a list of package resources matching the given matcher, and found in any directory on the classpath with
+     * a path that matches this package's path.
      *
-     * Returns any package resources that can be found in the directory classpath (if any) containing this class
+     * @param matcher The matcher that must match resources
      */
     private List<PackageResource> directoryResources(@NotNull Matcher<? super PackageResource> matcher)
     {
@@ -480,9 +508,10 @@ public class Package extends BaseRepeater implements ResourceFolder<Package>
     }
 
     /**
-     * List of resources loaded from this package folder in any jar that might contain this class.
+     * Returns a list of package resources matching the given matcher, and found in any JAR on the classpath with a path
+     * that matches this package's path.
      *
-     * @return Any package resources that can be found in the jar (if any) containing this class
+     * @param matcher The matcher that must match resources
      */
     private List<PackageResource> jarResources(@NotNull Matcher<? super PackageResource> matcher)
     {

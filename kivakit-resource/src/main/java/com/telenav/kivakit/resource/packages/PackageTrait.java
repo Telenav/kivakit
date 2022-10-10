@@ -50,7 +50,7 @@ public interface PackageTrait extends Repeater
      */
     default Package packageFor(@NotNull Class<?> type)
     {
-        return Package.packageContaining(this, type);
+        return Package.packageFor(this, type);
     }
 
     /**

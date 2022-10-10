@@ -83,7 +83,7 @@ import static com.telenav.kivakit.filesystem.Folder.FolderType.CLEAN_UP_ON_EXIT;
 import static com.telenav.kivakit.filesystem.Folder.Traversal.RECURSE;
 import static com.telenav.kivakit.filesystem.loader.FileSystemServiceLoader.fileSystem;
 import static com.telenav.kivakit.interfaces.comparison.Filter.acceptAll;
-import static com.telenav.kivakit.resource.Extension.TMP;
+import static com.telenav.kivakit.resource.Extension.TEMPORARY;
 import static com.telenav.kivakit.resource.ResourceList.resourceList;
 
 /**
@@ -1261,7 +1261,7 @@ public class Folder extends BaseRepeater implements
     @Override
     public File temporaryFile(@NotNull FileName baseName)
     {
-        return temporaryFile(baseName, TMP);
+        return temporaryFile(baseName, TEMPORARY);
     }
 
     /**

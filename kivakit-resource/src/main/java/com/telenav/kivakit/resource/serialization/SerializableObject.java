@@ -8,8 +8,8 @@ import com.telenav.kivakit.core.version.Version;
 import com.telenav.kivakit.core.version.VersionedObject;
 import org.jetbrains.annotations.NotNull;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.UNSTABLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.UNSTABLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.registry.InstanceIdentifier.singletonInstanceIdentifier;
 
@@ -23,6 +23,7 @@ import static com.telenav.kivakit.core.registry.InstanceIdentifier.singletonInst
              testing = UNTESTED)
 public class SerializableObject<T> extends VersionedObject<T>
 {
+    /** The instance identifier for this serializable object */
     private InstanceIdentifier instance = singletonInstanceIdentifier();
 
     public SerializableObject(@NotNull VersionedObject<T> object)

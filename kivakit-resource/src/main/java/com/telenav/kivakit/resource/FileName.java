@@ -37,18 +37,36 @@ import org.jetbrains.annotations.NotNull;
 import java.time.ZoneId;
 import java.util.regex.Pattern;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.messaging.Listener.throwingListener;
 
 /**
  * A file name, with a base name and an {@link Extension}.
  *
+ * <p><b>Factory Methods</b></p>
+ *
  * <p>
  * File names can be created with various factory methods, including methods that produce valid filenames for dates and
  * times as well as the general method {@link #parseFileName(Listener listener, String)}.
  * </p>
+ *
+ * <ul>
+ *     <li>{@link #fileNameForDate()}</li>
+ *     <li>{@link #fileNameForDate(LocalTime)}</li>
+ *     <li>{@link #fileNameForDate(LocalTime, ZoneId)}</li>
+ *     <li>{@link #fileNameForDateTime()}</li>
+ *     <li>{@link #fileNameForDateTime(LocalTime)}</li>
+ *     <li>{@link #fileNameForDateTime(LocalTime, ZoneId)}</li>
+ *     <li>{@link #fileNameForTime(LocalTime)}</li>
+ *     <li>{@link #fileNameForTime(LocalTime, ZoneId)}</li>
+ *     <li>{@link #parseDateTime(Listener, String)}</li>
+ *     <li>{@link #parseDateTime(Listener, String, ZoneId)}</li>
+ *     <li>{@link #parseFileName(Listener, String)}</li>
+ * </ul>
+ *
+ * <p><b>Properties</b></p>
  *
  * <ul>
  *     <li>{@link #name()} - This filename as a string</li>
@@ -102,7 +120,7 @@ public class FileName implements Named, Comparable<FileName>
     /**
      * Returns a filename for the current date
      */
-    public static FileName date()
+    public static FileName fileNameForDate()
     {
         return parseFileName(throwingListener(), LocalTime.now().asDateString());
     }
@@ -111,7 +129,7 @@ public class FileName implements Named, Comparable<FileName>
      * Returns a filename for the current local time
      */
     @SuppressWarnings("ConstantConditions")
-    public static FileName date(@NotNull LocalTime time)
+    public static FileName fileNameForDate(@NotNull LocalTime time)
     {
         return parseFileName(throwingListener(), new LocalDateConverter(throwingListener()).unconvert(time));
     }
@@ -120,8 +138,8 @@ public class FileName implements Named, Comparable<FileName>
      * Returns a filename for the given time in the given timezone
      */
     @SuppressWarnings("ConstantConditions")
-    public static FileName date(@NotNull LocalTime time,
-                                @NotNull ZoneId zone)
+    public static FileName fileNameForDate(@NotNull LocalTime time,
+                                           @NotNull ZoneId zone)
     {
         return parseFileName(throwingListener(), new LocalDateConverter(throwingListener(), zone).unconvert(time));
     }
@@ -129,16 +147,16 @@ public class FileName implements Named, Comparable<FileName>
     /**
      * Returns a filename for the current date and time
      */
-    public static FileName dateTime()
+    public static FileName fileNameForDateTime()
     {
-        return dateTime(LocalTime.now());
+        return fileNameForDateTime(LocalTime.now());
     }
 
     /**
      * Returns a filename for the current date and time
      */
     @SuppressWarnings("ConstantConditions")
-    public static FileName dateTime(@NotNull LocalTime time)
+    public static FileName fileNameForDateTime(@NotNull LocalTime time)
     {
         return parseFileName(throwingListener(), new LocalDateTimeConverter(throwingListener()).unconvert(time));
     }
@@ -147,10 +165,34 @@ public class FileName implements Named, Comparable<FileName>
      * Returns a filename for the given local time in the given timezone
      */
     @SuppressWarnings("ConstantConditions")
-    public static FileName dateTime(@NotNull LocalTime time,
-                                    @NotNull ZoneId zone)
+    public static FileName fileNameForDateTime(@NotNull LocalTime time,
+                                               @NotNull ZoneId zone)
     {
         return parseFileName(throwingListener(), new LocalDateTimeConverter(throwingListener(), zone).unconvert(time));
+    }
+
+    /**
+     * Returns a filename for the given local time
+     *
+     * @param time The time
+     */
+    @SuppressWarnings("ConstantConditions")
+    public static FileName fileNameForTime(@NotNull LocalTime time)
+    {
+        return parseFileName(throwingListener(), new LocalTimeConverter(throwingListener(), time.timeZone()).unconvert(time));
+    }
+
+    /**
+     * Returns a filename for the given local time and timezone
+     *
+     * @param time The time
+     * @param zone The timezone
+     */
+    @SuppressWarnings("ConstantConditions")
+    public static FileName fileNameForTime(@NotNull LocalTime time,
+                                           @NotNull ZoneId zone)
+    {
+        return parseFileName(throwingListener(), new LocalTimeConverter(throwingListener(), zone).unconvert(time));
     }
 
     /**
@@ -189,30 +231,6 @@ public class FileName implements Named, Comparable<FileName>
                                          @NotNull String text)
     {
         return new FileName(text);
-    }
-
-    /**
-     * Returns a filename for the given local time
-     *
-     * @param time The time
-     */
-    @SuppressWarnings("ConstantConditions")
-    public static FileName time(@NotNull LocalTime time)
-    {
-        return parseFileName(throwingListener(), new LocalTimeConverter(throwingListener(), time.timeZone()).unconvert(time));
-    }
-
-    /**
-     * Returns a filename for the given local time and timezone
-     *
-     * @param time The time
-     * @param zone The timezone
-     */
-    @SuppressWarnings("ConstantConditions")
-    public static FileName time(@NotNull LocalTime time,
-                                @NotNull ZoneId zone)
-    {
-        return parseFileName(throwingListener(), new LocalTimeConverter(throwingListener(), zone).unconvert(time));
     }
 
     private final String name;

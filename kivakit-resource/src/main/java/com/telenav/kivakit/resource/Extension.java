@@ -33,8 +33,8 @@ import com.telenav.kivakit.resource.internal.lexakai.DiagramResourcePath;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import org.jetbrains.annotations.NotNull;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.collections.list.ObjectList.objectList;
 import static com.telenav.kivakit.core.messaging.Listener.throwingListener;
@@ -78,6 +78,40 @@ import static com.telenav.kivakit.core.messaging.Listener.throwingListener;
  *
  * <ul>
  *     <li>{@link #gzipped()} - This extension with ".gz" on the end</li>
+ * </ul>
+ *
+ * <p><b>Extension Constants</b></p>
+ *
+ * <ul>
+ *     <li>{@link #CLASS}</li>
+ *     <li>{@link #CSV}</li>
+ *     <li>{@link #GEOJSON}</li>
+ *     <li>{@link #GRAPH}</li>
+ *     <li>{@link #GRAPH_GZIP}</li>
+ *     <li>{@link #GZIP}</li>
+ *     <li>{@link #JAR}</li>
+ *     <li>{@link #JAVA}</li>
+ *     <li>{@link #JSON}</li>
+ *     <li>{@link #KRYO}</li>
+ *     <li>{@link #MARKDOWN}</li>
+ *     <li>{@link #MD5}</li>
+ *     <li>{@link #OSM}</li>
+ *     <li>{@link #OSMPP}</li>
+ *     <li>{@link #OSM_PBF}</li>
+ *     <li>{@link #PBF}</li>
+ *     <li>{@link #PNG}</li>
+ *     <li>{@link #POLY}</li>
+ *     <li>{@link #POM}</li>
+ *     <li>{@link #PROPERTIES}</li>
+ *     <li>{@link #PYTHON}</li>
+ *     <li>{@link #SHA1}</li>
+ *     <li>{@link #SHELL}</li>
+ *     <li>{@link #TEMPORARY}</li>
+ *     <li>{@link #TXT}</li>
+ *     <li>{@link #TXT_GZIP}</li>
+ *     <li>{@link #YAML}</li>
+ *     <li>{@link #YML}</li>
+ *     <li>{@link #ZIP}</li>
  * </ul>
  *
  * @author jonathanl (shibo)
@@ -140,11 +174,7 @@ public class Extension implements
 
     public static final Extension SHELL = parseExtension(".sh");
 
-    public static final Extension TMP = parseExtension(".tmp");
-
-    public static final Extension TXD = parseExtension(".txd");
-
-    public static final Extension TXD_GZIP = TXD.gzipped();
+    public static final Extension TEMPORARY = parseExtension(".tmp");
 
     public static final Extension TXT = parseExtension(".txt");
 
@@ -167,7 +197,7 @@ public class Extension implements
         return objectList(CLASS, CSV, GEOJSON, GRAPH, GRAPH_GZIP,
                 GZIP, JAR, JAVA, JSON, KRYO, MARKDOWN, MD5, OSM, OSMPP,
                 OSM_PBF, PBF, PNG, POLY, POM, PROPERTIES, PYTHON, SHA1,
-                SHELL, TMP, TXD, TXD_GZIP, TXT, TXT_GZIP, XML, YAML, YML, ZIP).sorted();
+                SHELL, TEMPORARY, TXT, TXT_GZIP, XML, YAML, YML, ZIP).sorted();
     }
 
     /**

@@ -40,8 +40,8 @@ import java.util.function.Function;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.collections.list.StringList.stringList;
 import static com.telenav.kivakit.core.language.module.PackageReference.packageReference;
@@ -104,12 +104,12 @@ import static com.telenav.kivakit.resource.packages.Package.packageForPath;
  * <p><b>Examples</b></p>
  *
  * <pre>
- * PackagePath.packagePath(MyClass.class)
- * PackagePath.parsePackagePath(MyClass.class, "resources/images")
- * PackagePath.parsePackagePath(MyClass.class, "resources.images")
- * PackagePath.parsePackagePath(getClass(), "resources/images")
- * PackagePath.parsePackagePath("com.telenav.kivakit/core")
- * PackagePath.parsePackagePath("com.telenav.kivakit.core")
+ * packagePath(MyClass.class)
+ * parsePackagePath(MyClass.class, "resources/images")
+ * parsePackagePath(MyClass.class, "resources.images")
+ * parsePackagePath(getClass(), "resources/images")
+ * parsePackagePath("com.telenav.kivakit/core")
+ * parsePackagePath("com.telenav.kivakit.core")
  * </pre>
  *
  * @author jonathanl (shibo)

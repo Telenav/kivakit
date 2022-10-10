@@ -32,9 +32,9 @@ import com.telenav.kivakit.resource.packages.Package;
 import com.telenav.kivakit.resource.writing.WritableResource;
 import org.jetbrains.annotations.NotNull;
 
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
 import static com.telenav.kivakit.core.ensure.Ensure.unsupported;
 import static com.telenav.kivakit.filesystem.Folder.FolderType.NORMAL;
@@ -430,7 +430,7 @@ public interface ResourceFolder<T extends ResourceFolder<T>> extends
      */
     default WritableResource temporaryFile(@NotNull FileName baseName)
     {
-        return temporaryFile(baseName, Extension.TMP);
+        return temporaryFile(baseName, Extension.TEMPORARY);
     }
 
     /**
