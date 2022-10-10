@@ -66,7 +66,7 @@ import static com.telenav.kivakit.core.os.OperatingSystem.ProcessorArchitecture.
  * <p><b>Variables</b></p>
  *
  * <ul>
- *     <li>{@link #environmentVariables()}m</li>
+ *     <li>{@link #environmentVariables()}</li>
  *     <li>{@link #systemPropertyOrEnvironmentVariable(String)}</li>
  *     <li>{@link #javaHome()}</li>
  * </ul>
