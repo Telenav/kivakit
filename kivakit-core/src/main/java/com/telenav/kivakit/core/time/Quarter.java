@@ -64,7 +64,7 @@ public enum Quarter
      */
     public static Quarter calendarQuarter(int quarter)
     {
-        ensure(Ints.isBetweenInclusive(quarter, 1, 4));
+        ensure(Ints.intIsBetweenInclusive(quarter, 1, 4));
         return new Quarter[] { Q1, Q2, Q3, Q4 }[quarter - 1];
     }
 
@@ -73,7 +73,7 @@ public enum Quarter
      */
     public static Quarter fiscalQuarter(int quarter)
     {
-        ensure(Ints.isBetweenInclusive(quarter, 1, 4));
+        ensure(Ints.intIsBetweenInclusive(quarter, 1, 4));
         return new Quarter[] { FISCAL_Q1, FISCAL_Q2, FISCAL_Q3, FISCAL_Q4 }[quarter - 1];
     }
 
@@ -97,7 +97,7 @@ public enum Quarter
 
     Quarter(Type type, int quarter)
     {
-        ensure(Ints.isBetweenInclusive(quarter, 1, 4));
+        ensure(Ints.intIsBetweenInclusive(quarter, 1, 4));
         this.type = type;
         this.quarter = quarter;
     }

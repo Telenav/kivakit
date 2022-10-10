@@ -25,7 +25,7 @@ public class Second extends BaseTime<Second>
 
     public static Second second(int second)
     {
-        ensure(Doubles.isBetweenInclusive(second, 0, 59));
+        ensure(Doubles.doubleIsBetweenInclusive(second, 0, 59));
 
         return new Second(second);
     }

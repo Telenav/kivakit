@@ -385,7 +385,7 @@ public abstract class BaseValidator implements Validator
      */
     protected void problemIfNotInRangeExclusive(int value, String name, int minimum, int maximum)
     {
-        problemIf(!Ints.isBetweenExclusive(value, minimum, maximum), "Invalid " + name);
+        problemIf(!Ints.intIsBetweenExclusive(value, minimum, maximum), "Invalid " + name);
     }
 
     /**
@@ -393,7 +393,7 @@ public abstract class BaseValidator implements Validator
      */
     protected void problemIfNotInRangeInclusive(int value, String name, int minimum, int maximum)
     {
-        problemIf(!Ints.isBetweenInclusive(value, minimum, maximum), "Invalid " + name);
+        problemIf(!Ints.intIsBetweenInclusive(value, minimum, maximum), "Invalid " + name);
     }
 
     /**

@@ -202,7 +202,7 @@ public class MaybeTest extends CoreUnitTest
     public void testThenBiFunction()
     {
         ensureEqual(Maybe.present("9")
-                .map(Ints::parseFast)
+                .map(Ints::parseFastInt)
                 .map(Integer::sum, 3)
                 .get(), 12);
 

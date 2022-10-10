@@ -28,8 +28,8 @@ import org.jetbrains.annotations.NotNull;
 import java.io.IOException;
 import java.io.OutputStream;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
 
 /**
@@ -51,6 +51,9 @@ public class ByteSizedOutputStream extends OutputStream implements ByteSized
     /** The number of bytes written */
     private long size;
 
+    /**
+     * @param out The output stream to wrap
+     */
     public ByteSizedOutputStream(OutputStream out)
     {
         this.out = out;

@@ -26,7 +26,7 @@ public class Minute extends BaseTime<Minute>
 
     public static Minute minute(int minute)
     {
-        ensure(Ints.isBetweenInclusive(minute, 0, 59));
+        ensure(Ints.intIsBetweenInclusive(minute, 0, 59));
 
         return new Minute(minute);
     }

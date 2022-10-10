@@ -46,7 +46,7 @@ import static com.telenav.kivakit.annotations.code.quality.Stability.UNSTABLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.ensure.Ensure.ensure;
-import static com.telenav.kivakit.core.language.primitive.Longs.inRangeInclusive;
+import static com.telenav.kivakit.core.language.primitive.Longs.longInRangeInclusive;
 import static com.telenav.kivakit.core.value.count.Count._256;
 import static com.telenav.kivakit.core.value.count.Count.count;
 import static com.telenav.kivakit.internal.testing.Repeats.ALLOW_REPEATS;
@@ -350,7 +350,7 @@ public class RandomValueFactory implements RandomNumeric
     @Override
     public final long randomLongExclusive(long minimum, long exclusiveMaximum)
     {
-        return Longs.random(random, minimum, exclusiveMaximum);
+        return Longs.longRandom(random, minimum, exclusiveMaximum);
     }
 
     public Range<Count> rangeExclusive(long minimum, long exclusiveMaximum)
@@ -402,7 +402,7 @@ public class RandomValueFactory implements RandomNumeric
 
         var randomWidth = randomLongInclusive(minimumWidth, width);
         var randomMinimum = randomLongInclusive(minimum.asLong(), minimum.asLong() + randomWidth);
-        var randomInclusiveMaximum = inRangeInclusive(randomMinimum + randomWidth, 0, inclusiveMaximum.asLong());
+        var randomInclusiveMaximum = longInRangeInclusive(randomMinimum + randomWidth, 0, inclusiveMaximum.asLong());
 
         return Range.rangeInclusive(minimum.onNewInstance(randomMinimum),
                 minimum.onNewInstance(randomInclusiveMaximum));

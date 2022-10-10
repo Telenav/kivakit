@@ -22,8 +22,8 @@ import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramPrimitive;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTED;
 
 /**
@@ -42,19 +42,39 @@ import static com.telenav.kivakit.annotations.code.quality.Testing.TESTED;
              documentation = DOCUMENTATION_COMPLETE)
 public class Booleans
 {
+    /**
+     * Returns true if the string represents falsity (case-independent), meaning any of:
+     *
+     * <ul>
+     *     <li>disabled</li>
+     *     <li>false</li>
+     *     <li>no</li>
+     *     <li>off</li>
+     * </ul>
+     */
     public static boolean isFalse(String string)
     {
-        return "false".equalsIgnoreCase(string)
-                || "f".equalsIgnoreCase(string)
+        return "disabled".equalsIgnoreCase(string)
+                || "false".equalsIgnoreCase(string)
                 || "no".equalsIgnoreCase(string)
-                || "disabled".equalsIgnoreCase(string);
+                || "off".equalsIgnoreCase(string);
     }
 
+    /**
+     * Returns true if the string represents truth (case-independent), meaning any of:
+     *
+     * <ul>
+     *     <li>enabled</li>
+     *     <li>true</li>
+     *     <li>yes</li>
+     *     <li>on</li>
+     * </ul>
+     */
     public static boolean isTrue(String string)
     {
-        return "true".equalsIgnoreCase(string)
-                || "t".equalsIgnoreCase(string)
+        return "enabled".equalsIgnoreCase(string)
+                || "true".equalsIgnoreCase(string)
                 || "yes".equalsIgnoreCase(string)
-                || "enabled".equalsIgnoreCase(string);
+                || "on".equalsIgnoreCase(string);
     }
 }

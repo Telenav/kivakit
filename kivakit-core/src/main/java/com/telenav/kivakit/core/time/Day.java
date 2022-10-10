@@ -178,16 +178,16 @@ public class Day extends BaseTime<Day>
                 return asUnits() >= 0;
 
             case DAY_OF_MONTH:
-                return Ints.isBetweenInclusive(asUnits(), 1, 31);
+                return Ints.intIsBetweenInclusive(asUnits(), 1, 31);
 
             case DAY_OF_WEEK:
-                return Ints.isBetweenInclusive(asUnits(), 0, 6);
+                return Ints.intIsBetweenInclusive(asUnits(), 0, 6);
 
             case DAY_OF_YEAR:
-                return Ints.isBetweenInclusive(asUnits(), 0, 365);
+                return Ints.intIsBetweenInclusive(asUnits(), 0, 365);
 
             case DAY_OF_UNIX_EPOCH:
-                return Ints.isBetweenInclusive(asUnits(), 0, MAX_VALUE);
+                return Ints.intIsBetweenInclusive(asUnits(), 0, MAX_VALUE);
 
             default:
                 return unsupported();

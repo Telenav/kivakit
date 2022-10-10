@@ -229,11 +229,11 @@ public class Formatter
                                 break;
 
                             case "float":
-                                builder.append(Doubles.format((float) arguments[argumentIndex++], 1));
+                                builder.append(Doubles.formatDouble((float) arguments[argumentIndex++], 1));
                                 break;
 
                             case "double":
-                                builder.append(Doubles.format((double) arguments[argumentIndex++], 1));
+                                builder.append(Doubles.formatDouble((double) arguments[argumentIndex++], 1));
                                 break;
 
                             case "right":

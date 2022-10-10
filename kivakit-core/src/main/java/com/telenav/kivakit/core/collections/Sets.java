@@ -20,19 +20,18 @@ package com.telenav.kivakit.core.collections;
 
 import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.collections.set.ObjectSet;
-import com.telenav.kivakit.core.ensure.Ensure;
 import com.telenav.kivakit.interfaces.factory.Factory;
 
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.function.Function;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
+import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
 
 /**
  * Set utility methods for working on sets. Prefer {@link ObjectSet} when possible.
@@ -40,7 +39,6 @@ import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_N
  * <p><b>Construction</b></p>
  *
  * <ul>
- *     <li>{@link #empty()}</li>
  *     <li>{@link #hashSet(Object[])}</li>
  *     <li>{@link #hashSet(Iterable)}</li>
  *     <li>{@link #hashSet(Collection)}</li>
@@ -49,7 +47,7 @@ import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_N
  * <p><b>Copying</b></p>
  *
  * <ul>
- *     <li>{@link #copy(Factory, Set)}</li>
+ *     <li>{@link #deepCopy(Factory, Set)}</li>
  *     <li>{@link #deepCopy(Factory, Set, Function)}</li>
  * </ul>
  *
@@ -57,7 +55,7 @@ import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_N
  *
  * <ul>
  *     <li>{@link #first(Set)}</li>
- *     <li>{@link #union(Set, Set)}</li>
+ *     <li>{@link #unionOf(Set, Set)}</li>
  * </ul>
  *
  * @author jonathanl (shibo)
@@ -69,16 +67,21 @@ import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_N
 public class Sets
 {
     /**
-     * Returns a copy of the given set
+     * @param factory Creates a new set
+     * @param set The set to copy
+     * @return A deep copy of the given set
      */
-    public static <Value> Set<Value> copy(Factory<Set<Value>> factory,
-                                          Set<Value> set)
+    public static <Value> Set<Value> deepCopy(Factory<Set<Value>> factory,
+                                              Set<Value> set)
     {
         return deepCopy(factory, set, value -> value);
     }
 
     /**
-     * Returns a copy of the given set
+     * @param factory Creates a new set
+     * @param set The set to copy
+     * @param clone The function to copy values
+     * @return A deep copy of the given set
      */
     public static <Value> Set<Value> deepCopy(Factory<Set<Value>> factory,
                                               Set<Value> set,
@@ -87,20 +90,10 @@ public class Sets
         var copy = factory.newInstance();
         for (var value : set)
         {
-            Ensure.ensureNotNull(value);
-            var clonedValue = clone.apply(value);
-            Ensure.ensureNotNull(clonedValue);
-            copy.add(clonedValue);
+            var clonedValue = clone.apply(ensureNotNull(value));
+            copy.add(ensureNotNull(clonedValue));
         }
         return copy;
-    }
-
-    /**
-     * Returns the empty set.
-     */
-    public static <Value> Set<Value> empty()
-    {
-        return Collections.emptySet();
     }
 
     /**
@@ -141,7 +134,7 @@ public class Sets
     /**
      * Returns the union of the two given sets
      */
-    public static <T> Set<T> union(Set<T> a, Set<T> b)
+    public static <T> Set<T> unionOf(Set<T> a, Set<T> b)
     {
         var union = new HashSet<T>();
         union.addAll(a);

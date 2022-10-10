@@ -144,7 +144,7 @@ public final class Percent implements
      */
     public double asZeroToOne()
     {
-        return Doubles.inRange(percent / 100.0, 0.0, 1.0);
+        return Doubles.doubleInRange(percent / 100.0, 0.0, 1.0);
     }
 
     /**
@@ -266,6 +266,6 @@ public final class Percent implements
     @Override
     public String toString()
     {
-        return Doubles.format(percent, 1) + "%";
+        return Doubles.formatDouble(percent, 1) + "%";
     }
 }

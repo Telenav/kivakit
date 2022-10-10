@@ -31,12 +31,12 @@ public class IntsTest extends CoreUnitTest
     {
         for (int i = -100_000; i < 100_000; i++)
         {
-            ensureEqual(Ints.parseFast("" + i, -1), i);
+            ensureEqual(Ints.parseFastInt("" + i, -1), i);
         }
-        ensureEqual(Ints.parseFast(null, -1), -1);
-        ensureEqual(Ints.parseFast("", -1), -1);
-        ensureEqual(Ints.parseFast("99", -1), 99);
-        ensureEqual(Ints.parseFast("99", -1), 99);
-        ensureEqual(Ints.parseFast("abc", -1), -1);
+        ensureEqual(Ints.parseFastInt(null, -1), -1);
+        ensureEqual(Ints.parseFastInt("", -1), -1);
+        ensureEqual(Ints.parseFastInt("99", -1), 99);
+        ensureEqual(Ints.parseFastInt("99", -1), 99);
+        ensureEqual(Ints.parseFastInt("abc", -1), -1);
     }
 }

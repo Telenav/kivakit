@@ -26,8 +26,8 @@ import java.text.NumberFormat;
 import java.util.Locale;
 import java.util.Random;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 
 /**
@@ -38,8 +38,8 @@ import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
  * <p><b>Parsing</b></p>
  *
  * <ul>
- *     <li>{@link #parseFast(String)} - Parses the given string, returning {@link #INVALID} instead of throwing an exception. This can make a significant performance improvement when dealing with dirty data, because exceptions are expensive</li>
- *     <li>{@link #parseFast(String, long)} - Parses the given string returning the given flag value if parsing fails</li>
+ *     <li>{@link #parseFastLong(String)} - Parses the given string, returning {@link #INVALID} instead of throwing an exception. This can make a significant performance improvement when dealing with dirty data, because exceptions are expensive</li>
+ *     <li>{@link #parseFastLong(String, long)} - Parses the given string returning the given flag value if parsing fails</li>
  *     <li>{@link #parseFastNaturalNumber(String)} - Parses a natural number, returning {@link #INVALID} if parsing fails</li>
  * </ul>
  *
@@ -48,9 +48,9 @@ import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
  * <p><b>Words</b></p>
  *
  * <ul>
- *     <li>{@link #high(long)} - Returns the high 32 bit word of the given <i>long</i></li>
- *     <li>{@link #low(long)} - Returns the low 32 bit word of the given <i>int</i></li>
- *     <li>{@link #forHighLow(int, int)} - Returns the two 32 bit words combined into a <i>long</i></li>
+ *     <li>{@link #longHighWord(long)} - Returns the high 32 bit word of the given <i>long</i></li>
+ *     <li>{@link #longLowWord(long)} - Returns the low 32 bit word of the given <i>int</i></li>
+ *     <li>{@link #longForWords(int, int)} - Returns the two 32 bit words combined into a <i>long</i></li>
  * </ul>
  *
  * <hr>
@@ -58,9 +58,9 @@ import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
  * <p><b>Ranges</b></p>
  *
  * <ul>
- *     <li>{@link #inRangeInclusive(long, long, long)} - Returns true if the given value is within the given range, inclusive</li>
- *     <li>{@link #isBetweenInclusive(long, long, long)} - Returns true if the given value is in the given range, inclusive</li>
- *     <li>{@link #isBetweenExclusive(long, long, long)} - Returns true if the given value is in the given range, exclusive</li>
+ *     <li>{@link #longInRangeInclusive(long, long, long)} - Returns true if the given value is within the given range, inclusive</li>
+ *     <li>{@link #longIsBetweenInclusive(long, long, long)} - Returns true if the given value is in the given range, inclusive</li>
+ *     <li>{@link #longIsBetweenExclusive(long, long, long)} - Returns true if the given value is in the given range, exclusive</li>
  * </ul>
  *
  * <hr>
@@ -68,9 +68,9 @@ import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
  * <p><b>String Conversion</b></p>
  *
  * <ul>
- *     <li>{@link #commaSeparated(long)} - Converts the given value to a comma-separated string</li>
- *     <li>{@link #toHex(long)} - Converts the given <i>int</i> to a hexadecimal string</li>
- *     <li>{@link #toHex(long, long)} - Converts the given value to a hexadecimal string of the given length</li>
+ *     <li>{@link #longAsCommaSeparated(long)} - Converts the given value to a comma-separated string</li>
+ *     <li>{@link #longToHex(long)} - Converts the given <i>int</i> to a hexadecimal string</li>
+ *     <li>{@link #longToHex(long, long)} - Converts the given value to a hexadecimal string of the given length</li>
  * </ul>
  *
  * <hr>
@@ -90,22 +90,22 @@ public class Longs
     /**
      * Returns the given value formatted with comma separators for the US locale.
      */
-    public static String commaSeparated(long value)
+    public static String longAsCommaSeparated(long value)
     {
         return NumberFormat.getNumberInstance(Locale.US).format(value);
     }
 
-    public static long forHighLow(int high, int low)
+    public static long longForWords(int high, int low)
     {
         return (((long) high) << 32) | (low & 0xffff_ffffL);
     }
 
-    public static int high(long value)
+    public static int longHighWord(long value)
     {
         return (int) (value >> 32);
     }
 
-    public static long inRangeInclusive(long value, long min, long max)
+    public static long longInRangeInclusive(long value, long min, long max)
     {
         return Math.min(Math.max(value, min), max);
     }
@@ -113,7 +113,7 @@ public class Longs
     /**
      * Returns true if the given value is in the given range (exclusive)
      */
-    public static boolean isBetweenExclusive(long value, long low, long high)
+    public static boolean longIsBetweenExclusive(long value, long low, long high)
     {
         return value >= low && value < high;
     }
@@ -121,19 +121,102 @@ public class Longs
     /**
      * Returns true if the given value is in the given range (inclusive)
      */
-    public static boolean isBetweenInclusive(long value, long low, long high)
+    public static boolean longIsBetweenInclusive(long value, long low, long high)
     {
         return value >= low && value <= high;
     }
 
-    public static int low(long value)
+    public static int longLowWord(long value)
     {
         return (int) value;
     }
 
-    public static long parseFast(String string)
+    /**
+     * NOTE: This (poorly documented) method is verbatim from java.util.Random.java. It is being used because the task
+     * of finding a random long between two longs involves complex overflow issues and this code has been tested.
+     * <p>
+     * The form of nextLong used by LongStream Spliterators.  If origin is greater than bound, acts as unbounded form of
+     * nextLong, else as bounded form.
+     *
+     * @param minimum the least value, unless greater than bound
+     * @param maximumExclusive the upper bound (exclusive), must not equal origin
+     * @return a pseudorandom value
+     */
+    @SuppressWarnings("StatementWithEmptyBody")
+    public static long longRandom(Random random, long minimum, long maximumExclusive)
     {
-        return parseFast(string, INVALID);
+        if (minimum == maximumExclusive)
+        {
+            return minimum;
+        }
+        var r = random.nextLong();
+        if (minimum < maximumExclusive)
+        {
+            var n = maximumExclusive - minimum;
+            var m = n - 1;
+            if ((n & m) == 0L)  // power of two
+            {
+                r = (r & m) + minimum;
+            }
+            else if (n > 0L)
+            {  // reject over-represented candidates
+                for (var u = r >>> 1;            // ensure non-negative
+                     u + m - (r = u % n) < 0L;    // rejection check
+                     u = random.nextLong() >>> 1) // retry
+                {
+                }
+                r += minimum;
+            }
+            else
+            {              // range not representable as long
+                while (r < minimum || r >= maximumExclusive)
+                {
+                    r = random.nextLong();
+                }
+            }
+        }
+        return r;
+    }
+
+    /**
+     * @param value The value to search
+     * @param bits The word length
+     * @param searchFor The value to locate
+     * @return True if the value contains the search term in the words
+     */
+    public static boolean longSearchWords(long value, int bits, int searchFor)
+    {
+        for (var remaining = 64; remaining > 0; remaining -= bits)
+        {
+            var word = (int) (value & 0xffffL);
+            if (word == searchFor)
+            {
+                return true;
+            }
+            value >>>= bits;
+        }
+        return false;
+    }
+
+    /**
+     * Converts the given value to a hexadecimal string usable as a web color.
+     */
+    public static String longToHex(long value)
+    {
+        return Long.toHexString(value);
+    }
+
+    /**
+     * Converts the given value to a hexadecimal string usable as a web color.
+     */
+    public static String longToHex(long value, long length)
+    {
+        return String.format("%0" + length + "x", value);
+    }
+
+    public static long parseFastLong(String string)
+    {
+        return parseFastLong(string, INVALID);
     }
 
     /**
@@ -142,7 +225,7 @@ public class Longs
      *
      * @return An integer value or the specified invalid value if the string is not a valid integer
      */
-    public static long parseFast(String string, long invalid)
+    public static long parseFastLong(String string, long invalid)
     {
         if (string != null)
         {
@@ -208,88 +291,5 @@ public class Longs
             }
         }
         return INVALID;
-    }
-
-    /**
-     * NOTE: This (poorly documented) method is verbatim from java.util.Random.java. It is being used because the task
-     * of finding a random long between two longs involves complex overflow issues and this code has been tested.
-     * <p>
-     * The form of nextLong used by LongStream Spliterators.  If origin is greater than bound, acts as unbounded form of
-     * nextLong, else as bounded form.
-     *
-     * @param minimum the least value, unless greater than bound
-     * @param maximumExclusive the upper bound (exclusive), must not equal origin
-     * @return a pseudorandom value
-     */
-    @SuppressWarnings("StatementWithEmptyBody")
-    public static long random(Random random, long minimum, long maximumExclusive)
-    {
-        if (minimum == maximumExclusive)
-        {
-            return minimum;
-        }
-        var r = random.nextLong();
-        if (minimum < maximumExclusive)
-        {
-            var n = maximumExclusive - minimum;
-            var m = n - 1;
-            if ((n & m) == 0L)  // power of two
-            {
-                r = (r & m) + minimum;
-            }
-            else if (n > 0L)
-            {  // reject over-represented candidates
-                for (var u = r >>> 1;            // ensure non-negative
-                     u + m - (r = u % n) < 0L;    // rejection check
-                     u = random.nextLong() >>> 1) // retry
-                {
-                }
-                r += minimum;
-            }
-            else
-            {              // range not representable as long
-                while (r < minimum || r >= maximumExclusive)
-                {
-                    r = random.nextLong();
-                }
-            }
-        }
-        return r;
-    }
-
-    /**
-     * @param value The value to search
-     * @param bits The word length
-     * @param searchFor The value to locate
-     * @return True if the value contains the search term in the words
-     */
-    public static boolean searchWords(long value, int bits, int searchFor)
-    {
-        for (var remaining = 64; remaining > 0; remaining -= bits)
-        {
-            var word = (int) (value & 0xffffL);
-            if (word == searchFor)
-            {
-                return true;
-            }
-            value >>>= bits;
-        }
-        return false;
-    }
-
-    /**
-     * Converts the given value to a hexadecimal string usable as a web color.
-     */
-    public static String toHex(long value)
-    {
-        return Long.toHexString(value);
-    }
-
-    /**
-     * Converts the given value to a hexadecimal string usable as a web color.
-     */
-    public static String toHex(long value, long length)
-    {
-        return String.format("%0" + length + "x", value);
     }
 }

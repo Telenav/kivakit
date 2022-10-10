@@ -73,7 +73,7 @@ public class StringSimilarity
         {
             return Percent._0;
         }
-        return Percent.percent(Doubles.inRange(100.0 * lexicalDistance / a.length(), 0.0, 100.0));
+        return Percent.percent(Doubles.doubleInRange(100.0 * lexicalDistance / a.length(), 0.0, 100.0));
     }
 
     /**

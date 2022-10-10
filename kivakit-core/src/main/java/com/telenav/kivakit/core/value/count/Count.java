@@ -473,7 +473,7 @@ public class Count extends BaseCount<Count>
      */
     public static Count parseCount(Listener listener, String text)
     {
-        var count = Longs.parseFast(text, -1);
+        var count = Longs.parseFastLong(text, -1);
         return count < 0 ? null : count(count);
     }
 

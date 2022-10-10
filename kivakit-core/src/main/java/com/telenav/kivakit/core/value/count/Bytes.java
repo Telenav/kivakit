@@ -463,6 +463,6 @@ public final class Bytes extends BaseCount<Bytes> implements
      */
     private String unitString(double value, String units)
     {
-        return Doubles.format(value, 1) + units;
+        return Doubles.formatDouble(value, 1) + units;
     }
 }

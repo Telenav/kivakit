@@ -328,7 +328,7 @@ public class Range<Value extends Numeric<Value>> implements
      */
     public Value randomValue(Random random)
     {
-        return minimum.map(Longs.random(random, minimum().asLong(), exclusiveMaximum().asLong()));
+        return minimum.map(Longs.longRandom(random, minimum().asLong(), exclusiveMaximum().asLong()));
     }
 
     /**

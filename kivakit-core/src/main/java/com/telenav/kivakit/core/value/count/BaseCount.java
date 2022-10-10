@@ -481,7 +481,7 @@ public abstract class BaseCount<SubClass extends BaseCount<SubClass>> implements
      */
     public boolean isBetweenExclusive(BaseCount<?> minimum, BaseCount<?> exclusiveMaximum)
     {
-        return Longs.isBetweenExclusive(asLong(), minimum.asLong(), exclusiveMaximum.asLong());
+        return Longs.longIsBetweenExclusive(asLong(), minimum.asLong(), exclusiveMaximum.asLong());
     }
 
     /**
@@ -489,7 +489,7 @@ public abstract class BaseCount<SubClass extends BaseCount<SubClass>> implements
      */
     public boolean isBetweenInclusive(BaseCount<?> minimum, BaseCount<?> inclusiveMaximum)
     {
-        return Longs.isBetweenInclusive(asLong(), minimum.asLong(), inclusiveMaximum.asLong());
+        return Longs.longIsBetweenInclusive(asLong(), minimum.asLong(), inclusiveMaximum.asLong());
     }
 
     /**
@@ -851,9 +851,9 @@ public abstract class BaseCount<SubClass extends BaseCount<SubClass>> implements
      */
     public SubClass powerOfTenCeiling(int digits)
     {
-        return inRangeExclusive((asLong() + Ints.powerOfTen(digits))
-                / Ints.powerOfTen(digits)
-                * Ints.powerOfTen(digits));
+        return inRangeExclusive((asLong() + Ints.intPowerOfTen(digits))
+                / Ints.intPowerOfTen(digits)
+                * Ints.intPowerOfTen(digits));
     }
 
     /**
@@ -864,7 +864,7 @@ public abstract class BaseCount<SubClass extends BaseCount<SubClass>> implements
      */
     public SubClass powerOfTenFloor(int digits)
     {
-        return inRangeExclusive(asLong() / Ints.powerOfTen(digits) * Ints.powerOfTen(digits));
+        return inRangeExclusive(asLong() / Ints.intPowerOfTen(digits) * Ints.intPowerOfTen(digits));
     }
 
     /**

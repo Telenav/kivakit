@@ -148,7 +148,7 @@ public class Primes
         System.out.println(primes.size() + " primes:");
         for (var prime : primes)
         {
-            System.out.print(Longs.commaSeparated(prime).replaceAll(",", "_") + ", ");
+            System.out.print(Longs.longAsCommaSeparated(prime).replaceAll(",", "_") + ", ");
         }
     }
 

@@ -1,12 +1,11 @@
 package com.telenav.kivakit.core.code;
 
 import com.telenav.kivakit.annotations.code.quality.CodeQuality;
-import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.messaging.repeaters.RepeaterMixin;
 import com.telenav.kivakit.interfaces.value.Source;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 
 /**
@@ -23,7 +22,7 @@ import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
  *
  *    [...]
  *
- * return UncheckedCode.of(this::doIt).or(false, "Unable to do it");
+ * return unchecked(this::doIt).orDefaultAndProblem(false, "Unable to do it");
  * </pre>
  *
  * @author jonathanl (shibo)
@@ -78,12 +77,11 @@ public interface UncheckedCode<Value> extends RepeaterMixin
 
     /**
      * @param defaultValue A default value to return if the code throws an exception
-     * @param listener A listener to broadcast a warning message to if an exception is thrown
      * @param message A warning message to give to the listener if an exception is thrown
      * @param arguments Arguments to interpolate into the message
      * @return The value returned by the code, or the given default value if an exception is thrown
      */
-    default Value orDefaultAndProblem(Value defaultValue, Listener listener, String message, Object... arguments)
+    default Value orDefaultAndProblem(Value defaultValue, String message, Object... arguments)
     {
         try
         {
@@ -91,7 +89,7 @@ public interface UncheckedCode<Value> extends RepeaterMixin
         }
         catch (Exception e)
         {
-            listener.warning(e, message, arguments);
+            warning(e, message, arguments);
             return defaultValue;
         }
     }
@@ -106,6 +104,7 @@ public interface UncheckedCode<Value> extends RepeaterMixin
 
     /**
      * Runs this code
+     *
      * @return The value returned by the checked code
      * @throws Exception The exception that might be thrown by the code
      */

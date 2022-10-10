@@ -106,7 +106,7 @@ public class Build implements Named
      */
     public int buildNumber()
     {
-        return Ints.parseFast(property("build-number"));
+        return Ints.parseFastInt(property("build-number"));
     }
 
     /**

@@ -55,7 +55,7 @@ public enum Meridiem
      */
     public static int asMeridiemHour(int militaryHour)
     {
-        ensure(Ints.isBetweenInclusive(militaryHour, 0, 23));
+        ensure(Ints.intIsBetweenInclusive(militaryHour, 0, 23));
 
         if (militaryHour == 0 || militaryHour == 12)
         {
@@ -72,7 +72,7 @@ public enum Meridiem
      */
     public static Meridiem meridiem(int militaryHour)
     {
-        ensure(Ints.isBetweenInclusive(militaryHour, 0, 23));
+        ensure(Ints.intIsBetweenInclusive(militaryHour, 0, 23));
 
         return militaryHour < 12 ? AM : PM;
     }
@@ -82,7 +82,7 @@ public enum Meridiem
      */
     public int asMilitaryHour(int meridiemHour)
     {
-        ensure(Ints.isBetweenInclusive(meridiemHour, 1, 12), "Invalid meridiem hour: $", meridiemHour);
+        ensure(Ints.intIsBetweenInclusive(meridiemHour, 1, 12), "Invalid meridiem hour: $", meridiemHour);
 
         switch (this)
         {
