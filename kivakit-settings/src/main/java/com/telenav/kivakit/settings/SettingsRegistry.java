@@ -32,8 +32,8 @@ import com.telenav.kivakit.settings.stores.MemorySettingsStore;
 import com.telenav.kivakit.settings.stores.ResourceFolderSettingsStore;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.ensure.Ensure.fail;
 import static com.telenav.kivakit.settings.SettingsStore.AccessMode.LOAD;
@@ -46,21 +46,21 @@ import static com.telenav.kivakit.settings.SettingsStore.AccessMode.LOAD;
  * <p><b>Settings</b></p>
  *
  * <p>
- * The global {@link SettingsRegistry} registry is returned by {@link #global()}, and it is the default registry returned by
- * {@link #settingsRegistryFor(Object)}. The global settings registry is normally the central point of settings
+ * The global {@link SettingsRegistry} registry is returned by {@link #globalSettings()}, and it is the default registry
+ * returned by {@link #settingsFor(Object)}. The global settings registry is normally the central point of settings
  * registration and lookup for an application. It allows settings objects to be easily queried from client code
  * anywhere. Convenient access to the global settings registry is provided by {@link SettingsRegistryTrait}, and by the
  * <i>Component</i> class in
- * <i>kivakit-component</i>, which implements {@link SettingsRegistryTrait}. A component can have its own settings registry
- * (not a common use case) by overriding the {@link SettingsRegistryTrait#settingsRegistry()} method (which returns the global
- * settings registry by default).
+ * <i>kivakit-component</i>, which implements {@link SettingsRegistryTrait}. A component can have its own settings
+ * registry (not a common use case) by overriding the {@link SettingsRegistryTrait#settingsRegistry()} method (which
+ * returns the global settings registry by default).
  * </p>
  *
  * <p><b>How Settings are Registered</b></p>
  *
  * <p>
- * A component can easily register settings objects with the {@link SettingsRegistryTrait} <i>registerSettings*()</i> methods.
- * In particular, they can be registered from a {@link SettingsStore} with the method
+ * A component can easily register settings objects with the {@link SettingsRegistryTrait} <i>registerSettings*()</i>
+ * methods. In particular, they can be registered from a {@link SettingsStore} with the method
  * {@link #registerSettingsIn(SettingsStore)}. A typical way for a component to register the settings objects in a
  * {@link SettingsStore} is something like:
  * </p>
@@ -149,7 +149,7 @@ public class SettingsRegistry extends MemorySettingsStore implements
     /**
      * Returns the global settings object
      */
-    public static SettingsRegistry global()
+    public static SettingsRegistry globalSettings()
     {
         return global.get();
     }
@@ -159,9 +159,9 @@ public class SettingsRegistry extends MemorySettingsStore implements
      *
      * @return The settings registry for the given object
      */
-    public static synchronized SettingsRegistry settingsRegistryFor(Object ignored)
+    public static synchronized SettingsRegistry settingsFor(Object ignored)
     {
-        return global();
+        return globalSettings();
     }
 
     /**

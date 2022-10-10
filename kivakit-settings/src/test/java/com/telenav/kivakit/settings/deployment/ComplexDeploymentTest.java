@@ -100,13 +100,13 @@ public class ComplexDeploymentTest extends UnitTest
     @Test
     public void testDevelopment()
     {
-        SettingsRegistry.global().registerSettingsIn(new Development());
+        SettingsRegistry.globalSettings().registerSettingsIn(new Development());
 
-        var server1 = SettingsRegistry.settingsRegistryFor(this).requireSettings(ServerSettings.class, SERVER1);
+        var server1 = SettingsRegistry.settingsFor(this).requireSettings(ServerSettings.class, SERVER1);
         ensureEqual(9001, server1.port());
         ensureEqual(Duration.ONE_MINUTE, server1.timeout());
 
-        var server2 = SettingsRegistry.settingsRegistryFor(this).requireSettings(ServerSettings.class, SERVER2);
+        var server2 = SettingsRegistry.settingsFor(this).requireSettings(ServerSettings.class, SERVER2);
         ensureEqual(9002, server2.port());
         ensureEqual(Duration.ONE_MINUTE, server2.timeout());
     }

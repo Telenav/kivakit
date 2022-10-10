@@ -29,8 +29,8 @@ import com.telenav.kivakit.validation.validators.NullValidator;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 
 /**
@@ -39,6 +39,18 @@ import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
  * sent the method returns true, allowing the caller to make success or failure decisions easily. The
  * {@link BaseValidator} class makes it easy to implement validators by hiding access to the listener and providing
  * methods that check conditions and broadcast messages.
+ *
+ * <p><b>Factory Methods</b></p>
+ *
+ * <ul>
+ *     <li>{@link #nullValidator()}</li>
+ * </ul>
+ *
+ * <p><b>Validation</b></p>
+ *
+ * <ul>
+ *     <li>{@link #validate(Listener)}</li>
+ * </ul>
  *
  * @author jonathanl (shibo)
  * @see BaseValidator

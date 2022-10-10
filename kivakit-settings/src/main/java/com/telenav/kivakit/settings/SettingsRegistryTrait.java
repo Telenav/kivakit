@@ -249,7 +249,7 @@ public interface SettingsRegistryTrait extends Repeater
 
     default SettingsRegistry settingsRegistry()
     {
-        return SettingsRegistry.settingsRegistryFor(this);
+        return SettingsRegistry.settingsFor(this);
     }
 
     /**

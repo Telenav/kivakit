@@ -27,8 +27,8 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 import java.util.HashSet;
 import java.util.Set;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 
 /**
@@ -41,6 +41,20 @@ import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
  * {@link Validator} implementations depending on the type of {@link ValidationType} requested or by doing validation
  * conditionally depending on what {@link #shouldValidate(Class)} returns for one or more different target types.
  * </p>
+ *
+ * <p><b>Factory Methods</b></p>
+ *
+ * <ul>
+ *     <li>{@link #validateAll()}</li>
+ * </ul>
+ *
+ * <p><b>Filtering {@link Validatable}s</b></p>
+ *
+ * <ul>
+ *     <li>{@link #include(Class)}</li>
+ *     <li>{@link #exclude(Class)}</li>
+ *     <li>{@link #shouldValidate(Class)}</li>
+ * </ul>
  *
  * @author jonathanl (shibo)
  * @see Validatable

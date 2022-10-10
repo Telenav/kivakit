@@ -37,8 +37,8 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.Collection;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.thread.ReentrancyTracker.Reentrancy.ENTERED;
 import static com.telenav.kivakit.core.thread.ReentrancyTracker.Reentrancy.REENTERED;
@@ -131,9 +131,14 @@ import static com.telenav.kivakit.core.thread.ReentrancyTracker.Reentrancy.REENT
  * <p><b>Validation</b></p>
  *
  * <ul>
+ *     <li>{@link #isInvalid()}</li>
+ *     <li>{@link #isValid()}</li>
+ *     <li>{@link #issues()}</li>
+ *     <li>{@link #onValidate()}</li>
+ *     <li>{@link #shouldShowValidationReport()}</li>
  *     <li>{@link #validate(Listener)}</li>
  *     <li>{@link #validate(Validator)}</li>
- *     <li>{@link #shouldShowValidationReport()}</li>
+ *     <li>{@link #validate(Validatable, ValidationType)}</li>
  *     <li>{@link #validationTarget()}</li>
  * </ul>
  *

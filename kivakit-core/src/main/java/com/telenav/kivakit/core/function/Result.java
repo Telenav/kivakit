@@ -460,7 +460,7 @@ public class Result<Value> extends Maybe<Value> implements RepeaterMixin
         if (messages == null)
         {
             // return an empty message list.
-            return MessageList.empty();
+            return MessageList.emptyMessageList();
         }
 
         return messages;

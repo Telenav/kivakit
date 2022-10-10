@@ -83,7 +83,7 @@ public class MessageChecker extends BaseRepeater
 
         for (var type : types)
         {
-            var count = messages.messages(type).size();
+            var count = messages.messagesOfType(type).size();
             var expected = expectedCount.get(type);
             if (expected == null)
             {

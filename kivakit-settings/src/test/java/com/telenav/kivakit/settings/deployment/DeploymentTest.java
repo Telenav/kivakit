@@ -76,7 +76,7 @@ public class DeploymentTest extends UnitTest implements SettingsRegistryTrait
     {
         registerSettingsIn(new China());
 
-        var settings = SettingsRegistry.settingsRegistryFor(this).requireSettings(ServerSettings.class);
+        var settings = SettingsRegistry.settingsFor(this).requireSettings(ServerSettings.class);
         ensureEqual(settings.port(), 9090);
         ensureEqual(settings.timeout(), Duration.ONE_MINUTE);
     }
@@ -86,7 +86,7 @@ public class DeploymentTest extends UnitTest implements SettingsRegistryTrait
     {
         registerSettingsIn(new Development());
 
-        var settings = SettingsRegistry.settingsRegistryFor(this).requireSettings(ServerSettings.class);
+        var settings = SettingsRegistry.settingsFor(this).requireSettings(ServerSettings.class);
         ensureEqual(8080, settings.port());
         ensureEqual(Duration.ONE_MINUTE, settings.timeout());
     }
@@ -96,7 +96,7 @@ public class DeploymentTest extends UnitTest implements SettingsRegistryTrait
     {
         registerSettingsIn(new Production());
 
-        var settings = SettingsRegistry.settingsRegistryFor(this).requireSettings(ServerSettings.class);
+        var settings = SettingsRegistry.settingsFor(this).requireSettings(ServerSettings.class);
         ensureEqual(80, settings.port());
         ensureEqual(Duration.ONE_MINUTE, settings.timeout());
     }
