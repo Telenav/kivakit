@@ -27,7 +27,7 @@ public class ExtractionTest extends CoreUnitTest
     public void testArrayExtraction()
     {
         var extractor = new TestExtractor(Listener.consoleListener());
-        ensureEqual(extractor.extract(new String[] { "12", "13", "14" }), ObjectList.objectList(12, 13, 14));
+        ensureEqual(extractor.extractAll(new String[] { "12", "13", "14" }), ObjectList.objectList(12, 13, 14));
     }
 
     @Test
@@ -43,6 +43,6 @@ public class ExtractionTest extends CoreUnitTest
     public void testListExtraction()
     {
         var extractor = new TestExtractor(Listener.consoleListener());
-        ensureEqual(extractor.extract(StringList.stringList("12", "13", "14")), ObjectList.objectList(12, 13, 14));
+        ensureEqual(extractor.extractAll(StringList.stringList("12", "13", "14")), ObjectList.objectList(12, 13, 14));
     }
 }

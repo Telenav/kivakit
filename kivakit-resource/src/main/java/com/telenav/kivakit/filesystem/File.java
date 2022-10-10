@@ -19,8 +19,6 @@
 package com.telenav.kivakit.filesystem;
 
 import com.telenav.kivakit.annotations.code.quality.CodeQuality;
-import com.telenav.kivakit.commandline.ArgumentParser;
-import com.telenav.kivakit.commandline.SwitchParser;
 import com.telenav.kivakit.conversion.BaseStringConverter;
 import com.telenav.kivakit.core.collections.map.VariableMap;
 import com.telenav.kivakit.core.collections.set.ObjectSet;
@@ -84,21 +82,6 @@ import static com.telenav.kivakit.filesystem.loader.FileSystemServiceLoader.file
  *     <li>{@link #file(Listener, URI)}</li>
  *     <li>{@link #file(Listener, FilePath)}</li>
  *     <li>{@link #file(Listener, java.io.File)}</li>
- * </ul>
- *
- * <p><b>Command Line Parsing</b></p>
- *
- * <p>
- * Static methods that produce switch and argument builders are available, and files add the following groups of
- * methods to the base methods provided by {@link BaseWritableResource}.
- * </p>
- *
- * <ul>
- *     <li>{@link #fileArgumentParser(Listener, String)}</li>
- *     <li>{@link #fileListArgumentParser(Listener, String, Extension)}</li>
- *     <li>{@link #fileListSwitchParser(Listener, String, String, Extension)}</li>
- *     <li>{@link #filePathSwitchParser(Listener, String, String)}</li>
- *     <li>{@link #fileSwitchParser(Listener, String, String)}</li>
  * </ul>
  *
  * <p><b>Path-Related Methods</b></p>
@@ -284,94 +267,6 @@ public class File extends BaseWritableResource implements FileSystemObject
     }
 
     /**
-     * Returns a file argument parser builder with the given description
-     *
-     * @param listener The listener to call with any problems
-     * @param description The argument description
-     * @return The argument parser builder
-     */
-    public static ArgumentParser.Builder<File> fileArgumentParser(@NotNull Listener listener,
-                                                                  @NotNull String description)
-    {
-        return ArgumentParser.argumentParserBuilder(File.class)
-                .converter(new File.Converter(listener))
-                .description(description);
-    }
-
-    /**
-     * Returns a {@link FileList} argument parser builder with the given description
-     *
-     * @param listener The listener to call with any problems
-     * @param description The argument description
-     * @param extension The extension to match for files in the file list
-     * @return The argument parser builder
-     */
-    public static ArgumentParser.Builder<FileList> fileListArgumentParser(@NotNull Listener listener,
-                                                                          @NotNull String description,
-                                                                          @NotNull Extension extension)
-    {
-        return ArgumentParser.argumentParserBuilder(FileList.class)
-                .converter(new FileList.Converter(listener, extension))
-                .description(description);
-    }
-
-    /**
-     * Returns a {@link FileList} switch parser builder with the given name and description
-     *
-     * @param listener The listener to call with any problems
-     * @param name The switch name
-     * @param description The switch description
-     * @param extension The extension to match for files in the file list
-     * @return The switch parser builder
-     */
-    public static SwitchParser.Builder<FileList> fileListSwitchParser(@NotNull Listener listener,
-                                                                      @NotNull String name,
-                                                                      @NotNull String description,
-                                                                      @NotNull Extension extension)
-    {
-        return SwitchParser.switchParserBuilder(FileList.class)
-                .name(name)
-                .converter(new FileList.Converter(listener, extension))
-                .description(description);
-    }
-
-    /**
-     * Returns a {@link FilePath} switch parser builder with the given name and description
-     *
-     * @param listener The listener to call with any problems
-     * @param name The switch name
-     * @param description The switch description
-     * @return The switch parser builder
-     */
-    public static SwitchParser.Builder<FilePath> filePathSwitchParser(@NotNull Listener listener,
-                                                                      @NotNull String name,
-                                                                      @NotNull String description)
-    {
-        return SwitchParser.switchParserBuilder(FilePath.class)
-                .name(name)
-                .converter(new FilePath.Converter(listener))
-                .description(description);
-    }
-
-    /**
-     * Returns a {@link File} switch parser builder with the given name and description
-     *
-     * @param listener The listener to call with any problems
-     * @param name The switch name
-     * @param description The switch description
-     * @return The switch parser builder
-     */
-    public static SwitchParser.Builder<File> fileSwitchParser(@NotNull Listener listener,
-                                                              @NotNull String name,
-                                                              @NotNull String description)
-    {
-        return SwitchParser.switchParserBuilder(File.class)
-                .name(name)
-                .converter(new File.Converter(listener))
-                .description(description);
-    }
-
-    /**
      * Parses a path into a {@link File}, interpolating variables from the given variable map
      *
      * @param listener The listener to call with any problems
@@ -414,14 +309,14 @@ public class File extends BaseWritableResource implements FileSystemObject
     }
 
     /**
-     * Returns a temporary file in the {@link Folder#kivakitTemporary()} folder with the given extension
+     * Returns a temporary file in the {@link Folders#kivakitTemporary()} folder with the given extension
      *
      * @param extension The extension
      * @return The temporary file
      */
     public static File temporary(@NotNull Extension extension)
     {
-        return Folder.kivakitTemporary().file("temp-" + temporaryFileNumber++ + extension);
+        return Folders.kivakitTemporary().file("temp-" + temporaryFileNumber++ + extension);
     }
 
     /**

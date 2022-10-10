@@ -52,15 +52,15 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
  * <p><b>Repeater</b></p>
  *
  * <ul>
- *     <li>{@link #listenTo(Broadcaster)} - Adds this component as a listener to the given {@link Broadcaster}</li>
  *     <li>{@link #addListener(Listener)} - Adds the given listener to this component</li>
  *     <li>{@link #announce(String, Object...)} - Broadcasts an {@link Announcement} message</li>
- *     <li>{@link #problem(String, Object...)} - Broadcasts a {@link Problem} message</li>
- *     <li>{@link #warning(String, Object...)} - Broadcasts a {@link Warning} message</li>
- *     <li>{@link #quibble(String, Object...)} - Broadcasts a {@link Quibble} message</li>
  *     <li>{@link #glitch(String, Object...)} - Broadcasts a {@link Glitch} message</li>
  *     <li>{@link #information(String, Object...)} - Broadcasts an {@link Information} message</li>
+ *     <li>{@link #listenTo(Broadcaster)} - Adds this component as a listener to the given {@link Broadcaster}</li>
+ *     <li>{@link #problem(String, Object...)} - Broadcasts a {@link Problem} message</li>
+ *     <li>{@link #quibble(String, Object...)} - Broadcasts a {@link Quibble} message</li>
  *     <li>{@link #trace(String, Object...)} - Broadcasts a {@link Trace} message if {@link #isDebugOn()} is true for this component</li>
+ *     <li>{@link #warning(String, Object...)} - Broadcasts a {@link Warning} message</li>
  * </ul>
  *
  * @author jonathanl (shibo)

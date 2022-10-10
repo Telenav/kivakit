@@ -27,14 +27,30 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeMember;
 import org.jetbrains.annotations.NotNull;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 
 /**
  * Represents a logical disk where folders and files are stored. Note that not all filesystems have a disk. For example,
  * HDFS and S3 are filesystems that are cloud-based and not associated with a single disk or computer. Provides methods
  * to get the root folder and to determine how large the disk is and how much space is left.
+ *
+ * <p><b>Folders</b></p>
+ *
+ * <ul>
+ *     <li>{@link #root()}</li>
+ * </ul>
+ *
+ * <p><b>Disk Space</b></p>
+ *
+ * <ul>
+ *     <li>{@link #free()}</li>
+ *     <li>{@link #usable()}</li>
+ *     <li>{@link #percentFree()}</li>
+ *     <li>{@link #percentUsable()}</li>
+ *     <li>{@link #size()}</li>
+ * </ul>
  *
  * @author jonathanl (shibo)
  */

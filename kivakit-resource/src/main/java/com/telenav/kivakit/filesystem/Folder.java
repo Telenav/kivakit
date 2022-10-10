@@ -19,10 +19,7 @@
 package com.telenav.kivakit.filesystem;
 
 import com.telenav.kivakit.annotations.code.quality.CodeQuality;
-import com.telenav.kivakit.commandline.ArgumentParser;
-import com.telenav.kivakit.commandline.SwitchParser;
 import com.telenav.kivakit.conversion.BaseStringConverter;
-import com.telenav.kivakit.core.KivaKit;
 import com.telenav.kivakit.core.code.UncheckedVoidCode;
 import com.telenav.kivakit.core.collections.list.ObjectList;
 import com.telenav.kivakit.core.language.trait.TryTrait;
@@ -59,7 +56,6 @@ import com.telenav.lexakai.annotations.associations.UmlRelation;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeMember;
 import org.jetbrains.annotations.NotNull;
 
-import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
@@ -72,18 +68,16 @@ import java.util.prefs.Preferences;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_INSUFFICIENT;
-import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
-import static com.telenav.kivakit.commandline.ArgumentParser.argumentParserBuilder;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.collections.list.ObjectList.objectList;
 import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
 import static com.telenav.kivakit.core.ensure.Ensure.fail;
 import static com.telenav.kivakit.core.messaging.Listener.throwingListener;
-import static com.telenav.kivakit.core.project.Project.resolveProject;
 import static com.telenav.kivakit.filesystem.FilePath.parseFilePath;
 import static com.telenav.kivakit.filesystem.Folder.FolderType.CLEAN_UP_ON_EXIT;
 import static com.telenav.kivakit.filesystem.Folder.Traversal.RECURSE;
@@ -102,30 +96,24 @@ import static com.telenav.kivakit.resource.ResourceList.resourceList;
  * <p><b>Factory Methods</b></p>
  *
  * <ul>
- *     <li>{@link #currentFolder()} - The current working folder</li>
- *     <li>{@link #desktopFolder()} - The desktop folder</li>
  *     <li>{@link #folder(FilePath)}</li>
  *     <li>{@link #folder(Path)} - A folder for the given NIO path</li>
  *     <li>{@link #folder(StringPath)}</li>
  *     <li>{@link #folder(URI)} - A folder for the given URI</li>
  *     <li>{@link #folder(URL)} - A folder for the given URL</li>
  *     <li>{@link #folder(java.io.File)} - A folder for the given Java file</li>
- *     <li>{@link #kivakitCache()} - The KivaKit cache folder, normally ~/.kivakit</li>
- *     <li>{@link #kivakitHome()} - The KivaKit home folder</li>
- *     <li>{@link #kivakitTemporary()} - Folder where temporary files can be created</li>
- *     <li>{@link #kivakitTest(Class)} - Folder for test files for the given class</li>
+ *     <li>{@link Folders#kivakitTest(Class)} - Folder for test files for the given class</li>
  *     <li>{@link #parseFolder(Listener, String, Object...)} - A folder for the given string</li>
  *     <li>{@link #parseFolder(String, Object...)}</li>
- *     <li>{@link #userHome()} - The user's home folder</li>
  * </ul>
  *
  * <p><b>Command Line</b></p>
  *
  * <ul>
- *     <li>{@link #folderArgumentParser(Listener, String)}</li>
- *     <li>{@link #folderListArgumentParser(Listener, String)}</li>
- *     <li>{@link #folderSwitchParser(Listener, String, String)}</li>
- *     <li>{@link #folderListSwitchParser(Listener, String, String)}</li>
+ *     <li>{@link Folders#folderArgumentParser(Listener, String)}</li>
+ *     <li>{@link Folders#folderListArgumentParser(Listener, String)}</li>
+ *     <li>{@link Folders#folderSwitchParser(Listener, String, String)}</li>
+ *     <li>{@link Folders#folderListSwitchParser(Listener, String, String)}</li>
  * </ul>
  *
  * <p><b>Properties</b></p>
@@ -243,29 +231,6 @@ public class Folder extends BaseRepeater implements
     private static final Monitor lock = new Monitor();
 
     /**
-     * Returns the current folder for this process
-     */
-    public static Folder currentFolder()
-    {
-        try
-        {
-            return parseFolder(throwingListener(), new java.io.File(".").getCanonicalPath());
-        }
-        catch (IOException e)
-        {
-            throw new Problem(e, "Can't get working folder").asException();
-        }
-    }
-
-    /**
-     * Returns the desktop folder
-     */
-    public static Folder desktopFolder()
-    {
-        return userHome().folder("Desktop");
-    }
-
-    /**
      * Returns the folder at the given path
      *
      * @param path The path
@@ -327,119 +292,6 @@ public class Folder extends BaseRepeater implements
     }
 
     /**
-     * Returns a {@link Folder} argument parser builder with the given description
-     *
-     * @param listener The listener to notify of any problems
-     * @param description The description of the argument
-     * @return The parser builder
-     */
-    public static ArgumentParser.Builder<Folder> folderArgumentParser(@NotNull Listener listener,
-                                                                      @NotNull String description)
-    {
-        return argumentParserBuilder(Folder.class)
-                .converter(new Folder.Converter(listener))
-                .description(description);
-    }
-
-    /**
-     * Returns a {@link FolderList} argument parser builder with the given description
-     *
-     * @param listener The listener to notify of any problems
-     * @param description The description of the argument
-     * @return The parser builder
-     */
-    public static ArgumentParser.Builder<FolderList> folderListArgumentParser(@NotNull Listener listener,
-                                                                              @NotNull String description)
-    {
-        return argumentParserBuilder(FolderList.class)
-                .converter(new FolderList.Converter(listener))
-                .description(description);
-    }
-
-    /**
-     * Returns a {@link FolderList} switch parser builder with the given name and description
-     *
-     * @param listener The listener to notify of any problems
-     * @param name The name of the switch
-     * @param description The description of the switch
-     * @return The parser builder
-     */
-    public static SwitchParser.Builder<FolderList> folderListSwitchParser(@NotNull Listener listener,
-                                                                          @NotNull String name,
-                                                                          @NotNull String description)
-    {
-        return SwitchParser.switchParserBuilder(FolderList.class)
-                .name(name)
-                .converter(new FolderList.Converter(listener))
-                .description(description);
-    }
-
-    /**
-     * Returns a {@link Folder} switch parser builder with the given name and description
-     *
-     * @param listener The listener to notify of any problems
-     * @param description The description of the switch
-     * @return The parser builder
-     */
-    public static SwitchParser.Builder<Folder> folderSwitchParser(@NotNull Listener listener,
-                                                                  @NotNull String name,
-                                                                  @NotNull String description)
-    {
-        return SwitchParser.switchParserBuilder(Folder.class)
-                .name(name)
-                .converter(new Folder.Converter(listener))
-                .description(description);
-    }
-
-    /**
-     * Returns the KivaKit cache folder
-     */
-    public static Folder kivakitCache()
-    {
-        return Folder.folder(resolveProject(KivaKit.class).cacheFolderPath()).mkdirs();
-    }
-
-    /**
-     * Returns the kivakit-extensions home folder
-     */
-    public static Folder kivakitExtensionsHome()
-    {
-        return kivakitHome().parent().folder("kivakit-extensions");
-    }
-
-    /**
-     * Returns the KivaKit home folder
-     */
-    public static Folder kivakitHome()
-    {
-        var home = resolveProject(KivaKit.class).homeFolderPath();
-        if (home != null)
-        {
-            return Folder.folder(home);
-        }
-        return fail("Cannot find KivaKit home folder");
-    }
-
-    /**
-     * Returns the KivaKit temporary folder
-     */
-    public static Folder kivakitTemporary()
-    {
-        return kivakitCache().folder("temporary").mkdirs();
-    }
-
-    /**
-     * Returns the test folder in the KivaKit temporary folder
-     *
-     * @param type The type to use as a sub-folder name
-     * @return The folder
-     */
-    public static Folder kivakitTest(@NotNull Class<?> type)
-    {
-        return kivakitTemporary().folder("test").folder(type.getSimpleName()).mkdirs();
-    }
-
-    /**
      * Parses the given path into a folder
      *
      * @param path The path to parse
@@ -478,7 +330,7 @@ public class Folder extends BaseRepeater implements
         synchronized (temporaryLock)
         {
             var name = "kivakit-process-" + OperatingSystem.operatingSystem().processIdentifier();
-            var temporary = kivakitTemporary()
+            var temporary = Folders.kivakitTemporary()
                     .folder("processes")
                     .folder(name)
                     .mkdirs();
@@ -497,14 +349,6 @@ public class Folder extends BaseRepeater implements
             }
             return temporary;
         }
-    }
-
-    /**
-     * Returns the user's home folder
-     */
-    public static Folder userHome()
-    {
-        return Folder.parseFolder(throwingListener(), System.getProperty("user.home"));
     }
 
     /**

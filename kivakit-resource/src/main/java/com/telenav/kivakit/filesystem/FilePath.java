@@ -42,10 +42,9 @@ import java.util.List;
 import java.util.function.Function;
 import java.util.regex.Pattern;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
-import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
 import static com.telenav.kivakit.core.messaging.Listener.throwingListener;
 
 /**
@@ -53,20 +52,8 @@ import static com.telenav.kivakit.core.messaging.Listener.throwingListener;
  *
  * <p>
  * This class contains numerous methods which down-cast the return value of the superclass to make use easier for
- * clients. Methods that are unique to this class mainly have to do with filesystems:
+ * clients. Methods that are unique to this class mainly have to do with filesystems and paths.
  * </p>
- *
- * <ul>
- *     <li>{@link #asAbsolute()} - This file path as an absolute path</li>
- *     <li>{@link #asFile()} - This file path as a file</li>
- *     <li>{@link #asStringPath()} - This file path without any root or scheme</li>
- *     <li>{@link #asUnixString()} - This file path as a forward-slash separated string</li>
- *     <li>{@link #file(FileName)} - This file path with the given filename appended</li>
- *     <li>{@link #hasScheme()} - True if this filepath has a scheme as in s3://telenav/README.md</li>
- *     <li>{@link #isCurrentFolder()} - True if this filepath is the current folder's filepath</li>
- *     <li>{@link #schemes()} - List of schemes for this filepath, or an empty list if there are none</li>
- *     <li>{@link #withoutSchemes()} - This filepath without any scheme</li>
- * </ul>
  *
  * <p><b>Parsing</b></p>
  *
@@ -74,7 +61,7 @@ import static com.telenav.kivakit.core.messaging.Listener.throwingListener;
  *     <li>{@link #parseFilePath(Listener listener, String, Object...)} - The given string as a file path</li>
  * </ul>
  *
- * <p><b>Factories</b></p>
+ * <p><b>Factory Methods</b></p>
  *
  * <ul>
  *     <li>{@link #filePath(URI)} - A file path for the given URI</li>
@@ -84,12 +71,84 @@ import static com.telenav.kivakit.core.messaging.Listener.throwingListener;
  *     <li>{@link #filePath(StringPath)} - The given string path as a file path</li>
  * </ul>
  *
+ * <p><b>Properties</b></p>
+ *
+ * <ul>
+ *     <li>{@link #parent()} - Returns the parent of this path</li>
+ *     <li>{@link #root()} - Returns the root of this path</li>
+ *     <li>{@link #separator()} - Returns the path separator</li>
+ *     <li>{@link #schemes()} - List of schemes for this filepath, or an empty list if there are none</li>
+ * </ul>
+ *
+ * <p><b>Checks</b></p>
+ *
+ * <ul>
+ *     <li>{@link #hasScheme()} - True if this filepath has a scheme as in s3://telenav/README.md</li>
+ *     <li>{@link #isAbsolute()} - True if this is an absolute path</li>
+ *     <li>{@link #isCurrentFolder()} - True if this filepath is the current folder's filepath</li>
+ * </ul>
+ *
+ * <p><b>Files</b></p>
+ *
+ * <ul>
+ *     <li>{@link #withChild(Path)} - This path with the given child path</li>
+ *     <li>{@link #withChild(String)} - This path with the given child path</li>
+ *     <li>{@link #file(FileName)} - This file path with the given filename appended</li>
+ *     <li>{@link #hasExtension(Extension)} - True if this filepath has the given extension</li>
+ * </ul>
+ *
+ * <p><b>Conversions</b></p>
+ *
+ * <ul>
+ *     <li>{@link #asAbsolute()} - This file path as an absolute path</li>
+ *     <li>{@link #asFile()} - This file path as a file</li>
+ *     <li>{@link #asStringPath()} - This file path without any root or scheme</li>
+ *     <li>{@link #asUnixString()} - This file path as a forward-slash separated string</li>
+ * </ul>
+ *
+ * <p><b>Operations</b></p>
+ *
+ * <ul>
+ *     <li>{@link #first()}</li>
+ *     <li>{@link #first(int)}</li>
+ *     <li>{@link #last()}</li>
+ *     <li>{@link #last(int)}</li>
+ *     <li>{@link #matches(Matcher)}</li>
+ *     <li>{@link #normalized()}</li>
+ *     <li>{@link #subpath(int, int)}</li>
+ *     <li>{@link #transformed(Function)}</li>
+ * </ul>
+ *
+ * <p><b>Functional</b></p>
+ *
+ * <ul>
+ *     <li>{@link #withChild(Path)}</li>
+ *     <li>{@link #withChild(String)}</li>
+ *     <li>{@link #withExtension(Extension)}</li>
+ *     <li>{@link #withParent(String)}</li>
+ *     <li>{@link #withParent(Path)}</li>
+ *     <li>{@link #withPrefix(String)}</li>
+ *     <li>{@link #withTrailingSlash()}</li>
+ *     <li>{@link #withRoot(String)}</li>
+ *     <li>{@link #withScheme(String)}</li>
+ *     <li>{@link #withSchemes(StringList)}</li>
+ *     <li>{@link #withSeparator(String)}</li>
+ *     <li>{@link #withoutFirst()}</li>
+ *     <li>{@link #withoutLast()}</li>
+ *     <li>{@link #withoutOptionalPrefix(Path)}</li>
+ *     <li>{@link #withoutOptionalSuffix(Path)}</li>
+ *     <li>{@link #withoutPrefix(Path)}</li>
+ *     <li>{@link #withoutRoot()}</li>
+ *     <li>{@link #withoutSuffix(Path)}</li>
+ *     <li>{@link #withoutTrailingSlash()}</li>
+ * </ul>
+ *
  * @author jonathanl (shibo)
  */
 @SuppressWarnings({ "unused", "JavadocLinkAsPlainText" })
 @UmlClassDiagram(diagram = DiagramResourcePath.class)
 @CodeQuality(stability = STABLE_EXTENSIBLE,
-             testing = TESTING_NOT_NEEDED,
+             testing = UNTESTED,
              documentation = DOCUMENTATION_COMPLETE)
 public class FilePath extends ResourcePath
 {
@@ -264,7 +323,7 @@ public class FilePath extends ResourcePath
     {
         if (isCurrentFolder())
         {
-            return Folder.currentFolder().path();
+            return Folders.currentFolder().path();
         }
 
         if (schemes().isNonEmpty())
@@ -370,7 +429,7 @@ public class FilePath extends ResourcePath
      */
     public boolean isCurrentFolder()
     {
-        return toString().equals(".") || equals(Folder.currentFolder().path());
+        return toString().equals(".") || equals(Folders.currentFolder().path());
     }
 
     @Override

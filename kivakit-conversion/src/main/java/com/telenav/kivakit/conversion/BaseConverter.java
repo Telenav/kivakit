@@ -32,8 +32,8 @@ import com.telenav.kivakit.core.time.Frequency;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeMember;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 
 /**
@@ -53,6 +53,25 @@ import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
  * Similarly {@link Warning} and {@link Glitch} messages can be broadcast with {@link #warning(String, Object...)} and
  * {@link #glitch(String, Object...)}.
  * </p>
+ *
+ * <p><b>Conversion</b></p>
+ *
+ * <ul>
+ *     <li>{@link #convert(Object)}</li>
+ * </ul>
+ *
+ * <p><b>Implementing Converters</b></p>
+ *
+ * <ul>
+ *     <li>{@link #onConvert(Object)}</li>
+ * </ul>
+ *
+ * <p><b>Missing Values</b></p>
+ *
+ * <ul>
+ *     <li>{@link #allowsNull()}</li>
+ *     <li>{@link #allowNull(boolean)}</li>
+ * </ul>
  *
  * @param <From> The type to convert from
  * @param <To> The type to convert to

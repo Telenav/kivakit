@@ -18,6 +18,7 @@
 
 package com.telenav.kivakit.internal.tests.filesystem;
 
+import com.telenav.kivakit.filesystem.Folders;
 import com.telenav.kivakit.testing.UnitTest;
 import com.telenav.kivakit.core.time.Duration;
 import com.telenav.kivakit.filesystem.Folder;
@@ -30,7 +31,7 @@ public class FolderTest extends UnitTest
     @Test
     public void testAge()
     {
-        var file = Folder.kivakitTest(getClass()).file("age-test.txt");
+        var file = Folders.kivakitTest(getClass()).file("age-test.txt");
         file.delete();
         file.saveText("test");
         ensure(file.createdAt().elapsedSince().isLessThan(Duration.seconds(30)));
@@ -41,13 +42,13 @@ public class FolderTest extends UnitTest
     {
         Folder foo = Folder.parseFolder(this, "~/foo");
         assert foo != null;
-        ensureEqual(Folder.userHome().folder("foo").withTrailingSlash(), foo.absolute());
+        ensureEqual(Folders.userHome().folder("foo").withTrailingSlash(), foo.absolute());
     }
 
     @Test
     public void testClear()
     {
-        var folder = Folder.kivakitTest(getClass()).folder("clear-test");
+        var folder = Folders.kivakitTest(getClass()).folder("clear-test");
         folder.mkdirs();
         folder.file("a.txt").saveText("A");
         folder.file("b.txt").saveText("B");
@@ -59,7 +60,7 @@ public class FolderTest extends UnitTest
     @Test
     public void testDelete()
     {
-        var file = Folder.kivakitTest(getClass()).file("delete-test.txt");
+        var file = Folders.kivakitTest(getClass()).file("delete-test.txt");
         file.saveText("test");
         ensure(file.exists());
         file.delete();
@@ -70,7 +71,7 @@ public class FolderTest extends UnitTest
     @Ignore
     public void testOldest()
     {
-        var folder = Folder.kivakitTest(getClass()).folder("clear-test");
+        var folder = Folders.kivakitTest(getClass()).folder("clear-test");
         folder.mkdirs();
         folder.clearAll();
         folder.file("a.txt").saveText("A");
@@ -82,7 +83,7 @@ public class FolderTest extends UnitTest
     @Test
     public void testTemporary()
     {
-        var folder = Folder.kivakitTest(getClass());
+        var folder = Folders.kivakitTest(getClass());
         ensure(folder.exists());
     }
 }

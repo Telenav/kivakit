@@ -28,13 +28,27 @@ import com.telenav.kivakit.interfaces.collection.Keyed;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeMember;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 
 /**
  * A base implementation for extractors that handles edge conditions like exceptions as well as extracting lists from
  * arrays, maps and {@link Keyed} objects.
+ *
+ * <p><b>Extraction</b></p>
+ *
+ * <ul>
+ *     <li>{@link #extract(Object)}</li>
+ *     <li>{@link #extractAll(Object[])}</li>
+ *     <li>{@link #extractAll(StringList)}</li>
+ * </ul>
+ *
+ * <p><b>Extractor Implementation</b></p>
+ *
+ * <ul>
+ *     <li>{@link #onExtract(Object)}</li>
+ * </ul>
  *
  * @author jonathanl (shibo)
  */
@@ -73,7 +87,7 @@ public abstract class BaseExtractor<Value, From> extends BaseRepeater implements
     /**
      * Returns a list of values extracted from the given array of objects
      */
-    public ObjectList<Value> extract(From[] values)
+    public ObjectList<Value> extractAll(From[] values)
     {
         var extracted = new ObjectList<Value>();
         for (var value : values)
@@ -87,7 +101,7 @@ public abstract class BaseExtractor<Value, From> extends BaseRepeater implements
      * Returns a list of values extracted from the given array of objects
      */
     @SuppressWarnings("unchecked")
-    public ObjectList<Value> extract(StringList values)
+    public ObjectList<Value> extractAll(StringList values)
     {
         var extracted = new ObjectList<Value>();
         for (var value : values)

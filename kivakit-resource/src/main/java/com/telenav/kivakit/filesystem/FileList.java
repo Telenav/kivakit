@@ -36,11 +36,12 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.messaging.Listener.throwingListener;
+import static com.telenav.kivakit.filesystem.File.file;
 import static com.telenav.kivakit.filesystem.FilePath.filePath;
 
 /**
@@ -149,7 +150,7 @@ public class FileList extends BaseResourceList<File> implements Iterable<File>
             var files = new FileList();
             for (var path : value.split(","))
             {
-                var file = File.parseFile(this, path);
+                var file = File.parseFile(this, path.trim());
                 if (file.isFolder())
                 {
                     files.addAll(file.asFolder().nestedFiles(extension::matches));
@@ -242,7 +243,7 @@ public class FileList extends BaseResourceList<File> implements Iterable<File>
     @Override
     protected File newResource(@NotNull ResourcePath path)
     {
-        return File.file(throwingListener(), filePath(path));
+        return file(throwingListener(), filePath(path));
     }
 
     /**

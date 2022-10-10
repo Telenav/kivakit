@@ -29,8 +29,8 @@ import com.telenav.kivakit.core.messaging.messages.status.Warning;
 import com.telenav.kivakit.core.messaging.repeaters.BaseRepeater;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 
 /**
@@ -40,6 +40,26 @@ import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
  * Adds to {@link BaseConverter} an implementation of {@link #unconvert(Object)} that checks for null, catches
  * exceptions and called {@link #onUnconvert(Object)}.
  * </p>
+ *
+ * <p><b>Conversions</b></p>
+ *
+ * <ul>
+ *     <li>{@link Converter#convert(Object)} - Called to convert <i>from</i> =&gt; <i>to</i></li>
+ *     <li>{@link #unconvert(Object)} - Called to convert <i>to</i> =&gt; <i>from</i></li>
+ * </ul>
+ *
+ * <p><b>Implementing Converters</b></p>
+ *
+ * <ul>
+ *     <li>{@link #onConvert(Object)}  - Called to convert <i>from</i> =&gt; <i>to</i></li>
+ *     <li>{@link #onUnconvert(Object)} - Called to convert <i>to</i> =&gt; <i>from</i></li>
+ * </ul>
+ *
+ * <p><b>Missing Values</b></p>
+ *
+ * <ul>
+ *     <li>{@link #nullValue()}</li>
+ * </ul>
  *
  * @param <From> The type to convert from
  * @param <To> The type to convert to

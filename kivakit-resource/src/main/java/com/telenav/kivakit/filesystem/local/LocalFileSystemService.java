@@ -23,7 +23,7 @@ import com.telenav.kivakit.core.collections.list.StringList;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.string.Strings;
 import com.telenav.kivakit.filesystem.FilePath;
-import com.telenav.kivakit.filesystem.Folder;
+import com.telenav.kivakit.filesystem.Folders;
 import com.telenav.kivakit.filesystem.spi.DiskService;
 import com.telenav.kivakit.filesystem.spi.FileService;
 import com.telenav.kivakit.filesystem.spi.FileSystemService;
@@ -117,7 +117,7 @@ public class LocalFileSystemService implements FileSystemService
         if (path.startsWith("~"))
         {
             return FilePath.parseFilePath(Listener.consoleListener(), Strings.replace(path.toString(), 0, 1,
-                    Folder.userHome().toString())).withoutSchemes();
+                    Folders.userHome().toString())).withoutSchemes();
         }
         return path.withoutSchemes();
     }

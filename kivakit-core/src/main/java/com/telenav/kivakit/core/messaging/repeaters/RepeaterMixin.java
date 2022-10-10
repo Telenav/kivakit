@@ -12,8 +12,8 @@ import com.telenav.kivakit.mixins.Mixin;
 
 import java.util.List;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 
 /**
@@ -158,8 +158,8 @@ public interface RepeaterMixin extends
 
     /**
      * <b>Not public API</b>
-     *
-     * @return The {@link Repeater} implementation associated with this mixin
+     * <p>
+     * Returns the {@link Repeater} implementation associated with this mixin
      */
     default Repeater repeater()
     {

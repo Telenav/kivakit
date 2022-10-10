@@ -25,6 +25,7 @@ import com.telenav.kivakit.core.value.level.Percent;
 import com.telenav.kivakit.filesystem.File;
 import com.telenav.kivakit.filesystem.Folder;
 import com.telenav.kivakit.filesystem.FolderPruner;
+import com.telenav.kivakit.filesystem.Folders;
 import com.telenav.kivakit.testing.UnitTest;
 import org.jetbrains.annotations.NotNull;
 import org.junit.Ignore;
@@ -101,7 +102,7 @@ public class FolderPrunerTest extends UnitTest
 
     private Folder folder(String name)
     {
-        var folder = Folder.kivakitTest(getClass()).folder(name);
+        var folder = Folders.kivakitTest(getClass()).folder(name);
         folder.mkdirs();
         folder.clearAll();
         return folder;

@@ -27,6 +27,7 @@ import com.telenav.kivakit.core.progress.ProgressReporter;
 import com.telenav.kivakit.core.thread.KivaKitThread;
 import com.telenav.kivakit.filesystem.File;
 import com.telenav.kivakit.filesystem.Folder;
+import com.telenav.kivakit.filesystem.Folders;
 import com.telenav.kivakit.properties.PropertyMap;
 import com.telenav.kivakit.resource.Extension;
 import com.telenav.kivakit.resource.Resourceful;
@@ -309,6 +310,6 @@ public class JarLauncher extends BaseRepeater
 
     private Folder folder()
     {
-        return Folder.kivakitTemporary().folder("launcher").mkdirs();
+        return Folders.kivakitTemporary().folder("launcher").mkdirs();
     }
 }
