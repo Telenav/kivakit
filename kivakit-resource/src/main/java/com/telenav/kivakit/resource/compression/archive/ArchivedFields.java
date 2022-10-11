@@ -28,7 +28,7 @@ import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMEN
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
 
 /**
- * A filter that matches all fields annotated with {@link KivaKitArchivedField}
+ * A filter that matches all fields annotated with {@link ArchivedField}
  *
  * @author jonathanl (shibo)
  */
@@ -43,6 +43,6 @@ class ArchivedFields extends AllFields
     @Override
     public boolean includeField(@NotNull Field field)
     {
-        return field.hasAnnotation(KivaKitArchivedField.class);
+        return field.hasAnnotation(ArchivedField.class);
     }
 }

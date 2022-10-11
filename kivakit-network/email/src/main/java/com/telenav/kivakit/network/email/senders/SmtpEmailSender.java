@@ -19,7 +19,7 @@
 package com.telenav.kivakit.network.email.senders;
 
 import com.telenav.kivakit.annotations.code.quality.CodeQuality;
-import com.telenav.kivakit.conversion.core.language.object.KivaKitConverted;
+import com.telenav.kivakit.conversion.core.language.object.ConvertedProperty;
 import com.telenav.kivakit.network.core.Host;
 import com.telenav.kivakit.network.core.authentication.Password;
 import com.telenav.kivakit.network.core.authentication.UserName;
@@ -66,7 +66,7 @@ public class SmtpEmailSender extends EmailSender
             return host;
         }
 
-        @KivaKitConverted(Host.Converter.class)
+        @ConvertedProperty(Host.Converter.class)
         public Configuration host(Host host)
         {
             this.host = host;
@@ -78,7 +78,7 @@ public class SmtpEmailSender extends EmailSender
             return password;
         }
 
-        @KivaKitConverted(PlainTextPassword.Converter.class)
+        @ConvertedProperty(PlainTextPassword.Converter.class)
         public Configuration password(Password password)
         {
             this.password = password;
@@ -90,7 +90,7 @@ public class SmtpEmailSender extends EmailSender
             return username;
         }
 
-        @KivaKitConverted(UserName.Converter.class)
+        @ConvertedProperty(UserName.Converter.class)
         public Configuration username(UserName username)
         {
             this.username = username;

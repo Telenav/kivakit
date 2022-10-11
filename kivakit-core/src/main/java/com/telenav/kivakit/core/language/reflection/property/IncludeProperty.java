@@ -18,6 +18,7 @@
 
 package com.telenav.kivakit.core.language.reflection.property;
 
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramReflection;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
@@ -26,20 +27,31 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-import static com.telenav.kivakit.core.language.reflection.property.PropertyPurpose.FORMATTING;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
 
 /**
- * Marks a field or method as excluded from property operations
+ * Marks a property as included in property operations
  *
  * @author jonathanl (shibo)
  */
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ ElementType.FIELD, ElementType.METHOD })
 @UmlClassDiagram(diagram = DiagramReflection.class)
-public @interface KivaKitExcludeProperty
+@CodeQuality(stability = STABLE,
+             testing = TESTING_NOT_NEEDED,
+             documentation = DOCUMENTATION_COMPLETE)
+public @interface IncludeProperty
 {
+
     /**
-     * Returns the purpose for which this property is being included
+     * Returns optional alternate name of property
      */
-    PropertyPurpose[] purpose() default { FORMATTING };
+    String as() default "";
+
+    /**
+     * Returns the purposes for which this property is being included
+     */
+    String[] purposes() default {};
 }

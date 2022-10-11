@@ -23,7 +23,7 @@ import com.telenav.kivakit.conversion.BaseStringConverter;
 import com.telenav.kivakit.core.collections.map.VariableMap;
 import com.telenav.kivakit.core.language.Hash;
 import com.telenav.kivakit.core.language.Objects;
-import com.telenav.kivakit.core.language.reflection.property.KivaKitIncludeProperty;
+import com.telenav.kivakit.core.language.reflection.property.IncludeProperty;
 import com.telenav.kivakit.core.logging.Logger;
 import com.telenav.kivakit.core.logging.LoggerFactory;
 import com.telenav.kivakit.core.messaging.Listener;
@@ -314,7 +314,7 @@ public class NetworkLocation implements StringFormattable, Comparable<NetworkLoc
     /**
      * Returns the host for this network location
      */
-    @KivaKitIncludeProperty
+    @IncludeProperty
     public Host host()
     {
         return port().host();
@@ -332,7 +332,7 @@ public class NetworkLocation implements StringFormattable, Comparable<NetworkLoc
     /**
      * Returns the path portion of this network location
      */
-    @KivaKitIncludeProperty
+    @IncludeProperty
     public NetworkPath networkPath()
     {
         return networkPath;
@@ -341,7 +341,7 @@ public class NetworkLocation implements StringFormattable, Comparable<NetworkLoc
     /**
      * Returns the host and port for this location
      */
-    @KivaKitIncludeProperty
+    @IncludeProperty
     public Port port()
     {
         return port;
@@ -350,7 +350,7 @@ public class NetworkLocation implements StringFormattable, Comparable<NetworkLoc
     /**
      * Returns the protocol required to access this network location
      */
-    @KivaKitIncludeProperty
+    @IncludeProperty
     public Protocol protocol()
     {
         return port.protocol();
@@ -359,7 +359,7 @@ public class NetworkLocation implements StringFormattable, Comparable<NetworkLoc
     /**
      * Returns any query parameters for this network location
      */
-    @KivaKitIncludeProperty
+    @IncludeProperty
     public QueryParameters queryParameters()
     {
         return queryParameters;

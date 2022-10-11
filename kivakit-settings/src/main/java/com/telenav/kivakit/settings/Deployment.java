@@ -107,7 +107,7 @@ import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
  *
  * <p>
  * When KivaKit loads this properties file, it will instantiate the ServerSettings class specified by "class" and
- * configure the resulting object. It does this by using the {@literal @}KivaKitConverted annotation to convert the
+ * configure the resulting object. It does this by using the {@literal @}ConvertedProperty annotation to convert the
  * value for the "port" key in the properties file into an object which it then passes to the annotated port(Port)
  * method:
  * </p>
@@ -119,7 +119,7 @@ import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
  * {
  *     private Port port;
  *
- *    {@literal @}KivaKitConverted(Port.Converter.class)
+ *    {@literal @}ConvertedProperty(Port.Converter.class)
  *     public void port( Port port)
  *     {
  *         this.port = port;

@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.internal.tests.core.string;
 
-import com.telenav.kivakit.core.language.reflection.property.KivaKitIncludeProperty;import com.telenav.kivakit.core.string.AsIndentedString;
+import com.telenav.kivakit.core.language.reflection.property.IncludeProperty;import com.telenav.kivakit.core.string.AsIndentedString;
 import com.telenav.kivakit.core.string.ObjectIndenter;
 import com.telenav.kivakit.internal.testing.CoreUnitTest;
 import com.telenav.kivakit.core.value.count.Maximum;
@@ -32,10 +32,10 @@ public class AsIndentedStringTest extends CoreUnitTest implements AsIndentedStri
 {
     static class Bar implements AsIndentedString
     {
-        @KivaKitIncludeProperty
+        @IncludeProperty
         private final int y = 5;
 
-        @KivaKitIncludeProperty
+        @IncludeProperty
         private final int z = 7;
 
         @Override
@@ -47,13 +47,13 @@ public class AsIndentedStringTest extends CoreUnitTest implements AsIndentedStri
 
     static class Foo implements AsIndentedString
     {
-        @KivaKitIncludeProperty
+        @IncludeProperty
         private final Bar bar = new Bar();
 
-        @KivaKitIncludeProperty
+        @IncludeProperty
         private final int y = 1;
 
-        @KivaKitIncludeProperty
+        @IncludeProperty
         private final int z = 3;
 
         @Override
@@ -63,10 +63,10 @@ public class AsIndentedStringTest extends CoreUnitTest implements AsIndentedStri
         }
     }
 
-    @KivaKitIncludeProperty
+    @IncludeProperty
     private final Foo foo = new Foo();
 
-    @KivaKitIncludeProperty
+    @IncludeProperty
     private final int x = 9;
 
     @Test

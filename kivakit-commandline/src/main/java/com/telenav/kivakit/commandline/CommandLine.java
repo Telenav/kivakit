@@ -22,7 +22,7 @@ import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.commandline.internal.lexakai.DiagramCommandLine;
 import com.telenav.kivakit.core.collections.list.ObjectList;
 import com.telenav.kivakit.core.collections.list.StringList;
-import com.telenav.kivakit.core.language.reflection.property.KivaKitIncludeProperty;
+import com.telenav.kivakit.core.language.reflection.property.IncludeProperty;
 import com.telenav.kivakit.core.string.AsciiArt;
 import com.telenav.kivakit.core.string.ObjectFormatter;
 import com.telenav.kivakit.interfaces.string.StringFormattable;
@@ -115,7 +115,7 @@ public class CommandLine implements StringFormattable, Iterable<ArgumentValue>
     /**
      * The proper arguments (without switches)
      */
-    @KivaKitIncludeProperty
+    @IncludeProperty
     @UmlAggregation
     private final ArgumentValueList arguments;
 
@@ -125,7 +125,7 @@ public class CommandLine implements StringFormattable, Iterable<ArgumentValue>
     /**
      * The switch arguments
      */
-    @KivaKitIncludeProperty
+    @IncludeProperty
     @UmlAggregation
     private final SwitchValueList switches;
 

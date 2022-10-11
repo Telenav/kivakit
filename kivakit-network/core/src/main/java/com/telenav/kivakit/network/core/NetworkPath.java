@@ -27,7 +27,7 @@ import com.telenav.kivakit.core.logging.LoggerFactory;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.path.Path;
 import com.telenav.kivakit.core.path.StringPath;
-import com.telenav.kivakit.core.string.KivaKitFormat;
+import com.telenav.kivakit.core.string.FormatProperty;
 import com.telenav.kivakit.filesystem.FilePath;
 import com.telenav.kivakit.network.core.internal.lexakai.DiagramNetworkLocation;
 import com.telenav.kivakit.resource.Extension;
@@ -279,7 +279,7 @@ public class NetworkPath extends FilePath
     /**
      * Returns the port for this network path (which includes the host and protocol)
      */
-    @KivaKitFormat
+    @FormatProperty
     public Port port()
     {
         return port;

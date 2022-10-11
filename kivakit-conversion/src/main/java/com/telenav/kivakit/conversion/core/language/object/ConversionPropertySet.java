@@ -2,66 +2,66 @@ package com.telenav.kivakit.conversion.core.language.object;
 
 import com.telenav.kivakit.core.language.reflection.Field;
 import com.telenav.kivakit.core.language.reflection.Method;
-import com.telenav.kivakit.core.language.reflection.property.KivaKitIncludeProperty;
+import com.telenav.kivakit.core.language.reflection.property.IncludeProperty;
 import com.telenav.kivakit.core.language.reflection.property.PropertyMemberSelector;
 import com.telenav.kivakit.core.language.reflection.property.PropertyNamingConvention;
 import com.telenav.kivakit.core.language.reflection.property.PropertySet;
 
-import static com.telenav.kivakit.core.language.reflection.property.PropertyMemberSelector.KIVAKIT_ANNOTATION_INCLUDED_FIELDS;
-import static com.telenav.kivakit.core.language.reflection.property.PropertyMemberSelector.KIVAKIT_ANNOTATION_INCLUDED_FIELDS_AND_METHODS;
-import static com.telenav.kivakit.core.language.reflection.property.PropertyMemberSelector.KIVAKIT_CONVERTED_FIELDS_AND_METHODS;
+import static com.telenav.kivakit.core.language.reflection.property.PropertyMemberSelector.KIVAKIT_INCLUDED_FIELDS;
+import static com.telenav.kivakit.core.language.reflection.property.PropertyMemberSelector.KIVAKIT_INCLUDED_FIELDS_AND_METHODS;
+import static com.telenav.kivakit.core.language.reflection.property.PropertyMemberSelector.KIVAKIT_CONVERTED_MEMBERS;
 import static com.telenav.kivakit.core.language.reflection.property.PropertyMemberSelector.NON_PUBLIC_METHODS;
 import static com.telenav.kivakit.core.language.reflection.property.PropertyMemberSelector.PUBLIC_METHODS;
 
 /**
  * Selects properties based on a list of {@link PropertyMemberSelector}s and a {@link PropertyNamingConvention}. This
- * selector uses the annotation {{@literal }@}KivaKitConverted property to label fields and/or methods as converted.
+ * selector uses the annotation {{@literal }@}ConvertedProperty property to label fields and/or methods as converted.
  *
  * @author jonathanl (shibo)
  */
 @SuppressWarnings("unused")
-public class KivaKitConversionPropertySet extends PropertySet
+public class ConversionPropertySet extends PropertySet
 {
     /**
      * @param convention The naming convention used for getters and setters
      * @param included Set of fields and properties to include
      */
-    public KivaKitConversionPropertySet(PropertyNamingConvention convention, PropertyMemberSelector... included)
+    public ConversionPropertySet(PropertyNamingConvention convention, PropertyMemberSelector... included)
     {
         super(convention, included);
     }
 
     /**
-     * Returns true if the field is marked with {@link KivaKitIncludeProperty}
+     * Returns true if the field is marked with {@link IncludeProperty}
      */
     @Override
-    protected boolean isKivaKitIncluded(Field field)
+    protected boolean isIncludedByAnnotation(Field field)
     {
         if (!field.isSynthetic() && !field.isStatic())
         {
-            if (field.hasAnnotation(KivaKitIncludeProperty.class) && included().contains(KIVAKIT_ANNOTATION_INCLUDED_FIELDS))
+            if (field.hasAnnotation(IncludeProperty.class) && included().contains(KIVAKIT_INCLUDED_FIELDS))
             {
                 return true;
             }
-            return field.hasAnnotation(KivaKitConverted.class) && included().contains(KIVAKIT_CONVERTED_FIELDS_AND_METHODS);
+            return field.hasAnnotation(ConvertedProperty.class) && included().contains(KIVAKIT_CONVERTED_MEMBERS);
         }
         return false;
     }
 
     /**
-     * Returns true if the method is marked with {@link KivaKitIncludeProperty}
+     * Returns true if the method is marked with {@link IncludeProperty}
      */
     @Override
-    protected boolean isKivaKitIncluded(Method method)
+    protected boolean isIncludedByAnnotation(Method method)
     {
         if (!method.isSynthetic() && !method.isStatic())
         {
-            if (method.hasAnnotation(KivaKitConverted.class) && included().contains(KIVAKIT_CONVERTED_FIELDS_AND_METHODS))
+            if (method.hasAnnotation(ConvertedProperty.class) && included().contains(KIVAKIT_CONVERTED_MEMBERS))
             {
                 return true;
             }
 
-            if (method.hasAnnotation(KivaKitIncludeProperty.class) && included().contains(KIVAKIT_ANNOTATION_INCLUDED_FIELDS_AND_METHODS))
+            if (method.hasAnnotation(IncludeProperty.class) && included().contains(KIVAKIT_INCLUDED_FIELDS_AND_METHODS))
             {
                 return true;
             }

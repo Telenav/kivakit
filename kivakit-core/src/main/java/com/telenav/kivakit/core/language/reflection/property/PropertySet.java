@@ -28,12 +28,12 @@ import com.telenav.lexakai.annotations.associations.UmlAggregation;
 
 import java.util.Set;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.language.reflection.property.PropertyMemberSelector.ALL_FIELDS_AND_METHODS;
-import static com.telenav.kivakit.core.language.reflection.property.PropertyMemberSelector.KIVAKIT_ANNOTATION_INCLUDED_FIELDS;
-import static com.telenav.kivakit.core.language.reflection.property.PropertyMemberSelector.KIVAKIT_ANNOTATION_INCLUDED_FIELDS_AND_METHODS;
+import static com.telenav.kivakit.core.language.reflection.property.PropertyMemberSelector.KIVAKIT_INCLUDED_FIELDS;
+import static com.telenav.kivakit.core.language.reflection.property.PropertyMemberSelector.KIVAKIT_INCLUDED_FIELDS_AND_METHODS;
 import static com.telenav.kivakit.core.language.reflection.property.PropertyMemberSelector.NON_PUBLIC_METHODS;
 import static com.telenav.kivakit.core.language.reflection.property.PropertyMemberSelector.PUBLIC_METHODS;
 import static com.telenav.kivakit.core.language.reflection.property.PropertyNamingConvention.KIVAKIT_PROPERTY_NAMING;
@@ -42,8 +42,8 @@ import static com.telenav.kivakit.core.language.reflection.property.PropertyNami
  * Base class for property filters. Supports Java Beans and KivaKit style accessor naming conventions with the enum
  * {@link PropertyNamingConvention} and filtering of properties and fields with {@link PropertyMemberSelector}. The
  * constructor takes a style and a set of explicit includes (nothing is included by default). Static fields and
- * properties are never included. Any field or method tagged with {@link KivaKitExcludeProperty} will be excluded
- * regardless of the inclusions specified.
+ * properties are never included. Any field or method tagged with {@link ExcludeProperty} will be excluded regardless of
+ * the inclusions specified.
  * <p>
  * Subclasses can utilize the following tests to implement filters that don't follow the pattern implemented by this
  * base class.
@@ -62,10 +62,10 @@ import static com.telenav.kivakit.core.language.reflection.property.PropertyNami
  * <p>
  * <b>KivaKit Annotation Tests</b>
  * <ul>
- *     <li>{@link #isKivaKitIncluded(Method)} - True if the method is annotated with {@link KivaKitIncludeProperty}</li>
- *     <li>{@link #isKivaKitIncluded(Field)} - True if the field is annotated with {@link KivaKitIncludeProperty}</li>
- *     <li>{@link #isKivaKitExcluded(Method)} - True if the method is annotated with {@link KivaKitExcludeProperty}</li>
- *     <li>{@link #isKivaKitExcluded(Field)} - True if the field is annotated with {@link KivaKitExcludeProperty}</li>
+ *     <li>{@link #isIncludedByAnnotation(Method)} - True if the method is annotated with {@link IncludeProperty}</li>
+ *     <li>{@link #isIncludedByAnnotation(Field)} - True if the field is annotated with {@link IncludeProperty}</li>
+ *     <li>{@link #isExcludedByAnnotation(Method)} - True if the method is annotated with {@link ExcludeProperty}</li>
+ *     <li>{@link #isExcludedByAnnotation(Field)} - True if the field is annotated with {@link ExcludeProperty}</li>
  * </ul>
  *
  * @author jonathanl (shibo)
@@ -159,10 +159,10 @@ public class PropertySet implements PropertyFilter
     public String nameForField(Field field)
     {
         // If an explicit name was provided,
-        var includeAnnotation = field.annotation(KivaKitIncludeProperty.class);
+        var includeAnnotation = field.annotation(IncludeProperty.class);
         if (includeAnnotation != null)
         {
-            var name = includeAnnotation.name();
+            var name = includeAnnotation.as();
             if (!"".equals(name))
             {
                 // use that name
@@ -179,10 +179,10 @@ public class PropertySet implements PropertyFilter
     public String nameForMethod(Method method)
     {
         // If an explicit name was provided,
-        var includeAnnotation = method.annotation(KivaKitIncludeProperty.class);
+        var includeAnnotation = method.annotation(IncludeProperty.class);
         if (includeAnnotation != null)
         {
-            var name = includeAnnotation.name();
+            var name = includeAnnotation.as();
             if (!"".equals(name))
             {
                 // use that name
@@ -201,6 +201,22 @@ public class PropertySet implements PropertyFilter
             return CaseFormat.decapitalize(name.substring(3));
         }
         return name;
+    }
+
+    /**
+     * Returns true if the method is marked with {@link ExcludeProperty}
+     */
+    protected boolean isExcludedByAnnotation(Method method)
+    {
+        return method.annotation(ExcludeProperty.class) != null;
+    }
+
+    /**
+     * Returns true if the field is marked with {@link ExcludeProperty}
+     */
+    protected boolean isExcludedByAnnotation(Field field)
+    {
+        return field.annotation(ExcludeProperty.class) != null;
     }
 
     /**
@@ -235,7 +251,7 @@ public class PropertySet implements PropertyFilter
      */
     protected boolean isIncluded(Field field)
     {
-        return !field.isStatic() && !isKivaKitExcluded(field) && isKivaKitIncluded(field);
+        return !field.isStatic() && !isExcludedByAnnotation(field) && isIncludedByAnnotation(field);
     }
 
     /**
@@ -243,46 +259,13 @@ public class PropertySet implements PropertyFilter
      */
     protected boolean isIncluded(Method method)
     {
-        return !method.isStatic() && !isKivaKitExcluded(method) && isKivaKitIncluded(method);
+        return !method.isStatic() && !isExcludedByAnnotation(method) && isIncludedByAnnotation(method);
     }
 
     /**
-     * Returns true if the method is marked with {@link KivaKitExcludeProperty}
+     * Returns true if the method is marked with {@link IncludeProperty}
      */
-    protected boolean isKivaKitExcluded(Method method)
-    {
-        return method.annotation(KivaKitExcludeProperty.class) != null;
-    }
-
-    /**
-     * Returns true if the field is marked with {@link KivaKitExcludeProperty}
-     */
-    protected boolean isKivaKitExcluded(Field field)
-    {
-        return field.annotation(KivaKitExcludeProperty.class) != null;
-    }
-
-    /**
-     * Returns true if the field is marked with {@link KivaKitIncludeProperty}
-     */
-    protected boolean isKivaKitIncluded(Field field)
-    {
-        if (!field.isSynthetic() && !field.isStatic())
-        {
-            if (selection.contains(ALL_FIELDS_AND_METHODS))
-            {
-                return true;
-            }
-            return field.annotation(KivaKitIncludeProperty.class) != null &&
-                    selection.contains(KIVAKIT_ANNOTATION_INCLUDED_FIELDS);
-        }
-        return false;
-    }
-
-    /**
-     * Returns true if the method is marked with {@link KivaKitIncludeProperty}
-     */
-    protected boolean isKivaKitIncluded(Method method)
+    protected boolean isIncludedByAnnotation(Method method)
     {
         if (!method.isSynthetic() && !method.isStatic())
         {
@@ -291,8 +274,8 @@ public class PropertySet implements PropertyFilter
                 return true;
             }
 
-            if (selection.contains(KIVAKIT_ANNOTATION_INCLUDED_FIELDS_AND_METHODS)
-                && method.annotation(KivaKitIncludeProperty.class) != null)
+            if (selection.contains(KIVAKIT_INCLUDED_FIELDS_AND_METHODS)
+                    && method.annotation(IncludeProperty.class) != null)
             {
                 return true;
             }
@@ -303,6 +286,23 @@ public class PropertySet implements PropertyFilter
             }
 
             return selection.contains(NON_PUBLIC_METHODS);
+        }
+        return false;
+    }
+
+    /**
+     * Returns true if the field is marked with {@link IncludeProperty}
+     */
+    protected boolean isIncludedByAnnotation(Field field)
+    {
+        if (!field.isSynthetic() && !field.isStatic())
+        {
+            if (selection.contains(ALL_FIELDS_AND_METHODS))
+            {
+                return true;
+            }
+            return field.annotation(IncludeProperty.class) != null &&
+                    selection.contains(KIVAKIT_INCLUDED_FIELDS);
         }
         return false;
     }

@@ -21,7 +21,7 @@ package com.telenav.kivakit.resource.compression.archive;
 import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.code.UncheckedCode;
 import com.telenav.kivakit.core.io.IO;
-import com.telenav.kivakit.core.string.KivaKitFormat;
+import com.telenav.kivakit.core.string.FormatProperty;
 import com.telenav.kivakit.core.string.ObjectFormatter;
 import com.telenav.kivakit.core.time.Time;
 import com.telenav.kivakit.core.value.count.Bytes;
@@ -99,7 +99,7 @@ public class ZipEntry extends BaseWritableResource implements Closeable
      * {@inheritDoc}
      */
     @Override
-    @KivaKitFormat
+    @FormatProperty
     public Time createdAt()
     {
         return UncheckedCode.unchecked(() -> Time.epochMilliseconds(Files.readAttributes(path, BasicFileAttributes.class)
@@ -118,7 +118,7 @@ public class ZipEntry extends BaseWritableResource implements Closeable
     /**
      * {@inheritDoc}
      */
-    @KivaKitFormat
+    @FormatProperty
     @Override
     public Time lastModified()
     {
@@ -183,7 +183,7 @@ public class ZipEntry extends BaseWritableResource implements Closeable
     /**
      * {@inheritDoc}
      */
-    @KivaKitFormat
+    @FormatProperty
     @Override
     public FilePath path()
     {
@@ -193,7 +193,7 @@ public class ZipEntry extends BaseWritableResource implements Closeable
     /**
      * {@inheritDoc}
      */
-    @KivaKitFormat
+    @FormatProperty
     @Override
     public Bytes sizeInBytes()
     {

@@ -22,7 +22,7 @@ import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.collections.set.IdentitySet;
 import com.telenav.kivakit.core.internal.lexakai.DiagramString;
 import com.telenav.kivakit.core.language.reflection.Type;
-import com.telenav.kivakit.core.language.reflection.property.KivaKitIncludeProperty;
+import com.telenav.kivakit.core.language.reflection.property.IncludeProperty;
 import com.telenav.kivakit.core.language.reflection.property.Property;
 import com.telenav.kivakit.core.language.reflection.property.PropertyFilter;
 import com.telenav.kivakit.core.string.IndentingStringBuilder.Style;
@@ -38,8 +38,8 @@ import java.util.function.Consumer;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
-import static com.telenav.kivakit.core.language.reflection.property.PropertyMemberSelector.KIVAKIT_ANNOTATION_INCLUDED_FIELDS;
-import static com.telenav.kivakit.core.language.reflection.property.PropertyMemberSelector.KIVAKIT_ANNOTATION_INCLUDED_FIELDS_AND_METHODS;
+import static com.telenav.kivakit.core.language.reflection.property.PropertyMemberSelector.KIVAKIT_INCLUDED_FIELDS;
+import static com.telenav.kivakit.core.language.reflection.property.PropertyMemberSelector.KIVAKIT_INCLUDED_FIELDS_AND_METHODS;
 import static com.telenav.kivakit.core.string.IndentingStringBuilder.Indentation;
 
 /**
@@ -60,7 +60,7 @@ import static com.telenav.kivakit.core.string.IndentingStringBuilder.Indentation
  * @see AsIndentedString
  * @see StringFormattable
  * @see IndentingStringBuilder
- * @see KivaKitIncludeProperty
+ * @see IncludeProperty
  * @see Property
  * @see PropertyFilter
  * @see Type
@@ -90,7 +90,7 @@ public class ObjectIndenter
     private final Set<Object> visited = new IdentitySet<>();
 
     /**
-     * By default, an indenter includes all properties and fields explicitly marked with {@link KivaKitIncludeProperty}
+     * By default, an indenter includes all properties and fields explicitly marked with {@link IncludeProperty}
      */
     public ObjectIndenter(StringFormattable.Format format)
     {
@@ -98,11 +98,11 @@ public class ObjectIndenter
     }
 
     /**
-     * By default, an indenter includes all properties and fields explicitly marked with {@link KivaKitIncludeProperty}
+     * By default, an indenter includes all properties and fields explicitly marked with {@link IncludeProperty}
      */
     public ObjectIndenter(StringFormattable.Format format, int level)
     {
-        this(format, level, PropertyFilter.kivakitProperties(KIVAKIT_ANNOTATION_INCLUDED_FIELDS_AND_METHODS, KIVAKIT_ANNOTATION_INCLUDED_FIELDS));
+        this(format, level, PropertyFilter.kivakitProperties(KIVAKIT_INCLUDED_FIELDS_AND_METHODS, KIVAKIT_INCLUDED_FIELDS));
     }
 
     /**
@@ -135,7 +135,7 @@ public class ObjectIndenter
 
     /**
      * Recursively formats the given object, including nested {@link Collection}s, fields and methods marked with
-     * {@link KivaKitIncludeProperty} and sub-objects implementing {@link AsIndentedString}.
+     * {@link IncludeProperty} and sub-objects implementing {@link AsIndentedString}.
      */
     public ObjectIndenter asString(Object object)
     {

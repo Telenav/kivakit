@@ -20,7 +20,7 @@ package com.telenav.kivakit.core.value.identifier;
 
 import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramIdentifier;
-import com.telenav.kivakit.core.string.KivaKitFormat;
+import com.telenav.kivakit.core.string.FormatProperty;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
@@ -78,7 +78,7 @@ public class StringIdentifier implements Comparable<StringIdentifier>
         return identifier.hashCode();
     }
 
-    @KivaKitFormat
+    @FormatProperty
     public String identifier()
     {
         return identifier;

@@ -19,7 +19,7 @@
 package com.telenav.kivakit.network.core;
 
 import com.telenav.kivakit.annotations.code.quality.CodeQuality;
-import com.telenav.kivakit.core.string.KivaKitFormat;
+import com.telenav.kivakit.core.string.FormatProperty;
 import com.telenav.kivakit.core.string.ObjectFormatter;
 import com.telenav.kivakit.core.time.Duration;
 import com.telenav.kivakit.network.core.authentication.Password;
@@ -65,7 +65,7 @@ public class NetworkAccessConstraints implements Validatable
     @UmlAggregation
     private Password password;
 
-    @KivaKitFormat
+    @FormatProperty
     public Password password()
     {
         return password;
@@ -76,7 +76,7 @@ public class NetworkAccessConstraints implements Validatable
         this.password = password;
     }
 
-    @KivaKitFormat
+    @FormatProperty
     public Duration timeout()
     {
         return timeout;
@@ -99,7 +99,7 @@ public class NetworkAccessConstraints implements Validatable
         this.userName = userName;
     }
 
-    @KivaKitFormat
+    @FormatProperty
     public UserName userName()
     {
         return userName;

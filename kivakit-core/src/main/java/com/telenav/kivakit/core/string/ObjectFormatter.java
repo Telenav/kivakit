@@ -39,7 +39,7 @@ import static com.telenav.kivakit.core.string.ObjectFormatter.ObjectFormat.SINGL
 
 /**
  * A convenient class for formatting particular fields and methods of an object as a debugging string. Fields to be
- * included in the formatted string must be marked with the {@link KivaKitFormat} annotation, which describes what
+ * included in the formatted string must be marked with the {@link FormatProperty} annotation, which describes what
  * format to use for each annotated member. Child objects will be formatted recursively.
  *
  * @author jonathanl (shibo)
@@ -52,7 +52,7 @@ public class ObjectFormatter
 {
     /**
      * The format to use for properties of an object. This is independent of the format for each individual property,
-     * which is supplied by {@link KivaKitFormat}.
+     * which is supplied by {@link FormatProperty}.
      */
     public enum ObjectFormat
     {
@@ -96,7 +96,7 @@ public class ObjectFormatter
                 var getter = property.getter();
                 if (getter != null)
                 {
-                    var annotation = getter.annotation(KivaKitFormat.class);
+                    var annotation = getter.annotation(FormatProperty.class);
                     if (annotation != null)
                     {
                         var value = getter.get(object);
@@ -148,7 +148,7 @@ public class ObjectFormatter
      */
     private String asString(ObjectFormat objectFormat, Format propertyFormat, int recursionLevel, Object propertyValue)
     {
-        ensureNotNull(propertyFormat, "@KivaKitFormat(\"$\") is not a known format", propertyFormat);
+        ensureNotNull(propertyFormat, "@FormatProperty(\"$\") is not a known format", propertyFormat);
 
         switch (propertyFormat)
         {

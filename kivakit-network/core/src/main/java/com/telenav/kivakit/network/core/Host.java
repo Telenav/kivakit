@@ -23,10 +23,10 @@ import com.telenav.kivakit.commandline.SwitchParser;
 import com.telenav.kivakit.conversion.BaseStringConverter;
 import com.telenav.kivakit.core.collections.map.CacheMap;
 import com.telenav.kivakit.core.language.Arrays;
-import com.telenav.kivakit.core.language.reflection.property.KivaKitIncludeProperty;
+import com.telenav.kivakit.core.language.reflection.property.IncludeProperty;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.messaging.repeaters.BaseRepeater;
-import com.telenav.kivakit.core.string.KivaKitFormat;
+import com.telenav.kivakit.core.string.FormatProperty;
 import com.telenav.kivakit.core.string.ObjectFormatter;
 import com.telenav.kivakit.core.time.Duration;
 import com.telenav.kivakit.core.value.count.Maximum;
@@ -256,7 +256,7 @@ public class Host extends BaseRepeater implements
     {
     }
 
-    @KivaKitIncludeProperty
+    @IncludeProperty
     public InetAddress address()
     {
         if (address == null)
@@ -272,7 +272,7 @@ public class Host extends BaseRepeater implements
         return new ObjectFormatter(this).toString();
     }
 
-    @KivaKitFormat
+    @FormatProperty
     public String canonicalName()
     {
         return address().getCanonicalHostName();
@@ -284,7 +284,7 @@ public class Host extends BaseRepeater implements
         return canonicalName().compareTo(that.canonicalName());
     }
 
-    @KivaKitFormat
+    @FormatProperty
     public String description()
     {
         return description;

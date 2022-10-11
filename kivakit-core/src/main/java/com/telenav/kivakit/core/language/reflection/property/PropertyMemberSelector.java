@@ -28,12 +28,12 @@ public enum PropertyMemberSelector
     /** Include properties with non-public getters and setters */
     NON_PUBLIC_METHODS,
 
-    /** Include fields and methods marked with {@link KivaKitIncludeProperty} */
-    KIVAKIT_ANNOTATION_INCLUDED_FIELDS_AND_METHODS,
+    /** Include fields and methods marked with {@link IncludeProperty} */
+    KIVAKIT_INCLUDED_FIELDS_AND_METHODS,
 
-    /** Include fields marked with {@link KivaKitIncludeProperty} */
-    KIVAKIT_ANNOTATION_INCLUDED_FIELDS,
+    /** Include fields marked with {@link IncludeProperty} */
+    KIVAKIT_INCLUDED_FIELDS,
 
     /** Include fields marked with @KivaKitPropertyConverter */
-    KIVAKIT_CONVERTED_FIELDS_AND_METHODS
+    KIVAKIT_CONVERTED_MEMBERS
 }

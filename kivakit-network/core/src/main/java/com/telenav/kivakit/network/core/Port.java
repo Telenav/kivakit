@@ -25,7 +25,7 @@ import com.telenav.kivakit.conversion.core.language.primitive.IntegerConverter;
 import com.telenav.kivakit.core.language.Hash;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.string.AsString;
-import com.telenav.kivakit.core.string.KivaKitFormat;
+import com.telenav.kivakit.core.string.FormatProperty;
 import com.telenav.kivakit.network.core.internal.lexakai.DiagramPort;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlAggregation;
@@ -300,7 +300,7 @@ public class Port implements AsString
     /**
      * Returns the host that owns this port
      */
-    @KivaKitFormat
+    @FormatProperty
     public Host host()
     {
         return host;
@@ -359,7 +359,7 @@ public class Port implements AsString
     /**
      * Returns the port number
      */
-    @KivaKitFormat
+    @FormatProperty
     public int portNumber()
     {
         return portNumber;
@@ -368,7 +368,7 @@ public class Port implements AsString
     /**
      * Returns the protocol spoken by this port
      */
-    @KivaKitFormat
+    @FormatProperty
     public Protocol protocol()
     {
         return protocol;

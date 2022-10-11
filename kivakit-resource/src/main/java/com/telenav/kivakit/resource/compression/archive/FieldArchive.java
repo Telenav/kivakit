@@ -20,13 +20,13 @@ package com.telenav.kivakit.resource.compression.archive;
 
 import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.language.reflection.Type;
-import com.telenav.kivakit.core.language.reflection.property.KivaKitIncludeProperty;
+import com.telenav.kivakit.core.language.reflection.property.IncludeProperty;
 import com.telenav.kivakit.core.language.reflection.property.Property;
 import com.telenav.kivakit.core.messaging.Repeater;
 import com.telenav.kivakit.core.messaging.repeaters.BaseRepeater;
 import com.telenav.kivakit.core.progress.ProgressReporter;
 import com.telenav.kivakit.core.string.CaseFormat;
-import com.telenav.kivakit.core.string.KivaKitFormat;
+import com.telenav.kivakit.core.string.FormatProperty;
 import com.telenav.kivakit.core.string.ObjectFormatter;
 import com.telenav.kivakit.core.version.Version;
 import com.telenav.kivakit.core.version.VersionedObject;
@@ -52,7 +52,7 @@ import static com.telenav.kivakit.core.ensure.Ensure.ensure;
  * <p>
  * A field archive serializes data into zip file entries in a {@link ZipArchive}. The constructor for this class takes a
  * {@link Resource}, which is used to construct the zip archive. {@link FieldArchive} only serializes fields that are
- * explicitly labeled with the {@link KivaKitArchivedField} annotation.
+ * explicitly labeled with the {@link ArchivedField} annotation.
  * </p>
  *
  * <p>
@@ -110,7 +110,7 @@ import static com.telenav.kivakit.core.ensure.Ensure.ensure;
  */
 @SuppressWarnings({ "unused", "resource" })
 @UmlClassDiagram(diagram = DiagramResourceArchive.class)
-@UmlRelation(label = "reads annotations", referent = KivaKitArchivedField.class)
+@UmlRelation(label = "reads annotations", referent = ArchivedField.class)
 @UmlRelation(label = "reads and writes", referent = NamedObject.class)
 @CodeQuality(stability = STABLE_EXTENSIBLE,
              testing = UNTESTED,
@@ -163,12 +163,12 @@ public class FieldArchive extends BaseRepeater implements Closeable
     }
 
     /** The zip archive storing the fields */
-    @KivaKitFormat
+    @FormatProperty
     @UmlAggregation(label = "writes to")
     private ZipArchive zip;
 
     /** The version of data in this archive */
-    @KivaKitFormat
+    @FormatProperty
     private Version version;
 
     /** The zip file */
@@ -298,7 +298,7 @@ public class FieldArchive extends BaseRepeater implements Closeable
             for (var field : type.properties(new ArchivedFields()).sorted())
             {
                 // if it is not lazy,
-                if (!field.getter().annotation(KivaKitArchivedField.class).lazy())
+                if (!field.getter().annotation(ArchivedField.class).lazy())
                 {
                     // then load the field into the object.
                     if (loadFieldOf(reader, object, field.name()) == null)
@@ -407,7 +407,7 @@ public class FieldArchive extends BaseRepeater implements Closeable
     /**
      * Returns the field archive's underlying zip archive for special operations on the archive
      */
-    @KivaKitIncludeProperty
+    @IncludeProperty
     public ZipArchive zip()
     {
         if (zip == null)

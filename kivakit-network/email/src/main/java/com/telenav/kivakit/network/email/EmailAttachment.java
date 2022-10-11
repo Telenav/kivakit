@@ -19,7 +19,7 @@
 package com.telenav.kivakit.network.email;
 
 import com.telenav.kivakit.annotations.code.quality.CodeQuality;
-import com.telenav.kivakit.core.language.reflection.property.KivaKitExcludeProperty;
+import com.telenav.kivakit.core.language.reflection.property.ExcludeProperty;
 import com.telenav.kivakit.network.email.internal.lexakai.DiagramEmail;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
@@ -60,7 +60,7 @@ public class EmailAttachment
 
     private String filename;
 
-    @KivaKitExcludeProperty
+    @ExcludeProperty
     public byte[] data()
     {
         return data;

@@ -19,7 +19,7 @@
 package com.telenav.kivakit.core.math;
 
 import com.telenav.kivakit.annotations.code.quality.CodeQuality;
-import com.telenav.kivakit.core.string.KivaKitFormat;
+import com.telenav.kivakit.core.string.FormatProperty;
 import com.telenav.kivakit.core.string.ObjectFormatter;
 import com.telenav.kivakit.interfaces.lifecycle.Resettable;
 
@@ -81,7 +81,7 @@ public class Average implements Resettable
     /**
      * Returns the average of all samples that have been added
      */
-    @KivaKitFormat
+    @FormatProperty
     public double average()
     {
         if (samples > 0)
@@ -94,7 +94,7 @@ public class Average implements Resettable
     /**
      * Returns the largest sample
      */
-    @KivaKitFormat
+    @FormatProperty
     public double maximum()
     {
         return maximum;
@@ -103,7 +103,7 @@ public class Average implements Resettable
     /**
      * Returns the smallest sample
      */
-    @KivaKitFormat
+    @FormatProperty
     public double minimum()
     {
         return minimum;
@@ -122,7 +122,7 @@ public class Average implements Resettable
     /**
      * Returns the number of samples in this average
      */
-    @KivaKitFormat
+    @FormatProperty
     public int samples()
     {
         return samples;
@@ -137,7 +137,7 @@ public class Average implements Resettable
     /**
      * Returns the total of all samples in this average
      */
-    @KivaKitFormat
+    @FormatProperty
     public double total()
     {
         return total;

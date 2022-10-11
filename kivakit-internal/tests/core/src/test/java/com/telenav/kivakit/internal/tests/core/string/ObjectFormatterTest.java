@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.internal.tests.core.string;
 
-import com.telenav.kivakit.core.string.KivaKitFormat;
+import com.telenav.kivakit.core.string.FormatProperty;
 import com.telenav.kivakit.core.string.ObjectFormatter;
 import com.telenav.kivakit.internal.testing.CoreUnitTest;
 import org.junit.Assert;
@@ -29,7 +29,7 @@ public class ObjectFormatterTest extends CoreUnitTest
 {
     public static class Bean
     {
-        @KivaKitFormat
+        @FormatProperty
         final int y = 7;
 
         public int getY()
@@ -46,7 +46,7 @@ public class ObjectFormatterTest extends CoreUnitTest
 
     final Bean bean = new Bean();
 
-    @KivaKitFormat
+    @FormatProperty
     public Bean bean()
     {
         return bean;

@@ -19,8 +19,7 @@
 package com.telenav.kivakit.internal.tests.core.messaging;
 
 import com.telenav.kivakit.core.collections.map.VariableMap;
-import com.telenav.kivakit.core.language.reflection.property.KivaKitIncludeProperty;
-import com.telenav.kivakit.core.string.KivaKitFormat;
+import com.telenav.kivakit.core.string.FormatProperty;
 import com.telenav.kivakit.internal.testing.CoreUnitTest;
 import com.telenav.kivakit.interfaces.string.StringFormattable;
 import org.jetbrains.annotations.NotNull;
@@ -33,7 +32,7 @@ public class MessageFormatterTest extends CoreUnitTest
 {
     private static class Bean implements StringFormattable
     {
-        @KivaKitFormat
+        @FormatProperty
         final
         int x = 5;
 

@@ -19,7 +19,7 @@
 package com.telenav.kivakit.core.locale;
 
 import com.telenav.kivakit.annotations.code.quality.CodeQuality;
-import com.telenav.kivakit.core.language.reflection.property.KivaKitExcludeProperty;
+import com.telenav.kivakit.core.language.reflection.property.ExcludeProperty;
 
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
@@ -582,7 +582,7 @@ public class LocaleRegion
      *
      * @return 3 letters' alpha3 code
      */
-    @KivaKitExcludeProperty
+    @ExcludeProperty
     public String alpha3Code()
     {
         return alpha3CountryCode;

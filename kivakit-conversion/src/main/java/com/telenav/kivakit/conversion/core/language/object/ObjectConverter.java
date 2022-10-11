@@ -5,14 +5,13 @@ import com.telenav.kivakit.conversion.BaseConverter;
 import com.telenav.kivakit.conversion.StringConverter;
 import com.telenav.kivakit.core.language.Classes;
 import com.telenav.kivakit.core.language.reflection.Type;
-import com.telenav.kivakit.core.language.reflection.property.KivaKitOptionalProperty;
 import com.telenav.kivakit.core.language.reflection.property.PropertyValue;
 import com.telenav.kivakit.core.messaging.Listener;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
-import static com.telenav.kivakit.core.language.reflection.property.PropertyMemberSelector.KIVAKIT_CONVERTED_FIELDS_AND_METHODS;
+import static com.telenav.kivakit.core.language.reflection.property.PropertyMemberSelector.KIVAKIT_CONVERTED_MEMBERS;
 import static com.telenav.kivakit.core.language.reflection.property.PropertyNamingConvention.KIVAKIT_PROPERTY_NAMING;
 
 /**
@@ -50,7 +49,7 @@ public class ObjectConverter<Value> extends BaseConverter<PropertyValue, Value>
             var object = Type.typeForClass(type).newInstance();
 
             // and a filter that matches converted fields and methods,
-            var filter = new KivaKitConversionPropertySet(KIVAKIT_PROPERTY_NAMING, KIVAKIT_CONVERTED_FIELDS_AND_METHODS);
+            var filter = new ConversionPropertySet(KIVAKIT_PROPERTY_NAMING, KIVAKIT_CONVERTED_MEMBERS);
 
             // and populate the object with converted values.
             new ObjectPopulator(filter, () -> convertedValues(values)).populate(object);
@@ -74,13 +73,13 @@ public class ObjectConverter<Value> extends BaseConverter<PropertyValue, Value>
                 var setter = property.setter();
                 if (setter != null)
                 {
-                    var annotation = setter.annotation(KivaKitConverted.class);
+                    var annotation = setter.annotation(ConvertedProperty.class);
                     if (annotation != null)
                     {
                         var constructor = Classes.constructor(annotation.value(), Listener.class);
                         var converter = (StringConverter<?>) constructor.newInstance(outer);
                         var value = values.propertyValue(property);
-                        if (setter.hasAnnotation(KivaKitOptionalProperty.class) && value == null)
+                        if (annotation.optional() && value == null)
                         {
                             return null;
                         }

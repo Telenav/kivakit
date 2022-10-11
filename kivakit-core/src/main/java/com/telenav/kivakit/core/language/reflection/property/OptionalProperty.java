@@ -16,10 +16,10 @@
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-package com.telenav.kivakit.resource.compression.archive;
+package com.telenav.kivakit.core.language.reflection.property;
 
 import com.telenav.kivakit.annotations.code.quality.CodeQuality;
-import com.telenav.kivakit.resource.internal.lexakai.DiagramResourceArchive;
+import com.telenav.kivakit.core.internal.lexakai.DiagramReflection;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.lang.annotation.ElementType;
@@ -27,27 +27,21 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
 
 /**
- * Annotation for labeling fields that should be archived.
+ * This annotation signals that a missing property value should not be considered a problem.
  *
  * @author jonathanl (shibo)
- * @see FieldArchive
- * @see ArchivedFields
  */
 @Retention(RetentionPolicy.RUNTIME)
-@Target({ ElementType.FIELD })
-@UmlClassDiagram(diagram = DiagramResourceArchive.class)
+@Target({ ElementType.FIELD, ElementType.METHOD })
+@UmlClassDiagram(diagram = DiagramReflection.class)
 @CodeQuality(stability = STABLE,
              testing = TESTING_NOT_NEEDED,
              documentation = DOCUMENTATION_COMPLETE)
-public @interface KivaKitArchivedField
+public @interface OptionalProperty
 {
-    /**
-     * Returns true if this field should be lazy-loaded
-     */
-    boolean lazy() default false;
 }

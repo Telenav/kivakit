@@ -19,10 +19,9 @@
 package com.telenav.kivakit.core.value.identifier;
 
 import com.telenav.kivakit.core.internal.lexakai.DiagramIdentifier;
-import com.telenav.kivakit.core.language.reflection.property.KivaKitIncludeProperty;
+import com.telenav.kivakit.core.language.reflection.property.IncludeProperty;
 import com.telenav.kivakit.interfaces.model.Identifiable;
 import com.telenav.kivakit.interfaces.value.LongValued;
-import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 /**
@@ -82,7 +81,7 @@ public class IntegerIdentifier implements
         return identifier;
     }
 
-    @KivaKitIncludeProperty
+    @IncludeProperty
     @Override
     public long identifier()
     {

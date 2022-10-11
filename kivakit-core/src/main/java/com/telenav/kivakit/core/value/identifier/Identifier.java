@@ -20,7 +20,7 @@ package com.telenav.kivakit.core.value.identifier;
 
 import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramIdentifier;
-import com.telenav.kivakit.core.string.KivaKitFormat;
+import com.telenav.kivakit.core.string.FormatProperty;
 import com.telenav.kivakit.core.value.count.BitCount;
 import com.telenav.kivakit.interfaces.model.Identifiable;
 import com.telenav.kivakit.interfaces.value.LongValued;
@@ -96,7 +96,7 @@ public class Identifier implements
         return (int) identifier;
     }
 
-    @KivaKitFormat
+    @FormatProperty
     @Override
     public long identifier()
     {

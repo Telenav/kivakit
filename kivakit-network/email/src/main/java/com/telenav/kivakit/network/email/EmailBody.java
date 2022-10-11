@@ -19,7 +19,7 @@
 package com.telenav.kivakit.network.email;
 
 import com.telenav.kivakit.annotations.code.quality.CodeQuality;
-import com.telenav.kivakit.core.language.reflection.property.KivaKitIncludeProperty;
+import com.telenav.kivakit.core.language.reflection.property.IncludeProperty;
 import com.telenav.kivakit.core.messaging.messages.status.Problem;
 import com.telenav.kivakit.core.string.ObjectFormatter;
 import com.telenav.kivakit.network.email.internal.lexakai.DiagramEmail;
@@ -60,13 +60,13 @@ public class EmailBody
         }
     }
 
-    @KivaKitIncludeProperty
+    @IncludeProperty
     public String mimeType()
     {
         return "text/plain";
     }
 
-    @KivaKitIncludeProperty
+    @IncludeProperty
     public String text()
     {
         return text;

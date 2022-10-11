@@ -16,12 +16,10 @@
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-package com.telenav.kivakit.core.string;
+package com.telenav.kivakit.core.language.reflection.property;
 
 import com.telenav.kivakit.annotations.code.quality.CodeQuality;
-import com.telenav.kivakit.core.internal.lexakai.DiagramString;
-import com.telenav.kivakit.interfaces.string.StringFormattable;
-import com.telenav.kivakit.interfaces.string.StringFormattable.Format;
+import com.telenav.kivakit.core.internal.lexakai.DiagramReflection;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.lang.annotation.ElementType;
@@ -29,30 +27,25 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
-import static com.telenav.kivakit.interfaces.string.StringFormattable.Format.TEXT;
 
 /**
- * Annotation for properties that are format-able with {@link ObjectFormatter}. The specific format desired can be
- * specified with {@link #format()}.
+ * Marks a field or method as excluded from property operations
  *
  * @author jonathanl (shibo)
  */
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ ElementType.FIELD, ElementType.METHOD })
-@UmlClassDiagram(diagram = DiagramString.class)
+@UmlClassDiagram(diagram = DiagramReflection.class)
 @CodeQuality(stability = STABLE,
              testing = TESTING_NOT_NEEDED,
              documentation = DOCUMENTATION_COMPLETE)
-public @interface KivaKitFormat
+public @interface ExcludeProperty
 {
     /**
-     * The format to use for the annotated property. If {@link Format#TO_STRING} is specified then the
-     * {@link #toString()} method is called, otherwise, the format value is used to convert the object to a string using
-     * {@link StringFormattable#asString(Format)}, where the purpose is case-insensitive. The default
-     * format is TEXT.
+     * Returns the purposes for which this property is being included
      */
-    Format format() default TEXT;
+    String[] purposes() default {};
 }

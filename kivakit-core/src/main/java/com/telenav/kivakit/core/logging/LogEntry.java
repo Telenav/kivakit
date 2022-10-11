@@ -22,7 +22,7 @@ import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramLogging;
 import com.telenav.kivakit.core.language.Classes;
 import com.telenav.kivakit.core.language.Objects;
-import com.telenav.kivakit.core.language.reflection.property.KivaKitIncludeProperty;
+import com.telenav.kivakit.core.language.reflection.property.IncludeProperty;
 import com.telenav.kivakit.core.logging.logs.text.LogFormatter;
 import com.telenav.kivakit.core.logging.logs.text.formatters.NarrowLogFormatter;
 import com.telenav.kivakit.core.messaging.Message;
@@ -151,7 +151,7 @@ public class LogEntry implements Triaged
     /**
      * Returns the code context for this log entry
      */
-    @KivaKitIncludeProperty
+    @IncludeProperty
     public CodeContext context()
     {
         return context;

@@ -23,7 +23,7 @@ import com.telenav.kivakit.core.collections.list.ObjectList;
 import com.telenav.kivakit.core.collections.map.CountMap;
 import com.telenav.kivakit.core.internal.lexakai.DiagramLogs;
 import com.telenav.kivakit.core.language.Classes;
-import com.telenav.kivakit.core.language.reflection.property.KivaKitIncludeProperty;
+import com.telenav.kivakit.core.language.reflection.property.IncludeProperty;
 import com.telenav.kivakit.core.logging.Log;
 import com.telenav.kivakit.core.logging.LogEntry;
 import com.telenav.kivakit.core.logging.filters.LogEntriesWithSeverityGreaterThanOrEqualTo;
@@ -490,7 +490,7 @@ public abstract class BaseLog implements
      * The maximum queue size for asynchronous logging
      */
     @SuppressWarnings("SameReturnValue")
-    @KivaKitIncludeProperty
+    @IncludeProperty
     protected int queueSize()
     {
         return 20_000;
@@ -500,7 +500,7 @@ public abstract class BaseLog implements
      * Returns the number of retries that should be attempted before giving up on logging an entry
      */
     @SuppressWarnings("SameReturnValue")
-    @KivaKitIncludeProperty
+    @IncludeProperty
     protected int retries()
     {
         return 3;

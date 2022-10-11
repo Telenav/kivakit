@@ -29,15 +29,15 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
 
 /**
  * Specifies the KivaKit {@link Converter} to use when populating the annotated field or method. For example:
  *
  * <pre>
- * {@literal @}KivaKitConverted(DurationConverter.class)
+ * {@literal @}ConvertedProperty(DurationConverter.class)
  *  Duration timeToLaunch;</pre>
  *
  * @author jonathanl (shibo)
@@ -48,8 +48,13 @@ import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_N
 @CodeQuality(stability = STABLE,
              testing = TESTING_NOT_NEEDED,
              documentation = DOCUMENTATION_COMPLETE)
-public @interface KivaKitConverted
+public @interface ConvertedProperty
 {
+    /**
+     * Returns true when a property is optional
+     */
+    boolean optional() default false;
+
     /**
      * Returns the converter class to apply to this field or method
      */

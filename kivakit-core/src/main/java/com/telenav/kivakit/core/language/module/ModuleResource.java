@@ -22,7 +22,7 @@ import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramModule;
 import com.telenav.kivakit.core.io.Nio;
 import com.telenav.kivakit.core.string.ObjectFormatter;
-import com.telenav.kivakit.core.language.reflection.property.KivaKitIncludeProperty;
+import com.telenav.kivakit.core.language.reflection.property.IncludeProperty;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.path.StringPath;
 import com.telenav.kivakit.core.time.Time;
@@ -171,7 +171,7 @@ public class ModuleResource
     /**
      * Returns the resource filename as a Java {@link Path}
      */
-    @KivaKitIncludeProperty
+    @IncludeProperty
     public Path fileNameAsJavaPath()
     {
         return Path.of(fileName());
@@ -188,7 +188,7 @@ public class ModuleResource
     /**
      * Returns the time at which the resource was last modified
      */
-    @KivaKitIncludeProperty
+    @IncludeProperty
     public Time lastModified()
     {
         return lastModified;
@@ -197,7 +197,7 @@ public class ModuleResource
     /**
      * Returns a reference to the package where the resource resides
      */
-    @KivaKitIncludeProperty
+    @IncludeProperty
     public PackageReference packageReference()
     {
         return packageReference;
@@ -206,7 +206,7 @@ public class ModuleResource
     /**
      * Returns the size of the resource in bytes
      */
-    @KivaKitIncludeProperty
+    @IncludeProperty
     public Bytes size()
     {
         return size;
