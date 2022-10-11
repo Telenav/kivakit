@@ -104,7 +104,7 @@ public class Field extends Member
     /**
      * Constructs a field of a particular object
      */
-    public Field(Object parentObject, java.lang.reflect.Field field)
+    protected Field(Object parentObject, java.lang.reflect.Field field)
     {
         this.parentType = Type.type(parentObject);
         this.parentObject = parentObject;
@@ -114,7 +114,7 @@ public class Field extends Member
     /**
      * Constructs a field of any object
      */
-    public Field(Type<?> parentType, java.lang.reflect.Field field)
+    protected Field(Type<?> parentType, java.lang.reflect.Field field)
     {
         this.parentType = parentType;
         this.parentObject = null;

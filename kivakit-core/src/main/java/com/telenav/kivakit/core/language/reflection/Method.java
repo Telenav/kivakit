@@ -109,14 +109,14 @@ public class Method extends Member
     /** The method type */
     private final Type<?> type;
 
-    public Method(Type<?> type, java.lang.reflect.Method method)
+    protected Method(Type<?> type, java.lang.reflect.Method method)
     {
         this.type = ensureNotNull(type);
         this.method = ensureNotNull(method);
         name = method.getName();
     }
 
-    public Method(Type<?> type, String name)
+    protected Method(Type<?> type, String name)
     {
         this.type = ensureNotNull(type);
         this.name = ensureNotNull(name);
