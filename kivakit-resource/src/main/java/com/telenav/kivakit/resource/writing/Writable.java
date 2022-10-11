@@ -29,7 +29,7 @@ import java.io.OutputStream;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
-import static com.telenav.kivakit.core.io.IO.bufferOutput;
+import static com.telenav.kivakit.core.io.IO.buffer;
 import static com.telenav.kivakit.core.progress.ProgressReporter.nullProgressReporter;
 
 /**
@@ -84,6 +84,6 @@ public interface Writable
      */
     default OutputStream openForWriting(@NotNull ProgressReporter reporter)
     {
-        return new ProgressiveOutputStream(bufferOutput(onOpenForWriting()), reporter);
+        return new ProgressiveOutputStream(buffer(onOpenForWriting()), reporter);
     }
 }

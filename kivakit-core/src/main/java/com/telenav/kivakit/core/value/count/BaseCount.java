@@ -80,15 +80,11 @@ import static java.lang.Math.min;
  *     <li>{@link #asMinimum()} - This count as a {@link Minimum}</li>
  * </ul>
  *
- * <hr>
- *
  * <p><b>String Representations</b></p>
  *
  * <ul>
  *     <li>{@link #asString(Format)} - This count formatted in the given format</li>
  * </ul>
- *
- * <hr>
  *
  * <p><b>Comparison</b></p>
  *
@@ -101,8 +97,6 @@ import static java.lang.Math.min;
  *     <li>{@link #isZero()} - True if this count is zero</li>
  *     <li>{@link #isNonZero()} - True if this count is not zero</li>
  * </ul>
- *
- * <hr>
  *
  * <p><b>Minima and Maxima</b></p>
  *

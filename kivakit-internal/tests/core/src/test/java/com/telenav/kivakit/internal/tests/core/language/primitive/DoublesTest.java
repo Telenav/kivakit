@@ -30,7 +30,7 @@ public class DoublesTest extends CoreUnitTest
     @Test
     public void testParse()
     {
-        Ensure.ensureEqual(3.1415, Doubles.fastParseDouble("3.1415", 1_0000));
-        Ensure.ensureEqual(31.415, Doubles.fastParseDouble("31.415", 1_000));
+        Ensure.ensureEqual(3.1415, Doubles.parseFastDouble("3.1415", 1_0000));
+        Ensure.ensureEqual(31.415, Doubles.parseFastDouble("31.415", 1_000));
     }
 }

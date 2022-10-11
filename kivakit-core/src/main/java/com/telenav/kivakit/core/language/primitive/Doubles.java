@@ -30,7 +30,7 @@ import static com.telenav.kivakit.annotations.code.quality.Testing.TESTED;
  * Utility methods for working with <i>double</i> values
  *
  * <ul>
- *     <li>{@link #fastParseDouble(String, double)} - Fast parsing given a fixed number of decimal places</li>
+ *     <li>{@link #parseFastDouble(String, double)} - Fast parsing given a fixed number of decimal places</li>
  *     <li>{@link #formatDouble(double)} - The value formatted with only one decimal place</li>
  *     <li>{@link #formatDouble(double, int)} - The value formatted with the given number of decimal places</li>
  *     <li>{@link #doubleInRange(double, double, double)} - Returns the given value constrained to the given range</li>
@@ -105,6 +105,22 @@ public class Doubles
     }
 
     /**
+     * Returns the double value formatted with the given number of decimal places
+     */
+    public static String formatDouble(double value, int decimals)
+    {
+        return String.format("%." + decimals + "f", value);
+    }
+
+    /**
+     * Returns the double value formatted with only one decimal place
+     */
+    public static String formatDouble(double value)
+    {
+        return String.format("%.1f", value);
+    }
+
+    /**
      * A fast way to parse a simple double of the format xxx.yyyy where the number of digits in y is <i>fixed</i>. For
      * example:
      * <pre>
@@ -116,7 +132,7 @@ public class Doubles
      * @param denominator The value to divide y by to get the digits to the right of the decimal place
      * @return The double value
      */
-    public static double fastParseDouble(String value, double denominator)
+    public static double parseFastDouble(String value, double denominator)
     {
         var index = value.indexOf('.');
         if (index > 0)
@@ -133,21 +149,5 @@ public class Doubles
             }
         }
         return INVALID_DOUBLE;
-    }
-
-    /**
-     * Returns the double value formatted with the given number of decimal places
-     */
-    public static String formatDouble(double value, int decimals)
-    {
-        return String.format("%." + decimals + "f", value);
-    }
-
-    /**
-     * Returns the double value formatted with only one decimal place
-     */
-    public static String formatDouble(double value)
-    {
-        return String.format("%.1f", value);
     }
 }

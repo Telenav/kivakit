@@ -51,8 +51,8 @@ import static com.telenav.kivakit.core.io.IO.CopyStyle.BUFFERED;
  * <p><b>Buffering</b></p>
  *
  * <ul>
- *     <li>{@link #bufferInput(InputStream)}</li>
- *     <li>{@link #bufferOutput(OutputStream)}</li>
+ *     <li>{@link #buffer(InputStream)}</li>
+ *     <li>{@link #buffer(OutputStream)}</li>
  * </ul>
  *
  * <p><b>Reading</b></p>
@@ -102,7 +102,7 @@ public class IO
     /**
      * Returns the given input stream buffered, if it is not already
      */
-    public static BufferedInputStream bufferInput(InputStream in)
+    public static BufferedInputStream buffer(InputStream in)
     {
         if (in instanceof BufferedInputStream)
         {
@@ -118,7 +118,7 @@ public class IO
     /**
      * Returns the given output stream buffered, if it is not already
      */
-    public static BufferedOutputStream bufferOutput(OutputStream out)
+    public static BufferedOutputStream buffer(OutputStream out)
     {
         if (out instanceof BufferedOutputStream)
         {
@@ -258,8 +258,8 @@ public class IO
      */
     public static boolean copy(Listener listener, InputStream input, OutputStream output, CopyStyle style)
     {
-        var in = style == BUFFERED ? bufferInput(input) : input;
-        var out = style == BUFFERED ? bufferOutput(output) : output;
+        var in = style == BUFFERED ? buffer(input) : input;
+        var out = style == BUFFERED ? buffer(output) : output;
         try
         {
             var buffer = new byte[style == BUFFERED ? 4096 : 1];
@@ -368,7 +368,7 @@ public class IO
      */
     public static String readString(Listener listener, InputStream in)
     {
-        return readString(listener, new InputStreamReader(bufferInput(in)));
+        return readString(listener, new InputStreamReader(buffer(in)));
     }
 
     /**

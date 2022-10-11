@@ -18,17 +18,15 @@ import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.stream.Stream;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_INSUFFICIENT;
 import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
 
 /**
  * A substitute for {@link Optional} that adds functionality and integrates with {@link Repeater}
  *
- * <hr>
- *
- * <p><b>Construction</b></p>
+ * <p><b>Creation</b></p>
  *
  * <p>
  * A {@link Maybe} can be constructed in three ways:
@@ -38,8 +36,6 @@ import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
  *     <li>{@link #maybe(Object)} - Creates a {@link Maybe} whose value can be missing or not</li>
  *     <li>{@link #present(Object)} - Creates a {@link Maybe} whose value is always non-null</li>
  * </ol>
- *
- * <hr>
  *
  * <p><b>Terminal Operations</b></p>
  *
@@ -56,8 +52,6 @@ import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
  *     <li>{@link #asStream()} - Converts this value to a stream with zero or one element(s)</li>
  * </ul>
  *
- * <hr>
- *
  * <p><b>Functions</b></p>
  *
  * <ul>
@@ -70,8 +64,6 @@ import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
  *     <li>{@link #map(Function)} - Applies the given function to this value</li>
  * </ul>
  *
- * <hr>
- *
  * <p><b>Conditionals</b></p>
  *
  * <ul>
@@ -80,8 +72,6 @@ import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
  *     <li>{@link #ifPresent(Consumer)} - Calls the given consumer if a value is present</li>
  *     <li>{@link #ifPresentOr(Consumer, UncheckedVoidCode)} - Calls the given consumer if a value is present, otherwise calls the given code</li>
  * </ul>
- *
- * <hr>
  *
  * @author jonathanl (shibo)
  * @author viniciusluisr

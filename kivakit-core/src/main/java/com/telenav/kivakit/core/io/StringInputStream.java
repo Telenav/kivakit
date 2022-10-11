@@ -69,7 +69,7 @@ public class StringInputStream extends InputStream
          * Throw an exception on encoding failure (the exception will be that thrown by
          * {@link CoderResult#throwException() }).
          */
-        THROW;
+        THROW
     }
 
     /** Character encoder */

@@ -26,8 +26,6 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Modifier;
 import java.lang.reflect.ParameterizedType;
-import java.util.ArrayList;
-import java.util.List;
 
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
@@ -38,6 +36,44 @@ import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
 /**
  * Holds a class and method name when a proper Java reflection {@link java.lang.reflect.Method} cannot be determined, as
  * in the case of the limited and poorly designed {@link StackTraceElement} class.
+ *
+ * <p><b>Access</b></p>
+ *
+ * <ul>
+ *     <li>{@link #invoke(Object, Object...)}</li>
+ * </ul>
+ *
+ * <p><b>Annotations</b></p>
+ *
+ * <ul>
+ *     <li>{@link #annotation(Class)}</li>
+ *     <li>{@link #hasAnnotation(Class)}</li>
+ * </ul>
+ *
+ * <p><b>Modifiers</b></p>
+ *
+ * <ul>
+ *     <li>{@link #isFinal()}</li>
+ *     <li>{@link #isNative()}</li>
+ *     <li>{@link #isPrivate()}</li>
+ *     <li>{@link #isProtected()}</li>
+ *     <li>{@link #isPublic()}</li>
+ *     <li>{@link #isStatic()}</li>
+ *     <li>{@link #isSynchronized()}</li>
+ *     <li>{@link #isSynthetic()}</li>
+ *     <li>{@link #modifiers()}</li>
+ * </ul>
+ *
+ * <p><b>Properties</b></p>
+ *
+ * <ul>
+ *     <li>{@link #arrayElementType()}</li>
+ *     <li>{@link #genericTypeParameters()}</li>
+ *     <li>{@link #name()}</li>
+ *     <li>{@link #parameterTypes()}</li>
+ *     <li>{@link #parentType()}</li>
+ *     <li>{@link #returnType()}</li>
+ * </ul>
  *
  * @author jonathanl (shibo)
  */
@@ -100,7 +136,7 @@ public class Method extends Member
      */
     @Override
     @SuppressWarnings("unchecked")
-    public <T> List<Type<T>> arrayElementType()
+    public <T> ObjectList<Type<T>> arrayElementType()
     {
         if (method.getReturnType().isArray())
         {
@@ -117,9 +153,9 @@ public class Method extends Member
      */
     @Override
     @SuppressWarnings("unchecked")
-    public <T> List<Type<T>> genericTypeParameters()
+    public <T> ObjectList<Type<T>> genericTypeParameters()
     {
-        var list = new ArrayList<Type<T>>();
+        var list = new ObjectList<Type<T>>();
         var genericType = (ParameterizedType) method.getGenericReturnType();
         for (var at : genericType.getActualTypeArguments())
         {
@@ -129,14 +165,6 @@ public class Method extends Member
             }
         }
         return list;
-    }
-
-    /**
-     * Returns true if this field has an annotation of the given type
-     */
-    public boolean hasAnnotation(Class<? extends Annotation> type)
-    {
-        return annotation(type) != null;
     }
 
     /**
@@ -164,24 +192,25 @@ public class Method extends Member
     }
 
     /**
-     * Returns true if this is a static method
+     * Returns true if this is a native method
      */
-    public boolean isPublic()
+    public boolean isNative()
     {
-        return Modifier.isPublic(method.getModifiers());
+        return Modifier.isNative(modifiers());
     }
 
     /**
-     * Returns true if this is a static method
+     * Returns true if this is a synchronized method
      */
-    public boolean isStatic()
+    public boolean isSynchronized()
     {
-        return Modifier.isStatic(method.getModifiers());
+        return Modifier.isSynchronized(modifiers());
     }
 
     /**
      * Returns true if this is a synthetic method
      */
+    @Override
     public boolean isSynthetic()
     {
         return method.isSynthetic();
@@ -211,6 +240,12 @@ public class Method extends Member
     public java.lang.reflect.Method method()
     {
         return method;
+    }
+
+    @Override
+    public int modifiers()
+    {
+        return method.getModifiers();
     }
 
     /**

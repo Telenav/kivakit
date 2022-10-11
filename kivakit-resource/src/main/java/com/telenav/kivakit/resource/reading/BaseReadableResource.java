@@ -277,7 +277,7 @@ public abstract class BaseReadableResource extends BaseRepeater implements Resou
         }
 
         // add a decompression layer if need be,
-        var decompressed = codec().decompressed(IO.bufferInput(in));
+        var decompressed = codec().decompressed(IO.buffer(in));
 
         // start the reporter
         reporter.start(fileName().name());

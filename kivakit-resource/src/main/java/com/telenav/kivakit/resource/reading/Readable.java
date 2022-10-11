@@ -101,7 +101,7 @@ public interface Readable extends ByteSized
      */
     default InputStream openForReading()
     {
-        return IO.bufferInput(onOpenForReading());
+        return IO.buffer(onOpenForReading());
     }
 
     /**

@@ -21,7 +21,6 @@ package com.telenav.kivakit.core.language.reflection;
 import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.collections.list.ObjectList;
 import com.telenav.kivakit.core.internal.lexakai.DiagramReflection;
-import com.telenav.kivakit.core.language.Classes;
 import com.telenav.kivakit.core.language.Hash;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import org.jetbrains.annotations.NotNull;
@@ -29,17 +28,62 @@ import org.jetbrains.annotations.NotNull;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Modifier;
 import java.lang.reflect.ParameterizedType;
-import java.util.List;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
+import static com.telenav.kivakit.core.language.Classes.simpleName;
+import static com.telenav.kivakit.core.language.reflection.Type.typeForClass;
 
 /**
- * Provides access to a field of a particular object, or of any object
+ * Provides access to a field of a particular object, or of any object.
+ *
+ * <p><b>Field Access</b></p>
+ *
+ * <ul>
+ *     <li>{@link #get()} - Reads this field's value on any object passed to the constructor</li>
+ *     <li>{@link #get(Object)} - Reads this field's value on the given object</li>
+ *     <li>{@link #makeAccessible()} - Makes the field accessible even if it is private</li>
+ *     <li>{@link #object(Object)} - Sets the object to access when calling {@link #get()} and {@link #set(Object)}</li>
+ *     <li>{@link #set(Object)} - Writes the given value to this field of any object passed to the constructor</li>
+ *     <li>{@link #set(Object, Object)} - Writes the given value to this field of the given object</li>
+ *     <li>{@link #type()} - Returns the type of this field</li>
+ * </ul>
+ *
+ * <p><b>Annotations</b></p>
+ *
+ * <ul>
+ *     <li>{@link #annotation(Class)}</li>
+ *     <li>{@link #hasAnnotation(Class)}</li>
+ * </ul>
+ *
+ * <p><b>Modifiers</b></p>
+ *
+ * <ul>
+ *     <li>{@link #isFinal()}</li>
+ *     <li>{@link #isPrimitive()}</li>
+ *     <li>{@link #isPrivate()}</li>
+ *     <li>{@link #isProtected()}</li>
+ *     <li>{@link #isPublic()}</li>
+ *     <li>{@link #isStatic()}</li>
+ *     <li>{@link #isSynthetic()}</li>
+ *     <li>{@link #isTransient()}</li>
+ *     <li>{@link #isVolatile()}</li>
+ *     <li>{@link #modifiers()}</li>
+ * </ul>
+ *
+ * <p><b>Properties</b></p>
+ *
+ * <ul>
+ *     <li>{@link #arrayElementType()}</li>
+ *     <li>{@link #genericTypeParameters()}</li>
+ *     <li>{@link #name()}</li>
+ *     <li>{@link #parentType()}</li>
+ * </ul>
  *
  * @author jonathanl (shibo)
+ * @see ReflectionProblem
  */
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramReflection.class)
@@ -91,12 +135,12 @@ public class Field extends Member
      */
     @Override
     @SuppressWarnings("unchecked")
-    public <T> List<Type<T>> arrayElementType()
+    public <T> ObjectList<Type<T>> arrayElementType()
     {
         if (field.getType().isArray())
         {
             var list = new ObjectList<Type<T>>();
-            list.add(Type.typeForClass((Class<T>) field.getType().getComponentType()));
+            list.add(typeForClass((Class<T>) field.getType().getComponentType()));
             return list;
         }
 
@@ -132,7 +176,7 @@ public class Field extends Member
             {
                 if (at instanceof Class)
                 {
-                    list.add(Type.typeForClass((Class<T>) at));
+                    list.add(typeForClass((Class<T>) at));
                 }
             }
             return list;
@@ -177,14 +221,6 @@ public class Field extends Member
     }
 
     /**
-     * Returns true if this field has an annotation of the given type
-     */
-    public boolean hasAnnotation(Class<? extends Annotation> type)
-    {
-        return field.isAnnotationPresent(type);
-    }
-
-    /**
      * {@inheritDoc}
      */
     @Override
@@ -202,16 +238,9 @@ public class Field extends Member
     }
 
     /**
-     * Returns true if this is a static field
-     */
-    public boolean isStatic()
-    {
-        return Modifier.isStatic(field.getModifiers());
-    }
-
-    /**
      * Returns true if this is a synthetic field
      */
+    @Override
     public boolean isSynthetic()
     {
         return field.isSynthetic();
@@ -222,7 +251,15 @@ public class Field extends Member
      */
     public boolean isTransient()
     {
-        return Modifier.isTransient(field.getModifiers());
+        return Modifier.isTransient(modifiers());
+    }
+
+    /**
+     * Returns true if this is a synchronized method
+     */
+    public boolean isVolatile()
+    {
+        return Modifier.isVolatile(modifiers());
     }
 
     /**
@@ -241,6 +278,12 @@ public class Field extends Member
         {
             return new ReflectionProblem("Cannot access " + this);
         }
+    }
+
+    @Override
+    public int modifiers()
+    {
+        return field.getModifiers();
     }
 
     /**
@@ -318,7 +361,7 @@ public class Field extends Member
         {
             return field.getName();
         }
-        return Classes.simpleName(parentObject.getClass()) + "." + field.getName() + " = " + parentObject;
+        return simpleName(parentObject.getClass()) + "." + field.getName() + " = " + parentObject;
     }
 
     /**
@@ -326,6 +369,6 @@ public class Field extends Member
      */
     public Type<?> type()
     {
-        return Type.typeForClass(field.getType());
+        return typeForClass(field.getType());
     }
 }

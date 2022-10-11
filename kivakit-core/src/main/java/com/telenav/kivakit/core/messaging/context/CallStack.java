@@ -155,8 +155,8 @@ public class CallStack
         for (var method : stack)
         {
             var matches = matching == Matching.EXACT
-                    ? calleeType.equals(method.parentType().type())
-                    : calleeType.isAssignableFrom(method.parentType().type());
+                    ? calleeType.equals(method.parentType().asJavaType())
+                    : calleeType.isAssignableFrom(method.parentType().asJavaType());
 
             switch (proximity)
             {
@@ -196,7 +196,7 @@ public class CallStack
         {
             for (var ignore : ignores)
             {
-                if ((exact && ignore == caller.parentType().type()) || (!exact && ignore.isAssignableFrom(caller.parentType().type())))
+                if ((exact && ignore == caller.parentType().asJavaType()) || (!exact && ignore.isAssignableFrom(caller.parentType().asJavaType())))
                 {
                     ignored = true;
                 }

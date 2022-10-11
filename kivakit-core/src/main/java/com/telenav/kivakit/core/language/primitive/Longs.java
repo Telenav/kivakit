@@ -33,8 +33,6 @@ import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 /**
  * Utility methods for <i>int</i> values.
  *
- * <hr>
- *
  * <p><b>Parsing</b></p>
  *
  * <ul>
@@ -42,8 +40,6 @@ import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
  *     <li>{@link #parseFastLong(String, long)} - Parses the given string returning the given flag value if parsing fails</li>
  *     <li>{@link #parseFastNaturalNumber(String)} - Parses a natural number, returning {@link #INVALID} if parsing fails</li>
  * </ul>
- *
- * <hr>
  *
  * <p><b>Words</b></p>
  *
@@ -53,8 +49,6 @@ import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
  *     <li>{@link #longForWords(int, int)} - Returns the two 32 bit words combined into a <i>long</i></li>
  * </ul>
  *
- * <hr>
- *
  * <p><b>Ranges</b></p>
  *
  * <ul>
@@ -63,8 +57,6 @@ import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
  *     <li>{@link #longIsBetweenExclusive(long, long, long)} - Returns true if the given value is in the given range, exclusive</li>
  * </ul>
  *
- * <hr>
- *
  * <p><b>String Conversion</b></p>
  *
  * <ul>
@@ -72,8 +64,6 @@ import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
  *     <li>{@link #longToHex(long)} - Converts the given <i>int</i> to a hexadecimal string</li>
  *     <li>{@link #longToHex(long, long)} - Converts the given value to a hexadecimal string of the given length</li>
  * </ul>
- *
- * <hr>
  *
  * @author jonathanl (shibo)
  */

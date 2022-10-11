@@ -136,7 +136,7 @@ public class ZipEntry extends BaseWritableResource implements Closeable
             var in = UncheckedCode.unchecked(() -> Files.newInputStream(path)).orNull();
             if (in != null)
             {
-                this.in = IO.bufferInput(in);
+                this.in = IO.buffer(in);
             }
             else
             {
@@ -165,7 +165,7 @@ public class ZipEntry extends BaseWritableResource implements Closeable
                 out = Files.newOutputStream(path, CREATE, WRITE);
                 if (out != null)
                 {
-                    this.out = IO.bufferOutput(out);
+                    this.out = IO.buffer(out);
                 }
                 else
                 {

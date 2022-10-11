@@ -133,7 +133,7 @@ public final class Debug implements MessageTransceiver
     public Debug(Transceiver transceiver)
     {
         // The class where debug was constructed is the most immediate caller of the class Debug
-        this(CallStack.callerOf(CallStack.Proximity.IMMEDIATE, CallStack.Matching.EXACT, Debug.class).parentType().type(), transceiver);
+        this(CallStack.callerOf(CallStack.Proximity.IMMEDIATE, CallStack.Matching.EXACT, Debug.class).parentType().asJavaType(), transceiver);
     }
 
     private Debug(Class<?> type, Transceiver transceiver)

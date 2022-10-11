@@ -33,8 +33,6 @@ import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_INSUF
 /**
  * Utility methods for <i>int</i> values.
  *
- * <hr>
- *
  * <p><b>Parsing</b></p>
  *
  * <ul>
@@ -42,8 +40,6 @@ import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_INSUF
  *     <li>{@link #parseFastInt(String, int)} - Parses the given string returning the given flag value if parsing fails</li>
  *     <li>{@link #parseFastNaturalNumber(String)} - Parses a natural number, returning {@link #INVALID} if parsing fails</li>
  * </ul>
- *
- * <hr>
  *
  * <p><b>Words</b></p>
  *
@@ -53,8 +49,6 @@ import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_INSUF
  *     <li>{@link #intForWords(int, int)} - Returns the two 16 bit words combined into an <i>int</i></li>
  * </ul>
  *
- * <hr>
- *
  * <p><b>Ranges</b></p>
  *
  * <ul>
@@ -62,8 +56,6 @@ import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_INSUF
  *     <li>{@link #intIsBetweenInclusive(int, int, int)} - Returns true if the given value is in the given range, inclusive</li>
  *     <li>{@link #intIsBetweenExclusive(int, int, int)} - Returns true if the given value is in the given range, exclusive</li>
  * </ul>
- *
- * <hr>
  *
  * <p><b>Math</b></p>
  *
@@ -74,8 +66,6 @@ import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_INSUF
  *     <li>{@link #intPowerOfTen(int)} - Returns the power of ten for the given exponent</li>
  * </ul>
  *
- * <hr>
- *
  * <p><b>String Conversion</b></p>
  *
  * <ul>
@@ -83,8 +73,6 @@ import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_INSUF
  *     <li>{@link #intToHex(int)} - Converts the given <i>int</i> to a hexadecimal string</li>
  *     <li>{@link #intToHex(int, int)} - Converts the given value to a hexadecimal string of the given length</li>
  * </ul>
- *
- * <hr>
  *
  * @author jonathanl (shibo)
  */
