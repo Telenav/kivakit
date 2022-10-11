@@ -28,14 +28,39 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Arrays;
 import java.util.Collection;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static com.telenav.kivakit.core.collections.iteration.Iterators.singletonIterator;
 
 /**
  * Utility methods that operate on {@link Iterable}s.
  *
- * <p><b>Hash/Equals</b></p>
+ * <p>
+ * The method {@link #iterable(Factory)} can be used to implement the
+ * {@link Iterable} interface with a minimum of code. The implementation of the {@link NextIterator} interface provides
+ * either the next value in an iteration of the sequence or null if there is none.
+ * <pre>
+ * var iterable = iterable(() -&gt; new NextIterator&lt;Integer&gt;()
+ * {
+ *     int next;
+ *
+ *     public Integer onNext()
+ *     {
+ *         [...]
+ *     }
+ * }</pre>
+ *
+ * <p><b>Creation</b></p>
+ *
+ * <ul>
+ *     <li>{@link #iterable(Factory)}</li>
+ *     <li>{@link #iterable(Object[])}</li>
+ *     <li>{@link #emptyIterable()}</li>
+ *     <li>{@link #singletonIterable(Object)}</li>
+ * </ul>
+ *
+ * <p><b>Equality</b></p>
  *
  * <ul>
  *     <li>{@link #hashCode(Iterable)}</li>
@@ -48,29 +73,6 @@ import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
  *     <li>{@link #size(Iterable)}</li>
  *     <li>{@link #isEmpty(Iterable)}</li>
  * </ul>
- *
- * <p><b>Construction</b></p>
- *
- * <ul>
- *     <li>{@link #iterable(Factory)}</li>
- *     <li>{@link #iterable(Object[])}</li>
- *     <li>{@link #emptyIterable()}</li>
- *     <li>{@link #singletonIterable(Object)}</li>
- * </ul>
- * <p>
- * The method {@link #iterable(Factory)} can be used to implement the
- * {@link Iterable} interface with a minimum of code. The implementation of the {@link NextIterator} interface provides
- * either the next value in an iteration of the sequence or null if there is none.
- * <pre>
- * var iterable = Iterables.iterable(() -&gt; new NextIterator&lt;Integer&gt;()
- * {
- *     int next;
- *
- *     public Integer onNext()
- *     {
- *         [...]
- *     }
- * }</pre>
  *
  * @author jonathanl (shibo)
  * @see NextIterator
@@ -148,7 +150,7 @@ public class Iterables
      */
     public static <T> Iterable<T> singletonIterable(T value)
     {
-        return () -> Iterators.singletonIterator(value);
+        return () -> singletonIterator(value);
     }
 
     /**

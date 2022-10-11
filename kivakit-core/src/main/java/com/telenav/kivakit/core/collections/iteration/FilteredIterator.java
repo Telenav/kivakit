@@ -26,12 +26,18 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.Iterator;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 
 /**
  * An {@link Iterator} that wraps and filters the values of another {@link Iterator}.
+ *
+ * <p><b>Creation</b></p>
+ *
+ * <ul>
+ *     <li>{@link FilteredIterator#FilteredIterator(Iterator, Matcher)}</li>
+ * </ul>
  *
  * @author jonathanl (shibo)
  * @see BaseIterator

@@ -48,7 +48,7 @@ import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMEN
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.commandline.Quantifier.OPTIONAL;
 import static com.telenav.kivakit.commandline.Quantifier.REQUIRED;
-import static com.telenav.kivakit.core.collections.set.ObjectSet.objectSet;
+import static com.telenav.kivakit.core.collections.set.ObjectSet.set;
 import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
 
 /**
@@ -298,7 +298,7 @@ public class SwitchParser<T> implements Named
          */
         public Builder<T> validValues(@NotNull Set<T> validValues)
         {
-            parser.validValues = objectSet(validValues);
+            parser.validValues = set(validValues);
             return this;
         }
     }

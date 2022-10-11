@@ -29,7 +29,7 @@ import com.telenav.lexakai.annotations.visibility.UmlExcludeMember;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
-import static com.telenav.kivakit.core.collections.set.ObjectSet.objectSet;
+import static com.telenav.kivakit.core.collections.set.ObjectSet.set;
 
 /**
  * A simple logger that writes to the console. This is useful for bootstrapping purposes (the logging system itself may
@@ -63,6 +63,6 @@ public class ConsoleLogger extends BaseLogger
     @UmlExcludeMember
     protected ObjectSet<Log> logs()
     {
-        return objectSet(log);
+        return ObjectSet.set(log);
     }
 }

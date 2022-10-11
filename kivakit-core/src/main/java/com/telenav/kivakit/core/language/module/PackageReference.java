@@ -347,7 +347,7 @@ public final class PackageReference extends StringPath
                 .stream()
                 .filter(resource -> parsePackageReference(listener, resource.javaPath().toString()).startsWith(this))
                 .collect(Collectors.toList());
-        listener.trace("Found nested resources:\n$", ObjectList.objectList(resources).join("\n"));
+        listener.trace("Found nested resources:\n$", ObjectList.list(resources).join("\n"));
         return resources;
     }
 
@@ -402,7 +402,7 @@ public final class PackageReference extends StringPath
                 .stream()
                 .map(resource -> resource.packageReference().withPackageType(packageType))
                 .collect(Collectors.toSet());
-        listener.trace("Found sub-packages:\n$", ObjectList.objectList(packages).join("\n"));
+        listener.trace("Found sub-packages:\n$", ObjectList.list(packages).join("\n"));
         packages.addAll(jarSubPackages(listener));
         packages.addAll(filesystemSubPackages(listener));
         return packages;

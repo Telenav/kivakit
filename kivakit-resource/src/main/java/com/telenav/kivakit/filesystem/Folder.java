@@ -74,7 +74,6 @@ import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTE
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_INSUFFICIENT;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
-import static com.telenav.kivakit.core.collections.list.ObjectList.objectList;
 import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
 import static com.telenav.kivakit.core.ensure.Ensure.fail;
 import static com.telenav.kivakit.core.messaging.Listener.throwingListener;
@@ -865,7 +864,7 @@ public class Folder extends BaseRepeater implements
      */
     public ObjectList<Folder> folders(@NotNull Matcher<Folder> matcher)
     {
-        return objectList(folders().stream().filter(matcher::matches).collect(Collectors.toList()));
+        return ObjectList.list(folders().stream().filter(matcher::matches).collect(Collectors.toList()));
     }
 
     /**

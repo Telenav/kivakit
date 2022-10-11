@@ -46,16 +46,20 @@ import static com.telenav.kivakit.core.value.count.Maximum.MAXIMUM;
  * overridden with down-casting methods for convenience. String lists can be constructed using the constructors, but
  * also using factory methods. Inherited methods are documented in {@link ObjectList} and {@link BaseList}.
  *
- * <p><b>Factory Methods</b></p>
+ * <p><b>Creation</b></p>
  *
  * <ul>
- *     <li>{@link #stringList(String...)} - A string list for the given strings</li>
- *     <li>{@link #stringList(Iterable)} - A string list of the given objects</li>
- *     <li>{@link #words(String)} - A list of the whitespace-separated words in the given string</li>
  *     <li>{@link #repeat(String, int)} - A list of the given string repeated the given number of times</li>
- *     <li>{@link #split(String, char)} - A list of strings from the given string split on the given character</li>
  *     <li>{@link #split(String, String)} - A list of strings from the given string split on the given string</li>
+ *     <li>{@link #split(String, char)} - A list of strings from the given string split on the given character</li>
  *     <li>{@link #splitOnPattern(String, String)} - A list of strings from the given string split on the given regular expression</li>
+ *     <li>{@link #stringList(Collection)} - A string list of the given collection of strings</li>
+ *     <li>{@link #stringList(Iterable)} - A string list of the given strings</li>
+ *     <li>{@link #stringList(Maximum, Collection)} - A list of the strings in the given collection</li>
+ *     <li>{@link #stringList(Maximum, Iterable)} - A list of the strings returned by the given iterable</li>
+ *     <li>{@link #stringList(Maximum, String...)} - A string list of the given strings</li>
+ *     <li>{@link #stringList(String...)} - A string list for the given strings</li>
+ *     <li>{@link #words(String)} - A list of the whitespace-separated words in the given string</li>
  * </ul>
  *
  * <p><b>Length</b></p>
@@ -184,6 +188,27 @@ public class StringList extends ObjectList<String>
     {
         var list = new StringList();
         list.addAll(text.split(pattern));
+        return list;
+    }
+
+    /**
+     * Returns a list of strings from the given iterable
+     */
+    public static <T> StringList stringList(Maximum maximumSize, Collection<T> values)
+    {
+        return new StringList(maximumSize, values);
+    }
+
+    /**
+     * Returns a list of strings from the given iterable
+     */
+    public static <T> StringList stringList(Maximum maximumSize, Iterable<T> values)
+    {
+        var list = new StringList(maximumSize);
+        for (var value : values)
+        {
+            list.addIfNotNull(value.toString());
+        }
         return list;
     }
 

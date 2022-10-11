@@ -41,8 +41,8 @@ import com.telenav.lexakai.annotations.visibility.UmlExcludeMember;
 
 import java.util.Map;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 
 /**
@@ -66,7 +66,7 @@ public abstract class BaseLogger implements Logger
     private final LoggerCodeContext codeContext;
 
     /** List of log entry filters */
-    private final ObjectList<Filter<LogEntry>> filters = ObjectList.objectList();
+    private final ObjectList<Filter<LogEntry>> filters = ObjectList.list();
 
     /** The time that this logger was constructed */
     private final Time start = Time.now();

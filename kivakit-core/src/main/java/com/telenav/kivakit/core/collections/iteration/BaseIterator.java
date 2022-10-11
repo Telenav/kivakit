@@ -19,7 +19,6 @@
 package com.telenav.kivakit.core.collections.iteration;
 
 import com.telenav.kivakit.annotations.code.quality.CodeQuality;
-import com.telenav.kivakit.core.ensure.Ensure;
 import com.telenav.kivakit.core.internal.lexakai.DiagramIteration;
 import com.telenav.kivakit.interfaces.comparison.Matcher;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
@@ -27,15 +26,28 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static com.telenav.kivakit.core.ensure.Ensure.unsupported;
 
 /**
  * An implementation of {@link Iterator} that takes care of the basic logic of an iterator. Subclasses only need to
  * implement {@link #onNext()} by returning the next value, or null if there is not any next value. The sequence of
- * objects returned can be filtered to only those objects matching a {@link Matcher} * specified by
+ * objects returned can be filtered to only those objects matching a {@link Matcher} specified by
  * {@link #matching(Matcher)}.
+ *
+ * <p><b>Iteration</b></p>
+ *
+ * <ul>
+ *     <li>{@link #onNext()} - Implemented by the subtype to return the next value, or null if there is none</li>
+ * </ul>
+ *
+ * <p><b>Filtering</b></p>
+ *
+ * <ul>
+ *     <li>{@link #matching(Matcher)} - Sets a matcher to be used to filter values during iteration</li>
+ * </ul>
  *
  * @author jonathanl (shibo)
  */
@@ -107,7 +119,7 @@ public abstract class BaseIterator<Value> implements Iterator<Value>
     @Override
     public void remove()
     {
-        Ensure.unsupported();
+        unsupported();
     }
 
     protected Value findNext()

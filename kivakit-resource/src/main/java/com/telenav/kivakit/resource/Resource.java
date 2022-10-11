@@ -53,7 +53,7 @@ import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
-import static com.telenav.kivakit.core.collections.set.ObjectSet.emptyObjectSet;
+import static com.telenav.kivakit.core.collections.set.ObjectSet.emptySet;
 import static com.telenav.kivakit.core.ensure.Ensure.ensure;
 import static com.telenav.kivakit.core.ensure.Ensure.unsupported;
 import static com.telenav.kivakit.resource.Resource.Action.DELETE;
@@ -302,7 +302,7 @@ public interface Resource extends
      */
     default ObjectSet<Action> can()
     {
-        return emptyObjectSet();
+        return emptySet();
     }
 
     /**

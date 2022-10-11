@@ -38,7 +38,7 @@ import java.util.regex.Pattern;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
-import static com.telenav.kivakit.core.collections.set.ObjectSet.objectSet;
+import static com.telenav.kivakit.core.collections.set.ObjectSet.set;
 import static com.telenav.kivakit.core.ensure.Ensure.fail;
 import static com.telenav.kivakit.core.logging.loggers.LogServiceLoader.logForName;
 import static com.telenav.kivakit.core.messaging.Listener.consoleListener;
@@ -137,7 +137,7 @@ public class LogServiceLogger extends BaseLogger
             }
         }
 
-        return objectSet(logs);
+        return set(logs);
     }
 
     /**

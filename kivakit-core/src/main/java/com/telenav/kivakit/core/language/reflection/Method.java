@@ -29,10 +29,10 @@ import java.lang.reflect.ParameterizedType;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
-import static com.telenav.kivakit.core.collections.list.ObjectList.objectList;
+import static com.telenav.kivakit.core.collections.list.ObjectList.list;
 import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
 
 /**
@@ -231,6 +231,15 @@ public class Method extends Member
     }
 
     /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Type<?> parentType()
+    {
+        return type;
+    }
+
+    /**
      * Returns the return type for this method
      */
     public Class<?> returnType()
@@ -244,15 +253,6 @@ public class Method extends Member
     @Override
     public String toString()
     {
-        return type + "." + name() + "(" + objectList(method.getParameterTypes()).join() + ")";
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public Type<?> parentType()
-    {
-        return type;
+        return type + "." + name() + "(" + list(method.getParameterTypes()).join() + ")";
     }
 }

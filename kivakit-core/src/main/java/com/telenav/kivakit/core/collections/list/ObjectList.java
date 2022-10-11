@@ -28,13 +28,12 @@ import com.telenav.kivakit.interfaces.function.LongMapper;
 import com.telenav.kivakit.interfaces.value.LongValued;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.function.Function;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_INSUFFICIENT;
 import static com.telenav.kivakit.core.value.count.Maximum.MAXIMUM;
 
@@ -51,12 +50,31 @@ import static com.telenav.kivakit.core.value.count.Maximum.MAXIMUM;
  * </ul>
  *
  * <p>
- * The methods {@link #objectList(Object[])} and {@link #objectList(Maximum, Object[])} can be used to construct constant lists.
- * The factory methods {@link #objectListFromInts(IntMapper, int...)} and {@link #objectListFromLongs(LongMapper, long...)}
+ * The methods {@link #list(Object[])} and {@link #list(Maximum, Object[])} can be used to construct constant lists.
+ * The factory methods {@link #listFromInts(IntMapper, int...)} and {@link #listFromLongs(LongMapper, long...)}
  * construct lists of objects from integer and long values using the given map factories to convert the values into
- * objects. The method {@link #objectList(Iterable, LongMapper)} iterates through the given {@link LongValued} object
+ * objects. The method {@link #listFromLongs(LongMapper, Iterable)} iterates through the given {@link LongValued} object
  * values, passing each quantum to the given primitive map factory and adding the resulting object to a new object list.
  * </p>
+ *
+ * <p><b>Creation</b></p>
+ *
+ * <ul>
+ *     <li>{@link #emptyList()}</li>
+ *     <li>{@link #list(Maximum, Iterable)}</li>
+ *     <li>{@link #list(Maximum, Collection)}</li>
+ *     <li>{@link #list(Maximum, Iterator)}</li>
+ *     <li>{@link #list(Maximum, Object...)}</li>
+ *     <li>{@link #list(Iterable)}</li>
+ *     <li>{@link #list(Collection)}</li>
+ *     <li>{@link #list(Iterator)}</li>
+ *     <li>{@link #list(Object...)}</li>
+ *     <li>{@link #listFromArray(Object[])}</li>
+ *     <li>{@link #listFromLongs(long[])}</li>
+ *     <li>{@link #listFromLongs(LongMapper, long...)}</li>
+ *     <li>{@link #listFromLongs(LongMapper, Iterable)}</li>
+ *     <li>{@link #listFromInts(IntMapper, int...)}</li>
+ * </ul>
  *
  * @param <Value> The object type
  * @author jonathanl (shibo)
@@ -75,17 +93,17 @@ public class ObjectList<Value> extends BaseList<Value>
     /**
      * Returns an empty object list
      */
-    public static <T> ObjectList<T> emptyObjectList()
+    public static <T> ObjectList<T> emptyList()
     {
-        return new ObjectList<>(Maximum._0);
+        return new ObjectList<>();
     }
 
     /**
      * Returns a list of objects from the given iterable
      */
-    public static <T> ObjectList<T> objectList(Iterable<T> values)
+    public static <T> ObjectList<T> list(Maximum maximumSize, Iterable<T> values)
     {
-        var list = new ObjectList<T>();
+        var list = new ObjectList<T>(maximumSize);
         list.appendAll(values);
         return list;
     }
@@ -93,15 +111,15 @@ public class ObjectList<Value> extends BaseList<Value>
     /**
      * Returns a list of objects from the given iterable
      */
-    public static <T> ObjectList<T> objectList(Collection<T> values)
+    public static <T> ObjectList<T> list(Maximum maximumSize, Collection<T> values)
     {
-        return new ObjectList<T>(values);
+        return new ObjectList<>(values);
     }
 
     /**
      * Returns a list of objects from the given iterator
      */
-    public static <T> ObjectList<T> objectList(Iterator<T> values)
+    public static <T> ObjectList<T> list(Maximum maximumSize, Iterator<T> values)
     {
         var list = new ObjectList<T>();
         list.appendAll(values);
@@ -109,26 +127,41 @@ public class ObjectList<Value> extends BaseList<Value>
     }
 
     /**
-     * Returns a list of elements from the given integers created using the given map factory
+     * Returns a list of objects from the given iterable
      */
-    public static <T> ObjectList<T> objectList(Iterable<LongValued> values, LongMapper<T> factory)
+    public static <T> ObjectList<T> list(Iterable<T> values)
     {
-        var objects = new ObjectList<T>();
-        for (var value : values)
-        {
-            objects.add(factory.map(value.longValue()));
-        }
-        return objects;
+        var list = new ObjectList<T>();
+        list.appendAll(values);
+        return list;
+    }
+
+    /**
+     * Returns a list of objects from the given iterable
+     */
+    public static <T> ObjectList<T> list(Collection<T> values)
+    {
+        return new ObjectList<>(values);
+    }
+
+    /**
+     * Returns a list of objects from the given iterator
+     */
+    public static <T> ObjectList<T> list(Iterator<T> values)
+    {
+        var list = new ObjectList<T>();
+        list.appendAll(values);
+        return list;
     }
 
     /**
      * Returns the given list of objects with a maximum size
      */
     @SafeVarargs
-    public static <T> ObjectList<T> objectList(Maximum maximumSize, T... objects)
+    public static <T> ObjectList<T> list(Maximum maximumSize, T... objects)
     {
         var list = new ObjectList<T>(maximumSize);
-        list.addAll(Arrays.asList(objects));
+        list.addAll(objects);
         return list;
     }
 
@@ -136,19 +169,38 @@ public class ObjectList<Value> extends BaseList<Value>
      * Returns the given list of objects
      */
     @SafeVarargs
-    public static <T> ObjectList<T> objectList(T... objects)
-    {
-        return objectList(Maximum._1024, objects);
-    }
-
-    public static <T> ObjectList<T> objectListFromArray(T[] objects)
+    public static <T> ObjectList<T> list(T... objects)
     {
         var list = new ObjectList<T>();
         list.addAll(objects);
         return list;
     }
 
-    public static ObjectList<Long> objectListFromArray(long[] objects)
+    public static <T> ObjectList<T> listFromArray(T[] objects)
+    {
+        var list = new ObjectList<T>();
+        list.addAll(objects);
+        return list;
+    }
+
+    /**
+     * Returns a list of elements from the given integers created using the given map factory
+     */
+    @SuppressWarnings("SpellCheckingInspection")
+    public static <T> ObjectList<T> listFromInts(IntMapper<T> factory, int... values)
+    {
+        var objects = new ObjectList<T>();
+        for (var value : values)
+        {
+            objects.add(factory.map(value));
+        }
+        return objects;
+    }
+
+    /**
+     * Returns a list of longs containing the values in the given array
+     */
+    public static ObjectList<Long> listFromLongs(long[] objects)
     {
         var list = new ObjectList<Long>();
         for (var at : objects)
@@ -161,12 +213,12 @@ public class ObjectList<Value> extends BaseList<Value>
     /**
      * Returns a list of elements from the given integers created using the given map factory
      */
-    public static <T> ObjectList<T> objectListFromInts(IntMapper<T> factory, int... values)
+    public static <T> ObjectList<T> listFromLongs(LongMapper<T> factory, Iterable<LongValued> values)
     {
         var objects = new ObjectList<T>();
         for (var value : values)
         {
-            objects.add(factory.map(value));
+            objects.add(factory.map(value.longValue()));
         }
         return objects;
     }
@@ -174,7 +226,7 @@ public class ObjectList<Value> extends BaseList<Value>
     /**
      * Returns a list of elements from the given integers created using the given map factory
      */
-    public static <T> ObjectList<T> objectListFromLongs(LongMapper<T> factory, long... values)
+    public static <T> ObjectList<T> listFromLongs(LongMapper<T> factory, long... values)
     {
         var objects = new ObjectList<T>();
         for (var value : values)
@@ -198,6 +250,14 @@ public class ObjectList<Value> extends BaseList<Value>
     public ObjectList(Maximum maximumSize)
     {
         super(maximumSize);
+    }
+
+    /**
+     * A list of objects with the given upper bound
+     */
+    public ObjectList(Maximum maximumSize, Collection<Value> collection)
+    {
+        super(maximumSize, collection);
     }
 
     /**
@@ -396,6 +456,6 @@ public class ObjectList<Value> extends BaseList<Value>
     @Override
     protected BaseList<Value> onNewList()
     {
-        return objectList();
+        return list();
     }
 }

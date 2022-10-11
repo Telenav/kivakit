@@ -25,8 +25,8 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.Collection;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_INSUFFICIENT;
 
 /**
@@ -48,6 +48,11 @@ public class Stack<Value> extends ObjectList<Value>
     public Stack(Maximum maximumSize)
     {
         super(maximumSize);
+    }
+
+    public Stack(Maximum maximumSize, Collection<Value> values)
+    {
+        super(maximumSize, values);
     }
 
     public Stack(Collection<Value> values)

@@ -30,7 +30,6 @@ import java.util.Map;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
-import static com.telenav.kivakit.core.collections.list.ObjectList.objectList;
 import static com.telenav.kivakit.core.ensure.Ensure.ensure;
 import static com.telenav.kivakit.core.locale.LocaleRegion.WORLD;
 
@@ -232,7 +231,7 @@ public class LocaleLanguage extends Name implements Comparable<LocaleLanguage>
      */
     public static ObjectList<LocaleLanguage> allLanguages()
     {
-        return objectList(forIso2Code.values()).sorted();
+        return ObjectList.list(forIso2Code.values()).sorted();
     }
 
     /**

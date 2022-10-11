@@ -36,7 +36,7 @@ import org.jetbrains.annotations.NotNull;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
-import static com.telenav.kivakit.core.collections.list.ObjectList.objectList;
+import static com.telenav.kivakit.core.collections.list.ObjectList.list;
 import static com.telenav.kivakit.core.messaging.Listener.throwingListener;
 
 /**
@@ -194,7 +194,7 @@ public class Extension implements
     @SuppressWarnings("DuplicatedCode")
     public static ObjectList<Extension> allExtensions()
     {
-        return objectList(CLASS, CSV, GEOJSON, GRAPH, GRAPH_GZIP,
+        return list(CLASS, CSV, GEOJSON, GRAPH, GRAPH_GZIP,
                 GZIP, JAR, JAVA, JSON, KRYO, MARKDOWN, MD5, OSM, OSMPP,
                 OSM_PBF, PBF, PNG, POLY, POM, PROPERTIES, PYTHON, SHA1,
                 SHELL, TEMPORARY, TXT, TXT_GZIP, XML, YAML, YML, ZIP).sorted();
@@ -205,7 +205,7 @@ public class Extension implements
      */
     public static ObjectList<Extension> archiveExtensions()
     {
-        return objectList(JAR, ZIP, GZIP);
+        return list(JAR, ZIP, GZIP);
     }
 
     /**
@@ -213,7 +213,7 @@ public class Extension implements
      */
     public static ObjectList<Extension> executableExtensions()
     {
-        return objectList(PYTHON, SHELL);
+        return list(PYTHON, SHELL);
     }
 
     /**

@@ -98,7 +98,7 @@ public abstract class BaseGsonFactory extends BaseRepeater implements GsonFactor
      */
     private static class GsonSettings
     {
-        private final ObjectSet<Class<?>> classesToExclude = ObjectSet.objectSet();
+        private final ObjectSet<Class<?>> classesToExclude = ObjectSet.set();
 
         private String dateFormat;
 
@@ -108,7 +108,7 @@ public abstract class BaseGsonFactory extends BaseRepeater implements GsonFactor
 
         private final ObjectSet<ExclusionStrategy> exclusionStrategies = new ObjectSet<>();
 
-        private final ObjectSet<String> fieldsToExclude = ObjectSet.objectSet();
+        private final ObjectSet<String> fieldsToExclude = ObjectSet.set();
 
         private final Map<Class<?>, InstanceCreator<?>> instanceCreators = new HashMap<>();
 
@@ -156,7 +156,7 @@ public abstract class BaseGsonFactory extends BaseRepeater implements GsonFactor
 
             builder.setVersion(version.asDouble());
             builder.setDateFormat(dateFormat);
-            builder.setExclusionStrategies(ObjectList.objectList(exclusionStrategies).asArray(ExclusionStrategy.class));
+            builder.setExclusionStrategies(ObjectList.list(exclusionStrategies).asArray(ExclusionStrategy.class));
 
             if (!escapeHtml)
             {

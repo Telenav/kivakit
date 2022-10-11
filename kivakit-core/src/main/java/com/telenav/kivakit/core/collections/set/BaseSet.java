@@ -36,8 +36,8 @@ import java.util.Set;
 import java.util.function.Function;
 import java.util.function.Predicate;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_INSUFFICIENT;
 import static java.util.Collections.emptySet;
 
@@ -54,7 +54,7 @@ import static java.util.Collections.emptySet;
  *     <li>{@link StringFormattable}</li>
  * </ul>
  *
- *  <p><b>Adding</b></p>
+ * <p><b>Adding</b></p>
  *
  * <ul>
  *     <li>{@link #add(Object)}</li>
@@ -72,9 +72,10 @@ import static java.util.Collections.emptySet;
  * <p><b>Conversion</b></p>
  *
  * <ul>
- *     <li>{@link #asSet()}</li>
  *     <li>{@link #asIterable(Matcher)}</li>
  *     <li>{@link #asIterator(Matcher)}</li>
+ *     <li>{@link #asList()}</li>
+ *     <li>{@link #asSet()}</li>
  *     <li>{@link #asString(Format)}</li>
  * </ul>
  *
@@ -149,6 +150,7 @@ import static java.util.Collections.emptySet;
  *     <li>{@link #mapped(Function)}</li>
  *     <li>{@link #matching(Matcher)} - A copy of this list filtered to matching elements</li>
  *     <li>{@link #with(Object)}</li>
+ *     <li>{@link #with(Collection)}</li>
  *     <li>{@link #without(Matcher)} - This list without the matching elements</li>
  * </ul>
  *

@@ -168,7 +168,7 @@ public abstract class Project extends BaseRepeater implements
     @UmlRelation(label = "depends on")
     public ObjectSet<Class<? extends Project>> dependencies()
     {
-        return ObjectSet.emptyObjectSet();
+        return ObjectSet.emptySet();
     }
 
     /**

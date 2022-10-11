@@ -22,8 +22,8 @@ import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramBits;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_INSUFFICIENT;
 
 /**
@@ -78,7 +78,10 @@ public class BitDiagram
      * The bit field for a given character in a bit diagram
      */
     @SuppressWarnings("unused")
-        public static class BitField
+    @CodeQuality(stability = STABLE,
+                 testing = TESTING_INSUFFICIENT,
+                 documentation = DOCUMENTATION_COMPLETE)
+    public static class BitField
     {
         /** The mask to access the bit field */
         private long mask;

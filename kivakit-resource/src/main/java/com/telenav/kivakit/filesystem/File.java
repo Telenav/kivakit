@@ -59,7 +59,7 @@ import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTE
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_INSUFFICIENT;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
-import static com.telenav.kivakit.core.collections.set.ObjectSet.objectSet;
+import static com.telenav.kivakit.core.collections.set.ObjectSet.set;
 import static com.telenav.kivakit.core.ensure.Ensure.ensure;
 import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
 import static com.telenav.kivakit.core.messaging.Listener.nullListener;
@@ -428,7 +428,7 @@ public class File extends BaseWritableResource implements FileSystemObject
     @Override
     public ObjectSet<Action> can()
     {
-        return objectSet(Action.DELETE, Action.RENAME);
+        return ObjectSet.set(Action.DELETE, Action.RENAME);
     }
 
     /**

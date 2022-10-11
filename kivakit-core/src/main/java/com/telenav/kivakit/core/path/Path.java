@@ -462,7 +462,7 @@ public abstract class Path<Element extends Comparable<Element>> implements
                 return emptyPath();
             }
             var copy = copy();
-            copy.elements = ObjectList.objectList(elements.subList(start, end));
+            copy.elements = ObjectList.list(elements.subList(start, end));
             return copy;
         }
         return null;

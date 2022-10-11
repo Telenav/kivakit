@@ -28,14 +28,27 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.Iterator;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 
 /**
  * Implements the {@link Iterable} interface by using a {@link NextIterator} object to find the next value when
  * iterating. The sequence of objects returned can be filtered to only those objects matching a {@link Matcher}
  * specified by {@link #matching(Matcher)}.
+ *
+ * <p><b>Iteration</b></p>
+ *
+ * <ul>
+ *     <li>{@link #newNextIterator()} - Implemented by the subtype to return a {@link NextIterator}, which returns
+ *     a sequence of values, terminated by a null value</li>
+ * </ul>
+ *
+ * <p><b>Filtering</b></p>
+ *
+ * <ul>
+ *     <li>{@link #matching(Matcher)} - Sets a matcher to be used to filter values during iteration</li>
+ * </ul>
  *
  * @author jonathanl (shibo)
  */

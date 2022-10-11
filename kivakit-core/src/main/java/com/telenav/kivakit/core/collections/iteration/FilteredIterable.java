@@ -27,13 +27,19 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.Iterator;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 
 /**
  * An {@link Iterable} that wraps and filters the elements of another {@link Iterable} producing only elements that
  * match the {@link Matcher} given to the constructor.
+ *
+ * <p><b>Creation</b></p>
+ *
+ * <ul>
+ *     <li>{@link FilteredIterable#FilteredIterable(Iterable, Matcher)}</li>
+ * </ul>
  *
  * @author jonathanl (shibo)
  * @see BaseIterable

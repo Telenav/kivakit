@@ -30,8 +30,6 @@ import org.junit.Test;
 
 import java.util.Collections;
 
-import static com.telenav.kivakit.core.collections.list.ObjectList.objectList;
-
 public class IteratorTest extends CoreUnitTest
 {
     @Test
@@ -79,7 +77,7 @@ public class IteratorTest extends CoreUnitTest
                 return null;
             }
         };
-        ensureEqual(values(2, 4, 8, 16, 32, 64, 128, 256, 512, 1024), objectList(iterator));
+        ensureEqual(values(2, 4, 8, 16, 32, 64, 128, 256, 512, 1024), ObjectList.list(iterator));
     }
 
     @Test

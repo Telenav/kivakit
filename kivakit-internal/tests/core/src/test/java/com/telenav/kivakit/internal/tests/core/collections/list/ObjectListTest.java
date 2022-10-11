@@ -27,42 +27,42 @@ import org.junit.Test;
 import java.util.Comparator;
 import java.util.List;
 
-import static com.telenav.kivakit.core.collections.list.ObjectList.objectList;
+import static com.telenav.kivakit.core.collections.list.ObjectList.list;
 
 public class ObjectListTest extends CoreUnitTest
 {
     @Test
     public void testAdd()
     {
-        var list = objectList(1, 2, 3, 4, 5);
+        var list = list(1, 2, 3, 4, 5);
         list.add(9);
-        ensureEqual(list, objectList(1, 2, 3, 4, 5, 9));
+        ensureEqual(list, list(1, 2, 3, 4, 5, 9));
     }
 
     @Test
     public void testAllMatch()
     {
-        ensure(objectList(1, 2, 3, 4, 5).allMatch(value -> value < 6));
+        ensure(list(1, 2, 3, 4, 5).allMatch(value -> value < 6));
     }
 
     @Test
     public void testAnyMatch()
     {
-        ensure(objectList(1, 2, 3, 4, 5).anyMatch(value -> value == 4));
+        ensure(list(1, 2, 3, 4, 5).anyMatch(value -> value == 4));
     }
 
     @Test
     public void testAppend()
     {
-        ensureEqual(objectList(1, 2, 3, 4, 5).with(7).with(8),
-                objectList(1, 2, 3, 4, 5, 7, 8));
-        ensureEqual(objectList(1, 2, 3, 4, 5).appendAllThen(List.of(7, 8)), objectList(1, 2, 3, 4, 5, 7, 8));
+        ensureEqual(list(1, 2, 3, 4, 5).with(7).with(8),
+                list(1, 2, 3, 4, 5, 7, 8));
+        ensureEqual(list(1, 2, 3, 4, 5).appendAllThen(List.of(7, 8)), list(1, 2, 3, 4, 5, 7, 8));
     }
 
     @Test
     public void testCopy()
     {
-        ensureEqual(objectList(1, 2, 3, 4, 5).copy(), objectList(1, 2, 3, 4, 5));
+        ensureEqual(list(1, 2, 3, 4, 5).copy(), list(1, 2, 3, 4, 5));
     }
 
     @Test
@@ -83,99 +83,99 @@ public class ObjectListTest extends CoreUnitTest
     @Test
     public void testEquals()
     {
-        ensure(objectList(1, 2, 3, 4, 5).equals(objectList(1, 2, 3, 4, 5)));
+        ensure(list(1, 2, 3, 4, 5).equals(list(1, 2, 3, 4, 5)));
     }
 
     @Test
     public void testFind()
     {
-        ensureEqual(objectList(1, 2, 3, 4, 5).findFirst(value -> value == 3), 3);
+        ensureEqual(list(1, 2, 3, 4, 5).findFirst(value -> value == 3), 3);
     }
 
     @Test
     public void testFirst()
     {
-        ensureEqual(objectList(1, 2, 3, 4, 5).first(), 1);
-        ensureEqual(objectList(1, 2, 3, 4, 5).first(3), objectList(1, 2, 3));
-        ensureEqual(objectList(1, 2, 3, 4, 5).first(2), objectList(1, 2));
-        ensureEqual(objectList(1, 2, 3, 4, 5).first(1), objectList(1));
-        ensureEqual(objectList(1, 2, 3, 4, 5).first(0), objectList());
+        ensureEqual(list(1, 2, 3, 4, 5).first(), 1);
+        ensureEqual(list(1, 2, 3, 4, 5).first(3), list(1, 2, 3));
+        ensureEqual(list(1, 2, 3, 4, 5).first(2), list(1, 2));
+        ensureEqual(list(1, 2, 3, 4, 5).first(1), list(1));
+        ensureEqual(list(1, 2, 3, 4, 5).first(0), list());
     }
 
     @Test
     public void testGet()
     {
-        ensureEqual(objectList(1, 2, 3, 4, 5).get(0), 1);
-        ensureEqual(objectList(1, 2, 3, 4, 5).get(2), 3);
-        ensureEqual(objectList(1, 2, 3, 4, 5).get(4), 5);
+        ensureEqual(list(1, 2, 3, 4, 5).get(0), 1);
+        ensureEqual(list(1, 2, 3, 4, 5).get(2), 3);
+        ensureEqual(list(1, 2, 3, 4, 5).get(4), 5);
     }
 
     @Test
     public void testHead()
     {
-        ensureEqual(objectList(1, 2, 3, 4, 5).head(), 1);
+        ensureEqual(list(1, 2, 3, 4, 5).head(), 1);
     }
 
     @Test
     public void testIsEmpty()
     {
-        ensure(!objectList(1, 2, 3, 4, 5).isEmpty());
-        ensure(objectList().isEmpty());
+        ensure(!list(1, 2, 3, 4, 5).isEmpty());
+        ensure(list().isEmpty());
     }
 
     @Test
     public void testIsNonEmpty()
     {
-        ensure(objectList(1, 2, 3, 4, 5).isNonEmpty());
-        ensure(!objectList().isNonEmpty());
+        ensure(list(1, 2, 3, 4, 5).isNonEmpty());
+        ensure(!list().isNonEmpty());
     }
 
     @Test
     public void testJoin()
     {
-        ensureEqual(objectList(1, 2, 3, 4, 5).join(), "1, 2, 3, 4, 5");
+        ensureEqual(list(1, 2, 3, 4, 5).join(), "1, 2, 3, 4, 5");
     }
 
     @Test
     public void testLastIndexOf()
     {
-        ensureEqual(objectList(3, 2, 3, 4, 3).lastIndexOf(3), 4);
-        ensureEqual(objectList(3, 2, 3, 4, 9).lastIndexOf(3), 2);
-        ensureEqual(objectList(3, 2, 9, 4, 9).lastIndexOf(3), 0);
-        ensureEqual(objectList(9, 2, 9, 4, 9).lastIndexOf(3), -1);
+        ensureEqual(list(3, 2, 3, 4, 3).lastIndexOf(3), 4);
+        ensureEqual(list(3, 2, 3, 4, 9).lastIndexOf(3), 2);
+        ensureEqual(list(3, 2, 9, 4, 9).lastIndexOf(3), 0);
+        ensureEqual(list(9, 2, 9, 4, 9).lastIndexOf(3), -1);
     }
 
     @Test
     public void testLeftOf()
     {
-        ensureEqual(objectList(1, 2, 3, 4, 5).leftOf(2), objectList(1, 2));
-        ensureEqual(objectList(1, 2, 3, 4, 5).leftOf(1), objectList(1));
-        ensureEqual(objectList(1, 2, 3, 4, 5).leftOf(0), objectList());
+        ensureEqual(list(1, 2, 3, 4, 5).leftOf(2), list(1, 2));
+        ensureEqual(list(1, 2, 3, 4, 5).leftOf(1), list(1));
+        ensureEqual(list(1, 2, 3, 4, 5).leftOf(0), list());
     }
 
     @Test
     public void testMapped()
     {
-        ensureEqual(objectList(1, 2, 3, 4, 5).mapped(value -> value * value), objectList(1, 4, 9, 16, 25));
+        ensureEqual(list(1, 2, 3, 4, 5).mapped(value -> value * value), list(1, 4, 9, 16, 25));
     }
 
     @Test
     public void testMatching()
     {
-        ensureEqual(objectList(1, 2, 3, 4, 5).matching(value -> value % 2 == 1), objectList(1, 3, 5));
+        ensureEqual(list(1, 2, 3, 4, 5).matching(value -> value % 2 == 1), list(1, 3, 5));
     }
 
     @Test
     public void testMaybeReversed()
     {
-        ensureEqual(objectList(1, 2, 3, 4, 5).maybeReversed(true), objectList(5, 4, 3, 2, 1));
-        ensureEqual(objectList(1, 2, 3, 4, 5).maybeReversed(false), objectList(1, 2, 3, 4, 5));
+        ensureEqual(list(1, 2, 3, 4, 5).maybeReversed(true), list(5, 4, 3, 2, 1));
+        ensureEqual(list(1, 2, 3, 4, 5).maybeReversed(false), list(1, 2, 3, 4, 5));
     }
 
     @Test
     public void testPartition()
     {
-        ensureEqual(objectList(1, 2, 3, 4, 5).partition(Count._2), objectList(objectList(1, 2, 3), objectList(4, 5)));
+        ensureEqual(list(1, 2, 3, 4, 5).partition(Count._2), list(list(1, 2, 3), list(4, 5)));
 
         var list = createList(0, 10);
         ensure(list.partition(Count._3).size() == 3);
@@ -187,58 +187,58 @@ public class ObjectListTest extends CoreUnitTest
     @Test
     public void testPrepend()
     {
-        var list = objectList(1, 2, 3, 4, 5);
+        var list = list(1, 2, 3, 4, 5);
         list.prepend(6);
-        ensureEqual(list, objectList(6, 1, 2, 3, 4, 5));
+        ensureEqual(list, list(6, 1, 2, 3, 4, 5));
     }
 
     @Test
     public void testRemoveLast()
     {
-        var list = objectList(1, 2, 3, 4, 5);
+        var list = list(1, 2, 3, 4, 5);
         var removed = list.removeLast();
         ensureEqual(removed, 5);
-        ensureEqual(list, objectList(1, 2, 3, 4));
+        ensureEqual(list, list(1, 2, 3, 4));
     }
 
     @Test
     public void testReversed()
     {
-        ensureEqual(objectList(1, 2, 3, 4, 5).reversed(), objectList(5, 4, 3, 2, 1));
+        ensureEqual(list(1, 2, 3, 4, 5).reversed(), list(5, 4, 3, 2, 1));
     }
 
     @Test
     public void testRightOf()
     {
-        ensureEqual(objectList(1, 2, 3, 4, 5).rightOf(2), objectList(4, 5));
-        ensureEqual(objectList(1, 2, 3, 4, 5).rightOf(1), objectList(3, 4, 5));
-        ensureEqual(objectList(1, 2, 3, 4, 5).rightOf(0), objectList(2, 3, 4, 5));
+        ensureEqual(list(1, 2, 3, 4, 5).rightOf(2), list(4, 5));
+        ensureEqual(list(1, 2, 3, 4, 5).rightOf(1), list(3, 4, 5));
+        ensureEqual(list(1, 2, 3, 4, 5).rightOf(0), list(2, 3, 4, 5));
     }
 
     @Test
     public void testSet()
     {
-        var list = objectList(1, 2, 3, 4, 5);
+        var list = list(1, 2, 3, 4, 5);
         list.set(0, 9);
-        ensureEqual(list, objectList(9, 2, 3, 4, 5));
+        ensureEqual(list, list(9, 2, 3, 4, 5));
         list.set(2, 9);
-        ensureEqual(list, objectList(9, 2, 9, 4, 5));
+        ensureEqual(list, list(9, 2, 9, 4, 5));
         list.set(4, 9);
-        ensureEqual(list, objectList(9, 2, 9, 4, 9));
+        ensureEqual(list, list(9, 2, 9, 4, 9));
     }
 
     @Test
     public void testSize()
     {
-        ensureEqual(objectList(1, 2, 3, 4, 5).size(), 5);
-        ensureEqual(objectList().size(), 0);
+        ensureEqual(list(1, 2, 3, 4, 5).size(), 5);
+        ensureEqual(list().size(), 0);
     }
 
     @Test
     public void testSorted()
     {
-        ensureEqual(objectList(5, 4, 2, 1, 3).sorted(), objectList(1, 2, 3, 4, 5));
-        ensureEqual(objectList(5, 4, 2, 1, 3).sorted(Comparator.reverseOrder()), objectList(5, 4, 3, 2, 1));
+        ensureEqual(list(5, 4, 2, 1, 3).sorted(), list(1, 2, 3, 4, 5));
+        ensureEqual(list(5, 4, 2, 1, 3).sorted(Comparator.reverseOrder()), list(5, 4, 3, 2, 1));
     }
 
     @Test
@@ -259,13 +259,13 @@ public class ObjectListTest extends CoreUnitTest
     @Test
     public void testTail()
     {
-        ensureEqual(objectList(1, 2, 3, 4, 5).tail(), objectList(2, 3, 4, 5));
+        ensureEqual(list(1, 2, 3, 4, 5).tail(), list(2, 3, 4, 5));
     }
 
     @Test
     public void testUnique()
     {
-        ensureEqual(objectList(1, 2, 3), objectList(1, 2, 3, 1, 2, 3).uniqued());
+        ensureEqual(list(1, 2, 3), list(1, 2, 3, 1, 2, 3).uniqued());
     }
 
     @Test
@@ -279,7 +279,7 @@ public class ObjectListTest extends CoreUnitTest
     public void testWithout()
     {
         ensureEqual(createList(0, 4).without(value -> value == 4), createList(0, 3));
-        ensureEqual(objectList(0, 1, 2, 3, 4, 5, 6, 7, 8, 9).without(value -> value % 2 == 0), objectList(1, 3, 5, 7, 9));
+        ensureEqual(list(0, 1, 2, 3, 4, 5, 6, 7, 8, 9).without(value -> value % 2 == 0), list(1, 3, 5, 7, 9));
     }
 
     private ObjectList<Integer> createList(int firstValue, int lastValue)

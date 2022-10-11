@@ -9,7 +9,7 @@ import com.telenav.kivakit.serialization.properties.PropertiesSerializationProje
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
-import static com.telenav.kivakit.core.collections.set.ObjectSet.objectSet;
+import static com.telenav.kivakit.core.collections.set.ObjectSet.set;
 
 /**
  * Initializer for settings project
@@ -28,6 +28,6 @@ public class SettingsProject extends Project
     public ObjectSet<Class<? extends Project>> dependencies()
     {
         // Settings stores depend on .properties and .json serialization
-        return objectSet(PropertiesSerializationProject.class, GsonSerializationProject.class);
+        return ObjectSet.set(PropertiesSerializationProject.class, GsonSerializationProject.class);
     }
 }

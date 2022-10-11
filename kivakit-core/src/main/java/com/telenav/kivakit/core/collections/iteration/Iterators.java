@@ -28,14 +28,22 @@ import java.util.Iterator;
 import java.util.Objects;
 import java.util.function.Supplier;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 
 /**
  * Utility methods that operate on {@link Iterator}s.
  *
- * <p><b>Hash/Equals</b></p>
+ * <p><b>Creation</b></p>
+ *
+ * <ul>
+ *     <li>{@link #iterator(Supplier)}</li>
+ *     <li>{@link #emptyIterator()} </li>
+ *     <li>{@link #singletonIterator(Object)}</li>
+ * </ul>
+ *
+ * <p><b>Equality</b></p>
  *
  * <ul>
  *     <li>{@link #hashCode(Iterator)}</li>
@@ -47,14 +55,6 @@ import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
  * <ul>
  *     <li>{@link #size(Iterator)}</li>
  *     <li>{@link #isEmpty(Iterator)}</li>
- * </ul>
- *
- * <p><b>Construction</b></p>
- *
- * <ul>
- *     <li>{@link #iterator(Supplier)}</li>
- *     <li>{@link #emptyIterator()} </li>
- *     <li>{@link #singletonIterator(Object)}</li>
  * </ul>
  *
  * @author jonathanl (shibo)

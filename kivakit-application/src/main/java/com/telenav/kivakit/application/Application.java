@@ -106,7 +106,7 @@ import static com.telenav.kivakit.application.ExitCode.SUCCEEDED;
 import static com.telenav.kivakit.commandline.Quantifier.OPTIONAL;
 import static com.telenav.kivakit.commandline.Quantifier.REQUIRED;
 import static com.telenav.kivakit.commandline.SwitchParsers.booleanSwitchParser;
-import static com.telenav.kivakit.core.collections.set.ObjectSet.objectSet;
+import static com.telenav.kivakit.core.collections.set.ObjectSet.set;
 import static com.telenav.kivakit.core.ensure.Ensure.ensure;
 import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
 import static com.telenav.kivakit.properties.PropertyMap.loadLocalizedPropertyMap;
@@ -862,7 +862,7 @@ public abstract class Application extends BaseComponent implements
      */
     protected ObjectSet<StartupOption> startupOptions()
     {
-        return objectSet();
+        return ObjectSet.set();
     }
 
     /**
@@ -870,7 +870,7 @@ public abstract class Application extends BaseComponent implements
      */
     protected ObjectSet<SwitchParser<?>> switchParsers()
     {
-        return objectSet();
+        return ObjectSet.set();
     }
 
     /**

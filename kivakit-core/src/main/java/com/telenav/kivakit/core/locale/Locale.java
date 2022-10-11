@@ -33,7 +33,6 @@ import java.util.Collection;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
-import static com.telenav.kivakit.core.collections.list.ObjectList.objectList;
 
 /**
  * A locale constructed from a {@link LocaleLanguage} and an optional {@link LocaleRegion}. Provides a unique path to
@@ -66,7 +65,7 @@ public class Locale
     public Locale(LocaleRegion region, @NotNull Collection<LocaleLanguage> languages)
     {
         this.region = region;
-        this.languages = objectList(languages);
+        this.languages = ObjectList.list(languages);
     }
 
     /**

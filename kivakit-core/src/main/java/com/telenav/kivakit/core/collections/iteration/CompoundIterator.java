@@ -27,8 +27,8 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 
 /**
@@ -55,9 +55,10 @@ public class CompoundIterator<Value> extends BaseIterator<Value>
      *
      * @param iterator The iterator to add
      */
-    public void add(Iterator<Value> iterator)
+    public CompoundIterator<Value> add(Iterator<Value> iterator)
     {
         iterators.add(iterator);
+        return this;
     }
 
     /**
@@ -65,9 +66,10 @@ public class CompoundIterator<Value> extends BaseIterator<Value>
      *
      * @param iterators The iterators to add
      */
-    public void addAll(Collection<Iterator<Value>> iterators)
+    public CompoundIterator<Value> addAll(Collection<Iterator<Value>> iterators)
     {
         this.iterators.addAll(iterators);
+        return this;
     }
 
     /**

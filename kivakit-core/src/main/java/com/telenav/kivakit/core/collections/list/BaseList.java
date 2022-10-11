@@ -49,10 +49,9 @@ import java.util.function.Predicate;
 import java.util.function.UnaryOperator;
 import java.util.stream.Stream;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_INSUFFICIENT;
-import static com.telenav.kivakit.core.collections.list.ObjectList.objectList;
 
 /**
  * A base class for bounded lists which adds convenient methods as well as support for various KivaKit interfaces:
@@ -66,13 +65,6 @@ import static com.telenav.kivakit.core.collections.list.ObjectList.objectList;
  *     <li>{@link RandomAccess}</li>
  *     <li>{@link Sectionable}</li>
  * </ul>
- *
- * <p><b>Functional Methods</b></p>
- *
- * <p>
- * Some methods are functional and return a new list. The method {@link #newInstance()} is used to create lists.
- * Subclasses create the subclass list type by overriding {@link #onNewInstance()}.
- * </p>
  *
  * <p><b>Adding</b></p>
  *
@@ -217,6 +209,11 @@ import static com.telenav.kivakit.core.collections.list.ObjectList.objectList;
  *
  * <p><b>Functional Methods</b></p>
  *
+ * <p>
+ * Some methods are functional and return a new list. The method {@link #newList()} is used to create lists.
+ * Subclasses create the subclass list type by overriding {@link #onNewList()}.
+ * </p>
+ *
  * <ul>
  *     <li>{@link #copy()} - A copy of this list</li>
  *     <li>{@link #without(Matcher)} - This list without the matching elements</li>
@@ -344,15 +341,15 @@ public abstract class BaseList<Value> extends BaseCollection<Value> implements
     }
 
     @Override
-    public BaseList<Value> appendThen(Value value)
-    {
-        return (BaseList<Value>) Appendable.super.appendThen(value);
-    }
-
-    @Override
     public BaseList<Value> appendAllThen(Iterable<? extends Value> values)
     {
         return (BaseList<Value>) Appendable.super.appendAllThen(values);
+    }
+
+    @Override
+    public BaseList<Value> appendThen(Value value)
+    {
+        return (BaseList<Value>) Appendable.super.appendThen(value);
     }
 
     /**
@@ -690,7 +687,7 @@ public abstract class BaseList<Value> extends BaseCollection<Value> implements
     @Override
     public ObjectList<Value> subList(int fromIndex, int toIndex)
     {
-        return objectList(list.subList(fromIndex, toIndex));
+        return ObjectList.list(list.subList(fromIndex, toIndex));
     }
 
     /**
@@ -720,6 +717,9 @@ public abstract class BaseList<Value> extends BaseCollection<Value> implements
         return list;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected Collection<Value> backingCollection()
     {
@@ -729,7 +729,7 @@ public abstract class BaseList<Value> extends BaseCollection<Value> implements
     /**
      * Returns the wrapped list
      */
-    protected List<Value> list()
+    protected List<Value> backingList()
     {
         return list;
     }

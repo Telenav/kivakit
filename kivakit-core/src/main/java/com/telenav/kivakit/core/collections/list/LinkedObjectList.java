@@ -41,6 +41,6 @@ public class LinkedObjectList<Value> extends ObjectList<Value>
      */
     public void removeFirst()
     {
-        ((LinkedList<Value>) list()).removeFirst();
+        ((LinkedList<Value>) backingList()).removeFirst();
     }
 }

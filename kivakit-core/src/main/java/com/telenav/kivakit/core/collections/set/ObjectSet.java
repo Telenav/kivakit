@@ -26,26 +26,127 @@ import com.telenav.kivakit.interfaces.comparison.Matcher;
 
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Set;
+import java.util.function.Function;
+import java.util.function.Predicate;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_INSUFFICIENT;
-import static com.telenav.kivakit.core.collections.list.ObjectList.objectList;
 import static com.telenav.kivakit.core.value.count.Maximum.MAXIMUM;
 
 /**
- * A set of objects with an arbitrary backing set. See {@link BaseSet} for details on available methods.
+ * A set of objects with an arbitrary backing set.
  *
  * <p><b>Creation</b></p>
  *
  * <ul>
- *     <li>{@link #objectSet(Object[])}</li>
- *     <li>{@link #objectSet(Collection)}</li>
- *     <li>{@link #emptyObjectSet()}</li>
+ *     <li>{@link #set(Object[])}</li>
+ *     <li>{@link #set(Collection)}</li>
+ *     <li>{@link #emptySet()}</li>
  *     <li>{@link ObjectSet#ObjectSet()}</li>
  *     <li>{@link ObjectSet#ObjectSet(Maximum)}</li>
  *     <li>{@link ObjectSet#ObjectSet(Maximum, Collection)}</li>
+ * </ul>
+ * <p><b>Adding</b></p>
+ *
+ * <ul>
+ *     <li>{@link #add(Object)}</li>
+ *     <li>{@link #addIfNotNull(Object)}</li>
+ *     <li>{@link #addAll(Collection)}</li>
+ *     <li>{@link #addAll(Object[])}</li>
+ *     <li>{@link #addAll(Iterable)}</li>
+ *     <li>{@link #addAll(Iterator)}</li>
+ *     <li>{@link #addAllMatching(Object[], Matcher)}</li>
+ *     <li>{@link #addAllMatching(Iterable, Matcher)}</li>
+ *     <li>{@link #addAllMatching(Iterable, Matcher)}</li>
+ *     <li>{@link #addAllMatching(Collection, Matcher)}</li>
+ * </ul>
+ *
+ * <p><b>Conversion</b></p>
+ *
+ * <ul>
+ *     <li>{@link #asIterable(Matcher)}</li>
+ *     <li>{@link #asIterator(Matcher)}</li>
+ *     <li>{@link #asList()}</li>
+ *     <li>{@link #asSet()}</li>
+ *     <li>{@link #asString(Format)}</li>
+ * </ul>
+ *
+ * <p><b>Access</b></p>
+ *
+ * <ul>
+ *     <li>{@link #copy()}</li>
+ *     <li>{@link #first()}</li>
+ *     <li>{@link #matching(Matcher)}</li>
+ *     <li>{@link #mapped(Function)}</li>
+ * </ul>
+ *
+ * <p><b>Membership</b></p>
+ *
+ * <ul>
+ *     <li>{@link #contains(Object)}</li>
+ *     <li>{@link #containsAll(Collection)}</li>
+ * </ul>
+ *
+ * <p><b>Size</b></p>
+ *
+ * <ul>
+ *     <li>{@link #size()}</li>
+ *     <li>{@link #count()}</li>
+ *     <li>{@link #isEmpty()}</li>
+ *     <li>{@link #isNonEmpty()}</li>
+ * </ul>
+ *
+ * <p><b>Bounds</b></p>
+ *
+ * <ul>
+ *     <li>{@link #maximumSize()} - The maximum size of this list</li>
+ *     <li>{@link #totalRoom()} - The maximum size of this list</li>
+ *     <li>{@link #hasRoomFor(int)} - For use by subclasses to check their size</li>
+ *     <li>{@link #onOutOfRoom(int)} - Responds with a warning when the list is out of space</li>
+ * </ul>
+ *
+ * <p><b>Removing</b></p>
+ *
+ * <ul>
+ *     <li>{@link #clear()}</li>
+ *     <li>{@link #remove(Object)}</li>
+ *     <li>{@link #removeAll(Collection)}</li>
+ *     <li>{@link #removeIf(Predicate)}</li>
+ *     <li>{@link #removeAllMatching(Matcher)}</li>
+ * </ul>
+ *
+ * <p><b>Conversions</b></p>
+ *
+ * <ul>
+ *     <li>{@link #asArray(Class)} - This list as an array of the given type</li>
+ *     <li>{@link #asIterable()}</li>
+ *     <li>{@link #asIterable(Matcher)}</li>
+ *     <li>{@link #asIterator()}</li>
+ *     <li>{@link #asIterator(Matcher)}</li>
+ *     <li>{@link #asSet()}</li>
+ *     <li>{@link #asString(Format)}</li>
+ *     <li>{@link #asStringList()}</li>
+ * </ul>
+ *
+ * <p><b>String Conversions</b></p>
+ *
+ * <ul>
+ *     <li>{@link #join()} - This list joined by the list {@link #separator()}</li>
+ *     <li>{@link #separator()} - The separator used when joining this list into a string</li>
+ * </ul>
+ *
+ * <p><b>Functional Methods</b></p>
+ *
+ * <ul>
+ *     <li>{@link #copy()} - A copy of this list</li>
+ *     <li>{@link #mapped(Function)}</li>
+ *     <li>{@link #matching(Matcher)} - A copy of this list filtered to matching elements</li>
+ *     <li>{@link #with(Object)}</li>
+ *     <li>{@link #with(Collection)}</li>
+ *     <li>{@link #without(Matcher)} - This list without the matching elements</li>
  * </ul>
  *
  * @author jonathanl (shibo)
@@ -59,7 +160,7 @@ public class ObjectSet<Value> extends BaseSet<Value>
     /**
      * Returns an empty {@link ObjectSet}.
      */
-    public static <T> ObjectSet<T> emptyObjectSet()
+    public static <T> ObjectSet<T> emptySet()
     {
         return new ObjectSet<>();
     }
@@ -70,7 +171,7 @@ public class ObjectSet<Value> extends BaseSet<Value>
      * @param values The values to add to the set
      */
     @SafeVarargs
-    public static <T> ObjectSet<T> objectSet(T... values)
+    public static <T> ObjectSet<T> set(T... values)
     {
         var set = new ObjectSet<T>();
         set.addAll(values);
@@ -82,7 +183,7 @@ public class ObjectSet<Value> extends BaseSet<Value>
      *
      * @param values The values to add to the set
      */
-    public static <T> ObjectSet<T> objectSet(Collection<T> values)
+    public static <T> ObjectSet<T> set(Collection<T> values)
     {
         var set = new ObjectSet<T>();
         set.addAll(values);
@@ -134,7 +235,7 @@ public class ObjectSet<Value> extends BaseSet<Value>
     @Override
     public ObjectList<Value> asList()
     {
-        return objectList(super.asList());
+        return ObjectList.list(super.asList());
     }
 
     /**
@@ -188,6 +289,6 @@ public class ObjectSet<Value> extends BaseSet<Value>
     @Override
     protected BaseCollection<Value> onNewCollection()
     {
-        return objectSet();
+        return set();
     }
 }

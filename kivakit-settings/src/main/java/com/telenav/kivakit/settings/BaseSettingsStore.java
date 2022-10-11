@@ -20,7 +20,7 @@ import java.util.Set;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
-import static com.telenav.kivakit.core.collections.set.ObjectSet.objectSet;
+import static com.telenav.kivakit.core.collections.set.ObjectSet.set;
 import static com.telenav.kivakit.core.ensure.Ensure.ensure;
 import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
 import static com.telenav.kivakit.settings.SettingsStore.AccessMode.DELETE;
@@ -158,7 +158,7 @@ public abstract class BaseSettingsStore extends BaseRepeater implements
     {
         maybeLoad();
 
-        return lock.write(() -> objectSet(objects.values()));
+        return lock.write(() -> set(objects.values()));
     }
 
     @NotNull
