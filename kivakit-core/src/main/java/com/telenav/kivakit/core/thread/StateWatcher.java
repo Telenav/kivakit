@@ -34,6 +34,7 @@ import java.util.function.Predicate;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static com.telenav.kivakit.core.time.Duration.FOREVER;
 import static com.telenav.kivakit.core.time.Duration.seconds;
 import static com.telenav.kivakit.core.time.Time.now;
 import static com.telenav.kivakit.interfaces.time.WakeState.COMPLETED;
@@ -134,7 +135,7 @@ public final class StateWatcher<State>
      */
     public WakeState waitFor(Predicate<State> predicate)
     {
-        return waitFor(predicate, Duration.FOREVER);
+        return waitFor(predicate, FOREVER);
     }
 
     /**
@@ -195,7 +196,7 @@ public final class StateWatcher<State>
      */
     public WakeState waitFor(State desired)
     {
-        return waitFor(desired, Duration.FOREVER);
+        return waitFor(desired, FOREVER);
     }
 
     /**

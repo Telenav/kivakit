@@ -25,6 +25,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 import static com.telenav.kivakit.network.core.Loopback.loopback;
+import static com.telenav.kivakit.network.core.Protocol.HTTP;
 
 public class NetworkLocationTest extends UnitTest
 {
@@ -36,7 +37,7 @@ public class NetworkLocationTest extends UnitTest
         ensureEqual(80, location.port().portNumber());
         ensureEqual(location.toString(), "http://localhost/foo");
         ensureEqual(new URL("http://127.0.0.1/foo"), location.asUrl());
-        ensureEqual(Protocol.HTTP, location.protocol());
+        ensureEqual(HTTP, location.protocol());
         var parameters = new QueryParameters("x=9");
         location.queryParameters(parameters);
         ensureEqual("9", location.queryParameters().asVariableMap().get("x"));

@@ -40,7 +40,7 @@ import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTE
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.path.StringPath.stringPath;
 import static com.telenav.kivakit.core.version.Version.version;
-import static com.telenav.kivakit.resource.serialization.ObjectMetadata.OBJECT_VERSION;
+import static com.telenav.kivakit.resource.serialization.ObjectMetadata.METADATA_OBJECT_VERSION;
 import static com.telenav.kivakit.serialization.core.SerializationSession.SessionType.RESOURCE_SERIALIZATION_SESSION;
 
 /**
@@ -103,11 +103,11 @@ public abstract class KryoUnitTest extends UnitTest
         var path = stringPath("/a/b/c");
 
         var write = new SerializableObject<>(object, version);
-        serializer.writeObject(output, path, write, OBJECT_VERSION);
+        serializer.writeObject(output, path, write, METADATA_OBJECT_VERSION);
 
         var input = new ByteArrayInputStream(output.toByteArray());
 
-        var read = serializer.readObject(input, path, object.getClass(), OBJECT_VERSION);
+        var read = serializer.readObject(input, path, object.getClass(), METADATA_OBJECT_VERSION);
         ensureEqual(write, read);
     }
 

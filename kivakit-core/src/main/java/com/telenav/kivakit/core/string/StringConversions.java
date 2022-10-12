@@ -32,6 +32,7 @@ import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.string.CaseFormat.capitalizeOnlyFirstLetter;
 import static com.telenav.kivakit.core.string.Join.join;
 import static com.telenav.kivakit.core.string.Split.split;
+import static com.telenav.kivakit.interfaces.string.StringFormattable.Format.DEBUG;
 import static java.lang.String.*;
 
 /**
@@ -73,7 +74,7 @@ public class StringConversions
     {
         if (object instanceof StringFormattable)
         {
-            return ((StringFormattable) object).asString(StringFormattable.Format.DEBUG);
+            return ((StringFormattable) object).asString(DEBUG);
         }
         return toHumanizedString(object);
     }

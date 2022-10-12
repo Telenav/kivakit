@@ -16,7 +16,7 @@ import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTE
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.ensure.Ensure.ensure;
 import static com.telenav.kivakit.core.language.Arrays.arrayContains;
-import static com.telenav.kivakit.resource.serialization.ObjectMetadata.OBJECT_TYPE;
+import static com.telenav.kivakit.resource.serialization.ObjectMetadata.METADATA_OBJECT_TYPE;
 
 /**
  * Interface to code that can read {@link SerializableObject}s from a {@link Resource}.
@@ -37,7 +37,7 @@ public interface ObjectReader extends RepeaterMixin
 
     /**
      * Reads an object from the given {@link InputStream}. The type to be read must be in the input, and metadata must
-     * specify {@link ObjectMetadata#OBJECT_TYPE}.
+     * specify {@link ObjectMetadata#METADATA_OBJECT_TYPE}.
      *
      * @param input The input stream
      * @param path The path for the input stream, for diagnostic purposes
@@ -47,7 +47,7 @@ public interface ObjectReader extends RepeaterMixin
                                                  @NotNull StringPath path,
                                                  @NotNull ObjectMetadata... metadata)
     {
-        ensure(arrayContains(metadata, OBJECT_TYPE),
+        ensure(arrayContains(metadata, METADATA_OBJECT_TYPE),
                 "Must specify OBJECT_TYPE metadata, or include an explicit type to read");
 
         return readObject(new ProgressiveInputStream(input, progressReporter()), path, null, metadata);
@@ -57,7 +57,7 @@ public interface ObjectReader extends RepeaterMixin
      * Reads an object of the given type from the given {@link Resource}.
      *
      * @param resource The resource to read from
-     * @param type The type to read (if {@link ObjectMetadata#OBJECT_TYPE} is not supplied
+     * @param type The type to read (if {@link ObjectMetadata#METADATA_OBJECT_TYPE} is not supplied
      * @param metadata The metadata to read
      * @return The deserialized object, or null if it couldn't be read
      */
@@ -91,12 +91,12 @@ public interface ObjectReader extends RepeaterMixin
 
     /**
      * Reads an object of the given type from the given {@link InputStream}. If no type is supplied, the type can be
-     * read from the stream by supplying {@link ObjectMetadata#OBJECT_TYPE}. It is required to supply a type or
-     * {@link ObjectMetadata#OBJECT_TYPE}.
+     * read from the stream by supplying {@link ObjectMetadata#METADATA_OBJECT_TYPE}. It is required to supply a type or
+     * {@link ObjectMetadata#METADATA_OBJECT_TYPE}.
      *
      * @param input The input stream
      * @param path Path associated with the input stream, for diagnostic purposes
-     * @param type The type to read (if {@link ObjectMetadata#OBJECT_TYPE} is nor supplied
+     * @param type The type to read (if {@link ObjectMetadata#METADATA_OBJECT_TYPE} is nor supplied
      * @param metadata The metadata to read
      * @return The deserialized object, or null if it couldn't be read
      */

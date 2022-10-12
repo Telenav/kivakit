@@ -33,6 +33,7 @@ import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTE
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.collections.list.ObjectList.list;
 import static com.telenav.kivakit.core.language.Objects.isEqual;
+import static com.telenav.kivakit.core.locale.LocaleRegion.WORLD;
 import static com.telenav.kivakit.core.path.StringPath.stringPath;
 import static com.telenav.kivakit.core.string.StringConversions.toNonNullString;
 
@@ -109,7 +110,7 @@ public class Locale
      */
     public boolean isWorld()
     {
-        return region == LocaleRegion.WORLD;
+        return region == WORLD;
     }
 
     /**

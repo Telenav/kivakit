@@ -40,7 +40,6 @@ import org.jetbrains.annotations.NotNull;
 
 import java.io.InputStream;
 import java.nio.charset.Charset;
-import java.nio.charset.StandardCharsets;
 
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
@@ -53,6 +52,7 @@ import static com.telenav.kivakit.filesystem.File.parseFile;
 import static com.telenav.kivakit.filesystem.Folder.FolderType.CLEAN_UP_ON_EXIT;
 import static com.telenav.kivakit.filesystem.Folder.temporaryFolderForProcess;
 import static com.telenav.kivakit.resource.CopyMode.OVERWRITE;
+import static java.nio.charset.StandardCharsets.UTF_8;
 import static java.util.Objects.hash;
 
 /**
@@ -80,7 +80,7 @@ public abstract class BaseReadableResource extends BaseRepeater implements Resou
     /**
      * Character mapping (default is UTF-8)
      */
-    private Charset charset = StandardCharsets.UTF_8;
+    private Charset charset = UTF_8;
 
     /**
      * Compression (default is none, but may be derived from resource extension)

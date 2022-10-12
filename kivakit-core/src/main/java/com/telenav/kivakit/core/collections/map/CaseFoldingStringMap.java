@@ -31,6 +31,7 @@ import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTE
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_INSUFFICIENT;
 import static com.telenav.kivakit.core.ensure.Ensure.fail;
+import static com.telenav.kivakit.core.value.count.Maximum.MAXIMUM;
 
 /**
  * A {@link StringMap} where values that are added with {@link #put(Object, Object)} are automatically converted to
@@ -57,7 +58,7 @@ public class CaseFoldingStringMap<Value> extends StringMap<Value>
      */
     public CaseFoldingStringMap()
     {
-        super(Maximum.MAXIMUM);
+        super(MAXIMUM);
     }
 
     /**

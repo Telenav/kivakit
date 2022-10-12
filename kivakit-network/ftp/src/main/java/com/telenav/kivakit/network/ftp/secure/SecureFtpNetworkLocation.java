@@ -22,15 +22,15 @@ import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.network.core.NetworkAccessConstraints;
 import com.telenav.kivakit.network.core.NetworkLocation;
 import com.telenav.kivakit.network.core.NetworkPath;
-import com.telenav.kivakit.network.core.Protocol;
 import com.telenav.kivakit.network.ftp.internal.lexakai.DiagramSecureFtp;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.ensure.Ensure.ensure;
+import static com.telenav.kivakit.network.core.Protocol.SFTP;
 
 /**
  * A secure ftp (SFTP) network location.
@@ -47,7 +47,7 @@ public class SecureFtpNetworkLocation extends NetworkLocation
     public SecureFtpNetworkLocation(NetworkPath path)
     {
         super(path);
-        ensure(Protocol.SFTP.equals(path.port().protocol()));
+        ensure(SFTP.equals(path.port().protocol()));
     }
 
     @UmlRelation(label = "creates")

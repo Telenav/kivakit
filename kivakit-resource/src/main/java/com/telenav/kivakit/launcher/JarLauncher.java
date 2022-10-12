@@ -48,6 +48,7 @@ import static com.telenav.kivakit.core.progress.ProgressReporter.nullProgressRep
 import static com.telenav.kivakit.filesystem.Folders.kivakitTemporaryFolder;
 import static com.telenav.kivakit.launcher.JarLauncher.ProcessType.CHILD;
 import static com.telenav.kivakit.launcher.JarLauncher.ProcessType.DETACHED;
+import static com.telenav.kivakit.launcher.JarLauncher.RedirectTo.FILE;
 import static com.telenav.kivakit.properties.PropertyMap.propertyMap;
 
 /**
@@ -128,7 +129,7 @@ public class JarLauncher extends BaseRepeater
     private StringList programArguments = new StringList();
 
     @UmlAggregation(label = "determines output redirection")
-    private RedirectTo redirectTo = RedirectTo.FILE;
+    private RedirectTo redirectTo = FILE;
 
     private int debugPort = -1;
 

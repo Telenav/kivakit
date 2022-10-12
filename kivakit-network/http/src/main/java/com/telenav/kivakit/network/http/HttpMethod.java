@@ -42,7 +42,7 @@ public enum HttpMethod
     OPTIONS,
     TRACE,
     PATCH,
-    NONE;
+    NULL_HTTP_METHOD;
 
     /**
      * Returns the {@link HttpMethod} for the given text

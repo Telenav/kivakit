@@ -31,6 +31,7 @@ import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTE
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.language.reflection.Method.method;
+import static com.telenav.kivakit.core.messaging.context.CallStack.Matching.EXACT;
 import static java.lang.Thread.currentThread;
 
 /**
@@ -58,7 +59,7 @@ public class CallStack
 {
     public static Method callerOf(Proximity proximity, Matching matching, Class<?> calleeType)
     {
-        return callerOf(proximity, matching, calleeType, Matching.EXACT);
+        return callerOf(proximity, matching, calleeType, EXACT);
     }
 
     /**
@@ -155,7 +156,7 @@ public class CallStack
         var index = 0;
         for (var method : stack)
         {
-            var matches = matching == Matching.EXACT
+            var matches = matching == EXACT
                     ? calleeType.equals(method.parentType().asJavaType())
                     : calleeType.isAssignableFrom(method.parentType().asJavaType());
 
@@ -192,7 +193,7 @@ public class CallStack
     private static boolean shouldIgnore(Method caller, Matching matching, Class<?>... ignores)
     {
         var ignored = false;
-        var exact = matching == Matching.EXACT;
+        var exact = matching == EXACT;
         if (caller != null)
         {
             for (var ignore : ignores)

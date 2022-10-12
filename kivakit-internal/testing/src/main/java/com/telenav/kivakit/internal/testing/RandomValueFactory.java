@@ -23,7 +23,6 @@ import com.telenav.kivakit.core.collections.list.ObjectList;
 import com.telenav.kivakit.core.collections.set.ObjectSet;
 import com.telenav.kivakit.core.language.Hash;
 import com.telenav.kivakit.core.logging.Logger;
-import com.telenav.kivakit.core.logging.LoggerFactory;
 import com.telenav.kivakit.core.messaging.Debug;
 import com.telenav.kivakit.core.value.count.Count;
 import com.telenav.kivakit.core.value.count.Range;
@@ -46,6 +45,7 @@ import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.ensure.Ensure.ensure;
 import static com.telenav.kivakit.core.language.primitive.Longs.longInRangeInclusive;
 import static com.telenav.kivakit.core.language.primitive.Longs.longRandom;
+import static com.telenav.kivakit.core.logging.LoggerFactory.newLogger;
 import static com.telenav.kivakit.core.value.count.Count._256;
 import static com.telenav.kivakit.core.value.count.Count.count;
 import static com.telenav.kivakit.interfaces.comparison.Filter.acceptAll;
@@ -96,7 +96,7 @@ public class RandomValueFactory implements RandomNumeric
 {
     private static volatile long SALT = 8682522807148012L;
 
-    private static final Logger LOGGER = LoggerFactory.newLogger();
+    private static final Logger LOGGER = newLogger();
 
     private static final Debug DEBUG = new Debug(LOGGER);
 

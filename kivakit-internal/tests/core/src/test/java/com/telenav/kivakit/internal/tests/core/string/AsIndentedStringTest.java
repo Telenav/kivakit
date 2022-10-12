@@ -24,6 +24,8 @@ import com.telenav.kivakit.internal.testing.CoreUnitTest;
 import com.telenav.kivakit.core.value.count.Maximum;
 import org.junit.Test;
 
+import static com.telenav.kivakit.interfaces.string.StringFormattable.Format.TEXT;
+
 /**
  * @author jonathanl (shibo)
  */
@@ -84,10 +86,10 @@ public class AsIndentedStringTest extends CoreUnitTest implements AsIndentedStri
     @Test
     public void testPrune()
     {
-        var indenter = new ObjectIndenter(Format.TEXT)
+        var indenter = new ObjectIndenter(TEXT)
                 .levels(Maximum._4)
                 .pruneAt(Bar.class);
-        asString(Format.TEXT, indenter);
+        asString(TEXT, indenter);
         ensureEqual("foo:\n" +
                 "  bar: Bar\n" +
                 "  y: 1\n" +

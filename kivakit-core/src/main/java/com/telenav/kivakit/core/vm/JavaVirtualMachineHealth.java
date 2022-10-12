@@ -37,6 +37,7 @@ import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTE
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.string.ObjectFormatter.ObjectFormat.MULTILINE;
+import static com.telenav.kivakit.core.time.Duration.ZERO_DURATION;
 import static com.telenav.kivakit.core.time.Time.now;
 import static com.telenav.kivakit.core.value.count.Count.count;
 import static com.telenav.kivakit.core.vm.JavaVirtualMachine.javaVirtualMachine;
@@ -100,7 +101,7 @@ public class JavaVirtualMachineHealth
     @FormatProperty
     public Duration elapsedCpuTimeSinceLastSnapshot()
     {
-        return lastSnapshot == null ? Duration.ZERO_DURATION : snapshot.totalCpuTime().minus(lastSnapshot.totalCpuTime());
+        return lastSnapshot == null ? ZERO_DURATION : snapshot.totalCpuTime().minus(lastSnapshot.totalCpuTime());
     }
 
     /**
@@ -109,7 +110,7 @@ public class JavaVirtualMachineHealth
     @FormatProperty
     public Duration elapsedSinceLastSnapshot()
     {
-        return lastSnapshot == null ? Duration.ZERO_DURATION : snapshot.capturedAt().elapsedSince(lastSnapshot.capturedAt());
+        return lastSnapshot == null ? ZERO_DURATION : snapshot.capturedAt().elapsedSince(lastSnapshot.capturedAt());
     }
 
     /**

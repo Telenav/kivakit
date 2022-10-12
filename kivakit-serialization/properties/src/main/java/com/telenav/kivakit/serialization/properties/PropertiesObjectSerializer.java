@@ -29,9 +29,9 @@ import static com.telenav.kivakit.core.registry.InstanceIdentifier.instanceIdent
 import static com.telenav.kivakit.core.registry.InstanceIdentifier.singletonInstanceIdentifier;
 import static com.telenav.kivakit.core.version.Version.parseVersion;
 import static com.telenav.kivakit.properties.PropertyMap.loadPropertyMap;
-import static com.telenav.kivakit.resource.serialization.ObjectMetadata.OBJECT_INSTANCE;
-import static com.telenav.kivakit.resource.serialization.ObjectMetadata.OBJECT_TYPE;
-import static com.telenav.kivakit.resource.serialization.ObjectMetadata.OBJECT_VERSION;
+import static com.telenav.kivakit.resource.serialization.ObjectMetadata.METADATA_OBJECT_INSTANCE;
+import static com.telenav.kivakit.resource.serialization.ObjectMetadata.METADATA_OBJECT_TYPE;
+import static com.telenav.kivakit.resource.serialization.ObjectMetadata.METADATA_OBJECT_VERSION;
 
 /**
  * Reads a {@link SerializableObject} from a <i>.properties</i> file. Writing is not supported at this time.
@@ -94,7 +94,7 @@ public class PropertiesObjectSerializer implements ObjectSerializer
             if (type == null)
             {
                 // then load it using the class name specified by the 'class' property.
-                ensure(arrayContains(metadata, OBJECT_TYPE), "Must specify either an explicit type or ObjectMetadata.TYPE to read the type from the input");
+                ensure(arrayContains(metadata, METADATA_OBJECT_TYPE), "Must specify either an explicit type or ObjectMetadata.TYPE to read the type from the input");
                 var typeName = properties.get("class");
                 if (typeName == null)
                 {
@@ -106,14 +106,14 @@ public class PropertiesObjectSerializer implements ObjectSerializer
 
             // Next, read any version
             Version version = null;
-            if (arrayContains(metadata, OBJECT_VERSION))
+            if (arrayContains(metadata, METADATA_OBJECT_VERSION))
             {
                 version = parseVersion(this, properties.get("version"));
             }
 
             // get any instance identifier,
             var instance = singletonInstanceIdentifier();
-            if (arrayContains(metadata, OBJECT_INSTANCE))
+            if (arrayContains(metadata, METADATA_OBJECT_INSTANCE))
             {
                 var enumName = properties.getOrDefault("instance",
                         singletonInstanceIdentifier().name());

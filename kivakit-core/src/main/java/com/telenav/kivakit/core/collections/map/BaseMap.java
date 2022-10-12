@@ -41,6 +41,7 @@ import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTE
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_INSUFFICIENT;
 import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
 import static com.telenav.kivakit.core.logging.LoggerFactory.newLogger;
+import static com.telenav.kivakit.core.value.count.Maximum.MAXIMUM;
 
 /**
  * A base class for bounded maps which wraps a {@link Map} implementation. The following methods are added to the base
@@ -79,7 +80,7 @@ public class BaseMap<Key, Value> implements
      */
     public BaseMap()
     {
-        this(Maximum.MAXIMUM);
+        this(MAXIMUM);
     }
 
     /**
@@ -104,7 +105,7 @@ public class BaseMap<Key, Value> implements
      */
     public BaseMap(Map<Key, Value> map)
     {
-        this(Maximum.MAXIMUM, map);
+        this(MAXIMUM, map);
     }
 
     /**

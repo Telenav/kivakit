@@ -37,7 +37,6 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.net.URLDecoder;
-import java.nio.charset.StandardCharsets;
 
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
@@ -48,6 +47,7 @@ import static com.telenav.kivakit.core.language.Objects.isEqual;
 import static com.telenav.kivakit.core.logging.LoggerFactory.newLogger;
 import static com.telenav.kivakit.core.string.Formatter.format;
 import static com.telenav.kivakit.network.core.NetworkPath.parseNetworkPath;
+import static java.nio.charset.StandardCharsets.UTF_8;
 
 /**
  * A network location with a {@link Port}, {@link NetworkPath}, {@link NetworkAccessConstraints} and optional
@@ -229,7 +229,7 @@ public class NetworkLocation implements StringFormattable, Comparable<NetworkLoc
                 portNumber = -1;
             }
             // Decode path, so we avoid double-encoding if the path is already encoded
-            var path = URLDecoder.decode(networkPath().asStringPath().toString(), StandardCharsets.UTF_8);
+            var path = URLDecoder.decode(networkPath().asStringPath().toString(), UTF_8);
             return new URI(protocol().name(), username, host().name(), portNumber, "/" + path,
                     queryParameters == null ? null : queryParameters.toString(), reference);
         }

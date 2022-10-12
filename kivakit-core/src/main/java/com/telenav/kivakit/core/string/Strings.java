@@ -24,10 +24,12 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.regex.Pattern;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
-import static java.lang.Character.*;
+import static java.lang.Character.isDigit;
+import static java.lang.Character.isJavaIdentifierPart;
+import static java.lang.Character.isJavaIdentifierStart;
 import static java.lang.Math.min;
 
 /**
@@ -47,7 +49,7 @@ import static java.lang.Math.min;
  *     <li>{@link #containsAnyOf(String, String)}</li>
  *     <li>{@link #isAllBytes(String)}</li>
  *     <li>{@link #isAscii(String)}</li>
- *     <li>{@link #isNullOrEmpty(String)}</li>
+ *     <li>{@link #isNullOrBlank(String)}</li>
  *     <li>{@link #isExtendedAscii(String)}</li>
  *     <li>{@link #isJavaIdentifier(String)}</li>
  *     <li>{@link #isLowerCase(String)}</li>
@@ -221,14 +223,6 @@ public class Strings
     }
 
     /**
-     * Returns true if the string is null, empty or contains only whitespace
-     */
-    public static boolean isNullOrEmpty(String text)
-    {
-        return text == null || text.isEmpty() || text.trim().isEmpty();
-    }
-
-    /**
      * Returns true if every character in the given string is an ASCII value
      */
     public static boolean isExtendedAscii(String value)
@@ -248,7 +242,7 @@ public class Strings
      */
     public static boolean isJavaIdentifier(String text)
     {
-        if (!isNullOrEmpty(text))
+        if (!isNullOrBlank(text))
         {
             if (!isJavaIdentifierStart(text.charAt(0)))
             {
@@ -279,7 +273,7 @@ public class Strings
      */
     public static boolean isNaturalNumber(String string)
     {
-        if (isNullOrEmpty(string))
+        if (isNullOrBlank(string))
         {
             return false;
         }
@@ -291,6 +285,14 @@ public class Strings
             }
         }
         return true;
+    }
+
+    /**
+     * Returns true if the string is null, empty or contains only whitespace
+     */
+    public static boolean isNullOrBlank(String text)
+    {
+        return text == null || text.isBlank();
     }
 
     /**
@@ -317,6 +319,12 @@ public class Strings
         return text.substring(0, length);
     }
 
+    /**
+     * Returns the given value, or the empty string if it is null.
+     *
+     * @param value The value,
+     * @return The value, or "" if the value is null
+     */
     public static String notNull(String value)
     {
         return value == null ? "" : value;

@@ -35,6 +35,7 @@ import static com.telenav.kivakit.core.ensure.Ensure.unsupported;
 import static com.telenav.kivakit.core.time.DayOfWeek.javaDayOfWeek;
 import static com.telenav.kivakit.core.time.Hour.militaryHour;
 import static com.telenav.kivakit.core.time.Second.second;
+import static com.telenav.kivakit.core.time.TimeFormats.*;
 import static com.telenav.kivakit.core.time.TimeFormats.KIVAKIT_DATE_TIME;
 import static com.telenav.kivakit.core.time.TimeZones.shortDisplayName;
 import static java.lang.String.format;
@@ -356,7 +357,7 @@ public class LocalTime extends Time
      */
     public String asDateString(ZoneId zone)
     {
-        return TimeFormats.KIVAKIT_DATE
+        return KIVAKIT_DATE
                 .withZone(zone)
                 .format(asJavaInstant());
     }
@@ -424,7 +425,7 @@ public class LocalTime extends Time
      */
     public String asTimeString(ZoneId zone)
     {
-        return TimeFormats.KIVAKIT_TIME
+        return KIVAKIT_TIME
                 .withZone(zone)
                 .format(asJavaInstant());
     }

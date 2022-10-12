@@ -27,6 +27,7 @@ import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMEN
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.string.Strip.stripLeading;
+import static com.telenav.kivakit.core.time.Duration.*;
 import static com.telenav.kivakit.core.time.Duration.FOREVER;
 import static com.telenav.kivakit.core.time.Duration.ZERO_DURATION;
 import static com.telenav.kivakit.core.time.Duration.parseDuration;
@@ -100,22 +101,22 @@ public class Frequency
 
     public static Frequency cyclesPerDay(int times)
     {
-        return every(Duration.ONE_DAY.dividedBy(times));
+        return every(ONE_DAY.dividedBy(times));
     }
 
     public static Frequency cyclesPerHour(int times)
     {
-        return every(Duration.ONE_HOUR.dividedBy(times));
+        return every(ONE_HOUR.dividedBy(times));
     }
 
     public static Frequency cyclesPerMinute(int times)
     {
-        return every(Duration.ONE_MINUTE.dividedBy(times));
+        return every(ONE_MINUTE.dividedBy(times));
     }
 
     public static Frequency cyclesPerSecond(int times)
     {
-        return every(Duration.ONE_SECOND.dividedBy(times));
+        return every(ONE_SECOND.dividedBy(times));
     }
 
     /**

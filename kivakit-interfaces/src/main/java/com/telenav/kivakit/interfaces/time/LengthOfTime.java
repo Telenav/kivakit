@@ -13,15 +13,15 @@ import java.util.Date;
 import java.util.TimeZone;
 import java.util.Timer;
 import java.util.TimerTask;
-import java.util.concurrent.TimeUnit;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.interfaces.time.WakeState.COMPLETED;
 import static com.telenav.kivakit.interfaces.time.WakeState.INTERRUPTED;
 import static com.telenav.kivakit.interfaces.time.WakeState.TIMED_OUT;
 import static com.telenav.kivakit.interfaces.time.WakeState.terminated;
+import static java.util.concurrent.TimeUnit.MILLISECONDS;
 
 /**
  * Interface to an object having a length of time, measured in nanoseconds.
@@ -169,7 +169,7 @@ public interface LengthOfTime<Duration extends LongValued & LengthOfTime<Duratio
     {
         try
         {
-            if (awaitable.await(milliseconds(), TimeUnit.MILLISECONDS))
+            if (awaitable.await(milliseconds(), MILLISECONDS))
             {
                 return COMPLETED;
             }

@@ -32,12 +32,12 @@ import com.telenav.lexakai.annotations.associations.UmlRelation;
 import org.jetbrains.annotations.NotNull;
 
 import java.nio.charset.Charset;
-import java.nio.charset.StandardCharsets;
 
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
 import static com.telenav.kivakit.core.progress.ProgressReporter.nullProgressReporter;
+import static java.nio.charset.StandardCharsets.UTF_8;
 
 /**
  * Interface to an object that is {@link Readable} and can be read with a {@link ResourceReader}.
@@ -90,7 +90,7 @@ public interface ReadableResource extends
      */
     default Charset charset()
     {
-        return StandardCharsets.UTF_8;
+        return UTF_8;
     }
 
     /**

@@ -33,6 +33,7 @@ import static com.telenav.kivakit.core.thread.KivaKitThread.State.PAUSE_REQUESTE
 import static com.telenav.kivakit.core.thread.KivaKitThread.State.RESUME_REQUESTED;
 import static com.telenav.kivakit.core.thread.KivaKitThread.State.RUNNING;
 import static com.telenav.kivakit.core.thread.KivaKitThread.State.STOP_REQUESTED;
+import static com.telenav.kivakit.core.time.Frequency.CONTINUOUSLY;
 
 /**
  * A thread that repeatedly executes the {@link #onRun()} method implementation at a given {@link Frequency}. The thread
@@ -68,7 +69,7 @@ public class RepeatingThread extends KivaKitThread implements Pausable
                                       String name,
                                       Runnable code)
     {
-        return run(listener, name, Frequency.CONTINUOUSLY, code);
+        return run(listener, name, CONTINUOUSLY, code);
     }
 
     private Frequency frequency;

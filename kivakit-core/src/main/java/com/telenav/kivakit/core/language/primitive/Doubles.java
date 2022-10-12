@@ -140,7 +140,7 @@ public class Doubles
         var index = value.indexOf('.');
         if (index > 0)
         {
-            var invalid = Longs.INVALID;
+            var invalid = Longs.INVALID_LONG;
             var major = parseFastLong(value.substring(0, index), invalid);
             if (major != invalid)
             {

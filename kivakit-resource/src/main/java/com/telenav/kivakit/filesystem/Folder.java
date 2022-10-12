@@ -77,7 +77,7 @@ import static com.telenav.kivakit.core.messaging.Listener.throwingListener;
 import static com.telenav.kivakit.core.os.OperatingSystem.operatingSystem;
 import static com.telenav.kivakit.core.string.Formatter.format;
 import static com.telenav.kivakit.core.string.Strings.ensureEndsWith;
-import static com.telenav.kivakit.core.string.Strings.isNullOrEmpty;
+import static com.telenav.kivakit.core.string.Strings.isNullOrBlank;
 import static com.telenav.kivakit.filesystem.FilePath.parseFilePath;
 import static com.telenav.kivakit.filesystem.Folder.FolderType.CLEAN_UP_ON_EXIT;
 import static com.telenav.kivakit.filesystem.Folder.Traversal.RECURSE;
@@ -315,7 +315,7 @@ public class Folder extends BaseRepeater implements
      */
     public static Folder parseFolder(@NotNull Listener listener, String path, Object... arguments)
     {
-        if (isNullOrEmpty(path))
+        if (isNullOrBlank(path))
         {
             return null;
         }

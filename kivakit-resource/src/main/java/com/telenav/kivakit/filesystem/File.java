@@ -68,6 +68,7 @@ import static com.telenav.kivakit.filesystem.FilePath.parseFilePath;
 import static com.telenav.kivakit.filesystem.Folders.kivakitTemporaryFolder;
 import static com.telenav.kivakit.filesystem.loader.FileSystemServiceLoader.fileSystem;
 import static java.lang.System.currentTimeMillis;
+import static java.nio.file.attribute.PosixFilePermission.*;
 
 /**
  * File abstraction that adds integrates files with the KivaKit resource mini-framework and adds a variety of useful
@@ -181,15 +182,15 @@ import static java.lang.System.currentTimeMillis;
              documentation = DOCUMENTATION_COMPLETE)
 public class File extends BaseWritableResource implements FileSystemObject
 {
-    public static PosixFilePermission[] ACCESS_ALL = { PosixFilePermission.OWNER_READ,
-            PosixFilePermission.OWNER_WRITE, PosixFilePermission.OWNER_EXECUTE, PosixFilePermission.GROUP_READ,
-            PosixFilePermission.GROUP_WRITE, PosixFilePermission.GROUP_EXECUTE, PosixFilePermission.OTHERS_READ,
-            PosixFilePermission.OTHERS_WRITE, PosixFilePermission.OTHERS_EXECUTE };
+    public static PosixFilePermission[] ACCESS_ALL = { OWNER_READ,
+            OWNER_WRITE, OWNER_EXECUTE, GROUP_READ,
+            GROUP_WRITE, GROUP_EXECUTE, OTHERS_READ,
+            OTHERS_WRITE, OTHERS_EXECUTE };
 
-    public static final PosixFilePermission[] ACCESS_775 = { PosixFilePermission.OWNER_READ,
-            PosixFilePermission.OWNER_WRITE, PosixFilePermission.OWNER_EXECUTE, PosixFilePermission.GROUP_READ,
-            PosixFilePermission.GROUP_WRITE, PosixFilePermission.GROUP_EXECUTE, PosixFilePermission.OTHERS_READ,
-            PosixFilePermission.OTHERS_EXECUTE };
+    public static final PosixFilePermission[] ACCESS_775 = { OWNER_READ,
+            OWNER_WRITE, OWNER_EXECUTE, GROUP_READ,
+            GROUP_WRITE, GROUP_EXECUTE, OTHERS_READ,
+            OTHERS_EXECUTE };
 
     private static long temporaryFileNumber = currentTimeMillis();
 
@@ -498,7 +499,7 @@ public class File extends BaseWritableResource implements FileSystemObject
         }
         if (!isWritable())
         {
-            chmod(PosixFilePermission.OTHERS_WRITE);
+            chmod(OTHERS_WRITE);
             fatal("Resource " + this + " is not writable");
         }
         return this;

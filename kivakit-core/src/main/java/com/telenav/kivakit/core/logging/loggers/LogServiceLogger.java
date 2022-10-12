@@ -43,8 +43,9 @@ import static com.telenav.kivakit.core.logging.loggers.LogServiceLoader.logForNa
 import static com.telenav.kivakit.core.messaging.Listener.consoleListener;
 import static com.telenav.kivakit.core.messaging.Messages.parseMessageType;
 import static com.telenav.kivakit.core.os.Console.console;
-import static com.telenav.kivakit.core.string.Strings.isNullOrEmpty;
+import static com.telenav.kivakit.core.string.Strings.isNullOrBlank;
 import static com.telenav.kivakit.core.vm.Properties.systemPropertyOrEnvironmentVariable;
+import static java.util.regex.Pattern.CASE_INSENSITIVE;
 
 /**
  * A Java Services logger that creates loggers by inspecting the KIVAKIT_LOG and KIVAKIT_LOG_LEVEL environment
@@ -147,7 +148,7 @@ public class LogServiceLogger extends BaseLogger
     {
         // If the descriptor matches "<log-name> <key>=<value> ..."
         var descriptorMatcher = Pattern
-                .compile("(?<log>\\w+)(?<arguments>.*)", Pattern.CASE_INSENSITIVE)
+                .compile("(?<log>\\w+)(?<arguments>.*)", CASE_INSENSITIVE)
                 .matcher(descriptor);
 
         if (descriptorMatcher.matches())
@@ -158,14 +159,14 @@ public class LogServiceLogger extends BaseLogger
             // and the configuration, if any
             var configuration = new VariableMap<String>();
             var arguments = descriptorMatcher.group("arguments");
-            if (!isNullOrEmpty(arguments))
+            if (!isNullOrBlank(arguments))
             {
                 var propertyPattern = Pattern.compile("\\s*(?<key>[\\w+-]+)\\s*=\\s*(?<value>\\S+)\\s*",
-                        Pattern.CASE_INSENSITIVE);
+                        CASE_INSENSITIVE);
                 var properties = arguments.trim().split(" ");
                 for (var property : properties)
                 {
-                    if (!isNullOrEmpty(property))
+                    if (!isNullOrBlank(property))
                     {
                         var matcher = propertyPattern.matcher(property);
                         if (matcher.matches())

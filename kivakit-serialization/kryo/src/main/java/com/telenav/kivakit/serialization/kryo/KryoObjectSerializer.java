@@ -22,8 +22,8 @@ import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMEN
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
 import static com.telenav.kivakit.core.ensure.Ensure.fail;
-import static com.telenav.kivakit.resource.serialization.ObjectMetadata.OBJECT_TYPE;
-import static com.telenav.kivakit.resource.serialization.ObjectMetadata.OBJECT_VERSION;
+import static com.telenav.kivakit.resource.serialization.ObjectMetadata.METADATA_OBJECT_TYPE;
+import static com.telenav.kivakit.resource.serialization.ObjectMetadata.METADATA_OBJECT_VERSION;
 
 /**
  * {@link Kryo} {@link ObjectSerializer} provider.
@@ -91,7 +91,7 @@ public class KryoObjectSerializer implements
             var input = new Input(inputStream);
 
             // read any type from the input,
-            if (type == null && OBJECT_TYPE.containedIn(metadata))
+            if (type == null && METADATA_OBJECT_TYPE.containedIn(metadata))
             {
                 type = (Class<T>) kryo.get().readObject(input, Class.class);
             }
@@ -100,7 +100,7 @@ public class KryoObjectSerializer implements
 
             // read any version,
             Version version = null;
-            if (OBJECT_VERSION.containedIn(metadata))
+            if (METADATA_OBJECT_VERSION.containedIn(metadata))
             {
                 version = kryo.get().readObject(input, Version.class);
             }
@@ -132,13 +132,13 @@ public class KryoObjectSerializer implements
             var output = new Output(outputStream);
 
             // write any type,
-            if (OBJECT_TYPE.containedIn(metadata))
+            if (METADATA_OBJECT_TYPE.containedIn(metadata))
             {
                 kryo.get().writeObject(output, object.object().getClass());
             }
 
             // write any version,
-            if (OBJECT_VERSION.containedIn(metadata))
+            if (METADATA_OBJECT_VERSION.containedIn(metadata))
             {
                 kryo.get().writeObject(output, object.version());
             }

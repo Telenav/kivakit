@@ -33,6 +33,7 @@ import java.util.function.Function;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static com.telenav.kivakit.core.value.count.Maximum.MAXIMUM;
 
 /**
  * A map from key to value, but also from value to key (with {@link #key(Object)}).
@@ -74,7 +75,7 @@ public class TwoWayMap<Key, Value> extends BaseMap<Key, Value>
 
     public TwoWayMap()
     {
-        this(Maximum.MAXIMUM);
+        this(MAXIMUM);
     }
 
     public TwoWayMap(Maximum maximumSize)

@@ -39,6 +39,7 @@ import java.util.function.Predicate;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_INSUFFICIENT;
+import static com.telenav.kivakit.core.value.count.Maximum.MAXIMUM;
 import static java.util.Collections.emptySet;
 
 /**
@@ -208,7 +209,7 @@ public abstract class BaseSet<Value> extends BaseCollection<Value> implements
 
     protected BaseSet()
     {
-        this(Maximum.MAXIMUM);
+        this(MAXIMUM);
     }
 
     /**

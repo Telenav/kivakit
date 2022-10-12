@@ -27,6 +27,7 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static com.telenav.kivakit.core.logging.logs.text.formatters.BaseColumnarFormatter.ColumnLayout.*;
 
 /**
  * Formats log entries into flexible delimited columns.
@@ -41,13 +42,13 @@ import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 public class NarrowLogFormatter extends BaseColumnarFormatter
 {
     /** The code context column */
-    private final Column contextColumn = new Column(12, 12, ColumnLayout.CLIP_RIGHT);
+    private final Column contextColumn = new Column(12, 12, CLIP_RIGHT);
 
     /** The message column */
-    private final Column messageColumn = new Column(128, 128, ColumnLayout.WRAP);
+    private final Column messageColumn = new Column(128, 128, WRAP);
 
     /** The message type column */
-    private final Column typeColumn = new Column(4, 4, ColumnLayout.CLIP_RIGHT);
+    private final Column typeColumn = new Column(4, 4, CLIP_RIGHT);
 
     /**
      * {@inheritDoc}

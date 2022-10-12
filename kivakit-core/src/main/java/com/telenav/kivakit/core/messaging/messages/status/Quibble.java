@@ -27,7 +27,9 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
+import static com.telenav.kivakit.core.messaging.Message.Status.*;
 import static com.telenav.kivakit.core.messaging.Message.escapeMessageText;
+import static com.telenav.kivakit.core.messaging.messages.Severity.*;
 
 /**
  * A notice that something trivial has gone wrong.
@@ -80,7 +82,7 @@ public class Quibble extends OperationStatusMessage
     @Override
     public Severity severity()
     {
-        return Severity.LOW;
+        return LOW;
     }
 
     /**
@@ -89,6 +91,6 @@ public class Quibble extends OperationStatusMessage
     @Override
     public Status status()
     {
-        return Status.COMPLETED;
+        return COMPLETED;
     }
 }

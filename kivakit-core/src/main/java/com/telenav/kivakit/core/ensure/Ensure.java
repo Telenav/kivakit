@@ -23,6 +23,7 @@ import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTE
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_INSUFFICIENT;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_INSUFFICIENT;
 import static com.telenav.kivakit.core.time.Duration.seconds;
+import static java.lang.Boolean.TRUE;
 import static java.lang.Math.abs;
 import static java.lang.System.arraycopy;
 
@@ -350,7 +351,7 @@ public class Ensure
      */
     public static boolean ensureFalse(boolean condition)
     {
-        return Boolean.TRUE.equals(ensure(!condition));
+        return TRUE.equals(ensure(!condition));
     }
 
     /**
@@ -358,7 +359,7 @@ public class Ensure
      */
     public static boolean ensureFalse(boolean condition, String message, Object... arguments)
     {
-        return Boolean.TRUE.equals(ensure(!condition, message, arguments));
+        return TRUE.equals(ensure(!condition, message, arguments));
     }
 
     public static void ensureNonZero(Number value)

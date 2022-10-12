@@ -44,9 +44,10 @@ import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_N
 import static com.telenav.kivakit.core.collections.set.ObjectSet.emptySet;
 import static com.telenav.kivakit.core.language.Classes.newInstance;
 import static com.telenav.kivakit.core.object.LazyMap.lazyMap;
+import static com.telenav.kivakit.core.project.StartUpOptions.StartupOption.QUIET;
 import static com.telenav.kivakit.core.project.StartUpOptions.isStartupOptionEnabled;
-import static com.telenav.kivakit.core.string.Align.alignLeft;
-import static com.telenav.kivakit.core.string.Align.alignRight;
+import static com.telenav.kivakit.core.string.Align.leftAlign;
+import static com.telenav.kivakit.core.string.Align.rightAlign;
 import static com.telenav.kivakit.core.version.Version.parseVersion;
 import static com.telenav.kivakit.core.vm.Properties.allProperties;
 
@@ -222,11 +223,11 @@ public abstract class Project extends BaseRepeater implements
             onInitializing();
 
             // initialize the project
-            if (!isStartupOptionEnabled(StartUpOptions.StartupOption.QUIET))
+            if (!isStartupOptionEnabled(QUIET))
             {
                 announce("Loading$ $ build $",
-                        alignRight(getClass().getSimpleName(), 40, '.'),
-                        alignLeft(projectVersion().toString(), 20, '.'), build());
+                        rightAlign(getClass().getSimpleName(), 40, '.'),
+                        leftAlign(projectVersion().toString(), 20, '.'), build());
             }
             onInitialize();
 

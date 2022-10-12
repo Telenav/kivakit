@@ -31,7 +31,7 @@ import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTE
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.ensure.Ensure.ensure;
 import static com.telenav.kivakit.core.os.OperatingSystem.operatingSystem;
-import static com.telenav.kivakit.core.string.Align.alignLeft;
+import static com.telenav.kivakit.core.string.Align.leftAlign;
 import static com.telenav.kivakit.core.string.Align.center;
 import static com.telenav.kivakit.core.string.Formatter.format;
 import static com.telenav.kivakit.core.string.Join.join;
@@ -259,7 +259,7 @@ public class AsciiArt
         {
             builder.append(vertical);
             builder.append("  ");
-            builder.append(alignLeft(line, width, ' '));
+            builder.append(leftAlign(line, width, ' '));
             builder.append("  ");
             builder.append(vertical);
             builder.append('\n');
@@ -289,7 +289,7 @@ public class AsciiArt
         for (var line : message.split("\n"))
         {
             builder.append(VERTICAL_LINE_CHARACTER).append(" ");
-            builder.append(alignLeft(line, width - 4, ' '));
+            builder.append(leftAlign(line, width - 4, ' '));
             builder.append(" ").append(VERTICAL_LINE_CHARACTER);
             builder.append('\n');
         }

@@ -39,7 +39,7 @@ import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTE
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.language.primitive.Ints.intIsBetweenExclusive;
 import static com.telenav.kivakit.core.language.primitive.Ints.intIsBetweenInclusive;
-import static com.telenav.kivakit.core.string.Strings.isNullOrEmpty;
+import static com.telenav.kivakit.core.string.Strings.isNullOrBlank;
 import static com.telenav.kivakit.core.thread.ReentrancyTracker.Reentrancy.ENTERED;
 import static com.telenav.kivakit.core.thread.ReentrancyTracker.Reentrancy.REENTERED;
 import static com.telenav.kivakit.core.value.name.Name.nameOf;
@@ -343,7 +343,7 @@ public abstract class BaseValidator implements Validator
      */
     protected final boolean isEmpty(String value)
     {
-        return isNullOrEmpty(value);
+        return isNullOrBlank(value);
     }
 
     /**

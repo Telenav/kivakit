@@ -40,9 +40,9 @@ import static java.lang.String.format;
  * <p><b>Parsing</b></p>
  *
  * <ul>
- *     <li>{@link #parseFastLong(String)} - Parses the given string, returning {@link #INVALID} instead of throwing an exception. This can make a significant performance improvement when dealing with dirty data, because exceptions are expensive</li>
+ *     <li>{@link #parseFastLong(String)} - Parses the given string, returning {@link #INVALID_LONG} instead of throwing an exception. This can make a significant performance improvement when dealing with dirty data, because exceptions are expensive</li>
  *     <li>{@link #parseFastLong(String, long)} - Parses the given string returning the given flag value if parsing fails</li>
- *     <li>{@link #parseFastNaturalNumber(String)} - Parses a natural number, returning {@link #INVALID} if parsing fails</li>
+ *     <li>{@link #parseFastNaturalNumber(String)} - Parses a natural number, returning {@link #INVALID_LONG} if parsing fails</li>
  * </ul>
  *
  * <p><b>Words</b></p>
@@ -79,7 +79,7 @@ import static java.lang.String.format;
 public class Longs
 {
     /** Default invalid value */
-    public static final long INVALID = Long.MIN_VALUE;
+    public static final long INVALID_LONG = Long.MIN_VALUE;
 
     /**
      * Returns the given value formatted with comma separators for the US locale.
@@ -210,7 +210,7 @@ public class Longs
 
     public static long parseFastLong(String string)
     {
-        return parseFastLong(string, INVALID);
+        return parseFastLong(string, INVALID_LONG);
     }
 
     /**
@@ -284,6 +284,6 @@ public class Longs
                 return value;
             }
         }
-        return INVALID;
+        return INVALID_LONG;
     }
 }

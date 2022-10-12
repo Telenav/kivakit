@@ -29,8 +29,8 @@ import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.language.Classes.simpleName;
 import static com.telenav.kivakit.core.language.primitive.Doubles.formatDouble;
-import static com.telenav.kivakit.core.string.Align.alignLeft;
-import static com.telenav.kivakit.core.string.Align.alignRight;
+import static com.telenav.kivakit.core.string.Align.leftAlign;
+import static com.telenav.kivakit.core.string.Align.rightAlign;
 import static com.telenav.kivakit.core.string.StringConversions.toDebugString;
 import static com.telenav.kivakit.core.string.StringConversions.toHumanizedString;
 import static com.telenav.kivakit.core.string.Strings.replaceAll;
@@ -246,11 +246,11 @@ public class Formatter
                                 break;
 
                             case "right":
-                                builder.append(alignRight(arguments[argumentIndex++].toString(), 16, ' '));
+                                builder.append(rightAlign(arguments[argumentIndex++].toString(), 16, ' '));
                                 break;
 
                             case "left":
-                                builder.append(alignLeft(arguments[argumentIndex++].toString(), 16, ' '));
+                                builder.append(leftAlign(arguments[argumentIndex++].toString(), 16, ' '));
                                 break;
 
                             case "hex":

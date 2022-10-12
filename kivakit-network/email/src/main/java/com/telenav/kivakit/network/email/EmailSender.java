@@ -37,7 +37,6 @@ import com.telenav.lexakai.annotations.associations.UmlAggregation;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
 
 import javax.mail.Authenticator;
-import javax.mail.Message;
 import javax.mail.Session;
 import javax.mail.internet.MimeMessage;
 import java.util.Properties;
@@ -46,10 +45,12 @@ import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMEN
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.language.Classes.simpleName;
+import static com.telenav.kivakit.core.time.Duration.FOREVER;
 import static com.telenav.kivakit.core.time.Duration.ONE_MINUTE;
 import static com.telenav.kivakit.core.time.Duration.seconds;
 import static com.telenav.kivakit.core.time.Frequency.CONTINUOUSLY;
 import static com.telenav.kivakit.core.value.count.Maximum.maximum;
+import static javax.mail.Message.RecipientType.TO;
 
 /**
  * An email sender. Emails can be added with {@link #enqueue(Email)} and they will be sent as soon as possible. Emails
@@ -220,7 +221,7 @@ public abstract class EmailSender extends BaseRepeater implements
     @Override
     public Duration maximumFlushTime()
     {
-        return Duration.FOREVER;
+        return FOREVER;
     }
 
     public EmailSender maximumRetries(Maximum maximumRetries)
@@ -232,7 +233,7 @@ public abstract class EmailSender extends BaseRepeater implements
     @Override
     public Duration maximumStopTime()
     {
-        return Duration.FOREVER;
+        return FOREVER;
     }
 
     public EmailSender retryPeriod(Duration durationBetweenRetries)
@@ -298,7 +299,7 @@ public abstract class EmailSender extends BaseRepeater implements
                     var message = new MimeMessage(session);
                     email.composeMessage(message);
                     transport.connect();
-                    transport.sendMessage(message, message.getRecipients(Message.RecipientType.TO));
+                    transport.sendMessage(message, message.getRecipients(TO));
                     transport.close();
                 }
                 return true;

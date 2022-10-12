@@ -19,7 +19,6 @@
 package com.telenav.kivakit.settings.deployment;
 
 import com.telenav.kivakit.core.registry.InstanceIdentifier;
-import com.telenav.kivakit.core.time.Duration;
 import com.telenav.kivakit.settings.Deployment;
 import com.telenav.kivakit.settings.ServerSettings;
 import com.telenav.kivakit.settings.SettingsTrait;
@@ -28,6 +27,7 @@ import org.junit.Test;
 
 import static com.telenav.kivakit.core.messaging.Listener.throwingListener;
 import static com.telenav.kivakit.core.registry.InstanceIdentifier.instanceIdentifier;
+import static com.telenav.kivakit.core.time.Duration.ONE_MINUTE;
 import static com.telenav.kivakit.settings.SettingsRegistry.settingsFor;
 
 public class ComplexDeploymentTest extends UnitTest
@@ -67,7 +67,7 @@ public class ComplexDeploymentTest extends UnitTest
     {
         public Server1()
         {
-            timeout(Duration.ONE_MINUTE);
+            timeout(ONE_MINUTE);
             port(9001);
         }
     }
@@ -76,7 +76,7 @@ public class ComplexDeploymentTest extends UnitTest
     {
         public Server2()
         {
-            timeout(Duration.ONE_MINUTE);
+            timeout(ONE_MINUTE);
             port(9002);
         }
     }
@@ -85,7 +85,7 @@ public class ComplexDeploymentTest extends UnitTest
     {
         public Server3()
         {
-            timeout(Duration.ONE_MINUTE);
+            timeout(ONE_MINUTE);
             port(9003);
         }
     }
@@ -94,7 +94,7 @@ public class ComplexDeploymentTest extends UnitTest
     {
         public Server4()
         {
-            timeout(Duration.ONE_MINUTE);
+            timeout(ONE_MINUTE);
             port(9004);
         }
     }
@@ -106,10 +106,10 @@ public class ComplexDeploymentTest extends UnitTest
 
         var server1 = settingsFor(this).requireSettings(ServerSettings.class, SERVER1);
         ensureEqual(9001, server1.port());
-        ensureEqual(Duration.ONE_MINUTE, server1.timeout());
+        ensureEqual(ONE_MINUTE, server1.timeout());
 
         var server2 = settingsFor(this).requireSettings(ServerSettings.class, SERVER2);
         ensureEqual(9002, server2.port());
-        ensureEqual(Duration.ONE_MINUTE, server2.timeout());
+        ensureEqual(ONE_MINUTE, server2.timeout());
     }
 }

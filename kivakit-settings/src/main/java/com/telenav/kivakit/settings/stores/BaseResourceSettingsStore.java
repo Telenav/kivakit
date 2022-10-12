@@ -15,8 +15,8 @@ import com.telenav.kivakit.settings.SettingsStore;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
-import static com.telenav.kivakit.resource.serialization.ObjectMetadata.OBJECT_INSTANCE;
-import static com.telenav.kivakit.resource.serialization.ObjectMetadata.OBJECT_TYPE;
+import static com.telenav.kivakit.resource.serialization.ObjectMetadata.METADATA_OBJECT_INSTANCE;
+import static com.telenav.kivakit.resource.serialization.ObjectMetadata.METADATA_OBJECT_TYPE;
 
 /**
  * <b>Service Provider API</b>
@@ -127,7 +127,7 @@ public abstract class BaseResourceSettingsStore extends BaseSettingsStore implem
                 .serializer(resource.extension());
         if (reader != null)
         {
-            var object = reader.readObject(resource, OBJECT_TYPE, OBJECT_INSTANCE);
+            var object = reader.readObject(resource, METADATA_OBJECT_TYPE, METADATA_OBJECT_INSTANCE);
             if (object != null)
             {
                 return new SettingsObject(object);

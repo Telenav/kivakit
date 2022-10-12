@@ -34,7 +34,7 @@ import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTE
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.language.Classes.simpleName;
 import static com.telenav.kivakit.core.messaging.Messages.messageForType;
-import static com.telenav.kivakit.core.string.Align.alignRight;
+import static com.telenav.kivakit.core.string.Align.rightAlign;
 import static com.telenav.kivakit.core.string.Plural.pluralizeEnglish;
 
 /**
@@ -163,7 +163,7 @@ public interface MessageCounter extends Listener
         var statistics = new StringList();
         for (var status : statuses)
         {
-            statistics.append(alignRight(status.name(), 24, ' '));
+            statistics.append(rightAlign(status.name(), 24, ' '));
             statistics.append(": ");
             statistics.append(count(status).asCommaSeparatedString());
         }
@@ -185,7 +185,7 @@ public interface MessageCounter extends Listener
             var count = count(type);
             if (count != null)
             {
-                statistics.append(alignRight(pluralizeEnglish(simpleName(type)), 24, ' ')
+                statistics.append(rightAlign(pluralizeEnglish(simpleName(type)), 24, ' ')
                         + ": " + count.asCommaSeparatedString());
             }
         }

@@ -31,7 +31,7 @@ import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMEN
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.language.Classes.simpleName;
-import static com.telenav.kivakit.core.string.Align.alignRight;
+import static com.telenav.kivakit.core.string.Align.rightAlign;
 import static com.telenav.kivakit.core.string.IndentingStringBuilder.Indentation.indentation;
 import static java.lang.Thread.currentThread;
 
@@ -115,7 +115,7 @@ public class StackTrace implements
             {
                 // return the frame as a simplified string
                 var context = "(" + file + ":" + line + ")";
-                return "  " + alignRight(context, 40, ' ') + " " + method;
+                return "  " + rightAlign(context, 40, ' ') + " " + method;
             }
 
             // We don't want to include this frame
@@ -255,7 +255,7 @@ public class StackTrace implements
         }
         else
         {
-            builder.appendLine(alignRight("(" + exceptionType + ")", 40, ' '));
+            builder.appendLine(rightAlign("(" + exceptionType + ")", 40, ' '));
         }
         var index = 0;
         var limit = 60;

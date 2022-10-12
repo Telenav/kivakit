@@ -18,10 +18,10 @@
 
 package com.telenav.kivakit.internal.tests.core.time;
 
-import com.telenav.kivakit.core.time.Duration;
 import com.telenav.kivakit.internal.testing.CoreUnitTest;
 import org.junit.Test;
 
+import static com.telenav.kivakit.core.time.Duration.ONE_DAY;
 import static com.telenav.kivakit.core.time.Duration.ONE_SECOND;
 import static com.telenav.kivakit.core.time.Time.now;
 
@@ -83,6 +83,6 @@ public class TimeTest extends CoreUnitTest
     public void testStartOfToday()
     {
         var startOfToday = now().asLocalTime().startOfDay();
-        ensure(now().minus(startOfToday).isLessThanOrEqualTo(Duration.ONE_DAY));
+        ensure(now().minus(startOfToday).isLessThanOrEqualTo(ONE_DAY));
     }
 }

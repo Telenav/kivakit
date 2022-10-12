@@ -41,7 +41,7 @@ import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_INSUF
 import static com.telenav.kivakit.core.collections.list.StringList.splitOnPattern;
 import static com.telenav.kivakit.core.collections.list.StringList.stringList;
 import static com.telenav.kivakit.core.project.Project.resolveProject;
-import static com.telenav.kivakit.core.string.Strings.isNullOrEmpty;
+import static com.telenav.kivakit.core.string.Strings.isNullOrBlank;
 import static com.telenav.kivakit.core.string.Strings.notNull;
 
 /**
@@ -144,13 +144,13 @@ public class StringPath extends Path<String>
     public static StringPath stringPath(String first, String... rest)
     {
         var list = stringList();
-        if (!isNullOrEmpty(first))
+        if (!isNullOrBlank(first))
         {
             list.add(first);
         }
         for (var at : rest)
         {
-            if (!isNullOrEmpty(at))
+            if (!isNullOrBlank(at))
             {
                 list.add(at);
             }

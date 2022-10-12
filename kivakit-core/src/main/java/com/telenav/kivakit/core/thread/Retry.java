@@ -32,6 +32,7 @@ import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTE
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.ensure.Ensure.fail;
 import static com.telenav.kivakit.core.language.reflection.Type.type;
+import static com.telenav.kivakit.core.time.Duration.ZERO_DURATION;
 
 /**
  * Retry running a {@link Runnable}
@@ -82,7 +83,7 @@ public class Retry extends BaseRepeater
      */
     public Retry(Listener listener)
     {
-        this(listener, DEFAULT_RETRIES, Duration.ZERO_DURATION, Throwable.class);
+        this(listener, DEFAULT_RETRIES, ZERO_DURATION, Throwable.class);
     }
 
     /**

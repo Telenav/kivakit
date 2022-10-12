@@ -56,7 +56,7 @@ import static com.telenav.kivakit.network.core.Protocol.MEMCACHE;
 import static com.telenav.kivakit.network.core.Protocol.MONGO;
 import static com.telenav.kivakit.network.core.Protocol.MYSQL;
 import static com.telenav.kivakit.network.core.Protocol.SFTP;
-import static com.telenav.kivakit.network.core.Protocol.UNKNOWN;
+import static com.telenav.kivakit.network.core.Protocol.UNKNOWN_PROTOCOL;
 import static java.util.Objects.hash;
 
 /**
@@ -422,7 +422,7 @@ public class Host extends BaseRepeater implements
 
     public Port mysql(int port)
     {
-        return port(UNKNOWN, port);
+        return port(UNKNOWN_PROTOCOL, port);
     }
 
     public Port mysql()
@@ -438,7 +438,7 @@ public class Host extends BaseRepeater implements
 
     public Port port(int number)
     {
-        return port(UNKNOWN, number);
+        return port(UNKNOWN_PROTOCOL, number);
     }
 
     public Port port(Protocol protocol, int number)

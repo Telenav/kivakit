@@ -28,6 +28,7 @@ import java.util.LinkedHashMap;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_INSUFFICIENT;
+import static com.telenav.kivakit.core.value.count.Maximum.MAXIMUM;
 
 /**
  * A {@link BaseMap} with {@link LinkedHashMap} as the implementation.
@@ -42,7 +43,7 @@ public class LinkedMap<Key, Value> extends ObjectMap<Key, Value>
 {
     public LinkedMap()
     {
-        this(Maximum.MAXIMUM);
+        this(MAXIMUM);
     }
 
     public LinkedMap(Maximum maximumSize)

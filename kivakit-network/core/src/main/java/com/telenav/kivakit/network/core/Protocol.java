@@ -84,7 +84,7 @@ public class Protocol extends Name
 
     public static final Protocol SFTP = new Protocol("sftp", 22);
 
-    public static final Protocol UNKNOWN = new Protocol("unknown", -1);
+    public static final Protocol UNKNOWN_PROTOCOL = new Protocol("unknown", -1);
 
     public static final Protocol MEMCACHE = new Protocol("memcache", 11211);
 

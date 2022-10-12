@@ -48,6 +48,7 @@ import static com.telenav.kivakit.core.language.Hash.hashMany;
 import static com.telenav.kivakit.core.messaging.Listener.consoleListener;
 import static com.telenav.kivakit.network.core.Protocol.HTTP;
 import static com.telenav.kivakit.network.core.Protocol.HTTPS;
+import static com.telenav.kivakit.network.core.Protocol.UNKNOWN_PROTOCOL;
 import static com.telenav.kivakit.network.core.Protocol.defaultProtocolForPort;
 import static com.telenav.kivakit.network.core.Protocol.parseProtocol;
 
@@ -219,7 +220,7 @@ public class Port implements AsString
     public Port(Host host, int portNumber, Protocol protocol)
     {
         this.host = host;
-        this.protocol = protocol == null ? Protocol.UNKNOWN : protocol;
+        this.protocol = protocol == null ? UNKNOWN_PROTOCOL : protocol;
         this.portNumber = portNumber;
     }
 

@@ -28,7 +28,7 @@ import com.telenav.kivakit.internal.testing.CoreUnitTest;
 import org.junit.Test;
 
 import static com.telenav.kivakit.core.collections.list.StringList.split;
-import static com.telenav.kivakit.core.string.Align.alignRight;
+import static com.telenav.kivakit.core.string.Align.rightAlign;
 import static com.telenav.kivakit.core.string.AsciiArt.repeat;
 import static com.telenav.kivakit.core.string.CaseFormat.camelCaseToHyphenated;
 import static com.telenav.kivakit.core.string.CaseFormat.decapitalize;
@@ -43,7 +43,7 @@ import static com.telenav.kivakit.core.string.StringConversions.toNonNullString;
 import static com.telenav.kivakit.core.string.StringSimilarity.levenshteinDistance;
 import static com.telenav.kivakit.core.string.Strings.equalsAllowNull;
 import static com.telenav.kivakit.core.string.Strings.isNaturalNumber;
-import static com.telenav.kivakit.core.string.Strings.isNullOrEmpty;
+import static com.telenav.kivakit.core.string.Strings.isNullOrBlank;
 import static com.telenav.kivakit.core.string.Strings.occurrences;
 import static com.telenav.kivakit.core.string.Strings.trailing;
 
@@ -129,10 +129,10 @@ public class StringsTest extends CoreUnitTest
     @Test
     public void testIsEmpty()
     {
-        ensure(isNullOrEmpty(null));
-        ensure(isNullOrEmpty(""));
-        ensure(isNullOrEmpty(" "));
-        ensureFalse(isNullOrEmpty("a"));
+        ensure(isNullOrBlank(null));
+        ensure(isNullOrBlank(""));
+        ensure(isNullOrBlank(" "));
+        ensureFalse(isNullOrBlank("a"));
     }
 
     @Test
@@ -148,9 +148,9 @@ public class StringsTest extends CoreUnitTest
     @Test
     public void testLeftPad()
     {
-        ensureEqual("....4", alignRight("4", 5, '.'));
-        ensureEqual("4", alignRight("4", 1, '.'));
-        ensureEqual("45", alignRight("45", 1, '.'));
+        ensureEqual("....4", rightAlign("4", 5, '.'));
+        ensureEqual("4", rightAlign("4", 1, '.'));
+        ensureEqual("45", rightAlign("45", 1, '.'));
     }
 
     @SuppressWarnings("SpellCheckingInspection")

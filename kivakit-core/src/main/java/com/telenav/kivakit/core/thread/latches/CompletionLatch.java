@@ -27,11 +27,15 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
 
 import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.TimeUnit;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static com.telenav.kivakit.core.time.Duration.FOREVER;
+import static com.telenav.kivakit.interfaces.time.WakeState.COMPLETED;
+import static com.telenav.kivakit.interfaces.time.WakeState.INTERRUPTED;
+import static com.telenav.kivakit.interfaces.time.WakeState.TIMED_OUT;
+import static java.util.concurrent.TimeUnit.MILLISECONDS;
 
 /**
  * A simple wrapper around {@link CountDownLatch} that makes code easier to understand. A completion latch can be
@@ -98,16 +102,16 @@ public class CompletionLatch
     {
         try
         {
-            return countdown.await(duration.milliseconds(), TimeUnit.MILLISECONDS) ? WakeState.COMPLETED : WakeState.TIMED_OUT;
+            return countdown.await(duration.milliseconds(), MILLISECONDS) ? COMPLETED : TIMED_OUT;
         }
         catch (InterruptedException ignored)
         {
-            return WakeState.INTERRUPTED;
+            return INTERRUPTED;
         }
     }
 
     public WakeState waitForAllThreadsToComplete()
     {
-        return waitForAllThreadsToComplete(Duration.FOREVER);
+        return waitForAllThreadsToComplete(FOREVER);
     }
 }

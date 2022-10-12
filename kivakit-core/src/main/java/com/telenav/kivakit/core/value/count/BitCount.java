@@ -174,8 +174,6 @@ public class BitCount extends BaseCount<BitCount>
 
     public static final BitCount _64 = new BitCount(64);
 
-    public static final BitCount MAXIMUM = new BitCount(Long.MAX_VALUE);
-
     private static final int CACHE_SIZE = 64;
 
     private static BitCount[] cached;

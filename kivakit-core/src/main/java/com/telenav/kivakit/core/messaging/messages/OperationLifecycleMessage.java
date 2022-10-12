@@ -30,6 +30,7 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
+import static com.telenav.kivakit.core.messaging.Message.Status.*;
 
 /**
  * A message representing a state transition in the lifecycle of an operation. For example, an operation may have failed
@@ -63,6 +64,6 @@ public abstract class OperationLifecycleMessage extends OperationMessage
     @Override
     public final Message.Status status()
     {
-        return Message.Status.NOT_APPLICABLE;
+        return NOT_APPLICABLE;
     }
 }

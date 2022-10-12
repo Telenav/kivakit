@@ -5,6 +5,7 @@ import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static com.telenav.kivakit.application.ExitCode.SUCCEEDED;
 
 /**
  * Information about the exit of an application, including its {@link ExitCode} and any exception.
@@ -17,7 +18,7 @@ import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 public class ApplicationExit
 {
     /** Successful exit */
-    public static ApplicationExit SUCCESS = new ApplicationExit(ExitCode.SUCCEEDED);
+    public static ApplicationExit SUCCESS = new ApplicationExit(SUCCEEDED);
 
     /** This application's exit code */
     private final ExitCode code;

@@ -22,14 +22,14 @@ import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.resource.internal.lexakai.DiagramResourceArchive;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
-import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
+import static java.lang.annotation.ElementType.FIELD;
+import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
 /**
  * Annotation for labeling fields that should be archived.
@@ -38,8 +38,8 @@ import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_N
  * @see FieldArchive
  * @see ArchivedFields
  */
-@Retention(RetentionPolicy.RUNTIME)
-@Target({ ElementType.FIELD })
+@Retention(RUNTIME)
+@Target(FIELD)
 @UmlClassDiagram(diagram = DiagramResourceArchive.class)
 @CodeQuality(stability = STABLE,
              testing = TESTING_NOT_NEEDED,

@@ -21,6 +21,7 @@ package com.telenav.kivakit.network.core;
 import com.telenav.kivakit.testing.UnitTest;
 import org.junit.Test;
 
+import static com.telenav.kivakit.network.core.Protocol.FTP;
 import static com.telenav.kivakit.network.core.Protocol.HTTP;
 
 public class ProtocolTest extends UnitTest
@@ -30,6 +31,6 @@ public class ProtocolTest extends UnitTest
     {
         ensureEqual("http", HTTP.name().toLowerCase());
         ensureEqual(HTTP, HTTP);
-        ensureNotEqual(HTTP, Protocol.FTP);
+        ensureNotEqual(HTTP, FTP);
     }
 }

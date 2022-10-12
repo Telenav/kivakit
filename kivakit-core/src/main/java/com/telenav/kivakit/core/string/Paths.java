@@ -27,7 +27,7 @@ import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTE
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.string.StringConversions.toHumanizedString;
-import static com.telenav.kivakit.core.string.Strings.isNullOrEmpty;
+import static com.telenav.kivakit.core.string.Strings.isNullOrBlank;
 import static com.telenav.kivakit.core.string.Strip.stripLeading;
 import static com.telenav.kivakit.core.string.Strip.stripTrailing;
 
@@ -57,7 +57,7 @@ public class Paths
         for (var tail : tails)
         {
             var next = stripTrailing(stripLeading(tail, "/"), "/");
-            if (!isNullOrEmpty(next))
+            if (!isNullOrBlank(next))
             {
                 concatenated.append("/").append(next);
             }

@@ -17,36 +17,38 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.telenav.kivakit.internal.tests.core.value.count;
+
 import com.telenav.kivakit.internal.testing.CoreUnitTest;
-import com.telenav.kivakit.core.value.count.BitCount;
 import org.junit.Test;
+
+import static com.telenav.kivakit.core.value.count.BitCount.bits;
 
 public class BitCountTest extends CoreUnitTest
 {
     @Test
     public void testMaximumSigned()
     {
-        ensureEqual((long) Byte.MAX_VALUE, BitCount.bits(8).maximumSigned());
-        ensureEqual((long) Short.MAX_VALUE, BitCount.bits(16).maximumSigned());
-        ensureEqual((long) Integer.MAX_VALUE, BitCount.bits(32).maximumSigned());
-        ensureEqual(Long.MAX_VALUE, BitCount.bits(64).maximumSigned());
+        ensureEqual((long) Byte.MAX_VALUE, bits(8).maximumSigned());
+        ensureEqual((long) Short.MAX_VALUE, bits(16).maximumSigned());
+        ensureEqual((long) Integer.MAX_VALUE, bits(32).maximumSigned());
+        ensureEqual(Long.MAX_VALUE, bits(64).maximumSigned());
     }
 
     @Test
     public void testMaximumUnsigned()
     {
-        ensureEqual(0xffL, BitCount.bits(8).maximumUnsigned());
-        ensureEqual(0xffffL, BitCount.bits(16).maximumUnsigned());
-        ensureEqual(0xffff_ffffL, BitCount.bits(32).maximumUnsigned());
-        ensureEqual(Long.MAX_VALUE, BitCount.bits(64).maximumUnsigned());
+        ensureEqual(0xffL, bits(8).maximumUnsigned());
+        ensureEqual(0xffffL, bits(16).maximumUnsigned());
+        ensureEqual(0xffff_ffffL, bits(32).maximumUnsigned());
+        ensureEqual(Long.MAX_VALUE, bits(64).maximumUnsigned());
     }
 
     @Test
     public void testMinimum()
     {
-        ensureEqual((long) Byte.MIN_VALUE, BitCount.bits(8).minimumSigned());
-        ensureEqual((long) Short.MIN_VALUE, BitCount.bits(16).minimumSigned());
-        ensureEqual((long) Integer.MIN_VALUE, BitCount.bits(32).minimumSigned());
-        ensureEqual(Long.MIN_VALUE, BitCount.bits(64).minimumSigned());
+        ensureEqual((long) Byte.MIN_VALUE, bits(8).minimumSigned());
+        ensureEqual((long) Short.MIN_VALUE, bits(16).minimumSigned());
+        ensureEqual((long) Integer.MIN_VALUE, bits(32).minimumSigned());
+        ensureEqual(Long.MIN_VALUE, bits(64).minimumSigned());
     }
 }

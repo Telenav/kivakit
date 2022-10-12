@@ -28,6 +28,7 @@ import org.jetbrains.annotations.NotNull;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
+import static com.telenav.kivakit.interfaces.string.StringFormattable.Format.TEXT;
 
 /**
  * Interface to an object that can produce one or more different kinds of string representations. This can be useful
@@ -107,6 +108,6 @@ public interface StringFormattable extends AsString
     @Override
     default String asString()
     {
-        return asString(Format.TEXT);
+        return asString(TEXT);
     }
 }

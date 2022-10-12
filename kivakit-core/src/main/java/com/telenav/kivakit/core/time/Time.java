@@ -37,6 +37,7 @@ import static com.telenav.kivakit.core.time.LocalTime.localTimeZone;
 import static com.telenav.kivakit.core.time.LocalTime.utcTimeZone;
 import static com.telenav.kivakit.core.time.Minute.minute;
 import static com.telenav.kivakit.core.time.Second.second;
+import static com.telenav.kivakit.interfaces.time.Nanoseconds.ONE_NANOSECOND;
 import static java.lang.System.currentTimeMillis;
 
 /**
@@ -122,7 +123,7 @@ public class Time extends BaseTime<Time>
     public static final Time MINIMUM = START_OF_UNIX_TIME;
 
     /** The end of time */
-    public static final Time MAXIMUM = epochMilliseconds(Long.MAX_VALUE);
+    public static final Time END_OF_UNIX_TIME = epochMilliseconds(Long.MAX_VALUE);
 
     /**
      * Retrieves a <code>Time</code> instance based on the given milliseconds.
@@ -318,7 +319,7 @@ public class Time extends BaseTime<Time>
     @Override
     public Time maximum()
     {
-        return MAXIMUM;
+        return END_OF_UNIX_TIME;
     }
 
     @Override
@@ -330,7 +331,7 @@ public class Time extends BaseTime<Time>
     @Override
     public Nanoseconds nanosecondsPerUnit()
     {
-        return Nanoseconds.ONE;
+        return ONE_NANOSECOND;
     }
 
     @Override

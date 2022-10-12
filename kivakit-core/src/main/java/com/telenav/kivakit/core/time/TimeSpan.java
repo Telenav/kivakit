@@ -5,6 +5,8 @@ import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static com.telenav.kivakit.core.time.Time.END_OF_UNIX_TIME;
+import static com.telenav.kivakit.core.time.Time.START_OF_UNIX_TIME;
 import static com.telenav.kivakit.core.time.Time.now;
 
 /**
@@ -81,7 +83,7 @@ public class TimeSpan
      */
     public static TimeSpan unixEpoch()
     {
-        return new TimeSpan(Time.START_OF_UNIX_TIME, Time.MAXIMUM);
+        return new TimeSpan(START_OF_UNIX_TIME, END_OF_UNIX_TIME);
     }
 
     /** The start of this timespan */

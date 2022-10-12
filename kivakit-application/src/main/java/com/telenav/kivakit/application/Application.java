@@ -108,7 +108,7 @@ import static com.telenav.kivakit.core.language.Classes.simpleName;
 import static com.telenav.kivakit.core.logging.LoggerFactory.newLogger;
 import static com.telenav.kivakit.core.project.Project.resolveProject;
 import static com.telenav.kivakit.core.project.StartUpOptions.isStartupOptionEnabled;
-import static com.telenav.kivakit.core.string.Align.alignRight;
+import static com.telenav.kivakit.core.string.Align.rightAlign;
 import static com.telenav.kivakit.core.string.Strip.stripLeading;
 import static com.telenav.kivakit.core.vm.Properties.allProperties;
 import static com.telenav.kivakit.properties.PropertyMap.loadLocalizedPropertyMap;
@@ -752,7 +752,7 @@ public abstract class Application extends BaseComponent implements
                 {
                     value = ((Folder) value).path().asContraction(80);
                 }
-                box.add("   $ = $", alignRight(switchParser.name(), width, ' '),
+                box.add("   $ = $", rightAlign(switchParser.name(), width, ' '),
                         value == null ? "N/A" : value);
             }
         }

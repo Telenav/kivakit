@@ -39,6 +39,7 @@ import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMEN
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
 import static com.telenav.kivakit.core.time.Duration.seconds;
 import static com.telenav.kivakit.core.time.Duration.weeks;
+import static com.telenav.kivakit.core.value.count.Bytes.MAXIMUM_BYTES;
 import static com.telenav.kivakit.core.value.level.Percent.percent;
 import static com.telenav.kivakit.interfaces.comparison.Matcher.matchAll;
 
@@ -85,7 +86,7 @@ public class FolderPruner extends BaseRepeater implements
         Stoppable<Duration>
 {
     /** The maximum folder capacity */
-    private volatile Bytes capacity = Bytes.MAXIMUM;
+    private volatile Bytes capacity = MAXIMUM_BYTES;
 
     /** Matcher to restrict files that can be pruned */
     private volatile Matcher<ResourcePathed> matcher = matchAll();

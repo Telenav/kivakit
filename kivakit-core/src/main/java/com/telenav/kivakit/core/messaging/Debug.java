@@ -23,6 +23,8 @@ import com.telenav.kivakit.core.KivaKit;
 import com.telenav.kivakit.core.internal.lexakai.DiagramBroadcaster;
 import com.telenav.kivakit.core.logging.Logger;
 import com.telenav.kivakit.core.messaging.context.CallStack;
+import com.telenav.kivakit.core.messaging.context.CallStack.Matching;
+import com.telenav.kivakit.core.messaging.context.CallStack.Proximity;
 import com.telenav.kivakit.interfaces.messaging.Transmittable;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
@@ -41,6 +43,8 @@ import static com.telenav.kivakit.core.project.Project.resolveProject;
 import static com.telenav.kivakit.core.project.StartUpOptions.StartupOption.QUIET;
 import static com.telenav.kivakit.core.project.StartUpOptions.isStartupOptionEnabled;
 import static com.telenav.kivakit.core.string.AsciiArt.textBox;
+import static java.lang.Boolean.*;
+import static java.lang.Boolean.TRUE;
 
 /**
  * <b>Note</b>: For a detailed discussion, see <a href="https://tinyurl.com/2xycuvph">KivaKit Debugging
@@ -135,13 +139,13 @@ public final class Debug implements MessageTransceiver
     public Debug(Transceiver transceiver)
     {
         // The class where debug was constructed is the most immediate caller of the class Debug
-        this(CallStack.callerOf(CallStack.Proximity.IMMEDIATE, CallStack.Matching.EXACT, Debug.class).parentType().asJavaType(), transceiver);
+        this(CallStack.callerOf(Proximity.IMMEDIATE, Matching.EXACT, Debug.class).parentType().asJavaType(), transceiver);
     }
 
     private Debug(Class<?> type, Transceiver transceiver)
     {
         classToDebug.put(type, this);
-        debugOn = (isDebugOn(type) == Boolean.TRUE);
+        debugOn = (isDebugOn(type) == TRUE);
         this.transceiver = ensureNotNull(transceiver);
     }
 
@@ -259,7 +263,7 @@ public final class Debug implements MessageTransceiver
     private static boolean isDebugOn(Class<?> type)
     {
         // If debugging hasn't been explicitly turned off
-        if (debugging != Boolean.FALSE)
+        if (debugging != FALSE)
         {
             // and we haven't initialized yet,
             if (!initialized)
@@ -300,11 +304,11 @@ public final class Debug implements MessageTransceiver
             }
 
             // then show enable state to the user
-            if (debugging == Boolean.TRUE)
+            if (debugging == TRUE)
             {
                 LOGGER.information("Debug output is $ for $ ($)", state, type.getSimpleName(), type.getPackage().getName());
             }
-            return enabled == Boolean.TRUE;
+            return enabled == TRUE;
         }
 
         // We are not debugging at all

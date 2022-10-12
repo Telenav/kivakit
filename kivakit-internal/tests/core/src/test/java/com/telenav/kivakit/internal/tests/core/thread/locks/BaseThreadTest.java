@@ -21,6 +21,8 @@ import com.telenav.kivakit.internal.testing.CoreUnitTest;
 import com.telenav.kivakit.core.time.Duration;
 import com.telenav.kivakit.core.time.Time;
 
+import static com.telenav.kivakit.core.time.Duration.ONE_SECOND;
+
 /**
  * @author jonathanl (shibo)
  */
@@ -31,7 +33,7 @@ public abstract class BaseThreadTest extends CoreUnitTest
     public void run()
     {
         var retries = 0;
-        var pause = Duration.ONE_SECOND;
+        var pause = ONE_SECOND;
         while (true)
         {
             start = Time.now();

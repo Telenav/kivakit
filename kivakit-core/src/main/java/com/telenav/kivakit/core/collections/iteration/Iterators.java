@@ -20,7 +20,6 @@ package com.telenav.kivakit.core.collections.iteration;
 
 import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramIteration;
-import com.telenav.kivakit.core.language.Hash;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import org.jetbrains.annotations.NotNull;
 
@@ -31,6 +30,7 @@ import java.util.function.Supplier;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static com.telenav.kivakit.core.language.Hash.HASH_SEED;
 
 /**
  * Utility methods that operate on {@link Iterator}s.
@@ -122,7 +122,7 @@ public class Iterators
             var next = iterator.next();
             if (next != null)
             {
-                hashCode = hashCode * Hash.SEED + next.hashCode();
+                hashCode = hashCode * HASH_SEED + next.hashCode();
             }
         }
         return hashCode;

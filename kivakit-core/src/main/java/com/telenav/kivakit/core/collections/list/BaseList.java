@@ -52,6 +52,7 @@ import java.util.stream.Stream;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_INSUFFICIENT;
+import static com.telenav.kivakit.core.value.count.Maximum.MAXIMUM;
 
 /**
  * A base class for bounded lists which adds convenient methods as well as support for various KivaKit interfaces:
@@ -304,7 +305,7 @@ public abstract class BaseList<Value> extends BaseCollection<Value> implements
      */
     protected BaseList()
     {
-        this(Maximum.MAXIMUM);
+        this(MAXIMUM);
     }
 
     /**
@@ -312,7 +313,7 @@ public abstract class BaseList<Value> extends BaseCollection<Value> implements
      */
     protected BaseList(Collection<Value> collection)
     {
-        this(Maximum.MAXIMUM, collection);
+        this(MAXIMUM, collection);
     }
 
     /**

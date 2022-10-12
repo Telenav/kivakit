@@ -27,7 +27,9 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
+import static com.telenav.kivakit.core.messaging.Message.Status.*;
 import static com.telenav.kivakit.core.messaging.Message.escapeMessageText;
+import static com.telenav.kivakit.core.messaging.messages.Severity.*;
 
 /**
  * The current step had to discard some result to continue
@@ -63,7 +65,7 @@ public class StepIncomplete extends OperationStatusMessage
     @Override
     public Severity severity()
     {
-        return Severity.MEDIUM;
+        return MEDIUM;
     }
 
     /**
@@ -72,6 +74,6 @@ public class StepIncomplete extends OperationStatusMessage
     @Override
     public final Status status()
     {
-        return Status.RESULT_INCOMPLETE;
+        return RESULT_INCOMPLETE;
     }
 }

@@ -32,6 +32,7 @@ import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTE
 import static com.telenav.kivakit.annotations.code.quality.Audience.AUDIENCE_INTERNAL;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static java.lang.Boolean.TRUE;
 
 /**
  * <b>Not Public API</b>
@@ -90,7 +91,7 @@ public class SwitchValueListValidator extends BaseValidator
                 // and if it is invalid or has a duplicate, report failure
                 problemIfNull(parser.asObject(switchValue), "Switch '${debug}' is invalid", switchValue);
                 problemIf(found.containsKey(parser.name()), "Duplicate switch '${debug}'", switchValue);
-                found.put(parser.name(), Boolean.TRUE);
+                found.put(parser.name(), TRUE);
             }
             else
             {

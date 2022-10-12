@@ -70,8 +70,8 @@ import static com.telenav.kivakit.core.progress.ProgressReporter.nullProgressRep
 import static com.telenav.kivakit.core.progress.reporters.BroadcastingProgressReporter.progressReporter;
 import static com.telenav.kivakit.core.value.count.Bytes.bytes;
 import static com.telenav.kivakit.resource.compression.archive.ZipArchive.AccessMode.READ;
-import static com.telenav.kivakit.resource.serialization.ObjectMetadata.OBJECT_TYPE;
-import static com.telenav.kivakit.resource.serialization.ObjectMetadata.OBJECT_VERSION;
+import static com.telenav.kivakit.resource.serialization.ObjectMetadata.METADATA_OBJECT_TYPE;
+import static com.telenav.kivakit.resource.serialization.ObjectMetadata.METADATA_OBJECT_VERSION;
 
 /**
  * A wrapper around the JDK zip filesystem that makes it easier to use. A {@link ZipArchive} can be created with
@@ -346,7 +346,7 @@ public final class ZipArchive extends BaseRepeater implements
             {
                 try (var input = new ProgressiveInputStream(entry.openForReading(reader.progressReporter()), reader.progressReporter()))
                 {
-                    return reader.readObject(input, stringPath(entryName), OBJECT_TYPE, OBJECT_VERSION);
+                    return reader.readObject(input, stringPath(entryName), METADATA_OBJECT_TYPE, METADATA_OBJECT_VERSION);
                 }
             }
         }
@@ -394,7 +394,7 @@ public final class ZipArchive extends BaseRepeater implements
             try
             {
                 writer.writeObject(new ProgressiveOutputStream(output, writer.progressReporter()),
-                        stringPath(entryName), new SerializableObject<>(object), OBJECT_TYPE, OBJECT_VERSION);
+                        stringPath(entryName), new SerializableObject<>(object), METADATA_OBJECT_TYPE, METADATA_OBJECT_VERSION);
             }
             finally
             {

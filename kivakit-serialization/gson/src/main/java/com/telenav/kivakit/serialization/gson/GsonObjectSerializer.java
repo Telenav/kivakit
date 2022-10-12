@@ -24,9 +24,9 @@ import static com.telenav.kivakit.core.language.Arrays.arrayContains;
 import static com.telenav.kivakit.core.language.Classes.classForName;
 import static com.telenav.kivakit.core.progress.ProgressReporter.nullProgressReporter;
 import static com.telenav.kivakit.core.version.Version.parseVersion;
-import static com.telenav.kivakit.resource.serialization.ObjectMetadata.OBJECT_INSTANCE;
-import static com.telenav.kivakit.resource.serialization.ObjectMetadata.OBJECT_TYPE;
-import static com.telenav.kivakit.resource.serialization.ObjectMetadata.OBJECT_VERSION;
+import static com.telenav.kivakit.resource.serialization.ObjectMetadata.METADATA_OBJECT_INSTANCE;
+import static com.telenav.kivakit.resource.serialization.ObjectMetadata.METADATA_OBJECT_TYPE;
+import static com.telenav.kivakit.resource.serialization.ObjectMetadata.METADATA_OBJECT_VERSION;
 
 /**
  * JSON {@link ObjectSerializer} implementation using Google Gson library.
@@ -93,7 +93,7 @@ public class GsonObjectSerializer implements
             var json = readString(this, input);
 
             // get the type to read,
-            var type = arrayContains(metadata, OBJECT_TYPE)
+            var type = arrayContains(metadata, METADATA_OBJECT_TYPE)
                     ? ensureNotNull(type(json, metadata, typeToRead))
                     : typeToRead;
 
@@ -116,17 +116,17 @@ public class GsonObjectSerializer implements
         {
             var json = factory.gson().toJson(object);
 
-            if (OBJECT_TYPE.containedIn(metadata))
+            if (METADATA_OBJECT_TYPE.containedIn(metadata))
             {
                 json = json.replaceAll("\\s*\\{", "{\n\"type\": \"" + object.object().getClass().getName() + "\"");
             }
 
-            if (OBJECT_VERSION.containedIn(metadata))
+            if (METADATA_OBJECT_VERSION.containedIn(metadata))
             {
                 json = json.replaceAll("\\s*\\{", "{\n\"version\": \"" + object.version() + "\"");
             }
 
-            if (OBJECT_INSTANCE.containedIn(metadata) && object.instance() != null)
+            if (METADATA_OBJECT_INSTANCE.containedIn(metadata) && object.instance() != null)
             {
                 json = json.replaceAll("\\s*\\{", "{\n\"instance\": \"" + object.instance() + "\"");
             }
@@ -143,7 +143,7 @@ public class GsonObjectSerializer implements
     {
         var instance = InstanceIdentifier.singletonInstanceIdentifier();
         var instanceMatcher = INSTANCE_PATTERN.matcher(json);
-        if (OBJECT_INSTANCE.containedIn(metadata) && instanceMatcher.find())
+        if (METADATA_OBJECT_INSTANCE.containedIn(metadata) && instanceMatcher.find())
         {
             instance = InstanceIdentifier.instanceIdentifierForEnumName(this, instanceMatcher.group("instance"));
         }
@@ -154,7 +154,7 @@ public class GsonObjectSerializer implements
     private <T> Class<T> type(String json, ObjectMetadata[] metadata, Class<T> typeToRead)
     {
         Class<T> type = typeToRead;
-        if (type == null && OBJECT_TYPE.containedIn(metadata))
+        if (type == null && METADATA_OBJECT_TYPE.containedIn(metadata))
         {
             var typeMatcher = TYPE_PATTERN.matcher(json);
             if (typeMatcher.find())

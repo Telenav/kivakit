@@ -36,7 +36,7 @@ public class Nanoseconds implements
     public static Nanoseconds ZERO = nanoseconds(0);
 
     /** One nanosecond */
-    public static Nanoseconds ONE = nanoseconds(1);
+    public static Nanoseconds ONE_NANOSECOND = nanoseconds(1);
 
     /** One nanosecond */
     public static Nanoseconds ONE_SECOND = nanoseconds(NANOSECONDS_PER_SECOND);

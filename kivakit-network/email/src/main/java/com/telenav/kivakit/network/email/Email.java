@@ -31,7 +31,6 @@ import com.telenav.kivakit.validation.Validator;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlAggregation;
 
-import javax.mail.Message;
 import javax.mail.Multipart;
 import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
@@ -42,12 +41,14 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.ensure.Ensure.illegalState;
+import static com.telenav.kivakit.core.time.Time.START_OF_UNIX_TIME;
 import static com.telenav.kivakit.core.time.Time.now;
 import static com.telenav.kivakit.core.value.count.Count.count;
+import static javax.mail.Message.RecipientType.TO;
 
 /**
  * Models an email.
@@ -90,7 +91,7 @@ public class Email implements Validatable
     @UmlAggregation
     EmailBody body;
 
-    Time sentAt = Time.START_OF_UNIX_TIME;
+    Time sentAt = START_OF_UNIX_TIME;
 
     @UmlAggregation
     final List<EmailAttachment> attachments = new ArrayList<>();
@@ -187,7 +188,7 @@ public class Email implements Validatable
         message.setContent(multipart);
         for (var address : to)
         {
-            message.addRecipient(Message.RecipientType.TO, resolve(address));
+            message.addRecipient(TO, resolve(address));
         }
     }
 

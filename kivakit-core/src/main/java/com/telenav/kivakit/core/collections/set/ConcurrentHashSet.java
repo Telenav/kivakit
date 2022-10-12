@@ -33,6 +33,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_INSUFFICIENT;
+import static com.telenav.kivakit.core.value.count.Maximum.MAXIMUM;
 
 /**
  * A convenient implementation of {@link Set} using {@link ConcurrentHashMap}.
@@ -50,7 +51,7 @@ public class ConcurrentHashSet<Value> extends BaseSet<Value>
 
     public ConcurrentHashSet()
     {
-        this(Maximum.MAXIMUM);
+        this(MAXIMUM);
     }
 
     public ConcurrentHashSet(Maximum maximumSize)

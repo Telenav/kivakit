@@ -42,6 +42,7 @@ import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
 import static com.telenav.kivakit.core.language.Classes.simpleName;
 import static com.telenav.kivakit.core.language.Objects.isEqual;
+import static com.telenav.kivakit.core.messaging.messages.Severity.MEDIUM;
 import static com.telenav.kivakit.core.time.Time.now;
 
 /**
@@ -217,7 +218,7 @@ public class LogEntry implements Triaged
      */
     public boolean isSevere()
     {
-        return severity().isGreaterThanOrEqualTo(Severity.MEDIUM);
+        return severity().isGreaterThanOrEqualTo(MEDIUM);
     }
 
     /**

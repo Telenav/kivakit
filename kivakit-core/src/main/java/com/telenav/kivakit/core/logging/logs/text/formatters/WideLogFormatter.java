@@ -29,6 +29,8 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static com.telenav.kivakit.core.logging.logs.text.formatters.BaseColumnarFormatter.ColumnLayout.*;
+import static com.telenav.kivakit.core.logging.logs.text.formatters.WideLogFormatter.TimeType.ELAPSED;
 import static com.telenav.kivakit.core.time.Time.now;
 
 /**
@@ -56,31 +58,31 @@ public class WideLogFormatter extends BaseColumnarFormatter
     }
 
     /** The type of time to show */
-    private TimeType timeType = TimeType.ELAPSED;
+    private TimeType timeType = ELAPSED;
 
     /** The code context column, showing class names */
-    private final Column contextColumn = new Column(30, 30, ColumnLayout.CLIP_RIGHT);
+    private final Column contextColumn = new Column(30, 30, CLIP_RIGHT);
 
     /** The elapsed time column */
-    private final Column elapsedColumn = new Column(6, 10, ColumnLayout.CLIP_RIGHT);
+    private final Column elapsedColumn = new Column(6, 10, CLIP_RIGHT);
 
     /** The message text column */
-    private final Column messageTextColumn = new Column(150, 150, ColumnLayout.WRAP);
+    private final Column messageTextColumn = new Column(150, 150, WRAP);
 
     /** The sequence number column */
-    private final Column sequenceNumberColumn = new Column(6, 10, ColumnLayout.CLIP_RIGHT);
+    private final Column sequenceNumberColumn = new Column(6, 10, CLIP_RIGHT);
 
     /** The time this formatter was created */
     private final Time start = now();
 
     /** The thread name column */
-    private final Column threadColumn = new Column(16, 24, ColumnLayout.CLIP_LEFT);
+    private final Column threadColumn = new Column(16, 24, CLIP_LEFT);
 
     /** The absolute time column */
-    private final Column timeColumn = new Column(21, 21, ColumnLayout.CLIP_RIGHT);
+    private final Column timeColumn = new Column(21, 21, CLIP_RIGHT);
 
     /** The message type column */
-    private final Column typeColumn = new Column(12, 20, ColumnLayout.CLIP_RIGHT);
+    private final Column typeColumn = new Column(12, 20, CLIP_RIGHT);
 
     /**
      * {@inheritDoc}
@@ -94,7 +96,7 @@ public class WideLogFormatter extends BaseColumnarFormatter
         // Add each column and its content
         var message = entry.message();
         line.addColumnText(sequenceNumberColumn, String.valueOf(entry.sequenceNumber()));
-        if (timeType == TimeType.ELAPSED)
+        if (timeType == ELAPSED)
         {
             line.addColumnText(elapsedColumn, start.elapsedSince().asString(StringFormattable.Format.USER_LABEL));
         }

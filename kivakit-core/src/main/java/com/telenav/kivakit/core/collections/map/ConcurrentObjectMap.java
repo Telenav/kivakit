@@ -29,6 +29,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_INSUFFICIENT;
+import static com.telenav.kivakit.core.value.count.Maximum.MAXIMUM;
 
 /**
  * Class for concurrent maps with a bounded number of values.
@@ -65,7 +66,7 @@ public class ConcurrentObjectMap<Key, Value> extends ObjectMap<Key, Value> imple
      */
     public ConcurrentObjectMap()
     {
-        this(Maximum.MAXIMUM);
+        this(MAXIMUM);
     }
 
     /**
@@ -73,7 +74,7 @@ public class ConcurrentObjectMap<Key, Value> extends ObjectMap<Key, Value> imple
      */
     protected ConcurrentObjectMap(java.util.concurrent.ConcurrentMap<Key, Value> map)
     {
-        this(Maximum.MAXIMUM, map);
+        this(MAXIMUM, map);
     }
 
     @Override

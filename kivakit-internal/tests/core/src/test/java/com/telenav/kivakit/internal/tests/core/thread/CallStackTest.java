@@ -19,11 +19,12 @@
 package com.telenav.kivakit.internal.tests.core.thread;
 
 import com.telenav.kivakit.core.messaging.context.CallStack;
-import com.telenav.kivakit.core.messaging.context.CallStack.Matching;
 import com.telenav.kivakit.internal.testing.CoreUnitTest;
 import org.junit.Assert;
 import org.junit.Test;
 
+import static com.telenav.kivakit.core.messaging.context.CallStack.Matching.EXACT;
+import static com.telenav.kivakit.core.messaging.context.CallStack.Matching.SUBCLASS;
 import static com.telenav.kivakit.core.messaging.context.CallStack.Proximity.IMMEDIATE;
 
 public class CallStackTest extends CoreUnitTest
@@ -38,13 +39,13 @@ public class CallStackTest extends CoreUnitTest
     {
         public Class<?> testExact()
         {
-            return CallStack.callerOf(IMMEDIATE, Matching.EXACT, Nested.class).parentType().asJavaType();
+            return CallStack.callerOf(IMMEDIATE, EXACT, Nested.class).parentType().asJavaType();
         }
 
         @Override
         public Class<?> testSubClass()
         {
-            return CallStack.callerOf(IMMEDIATE, Matching.SUBCLASS, TestInterface.class).parentType().asJavaType();
+            return CallStack.callerOf(IMMEDIATE, SUBCLASS, TestInterface.class).parentType().asJavaType();
         }
     }
 

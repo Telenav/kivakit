@@ -37,6 +37,7 @@ import java.util.concurrent.atomic.AtomicLong;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_INSUFFICIENT;
+import static com.telenav.kivakit.core.value.count.Maximum.MAXIMUM;
 import static java.lang.Math.min;
 
 /**
@@ -94,7 +95,7 @@ public class CountMap<Key> extends ObjectMap<Key, ConcurrentMutableCount>
 
     public CountMap()
     {
-        this(Maximum.MAXIMUM);
+        this(MAXIMUM);
     }
 
     public CountMap(Maximum maximum)
@@ -104,7 +105,7 @@ public class CountMap<Key> extends ObjectMap<Key, ConcurrentMutableCount>
 
     public CountMap(CountMap<Key> that)
     {
-        super(Maximum.MAXIMUM);
+        super(MAXIMUM);
         mergeIn(that);
         total = that.total;
     }

@@ -42,6 +42,7 @@ import static com.telenav.kivakit.filesystem.Folder.FolderType.NORMAL;
 import static com.telenav.kivakit.filesystem.Folder.temporaryFolderForProcess;
 import static com.telenav.kivakit.interfaces.comparison.Matcher.matchAll;
 import static com.telenav.kivakit.resource.CopyMode.OVERWRITE;
+import static com.telenav.kivakit.resource.Extension.TEMPORARY;
 import static com.telenav.kivakit.resource.ResourcePath.parseResourcePath;
 import static com.telenav.kivakit.resource.spi.ResourceFolderResolverService.resourceFolderResolverService;
 
@@ -432,7 +433,7 @@ public interface ResourceFolder<T extends ResourceFolder<T>> extends
      */
     default WritableResource temporaryFile(@NotNull FileName baseName)
     {
-        return temporaryFile(baseName, Extension.TEMPORARY);
+        return temporaryFile(baseName, TEMPORARY);
     }
 
     /**

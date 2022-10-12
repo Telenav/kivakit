@@ -28,6 +28,7 @@ import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTE
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.language.Hash.hashMany;
 import static com.telenav.kivakit.core.string.Formatter.format;
+import static com.telenav.kivakit.serialization.kryo.types.KryoTypes.KRYO_TYPES_SIZE;
 
 /**
  * <b>Not public API</b>
@@ -108,7 +109,7 @@ class KryoTypeEntry
 
     boolean isDynamic()
     {
-        return identifier < KryoTypes.KRYO_TYPES_SIZE;
+        return identifier < KRYO_TYPES_SIZE;
     }
 
     void register(Kryo kryo)

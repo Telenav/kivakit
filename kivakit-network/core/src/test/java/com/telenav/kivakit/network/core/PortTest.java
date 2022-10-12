@@ -21,6 +21,8 @@ package com.telenav.kivakit.network.core;
 import com.telenav.kivakit.testing.UnitTest;
 import org.junit.Test;
 
+import static com.telenav.kivakit.network.core.Protocol.HTTP;
+
 public class PortTest extends UnitTest
 {
     @Test
@@ -36,7 +38,7 @@ public class PortTest extends UnitTest
     {
         var host = new Host("192.168.0.4");
         var port = host.http(8081);
-        port.protocol(Protocol.HTTP);
+        port.protocol(HTTP);
         ensure(port.isHttp());
     }
 }

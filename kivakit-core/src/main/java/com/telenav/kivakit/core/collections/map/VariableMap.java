@@ -32,6 +32,7 @@ import java.util.Map;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_INSUFFICIENT;
+import static com.telenav.kivakit.core.value.count.Maximum.MAXIMUM;
 
 /**
  * A bounded map from string to value which supports variable interpolation into a string via {@link #expand(String)}.
@@ -83,7 +84,7 @@ public class VariableMap<Value> extends StringMap<Value> implements PropertyValu
      */
     public VariableMap()
     {
-        super(Maximum.MAXIMUM);
+        super(MAXIMUM);
     }
 
     /**

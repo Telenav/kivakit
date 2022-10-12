@@ -34,6 +34,7 @@ import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.thread.KivaKitThread.run;
 import static com.telenav.kivakit.core.thread.Threads.threadPool;
 import static com.telenav.kivakit.core.time.Duration.seconds;
+import static com.telenav.kivakit.core.value.count.Maximum.MAXIMUM;
 
 /**
  * Listens for client connections on a given port. Each new connection is passed to the socket {@link Consumer} passed
@@ -57,7 +58,7 @@ public class ConnectionListener extends BaseRepeater
 
     public ConnectionListener(int port)
     {
-        this(port, Maximum.MAXIMUM);
+        this(port, MAXIMUM);
     }
 
     public ConnectionListener(int port, Maximum retries)

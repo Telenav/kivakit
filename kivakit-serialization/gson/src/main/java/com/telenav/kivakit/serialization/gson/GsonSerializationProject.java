@@ -2,11 +2,12 @@ package com.telenav.kivakit.serialization.gson;
 
 import com.telenav.kivakit.core.project.Project;
 import com.telenav.kivakit.core.registry.Registry;
-import com.telenav.kivakit.resource.Extension;
 import com.telenav.kivakit.resource.serialization.ObjectSerializerRegistry;
 import com.telenav.kivakit.serialization.gson.factory.BaseGsonFactory;
 import com.telenav.kivakit.serialization.gson.factory.GsonFactory;
 import com.telenav.kivakit.serialization.gson.factory.KivaKitCoreGsonFactory;
+
+import static com.telenav.kivakit.resource.Extension.JSON;
 
 /**
  * This class defines a KivaKit {@link Project}. It cannot be constructed with the new operator since it has a private
@@ -34,7 +35,7 @@ public class GsonSerializationProject extends Project
     {
         // Associate Gson object serializer with .json resources
         require(ObjectSerializerRegistry.class, ObjectSerializerRegistry::new)
-                .add(Extension.JSON, listenTo(new GsonObjectSerializer()));
+                .add(JSON, listenTo(new GsonObjectSerializer()));
 
         // Register default GsonFactory
         register(new KivaKitCoreGsonFactory(this));

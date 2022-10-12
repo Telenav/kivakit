@@ -22,14 +22,14 @@ import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramString;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
-import static com.telenav.kivakit.core.string.AsciiArt.*;
+import static com.telenav.kivakit.core.string.AsciiArt.repeat;
 
 /**
  * Aligns a string within a given width using a padding character: {@link #center(String, int, char)},
- * {@link #alignLeft(String, int, char)} or {@link #alignRight(String, int, char)}.
+ * {@link #leftAlign(String, int, char)} or {@link #rightAlign(String, int, char)}.
  *
  * @author jonathanl (shibo)
  */
@@ -59,7 +59,7 @@ public class Align
     /**
      * Right pads the given text to the given length, with the given character
      */
-    public static String alignLeft(String string, int length, char c)
+    public static String leftAlign(String string, int length, char c)
     {
         if (string != null && length > string.length())
         {
@@ -74,7 +74,7 @@ public class Align
     /**
      * Left pads the given text to the given length, with the given character
      */
-    public static String alignRight(String text, int length, char c)
+    public static String rightAlign(String text, int length, char c)
     {
         if (text != null && length > text.length())
         {

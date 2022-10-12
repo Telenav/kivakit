@@ -35,6 +35,7 @@ import static com.telenav.kivakit.core.language.primitive.Doubles.formatDouble;
 import static com.telenav.kivakit.core.string.Strings.replaceAll;
 import static com.telenav.kivakit.interfaces.string.StringFormattable.Format.USER_LABEL;
 import static java.lang.Double.parseDouble;
+import static java.util.regex.Pattern.CASE_INSENSITIVE;
 
 /**
  * Represents an immutable byte count. These static factory methods allow easy construction of value objects using
@@ -96,14 +97,13 @@ public final class Bytes extends BaseCount<Bytes> implements
         DoubleValued
 {
     /** Pattern for string parsing. */
-    private static final Pattern PATTERN = Pattern.compile("([0-9]+([.,][0-9]+)?)\\s*(|K|M|G|T)B?",
-            Pattern.CASE_INSENSITIVE);
+    private static final Pattern PATTERN = Pattern.compile("([0-9]+([.,][0-9]+)?)\\s*(|K|M|G|T)B?", CASE_INSENSITIVE);
 
     /** No bytes */
     public static final Bytes _0 = bytes(0);
 
     /** Maximum bytes value */
-    public static final Bytes MAXIMUM = bytes(Long.MAX_VALUE);
+    public static final Bytes MAXIMUM_BYTES = bytes(Long.MAX_VALUE);
 
     /**
      * Returns the given number of bytes

@@ -19,13 +19,13 @@ import static com.telenav.kivakit.core.language.Arrays.arrayContains;
 public enum ObjectMetadata
 {
     /** The object class */
-    OBJECT_TYPE,
+    METADATA_OBJECT_TYPE,
 
     /** The object version */
-    OBJECT_VERSION,
+    METADATA_OBJECT_VERSION,
 
     /** Any instance identifier (in the case of serialized settings, for example) */
-    OBJECT_INSTANCE;
+    METADATA_OBJECT_INSTANCE;
 
     public boolean containedIn(@NotNull ObjectMetadata[] metadata)
     {

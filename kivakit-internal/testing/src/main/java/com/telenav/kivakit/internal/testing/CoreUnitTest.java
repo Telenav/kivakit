@@ -25,7 +25,6 @@ import com.telenav.kivakit.core.ensure.Failure;
 import com.telenav.kivakit.core.function.ResultTrait;
 import com.telenav.kivakit.core.language.trait.LanguageTrait;
 import com.telenav.kivakit.core.logging.Logger;
-import com.telenav.kivakit.core.logging.LoggerFactory;
 import com.telenav.kivakit.core.messaging.Broadcaster;
 import com.telenav.kivakit.core.messaging.Message;
 import com.telenav.kivakit.core.messaging.Repeater;
@@ -56,6 +55,7 @@ import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMEN
 import static com.telenav.kivakit.annotations.code.quality.Stability.UNSTABLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
 import static com.telenav.kivakit.core.language.primitive.Booleans.isTrue;
+import static com.telenav.kivakit.core.logging.LoggerFactory.newLogger;
 import static com.telenav.kivakit.core.messaging.Listener.nullListener;
 import static com.telenav.kivakit.core.os.Console.console;
 import static com.telenav.kivakit.core.project.Project.resolveProject;
@@ -179,7 +179,7 @@ public abstract class CoreUnitTest extends TestWatcher implements
     private static boolean quickTest;
 
     /** Logger for test output */
-    private static final Logger LOGGER = LoggerFactory.newLogger();
+    private static final Logger LOGGER = newLogger();
 
     @BeforeClass
     public static void testSetup()

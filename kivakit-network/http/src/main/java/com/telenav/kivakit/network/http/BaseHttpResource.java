@@ -38,6 +38,7 @@ import java.net.http.HttpResponse;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static com.telenav.kivakit.network.http.HttpStatus.OK;
 import static java.net.http.HttpRequest.BodyPublishers.noBody;
 import static java.net.http.HttpResponse.BodyHandlers.ofInputStream;
 import static java.net.http.HttpResponse.BodyHandlers.ofString;
@@ -97,7 +98,7 @@ public abstract class BaseHttpResource extends BaseNetworkResource implements Ht
 
     private final VariableMap<String> responseHeader = new VariableMap<>();
 
-    private HttpStatus status = HttpStatus.OK;
+    private HttpStatus status = OK;
 
     /**
      * Constructs a resource accessible via HTTP

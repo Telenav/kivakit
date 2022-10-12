@@ -67,7 +67,7 @@ public class Rate implements
         Minimizable<Rate>,
         DoubleValued
 {
-    public static final Rate MAXIMUM = new Rate(Integer.MAX_VALUE, milliseconds(1));
+    public static final Rate MAXIMUM_RATE = new Rate(Integer.MAX_VALUE, milliseconds(1));
 
     /**
      * Returns the given rate per day
@@ -187,7 +187,7 @@ public class Rate implements
     @Override
     public Rate maximum()
     {
-        return MAXIMUM;
+        return MAXIMUM_RATE;
     }
 
     @Override

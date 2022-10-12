@@ -28,6 +28,7 @@ import java.util.TreeMap;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_INSUFFICIENT;
+import static com.telenav.kivakit.core.value.count.Maximum.MAXIMUM;
 
 /**
  * A bounded string map using a {@link TreeMap} implementation.
@@ -42,7 +43,7 @@ public class StringMap<Value> extends BaseStringMap<Value>
 {
     public StringMap()
     {
-        super(Maximum.MAXIMUM, new TreeMap<>());
+        super(MAXIMUM, new TreeMap<>());
     }
 
     public StringMap(Maximum maximumSize)

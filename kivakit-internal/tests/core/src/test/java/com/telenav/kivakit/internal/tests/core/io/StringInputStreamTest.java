@@ -19,14 +19,15 @@ package com.telenav.kivakit.internal.tests.core.io;
 
 import com.telenav.kivakit.core.io.StringInputStream;
 import com.telenav.kivakit.core.io.StringInputStream.EncodingErrorBehavior;
+import com.telenav.kivakit.internal.testing.CoreUnitTest;
+import org.junit.Test;
+
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.charset.UnmappableCharacterException;
 
-import com.telenav.kivakit.internal.testing.CoreUnitTest;
-import org.junit.Test;
-
+import static com.telenav.kivakit.core.io.StringInputStream.EncodingErrorBehavior.THROW;
 import static java.lang.Math.min;
 import static java.nio.charset.StandardCharsets.US_ASCII;
 import static java.nio.charset.StandardCharsets.UTF_16BE;
@@ -121,8 +122,7 @@ public class StringInputStreamTest extends CoreUnitTest
     public void testThrowingBehavior() throws IOException
     {
         String target = "Hello Тогда же пресс-служба Goodbye";
-        try (var input = new StringInputStream(target, US_ASCII, 12,
-                EncodingErrorBehavior.THROW))
+        try (var input = new StringInputStream(target, US_ASCII, 12, THROW))
         {
             try
             {

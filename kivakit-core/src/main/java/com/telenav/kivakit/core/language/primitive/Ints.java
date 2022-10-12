@@ -42,9 +42,9 @@ import static java.lang.String.format;
  * <p><b>Parsing</b></p>
  *
  * <ul>
- *     <li>{@link #parseFastInt(String)} - Parses the given string, returning {@link #INVALID} instead of throwing an exception. This can make a significant performance improvement when dealing with dirty data, because exceptions are expensive</li>
+ *     <li>{@link #parseFastInt(String)} - Parses the given string, returning {@link #INVALID_INT} instead of throwing an exception. This can make a significant performance improvement when dealing with dirty data, because exceptions are expensive</li>
  *     <li>{@link #parseFastInt(String, int)} - Parses the given string returning the given flag value if parsing fails</li>
- *     <li>{@link #parseFastNaturalNumber(String)} - Parses a natural number, returning {@link #INVALID} if parsing fails</li>
+ *     <li>{@link #parseFastNaturalNumber(String)} - Parses a natural number, returning {@link #INVALID_INT} if parsing fails</li>
  * </ul>
  *
  * <p><b>Words</b></p>
@@ -92,7 +92,7 @@ public class Ints
             1000000000 };
 
     /** Default invalid value */
-    public static final int INVALID = Integer.MIN_VALUE;
+    public static final int INVALID_INT = Integer.MIN_VALUE;
 
     /**
      * Returns the given value formatted with comma separators for the US locale.
@@ -221,11 +221,11 @@ public class Ints
     }
 
     /**
-     * Returns an integer value or {@link #INVALID} if the string is not a valid integer
+     * Returns an integer value or {@link #INVALID_INT} if the string is not a valid integer
      */
     public static int parseFastInt(String text)
     {
-        return parseFastInt(text, INVALID);
+        return parseFastInt(text, INVALID_INT);
     }
 
     /**
@@ -248,7 +248,7 @@ public class Ints
     public static int parseFastNaturalNumber(String string)
     {
         var number = Longs.parseFastNaturalNumber(string);
-        return number < 0 ? INVALID : (int) number;
+        return number < 0 ? INVALID_INT : (int) number;
     }
 
     /**

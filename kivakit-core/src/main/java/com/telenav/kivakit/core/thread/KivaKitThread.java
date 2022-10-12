@@ -49,6 +49,7 @@ import static com.telenav.kivakit.core.thread.KivaKitThread.State.RAN;
 import static com.telenav.kivakit.core.thread.KivaKitThread.State.RUNNING;
 import static com.telenav.kivakit.core.thread.KivaKitThread.State.STOP_REQUESTED;
 import static com.telenav.kivakit.core.thread.KivaKitThread.State.WAITING;
+import static com.telenav.kivakit.core.time.Duration.ZERO_DURATION;
 import static com.telenav.kivakit.core.time.Time.now;
 
 /**
@@ -204,7 +205,7 @@ public class KivaKitThread extends BaseRepeater implements
     private final Runnable code;
 
     /** Any initial delay before the thread starts running */
-    private Duration initialDelay = Duration.ZERO_DURATION;
+    private Duration initialDelay = ZERO_DURATION;
 
     /** The time at which this thread was started */
     private Time startedAt;

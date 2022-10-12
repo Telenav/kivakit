@@ -33,7 +33,6 @@ import com.telenav.kivakit.resource.CopyMode;
 import com.telenav.kivakit.resource.Resource;
 import com.telenav.kivakit.resource.writing.WritableResource;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
-import org.apache.commons.net.ftp.FTP;
 import org.apache.commons.net.ftp.FTPClient;
 import org.apache.commons.net.ftp.FTPFile;
 import org.apache.commons.net.ftp.FTPReply;
@@ -49,6 +48,9 @@ import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTE
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.value.count.Count.count;
 import static com.telenav.kivakit.network.core.NetworkAccessConstraints.defaultNetworkAccessConstraints;
+import static com.telenav.kivakit.network.ftp.FtpNetworkLocation.Mode.PASSIVE;
+import static org.apache.commons.net.ftp.FTP.ASCII_FILE_TYPE;
+import static org.apache.commons.net.ftp.FTP.BINARY_FILE_TYPE;
 
 /**
  * Simple FTP downloader. Note that this is made to download a single FTP file and then close the connection. At this
@@ -224,7 +226,7 @@ public class FtpResource extends BaseNetworkResource
             connect();
 
             // Note that we will be transferring ASCII files.
-            client.setFileType(FTP.ASCII_FILE_TYPE);
+            client.setFileType(ASCII_FILE_TYPE);
 
             // Retrieve the file in question.
             return new FtpInput(client, client.retrieveFileStream(networkLocation.networkPath().join()));
@@ -245,7 +247,7 @@ public class FtpResource extends BaseNetworkResource
             connect();
 
             // Note that we will be transferring ASCII files.
-            client.setFileType(FTP.BINARY_FILE_TYPE);
+            client.setFileType(BINARY_FILE_TYPE);
 
             // Retrieve the file in question.
             return new FtpInput(client, client.retrieveFileStream(networkLocation.networkPath().join()));
@@ -298,7 +300,7 @@ public class FtpResource extends BaseNetworkResource
         if (networkLocation instanceof FtpNetworkLocation)
         {
             var mode = ((FtpNetworkLocation) networkLocation).mode();
-            if (FtpNetworkLocation.Mode.PASSIVE.equals(mode))
+            if (PASSIVE.equals(mode))
             {
                 client.enterLocalPassiveMode();
             }

@@ -24,12 +24,12 @@ import com.telenav.kivakit.network.email.internal.lexakai.DiagramEmail;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.concurrent.ArrayBlockingQueue;
-import java.util.concurrent.TimeUnit;
 
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.time.Time.now;
+import static java.util.concurrent.TimeUnit.MILLISECONDS;
 
 /**
  * A simple email queue implemented with {@link ArrayBlockingQueue}, with no persistent backing.
@@ -72,7 +72,7 @@ class EmailQueue
         {
             try
             {
-                return queue.offer(email, maximumWait.milliseconds(), TimeUnit.MILLISECONDS);
+                return queue.offer(email, maximumWait.milliseconds(), MILLISECONDS);
             }
             catch (InterruptedException ignored)
             {

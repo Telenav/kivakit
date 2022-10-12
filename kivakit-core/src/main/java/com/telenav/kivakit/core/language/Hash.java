@@ -43,7 +43,7 @@ public class Hash
     /**
      * A large prime number suitable for seeding hashCode() implementations
      */
-    public static final int SEED = 536870909;
+    public static final int HASH_SEED = 536870909;
 
     /** Seed for Knuth hashing */
     public static final long KNUTH_SEED = 2654435761L;
@@ -176,7 +176,7 @@ public class Hash
             var object = objects.next();
             if (object != null)
             {
-                hashCode = hashCode * SEED + hash(object);
+                hashCode = hashCode * HASH_SEED + hash(object);
             }
         }
         return hashCode;

@@ -48,7 +48,7 @@ import static com.telenav.kivakit.core.messaging.Listener.nullListener;
 import static com.telenav.kivakit.core.messaging.Listener.throwingListener;
 import static com.telenav.kivakit.core.os.OperatingSystem.operatingSystem;
 import static com.telenav.kivakit.core.string.Formatter.format;
-import static com.telenav.kivakit.core.string.Strings.isNullOrEmpty;
+import static com.telenav.kivakit.core.string.Strings.isNullOrBlank;
 import static com.telenav.kivakit.core.string.Strip.stripLeading;
 import static com.telenav.kivakit.core.string.Strip.stripTrailing;
 import static com.telenav.kivakit.filesystem.Folders.currentFolder;
@@ -165,7 +165,7 @@ public class FilePath extends ResourcePath
     {
         // If there is a scheme,
         var scheme = uri.getScheme();
-        if (!isNullOrEmpty(scheme))
+        if (!isNullOrBlank(scheme))
         {
             // the default root is slash,
             var root = "/";
@@ -183,7 +183,7 @@ public class FilePath extends ResourcePath
             // Add to the list of schemes if there is more than one (java:file).
             var subPart = uri.getSchemeSpecificPart();
             List<String> elements;
-            if (isNullOrEmpty(path))
+            if (isNullOrBlank(path))
             {
                 var subPath = filePath(URI.create(subPart));
                 schemes.addAll(subPath.schemes());
@@ -741,7 +741,7 @@ public class FilePath extends ResourcePath
 
         // and if there is a host,
         String authority = null;
-        if (!isNullOrEmpty(host))
+        if (!isNullOrBlank(host))
         {
             // add that to the root,
             authority = host;
@@ -782,7 +782,7 @@ public class FilePath extends ResourcePath
 
         // and if the path is not empty,
         var pathElements = new StringList();
-        if (!isNullOrEmpty(path))
+        if (!isNullOrBlank(path))
         {
             // we split the path into elements.
             pathElements = split(path, "/");

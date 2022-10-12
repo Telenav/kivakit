@@ -22,16 +22,16 @@ import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.network.core.NetworkAccessConstraints;
 import com.telenav.kivakit.network.core.NetworkLocation;
 import com.telenav.kivakit.network.core.NetworkPath;
-import com.telenav.kivakit.network.core.Protocol;
 import com.telenav.kivakit.network.ftp.internal.lexakai.DiagramFtp;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlAggregation;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.ensure.Ensure.ensure;
+import static com.telenav.kivakit.network.core.Protocol.FTP;
 
 /**
  * An FTP network location that can be accessed in {@link Mode#PASSIVE} or {@link Mode#ACTIVE}.
@@ -69,7 +69,7 @@ public class FtpNetworkLocation extends NetworkLocation
     public FtpNetworkLocation(NetworkPath path)
     {
         super(path);
-        ensure(Protocol.FTP.equals(path.port().protocol()));
+        ensure(FTP.equals(path.port().protocol()));
     }
 
     public Mode mode()

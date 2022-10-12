@@ -34,6 +34,7 @@ import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMEN
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.time.Duration.FOREVER;
+import static com.telenav.kivakit.interfaces.time.WakeState.COMPLETED;
 
 /**
  * A simple state machine with a single state that can be transitioned from one state to another and which allows a
@@ -228,7 +229,7 @@ public final class StateMachine<State> extends BaseRepeater
             {
                 // then wait for the desired state to arrive.
                 trace("$ => $ (wait for $ for up to $)", from, to, waitFor, maximumWait);
-                return waitFor(waitFor, maximumWait) == WakeState.COMPLETED;
+                return waitFor(waitFor, maximumWait) == COMPLETED;
             }
 
             // We were not in the 'from' state.
