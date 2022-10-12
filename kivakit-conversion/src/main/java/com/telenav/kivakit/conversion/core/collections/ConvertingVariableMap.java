@@ -1,4 +1,4 @@
-package com.telenav.kivakit.conversion.core.collections.map;
+package com.telenav.kivakit.conversion.core.collections;
 
 import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.conversion.StringConverter;

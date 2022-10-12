@@ -10,6 +10,7 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static com.telenav.kivakit.core.value.level.Level.parseLevel;
 
 /**
  * Converts to and from a {@link Level}
@@ -38,6 +39,6 @@ public class LevelConverter extends BaseStringConverter<Level>
     @Override
     protected Level onToValue(String value)
     {
-        return Level.parseLevel(this, value, lenient);
+        return parseLevel(this, value, lenient);
     }
 }

@@ -49,7 +49,7 @@ public class ObjectConverter<Value> extends BaseConverter<PropertyValue, Value>
             var object = Type.typeForClass(type).newInstance();
 
             // and a filter that matches converted fields and methods,
-            var filter = new ConversionPropertySet(KIVAKIT_PROPERTY_NAMING, KIVAKIT_CONVERTED_MEMBERS);
+            var filter = new ConvertedPropertySet(KIVAKIT_PROPERTY_NAMING, KIVAKIT_CONVERTED_MEMBERS);
 
             // and populate the object with converted values.
             new ObjectPopulator(filter, () -> convertedValues(values)).populate(object);

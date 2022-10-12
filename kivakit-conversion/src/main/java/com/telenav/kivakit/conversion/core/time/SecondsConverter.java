@@ -8,6 +8,8 @@ import com.telenav.kivakit.core.time.Duration;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static com.telenav.kivakit.core.time.Duration.seconds;
+import static java.lang.Double.parseDouble;
 
 /**
  * Converts seconds to and from {@link Duration}.
@@ -33,6 +35,6 @@ public class SecondsConverter extends BaseStringConverter<Duration>
     @Override
     protected Duration onToValue(String value)
     {
-        return Duration.seconds(Double.parseDouble(value));
+        return seconds(parseDouble(value));
     }
 }

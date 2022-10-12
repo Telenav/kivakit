@@ -24,9 +24,15 @@ import com.telenav.kivakit.core.value.count.Maximum;
 import com.telenav.kivakit.interfaces.naming.Named;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
+import java.util.Comparator;
+import java.util.Map;
+import java.util.function.BiFunction;
+import java.util.function.Function;
+
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static com.telenav.kivakit.core.value.count.Maximum.MAXIMUM;
 
 /**
  * Stores named values by name and also makes them accessible by index in the order in which the valAues were added,
@@ -46,6 +52,35 @@ import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
  * map.get("Apple");  // Apple
  * </pre>
  *
+ * <p><b>Access</b></p>
+ *
+ * <ul>
+ *     <li>{@link #compute(Object, BiFunction)}</li>
+ *     <li>{@link #computeIfAbsent(Object, Function)}</li>
+ *     <li>{@link #computeIfPresent(Object, BiFunction)}</li>
+ *     <li>{@link #get(Object)}</li>
+ *     <li>{@link #get(Object, Object)}</li>
+ *     <li>{@link #get(int)}</li>
+ *     <li>{@link #iterator()}</li>
+ *     <li>{@link #keySet()}</li>
+ *     <li>{@link #put(Object, Object)}</li>
+ *     <li>{@link #putAll(Map)}</li>
+ *     <li>{@link #putIfAbsent(Object, Object)}</li>
+ *     <li>{@link #putIfNotNull(Object, Object)}</li>
+ *     <li>{@link #values()}</li>
+ * </ul>
+ *
+ * <p><b>Operations</b></p>
+ *
+ * <ul>
+ *     <li>{@link #clear()}</li>
+ *     <li>{@link #join()}</li>
+ *     <li>{@link #join(String)}</li>
+ *     <li>{@link #join(char)}</li>
+ *     <li>{@link #remove(Object)}</li>
+ *     <li>{@link #sort(Comparator)}</li>
+ * </ul>
+ *
  * @param <T> The type implementing {@link Named}
  * @author jonathanl (shibo)
  */
@@ -57,7 +92,7 @@ public class IndexedNameMap<T extends Named> extends BaseIndexedMap<String, T>
 {
     public IndexedNameMap()
     {
-        super(Maximum.MAXIMUM);
+        super(MAXIMUM);
     }
 
     public IndexedNameMap(Maximum maximumSize)

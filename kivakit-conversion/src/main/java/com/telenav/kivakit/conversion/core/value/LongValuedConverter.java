@@ -9,6 +9,7 @@ import com.telenav.kivakit.interfaces.value.LongValued;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static java.lang.Long.parseLong;
 
 /**
  * Converter that converts between a {@link String} and any {@link LongValued} value.
@@ -48,6 +49,6 @@ public class LongValuedConverter<Value extends LongValued> extends BaseStringCon
     @Override
     protected Value onToValue(String value)
     {
-        return factory.map(Long.parseLong(value));
+        return factory.map(parseLong(value));
     }
 }

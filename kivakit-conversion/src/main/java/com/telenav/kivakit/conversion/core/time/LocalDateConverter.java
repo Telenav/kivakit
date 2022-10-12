@@ -21,14 +21,14 @@ package com.telenav.kivakit.conversion.core.time;
 import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.conversion.internal.lexakai.DiagramConversionTime;
 import com.telenav.kivakit.core.messaging.Listener;
-import com.telenav.kivakit.core.time.TimeFormats;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.time.ZoneId;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static com.telenav.kivakit.core.time.TimeFormats.KIVAKIT_DATE;
 
 /**
  * @author jonathanl (shibo)
@@ -45,7 +45,7 @@ public class LocalDateConverter extends BaseFormattedLocalTimeConverter
      */
     public LocalDateConverter(Listener listener, ZoneId zoneId)
     {
-        super(listener, TimeFormats.KIVAKIT_DATE, zoneId);
+        super(listener, KIVAKIT_DATE, zoneId);
     }
 
     /**

@@ -24,8 +24,8 @@ import com.telenav.kivakit.core.collections.list.ObjectList;
 import com.telenav.kivakit.core.messaging.repeaters.BaseRepeater;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 
 /**
@@ -33,6 +33,19 @@ import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
  * {@link #addListener(CollectionChangeListener)} and {@link #removeListener(CollectionChangeListener)}. A thread can
  * then wait for a change with {@link #waitForChange()}. Subclasses receive notification of changes with
  * {@link #onAdded(Object)}, {@link #onModified(Object)} and {@link #onRemoved(Object)}.
+ *
+ * <p><b>Changes</b></p>
+ *
+ * <ul>
+ *     <li>{@link #waitForChange()}</li>
+ * </ul>
+ *
+ * <p><b>Listeners</b></p>
+ *
+ * <ul>
+ *     <li>{@link #addListener(CollectionChangeListener)}</li>
+ *     <li>{@link #removeListener(CollectionChangeListener)}</li>
+ * </ul>
  *
  * @author jonathanl (shibo)
  * @see CollectionChangeWatcher

@@ -22,15 +22,15 @@ import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.conversion.internal.lexakai.DiagramConversionTime;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.time.LocalTime;
-import com.telenav.kivakit.core.time.TimeFormats;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static com.telenav.kivakit.core.time.TimeFormats.KIVAKIT_TIME;
 
 /**
  * @author jonathanl (shibo)
@@ -47,7 +47,7 @@ public class LocalTimeConverter extends BaseFormattedLocalTimeConverter
      */
     public LocalTimeConverter(Listener listener, ZoneId zone)
     {
-        super(listener, TimeFormats.KIVAKIT_TIME, zone);
+        super(listener, KIVAKIT_TIME, zone);
     }
 
     /**
@@ -55,7 +55,7 @@ public class LocalTimeConverter extends BaseFormattedLocalTimeConverter
      */
     public LocalTimeConverter(Listener listener)
     {
-        super(listener, TimeFormats.KIVAKIT_TIME);
+        super(listener, KIVAKIT_TIME);
     }
 
     /**

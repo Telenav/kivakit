@@ -11,6 +11,7 @@ import java.time.format.DateTimeFormatter;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static com.telenav.kivakit.core.time.Time.epochMilliseconds;
 import static com.telenav.kivakit.core.time.TimeFormats.KIVAKIT_DATE;
 import static com.telenav.kivakit.core.time.TimeFormats.KIVAKIT_DATE_TIME;
 import static com.telenav.kivakit.core.time.TimeFormats.KIVAKIT_TIME;
@@ -71,6 +72,6 @@ public class TimeConverter extends BaseStringConverter<Time>
     @Override
     protected Time onToValue(String dateTimeString)
     {
-        return Time.epochMilliseconds(Instant.from(formatter.parse(dateTimeString)).toEpochMilli());
+        return epochMilliseconds(Instant.from(formatter.parse(dateTimeString)).toEpochMilli());
     }
 }

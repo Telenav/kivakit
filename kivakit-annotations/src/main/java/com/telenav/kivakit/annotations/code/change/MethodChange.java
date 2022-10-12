@@ -7,8 +7,9 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABILITY_UNDETERMINED;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABILITY_UNDETERMINED;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
 
 /**
@@ -50,10 +51,18 @@ public @interface MethodChange
     /**
      * The type of change that occurred
      */
+    @CodeQuality(stability = STABLE_EXTENSIBLE,
+                 testing = TESTING_NOT_NEEDED,
+                 documentation = DOCUMENTATION_COMPLETE)
     enum Change
     {
+        /** The annotated method was added */
         METHOD_ADDED,
+
+        /** The annotated method was renamed from the name it has {@link #previously()} */
         METHOD_RENAMED,
+
+        /** The annotated method changed signature from what it was {@link #previously()} */
         METHOD_CHANGED_SIGNATURE
     }
 

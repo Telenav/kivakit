@@ -30,10 +30,12 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Pattern;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.time.Duration.days;
+import static com.telenav.kivakit.core.time.LocalTime.localTimeZone;
+import static java.util.regex.Pattern.CASE_INSENSITIVE;
 
 /**
  * @author jonathanl (shibo)
@@ -51,7 +53,7 @@ public class HumanizedLocalDateTimeConverter extends BaseStringConverter<LocalTi
             + "|(?<day>monday|tuesday|wednesday|thursday|friday|saturday|sunday)"
             + "|(?<date>[0-9]{4}\\.[0-9]{1,2}\\.[0-9]{1,2})"
             + ")"
-            + "[- ](?<time>.+)", Pattern.CASE_INSENSITIVE);
+            + "[- ](?<time>.+)", CASE_INSENSITIVE);
 
     private static final Map<String, Integer> dayOrdinal = new HashMap<>();
 
@@ -80,7 +82,7 @@ public class HumanizedLocalDateTimeConverter extends BaseStringConverter<LocalTi
     @Override
     protected String onToString(LocalTime time)
     {
-        return humanizedDate(time) + " " + new LocalTimeConverter(Listener.nullListener(), time.timeZone()).unconvert(time);
+        return humanizedDate(time) + " " + new LocalTimeConverter(this, time.timeZone()).unconvert(time);
     }
 
     /**
@@ -92,7 +94,7 @@ public class HumanizedLocalDateTimeConverter extends BaseStringConverter<LocalTi
         var matcher = HUMANIZED_DATE.matcher(value);
         if (matcher.matches())
         {
-            var localTime = new LocalTimeConverter(Listener.nullListener(), LocalTime.localTimeZone())
+            var localTime = new LocalTimeConverter(this, localTimeZone())
                     .convert(matcher.group("time"));
             if (localTime != null)
             {
@@ -123,7 +125,7 @@ public class HumanizedLocalDateTimeConverter extends BaseStringConverter<LocalTi
                 }
                 if (date != null)
                 {
-                    var localDate = new LocalDateConverter(Listener.nullListener()).convert(date);
+                    var localDate = new LocalDateConverter(this).convert(date);
                     if (localDate != null)
                     {
                         return localTime.withUnixEpochDay(localDate.dayOfUnixEpoch());
@@ -156,6 +158,6 @@ public class HumanizedLocalDateTimeConverter extends BaseStringConverter<LocalTi
             }
         }
 
-        return new LocalDateConverter(Listener.nullListener()).unconvert(time);
+        return new LocalDateConverter(this).unconvert(time);
     }
 }

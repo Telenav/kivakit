@@ -35,6 +35,8 @@ import java.util.Comparator;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.function.BiFunction;
+import java.util.function.Function;
 
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
@@ -43,6 +45,36 @@ import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 /**
  * A map that allows access to data by both index and key. Note that {@link LinkedHashMap} preserves the order of values
  * in the map, but it does not allow indexing of the map.
+ *
+ * <p><b>Access</b></p>
+ *
+ * <ul>
+ *     <li>{@link #compute(Object, BiFunction)}</li>
+ *     <li>{@link #computeIfAbsent(Object, Function)}</li>
+ *     <li>{@link #computeIfPresent(Object, BiFunction)}</li>
+ *     <li>{@link #get(Object)}</li>
+ *     <li>{@link #get(Object, Object)}</li>
+ *     <li>{@link #get(int)}</li>
+ *     <li>{@link #indexOf(Object)}</li>
+ *     <li>{@link #iterator()}</li>
+ *     <li>{@link #keySet()}</li>
+ *     <li>{@link #put(Object, Object)}</li>
+ *     <li>{@link #putAll(Map)}</li>
+ *     <li>{@link #putIfAbsent(Object, Object)}</li>
+ *     <li>{@link #putIfNotNull(Object, Object)}</li>
+ *     <li>{@link #values()}</li>
+ * </ul>
+ *
+ * <p><b>Operations</b></p>
+ *
+ * <ul>
+ *     <li>{@link #clear()}</li>
+ *     <li>{@link #join()}</li>
+ *     <li>{@link #join(String)}</li>
+ *     <li>{@link #join(char)}</li>
+ *     <li>{@link #remove(Object)}</li>
+ *     <li>{@link #sort(Comparator)}</li>
+ * </ul>
  *
  * @author jonathanl (shibo)
  * @see Indexable

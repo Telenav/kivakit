@@ -25,9 +25,10 @@ import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.version.Version;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static com.telenav.kivakit.core.version.Version.parseVersion;
 
 /**
  * Converts to and from {@link Runtime.Version} objects
@@ -54,6 +55,6 @@ public class VersionConverter extends BaseStringConverter<Version>
     @Override
     protected Version onToValue(String text)
     {
-        return Version.parseVersion(this, text);
+        return parseVersion(this, text);
     }
 }

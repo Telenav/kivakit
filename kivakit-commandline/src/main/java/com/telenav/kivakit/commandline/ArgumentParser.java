@@ -31,8 +31,8 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlAggregation;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.commandline.Quantifier.ONE_OR_MORE;
 import static com.telenav.kivakit.commandline.Quantifier.OPTIONAL;
@@ -44,14 +44,17 @@ import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
  * type and a human-readable description. An argument parser can be passed to {@link ArgumentValue#get(ArgumentParser)}
  * to retrieve the value of an argument.
  *
- * <p><b>Parser Builders</b></p>
+ * <p><b>Argument Parser Builders</b></p>
  *
  * <p>
  * New argument parsers can be created with the argument parser {@link Builder}, which can be accessed through
- * {@link #argumentParser(Class)}. The type parameter is the type of the argument parser being built. For
- * example, a float switch would be of type Float.class. The builder then allows attributes of the argument parser to be
- * specified:
+ * {@link #argumentParser(Class)}. The type parameter is the type of the argument parser being built. For example, a
+ * float switch would be of type Float.class. The builder then allows attributes of the argument parser to be
+ * specified.
+ * </p>
+ *
  * <ul>
+ *     <li>{@link #argumentParser(Class)}</li>
  *     <li>{@link Builder#description(String)} - A description of what the argument is for</li>
  *     <li>{@link Builder#required()} - The user must provide the argument or it is an error</li>
  *     <li>{@link Builder#optional()} - The user can omit the argument</li>
@@ -67,7 +70,7 @@ import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
  * </p>
  *
  * <pre>
- * ArgumentParser&lt;Version&gt; VERSION = argumentParserBuilder(Version.class)
+ * ArgumentParser&lt;Version&gt; VERSION = argumentParser(Version.class)
  *     .description("The input file version")
  *     .required()
  *     .build();</pre>

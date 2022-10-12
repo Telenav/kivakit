@@ -27,14 +27,29 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 import java.util.IdentityHashMap;
 import java.util.Map;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 
 /**
  * A non-thread-safe map of reference counts. Counts are increased by calling {@link #reference(Object)}, and decreased
  * by calling {@link #dereference(Object)}. The method {@link #isReferenced(Object)} returns true if there is any
  * remaining reference to the given object.
+ *
+ * <p><b>Referencing</b></p>
+ *
+ * <ul>
+ *     <li>{@link #reference(Object)}</li>
+ *     <li>{@link #dereference(Object)}</li>
+ *     <li>{@link #isReferenced(Object)}</li>
+ * </ul>
+ *
+ * <p><b>Reference Counts</b></p>
+ *
+ * <ul>
+ *     <li>{@link #count(Object)}</li>
+ *     <li>{@link #count(Object, Count)}</li>
+ * </ul>
  *
  * @author jonathanl (shibo)
  */

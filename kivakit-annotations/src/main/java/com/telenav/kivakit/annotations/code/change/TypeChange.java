@@ -9,6 +9,7 @@ import java.lang.annotation.Target;
 
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABILITY_UNDETERMINED;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
 
 /**
@@ -39,11 +40,21 @@ public @interface TypeChange
     /**
      * The type of change that occurred
      */
+    @CodeQuality(stability = STABLE_EXTENSIBLE,
+                 testing = TESTING_NOT_NEEDED,
+                 documentation = DOCUMENTATION_COMPLETE)
     enum Change
     {
+        /** The annotated type was added */
         TYPE_ADDED,
+
+        /** The annotated type was renamed from the name it had {@link #previously()} */
         TYPE_RENAMED,
+
+        /** The annotated type was moved from the location it was in {@link #previously()} */
         TYPE_MOVED,
+
+        /** The method that existed {@link #previously()} was removed */
         METHOD_REMOVED
     }
 

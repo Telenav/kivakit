@@ -39,6 +39,7 @@ import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
  *
  * @author jonathanl (shibo)
  */
+@SuppressWarnings("SpellCheckingInspection")
 @UmlClassDiagram(diagram = DiagramCollection.class)
 @CodeQuality(stability = STABILITY_UNDETERMINED,
              testing = UNTESTED,

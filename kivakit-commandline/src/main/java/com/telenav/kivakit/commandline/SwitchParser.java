@@ -82,11 +82,11 @@ import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
  * command line will be converted from a string to a {@link Version} object with {@link VersionConverter}. Many classes
  * in KivaKit provide string converters, which makes it an easy job to construct switch parsers.
  * <pre>
- * public static Builder&lt;Version&gt; switchParser(Listener listener,
- *                                             String name,
- *                                             String description)
+ * public static Builder&lt;Version&gt; versionSwitchParser(Listener listener,
+ *                                                    String name,
+ *                                                    String description)
  * {
- *     return builder(Version.class)
+ *     return switchParser(Version.class)
  *         .name(name)
  *         .converter(new Version.Converter(listener))
  *         .description(description);
