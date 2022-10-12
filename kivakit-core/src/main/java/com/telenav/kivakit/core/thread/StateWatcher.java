@@ -22,25 +22,25 @@ import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramThread;
 import com.telenav.kivakit.core.thread.locks.Lock;
 import com.telenav.kivakit.core.time.Duration;
-import com.telenav.kivakit.core.time.Time;
 import com.telenav.kivakit.interfaces.code.Code;
 import com.telenav.kivakit.interfaces.time.WakeState;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.locks.Condition;
 import java.util.function.Predicate;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.time.Duration.seconds;
+import static com.telenav.kivakit.core.time.Time.now;
 import static com.telenav.kivakit.interfaces.time.WakeState.COMPLETED;
 import static com.telenav.kivakit.interfaces.time.WakeState.INTERRUPTED;
 import static com.telenav.kivakit.interfaces.time.WakeState.TERMINATED;
 import static com.telenav.kivakit.interfaces.time.WakeState.TIMED_OUT;
+import static java.util.Collections.synchronizedList;
 
 /**
  * Allows a thread to wait for a particular state or for predicate to be satisfied by some other thread calling
@@ -97,7 +97,7 @@ public final class StateWatcher<State>
     private final Lock lock = new Lock();
 
     /** The clients waiting for a predicate to be satisfied */
-    private final List<Waiter> waiters = Collections.synchronizedList(new ArrayList<>());
+    private final List<Waiter> waiters = synchronizedList(new ArrayList<>());
 
     public StateWatcher(State current)
     {
@@ -146,7 +146,7 @@ public final class StateWatcher<State>
     public WakeState waitFor(Predicate<State> predicate,
                              Duration maximumWaitTime)
     {
-        var started = Time.now();
+        var started = now();
 
         Waiter waiter = null;
         while (true)

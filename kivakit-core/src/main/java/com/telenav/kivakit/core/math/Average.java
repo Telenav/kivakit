@@ -26,6 +26,7 @@ import com.telenav.kivakit.interfaces.lifecycle.Resettable;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_INSUFFICIENT;
+import static java.lang.Math.*;
 
 /**
  * Computes a simple average, as well as a minimum and maximum value from a series of <i>double</i> sample values.
@@ -55,8 +56,8 @@ public class Average implements Resettable
      */
     public void add(Average that)
     {
-        minimum = Math.min(minimum, that.minimum);
-        maximum = Math.max(maximum, that.maximum);
+        minimum = min(minimum, that.minimum);
+        maximum = max(maximum, that.maximum);
         total += that.total;
         samples += that.samples;
     }

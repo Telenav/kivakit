@@ -5,16 +5,19 @@ import com.telenav.kivakit.core.value.count.BaseCount;
 import com.telenav.kivakit.interfaces.time.Nanoseconds;
 
 import java.time.ZoneId;
-import java.util.Objects;
 import java.util.TimeZone;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.ensure.Ensure.ensureBetweenExclusive;
+import static com.telenav.kivakit.core.language.Hash.hashMany;
 import static com.telenav.kivakit.core.time.BaseTime.Topology.CYCLIC;
 import static com.telenav.kivakit.core.time.DayOfWeek.isoDayOfWeek;
+import static com.telenav.kivakit.core.time.Hour.militaryHour;
 import static com.telenav.kivakit.core.time.Hour.nanosecondsPerHour;
+import static com.telenav.kivakit.core.time.Time.epochNanoseconds;
+import static java.lang.Math.round;
 
 /**
  * Represents an hour of the week, for example Thursday at 1pm. This class stores its count value in the fields
@@ -40,7 +43,7 @@ public class HourOfWeek extends BaseTime<HourOfWeek>
         var dayOfWeek = hourOfWeek / 24;
         var hourOfDay = hourOfWeek % 24;
 
-        return new HourOfWeek(isoDayOfWeek(dayOfWeek), Hour.militaryHour(hourOfDay));
+        return new HourOfWeek(isoDayOfWeek(dayOfWeek), militaryHour(hourOfDay));
     }
 
     /**
@@ -88,7 +91,7 @@ public class HourOfWeek extends BaseTime<HourOfWeek>
      */
     public Time asEpochTime()
     {
-        return Time.epochNanoseconds(nanoseconds());
+        return epochNanoseconds(nanoseconds());
     }
 
     /**
@@ -136,7 +139,7 @@ public class HourOfWeek extends BaseTime<HourOfWeek>
     @Override
     public int hashCode()
     {
-        return Objects.hash(dayOfWeek(), hourOfDay());
+        return hashMany(dayOfWeek(), hourOfDay());
     }
 
     /**
@@ -242,6 +245,6 @@ public class HourOfWeek extends BaseTime<HourOfWeek>
         var offsetInMilliseconds = timeZone.getOffset(Time.now().milliseconds());
 
         // and convert the offset to hours.
-        return (int) Math.round((double) offsetInMilliseconds / 1_000 / 60 / 60);
+        return (int) round((double) offsetInMilliseconds / 1_000 / 60 / 60);
     }
 }

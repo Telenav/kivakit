@@ -19,7 +19,6 @@
 package com.telenav.kivakit.core.language;
 
 import com.telenav.kivakit.annotations.code.quality.CodeQuality;
-import com.telenav.kivakit.core.string.Paths;
 
 import java.io.InputStream;
 import java.lang.reflect.Constructor;
@@ -27,10 +26,12 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.ensure.Ensure.ensure;
+import static com.telenav.kivakit.core.string.Paths.pathOptionalHead;
+import static com.telenav.kivakit.core.string.Paths.pathOptionalSuffix;
 
 /**
  * Class utility methods
@@ -305,7 +306,7 @@ public class Classes
             {
                 return type.getSimpleName();
             }
-            return Paths.pathOptionalSuffix(type.getName(), '.').replace('$', '.');
+            return pathOptionalSuffix(type.getName(), '.').replace('$', '.');
         }
         return "Unknown";
     }
@@ -315,10 +316,10 @@ public class Classes
      */
     public static String simpleTopLevelClass(Class<?> type)
     {
-        var name = Paths.pathOptionalSuffix(type.getName(), '.');
+        var name = pathOptionalSuffix(type.getName(), '.');
         if (name.contains("$"))
         {
-            return Paths.pathOptionalHead(name, '$');
+            return pathOptionalHead(name, '$');
         }
         return name;
     }

@@ -1,7 +1,6 @@
 package com.telenav.kivakit.resource.serialization;
 
 import com.telenav.kivakit.annotations.code.quality.CodeQuality;
-import com.telenav.kivakit.core.language.Arrays;
 import com.telenav.kivakit.core.messaging.repeaters.RepeaterMixin;
 import com.telenav.kivakit.core.path.StringPath;
 import com.telenav.kivakit.core.progress.ProgressReporter;
@@ -12,10 +11,11 @@ import org.jetbrains.annotations.NotNull;
 import java.io.IOException;
 import java.io.InputStream;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.ensure.Ensure.ensure;
+import static com.telenav.kivakit.core.language.Arrays.arrayContains;
 import static com.telenav.kivakit.resource.serialization.ObjectMetadata.OBJECT_TYPE;
 
 /**
@@ -47,7 +47,7 @@ public interface ObjectReader extends RepeaterMixin
                                                  @NotNull StringPath path,
                                                  @NotNull ObjectMetadata... metadata)
     {
-        ensure(Arrays.contains(metadata, OBJECT_TYPE),
+        ensure(arrayContains(metadata, OBJECT_TYPE),
                 "Must specify OBJECT_TYPE metadata, or include an explicit type to read");
 
         return readObject(new ProgressiveInputStream(input, progressReporter()), path, null, metadata);

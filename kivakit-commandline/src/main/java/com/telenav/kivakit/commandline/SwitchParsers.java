@@ -19,7 +19,6 @@ import com.telenav.kivakit.conversion.core.value.PercentConverter;
 import com.telenav.kivakit.conversion.core.value.VersionConverter;
 import com.telenav.kivakit.core.collections.list.StringList;
 import com.telenav.kivakit.core.messaging.Listener;
-import com.telenav.kivakit.core.string.CaseFormat;
 import com.telenav.kivakit.core.time.Duration;
 import com.telenav.kivakit.core.time.LocalTime;
 import com.telenav.kivakit.core.value.count.Bytes;
@@ -28,16 +27,17 @@ import com.telenav.kivakit.core.value.count.Maximum;
 import com.telenav.kivakit.core.value.count.Minimum;
 import com.telenav.kivakit.core.value.level.Percent;
 import com.telenav.kivakit.core.version.Version;
-import com.telenav.kivakit.core.vm.JavaVirtualMachine;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.regex.Pattern;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.commandline.SwitchParser.switchParser;
 import static com.telenav.kivakit.core.ensure.Ensure.illegalArgument;
+import static com.telenav.kivakit.core.string.CaseFormat.upperUnderscoreToLowerHyphen;
+import static com.telenav.kivakit.core.vm.JavaVirtualMachine.javaVirtualMachine;
 
 /**
  * Switch parser builder factories for common data types.
@@ -142,7 +142,7 @@ public class SwitchParsers
             var options = new StringList();
             for (var option : type.getEnumConstants())
             {
-                options.add(CaseFormat.upperUnderscoreToLowerHyphen(option.name()));
+                options.add(upperUnderscoreToLowerHyphen(option.name()));
             }
             var help = description + "\n\n" + options.bulleted(4) + "\n";
             return switchParser(type)
@@ -247,7 +247,7 @@ public class SwitchParsers
     public static SwitchParser<Count> threadCountSwitchParser(@NotNull Listener listener,
                                                               @NotNull Count maximum)
     {
-        var defaultThreads = maximum.minimize(JavaVirtualMachine.javaVirtualMachine().processors());
+        var defaultThreads = maximum.minimize(javaVirtualMachine().processors());
         return countSwitchParser(listener, "threads", "Number of threads to use (default is " + defaultThreads + ")")
                 .optional()
                 .defaultValue(defaultThreads)

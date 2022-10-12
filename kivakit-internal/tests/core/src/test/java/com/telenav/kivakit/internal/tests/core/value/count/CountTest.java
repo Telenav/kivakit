@@ -27,7 +27,7 @@ public class CountTest extends CoreUnitTest
     @Test
     public void test()
     {
-        final Count count = Count.count(99);
+        Count count = Count.count(99);
         ensureEqual(99, count.asInt());
         ensureEqual(Count.count(100), count.plus(Count._1));
         ensureEqual(Count.count(100), count.plus(1));

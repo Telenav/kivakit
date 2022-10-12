@@ -9,7 +9,6 @@ import com.telenav.kivakit.core.messaging.messages.status.Problem;
 import com.telenav.kivakit.core.messaging.messages.status.Unsupported;
 import com.telenav.kivakit.core.messaging.messages.status.Warning;
 import com.telenav.kivakit.core.string.Formatter;
-import com.telenav.kivakit.core.string.Strings;
 import com.telenav.kivakit.core.time.Duration;
 import com.telenav.kivakit.core.value.count.Count;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
@@ -23,6 +22,9 @@ import java.util.function.Supplier;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_INSUFFICIENT;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_INSUFFICIENT;
+import static com.telenav.kivakit.core.time.Duration.seconds;
+import static java.lang.Math.abs;
+import static java.lang.System.arraycopy;
 
 /**
  * A class for providing flexibility and consistency in the checking of states and parameters. There are multiple kinds
@@ -290,7 +292,7 @@ public class Ensure
     @SuppressWarnings("UnusedReturnValue")
     public static boolean ensureClose(Duration given, Duration expected)
     {
-        return given.isCloseTo(expected, Duration.seconds(0.5));
+        return given.isCloseTo(expected, seconds(0.5));
     }
 
     public static <T> T ensureEqual(T given, T expected)
@@ -418,7 +420,7 @@ public class Ensure
 
     public static void ensureWithin(double expected, double actual, double maximumDifference)
     {
-        var difference = Math.abs(expected - actual);
+        var difference = abs(expected - actual);
         if (difference > maximumDifference)
         {
             fail("Expected value $ was not within $ of actual value $", expected, maximumDifference, actual);
@@ -489,13 +491,13 @@ public class Ensure
         if (e != null)
         {
             var argumentsPlus = new Object[arguments.length + 1];
-            System.arraycopy(arguments, 0, argumentsPlus, 0, arguments.length);
+            arraycopy(arguments, 0, argumentsPlus, 0, arguments.length);
             argumentsPlus[arguments.length] = e;
-            return Strings.format(message + "\n$", argumentsPlus);
+            return Formatter.format(message + "\n$", argumentsPlus);
         }
         else
         {
-            return Strings.format(message, arguments);
+            return Formatter.format(message, arguments);
         }
     }
 }

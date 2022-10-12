@@ -44,7 +44,7 @@ public class Strip
      * @param ending The ending to strip off
      * @return The stripped string or the original string if the ending did not exist
      */
-    public static String ending(String text, String ending)
+    public static String stripEnding(String text, String ending)
     {
         if (text == null)
         {
@@ -80,7 +80,7 @@ public class Strip
     /**
      * Returns the text with the leading string stripped if it exists
      */
-    public static String leading(String text, String leading)
+    public static String stripLeading(String text, String leading)
     {
         if (text.startsWith(leading))
         {
@@ -89,7 +89,7 @@ public class Strip
         return text;
     }
 
-    public static String quotes(String text)
+    public static String stripQuotes(String text)
     {
         var substring = text.substring(1, text.length() - 1);
         if (text.startsWith("\"") && text.endsWith(("\"")))
@@ -106,7 +106,7 @@ public class Strip
     /**
      * Returns the text with the trailing string stripped if it exists
      */
-    public static String trailing(String text, String trailer)
+    public static String stripTrailing(String text, String trailer)
     {
         if (text.endsWith(trailer))
         {

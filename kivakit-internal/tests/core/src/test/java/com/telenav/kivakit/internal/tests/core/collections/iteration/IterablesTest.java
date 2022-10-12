@@ -37,14 +37,14 @@ public class IterablesTest extends CoreUnitTest
     @Test
     public void testSize()
     {
-        final List<String> listString = new ArrayList<>();
+        List<String> listString = new ArrayList<>();
 
         for (var i = 0; i < 3; i++)
         {
             listString.add("a");
         }
 
-        final Iterable<String> stringList = new Iterable<>()
+        Iterable<String> stringList = new Iterable<>()
         {
             private static final int MAX = 5;
 
@@ -69,7 +69,7 @@ public class IterablesTest extends CoreUnitTest
             }
         };
 
-        ensureEqual(3, Iterables.size(listString));
-        ensureEqual(5, Iterables.size(stringList));
+        ensureEqual(3, Iterables.iterableSize(listString));
+        ensureEqual(5, Iterables.iterableSize(stringList));
     }
 }

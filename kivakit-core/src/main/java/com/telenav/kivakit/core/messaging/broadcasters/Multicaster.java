@@ -34,7 +34,6 @@ import com.telenav.kivakit.core.thread.locks.ReadWriteLock;
 import com.telenav.kivakit.core.vm.Properties;
 import com.telenav.kivakit.interfaces.comparison.Filter;
 import com.telenav.kivakit.interfaces.messaging.Transmittable;
-import com.telenav.kivakit.interfaces.naming.NamedObject;
 import com.telenav.kivakit.mixins.Mixins;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlAggregation;
@@ -44,12 +43,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.ensure.Ensure.ensure;
 import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
 import static com.telenav.kivakit.core.string.IndentingStringBuilder.Style.TEXT;
+import static com.telenav.kivakit.interfaces.naming.NamedObject.syntheticName;
 
 /**
  * A multicaster is a broadcaster which can have more than one listener. As with any broadcaster, listeners can be added
@@ -131,7 +131,7 @@ public class Multicaster implements Broadcaster
 
     public Multicaster(Class<?> debugClassContext)
     {
-        objectName = NamedObject.syntheticName(this);
+        objectName = syntheticName(this);
         this.debugClassContext = debugClassContext;
         debugCodeContext(new CodeContext(debugClassContext));
     }
@@ -145,7 +145,7 @@ public class Multicaster implements Broadcaster
 
     protected Multicaster()
     {
-        objectName = NamedObject.syntheticName(this);
+        objectName = syntheticName(this);
         debugClassContext = getClass();
         debugCodeContext(new CodeContext(getClass()));
     }

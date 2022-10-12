@@ -21,9 +21,6 @@ package com.telenav.kivakit.network.core;
 import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.commandline.SwitchParser;
 import com.telenav.kivakit.conversion.BaseStringConverter;
-import com.telenav.kivakit.core.collections.list.StringList;
-import com.telenav.kivakit.core.logging.Logger;
-import com.telenav.kivakit.core.logging.LoggerFactory;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.path.Path;
 import com.telenav.kivakit.core.path.StringPath;
@@ -40,11 +37,12 @@ import java.net.URISyntaxException;
 import java.util.List;
 import java.util.function.Function;
 
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
 import static com.telenav.kivakit.commandline.SwitchParser.switchParser;
+import static com.telenav.kivakit.core.collections.list.StringList.stringList;
 
 /**
  * An abstraction for network paths.
@@ -116,8 +114,6 @@ import static com.telenav.kivakit.commandline.SwitchParser.switchParser;
              documentation = DOCUMENTATION_COMPLETE)
 public class NetworkPath extends FilePath
 {
-    private static final Logger LOGGER = LoggerFactory.newLogger();
-
     /**
      * Returns a network path for the given URI
      *
@@ -138,7 +134,7 @@ public class NetworkPath extends FilePath
     public static NetworkPath networkPath(Listener listener, Port port, String path)
     {
         var root = "/" + port + "/";
-        return new NetworkPath(port, StringPath.parseStringPath(listener, path, "/", "/").withRoot(root));
+        return new NetworkPath(port, parseStringPath(listener, path, "/", "/").withRoot(root));
     }
 
     /**
@@ -204,7 +200,7 @@ public class NetworkPath extends FilePath
 
     protected NetworkPath(Port port, String root, List<String> elements)
     {
-        super(StringList.stringList(port.protocol().name()), root, elements);
+        super(stringList(port.protocol().name()), root, elements);
         this.port = port;
     }
 
@@ -240,12 +236,11 @@ public class NetworkPath extends FilePath
     {
         try
         {
-            return new URI(port.toString() + "/" + super.toString());
+            return new URI(port.toString() + "/" + this);
         }
         catch (URISyntaxException e)
         {
-            LOGGER.problem(e, "Unable to convert $ to a URI", this);
-            return null;
+            throw new IllegalStateException("Unable to convert " + this + " to a URI", e);
         }
     }
 

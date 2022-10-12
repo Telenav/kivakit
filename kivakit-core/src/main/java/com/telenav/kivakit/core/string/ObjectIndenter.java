@@ -25,7 +25,6 @@ import com.telenav.kivakit.core.language.reflection.Type;
 import com.telenav.kivakit.core.language.reflection.property.IncludeProperty;
 import com.telenav.kivakit.core.language.reflection.property.Property;
 import com.telenav.kivakit.core.language.reflection.property.PropertyFilter;
-import com.telenav.kivakit.core.string.IndentingStringBuilder.Style;
 import com.telenav.kivakit.core.value.count.Maximum;
 import com.telenav.kivakit.interfaces.string.StringFormattable;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
@@ -35,12 +34,19 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.function.Consumer;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static com.telenav.kivakit.core.language.reflection.Type.type;
+import static com.telenav.kivakit.core.language.reflection.property.PropertyFilter.kivakitProperties;
 import static com.telenav.kivakit.core.language.reflection.property.PropertyMemberSelector.KIVAKIT_INCLUDED_FIELDS;
 import static com.telenav.kivakit.core.language.reflection.property.PropertyMemberSelector.KIVAKIT_INCLUDED_FIELDS_AND_METHODS;
-import static com.telenav.kivakit.core.string.IndentingStringBuilder.Indentation;
+import static com.telenav.kivakit.core.string.CaseFormat.camelCaseToHyphenated;
+import static com.telenav.kivakit.core.string.Formatter.format;
+import static com.telenav.kivakit.core.string.IndentingStringBuilder.Indentation.indentation;
+import static com.telenav.kivakit.core.string.IndentingStringBuilder.Style.HTML;
+import static com.telenav.kivakit.core.string.IndentingStringBuilder.Style.TEXT;
+import static com.telenav.kivakit.core.string.StringConversions.toHumanizedString;
 
 /**
  * Holds state information during an object tree traversal by {@link AsIndentedString}.
@@ -102,7 +108,7 @@ public class ObjectIndenter
      */
     public ObjectIndenter(StringFormattable.Format format, int level)
     {
-        this(format, level, PropertyFilter.kivakitProperties(KIVAKIT_INCLUDED_FIELDS_AND_METHODS, KIVAKIT_INCLUDED_FIELDS));
+        this(format, level, kivakitProperties(KIVAKIT_INCLUDED_FIELDS_AND_METHODS, KIVAKIT_INCLUDED_FIELDS));
     }
 
     /**
@@ -115,11 +121,11 @@ public class ObjectIndenter
 
         if (format == StringFormattable.Format.HTML)
         {
-            indenter = new IndentingStringBuilder(Style.HTML, Indentation.indentation(12));
+            indenter = new IndentingStringBuilder(HTML, indentation(12));
         }
         else
         {
-            indenter = new IndentingStringBuilder(Style.TEXT, Indentation.indentation(2));
+            indenter = new IndentingStringBuilder(TEXT, indentation(2));
         }
 
         indenter.level(level);
@@ -130,7 +136,7 @@ public class ObjectIndenter
      */
     public void add(String line, Object... arguments)
     {
-        indenter.appendLine(Strings.format(line, arguments));
+        indenter.appendLine(format(line, arguments));
     }
 
     /**
@@ -174,18 +180,18 @@ public class ObjectIndenter
                 else
                 {
                     // and last of all, if we just have a vanilla object, loop through the properties of the object,
-                    var type = Type.type(object);
+                    var type = type(object);
                     var properties = type.properties(filter);
                     if (properties.isEmpty())
                     {
-                        labeled(CaseFormat.camelCaseToHyphenated(type.name()), toString(object));
+                        labeled(camelCaseToHyphenated(type.name()), toString(object));
                     }
                     else
                     {
                         for (var property : properties)
                         {
                             // get the property value
-                            var hyphenated = CaseFormat.camelCaseToHyphenated(property.name());
+                            var hyphenated = camelCaseToHyphenated(property.name());
                             var value = property.get(object);
                             if (value != null)
                             {
@@ -383,6 +389,6 @@ public class ObjectIndenter
         {
             return format.isHtml() ? "<span class='not-available'>N/A</font>" : "N/A";
         }
-        return StringConversions.toString(object);
+        return toHumanizedString(object);
     }
 }

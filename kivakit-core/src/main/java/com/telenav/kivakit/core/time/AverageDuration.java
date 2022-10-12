@@ -42,7 +42,7 @@ public class AverageDuration extends Average
      */
     public void add(Duration duration)
     {
-        super.add(duration.asMilliseconds());
+        add(duration.asMilliseconds());
     }
 
     /**
@@ -58,7 +58,7 @@ public class AverageDuration extends Average
      */
     public Duration maximumDuration()
     {
-        return milliseconds(super.maximum());
+        return milliseconds(maximum());
     }
 
     /**
@@ -66,7 +66,7 @@ public class AverageDuration extends Average
      */
     public Duration minimumDuration()
     {
-        return milliseconds(super.minimum());
+        return milliseconds(minimum());
     }
 
     /**
@@ -83,6 +83,6 @@ public class AverageDuration extends Average
      */
     public Duration totalDuration()
     {
-        return milliseconds(super.total());
+        return milliseconds(total());
     }
 }

@@ -92,7 +92,7 @@ public abstract class BaseIndexedMap<Key, Value> extends BaseMap<Key, Value> imp
     /** The list of values in insertion order */
     private final ObjectList<Value> list;
 
-    public BaseIndexedMap(Maximum maximumSize)
+    protected BaseIndexedMap(Maximum maximumSize)
     {
         super(maximumSize);
         list = new ObjectList<>(maximumSize);

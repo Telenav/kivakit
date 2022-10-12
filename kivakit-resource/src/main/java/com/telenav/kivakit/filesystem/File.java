@@ -63,8 +63,11 @@ import static com.telenav.kivakit.core.collections.set.ObjectSet.set;
 import static com.telenav.kivakit.core.ensure.Ensure.ensure;
 import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
 import static com.telenav.kivakit.core.messaging.Listener.nullListener;
+import static com.telenav.kivakit.core.string.Paths.pathHead;
+import static com.telenav.kivakit.filesystem.FilePath.parseFilePath;
 import static com.telenav.kivakit.filesystem.Folders.kivakitTemporaryFolder;
 import static com.telenav.kivakit.filesystem.loader.FileSystemServiceLoader.fileSystem;
+import static java.lang.System.currentTimeMillis;
 
 /**
  * File abstraction that adds integrates files with the KivaKit resource mini-framework and adds a variety of useful
@@ -188,7 +191,7 @@ public class File extends BaseWritableResource implements FileSystemObject
             PosixFilePermission.GROUP_WRITE, PosixFilePermission.GROUP_EXECUTE, PosixFilePermission.OTHERS_READ,
             PosixFilePermission.OTHERS_EXECUTE };
 
-    private static long temporaryFileNumber = System.currentTimeMillis();
+    private static long temporaryFileNumber = currentTimeMillis();
 
     /**
      * Returns a file for the given URI
@@ -237,10 +240,10 @@ public class File extends BaseWritableResource implements FileSystemObject
         }
         path = path.replaceFirst("^/", "");
 
-        var filesystem = fileSystem(listener, FilePath.parseFilePath(listener, path));
+        var filesystem = fileSystem(listener, parseFilePath(listener, path));
 
         var service = ensureNotNull(filesystem)
-                .fileService(FilePath.parseFilePath(listener, path));
+                .fileService(parseFilePath(listener, path));
 
         return new File(service);
     }
@@ -292,21 +295,21 @@ public class File extends BaseWritableResource implements FileSystemObject
     public static File parseFile(@NotNull Listener listener, @NotNull String path)
     {
         // If there is a KivaKit scheme, like "s3", "hdfs" or "java",
-        var scheme = Paths.pathHead(path, ":");
+        var scheme = pathHead(path, ":");
         if (scheme != null)
         {
             // parse the rest of the path into a FilePath,
-            var filePath = FilePath.parseFilePath(listener, Paths.pathTail(path, ":"));
+            var filePath = parseFilePath(listener, Paths.pathTail(path, ":"));
 
             // then prepend the KivaKit scheme to the list of schemes in the parsed FilePath,
             var schemes = filePath.schemes().copy();
             schemes.prepend(scheme);
 
             // and create the file.
-            return File.file(listener, filePath.withSchemes(schemes));
+            return file(listener, filePath.withSchemes(schemes));
         }
 
-        return File.file(listener, FilePath.parseFilePath(listener, path));
+        return file(listener, parseFilePath(listener, path));
     }
 
     /**
@@ -354,13 +357,13 @@ public class File extends BaseWritableResource implements FileSystemObject
             {
                 return false;
             }
-            return fileSystem(nullListener(), FilePath.parseFilePath(this, identifier.identifier())) != null;
+            return fileSystem(nullListener(), parseFilePath(this, identifier.identifier())) != null;
         }
 
         @Override
         public Resource resolve(@NotNull ResourceIdentifier identifier)
         {
-            return File.parseFile(this, identifier.identifier());
+            return parseFile(this, identifier.identifier());
         }
     }
 
@@ -391,7 +394,7 @@ public class File extends BaseWritableResource implements FileSystemObject
      */
     public File absolute()
     {
-        return File.file(this, path().asAbsolute());
+        return file(this, path().asAbsolute());
     }
 
     /**
@@ -428,7 +431,7 @@ public class File extends BaseWritableResource implements FileSystemObject
     @Override
     public ObjectSet<Action> can()
     {
-        return ObjectSet.set(Action.DELETE, Action.RENAME);
+        return set(Action.DELETE, Action.RENAME);
     }
 
     /**
@@ -662,7 +665,7 @@ public class File extends BaseWritableResource implements FileSystemObject
      */
     public File normalized()
     {
-        return File.file(this, service.path().normalized());
+        return file(this, service.path().normalized());
     }
 
     @Override
@@ -711,7 +714,7 @@ public class File extends BaseWritableResource implements FileSystemObject
     public File relativeTo(@NotNull ResourceFolder<?> folder)
     {
         var service = ((Folder) folder).service();
-        return File.file(this, this.service.relativePath(service).withoutTrailingSlash());
+        return file(this, this.service.relativePath(service).withoutTrailingSlash());
     }
 
     /**
@@ -771,7 +774,7 @@ public class File extends BaseWritableResource implements FileSystemObject
      */
     public File withBaseName(@NotNull String name)
     {
-        var file = File.file(this, path().parent().withChild(name));
+        var file = file(this, path().parent().withChild(name));
         if (extension() != null)
         {
             return file.withExtension(extension());
@@ -822,7 +825,7 @@ public class File extends BaseWritableResource implements FileSystemObject
             {
                 if (file.fileName().endsWith(extension))
                 {
-                    file = parseFile(this, Strip.ending(path().toString(), extension.toString()));
+                    file = parseFile(this, Strip.stripEnding(path().toString(), extension.toString()));
                     removedOne = true;
                 }
             }

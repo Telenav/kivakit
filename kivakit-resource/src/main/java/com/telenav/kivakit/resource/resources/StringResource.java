@@ -36,7 +36,10 @@ import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTE
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.messaging.Listener.nullListener;
+import static com.telenav.kivakit.core.time.Time.now;
+import static com.telenav.kivakit.core.value.count.Bytes.bytes;
 import static com.telenav.kivakit.resource.ResourcePath.parseUnixResourcePath;
+import static java.lang.Integer.toHexString;
 
 /**
  * A {@link ReadableResource} formed from a string passed to the constructor {@link #StringResource(String)}.
@@ -53,7 +56,7 @@ public class StringResource extends BaseReadableResource
     private final String text;
 
     /** The time of creation of this object */
-    private final Time created = Time.now();
+    private final Time created = now();
 
     /**
      * @param text The text to read
@@ -61,7 +64,7 @@ public class StringResource extends BaseReadableResource
     public StringResource(@NotNull String text)
     {
         this(parseUnixResourcePath(nullListener(),
-                "/objects/String@" + Integer.toHexString(text.hashCode())), text);
+                "/objects/String@" + toHexString(text.hashCode())), text);
     }
 
     /**
@@ -99,7 +102,7 @@ public class StringResource extends BaseReadableResource
     @Override
     public Bytes sizeInBytes()
     {
-        return Bytes.bytes(text.length());
+        return bytes(text.length());
     }
 
     /**

@@ -21,7 +21,6 @@ package com.telenav.kivakit.core.language.reflection;
 import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.collections.list.ObjectList;
 import com.telenav.kivakit.core.internal.lexakai.DiagramReflection;
-import com.telenav.kivakit.core.language.Hash;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import org.jetbrains.annotations.NotNull;
 
@@ -34,6 +33,7 @@ import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTE
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
 import static com.telenav.kivakit.core.language.Classes.simpleName;
+import static com.telenav.kivakit.core.language.Hash.hashMany;
 import static com.telenav.kivakit.core.language.reflection.Type.typeForClass;
 
 /**
@@ -226,7 +226,7 @@ public class Field extends Member
     @Override
     public int hashCode()
     {
-        return Hash.hashMany(System.identityHashCode(parentObject), field);
+        return hashMany(System.identityHashCode(parentObject), field);
     }
 
     /**

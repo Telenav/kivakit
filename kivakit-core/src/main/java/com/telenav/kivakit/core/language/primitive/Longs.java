@@ -29,6 +29,10 @@ import java.util.Random;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static java.lang.Long.toHexString;
+import static java.lang.Math.max;
+import static java.lang.Math.min;
+import static java.lang.String.format;
 
 /**
  * Utility methods for <i>int</i> values.
@@ -97,7 +101,7 @@ public class Longs
 
     public static long longInRangeInclusive(long value, long min, long max)
     {
-        return Math.min(Math.max(value, min), max);
+        return min(max(value, min), max);
     }
 
     /**
@@ -193,7 +197,7 @@ public class Longs
      */
     public static String longToHex(long value)
     {
-        return Long.toHexString(value);
+        return toHexString(value);
     }
 
     /**
@@ -201,7 +205,7 @@ public class Longs
      */
     public static String longToHex(long value, long length)
     {
-        return String.format("%0" + length + "x", value);
+        return format("%0" + length + "x", value);
     }
 
     public static long parseFastLong(String string)

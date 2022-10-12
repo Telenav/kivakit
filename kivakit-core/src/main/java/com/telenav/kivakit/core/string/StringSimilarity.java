@@ -20,13 +20,15 @@ package com.telenav.kivakit.core.string;
 
 import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramString;
-import com.telenav.kivakit.core.language.primitive.Doubles;
 import com.telenav.kivakit.core.value.level.Percent;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static com.telenav.kivakit.core.language.primitive.Doubles.doubleInRange;
+import static com.telenav.kivakit.core.value.level.Percent.percent;
+import static java.lang.Math.min;
 
 /**
  * Methods for comparing strings, including by <a href="https://en.wikipedia.org/wiki/Levenshtein_distance">Levenshtein
@@ -73,7 +75,7 @@ public class StringSimilarity
         {
             return Percent._0;
         }
-        return Percent.percent(Doubles.doubleInRange(100.0 * lexicalDistance / a.length(), 0.0, 100.0));
+        return percent(doubleInRange(100.0 * lexicalDistance / a.length(), 0.0, 100.0));
     }
 
     /**
@@ -153,6 +155,6 @@ public class StringSimilarity
      */
     private static int minimum(int a, int b, int c)
     {
-        return Math.min(a, Math.min(b, c));
+        return min(a, min(b, c));
     }
 }

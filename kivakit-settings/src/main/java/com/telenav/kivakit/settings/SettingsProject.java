@@ -28,6 +28,6 @@ public class SettingsProject extends Project
     public ObjectSet<Class<? extends Project>> dependencies()
     {
         // Settings stores depend on .properties and .json serialization
-        return ObjectSet.set(PropertiesSerializationProject.class, GsonSerializationProject.class);
+        return set(PropertiesSerializationProject.class, GsonSerializationProject.class);
     }
 }

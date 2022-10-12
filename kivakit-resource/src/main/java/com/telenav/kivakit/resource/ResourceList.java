@@ -19,17 +19,18 @@
 package com.telenav.kivakit.resource;
 
 import com.telenav.kivakit.annotations.code.quality.CodeQuality;
-import com.telenav.kivakit.core.collections.iteration.Iterables;
-import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.interfaces.comparison.Matcher;
 import com.telenav.kivakit.resource.internal.lexakai.DiagramResource;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
 import org.jetbrains.annotations.NotNull;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static com.telenav.kivakit.core.collections.iteration.Iterables.iterable;
+import static com.telenav.kivakit.core.messaging.Listener.throwingListener;
+import static com.telenav.kivakit.resource.Resource.resolveResource;
 
 /**
  * A list of {@link Resource}s. Adds the methods:
@@ -64,7 +65,7 @@ public class ResourceList extends BaseResourceList<Resource>
      */
     public static ResourceList resourceList(@NotNull Resource... resources)
     {
-        return resourceList(Iterables.iterable(resources));
+        return resourceList(iterable(resources));
     }
 
     public ResourceList()
@@ -85,7 +86,7 @@ public class ResourceList extends BaseResourceList<Resource>
     @Override
     protected Resource newResource(@NotNull ResourcePath path)
     {
-        return Resource.resolveResource(Listener.throwingListener(), path);
+        return resolveResource(throwingListener(), path);
     }
 
     /**

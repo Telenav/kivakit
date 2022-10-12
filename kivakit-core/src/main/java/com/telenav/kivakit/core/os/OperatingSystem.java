@@ -39,6 +39,8 @@ import static com.telenav.kivakit.core.os.OperatingSystem.OperatingSystemType.WI
 import static com.telenav.kivakit.core.os.OperatingSystem.ProcessorArchitecture.APPLE;
 import static com.telenav.kivakit.core.os.OperatingSystem.ProcessorArchitecture.INTEL;
 import static com.telenav.kivakit.core.os.OperatingSystem.ProcessorArchitecture.OTHER_PROCESSOR;
+import static com.telenav.kivakit.core.os.Processes.captureOutput;
+import static com.telenav.kivakit.core.os.Processes.waitForTermination;
 
 /**
  * An abstraction of features of the underlying OS through Java interfaces. This object is a singleton, which can be
@@ -148,8 +150,8 @@ public class OperatingSystem implements Named
             builder.directory(folder);
             builder.redirectErrorStream(true);
             var process = builder.start();
-            var output = Processes.captureOutput(listener, process);
-            Processes.waitForTermination(process);
+            var output = captureOutput(listener, process);
+            waitForTermination(process);
             return output;
         }
         catch (IOException e)

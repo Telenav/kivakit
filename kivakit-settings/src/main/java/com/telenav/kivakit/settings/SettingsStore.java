@@ -87,7 +87,7 @@ public interface SettingsStore extends
      *
      * @return The access modes this store supports
      */
-    Set<AccessMode> accessModes();
+    ObjectSet<AccessMode> accessModes();
 
     /**
      * <b>Service Provider API</b>

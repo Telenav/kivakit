@@ -20,7 +20,6 @@ package com.telenav.kivakit.core.thread;
 
 import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.code.UncheckedVoidCode;
-import com.telenav.kivakit.core.ensure.Ensure;
 import com.telenav.kivakit.core.internal.lexakai.DiagramThread;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.messaging.Repeater;
@@ -40,15 +39,17 @@ import org.jetbrains.annotations.MustBeInvokedByOverriders;
 import java.util.HashSet;
 import java.util.Set;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
 import static com.telenav.kivakit.core.thread.KivaKitThread.State.CREATED;
 import static com.telenav.kivakit.core.thread.KivaKitThread.State.EXITED;
 import static com.telenav.kivakit.core.thread.KivaKitThread.State.RAN;
 import static com.telenav.kivakit.core.thread.KivaKitThread.State.RUNNING;
 import static com.telenav.kivakit.core.thread.KivaKitThread.State.STOP_REQUESTED;
 import static com.telenav.kivakit.core.thread.KivaKitThread.State.WAITING;
+import static com.telenav.kivakit.core.time.Time.now;
 
 /**
  * A thread with methods to start, pause, resume and stop (pause and resume are implemented only in
@@ -376,7 +377,7 @@ public class KivaKitThread extends BaseRepeater implements
             {
                 try
                 {
-                    startedAt = Time.now();
+                    startedAt = now();
                     trace("Starting");
                     thread.start();
                 }
@@ -487,7 +488,7 @@ public class KivaKitThread extends BaseRepeater implements
      */
     protected void onRun()
     {
-        Ensure.ensureNotNull(code, "Must either provide code to thread constructor or override onRun()");
+        ensureNotNull(code, "Must either provide code to thread constructor or override onRun()");
         code.run();
     }
 

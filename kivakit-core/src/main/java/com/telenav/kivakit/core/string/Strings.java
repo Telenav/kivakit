@@ -27,6 +27,8 @@ import java.util.regex.Pattern;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static java.lang.Character.*;
+import static java.lang.Math.min;
 
 /**
  * General purpose utilities for Java strings.
@@ -45,7 +47,7 @@ import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
  *     <li>{@link #containsAnyOf(String, String)}</li>
  *     <li>{@link #isAllBytes(String)}</li>
  *     <li>{@link #isAscii(String)}</li>
- *     <li>{@link #isEmpty(String)}</li>
+ *     <li>{@link #isNullOrEmpty(String)}</li>
  *     <li>{@link #isExtendedAscii(String)}</li>
  *     <li>{@link #isJavaIdentifier(String)}</li>
  *     <li>{@link #isLowerCase(String)}</li>
@@ -61,7 +63,7 @@ import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
  *     <li>{@link #doubleQuoted(String)}</li>
  *     <li>{@link #ensureEndsWith(String, String)}</li>
  *     <li>{@link #extractFirstGroup(String, String)}</li>
- *     <li>{@link #format(String, Object...)}</li>
+ *     <li>{@link Formatter#format(String, Object...)}</li>
  *     <li>{@link #leading(String, int)}</li>
  *     <li>{@link #nthCharacter(String, int, char)}</li>
  *     <li>{@link #occurrences(String, char)}</li>
@@ -116,7 +118,7 @@ public class Strings
         var digits = 0;
         for (var i = 0; i < text.length(); i++)
         {
-            if (Character.isDigit(text.charAt(i)))
+            if (isDigit(text.charAt(i)))
             {
                 digits++;
             }
@@ -188,11 +190,6 @@ public class Strings
         return null;
     }
 
-    public static String format(String message, Object... arguments)
-    {
-        return Formatter.format(message, arguments);
-    }
-
     /**
      * Returns true if every character in the given text is a byte value
      */
@@ -226,7 +223,7 @@ public class Strings
     /**
      * Returns true if the string is null, empty or contains only whitespace
      */
-    public static boolean isEmpty(String text)
+    public static boolean isNullOrEmpty(String text)
     {
         return text == null || text.isEmpty() || text.trim().isEmpty();
     }
@@ -251,15 +248,15 @@ public class Strings
      */
     public static boolean isJavaIdentifier(String text)
     {
-        if (!isEmpty(text))
+        if (!isNullOrEmpty(text))
         {
-            if (!Character.isJavaIdentifierStart(text.charAt(0)))
+            if (!isJavaIdentifierStart(text.charAt(0)))
             {
                 return false;
             }
             for (var i = 1; i < text.length(); i++)
             {
-                if (!Character.isJavaIdentifierPart(text.charAt(i)))
+                if (!isJavaIdentifierPart(text.charAt(i)))
                 {
                     return false;
                 }
@@ -282,13 +279,13 @@ public class Strings
      */
     public static boolean isNaturalNumber(String string)
     {
-        if (isEmpty(string))
+        if (isNullOrEmpty(string))
         {
             return false;
         }
         for (var i = 0; i < string.length(); i++)
         {
-            if (!Character.isDigit(string.charAt(i)))
+            if (!isDigit(string.charAt(i)))
             {
                 return false;
             }
@@ -316,7 +313,7 @@ public class Strings
      */
     public static String leading(String text, int n)
     {
-        var length = Math.min(text.length(), n);
+        var length = min(text.length(), n);
         return text.substring(0, length);
     }
 
@@ -478,7 +475,7 @@ public class Strings
      */
     public static String trailing(String string, int n)
     {
-        var length = Math.min(string.length(), n);
+        var length = min(string.length(), n);
         return string.substring(string.length() - length);
     }
 

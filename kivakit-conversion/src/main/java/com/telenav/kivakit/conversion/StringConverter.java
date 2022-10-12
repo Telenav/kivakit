@@ -29,6 +29,7 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static com.telenav.kivakit.core.collections.list.StringList.split;
 
 /**
  * A bidirectional converter between {@link String} values and values of the given type. The {@link Converter} interface
@@ -82,7 +83,7 @@ public interface StringConverter<Value> extends
      */
     default ObjectList<Value> convertToList(String value, String delimiter)
     {
-        return convertToList(StringList.split(value, delimiter));
+        return convertToList(split(value, delimiter));
     }
 
     /**
@@ -109,7 +110,7 @@ public interface StringConverter<Value> extends
      */
     default ObjectSet<Value> convertToSet(String value, String delimiter)
     {
-        return convertToSet(StringList.split(value, delimiter));
+        return convertToSet(split(value, delimiter));
     }
 
     /**

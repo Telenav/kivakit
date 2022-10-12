@@ -29,6 +29,7 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static com.telenav.kivakit.core.time.Time.now;
 
 /**
  * Formats log entries into flexible delimited columns.
@@ -70,7 +71,7 @@ public class WideLogFormatter extends BaseColumnarFormatter
     private final Column sequenceNumberColumn = new Column(6, 10, ColumnLayout.CLIP_RIGHT);
 
     /** The time this formatter was created */
-    private final Time start = Time.now();
+    private final Time start = now();
 
     /** The thread name column */
     private final Column threadColumn = new Column(16, 24, ColumnLayout.CLIP_LEFT);

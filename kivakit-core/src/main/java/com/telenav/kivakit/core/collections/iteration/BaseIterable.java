@@ -31,6 +31,7 @@ import java.util.Iterator;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static com.telenav.kivakit.interfaces.comparison.Matcher.matchAll;
 
 /**
  * Implements the {@link Iterable} interface by using a {@link NextIterator} object to find the next value when
@@ -59,7 +60,7 @@ import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 public abstract class BaseIterable<Value> implements Iterable<Value>
 {
     /** A filter to restrict values in the sequence */
-    private Matcher<Value> matcher = Matcher.matchAll();
+    private Matcher<Value> matcher = matchAll();
 
     /**
      * {@inheritDoc}

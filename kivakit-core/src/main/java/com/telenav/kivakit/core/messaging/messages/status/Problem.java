@@ -19,13 +19,13 @@
 package com.telenav.kivakit.core.messaging.messages.status;
 
 import com.telenav.kivakit.core.internal.lexakai.DiagramMessageType;
-import com.telenav.kivakit.core.messaging.Message;
 import com.telenav.kivakit.core.messaging.messages.OperationStatusMessage;
 import com.telenav.kivakit.core.messaging.messages.Severity;
 import com.telenav.kivakit.core.messaging.messages.lifecycle.OperationHalted;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import static com.telenav.kivakit.core.messaging.Message.Status.PROBLEM;
+import static com.telenav.kivakit.core.messaging.Message.escapeMessageText;
 import static com.telenav.kivakit.core.messaging.messages.Severity.HIGH;
 
 /**
@@ -62,7 +62,7 @@ public class Problem extends OperationStatusMessage
 
     public Problem(Throwable cause, String message, Object... arguments)
     {
-        super(message + (cause == null ? "" : ": " + Message.escapeMessageText(
+        super(message + (cause == null ? "" : ": " + escapeMessageText(
                 cause.getMessage() == null
                         ? cause.getClass().toString()
                         : cause.getMessage())));

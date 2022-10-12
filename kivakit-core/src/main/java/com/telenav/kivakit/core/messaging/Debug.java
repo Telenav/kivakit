@@ -20,14 +20,9 @@ package com.telenav.kivakit.core.messaging;
 
 import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.KivaKit;
-import com.telenav.kivakit.core.ensure.Ensure;
 import com.telenav.kivakit.core.internal.lexakai.DiagramBroadcaster;
-import com.telenav.kivakit.core.language.Patterns;
 import com.telenav.kivakit.core.logging.Logger;
-import com.telenav.kivakit.core.logging.LoggerFactory;
 import com.telenav.kivakit.core.messaging.context.CallStack;
-import com.telenav.kivakit.core.project.StartUpOptions;
-import com.telenav.kivakit.core.string.AsciiArt;
 import com.telenav.kivakit.interfaces.messaging.Transmittable;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
@@ -37,7 +32,15 @@ import java.util.Map;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
+import static com.telenav.kivakit.core.language.Patterns.patternMatches;
+import static com.telenav.kivakit.core.language.Patterns.simplifiedPattern;
+import static com.telenav.kivakit.core.logging.LoggerFactory.newLogger;
+import static com.telenav.kivakit.core.messaging.Listener.nullListener;
 import static com.telenav.kivakit.core.project.Project.resolveProject;
+import static com.telenav.kivakit.core.project.StartUpOptions.StartupOption.QUIET;
+import static com.telenav.kivakit.core.project.StartUpOptions.isStartupOptionEnabled;
+import static com.telenav.kivakit.core.string.AsciiArt.textBox;
 
 /**
  * <b>Note</b>: For a detailed discussion, see <a href="https://tinyurl.com/2xycuvph">KivaKit Debugging
@@ -80,14 +83,13 @@ import static com.telenav.kivakit.core.project.Project.resolveProject;
  * @author jonathanl (shibo)
  * @see <a href="https://tinyurl.com/2xycuvph">KivaKit Debugging Documentation</a>
  */
-@SuppressWarnings("SpellCheckingInspection")
 @UmlClassDiagram(diagram = DiagramBroadcaster.class)
 @CodeQuality(stability = STABLE_EXTENSIBLE,
              testing = UNTESTED,
              documentation = DOCUMENTATION_COMPLETE)
 public final class Debug implements MessageTransceiver
 {
-    private static final Logger LOGGER = LoggerFactory.newLogger();
+    private static final Logger LOGGER = newLogger();
 
     /** True if debugging in general is enabled */
     private static final Boolean debugging;
@@ -140,8 +142,7 @@ public final class Debug implements MessageTransceiver
     {
         classToDebug.put(type, this);
         debugOn = (isDebugOn(type) == Boolean.TRUE);
-        Ensure.ensureNotNull(transceiver);
-        this.transceiver = transceiver;
+        this.transceiver = ensureNotNull(transceiver);
     }
 
     /**
@@ -187,7 +188,7 @@ public final class Debug implements MessageTransceiver
         {
             return (Listener) transceiver;
         }
-        return Listener.nullListener();
+        return nullListener();
     }
 
     /**
@@ -269,9 +270,9 @@ public final class Debug implements MessageTransceiver
                 var log = property("KIVAKIT_LOG");
                 var kivakitVersion = resolveProject(KivaKit.class).kivakitVersion();
                 var title = "KivaKit " + kivakitVersion + " (" + resolveProject(KivaKit.class).build() + ")";
-                if (!StartUpOptions.isStartupOptionEnabled(StartUpOptions.StartupOption.QUIET))
+                if (!isStartupOptionEnabled(QUIET))
                 {
-                    LOGGER.information(AsciiArt.textBox(title, "      Logging: https://tinyurl.com/mhc3ss5s\n"
+                    LOGGER.information(textBox(title, "      Logging: https://tinyurl.com/mhc3ss5s\n"
                                     + "    Debugging: https://tinyurl.com/2xycuvph\n"
                                     + "  KIVAKIT_LOG: $\n"
                                     + "KIVAKIT_DEBUG: $",
@@ -312,13 +313,13 @@ public final class Debug implements MessageTransceiver
 
     private static boolean matches(Class<?> type, String simplifiedPattern, boolean checkParent)
     {
-        var pattern = Patterns.simplifiedPattern(simplifiedPattern);
+        var pattern = simplifiedPattern(simplifiedPattern);
         if (checkParent)
         {
             for (var at = type; at != null; at = at.getSuperclass())
             {
-                if (Patterns.matches(pattern, at.getSimpleName())
-                        || Patterns.matches(pattern, at.getName()))
+                if (patternMatches(pattern, at.getSimpleName())
+                        || patternMatches(pattern, at.getName()))
                 {
                     return true;
                 }
@@ -327,8 +328,8 @@ public final class Debug implements MessageTransceiver
         }
         else
         {
-            return Patterns.matches(pattern, type.getSimpleName())
-                    || Patterns.matches(pattern, type.getName());
+            return patternMatches(pattern, type.getSimpleName())
+                    || patternMatches(pattern, type.getName());
         }
     }
 

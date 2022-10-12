@@ -19,7 +19,6 @@
 package com.telenav.kivakit.core.messaging.listeners;
 
 import com.telenav.kivakit.annotations.code.quality.CodeQuality;
-import com.telenav.kivakit.core.ensure.Ensure;
 import com.telenav.kivakit.core.internal.lexakai.DiagramListenerType;
 import com.telenav.kivakit.core.messaging.Message;
 import com.telenav.kivakit.core.messaging.messages.status.Problem;
@@ -32,9 +31,11 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static com.telenav.kivakit.core.ensure.Ensure.fail;
+import static com.telenav.kivakit.core.value.count.Count.count;
 
 /**
  * Listens to messages to determine if the expected number and type of messages were received during some operation.
@@ -43,7 +44,7 @@ import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
  * {@link Problem} message and return null.
  * <pre>
  * new MessageChecker().expect(Problem.class).check(() -&gt;
- *     ensureEqual(null, new Duration.SecondsConverter(Listener.none()).convert("x")));
+ *     ensureEqual(null, new Duration.SecondsConverter(nullListener()).convert("x")));
  * </pre>
  *
  * @author jonathanl (shibo)
@@ -122,11 +123,11 @@ public class MessageChecker extends BaseRepeater
         var expected = expectedCount.get(messageClass);
         if (expected == null)
         {
-            expectedCount.put(messageClass, Count.count(count));
+            expectedCount.put(messageClass, count(count));
         }
         else
         {
-            Ensure.fail("Already have an expectation for: " + messageClass);
+            fail("Already have an expectation for: " + messageClass);
         }
         return this;
     }

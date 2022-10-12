@@ -23,6 +23,8 @@ import com.telenav.kivakit.core.bits.BitDiagram.BitField;
 import com.telenav.kivakit.internal.testing.CoreUnitTest;
 import org.junit.Test;
 
+import static java.lang.Integer.parseInt;
+
 /**
  * Test access to bit fields.
  *
@@ -64,6 +66,6 @@ public class BitDiagramTest extends CoreUnitTest
 
     private int binary(String value)
     {
-        return Integer.parseInt(value, 2);
+        return parseInt(value, 2);
     }
 }

@@ -8,16 +8,47 @@ import java.util.HashMap;
 
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
-import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static com.telenav.kivakit.annotations.code.quality.Testing.TESTED;
 
 /**
  * A {@link Mixin} that allows any object to have a set of attributes associated with it.
  *
+ * <p><b>Attributes</b></p>
+ *
+ * <ul>
+ *     <li>{@link #attribute(Object)}</li>
+ *     <li>{@link #attribute(Object, Object)}</li>
+ *     <li>{@link #attributes()}</li>
+ * </ul>
+ *
+ * <p><b>Example</b></p>
+ *
+ * <pre>
+ * class A implements AttributesMixin&lt;String, String&gt;
+ * {
+ * }
+ *
+ * class B implements AttributesMixin&lt;String, String&gt;
+ * {
+ * }
+ *
+ * var a = new A();
+ * var b = new B();
+ *
+ * a.attribute("name", "Shibo");
+ * b.attribute("name", "Yinyin");
+ *
+ * assertEquals("Shibo", a.attribute("name"));
+ * assertEquals("Yinyin", b.attribute("name"));
+ * </pre>
+ *
  * @author jonathanl (shibo)
+ * @see Mixin
  */
+@SuppressWarnings("SpellCheckingInspection")
 @UmlClassDiagram(diagram = DiagramMixin.class)
 @CodeQuality(stability = STABLE,
-             testing = UNTESTED,
+             testing = TESTED,
              documentation = DOCUMENTATION_COMPLETE)
 public interface AttributesMixin<Key, Value> extends Mixin
 {

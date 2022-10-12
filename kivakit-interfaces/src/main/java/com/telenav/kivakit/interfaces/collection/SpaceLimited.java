@@ -5,6 +5,7 @@ import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
+import static java.lang.Math.max;
 
 /**
  * An object that can store a limited number of values.
@@ -58,7 +59,7 @@ public interface SpaceLimited extends Sized
      */
     default int roomLeft()
     {
-        return Math.max(0, totalRoom() - size());
+        return max(0, totalRoom() - size());
     }
 
     /**

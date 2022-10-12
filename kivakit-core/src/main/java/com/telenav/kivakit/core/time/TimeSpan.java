@@ -5,6 +5,7 @@ import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static com.telenav.kivakit.core.time.Time.now;
 
 /**
  * A span of time
@@ -62,7 +63,7 @@ public class TimeSpan
      */
     public static TimeSpan timeSpanFromNow(Duration duration)
     {
-        var now = Time.now();
+        var now = now();
         return timeSpan(now, now.plus(duration));
     }
 
@@ -71,7 +72,7 @@ public class TimeSpan
      */
     public static TimeSpan timeSpanToNow(Duration duration)
     {
-        var now = Time.now();
+        var now = now();
         return timeSpan(now.minus(duration), now);
     }
 

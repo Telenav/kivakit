@@ -22,7 +22,6 @@ import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.commandline.SwitchParser;
 import com.telenav.kivakit.conversion.BaseStringConverter;
 import com.telenav.kivakit.conversion.core.language.primitive.IntegerConverter;
-import com.telenav.kivakit.core.language.Hash;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.string.AsString;
 import com.telenav.kivakit.core.string.FormatProperty;
@@ -39,14 +38,18 @@ import java.net.Socket;
 import java.net.URI;
 import java.net.URISyntaxException;
 
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.commandline.SwitchParser.switchParser;
+import static com.telenav.kivakit.core.language.Hash.hashMany;
+import static com.telenav.kivakit.core.messaging.Listener.consoleListener;
 import static com.telenav.kivakit.network.core.Protocol.HTTP;
 import static com.telenav.kivakit.network.core.Protocol.HTTPS;
+import static com.telenav.kivakit.network.core.Protocol.defaultProtocolForPort;
+import static com.telenav.kivakit.network.core.Protocol.parseProtocol;
 
 /**
  * A host, port and protocol. The port has a number, accessible with {@link #portNumber()}, it exists on a {@link Host}
@@ -125,7 +128,7 @@ public class Port implements AsString
         var host = new Host(uri.getHost());
         var scheme = uri.getScheme();
         var port = uri.getPort();
-        var protocol = Protocol.parseProtocol(Listener.consoleListener(), scheme);
+        var protocol = parseProtocol(consoleListener(), scheme);
         return new Port(host, port, protocol);
     }
 
@@ -205,7 +208,7 @@ public class Port implements AsString
      */
     public Port(Host host, int portNumber)
     {
-        this(host, portNumber, Protocol.defaultProtocolForPort(portNumber));
+        this(host, portNumber, defaultProtocolForPort(portNumber));
     }
 
     /**
@@ -277,7 +280,7 @@ public class Port implements AsString
      */
     public Protocol defaultProtocol()
     {
-        return Protocol.defaultProtocolForPort(portNumber);
+        return defaultProtocolForPort(portNumber);
     }
 
     @Override
@@ -294,7 +297,7 @@ public class Port implements AsString
     @Override
     public int hashCode()
     {
-        return Hash.hashMany(portNumber, host);
+        return hashMany(portNumber, host);
     }
 
     /**

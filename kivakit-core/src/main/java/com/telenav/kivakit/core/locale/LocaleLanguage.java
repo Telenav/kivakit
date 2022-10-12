@@ -332,6 +332,6 @@ public class LocaleLanguage extends Name implements Comparable<LocaleLanguage>
      */
     public Locale world()
     {
-        return new Locale(WORLD, LocaleLanguage.allLanguages());
+        return new Locale(WORLD, allLanguages());
     }
 }

@@ -29,6 +29,7 @@ import com.telenav.lexakai.annotations.visibility.UmlExcludeMember;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static com.telenav.kivakit.core.language.primitive.Booleans.*;
 
 /**
  * Converts between booleans and strings. Several values in addition to "true" and "false" can be used to represent
@@ -57,11 +58,11 @@ public class BooleanConverter extends BaseStringConverter<Boolean>
     @UmlExcludeMember
     protected Boolean onToValue(String value)
     {
-        if (Booleans.isTrue(value))
+        if (isTrue(value))
         {
             return true;
         }
-        if (Booleans.isFalse(value))
+        if (isFalse(value))
         {
             return false;
         }

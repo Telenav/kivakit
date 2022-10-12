@@ -9,13 +9,13 @@ import com.telenav.kivakit.core.version.Version;
 import com.telenav.kivakit.serialization.kryo.internal.lexakai.DiagramKryo;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
-import java.util.Objects;
-
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
 import static com.telenav.kivakit.core.ensure.Ensure.unsupported;
+import static com.telenav.kivakit.serialization.kryo.KryoSerializationSession.kryoSerializationSession;
+import static java.util.Objects.requireNonNull;
 
 /**
  * Kryo serializer extension class for serializing a particular type of object. Provides a thread-local version to
@@ -37,7 +37,7 @@ public abstract class BaseSerializer<Value> extends Serializer<Value>
      */
     public static void version(Version version)
     {
-        threadLocalVersion.set(Objects.requireNonNull(version));
+        threadLocalVersion.set(requireNonNull(version));
     }
 
     /** The type for this serializer */
@@ -48,7 +48,7 @@ public abstract class BaseSerializer<Value> extends Serializer<Value>
      */
     protected BaseSerializer(Class<Value> type)
     {
-        this.type = Objects.requireNonNull(type);
+        this.type = requireNonNull(type);
     }
 
     /**
@@ -59,7 +59,7 @@ public abstract class BaseSerializer<Value> extends Serializer<Value>
     @Override
     public Value read(Kryo kryo, Input input, Class<? extends Value> type)
     {
-        return onRead(KryoSerializationSession.kryoSerializationSession(kryo));
+        return onRead(kryoSerializationSession(kryo));
     }
 
     /**
@@ -78,7 +78,7 @@ public abstract class BaseSerializer<Value> extends Serializer<Value>
     @Override
     public final void write(Kryo kryo, Output output, Value value)
     {
-        onWrite(KryoSerializationSession.kryoSerializationSession(kryo), value);
+        onWrite(kryoSerializationSession(kryo), value);
     }
 
     /**

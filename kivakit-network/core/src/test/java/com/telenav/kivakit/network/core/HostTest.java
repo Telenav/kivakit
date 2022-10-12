@@ -18,10 +18,10 @@
 
 package com.telenav.kivakit.network.core;
 
-import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.testing.UnitTest;
 import org.junit.Test;
 
+import static com.telenav.kivakit.core.messaging.Listener.nullListener;
 import static com.telenav.kivakit.network.core.LocalHost.localhost;
 
 public class HostTest extends UnitTest
@@ -36,6 +36,6 @@ public class HostTest extends UnitTest
     public void testConverter()
     {
         ensureEqual(new Host("google.com"),
-                new Host.Converter(Listener.nullListener()).convert("google.com"));
+                new Host.Converter(nullListener()).convert("google.com"));
     }
 }

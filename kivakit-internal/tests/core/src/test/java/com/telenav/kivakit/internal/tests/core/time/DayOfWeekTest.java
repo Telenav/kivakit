@@ -107,8 +107,8 @@ public class DayOfWeekTest extends CoreUnitTest
 
         var map = new HashMap<DayOfWeek, Integer>();
 
-        rangeInclusive(_1, _7).forEachInt(at -> map.put(DayOfWeek.javaDayOfWeek(at), at));
-        rangeInclusive(_1, _7).forEachInt(at -> ensureEqual(map.get(DayOfWeek.javaDayOfWeek(at)), at));
+        rangeInclusive(_1, _7).forEachInt(at -> map.put(javaDayOfWeek(at), at));
+        rangeInclusive(_1, _7).forEachInt(at -> ensureEqual(map.get(javaDayOfWeek(at)), at));
     }
 
     @Test

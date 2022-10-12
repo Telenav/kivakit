@@ -18,17 +18,18 @@
 
 package com.telenav.kivakit.internal.tests.resource;
 
-import com.telenav.kivakit.properties.PropertyMap;
-import com.telenav.kivakit.resource.Resource;
 import com.telenav.kivakit.testing.UnitTest;
 import org.junit.Test;
+
+import static com.telenav.kivakit.properties.PropertyMap.loadPropertyMap;
+import static com.telenav.kivakit.resource.Resource.resolveResource;
 
 public class ResourceTest extends UnitTest
 {
     @Test
     public void testResolution()
     {
-        var properties = Resource.resolveResource(this, "classpath:com/telenav/kivakit/internal/tests/resource/ResourceTest.properties");
-        ensureEqual("b", PropertyMap.loadPropertyMap(this, properties).get("a"));
+        var properties = resolveResource(this, "classpath:com/telenav/kivakit/internal/tests/resource/ResourceTest.properties");
+        ensureEqual("b", loadPropertyMap(this, properties).get("a"));
     }
 }

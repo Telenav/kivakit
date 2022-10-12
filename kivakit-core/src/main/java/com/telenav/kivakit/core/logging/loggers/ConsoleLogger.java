@@ -63,6 +63,6 @@ public class ConsoleLogger extends BaseLogger
     @UmlExcludeMember
     protected ObjectSet<Log> logs()
     {
-        return ObjectSet.set(log);
+        return set(log);
     }
 }

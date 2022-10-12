@@ -50,6 +50,7 @@ import static com.telenav.kivakit.commandline.Quantifier.OPTIONAL;
 import static com.telenav.kivakit.commandline.Quantifier.REQUIRED;
 import static com.telenav.kivakit.core.collections.set.ObjectSet.set;
 import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
+import static com.telenav.kivakit.core.language.reflection.Type.typeForClass;
 
 /**
  * A switch parser that can be passed to {@link CommandLine#get(SwitchParser)} to retrieve a switch value.
@@ -96,7 +97,7 @@ import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
  * <p><b>Values</b></p>
  *
  * <ul>
- *     <li>{@link #asObjectList(SwitchValue)}</li>
+ *     <li>{@link #asList(SwitchValue)}</li>
  *     <li>{@link #asObject(SwitchValue)}</li>
  *     <li>{@link #assignValue(SwitchValue, String)}</li>
  * </ul>
@@ -286,7 +287,7 @@ public class SwitchParser<T> implements Named
          */
         public Builder<T> type(@NotNull Class<T> type)
         {
-            parser.type = Type.typeForClass(type);
+            parser.type = typeForClass(type);
             return this;
         }
 
@@ -362,7 +363,7 @@ public class SwitchParser<T> implements Named
      */
     @UmlNotPublicApi
     @UmlRelation(label = "gets")
-    public ObjectList<T> asObjectList(@NotNull SwitchValue switchValue)
+    public ObjectList<T> asList(@NotNull SwitchValue switchValue)
     {
         ensureNotNull(parent, "Switch parser was not added to command line parent");
 
@@ -426,7 +427,7 @@ public class SwitchParser<T> implements Named
      */
     public boolean isRequired()
     {
-        return quantifier == Quantifier.REQUIRED;
+        return quantifier == REQUIRED;
     }
 
     /**

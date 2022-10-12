@@ -6,12 +6,15 @@ import com.telenav.kivakit.core.ensure.Ensure;
 import com.telenav.kivakit.core.messaging.Repeater;
 import com.telenav.kivakit.core.registry.InstanceIdentifier;
 import com.telenav.kivakit.resource.ResourceFolder;
+import com.telenav.kivakit.resource.packages.Package;
+import com.telenav.kivakit.settings.stores.ResourceFolderSettingsStore;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
 
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
+import static com.telenav.kivakit.core.registry.InstanceIdentifier.instanceIdentifier;
 import static com.telenav.kivakit.core.registry.InstanceIdentifier.singletonInstanceIdentifier;
 import static com.telenav.kivakit.settings.SettingsRegistry.settingsFor;
 
@@ -106,7 +109,7 @@ public interface SettingsTrait extends Repeater
      */
     default boolean hasSettings(Class<?> type, Enum<?> instance)
     {
-        return hasSettings(type, InstanceIdentifier.instanceIdentifier(instance));
+        return hasSettings(type, instanceIdentifier(instance));
     }
 
     /**
@@ -142,7 +145,7 @@ public interface SettingsTrait extends Repeater
      */
     default <T> T lookupSettings(Class<T> type, Enum<?> instance)
     {
-        return settingsForThis().lookupSettings(type, InstanceIdentifier.instanceIdentifier(instance));
+        return settingsForThis().lookupSettings(type, instanceIdentifier(instance));
     }
 
     /**
@@ -158,7 +161,7 @@ public interface SettingsTrait extends Repeater
      */
     default SettingsRegistry registerSettings(Object settings, Enum<?> instance)
     {
-        return registerSettings(settings, InstanceIdentifier.instanceIdentifier(instance));
+        return registerSettings(settings, instanceIdentifier(instance));
     }
 
     /**
@@ -178,6 +181,14 @@ public interface SettingsTrait extends Repeater
     }
 
     /**
+     * Registers the settings in the given package
+     */
+    default SettingsRegistry registerSettingsIn(Package _package)
+    {
+        return registerSettingsIn(listenTo(new ResourceFolderSettingsStore(this, _package)));
+    }
+
+    /**
      * Convenience method
      */
     default <T> T requireSettings(Class<T> type)
@@ -190,7 +201,7 @@ public interface SettingsTrait extends Repeater
      */
     default <T> T requireSettings(Class<T> type, Enum<?> instance)
     {
-        return requireSettings(type, InstanceIdentifier.instanceIdentifier(instance));
+        return requireSettings(type, instanceIdentifier(instance));
     }
 
     /**
@@ -224,7 +235,7 @@ public interface SettingsTrait extends Repeater
      */
     default boolean saveSettings(SettingsStore store, Object object, Enum<?> instance)
     {
-        return saveSettings(store, object, InstanceIdentifier.instanceIdentifier(instance));
+        return saveSettings(store, object, instanceIdentifier(instance));
     }
 
     /**

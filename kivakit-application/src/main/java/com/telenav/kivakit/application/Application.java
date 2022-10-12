@@ -21,8 +21,8 @@ package com.telenav.kivakit.application;
 import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.application.internal.lexakai.DiagramApplication;
 import com.telenav.kivakit.commandline.ApplicationMetadata;
-import com.telenav.kivakit.commandline.ArgumentValueList;
 import com.telenav.kivakit.commandline.ArgumentParser;
+import com.telenav.kivakit.commandline.ArgumentValueList;
 import com.telenav.kivakit.commandline.CommandLine;
 import com.telenav.kivakit.commandline.CommandLineParser;
 import com.telenav.kivakit.commandline.SwitchParser;
@@ -34,12 +34,10 @@ import com.telenav.kivakit.core.collections.list.StringList;
 import com.telenav.kivakit.core.collections.set.IdentitySet;
 import com.telenav.kivakit.core.collections.set.ObjectSet;
 import com.telenav.kivakit.core.function.Result;
-import com.telenav.kivakit.core.language.Classes;
 import com.telenav.kivakit.core.language.trait.LanguageTrait;
 import com.telenav.kivakit.core.locale.Locale;
 import com.telenav.kivakit.core.locale.LocaleLanguage;
 import com.telenav.kivakit.core.logging.Logger;
-import com.telenav.kivakit.core.logging.LoggerFactory;
 import com.telenav.kivakit.core.logging.logs.BaseLog;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.messaging.Message;
@@ -56,21 +54,17 @@ import com.telenav.kivakit.core.project.StartUpOptions;
 import com.telenav.kivakit.core.project.StartUpOptions.StartupOption;
 import com.telenav.kivakit.core.registry.Registry;
 import com.telenav.kivakit.core.registry.RegistryTrait;
-import com.telenav.kivakit.core.string.Align;
 import com.telenav.kivakit.core.string.AsciiArt;
 import com.telenav.kivakit.core.string.Formatter;
-import com.telenav.kivakit.core.string.Strip;
 import com.telenav.kivakit.core.thread.StateMachine;
 import com.telenav.kivakit.core.value.identifier.StringIdentifier;
 import com.telenav.kivakit.core.version.Version;
-import com.telenav.kivakit.core.vm.Properties;
 import com.telenav.kivakit.core.vm.ShutdownHook;
 import com.telenav.kivakit.filesystem.Folder;
 import com.telenav.kivakit.interfaces.naming.Named;
 import com.telenav.kivakit.interfaces.naming.NamedObject;
 import com.telenav.kivakit.properties.PropertyMap;
 import com.telenav.kivakit.resource.Extension;
-import com.telenav.kivakit.resource.Resource;
 import com.telenav.kivakit.resource.packages.PackageTrait;
 import com.telenav.kivakit.resource.serialization.ObjectSerializerRegistry;
 import com.telenav.kivakit.serialization.gson.GsonObjectSerializer;
@@ -85,15 +79,12 @@ import com.telenav.lexakai.annotations.visibility.UmlExcludeMember;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeSuperTypes;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.application.Application.ExecutionState.CONSTRUCTING;
 import static com.telenav.kivakit.application.Application.ExecutionState.INITIALIZING;
@@ -106,10 +97,26 @@ import static com.telenav.kivakit.application.ExitCode.SUCCEEDED;
 import static com.telenav.kivakit.commandline.Quantifier.OPTIONAL;
 import static com.telenav.kivakit.commandline.Quantifier.REQUIRED;
 import static com.telenav.kivakit.commandline.SwitchParsers.booleanSwitchParser;
+import static com.telenav.kivakit.core.collections.list.ObjectList.list;
 import static com.telenav.kivakit.core.collections.set.ObjectSet.set;
 import static com.telenav.kivakit.core.ensure.Ensure.ensure;
 import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
+import static com.telenav.kivakit.core.function.Result.failure;
+import static com.telenav.kivakit.core.function.Result.success;
+import static com.telenav.kivakit.core.language.Classes.newInstance;
+import static com.telenav.kivakit.core.language.Classes.simpleName;
+import static com.telenav.kivakit.core.logging.LoggerFactory.newLogger;
+import static com.telenav.kivakit.core.project.Project.resolveProject;
+import static com.telenav.kivakit.core.project.StartUpOptions.isStartupOptionEnabled;
+import static com.telenav.kivakit.core.string.Align.alignRight;
+import static com.telenav.kivakit.core.string.Strip.stripLeading;
+import static com.telenav.kivakit.core.vm.Properties.allProperties;
 import static com.telenav.kivakit.properties.PropertyMap.loadLocalizedPropertyMap;
+import static com.telenav.kivakit.properties.PropertyMap.loadPropertyMap;
+import static com.telenav.kivakit.properties.PropertyMap.propertyMap;
+import static com.telenav.kivakit.resource.Resource.resolveResource;
+import static com.telenav.kivakit.settings.DeploymentSet.loadDeploymentSet;
+import static java.util.Comparator.comparing;
 
 /**
  * Base class for KivaKit applications.
@@ -274,7 +281,7 @@ public abstract class Application extends BaseComponent implements
     private static Application application;
 
     /** The default final destination for messages that bubble up to the application level */
-    private static final Logger LOGGER = LoggerFactory.newLogger();
+    private static final Logger LOGGER = newLogger();
 
     /**
      * Returns the currently running application
@@ -317,13 +324,13 @@ public abstract class Application extends BaseComponent implements
 
         try
         {
-            var application = Classes.newInstance(applicationType);
+            var application = newInstance(applicationType);
             listener.listenTo(application);
             return application.run(arguments);
         }
         catch (Exception e)
         {
-            return Result.failure(new ApplicationExit(FAILED, e), "Application failed");
+            return failure(new ApplicationExit(FAILED, e), "Application failed");
         }
     }
 
@@ -405,7 +412,7 @@ public abstract class Application extends BaseComponent implements
         // We can only add projects during application construction.
         ensure(state.is(CONSTRUCTING));
 
-        projects.add(Project.resolveProject(project));
+        projects.add(resolveProject(project));
         return this;
     }
 
@@ -518,7 +525,7 @@ public abstract class Application extends BaseComponent implements
     @UmlRelation(label = "identified by")
     public Identifier identifier()
     {
-        return new Identifier(Classes.simpleName(getClass()));
+        return new Identifier(simpleName(getClass()));
     }
 
     public PropertyMap localizedProperties(Locale locale)
@@ -544,7 +551,7 @@ public abstract class Application extends BaseComponent implements
      */
     public PropertyMap properties()
     {
-        return PropertyMap.propertyMap(Properties.allProperties(getClass()));
+        return propertyMap(allProperties(getClass()));
     }
 
     /**
@@ -604,7 +611,7 @@ public abstract class Application extends BaseComponent implements
             onProjectsInitialized();
 
             // load deployments,
-            deployments = DeploymentSet.loadDeploymentSet(this, getClass());
+            deployments = loadDeploymentSet(this, getClass());
 
             // then through arguments
             var argumentList = new StringList();
@@ -614,9 +621,9 @@ public abstract class Application extends BaseComponent implements
                 if (argument.startsWith("-switches="))
                 {
                     // then load properties from the resource
-                    var resourceIdentifier = Strip.leading(argument, "-switches=");
-                    var resource = Resource.resolveResource(this, resourceIdentifier);
-                    var properties = PropertyMap.loadPropertyMap(this, resource);
+                    var resourceIdentifier = stripLeading(argument, "-switches=");
+                    var resource = resolveResource(this, resourceIdentifier);
+                    var properties = loadPropertyMap(this, resource);
 
                     // and add those properties to the argument list
                     for (var key : properties.keySet())
@@ -649,7 +656,7 @@ public abstract class Application extends BaseComponent implements
                 registerSettingsIn(get(DEPLOYMENT));
             }
 
-            if (!StartUpOptions.isStartupOptionEnabled(StartupOption.QUIET))
+            if (!isStartupOptionEnabled(StartupOption.QUIET))
             {
                 showStartupInformation();
             }
@@ -692,8 +699,8 @@ public abstract class Application extends BaseComponent implements
 
         // Return the application result.
         return exitCode == SUCCEEDED
-                ? Result.success(ApplicationExit.SUCCESS)
-                : Result.failure(new ApplicationExit(exitCode, exception), "Application failed");
+                ? success(ApplicationExit.SUCCESS)
+                : failure(new ApplicationExit(exitCode, exception), "Application failed");
     }
 
     @UmlExcludeMember
@@ -736,7 +743,7 @@ public abstract class Application extends BaseComponent implements
             box.add("Switches:");
             box.add("");
             var sorted = new ArrayList<>(internalSwitchParsers());
-            sorted.sort(Comparator.comparing(SwitchParser::name));
+            sorted.sort(comparing(SwitchParser::name));
             var width = new StringList(sorted).longest().asInt();
             for (var switchParser : sorted)
             {
@@ -745,7 +752,7 @@ public abstract class Application extends BaseComponent implements
                 {
                     value = ((Folder) value).path().asContraction(80);
                 }
-                box.add("   $ = $", Align.right(switchParser.name(), width, ' '),
+                box.add("   $ = $", alignRight(switchParser.name(), width, ' '),
                         value == null ? "N/A" : value);
             }
         }
@@ -774,9 +781,9 @@ public abstract class Application extends BaseComponent implements
     /**
      * Returns the argument parsers for this application
      */
-    protected List<ArgumentParser<?>> argumentParsers()
+    protected ObjectList<ArgumentParser<?>> argumentParsers()
     {
-        return Collections.emptyList();
+        return list();
     }
 
     protected boolean ignoreDeployments()
@@ -862,7 +869,7 @@ public abstract class Application extends BaseComponent implements
      */
     protected ObjectSet<StartupOption> startupOptions()
     {
-        return ObjectSet.set();
+        return set();
     }
 
     /**
@@ -870,7 +877,7 @@ public abstract class Application extends BaseComponent implements
      */
     protected ObjectSet<SwitchParser<?>> switchParsers()
     {
-        return ObjectSet.set();
+        return set();
     }
 
     /**

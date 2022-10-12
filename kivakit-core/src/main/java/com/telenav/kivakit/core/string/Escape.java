@@ -25,6 +25,7 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static com.telenav.kivakit.core.string.Strings.replaceAll;
 
 /**
  * Escapes different kinds of strings for JavaScript, SQL and XML.
@@ -43,7 +44,7 @@ public class Escape
      */
     public static String escapeJavaScript(String text)
     {
-        return Strings.replaceAll(text, "'", "\\'");
+        return replaceAll(text, "'", "\\'");
     }
 
     /**
@@ -51,7 +52,7 @@ public class Escape
      */
     public static String escapeSql(String text)
     {
-        return Strings.replaceAll(text, "'", "''");
+        return replaceAll(text, "'", "''");
     }
 
     /**
@@ -59,11 +60,11 @@ public class Escape
      */
     public static String escapeXml(String xml)
     {
-        var u1 = Strings.replaceAll(unescapeXml(xml), "\"", "&quot;");
-        var u2 = Strings.replaceAll(u1, "&", "&amp;");
-        var u3 = Strings.replaceAll(u2, "'", "&apos;");
-        var u4 = Strings.replaceAll(u3, "<", "&lt;");
-        return Strings.replaceAll(u4, ">", "&gt;");
+        var u1 = replaceAll(unescapeXml(xml), "\"", "&quot;");
+        var u2 = replaceAll(u1, "&", "&amp;");
+        var u3 = replaceAll(u2, "'", "&apos;");
+        var u4 = replaceAll(u3, "<", "&lt;");
+        return replaceAll(u4, ">", "&gt;");
     }
 
     /**
@@ -71,10 +72,10 @@ public class Escape
      */
     public static String unescapeXml(String xml)
     {
-        var u1 = Strings.replaceAll(xml, "&quot;", "\"");
-        var u2 = Strings.replaceAll(u1, "&amp;", "&");
-        var u3 = Strings.replaceAll(u2, "&apos;", "'");
-        var u4 = Strings.replaceAll(u3, "&lt;", "<");
-        return Strings.replaceAll(u4, "&gt;", ">");
+        var u1 = replaceAll(xml, "&quot;", "\"");
+        var u2 = replaceAll(u1, "&amp;", "&");
+        var u3 = replaceAll(u2, "&apos;", "'");
+        var u4 = replaceAll(u3, "&lt;", "<");
+        return replaceAll(u4, "&gt;", ">");
     }
 }

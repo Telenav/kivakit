@@ -31,6 +31,7 @@ import java.io.OutputStream;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
+import static com.telenav.kivakit.core.value.count.Bytes.bytes;
 
 /**
  * An output stream that keeps track of how many bytes have been written. The number of bytes written is available
@@ -83,7 +84,7 @@ public class ByteSizedOutputStream extends OutputStream implements ByteSized
     @Override
     public Bytes sizeInBytes()
     {
-        return Bytes.bytes(size);
+        return bytes(size);
     }
 
     /**

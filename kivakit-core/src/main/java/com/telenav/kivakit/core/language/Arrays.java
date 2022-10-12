@@ -26,9 +26,11 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 import java.lang.reflect.Array;
 import java.util.Collection;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static java.lang.String.format;
+import static java.lang.System.arraycopy;
 
 /**
  * Utility methods for working with arrays.
@@ -43,9 +45,9 @@ import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
  * <p><b>Ordering</b></p>
  *
  * <ul>
- *     <li>{@link #reverse(int[])}</li>
- *     <li>{@link #reverse(long[])}</li>
- *     <li>{@link #reverseRange(long[], int, int)}</li>
+ *     <li>{@link #reverseArray(int[])}</li>
+ *     <li>{@link #reverseArray(long[])}</li>
+ *     <li>{@link #reverseArrayRange(long[], int, int)}</li>
  * </ul>
  *
  * @author jonathanl (shibo)
@@ -57,34 +59,9 @@ import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 public class Arrays
 {
     /**
-     * Converts the given byte array to a hex string
-     */
-    public static String asHexadecimalString(byte[] bytes)
-    {
-        var builder = new StringBuilder();
-        for (var at : bytes)
-        {
-            builder.append(String.format("%02d", at & 0xff));
-        }
-        return builder.toString();
-    }
-
-    /**
-     * Returns the concatenation of the two given arrays, as an array.
-     */
-    public static <Value> Value[] concatenate(Value[] a, Value[] b)
-    {
-        @SuppressWarnings("unchecked")
-        Value[] concatenated = (Value[]) Array.newInstance(a.getClass().getComponentType(), a.length + b.length);
-        System.arraycopy(a, 0, concatenated, 0, a.length);
-        System.arraycopy(b, 0, concatenated, a.length, b.length);
-        return concatenated;
-    }
-
-    /**
      * Returns true if the given array contains the given object
      */
-    public static <Value> boolean contains(Value[] array, Value object)
+    public static <Value> boolean arrayContains(Value[] array, Value object)
     {
         for (var at : array)
         {
@@ -94,6 +71,31 @@ public class Arrays
             }
         }
         return false;
+    }
+
+    /**
+     * Converts the given byte array to a hex string
+     */
+    public static String asHexadecimalString(byte[] bytes)
+    {
+        var builder = new StringBuilder();
+        for (var at : bytes)
+        {
+            builder.append(format("%02d", at & 0xff));
+        }
+        return builder.toString();
+    }
+
+    /**
+     * Returns the concatenation of the two given arrays, as an array.
+     */
+    public static <Value> Value[] concatenateArrays(Value[] a, Value[] b)
+    {
+        @SuppressWarnings("unchecked")
+        Value[] concatenated = (Value[]) Array.newInstance(a.getClass().getComponentType(), a.length + b.length);
+        arraycopy(a, 0, concatenated, 0, a.length);
+        arraycopy(b, 0, concatenated, a.length, b.length);
+        return concatenated;
     }
 
     /**
@@ -127,15 +129,15 @@ public class Arrays
     /**
      * Reverses the elements in the given array
      */
-    public static void reverse(byte[] array)
+    public static void reverseArray(byte[] array)
     {
-        reverse(array, 0, array.length);
+        reverseArray(array, 0, array.length);
     }
 
     /**
      * Reverses the region of elements in the given array
      */
-    public static void reverse(byte[] array, int fromIndex, int toIndex)
+    public static void reverseArray(byte[] array, int fromIndex, int toIndex)
     {
         for (int i = fromIndex, j = toIndex - 1; i < j; i++, j--)
         {
@@ -148,7 +150,7 @@ public class Arrays
     /**
      * Reverses the elements in the given array
      */
-    public static int[] reverse(int[] elements)
+    public static int[] reverseArray(int[] elements)
     {
         for (var i = 0; i < elements.length / 2; i++)
         {
@@ -162,7 +164,7 @@ public class Arrays
     /**
      * Reverses the elements in the given array
      */
-    public static long[] reverse(long[] elements)
+    public static long[] reverseArray(long[] elements)
     {
         for (var i = 0; i < elements.length / 2; i++)
         {
@@ -177,7 +179,7 @@ public class Arrays
     /**
      * Reverses the values in the given range of indexes
      */
-    public static void reverseRange(long[] array, int fromIndex, int toIndex)
+    public static void reverseArrayRange(long[] array, int fromIndex, int toIndex)
     {
         for (int i = fromIndex, j = toIndex - 1; i < j; i++, j--)
         {

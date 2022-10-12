@@ -30,13 +30,15 @@ import org.junit.Test;
 
 import java.time.ZoneId;
 
+import static com.telenav.kivakit.core.time.Time.now;
+
 @SuppressWarnings("ConstantConditions")
 public class FileNameTest extends UnitTest
 {
     @Test
     public void localTimeTest()
     {
-        var now = Time.now();
+        var now = now();
         var local = now.asLocalTime();
         trace("local = ${debug}", local);
         var utc = now.asUtc();
@@ -83,7 +85,7 @@ public class FileNameTest extends UnitTest
         var localTime = LocalTime.milliseconds(timeZone, 1344025281123L);
         trace("LocalTime: ${debug}", localTime.asMilliseconds());
 
-        final Time time = localTime.asUtc();
+        Time time = localTime.asUtc();
         trace("Time:      ${debug}", time.asMilliseconds());
 
         /*

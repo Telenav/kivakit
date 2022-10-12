@@ -5,6 +5,8 @@ import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
+import static java.lang.Double.compare;
+import static java.lang.Math.abs;
 
 /**
  * An object that has a double representation
@@ -23,7 +25,7 @@ public interface DoubleValued extends LongValued
      */
     default double absoluteDifference(DoubleValued that)
     {
-        return Math.abs(doubleValue() - that.doubleValue());
+        return abs(doubleValue() - that.doubleValue());
     }
 
     /**
@@ -31,7 +33,7 @@ public interface DoubleValued extends LongValued
      */
     default Comparable<DoubleValued> doubleComparable()
     {
-        return that -> Double.compare(doubleValue(), that.doubleValue());
+        return that -> compare(doubleValue(), that.doubleValue());
     }
 
     /**
@@ -59,7 +61,7 @@ public interface DoubleValued extends LongValued
      */
     default boolean isCloseTo(DoubleValued that, double tolerance)
     {
-        return Math.abs(that.doubleValue() - that.doubleValue()) < tolerance;
+        return abs(that.doubleValue() - that.doubleValue()) < tolerance;
     }
 
     /**

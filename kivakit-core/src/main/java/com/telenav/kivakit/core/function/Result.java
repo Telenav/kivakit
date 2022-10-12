@@ -24,7 +24,6 @@ import com.telenav.kivakit.core.function.arities.PentaFunction;
 import com.telenav.kivakit.core.function.arities.TetraFunction;
 import com.telenav.kivakit.core.function.arities.TriFunction;
 import com.telenav.kivakit.core.internal.lexakai.DiagramMessaging;
-import com.telenav.kivakit.core.language.Classes;
 import com.telenav.kivakit.core.messaging.Broadcaster;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.messaging.Message;
@@ -37,7 +36,6 @@ import com.telenav.kivakit.interfaces.value.Source;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
 
-import java.util.Objects;
 import java.util.function.BiFunction;
 import java.util.function.Consumer;
 import java.util.function.Function;
@@ -47,6 +45,9 @@ import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTE
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_INSUFFICIENT;
 import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
 import static com.telenav.kivakit.core.ensure.Ensure.unsupported;
+import static com.telenav.kivakit.core.language.Classes.newInstance;
+import static com.telenav.kivakit.core.messaging.listeners.MessageList.emptyMessageList;
+import static java.util.Objects.hash;
 
 /**
  * Represents the result of an operation, capturing any failure {@link #messages()}. If there are no failure messages,
@@ -301,7 +302,7 @@ public class Result<Value> extends Maybe<Value> implements RepeaterMixin
         {
             if (isPresent())
             {
-                var mapper = Classes.newInstance(mapperType, Listener.class, outer);
+                var mapper = newInstance(mapperType, Listener.class, outer);
                 return newMaybe(ensureNotNull(mapper).parse(get().toString()));
             }
             else
@@ -339,7 +340,7 @@ public class Result<Value> extends Maybe<Value> implements RepeaterMixin
     @Override
     public int hashCode()
     {
-        return Objects.hash(super.hashCode(), succeeded());
+        return hash(super.hashCode(), succeeded());
     }
 
     /**
@@ -448,7 +449,7 @@ public class Result<Value> extends Maybe<Value> implements RepeaterMixin
         if (messages == null)
         {
             // return an empty message list.
-            return MessageList.emptyMessageList();
+            return emptyMessageList();
         }
 
         return messages;

@@ -21,7 +21,6 @@ package com.telenav.kivakit.network.core.authentication.passwords;
 import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.conversion.BaseStringConverter;
 import com.telenav.kivakit.core.messaging.Listener;
-import com.telenav.kivakit.core.string.AsciiArt;
 import com.telenav.kivakit.interfaces.string.StringFormattable;
 import com.telenav.kivakit.network.core.authentication.Password;
 import com.telenav.kivakit.network.core.internal.lexakai.DiagramAuthentication;
@@ -29,9 +28,10 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeSuperTypes;
 import org.jetbrains.annotations.NotNull;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static com.telenav.kivakit.core.string.AsciiArt.repeat;
 
 /**
  * A plain text password, which can be tested against a given password using {@link #matches(Password)}.
@@ -75,7 +75,7 @@ public class PlainTextPassword implements Password, StringFormattable
         @Override
         protected Password onToValue(String value)
         {
-            return PlainTextPassword.parsePlainTextPassword(this, value);
+            return parsePlainTextPassword(this, value);
         }
     }
 
@@ -91,7 +91,7 @@ public class PlainTextPassword implements Password, StringFormattable
     {
         if (password != null)
         {
-            return AsciiArt.repeat(password.length(), '*');
+            return repeat(password.length(), '*');
         }
         return null;
     }

@@ -23,7 +23,6 @@ import com.telenav.kivakit.core.collections.list.ObjectList;
 import com.telenav.kivakit.core.io.IO;
 import com.telenav.kivakit.core.progress.ProgressReporter;
 import com.telenav.kivakit.core.value.count.Bytes;
-import com.telenav.kivakit.core.value.count.Count;
 import com.telenav.kivakit.network.core.BaseNetworkResource;
 import com.telenav.kivakit.network.core.NetworkAccessConstraints;
 import com.telenav.kivakit.network.core.NetworkLocation;
@@ -48,6 +47,7 @@ import java.io.InputStream;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static com.telenav.kivakit.core.value.count.Count.count;
 import static com.telenav.kivakit.network.core.NetworkAccessConstraints.defaultNetworkAccessConstraints;
 
 /**
@@ -148,7 +148,7 @@ public class FtpResource extends BaseNetworkResource
             while ((readCount = in.read(buffer)) > 0)
             {
                 out.write(buffer, 0, readCount);
-                reporter.next(Count.count(readCount));
+                reporter.next(count(readCount));
             }
             reporter.end("Copied");
             out.flush();

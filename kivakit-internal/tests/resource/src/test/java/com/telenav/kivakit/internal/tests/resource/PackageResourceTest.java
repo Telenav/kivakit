@@ -19,11 +19,12 @@
 package com.telenav.kivakit.internal.tests.resource;
 
 import com.telenav.kivakit.core.time.Time;
-import com.telenav.kivakit.core.value.count.Bytes;
 import com.telenav.kivakit.resource.packages.PackageResource;
 import com.telenav.kivakit.resource.packages.PackageTrait;
 import com.telenav.kivakit.testing.UnitTest;
 import org.junit.Test;
+
+import static com.telenav.kivakit.core.value.count.Bytes.bytes;
 
 /**
  * @author jonathanl (shibo)
@@ -53,8 +54,8 @@ public class PackageResourceTest extends UnitTest implements PackageTrait
     @Test
     public void testSize()
     {
-        ensure(a().sizeInBytes().isGreaterThanOrEqualTo(Bytes.bytes(4)));
-        ensure(b().sizeInBytes().isGreaterThanOrEqualTo(Bytes.bytes(5)));
+        ensure(a().sizeInBytes().isGreaterThanOrEqualTo(bytes(4)));
+        ensure(b().sizeInBytes().isGreaterThanOrEqualTo(bytes(5)));
     }
 
     private PackageResource a()

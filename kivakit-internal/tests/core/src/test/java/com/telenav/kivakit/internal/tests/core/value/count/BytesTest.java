@@ -17,32 +17,39 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.telenav.kivakit.internal.tests.core.value.count;
-import com.telenav.kivakit.internal.testing.CoreUnitTest;
-import com.telenav.kivakit.core.value.count.Bytes;
+
 import com.telenav.kivakit.core.value.level.Percent;
+import com.telenav.kivakit.internal.testing.CoreUnitTest;
 import org.junit.Test;
+
+import static com.telenav.kivakit.core.value.count.Bytes._0;
+import static com.telenav.kivakit.core.value.count.Bytes.bytes;
+import static com.telenav.kivakit.core.value.count.Bytes.gigabytes;
+import static com.telenav.kivakit.core.value.count.Bytes.kilobytes;
+import static com.telenav.kivakit.core.value.count.Bytes.megabytes;
+import static com.telenav.kivakit.core.value.count.Bytes.terabytes;
 
 public class BytesTest extends CoreUnitTest
 {
     @Test
     public void test()
     {
-        ensureEqual(0L, Bytes._0.asBytes());
-        ensureEqual(10L, Bytes.bytes(10).asBytes());
-        ensureEqual(Bytes.kilobytes(1), Bytes.bytes(1024));
-        ensureEqual(Bytes.megabytes(1), Bytes.bytes(1024 * 1024));
-        ensureEqual(Bytes.gigabytes(1), Bytes.bytes(1024 * 1024 * 1024));
-        ensureEqual(Bytes.terabytes(1), Bytes.bytes(1024L * 1024L * 1024L * 1024L));
-        ensureEqual(Bytes.kilobytes(0.5), Bytes.bytes(1024 / 2));
-        ensureEqual(Bytes.megabytes(0.5), Bytes.bytes((1024 * 1024) / 2));
-        ensureEqual(Bytes.gigabytes(0.5), Bytes.bytes((1024 * 1024 * 1024) / 2));
-        ensureEqual(Bytes.terabytes(0.5), Bytes.bytes((1024L * 1024L * 1024L * 1024L) / 2));
-        ensureEqual(Bytes.bytes(0), Bytes.kilobytes(1).percent(Percent._0));
-        ensureEqual(Bytes.bytes(512), Bytes.kilobytes(1).percent(Percent._50));
-        ensureEqual(Bytes.bytes(1024), Bytes.kilobytes(1).percent(Percent._100));
-        ensureEqual(1024L, Bytes.kilobytes(1).asBytes());
-        ensureEqual(1024.0, Bytes.megabytes(1).asKilobytes());
-        ensureEqual(1024.0, Bytes.gigabytes(1).asMegabytes());
-        ensureEqual(1024.0, Bytes.terabytes(1).asGigabytes());
+        ensureEqual(0L, _0.asBytes());
+        ensureEqual(10L, bytes(10).asBytes());
+        ensureEqual(kilobytes(1), bytes(1024));
+        ensureEqual(megabytes(1), bytes(1024 * 1024));
+        ensureEqual(gigabytes(1), bytes(1024 * 1024 * 1024));
+        ensureEqual(terabytes(1), bytes(1024L * 1024L * 1024L * 1024L));
+        ensureEqual(kilobytes(0.5), bytes(1024 / 2));
+        ensureEqual(megabytes(0.5), bytes((1024 * 1024) / 2));
+        ensureEqual(gigabytes(0.5), bytes((1024 * 1024 * 1024) / 2));
+        ensureEqual(terabytes(0.5), bytes((1024L * 1024L * 1024L * 1024L) / 2));
+        ensureEqual(bytes(0), kilobytes(1).percent(Percent._0));
+        ensureEqual(bytes(512), kilobytes(1).percent(Percent._50));
+        ensureEqual(bytes(1024), kilobytes(1).percent(Percent._100));
+        ensureEqual(1024L, kilobytes(1).asBytes());
+        ensureEqual(1024.0, megabytes(1).asKilobytes());
+        ensureEqual(1024.0, gigabytes(1).asMegabytes());
+        ensureEqual(1024.0, terabytes(1).asGigabytes());
     }
 }

@@ -18,15 +18,15 @@
 
 package com.telenav.kivakit.network.email;
 
-import com.telenav.kivakit.network.core.EmailAddress;
-import com.telenav.kivakit.network.core.authentication.UserName;
-import com.telenav.kivakit.network.core.authentication.passwords.PlainTextPassword;
 import com.telenav.kivakit.network.email.senders.SmtpEmailSender;
 import com.telenav.kivakit.testing.UnitTest;
 import org.junit.Ignore;
 import org.junit.Test;
 
+import static com.telenav.kivakit.network.core.EmailAddress.parseEmailAddress;
 import static com.telenav.kivakit.network.core.LocalHost.localhost;
+import static com.telenav.kivakit.network.core.authentication.UserName.parseUserName;
+import static com.telenav.kivakit.network.core.authentication.passwords.PlainTextPassword.parsePlainTextPassword;
 
 @Ignore
 public class EmailTest extends UnitTest
@@ -39,7 +39,7 @@ public class EmailTest extends UnitTest
     @SuppressWarnings("resource")
     public void test()
     {
-        var shibo = EmailAddress.parseEmailAddress(this, "jonathanl@telenav.com");
+        var shibo = parseEmailAddress(this, "jonathanl@telenav.com");
 
         var email = new Email()
                 .from(shibo)
@@ -49,8 +49,8 @@ public class EmailTest extends UnitTest
 
         var configuration = new SmtpEmailSender.Configuration()
                 .host(localhost())
-                .username(UserName.parseUserName(this, ""))
-                .password(PlainTextPassword.parsePlainTextPassword(this, ""));
+                .username(parseUserName(this, ""))
+                .password(parsePlainTextPassword(this, ""));
 
         var sender = new SmtpEmailSender(configuration).enableSending(false);
         sender.start();

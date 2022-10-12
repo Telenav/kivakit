@@ -18,19 +18,21 @@
 
 package com.telenav.kivakit.internal.tests.core.messaging;
 
-import com.telenav.kivakit.core.messaging.messages.status.Warning;import com.telenav.kivakit.internal.testing.CoreUnitTest;
-import org.junit.Assert;
+import com.telenav.kivakit.core.messaging.messages.status.Warning;
+import com.telenav.kivakit.internal.testing.CoreUnitTest;
 import org.junit.Test;
+
+import static org.junit.Assert.assertEquals;
 
 public class MessageTest extends CoreUnitTest
 {
     @Test
     public void test()
     {
-        Assert.assertEquals(new Warning("${debug}", 5).toString(), "5");
-        Assert.assertEquals(new Warning(" ${debug}", 5).toString(), " 5");
-        Assert.assertEquals(new Warning("${debug} ", 5).toString(), "5 ");
-        Assert.assertEquals(new Warning(" ${debug} ", 5).toString(), " 5 ");
-        Assert.assertEquals(new Warning(" ${debug} ${debug} ", 5, 7).toString(), " 5 7 ");
+        assertEquals(new Warning("${debug}", 5).toString(), "5");
+        assertEquals(new Warning(" ${debug}", 5).toString(), " 5");
+        assertEquals(new Warning("${debug} ", 5).toString(), "5 ");
+        assertEquals(new Warning(" ${debug} ", 5).toString(), " 5 ");
+        assertEquals(new Warning(" ${debug} ${debug} ", 5, 7).toString(), " 5 7 ");
     }
 }

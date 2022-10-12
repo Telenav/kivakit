@@ -19,15 +19,12 @@
 package com.telenav.kivakit.resource.compression.archive;
 
 import com.telenav.kivakit.annotations.code.quality.CodeQuality;
-import com.telenav.kivakit.core.code.UncheckedCode;
 import com.telenav.kivakit.core.collections.map.VariableMap;
 import com.telenav.kivakit.core.io.IO;
 import com.telenav.kivakit.core.io.Nio;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.messaging.repeaters.BaseRepeater;
-import com.telenav.kivakit.core.path.StringPath;
 import com.telenav.kivakit.core.progress.ProgressReporter;
-import com.telenav.kivakit.core.progress.reporters.BroadcastingProgressReporter;
 import com.telenav.kivakit.core.progress.reporters.ProgressiveInputStream;
 import com.telenav.kivakit.core.progress.reporters.ProgressiveOutputStream;
 import com.telenav.kivakit.core.value.count.ByteSized;
@@ -60,12 +57,18 @@ import java.util.List;
 import java.util.regex.Pattern;
 import java.util.zip.ZipFile;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static com.telenav.kivakit.core.code.UncheckedCode.unchecked;
 import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
 import static com.telenav.kivakit.core.ensure.Ensure.fail;
+import static com.telenav.kivakit.core.io.IO.flush;
+import static com.telenav.kivakit.core.path.StringPath.stringPath;
+import static com.telenav.kivakit.core.progress.ProgressReporter.nullProgressReporter;
+import static com.telenav.kivakit.core.progress.reporters.BroadcastingProgressReporter.progressReporter;
+import static com.telenav.kivakit.core.value.count.Bytes.bytes;
 import static com.telenav.kivakit.resource.compression.archive.ZipArchive.AccessMode.READ;
 import static com.telenav.kivakit.resource.serialization.ObjectMetadata.OBJECT_TYPE;
 import static com.telenav.kivakit.resource.serialization.ObjectMetadata.OBJECT_VERSION;
@@ -231,7 +234,7 @@ public final class ZipArchive extends BaseRepeater implements
         ensureNotNull(filesystem);
         ensureNotNull(zipFile);
 
-        this.zipFile = zipFile.materialized(BroadcastingProgressReporter.progressReporter(this));
+        this.zipFile = zipFile.materialized(progressReporter(this));
         this.filesystem = filesystem;
     }
 
@@ -240,7 +243,7 @@ public final class ZipArchive extends BaseRepeater implements
      */
     public void add(@NotNull Collection<File> files)
     {
-        add(files, ProgressReporter.nullProgressReporter());
+        add(files, nullProgressReporter());
     }
 
     /**
@@ -295,7 +298,7 @@ public final class ZipArchive extends BaseRepeater implements
      */
     public synchronized ZipEntry entry(@NotNull String pathname)
     {
-        var path = UncheckedCode.unchecked(() -> filesystem.getPath(pathname)).orNull();
+        var path = unchecked(() -> filesystem.getPath(pathname)).orNull();
         if (path != null)
         {
             return new ZipEntry(filesystem, path);
@@ -319,7 +322,7 @@ public final class ZipArchive extends BaseRepeater implements
     @Override
     public Iterator<ZipEntry> iterator()
     {
-        var files = UncheckedCode.unchecked(() -> Files.walk(filesystem.getPath("/"))).orNull();
+        var files = unchecked(() -> Files.walk(filesystem.getPath("/"))).orNull();
         return files == null ? null : files
                 .filter(path -> !Files.isDirectory(path))
                 .map(path -> new ZipEntry(filesystem, path))
@@ -343,7 +346,7 @@ public final class ZipArchive extends BaseRepeater implements
             {
                 try (var input = new ProgressiveInputStream(entry.openForReading(reader.progressReporter()), reader.progressReporter()))
                 {
-                    return reader.readObject(input, StringPath.stringPath(entryName), OBJECT_TYPE, OBJECT_VERSION);
+                    return reader.readObject(input, stringPath(entryName), OBJECT_TYPE, OBJECT_VERSION);
                 }
             }
         }
@@ -391,11 +394,11 @@ public final class ZipArchive extends BaseRepeater implements
             try
             {
                 writer.writeObject(new ProgressiveOutputStream(output, writer.progressReporter()),
-                        StringPath.stringPath(entryName), new SerializableObject<>(object), OBJECT_TYPE, OBJECT_VERSION);
+                        stringPath(entryName), new SerializableObject<>(object), OBJECT_TYPE, OBJECT_VERSION);
             }
             finally
             {
-                IO.flush(this, output);
+                flush(this, output);
             }
         });
     }
@@ -435,7 +438,7 @@ public final class ZipArchive extends BaseRepeater implements
         {
             bytes.plus(entry.sizeInBytes());
         }
-        return Bytes.bytes(bytes.asLong());
+        return bytes(bytes.asLong());
     }
 
     @Override
@@ -456,14 +459,14 @@ public final class ZipArchive extends BaseRepeater implements
             {
                 var environment = new VariableMap<String>();
                 environment.put("create", "true");
-                return UncheckedCode.unchecked(() -> Nio.filesystem(listener, uri, environment)).orNull();
+                return unchecked(() -> Nio.filesystem(listener, uri, environment)).orNull();
             }
 
             case READ:
             {
                 if (file.exists())
                 {
-                    var filesystem = UncheckedCode.unchecked(() -> FileSystems.getFileSystem(uri)).orNull();
+                    var filesystem = unchecked(() -> FileSystems.getFileSystem(uri)).orNull();
                     if (filesystem != null)
                     {
                         return filesystem;

@@ -47,7 +47,6 @@ public class Weight extends Level
 
     protected Weight()
     {
-        super();
     }
 
     private Weight(double value)

@@ -36,6 +36,7 @@ import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMEN
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_INSUFFICIENT;
 import static com.telenav.kivakit.core.value.count.Maximum.MAXIMUM;
+import static java.lang.Math.round;
 
 /**
  * A bounded list of objects with overrides of methods from {@link BaseList} to downcast return values to
@@ -369,7 +370,7 @@ public class ObjectList<Value> extends BaseList<Value>
     @Override
     public boolean onAppend(Value value)
     {
-        return super.add(value);
+        return add(value);
     }
 
     /**
@@ -380,12 +381,12 @@ public class ObjectList<Value> extends BaseList<Value>
         var lists = new ObjectList<ObjectList<Value>>(maximumSize());
         var i = 0;
         var list = -1;
-        var every = (int) Math.round((double) size() / (double) partitions.asInt());
+        var every = (int) round((double) size() / (double) partitions.asInt());
         for (var object : this)
         {
             if (i++ % every == 0 && list < partitions.asInt() - 1)
             {
-                lists.add(new ObjectList<>(MAXIMUM));
+                lists.add(new ObjectList<>());
                 list++;
             }
             lists.get(list).add(object);

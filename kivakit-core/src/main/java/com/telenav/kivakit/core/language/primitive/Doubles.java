@@ -25,6 +25,9 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTED;
+import static com.telenav.kivakit.core.language.primitive.Longs.parseFastLong;
+import static java.lang.Math.min;
+import static java.lang.String.format;
 
 /**
  * Utility methods for working with <i>double</i> values
@@ -64,7 +67,7 @@ public class Doubles
         {
             return minimum;
         }
-        return Math.min(value, maximum);
+        return min(value, maximum);
     }
 
     /**
@@ -109,7 +112,7 @@ public class Doubles
      */
     public static String formatDouble(double value, int decimals)
     {
-        return String.format("%." + decimals + "f", value);
+        return format("%." + decimals + "f", value);
     }
 
     /**
@@ -117,7 +120,7 @@ public class Doubles
      */
     public static String formatDouble(double value)
     {
-        return String.format("%.1f", value);
+        return format("%.1f", value);
     }
 
     /**
@@ -138,10 +141,10 @@ public class Doubles
         if (index > 0)
         {
             var invalid = Longs.INVALID;
-            var major = Longs.parseFastLong(value.substring(0, index), invalid);
+            var major = parseFastLong(value.substring(0, index), invalid);
             if (major != invalid)
             {
-                var minor = Longs.parseFastLong(value.substring(index + 1), invalid);
+                var minor = parseFastLong(value.substring(index + 1), invalid);
                 if (minor != invalid)
                 {
                     return major + (minor / denominator);

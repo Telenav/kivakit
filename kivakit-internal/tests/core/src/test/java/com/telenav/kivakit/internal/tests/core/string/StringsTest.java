@@ -19,18 +19,33 @@
 package com.telenav.kivakit.internal.tests.core.string;
 
 import com.telenav.kivakit.core.collections.iteration.Iterables;
-import com.telenav.kivakit.core.collections.list.StringList;import com.telenav.kivakit.core.string.Align;
 import com.telenav.kivakit.core.string.AsciiArt;
 import com.telenav.kivakit.core.string.CaseFormat;
-import com.telenav.kivakit.core.string.Escape;
-import com.telenav.kivakit.core.string.Indent;
 import com.telenav.kivakit.core.string.Paths;
 import com.telenav.kivakit.core.string.Split;
-import com.telenav.kivakit.core.string.StringSimilarity;
-import com.telenav.kivakit.core.string.StringConversions;
 import com.telenav.kivakit.core.string.Strings;
 import com.telenav.kivakit.internal.testing.CoreUnitTest;
 import org.junit.Test;
+
+import static com.telenav.kivakit.core.collections.list.StringList.split;
+import static com.telenav.kivakit.core.string.Align.alignRight;
+import static com.telenav.kivakit.core.string.AsciiArt.repeat;
+import static com.telenav.kivakit.core.string.CaseFormat.camelCaseToHyphenated;
+import static com.telenav.kivakit.core.string.CaseFormat.decapitalize;
+import static com.telenav.kivakit.core.string.Escape.escapeXml;
+import static com.telenav.kivakit.core.string.Escape.unescapeXml;
+import static com.telenav.kivakit.core.string.Indent.indentBy;
+import static com.telenav.kivakit.core.string.Paths.pathTail;
+import static com.telenav.kivakit.core.string.Paths.pathWithoutSuffix;
+import static com.telenav.kivakit.core.string.Split.splitOnFirst;
+import static com.telenav.kivakit.core.string.StringConversions.toBinaryString;
+import static com.telenav.kivakit.core.string.StringConversions.toNonNullString;
+import static com.telenav.kivakit.core.string.StringSimilarity.levenshteinDistance;
+import static com.telenav.kivakit.core.string.Strings.equalsAllowNull;
+import static com.telenav.kivakit.core.string.Strings.isNaturalNumber;
+import static com.telenav.kivakit.core.string.Strings.isNullOrEmpty;
+import static com.telenav.kivakit.core.string.Strings.occurrences;
+import static com.telenav.kivakit.core.string.Strings.trailing;
 
 @SuppressWarnings("SpellCheckingInspection")
 public class StringsTest extends CoreUnitTest
@@ -38,8 +53,8 @@ public class StringsTest extends CoreUnitTest
     @Test
     public void testCamelToHyphenated()
     {
-        ensureEqual("camel-case", CaseFormat.camelCaseToHyphenated("camelCase"));
-        ensureEqual("vertex", CaseFormat.camelCaseToHyphenated("vertex"));
+        ensureEqual("camel-case", camelCaseToHyphenated("camelCase"));
+        ensureEqual("vertex", camelCaseToHyphenated("vertex"));
     }
 
     @Test
@@ -64,38 +79,38 @@ public class StringsTest extends CoreUnitTest
     @Test
     public void testCount()
     {
-        ensureEqual(0, Strings.occurrences("", 'a'));
-        ensureEqual(1, Strings.occurrences("a", 'a'));
-        ensureEqual(2, Strings.occurrences("oaoao", 'a'));
-        ensureEqual(3, Strings.occurrences("xxxaaxxax", 'a'));
+        ensureEqual(0, occurrences("", 'a'));
+        ensureEqual(1, occurrences("a", 'a'));
+        ensureEqual(2, occurrences("oaoao", 'a'));
+        ensureEqual(3, occurrences("xxxaaxxax", 'a'));
     }
 
     @SuppressWarnings("SpellCheckingInspection")
     @Test
     public void testDecapitalize()
     {
-        ensureEqual("foo", CaseFormat.decapitalize("Foo"));
-        ensureEqual("kangaRoo", CaseFormat.decapitalize("KangaRoo"));
-        ensureEqual("f", CaseFormat.decapitalize("F"));
-        ensureEqual("", CaseFormat.decapitalize(""));
+        ensureEqual("foo", decapitalize("Foo"));
+        ensureEqual("kangaRoo", decapitalize("KangaRoo"));
+        ensureEqual("f", decapitalize("F"));
+        ensureEqual("", decapitalize(""));
     }
 
     @SuppressWarnings("ConstantConditions")
     @Test
     public void testEqual()
     {
-        ensure(Strings.equalsAllowNull("foo", "foo"));
-        ensureFalse(Strings.equalsAllowNull("foo", "fooe"));
-        ensureFalse(Strings.equalsAllowNull(null, "foo"));
-        ensureFalse(Strings.equalsAllowNull("foo", null));
-        ensure(Strings.equalsAllowNull(null, null));
+        ensure(equalsAllowNull("foo", "foo"));
+        ensureFalse(equalsAllowNull("foo", "fooe"));
+        ensureFalse(equalsAllowNull(null, "foo"));
+        ensureFalse(equalsAllowNull("foo", null));
+        ensure(equalsAllowNull(null, null));
     }
 
     @Test
     public void testEscapeXml()
     {
-        ensureEqual("a &lt; b", Escape.escapeXml("a < b"));
-        ensureEqual("a &lt; b", Escape.escapeXml("a &lt; b"));
+        ensureEqual("a &lt; b", escapeXml("a < b"));
+        ensureEqual("a &lt; b", escapeXml("a &lt; b"));
     }
 
     @Test
@@ -107,45 +122,45 @@ public class StringsTest extends CoreUnitTest
     @Test
     public void testIndented()
     {
-        ensureEqual("  a\n  b", Indent.indentBy(2, "a\nb"));
-        ensureEqual("\n  a\n  b", Indent.indentBy(2, "\na\nb"));
+        ensureEqual("  a\n  b", indentBy(2, "a\nb"));
+        ensureEqual("\n  a\n  b", indentBy(2, "\na\nb"));
     }
 
     @Test
     public void testIsEmpty()
     {
-        ensure(Strings.isEmpty(null));
-        ensure(Strings.isEmpty(""));
-        ensure(Strings.isEmpty(" "));
-        ensureFalse(Strings.isEmpty("a"));
+        ensure(isNullOrEmpty(null));
+        ensure(isNullOrEmpty(""));
+        ensure(isNullOrEmpty(" "));
+        ensureFalse(isNullOrEmpty("a"));
     }
 
     @Test
     public void testIsInteger()
     {
-        ensureFalse(Strings.isNaturalNumber(""));
-        ensureFalse(Strings.isNaturalNumber(null));
-        ensureFalse(Strings.isNaturalNumber("banana"));
-        ensure(Strings.isNaturalNumber("1"));
-        ensure(Strings.isNaturalNumber("1129831928379128739128739182739182739182793127"));
+        ensureFalse(isNaturalNumber(""));
+        ensureFalse(isNaturalNumber(null));
+        ensureFalse(isNaturalNumber("banana"));
+        ensure(isNaturalNumber("1"));
+        ensure(isNaturalNumber("1129831928379128739128739182739182739182793127"));
     }
 
     @Test
     public void testLeftPad()
     {
-        ensureEqual("....4", Align.right("4", 5, '.'));
-        ensureEqual("4", Align.right("4", 1, '.'));
-        ensureEqual("45", Align.right("45", 1, '.'));
+        ensureEqual("....4", alignRight("4", 5, '.'));
+        ensureEqual("4", alignRight("4", 1, '.'));
+        ensureEqual("45", alignRight("45", 1, '.'));
     }
 
     @SuppressWarnings("SpellCheckingInspection")
     @Test
     public void testLevenshteinDistance()
     {
-        ensureEqual(3, StringSimilarity.levenshteinDistance("kitten", "sitting"));
-        ensureEqual(0, StringSimilarity.levenshteinDistance("kitten", "kitten"));
-        ensureEqual(1, StringSimilarity.levenshteinDistance("kitten", "kitton"));
-        ensureEqual(6, StringSimilarity.levenshteinDistance("kitten", "flobpa"));
+        ensureEqual(3, levenshteinDistance("kitten", "sitting"));
+        ensureEqual(0, levenshteinDistance("kitten", "kitten"));
+        ensureEqual(1, levenshteinDistance("kitten", "kitton"));
+        ensureEqual(6, levenshteinDistance("kitten", "flobpa"));
     }
 
     @Test
@@ -159,9 +174,9 @@ public class StringsTest extends CoreUnitTest
     @Test
     public void testOptional()
     {
-        ensureEqual("", StringConversions.toNonNullString(null));
-        ensureEqual("foo", StringConversions.toNonNullString("foo"));
-        ensureEqual("1", StringConversions.toNonNullString(1));
+        ensureEqual("", toNonNullString(null));
+        ensureEqual("foo", toNonNullString("foo"));
+        ensureEqual("1", toNonNullString(1));
     }
 
     @Test
@@ -191,28 +206,28 @@ public class StringsTest extends CoreUnitTest
     @Test
     public void testRepeat()
     {
-        ensureEqual("**********", AsciiArt.repeat(10, "*"));
-        ensureEqual("", AsciiArt.repeat(0, "*"));
-        ensureThrows(() -> AsciiArt.repeat(-1, "*"));
+        ensureEqual("**********", repeat(10, "*"));
+        ensureEqual("", repeat(0, "*"));
+        ensureThrows(() -> repeat(-1, "*"));
         //noinspection SpellCheckingInspection
-        ensureEqual("hellohellohellohellohello", AsciiArt.repeat(5, "hello"));
-        ensureEqual("", AsciiArt.repeat(0, "hello"));
-        ensureThrows(() -> AsciiArt.repeat(-1, "hello"));
+        ensureEqual("hellohellohellohellohello", repeat(5, "hello"));
+        ensureEqual("", repeat(0, "hello"));
+        ensureThrows(() -> repeat(-1, "hello"));
     }
 
     @Test
     public void testSplit()
     {
-        ensure(Iterables.equals(StringList.split("a,b,c", ","), Split.split("a,b,c", ",")));
-        ensure(Iterables.equals(StringList.split(",b,c", ","), Split.split(",b,c", ",")));
-        ensure(Iterables.equals(StringList.split("a,b,", ","), Split.split("a,b,", ",")));
+        ensure(Iterables.equalIterables(split("a,b,c", ","), Split.split("a,b,c", ",")));
+        ensure(Iterables.equalIterables(split(",b,c", ","), Split.split(",b,c", ",")));
+        ensure(Iterables.equalIterables(split("a,b,", ","), Split.split("a,b,", ",")));
     }
 
     @SuppressWarnings("ConstantConditions")
     @Test
     public void testSplitOnFirst()
     {
-        final String[] split = Split.splitOnFirst("foo/bar/baz", '/');
+        String[] split = splitOnFirst("foo/bar/baz", '/');
         ensure(split != null);
         ensureEqual("foo", split[0]);
         ensureEqual("bar/baz", split[1]);
@@ -221,55 +236,55 @@ public class StringsTest extends CoreUnitTest
     @Test
     public void testTail()
     {
-        ensureEqual("def", Paths.pathTail("abc-x-def", "-x-"));
-        ensureEqual(null, Paths.pathTail("abc", "x"));
-        ensureEqual(null, Paths.pathTail("abc", "c"));
+        ensureEqual("def", pathTail("abc-x-def", "-x-"));
+        ensureEqual(null, pathTail("abc", "x"));
+        ensureEqual(null, pathTail("abc", "c"));
     }
 
     @Test
     public void testToBinaryString()
     {
-        ensureEqual("001", StringConversions.toBinaryString(1, 3));
-        ensureEqual("010", StringConversions.toBinaryString(2, 3));
-        ensureEqual("111", StringConversions.toBinaryString(7, 3));
-        ensureEqual("111", StringConversions.toBinaryString(15, 3));
-        ensureEqual("11", StringConversions.toBinaryString(7, 2));
+        ensureEqual("001", toBinaryString(1, 3));
+        ensureEqual("010", toBinaryString(2, 3));
+        ensureEqual("111", toBinaryString(7, 3));
+        ensureEqual("111", toBinaryString(15, 3));
+        ensureEqual("11", toBinaryString(7, 2));
     }
 
     @SuppressWarnings("SpellCheckingInspection")
     @Test
     public void testTrailing()
     {
-        ensureEqual("", Strings.trailing("", 0));
-        ensureEqual("", Strings.trailing("", 1));
-        ensureEqual("c", Strings.trailing("abc", 1));
-        ensureEqual("bc", Strings.trailing("abc", 2));
-        ensureEqual("abc", Strings.trailing("abc", 3));
-        ensureEqual("f", Strings.trailing("abcdef", 1));
-        ensureEqual("ef", Strings.trailing("abcdef", 2));
-        ensureEqual("def", Strings.trailing("abcdef", 3));
-        ensureEqual("abc", Strings.trailing("abc", 9));
+        ensureEqual("", trailing("", 0));
+        ensureEqual("", trailing("", 1));
+        ensureEqual("c", trailing("abc", 1));
+        ensureEqual("bc", trailing("abc", 2));
+        ensureEqual("abc", trailing("abc", 3));
+        ensureEqual("f", trailing("abcdef", 1));
+        ensureEqual("ef", trailing("abcdef", 2));
+        ensureEqual("def", trailing("abcdef", 3));
+        ensureEqual("abc", trailing("abc", 9));
     }
 
     @Test
     public void testUnescapeXml()
     {
-        ensureEqual("a < b", Escape.unescapeXml("a &lt; b"));
-        ensureEqual("\"a\" > \"b\"", Escape.unescapeXml("&quot;a&quot; &gt; &quot;b&quot;"));
+        ensureEqual("a < b", unescapeXml("a &lt; b"));
+        ensureEqual("\"a\" > \"b\"", unescapeXml("&quot;a&quot; &gt; &quot;b&quot;"));
     }
 
     @Test
     public void testUpperCamelToHyphenated()
     {
-        ensureEqual("vertex", CaseFormat.camelCaseToHyphenated("Vertex"));
-        ensureEqual("b2b-industry", CaseFormat.camelCaseToHyphenated("B2BIndustry"));
+        ensureEqual("vertex", camelCaseToHyphenated("Vertex"));
+        ensureEqual("b2b-industry", camelCaseToHyphenated("B2BIndustry"));
     }
 
     @Test
     public void testWithoutSuffix()
     {
-        ensureEqual("a.b", Paths.pathWithoutSuffix("a.b.c", '.'));
-        ensureEqual(null, Paths.pathWithoutSuffix("a.b.c", 'x'));
-        ensureEqual(null, Paths.pathWithoutSuffix(null, '.'));
+        ensureEqual("a.b", pathWithoutSuffix("a.b.c", '.'));
+        ensureEqual(null, pathWithoutSuffix("a.b.c", 'x'));
+        ensureEqual(null, pathWithoutSuffix(null, '.'));
     }
 }

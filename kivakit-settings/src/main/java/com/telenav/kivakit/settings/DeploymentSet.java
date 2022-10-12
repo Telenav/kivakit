@@ -23,7 +23,6 @@ import com.telenav.kivakit.commandline.SwitchParser;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.messaging.repeaters.BaseRepeater;
 import com.telenav.kivakit.core.registry.RegistryTrait;
-import com.telenav.kivakit.properties.PropertyMap;
 import com.telenav.kivakit.resource.Resource;
 import com.telenav.kivakit.resource.ResourceFolder;
 import com.telenav.kivakit.settings.internal.lexakai.DiagramSettings;
@@ -31,22 +30,24 @@ import com.telenav.kivakit.settings.stores.ResourceFolderSettingsStore;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlAggregation;
 
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static com.telenav.kivakit.core.collections.list.ObjectList.list;
 import static com.telenav.kivakit.core.vm.JavaVirtualMachine.javaVirtualMachine;
+import static com.telenav.kivakit.properties.PropertyMap.loadPropertyMap;
 import static com.telenav.kivakit.properties.PropertyMap.propertyMap;
 import static com.telenav.kivakit.resource.packages.Package.parsePackage;
+import static com.telenav.kivakit.settings.Deployment.deploymentSwitchParser;
 
 /**
  * A set of {@link Deployment} objects, each being a set of settings objects. Deployments can be added to the set from a
  * folder with {@link #addDeploymentsIn(ResourceFolder)}. A switch parser to select a deployment from the command line
- * can be retrieved with SwitchParser.deployment(DeploymentSet).
+ * can be retrieved with {@link #deploymentSet(Listener, Deployment, Deployment...)}.
  *
  * <p><b>Loading</b></p>
  *
@@ -99,7 +100,7 @@ public class DeploymentSet extends BaseRepeater implements RegistryTrait
     {
         var set = listener.listenTo(new DeploymentSet());
         set.add(deployment);
-        set.addAll(Arrays.asList(more));
+        set.addAll(list(more));
         return set;
     }
 
@@ -225,13 +226,13 @@ public class DeploymentSet extends BaseRepeater implements RegistryTrait
      */
     public SwitchParser.Builder<Deployment> switchParser(String name)
     {
-        return Deployment.deploymentSwitchParser(this, this, name);
+        return deploymentSwitchParser(this, this, name);
     }
 
     private String description(Resource resource)
     {
         var description = "'" + resource.fileName().name() + "' deployment";
-        var deploymentProperties = PropertyMap.loadPropertyMap(this, resource);
+        var deploymentProperties = loadPropertyMap(this, resource);
         if (deploymentProperties.containsKey("description"))
         {
             description = deploymentProperties.get("description");

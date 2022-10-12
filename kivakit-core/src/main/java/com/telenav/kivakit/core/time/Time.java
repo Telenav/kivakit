@@ -30,11 +30,14 @@ import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMEN
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
 import static com.telenav.kivakit.core.time.BaseTime.Topology.LINEAR;
+import static com.telenav.kivakit.core.time.Day.dayOfMonth;
 import static com.telenav.kivakit.core.time.Duration.ZERO_DURATION;
 import static com.telenav.kivakit.core.time.Hour.militaryHour;
 import static com.telenav.kivakit.core.time.LocalTime.localTimeZone;
 import static com.telenav.kivakit.core.time.LocalTime.utcTimeZone;
+import static com.telenav.kivakit.core.time.Minute.minute;
 import static com.telenav.kivakit.core.time.Second.second;
+import static java.lang.System.currentTimeMillis;
 
 /**
  * An immutable <code>Time</code> class that represents a specific point in UNIX time. The underlying representation is
@@ -150,12 +153,12 @@ public class Time extends BaseTime<Time>
      */
     public static Time now()
     {
-        return epochMilliseconds(System.currentTimeMillis());
+        return epochMilliseconds(currentTimeMillis());
     }
 
     public static Time utcTime(Year year, Month month, Day dayOfMonth, Hour hour)
     {
-        return utcTime(year, month, dayOfMonth, hour, Minute.minute(0), second(0));
+        return utcTime(year, month, dayOfMonth, hour, minute(0), second(0));
     }
 
     public static Time utcTime(Year year, Month month, Day dayOfMonth)
@@ -165,7 +168,7 @@ public class Time extends BaseTime<Time>
 
     public static Time utcTime(Year year, Month month)
     {
-        return utcTime(year, month, Day.dayOfMonth(1), militaryHour(0));
+        return utcTime(year, month, dayOfMonth(1), militaryHour(0));
     }
 
     public static Time utcTime(Year year,
@@ -212,7 +215,7 @@ public class Time extends BaseTime<Time>
      */
     public Duration elapsedSince()
     {
-        return Time.now().elapsedSince(this);
+        return now().elapsedSince(this);
     }
 
     /**
@@ -339,7 +342,7 @@ public class Time extends BaseTime<Time>
     @Override
     public Time onNewTime(Nanoseconds nanoseconds)
     {
-        return Time.epochNanoseconds(nanoseconds);
+        return epochNanoseconds(nanoseconds);
     }
 
     /**
@@ -371,7 +374,7 @@ public class Time extends BaseTime<Time>
      */
     public Duration untilNow()
     {
-        return until(Time.now());
+        return until(now());
     }
 
     @Override

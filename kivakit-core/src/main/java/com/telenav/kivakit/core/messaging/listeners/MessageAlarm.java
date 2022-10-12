@@ -6,16 +6,18 @@ import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.messaging.Message;
 import com.telenav.kivakit.core.messaging.Repeater;
 import com.telenav.kivakit.core.messaging.messages.status.Problem;
-import com.telenav.kivakit.core.time.Duration;
 import com.telenav.kivakit.core.time.Frequency;
 import com.telenav.kivakit.core.time.Rate;
 import com.telenav.kivakit.core.time.RateCalculator;
 import com.telenav.kivakit.core.time.Time;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.time.Duration.ONE_MINUTE;
+import static com.telenav.kivakit.core.time.Duration.minutes;
+import static com.telenav.kivakit.core.time.Frequency.every;
+import static com.telenav.kivakit.core.time.Rate.perMinute;
 
 /**
  * Base class for implementing message alarms that trigger when alarming messages are received at a high rate.
@@ -64,7 +66,7 @@ public abstract class MessageAlarm implements Listener
     private final RateCalculator errorRate = new RateCalculator(ONE_MINUTE);
 
     /** The maximum frequency at which this alarm can be triggered */
-    private Frequency maximumTriggerFrequency = Frequency.every(Duration.minutes(30));
+    private Frequency maximumTriggerFrequency = every(minutes(30));
 
     /** The time at which this alarm can next be triggered */
     private Time nextAllowedTriggerTime;
@@ -73,7 +75,7 @@ public abstract class MessageAlarm implements Listener
     private Frequency.Cycle triggerCycle;
 
     /** The maximum rate above which an alarm is triggered */
-    private Rate triggerRate = Rate.perMinute(10);
+    private Rate triggerRate = perMinute(10);
 
     /**
      * Sets the maximum frequency at which this alarm can be triggered

@@ -17,7 +17,6 @@ package com.telenav.kivakit.settings;///////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 import com.telenav.kivakit.core.registry.InstanceIdentifier;
-import com.telenav.kivakit.core.time.Duration;
 import com.telenav.kivakit.resource.packages.PackageTrait;
 import com.telenav.kivakit.serialization.gson.GsonSerializationProject;
 import com.telenav.kivakit.serialization.gson.factory.KivaKitCoreGsonFactory;
@@ -30,6 +29,7 @@ import org.junit.Test;
 
 import static com.telenav.kivakit.core.registry.InstanceIdentifier.instanceIdentifier;
 import static com.telenav.kivakit.core.time.Duration.ONE_MINUTE;
+import static com.telenav.kivakit.core.time.Duration.seconds;
 import static com.telenav.kivakit.settings.SettingsRegistry.settingsFor;
 
 public class SettingsRegistryTest extends UnitTest implements PackageTrait
@@ -91,7 +91,7 @@ public class SettingsRegistryTest extends UnitTest implements PackageTrait
         {
             // Client code can then retrieve both settings
             var server1 = settings.requireSettings(ClientSettings.class, WhichServer.SERVER1);
-            ensureEqual(Duration.seconds(6), server1.timeout());
+            ensureEqual(seconds(6), server1.timeout());
             ensureEqual(9999, server1.port());
         }
     }

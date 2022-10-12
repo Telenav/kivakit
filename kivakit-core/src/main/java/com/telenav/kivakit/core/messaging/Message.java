@@ -22,7 +22,6 @@ import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramBroadcaster;
 import com.telenav.kivakit.core.internal.lexakai.DiagramListener;
 import com.telenav.kivakit.core.internal.lexakai.DiagramMessaging;
-import com.telenav.kivakit.core.language.Classes;
 import com.telenav.kivakit.core.messaging.context.CodeContext;
 import com.telenav.kivakit.core.messaging.context.StackTrace;
 import com.telenav.kivakit.core.messaging.messages.Importance;
@@ -43,7 +42,6 @@ import com.telenav.kivakit.core.messaging.messages.status.activity.StepFailure;
 import com.telenav.kivakit.core.messaging.messages.status.activity.StepIncomplete;
 import com.telenav.kivakit.core.messaging.messages.status.activity.StepSuccess;
 import com.telenav.kivakit.core.string.Formatter;
-import com.telenav.kivakit.core.string.Strings;
 import com.telenav.kivakit.core.time.Frequency;
 import com.telenav.kivakit.core.time.Time;
 import com.telenav.kivakit.interfaces.messaging.Transmittable;
@@ -54,12 +52,16 @@ import com.telenav.lexakai.annotations.associations.UmlRelation;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeMember;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeSuperTypes;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static com.telenav.kivakit.core.language.Classes.newInstance;
+import static com.telenav.kivakit.core.language.Classes.simpleName;
 import static com.telenav.kivakit.core.messaging.MessageFormat.FORMATTED;
 import static com.telenav.kivakit.core.messaging.MessageFormat.WITHOUT_EXCEPTION;
 import static com.telenav.kivakit.core.messaging.MessageFormat.WITH_EXCEPTION;
+import static com.telenav.kivakit.core.messaging.Messages.parseMessageType;
+import static com.telenav.kivakit.core.string.Strings.replaceAll;
 
 /**
  * An interface to retrieve the basic attributes of a message, find out what it means and format it as text. A message's
@@ -140,7 +142,7 @@ public interface Message extends
      */
     static String escapeMessageText(String text)
     {
-        return Strings.replaceAll(text, "$", "$$");
+        return replaceAll(text, "$", "$$");
     }
 
     /**
@@ -148,7 +150,7 @@ public interface Message extends
      */
     static Message parseMessageName(Listener listener, String name)
     {
-        return Messages.parseMessageType(listener, name);
+        return parseMessageType(listener, name);
     }
 
     /**
@@ -335,7 +337,7 @@ public interface Message extends
     @UmlExcludeMember
     default <T extends Message> boolean isWorseThan(Class<T> message)
     {
-        return isWorseThan(Classes.newInstance(message).status());
+        return isWorseThan(newInstance(message).status());
     }
 
     /**
@@ -353,7 +355,7 @@ public interface Message extends
     @UmlExcludeMember
     default <T extends Message> boolean isWorseThanOrEqualTo(Class<T> message)
     {
-        return isWorseThanOrEqualTo(Classes.newInstance(message).status());
+        return isWorseThanOrEqualTo(newInstance(message).status());
     }
 
     /**
@@ -368,7 +370,7 @@ public interface Message extends
     @Override
     default String name()
     {
-        return Classes.simpleName(getClass());
+        return simpleName(getClass());
     }
 
     /**

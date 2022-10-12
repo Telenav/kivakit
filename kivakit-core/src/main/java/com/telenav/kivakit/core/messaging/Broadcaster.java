@@ -31,6 +31,8 @@ import java.util.List;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static com.telenav.kivakit.core.messaging.Listener.nullListener;
+import static com.telenav.kivakit.interfaces.comparison.Filter.acceptAll;
 
 /**
  * Broadcasts a message to zero or more listeners via {@link #transmit(Transmittable)}. Listeners can be added with
@@ -87,7 +89,7 @@ public interface Broadcaster extends MessageTransceiver
      */
     default void addListener(Listener listener)
     {
-        addListener(listener, Filter.acceptAll());
+        addListener(listener, acceptAll());
     }
 
     /**
@@ -168,7 +170,7 @@ public interface Broadcaster extends MessageTransceiver
     default void silence()
     {
         clearListeners();
-        addListener(Listener.nullListener());
+        addListener(nullListener());
     }
 
     /**

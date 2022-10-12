@@ -29,6 +29,12 @@ import java.util.Locale;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_INSUFFICIENT;
+import static com.telenav.kivakit.core.language.primitive.Longs.parseFastLong;
+import static java.lang.Integer.toHexString;
+import static java.lang.Math.log10;
+import static java.lang.Math.max;
+import static java.lang.Math.min;
+import static java.lang.String.format;
 
 /**
  * Utility methods for <i>int</i> values.
@@ -101,7 +107,7 @@ public class Ints
      */
     public static int intDigits(int value)
     {
-        return (int) (Math.log10(value) + 1);
+        return (int) (log10(value) + 1);
     }
 
     /**
@@ -130,7 +136,7 @@ public class Ints
      */
     public static int intInRangeInclusive(int value, int minimum, int maximum)
     {
-        return Math.min(Math.max(value, minimum), maximum);
+        return min(max(value, minimum), maximum);
     }
 
     /**
@@ -203,7 +209,7 @@ public class Ints
      */
     public static String intToHex(int value)
     {
-        return Integer.toHexString(value);
+        return toHexString(value);
     }
 
     /**
@@ -211,7 +217,7 @@ public class Ints
      */
     public static String intToHex(int value, int length)
     {
-        return String.format("%0" + length + "x", value);
+        return format("%0" + length + "x", value);
     }
 
     /**
@@ -230,7 +236,7 @@ public class Ints
      */
     public static int parseFastInt(String text, int invalidValue)
     {
-        return (int) Longs.parseFastLong(text, invalidValue);
+        return (int) parseFastLong(text, invalidValue);
     }
 
     /**

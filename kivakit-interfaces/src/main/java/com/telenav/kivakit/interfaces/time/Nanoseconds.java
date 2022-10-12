@@ -5,13 +5,15 @@ import com.telenav.kivakit.interfaces.numeric.Zeroable;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
-import java.util.Objects;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static java.lang.Long.compare;
 import static java.lang.Math.addExact;
 import static java.lang.Math.subtractExact;
+import static java.lang.String.format;
+import static java.util.Objects.hash;
 
 /**
  * Accurate model of a number of nanoseconds, represented as a number of seconds and a number of nanoseconds. This
@@ -160,12 +162,12 @@ public class Nanoseconds implements
     @Override
     public int compareTo(Nanoseconds that)
     {
-        int result = Long.compare(seconds, that.seconds);
+        int result = compare(seconds, that.seconds);
         if (result != 0)
         {
             return result;
         }
-        return Long.compare(this.nanoseconds, that.nanoseconds);
+        return compare(this.nanoseconds, that.nanoseconds);
     }
 
     /**
@@ -219,7 +221,7 @@ public class Nanoseconds implements
     @Override
     public int hashCode()
     {
-        return Objects.hash(seconds(), nanoseconds());
+        return hash(seconds(), nanoseconds());
     }
 
     /**
@@ -377,7 +379,7 @@ public class Nanoseconds implements
     @Override
     public String toString()
     {
-        return String.format("%d.%09d", seconds(), nanoseconds());
+        return format("%d.%09d", seconds(), nanoseconds());
     }
 
     /**

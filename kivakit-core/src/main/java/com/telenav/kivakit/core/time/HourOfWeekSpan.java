@@ -1,17 +1,18 @@
 package com.telenav.kivakit.core.time;
 
 import com.telenav.kivakit.annotations.code.quality.CodeQuality;
-import com.telenav.kivakit.core.language.Hash;
-import com.telenav.kivakit.core.language.Objects;
-import com.telenav.kivakit.core.string.Formatter;
 
 import java.time.ZoneId;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
+import static com.telenav.kivakit.core.language.Hash.hashMany;
+import static com.telenav.kivakit.core.language.Objects.areEqualPairs;
+import static com.telenav.kivakit.core.string.Formatter.format;
 import static com.telenav.kivakit.core.time.HourOfWeek.hourOfWeek;
+import static com.telenav.kivakit.core.time.TimeZones.utc;
 
 /**
  * Represents a span of hours of the week in a local timezone. For example, monday at 3pm to tuesday at 1pm in the
@@ -77,7 +78,7 @@ public class HourOfWeekSpan
      */
     public static HourOfWeekSpan hourOfWeekSpanUtc(HourOfWeek startHourOfWeek, HourOfWeek endHourOfWeek)
     {
-        return hourOfWeekSpan(startHourOfWeek, endHourOfWeek, TimeZones.utc());
+        return hourOfWeekSpan(startHourOfWeek, endHourOfWeek, utc());
     }
 
     /** The end hour */
@@ -146,7 +147,8 @@ public class HourOfWeekSpan
         if (object instanceof HourOfWeekSpan)
         {
             HourOfWeekSpan that = (HourOfWeekSpan) object;
-            return Objects.areEqualPairs(startHourOfWeek(), that.startHourOfWeek(),
+            return areEqualPairs(
+                    startHourOfWeek(), that.startHourOfWeek(),
                     endHourOfWeek(), that.endHourOfWeek());
         }
         return false;
@@ -155,7 +157,7 @@ public class HourOfWeekSpan
     @Override
     public int hashCode()
     {
-        return Hash.hashMany(startHourOfWeek(), endHourOfWeek());
+        return hashMany(startHourOfWeek(), endHourOfWeek());
     }
 
     /**
@@ -181,7 +183,7 @@ public class HourOfWeekSpan
      */
     public boolean includes(Time time)
     {
-        return includes(time.inTimeZone(TimeZones.utc()));
+        return includes(time.inTimeZone(utc()));
     }
 
     /**
@@ -211,7 +213,7 @@ public class HourOfWeekSpan
     @Override
     public String toString()
     {
-        return Formatter.format("[$ to $]", startHourOfWeek(), endHourOfWeek());
+        return format("[$ to $]", startHourOfWeek(), endHourOfWeek());
     }
 
     /**

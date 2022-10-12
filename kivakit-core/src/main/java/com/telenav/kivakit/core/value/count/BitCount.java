@@ -249,7 +249,7 @@ public class BitCount extends BaseCount<BitCount>
      */
     public static BitCount bitsToRepresent(long value)
     {
-        return BitCount.bits(Long.SIZE - Long.numberOfLeadingZeros(value)).maximize(BitCount._1);
+        return bits(Long.SIZE - Long.numberOfLeadingZeros(value)).maximize(_1);
     }
 
     /**
@@ -257,7 +257,7 @@ public class BitCount extends BaseCount<BitCount>
      */
     public static BitCount bitsToRepresent(int value)
     {
-        return BitCount.bits(Integer.SIZE - Integer.numberOfLeadingZeros(value));
+        return bits(Integer.SIZE - Integer.numberOfLeadingZeros(value));
     }
 
     protected BitCount(long bits)

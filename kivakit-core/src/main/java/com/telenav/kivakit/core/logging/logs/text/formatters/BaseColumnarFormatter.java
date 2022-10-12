@@ -3,17 +3,19 @@ package com.telenav.kivakit.core.logging.logs.text.formatters;
 import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.collections.list.StringList;
 import com.telenav.kivakit.core.logging.logs.text.LogFormatter;
-import com.telenav.kivakit.core.string.AsciiArt;
-import com.telenav.kivakit.core.string.Strings;
 import com.telenav.kivakit.core.value.count.Maximum;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static com.telenav.kivakit.core.collections.list.StringList.split;
+import static com.telenav.kivakit.core.string.AsciiArt.repeat;
+import static com.telenav.kivakit.core.string.Strings.replaceAll;
+import static com.telenav.kivakit.core.string.Strings.trailing;
 
 /**
  * A columnar log formatter. {@link Column} models can be created by subclasses and added to the {@link LineOutput} with
@@ -85,7 +87,7 @@ public abstract class BaseColumnarFormatter implements LogFormatter
         private StringList format(String value)
         {
             var rows = new StringList();
-            for (var line : StringList.split(value, "\n"))
+            for (var line : split(value, "\n"))
             {
                 rows.addAll(formatLine(line));
             }
@@ -106,7 +108,7 @@ public abstract class BaseColumnarFormatter implements LogFormatter
                 var width = value.length();
                 if (width < this.width)
                 {
-                    rows.add(value + AsciiArt.repeat(this.width - width, ' '));
+                    rows.add(value + repeat(this.width - width, ' '));
                     value = "";
                 }
                 else
@@ -123,7 +125,7 @@ public abstract class BaseColumnarFormatter implements LogFormatter
                         switch (layout)
                         {
                             case CLIP_LEFT:
-                                rows.add(Strings.trailing(value, this.width));
+                                rows.add(trailing(value, this.width));
                                 value = "";
                                 break;
 
@@ -173,7 +175,7 @@ public abstract class BaseColumnarFormatter implements LogFormatter
             var rows = column.format(value);
             if (value.contains("${nowrap}"))
             {
-                output.add(new StringList(Maximum._1, Strings.replaceAll(rows.join(""), "${nowrap}", "")));
+                output.add(new StringList(Maximum._1, replaceAll(rows.join(""), "${nowrap}", "")));
             }
             else
             {
@@ -199,7 +201,7 @@ public abstract class BaseColumnarFormatter implements LogFormatter
                     }
                     else
                     {
-                        builder.append(AsciiArt.repeat(columns.get(column).width, ' '));
+                        builder.append(repeat(columns.get(column).width, ' '));
                     }
                     builder.append(" |");
                     if (column < columns.size() - 1)

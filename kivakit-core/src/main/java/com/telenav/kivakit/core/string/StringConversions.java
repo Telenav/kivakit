@@ -29,7 +29,10 @@ import java.util.ArrayList;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static com.telenav.kivakit.core.string.CaseFormat.capitalizeOnlyFirstLetter;
 import static com.telenav.kivakit.core.string.Join.join;
+import static com.telenav.kivakit.core.string.Split.split;
+import static java.lang.String.*;
 
 /**
  * String conversion utilities
@@ -72,7 +75,7 @@ public class StringConversions
         {
             return ((StringFormattable) object).asString(StringFormattable.Format.DEBUG);
         }
-        return toString(object);
+        return toHumanizedString(object);
     }
 
     /**
@@ -80,11 +83,11 @@ public class StringConversions
      */
     public static String toDisplayString(Enum<?> enumValue)
     {
-        var words = Split.split(enumValue.name(), "_");
+        var words = split(enumValue.name(), "_");
         var display = new ArrayList<String>();
         for (var word : words)
         {
-            display.add(CaseFormat.capitalizeOnlyFirstLetter(word.toLowerCase()));
+            display.add(capitalizeOnlyFirstLetter(word.toLowerCase()));
         }
         return join(display, " ");
     }
@@ -102,13 +105,13 @@ public class StringConversions
      */
     public static String toNonNullString(Object value)
     {
-        return value == null ? "" : toString(value);
+        return value == null ? "" : toHumanizedString(value);
     }
 
     /**
      * Returns the given object as a string or the given value if it is null
      */
-    public static String toString(Object object, String defaultValue)
+    public static String toHumanizedString(Object object, String defaultValue)
     {
         if (object == null)
         {
@@ -116,17 +119,17 @@ public class StringConversions
         }
         if (object instanceof Source)
         {
-            return toString(((Source<?>) object).get());
+            return toHumanizedString(((Source<?>) object).get());
         }
         if (object instanceof Long)
         {
             var value = (long) object;
-            return String.format("%,d", value);
+            return format("%,d", value);
         }
         if (object instanceof Integer)
         {
             var value = (int) object;
-            return String.format("%,d", value);
+            return format("%,d", value);
         }
         return object.toString();
     }
@@ -134,8 +137,8 @@ public class StringConversions
     /**
      * Returns the given object as a string or "null" if it is null
      */
-    public static String toString(Object object)
+    public static String toHumanizedString(Object object)
     {
-        return toString(object, "null");
+        return toHumanizedString(object, "null");
     }
 }

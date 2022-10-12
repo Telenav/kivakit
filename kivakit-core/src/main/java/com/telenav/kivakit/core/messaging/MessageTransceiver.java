@@ -17,6 +17,7 @@ import com.telenav.lexakai.annotations.visibility.UmlExcludeMember;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
+import static com.telenav.kivakit.core.messaging.Debug.registerDebug;
 
 /**
  * Methods that transmit different kinds of messages.
@@ -46,7 +47,7 @@ public interface MessageTransceiver extends Transceiver
      */
     default Debug debug()
     {
-        return Debug.registerDebug(debugClassContext(), this);
+        return registerDebug(debugClassContext(), this);
     }
 
     /**

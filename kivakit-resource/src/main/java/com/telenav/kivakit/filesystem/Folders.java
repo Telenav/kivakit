@@ -10,9 +10,12 @@ import org.jetbrains.annotations.NotNull;
 import java.io.IOException;
 
 import static com.telenav.kivakit.commandline.ArgumentParser.argumentParser;
+import static com.telenav.kivakit.commandline.SwitchParser.switchParser;
 import static com.telenav.kivakit.core.ensure.Ensure.fail;
 import static com.telenav.kivakit.core.messaging.Listener.throwingListener;
 import static com.telenav.kivakit.core.project.Project.resolveProject;
+import static com.telenav.kivakit.filesystem.Folder.folder;
+import static com.telenav.kivakit.filesystem.Folder.parseFolder;
 
 /**
  * Locations of well-known folders, and argument and switch parser builders for folders.
@@ -49,7 +52,7 @@ public class Folders
     {
         try
         {
-            return Folder.parseFolder(throwingListener(), new java.io.File(".").getCanonicalPath());
+            return parseFolder(throwingListener(), new java.io.File(".").getCanonicalPath());
         }
         catch (IOException e)
         {
@@ -107,7 +110,7 @@ public class Folders
                                                                           @NotNull String name,
                                                                           @NotNull String description)
     {
-        return SwitchParser.switchParser(FolderList.class)
+        return switchParser(FolderList.class)
                 .name(name)
                 .converter(new FolderList.Converter(listener))
                 .description(description);
@@ -124,7 +127,7 @@ public class Folders
                                                                   @NotNull String name,
                                                                   @NotNull String description)
     {
-        return SwitchParser.switchParser(Folder.class)
+        return switchParser(Folder.class)
                 .name(name)
                 .converter(new Folder.Converter(listener))
                 .description(description);
@@ -135,7 +138,7 @@ public class Folders
      */
     public static Folder kivakitCacheFolder()
     {
-        return Folder.folder(resolveProject(KivaKit.class).kivakitCacheFolderPath()).mkdirs();
+        return folder(resolveProject(KivaKit.class).kivakitCacheFolderPath()).mkdirs();
     }
 
     /**
@@ -154,7 +157,7 @@ public class Folders
         var home = resolveProject(KivaKit.class).kivakitHomeFolderPath();
         if (home != null)
         {
-            return Folder.folder(home);
+            return folder(home);
         }
         return fail("Cannot find KivaKit home folder");
     }
@@ -183,6 +186,6 @@ public class Folders
      */
     public static Folder userHome()
     {
-        return Folder.parseFolder(throwingListener(), System.getProperty("user.home"));
+        return parseFolder(throwingListener(), System.getProperty("user.home"));
     }
 }

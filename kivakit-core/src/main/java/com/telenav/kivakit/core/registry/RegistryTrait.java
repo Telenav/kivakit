@@ -7,7 +7,9 @@ import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTE
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
 import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
+import static com.telenav.kivakit.core.registry.InstanceIdentifier.instanceIdentifier;
 import static com.telenav.kivakit.core.registry.InstanceIdentifier.singletonInstanceIdentifier;
+import static com.telenav.kivakit.core.registry.Registry.registryFor;
 
 /**
  * <p>
@@ -65,7 +67,7 @@ public interface RegistryTrait
      */
     default <T> T lookup(Class<T> type, Enum<?> instance)
     {
-        return lookup(type, InstanceIdentifier.instanceIdentifier(instance));
+        return lookup(type, instanceIdentifier(instance));
     }
 
     /**
@@ -103,7 +105,7 @@ public interface RegistryTrait
      */
     default <T> T register(T object, Enum<?> instance)
     {
-        return register(object, InstanceIdentifier.instanceIdentifier(instance));
+        return register(object, instanceIdentifier(instance));
     }
 
     /**
@@ -125,7 +127,7 @@ public interface RegistryTrait
      */
     default Registry registry()
     {
-        return Registry.registryFor(this);
+        return registryFor(this);
     }
 
     /**
@@ -168,7 +170,7 @@ public interface RegistryTrait
      */
     default <T> T require(Class<T> type, Enum<?> instance)
     {
-        return require(type, InstanceIdentifier.instanceIdentifier(instance));
+        return require(type, instanceIdentifier(instance));
     }
 
     /**
@@ -212,7 +214,7 @@ public interface RegistryTrait
      */
     default void unregister(Object object, Enum<?> instance)
     {
-        unregister(object, InstanceIdentifier.instanceIdentifier(instance));
+        unregister(object, instanceIdentifier(instance));
     }
 
     /**

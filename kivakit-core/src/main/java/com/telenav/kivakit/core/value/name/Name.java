@@ -29,6 +29,7 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static com.telenav.kivakit.interfaces.naming.NamedObject.syntheticName;
 
 /**
  * A name value.
@@ -67,7 +68,7 @@ public class Name implements
         }
         if (name == null)
         {
-            name = NamedObject.syntheticName(object);
+            name = syntheticName(object);
         }
         return name;
     }

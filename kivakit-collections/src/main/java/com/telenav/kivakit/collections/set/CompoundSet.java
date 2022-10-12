@@ -37,6 +37,7 @@ import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTE
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.ensure.Ensure.unsupported;
+import static java.util.Collections.unmodifiableSet;
 
 /**
  * A set which contains any number of other sets by reference. The included sets cannot be directly modified via the
@@ -65,7 +66,7 @@ public class CompoundSet<Element> implements Set<Element>
 
     public void add(Set<Element> set)
     {
-        sets.add(Collections.unmodifiableSet(set));
+        sets.add(unmodifiableSet(set));
     }
 
     @Override

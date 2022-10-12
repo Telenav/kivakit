@@ -29,6 +29,7 @@ import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTE
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.ensure.Ensure.ensure;
+import static com.telenav.kivakit.core.value.level.Percent.percent;
 
 /**
  * A mutable count value useful in lambdas and inner classes. Can be {@link #increment()}ed, {@link #decrement()}ed,
@@ -195,7 +196,7 @@ public class MutableCount implements
         {
             return Percent._0;
         }
-        return Percent.percent(asLong() * 100.0 / total.asLong());
+        return percent(asLong() * 100.0 / total.asLong());
     }
 
     /**

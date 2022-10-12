@@ -28,6 +28,8 @@ import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTE
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.ensure.Ensure.ensure;
+import static java.lang.Double.compare;
+import static java.lang.Double.parseDouble;
 
 /**
  * A level from 0 to 1
@@ -74,7 +76,7 @@ public class Level implements
      */
     public static Level parseLevel(Listener listener, String text, boolean lenient)
     {
-        var level = Double.parseDouble(text);
+        var level = parseDouble(text);
         if (level >= 0 && level <= 1.0)
         {
             return new Level(level);
@@ -83,11 +85,11 @@ public class Level implements
         {
             if (level < 0)
             {
-                return Level.ZERO;
+                return ZERO;
             }
             if (level > 1)
             {
-                return Level.ONE;
+                return ONE;
             }
         }
         listener.warning("Invalid level ${debug}", text);
@@ -148,7 +150,7 @@ public class Level implements
     @Override
     public int compareTo(Level that)
     {
-        return Double.compare(value, that.value);
+        return compare(value, that.value);
     }
 
     /**

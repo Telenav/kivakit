@@ -37,6 +37,9 @@ import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTE
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.string.ObjectFormatter.ObjectFormat.MULTILINE;
+import static com.telenav.kivakit.core.time.Time.now;
+import static com.telenav.kivakit.core.value.count.Count.count;
+import static com.telenav.kivakit.core.vm.JavaVirtualMachine.javaVirtualMachine;
 
 /**
  * Information about the Java virtual machine that relates to health and resources
@@ -134,7 +137,7 @@ public class JavaVirtualMachineHealth
     public Count loggedMessageCount(String messageType)
     {
         var count = this.messageType.get(messageType);
-        return count == null ? Count._0 : Count.count(count);
+        return count == null ? Count._0 : count(count);
     }
 
     /**
@@ -209,10 +212,10 @@ public class JavaVirtualMachineHealth
     {
         if (started == null)
         {
-            started = Time.now();
+            started = now();
         }
 
-        var vm = JavaVirtualMachine.javaVirtualMachine();
+        var vm = javaVirtualMachine();
         freeMemory = vm.freeMemory();
         maximumMemory = vm.maximumMemory();
         totalMemory = vm.totalMemory();

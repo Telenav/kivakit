@@ -27,6 +27,7 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
+import static java.lang.Math.max;
 
 /**
  * Determines which of two objects is the maximum. For example, the Angle object is {@link Maximizable} and implements
@@ -49,7 +50,7 @@ public interface Maximizable<Value> extends
 {
     default Value maximize(long value)
     {
-        return map(Math.max(longValue(), value));
+        return map(max(longValue(), value));
     }
 
     default Value maximize(LongValued value)

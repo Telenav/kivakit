@@ -53,9 +53,12 @@ import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
+import static com.telenav.kivakit.commandline.ArgumentParser.argumentParser;
+import static com.telenav.kivakit.commandline.SwitchParser.switchParser;
 import static com.telenav.kivakit.core.collections.set.ObjectSet.emptySet;
 import static com.telenav.kivakit.core.ensure.Ensure.ensure;
 import static com.telenav.kivakit.core.ensure.Ensure.unsupported;
+import static com.telenav.kivakit.core.progress.ProgressReporter.nullProgressReporter;
 import static com.telenav.kivakit.resource.Resource.Action.DELETE;
 import static com.telenav.kivakit.resource.Resource.Action.RENAME;
 import static com.telenav.kivakit.resource.spi.ResourceResolverService.resourceResolverService;
@@ -211,7 +214,7 @@ public interface Resource extends
     static ArgumentParser.Builder<Resource> resourceArgumentParser(@NotNull Listener listener,
                                                                    @NotNull String description)
     {
-        return ArgumentParser.argumentParser(Resource.class)
+        return argumentParser(Resource.class)
                 .converter(new Resource.Converter(listener))
                 .description(description);
     }
@@ -240,7 +243,7 @@ public interface Resource extends
             @NotNull String name,
             @NotNull String description)
     {
-        return SwitchParser.switchParser(Resource.class)
+        return switchParser(Resource.class)
                 .name(name)
                 .converter(new Resource.Converter(listener))
                 .description(description);
@@ -475,7 +478,7 @@ public interface Resource extends
     default void safeCopyTo(@NotNull ResourceFolder<?> destination,
                             @NotNull CopyMode mode)
     {
-        safeCopyTo(destination.resource(fileName()).asWritable(), mode, ProgressReporter.nullProgressReporter());
+        safeCopyTo(destination.resource(fileName()).asWritable(), mode, nullProgressReporter());
     }
 
     /**
@@ -502,7 +505,7 @@ public interface Resource extends
     default void safeCopyTo(@NotNull WritableResource destination,
                             @NotNull CopyMode mode)
     {
-        safeCopyTo(destination, mode, ProgressReporter.nullProgressReporter());
+        safeCopyTo(destination, mode, nullProgressReporter());
     }
 
     /**

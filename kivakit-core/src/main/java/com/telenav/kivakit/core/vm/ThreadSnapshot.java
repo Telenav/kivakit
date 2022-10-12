@@ -33,6 +33,9 @@ import java.util.List;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static com.telenav.kivakit.core.time.Duration.milliseconds;
+import static com.telenav.kivakit.core.time.Time.now;
+import static java.lang.Thread.currentThread;
 
 /**
  * Captures a snapshot of {@link ThreadStatus} for all running threads via the Java management API.
@@ -70,7 +73,7 @@ public class ThreadSnapshot
      */
     public Duration cpuTime()
     {
-        return cpuTime(Thread.currentThread());
+        return cpuTime(currentThread());
     }
 
     /**
@@ -106,7 +109,7 @@ public class ThreadSnapshot
         {
             milliseconds += thread.cpuTime().asMilliseconds();
         }
-        return Duration.milliseconds(milliseconds);
+        return milliseconds(milliseconds);
     }
 
     /**
@@ -124,7 +127,7 @@ public class ThreadSnapshot
                 if (information != null)
                 {
                     var status = new ThreadStatus();
-                    status.cpuTime = Duration.milliseconds(management.getThreadCpuTime(identifier) / 1_000_000L);
+                    status.cpuTime = milliseconds(management.getThreadCpuTime(identifier) / 1_000_000L);
                     status.isDaemon = information.isDaemon();
                     status.name = information.getThreadName();
                     status.identifier = information.getThreadId();
@@ -133,7 +136,7 @@ public class ThreadSnapshot
                 }
             }
         }
-        capturedAt = Time.now();
+        capturedAt = now();
         this.threads = threads;
         return this;
     }

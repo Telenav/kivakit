@@ -1,8 +1,6 @@
 package com.telenav.kivakit.resource.serialization;
 
 import com.telenav.kivakit.annotations.code.quality.CodeQuality;
-import com.telenav.kivakit.core.language.Hash;
-import com.telenav.kivakit.core.language.Objects;
 import com.telenav.kivakit.core.registry.InstanceIdentifier;
 import com.telenav.kivakit.core.version.Version;
 import com.telenav.kivakit.core.version.VersionedObject;
@@ -11,6 +9,8 @@ import org.jetbrains.annotations.NotNull;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Stability.UNSTABLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static com.telenav.kivakit.core.language.Hash.hashMany;
+import static com.telenav.kivakit.core.language.Objects.areEqualPairs;
 import static com.telenav.kivakit.core.registry.InstanceIdentifier.singletonInstanceIdentifier;
 
 /**
@@ -64,7 +64,7 @@ public class SerializableObject<T> extends VersionedObject<T>
             if (object instanceof SerializableObject)
             {
                 var that = (SerializableObject<?>) object;
-                return Objects.areEqualPairs(this.instance, that.instance);
+                return areEqualPairs(this.instance, that.instance);
             }
         }
         return false;
@@ -73,7 +73,7 @@ public class SerializableObject<T> extends VersionedObject<T>
     @Override
     public int hashCode()
     {
-        return Hash.hashMany(super.hashCode(), this.instance);
+        return hashMany(super.hashCode(), this.instance);
     }
 
     public InstanceIdentifier instance()

@@ -38,6 +38,7 @@ import java.util.Set;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static com.telenav.kivakit.core.collections.set.ObjectSet.set;
 import static com.telenav.kivakit.core.ensure.Ensure.unsupported;
 import static com.telenav.kivakit.core.string.Formatter.format;
 import static com.telenav.kivakit.settings.SettingsStore.AccessMode.DELETE;
@@ -90,9 +91,9 @@ public class ResourceFolderSettingsStore extends BaseResourceSettingsStore
      * {@inheritDoc}
      */
     @Override
-    public Set<AccessMode> accessModes()
+    public ObjectSet<AccessMode> accessModes()
     {
-        return Set.of(INDEX, DELETE, UNLOAD, LOAD);
+        return set(INDEX, DELETE, UNLOAD, LOAD);
     }
 
     /**

@@ -213,7 +213,7 @@ public abstract class BaseStringMap<Value> extends BaseMap<String, Value> implem
     public String asPathString(String key)
     {
         var value = asString(key);
-        return value == null ? null : Strip.trailing(value, "/");
+        return value == null ? null : Strip.stripTrailing(value, "/");
     }
 
     /**

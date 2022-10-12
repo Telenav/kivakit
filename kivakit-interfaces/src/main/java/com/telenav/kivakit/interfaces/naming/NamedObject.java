@@ -25,6 +25,7 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
+import static java.lang.System.identityHashCode;
 
 /**
  * An object with a <i>programmatic</i> name. An object that is a {@link NamedObject} differs from an object that is
@@ -57,7 +58,7 @@ public interface NamedObject extends Nameable
     static String syntheticName(Object object)
     {
         return "object:" + object.getClass().getSimpleName()
-                + ":" + Integer.toString(System.identityHashCode(object), 16);
+                + ":" + Integer.toString(identityHashCode(object), 16);
     }
 
     /**

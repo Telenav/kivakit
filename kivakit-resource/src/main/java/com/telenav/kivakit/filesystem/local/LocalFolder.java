@@ -19,7 +19,6 @@
 package com.telenav.kivakit.filesystem.local;
 
 import com.telenav.kivakit.annotations.code.quality.CodeQuality;
-import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.messaging.repeaters.BaseRepeater;
 import com.telenav.kivakit.core.thread.Monitor;
 import com.telenav.kivakit.core.time.Time;
@@ -53,6 +52,10 @@ import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMEN
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
 import static com.telenav.kivakit.core.ensure.Ensure.fail;
+import static com.telenav.kivakit.core.messaging.Listener.consoleListener;
+import static com.telenav.kivakit.core.time.Time.epochMilliseconds;
+import static com.telenav.kivakit.filesystem.FilePath.filePath;
+import static com.telenav.kivakit.filesystem.FilePath.parseFilePath;
 
 /**
  * Implementation of {@link FolderService} provider interface for the local filesystem.
@@ -85,7 +88,7 @@ public class LocalFolder extends BaseRepeater implements FolderService
 
     public LocalFolder(@NotNull java.io.File file)
     {
-        this(FilePath.filePath(file));
+        this(filePath(file));
     }
 
     public LocalFolder(@NotNull LocalFolder that)
@@ -96,7 +99,7 @@ public class LocalFolder extends BaseRepeater implements FolderService
 
     public LocalFolder(@NotNull String path)
     {
-        this(FilePath.parseFilePath(Listener.consoleListener(), path));
+        this(parseFilePath(consoleListener(), path));
     }
 
     public LocalFolder(@NotNull URI uri)
@@ -193,7 +196,7 @@ public class LocalFolder extends BaseRepeater implements FolderService
     {
         try
         {
-            return Time.epochMilliseconds(Files.readAttributes(path().asJavaPath(), BasicFileAttributes.class)
+            return epochMilliseconds(Files.readAttributes(path().asJavaPath(), BasicFileAttributes.class)
                     .creationTime()
                     .toMillis());
         }
@@ -333,7 +336,7 @@ public class LocalFolder extends BaseRepeater implements FolderService
                 {
                     for (var file : list)
                     {
-                        var path = FilePath.filePath(file).withoutFileScheme();
+                        var path = filePath(file).withoutFileScheme();
                         if (!isFolder(path))
                         {
                             files.add(new LocalFile(file));
@@ -479,7 +482,7 @@ public class LocalFolder extends BaseRepeater implements FolderService
     @Override
     public Time lastModified()
     {
-        return Time.epochMilliseconds(file.lastModified());
+        return epochMilliseconds(file.lastModified());
     }
 
     /**

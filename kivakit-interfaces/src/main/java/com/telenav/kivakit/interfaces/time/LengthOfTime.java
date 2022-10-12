@@ -21,6 +21,7 @@ import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.interfaces.time.WakeState.COMPLETED;
 import static com.telenav.kivakit.interfaces.time.WakeState.INTERRUPTED;
 import static com.telenav.kivakit.interfaces.time.WakeState.TIMED_OUT;
+import static com.telenav.kivakit.interfaces.time.WakeState.terminated;
 
 /**
  * Interface to an object having a length of time, measured in nanoseconds.
@@ -180,7 +181,7 @@ public interface LengthOfTime<Duration extends LongValued & LengthOfTime<Duratio
         }
         catch (Exception e)
         {
-            return WakeState.terminated(e);
+            return terminated(e);
         }
     }
 

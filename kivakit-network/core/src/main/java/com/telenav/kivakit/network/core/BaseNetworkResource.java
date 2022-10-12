@@ -20,17 +20,17 @@ package com.telenav.kivakit.network.core;
 
 import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.network.core.internal.lexakai.DiagramNetworkLocation;
-import com.telenav.kivakit.resource.ResourcePath;
 import com.telenav.kivakit.resource.reading.BaseReadableResource;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.net.URI;
 import java.net.URL;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.messaging.Listener.throwingListener;
+import static com.telenav.kivakit.resource.ResourcePath.parseResourcePath;
 
 /**
  * Base class for network resources. All network resources have a URI accessible with {@link #asUri()}.
@@ -54,7 +54,7 @@ public abstract class BaseNetworkResource extends BaseReadableResource implement
      */
     protected BaseNetworkResource(NetworkLocation location)
     {
-        super(ResourcePath.parseResourcePath(throwingListener(), location.toString()));
+        super(parseResourcePath(throwingListener(), location.toString()));
     }
 
     /**

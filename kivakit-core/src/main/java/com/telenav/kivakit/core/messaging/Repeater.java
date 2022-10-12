@@ -68,7 +68,7 @@ import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_N
  *
  * }
  *
- * var processor = LOGGER.listenTo(new PayrollProcessor());
+ * var processor = listenTo(new PayrollProcessor());
  *
  * </pre>
  *

@@ -20,14 +20,14 @@ package com.telenav.kivakit.serialization.gson.serializers;
 
 import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.conversion.core.time.LocalDateTimeConverter;
-import com.telenav.kivakit.core.messaging.Listener;
-import com.telenav.kivakit.core.time.LocalTime;
 import com.telenav.kivakit.core.time.Time;
 import com.telenav.kivakit.serialization.gson.PrimitiveGsonSerializer;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static com.telenav.kivakit.core.messaging.Listener.throwingListener;
+import static com.telenav.kivakit.core.time.LocalTime.utcTimeZone;
 
 /**
  * Serializes {@link Time} objects to and from JSON as a number of milliseconds since the start of the UNIX epoch.
@@ -47,12 +47,12 @@ public class UtcTimeInKivaKitFormatGsonSerializer extends PrimitiveGsonSerialize
     @Override
     protected Time toObject(String identifier)
     {
-        return new LocalDateTimeConverter(Listener.throwingListener(), LocalTime.utcTimeZone()).convert(identifier);
+        return new LocalDateTimeConverter(throwingListener(), utcTimeZone()).convert(identifier);
     }
 
     @Override
     protected String toPrimitive(Time time)
     {
-        return time.inTimeZone(LocalTime.utcTimeZone()).asDateTimeString();
+        return time.inTimeZone(utcTimeZone()).asDateTimeString();
     }
 }

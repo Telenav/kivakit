@@ -22,18 +22,19 @@ import com.telenav.kivakit.core.messaging.Repeater;
 import com.telenav.kivakit.core.messaging.listeners.MessageList;
 import com.telenav.kivakit.core.messaging.messages.status.Information;
 import com.telenav.kivakit.core.messaging.repeaters.BaseRepeater;
-import com.telenav.kivakit.core.messaging.MessageFormat;
-import com.telenav.kivakit.internal.testing.CoreUnitTest;
 import com.telenav.kivakit.core.value.count.MutableCount;
-import com.telenav.kivakit.interfaces.comparison.Matcher;
+import com.telenav.kivakit.internal.testing.CoreUnitTest;
 import org.junit.Test;
+
+import static com.telenav.kivakit.core.messaging.MessageFormat.WITH_EXCEPTION;
+import static com.telenav.kivakit.interfaces.comparison.Matcher.matchAll;
 
 public class MessageListTest extends CoreUnitTest
 {
     @Test
     public void test()
     {
-        var list = new MessageList(Matcher.matchAll());
+        var list = new MessageList(matchAll());
         Repeater repeater = new BaseRepeater(getClass());
         var count = new MutableCount();
         list.listenTo(repeater);
@@ -44,6 +45,6 @@ public class MessageListTest extends CoreUnitTest
         repeater.receive(new Information("Test"));
         ensureEqual(2L, count.asLong());
         ensureEqual(2, list.size());
-        ensureEqual("Test", list.get(0).formatted(MessageFormat.WITH_EXCEPTION));
+        ensureEqual("Test", list.get(0).formatted(WITH_EXCEPTION));
     }
 }

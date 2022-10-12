@@ -37,6 +37,7 @@ import java.util.concurrent.atomic.AtomicLong;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_INSUFFICIENT;
+import static java.lang.Math.min;
 
 /**
  * Keeps a {@link ConcurrentMutableCount} for each key.
@@ -118,7 +119,7 @@ public class CountMap<Key> extends ObjectMap<Key, ConcurrentMutableCount>
         assert maximum != null;
         var sorted = new ObjectList<>(entrySet());
         sorted.sort(comparator);
-        return sorted.subList(0, Math.min(sorted.size(), maximum.asInt()));
+        return sorted.subList(0, min(sorted.size(), maximum.asInt()));
     }
 
     /**
@@ -173,7 +174,7 @@ public class CountMap<Key> extends ObjectMap<Key, ConcurrentMutableCount>
         assert maximum != null;
         ObjectList<Map.Entry<Key, ConcurrentMutableCount>> sorted = new ObjectList<>(entrySet());
         sorted.sort(comparator.reversed());
-        return sorted.subList(0, Math.min(sorted.size(), maximum.asInt()));
+        return sorted.subList(0, min(sorted.size(), maximum.asInt()));
     }
 
     /**

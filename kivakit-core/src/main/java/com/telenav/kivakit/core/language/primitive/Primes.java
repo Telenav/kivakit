@@ -28,6 +28,7 @@ import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTE
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.ensure.Ensure.fail;
+import static com.telenav.kivakit.core.language.primitive.Longs.longAsCommaSeparated;
 
 /**
  * Prime number allocation sizes and "powers of two" (the next prime above a power of two).
@@ -148,7 +149,7 @@ public class Primes
         System.out.println(primes.size() + " primes:");
         for (var prime : primes)
         {
-            System.out.print(Longs.longAsCommaSeparated(prime).replaceAll(",", "_") + ", ");
+            System.out.print(longAsCommaSeparated(prime).replaceAll(",", "_") + ", ");
         }
     }
 

@@ -24,7 +24,6 @@ import com.telenav.kivakit.core.collections.list.StringList;
 import com.telenav.kivakit.core.internal.lexakai.DiagramPath;
 import com.telenav.kivakit.core.language.reflection.property.IncludeProperty;
 import com.telenav.kivakit.core.messaging.Listener;
-import com.telenav.kivakit.core.string.Strings;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import org.jetbrains.annotations.NotNull;
 
@@ -36,10 +35,14 @@ import java.util.Map;
 import java.util.function.Function;
 import java.util.regex.Pattern;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_INSUFFICIENT;
+import static com.telenav.kivakit.core.collections.list.StringList.splitOnPattern;
+import static com.telenav.kivakit.core.collections.list.StringList.stringList;
 import static com.telenav.kivakit.core.project.Project.resolveProject;
+import static com.telenav.kivakit.core.string.Strings.isNullOrEmpty;
+import static com.telenav.kivakit.core.string.Strings.notNull;
 
 /**
  * A {@link Path} of strings that has a given separator string. This class contains numerous methods which down-cast the
@@ -105,10 +108,10 @@ public class StringPath extends Path<String>
             if (matcher.lookingAt())
             {
                 var tail = matcher.group("path");
-                return new StringPath(matcher.group("root"), StringList.splitOnPattern(tail, separatorPattern));
+                return new StringPath(matcher.group("root"), splitOnPattern(tail, separatorPattern));
             }
         }
-        return new StringPath(null, StringList.splitOnPattern(path, separatorPattern));
+        return new StringPath(null, splitOnPattern(path, separatorPattern));
     }
 
     /**
@@ -140,14 +143,14 @@ public class StringPath extends Path<String>
      */
     public static StringPath stringPath(String first, String... rest)
     {
-        var list = StringList.stringList();
-        if (!Strings.isEmpty(first))
+        var list = stringList();
+        if (!isNullOrEmpty(first))
         {
             list.add(first);
         }
         for (var at : rest)
         {
-            if (!Strings.isEmpty(at))
+            if (!isNullOrEmpty(at))
             {
                 list.add(at);
             }
@@ -237,7 +240,7 @@ public class StringPath extends Path<String>
      */
     public java.nio.file.Path asJavaPath()
     {
-        if (!isEmpty() && get(0).equals("."))
+        if (!isEmpty() && ".".equals(get(0)))
         {
             return java.nio.file.Path.of(withoutFirst().join());
         }
@@ -302,9 +305,9 @@ public class StringPath extends Path<String>
     public final String join(String separator)
     {
         var list = new StringList();
-        list.addAll(super.elements());
+        list.addAll(elements());
         var root = rootElement();
-        return Strings.notNull(root) + list.join(separator);
+        return notNull(root) + list.join(separator);
     }
 
     /**

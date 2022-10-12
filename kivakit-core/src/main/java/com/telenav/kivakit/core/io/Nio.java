@@ -2,20 +2,20 @@ package com.telenav.kivakit.core.io;
 
 import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.messaging.Listener;
-import com.telenav.kivakit.core.string.Paths;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
 import java.net.URI;
 import java.nio.file.FileSystem;
-import java.nio.file.FileSystems;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
+import static com.telenav.kivakit.core.string.Paths.pathHead;
+import static java.nio.file.FileSystems.newFileSystem;
 
 /**
  * Convenience functions for working with {@link FileSystem}s:
@@ -81,7 +81,7 @@ public class Nio
      */
     public static FileSystem filesystem(Listener listener, URI uri, Map<String, String> variables)
     {
-        var key = Paths.pathHead(uri.toString(), "!/");
+        var key = pathHead(uri.toString(), "!/");
         if (key == null)
         {
             key = uri.toString();
@@ -91,7 +91,7 @@ public class Nio
         {
             try
             {
-                filesystem = FileSystems.newFileSystem(uri, variables);
+                filesystem = newFileSystem(uri, variables);
                 filesystemForUri.put(key, filesystem);
             }
             catch (Exception e)

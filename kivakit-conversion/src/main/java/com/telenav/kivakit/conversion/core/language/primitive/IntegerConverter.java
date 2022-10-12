@@ -28,6 +28,7 @@ import com.telenav.lexakai.annotations.visibility.UmlExcludeMember;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static java.lang.Integer.parseInt;
 
 /**
  * Converts between integers and strings
@@ -55,6 +56,6 @@ public class IntegerConverter extends BaseStringConverter<Integer>
     @UmlExcludeMember
     protected Integer onToValue(String value)
     {
-        return Integer.parseInt(value);
+        return parseInt(value);
     }
 }

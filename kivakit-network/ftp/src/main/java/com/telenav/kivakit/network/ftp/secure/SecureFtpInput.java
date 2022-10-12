@@ -34,6 +34,7 @@ import java.io.InputStream;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static com.telenav.kivakit.core.value.count.Bytes.kilobytes;
 
 /**
  * <b>Not public API</b>
@@ -59,7 +60,7 @@ class SecureFtpInput extends InputStream
      */
     public static Bytes getBufferSize()
     {
-        return Bytes.kilobytes(512);
+        return kilobytes(512);
     }
 
     protected static SecureFtpInput secureFtpInput(SecureFtpConnector connector,

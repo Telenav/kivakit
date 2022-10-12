@@ -37,7 +37,9 @@ import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.commandline.Quantifier.ONE_OR_MORE;
 import static com.telenav.kivakit.commandline.Quantifier.OPTIONAL;
 import static com.telenav.kivakit.commandline.Quantifier.REQUIRED;
+import static com.telenav.kivakit.commandline.Quantifier.ZERO_OR_MORE;
 import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
+import static com.telenav.kivakit.core.language.reflection.Type.typeForClass;
 
 /**
  * Parses a command-line {@link ArgumentValue}, as defined by a {@link Quantifier}, a type, a string converter for that
@@ -180,13 +182,13 @@ public class ArgumentParser<T>
 
         public Builder<T> type(Class<T> type)
         {
-            parser.type = Type.typeForClass(type);
+            parser.type = typeForClass(type);
             return this;
         }
 
         public Builder<T> zeroOrMore()
         {
-            parser.quantifier = Quantifier.ZERO_OR_MORE;
+            parser.quantifier = ZERO_OR_MORE;
             return this;
         }
     }
@@ -296,7 +298,7 @@ public class ArgumentParser<T>
     public boolean isAllowedMultipleTimes()
     {
         return quantifier == ONE_OR_MORE
-                || quantifier == Quantifier.ZERO_OR_MORE;
+                || quantifier == ZERO_OR_MORE;
     }
 
     /**

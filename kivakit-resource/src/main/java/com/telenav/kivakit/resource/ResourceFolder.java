@@ -24,7 +24,6 @@ import com.telenav.kivakit.core.collections.list.ObjectList;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.messaging.Repeater;
 import com.telenav.kivakit.core.progress.ProgressReporter;
-import com.telenav.kivakit.core.time.Time;
 import com.telenav.kivakit.filesystem.Folder;
 import com.telenav.kivakit.interfaces.comparison.Matchable;
 import com.telenav.kivakit.interfaces.comparison.Matcher;
@@ -37,7 +36,10 @@ import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
 import static com.telenav.kivakit.core.ensure.Ensure.unsupported;
+import static com.telenav.kivakit.core.messaging.Listener.throwingListener;
+import static com.telenav.kivakit.core.time.Time.now;
 import static com.telenav.kivakit.filesystem.Folder.FolderType.NORMAL;
+import static com.telenav.kivakit.filesystem.Folder.temporaryFolderForProcess;
 import static com.telenav.kivakit.interfaces.comparison.Matcher.matchAll;
 import static com.telenav.kivakit.resource.CopyMode.OVERWRITE;
 import static com.telenav.kivakit.resource.ResourcePath.parseResourcePath;
@@ -169,7 +171,7 @@ public interface ResourceFolder<T extends ResourceFolder<T>> extends
                         @NotNull Matcher<ResourcePathed> matcher,
                         @NotNull ProgressReporter reporter)
     {
-        var start = Time.now();
+        var start = now();
 
         // Ensure the destination folder exists,
         information("Copying $ to $", this, destination);
@@ -268,7 +270,7 @@ public interface ResourceFolder<T extends ResourceFolder<T>> extends
      */
     default Folder materialize()
     {
-        return materializeTo(Folder.temporaryFolderForProcess(NORMAL));
+        return materializeTo(temporaryFolderForProcess(NORMAL));
     }
 
     /**
@@ -368,7 +370,7 @@ public interface ResourceFolder<T extends ResourceFolder<T>> extends
      */
     default Resource resource(@NotNull String name)
     {
-        return resource(parseResourcePath(Listener.throwingListener(), name));
+        return resource(parseResourcePath(throwingListener(), name));
     }
 
     /**

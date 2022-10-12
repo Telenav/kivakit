@@ -19,7 +19,6 @@
 package com.telenav.kivakit.core.string;
 
 import com.telenav.kivakit.annotations.code.quality.CodeQuality;
-import com.telenav.kivakit.core.ensure.Ensure;
 import com.telenav.kivakit.core.internal.lexakai.DiagramString;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import org.jetbrains.annotations.NotNull;
@@ -30,7 +29,15 @@ import java.util.Collection;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static com.telenav.kivakit.core.ensure.Ensure.ensure;
+import static com.telenav.kivakit.core.os.OperatingSystem.operatingSystem;
+import static com.telenav.kivakit.core.string.Align.alignLeft;
+import static com.telenav.kivakit.core.string.Align.center;
+import static com.telenav.kivakit.core.string.Formatter.format;
 import static com.telenav.kivakit.core.string.Join.join;
+import static com.telenav.kivakit.core.string.Strings.leading;
+import static com.telenav.kivakit.core.string.Strings.occurrences;
+import static java.lang.Math.max;
 
 /**
  * Provides methods to create "ASCII art", including:
@@ -50,7 +57,7 @@ import static com.telenav.kivakit.core.string.Join.join;
              documentation = DOCUMENTATION_COMPLETE)
 public class AsciiArt
 {
-    private static final boolean isMac = System.getProperty("os.name").toLowerCase().contains("mac");
+    private static final boolean isMac = operatingSystem().isMac();
 
     private static final char HORIZONTAL_LINE_CHARACTER = isMac ? '\u2501' : '-';
 
@@ -75,7 +82,7 @@ public class AsciiArt
      */
     public static String bannerLine(String message)
     {
-        return Align.center(" " + message + " ", LINE_LENGTH, HORIZONTAL_LINE_CHARACTER);
+        return center(" " + message + " ", LINE_LENGTH, HORIZONTAL_LINE_CHARACTER);
     }
 
     /**
@@ -91,9 +98,9 @@ public class AsciiArt
      */
     public static String bottomLine(int extraWidth, String message, Object... arguments)
     {
-        message = " " + Strings.format(message, arguments) + " ";
+        message = " " + format(message, arguments) + " ";
         return BOTTOM_LEFT_LINE_CHARACTER + line(4) + message
-                + line(Math.max(4, LINE_LENGTH + extraWidth - 6 - message.length()))
+                + line(max(4, LINE_LENGTH + extraWidth - 6 - message.length()))
                 + BOTTOM_RIGHT_LINE_CHARACTER;
     }
 
@@ -171,7 +178,7 @@ public class AsciiArt
             return text;
         }
         var suffix = " [...]";
-        return Strings.leading(text, n - suffix.length()) + suffix;
+        return leading(text, n - suffix.length()) + suffix;
     }
 
     /**
@@ -195,7 +202,7 @@ public class AsciiArt
      */
     public static String line(String message)
     {
-        return line(4) + " " + message + " " + line(Math.max(4, LINE_LENGTH - 6 - message.length()));
+        return line(4) + " " + message + " " + line(max(4, LINE_LENGTH - 6 - message.length()));
     }
 
     /**
@@ -203,7 +210,7 @@ public class AsciiArt
      */
     public static int lineCount(String string)
     {
-        return Strings.occurrences(string, '\n') + 1;
+        return occurrences(string, '\n') + 1;
     }
 
     /**
@@ -213,7 +220,7 @@ public class AsciiArt
      */
     public static String repeat(int times, char c)
     {
-        Ensure.ensure(times >= 0, "Times cannot be " + times);
+        ensure(times >= 0, "Times cannot be " + times);
         var buffer = new char[times];
         Arrays.fill(buffer, c);
         return new String(buffer);
@@ -226,7 +233,7 @@ public class AsciiArt
      */
     public static String repeat(int times, String string)
     {
-        Ensure.ensure(times >= 0);
+        ensure(times >= 0);
         return string.repeat(times);
     }
 
@@ -252,7 +259,7 @@ public class AsciiArt
         {
             builder.append(vertical);
             builder.append("  ");
-            builder.append(Align.left(line, width, ' '));
+            builder.append(alignLeft(line, width, ' '));
             builder.append("  ");
             builder.append(vertical);
             builder.append('\n');
@@ -266,7 +273,7 @@ public class AsciiArt
      */
     public static String textBox(String message, Object... arguments)
     {
-        return textBox(Strings.format(message, arguments), HORIZONTAL_LINE_CHARACTER, VERTICAL_LINE_CHARACTER);
+        return textBox(format(message, arguments), HORIZONTAL_LINE_CHARACTER, VERTICAL_LINE_CHARACTER);
     }
 
     /**
@@ -275,14 +282,14 @@ public class AsciiArt
     public static String textBox(String title, String message, Object... arguments)
     {
         title = title(title);
-        message = Strings.format(message, arguments);
+        message = format(message, arguments);
         var width = widestLine(title + "\n" + message) + 4;
         var builder = new StringBuilder();
-        builder.append(TOP_LEFT_LINE_CHARACTER).append(Align.center(title, width - 2, HORIZONTAL_LINE_CHARACTER)).append(TOP_RIGHT_LINE_CHARACTER).append("\n");
+        builder.append(TOP_LEFT_LINE_CHARACTER).append(center(title, width - 2, HORIZONTAL_LINE_CHARACTER)).append(TOP_RIGHT_LINE_CHARACTER).append("\n");
         for (var line : message.split("\n"))
         {
             builder.append(VERTICAL_LINE_CHARACTER).append(" ");
-            builder.append(Align.left(line, width - 4, ' '));
+            builder.append(alignLeft(line, width - 4, ' '));
             builder.append(" ").append(VERTICAL_LINE_CHARACTER);
             builder.append('\n');
         }
@@ -306,7 +313,7 @@ public class AsciiArt
         title = title(title, arguments);
         return (extraWidth > 0 ? " \n" : "")
                 + TOP_LEFT_LINE_CHARACTER + line(4) + title
-                + line(Math.max(4, LINE_LENGTH + extraWidth - 6 - title.length()))
+                + line(max(4, LINE_LENGTH + extraWidth - 6 - title.length()))
                 + TOP_RIGHT_LINE_CHARACTER;
     }
 
@@ -319,7 +326,7 @@ public class AsciiArt
         var lines = text.split("\n");
         for (var line : lines)
         {
-            width = Math.max(width, line.length());
+            width = max(width, line.length());
         }
         return width;
     }
@@ -327,6 +334,6 @@ public class AsciiArt
     @NotNull
     private static String title(String title, Object... arguments)
     {
-        return TITLE_LEFT_CHARACTER + " " + Formatter.format(title, arguments) + " " + TITLE_RIGHT_CHARACTER;
+        return TITLE_LEFT_CHARACTER + " " + format(title, arguments) + " " + TITLE_RIGHT_CHARACTER;
     }
 }

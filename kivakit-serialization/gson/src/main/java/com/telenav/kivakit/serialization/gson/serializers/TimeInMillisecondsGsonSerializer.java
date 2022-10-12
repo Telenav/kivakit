@@ -25,6 +25,7 @@ import com.telenav.kivakit.serialization.gson.PrimitiveGsonSerializer;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static com.telenav.kivakit.core.time.Time.epochMilliseconds;
 
 /**
  * Serializes {@link Time} objects to and from JSON as a number of milliseconds since the start of the UNIX epoch.
@@ -44,7 +45,7 @@ public class TimeInMillisecondsGsonSerializer extends PrimitiveGsonSerializer<Ti
     @Override
     protected Time toObject(Long identifier)
     {
-        return Time.epochMilliseconds(identifier);
+        return epochMilliseconds(identifier);
     }
 
     @Override

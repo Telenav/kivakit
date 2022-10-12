@@ -36,6 +36,7 @@ import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMEN
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.ensure.Ensure.unsupported;
+import static com.telenav.kivakit.interfaces.comparison.Filter.acceptAll;
 
 /**
  * A list of messages that listens for and adds incoming messages. Only messages that are accepted by a {@link Matcher}
@@ -115,7 +116,7 @@ public class MessageList extends ObjectList<Message> implements MessageCounter
 
     public MessageList()
     {
-        this(Filter.acceptAll());
+        this(acceptAll());
     }
 
     public MessageList(Maximum maximumSize, Matcher<Message> filter)

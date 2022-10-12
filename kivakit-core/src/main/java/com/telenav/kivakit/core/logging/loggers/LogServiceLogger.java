@@ -19,14 +19,12 @@
 package com.telenav.kivakit.core.logging.loggers;
 
 import com.telenav.kivakit.annotations.code.quality.CodeQuality;
-import com.telenav.kivakit.core.collections.Sets;
 import com.telenav.kivakit.core.collections.map.VariableMap;
 import com.telenav.kivakit.core.collections.set.ObjectSet;
 import com.telenav.kivakit.core.internal.lexakai.DiagramLogging;
 import com.telenav.kivakit.core.logging.Log;
 import com.telenav.kivakit.core.logging.LoggerCodeContext;
 import com.telenav.kivakit.core.logging.logs.text.ConsoleLog;
-import com.telenav.kivakit.core.string.Strings;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlAggregation;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
@@ -38,12 +36,14 @@ import java.util.regex.Pattern;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static com.telenav.kivakit.core.collections.Sets.hashSet;
 import static com.telenav.kivakit.core.collections.set.ObjectSet.set;
 import static com.telenav.kivakit.core.ensure.Ensure.fail;
 import static com.telenav.kivakit.core.logging.loggers.LogServiceLoader.logForName;
 import static com.telenav.kivakit.core.messaging.Listener.consoleListener;
 import static com.telenav.kivakit.core.messaging.Messages.parseMessageType;
 import static com.telenav.kivakit.core.os.Console.console;
+import static com.telenav.kivakit.core.string.Strings.isNullOrEmpty;
 import static com.telenav.kivakit.core.vm.Properties.systemPropertyOrEnvironmentVariable;
 
 /**
@@ -78,7 +78,7 @@ public class LogServiceLogger extends BaseLogger
 {
     /** List of logs to log to, initially just a console log, unless logs are specified with KIVAKIT_LOG */
     @UmlAggregation(label = "logs to")
-    private static Set<Log> logs = Sets.hashSet(new ConsoleLog());
+    private static Set<Log> logs = hashSet(new ConsoleLog());
 
     /** True if loggers have been dynamically loaded */
     private static boolean loaded;
@@ -158,14 +158,14 @@ public class LogServiceLogger extends BaseLogger
             // and the configuration, if any
             var configuration = new VariableMap<String>();
             var arguments = descriptorMatcher.group("arguments");
-            if (!Strings.isEmpty(arguments))
+            if (!isNullOrEmpty(arguments))
             {
                 var propertyPattern = Pattern.compile("\\s*(?<key>[\\w+-]+)\\s*=\\s*(?<value>\\S+)\\s*",
                         Pattern.CASE_INSENSITIVE);
                 var properties = arguments.trim().split(" ");
                 for (var property : properties)
                 {
-                    if (!Strings.isEmpty(property))
+                    if (!isNullOrEmpty(property))
                     {
                         var matcher = propertyPattern.matcher(property);
                         if (matcher.matches())

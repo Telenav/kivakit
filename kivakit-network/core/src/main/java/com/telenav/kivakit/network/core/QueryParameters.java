@@ -26,12 +26,13 @@ import com.telenav.kivakit.network.core.internal.lexakai.DiagramNetworkLocation;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static com.telenav.kivakit.core.collections.list.StringList.split;
+import static java.util.Collections.sort;
 
 /**
  * Query parameters, as used in HTTP URLs.
@@ -107,9 +108,9 @@ public class QueryParameters
         if (map == null)
         {
             map = new VariableMap<>();
-            for (var assignment : StringList.split(text, "&"))
+            for (var assignment : split(text, "&"))
             {
-                var split = StringList.split(assignment, "=");
+                var split = split(assignment, "=");
                 if (split.size() == 2)
                 {
                     map.add(split.get(0), split.get(1));
@@ -152,7 +153,7 @@ public class QueryParameters
             }
             var assignments = new StringList();
             List<String> keys = new ArrayList<>(map.keySet());
-            Collections.sort(keys);
+            sort(keys);
             for (var key : keys)
             {
                 assignments.add(key + "=" + map.get(key));

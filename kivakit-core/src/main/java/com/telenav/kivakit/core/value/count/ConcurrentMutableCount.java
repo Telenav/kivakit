@@ -19,7 +19,6 @@
 package com.telenav.kivakit.core.value.count;
 
 import com.telenav.kivakit.annotations.code.quality.CodeQuality;
-import com.telenav.kivakit.core.ensure.Ensure;
 import com.telenav.kivakit.core.internal.lexakai.DiagramCount;
 import com.telenav.kivakit.core.value.level.Percent;
 import com.telenav.kivakit.interfaces.collection.Clearable;
@@ -29,9 +28,11 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.concurrent.atomic.AtomicLong;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static com.telenav.kivakit.core.ensure.Ensure.ensure;
+import static com.telenav.kivakit.core.value.level.Percent.percent;
 
 /**
  * A mutable count value useful in lambdas and inner classes. Can be {@link #increment()}ed, {@link #decrement()}ed,
@@ -60,7 +61,7 @@ public class ConcurrentMutableCount implements
 
     public ConcurrentMutableCount(long count)
     {
-        Ensure.ensure(count >= 0, "Negative count " + count);
+        ensure(count >= 0, "Negative count " + count);
         this.count = new AtomicLong(count);
     }
 
@@ -130,7 +131,7 @@ public class ConcurrentMutableCount implements
     public long decrement()
     {
         var value = count.decrementAndGet();
-        Ensure.ensure(value >= 0);
+        ensure(value >= 0);
         return value;
     }
 
@@ -194,7 +195,7 @@ public class ConcurrentMutableCount implements
         {
             return Percent._0;
         }
-        return Percent.percent(asInt() * 100.0 / total.asInt());
+        return percent(asInt() * 100.0 / total.asInt());
     }
 
     /**

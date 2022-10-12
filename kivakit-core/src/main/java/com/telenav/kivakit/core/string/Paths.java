@@ -26,6 +26,10 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static com.telenav.kivakit.core.string.StringConversions.toHumanizedString;
+import static com.telenav.kivakit.core.string.Strings.isNullOrEmpty;
+import static com.telenav.kivakit.core.string.Strip.stripLeading;
+import static com.telenav.kivakit.core.string.Strip.stripTrailing;
 
 /**
  * Utility methods for working with string paths. In general, prefer {@link StringPath} and subtypes.
@@ -49,11 +53,11 @@ public class Paths
      */
     public static String pathConcatenate(String head, String... tails)
     {
-        var concatenated = new StringBuilder(Strip.trailing(head, "/"));
+        var concatenated = new StringBuilder(stripTrailing(head, "/"));
         for (var tail : tails)
         {
-            var next = Strip.trailing(Strip.leading(tail, "/"), "/");
-            if (!Strings.isEmpty(next))
+            var next = stripTrailing(stripLeading(tail, "/"), "/");
+            if (!isNullOrEmpty(next))
             {
                 concatenated.append("/").append(next);
             }
@@ -99,7 +103,7 @@ public class Paths
      */
     public static String pathOptionalHead(String path, String separator)
     {
-        return StringConversions.toString(pathHead(path, separator), path);
+        return toHumanizedString(pathHead(path, separator), path);
     }
 
     /**
@@ -107,7 +111,7 @@ public class Paths
      */
     public static String pathOptionalHead(String path, char separator)
     {
-        return StringConversions.toString(pathHead(path, separator), path);
+        return toHumanizedString(pathHead(path, separator), path);
     }
 
     /**
@@ -168,7 +172,7 @@ public class Paths
      */
     public static String pathWithoutOptionalSuffix(String path, char separator)
     {
-        return StringConversions.toString(pathWithoutSuffix(path, separator), path);
+        return toHumanizedString(pathWithoutSuffix(path, separator), path);
     }
 
     /**

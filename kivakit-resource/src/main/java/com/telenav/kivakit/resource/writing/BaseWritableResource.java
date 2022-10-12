@@ -19,7 +19,6 @@
 package com.telenav.kivakit.resource.writing;
 
 import com.telenav.kivakit.annotations.code.quality.CodeQuality;
-import com.telenav.kivakit.core.io.IO;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.progress.ProgressReporter;
 import com.telenav.kivakit.resource.CopyMode;
@@ -36,9 +35,11 @@ import java.io.BufferedOutputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static com.telenav.kivakit.core.io.IO.close;
+import static com.telenav.kivakit.core.io.IO.copyAndClose;
 
 /**
  * Extends {@link BaseReadableResource} and provides a base implementation of the {@link WritableResource} interface.
@@ -108,8 +109,8 @@ public abstract class BaseWritableResource extends BaseReadableResource implemen
                      @NotNull ProgressReporter reporter)
     {
         var out = openForWriting(reporter);
-        IO.copyAndClose(listener, in, out);
-        IO.close(listener, out);
+        copyAndClose(listener, in, out);
+        close(listener, out);
     }
 
     /**

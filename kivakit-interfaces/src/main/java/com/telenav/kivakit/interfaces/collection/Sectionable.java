@@ -6,6 +6,8 @@ import com.telenav.kivakit.interfaces.factory.Factory;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABILITY_UNDETERMINED;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static java.lang.Math.max;
+import static java.lang.Math.min;
 
 /**
  * Retrieves different subsections from an {@link Indexable}.
@@ -31,7 +33,7 @@ public interface Sectionable<Value, Section extends Addable<Value> & Indexable<V
     default Section first(int count)
     {
         var list = newInstance();
-        for (var i = 0; i < Math.min(count, size()); i++)
+        for (var i = 0; i < min(count, size()); i++)
         {
             list.add(get(i));
         }
@@ -44,7 +46,7 @@ public interface Sectionable<Value, Section extends Addable<Value> & Indexable<V
     default Section last(int count)
     {
         var list = newInstance();
-        for (var i = Math.max(size() - count - 1, 0); i < size(); i++)
+        for (var i = max(size() - count - 1, 0); i < size(); i++)
         {
             list.add(get(i));
         }

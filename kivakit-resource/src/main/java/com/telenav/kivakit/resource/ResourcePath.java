@@ -25,7 +25,6 @@ import com.telenav.kivakit.core.collections.list.StringList;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.path.Path;
 import com.telenav.kivakit.core.path.StringPath;
-import com.telenav.kivakit.core.string.Strip;
 import com.telenav.kivakit.filesystem.File;
 import com.telenav.kivakit.filesystem.FilePath;
 import com.telenav.kivakit.resource.internal.lexakai.DiagramResource;
@@ -37,10 +36,16 @@ import java.net.URI;
 import java.util.List;
 import java.util.function.Function;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static com.telenav.kivakit.commandline.SwitchParser.switchParser;
+import static com.telenav.kivakit.core.collections.list.StringList.split;
 import static com.telenav.kivakit.core.messaging.Listener.consoleListener;
+import static com.telenav.kivakit.core.string.Strip.stripLeading;
+import static com.telenav.kivakit.filesystem.File.parseFile;
+import static com.telenav.kivakit.filesystem.FilePath.parseFilePath;
+import static com.telenav.kivakit.resource.FileName.parseFileName;
 
 /**
  * A path to a resource of any kind. By default, the separator character for a resource is forward slash. But in the
@@ -88,7 +93,7 @@ public class ResourcePath extends StringPath implements
     public static ResourcePath parseResourcePath(@NotNull Listener listener,
                                                  @NotNull String path)
     {
-        return FilePath.parseFilePath(listener, path);
+        return parseFilePath(listener, path);
     }
 
     /**
@@ -101,9 +106,9 @@ public class ResourcePath extends StringPath implements
         if (path.startsWith("/"))
         {
             root = "/";
-            path = Strip.leading(path, "/");
+            path = stripLeading(path, "/");
         }
-        return new ResourcePath(new StringList(), root, StringList.split(path, "/"));
+        return new ResourcePath(new StringList(), root, split(path, "/"));
     }
 
     /**
@@ -118,7 +123,7 @@ public class ResourcePath extends StringPath implements
                                                                               @NotNull String name,
                                                                               @NotNull String description)
     {
-        return SwitchParser.switchParser(ResourcePath.class)
+        return switchParser(ResourcePath.class)
                 .name(name)
                 .converter(new ResourcePath.Converter(listener))
                 .description(description);
@@ -193,7 +198,7 @@ public class ResourcePath extends StringPath implements
      */
     public File asFile()
     {
-        return File.parseFile(consoleListener(), asString());
+        return parseFile(consoleListener(), asString());
     }
 
     /**
@@ -201,7 +206,7 @@ public class ResourcePath extends StringPath implements
      */
     public FilePath asFilePath()
     {
-        return FilePath.parseFilePath(consoleListener(), asString());
+        return parseFilePath(consoleListener(), asString());
     }
 
     @Override
@@ -226,7 +231,7 @@ public class ResourcePath extends StringPath implements
     public FileName fileName()
     {
         var last = last();
-        return last == null ? null : FileName.parseFileName(consoleListener(), last);
+        return last == null ? null : parseFileName(consoleListener(), last);
     }
 
     /**
@@ -257,7 +262,7 @@ public class ResourcePath extends StringPath implements
         // NOTE: We call super.join(String) here because it is not overridden
         return schemes.join(":")
                 + (hasScheme() ? ":" : "")
-                + super.join(separator());
+                + join(separator());
     }
 
     /**

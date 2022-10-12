@@ -19,19 +19,19 @@
 package com.telenav.kivakit.core.string;
 
 import com.telenav.kivakit.annotations.code.quality.CodeQuality;
-import com.telenav.kivakit.core.collections.iteration.Iterables;
-import com.telenav.kivakit.core.collections.list.ObjectList;
 import com.telenav.kivakit.core.collections.list.StringList;
 import com.telenav.kivakit.core.internal.lexakai.DiagramLanguage;
-import com.telenav.kivakit.core.language.Objects;
 import com.telenav.kivakit.interfaces.collection.Sized;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlAggregation;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeMember;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static com.telenav.kivakit.core.collections.iteration.Iterables.equalIterables;
+import static com.telenav.kivakit.core.collections.list.ObjectList.list;
+import static com.telenav.kivakit.core.language.Objects.isEqual;
 
 /**
  * Tracks the difference between objects that are compared with {@link #compare(String, Object, Object)} or
@@ -76,10 +76,10 @@ public class Differences implements Sized
      */
     public <T> boolean compare(String description, Iterable<T> a, Iterable<T> b)
     {
-        if (!Iterables.equals(a, b))
+        if (!equalIterables(a, b))
         {
-            var aDescription = a == null ? "null" : new ObjectList<>().appendAll(a);
-            var bDescription = b == null ? "null" : new ObjectList<>().appendAll(b);
+            var aDescription = a == null ? "null" : list().appendAll(a);
+            var bDescription = b == null ? "null" : list().appendAll(b);
 
             add(description + " (" + aDescription + " vs " + bDescription + ")");
 
@@ -95,7 +95,7 @@ public class Differences implements Sized
      */
     public <T> boolean compare(String description, T a, T b)
     {
-        if (!Objects.isEqual(a, b))
+        if (!isEqual(a, b))
         {
             add(description + " (" + a + " vs " + b + ")");
             return false;

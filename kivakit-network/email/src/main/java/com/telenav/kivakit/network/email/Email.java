@@ -46,6 +46,8 @@ import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTE
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.ensure.Ensure.illegalState;
+import static com.telenav.kivakit.core.time.Time.now;
+import static com.telenav.kivakit.core.value.count.Count.count;
 
 /**
  * Models an email.
@@ -167,7 +169,7 @@ public class Email implements Validatable
         {
             lastRetry.plus(durationBetweenRetries).untilNow().sleep();
         }
-        lastRetry = Time.now();
+        lastRetry = now();
         tries++;
     }
 
@@ -191,7 +193,7 @@ public class Email implements Validatable
 
     Count tries()
     {
-        return Count.count(tries);
+        return count(tries);
     }
 
     private InternetAddress resolve(EmailAddress email)

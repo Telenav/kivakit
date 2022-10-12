@@ -29,6 +29,7 @@ import org.jetbrains.annotations.NotNull;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static com.telenav.kivakit.resource.ResourceFolder.resolveResourceFolder;
 
 /**
  * An identifier for a {@link ResourceFolder} implementation, including either a {@link Package} or a {@link Folder}.
@@ -58,7 +59,7 @@ public class ResourceFolderIdentifier
 
     public ResourceFolder<?> resolve(@NotNull Listener listener)
     {
-        return ResourceFolder.resolveResourceFolder(listener, this);
+        return resolveResourceFolder(listener, this);
     }
 
     @Override

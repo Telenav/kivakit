@@ -20,7 +20,6 @@ package com.telenav.kivakit.filesystem;
 
 import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.conversion.BaseStringConverter;
-import com.telenav.kivakit.core.collections.iteration.Iterables;
 import com.telenav.kivakit.core.collections.list.ObjectList;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.filesystem.spi.FileService;
@@ -40,8 +39,10 @@ import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMEN
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static com.telenav.kivakit.core.collections.iteration.Iterables.iterable;
 import static com.telenav.kivakit.core.messaging.Listener.throwingListener;
 import static com.telenav.kivakit.filesystem.File.file;
+import static com.telenav.kivakit.filesystem.File.parseFile;
 import static com.telenav.kivakit.filesystem.FilePath.filePath;
 
 /**
@@ -98,7 +99,7 @@ public class FileList extends BaseResourceList<File> implements Iterable<File>
      */
     public static FileList fileList(@NotNull File... files)
     {
-        return fileList(Iterables.iterable(files));
+        return fileList(iterable(files));
     }
 
     /**
@@ -150,7 +151,7 @@ public class FileList extends BaseResourceList<File> implements Iterable<File>
             var files = new FileList();
             for (var path : value.split(","))
             {
-                var file = File.parseFile(this, path.trim());
+                var file = parseFile(this, path.trim());
                 if (file.isFolder())
                 {
                     files.addAll(file.asFolder().nestedFiles(extension::matches));

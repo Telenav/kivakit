@@ -37,6 +37,7 @@ import java.util.stream.Collectors;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
+import static com.telenav.kivakit.interfaces.comparison.Matcher.matchAll;
 
 /**
  * Provides easy access to module resources. The {@link #moduleResource(Listener listener, StringPath)},
@@ -197,7 +198,7 @@ public class Modules
     /**
      * Returns a list of {@link ModuleResource}s under the given package that match the given matcher
      */
-    public synchronized static List<ModuleResource> nestedModuleResources(Listener listener,
+    public static synchronized List<ModuleResource> nestedModuleResources(Listener listener,
                                                                           PackageReference packageReference,
                                                                           Matcher<ModuleResource> matcher)
     {
@@ -210,16 +211,16 @@ public class Modules
     /**
      * Returns a list of all {@link ModuleResource}s under the given package
      */
-    public synchronized static List<ModuleResource> nestedModuleResources(Listener listener,
+    public static synchronized List<ModuleResource> nestedModuleResources(Listener listener,
                                                                           PackageReference packageReference)
     {
-        return nestedModuleResources(listener, packageReference, Matcher.matchAll());
+        return nestedModuleResources(listener, packageReference, matchAll());
     }
 
     /**
      * Returns a list of all available {@link ModuleReference}s
      */
-    private synchronized static List<ModuleReference> moduleReferences(Listener listener)
+    private static synchronized List<ModuleReference> moduleReferences(Listener listener)
     {
         if (references == null)
         {

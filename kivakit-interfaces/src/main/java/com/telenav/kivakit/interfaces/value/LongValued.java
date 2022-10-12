@@ -6,6 +6,8 @@ import com.telenav.kivakit.interfaces.numeric.Zeroable;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
+import static java.lang.Long.compare;
+import static java.lang.Math.abs;
 
 /**
  * An object that has a long representation
@@ -24,7 +26,7 @@ public interface LongValued extends Zeroable
      */
     default long absoluteDifference(LongValued that)
     {
-        return Math.abs(longValue() - that.longValue());
+        return abs(longValue() - that.longValue());
     }
 
     /**
@@ -140,7 +142,7 @@ public interface LongValued extends Zeroable
      */
     default Comparable<LongValued> longComparable()
     {
-        return that -> Long.compare(longValue(), that.longValue());
+        return that -> compare(longValue(), that.longValue());
     }
 
     /**

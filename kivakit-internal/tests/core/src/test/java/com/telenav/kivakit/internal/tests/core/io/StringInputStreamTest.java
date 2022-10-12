@@ -41,8 +41,7 @@ import static java.nio.charset.StandardCharsets.UTF_8;
  */
 public class StringInputStreamTest extends CoreUnitTest
 {
-    private static final Charset[] CHARSETS = new Charset[]
-    {
+    private static final Charset[] CHARSETS = {
         UTF_8, UTF_16LE, UTF_16BE
     };
 

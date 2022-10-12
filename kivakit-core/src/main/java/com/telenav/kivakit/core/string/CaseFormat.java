@@ -28,6 +28,10 @@ import java.util.regex.Pattern;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static com.telenav.kivakit.core.string.Strip.stripLeading;
+import static java.lang.Character.isLowerCase;
+import static java.lang.Character.toLowerCase;
+import static java.lang.Character.toUpperCase;
 
 /**
  * Converts between different styles of casing:
@@ -55,7 +59,7 @@ public class CaseFormat
     {
         assert text != null;
 
-        return Strip.leading(text.replaceAll("(?=[A-Z][a-z0-9])", "-"), "-").toLowerCase();
+        return stripLeading(text.replaceAll("(?=[A-Z][a-z0-9])", "-"), "-").toLowerCase();
     }
 
     /**
@@ -65,7 +69,7 @@ public class CaseFormat
     {
         if (text.length() >= 1)
         {
-            return Character.toUpperCase(text.charAt(0)) + text.substring(1);
+            return toUpperCase(text.charAt(0)) + text.substring(1);
         }
         return text;
     }
@@ -77,7 +81,7 @@ public class CaseFormat
     {
         if (text != null && text.length() >= 1)
         {
-            return Character.toUpperCase(text.charAt(0)) + text.toLowerCase().substring(1);
+            return toUpperCase(text.charAt(0)) + text.toLowerCase().substring(1);
         }
         return text;
     }
@@ -90,7 +94,7 @@ public class CaseFormat
     {
         if (text.length() >= 1)
         {
-            return Character.toLowerCase(text.charAt(0)) + text.substring(1);
+            return toLowerCase(text.charAt(0)) + text.substring(1);
         }
         return text;
     }
@@ -125,7 +129,7 @@ public class CaseFormat
     {
         if (text != null && !text.isEmpty())
         {
-            return !Character.isLowerCase(text.charAt(0));
+            return !isLowerCase(text.charAt(0));
         }
         return false;
     }

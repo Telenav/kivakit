@@ -6,6 +6,9 @@ import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.resource.Extension;
 import org.jetbrains.annotations.NotNull;
 
+import static com.telenav.kivakit.commandline.ArgumentParser.argumentParser;
+import static com.telenav.kivakit.commandline.SwitchParser.switchParser;
+
 /**
  * <p><b>Command Line Parsing</b></p>
  *
@@ -27,6 +30,7 @@ import org.jetbrains.annotations.NotNull;
  * @see ArgumentParser
  * @see SwitchParser
  */
+@SuppressWarnings("unused")
 public class Files
 {
     /**
@@ -39,7 +43,7 @@ public class Files
     public static ArgumentParser.Builder<File> fileArgumentParser(@NotNull Listener listener,
                                                                   @NotNull String description)
     {
-        return ArgumentParser.argumentParser(File.class)
+        return argumentParser(File.class)
                 .converter(new File.Converter(listener))
                 .description(description);
     }
@@ -56,7 +60,7 @@ public class Files
                                                                           @NotNull String description,
                                                                           @NotNull Extension extension)
     {
-        return ArgumentParser.argumentParser(FileList.class)
+        return argumentParser(FileList.class)
                 .converter(new FileList.Converter(listener, extension))
                 .description(description);
     }
@@ -75,7 +79,7 @@ public class Files
                                                                       @NotNull String description,
                                                                       @NotNull Extension extension)
     {
-        return SwitchParser.switchParser(FileList.class)
+        return switchParser(FileList.class)
                 .name(name)
                 .converter(new FileList.Converter(listener, extension))
                 .description(description);
@@ -93,7 +97,7 @@ public class Files
                                                                       @NotNull String name,
                                                                       @NotNull String description)
     {
-        return SwitchParser.switchParser(FilePath.class)
+        return switchParser(FilePath.class)
                 .name(name)
                 .converter(new FilePath.Converter(listener))
                 .description(description);
@@ -111,7 +115,7 @@ public class Files
                                                               @NotNull String name,
                                                               @NotNull String description)
     {
-        return SwitchParser.switchParser(File.class)
+        return switchParser(File.class)
                 .name(name)
                 .converter(new File.Converter(listener))
                 .description(description);

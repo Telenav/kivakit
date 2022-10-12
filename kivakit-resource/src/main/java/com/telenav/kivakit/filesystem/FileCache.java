@@ -32,6 +32,7 @@ import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTE
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.ensure.Ensure.ensure;
+import static com.telenav.kivakit.core.progress.ProgressReporter.nullProgressReporter;
 import static com.telenav.kivakit.core.time.Frequency.EVERY_30_SECONDS;
 import static com.telenav.kivakit.core.value.level.Percent.percent;
 
@@ -99,7 +100,7 @@ public class FileCache extends BaseRepeater
      */
     public File add(@NotNull Resource resource, @NotNull CopyMode mode)
     {
-        return add(resource, mode, ProgressReporter.nullProgressReporter());
+        return add(resource, mode, nullProgressReporter());
     }
 
     /**
@@ -127,7 +128,7 @@ public class FileCache extends BaseRepeater
                       @NotNull FileName filename,
                       @NotNull CopyMode mode)
     {
-        return addAs(resource, filename, mode, ProgressReporter.nullProgressReporter());
+        return addAs(resource, filename, mode, nullProgressReporter());
     }
 
     /**

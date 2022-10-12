@@ -25,16 +25,16 @@ import com.telenav.kivakit.core.internal.lexakai.DiagramRepeater;
 import com.telenav.kivakit.core.logging.Logger;
 import com.telenav.kivakit.core.messaging.listeners.ThrowingListener;
 import com.telenav.kivakit.core.messaging.messages.status.Problem;
-import com.telenav.kivakit.core.os.Console;
 import com.telenav.kivakit.interfaces.messaging.Transmittable;
 import com.telenav.kivakit.interfaces.naming.NamedObject;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeMember;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeSuperTypes;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static com.telenav.kivakit.core.os.Console.console;
 
 /**
  * Handles messages through {@link #onMessage(Message)}.
@@ -118,7 +118,7 @@ public interface Listener extends MessageTransceiver
      */
     static Listener consoleListener()
     {
-        return Console.console();
+        return console();
     }
 
     /**

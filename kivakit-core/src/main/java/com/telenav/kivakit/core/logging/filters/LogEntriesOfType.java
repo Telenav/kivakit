@@ -20,7 +20,6 @@ package com.telenav.kivakit.core.logging.filters;
 
 import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.collections.list.StringList;
-import com.telenav.kivakit.core.language.Classes;
 import com.telenav.kivakit.core.logging.LogEntry;
 import com.telenav.kivakit.core.messaging.Message;
 import com.telenav.kivakit.interfaces.comparison.Filter;
@@ -28,9 +27,10 @@ import com.telenav.kivakit.interfaces.comparison.Filter;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static com.telenav.kivakit.core.language.Classes.simpleName;
 
 /**
  * A {@link LogEntry} filter based on message types
@@ -99,7 +99,7 @@ public class LogEntriesOfType implements Filter<LogEntry>
         var names = new StringList();
         for (var type : include)
         {
-            names.add(Classes.simpleName(type));
+            names.add(simpleName(type));
         }
         return names.join();
     }

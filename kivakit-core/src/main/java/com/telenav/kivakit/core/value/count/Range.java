@@ -21,8 +21,6 @@ package com.telenav.kivakit.core.value.count;
 import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.collections.iteration.BaseIterator;
 import com.telenav.kivakit.core.internal.lexakai.DiagramCount;
-import com.telenav.kivakit.core.language.primitive.Longs;
-import com.telenav.kivakit.core.string.Formatter;
 import com.telenav.kivakit.interfaces.code.Callback;
 import com.telenav.kivakit.interfaces.collection.Contains;
 import com.telenav.kivakit.interfaces.collection.NextIterator;
@@ -37,11 +35,14 @@ import java.util.Iterator;
 import java.util.Random;
 import java.util.function.Function;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static com.telenav.kivakit.core.language.primitive.Longs.longRandom;
+import static com.telenav.kivakit.core.string.Formatter.format;
 import static com.telenav.kivakit.core.value.count.Range.UpperBound.EXCLUSIVE;
 import static com.telenav.kivakit.core.value.count.Range.UpperBound.INCLUSIVE;
+import static java.lang.Long.compare;
 
 /**
  * Represents a range of value objects from a minimum to a maximum.
@@ -179,7 +180,7 @@ public class Range<Value extends Numeric<Value>> implements
     @Override
     public int compareTo(Countable that)
     {
-        return Long.compare(count().longValue(), that.count().longValue());
+        return compare(count().longValue(), that.count().longValue());
     }
 
     /**
@@ -328,7 +329,7 @@ public class Range<Value extends Numeric<Value>> implements
      */
     public Value randomValue(Random random)
     {
-        return minimum.map(Longs.longRandom(random, minimum().asLong(), exclusiveMaximum().asLong()));
+        return minimum.map(longRandom(random, minimum().asLong(), exclusiveMaximum().asLong()));
     }
 
     /**
@@ -342,7 +343,7 @@ public class Range<Value extends Numeric<Value>> implements
     @Override
     public String toString()
     {
-        return Formatter.format("[$ to $, $]", minimum(),
+        return format("[$ to $, $]", minimum(),
                 isInclusive()
                         ? inclusiveMaximum()
                         : exclusiveMaximum(),

@@ -28,6 +28,8 @@ import com.telenav.lexakai.annotations.visibility.UmlExcludeMember;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static java.lang.Double.isInfinite;
+import static java.lang.Double.isNaN;
 
 /**
  * Converts a double to and from a string.
@@ -55,7 +57,7 @@ public class DoubleConverter extends BaseStringConverter<Double>
     @UmlExcludeMember
     protected String onToString(Double value)
     {
-        if (Double.isNaN(value) || Double.isInfinite(value))
+        if (isNaN(value) || isInfinite(value))
         {
             return "N/A";
         }

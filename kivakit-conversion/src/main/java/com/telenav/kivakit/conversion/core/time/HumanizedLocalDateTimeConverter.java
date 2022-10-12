@@ -35,6 +35,7 @@ import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.time.Duration.days;
 import static com.telenav.kivakit.core.time.LocalTime.localTimeZone;
+import static com.telenav.kivakit.core.time.LocalTime.now;
 import static java.util.regex.Pattern.CASE_INSENSITIVE;
 
 /**
@@ -103,7 +104,7 @@ public class HumanizedLocalDateTimeConverter extends BaseStringConverter<LocalTi
                 var day = matcher.group("day");
                 var date = matcher.group("date");
 
-                var now = LocalTime.now();
+                var now = now();
                 if (today != null)
                 {
                     return localTime.withUnixEpochDay(now.dayOfUnixEpoch());

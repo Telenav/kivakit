@@ -25,10 +25,11 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static com.telenav.kivakit.core.string.AsciiArt.*;
 
 /**
  * Aligns a string within a given width using a padding character: {@link #center(String, int, char)},
- * {@link #left(String, int, char)} or {@link #right(String, int, char)}.
+ * {@link #alignLeft(String, int, char)} or {@link #alignRight(String, int, char)}.
  *
  * @author jonathanl (shibo)
  */
@@ -47,7 +48,7 @@ public class Align
         {
             var left = (length - text.length()) / 2;
             var right = length - text.length() - left;
-            return AsciiArt.repeat(left, c) + text + AsciiArt.repeat(right, c);
+            return repeat(left, c) + text + repeat(right, c);
         }
         else
         {
@@ -58,11 +59,11 @@ public class Align
     /**
      * Right pads the given text to the given length, with the given character
      */
-    public static String left(String string, int length, char c)
+    public static String alignLeft(String string, int length, char c)
     {
         if (string != null && length > string.length())
         {
-            return string + AsciiArt.repeat(length - string.length(), c);
+            return string + repeat(length - string.length(), c);
         }
         else
         {
@@ -73,11 +74,11 @@ public class Align
     /**
      * Left pads the given text to the given length, with the given character
      */
-    public static String right(String text, int length, char c)
+    public static String alignRight(String text, int length, char c)
     {
         if (text != null && length > text.length())
         {
-            return AsciiArt.repeat(length - text.length(), c) + text;
+            return repeat(length - text.length(), c) + text;
         }
         else
         {

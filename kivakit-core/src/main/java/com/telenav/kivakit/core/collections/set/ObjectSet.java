@@ -34,6 +34,7 @@ import java.util.function.Predicate;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_INSUFFICIENT;
+import static com.telenav.kivakit.core.collections.list.ObjectList.list;
 import static com.telenav.kivakit.core.value.count.Maximum.MAXIMUM;
 
 /**
@@ -235,7 +236,7 @@ public class ObjectSet<Value> extends BaseSet<Value>
     @Override
     public ObjectList<Value> asList()
     {
-        return ObjectList.list(super.asList());
+        return list(super.asList());
     }
 
     /**

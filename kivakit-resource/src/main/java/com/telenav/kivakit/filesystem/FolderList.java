@@ -36,6 +36,7 @@ import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static com.telenav.kivakit.filesystem.Folder.parseFolder;
 
 /**
  * A list of folders with additional useful methods, including:
@@ -88,8 +89,7 @@ public class FolderList extends ObjectList<Folder>
             var folders = new FolderList();
             for (var path : value.split(","))
             {
-                var folder = Folder.parseFolder(this, path);
-                folders.add(folder);
+                folders.add(parseFolder(this, path));
             }
             return folders;
         }

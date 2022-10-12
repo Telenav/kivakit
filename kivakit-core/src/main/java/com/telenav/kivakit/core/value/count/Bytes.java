@@ -20,9 +20,7 @@ package com.telenav.kivakit.core.value.count;
 
 import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramCount;
-import com.telenav.kivakit.core.language.primitive.Doubles;
 import com.telenav.kivakit.core.messaging.Listener;
-import com.telenav.kivakit.core.string.Strings;
 import com.telenav.kivakit.interfaces.value.DoubleValued;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import org.jetbrains.annotations.NotNull;
@@ -30,29 +28,32 @@ import org.jetbrains.annotations.NotNull;
 import java.lang.reflect.Array;
 import java.util.regex.Pattern;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static com.telenav.kivakit.core.language.primitive.Doubles.formatDouble;
+import static com.telenav.kivakit.core.string.Strings.replaceAll;
 import static com.telenav.kivakit.interfaces.string.StringFormattable.Format.USER_LABEL;
+import static java.lang.Double.parseDouble;
 
 /**
  * Represents an immutable byte count. These static factory methods allow easy construction of value objects using
  * either long values like bytes(2034) or megabytes(3):
  * <ul>
- * <li>Bytes.bytes(long)
- * <li>Bytes.kilobytes(long)
- * <li>Bytes.megabytes(long)
- * <li>Bytes.gigabytes(long)
- * <li>Bytes.terabytes(long)
+ * <li>bytes(long)
+ * <li>kilobytes(long)
+ * <li>megabytes(long)
+ * <li>gigabytes(long)
+ * <li>terabytes(long)
  * </ul>
  * <p>
  * or double precision floating point values like megabytes(3.2):
  * <ul>
- * <li>Bytes.bytes(double)
- * <li>Bytes.kilobytes(double)
- * <li>Bytes.megabytes(double)
- * <li>Bytes.gigabytes(double)
- * <li>Bytes.terabytes(double)
+ * <li>bytes(double)
+ * <li>kilobytes(double)
+ * <li>megabytes(double)
+ * <li>gigabytes(double)
+ * <li>terabytes(double)
  * </ul>
  * <p>
  * The precise number of bytes in a Bytes object can be retrieved by calling bytes(). Approximate
@@ -215,30 +216,30 @@ public final class Bytes extends BaseCount<Bytes> implements
         if (matcher.matches())
         {
             // Get double precision value
-            var scalar = Double.parseDouble(Strings.replaceAll(matcher.group(1), ",", ""));
+            var scalar = parseDouble(replaceAll(matcher.group(1), ",", ""));
 
             // Get units specified
             var units = matcher.group(3);
 
             if ("".equalsIgnoreCase(units))
             {
-                return Bytes.bytes(scalar);
+                return bytes(scalar);
             }
             else if ("K".equalsIgnoreCase(units))
             {
-                return Bytes.kilobytes(scalar);
+                return kilobytes(scalar);
             }
             else if ("M".equalsIgnoreCase(units))
             {
-                return Bytes.megabytes(scalar);
+                return megabytes(scalar);
             }
             else if ("G".equalsIgnoreCase(units))
             {
-                return Bytes.gigabytes(scalar);
+                return gigabytes(scalar);
             }
             else if ("T".equalsIgnoreCase(units))
             {
-                return Bytes.terabytes(scalar);
+                return terabytes(scalar);
             }
             else
             {
@@ -338,7 +339,7 @@ public final class Bytes extends BaseCount<Bytes> implements
      */
     public long asBytes()
     {
-        return super.get();
+        return get();
     }
 
     /**
@@ -463,6 +464,6 @@ public final class Bytes extends BaseCount<Bytes> implements
      */
     private String unitString(double value, String units)
     {
-        return Doubles.formatDouble(value, 1) + units;
+        return formatDouble(value, 1) + units;
     }
 }

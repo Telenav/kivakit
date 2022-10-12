@@ -21,14 +21,9 @@ package com.telenav.kivakit.launcher;
 import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.collections.list.StringList;
 import com.telenav.kivakit.core.messaging.repeaters.BaseRepeater;
-import com.telenav.kivakit.core.os.OperatingSystem;
-import com.telenav.kivakit.core.os.Processes;
-import com.telenav.kivakit.core.progress.ProgressReporter;
 import com.telenav.kivakit.core.thread.KivaKitThread;
 import com.telenav.kivakit.filesystem.File;
 import com.telenav.kivakit.filesystem.Folder;
-import com.telenav.kivakit.filesystem.Folders;
-import com.telenav.kivakit.properties.PropertyMap;
 import com.telenav.kivakit.resource.Extension;
 import com.telenav.kivakit.resource.Resourceful;
 import com.telenav.kivakit.resource.internal.lexakai.DiagramJarLauncher;
@@ -38,16 +33,22 @@ import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static com.telenav.kivakit.core.collections.list.StringList.stringList;
 import static com.telenav.kivakit.core.ensure.Ensure.unsupported;
+import static com.telenav.kivakit.core.os.OperatingSystem.operatingSystem;
+import static com.telenav.kivakit.core.os.Processes.redirectStandardErrorToConsole;
+import static com.telenav.kivakit.core.os.Processes.redirectStandardOutToConsole;
+import static com.telenav.kivakit.core.progress.ProgressReporter.nullProgressReporter;
+import static com.telenav.kivakit.filesystem.Folders.kivakitTemporaryFolder;
 import static com.telenav.kivakit.launcher.JarLauncher.ProcessType.CHILD;
 import static com.telenav.kivakit.launcher.JarLauncher.ProcessType.DETACHED;
+import static com.telenav.kivakit.properties.PropertyMap.propertyMap;
 
 /**
  * Launches an executable Java program from some, possibly remote, resource when {@link #run()}  is called.
@@ -73,7 +74,7 @@ import static com.telenav.kivakit.launcher.JarLauncher.ProcessType.DETACHED;
  * var process = listenTo(new JarLauncher()
  *     .processType(CHILD)
  *     .arguments(arguments))
- *     .addJarSource(PackageResource.packageResource(getClass(), "plantuml.jar"))
+ *     .addJarSource(packageResource(getClass(), "plantuml.jar"))
  *     .redirectTo(CONSOLE)
  *     .run();
  *
@@ -147,7 +148,7 @@ public class JarLauncher extends BaseRepeater
      */
     public JarLauncher arguments(@NotNull String... arguments)
     {
-        programArguments = StringList.stringList(Arrays.asList(arguments));
+        programArguments = stringList(arguments);
         return this;
     }
 
@@ -208,14 +209,14 @@ public class JarLauncher extends BaseRepeater
         for (var source : jarSources)
         {
             // get the resource and materialize it to the local host,
-            var resource = source.resource().materialized(ProgressReporter.nullProgressReporter());
+            var resource = source.resource().materialized(nullProgressReporter());
             try
             {
                 // get the resource basename,
                 var base = resource.fileName().withoutExtension(Extension.JAR);
 
                 // and create the argument list.
-                var java = OperatingSystem.operatingSystem().javaExecutable();
+                var java = operatingSystem().javaExecutable();
                 var arguments = new StringList();
                 arguments.add(java);
                 if (headless)
@@ -260,10 +261,10 @@ public class JarLauncher extends BaseRepeater
                 }
 
                 // get this process' identifier
-                var pid = OperatingSystem.operatingSystem().processIdentifier();
+                var pid = operatingSystem().processIdentifier();
 
                 // and launch the jar, redirecting output to
-                var announcement = PropertyMap.propertyMap();
+                var announcement = propertyMap();
                 announcement.put("jar", resource.path().toString());
                 announcement.put("arguments", arguments.join(" "));
                 switch (redirectTo)
@@ -275,8 +276,8 @@ public class JarLauncher extends BaseRepeater
                         announcement.put("stderr", "console");
                         announcement.asStringList().titledBox("Launching Jar");
                         var process = builder.start();
-                        KivaKitThread.run(this, "RedirectOutputToConsole", () -> Processes.redirectStandardOutToConsole(this, process));
-                        KivaKitThread.run(this, "RedirectErrorToConsole", () -> Processes.redirectStandardErrorToConsole(this, process));
+                        KivaKitThread.run(this, "RedirectOutputToConsole", () -> redirectStandardOutToConsole(this, process));
+                        KivaKitThread.run(this, "RedirectErrorToConsole", () -> redirectStandardErrorToConsole(this, process));
                         return process;
                     }
 
@@ -310,6 +311,6 @@ public class JarLauncher extends BaseRepeater
 
     private Folder folder()
     {
-        return Folders.kivakitTemporaryFolder().folder("launcher").mkdirs();
+        return kivakitTemporaryFolder().folder("launcher").mkdirs();
     }
 }

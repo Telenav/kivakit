@@ -22,13 +22,13 @@ import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.network.http.internal.lexakai.DiagramHttp;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static java.util.Collections.synchronizedMap;
 
 /**
  * The status of an HTTP request.
@@ -277,7 +277,7 @@ public enum HttpStatus
     {
         if (statusForCode == null)
         {
-            statusForCode = Collections.synchronizedMap(new HashMap<>());
+            statusForCode = synchronizedMap(new HashMap<>());
         }
         return statusForCode;
     }

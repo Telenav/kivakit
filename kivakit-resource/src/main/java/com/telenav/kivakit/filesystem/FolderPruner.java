@@ -38,6 +38,9 @@ import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTE
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
 import static com.telenav.kivakit.core.time.Duration.seconds;
+import static com.telenav.kivakit.core.time.Duration.weeks;
+import static com.telenav.kivakit.core.value.level.Percent.percent;
+import static com.telenav.kivakit.interfaces.comparison.Matcher.matchAll;
 
 /**
  * Removes nested files matching {@link #matcher(Matcher)} from the given folder when they meet expiration criteria.
@@ -85,13 +88,13 @@ public class FolderPruner extends BaseRepeater implements
     private volatile Bytes capacity = Bytes.MAXIMUM;
 
     /** Matcher to restrict files that can be pruned */
-    private volatile Matcher<ResourcePathed> matcher = Matcher.matchAll();
+    private volatile Matcher<ResourcePathed> matcher = matchAll();
 
     /** The maximum age at which a file will be pruned */
-    private volatile Duration maximumAge = Duration.weeks(2);
+    private volatile Duration maximumAge = weeks(2);
 
     /** The minimum percentage of usable disk space that must be maintained on the folder's disk. */
-    private volatile Percent minimumUsableDiskSpace = Percent.percent(15);
+    private volatile Percent minimumUsableDiskSpace = percent(15);
 
     /** True if this pruner is running */
     private volatile boolean running;

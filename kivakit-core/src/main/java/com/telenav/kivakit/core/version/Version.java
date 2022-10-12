@@ -19,17 +19,19 @@
 package com.telenav.kivakit.core.version;
 
 import com.telenav.kivakit.annotations.code.quality.CodeQuality;
-import com.telenav.kivakit.core.language.primitive.Ints;
 import com.telenav.kivakit.core.messaging.Listener;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.Objects;
 import java.util.regex.Pattern;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_INSUFFICIENT;
 import static com.telenav.kivakit.core.ensure.Ensure.fail;
+import static com.telenav.kivakit.core.language.Hash.hashMany;
+import static com.telenav.kivakit.core.language.primitive.Ints.parseInt;
+import static com.telenav.kivakit.core.messaging.Listener.throwingListener;
+import static com.telenav.kivakit.core.version.ReleaseType.parseRelease;
 import static java.util.regex.Pattern.CASE_INSENSITIVE;
 
 /**
@@ -111,7 +113,7 @@ public class Version
      */
     public static Version parseVersion(String text)
     {
-        return parseVersion(Listener.throwingListener(), text);
+        return parseVersion(throwingListener(), text);
     }
 
     /**
@@ -127,17 +129,17 @@ public class Version
         if (matcher.matches())
         {
             // Extract the required major and minor versions
-            var major = Ints.parseInt(listener, matcher.group("major"));
+            var major = parseInt(listener, matcher.group("major"));
             var minor = matcher.group("minor");
-            var minorVersion = minor == null ? NO_MINOR : Ints.parseInt(listener, minor);
+            var minorVersion = minor == null ? NO_MINOR : parseInt(listener, minor);
 
             // then get the patch group and convert it to a number or NO_PATCH if there is none
             var patch = matcher.group("patch");
-            var patchNumber = patch == null ? NO_PATCH : Ints.parseInt(listener, patch);
+            var patchNumber = patch == null ? NO_PATCH : parseInt(listener, patch);
 
             // and the release name or null if there is none
             var releaseName = matcher.group("release");
-            var release = releaseName == null ? null : ReleaseType.parseRelease(listener, releaseName);
+            var release = releaseName == null ? null : parseRelease(listener, releaseName);
             var snapshot = "SNAPSHOT".equalsIgnoreCase(matcher.group("snapshot"));
 
             // and finally, construct the version object
@@ -192,7 +194,7 @@ public class Version
      */
     public static Version version(String text)
     {
-        return parseVersion(Listener.throwingListener(), text);
+        return parseVersion(throwingListener(), text);
     }
 
     /** The major version */
@@ -284,7 +286,7 @@ public class Version
     @Override
     public int hashCode()
     {
-        return Objects.hash(major, minor, patch, releaseType);
+        return hashMany(major, minor, patch, releaseType);
     }
 
     /**

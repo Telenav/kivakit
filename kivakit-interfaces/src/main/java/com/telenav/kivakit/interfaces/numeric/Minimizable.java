@@ -27,6 +27,7 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
+import static java.lang.Math.min;
 
 /**
  * Determines which of two objects is the minimum. For example, the Angle object is {@link Minimizable} and implements
@@ -49,7 +50,7 @@ public interface Minimizable<Value> extends
 {
     default Value minimize(long value)
     {
-        return map(Math.min(longValue(), value));
+        return map(min(longValue(), value));
     }
 
     default Value minimize(LongValued value)

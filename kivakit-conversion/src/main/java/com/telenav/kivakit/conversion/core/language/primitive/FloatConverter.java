@@ -28,6 +28,8 @@ import com.telenav.lexakai.annotations.visibility.UmlExcludeMember;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static java.lang.Float.isInfinite;
+import static java.lang.Float.isNaN;
 
 /**
  * Converts a float to and from a string.
@@ -55,7 +57,7 @@ public class FloatConverter extends BaseStringConverter<Float>
     @UmlExcludeMember
     protected String onToString(Float value)
     {
-        if (Float.isNaN(value) || Float.isInfinite(value))
+        if (isNaN(value) || isInfinite(value))
         {
             return "N/A";
         }

@@ -30,6 +30,7 @@ import java.lang.annotation.Annotation;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static com.telenav.kivakit.core.language.reflection.Type.typeForClass;
 
 /**
  * Set the value of a property by calling its setter method
@@ -105,6 +106,6 @@ public class MethodSetter implements Setter
     @Override
     public Type<?> type()
     {
-        return Type.typeForClass(method.parameterTypes()[0]);
+        return typeForClass(method.parameterTypes()[0]);
     }
 }

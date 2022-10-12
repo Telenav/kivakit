@@ -24,14 +24,15 @@ import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.time.ZoneId;
-import java.time.format.TextStyle;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static com.telenav.kivakit.core.messaging.Listener.nullListener;
+import static java.time.format.TextStyle.SHORT;
 
 /**
  * Utility methods to map between {@link ZoneId}s and their display names
@@ -90,7 +91,7 @@ public class TimeZones
      */
     public static boolean isUtc(ZoneId zone)
     {
-        return zone.getId().equals("UTC") || zone.getId().equals("GMT") || zone.getId().equals(("UT"));
+        return "UTC".equals(zone.getId()) || "GMT".equals(zone.getId()) || "UT".equals(zone.getId());
     }
 
     /**
@@ -98,15 +99,15 @@ public class TimeZones
      */
     public static boolean isValidShortDisplayName(String identifier)
     {
-        return parseShortDisplayName(Listener.nullListener(), identifier) != null;
+        return parseShortDisplayName(nullListener(), identifier) != null;
     }
 
-        /**
+    /**
      * Returns true if the given identifier is a valid zone id (America/Los Angeles)
-
+     */
     public static boolean isValidZoneId(String identifier)
     {
-        return parseZoneId(Listener.nullListener(), identifier) != null;
+        return parseZoneId(nullListener(), identifier) != null;
     }
 
     /**
@@ -144,10 +145,10 @@ public class TimeZones
      */
     public static ZoneId parseZoneIdOrDisplayName(Listener listener, String identifier)
     {
-        var zone = parseShortDisplayName(Listener.nullListener(), identifier);
+        var zone = parseShortDisplayName(nullListener(), identifier);
         if (zone == null)
         {
-            zone = parseZoneId(Listener.nullListener(), identifier);
+            zone = parseZoneId(nullListener(), identifier);
         }
         if (zone == null)
         {
@@ -161,7 +162,7 @@ public class TimeZones
      */
     public static String shortDisplayName(ZoneId zone)
     {
-        return zone.getDisplayName(TextStyle.SHORT, Locale.getDefault());
+        return zone.getDisplayName(SHORT, Locale.getDefault());
     }
 
     public static ZoneId utc()

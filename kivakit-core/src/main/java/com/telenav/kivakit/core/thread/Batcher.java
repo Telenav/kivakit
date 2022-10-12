@@ -19,11 +19,9 @@
 package com.telenav.kivakit.core.thread;
 
 import com.telenav.kivakit.annotations.code.quality.CodeQuality;
-import com.telenav.kivakit.core.code.UncheckedCode;
 import com.telenav.kivakit.core.collections.iteration.BaseIterator;
 import com.telenav.kivakit.core.internal.lexakai.DiagramThread;
 import com.telenav.kivakit.core.messaging.repeaters.BaseRepeater;
-import com.telenav.kivakit.core.time.Time;
 import com.telenav.kivakit.core.value.count.BaseCount;
 import com.telenav.kivakit.core.value.count.Count;
 import com.telenav.kivakit.interfaces.collection.Addable;
@@ -41,11 +39,15 @@ import java.util.concurrent.ExecutorService;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
 
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static com.telenav.kivakit.core.code.UncheckedCode.unchecked;
 import static com.telenav.kivakit.core.ensure.Ensure.ensure;
+import static com.telenav.kivakit.core.thread.Threads.awaitTermination;
+import static com.telenav.kivakit.core.thread.Threads.threadPool;
+import static com.telenav.kivakit.core.time.Time.now;
 
 /**
  * A {@link Batcher} has a queue of element batches which are processed by one or more worker threads.
@@ -110,7 +112,7 @@ public class Batcher<Value> extends BaseRepeater
     /**
      * Returns creates a new batcher
      */
-    public static <Element> Batcher<Element> create()
+    public static <Element> Batcher<Element> batcher()
     {
         return new Batcher<>();
     }
@@ -147,7 +149,7 @@ public class Batcher<Value> extends BaseRepeater
             {
                 try
                 {
-                    var start = Time.now();
+                    var start = now();
                     trace("$: Processing $ element batch ${hex}", outer.name, size(), hashCode());
                     onBatch(this);
                     trace("$: Processed $ items in $", outer.name, size(), start.elapsedSince());
@@ -314,7 +316,7 @@ public class Batcher<Value> extends BaseRepeater
             queue = new ArrayBlockingQueue<>(queueSize, true);
 
             // then create an executor,
-            executor = Threads.threadPool(name + "-Batcher", workers);
+            executor = threadPool(name + "-Batcher", workers);
 
             // start a job for each worker,
             var outer = this;
@@ -343,7 +345,7 @@ public class Batcher<Value> extends BaseRepeater
             // shut down the executor, interrupting waiting threads and waiting for them to exit,
             trace("$: Stopping", name);
             var pending = executor.shutdownNow();
-            Threads.awaitTermination(executor);
+            awaitTermination(executor);
             trace("$: Stopped", name);
 
             // then run any tasks that never started executing,
@@ -429,6 +431,6 @@ public class Batcher<Value> extends BaseRepeater
      */
     private Batch nextBatch()
     {
-        return UncheckedCode.unchecked(() -> queue.take()).orDefault(Batch::new);
+        return unchecked(() -> queue.take()).orDefault(Batch::new);
     }
 }

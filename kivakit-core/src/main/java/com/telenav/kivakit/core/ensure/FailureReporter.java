@@ -20,14 +20,14 @@ package com.telenav.kivakit.core.ensure;
 
 import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramFailureReporter;
-import com.telenav.kivakit.core.logging.Logger;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.messaging.Message;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
+import static com.telenav.kivakit.core.logging.Logger.logger;
 import static com.telenav.kivakit.core.messaging.MessageFormat.WITH_EXCEPTION;
 
 /**
@@ -75,7 +75,7 @@ public interface FailureReporter extends Listener
      */
     static FailureReporter loggingFailureReporter()
     {
-        return message -> Logger.logger().log(message);
+        return message -> logger().log(message);
     }
 
     /**

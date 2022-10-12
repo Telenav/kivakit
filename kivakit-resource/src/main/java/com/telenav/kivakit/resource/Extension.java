@@ -38,6 +38,7 @@ import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTE
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.collections.list.ObjectList.list;
 import static com.telenav.kivakit.core.messaging.Listener.throwingListener;
+import static com.telenav.kivakit.core.value.count.Count.count;
 
 /**
  * A {@link FileName} extension, such as ".txt" or ".jar".
@@ -356,7 +357,7 @@ public class Extension implements
      */
     public Count length()
     {
-        return Count.count(toString().length());
+        return count(toString().length());
     }
 
     /**

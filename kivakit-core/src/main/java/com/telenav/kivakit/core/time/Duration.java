@@ -38,9 +38,14 @@ import java.util.regex.Pattern;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static com.telenav.kivakit.core.messaging.Listener.throwingListener;
 import static com.telenav.kivakit.core.string.Strings.isOneOf;
 import static com.telenav.kivakit.core.time.Duration.Restriction.FORCE_POSITIVE;
 import static com.telenav.kivakit.core.time.Duration.Restriction.THROW_IF_NEGATIVE;
+import static com.telenav.kivakit.core.time.Frequency.every;
+import static com.telenav.kivakit.core.time.Time.now;
+import static com.telenav.kivakit.core.value.level.Percent.percent;
+import static java.lang.Double.parseDouble;
 import static java.util.regex.Pattern.CASE_INSENSITIVE;
 
 /**
@@ -334,7 +339,7 @@ public class Duration implements
      */
     public static Duration parseDuration(String text)
     {
-        return parseDuration(Listener.throwingListener(), text);
+        return parseDuration(throwingListener(), text);
     }
 
     /**
@@ -349,43 +354,43 @@ public class Duration implements
         var matcher = PATTERN.matcher(text);
         if (matcher.matches())
         {
-            var quantity = Double.parseDouble(matcher.group("quantity"));
+            var quantity = parseDouble(matcher.group("quantity"));
             var units = matcher.group("units");
             if (isOneOf(units, "nanoseconds", "nanosecond", "ns"))
             {
-                return Duration.nanoseconds((long) quantity);
+                return nanoseconds((long) quantity);
             }
             else if (isOneOf(units, "microseconds", "microsecond", "us"))
             {
-                return Duration.microseconds(quantity);
+                return microseconds(quantity);
             }
             else if (isOneOf(units, "milliseconds", "millisecond", "ms"))
             {
-                return Duration.milliseconds(quantity);
+                return milliseconds(quantity);
             }
             else if (isOneOf(units, "seconds", "second", "s"))
             {
-                return Duration.seconds(quantity);
+                return seconds(quantity);
             }
             else if (isOneOf(units, "minutes", "minute", "m"))
             {
-                return Duration.minutes(quantity);
+                return minutes(quantity);
             }
             else if (isOneOf(units, "hours", "hour", "h"))
             {
-                return Duration.hours(quantity);
+                return hours(quantity);
             }
             else if (isOneOf(units, "days", "day", "d"))
             {
-                return Duration.days(quantity);
+                return days(quantity);
             }
             else if (isOneOf(units, "weeks", "week"))
             {
-                return Duration.weeks(quantity);
+                return weeks(quantity);
             }
             else if (isOneOf(units, "years", "year"))
             {
-                return Duration.years(quantity);
+                return years(quantity);
             }
             else
             {
@@ -421,7 +426,7 @@ public class Duration implements
      */
     public static Duration untilNextSecond()
     {
-        var now = Time.now();
+        var now = now();
         var then = now.roundUp(ONE_SECOND);
         return now.until(then);
     }
@@ -515,7 +520,7 @@ public class Duration implements
      */
     public Frequency asFrequency()
     {
-        return Frequency.every(this);
+        return every(this);
     }
 
     @Override
@@ -612,7 +617,7 @@ public class Duration implements
      */
     public boolean isMaximum()
     {
-        return equals(Duration.FOREVER);
+        return equals(FOREVER);
     }
 
     @Override
@@ -707,7 +712,7 @@ public class Duration implements
      */
     public Percent percentageOf(Duration that)
     {
-        return Percent.percent(nanoseconds()
+        return percent(nanoseconds()
                 .times(100)
                 .dividedBy(that.nanoseconds()));
     }

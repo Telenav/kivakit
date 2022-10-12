@@ -25,6 +25,7 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_INSUFFICIENT;
+import static java.lang.Long.bitCount;
 
 /**
  * A {@link BitDiagram} is a character string that visually depicts one or more bit fields of a primitive value such as
@@ -105,7 +106,7 @@ public class BitDiagram
          */
         public int bits()
         {
-            return Long.bitCount(mask());
+            return bitCount(mask());
         }
 
         /**

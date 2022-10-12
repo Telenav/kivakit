@@ -20,10 +20,7 @@ package com.telenav.kivakit.filesystem.local;
 
 import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.collections.list.StringList;
-import com.telenav.kivakit.core.messaging.Listener;
-import com.telenav.kivakit.core.string.Strings;
 import com.telenav.kivakit.filesystem.FilePath;
-import com.telenav.kivakit.filesystem.Folders;
 import com.telenav.kivakit.filesystem.spi.DiskService;
 import com.telenav.kivakit.filesystem.spi.FileService;
 import com.telenav.kivakit.filesystem.spi.FileSystemService;
@@ -37,10 +34,14 @@ import org.jetbrains.annotations.NotNull;
 import java.nio.file.InvalidPathException;
 import java.nio.file.Paths;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Audience.AUDIENCE_INTERNAL;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static com.telenav.kivakit.core.messaging.Listener.consoleListener;
+import static com.telenav.kivakit.core.string.Strings.replace;
+import static com.telenav.kivakit.filesystem.FilePath.parseFilePath;
+import static com.telenav.kivakit.filesystem.Folders.userHome;
 
 /**
  * Implementation of {@link FileSystemService} provider interface for the local filesystem.
@@ -116,8 +117,8 @@ public class LocalFileSystemService implements FileSystemService
     {
         if (path.startsWith("~"))
         {
-            return FilePath.parseFilePath(Listener.consoleListener(), Strings.replace(path.toString(), 0, 1,
-                    Folders.userHome().toString())).withoutSchemes();
+            return parseFilePath(consoleListener(), replace(path.toString(), 0, 1,
+                    userHome().toString())).withoutSchemes();
         }
         return path.withoutSchemes();
     }

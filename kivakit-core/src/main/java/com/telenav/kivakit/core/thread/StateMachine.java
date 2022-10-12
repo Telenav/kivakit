@@ -26,14 +26,14 @@ import com.telenav.kivakit.interfaces.code.Code;
 import com.telenav.kivakit.interfaces.time.WakeState;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
-import java.util.Objects;
 import java.util.Optional;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static com.telenav.kivakit.core.time.Duration.FOREVER;
 
 /**
  * A simple state machine with a single state that can be transitioned from one state to another and which allows a
@@ -126,7 +126,7 @@ public final class StateMachine<State> extends BaseRepeater
      */
     public boolean is(State state)
     {
-        return whileLocked(() -> Objects.equals(at, state));
+        return whileLocked(() -> at == state);
     }
 
     /**
@@ -150,7 +150,7 @@ public final class StateMachine<State> extends BaseRepeater
      */
     public boolean isNot(State state)
     {
-        return whileLocked(() -> !Objects.equals(at, state));
+        return whileLocked(() -> at != state);
     }
 
     /**
@@ -246,7 +246,7 @@ public final class StateMachine<State> extends BaseRepeater
                                            State waitFor,
                                            Runnable before)
     {
-        return transition(from, to, waitFor, Duration.FOREVER, before);
+        return transition(from, to, waitFor, FOREVER, before);
     }
 
     public void transitionAndWaitForNot(State state)
@@ -296,7 +296,7 @@ public final class StateMachine<State> extends BaseRepeater
      */
     public WakeState waitFor(State state)
     {
-        return waitFor(state, Duration.FOREVER);
+        return waitFor(state, FOREVER);
     }
 
     /**
@@ -318,7 +318,7 @@ public final class StateMachine<State> extends BaseRepeater
      */
     public WakeState waitFor(Predicate<State> predicate)
     {
-        return waitFor(predicate, Duration.FOREVER);
+        return waitFor(predicate, FOREVER);
     }
 
     /**
@@ -361,7 +361,7 @@ public final class StateMachine<State> extends BaseRepeater
      */
     public WakeState waitForNot(State state)
     {
-        return waitForNot(state, Duration.FOREVER);
+        return waitForNot(state, FOREVER);
     }
 
     /**

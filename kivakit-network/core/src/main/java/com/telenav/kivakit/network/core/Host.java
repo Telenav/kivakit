@@ -22,14 +22,11 @@ import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.commandline.SwitchParser;
 import com.telenav.kivakit.conversion.BaseStringConverter;
 import com.telenav.kivakit.core.collections.map.CacheMap;
-import com.telenav.kivakit.core.language.Arrays;
 import com.telenav.kivakit.core.language.reflection.property.IncludeProperty;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.messaging.repeaters.BaseRepeater;
 import com.telenav.kivakit.core.string.FormatProperty;
 import com.telenav.kivakit.core.string.ObjectFormatter;
-import com.telenav.kivakit.core.time.Duration;
-import com.telenav.kivakit.core.value.count.Maximum;
 import com.telenav.kivakit.interfaces.naming.Named;
 import com.telenav.kivakit.interfaces.string.StringFormattable;
 import com.telenav.kivakit.network.core.internal.lexakai.DiagramPort;
@@ -39,7 +36,6 @@ import org.jetbrains.annotations.NotNull;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;
-import java.util.Objects;
 
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
@@ -48,6 +44,10 @@ import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_N
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.commandline.SwitchParser.switchParser;
 import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
+import static com.telenav.kivakit.core.language.Arrays.asHexadecimalString;
+import static com.telenav.kivakit.core.time.Duration.minutes;
+import static com.telenav.kivakit.core.value.count.Maximum.maximum;
+import static com.telenav.kivakit.network.core.Loopback.loopback;
 import static com.telenav.kivakit.network.core.Protocol.FTP;
 import static com.telenav.kivakit.network.core.Protocol.HAZELCAST;
 import static com.telenav.kivakit.network.core.Protocol.HTTP;
@@ -57,6 +57,7 @@ import static com.telenav.kivakit.network.core.Protocol.MONGO;
 import static com.telenav.kivakit.network.core.Protocol.MYSQL;
 import static com.telenav.kivakit.network.core.Protocol.SFTP;
 import static com.telenav.kivakit.network.core.Protocol.UNKNOWN;
+import static java.util.Objects.hash;
 
 /**
  * Represents a host on a network, for which {@link Port}s can be retrieved.
@@ -146,7 +147,7 @@ public class Host extends BaseRepeater implements
 {
     /** A cache of resolved host names with an expiration time of 5 minutes */
     private static final CacheMap<String, InetAddress> resolvedHostNames =
-            new CacheMap<>(Maximum.maximum(2048), Duration.minutes(5));
+            new CacheMap<>(maximum(2048), minutes(5));
 
     /**
      * Returns a switch parser builder for the given host
@@ -323,7 +324,7 @@ public class Host extends BaseRepeater implements
     @Override
     public int hashCode()
     {
-        return Objects.hash(address());
+        return hash(address());
     }
 
     public Port hazelcast()
@@ -483,7 +484,7 @@ public class Host extends BaseRepeater implements
             }
             catch (UnknownHostException e)
             {
-                problem(e, "Can't resolve address: $", Arrays.asHexadecimalString(rawAddress));
+                problem(e, "Can't resolve address: $", asHexadecimalString(rawAddress));
             }
         }
         else if (name != null)
@@ -506,7 +507,7 @@ public class Host extends BaseRepeater implements
     private void resolveAddress()
     {
         // If the name is 'localhost' or 127.0.0.1
-        if (name.equals("localhost"))
+        if ("localhost".equals(name))
         {
             try
             {
@@ -517,10 +518,10 @@ public class Host extends BaseRepeater implements
                 problem(e, "Unable to resolve local host");
             }
         }
-        else if (name.equals("127.0.0.1"))
+        else if ("127.0.0.1".equals(name))
         {
             // then the address is the loopback
-            address = Loopback.loopback().address();
+            address = loopback().address();
         }
         else
         {
@@ -538,7 +539,7 @@ public class Host extends BaseRepeater implements
                     || "localhost".equals(name)
                     || "localhost.localdomain".equals(name))
             {
-                return Loopback.loopback().address();
+                return loopback().address();
             }
 
             var address = resolvedHostNames.get(name);

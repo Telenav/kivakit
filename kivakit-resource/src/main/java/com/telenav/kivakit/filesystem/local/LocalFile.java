@@ -19,7 +19,6 @@
 package com.telenav.kivakit.filesystem.local;
 
 import com.telenav.kivakit.annotations.code.quality.CodeQuality;
-import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.time.Time;
 import com.telenav.kivakit.core.value.count.Bytes;
 import com.telenav.kivakit.filesystem.FilePath;
@@ -44,10 +43,15 @@ import java.nio.file.attribute.PosixFilePermission;
 import java.util.Arrays;
 import java.util.HashSet;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Audience.AUDIENCE_INTERNAL;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static com.telenav.kivakit.core.messaging.Listener.consoleListener;
+import static com.telenav.kivakit.core.time.Time.epochMilliseconds;
+import static com.telenav.kivakit.core.value.count.Bytes.bytes;
+import static com.telenav.kivakit.filesystem.FilePath.filePath;
+import static com.telenav.kivakit.filesystem.FilePath.parseFilePath;
 
 /**
  * Implementation of {@link FileService} provider interface for the local filesystem.
@@ -72,7 +76,7 @@ public class LocalFile extends BaseWritableResource implements FileService
 
     public LocalFile(@NotNull java.io.File file)
     {
-        this(FilePath.filePath(file));
+        this(filePath(file));
     }
 
     public LocalFile(@NotNull LocalFile that)
@@ -88,7 +92,7 @@ public class LocalFile extends BaseWritableResource implements FileService
 
     public LocalFile(@NotNull String path)
     {
-        this(FilePath.parseFilePath(Listener.consoleListener(), path));
+        this(parseFilePath(consoleListener(), path));
     }
 
     /**
@@ -126,7 +130,7 @@ public class LocalFile extends BaseWritableResource implements FileService
         try
         {
             FileTime creationTime = (FileTime) Files.getAttribute(path().asJavaPath(), "creationTime");
-            return Time.epochMilliseconds(creationTime.toMillis());
+            return epochMilliseconds(creationTime.toMillis());
         }
         catch (IOException e)
         {
@@ -243,7 +247,7 @@ public class LocalFile extends BaseWritableResource implements FileService
     @Override
     public Time lastModified()
     {
-        return Time.epochMilliseconds(file.lastModified());
+        return epochMilliseconds(file.lastModified());
     }
 
     /**
@@ -324,7 +328,7 @@ public class LocalFile extends BaseWritableResource implements FileService
     @Override
     public Bytes sizeInBytes()
     {
-        return Bytes.bytes(file.length());
+        return bytes(file.length());
     }
 
     /**

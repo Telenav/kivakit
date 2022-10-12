@@ -43,6 +43,7 @@ import java.util.Map;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
+import static java.lang.Math.min;
 
 /**
  * The (relative) importance of {@link Message}s as a level from zero to one.
@@ -126,7 +127,7 @@ public class Importance extends Level
         {
             levels.put(message, importance(level));
             level += increment;
-            level = Math.min(1.0, level);
+            level = min(1.0, level);
         }
     }
 }

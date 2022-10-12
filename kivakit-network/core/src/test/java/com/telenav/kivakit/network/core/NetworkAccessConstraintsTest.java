@@ -19,16 +19,17 @@
 package com.telenav.kivakit.network.core;
 
 import com.telenav.kivakit.testing.UnitTest;
-import com.telenav.kivakit.core.time.Duration;
 import org.junit.Test;
+
+import static com.telenav.kivakit.core.time.Duration.seconds;
 
 public class NetworkAccessConstraintsTest extends UnitTest
 {
     @Test
     public void testEquals()
     {
-        final NetworkAccessConstraints constraints = new NetworkAccessConstraints();
-        constraints.timeout(Duration.seconds(7));
-        ensureEqual(Duration.seconds(7), constraints.timeout());
+        NetworkAccessConstraints constraints = new NetworkAccessConstraints();
+        constraints.timeout(seconds(7));
+        ensureEqual(seconds(7), constraints.timeout());
     }
 }

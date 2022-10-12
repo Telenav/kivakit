@@ -30,6 +30,7 @@ import java.util.List;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static com.telenav.kivakit.core.language.reflection.Method.method;
 import static java.lang.Thread.currentThread;
 
 /**
@@ -117,7 +118,7 @@ public class CallStack
         var stack = new ArrayList<Method>();
         for (var frame : currentThread().getStackTrace())
         {
-            var method = Method.method(frame);
+            var method = method(frame);
             if (method != null)
             {
                 stack.add(method);

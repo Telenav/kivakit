@@ -19,12 +19,9 @@
 package com.telenav.kivakit.resource.packages;
 
 import com.telenav.kivakit.annotations.code.quality.CodeQuality;
-import com.telenav.kivakit.core.language.Hash;
-import com.telenav.kivakit.core.language.Objects;
 import com.telenav.kivakit.core.language.module.ModuleResource;
 import com.telenav.kivakit.core.language.module.PackageReference;
 import com.telenav.kivakit.core.messaging.Listener;
-import com.telenav.kivakit.core.string.Strip;
 import com.telenav.kivakit.core.time.Time;
 import com.telenav.kivakit.core.value.count.Bytes;
 import com.telenav.kivakit.interfaces.comparison.Matcher;
@@ -49,7 +46,12 @@ import java.net.URI;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static com.telenav.kivakit.core.language.Hash.hashMany;
+import static com.telenav.kivakit.core.language.Objects.areEqualPairs;
 import static com.telenav.kivakit.core.language.module.Modules.moduleResource;
+import static com.telenav.kivakit.core.messaging.Listener.throwingListener;
+import static com.telenav.kivakit.core.string.Strip.stripLeading;
+import static com.telenav.kivakit.core.time.Time.now;
 import static com.telenav.kivakit.filesystem.FilePath.parseFilePath;
 import static com.telenav.kivakit.resource.FileName.parseFileName;
 import static com.telenav.kivakit.resource.ResourcePath.resourcePath;
@@ -191,12 +193,12 @@ public class PackageResource extends BaseReadableResource
         @Override
         public Resource resolve(@NotNull ResourceIdentifier identifier)
         {
-            var filepath = parseFilePath(this, Strip.leading(identifier.identifier(), SCHEME));
+            var filepath = parseFilePath(this, stripLeading(identifier.identifier(), SCHEME));
             var parent = filepath.parent();
             if (parent != null)
             {
-                var packagePath = PackagePath.packagePath(parent);
-                return packageResource(Listener.throwingListener(), packagePath, filepath.fileName());
+                var packagePath = packagePath(parent);
+                return packageResource(throwingListener(), packagePath, filepath.fileName());
             }
             return null;
         }
@@ -242,7 +244,9 @@ public class PackageResource extends BaseReadableResource
         if (object instanceof PackageResource)
         {
             var that = (PackageResource) object;
-            return Objects.areEqualPairs(packagePath, that.packagePath, name, that.name);
+            return areEqualPairs(
+                    packagePath, that.packagePath,
+                    name, that.name);
         }
         return false;
     }
@@ -253,7 +257,7 @@ public class PackageResource extends BaseReadableResource
     @Override
     public int hashCode()
     {
-        return Hash.hashMany(packagePath, name);
+        return hashMany(packagePath, name);
     }
 
     /**
@@ -271,7 +275,7 @@ public class PackageResource extends BaseReadableResource
     @Override
     public Time lastModified()
     {
-        return resource == null ? Time.now() : resource.lastModified();
+        return resource == null ? now() : resource.lastModified();
     }
 
     /**
@@ -318,7 +322,7 @@ public class PackageResource extends BaseReadableResource
     public Resource relativeTo(@NotNull ResourceFolder<?> folder)
     {
         var relativePath = packagePath.relativeTo(folder.path());
-        return PackageResource.packageResource(this, (PackagePath) relativePath, fileName());
+        return packageResource(this, (PackagePath) relativePath, fileName());
     }
 
     /**

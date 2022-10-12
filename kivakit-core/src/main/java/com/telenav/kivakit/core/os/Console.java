@@ -3,7 +3,6 @@ package com.telenav.kivakit.core.os;
 import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.messaging.Message;
-import com.telenav.kivakit.core.string.Strings;
 import com.telenav.kivakit.core.time.Duration;
 import com.telenav.kivakit.interfaces.io.Flushable;
 
@@ -15,6 +14,7 @@ import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTE
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
 import static com.telenav.kivakit.core.os.Console.OutputType.ERROR;
 import static com.telenav.kivakit.core.os.Console.OutputType.NORMAL;
+import static com.telenav.kivakit.core.string.Formatter.format;
 
 /**
  * Simple console access.
@@ -123,7 +123,7 @@ public class Console implements
 
     public void print(OutputType output, String text, Object... arguments)
     {
-        output.stream().print(Strings.format(text, arguments));
+        output.stream().print(format(text, arguments));
     }
 
     public void print(String text, Object... arguments)
@@ -138,7 +138,7 @@ public class Console implements
 
     public void println(OutputType output, String text, Object... arguments)
     {
-        output.stream().println(Strings.format(text, arguments));
+        output.stream().println(format(text, arguments));
     }
 
     public void println(String text, Object... arguments)

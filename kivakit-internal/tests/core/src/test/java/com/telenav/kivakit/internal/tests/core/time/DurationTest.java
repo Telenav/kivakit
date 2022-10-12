@@ -137,7 +137,7 @@ public class DurationTest extends CoreUnitTest
     {
         ensure(ZERO_DURATION.isZero());
         ensure(seconds(0.1).isNonZero());
-        ensure(Duration.milliseconds(1).isNonZero());
+        ensure(milliseconds(1).isNonZero());
     }
 
     @Test
@@ -145,7 +145,7 @@ public class DurationTest extends CoreUnitTest
     {
         ensureFalse(ZERO_DURATION.isNonZero());
         ensure(seconds(0.1).isNonZero());
-        ensure(Duration.milliseconds(1).isNonZero());
+        ensure(milliseconds(1).isNonZero());
     }
 
     @Test

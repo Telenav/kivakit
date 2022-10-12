@@ -1,12 +1,12 @@
 package com.telenav.kivakit.resource.serialization;
 
 import com.telenav.kivakit.annotations.code.quality.CodeQuality;
-import com.telenav.kivakit.core.language.Arrays;
 import org.jetbrains.annotations.NotNull;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static com.telenav.kivakit.core.language.Arrays.arrayContains;
 
 /**
  * Object metadata to be included with serialized objects.
@@ -29,6 +29,6 @@ public enum ObjectMetadata
 
     public boolean containedIn(@NotNull ObjectMetadata[] metadata)
     {
-        return Arrays.contains(metadata, this);
+        return arrayContains(metadata, this);
     }
 }

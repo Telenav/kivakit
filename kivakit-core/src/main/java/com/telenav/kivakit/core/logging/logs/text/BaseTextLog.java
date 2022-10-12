@@ -21,7 +21,6 @@ package com.telenav.kivakit.core.logging.logs.text;
 import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.collections.map.VariableMap;
 import com.telenav.kivakit.core.internal.lexakai.DiagramLogs;
-import com.telenav.kivakit.core.language.Arrays;
 import com.telenav.kivakit.core.logging.LogEntry;
 import com.telenav.kivakit.core.logging.logs.BaseLog;
 import com.telenav.kivakit.core.logging.logs.text.formatters.SimpleLogFormatter;
@@ -36,6 +35,7 @@ import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMEN
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.ensure.Ensure.unsupported;
+import static com.telenav.kivakit.core.language.Arrays.arrayContains;
 import static com.telenav.kivakit.core.messaging.MessageFormat.FORMATTED;
 import static com.telenav.kivakit.core.messaging.MessageFormat.UNFORMATTED;
 import static com.telenav.kivakit.core.messaging.MessageFormat.WITHOUT_EXCEPTION;
@@ -119,7 +119,7 @@ public abstract class BaseTextLog extends BaseLog
     @NotNull
     private MessageFormat formattedOrNot()
     {
-        return Arrays.contains(formats, FORMATTED)
+        return arrayContains(formats, FORMATTED)
                 ? FORMATTED
                 : UNFORMATTED;
     }
@@ -130,7 +130,7 @@ public abstract class BaseTextLog extends BaseLog
     @NotNull
     private MessageFormat withExceptionOrWithout()
     {
-        return Arrays.contains(formats, WITH_EXCEPTION)
+        return arrayContains(formats, WITH_EXCEPTION)
                 ? WITH_EXCEPTION
                 : WITHOUT_EXCEPTION;
     }

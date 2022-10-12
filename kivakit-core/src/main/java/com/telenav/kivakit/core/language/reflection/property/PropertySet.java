@@ -22,7 +22,6 @@ import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramReflection;
 import com.telenav.kivakit.core.language.reflection.Field;
 import com.telenav.kivakit.core.language.reflection.Method;
-import com.telenav.kivakit.core.string.CaseFormat;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlAggregation;
 
@@ -37,6 +36,8 @@ import static com.telenav.kivakit.core.language.reflection.property.PropertyMemb
 import static com.telenav.kivakit.core.language.reflection.property.PropertyMemberSelector.NON_PUBLIC_METHODS;
 import static com.telenav.kivakit.core.language.reflection.property.PropertyMemberSelector.PUBLIC_METHODS;
 import static com.telenav.kivakit.core.language.reflection.property.PropertyNamingConvention.KIVAKIT_PROPERTY_NAMING;
+import static com.telenav.kivakit.core.string.CaseFormat.decapitalize;
+import static java.lang.Character.isUpperCase;
 
 /**
  * Base class for property filters. Supports Java Beans and KivaKit style accessor naming conventions with the enum
@@ -192,13 +193,13 @@ public class PropertySet implements PropertyFilter
 
         // Otherwise, use beans naming conventions, if applicable
         var name = method.name();
-        if (name.startsWith("is") && name.length() >= 3 && Character.isUpperCase(name.charAt(2)))
+        if (name.startsWith("is") && name.length() >= 3 && isUpperCase(name.charAt(2)))
         {
-            return CaseFormat.decapitalize(name.substring(2));
+            return decapitalize(name.substring(2));
         }
         if ((name.startsWith("get") || name.startsWith("set")) && name.length() >= 4)
         {
-            return CaseFormat.decapitalize(name.substring(3));
+            return decapitalize(name.substring(3));
         }
         return name;
     }

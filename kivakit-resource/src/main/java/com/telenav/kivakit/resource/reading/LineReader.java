@@ -20,7 +20,6 @@ package com.telenav.kivakit.resource.reading;
 
 import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.collections.list.StringList;
-import com.telenav.kivakit.core.io.IO;
 import com.telenav.kivakit.core.messaging.repeaters.BaseRepeater;
 import com.telenav.kivakit.core.progress.ProgressReporter;
 import org.jetbrains.annotations.NotNull;
@@ -32,10 +31,11 @@ import java.io.UncheckedIOException;
 import java.util.function.Consumer;
 import java.util.stream.Stream;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.collections.list.StringList.stringList;
+import static com.telenav.kivakit.core.io.IO.close;
 import static com.telenav.kivakit.core.progress.ProgressReporter.nullProgressReporter;
 
 /**
@@ -149,7 +149,7 @@ public class LineReader extends BaseRepeater
         }
         catch (Exception e)
         {
-            IO.close(this, reader);
+            close(this, reader);
             problem("Unable to read from: $", resource);
             return Stream.empty();
         }

@@ -1,15 +1,17 @@
 package com.telenav.kivakit.settings.stores;
 
 import com.telenav.kivakit.annotations.code.quality.CodeQuality;
+import com.telenav.kivakit.core.collections.set.ObjectSet;
 import com.telenav.kivakit.settings.BaseSettingsStore;
 import com.telenav.kivakit.settings.SettingsObject;
 import com.telenav.kivakit.settings.SettingsStore;
 
 import java.util.Set;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static com.telenav.kivakit.core.collections.set.ObjectSet.set;
 import static com.telenav.kivakit.core.ensure.Ensure.unsupported;
 import static com.telenav.kivakit.settings.SettingsStore.AccessMode.DELETE;
 import static com.telenav.kivakit.settings.SettingsStore.AccessMode.INDEX;
@@ -31,9 +33,9 @@ public class MemorySettingsStore extends BaseSettingsStore
      * {@inheritDoc}
      */
     @Override
-    public Set<AccessMode> accessModes()
+    public ObjectSet<AccessMode> accessModes()
     {
-        return Set.of(INDEX, DELETE, UNLOAD);
+        return set(INDEX, DELETE, UNLOAD);
     }
 
     /**

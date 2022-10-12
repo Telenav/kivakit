@@ -21,13 +21,13 @@ package com.telenav.kivakit.serialization.kryo.types;
 import com.esotericsoftware.kryo.Kryo;
 import com.esotericsoftware.kryo.Serializer;
 import com.telenav.kivakit.annotations.code.quality.CodeQuality;
-import com.telenav.kivakit.core.language.Hash;
-import com.telenav.kivakit.core.string.Strings;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Audience.AUDIENCE_INTERNAL;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static com.telenav.kivakit.core.language.Hash.hashMany;
+import static com.telenav.kivakit.core.string.Formatter.format;
 
 /**
  * <b>Not public API</b>
@@ -86,13 +86,13 @@ class KryoTypeEntry
     @Override
     public int hashCode()
     {
-        return Hash.hashMany(type, identifier);
+        return hashMany(type, identifier);
     }
 
     @Override
     public String toString()
     {
-        return Strings.format("${class} ($)", type(), identifier());
+        return format("${class} ($)", type(), identifier());
     }
 
     KryoTypeEntry identifier(int identifier)

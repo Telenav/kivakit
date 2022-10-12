@@ -41,8 +41,8 @@ import java.io.Reader;
 import java.nio.charset.Charset;
 import java.util.function.Consumer;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
 import static com.telenav.kivakit.core.ensure.Ensure.fail;
@@ -52,7 +52,7 @@ import static java.nio.charset.StandardCharsets.UTF_8;
 /**
  * Resource reader provides a variety of convenient ways of reading a resource, including as an array of bytes
  * ({@link #readBytes()}), as a single string ({@link #asString()}), as lines ({@link #readLines()}), and as objects
- * with ({@link #readObjectList(Converter, ProgressReporter)}, {@link #readObjectSet(Converter, ProgressReporter)}, and
+ * with ({@link #readList(Converter, ProgressReporter)}, {@link #readSet(Converter, ProgressReporter)}, and
  * {@link #readObjects(Converter, Consumer, ProgressReporter)}). To read the resource as text, a {@link java.io.Reader}
  * can be retrieved with {@link #textReader()}.
  *
@@ -65,8 +65,8 @@ import static java.nio.charset.StandardCharsets.UTF_8;
  *     <li>{@link #readLines(Consumer, ProgressReporter)}</li>
  *     <li>{@link #readLines(ProgressReporter)}</li>
  *     <li>{@link #readObjects(Converter, Consumer, ProgressReporter)}</li>
- *     <li>{@link #readObjectList(Converter, ProgressReporter)}</li>
- *     <li>{@link #readObjectSet(Converter, ProgressReporter)}</li>
+ *     <li>{@link #readList(Converter, ProgressReporter)}</li>
+ *     <li>{@link #readSet(Converter, ProgressReporter)}</li>
  *     <li>{@link #readText(ProgressReporter)}</li>
  *     <li>{@link #textReader()}</li>
  * </ul>
@@ -183,22 +183,10 @@ public class ResourceReader extends BaseRepeater implements AsString
      * Returns the lines in the resource being read as a list of objects created by converting each line to an object
      * using the given converter.
      */
-    public <T> ObjectList<T> readObjectList(@NotNull Converter<String, T> converter,
-                                            @NotNull ProgressReporter reporter)
+    public <T> ObjectList<T> readList(@NotNull Converter<String, T> converter,
+                                      @NotNull ProgressReporter reporter)
     {
         var objects = new ObjectList<T>();
-        readLines(reporter).forEach(line -> objects.add(converter.convert(line)));
-        return objects;
-    }
-
-    /**
-     * Returns the lines in the resource being read as a set of objects created by converting each line to an object
-     * using the given converter.
-     */
-    public <T> ObjectSet<T> readObjectSet(@NotNull Converter<String, T> converter,
-                                          @NotNull ProgressReporter reporter)
-    {
-        var objects = new ObjectSet<T>();
         readLines(reporter).forEach(line -> objects.add(converter.convert(line)));
         return objects;
     }
@@ -212,6 +200,18 @@ public class ResourceReader extends BaseRepeater implements AsString
                                 @NotNull ProgressReporter reporter)
     {
         listenTo(new LineReader(resource, reporter)).lines(line -> consumer.accept(converter.convert(line)));
+    }
+
+    /**
+     * Returns the lines in the resource being read as a set of objects created by converting each line to an object
+     * using the given converter.
+     */
+    public <T> ObjectSet<T> readSet(@NotNull Converter<String, T> converter,
+                                    @NotNull ProgressReporter reporter)
+    {
+        var objects = new ObjectSet<T>();
+        readLines(reporter).forEach(line -> objects.add(converter.convert(line)));
+        return objects;
     }
 
     /**

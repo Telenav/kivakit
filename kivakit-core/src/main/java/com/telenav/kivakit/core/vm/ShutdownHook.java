@@ -22,7 +22,7 @@ import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramLanguage;
 import com.telenav.kivakit.core.logging.Logger;
 import com.telenav.kivakit.core.logging.loggers.ConsoleLogger;
-import com.telenav.kivakit.core.string.Strings;
+import com.telenav.kivakit.core.string.Formatter;
 import com.telenav.kivakit.core.thread.KivaKitThread;
 import com.telenav.kivakit.core.time.Duration;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
@@ -34,6 +34,7 @@ import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTE
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.thread.KivaKitThread.State.EXITED;
+import static com.telenav.kivakit.core.time.Duration.minutes;
 import static com.telenav.kivakit.core.vm.ShutdownHook.Order.MIDDLE;
 import static com.telenav.kivakit.interfaces.time.WakeState.TIMED_OUT;
 
@@ -108,7 +109,7 @@ public class ShutdownHook implements Comparable<ShutdownHook>
 
     public static void registerShutdownHook(String name, Order order, Runnable code)
     {
-        registerShutdownHook(name, order, Duration.minutes(1), code);
+        registerShutdownHook(name, order, minutes(1), code);
     }
 
     public static void registerShutdownHook(String name, Duration maximumWait, Runnable code)
@@ -190,7 +191,7 @@ public class ShutdownHook implements Comparable<ShutdownHook>
     @Override
     public String toString()
     {
-        return Strings.format("[${class} name = $, order = $]", getClass(), name, order);
+        return Formatter.format("[${class} name = $, order = $]", getClass(), name, order);
     }
 
     private static synchronized PriorityQueue<ShutdownHook> hooks()

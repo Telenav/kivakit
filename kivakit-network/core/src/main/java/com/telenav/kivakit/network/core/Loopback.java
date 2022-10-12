@@ -31,6 +31,7 @@ import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTE
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
 import static com.telenav.kivakit.core.ensure.Ensure.fail;
+import static com.telenav.kivakit.core.object.Lazy.lazy;
 
 /**
  * The loopback adapter 'host'.
@@ -44,7 +45,7 @@ import static com.telenav.kivakit.core.ensure.Ensure.fail;
 public class Loopback extends Host
 {
     /** The loopback interface for this host */
-    private static final Lazy<Loopback> loopback = Lazy.lazy(Loopback::new);
+    private static final Lazy<Loopback> loopback = lazy(Loopback::new);
 
     /**
      * Returns the loopback address (normally 127.0.01) as a host

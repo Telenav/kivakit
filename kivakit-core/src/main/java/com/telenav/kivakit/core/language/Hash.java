@@ -48,15 +48,15 @@ public class Hash
     /** Seed for Knuth hashing */
     public static final long KNUTH_SEED = 2654435761L;
 
-    public static int hashCode(byte[] a)
+    public static int hash(byte[] a)
     {
-        return hashCode(a, 0, a.length);
+        return hash(a, 0, a.length);
     }
 
     /**
      * Returns a hash code for the given range of the given array
      */
-    public static int hashCode(byte[] a, int start, int end)
+    public static int hash(byte[] a, int start, int end)
     {
         if (a == null)
         {
@@ -76,7 +76,7 @@ public class Hash
     /**
      * Returns a hash code for the given range of the given array
      */
-    public static int hashCode(char[] a, int start, int end)
+    public static int hash(char[] a, int start, int end)
     {
         if (a == null)
         {
@@ -96,15 +96,15 @@ public class Hash
     /**
      * Returns a hash code for the given int array
      */
-    public static int hashCode(int[] a)
+    public static int hash(int[] a)
     {
-        return hashCode(a, 0, a.length);
+        return hash(a, 0, a.length);
     }
 
     /**
      * Returns a hash code for the given range of the given array
      */
-    public static int hashCode(int[] a, int start, int end)
+    public static int hash(int[] a, int start, int end)
     {
         if (a == null)
         {
@@ -124,7 +124,7 @@ public class Hash
     /**
      * Returns a hash code for the given object, allowing support for array types
      */
-    public static int hashCode(Object object)
+    public static int hash(Object object)
     {
         if (object instanceof boolean[])
         {
@@ -168,7 +168,7 @@ public class Hash
     /**
      * Returns a hash code for the given iterator
      */
-    public static int hashCode(Iterator<Object> objects)
+    public static int hash(Iterator<Object> objects)
     {
         var hashCode = 1;
         while (objects.hasNext())
@@ -176,7 +176,7 @@ public class Hash
             var object = objects.next();
             if (object != null)
             {
-                hashCode = hashCode * SEED + hashCode(object);
+                hashCode = hashCode * SEED + hash(object);
             }
         }
         return hashCode;
@@ -185,15 +185,15 @@ public class Hash
     /**
      * Returns a hash code for the given long array
      */
-    public static int hashCode(long[] a)
+    public static int hash(long[] a)
     {
-        return hashCode(a, 0, a.length);
+        return hash(a, 0, a.length);
     }
 
     /**
      * Returns a hash code for the given long value
      */
-    public static int hashCode(long value)
+    public static int hash(long value)
     {
         return (int) (value ^ (value >>> 32));
     }
@@ -201,7 +201,7 @@ public class Hash
     /**
      * Returns a hash code for the given range of the given array
      */
-    public static int hashCode(long[] a, int start, int end)
+    public static int hash(long[] a, int start, int end)
     {
         if (a == null)
         {

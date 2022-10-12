@@ -26,10 +26,8 @@ import com.telenav.kivakit.core.language.trait.TryTrait;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.messaging.messages.status.Problem;
 import com.telenav.kivakit.core.messaging.repeaters.BaseRepeater;
-import com.telenav.kivakit.core.os.OperatingSystem;
 import com.telenav.kivakit.core.path.StringPath;
 import com.telenav.kivakit.core.progress.ProgressReporter;
-import com.telenav.kivakit.core.string.Strings;
 import com.telenav.kivakit.core.thread.Monitor;
 import com.telenav.kivakit.core.time.Time;
 import com.telenav.kivakit.core.value.count.Bytes;
@@ -63,7 +61,6 @@ import java.nio.file.Path;
 import java.nio.file.attribute.PosixFilePermission;
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.Objects;
 import java.util.prefs.Preferences;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
@@ -77,13 +74,19 @@ import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
 import static com.telenav.kivakit.core.ensure.Ensure.fail;
 import static com.telenav.kivakit.core.messaging.Listener.throwingListener;
+import static com.telenav.kivakit.core.os.OperatingSystem.operatingSystem;
+import static com.telenav.kivakit.core.string.Formatter.format;
+import static com.telenav.kivakit.core.string.Strings.ensureEndsWith;
+import static com.telenav.kivakit.core.string.Strings.isNullOrEmpty;
 import static com.telenav.kivakit.filesystem.FilePath.parseFilePath;
 import static com.telenav.kivakit.filesystem.Folder.FolderType.CLEAN_UP_ON_EXIT;
 import static com.telenav.kivakit.filesystem.Folder.Traversal.RECURSE;
+import static com.telenav.kivakit.filesystem.Folders.kivakitTemporaryFolder;
 import static com.telenav.kivakit.filesystem.loader.FileSystemServiceLoader.fileSystem;
 import static com.telenav.kivakit.interfaces.comparison.Filter.acceptAll;
 import static com.telenav.kivakit.resource.Extension.TEMPORARY;
 import static com.telenav.kivakit.resource.ResourceList.resourceList;
+import static java.util.Objects.requireNonNull;
 
 /**
  * Folder abstraction that extends {@link FileSystemObject} and implements the {@link ResourceFolder} interface for
@@ -312,11 +315,11 @@ public class Folder extends BaseRepeater implements
      */
     public static Folder parseFolder(@NotNull Listener listener, String path, Object... arguments)
     {
-        if (Strings.isEmpty(path))
+        if (isNullOrEmpty(path))
         {
             return null;
         }
-        path = Strings.format(path, arguments);
+        path = format(path, arguments);
         var filePath = parseFilePath(listener, path);
         return filePath == null ? null : new Folder(filePath);
     }
@@ -328,8 +331,8 @@ public class Folder extends BaseRepeater implements
     {
         synchronized (temporaryLock)
         {
-            var name = "kivakit-process-" + OperatingSystem.operatingSystem().processIdentifier();
-            var temporary = Folders.kivakitTemporaryFolder()
+            var name = "kivakit-process-" + operatingSystem().processIdentifier();
+            var temporary = kivakitTemporaryFolder()
                     .folder("processes")
                     .folder(name)
                     .mkdirs();
@@ -424,13 +427,13 @@ public class Folder extends BaseRepeater implements
         @Override
         public boolean accepts(@NotNull ResourceFolderIdentifier identifier)
         {
-            return Folder.parseFolder(this, identifier.identifier()) != null;
+            return parseFolder(this, identifier.identifier()) != null;
         }
 
         @Override
         public Folder resolve(@NotNull ResourceFolderIdentifier identifier)
         {
-            return Folder.parseFolder(this, identifier.identifier());
+            return parseFolder(this, identifier.identifier());
         }
     }
 
@@ -470,7 +473,7 @@ public class Folder extends BaseRepeater implements
      */
     public Folder(@NotNull FilePath path)
     {
-        this(Objects.requireNonNull(fileSystem(throwingListener(), path)).folderService(path));
+        this(requireNonNull(fileSystem(throwingListener(), path)).folderService(path));
     }
 
     /**
@@ -494,7 +497,7 @@ public class Folder extends BaseRepeater implements
             {
                 path = path.withScheme("file");
             }
-            return new URI(Strings.ensureEndsWith(path.toString(), "/"));
+            return new URI(ensureEndsWith(path.toString(), "/"));
         }
         catch (Exception e)
         {
@@ -717,7 +720,7 @@ public class Folder extends BaseRepeater implements
         else
         {
             // Otherwise, append the parent path and filename to this folder
-            return new File(folderService().folder(Folder.folder(parent)).file(fileName));
+            return new File(folderService().folder(folder(parent)).file(fileName));
         }
     }
 
@@ -818,11 +821,11 @@ public class Folder extends BaseRepeater implements
     @Override
     public Folder folder(@NotNull String child)
     {
-        if (child.equals("."))
+        if (".".equals(child))
         {
             return this;
         }
-        var childFolder = Folder.parseFolder(this, child);
+        var childFolder = parseFolder(this, child);
         return childFolder == null ? null : folder(childFolder);
     }
 
@@ -834,7 +837,7 @@ public class Folder extends BaseRepeater implements
      */
     public Folder folder(@NotNull FileName child)
     {
-        if (child.name().equals("."))
+        if (".".equals(child.name()))
         {
             return this;
         }
@@ -849,7 +852,7 @@ public class Folder extends BaseRepeater implements
      */
     public Folder folder(@NotNull Folder child)
     {
-        if (child.path().isEmpty() || child.path().asString().equals("."))
+        if (child.path().isEmpty() || ".".equals(child.path().asString()))
         {
             return this;
         }

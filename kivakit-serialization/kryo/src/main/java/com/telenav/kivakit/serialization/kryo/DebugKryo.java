@@ -26,14 +26,14 @@ import com.esotericsoftware.kryo.io.Output;
 import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.messaging.Debug;
 import com.telenav.kivakit.core.messaging.Listener;
-import com.telenav.kivakit.core.vm.Properties;
 
 import java.util.function.Supplier;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Audience.AUDIENCE_INTERNAL;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static com.telenav.kivakit.core.vm.Properties.isSystemPropertyOrEnvironmentVariableTrue;
 
 /**
  * <b>Not public API</b>
@@ -51,7 +51,7 @@ import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 class DebugKryo extends Kryo
 {
     /** True to turn on Kryo tracing */
-    private static final boolean TRACE = Properties.isSystemPropertyOrEnvironmentVariableTrue("KIVAKIT_KRYO_SERIALIZATION_TRACE");
+    private static final boolean TRACE = isSystemPropertyOrEnvironmentVariableTrue("KIVAKIT_KRYO_SERIALIZATION_TRACE");
 
     static
     {

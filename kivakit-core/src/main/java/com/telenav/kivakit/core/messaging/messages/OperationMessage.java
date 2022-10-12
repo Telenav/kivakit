@@ -20,9 +20,7 @@ package com.telenav.kivakit.core.messaging.messages;
 
 import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramMessageType;
-import com.telenav.kivakit.core.language.Arrays;
 import com.telenav.kivakit.core.language.Hash;
-import com.telenav.kivakit.core.language.Objects;
 import com.telenav.kivakit.core.logging.Log;
 import com.telenav.kivakit.core.logging.Logger;
 import com.telenav.kivakit.core.messaging.Listener;
@@ -31,7 +29,6 @@ import com.telenav.kivakit.core.messaging.MessageFormat;
 import com.telenav.kivakit.core.messaging.Messages;
 import com.telenav.kivakit.core.messaging.context.CodeContext;
 import com.telenav.kivakit.core.messaging.context.StackTrace;
-import com.telenav.kivakit.core.string.Strings;
 import com.telenav.kivakit.core.thread.ReentrancyTracker;
 import com.telenav.kivakit.core.time.Frequency;
 import com.telenav.kivakit.core.time.Time;
@@ -43,10 +40,14 @@ import org.jetbrains.annotations.NotNull;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
+import static com.telenav.kivakit.core.language.Arrays.arrayContains;
+import static com.telenav.kivakit.core.language.Objects.areEqualPairs;
 import static com.telenav.kivakit.core.messaging.MessageFormat.WITH_EXCEPTION;
 import static com.telenav.kivakit.core.messaging.messages.Importance.importanceOfMessage;
 import static com.telenav.kivakit.core.messaging.messages.Severity.NONE;
+import static com.telenav.kivakit.core.string.Formatter.format;
 import static com.telenav.kivakit.core.thread.ReentrancyTracker.Reentrancy.REENTERED;
+import static com.telenav.kivakit.core.time.Time.now;
 
 /**
  * Base implementation of the {@link Message} interface. Represents a message destined for a {@link Listener} such as a
@@ -121,7 +122,7 @@ public abstract class OperationMessage implements Named, Message
     private CodeContext context;
 
     /** The time this message was created */
-    private Time created = Time.now();
+    private Time created = now();
 
     /** Any formatted message string */
     private String formattedMessage;
@@ -250,7 +251,7 @@ public abstract class OperationMessage implements Named, Message
     @Override
     public String description()
     {
-        return Strings.format(message, arguments);
+        return format(message, arguments);
     }
 
     /**
@@ -262,7 +263,8 @@ public abstract class OperationMessage implements Named, Message
         if (object instanceof OperationMessage)
         {
             var that = (OperationMessage) object;
-            return Objects.areEqualPairs(this.getClass(), that.getClass(),
+            return areEqualPairs(
+                    this.getClass(), that.getClass(),
                     this.created, that.created,
                     this.message, that.message,
                     this.stackTrace, that.stackTrace,
@@ -287,8 +289,8 @@ public abstract class OperationMessage implements Named, Message
                 }
                 else
                 {
-                    formattedMessage = Strings.format(message, arguments);
-                    if (Arrays.contains(formats, WITH_EXCEPTION))
+                    formattedMessage = format(message, arguments);
+                    if (arrayContains(formats, WITH_EXCEPTION))
                     {
                         var cause = cause();
                         if (cause != null)

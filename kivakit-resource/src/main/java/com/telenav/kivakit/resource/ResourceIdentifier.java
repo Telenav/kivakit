@@ -28,6 +28,7 @@ import org.jetbrains.annotations.NotNull;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static com.telenav.kivakit.resource.Resource.resolveResource;
 
 /**
  * An arbitrary string that identifies a resource.
@@ -82,7 +83,7 @@ public class ResourceIdentifier
      */
     public Resource resolve(@NotNull Listener listener)
     {
-        return Resource.resolveResource(listener, this);
+        return resolveResource(listener, this);
     }
 
     @Override

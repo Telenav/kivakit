@@ -31,7 +31,7 @@ import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMEN
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.ensure.Ensure.ensure;
-import static com.telenav.kivakit.core.string.Strings.isEmpty;
+import static com.telenav.kivakit.core.string.Strings.isNullOrEmpty;
 
 /**
  * Base class for conversions to and from String objects.
@@ -161,7 +161,7 @@ public abstract class BaseStringConverter<Value> extends BaseConverter<String, V
         }
 
         // If we allow empty strings and our string is empty,
-        if (allowEmpty && isEmpty(string))
+        if (allowEmpty && isNullOrEmpty(string))
         {
             // then return null.
             return null;

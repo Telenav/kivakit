@@ -25,7 +25,6 @@ import com.telenav.kivakit.core.language.reflection.property.Property;
 import com.telenav.kivakit.core.messaging.Repeater;
 import com.telenav.kivakit.core.messaging.repeaters.BaseRepeater;
 import com.telenav.kivakit.core.progress.ProgressReporter;
-import com.telenav.kivakit.core.string.CaseFormat;
 import com.telenav.kivakit.core.string.FormatProperty;
 import com.telenav.kivakit.core.string.ObjectFormatter;
 import com.telenav.kivakit.core.version.Version;
@@ -43,10 +42,15 @@ import com.telenav.lexakai.annotations.associations.UmlAggregation;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
 import org.jetbrains.annotations.NotNull;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.ensure.Ensure.ensure;
+import static com.telenav.kivakit.core.language.reflection.Type.type;
+import static com.telenav.kivakit.core.progress.ProgressReporter.nullProgressReporter;
+import static com.telenav.kivakit.core.string.CaseFormat.camelCaseToHyphenated;
+import static com.telenav.kivakit.core.string.CaseFormat.hyphenatedToCamel;
+import static com.telenav.kivakit.resource.compression.archive.ZipArchive.zipArchive;
 
 /**
  * <p>
@@ -196,7 +200,7 @@ public class FieldArchive extends BaseRepeater implements Closeable
     public FieldArchive(@NotNull File file,
                         @NotNull ZipArchive.AccessMode mode)
     {
-        this(file, ProgressReporter.nullProgressReporter(), mode);
+        this(file, nullProgressReporter(), mode);
     }
 
     /**
@@ -239,8 +243,8 @@ public class FieldArchive extends BaseRepeater implements Closeable
                                           @NotNull String fieldName)
     {
         // Get the field
-        Type<?> type = Type.type(object);
-        var field = type.field(CaseFormat.hyphenatedToCamel(fieldName));
+        Type<?> type = type(object);
+        var field = type.field(hyphenatedToCamel(fieldName));
         ensure(field != null, "Cannot find field '$' in $", fieldName, type);
 
         // and to load object with object scoped name "[object-name].[field-name]"
@@ -294,7 +298,7 @@ public class FieldArchive extends BaseRepeater implements Closeable
         for (var object : objects)
         {
             // and for each archived field
-            Type<?> type = Type.type(object);
+            Type<?> type = type(object);
             for (var field : type.properties(new ArchivedFields()).sorted())
             {
                 // if it is not lazy,
@@ -345,7 +349,7 @@ public class FieldArchive extends BaseRepeater implements Closeable
                                       @NotNull String fieldName,
                                       @NotNull VersionedObject<T> object)
     {
-        zip().save(writer, CaseFormat.camelCaseToHyphenated(fieldName), object);
+        zip().save(writer, camelCaseToHyphenated(fieldName), object);
     }
 
     /**
@@ -360,7 +364,7 @@ public class FieldArchive extends BaseRepeater implements Closeable
 
         this.version = version;
 
-        for (var field : Type.type(object).properties(new ArchivedFields()).sorted())
+        for (var field : type(object).properties(new ArchivedFields()).sorted())
         {
             try
             {
@@ -412,7 +416,7 @@ public class FieldArchive extends BaseRepeater implements Closeable
     {
         if (zip == null)
         {
-            zip = ZipArchive.zipArchive(this, file, mode);
+            zip = zipArchive(this, file, mode);
         }
         return zip;
     }
@@ -420,6 +424,6 @@ public class FieldArchive extends BaseRepeater implements Closeable
     private String entryName(@NotNull NamedObject object,
                              @NotNull String fieldName)
     {
-        return object.objectName() + "." + CaseFormat.camelCaseToHyphenated(fieldName);
+        return object.objectName() + "." + camelCaseToHyphenated(fieldName);
     }
 }

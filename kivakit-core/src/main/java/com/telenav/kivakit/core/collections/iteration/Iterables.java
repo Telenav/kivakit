@@ -31,15 +31,16 @@ import java.util.Collection;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static com.telenav.kivakit.core.collections.iteration.Iterators.iteratorHashCode;
 import static com.telenav.kivakit.core.collections.iteration.Iterators.singletonIterator;
 
 /**
  * Utility methods that operate on {@link Iterable}s.
  *
  * <p>
- * The method {@link #iterable(Factory)} can be used to implement the
- * {@link Iterable} interface with a minimum of code. The implementation of the {@link NextIterator} interface provides
- * either the next value in an iteration of the sequence or null if there is none.
+ * The method {@link #iterable(Factory)} can be used to implement the {@link Iterable} interface with a minimum of code.
+ * The implementation of the {@link NextIterator} interface provides either the next value in an iteration of the
+ * sequence or null if there is none.
  * <pre>
  * var iterable = iterable(() -&gt; new NextIterator&lt;Integer&gt;()
  * {
@@ -63,14 +64,14 @@ import static com.telenav.kivakit.core.collections.iteration.Iterators.singleton
  * <p><b>Equality</b></p>
  *
  * <ul>
- *     <li>{@link #hashCode(Iterable)}</li>
- *     <li>{@link #equals(Iterable, Iterable)}</li>
+ *     <li>{@link #iterableHashCode(Iterable)}</li>
+ *     <li>{@link #equalIterables(Iterable, Iterable)}</li>
  * </ul>
  *
  * <p><b>Size</b></p>
  *
  * <ul>
- *     <li>{@link #size(Iterable)}</li>
+ *     <li>{@link #iterableSize(Iterable)}</li>
  *     <li>{@link #isEmpty(Iterable)}</li>
  * </ul>
  *
@@ -95,21 +96,13 @@ public class Iterables
     /**
      * Returns true if the two sequences are equal
      */
-    public static <T> boolean equals(Iterable<T> a, Iterable<T> b)
+    public static <T> boolean equalIterables(Iterable<T> a, Iterable<T> b)
     {
         if (a != null && b != null)
         {
-            return Iterators.equals(a.iterator(), b.iterator());
+            return Iterators.equalIterators(a.iterator(), b.iterator());
         }
         return a == null && b == null;
-    }
-
-    /**
-     * Returns a hash code for the objects in a sequence
-     */
-    public static <T> int hashCode(Iterable<T> iterable)
-    {
-        return Iterators.hashCode(iterable.iterator());
     }
 
     /**
@@ -144,20 +137,18 @@ public class Iterables
     }
 
     /**
-     * Returns an iterator that provides the given value as the only value in the sequence
-     *
-     * @param value The singleton value
+     * Returns a hash code for the objects in a sequence
      */
-    public static <T> Iterable<T> singletonIterable(T value)
+    public static <T> int iterableHashCode(Iterable<T> iterable)
     {
-        return () -> singletonIterator(value);
+        return iteratorHashCode(iterable.iterator());
     }
 
     /**
      * @param iterable An iterable
      * @return The number of items in this iterable
      */
-    public static int size(Iterable<?> iterable)
+    public static int iterableSize(Iterable<?> iterable)
     {
         if (iterable instanceof Collection)
         {
@@ -169,5 +160,15 @@ public class Iterables
             counter++;
         }
         return counter;
+    }
+
+    /**
+     * Returns an iterator that provides the given value as the only value in the sequence
+     *
+     * @param value The singleton value
+     */
+    public static <T> Iterable<T> singletonIterable(T value)
+    {
+        return () -> singletonIterator(value);
     }
 }

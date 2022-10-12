@@ -23,7 +23,6 @@ import com.telenav.kivakit.core.language.module.PackageReference;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.path.Path;
 import com.telenav.kivakit.core.path.StringPath;
-import com.telenav.kivakit.core.string.Strip;
 import com.telenav.kivakit.resource.ResourcePath;
 import com.telenav.kivakit.resource.internal.lexakai.DiagramResource;
 import com.telenav.kivakit.resource.internal.lexakai.DiagramResourcePath;
@@ -45,6 +44,10 @@ import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTE
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.collections.list.StringList.stringList;
 import static com.telenav.kivakit.core.language.module.PackageReference.packageReference;
+import static com.telenav.kivakit.core.messaging.Listener.nullListener;
+import static com.telenav.kivakit.core.messaging.Listener.throwingListener;
+import static com.telenav.kivakit.core.string.Strip.stripEnding;
+import static com.telenav.kivakit.core.string.Strip.stripLeading;
 import static com.telenav.kivakit.resource.packages.Package.packageForPath;
 
 /**
@@ -123,7 +126,7 @@ import static com.telenav.kivakit.resource.packages.Package.packageForPath;
 public final class PackagePath extends ResourcePath
 {
     /** The com.telenav package */
-    public static final PackagePath TELENAV = parsePackagePath(Listener.nullListener(), "com.telenav");
+    public static final PackagePath TELENAV = parsePackagePath(nullListener(), "com.telenav");
 
     /**
      * Returns true if the given path is a valid dot-separated package path
@@ -166,7 +169,7 @@ public final class PackagePath extends ResourcePath
      */
     public static PackagePath packagePath(@NotNull Class<?> type)
     {
-        return packagePath(type, parseStringPath(Listener.nullListener(), type.getName(), null, "\\.").withoutLast());
+        return packagePath(type, parseStringPath(nullListener(), type.getName(), null, "\\.").withoutLast());
     }
 
     /**
@@ -323,8 +326,8 @@ public final class PackagePath extends ResourcePath
                         if (name.endsWith("/") && name.startsWith(filepath))
                         {
                             // then strip off the leading filepath,
-                            var suffix = Strip.leading(name, filepath);
-                            suffix = Strip.ending(suffix, "/");
+                            var suffix = stripLeading(name, filepath);
+                            suffix = stripEnding(suffix, "/");
 
                             // and if we have only a folder name left,
                             if (!suffix.contains("/") && !suffix.isEmpty())
@@ -437,7 +440,7 @@ public final class PackagePath extends ResourcePath
     @Override
     public PackagePath withParent(@NotNull String path)
     {
-        return (PackagePath) super.withParent(PackagePath.parsePackagePath(Listener.throwingListener(), path));
+        return (PackagePath) super.withParent(parsePackagePath(throwingListener(), path));
     }
 
     /**
@@ -545,8 +548,8 @@ public final class PackagePath extends ResourcePath
     {
         if (path.contains("/"))
         {
-            return parseStringPath(Listener.throwingListener(), path, "/");
+            return parseStringPath(throwingListener(), path, "/");
         }
-        return parseStringPath(Listener.throwingListener(), path, "\\.");
+        return parseStringPath(throwingListener(), path, "\\.");
     }
 }

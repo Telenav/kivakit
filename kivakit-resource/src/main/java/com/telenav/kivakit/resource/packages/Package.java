@@ -20,15 +20,12 @@ package com.telenav.kivakit.resource.packages;
 
 import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.collections.list.ObjectList;
-import com.telenav.kivakit.core.language.Classes;
 import com.telenav.kivakit.core.language.module.PackageReference;
 import com.telenav.kivakit.core.locale.Locale;
 import com.telenav.kivakit.core.locale.LocaleLanguage;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.messaging.repeaters.BaseRepeater;
 import com.telenav.kivakit.core.progress.ProgressReporter;
-import com.telenav.kivakit.core.string.Strip;
-import com.telenav.kivakit.filesystem.FilePath;
 import com.telenav.kivakit.filesystem.Folder;
 import com.telenav.kivakit.interfaces.comparison.Matcher;
 import com.telenav.kivakit.properties.PropertyMap;
@@ -54,7 +51,6 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Objects;
 import java.util.function.Consumer;
 import java.util.stream.Collectors;
 import java.util.zip.ZipEntry;
@@ -65,12 +61,17 @@ import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTE
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.ensure.Ensure.fail;
 import static com.telenav.kivakit.core.ensure.Ensure.unsupported;
+import static com.telenav.kivakit.core.language.Classes.resourceUri;
 import static com.telenav.kivakit.core.language.module.PackageReference.packageReference;
 import static com.telenav.kivakit.core.messaging.Listener.throwingListener;
+import static com.telenav.kivakit.core.string.Strip.stripLeading;
+import static com.telenav.kivakit.filesystem.FilePath.parseFilePath;
+import static com.telenav.kivakit.properties.PropertyMap.loadLocalizedPropertyMap;
 import static com.telenav.kivakit.resource.ResourceList.resourceList;
 import static com.telenav.kivakit.resource.packages.PackagePath.packagePath;
 import static com.telenav.kivakit.resource.packages.PackagePath.parsePackagePath;
 import static com.telenav.kivakit.resource.packages.PackageResource.packageResource;
+import static java.util.Objects.hash;
 
 /**
  * An abstraction for locating and copying {@link Resource}s in Java packages.
@@ -199,7 +200,7 @@ public class Package extends BaseRepeater implements ResourceFolder<Package>
         @Override
         public Package resolve(@NotNull ResourceFolderIdentifier identifier)
         {
-            var filepath = FilePath.parseFilePath(this, Strip.leading(identifier.identifier(), SCHEME));
+            var filepath = parseFilePath(this, stripLeading(identifier.identifier(), SCHEME));
             return packageForPath(throwingListener(), packagePath(filepath));
         }
     }
@@ -286,7 +287,7 @@ public class Package extends BaseRepeater implements ResourceFolder<Package>
     @Override
     public int hashCode()
     {
-        return Objects.hash(path());
+        return hash(path());
     }
 
     /**
@@ -305,7 +306,7 @@ public class Package extends BaseRepeater implements ResourceFolder<Package>
                                            @NotNull Locale locale,
                                            @NotNull LocaleLanguage languageName)
     {
-        return PropertyMap.loadLocalizedPropertyMap(listener, path(), locale, languageName);
+        return loadLocalizedPropertyMap(listener, path(), locale, languageName);
     }
 
     /**
@@ -353,7 +354,7 @@ public class Package extends BaseRepeater implements ResourceFolder<Package>
         if (folder instanceof Package)
         {
             var relativeTo = (Package) folder;
-            return Package.packageForPath(this, (PackagePath) packagePath.relativeTo(relativeTo.packagePath));
+            return packageForPath(this, (PackagePath) packagePath.relativeTo(relativeTo.packagePath));
         }
         else
         {
@@ -455,7 +456,7 @@ public class Package extends BaseRepeater implements ResourceFolder<Package>
     {
         try
         {
-            return Classes.resourceUri(packagePath.packageType(), packagePath.join("/"));
+            return resourceUri(packagePath.packageType(), packagePath.join("/"));
         }
         catch (IllegalArgumentException ignored)
         {
@@ -551,7 +552,7 @@ public class Package extends BaseRepeater implements ResourceFolder<Package>
                         if (!name.endsWith("/") && name.startsWith(filepath))
                         {
                             // then strip off the leading filepath,
-                            var suffix = Strip.leading(name, filepath);
+                            var suffix = stripLeading(name, filepath);
                             // and if we have only a filename left,
                             if (!suffix.contains("/"))
                             {

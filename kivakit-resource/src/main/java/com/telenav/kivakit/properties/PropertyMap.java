@@ -28,7 +28,6 @@ import com.telenav.kivakit.core.language.reflection.property.PropertyFilter;
 import com.telenav.kivakit.core.locale.Locale;
 import com.telenav.kivakit.core.locale.LocaleLanguage;
 import com.telenav.kivakit.core.messaging.Listener;
-import com.telenav.kivakit.core.string.AsciiArt;
 import com.telenav.kivakit.core.value.count.Count;
 import com.telenav.kivakit.filesystem.File;
 import com.telenav.kivakit.filesystem.Folder;
@@ -43,18 +42,20 @@ import org.jetbrains.annotations.NotNull;
 
 import java.io.InputStream;
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Pattern;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static com.telenav.kivakit.core.language.reflection.Type.type;
 import static com.telenav.kivakit.core.progress.ProgressReporter.nullProgressReporter;
+import static com.telenav.kivakit.core.string.AsciiArt.textBox;
 import static com.telenav.kivakit.filesystem.File.parseFile;
 import static com.telenav.kivakit.filesystem.Folder.parseFolder;
 import static com.telenav.kivakit.resource.packages.PackageResource.packageResource;
+import static java.util.Comparator.naturalOrder;
 
 /**
  * A property map is a {@link VariableMap} with strings as both keys and values.
@@ -144,7 +145,7 @@ public class PropertyMap extends VariableMap<String>
                                                        @NotNull Locale locale,
                                                        @NotNull LocaleLanguage languageName)
     {
-        return PropertyMap.loadPropertyMap(listener, packageResource(listener, path, locale.path(languageName).join("/")));
+        return loadPropertyMap(listener, packageResource(listener, path, locale.path(languageName).join("/")));
     }
 
     /**
@@ -250,7 +251,7 @@ public class PropertyMap extends VariableMap<String>
     public void addProperties(@NotNull Object object,
                               @NotNull PropertyFilter filter)
     {
-        Type<?> type = Type.type(object);
+        Type<?> type = type(object);
         for (var property : type.properties(filter))
         {
             if (!"class".equals(property.name()))
@@ -384,7 +385,7 @@ public class PropertyMap extends VariableMap<String>
     {
         var entries = new StringList();
         var keys = new ArrayList<>(keySet());
-        keys.sort(Comparator.naturalOrder());
+        keys.sort(naturalOrder());
         for (var key : keys)
         {
             var comment = comments.get(key);
@@ -417,7 +418,7 @@ public class PropertyMap extends VariableMap<String>
     public void save(@NotNull WritableResource resource, @NotNull String heading)
     {
         var out = resource.printWriter();
-        out.println(AsciiArt.textBox(heading, '#', '#'));
+        out.println(textBox(heading, '#', '#'));
         out.println("");
         out.println(this);
         out.close();
@@ -426,6 +427,6 @@ public class PropertyMap extends VariableMap<String>
     @Override
     protected VariableMap<String> newStringMap()
     {
-        return PropertyMap.propertyMap();
+        return propertyMap();
     }
 }

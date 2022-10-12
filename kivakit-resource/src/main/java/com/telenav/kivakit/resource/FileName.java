@@ -23,9 +23,6 @@ import com.telenav.kivakit.conversion.core.time.LocalDateConverter;
 import com.telenav.kivakit.conversion.core.time.LocalDateTimeConverter;
 import com.telenav.kivakit.conversion.core.time.LocalTimeConverter;
 import com.telenav.kivakit.core.messaging.Listener;
-import com.telenav.kivakit.core.string.Paths;
-import com.telenav.kivakit.core.string.Strings;
-import com.telenav.kivakit.core.string.Strip;
 import com.telenav.kivakit.core.time.LocalTime;
 import com.telenav.kivakit.filesystem.FilePath;
 import com.telenav.kivakit.interfaces.comparison.Matcher;
@@ -41,6 +38,14 @@ import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMEN
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.messaging.Listener.throwingListener;
+import static com.telenav.kivakit.core.string.Paths.pathOptionalHead;
+import static com.telenav.kivakit.core.string.Paths.pathOptionalSuffix;
+import static com.telenav.kivakit.core.string.Paths.pathTail;
+import static com.telenav.kivakit.core.string.Strings.removeAll;
+import static com.telenav.kivakit.core.string.Strip.stripEnding;
+import static com.telenav.kivakit.core.string.Strip.stripTrailing;
+import static com.telenav.kivakit.filesystem.FilePath.filePath;
+import static com.telenav.kivakit.resource.Extension.allExtensions;
 
 /**
  * A file name, with a base name and an {@link Extension}.
@@ -245,7 +250,7 @@ public class FileName implements Named, Comparable<FileName>
      */
     public FilePath asPath()
     {
-        return FilePath.filePath(this);
+        return filePath(this);
     }
 
     /**
@@ -255,7 +260,7 @@ public class FileName implements Named, Comparable<FileName>
     {
         if (name().contains("."))
         {
-            var before = Paths.pathOptionalHead(name(), '.');
+            var before = pathOptionalHead(name(), '.');
             if (before != null)
             {
                 return parseFileName(throwingListener(), before);
@@ -277,7 +282,7 @@ public class FileName implements Named, Comparable<FileName>
     {
         if (name().contains("."))
         {
-            var after = Paths.pathTail(name(), '.');
+            var after = pathTail(name(), '.');
             if (after != null)
             {
                 return new Extension(after);
@@ -322,7 +327,7 @@ public class FileName implements Named, Comparable<FileName>
     {
         if (name().contains("."))
         {
-            return new Extension(Paths.pathOptionalSuffix(name(), '.'));
+            return new Extension(pathOptionalSuffix(name(), '.'));
         }
         return null;
     }
@@ -393,7 +398,7 @@ public class FileName implements Named, Comparable<FileName>
      */
     public FileName normalized()
     {
-        return parseFileName(throwingListener(), FilePath.filePath(this).normalized().toString());
+        return parseFileName(throwingListener(), filePath(this).normalized().toString());
     }
 
     /**
@@ -458,7 +463,7 @@ public class FileName implements Named, Comparable<FileName>
         var extension = extension();
         if (extension != null)
         {
-            return parseFileName(throwingListener(), Paths.pathOptionalHead(name(), '.'));
+            return parseFileName(throwingListener(), pathOptionalHead(name(), '.'));
         }
         return this;
     }
@@ -471,7 +476,7 @@ public class FileName implements Named, Comparable<FileName>
         var extension = extension();
         if (extension != null)
         {
-            var before = Paths.pathOptionalHead(name(), '.');
+            var before = pathOptionalHead(name(), '.');
             if (before != null)
             {
                 return parseFileName(throwingListener(), before);
@@ -487,7 +492,7 @@ public class FileName implements Named, Comparable<FileName>
     {
         if (name().endsWith(extension.toString()))
         {
-            return parseFileName(throwingListener(), Strip.trailing(name(), extension.toString()));
+            return parseFileName(throwingListener(), stripTrailing(name(), extension.toString()));
         }
         return this;
     }
@@ -502,11 +507,11 @@ public class FileName implements Named, Comparable<FileName>
         do
         {
             removedOne = false;
-            for (var extension : Extension.allExtensions())
+            for (var extension : allExtensions())
             {
                 if (name.endsWith(extension))
                 {
-                    name = parseFileName(throwingListener(), Strip.ending(name.toString(), extension.toString()));
+                    name = parseFileName(throwingListener(), stripEnding(name.toString(), extension.toString()));
                     removedOne = true;
                 }
             }
@@ -517,6 +522,6 @@ public class FileName implements Named, Comparable<FileName>
 
     private String normalize(@NotNull String name)
     {
-        return Strings.removeAll(name, '\'').replaceAll("[,:; ]", "_").replace('/', '-');
+        return removeAll(name, '\'').replaceAll("[,:; ]", "_").replace('/', '-');
     }
 }

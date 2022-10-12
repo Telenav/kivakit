@@ -18,14 +18,15 @@
 
 package com.telenav.kivakit.settings.deployment;
 
-import com.telenav.kivakit.core.messaging.Listener;
-import com.telenav.kivakit.settings.SettingsRegistry;
-import com.telenav.kivakit.testing.UnitTest;
 import com.telenav.kivakit.core.time.Duration;
 import com.telenav.kivakit.settings.Deployment;
 import com.telenav.kivakit.settings.ServerSettings;
 import com.telenav.kivakit.settings.SettingsTrait;
+import com.telenav.kivakit.testing.UnitTest;
 import org.junit.Test;
+
+import static com.telenav.kivakit.core.messaging.Listener.throwingListener;
+import static com.telenav.kivakit.settings.SettingsRegistry.settingsFor;
 
 public class DeploymentTest extends UnitTest implements SettingsTrait
 {
@@ -33,7 +34,7 @@ public class DeploymentTest extends UnitTest implements SettingsTrait
     {
         public China()
         {
-            super(Listener.throwingListener(),"china", "test china deployment");
+            super(throwingListener(),"china", "test china deployment");
 
             var settings = new ServerSettings();
             settings.timeout(Duration.ONE_MINUTE);
@@ -47,7 +48,7 @@ public class DeploymentTest extends UnitTest implements SettingsTrait
     {
         public Development()
         {
-            super(Listener.throwingListener(),"development", "test development deployment");
+            super(throwingListener(),"development", "test development deployment");
 
             var settings = new ServerSettings();
             settings.timeout(Duration.ONE_MINUTE);
@@ -61,7 +62,7 @@ public class DeploymentTest extends UnitTest implements SettingsTrait
     {
         public Production()
         {
-            super(Listener.throwingListener(),"production", "test production deployment");
+            super(throwingListener(),"production", "test production deployment");
 
             var settings = new ServerSettings();
             settings.timeout(Duration.ONE_MINUTE);
@@ -76,7 +77,7 @@ public class DeploymentTest extends UnitTest implements SettingsTrait
     {
         registerSettingsIn(new China());
 
-        var settings = SettingsRegistry.settingsFor(this).requireSettings(ServerSettings.class);
+        var settings = settingsFor(this).requireSettings(ServerSettings.class);
         ensureEqual(settings.port(), 9090);
         ensureEqual(settings.timeout(), Duration.ONE_MINUTE);
     }
@@ -86,7 +87,7 @@ public class DeploymentTest extends UnitTest implements SettingsTrait
     {
         registerSettingsIn(new Development());
 
-        var settings = SettingsRegistry.settingsFor(this).requireSettings(ServerSettings.class);
+        var settings = settingsFor(this).requireSettings(ServerSettings.class);
         ensureEqual(8080, settings.port());
         ensureEqual(Duration.ONE_MINUTE, settings.timeout());
     }
@@ -96,7 +97,7 @@ public class DeploymentTest extends UnitTest implements SettingsTrait
     {
         registerSettingsIn(new Production());
 
-        var settings = SettingsRegistry.settingsFor(this).requireSettings(ServerSettings.class);
+        var settings = settingsFor(this).requireSettings(ServerSettings.class);
         ensureEqual(80, settings.port());
         ensureEqual(Duration.ONE_MINUTE, settings.timeout());
     }

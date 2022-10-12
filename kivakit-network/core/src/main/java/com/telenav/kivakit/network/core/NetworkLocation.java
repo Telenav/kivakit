@@ -21,14 +21,10 @@ package com.telenav.kivakit.network.core;
 import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.conversion.BaseStringConverter;
 import com.telenav.kivakit.core.collections.map.VariableMap;
-import com.telenav.kivakit.core.language.Hash;
-import com.telenav.kivakit.core.language.Objects;
 import com.telenav.kivakit.core.language.reflection.property.IncludeProperty;
 import com.telenav.kivakit.core.logging.Logger;
-import com.telenav.kivakit.core.logging.LoggerFactory;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.string.ObjectFormatter;
-import com.telenav.kivakit.core.string.Strings;
 import com.telenav.kivakit.interfaces.string.StringFormattable;
 import com.telenav.kivakit.network.core.internal.lexakai.DiagramNetworkLocation;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
@@ -43,10 +39,15 @@ import java.net.URL;
 import java.net.URLDecoder;
 import java.nio.charset.StandardCharsets;
 
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static com.telenav.kivakit.core.language.Hash.hashMany;
+import static com.telenav.kivakit.core.language.Objects.isEqual;
+import static com.telenav.kivakit.core.logging.LoggerFactory.newLogger;
+import static com.telenav.kivakit.core.string.Formatter.format;
+import static com.telenav.kivakit.network.core.NetworkPath.parseNetworkPath;
 
 /**
  * A network location with a {@link Port}, {@link NetworkPath}, {@link NetworkAccessConstraints} and optional
@@ -108,7 +109,7 @@ import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
              documentation = DOCUMENTATION_COMPLETE)
 public class NetworkLocation implements StringFormattable, Comparable<NetworkLocation>
 {
-    private static final Logger LOGGER = LoggerFactory.newLogger();
+    private static final Logger LOGGER = newLogger();
 
     /**
      * Returns a network location for a {@link URI}
@@ -299,8 +300,8 @@ public class NetworkLocation implements StringFormattable, Comparable<NetworkLoc
         {
             var that = (NetworkLocation) object;
             return port.equals(that.port) && networkPath.equals(that.networkPath)
-                    && Objects.isEqual(queryParameters, that.queryParameters)
-                    && Objects.isEqual(reference, that.reference);
+                    && isEqual(queryParameters, that.queryParameters)
+                    && isEqual(reference, that.reference);
         }
         return false;
     }
@@ -308,7 +309,7 @@ public class NetworkLocation implements StringFormattable, Comparable<NetworkLoc
     @Override
     public int hashCode()
     {
-        return Hash.hashMany(port, networkPath, queryParameters, reference);
+        return hashMany(port, networkPath, queryParameters, reference);
     }
 
     /**
@@ -430,16 +431,16 @@ public class NetworkLocation implements StringFormattable, Comparable<NetworkLoc
     public NetworkLocation withInterpolatedVariables(VariableMap<String> variables)
     {
         // Interpolate variables in path
-        var interpolatedPath = Strings.format(networkPath().toString(), variables);
+        var interpolatedPath = format(networkPath().toString(), variables);
 
         // Create location with the given path
-        var location = withPath(NetworkPath.parseNetworkPath(LOGGER, interpolatedPath));
+        var location = withPath(parseNetworkPath(LOGGER, interpolatedPath));
 
         // If there are any query parameters,
         if (queryParameters() != null)
         {
             // interpolate variables into query parameter string
-            var interpolatedQueryParameters = Strings.format(queryParameters().toString(), variables);
+            var interpolatedQueryParameters = format(queryParameters().toString(), variables);
 
             // and create a new location with the interpolated value
             location = location.withQueryParameters(new QueryParameters(interpolatedQueryParameters));

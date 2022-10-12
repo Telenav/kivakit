@@ -19,7 +19,6 @@
 package com.telenav.kivakit.serialization.kryo.test;
 
 import com.telenav.kivakit.annotations.code.quality.CodeQuality;
-import com.telenav.kivakit.core.path.StringPath;
 import com.telenav.kivakit.core.value.count.Count;
 import com.telenav.kivakit.core.version.Version;
 import com.telenav.kivakit.resource.serialization.SerializableObject;
@@ -29,16 +28,17 @@ import com.telenav.kivakit.serialization.kryo.KryoObjectSerializer;
 import com.telenav.kivakit.serialization.kryo.KryoSerializationSession;
 import com.telenav.kivakit.serialization.kryo.KryoSerializationSessionFactory;
 import com.telenav.kivakit.serialization.kryo.types.KivaKitCoreKryoTypes;
-import com.telenav.kivakit.serialization.kryo.types.KryoTypes;
 import com.telenav.kivakit.serialization.kryo.types.KivaKitResourceKryoTypes;
+import com.telenav.kivakit.serialization.kryo.types.KryoTypes;
 import com.telenav.kivakit.testing.UnitTest;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static com.telenav.kivakit.core.path.StringPath.stringPath;
 import static com.telenav.kivakit.core.version.Version.version;
 import static com.telenav.kivakit.resource.serialization.ObjectMetadata.OBJECT_VERSION;
 import static com.telenav.kivakit.serialization.core.SerializationSession.SessionType.RESOURCE_SERIALIZATION_SESSION;
@@ -100,7 +100,7 @@ public abstract class KryoUnitTest extends UnitTest
     {
         var output = new ByteArrayOutputStream();
         var serializer = new KryoObjectSerializer(kryoTypes());
-        var path = StringPath.stringPath("/a/b/c");
+        var path = stringPath("/a/b/c");
 
         var write = new SerializableObject<>(object, version);
         serializer.writeObject(output, path, write, OBJECT_VERSION);

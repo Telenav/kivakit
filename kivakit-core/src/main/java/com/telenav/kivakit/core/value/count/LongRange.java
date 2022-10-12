@@ -26,6 +26,8 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static java.lang.Math.max;
+import static java.lang.Math.min;
 
 /**
  * Represents a range of long values
@@ -63,8 +65,8 @@ public class LongRange implements Contains<Long>
      */
     public long constrainTo(long value)
     {
-        value = Math.min(maximum, value);
-        value = Math.max(minimum, value);
+        value = min(maximum, value);
+        value = max(minimum, value);
         return value;
     }
 

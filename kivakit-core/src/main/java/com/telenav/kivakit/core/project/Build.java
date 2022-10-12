@@ -19,19 +19,23 @@
 package com.telenav.kivakit.core.project;
 
 import com.telenav.cactus.metadata.BuildMetadata;
-import com.telenav.cactus.metadata.BuildName;
 import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.collections.map.VariableMap;
-import com.telenav.kivakit.core.language.primitive.Ints;
 import com.telenav.kivakit.core.time.LocalTime;
 import com.telenav.kivakit.interfaces.naming.Named;
 
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
+import static com.telenav.cactus.metadata.BuildMetadata.buildMetaData;
+import static com.telenav.cactus.metadata.BuildName.TELENAV_EPOCH_DAY;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static com.telenav.kivakit.core.collections.map.VariableMap.variableMap;
+import static com.telenav.kivakit.core.language.primitive.Ints.parseFastInt;
+import static com.telenav.kivakit.core.time.LocalTime.localTime;
+import static com.telenav.kivakit.core.time.LocalTime.utcTimeZone;
+import static java.time.format.DateTimeFormatter.ISO_INSTANT;
 
 /**
  * Information about a build, from the resource classpath resource /build.properties. The build information for a
@@ -62,7 +66,7 @@ public class Build implements Named
      */
     public static Build build(Class<?> projectType)
     {
-        return new Build(BuildMetadata.buildMetaData(projectType));
+        return new Build(buildMetaData(projectType));
     }
 
     /** The metadata for this build */
@@ -82,7 +86,7 @@ public class Build implements Named
      */
     public int buildEpochDay()
     {
-        return BuildName.TELENAV_EPOCH_DAY + buildNumber();
+        return TELENAV_EPOCH_DAY + buildNumber();
     }
 
     /**
@@ -98,7 +102,7 @@ public class Build implements Named
      */
     public LocalDate buildJavaUtcDate()
     {
-        return LocalDate.parse(property("build-date"), DateTimeFormatter.ISO_INSTANT);
+        return LocalDate.parse(property("build-date"), ISO_INSTANT);
     }
 
     /**
@@ -106,7 +110,7 @@ public class Build implements Named
      */
     public int buildNumber()
     {
-        return Ints.parseFastInt(property("build-number"));
+        return parseFastInt(property("build-number"));
     }
 
     /**
@@ -114,7 +118,7 @@ public class Build implements Named
      */
     public LocalTime buildUtcTime()
     {
-        return LocalTime.localTime(LocalTime.utcTimeZone(), LocalDate.ofEpochDay(buildEpochDay()).atTime(0, 0));
+        return localTime(utcTimeZone(), LocalDate.ofEpochDay(buildEpochDay()).atTime(0, 0));
     }
 
     /**
@@ -131,7 +135,7 @@ public class Build implements Named
      */
     public VariableMap<String> properties()
     {
-        return VariableMap.variableMap(metadata.buildProperties());
+        return variableMap(metadata.buildProperties());
     }
 
     /**

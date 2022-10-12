@@ -19,15 +19,12 @@
 package com.telenav.kivakit.filesystem.spi;
 
 import com.telenav.kivakit.annotations.code.quality.CodeQuality;
-import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.messaging.Repeater;
-import com.telenav.kivakit.core.string.Strings;
 import com.telenav.kivakit.core.time.CreatedAt;
 import com.telenav.kivakit.core.time.Modifiable;
 import com.telenav.kivakit.core.time.ModifiedAt;
 import com.telenav.kivakit.core.value.count.ByteSized;
 import com.telenav.kivakit.filesystem.FilePath;
-import com.telenav.kivakit.filesystem.loader.FileSystemServiceLoader;
 import com.telenav.kivakit.resource.Deletable;
 import com.telenav.kivakit.resource.ResourcePathed;
 import com.telenav.kivakit.resource.internal.lexakai.DiagramFileSystemService;
@@ -37,11 +34,15 @@ import org.jetbrains.annotations.NotNull;
 
 import java.nio.file.attribute.PosixFilePermission;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Audience.AUDIENCE_SERVICE_PROVIDER_INTERFACE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
 import static com.telenav.kivakit.core.ensure.Ensure.unsupported;
+import static com.telenav.kivakit.core.messaging.Listener.throwingListener;
+import static com.telenav.kivakit.core.string.Strings.ensureEndsWith;
+import static com.telenav.kivakit.filesystem.FilePath.parseFilePath;
+import static com.telenav.kivakit.filesystem.loader.FileSystemServiceLoader.fileSystem;
 
 /**
  * A service provider interface (SPI) common to all filesystem objects. Implementers must provide:
@@ -98,7 +99,7 @@ public interface FileSystemObjectService extends
 
     default FileSystemService fileSystemService(@NotNull FilePath path)
     {
-        return FileSystemServiceLoader.fileSystem(Listener.throwingListener(), path);
+        return fileSystem(throwingListener(), path);
     }
 
     /**
@@ -150,15 +151,15 @@ public interface FileSystemObjectService extends
 
     default FilePath relativePath(@NotNull FolderService folderService)
     {
-        var fullName = Strings.ensureEndsWith(path().toString().replace("\\", "/"), "/");
-        var folderName = Strings.ensureEndsWith(folderService.path().toString().replace("\\", "/"), "/");
+        var fullName = ensureEndsWith(path().toString().replace("\\", "/"), "/");
+        var folderName = ensureEndsWith(folderService.path().toString().replace("\\", "/"), "/");
         if (fullName.startsWith(folderName))
         {
-            return FilePath.parseFilePath(this, fullName.substring(folderName.length()));
+            return parseFilePath(this, fullName.substring(folderName.length()));
         }
         else
         {
-            return FilePath.parseFilePath(this, fullName);
+            return parseFilePath(this, fullName);
         }
     }
 

@@ -1,14 +1,14 @@
 package com.telenav.kivakit.core.time;
 
 import com.telenav.kivakit.annotations.code.quality.CodeQuality;
-import com.telenav.kivakit.core.language.primitive.Ints;
 import com.telenav.kivakit.interfaces.time.Nanoseconds;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.ensure.Ensure.ensure;
 import static com.telenav.kivakit.core.ensure.Ensure.unsupported;
+import static com.telenav.kivakit.core.language.primitive.Ints.intIsBetweenInclusive;
 import static com.telenav.kivakit.core.time.BaseTime.Topology.CYCLIC;
 import static com.telenav.kivakit.core.time.BaseTime.Topology.LINEAR;
 import static com.telenav.kivakit.core.time.Day.Type.DAY;
@@ -178,16 +178,16 @@ public class Day extends BaseTime<Day>
                 return asUnits() >= 0;
 
             case DAY_OF_MONTH:
-                return Ints.intIsBetweenInclusive(asUnits(), 1, 31);
+                return intIsBetweenInclusive(asUnits(), 1, 31);
 
             case DAY_OF_WEEK:
-                return Ints.intIsBetweenInclusive(asUnits(), 0, 6);
+                return intIsBetweenInclusive(asUnits(), 0, 6);
 
             case DAY_OF_YEAR:
-                return Ints.intIsBetweenInclusive(asUnits(), 0, 365);
+                return intIsBetweenInclusive(asUnits(), 0, 365);
 
             case DAY_OF_UNIX_EPOCH:
-                return Ints.intIsBetweenInclusive(asUnits(), 0, MAX_VALUE);
+                return intIsBetweenInclusive(asUnits(), 0, MAX_VALUE);
 
             default:
                 return unsupported();

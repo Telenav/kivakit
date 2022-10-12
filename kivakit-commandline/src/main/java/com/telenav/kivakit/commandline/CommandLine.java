@@ -23,7 +23,6 @@ import com.telenav.kivakit.commandline.internal.lexakai.DiagramCommandLine;
 import com.telenav.kivakit.core.collections.list.ObjectList;
 import com.telenav.kivakit.core.collections.list.StringList;
 import com.telenav.kivakit.core.language.reflection.property.IncludeProperty;
-import com.telenav.kivakit.core.string.AsciiArt;
 import com.telenav.kivakit.core.string.ObjectFormatter;
 import com.telenav.kivakit.interfaces.string.StringFormattable;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
@@ -37,11 +36,13 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Iterator;
 import java.util.regex.Pattern;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
-import static com.telenav.kivakit.core.string.Strings.format;
+import static com.telenav.kivakit.core.string.AsciiArt.bullet;
+import static com.telenav.kivakit.core.string.AsciiArt.spaces;
+import static com.telenav.kivakit.core.string.Formatter.format;
 import static com.telenav.lexakai.annotations.UmlNote.Align.TOP;
 
 /**
@@ -265,7 +266,7 @@ public class CommandLine implements StringFormattable, Iterable<ArgumentValue>
      */
     public void exit(@NotNull String error, Object... arguments)
     {
-        parser.exit(format(AsciiArt.spaces(4) + AsciiArt.bullet() + " " + error, arguments));
+        parser.exit(format(spaces(4) + bullet() + " " + error, arguments));
     }
 
     /**

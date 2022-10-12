@@ -32,6 +32,7 @@ import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTE
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.collections.list.ObjectList.list;
 import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
+import static com.telenav.kivakit.core.language.reflection.Type.typeForClass;
 
 /**
  * Holds a class and method name when a proper Java reflection {@link java.lang.reflect.Method} cannot be determined, as
@@ -92,7 +93,7 @@ public class Method extends Member
         try
         {
             var type = Class.forName(stackFrame.getClassName());
-            return new Method(Type.typeForClass(type), stackFrame.getMethodName());
+            return new Method(typeForClass(type), stackFrame.getMethodName());
         }
         catch (Exception ignored)
         {
@@ -141,7 +142,7 @@ public class Method extends Member
         if (method.getReturnType().isArray())
         {
             var list = new ObjectList<Type<T>>();
-            list.add(Type.typeForClass((Class<T>) method.getReturnType().getComponentType()));
+            list.add(typeForClass((Class<T>) method.getReturnType().getComponentType()));
             return list;
         }
 
@@ -161,7 +162,7 @@ public class Method extends Member
         {
             if (at instanceof Class)
             {
-                list.add(Type.typeForClass((Class<T>) at));
+                list.add(typeForClass((Class<T>) at));
             }
         }
         return list;

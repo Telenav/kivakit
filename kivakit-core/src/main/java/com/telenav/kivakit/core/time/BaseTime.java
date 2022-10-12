@@ -7,15 +7,14 @@ import com.telenav.kivakit.interfaces.time.Nanoseconds;
 import com.telenav.kivakit.interfaces.time.PointInTime;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.Objects;
-
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.ensure.Ensure.ensure;
 import static com.telenav.kivakit.core.time.BaseTime.Topology.CYCLIC;
+import static java.util.Objects.hash;
 
 /**
  * Base class for values representing a {@link PointInTime}:
@@ -156,11 +155,11 @@ public abstract class BaseTime<TimeType extends BaseTime<TimeType>> implements
     /** The number of nanoseconds */
     private Nanoseconds nanoseconds;
 
-    public BaseTime()
+    protected BaseTime()
     {
     }
 
-    public BaseTime(Nanoseconds nanoseconds)
+    protected BaseTime(Nanoseconds nanoseconds)
     {
         this.nanoseconds = nanoseconds;
     }
@@ -209,7 +208,7 @@ public abstract class BaseTime<TimeType extends BaseTime<TimeType>> implements
     @Override
     public int hashCode()
     {
-        return Objects.hash(nanoseconds());
+        return hash(nanoseconds());
     }
 
     /**

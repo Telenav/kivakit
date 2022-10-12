@@ -34,14 +34,14 @@ import java.net.PasswordAuthentication;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
-import java.util.Objects;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static java.net.http.HttpRequest.BodyPublishers.noBody;
 import static java.net.http.HttpResponse.BodyHandlers.ofInputStream;
 import static java.net.http.HttpResponse.BodyHandlers.ofString;
+import static java.util.Objects.hash;
 
 /**
  * A network resource accessible via HTTP.
@@ -150,7 +150,7 @@ public abstract class BaseHttpResource extends BaseNetworkResource implements Ht
     @Override
     public int hashCode()
     {
-        return Objects.hash(networkLocation);
+        return hash(networkLocation);
     }
 
     /**

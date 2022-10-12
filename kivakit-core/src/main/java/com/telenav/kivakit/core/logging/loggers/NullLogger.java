@@ -63,6 +63,6 @@ public class NullLogger extends BaseLogger
     @UmlExcludeMember
     protected ObjectSet<Log> logs()
     {
-        return ObjectSet.set();
+        return set();
     }
 }

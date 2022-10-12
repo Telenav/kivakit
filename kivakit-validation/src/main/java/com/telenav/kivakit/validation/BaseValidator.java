@@ -19,7 +19,6 @@
 package com.telenav.kivakit.validation;
 
 import com.telenav.kivakit.annotations.code.quality.CodeQuality;
-import com.telenav.kivakit.core.language.primitive.Ints;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.messaging.Message;
 import com.telenav.kivakit.core.messaging.messages.lifecycle.OperationHalted;
@@ -28,10 +27,8 @@ import com.telenav.kivakit.core.messaging.messages.status.Problem;
 import com.telenav.kivakit.core.messaging.messages.status.Quibble;
 import com.telenav.kivakit.core.messaging.messages.status.Warning;
 import com.telenav.kivakit.core.string.Formatter;
-import com.telenav.kivakit.core.string.Strings;
 import com.telenav.kivakit.core.thread.ReentrancyTracker;
 import com.telenav.kivakit.core.value.count.Count;
-import com.telenav.kivakit.core.value.name.Name;
 import com.telenav.kivakit.validation.internal.lexakai.DiagramValidation;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
@@ -40,8 +37,12 @@ import java.util.Collection;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static com.telenav.kivakit.core.language.primitive.Ints.intIsBetweenExclusive;
+import static com.telenav.kivakit.core.language.primitive.Ints.intIsBetweenInclusive;
+import static com.telenav.kivakit.core.string.Strings.isNullOrEmpty;
 import static com.telenav.kivakit.core.thread.ReentrancyTracker.Reentrancy.ENTERED;
 import static com.telenav.kivakit.core.thread.ReentrancyTracker.Reentrancy.REENTERED;
+import static com.telenav.kivakit.core.value.name.Name.nameOf;
 
 /**
  * A base implementation of {@link Validator} that provides convenience methods for reporting validation issues:
@@ -171,11 +172,11 @@ public abstract class BaseValidator implements Validator
      */
     private Validator parent;
 
-    public BaseValidator()
+    protected BaseValidator()
     {
     }
 
-    public BaseValidator(Validator parent)
+    protected BaseValidator(Validator parent)
     {
         this.parent = parent;
     }
@@ -250,7 +251,7 @@ public abstract class BaseValidator implements Validator
                 {
                     // we broadcast a short summary of the validation results.
                     listener.information("Validated $ ($ problems, $ glitches, $ warnings)",
-                            Name.nameOf(validationTarget()), problems, glitches, warnings);
+                            nameOf(validationTarget()), problems, glitches, warnings);
                 }
             }
 
@@ -342,7 +343,7 @@ public abstract class BaseValidator implements Validator
      */
     protected final boolean isEmpty(String value)
     {
-        return Strings.isEmpty(value);
+        return isNullOrEmpty(value);
     }
 
     /**
@@ -390,7 +391,7 @@ public abstract class BaseValidator implements Validator
      */
     protected void problemIfNotInRangeExclusive(int value, String name, int minimum, int maximum)
     {
-        problemIf(!Ints.intIsBetweenExclusive(value, minimum, maximum), "Invalid " + name);
+        problemIf(!intIsBetweenExclusive(value, minimum, maximum), "Invalid " + name);
     }
 
     /**
@@ -398,7 +399,7 @@ public abstract class BaseValidator implements Validator
      */
     protected void problemIfNotInRangeInclusive(int value, String name, int minimum, int maximum)
     {
-        problemIf(!Ints.intIsBetweenInclusive(value, minimum, maximum), "Invalid " + name);
+        problemIf(!intIsBetweenInclusive(value, minimum, maximum), "Invalid " + name);
     }
 
     /**

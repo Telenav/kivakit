@@ -10,6 +10,7 @@ import static com.telenav.kivakit.core.ensure.Ensure.ensure;
 import static com.telenav.kivakit.core.time.BaseTime.Topology.LINEAR;
 import static com.telenav.kivakit.core.time.Day.dayOfMonth;
 import static com.telenav.kivakit.core.time.Hour.militaryHour;
+import static com.telenav.kivakit.core.time.LocalTime.localTime;
 import static com.telenav.kivakit.core.time.LocalTime.utcTimeZone;
 import static com.telenav.kivakit.core.time.Minute.minute;
 import static com.telenav.kivakit.core.time.Second.second;
@@ -80,7 +81,7 @@ public class Year extends BaseTime<Year>
 
     public Time at(Month month)
     {
-        return LocalTime.localTime(utcTimeZone(),
+        return localTime(utcTimeZone(),
                 this,
                 month,
                 dayOfMonth(1),

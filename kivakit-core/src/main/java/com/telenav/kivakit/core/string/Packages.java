@@ -10,6 +10,7 @@ import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMEN
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.string.Join.join;
 import static com.telenav.kivakit.core.string.Split.split;
+import static com.telenav.kivakit.core.string.Strings.isLowerCase;
 
 /**
  * Utility methods to use for working with package names
@@ -27,12 +28,12 @@ public class Packages
      */
     public static String packagePrefix(String type)
     {
-        var list = Split.split(type, "\\.")
+        var list = split(type, "\\.")
                 .stream()
                 .filter(Strings::isLowerCase)
                 .collect(Collectors.toList());
 
-        return Join.join(list, ".");
+        return join(list, ".");
     }
 
     /**
@@ -40,12 +41,12 @@ public class Packages
      */
     public static String packageType(String type)
     {
-        var list = Split.split(type, "\\.")
+        var list = split(type, "\\.")
                 .stream()
                 .filter(Strings::isLowerCase)
                 .collect(Collectors.toList());
 
-        return Join.join(list, ".");
+        return join(list, ".");
     }
 
     /**
@@ -60,7 +61,7 @@ public class Packages
         var type = new ArrayList<String>();
         for (var at : split(packaged, "."))
         {
-            if (Strings.isLowerCase(at))
+            if (isLowerCase(at))
             {
                 path.add(at);
             }

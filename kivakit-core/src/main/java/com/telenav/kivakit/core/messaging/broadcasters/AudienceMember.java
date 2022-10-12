@@ -27,12 +27,11 @@ import com.telenav.kivakit.interfaces.messaging.Transmittable;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlAggregation;
 
-import java.util.Objects;
-
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Audience.AUDIENCE_INTERNAL;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static java.util.Objects.hash;
 
 /**
  * A filtered {@link Multicaster} listener
@@ -87,7 +86,7 @@ class AudienceMember
     @Override
     public int hashCode()
     {
-        return Objects.hash(listener);
+        return hash(listener);
     }
 
     /**

@@ -19,12 +19,10 @@
 package com.telenav.kivakit.network.email;
 
 import com.telenav.kivakit.annotations.code.quality.CodeQuality;
-import com.telenav.kivakit.core.language.Classes;
 import com.telenav.kivakit.core.messaging.repeaters.BaseRepeater;
 import com.telenav.kivakit.core.thread.RepeatingThread;
 import com.telenav.kivakit.core.thread.latches.CompletionLatch;
 import com.telenav.kivakit.core.time.Duration;
-import com.telenav.kivakit.core.time.Frequency;
 import com.telenav.kivakit.core.time.Rate;
 import com.telenav.kivakit.core.time.RateCalculator;
 import com.telenav.kivakit.core.value.count.Maximum;
@@ -44,9 +42,14 @@ import javax.mail.Session;
 import javax.mail.internet.MimeMessage;
 import java.util.Properties;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static com.telenav.kivakit.core.language.Classes.simpleName;
+import static com.telenav.kivakit.core.time.Duration.ONE_MINUTE;
+import static com.telenav.kivakit.core.time.Duration.seconds;
+import static com.telenav.kivakit.core.time.Frequency.CONTINUOUSLY;
+import static com.telenav.kivakit.core.value.count.Maximum.maximum;
 
 /**
  * An email sender. Emails can be added with {@link #enqueue(Email)} and they will be sent as soon as possible. Emails
@@ -101,22 +104,22 @@ public abstract class EmailSender extends BaseRepeater implements
 
     private final Configuration configuration;
 
-    private Maximum maximumRetries = Maximum.maximum(16);
+    private Maximum maximumRetries = maximum(16);
 
     @UmlAggregation
     private final EmailQueue queue = new EmailQueue();
 
     private final CompletionLatch queueEmpty = new CompletionLatch();
 
-    private final RateCalculator rate = new RateCalculator(Duration.ONE_MINUTE);
+    private final RateCalculator rate = new RateCalculator(ONE_MINUTE);
 
-    private Duration retryPeriod = Duration.seconds(30);
+    private Duration retryPeriod = seconds(30);
 
     private volatile boolean running;
 
     private boolean enabled = true;
 
-    private final RepeatingThread thread = new RepeatingThread(this, Classes.simpleName(EmailSender.class), Frequency.CONTINUOUSLY)
+    private final RepeatingThread thread = new RepeatingThread(this, simpleName(EmailSender.class), CONTINUOUSLY)
     {
         @Override
         protected void onRun()
@@ -129,7 +132,7 @@ public abstract class EmailSender extends BaseRepeater implements
                 {
                     if (email.tries().isLessThan(maximumRetries))
                     {
-                        if (!queue().enqueue(email, Duration.seconds(5)))
+                        if (!queue().enqueue(email, seconds(5)))
                         {
                             warning("Unable to re-queue email");
                         }
@@ -181,7 +184,7 @@ public abstract class EmailSender extends BaseRepeater implements
     {
         if (!closed)
         {
-            if (!queue().enqueue(email, Duration.seconds(5)))
+            if (!queue().enqueue(email, seconds(5)))
             {
                 if (!queue().isClosed())
                 {

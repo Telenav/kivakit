@@ -52,7 +52,7 @@ public abstract class BaseThreadTest extends CoreUnitTest
         }
     }
 
-    protected void accurateSleep(Duration minimum, final Duration maximum)
+    protected void accurateSleep(Duration minimum, Duration maximum)
     {
         var start = Time.now();
         minimum.sleep();
@@ -64,7 +64,7 @@ public abstract class BaseThreadTest extends CoreUnitTest
         ensureElapsedGreaterThan(start, minimum);
     }
 
-    protected void ensureElapsedGreaterThan(Time start, final Duration minimum)
+    protected void ensureElapsedGreaterThan(Time start, Duration minimum)
     {
         ensure(start.elapsedSince().isGreaterThan(minimum));
     }
@@ -74,7 +74,7 @@ public abstract class BaseThreadTest extends CoreUnitTest
         ensureElapsedLessThan(start, maximum);
     }
 
-    protected void ensureElapsedLessThan(Time start, final Duration maximum)
+    protected void ensureElapsedLessThan(Time start, Duration maximum)
     {
         ensure(start.elapsedSince().isLessThan(maximum));
     }

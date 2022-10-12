@@ -99,7 +99,7 @@ public class VariableMap<Value> extends StringMap<Value> implements PropertyValu
      */
     public VariableMap<Value> add(String name, Value value)
     {
-        super.put(name, value);
+        put(name, value);
         return this;
     }
 
@@ -108,7 +108,7 @@ public class VariableMap<Value> extends StringMap<Value> implements PropertyValu
      */
     public VariableMap<Value> addAll(VariableMap<Value> variables)
     {
-        super.putAll(variables);
+        putAll(variables);
         return this;
     }
 

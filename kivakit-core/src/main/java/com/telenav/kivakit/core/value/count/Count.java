@@ -20,7 +20,6 @@ package com.telenav.kivakit.core.value.count;
 
 import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramCount;
-import com.telenav.kivakit.core.language.primitive.Longs;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.value.level.Percent;
 import com.telenav.kivakit.interfaces.value.LongValued;
@@ -30,9 +29,10 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.function.Consumer;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static com.telenav.kivakit.core.language.primitive.Longs.parseFastLong;
 
 /**
  * Represents a count of something.
@@ -473,7 +473,7 @@ public class Count extends BaseCount<Count>
      */
     public static Count parseCount(Listener listener, String text)
     {
-        var count = Longs.parseFastLong(text, -1);
+        var count = parseFastLong(text, -1);
         return count < 0 ? null : count(count);
     }
 

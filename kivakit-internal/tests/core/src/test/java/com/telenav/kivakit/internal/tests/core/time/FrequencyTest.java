@@ -18,10 +18,8 @@
 
 package com.telenav.kivakit.internal.tests.core.time;
 
-import com.telenav.kivakit.core.messaging.Listener;
-import com.telenav.kivakit.internal.testing.CoreUnitTest;
 import com.telenav.kivakit.core.time.Frequency;
-import com.telenav.kivakit.core.time.Time;
+import com.telenav.kivakit.internal.testing.CoreUnitTest;
 import org.junit.Test;
 
 import static com.telenav.kivakit.core.messaging.Listener.throwingListener;
@@ -40,6 +38,7 @@ import static com.telenav.kivakit.core.time.Frequency.cyclesPerMinute;
 import static com.telenav.kivakit.core.time.Frequency.cyclesPerSecond;
 import static com.telenav.kivakit.core.time.Frequency.every;
 import static com.telenav.kivakit.core.time.Frequency.parseFrequency;
+import static com.telenav.kivakit.core.time.Time.now;
 
 /**
  * Tests for {@link Frequency}
@@ -61,7 +60,7 @@ public class FrequencyTest extends CoreUnitTest
     @Test
     public void testCycleTiming()
     {
-        var now = Time.now();
+        var now = now();
         var cycle = EVERY_10_SECONDS.start(now);
         ensureWithin(seconds(10).asSeconds(), cycle.waitTimeBeforeNextCycle().asSeconds(), 1.0);
         ensureWithin(now.plus(seconds(10)).asSeconds(), cycle.next().asSeconds(), 1.0);

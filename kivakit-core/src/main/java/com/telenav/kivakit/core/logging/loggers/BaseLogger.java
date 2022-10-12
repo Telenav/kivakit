@@ -22,14 +22,12 @@ import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.collections.list.ObjectList;
 import com.telenav.kivakit.core.collections.map.ConcurrentObjectMap;
 import com.telenav.kivakit.core.collections.set.ObjectSet;
-import com.telenav.kivakit.core.ensure.Ensure;
 import com.telenav.kivakit.core.internal.lexakai.DiagramLogging;
 import com.telenav.kivakit.core.logging.Log;
 import com.telenav.kivakit.core.logging.LogEntry;
 import com.telenav.kivakit.core.logging.Logger;
 import com.telenav.kivakit.core.logging.LoggerCodeContext;
 import com.telenav.kivakit.core.logging.filters.LogEntriesWithSeverityGreaterThanOrEqualTo;
-import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.messaging.Message;
 import com.telenav.kivakit.core.messaging.Messages;
 import com.telenav.kivakit.core.messaging.messages.Severity;
@@ -44,6 +42,12 @@ import java.util.Map;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static com.telenav.kivakit.core.collections.list.ObjectList.list;
+import static com.telenav.kivakit.core.ensure.Ensure.fail;
+import static com.telenav.kivakit.core.messaging.Listener.consoleListener;
+import static com.telenav.kivakit.core.time.Duration.FOREVER;
+import static com.telenav.kivakit.core.time.Time.now;
+import static java.lang.Thread.currentThread;
 
 /**
  * Base implementation of the {@link Logger} interface
@@ -66,10 +70,10 @@ public abstract class BaseLogger implements Logger
     private final LoggerCodeContext codeContext;
 
     /** List of log entry filters */
-    private final ObjectList<Filter<LogEntry>> filters = ObjectList.list();
+    private final ObjectList<Filter<LogEntry>> filters = list();
 
     /** The time that this logger was constructed */
-    private final Time start = Time.now();
+    private final Time start = now();
 
     /**
      * Constructs with implicit code context determined from stack analysis
@@ -162,7 +166,7 @@ public abstract class BaseLogger implements Logger
     @UmlExcludeMember
     public void log(Message message)
     {
-        log(codeContext, Thread.currentThread(), message);
+        log(codeContext, currentThread(), message);
     }
 
     /**
@@ -171,7 +175,7 @@ public abstract class BaseLogger implements Logger
     @Override
     public Duration maximumFlushTime()
     {
-        return Duration.FOREVER;
+        return FOREVER;
     }
 
     /**
@@ -216,7 +220,7 @@ public abstract class BaseLogger implements Logger
             if (time == null || time.isOlderThan(frequency.cycleLength()))
             {
                 // reset the last log time and let it be logged
-                lastLogTime.put(message.text(), Time.now());
+                lastLogTime.put(message.text(), now());
                 return true;
             }
             else
@@ -256,14 +260,14 @@ public abstract class BaseLogger implements Logger
             var levelName = System.getProperty("KIVAKIT_LOG_LEVEL");
             if (levelName != null)
             {
-                Message message = Messages.parseMessageType(Listener.consoleListener(), levelName);
+                Message message = Messages.parseMessageType(consoleListener(), levelName);
                 if (message != null)
                 {
                     level = message.severity();
                 }
                 else
                 {
-                    Ensure.fail("Unrecognized KIVAKIT_LOG_LEVEL '" + levelName + "'");
+                    fail("Unrecognized KIVAKIT_LOG_LEVEL '" + levelName + "'");
                 }
             }
         }

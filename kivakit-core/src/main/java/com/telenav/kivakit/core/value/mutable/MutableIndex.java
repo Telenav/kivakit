@@ -63,7 +63,7 @@ public class MutableIndex extends MutableLong
      */
     public int index()
     {
-        return (int) super.get();
+        return (int) get();
     }
 
     /**
@@ -71,7 +71,7 @@ public class MutableIndex extends MutableLong
      */
     public void index(int index)
     {
-        super.set(index);
+        set(index);
     }
 
     /**
@@ -80,6 +80,6 @@ public class MutableIndex extends MutableLong
     @SuppressWarnings("UnusedReturnValue")
     public int offset(int that)
     {
-        return (int) super.plus(that);
+        return (int) plus(that);
     }
 }

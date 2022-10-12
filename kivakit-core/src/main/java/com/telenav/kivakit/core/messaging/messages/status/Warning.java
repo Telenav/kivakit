@@ -20,15 +20,15 @@ package com.telenav.kivakit.core.messaging.messages.status;
 
 import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramMessageType;
-import com.telenav.kivakit.core.messaging.Message;
 import com.telenav.kivakit.core.messaging.messages.OperationStatusMessage;
 import com.telenav.kivakit.core.messaging.messages.Severity;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
 import static com.telenav.kivakit.core.messaging.Message.Status.COMPLETED;
+import static com.telenav.kivakit.core.messaging.Message.escapeMessageText;
 import static com.telenav.kivakit.core.messaging.messages.Severity.LOW;
 
 /**
@@ -68,7 +68,7 @@ public class Warning extends OperationStatusMessage
 
     public Warning(Throwable cause, String message, Object... arguments)
     {
-        super(message + ": " + Message.escapeMessageText(cause.getMessage()));
+        super(message + ": " + escapeMessageText(cause.getMessage()));
         cause(cause);
         arguments(arguments);
     }

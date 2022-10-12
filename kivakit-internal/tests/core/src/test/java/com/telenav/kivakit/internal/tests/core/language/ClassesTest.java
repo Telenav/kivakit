@@ -41,7 +41,7 @@ public class ClassesTest extends CoreUnitTest
     public void testSimpleName()
     {
         ensureEqual("ClassesTest", Classes.simpleName(getClass()));
-        final Runnable runnable = new Runnable()
+        Runnable runnable = new Runnable()
         {
             @Override
             public void run()

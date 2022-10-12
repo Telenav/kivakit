@@ -27,6 +27,8 @@ import java.util.regex.Pattern;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static com.telenav.kivakit.core.string.Split.splitIntoWords;
+import static java.util.regex.Pattern.DOTALL;
 
 /**
  * Wraps text at a given width.
@@ -46,7 +48,7 @@ public class Wrap
     {
         var wrapped = new StringBuilder();
         int position = 0;
-        for (var word : Split.splitIntoWords(text))
+        for (var word : splitIntoWords(text))
         {
             if (position + word.length() > maximumWidth)
             {
@@ -64,7 +66,7 @@ public class Wrap
      */
     public static String wrapRegion(String text, int maximumWidth)
     {
-        var matcher = Pattern.compile("\\[wrap](.*?)\\[end]", Pattern.DOTALL).matcher(text);
+        var matcher = Pattern.compile("\\[wrap](.*?)\\[end]", DOTALL).matcher(text);
         return matcher.replaceAll(result -> wrap(result.group(1), maximumWidth));
     }
 }

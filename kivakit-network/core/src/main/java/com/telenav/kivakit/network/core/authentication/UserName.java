@@ -70,7 +70,7 @@ public class UserName extends Name
         @Override
         protected UserName onToValue(String value)
         {
-            return UserName.parseUserName(this, value);
+            return parseUserName(this, value);
         }
     }
 

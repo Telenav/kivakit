@@ -29,6 +29,7 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static java.lang.Long.compare;
 
 /**
  * Base class for *long* identifiers
@@ -76,7 +77,7 @@ public class Identifier implements
     @Override
     public int compareTo(Identifier that)
     {
-        return Long.compare(identifier, that.identifier);
+        return compare(identifier, that.identifier);
     }
 
     @Override

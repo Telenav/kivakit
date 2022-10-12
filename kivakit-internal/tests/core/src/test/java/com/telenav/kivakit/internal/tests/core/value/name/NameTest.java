@@ -26,7 +26,7 @@ public class NameTest extends CoreUnitTest
     @Test
     public void test()
     {
-        final Name bob = new Name("Bob");
+        Name bob = new Name("Bob");
         ensureEqual(new Name("Bob"), bob);
         ensureEqual("Bob", bob.name());
         ensureEqual(new Name("bob"), bob.asLowerCaseName());

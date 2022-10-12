@@ -23,7 +23,6 @@ import com.telenav.kivakit.core.collections.map.VariableMap;
 import com.telenav.kivakit.core.internal.lexakai.DiagramString;
 import com.telenav.kivakit.core.string.AsciiArt;
 import com.telenav.kivakit.core.string.StringConversions;
-import com.telenav.kivakit.core.string.Strings;
 import com.telenav.kivakit.core.value.count.Count;
 import com.telenav.kivakit.core.value.count.Maximum;
 import com.telenav.kivakit.interfaces.comparison.Matcher;
@@ -39,7 +38,9 @@ import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMEN
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_INSUFFICIENT;
 import static com.telenav.kivakit.core.os.Console.console;
+import static com.telenav.kivakit.core.string.Formatter.format;
 import static com.telenav.kivakit.core.value.count.Maximum.MAXIMUM;
+import static java.lang.Math.max;
 
 /**
  * A list of strings, adding useful string operations to {@link ObjectList}. Inherited methods that return lists are
@@ -346,7 +347,7 @@ public class StringList extends ObjectList<String>
      */
     public StringList add(String message, Object... arguments)
     {
-        add(Strings.format(message, arguments));
+        add(format(message, arguments));
         return this;
     }
 
@@ -454,7 +455,7 @@ public class StringList extends ObjectList<String>
         int count = 0;
         for (var at : this)
         {
-            count = Math.max(at.length(), count);
+            count = max(at.length(), count);
         }
         return Count.count(count);
     }
@@ -632,7 +633,7 @@ public class StringList extends ObjectList<String>
 
     protected String objectToString(Object object)
     {
-        return StringConversions.toString(object);
+        return StringConversions.toHumanizedString(object);
     }
 
     /**

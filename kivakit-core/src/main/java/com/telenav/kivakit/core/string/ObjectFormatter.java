@@ -33,6 +33,7 @@ import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMEN
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_INSUFFICIENT;
 import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
 import static com.telenav.kivakit.core.ensure.Ensure.fail;
+import static com.telenav.kivakit.core.language.reflection.Type.type;
 import static com.telenav.kivakit.core.language.reflection.property.PropertyFilter.allProperties;
 import static com.telenav.kivakit.core.language.reflection.property.PropertyMemberSelector.ALL_FIELDS_AND_METHODS;
 import static com.telenav.kivakit.core.string.ObjectFormatter.ObjectFormat.SINGLE_LINE;
@@ -87,7 +88,7 @@ public class ObjectFormatter
             return "null";
         }
 
-        Type<?> type = Type.type(object);
+        Type<?> type = type(object);
         var strings = new StringList();
         for (var property : type.properties(allProperties(ALL_FIELDS_AND_METHODS)))
         {
@@ -199,7 +200,7 @@ public class ObjectFormatter
         else
         {
             // Get the type object for this value
-            Type<?> valueType = Type.type(propertyValue);
+            Type<?> valueType = type(propertyValue);
 
             // If the value doesn't directly implement toString, and it's not a
             // system type (something implemented by Java)

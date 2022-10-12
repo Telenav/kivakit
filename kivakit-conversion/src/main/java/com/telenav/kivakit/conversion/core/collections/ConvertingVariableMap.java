@@ -3,12 +3,12 @@ package com.telenav.kivakit.conversion.core.collections;
 import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.conversion.StringConverter;
 import com.telenav.kivakit.core.collections.map.VariableMap;
-import com.telenav.kivakit.core.language.Classes;
 import com.telenav.kivakit.core.messaging.Listener;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static com.telenav.kivakit.core.language.Classes.newInstance;
 
 /**
  * Wraps a {@link VariableMap} to provide string get/put methods.
@@ -58,7 +58,7 @@ public class ConvertingVariableMap
      */
     public <T> T get(String key, Class<? extends StringConverter<T>> converterType)
     {
-        return get(key, Classes.newInstance(converterType, Listener.class, listener));
+        return get(key, newInstance(converterType, Listener.class, listener));
     }
 
     /**
@@ -71,7 +71,7 @@ public class ConvertingVariableMap
      */
     public <T> T get(String key, Class<? extends StringConverter<T>> converterType, T defaultValue)
     {
-        return get(key, Classes.newInstance(converterType, Listener.class, listener), defaultValue);
+        return get(key, newInstance(converterType, Listener.class, listener), defaultValue);
     }
 
     /**
@@ -113,7 +113,7 @@ public class ConvertingVariableMap
      */
     public <T> void put(String key, Class<? extends StringConverter<T>> converterType, T text)
     {
-        put(key, Classes.newInstance(converterType, Listener.class, listener), text);
+        put(key, newInstance(converterType, Listener.class, listener), text);
     }
 
     /**

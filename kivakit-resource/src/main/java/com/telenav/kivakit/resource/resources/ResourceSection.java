@@ -35,6 +35,8 @@ import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTE
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
+import static com.telenav.kivakit.core.io.IO.skip;
+import static com.telenav.kivakit.core.value.count.Bytes.bytes;
 
 /**
  * A portion of a resource from one offset into the resource to another.
@@ -91,7 +93,7 @@ public class ResourceSection extends BaseReadableResource
     public InputStream onOpenForReading()
     {
         InputStream in = resource.openForReading();
-        IO.skip(this, in, startOffset);
+        skip(this, in, startOffset);
         return new InputStream()
         {
             private long offset = startOffset;
@@ -120,7 +122,7 @@ public class ResourceSection extends BaseReadableResource
     @Override
     public Bytes sizeInBytes()
     {
-        return Bytes.bytes(endOffset - startOffset);
+        return bytes(endOffset - startOffset);
     }
 
     @Override

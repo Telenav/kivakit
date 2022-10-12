@@ -32,9 +32,10 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 import java.io.Serializable;
 import java.util.Objects;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static com.telenav.kivakit.commandline.SwitchParser.switchParser;
 
 /**
  * <p>
@@ -50,9 +51,9 @@ import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
  *
  * <p>
  * Deployments can be added to a {@link DeploymentSet} via {@link DeploymentSet#addDeploymentsIn(ResourceFolder)}. The
- * method SwitchParser.deployment(DeploymentSet) will create a command line SwitchParser that can select among several
- * deployments in a {@link DeploymentSet} by name. This is handled automatically if the application places deployments
- * in the application-relative package "deployments".
+ * method {@link #deploymentSwitchParser(Listener, DeploymentSet, String)} will create a command line SwitchParser that
+ * can select among several deployments in a {@link DeploymentSet} by name. This is handled automatically if the
+ * application places deployments in the application-relative package "deployments".
  * </p>
  *
  * <p>
@@ -174,7 +175,7 @@ public class Deployment extends MemorySettingsStore implements Serializable
                                                                           DeploymentSet deployments,
                                                                           String switchName)
     {
-        return SwitchParser.switchParser(Deployment.class)
+        return switchParser(Deployment.class)
                 .name("deployment")
                 .validValues(deployments.deployments())
                 .converter(new Deployment.Converter(listener, deployments))

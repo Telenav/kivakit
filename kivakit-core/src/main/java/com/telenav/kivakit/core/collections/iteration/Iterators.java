@@ -46,19 +46,20 @@ import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
  * <p><b>Equality</b></p>
  *
  * <ul>
- *     <li>{@link #hashCode(Iterator)}</li>
- *     <li>{@link #equals(Iterator, Iterator)}</li>
+ *     <li>{@link #iteratorHashCode(Iterator)}</li>
+ *     <li>{@link #equalIterators(Iterator, Iterator)}</li>
  * </ul>
  *
  * <p><b>Size</b></p>
  *
  * <ul>
- *     <li>{@link #size(Iterator)}</li>
- *     <li>{@link #isEmpty(Iterator)}</li>
+ *     <li>{@link #iteratorSize(Iterator)}</li>
+ *     <li>{@link #isEmptyIterator(Iterator)}</li>
  * </ul>
  *
  * @author jonathanl (shibo)
  */
+@SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramIteration.class)
 @CodeQuality(stability = STABLE_EXTENSIBLE,
              testing = UNTESTED,
@@ -90,7 +91,7 @@ public class Iterators
     /**
      * Returns true if the two sequences are equal
      */
-    public static <T> boolean equals(Iterator<T> a, Iterator<T> b)
+    public static <T> boolean equalIterators(Iterator<T> a, Iterator<T> b)
     {
         while (true)
         {
@@ -113,7 +114,7 @@ public class Iterators
     /**
      * Returns a hash code for the objects in a sequence
      */
-    public static <T> int hashCode(Iterator<T> iterator)
+    public static <T> int iteratorHashCode(Iterator<T> iterator)
     {
         var hashCode = 1;
         while (iterator.hasNext())
@@ -130,7 +131,7 @@ public class Iterators
     /**
      * Returns true if the given iterable has no values
      */
-    public static boolean isEmpty(@NotNull Iterator<?> iterator)
+    public static boolean isEmptyIterator(@NotNull Iterator<?> iterator)
     {
         return !iterator.hasNext();
     }
@@ -177,7 +178,7 @@ public class Iterators
      * @param iterator An iterator
      * @return The number of items produced by this iterator
      */
-    public static int size(Iterator<?> iterator)
+    public static int iteratorSize(Iterator<?> iterator)
     {
         var counter = 0;
         while (iterator.hasNext())

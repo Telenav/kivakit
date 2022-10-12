@@ -18,37 +18,41 @@
 
 package com.telenav.kivakit.internal.tests.filesystem;
 
-import com.telenav.kivakit.filesystem.Folders;
-import com.telenav.kivakit.testing.UnitTest;
-import com.telenav.kivakit.core.time.Duration;
 import com.telenav.kivakit.filesystem.Folder;
 import com.telenav.kivakit.resource.FileName;
+import com.telenav.kivakit.testing.UnitTest;
 import org.junit.Ignore;
 import org.junit.Test;
+
+import static com.telenav.kivakit.core.time.Duration.seconds;
+import static com.telenav.kivakit.core.time.Duration.untilNextSecond;
+import static com.telenav.kivakit.filesystem.Folder.parseFolder;
+import static com.telenav.kivakit.filesystem.Folders.kivakitTestFolder;
+import static com.telenav.kivakit.filesystem.Folders.userHome;
 
 public class FolderTest extends UnitTest
 {
     @Test
     public void testAge()
     {
-        var file = Folders.kivakitTestFolder(getClass()).file("age-test.txt");
+        var file = kivakitTestFolder(getClass()).file("age-test.txt");
         file.delete();
         file.saveText("test");
-        ensure(file.createdAt().elapsedSince().isLessThan(Duration.seconds(30)));
+        ensure(file.createdAt().elapsedSince().isLessThan(seconds(30)));
     }
 
     @Test
     public void testAsAbsolute()
     {
-        Folder foo = Folder.parseFolder(this, "~/foo");
+        Folder foo = parseFolder(this, "~/foo");
         assert foo != null;
-        ensureEqual(Folders.userHome().folder("foo").withTrailingSlash(), foo.absolute());
+        ensureEqual(userHome().folder("foo").withTrailingSlash(), foo.absolute());
     }
 
     @Test
     public void testClear()
     {
-        var folder = Folders.kivakitTestFolder(getClass()).folder("clear-test");
+        var folder = kivakitTestFolder(getClass()).folder("clear-test");
         folder.mkdirs();
         folder.file("a.txt").saveText("A");
         folder.file("b.txt").saveText("B");
@@ -60,7 +64,7 @@ public class FolderTest extends UnitTest
     @Test
     public void testDelete()
     {
-        var file = Folders.kivakitTestFolder(getClass()).file("delete-test.txt");
+        var file = kivakitTestFolder(getClass()).file("delete-test.txt");
         file.saveText("test");
         ensure(file.exists());
         file.delete();
@@ -68,14 +72,15 @@ public class FolderTest extends UnitTest
     }
 
     // This test works but it's disabled to make the build run faster
+    @SuppressWarnings("unused")
     @Ignore
     public void testOldest()
     {
-        var folder = Folders.kivakitTestFolder(getClass()).folder("clear-test");
+        var folder = kivakitTestFolder(getClass()).folder("clear-test");
         folder.mkdirs();
         folder.clearAll();
         folder.file("a.txt").saveText("A");
-        Duration.untilNextSecond().sleep();
+        untilNextSecond().sleep();
         folder.file("b.txt").saveText("B");
         ensureEqual(FileName.parseFileName(this, "a.txt"), folder.oldest().fileName());
     }
@@ -83,7 +88,7 @@ public class FolderTest extends UnitTest
     @Test
     public void testTemporary()
     {
-        var folder = Folders.kivakitTestFolder(getClass());
+        var folder = kivakitTestFolder(getClass());
         ensure(folder.exists());
     }
 }

@@ -20,12 +20,10 @@ package com.telenav.kivakit.settings;
 
 import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.logging.Logger;
-import com.telenav.kivakit.core.logging.LoggerFactory;
 import com.telenav.kivakit.core.object.Lazy;
 import com.telenav.kivakit.core.registry.InstanceIdentifier;
 import com.telenav.kivakit.core.registry.Registry;
 import com.telenav.kivakit.core.vm.JavaTrait;
-import com.telenav.kivakit.filesystem.Folder;
 import com.telenav.kivakit.resource.ResourceFolder;
 import com.telenav.kivakit.settings.internal.lexakai.DiagramSettings;
 import com.telenav.kivakit.settings.stores.MemorySettingsStore;
@@ -36,6 +34,10 @@ import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMEN
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.ensure.Ensure.fail;
+import static com.telenav.kivakit.core.logging.LoggerFactory.newLogger;
+import static com.telenav.kivakit.core.object.Lazy.lazy;
+import static com.telenav.kivakit.core.registry.Registry.registryFor;
+import static com.telenav.kivakit.filesystem.Folder.parseFolder;
 import static com.telenav.kivakit.settings.SettingsStore.AccessMode.LOAD;
 
 /**
@@ -65,7 +67,7 @@ import static com.telenav.kivakit.settings.SettingsStore.AccessMode.LOAD;
  * {@link SettingsStore} is something like:
  * </p>
  * <pre>
- * registerSettingsIn(PackageSettingsStore.of(package));</pre>
+ * registerSettingsIn(packageForThis());</pre>
  *
  * <p>
  * Settings that are loaded from stores or explicitly added with registration methods are indexed in the store under
@@ -133,10 +135,10 @@ public class SettingsRegistry extends MemorySettingsStore implements
         SettingsTrait,
         JavaTrait
 {
-    private static final Logger LOGGER = LoggerFactory.newLogger();
+    private static final Logger LOGGER = newLogger();
 
     /** The global settings registry */
-    private static final Lazy<SettingsRegistry> global = Lazy.lazy(() ->
+    private static final Lazy<SettingsRegistry> global = lazy(() ->
             LOGGER.listenTo(new SettingsRegistry()
             {
                 @Override
@@ -177,7 +179,7 @@ public class SettingsRegistry extends MemorySettingsStore implements
         loadSettingsFolders();
 
         // then look in the global object registry for the settings object,
-        var settings = Registry.registryFor(this).lookup(type, instance);
+        var settings = registryFor(this).lookup(type, instance);
 
         // and if settings still have not been explicitly defined,
         if (settings == null)
@@ -264,7 +266,7 @@ public class SettingsRegistry extends MemorySettingsStore implements
             for (var path : settingsFolders.split(",\\s*"))
             {
                 // and install
-                var folder = Folder.parseFolder(this, path);
+                var folder = parseFolder(this, path);
                 if (folder != null)
                 {
                     indexAll(new ResourceFolderSettingsStore(this, folder));

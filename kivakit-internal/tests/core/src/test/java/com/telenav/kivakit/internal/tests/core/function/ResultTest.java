@@ -42,7 +42,7 @@ public class ResultTest extends CoreUnitTest implements ResultTrait
         ensureEqual(result.get(), null);
         ensure(result.failed());
         ensure(result.messages().isNonEmpty());
-        ensure(result.messages().get(0).formatted().equals("Failed!"));
+        ensure("Failed!".equals(result.messages().get(0).formatted()));
     }
 
     @Test

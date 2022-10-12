@@ -19,21 +19,23 @@
 package com.telenav.kivakit.core.thread;
 
 import com.telenav.kivakit.annotations.code.quality.CodeQuality;
-import com.telenav.kivakit.core.code.UncheckedCode;
+import com.telenav.kivakit.core.collections.list.ObjectList;
 import com.telenav.kivakit.core.internal.lexakai.DiagramThread;
 import com.telenav.kivakit.core.value.count.Count;
 import com.telenav.kivakit.core.value.count.MutableCount;
-import com.telenav.kivakit.core.vm.JavaVirtualMachine;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static com.telenav.kivakit.core.code.UncheckedCode.unchecked;
+import static com.telenav.kivakit.core.collections.list.ObjectList.list;
+import static com.telenav.kivakit.core.vm.JavaVirtualMachine.javaVirtualMachine;
+import static java.lang.Math.max;
+import static java.lang.Thread.currentThread;
+import static java.util.concurrent.Executors.newFixedThreadPool;
 import static java.util.concurrent.TimeUnit.MILLISECONDS;
 
 /**
@@ -51,13 +53,13 @@ public class Threads
     /**
      * Returns all threads in the virtual machine
      */
-    public static Iterable<Thread> allThreads()
+    public static ObjectList<Thread> allThreads()
     {
         // Get the root thread group
         var rootGroup = rootThreadGroup();
 
         // Initially expect the larger of 8 or the number of active threads
-        var expected = Math.max(8, rootGroup.activeCount());
+        var expected = max(8, rootGroup.activeCount());
 
         // Allocate initial array for threads
         var enumerated = new Thread[expected];
@@ -71,7 +73,7 @@ public class Threads
         }
 
         // Return the array as a list
-        return new ArrayList<>(Arrays.asList(enumerated).subList(0, count));
+        return list(enumerated).subList(0, count);
     }
 
     /**
@@ -79,7 +81,7 @@ public class Threads
      */
     public static void awaitTermination(ExecutorService executor)
     {
-        UncheckedCode.unchecked(() -> executor.awaitTermination(Long.MAX_VALUE, MILLISECONDS)).orNull();
+        unchecked(() -> executor.awaitTermination(Long.MAX_VALUE, MILLISECONDS)).orNull();
     }
 
     /**
@@ -88,7 +90,7 @@ public class Threads
     public static ThreadGroup rootThreadGroup()
     {
         ThreadGroup root = null;
-        for (var current = Thread.currentThread().getThreadGroup(); current != null; current = current.getParent())
+        for (var current = currentThread().getThreadGroup(); current != null; current = current.getParent())
         {
             root = current;
         }
@@ -113,7 +115,7 @@ public class Threads
     public static ExecutorService threadPool(String name, Count threads)
     {
         var identifier = new MutableCount(1);
-        return Executors.newFixedThreadPool(threads.asInt(), runnable ->
+        return newFixedThreadPool(threads.asInt(), runnable ->
                 new Thread(runnable, "KivaKit-" + name + "-" + identifier.increment()));
     }
 
@@ -122,6 +124,6 @@ public class Threads
      */
     public static ExecutorService threadPool(String name)
     {
-        return threadPool(name, JavaVirtualMachine.javaVirtualMachine().processors());
+        return threadPool(name, javaVirtualMachine().processors());
     }
 }

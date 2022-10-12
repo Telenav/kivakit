@@ -3,12 +3,11 @@ package com.telenav.kivakit.interfaces.numeric;
 import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.interfaces.comparison.Matcher;
 
-import java.util.Objects;
-
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.interfaces.comparison.Matcher.matchAll;
+import static java.util.Objects.requireNonNull;
 
 /**
  * Provides convenient random number methods given an implementation of {@link #randomLongExclusive(long, long)}, and
@@ -129,7 +128,7 @@ public interface RandomNumeric extends CastTrait
                                                  Class<T> type,
                                                  Matcher<T> matcher)
     {
-        Objects.requireNonNull(matcher);
+        requireNonNull(matcher);
         T value;
         do
         {

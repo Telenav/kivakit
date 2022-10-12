@@ -268,7 +268,7 @@ public class Type<T> implements Named
     {
         if (isArray())
         {
-            return Type.type(type.getComponentType());
+            return type(type.getComponentType());
         }
         return null;
     }
@@ -402,7 +402,7 @@ public class Type<T> implements Named
         var interfaces = new ObjectList<Type<?>>();
         for (var at : type.getInterfaces())
         {
-            interfaces.add(Type.typeForClass(at));
+            interfaces.add(typeForClass(at));
         }
         return interfaces;
     }

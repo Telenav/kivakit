@@ -20,18 +20,20 @@ package com.telenav.kivakit.core.value.level;
 
 import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramCount;
-import com.telenav.kivakit.core.language.primitive.Doubles;
 import com.telenav.kivakit.core.messaging.Listener;
-import com.telenav.kivakit.core.string.Strip;
 import com.telenav.kivakit.interfaces.value.DoubleValued;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.Objects;
-
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static com.telenav.kivakit.core.language.primitive.Doubles.doubleInRange;
+import static com.telenav.kivakit.core.language.primitive.Doubles.formatDouble;
+import static com.telenav.kivakit.core.string.Strip.stripEnding;
+import static java.lang.Double.compare;
+import static java.lang.Double.parseDouble;
+import static java.util.Objects.hash;
 
 /**
  * A percentage of any range (not only from 0 to 100%). A percent object can be created with {@link #percent(double)},
@@ -88,8 +90,8 @@ public final class Percent implements
     {
         try
         {
-            return Percent.percent(Double.parseDouble(text.endsWith("%")
-                    ? Strip.ending(text, "%")
+            return percent(parseDouble(text.endsWith("%")
+                    ? stripEnding(text, "%")
                     : text));
         }
         catch (Exception e)
@@ -144,7 +146,7 @@ public final class Percent implements
      */
     public double asZeroToOne()
     {
-        return Doubles.doubleInRange(percent / 100.0, 0.0, 1.0);
+        return doubleInRange(percent / 100.0, 0.0, 1.0);
     }
 
     /**
@@ -153,7 +155,7 @@ public final class Percent implements
     @Override
     public int compareTo(@NotNull Percent that)
     {
-        return Double.compare(percent, that.percent);
+        return compare(percent, that.percent);
     }
 
     /**
@@ -190,7 +192,7 @@ public final class Percent implements
     @Override
     public int hashCode()
     {
-        return Objects.hash(percent);
+        return hash(percent);
     }
 
     /**
@@ -266,6 +268,6 @@ public final class Percent implements
     @Override
     public String toString()
     {
-        return Doubles.formatDouble(percent, 1) + "%";
+        return formatDouble(percent, 1) + "%";
     }
 }

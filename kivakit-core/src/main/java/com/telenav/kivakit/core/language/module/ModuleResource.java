@@ -21,10 +21,9 @@ package com.telenav.kivakit.core.language.module;
 import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramModule;
 import com.telenav.kivakit.core.io.Nio;
-import com.telenav.kivakit.core.string.ObjectFormatter;
 import com.telenav.kivakit.core.language.reflection.property.IncludeProperty;
 import com.telenav.kivakit.core.messaging.Listener;
-import com.telenav.kivakit.core.path.StringPath;
+import com.telenav.kivakit.core.string.ObjectFormatter;
 import com.telenav.kivakit.core.time.Time;
 import com.telenav.kivakit.core.value.count.Bytes;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
@@ -36,9 +35,12 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.attribute.BasicFileAttributes;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
+import static com.telenav.kivakit.core.path.StringPath.stringPath;
+import static com.telenav.kivakit.core.time.Time.epochMilliseconds;
+import static com.telenav.kivakit.core.value.count.Bytes.bytes;
 
 /**
  * A resource in a module having the following attributes. {@link ModuleResource}s can be found with the methods in
@@ -90,8 +92,8 @@ public class ModuleResource
                     var javaPath = Path.of(uri);
                     if (!Files.isDirectory(javaPath))
                     {
-                        var filepath = StringPath.stringPath(javaPath);
-                        var folder = StringPath.stringPath(location.get());
+                        var filepath = stringPath(javaPath);
+                        var folder = stringPath(location.get());
                         var testFolder = folder.withoutLast().withChild("test-classes");
                         if (filepath.startsWith(folder))
                         {
@@ -114,7 +116,7 @@ public class ModuleResource
                 {
                     //noinspection resource
                     Nio.filesystem(listener, uri);
-                    var _package = PackageReference.packageReference(StringPath.stringPath(uri));
+                    var _package = PackageReference.packageReference(stringPath(uri));
                     return new ModuleResource(_package, uri);
                 }
 
@@ -151,9 +153,9 @@ public class ModuleResource
         try
         {
             var path = Path.of(uri);
-            size = Bytes.bytes(Files.size(path));
-            lastModified = Time.epochMilliseconds(Files.getLastModifiedTime(path).toMillis());
-            created = Time.epochMilliseconds(Files.readAttributes(path, BasicFileAttributes.class).creationTime().toMillis());
+            size = bytes(Files.size(path));
+            lastModified = epochMilliseconds(Files.getLastModifiedTime(path).toMillis());
+            created = epochMilliseconds(Files.readAttributes(path, BasicFileAttributes.class).creationTime().toMillis());
         }
         catch (IOException ignored)
         {
@@ -182,7 +184,7 @@ public class ModuleResource
      */
     public Path javaPath()
     {
-        return StringPath.stringPath(uri).asJavaPath();
+        return stringPath(uri).asJavaPath();
     }
 
     /**
@@ -228,6 +230,6 @@ public class ModuleResource
 
     private String fileName()
     {
-        return StringPath.stringPath(uri).last();
+        return stringPath(uri).last();
     }
 }

@@ -21,19 +21,21 @@ import com.telenav.kivakit.internal.testing.CoreUnitTest;
 import com.telenav.kivakit.core.time.Rate;
 import org.junit.Test;
 
+import static com.telenav.kivakit.core.time.Rate.perSecond;
+
 public class RateTest extends CoreUnitTest
 {
     @Test
     public void test()
     {
-        var rate = Rate.perSecond(1);
+        var rate = perSecond(1);
         ensureEqual(1.0, rate.count());
         ensureEqual(60.0, rate.perMinute().count());
         ensureEqual(3600.0, rate.perHour().count());
         ensureEqual(24 * 3600.0, rate.perDay().count());
         ensureEqual(Rate.perMinute(60.0), rate);
-        ensure(rate.compareTo(Rate.perSecond(2)) < 0);
-        ensure(rate.isSlowerThan(Rate.perSecond(2)));
-        ensure(rate.isFasterThan(Rate.perSecond(0.5)));
+        ensure(rate.compareTo(perSecond(2)) < 0);
+        ensure(rate.isSlowerThan(perSecond(2)));
+        ensure(rate.isFasterThan(perSecond(0.5)));
     }
 }

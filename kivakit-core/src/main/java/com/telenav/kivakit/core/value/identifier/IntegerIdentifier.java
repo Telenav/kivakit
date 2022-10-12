@@ -24,6 +24,8 @@ import com.telenav.kivakit.interfaces.model.Identifiable;
 import com.telenav.kivakit.interfaces.value.LongValued;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
+import static java.lang.Integer.compare;
+
 /**
  * An identifier with an int sized value
  *
@@ -61,7 +63,7 @@ public class IntegerIdentifier implements
     @Override
     public int compareTo(IntegerIdentifier that)
     {
-        return Integer.compare(identifier, that.identifier);
+        return compare(identifier, that.identifier);
     }
 
     @Override

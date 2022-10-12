@@ -17,11 +17,12 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.telenav.kivakit.internal.tests.core.string;
+
 import com.telenav.kivakit.core.string.IndentingStringBuilder;
 import com.telenav.kivakit.internal.testing.CoreUnitTest;
 import org.junit.Test;
 
-import static com.telenav.kivakit.core.string.IndentingStringBuilder.Indentation;
+import static com.telenav.kivakit.core.string.IndentingStringBuilder.Indentation.indentation;
 import static com.telenav.kivakit.core.string.IndentingStringBuilder.Style.TEXT;
 
 public class IndentingStringBuilderTest extends CoreUnitTest
@@ -29,7 +30,7 @@ public class IndentingStringBuilderTest extends CoreUnitTest
     @Test
     public void test()
     {
-        var builder = new IndentingStringBuilder(TEXT, Indentation.indentation(2));
+        var builder = new IndentingStringBuilder(TEXT, indentation(2));
         builder.appendLine("<a>");
         builder.indent();
         builder.appendLine("<b>");

@@ -20,7 +20,6 @@ package com.telenav.kivakit.core.language.reflection.property;
 
 import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramReflection;
-import com.telenav.kivakit.core.language.Hash;
 import com.telenav.kivakit.core.language.reflection.Field;
 import com.telenav.kivakit.core.language.reflection.Member;
 import com.telenav.kivakit.core.language.reflection.Method;
@@ -39,6 +38,7 @@ import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMEN
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.ensure.Ensure.ensure;
+import static com.telenav.kivakit.core.language.Hash.hashMany;
 
 /**
  * A property with a getter and/or setter.
@@ -174,7 +174,7 @@ public class Property implements Named, Comparable<Property>
     @Override
     public int hashCode()
     {
-        return Hash.hashMany(name);
+        return hashMany(name);
     }
 
     /**

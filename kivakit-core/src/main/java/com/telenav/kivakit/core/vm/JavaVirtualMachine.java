@@ -33,6 +33,8 @@ import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTE
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.os.OperatingSystem.operatingSystem;
+import static com.telenav.kivakit.core.value.count.Bytes.bytes;
+import static com.telenav.kivakit.core.value.count.Count.count;
 
 /**
  * An object for working with the Java virtual machine.
@@ -143,7 +145,7 @@ public class JavaVirtualMachine extends BaseRepeater
      */
     public Bytes freeMemory()
     {
-        return Bytes.bytes(Runtime.getRuntime().freeMemory());
+        return bytes(Runtime.getRuntime().freeMemory());
     }
 
     /**
@@ -172,7 +174,7 @@ public class JavaVirtualMachine extends BaseRepeater
      */
     public Bytes maximumMemory()
     {
-        return Bytes.bytes(Runtime.getRuntime().maxMemory());
+        return bytes(Runtime.getRuntime().maxMemory());
     }
 
     /**
@@ -180,7 +182,7 @@ public class JavaVirtualMachine extends BaseRepeater
      */
     public Count processors()
     {
-        return Count.count(Runtime.getRuntime().availableProcessors());
+        return count(Runtime.getRuntime().availableProcessors());
     }
 
     /**
@@ -228,7 +230,7 @@ public class JavaVirtualMachine extends BaseRepeater
      */
     public Bytes totalMemory()
     {
-        return Bytes.bytes(Runtime.getRuntime().totalMemory());
+        return bytes(Runtime.getRuntime().totalMemory());
     }
 
     /**
@@ -236,6 +238,6 @@ public class JavaVirtualMachine extends BaseRepeater
      */
     public Bytes usedMemory()
     {
-        return Bytes.bytes(Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory());
+        return bytes(Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory());
     }
 }

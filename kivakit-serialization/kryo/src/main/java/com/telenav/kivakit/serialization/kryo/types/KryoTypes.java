@@ -21,11 +21,9 @@ package com.telenav.kivakit.serialization.kryo.types;
 import com.esotericsoftware.kryo.Kryo;
 import com.esotericsoftware.kryo.Serializer;
 import com.telenav.kivakit.annotations.code.quality.CodeQuality;
-import com.telenav.kivakit.core.collections.Collections;
 import com.telenav.kivakit.core.collections.Maps;
 import com.telenav.kivakit.core.collections.list.ObjectList;
 import com.telenav.kivakit.core.collections.list.StringList;
-import com.telenav.kivakit.core.language.Classes;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.interfaces.naming.Named;
 import com.telenav.kivakit.serialization.core.SerializationSessionFactory;
@@ -35,13 +33,15 @@ import com.telenav.kivakit.serialization.kryo.KryoSerializationSessionFactory;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Set;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static com.telenav.kivakit.core.collections.Collections.pickOne;
 import static com.telenav.kivakit.core.ensure.Ensure.fail;
+import static com.telenav.kivakit.core.language.Classes.simpleName;
+import static java.util.Objects.hash;
 
 /**
  * A set of Kryo type registrations required to construct a {@link KryoSerializationSession}.
@@ -173,7 +173,7 @@ public class KryoTypes implements Named
     @Override
     public int hashCode()
     {
-        return Objects.hash(nextIdentifier);
+        return hash(nextIdentifier);
     }
 
     /**
@@ -212,8 +212,8 @@ public class KryoTypes implements Named
             }
         }
 
-        var thisFirstEntry = Collections.pickOne(entries.values());
-        var thatFirstEntry = Collections.pickOne(that.entries.values());
+        var thisFirstEntry = pickOne(entries.values());
+        var thatFirstEntry = pickOne(that.entries.values());
 
         assert thisFirstEntry != null;
         assert thatFirstEntry != null;
@@ -226,7 +226,7 @@ public class KryoTypes implements Named
     @Override
     public String name()
     {
-        return merged.join("+", set -> Classes.simpleName(set.getClass()));
+        return merged.join("+", set -> simpleName(set.getClass()));
     }
 
     /**

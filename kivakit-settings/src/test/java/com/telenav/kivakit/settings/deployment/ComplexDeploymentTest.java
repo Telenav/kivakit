@@ -18,21 +18,23 @@
 
 package com.telenav.kivakit.settings.deployment;
 
-import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.registry.InstanceIdentifier;
 import com.telenav.kivakit.core.time.Duration;
 import com.telenav.kivakit.settings.Deployment;
 import com.telenav.kivakit.settings.ServerSettings;
-import com.telenav.kivakit.settings.SettingsRegistry;
 import com.telenav.kivakit.settings.SettingsTrait;
 import com.telenav.kivakit.testing.UnitTest;
 import org.junit.Test;
 
+import static com.telenav.kivakit.core.messaging.Listener.throwingListener;
+import static com.telenav.kivakit.core.registry.InstanceIdentifier.instanceIdentifier;
+import static com.telenav.kivakit.settings.SettingsRegistry.settingsFor;
+
 public class ComplexDeploymentTest extends UnitTest
 {
-    private static final InstanceIdentifier SERVER1 = InstanceIdentifier.instanceIdentifier(WhichServer.SERVER1);
+    private static final InstanceIdentifier SERVER1 = instanceIdentifier(WhichServer.SERVER1);
 
-    private static final InstanceIdentifier SERVER2 = InstanceIdentifier.instanceIdentifier(WhichServer.SERVER2);
+    private static final InstanceIdentifier SERVER2 = instanceIdentifier(WhichServer.SERVER2);
 
     enum WhichServer
     {
@@ -44,7 +46,7 @@ public class ComplexDeploymentTest extends UnitTest
     {
         public Development()
         {
-            super(Listener.throwingListener(), "development", "test development deployment");
+            super(throwingListener(), "development", "test development deployment");
             registerSettings(new Server1(), SERVER1);
             registerSettings(new Server2(), SERVER2);
         }
@@ -55,7 +57,7 @@ public class ComplexDeploymentTest extends UnitTest
     {
         public Production()
         {
-            super(Listener.throwingListener(), "production", "test production deployment");
+            super(throwingListener(), "production", "test production deployment");
             registerSettings(new Server3(), SERVER1);
             registerSettings(new Server4(), SERVER2);
         }
@@ -100,13 +102,13 @@ public class ComplexDeploymentTest extends UnitTest
     @Test
     public void testDevelopment()
     {
-        SettingsRegistry.globalSettings().registerSettingsIn(new Development());
+        settingsFor(this).registerSettingsIn(new Development());
 
-        var server1 = SettingsRegistry.settingsFor(this).requireSettings(ServerSettings.class, SERVER1);
+        var server1 = settingsFor(this).requireSettings(ServerSettings.class, SERVER1);
         ensureEqual(9001, server1.port());
         ensureEqual(Duration.ONE_MINUTE, server1.timeout());
 
-        var server2 = SettingsRegistry.settingsFor(this).requireSettings(ServerSettings.class, SERVER2);
+        var server2 = settingsFor(this).requireSettings(ServerSettings.class, SERVER2);
         ensureEqual(9002, server2.port());
         ensureEqual(Duration.ONE_MINUTE, server2.timeout());
     }

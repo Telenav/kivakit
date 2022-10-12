@@ -19,13 +19,10 @@
 package com.telenav.kivakit.core.language.module;
 
 import com.telenav.kivakit.annotations.code.quality.CodeQuality;
-import com.telenav.kivakit.core.collections.list.ObjectList;
-import com.telenav.kivakit.core.ensure.Ensure;
 import com.telenav.kivakit.core.internal.lexakai.DiagramPath;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.path.Path;
 import com.telenav.kivakit.core.path.StringPath;
-import com.telenav.kivakit.core.string.Strip;
 import com.telenav.kivakit.interfaces.comparison.Matcher;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import org.jetbrains.annotations.NotNull;
@@ -41,9 +38,15 @@ import java.util.stream.Collectors;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
+import static com.telenav.kivakit.core.collections.list.ObjectList.list;
+import static com.telenav.kivakit.core.ensure.Ensure.ensure;
+import static com.telenav.kivakit.core.messaging.Listener.nullListener;
+import static com.telenav.kivakit.core.messaging.Listener.throwingListener;
+import static com.telenav.kivakit.core.string.Strip.stripEnding;
+import static com.telenav.kivakit.core.string.Strip.stripLeading;
 
 /**
  * Represents the path to a Java package. The PackagePath object in kivakit-resource differs from this class.
@@ -83,12 +86,12 @@ import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_N
  * <p><b>Examples</b></p>
  *
  * <pre>
- * PackageReference.of(MyClass.class)
- * PackageReference.parsePackageReference(MyClass.class, "resources/images")
- * PackageReference.parsePackageReference(MyClass.class, "resources.images")
- * PackageReference.parsePackageReference(getClass(), "resources/images")
- * PackageReference.parsePackageReference("com.telenav.kivakit/core")
- * PackageReference.parsePackageReference("com.telenav.kivakit.core")
+ * packageReference(MyClass.class)
+ * parsePackageReference(MyClass.class, "resources/images")
+ * parsePackageReference(MyClass.class, "resources.images")
+ * parsePackageReference(getClass(), "resources/images")
+ * parsePackageReference("com.telenav.kivakit/core")
+ * parsePackageReference("com.telenav.kivakit.core")
  * </pre>
  *
  * @author jonathanl (shibo)
@@ -101,7 +104,7 @@ import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_N
 public final class PackageReference extends StringPath
 {
     /** Reference to the com.telenav package */
-    public static final PackageReference TELENAV = parsePackageReference(Listener.nullListener(), "com.telenav");
+    public static final PackageReference TELENAV = parsePackageReference(nullListener(), "com.telenav");
 
     /**
      * Returns true if the given path is a package reference
@@ -132,7 +135,7 @@ public final class PackageReference extends StringPath
      */
     public static PackageReference packageReference(Class<?> type)
     {
-        return packageReference(type, parseStringPath(Listener.nullListener(), type.getName(), null, "\\.").withoutLast());
+        return packageReference(type, parseStringPath(nullListener(), type.getName(), null, "\\.").withoutLast());
     }
 
     /**
@@ -205,7 +208,7 @@ public final class PackageReference extends StringPath
                 {
                     var filepath = join("/") + "/";
 
-                    var directory = StringPath.stringPath(location.toURI()).withChild(filepath).asJavaPath();
+                    var directory = stringPath(location.toURI()).withChild(filepath).asJavaPath();
 
                     if (Files.exists(directory))
                     {
@@ -284,8 +287,8 @@ public final class PackageReference extends StringPath
                         if (name.endsWith("/") && name.startsWith(filepath))
                         {
                             // then strip off the leading filepath,
-                            var suffix = Strip.leading(name, filepath);
-                            suffix = Strip.ending(suffix, "/");
+                            var suffix = stripLeading(name, filepath);
+                            suffix = stripEnding(suffix, "/");
 
                             // and if we have only a folder name left,
                             if (!suffix.contains("/") && !suffix.isEmpty())
@@ -318,7 +321,7 @@ public final class PackageReference extends StringPath
     public ModuleResource moduleResource(Listener listener, String relativePath)
     {
         var path = parseStringPath(listener, relativePath, "/", "/");
-        Ensure.ensure(path.isRelative());
+        ensure(path.isRelative());
         return Modules.moduleResource(listener, withChild(path));
     }
 
@@ -347,7 +350,7 @@ public final class PackageReference extends StringPath
                 .stream()
                 .filter(resource -> parsePackageReference(listener, resource.javaPath().toString()).startsWith(this))
                 .collect(Collectors.toList());
-        listener.trace("Found nested resources:\n$", ObjectList.list(resources).join("\n"));
+        listener.trace("Found nested resources:\n$", list(resources).join("\n"));
         return resources;
     }
 
@@ -402,7 +405,7 @@ public final class PackageReference extends StringPath
                 .stream()
                 .map(resource -> resource.packageReference().withPackageType(packageType))
                 .collect(Collectors.toSet());
-        listener.trace("Found sub-packages:\n$", ObjectList.list(packages).join("\n"));
+        listener.trace("Found sub-packages:\n$", list(packages).join("\n"));
         packages.addAll(jarSubPackages(listener));
         packages.addAll(filesystemSubPackages(listener));
         return packages;
@@ -457,7 +460,7 @@ public final class PackageReference extends StringPath
     @Override
     public PackageReference withParent(String path)
     {
-        return (PackageReference) super.withParent(PackageReference.parsePackageReference(Listener.throwingListener(), path));
+        return (PackageReference) super.withParent(parsePackageReference(throwingListener(), path));
     }
 
     /**
@@ -564,8 +567,8 @@ public final class PackageReference extends StringPath
     {
         if (path.contains("/"))
         {
-            return parseStringPath(Listener.throwingListener(), path, "/");
+            return parseStringPath(throwingListener(), path, "/");
         }
-        return parseStringPath(Listener.throwingListener(), path, "\\.");
+        return parseStringPath(throwingListener(), path, "\\.");
     }
 }
