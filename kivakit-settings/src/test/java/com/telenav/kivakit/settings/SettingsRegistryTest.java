@@ -139,7 +139,7 @@ public class SettingsRegistryTest extends UnitTest implements PackageTrait
         // Configure
         {
             // Add all properties files in this package to the global set
-            globalSettings().registerSettingsIn(new ResourceFolderSettingsStore(this, packageForThis()));
+            globalSettings().registerSettingsIn(packageForThis());
         }
 
         // Get settings

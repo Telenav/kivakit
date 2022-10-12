@@ -26,6 +26,7 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static com.telenav.kivakit.core.collections.list.ObjectList.list;
 import static com.telenav.kivakit.core.string.Strip.stripLeading;
 import static com.telenav.kivakit.core.time.Duration.*;
 import static com.telenav.kivakit.core.time.Duration.FOREVER;
@@ -124,6 +125,8 @@ public class Frequency
      */
     public static Frequency every(Duration duration)
     {
+        System.out.println(list(3, 1, 2).sorted().join(", "));
+
         return new Frequency(duration);
     }
 

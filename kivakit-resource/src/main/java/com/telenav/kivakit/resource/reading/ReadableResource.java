@@ -107,7 +107,7 @@ public interface ReadableResource extends
      */
     default ResourceReader reader(@NotNull ProgressReporter reporter)
     {
-        return new ResourceReader(resource(), reporter, charset());
+        return new ResourceReader(reporter, resource(), charset());
     }
 
     /**
@@ -124,7 +124,7 @@ public interface ReadableResource extends
     default ResourceReader reader(@NotNull ProgressReporter reporter,
                                   @NotNull Charset charset)
     {
-        return new ResourceReader(resource(), reporter, charset);
+        return new ResourceReader(reporter, resource(), charset);
     }
 
     /**
