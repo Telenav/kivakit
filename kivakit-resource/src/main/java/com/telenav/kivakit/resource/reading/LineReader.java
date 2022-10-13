@@ -24,10 +24,7 @@ import com.telenav.kivakit.core.messaging.repeaters.BaseRepeater;
 import com.telenav.kivakit.core.progress.ProgressReporter;
 import org.jetbrains.annotations.NotNull;
 
-import java.io.Closeable;
-import java.io.IOException;
 import java.io.LineNumberReader;
-import java.io.UncheckedIOException;
 import java.util.function.Consumer;
 import java.util.stream.Stream;
 
@@ -94,7 +91,8 @@ public class LineReader extends BaseRepeater
     }
 
     /**
-     * Returns the lines in this resource as a list of strings
+     * Returns the lines in this resource as a list of strings. If an error occurs, broadcasts a problem and returns an
+     * empty list.
      */
     public StringList lines()
     {
@@ -102,6 +100,10 @@ public class LineReader extends BaseRepeater
         try (var stream = stream())
         {
             stream.forEach(lines::add);
+        }
+        catch (Exception e)
+        {
+            problem(e, "Unable to read lines");
         }
         return lines;
     }
@@ -142,35 +144,11 @@ public class LineReader extends BaseRepeater
     public Stream<String> stream()
     {
         var reader = new LineNumberReader(listenTo(resource.reader(reporter)).textReader());
-        try
-        {
-            reporter.start();
-            return reader.lines().peek(line -> reporter.next()).onClose(closer(reader));
-        }
-        catch (Exception e)
-        {
-            close(this, reader);
-            problem("Unable to read from: $", resource);
-            return Stream.empty();
-        }
-        finally
+        reporter.start();
+        return reader.lines().peek(line -> reporter.next()).onClose(() ->
         {
             reporter.end();
-        }
-    }
-
-    private Runnable closer(@NotNull Closeable closeable)
-    {
-        return () ->
-        {
-            try
-            {
-                closeable.close();
-            }
-            catch (IOException e)
-            {
-                throw new UncheckedIOException(e);
-            }
-        };
+            close(this, reader);
+        });
     }
 }
