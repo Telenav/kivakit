@@ -338,9 +338,9 @@ public class ObjectList<Value> extends BaseList<Value>
      * {@inheritDoc}
      */
     @Override
-    public <To> ObjectList<To> mapped(Function<Value, To> mapper)
+    public <To> ObjectList<To> map(Function<Value, To> mapper)
     {
-        return (ObjectList<To>) super.mapped(mapper);
+        return (ObjectList<To>) super.map(mapper);
     }
 
     /**

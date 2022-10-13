@@ -156,7 +156,7 @@ public class ObjectListTest extends CoreUnitTest
     @Test
     public void testMapped()
     {
-        ensureEqual(list(1, 2, 3, 4, 5).mapped(value -> value * value), list(1, 4, 9, 16, 25));
+        ensureEqual(list(1, 2, 3, 4, 5).map(value -> value * value), list(1, 4, 9, 16, 25));
     }
 
     @Test

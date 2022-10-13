@@ -81,7 +81,7 @@ import static com.telenav.kivakit.interfaces.string.StringFormattable.Format.TO_
  *
  * <ul>
  *     <li>{@link #first()}</li>
- *     <li>{@link #mapped(Function)}</li>
+ *     <li>{@link #map(Function)}</li>
  * </ul>
  *
  * <p><b>Membership</b></p>
@@ -142,7 +142,7 @@ import static com.telenav.kivakit.interfaces.string.StringFormattable.Format.TO_
  * <p><b>Functional Methods</b></p>
  *
  * <ul>
- *     <li>{@link #mapped(Function)}</li>
+ *     <li>{@link #map(Function)}</li>
  *     <li>{@link #with(Object)}</li>
  * </ul>
  *
@@ -340,7 +340,7 @@ public abstract class BaseCollection<Value> implements
      * Returns this bounded list with all elements mapped by the given mapper to the mapper's target type
      */
     @SuppressWarnings("unchecked")
-    public <Output> BaseCollection<Output> mapped(Function<Value, Output> mapper)
+    public <Output> BaseCollection<Output> map(Function<Value, Output> mapper)
     {
         var filtered = (BaseCollection<Output>) newCollection();
         for (var element : this)

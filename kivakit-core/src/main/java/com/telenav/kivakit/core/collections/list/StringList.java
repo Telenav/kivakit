@@ -464,9 +464,9 @@ public class StringList extends ObjectList<String>
      * {@inheritDoc}
      */
     @Override
-    public <To> ObjectList<To> mapped(Function<String, To> mapper)
+    public <To> ObjectList<To> map(Function<String, To> mapper)
     {
-        return super.mapped(mapper);
+        return super.map(mapper);
     }
 
     /**

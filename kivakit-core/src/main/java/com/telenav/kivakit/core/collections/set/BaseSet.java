@@ -86,7 +86,7 @@ import static java.util.Collections.emptySet;
  *     <li>{@link #copy()}</li>
  *     <li>{@link #first()}</li>
  *     <li>{@link #matching(Matcher)}</li>
- *     <li>{@link #mapped(Function)}</li>
+ *     <li>{@link #map(Function)}</li>
  * </ul>
  *
  * <p><b>Membership</b></p>
@@ -148,7 +148,7 @@ import static java.util.Collections.emptySet;
  *
  * <ul>
  *     <li>{@link #copy()} - A copy of this list</li>
- *     <li>{@link #mapped(Function)}</li>
+ *     <li>{@link #map(Function)}</li>
  *     <li>{@link #matching(Matcher)} - A copy of this list filtered to matching elements</li>
  *     <li>{@link #with(Object)}</li>
  *     <li>{@link #with(Collection)}</li>
@@ -225,9 +225,9 @@ public abstract class BaseSet<Value> extends BaseCollection<Value> implements
      * {@inheritDoc}
      */
     @Override
-    public <Output> BaseSet<Output> mapped(Function<Value, Output> mapper)
+    public <Output> BaseSet<Output> map(Function<Value, Output> mapper)
     {
-        return (BaseSet<Output>) super.mapped(mapper);
+        return (BaseSet<Output>) super.map(mapper);
     }
 
     /**

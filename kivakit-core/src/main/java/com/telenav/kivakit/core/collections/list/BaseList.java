@@ -110,7 +110,7 @@ import static com.telenav.kivakit.core.value.count.Maximum.MAXIMUM;
  *     <li>{@link #last(Count)}</li>
  *     <li>{@link #last(int)}</li>
  *     <li>{@link #leftOf(int)}</li>
- *     <li>{@link #mapped(Function)}</li>
+ *     <li>{@link #map(Function)}</li>
  *     <li>{@link #matching(Matcher)}</li>
  *     <li>{@link #pop()}</li>
  *     <li>{@link #rightOf(int)}</li>
@@ -225,7 +225,7 @@ import static com.telenav.kivakit.core.value.count.Maximum.MAXIMUM;
  *     <li>{@link #leftOf(int)} - The elements in this list to the left on the given index, exclusive</li>
  *     <li>{@link #rightOf(int)} - The elements in this list to the right on the given index, exclusive</li>
  *     <li>{@link #matching(Matcher)} - A copy of this list filtered to matching elements</li>
- *     <li>{@link #mapped(Function)} - A copy of this list with elements mapped to another type</li>
+ *     <li>{@link #map(Function)} - A copy of this list with elements mapped to another type</li>
  *     <li>{@link #sorted()}</li>
  *     <li>{@link #sorted(Comparator)}</li>
  *     <li>{@link #reversed()} - This list reversed</li>
