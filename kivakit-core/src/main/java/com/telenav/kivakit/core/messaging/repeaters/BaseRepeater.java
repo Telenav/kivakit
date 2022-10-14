@@ -28,8 +28,8 @@ import com.telenav.kivakit.interfaces.messaging.Transmittable;
 import com.telenav.kivakit.mixins.Mixin;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.ensure.Ensure.ensure;
 
@@ -60,6 +60,9 @@ import static com.telenav.kivakit.core.ensure.Ensure.ensure;
              documentation = DOCUMENTATION_COMPLETE)
 public class BaseRepeater extends Multicaster implements Repeater
 {
+    /** The number of failures that this repeater has seen */
+    private int failures;
+
     public BaseRepeater(String objectName, Class<?> classContext)
     {
         super(objectName, classContext);
@@ -83,6 +86,18 @@ public class BaseRepeater extends Multicaster implements Repeater
         checkInheritance();
     }
 
+    /**
+     * Returns true if this repeater has not received any failure message, as determined by calling
+     * {@link Message#isFailure()}.
+     *
+     * @return True if no failure has occurred.
+     */
+    @Override
+    public boolean ok()
+    {
+        return failures == 0;
+    }
+
     @Override
     public void onMessage(Message message)
     {
@@ -92,13 +107,23 @@ public class BaseRepeater extends Multicaster implements Repeater
      * When a message is received, calls {@link #onMessage(Message)} and then if {@link #isRepeating()} returns true,
      * calls {@link #transmit(Message)}.
      *
-     * @param message The message to repeat
+     * @param transmittable The message to repeat
      */
     @Override
-    public void onReceive(Transmittable message)
+    public void onReceive(Transmittable transmittable)
     {
+        // Cast the message,
+        var message = (Message) transmittable;
+
+        // and if it represents a failure,
+        if (message.isFailure())
+        {
+            // increment the number of failures
+            failures++;
+        }
+
         // Process the message normally,
-        onMessage((Message) message);
+        onMessage(message);
 
         // then if we are enabled for repeating,
         if (isRepeating())

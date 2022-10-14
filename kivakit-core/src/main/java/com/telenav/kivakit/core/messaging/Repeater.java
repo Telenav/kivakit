@@ -26,8 +26,8 @@ import com.telenav.kivakit.interfaces.messaging.Transmittable;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import org.jetbrains.annotations.MustBeInvokedByOverriders;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
 
 /**
@@ -119,4 +119,12 @@ public interface Repeater extends
         onReceive(message);
         return message;
     }
+
+    /**
+     * Returns true if this repeater has not received any failure message, as determined by calling
+     * {@link Message#isFailure()}.
+     *
+     * @return True if no failure has occurred.
+     */
+    boolean ok();
 }

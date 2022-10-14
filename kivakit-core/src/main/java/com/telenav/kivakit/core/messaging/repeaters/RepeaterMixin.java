@@ -170,6 +170,15 @@ public interface RepeaterMixin extends
      * {@inheritDoc}
      */
     @Override
+    default boolean ok()
+    {
+        return repeater().ok();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     default <T extends Message> T transmit(T message)
     {
         return repeater().transmit(message);
