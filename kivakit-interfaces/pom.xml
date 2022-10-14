@@ -23,7 +23,7 @@
     </parent>
 
     <artifactId>kivakit-interfaces</artifactId>
-    <version>1.7.1-SNAPSHOT</version>
+    <version>1.8.1-SNAPSHOT</version>
 
     <dependencies>
 
@@ -32,7 +32,6 @@
         <dependency>
             <groupId>com.telenav.kivakit</groupId>
             <artifactId>kivakit-annotations</artifactId>
-            <version>1.7.1-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>com.telenav.lexakai</groupId>
