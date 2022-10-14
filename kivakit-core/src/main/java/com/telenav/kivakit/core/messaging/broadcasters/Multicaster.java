@@ -19,6 +19,7 @@
 package com.telenav.kivakit.core.messaging.broadcasters;
 
 import com.telenav.kivakit.annotations.code.quality.CodeQuality;
+import com.telenav.kivakit.core.collections.list.StringList;
 import com.telenav.kivakit.core.internal.lexakai.DiagramRepeater;
 import com.telenav.kivakit.core.language.Classes;
 import com.telenav.kivakit.core.logging.Logger;
@@ -45,6 +46,7 @@ import java.util.List;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static com.telenav.kivakit.core.collections.list.StringList.stringList;
 import static com.telenav.kivakit.core.ensure.Ensure.ensure;
 import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
 import static com.telenav.kivakit.core.string.IndentingStringBuilder.Style.TEXT;
@@ -264,12 +266,13 @@ public class Multicaster implements Broadcaster
     }
 
     /**
-     * Returns the chain of broadcasters that leads to this {@link Multicaster}.
+     * Returns the chain of broadcasters that leads to this {@link Multicaster} in reversed order
+     * so this broadcaster is at the top of the stack.
      */
     @NotNull
-    public List<String> listenerChain()
+    public StringList listenerChain()
     {
-        var chain = new ArrayList<String>();
+        var chain = stringList();
         for (var at = (Broadcaster) this; at.messageSource() != null; at = at.messageSource())
         {
             var owner = Mixins.owner(at);
@@ -277,9 +280,14 @@ public class Multicaster implements Broadcaster
             {
                 at = (Broadcaster) owner;
             }
-            chain.add(Classes.simpleName(at.getClass()) + (at.listeners().isEmpty() ? " [no listener]" : ""));
+            var name = Classes.simpleName(at.getClass());
+            if (at.listeners().isEmpty())
+            {
+                name += " (No Listener)" ;
+            }
+            chain.add(name);
         }
-        return chain;
+        return chain.reversed();
     }
 
     /**
@@ -387,7 +395,9 @@ public class Multicaster implements Broadcaster
                     catch (AbortTransmissionException e)
                     {
                         // If we get an exception of this special type, it was thrown
-                        // by ThrowingListener and so it should not be trapped here.
+                        // by ThrowingListener and so it should not be trapped here
+                        // because the intent of ThrowingListener is to throw an
+                        // exception when given a failure message.
                         throw e;
                     }
                     catch (Exception e)
@@ -396,7 +406,7 @@ public class Multicaster implements Broadcaster
                         // of the audience receive the message, even if a prior listener
                         // threw an exception. This is important because the listeners
                         // may not be of equal importance to the program. It would be
-                        // undesirable to have an exception in a trivial piece of code to
+                        // undesirable for an exception in a trivial piece of code to
                         // cause a message to be dropped that is important to a key piece
                         // of code.
                         LOGGER.problem(e, "When "
@@ -412,17 +422,12 @@ public class Multicaster implements Broadcaster
                 // If there is no receiver for this message, and it can be logged,
                 if (message instanceof Message)
                 {
-                    // then log it.
+                    // then log it (to the console).
                     LOGGER.log((Message) message);
                 }
 
-                // Notify that there was nowhere to send the message.
-                var text = new IndentingStringBuilder();
-                for (var at : listenerChain())
-                {
-                    text.appendLine(at);
-                }
-                LOGGER.problem("No listener found for:\n$", text.numbered().toString()).throwAsIllegalStateException();
+                // Throw an error, because this is a serious problem. We don't want to lose messages.
+                throw new NoListenerError("No listener found:\n\n$", listenerChain().numbered().indented(4));
             }
         });
 

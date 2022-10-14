@@ -198,18 +198,6 @@ public class IndentingStringBuilder
     }
 
     /**
-     * Numbers the indented lines
-     */
-    public IndentingStringBuilder numbered()
-    {
-        for (int index = 0; index < lines.size(); index++)
-        {
-            lines.set(index, (index + 1) + ". " + lines.get(index));
-        }
-        return this;
-    }
-
-    /**
      * Removes the last line
      */
     public IndentingStringBuilder removeLastLine()
