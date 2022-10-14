@@ -27,11 +27,11 @@ import com.telenav.kivakit.core.messaging.Broadcaster;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.messaging.Message;
 import com.telenav.kivakit.core.messaging.context.CodeContext;
+import com.telenav.kivakit.core.messaging.listeners.AbortTransmissionException;
 import com.telenav.kivakit.core.messaging.messages.OperationMessage;
 import com.telenav.kivakit.core.string.IndentingStringBuilder;
 import com.telenav.kivakit.core.string.IndentingStringBuilder.Indentation;
 import com.telenav.kivakit.core.thread.locks.ReadWriteLock;
-import com.telenav.kivakit.core.vm.Properties;
 import com.telenav.kivakit.interfaces.comparison.Filter;
 import com.telenav.kivakit.interfaces.messaging.Transmittable;
 import com.telenav.kivakit.mixins.Mixins;
@@ -41,7 +41,6 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
@@ -114,7 +113,7 @@ public class Multicaster implements Broadcaster
     private transient ReadWriteLock lock;
 
     /** The name of this object */
-    private final transient String objectName;
+    private transient String objectName;
 
     /** Any broadcaster that is sending messages through this multicaster */
     private transient Broadcaster source;
@@ -294,15 +293,20 @@ public class Multicaster implements Broadcaster
     }
 
     /**
-     * Returns the listener or listener chain
+     * Returns all listeners to this object
      */
     @Override
     public List<Listener> listeners()
     {
-        return lock().read(() -> audience
-                .stream()
-                .map(AudienceMember::listener)
-                .collect(Collectors.toList()));
+        return lock().read(() ->
+        {
+            var list = new ArrayList<Listener>();
+            for (var member : audience)
+            {
+                list.add(member.listener());
+            }
+            return list;
+        });
     }
 
     /**
@@ -327,9 +331,20 @@ public class Multicaster implements Broadcaster
      * {@inheritDoc}
      */
     @Override
+    public void objectName(String name)
+    {
+        objectName = name;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public String objectName()
     {
-        return objectName;
+        return objectName != null
+                ? objectName
+                : syntheticName(this);
     }
 
     /**
@@ -352,24 +367,43 @@ public class Multicaster implements Broadcaster
     {
         lock().read(() ->
         {
+            // If there is an audience,
             if (!audience.isEmpty())
             {
-                // Add this broadcaster's context to the message
+                // add this broadcaster's context to the message, if possible,
                 if (message instanceof OperationMessage)
                 {
                     ((OperationMessage) message).context(debugCodeContext);
                 }
 
-                // then send to members of the audience
+                // then, for each member of the audience,
                 for (var member : audience)
                 {
                     try
                     {
+                        // hand them the message.
                         member.receive(message);
+                    }
+                    catch (AbortTransmissionException e)
+                    {
+                        // If we get an exception of this special type, it was thrown
+                        // by ThrowingListener and so it should not be trapped here.
+                        throw e;
                     }
                     catch (Exception e)
                     {
-                        LOGGER.problem(e, "Listener threw exception");
+                        // By trapping all other exceptions, we ensure that all members
+                        // of the audience receive the message, even if a prior listener
+                        // threw an exception. This is important because the listeners
+                        // may not be of equal importance to the program. It would be
+                        // undesirable to have an exception in a trivial piece of code to
+                        // cause a message to be dropped that is important to a key piece
+                        // of code.
+                        LOGGER.problem(e, "When "
+                                + objectName()
+                                + " tried to deliver a message to "
+                                + member
+                                + ", the listener threw an exception");
                     }
                 }
             }
@@ -383,15 +417,12 @@ public class Multicaster implements Broadcaster
                 }
 
                 // Notify that there was nowhere to send the message.
-                if (Properties.isSystemPropertyOrEnvironmentVariableFalse("KIVAKIT_IGNORE_MISSING_LISTENERS"))
+                var text = new IndentingStringBuilder();
+                for (var at : listenerChain())
                 {
-                    var text = new IndentingStringBuilder();
-                    for (var at : listenerChain())
-                    {
-                        text.appendLine(at);
-                    }
-                    LOGGER.warning("Broken listener chain:\n$", text.numbered().toString());
+                    text.appendLine(at);
                 }
+                LOGGER.problem("No listener found for:\n$", text.numbered().toString()).throwAsIllegalStateException();
             }
         });
 

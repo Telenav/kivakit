@@ -22,10 +22,11 @@ import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramListenerType;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.messaging.Message;
+import com.telenav.kivakit.core.messaging.broadcasters.Multicaster;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 
 /**
@@ -33,6 +34,8 @@ import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
  * being thrown. All other messages are ignored.
  *
  * @author jonathanl (shibo)
+ * @see Multicaster
+ * @see AbortTransmissionException
  */
 @UmlClassDiagram(diagram = DiagramListenerType.class)
 @CodeQuality(stability = STABLE,
@@ -43,9 +46,13 @@ public class ThrowingListener implements Listener
     @Override
     public void onMessage(Message message)
     {
+        // If the message is a failure,
         if (message.isFailure())
         {
-            throw message.asException();
+            // we throw a special exception that circumvents the trapping of exceptions
+            // in Multicaster, which otherwise would ensure that all listeners get a
+            // message delivered.
+            throw new AbortTransmissionException(message);
         }
     }
 }

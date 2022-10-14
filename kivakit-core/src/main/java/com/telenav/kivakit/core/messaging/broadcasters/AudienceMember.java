@@ -24,6 +24,7 @@ import com.telenav.kivakit.core.messaging.Broadcaster;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.interfaces.comparison.Filter;
 import com.telenav.kivakit.interfaces.messaging.Transmittable;
+import com.telenav.kivakit.interfaces.naming.NamedObject;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlAggregation;
 
@@ -106,5 +107,11 @@ class AudienceMember
         {
             listener.receive(message);
         }
+    }
+
+    @Override
+    public String toString()
+    {
+        return "[Listener " + NamedObject.syntheticName(listener) + "]";
     }
 }

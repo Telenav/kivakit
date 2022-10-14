@@ -28,6 +28,8 @@ import com.telenav.kivakit.interfaces.messaging.Transmittable;
 import com.telenav.kivakit.mixins.Mixin;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
+import java.util.concurrent.atomic.AtomicInteger;
+
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
@@ -61,7 +63,7 @@ import static com.telenav.kivakit.core.ensure.Ensure.ensure;
 public class BaseRepeater extends Multicaster implements Repeater
 {
     /** The number of failures that this repeater has seen */
-    private int failures;
+    private final AtomicInteger failures = new AtomicInteger();
 
     public BaseRepeater(String objectName, Class<?> classContext)
     {
@@ -95,7 +97,7 @@ public class BaseRepeater extends Multicaster implements Repeater
     @Override
     public boolean ok()
     {
-        return failures == 0;
+        return failures.get() == 0;
     }
 
     @Override
@@ -119,7 +121,7 @@ public class BaseRepeater extends Multicaster implements Repeater
         if (message.isFailure())
         {
             // increment the number of failures
-            failures++;
+            failures.getAndIncrement();
         }
 
         // Process the message normally,

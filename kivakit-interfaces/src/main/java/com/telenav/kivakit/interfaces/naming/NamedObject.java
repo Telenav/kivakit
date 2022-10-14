@@ -57,7 +57,7 @@ public interface NamedObject extends Nameable
      */
     static String syntheticName(Object object)
     {
-        return "object:" + object.getClass().getSimpleName()
+        return "object:" + object.getClass().getName()
                 + ":" + Integer.toString(identityHashCode(object), 16);
     }
 
