@@ -25,6 +25,7 @@ import com.telenav.kivakit.core.internal.lexakai.DiagramMessaging;
 import com.telenav.kivakit.core.messaging.context.CodeContext;
 import com.telenav.kivakit.core.messaging.context.StackTrace;
 import com.telenav.kivakit.core.messaging.messages.Importance;
+import com.telenav.kivakit.core.messaging.messages.MessageException;
 import com.telenav.kivakit.core.messaging.messages.OperationLifecycleMessage;
 import com.telenav.kivakit.core.messaging.messages.OperationStatusMessage;
 import com.telenav.kivakit.core.messaging.messages.Severity;
@@ -403,16 +404,13 @@ public interface Message extends
      */
     String text();
 
+    /**
+     * Throws this message as a {@link MessageException}.
+     */
     @UmlExcludeMember
-    default void throwAsIllegalArgumentException()
+    default void throwMessage()
     {
-        throw new IllegalArgumentException(formatted(WITH_EXCEPTION));
-    }
-
-    @UmlExcludeMember
-    default void throwAsIllegalStateException()
-    {
-        throw new IllegalStateException(formatted(WITH_EXCEPTION));
+        throw new MessageException(this);
     }
 
     /**

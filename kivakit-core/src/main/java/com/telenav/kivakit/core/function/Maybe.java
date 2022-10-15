@@ -494,7 +494,7 @@ public class Maybe<Value> implements
     {
         if (isAbsent())
         {
-            new Problem(message, arguments).throwAsIllegalStateException();
+            new Problem(message, arguments).throwMessage();
         }
 
         return value;

@@ -161,7 +161,7 @@ public interface ResourcePathed extends UriIdentified
         }
         catch (MalformedURLException e)
         {
-            new Problem(e, "Unable to convert to URL: $", uri()).throwAsIllegalStateException();
+            new Problem(e, "Unable to convert to URL: $", uri()).throwMessage();
             return null;
         }
     }

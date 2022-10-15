@@ -277,7 +277,7 @@ public class Folder extends BaseRepeater implements
         }
         catch (URISyntaxException e)
         {
-            new Problem(e, "Unable to parse URL: $", url).throwAsIllegalStateException();
+            new Problem(e, "Unable to parse URL: $", url).throwMessage();
             return null;
         }
     }

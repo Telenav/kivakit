@@ -91,8 +91,7 @@ public class LineReader extends BaseRepeater
     }
 
     /**
-     * Returns the lines in this resource as a list of strings. If an error occurs, broadcasts a problem and returns an
-     * empty list.
+     * Returns the lines in this resource as a list of strings. If a failure occurs, throws an exception.
      */
     public StringList lines()
     {
@@ -103,15 +102,16 @@ public class LineReader extends BaseRepeater
         }
         catch (Exception e)
         {
-            problem(e, "Unable to read lines");
+            problem(e, "Unable to read lines").throwMessage();
         }
         return lines;
     }
 
     /**
      * Calls the given consumer with each line. This method ensures that the resource stream is closed.
+     * @return True if all lines were read successfully
      */
-    public void lines(@NotNull Consumer<String> consumer)
+    public boolean lines(@NotNull Consumer<String> consumer)
     {
         try (var reader = new LineNumberReader(listenTo(resource.reader(reporter)).textReader()))
         {
@@ -122,7 +122,7 @@ public class LineReader extends BaseRepeater
                 if (next == null)
                 {
                     reporter.end();
-                    return;
+                    return true;
                 }
                 reporter.next();
                 consumer.accept(next);
@@ -132,6 +132,8 @@ public class LineReader extends BaseRepeater
         {
             problem(e, "Error reading lines from: $", resource);
         }
+
+        return false;
     }
 
     /**

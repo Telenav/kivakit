@@ -91,7 +91,7 @@ public interface MessageTransceiver extends Transceiver
     {
         var problem = new FatalProblem(text, arguments);
         transmit(problem);
-        problem.throwAsIllegalStateException();
+        problem.throwMessage();
         return null;
     }
 
@@ -108,7 +108,7 @@ public interface MessageTransceiver extends Transceiver
     {
         var problem = new FatalProblem(cause, text, arguments);
         transmit(problem);
-        problem.throwAsIllegalStateException();
+        problem.throwMessage();
         return null;
     }
 

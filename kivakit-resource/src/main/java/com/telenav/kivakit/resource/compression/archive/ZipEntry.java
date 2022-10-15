@@ -183,7 +183,7 @@ public class ZipEntry extends BaseWritableResource implements Closeable
             }
             catch (Exception e)
             {
-                problem(e, "Unable to open for writing").throwAsIllegalStateException();
+                problem(e, "Unable to open for writing").throwMessage();
             }
         }
         return out;

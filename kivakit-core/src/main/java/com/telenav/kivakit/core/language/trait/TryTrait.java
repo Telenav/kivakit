@@ -113,7 +113,7 @@ public interface TryTrait extends
         }
         catch (Exception e)
         {
-            problem(e, message, arguments).throwAsIllegalStateException();
+            problem(e, message, arguments).throwMessage();
             return null;
         }
     }
@@ -134,7 +134,7 @@ public interface TryTrait extends
         }
         catch (Exception e)
         {
-            problem(e, message, arguments).throwAsIllegalStateException();
+            problem(e, message, arguments).throwMessage();
         }
     }
 
