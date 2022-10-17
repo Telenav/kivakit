@@ -128,7 +128,7 @@ public class ResourceReader extends BaseRepeater implements AsString
     @Override
     public String asString()
     {
-        return readText(nullProgressReporter());
+        return readText();
     }
 
     /**
@@ -233,6 +233,16 @@ public class ResourceReader extends BaseRepeater implements AsString
         var objects = new ObjectSet<T>();
         readLines(reporter).forEach(line -> objects.add(converter.convert(line)));
         return objects;
+    }
+
+    /**
+     * Returns the text in this resource
+     *
+     * @return The string
+     */
+    public String readText()
+    {
+        return readText(nullProgressReporter());
     }
 
     /**
