@@ -7,8 +7,12 @@ import org.jetbrains.annotations.NotNull;
 import java.io.IOException;
 import java.net.URI;
 import java.nio.file.FileSystem;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
@@ -57,6 +61,27 @@ public class Nio
                 }
             }
         }
+    }
+
+    public static List<Path> filesAndFolders(Listener listener, Path path)
+    {
+        var files = new ArrayList<Path>();
+        try
+        {
+            try (var stream = Files.newDirectoryStream(path))
+            {
+                for (var at : stream)
+                {
+                    files.add(at);
+                }
+            }
+        }
+        catch (Exception e)
+        {
+            listener.problem(e, "Unable to get list of files in: $", path);
+        }
+
+        return files;
     }
 
     /**
