@@ -34,7 +34,7 @@ import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_UNDET
  */
 @SuppressWarnings({ "unused", "JavadocDeclaration" })
 @Retention(RetentionPolicy.SOURCE)
-@Target({ ElementType.TYPE })
+@Target(ElementType.TYPE)
 @CodeQuality(stability = STABILITY_UNDETERMINED,
              testing = TESTING_NOT_NEEDED,
              documentation = DOCUMENTATION_COMPLETE,
