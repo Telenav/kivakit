@@ -207,12 +207,12 @@ used. This is because `Application` is a `BaseRepeater` and so it inherits all t
 
         [...]
 
-<a name="application-startup"></a>
+<a name="application-lifecycle"></a>
 <img src="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128.png" srcset="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128-2x.png 2x"/>
 
-<img src="https://telenav.github.io/telenav-assets/images/diagrams/application-lifecycle.svg"/>
-
 A application lifecycle follows this sequence.
+
+<img src="https://telenav.github.io/telenav-assets/images/diagrams/application-lifecycle.svg"/>
 
 1. The method `main(String[] arguments)` creates the `Application` subclass with `new MyApplication().run(arguments)`
 2. The method `startupOptions()` is called and the set of `StartupOptions` returned is enabled
