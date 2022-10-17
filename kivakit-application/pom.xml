@@ -15,8 +15,6 @@
 
     <modelVersion>4.0.0</modelVersion>
 
-<!-- test test test -->
-
     <parent>
         <groupId>com.telenav.kivakit</groupId>
         <artifactId>telenav-superpom-kivakit</artifactId>
