@@ -25,6 +25,7 @@ configuration management and object registration and lookup.
 
 [**Summary**](#summary)  
 [**How to Create an Application**](#how-to-create-an-application)  
+[**Application Lifecycle**](#application-lifecycle)
 
 [**Dependencies**](#dependencies) | [**Code Quality**](#code-quality) | [**Class Diagrams**](#class-diagrams) | [**Package Diagrams**](#package-diagrams)
 
@@ -74,14 +75,11 @@ Code quality for this project is 61.9%.
 &nbsp; &nbsp; <img src="https://telenav.github.io/telenav-assets/images/meters/meter-60-96.png" srcset="https://telenav.github.io/telenav-assets/images/meters/meter-60-96-2x.png 2x"/>
 
 
-| Measurement   | Value                    |
-|---------------|--------------------------|
-| Stability     | 85.7%&nbsp; &nbsp; <img src="https://telenav.github.io/telenav-assets/images/meters/meter-90-96.png" srcset="https://telenav.github.io/telenav-assets/images/meters/meter-90-96-2x.png 2x"/>
-     |
-| Testing       | 14.3%&nbsp; &nbsp; <img src="https://telenav.github.io/telenav-assets/images/meters/meter-10-96.png" srcset="https://telenav.github.io/telenav-assets/images/meters/meter-10-96-2x.png 2x"/>
-       |
-| Documentation | 85.7%&nbsp; &nbsp; <img src="https://telenav.github.io/telenav-assets/images/meters/meter-90-96.png" srcset="https://telenav.github.io/telenav-assets/images/meters/meter-90-96-2x.png 2x"/>
- |
+| Measurement   | Value                                                                                                                                                                                          |
+|---------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Stability     | 85.7%&nbsp; &nbsp; <img src="https://telenav.github.io/telenav-assets/images/meters/meter-90-96.png" srcset="https://telenav.github.io/telenav-assets/images/meters/meter-90-96-2x.png 2x"/>   |
+| Testing       | 14.3%&nbsp; &nbsp; <img src="https://telenav.github.io/telenav-assets/images/meters/meter-10-96.png" srcset="https://telenav.github.io/telenav-assets/images/meters/meter-10-96-2x.png 2x"/>   |
+| Documentation | 85.7%&nbsp; &nbsp; <img src="https://telenav.github.io/telenav-assets/images/meters/meter-90-96.png" srcset="https://telenav.github.io/telenav-assets/images/meters/meter-90-96-2x.png 2x"/>   |
 
 <img src="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128.png" srcset="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128-2x.png 2x"/>
 
@@ -118,19 +116,19 @@ Code quality for this project is 61.9%.
 
 <img src="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128.png" srcset="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128-2x.png 2x"/>
 
-### How to Create an Application <a name="how-to-create-an-application"></a>
+<a name="how-to-create-an-application"></a>
+### How to Create an Application
 
 This section shows how to build a basic KivaKit application that counts lines in a text file in three simple steps.
 
 #### 1. Create the Application Class &nbsp; &nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/wand-32.png" srcset="https://telenav.github.io/telenav-assets/images/icons/wand-32-2x.png 2x"/>
 
-KivaKit applications extend _Application_, which provides base services to application subclasses.
-The application must pass the name of a _Project_ to the _Application_ constructor. This ensures
+KivaKit applications extend `Application`, which provides base services to application subclasses.
+The application must pass the name of a `Project` to the `Application` constructor. This ensures
 that the services that the application needs to run get properly initialized for use. In our case,
-we will be reading a file, so we need to initialize the _KivaCoreResources_ project. This will also
-initialize anything that this project depends on (like _KivaCoreKernel_). Once the application is
-constructed, the _run(String\[\])_ method is called, passing in the command line arguments that
-were received from the JVM in _main()._
+we will be reading a file, so we need to initialize the `KivaCoreResources` project. This will also
+initialize anything that this project depends on (like `KivaCoreKernel`). Once the application is
+constructed, the `run(String\[\])` method is called, passing in the command line arguments that were received from the JVM in `main().`
 
     public class LineCountApplication extends Application
     {
@@ -149,17 +147,11 @@ were received from the JVM in _main()._
 
 #### 2. Add Command Line Parsers to the Application Class &nbsp; &nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/command-line-32.png" srcset="https://telenav.github.io/telenav-assets/images/icons/command-line-32-2x.png 2x"/>
 
-Here we add two fields, one is an argument parser for the input file, and the other
-is a switch parser for the *-show-file-size* switch (if this switch is true, we will show
-the file size).
+Here we add two fields, one is an argument parser for the input file, and the other is a switch parser for the *-show-file-size* switch (if this switch is true, we will show the file size).
 
-Argument and switch parsers should never be declared as static members. This is
-important because some argument parsers may depend on initialization that occurs
-in the Application base class, which can cause those parsers to fail.
+Argument and switch parsers should never be declared as static members. This is important because some argument parsers may depend on initialization that occurs in the Application base class, which can cause those parsers to fail.
 
-The methods _argumentParsers()_ and _switchParsers()_ return these parsers to the
-_Application_ class, so it can parse the command line. Note that _ArgumentParser_
-and _SwitchParser_ both parse objects from the command line, not strings.
+The methods `argumentParsers()` and `switchParsers()` return these parsers to the `Application` class, so it can parse the command line. Note that `ArgumentParser` and `SwitchParser` both parse objects from the command line, not strings.
 
     public class LineCountApplication extends Application
     {
@@ -170,7 +162,7 @@ and _SwitchParser_ both parse objects from the command line, not strings.
                         .required()
                         .build();
 
-        private final SwitchParser<Boolean> SHOW_FILE_SIZE =
+        private final SwitchParser<Boolean> SHOW`FILE_SIZE =
                 SwitchParser.booleanSwitch("show-file-size", "Show the file size in bytes")
                         .optional()
                         .defaultValue(false)
@@ -193,14 +185,10 @@ and _SwitchParser_ both parse objects from the command line, not strings.
 #### 2. Create the Application Entrypoint &nbsp; &nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/rocket-32.png" srcset="https://telenav.github.io/telenav-assets/images/icons/rocket-32-2x.png 2x"/>
 
 The method onRun() is called once command line switches are parsed. At this point
-many convenient methods in the _Application_ base class will work. See _Application.java_
-for detailed javadoc on these methods.
+many convenient methods in the `Application` base class will work. See `Application.java` for detailed Javadoc on these methods.
 
-In our example, we retrieve the input file with the _argument(ArgumentParser)_
-method, and we determine if we should show the file size with _get(SwitchParser)_.
-Notice that the method _information(String message, Object... arguments)_ is being
-used. This is because _Application_ is a _BaseRepeater_ and so it inherits all the
-useful methods for broadcasting and listening to messages.
+In our example, we retrieve the input file with the `argument(ArgumentParser)` method, and we determine if we should show the file size with `get(SwitchParser)`. Notice that the method `information(String message, Object... arguments)` is being
+used. This is because `Application` is a `BaseRepeater` and so it inherits all the useful methods for broadcasting and listening to messages.
 
     public class LineCountApplication extends Application
     {
@@ -218,6 +206,37 @@ useful methods for broadcasting and listening to messages.
         }
 
         [...]
+
+<a name="application-startup"></a>
+<img src="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128.png" srcset="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128-2x.png 2x"/>
+
+<img src="https://telenav.github.io/telenav-assets/images/diagrams/application-lifecycle.svg"/>
+
+A application lifecycle follows this sequence.
+
+1. The method `main(String[] arguments)` creates the `Application` subclass with `new MyApplication().run(arguments)`
+2. The method `startupOptions()` is called and the set of `StartupOptions` returned is enabled
+3. The application transitions to the `INITIALIZING` state
+4. The method `onSerializationInitialize()` is called to allow registration of serializers
+5. `onRunning()` is called to indicate that running is about to start
+6. `onProjectsInitializing()` is called before the `Project` before the application is initialized
+7. `Project.initialize()` is called
+8. `onProjectsInitialized()` is called
+9. Any `Deployment` configurations are loaded
+10. The `argumentParsers()` and `switchParsers` methods are called to retrieve argument and switch parsers
+11. The command line arguments passed to `main()` are parsed into a `CommandLine`
+12. Switches are validated, including the built-in `-deployment` and `-quiet` switches
+13. The method `onConfigureListeners()` is called. If this method is not overridden, and the `-quiet` switch was set to true, a filter is installed on the logger which accepts only messages with the severity of `Glitch` or higher.
+14. If a `-deployment` was specified, it is loaded and registered with the global settings registry
+15. If `-quiet` is not enabled, startup information is displayed
+16. The application transitions to the `RUNNING` state
+17. `onRun()` is called to execute the application
+18. The application transitions to the `STOPPING` state
+19. All logs are flushed
+20. Failure message counts for each logger are displayed (how many glitches, warnings, problems, etc.)
+21. `onRan()` is called
+22. The application transitions to the `STOPPED` state
+23. The application exits. If no exception was thrown and exit wasn't called, it exits with status code 0 (no error), otherwise it exits with a non-zero status code.
 
 [//]: # (end-user-text)
 
