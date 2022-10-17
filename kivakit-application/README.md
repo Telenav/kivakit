@@ -220,7 +220,7 @@ A application lifecycle follows this sequence.
 4. The method `onSerializationInitialize()` is called to allow registration of serializers
 5. `onRunning()` is called to indicate that running is about to start
 6. `onProjectsInitializing()` is called before the `Project` before the application is initialized
-7. `Project.initialize()` is called
+7. `Project.initialize()` is called. Projects form a dependency tree, and are initialized to allow required projects to do things like registering serializers, loading resources, or initializing other projects before the application runs.
 8. `onProjectsInitialized()` is called
 9. Any `Deployment` configurations are loaded
 10. The `argumentParsers()` and `switchParsers` methods are called to retrieve argument and switch parsers
