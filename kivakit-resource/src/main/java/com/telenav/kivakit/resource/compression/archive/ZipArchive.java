@@ -335,13 +335,12 @@ public final class ZipArchive extends BaseRepeater implements
      * @param reader The object reader
      * @param entryName The zip file entry to read
      */
-    @SuppressWarnings("resource")
     public synchronized <T> VersionedObject<T> loadVersionedObject(@NotNull ObjectReader reader,
                                                                    @NotNull String entryName)
     {
         try
         {
-            var entry = entry(entryName);
+            var entry = listenTo(entry(entryName));
             if (entry != null)
             {
                 try (var input = new ProgressiveInputStream(entry.openForReading(reader.progressReporter()), reader.progressReporter()))
@@ -394,7 +393,8 @@ public final class ZipArchive extends BaseRepeater implements
             try
             {
                 writer.writeObject(new ProgressiveOutputStream(output, writer.progressReporter()),
-                        stringPath(entryName), new SerializableObject<>(object), METADATA_OBJECT_TYPE, METADATA_OBJECT_VERSION);
+                        stringPath(entryName), new SerializableObject<>(object), METADATA_OBJECT_TYPE,
+                        METADATA_OBJECT_VERSION);
             }
             finally
             {
@@ -411,7 +411,7 @@ public final class ZipArchive extends BaseRepeater implements
     {
         try
         {
-            var entry = entry(entryName);
+            var entry = listenTo(entry(entryName));
             if (entry != null)
             {
                 try (var output = entry.openForWriting())

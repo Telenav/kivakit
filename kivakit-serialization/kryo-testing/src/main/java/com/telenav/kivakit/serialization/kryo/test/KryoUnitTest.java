@@ -99,7 +99,7 @@ public abstract class KryoUnitTest extends UnitTest
     protected <T> void testSerialization(T object, Version version)
     {
         var output = new ByteArrayOutputStream();
-        var serializer = new KryoObjectSerializer(kryoTypes());
+        var serializer = listenTo(new KryoObjectSerializer(kryoTypes()));
         var path = stringPath("/a/b/c");
 
         var write = new SerializableObject<>(object, version);

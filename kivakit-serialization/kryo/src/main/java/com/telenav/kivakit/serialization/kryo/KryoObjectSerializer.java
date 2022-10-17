@@ -22,6 +22,7 @@ import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMEN
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
 import static com.telenav.kivakit.core.ensure.Ensure.fail;
+import static com.telenav.kivakit.core.progress.ProgressReporter.nullProgressReporter;
 import static com.telenav.kivakit.resource.serialization.ObjectMetadata.METADATA_OBJECT_TYPE;
 import static com.telenav.kivakit.resource.serialization.ObjectMetadata.METADATA_OBJECT_VERSION;
 
@@ -51,7 +52,7 @@ public class KryoObjectSerializer implements
      */
     public KryoObjectSerializer(KryoTypes types)
     {
-        this(types, ProgressReporter.nullProgressReporter());
+        this(types, nullProgressReporter());
     }
 
     /**
