@@ -42,7 +42,7 @@ public class Nio
     private static final Map<String, FileSystem> filesystemForUri = new HashMap<>();
 
     /** Closes the given filesystem */
-    public static void close(Listener listener, @NotNull FileSystem filesystem)
+    public static synchronized void close(Listener listener, @NotNull FileSystem filesystem)
     {
         for (var key : new HashSet<>(filesystemForUri.keySet()))
         {
@@ -63,7 +63,7 @@ public class Nio
         }
     }
 
-    public static List<Path> filesAndFolders(Listener listener, Path path)
+    public static synchronized List<Path> filesAndFolders(Listener listener, Path path)
     {
         var files = new ArrayList<Path>();
         try
@@ -91,7 +91,7 @@ public class Nio
      * @param uri The URI
      * @return The filesystem
      */
-    public static FileSystem filesystem(Listener listener, URI uri)
+    public static synchronized FileSystem filesystem(Listener listener, URI uri)
     {
         return filesystem(listener, uri, new HashMap<>());
     }
@@ -104,7 +104,7 @@ public class Nio
      * @param variables Variables passed to the filesystem
      * @return The filesystem
      */
-    public static FileSystem filesystem(Listener listener, URI uri, Map<String, String> variables)
+    public static synchronized FileSystem filesystem(Listener listener, URI uri, Map<String, String> variables)
     {
         var key = pathHead(uri.toString(), "!/");
         if (key == null)
@@ -116,12 +116,12 @@ public class Nio
         {
             try
             {
-                filesystem = newFileSystem(uri, variables);
+                filesystem = newFileSystem(URI.create(key), variables);
                 filesystemForUri.put(key, filesystem);
             }
             catch (Exception e)
             {
-                listener.problem(e, "Unable to create filesystem for: $", uri);
+                listener.problem(e, "Unable to create filesystem: $", key);
                 return null;
             }
         }
