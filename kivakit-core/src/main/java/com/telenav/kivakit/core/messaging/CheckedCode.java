@@ -89,4 +89,26 @@ public interface CheckedCode extends
     {
         return check(message, ignored -> true, code);
     }
+
+    /**
+     * Executes the given code block, trapping any exceptions or failures
+     *
+     * @param code The code to execute, returning a {@link Result}
+     * @param message The problem message to return if there's a failure
+     */
+    default void check(String message, Runnable code)
+    {
+        try
+        {
+            code.run();
+            if (!ok())
+            {
+                problem("Code broadcast failure: $", message);
+            }
+        }
+        catch (Exception e)
+        {
+            problem(e, "Code threw exception: $", message);
+        }
+    }
 }
