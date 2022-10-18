@@ -12,9 +12,10 @@ import java.util.function.Predicate;
  * Executes a block of code, handling exceptions and problem messages.
  *
  * <ul>
- *     <li>{@link #check(String, Code)} - Runs the given code, broadcasting the given problem if it fails</li>
- *     <li>{@link #check(String, Matcher, Code)} - Runs the given code, broadcasting the given problem if
+ *     <li>{@link #check(String, Code)} - Runs the given code, broadcasting the given problem message if it fails</li>
+ *     <li>{@link #check(String, Matcher, Code)} - Runs the given code, broadcasting the given problem message if
  *     the code or the given predicate fail</li>
+ *     <li>{@link #check(String, Runnable)} - Runs the given code, broadcasting the given problem message if it fails</li>
  * </ul>
  *
  * <p><b>Example</b></p>
