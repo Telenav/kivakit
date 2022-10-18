@@ -18,17 +18,17 @@
 
 package com.telenav.kivakit.network.http;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.network.http.internal.lexakai.DiagramHttp;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_ENUM_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static java.util.Collections.synchronizedMap;
 
 /**
  * The status of an HTTP request.
@@ -47,9 +47,9 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
  */
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramHttp.class)
-@ApiQuality(stability = API_STABLE_ENUM_EXTENSIBLE,
-            testing = TESTING_NONE,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = UNTESTED,
+             documentation = DOCUMENTATION_COMPLETE)
 public enum HttpStatus
 {
     // --- 1xx Informational ---
@@ -245,7 +245,7 @@ public enum HttpStatus
     }
 
     /**
-     * @return True if this status code represents request failure
+     * Returns true if this status code represents request failure
      */
     public boolean isFailure()
     {
@@ -277,7 +277,7 @@ public enum HttpStatus
     {
         if (statusForCode == null)
         {
-            statusForCode = Collections.synchronizedMap(new HashMap<>());
+            statusForCode = synchronizedMap(new HashMap<>());
         }
         return statusForCode;
     }

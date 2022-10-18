@@ -18,8 +18,7 @@
 
 package com.telenav.kivakit.validation;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
-import com.telenav.kivakit.core.language.primitive.Ints;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.messaging.Message;
 import com.telenav.kivakit.core.messaging.messages.lifecycle.OperationHalted;
@@ -28,20 +27,22 @@ import com.telenav.kivakit.core.messaging.messages.status.Problem;
 import com.telenav.kivakit.core.messaging.messages.status.Quibble;
 import com.telenav.kivakit.core.messaging.messages.status.Warning;
 import com.telenav.kivakit.core.string.Formatter;
-import com.telenav.kivakit.core.string.Strings;
 import com.telenav.kivakit.core.thread.ReentrancyTracker;
 import com.telenav.kivakit.core.value.count.Count;
-import com.telenav.kivakit.core.value.name.Name;
 import com.telenav.kivakit.validation.internal.lexakai.DiagramValidation;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.Collection;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static com.telenav.kivakit.core.language.primitive.Ints.intIsBetweenExclusive;
+import static com.telenav.kivakit.core.language.primitive.Ints.intIsBetweenInclusive;
+import static com.telenav.kivakit.core.string.Strings.isNullOrBlank;
 import static com.telenav.kivakit.core.thread.ReentrancyTracker.Reentrancy.ENTERED;
 import static com.telenav.kivakit.core.thread.ReentrancyTracker.Reentrancy.REENTERED;
+import static com.telenav.kivakit.core.value.name.Name.nameOf;
 
 /**
  * A base implementation of {@link Validator} that provides convenience methods for reporting validation issues:
@@ -131,9 +132,14 @@ import static com.telenav.kivakit.core.thread.ReentrancyTracker.Reentrancy.REENT
  * <p><b>Validation</b></p>
  *
  * <ul>
+ *     <li>{@link #isInvalid()}</li>
+ *     <li>{@link #isValid()}</li>
+ *     <li>{@link #issues()}</li>
+ *     <li>{@link #onValidate()}</li>
+ *     <li>{@link #shouldShowValidationReport()}</li>
  *     <li>{@link #validate(Listener)}</li>
  *     <li>{@link #validate(Validator)}</li>
- *     <li>{@link #shouldShowValidationReport()}</li>
+ *     <li>{@link #validate(Validatable, ValidationType)}</li>
  *     <li>{@link #validationTarget()}</li>
  * </ul>
  *
@@ -147,9 +153,9 @@ import static com.telenav.kivakit.core.thread.ReentrancyTracker.Reentrancy.REENT
  */
 @SuppressWarnings({ "unused", "UnusedReturnValue" })
 @UmlClassDiagram(diagram = DiagramValidation.class)
-@ApiQuality(stability = API_STABLE_EXTENSIBLE,
-            testing = TESTING_NONE,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = UNTESTED,
+             documentation = DOCUMENTATION_COMPLETE)
 public abstract class BaseValidator implements Validator
 {
     /** Track if we are validating within a validation */
@@ -166,17 +172,17 @@ public abstract class BaseValidator implements Validator
      */
     private Validator parent;
 
-    public BaseValidator()
+    protected BaseValidator()
     {
     }
 
-    public BaseValidator(Validator parent)
+    protected BaseValidator(Validator parent)
     {
         this.parent = parent;
     }
 
     /**
-     * @return True if the validation in progress is invalid
+     * Returns true if the validation in progress is invalid
      */
     public boolean isInvalid()
     {
@@ -184,7 +190,7 @@ public abstract class BaseValidator implements Validator
     }
 
     /**
-     * @return True if this validator is valid
+     * Returns true if this validator is valid
      */
     public boolean isValid()
     {
@@ -245,7 +251,7 @@ public abstract class BaseValidator implements Validator
                 {
                     // we broadcast a short summary of the validation results.
                     listener.information("Validated $ ($ problems, $ glitches, $ warnings)",
-                            Name.nameOf(validationTarget()), problems, glitches, warnings);
+                            nameOf(validationTarget()), problems, glitches, warnings);
                 }
             }
 
@@ -337,7 +343,7 @@ public abstract class BaseValidator implements Validator
      */
     protected final boolean isEmpty(String value)
     {
-        return Strings.isEmpty(value);
+        return isNullOrBlank(value);
     }
 
     /**
@@ -385,7 +391,7 @@ public abstract class BaseValidator implements Validator
      */
     protected void problemIfNotInRangeExclusive(int value, String name, int minimum, int maximum)
     {
-        problemIf(!Ints.isBetweenExclusive(value, minimum, maximum), "Invalid " + name);
+        problemIf(!intIsBetweenExclusive(value, minimum, maximum), "Invalid " + name);
     }
 
     /**
@@ -393,7 +399,7 @@ public abstract class BaseValidator implements Validator
      */
     protected void problemIfNotInRangeInclusive(int value, String name, int minimum, int maximum)
     {
-        problemIf(!Ints.isBetweenInclusive(value, minimum, maximum), "Invalid " + name);
+        problemIf(!intIsBetweenInclusive(value, minimum, maximum), "Invalid " + name);
     }
 
     /**
@@ -425,7 +431,7 @@ public abstract class BaseValidator implements Validator
     }
 
     /**
-     * @return True if this validator should report results when it completes
+     * Returns true if this validator should report results when it completes
      */
     protected boolean shouldShowValidationReport()
     {
@@ -477,7 +483,7 @@ public abstract class BaseValidator implements Validator
     }
 
     /**
-     * @return The name of what was validated when reporting validation results
+     * Returns the name of what was validated when reporting validation results
      */
     protected String validationTarget()
     {

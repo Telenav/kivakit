@@ -19,7 +19,7 @@
 package com.telenav.kivakit.network.ftp.secure;
 
 import com.jcraft.jsch.ChannelSftp.LsEntry;
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.collections.list.ObjectList;
 import com.telenav.kivakit.core.progress.ProgressReporter;
 import com.telenav.kivakit.core.value.count.Bytes;
@@ -33,12 +33,13 @@ import com.telenav.kivakit.resource.writing.WritableResource;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlAggregation;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
+import org.jetbrains.annotations.NotNull;
 
 import java.io.InputStream;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 
 /**
  * A resource accessed by SFTP. A list of files can be retrieved with {@link #listFiles()}.
@@ -47,9 +48,9 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
  */
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramSecureFtp.class)
-@ApiQuality(stability = API_STABLE_EXTENSIBLE,
-            testing = TESTING_NONE,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = UNTESTED,
+             documentation = DOCUMENTATION_COMPLETE)
 public class SecureFtpResource extends BaseNetworkResource
 {
     private final SecureFtpConnector connector;
@@ -77,7 +78,7 @@ public class SecureFtpResource extends BaseNetworkResource
      * Copy this resource to the disk
      */
     @Override
-    public void copyTo(WritableResource destination, CopyMode mode, ProgressReporter reporter)
+    public void copyTo(@NotNull WritableResource destination, @NotNull CopyMode mode, @NotNull ProgressReporter reporter)
     {
         try
         {
@@ -98,7 +99,7 @@ public class SecureFtpResource extends BaseNetworkResource
     }
 
     /**
-     * @return The files present in current folder.
+     * Returns the files present in current folder.
      */
     public ObjectList<LsEntry> listFiles()
     {

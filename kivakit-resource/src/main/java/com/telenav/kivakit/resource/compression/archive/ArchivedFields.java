@@ -18,23 +18,23 @@
 
 package com.telenav.kivakit.resource.compression.archive;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.language.reflection.Field;
 import com.telenav.kivakit.core.language.reflection.filters.field.AllFields;
 import org.jetbrains.annotations.NotNull;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_DEFAULT_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
 
 /**
- * A filter that matches all fields annotated with {@link KivaKitArchivedField}
+ * A filter that matches all fields annotated with {@link ArchivedField}
  *
  * @author jonathanl (shibo)
  */
-@ApiQuality(stability = API_STABLE_DEFAULT_EXTENSIBLE,
-            testing = TESTING_NOT_NEEDED,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = TESTING_NOT_NEEDED,
+             documentation = DOCUMENTATION_COMPLETE)
 class ArchivedFields extends AllFields
 {
     /**
@@ -43,6 +43,6 @@ class ArchivedFields extends AllFields
     @Override
     public boolean includeField(@NotNull Field field)
     {
-        return field.hasAnnotation(KivaKitArchivedField.class);
+        return field.hasAnnotation(ArchivedField.class);
     }
 }

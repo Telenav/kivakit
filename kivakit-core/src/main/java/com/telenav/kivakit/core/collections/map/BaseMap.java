@@ -18,11 +18,10 @@
 
 package com.telenav.kivakit.core.collections.map;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.collections.list.StringList;
 import com.telenav.kivakit.core.internal.lexakai.DiagramCollections;
 import com.telenav.kivakit.core.logging.Logger;
-import com.telenav.kivakit.core.logging.LoggerFactory;
 import com.telenav.kivakit.core.value.count.Maximum;
 import com.telenav.kivakit.interfaces.collection.SpaceLimited;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
@@ -37,10 +36,12 @@ import java.util.function.BiConsumer;
 import java.util.function.BiFunction;
 import java.util.function.Function;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_INSUFFICIENT;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_INSUFFICIENT;
 import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
+import static com.telenav.kivakit.core.logging.LoggerFactory.newLogger;
+import static com.telenav.kivakit.core.value.count.Maximum.MAXIMUM;
 
 /**
  * A base class for bounded maps which wraps a {@link Map} implementation. The following methods are added to the base
@@ -56,14 +57,14 @@ import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
  */
 @SuppressWarnings({ "UnusedReturnValue", "EqualsWhichDoesntCheckParameterClass" })
 @UmlClassDiagram(diagram = DiagramCollections.class)
-@ApiQuality(stability = API_STABLE_EXTENSIBLE,
-            testing = TESTING_INSUFFICIENT,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = TESTING_INSUFFICIENT,
+             documentation = DOCUMENTATION_COMPLETE)
 public class BaseMap<Key, Value> implements
         Map<Key, Value>,
         SpaceLimited
 {
-    private static final Logger LOGGER = LoggerFactory.newLogger();
+    private static final Logger LOGGER = newLogger();
 
     /** The map to wrap */
     private final Map<Key, Value> map;
@@ -79,7 +80,7 @@ public class BaseMap<Key, Value> implements
      */
     public BaseMap()
     {
-        this(Maximum.MAXIMUM);
+        this(MAXIMUM);
     }
 
     /**
@@ -104,7 +105,7 @@ public class BaseMap<Key, Value> implements
      */
     public BaseMap(Map<Key, Value> map)
     {
-        this(Maximum.MAXIMUM, map);
+        this(MAXIMUM, map);
     }
 
     /**

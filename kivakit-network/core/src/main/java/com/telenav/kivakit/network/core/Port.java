@@ -18,14 +18,13 @@
 
 package com.telenav.kivakit.network.core;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.commandline.SwitchParser;
 import com.telenav.kivakit.conversion.BaseStringConverter;
 import com.telenav.kivakit.conversion.core.language.primitive.IntegerConverter;
-import com.telenav.kivakit.core.language.Hash;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.string.AsString;
-import com.telenav.kivakit.core.string.KivaKitFormat;
+import com.telenav.kivakit.core.string.FormatProperty;
 import com.telenav.kivakit.network.core.internal.lexakai.DiagramPort;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlAggregation;
@@ -39,14 +38,19 @@ import java.net.Socket;
 import java.net.URI;
 import java.net.URISyntaxException;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE;
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
-import static com.telenav.kivakit.commandline.SwitchParser.switchParserBuilder;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static com.telenav.kivakit.commandline.SwitchParser.switchParser;
+import static com.telenav.kivakit.core.language.Hash.hashMany;
+import static com.telenav.kivakit.core.messaging.Listener.consoleListener;
 import static com.telenav.kivakit.network.core.Protocol.HTTP;
 import static com.telenav.kivakit.network.core.Protocol.HTTPS;
+import static com.telenav.kivakit.network.core.Protocol.UNKNOWN_PROTOCOL;
+import static com.telenav.kivakit.network.core.Protocol.defaultProtocolForPort;
+import static com.telenav.kivakit.network.core.Protocol.parseProtocol;
 
 /**
  * A host, port and protocol. The port has a number, accessible with {@link #portNumber()}, it exists on a {@link Host}
@@ -102,9 +106,9 @@ import static com.telenav.kivakit.network.core.Protocol.HTTPS;
  */
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramPort.class)
-@ApiQuality(stability = API_STABLE_EXTENSIBLE,
-            testing = TESTING_NONE,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = UNTESTED,
+             documentation = DOCUMENTATION_COMPLETE)
 public class Port implements AsString
 {
     /**
@@ -118,14 +122,14 @@ public class Port implements AsString
     }
 
     /**
-     * @return A port object from the given {@link URI}
+     * Returns a port object from the given {@link URI}
      */
     public static Port port(URI uri)
     {
         var host = new Host(uri.getHost());
         var scheme = uri.getScheme();
         var port = uri.getPort();
-        var protocol = Protocol.parseProtocol(Listener.consoleListener(), scheme);
+        var protocol = parseProtocol(consoleListener(), scheme);
         return new Port(host, port, protocol);
     }
 
@@ -139,7 +143,7 @@ public class Port implements AsString
      */
     public static SwitchParser.Builder<Port> portSwitchParser(Listener listener, String name, String description)
     {
-        return switchParserBuilder(Port.class)
+        return switchParser(Port.class)
                 .name(name)
                 .converter(new Port.Converter(listener))
                 .description(description);
@@ -150,9 +154,9 @@ public class Port implements AsString
      *
      * @author jonathanl (shibo)
      */
-    @ApiQuality(stability = API_STABLE,
-                testing = TESTING_NOT_NEEDED,
-                documentation = DOCUMENTATION_COMPLETE)
+    @CodeQuality(stability = STABLE,
+                 testing = TESTING_NOT_NEEDED,
+                 documentation = DOCUMENTATION_COMPLETE)
     public static class Converter extends BaseStringConverter<Port>
     {
         /** Host converter */
@@ -205,7 +209,7 @@ public class Port implements AsString
      */
     public Port(Host host, int portNumber)
     {
-        this(host, portNumber, Protocol.defaultProtocolForPort(portNumber));
+        this(host, portNumber, defaultProtocolForPort(portNumber));
     }
 
     /**
@@ -216,7 +220,7 @@ public class Port implements AsString
     public Port(Host host, int portNumber, Protocol protocol)
     {
         this.host = host;
-        this.protocol = protocol == null ? Protocol.UNKNOWN : protocol;
+        this.protocol = protocol == null ? UNKNOWN_PROTOCOL : protocol;
         this.portNumber = portNumber;
     }
 
@@ -235,7 +239,7 @@ public class Port implements AsString
     }
 
     /**
-     * @return The socket address for this port
+     * Returns the socket address for this port
      */
     public InetSocketAddress asInetSocketAddress()
     {
@@ -257,7 +261,7 @@ public class Port implements AsString
     }
 
     /**
-     * @return The URI for this port
+     * Returns the URI for this port
      */
     public URI asUri(Listener listener)
     {
@@ -273,11 +277,11 @@ public class Port implements AsString
     }
 
     /**
-     * @return The default protocol for this port based on the port number
+     * Returns the default protocol for this port based on the port number
      */
     public Protocol defaultProtocol()
     {
-        return Protocol.defaultProtocolForPort(portNumber);
+        return defaultProtocolForPort(portNumber);
     }
 
     @Override
@@ -294,20 +298,20 @@ public class Port implements AsString
     @Override
     public int hashCode()
     {
-        return Hash.hashMany(portNumber, host);
+        return hashMany(portNumber, host);
     }
 
     /**
-     * @return The host that owns this port
+     * Returns the host that owns this port
      */
-    @KivaKitFormat
+    @FormatProperty
     public Host host()
     {
         return host;
     }
 
     /**
-     * @return True if this port's port number is not claimed on the local host
+     * Returns true if this port's port number is not claimed on the local host
      */
     public boolean isAvailable()
     {
@@ -324,7 +328,7 @@ public class Port implements AsString
     }
 
     /**
-     * @return True if this port speaks HTTP
+     * Returns true if this port speaks HTTP
      */
     public boolean isHttp()
     {
@@ -332,7 +336,7 @@ public class Port implements AsString
     }
 
     /**
-     * @return A socket input stream for this port
+     * Returns a socket input stream for this port
      */
     public InputStream open(Listener listener)
     {
@@ -349,7 +353,7 @@ public class Port implements AsString
     }
 
     /**
-     * @return The {@link NetworkPath} at the given path on this host and port
+     * Returns the {@link NetworkPath} at the given path on this host and port
      */
     public NetworkPath path(Listener listener, String path)
     {
@@ -357,18 +361,18 @@ public class Port implements AsString
     }
 
     /**
-     * @return The port number
+     * Returns the port number
      */
-    @KivaKitFormat
+    @FormatProperty
     public int portNumber()
     {
         return portNumber;
     }
 
     /**
-     * @return The protocol spoken by this port
+     * Returns the protocol spoken by this port
      */
-    @KivaKitFormat
+    @FormatProperty
     public Protocol protocol()
     {
         return protocol;
@@ -384,7 +388,7 @@ public class Port implements AsString
     }
 
     /**
-     * @return This port resolved
+     * Returns this port resolved
      */
     public Port resolve()
     {

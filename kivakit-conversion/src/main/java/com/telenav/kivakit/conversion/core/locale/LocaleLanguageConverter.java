@@ -1,15 +1,17 @@
 package com.telenav.kivakit.conversion.core.locale;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.conversion.BaseStringConverter;
 import com.telenav.kivakit.conversion.internal.lexakai.DiagramConversionOther;
 import com.telenav.kivakit.core.locale.LocaleLanguage;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static com.telenav.kivakit.core.locale.LocaleLanguage.languageForIso2Code;
+import static com.telenav.kivakit.core.locale.LocaleLanguage.languageForIso3Code;
 
 /**
  * Converts to and from a {@link LocaleLanguage}. Both ISO2 and ISO3 values are supported.
@@ -17,9 +19,9 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramConversionOther.class)
-@ApiQuality(stability = API_STABLE,
-            testing = TESTING_NONE,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = STABLE,
+             testing = UNTESTED,
+             documentation = DOCUMENTATION_COMPLETE)
 public class LocaleLanguageConverter extends BaseStringConverter<LocaleLanguage>
 {
     public LocaleLanguageConverter(Listener listener)
@@ -36,8 +38,15 @@ public class LocaleLanguageConverter extends BaseStringConverter<LocaleLanguage>
     @Override
     protected LocaleLanguage onToValue(String value)
     {
-        return value.length() == 2
-                ? LocaleLanguage.languageForIso2Code(value)
-                : LocaleLanguage.languageForIso3Code(value);
+        if (value.length() == 2)
+        {
+            return languageForIso2Code(value);
+        }
+        if (value.length() == 3)
+        {
+            return languageForIso3Code(value);
+        }
+        problem("Invalid locale language: $", value);
+        return null;
     }
 }

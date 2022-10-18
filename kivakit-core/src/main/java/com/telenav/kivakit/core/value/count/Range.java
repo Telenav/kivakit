@@ -18,15 +18,13 @@
 
 package com.telenav.kivakit.core.value.count;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.collections.iteration.BaseIterator;
 import com.telenav.kivakit.core.internal.lexakai.DiagramCount;
-import com.telenav.kivakit.core.language.primitive.Longs;
-import com.telenav.kivakit.core.string.Formatter;
 import com.telenav.kivakit.interfaces.code.Callback;
 import com.telenav.kivakit.interfaces.collection.Contains;
 import com.telenav.kivakit.interfaces.collection.NextIterator;
-import com.telenav.kivakit.interfaces.factory.MapFactory;
+import com.telenav.kivakit.interfaces.function.Mapper;
 import com.telenav.kivakit.interfaces.numeric.Maximizable;
 import com.telenav.kivakit.interfaces.numeric.Minimizable;
 import com.telenav.kivakit.interfaces.numeric.Numeric;
@@ -37,11 +35,14 @@ import java.util.Iterator;
 import java.util.Random;
 import java.util.function.Function;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static com.telenav.kivakit.core.language.primitive.Longs.longRandom;
+import static com.telenav.kivakit.core.string.Formatter.format;
 import static com.telenav.kivakit.core.value.count.Range.UpperBound.EXCLUSIVE;
 import static com.telenav.kivakit.core.value.count.Range.UpperBound.INCLUSIVE;
+import static java.lang.Long.compare;
 
 /**
  * Represents a range of value objects from a minimum to a maximum.
@@ -88,15 +89,15 @@ import static com.telenav.kivakit.core.value.count.Range.UpperBound.INCLUSIVE;
  */
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramCount.class)
-@ApiQuality(stability = API_STABLE_EXTENSIBLE,
-            testing = TESTING_NONE,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = UNTESTED,
+             documentation = DOCUMENTATION_COMPLETE)
 public class Range<Value extends Numeric<Value>> implements
         Contains<Value>,
         Comparable<Countable>,
         Countable,
         Iterable<Value>,
-        MapFactory<Long, Value>
+        Mapper<Long, Value>
 {
     /**
      * Constructs a range that excludes the given maximum value.
@@ -179,7 +180,7 @@ public class Range<Value extends Numeric<Value>> implements
     @Override
     public int compareTo(Countable that)
     {
-        return Long.compare(count().longValue(), that.count().longValue());
+        return compare(count().longValue(), that.count().longValue());
     }
 
     /**
@@ -265,7 +266,7 @@ public class Range<Value extends Numeric<Value>> implements
     }
 
     /**
-     * @return True if this is an exclusive range
+     * Returns true if this is an exclusive range
      */
     public boolean isExclusive()
     {
@@ -273,7 +274,7 @@ public class Range<Value extends Numeric<Value>> implements
     }
 
     /**
-     * @return True if this is an inclusive range
+     * Returns true if this is an inclusive range
      */
     public boolean isInclusive()
     {
@@ -294,7 +295,7 @@ public class Range<Value extends Numeric<Value>> implements
                 if (at < exclusiveMaximum().longValue())
                 {
                     at++;
-                    return newInstance(at);
+                    return map(at);
                 }
                 return null;
             }
@@ -318,7 +319,7 @@ public class Range<Value extends Numeric<Value>> implements
     }
 
     @Override
-    public Value newInstance(Long value)
+    public Value map(Long value)
     {
         return newInstance.apply(value);
     }
@@ -328,7 +329,7 @@ public class Range<Value extends Numeric<Value>> implements
      */
     public Value randomValue(Random random)
     {
-        return minimum.newInstance(Longs.random(random, minimum().asLong(), exclusiveMaximum().asLong()));
+        return minimum.map(longRandom(random, minimum().asLong(), exclusiveMaximum().asLong()));
     }
 
     /**
@@ -342,7 +343,7 @@ public class Range<Value extends Numeric<Value>> implements
     @Override
     public String toString()
     {
-        return Formatter.format("[$ to $, $]", minimum(),
+        return format("[$ to $, $]", minimum(),
                 isInclusive()
                         ? inclusiveMaximum()
                         : exclusiveMaximum(),

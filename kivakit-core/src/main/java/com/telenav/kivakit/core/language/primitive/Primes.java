@@ -18,16 +18,17 @@
 
 package com.telenav.kivakit.core.language.primitive;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramPrimitive;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.LinkedList;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_STATIC_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.ensure.Ensure.fail;
+import static com.telenav.kivakit.core.language.primitive.Longs.longAsCommaSeparated;
 
 /**
  * Prime number allocation sizes and "powers of two" (the next prime above a power of two).
@@ -42,9 +43,9 @@ import static com.telenav.kivakit.core.ensure.Ensure.fail;
  */
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramPrimitive.class)
-@ApiQuality(stability = API_STABLE_STATIC_EXTENSIBLE,
-            testing = TESTING_NONE,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = UNTESTED,
+             documentation = DOCUMENTATION_COMPLETE)
 public class Primes
 {
     /**
@@ -148,12 +149,12 @@ public class Primes
         System.out.println(primes.size() + " primes:");
         for (var prime : primes)
         {
-            System.out.print(Longs.commaSeparated(prime).replaceAll(",", "_") + ", ");
+            System.out.print(longAsCommaSeparated(prime).replaceAll(",", "_") + ", ");
         }
     }
 
     /**
-     * @return A prime allocation size greater than the given size
+     * Returns a prime allocation size greater than the given size
      */
     public static long primeAllocationSize(long size)
     {
@@ -169,7 +170,7 @@ public class Primes
     }
 
     /**
-     * @return The smallest "prime power of two" that is larger than the given value. A "prime power of two" is
+     * Returns the smallest "prime power of two" that is larger than the given value. A "prime power of two" is
      * basically the next prime after a power of two.
      */
     public static int primePowerOfTwo(int value)

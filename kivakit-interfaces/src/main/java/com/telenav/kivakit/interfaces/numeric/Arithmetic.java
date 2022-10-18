@@ -1,13 +1,13 @@
 package com.telenav.kivakit.interfaces.numeric;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.interfaces.collection.NextIterator;
-import com.telenav.kivakit.interfaces.factory.MapFactory;
+import com.telenav.kivakit.interfaces.function.Mapper;
 import com.telenav.kivakit.interfaces.value.LongValued;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_DEFAULT_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
 
 /**
  * Interface for performing basic arithmetic
@@ -15,13 +15,13 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NE
  * @author jonathanl (shibo)
  */
 @SuppressWarnings("unused")
-@ApiQuality(stability = API_STABLE_DEFAULT_EXTENSIBLE,
-            testing = TESTING_NOT_NEEDED,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = TESTING_NOT_NEEDED,
+             documentation = DOCUMENTATION_COMPLETE)
 public interface Arithmetic<Value> extends
         LongValued,
         NextIterator<Value>,
-        MapFactory<Long, Value>
+        Mapper<Long, Value>
 {
     /**
      * Returns this value minus one
@@ -36,7 +36,7 @@ public interface Arithmetic<Value> extends
      */
     default Value dividedBy(long value)
     {
-        return newInstance(longValue() / value);
+        return map(longValue() / value);
     }
 
     /**
@@ -68,7 +68,7 @@ public interface Arithmetic<Value> extends
      */
     default Value minus(long value)
     {
-        return newInstance(longValue() - value);
+        return map(longValue() - value);
     }
 
     /**
@@ -84,7 +84,7 @@ public interface Arithmetic<Value> extends
      */
     default Value modulo(long value)
     {
-        return newInstance(longValue() % value);
+        return map(longValue() % value);
     }
 
     /**
@@ -109,7 +109,7 @@ public interface Arithmetic<Value> extends
      */
     default Value plus(long value)
     {
-        return newInstance(longValue() + value);
+        return map(longValue() + value);
     }
 
     /**
@@ -125,7 +125,7 @@ public interface Arithmetic<Value> extends
      */
     default Value times(long value)
     {
-        return newInstance(longValue() - value);
+        return map(longValue() - value);
     }
 
     /**

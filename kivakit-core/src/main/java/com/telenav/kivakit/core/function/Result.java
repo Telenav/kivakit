@@ -18,13 +18,12 @@
 
 package com.telenav.kivakit.core.function;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.code.UncheckedVoidCode;
 import com.telenav.kivakit.core.function.arities.PentaFunction;
 import com.telenav.kivakit.core.function.arities.TetraFunction;
 import com.telenav.kivakit.core.function.arities.TriFunction;
 import com.telenav.kivakit.core.internal.lexakai.DiagramMessaging;
-import com.telenav.kivakit.core.language.Classes;
 import com.telenav.kivakit.core.messaging.Broadcaster;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.messaging.Message;
@@ -37,23 +36,23 @@ import com.telenav.kivakit.interfaces.value.Source;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
 
-import java.util.Objects;
 import java.util.function.BiFunction;
 import java.util.function.Consumer;
 import java.util.function.Function;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_INSUFFICIENT;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_INSUFFICIENT;
 import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
 import static com.telenav.kivakit.core.ensure.Ensure.unsupported;
+import static com.telenav.kivakit.core.language.Classes.newInstance;
+import static com.telenav.kivakit.core.messaging.listeners.MessageList.emptyMessageList;
+import static java.util.Objects.hash;
 
 /**
  * Represents the result of an operation, capturing any failure {@link #messages()}. If there are no failure messages,
  * the operation was successful and {@link #get()} provides the value of the operation. Note that a {@link Result} is a
  * subclass of {@link Maybe}. The list of methods inherited from {@link Maybe} are duplicated here for convenience.
- *
- * <hr>
  *
  * <p><b>Construction</b></p>
  *
@@ -68,8 +67,6 @@ import static com.telenav.kivakit.core.ensure.Ensure.unsupported;
  *     <li>{@link #failure(Throwable, String, Object...)} - Creates a {@link Result} with the given failure message</li>
  * </ol>
  *
- * <hr>
- *
  * <p><b>Validation</b></p>
  *
  * <ul>
@@ -78,8 +75,6 @@ import static com.telenav.kivakit.core.ensure.Ensure.unsupported;
  *     <li>{@link #isValid()} - True if this result is valid. A valid result must have either a value, or one or more messages, but it cannot have both.</li>
  *     <li>{@link #messages()} - Any captured error messages</li>
  * </ul>
- *
- * <hr>
  *
  * <p><b>Terminal Operations</b></p>
  *
@@ -96,8 +91,6 @@ import static com.telenav.kivakit.core.ensure.Ensure.unsupported;
  *     <li>{@link #asStream()} - Converts this value to a stream with zero or one element(s)</li>
  * </ul>
  *
- * <hr>
- *
  * <p><b>Functions</b></p>
  *
  * <ul>
@@ -110,8 +103,6 @@ import static com.telenav.kivakit.core.ensure.Ensure.unsupported;
  *     <li>{@link #map(Function)} - Applies the given function to this value</li>
  * </ul>
  *
- * <hr>
- *
  * <p><b>Conditionals</b></p>
  *
  * <ul>
@@ -120,8 +111,6 @@ import static com.telenav.kivakit.core.ensure.Ensure.unsupported;
  *     <li>{@link #ifPresentOr(Consumer, UncheckedVoidCode)} - Calls the given consumer if a value is present, otherwise calls the given code</li>
  *     <li>{@link #or(Code)} - If a value is present, returns this value, otherwise returns the {@link Maybe} supplied by the given {@link Code}</li>
  * </ul>
- *
- * <hr>
  *
  * @author jonathanl (shibo)
  * @see Maybe
@@ -135,9 +124,9 @@ import static com.telenav.kivakit.core.ensure.Ensure.unsupported;
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramMessaging.class)
 @UmlRelation(label = "failure reason", referent = Message.class)
-@ApiQuality(stability = API_STABLE_EXTENSIBLE,
-            testing = TESTING_INSUFFICIENT,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = TESTING_INSUFFICIENT,
+             documentation = DOCUMENTATION_COMPLETE)
 public class Result<Value> extends Maybe<Value> implements RepeaterMixin
 {
     /**
@@ -313,7 +302,7 @@ public class Result<Value> extends Maybe<Value> implements RepeaterMixin
         {
             if (isPresent())
             {
-                var mapper = Classes.newInstance(mapperType, Listener.class, outer);
+                var mapper = newInstance(mapperType, Listener.class, outer);
                 return newMaybe(ensureNotNull(mapper).parse(get().toString()));
             }
             else
@@ -351,7 +340,7 @@ public class Result<Value> extends Maybe<Value> implements RepeaterMixin
     @Override
     public int hashCode()
     {
-        return Objects.hash(super.hashCode(), succeeded());
+        return hash(super.hashCode(), succeeded());
     }
 
     /**
@@ -377,7 +366,7 @@ public class Result<Value> extends Maybe<Value> implements RepeaterMixin
     }
 
     /**
-     * @return True if this result is valid. A result is invalid if it has a value present, but also has failure
+     * Returns true if this result is valid. A result is invalid if it has a value present, but also has failure
      * messages. Note that a result can have neither a value nor any failure messages (see {@link #absent()}).
      */
     @Override
@@ -460,7 +449,7 @@ public class Result<Value> extends Maybe<Value> implements RepeaterMixin
         if (messages == null)
         {
             // return an empty message list.
-            return MessageList.empty();
+            return emptyMessageList();
         }
 
         return messages;

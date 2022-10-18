@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.resource.reading;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.messaging.Repeater;
 import com.telenav.kivakit.core.progress.ProgressReporter;
 import com.telenav.kivakit.resource.CopyMode;
@@ -32,12 +32,12 @@ import com.telenav.lexakai.annotations.associations.UmlRelation;
 import org.jetbrains.annotations.NotNull;
 
 import java.nio.charset.Charset;
-import java.nio.charset.StandardCharsets;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_DEFAULT_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
 import static com.telenav.kivakit.core.progress.ProgressReporter.nullProgressReporter;
+import static java.nio.charset.StandardCharsets.UTF_8;
 
 /**
  * Interface to an object that is {@link Readable} and can be read with a {@link ResourceReader}.
@@ -57,7 +57,7 @@ import static com.telenav.kivakit.core.progress.ProgressReporter.nullProgressRep
  *     <li>{@link #copyTo(WritableResource, CopyMode, ProgressReporter)}</li>
  * </ul>
  *
- * <p><b>NOTE</b></p>
+ * <p><b>Implementation</b></p>
  *
  * <p>
  * The {@link #resource()} method must be defined by the implementer, as well as the method
@@ -70,9 +70,9 @@ import static com.telenav.kivakit.core.progress.ProgressReporter.nullProgressRep
 @UmlClassDiagram(diagram = DiagramFileSystemFile.class)
 @UmlClassDiagram(diagram = DiagramResource.class)
 @UmlRelation(label = "provides", referent = ResourceReader.class)
-@ApiQuality(stability = API_STABLE_DEFAULT_EXTENSIBLE,
-            testing = TESTING_NOT_NEEDED,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = TESTING_NOT_NEEDED,
+             documentation = DOCUMENTATION_COMPLETE)
 public interface ReadableResource extends
         Readable,
         Repeater
@@ -90,7 +90,7 @@ public interface ReadableResource extends
      */
     default Charset charset()
     {
-        return StandardCharsets.UTF_8;
+        return UTF_8;
     }
 
     /**
@@ -107,7 +107,7 @@ public interface ReadableResource extends
      */
     default ResourceReader reader(@NotNull ProgressReporter reporter)
     {
-        return new ResourceReader(resource(), reporter, charset());
+        return new ResourceReader(reporter, resource(), charset());
     }
 
     /**
@@ -124,7 +124,7 @@ public interface ReadableResource extends
     default ResourceReader reader(@NotNull ProgressReporter reporter,
                                   @NotNull Charset charset)
     {
-        return new ResourceReader(resource(), reporter, charset);
+        return new ResourceReader(reporter, resource(), charset);
     }
 
     /**

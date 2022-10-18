@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.core.collections.map;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramCollections;
 import com.telenav.kivakit.core.value.count.Maximum;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
@@ -26,9 +26,10 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.concurrent.ConcurrentHashMap;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_INSUFFICIENT;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_INSUFFICIENT;
+import static com.telenav.kivakit.core.value.count.Maximum.MAXIMUM;
 
 /**
  * Class for concurrent maps with a bounded number of values.
@@ -38,9 +39,9 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_INSUFF
  * @version 1.0.0 2012-12-27
  */
 @UmlClassDiagram(diagram = DiagramCollections.class)
-@ApiQuality(stability = API_STABLE_EXTENSIBLE,
-            testing = TESTING_INSUFFICIENT,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = TESTING_INSUFFICIENT,
+             documentation = DOCUMENTATION_COMPLETE)
 public class ConcurrentObjectMap<Key, Value> extends ObjectMap<Key, Value> implements
         java.util.concurrent.ConcurrentMap<Key, Value>
 {
@@ -65,7 +66,7 @@ public class ConcurrentObjectMap<Key, Value> extends ObjectMap<Key, Value> imple
      */
     public ConcurrentObjectMap()
     {
-        this(Maximum.MAXIMUM);
+        this(MAXIMUM);
     }
 
     /**
@@ -73,7 +74,7 @@ public class ConcurrentObjectMap<Key, Value> extends ObjectMap<Key, Value> imple
      */
     protected ConcurrentObjectMap(java.util.concurrent.ConcurrentMap<Key, Value> map)
     {
-        this(Maximum.MAXIMUM, map);
+        this(MAXIMUM, map);
     }
 
     @Override

@@ -18,15 +18,15 @@
 
 package com.telenav.kivakit.interfaces.code;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.interfaces.internal.lexakai.DiagramCode;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.function.Consumer;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
 
 /**
  * A simple callback interface. There are other similar interfaces, but sometimes the best name is callback.
@@ -35,11 +35,11 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NE
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramCode.class)
-@ApiQuality(stability = API_STABLE,
-            testing = TESTING_NOT_NEEDED,
-            documentation = DOCUMENTATION_COMPLETE,
-            reviews = 1,
-            reviewers = "shibo")
+@CodeQuality(stability = STABLE,
+             testing = TESTING_NOT_NEEDED,
+             documentation = DOCUMENTATION_COMPLETE,
+             reviews = 1,
+             reviewers = "shibo")
 public interface Callback<Value> extends Consumer<Value>
 {
     /**

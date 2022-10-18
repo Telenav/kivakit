@@ -21,7 +21,6 @@ package com.telenav.kivakit.internal.tests.resource.path;
 import com.telenav.kivakit.conversion.core.time.LocalDateTimeWithMillisecondsConverter;
 import com.telenav.kivakit.conversion.core.time.LocalDateTimeWithSecondsConverter;
 import com.telenav.kivakit.core.messaging.listeners.ThrowingListener;
-import com.telenav.kivakit.core.time.DayOfWeek;
 import com.telenav.kivakit.core.time.LocalTime;
 import com.telenav.kivakit.core.time.Time;
 import com.telenav.kivakit.testing.UnitTest;
@@ -30,13 +29,16 @@ import org.junit.Test;
 
 import java.time.ZoneId;
 
+import static com.telenav.kivakit.core.time.DayOfWeek.FRIDAY;
+import static com.telenav.kivakit.core.time.Time.now;
+
 @SuppressWarnings("ConstantConditions")
 public class FileNameTest extends UnitTest
 {
     @Test
     public void localTimeTest()
     {
-        var now = Time.now();
+        var now = now();
         var local = now.asLocalTime();
         trace("local = ${debug}", local);
         var utc = now.asUtc();
@@ -68,7 +70,7 @@ public class FileNameTest extends UnitTest
         trace("Week of Year:    ${debug}", localTime.weekOfYear());
         Assert.assertEquals(30, localTime.weekOfYear());
         trace("Day of Week:    ${debug}", localTime.dayOfWeek());
-        Assert.assertEquals(DayOfWeek.FRIDAY, localTime.dayOfWeek());
+        Assert.assertEquals(FRIDAY, localTime.dayOfWeek());
     }
 
     @Test
@@ -83,7 +85,7 @@ public class FileNameTest extends UnitTest
         var localTime = LocalTime.milliseconds(timeZone, 1344025281123L);
         trace("LocalTime: ${debug}", localTime.asMilliseconds());
 
-        final Time time = localTime.asUtc();
+        Time time = localTime.asUtc();
         trace("Time:      ${debug}", time.asMilliseconds());
 
         /*

@@ -18,13 +18,12 @@
 
 package com.telenav.kivakit.resource;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.conversion.BaseStringConverter;
 import com.telenav.kivakit.core.collections.list.ObjectList;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.messaging.Repeater;
 import com.telenav.kivakit.core.progress.ProgressReporter;
-import com.telenav.kivakit.core.time.Time;
 import com.telenav.kivakit.filesystem.Folder;
 import com.telenav.kivakit.interfaces.comparison.Matchable;
 import com.telenav.kivakit.interfaces.comparison.Matcher;
@@ -32,14 +31,18 @@ import com.telenav.kivakit.resource.packages.Package;
 import com.telenav.kivakit.resource.writing.WritableResource;
 import org.jetbrains.annotations.NotNull;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE;
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_DEFAULT_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
 import static com.telenav.kivakit.core.ensure.Ensure.unsupported;
+import static com.telenav.kivakit.core.messaging.Listener.throwingListener;
+import static com.telenav.kivakit.core.time.Time.now;
 import static com.telenav.kivakit.filesystem.Folder.FolderType.NORMAL;
+import static com.telenav.kivakit.filesystem.Folder.temporaryFolderForProcess;
 import static com.telenav.kivakit.interfaces.comparison.Matcher.matchAll;
 import static com.telenav.kivakit.resource.CopyMode.OVERWRITE;
+import static com.telenav.kivakit.resource.Extension.TEMPORARY;
 import static com.telenav.kivakit.resource.ResourcePath.parseResourcePath;
 import static com.telenav.kivakit.resource.spi.ResourceFolderResolverService.resourceFolderResolverService;
 
@@ -100,9 +103,9 @@ import static com.telenav.kivakit.resource.spi.ResourceFolderResolverService.res
  * @author jonathanl (shibo)
  */
 @SuppressWarnings("unused")
-@ApiQuality(stability = API_STABLE_DEFAULT_EXTENSIBLE,
-            testing = TESTING_NOT_NEEDED,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = TESTING_NOT_NEEDED,
+             documentation = DOCUMENTATION_COMPLETE)
 public interface ResourceFolder<T extends ResourceFolder<T>> extends
         Repeater,
         UriIdentified,
@@ -131,9 +134,9 @@ public interface ResourceFolder<T extends ResourceFolder<T>> extends
      *
      * @author jonathanl (shibo)
      */
-    @ApiQuality(stability = API_STABLE,
-                testing = TESTING_NOT_NEEDED,
-                documentation = DOCUMENTATION_COMPLETE)
+    @CodeQuality(stability = STABLE,
+                 testing = TESTING_NOT_NEEDED,
+                 documentation = DOCUMENTATION_COMPLETE)
     class Converter extends BaseStringConverter<ResourceFolder<?>>
     {
         public Converter(Listener listener)
@@ -169,7 +172,7 @@ public interface ResourceFolder<T extends ResourceFolder<T>> extends
                         @NotNull Matcher<ResourcePathed> matcher,
                         @NotNull ProgressReporter reporter)
     {
-        var start = Time.now();
+        var start = now();
 
         // Ensure the destination folder exists,
         information("Copying $ to $", this, destination);
@@ -206,7 +209,7 @@ public interface ResourceFolder<T extends ResourceFolder<T>> extends
     boolean exists();
 
     /**
-     * @return The child resource container at the given relative path
+     * Returns the child resource container at the given relative path
      */
     T folder(String path);
 
@@ -268,7 +271,7 @@ public interface ResourceFolder<T extends ResourceFolder<T>> extends
      */
     default Folder materialize()
     {
-        return materializeTo(Folder.temporaryForProcess(NORMAL));
+        return materializeTo(temporaryFolderForProcess(NORMAL));
     }
 
     /**
@@ -324,7 +327,7 @@ public interface ResourceFolder<T extends ResourceFolder<T>> extends
     }
 
     /**
-     * @return Any matching files that are recursively contained in this folder
+     * Returns any matching files that are recursively contained in this folder
      */
     default ResourceList nestedResources(@NotNull Matcher<ResourcePathed> matcher)
     {
@@ -368,7 +371,7 @@ public interface ResourceFolder<T extends ResourceFolder<T>> extends
      */
     default Resource resource(@NotNull String name)
     {
-        return resource(parseResourcePath(Listener.throwingListener(), name));
+        return resource(parseResourcePath(throwingListener(), name));
     }
 
     /**
@@ -382,7 +385,7 @@ public interface ResourceFolder<T extends ResourceFolder<T>> extends
     ResourceFolderIdentifier resourceFolderIdentifier();
 
     /**
-     * @return The resources in this folder matching the given matcher
+     * Returns the resources in this folder matching the given matcher
      */
     ResourceList resources(@NotNull Matcher<ResourcePathed> matcher);
 
@@ -430,7 +433,7 @@ public interface ResourceFolder<T extends ResourceFolder<T>> extends
      */
     default WritableResource temporaryFile(@NotNull FileName baseName)
     {
-        return temporaryFile(baseName, Extension.TMP);
+        return temporaryFile(baseName, TEMPORARY);
     }
 
     /**

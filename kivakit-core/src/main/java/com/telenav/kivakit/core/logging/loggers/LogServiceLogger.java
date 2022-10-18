@@ -18,18 +18,13 @@
 
 package com.telenav.kivakit.core.logging.loggers;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
-import com.telenav.kivakit.core.collections.Sets;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.collections.map.VariableMap;
 import com.telenav.kivakit.core.collections.set.ObjectSet;
 import com.telenav.kivakit.core.internal.lexakai.DiagramLogging;
 import com.telenav.kivakit.core.logging.Log;
 import com.telenav.kivakit.core.logging.LoggerCodeContext;
 import com.telenav.kivakit.core.logging.logs.text.ConsoleLog;
-import com.telenav.kivakit.core.messaging.Listener;
-import com.telenav.kivakit.core.messaging.messages.OperationMessage;
-import com.telenav.kivakit.core.string.Strings;
-import com.telenav.kivakit.core.vm.Properties;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlAggregation;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
@@ -38,35 +33,53 @@ import com.telenav.lexakai.annotations.visibility.UmlExcludeMember;
 import java.util.Set;
 import java.util.regex.Pattern;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
-import static com.telenav.kivakit.core.collections.set.ObjectSet.objectSet;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static com.telenav.kivakit.core.collections.Sets.hashSet;
+import static com.telenav.kivakit.core.collections.set.ObjectSet.set;
 import static com.telenav.kivakit.core.ensure.Ensure.fail;
+import static com.telenav.kivakit.core.logging.loggers.LogServiceLoader.logForName;
+import static com.telenav.kivakit.core.messaging.Listener.consoleListener;
+import static com.telenav.kivakit.core.messaging.Messages.parseMessageType;
+import static com.telenav.kivakit.core.os.Console.console;
+import static com.telenav.kivakit.core.string.Strings.isNullOrBlank;
+import static com.telenav.kivakit.core.vm.Properties.systemPropertyOrEnvironmentVariable;
+import static java.util.regex.Pattern.CASE_INSENSITIVE;
 
 /**
  * A Java Services logger that creates loggers by inspecting the KIVAKIT_LOG and KIVAKIT_LOG_LEVEL environment
  * variables. Log providers specified by comma separated descriptors in the KIVAKIT_LOG variable are loaded by
  * {@link LogServiceLoader} as services. They are then configured and added to the list of logs. Configuration
  * properties are specified as key value pairs.
+ *
  * <pre>
- * -DKIVAKIT_LOG="console level=warning,file level=information file=log.txt"
- * </pre>
+ * -DKIVAKIT_LOG="console level=warning,file level=information file=log.txt"</pre>
+ *
+ * <p>
  * This command line sends warnings to the console and information messages (and higher) to the specified log file.
+ * </p>
+ *
+ * <p><b>Logging</b></p>
+ *
+ * <p>
+ * More details about logging are available in <a
+ * href="../../../../../../../../../kivakit-core/documentation/logging.md">kivakit-core</a>.
+ * </p>
  *
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramLogging.class)
 @UmlRelation(label = "configures", referent = Log.class)
 @UmlRelation(label = "loads log services with", referent = LogServiceLoader.class)
-@ApiQuality(stability = API_STABLE,
-            testing = TESTING_NONE,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = STABLE,
+             testing = UNTESTED,
+             documentation = DOCUMENTATION_COMPLETE)
 public class LogServiceLogger extends BaseLogger
 {
     /** List of logs to log to, initially just a console log, unless logs are specified with KIVAKIT_LOG */
     @UmlAggregation(label = "logs to")
-    private static Set<Log> logs = Sets.hashSet(new ConsoleLog());
+    private static Set<Log> logs = hashSet(new ConsoleLog());
 
     /** True if loggers have been dynamically loaded */
     private static boolean loaded;
@@ -98,7 +111,7 @@ public class LogServiceLogger extends BaseLogger
             loaded = true;
 
             // so get log service descriptors
-            var descriptors = Properties.systemPropertyOrEnvironmentVariable("KIVAKIT_LOG");
+            var descriptors = systemPropertyOrEnvironmentVariable("KIVAKIT_LOG");
             if (descriptors != null)
             {
                 // and for each descriptor,
@@ -125,7 +138,7 @@ public class LogServiceLogger extends BaseLogger
             }
         }
 
-        return objectSet(logs);
+        return set(logs);
     }
 
     /**
@@ -135,7 +148,7 @@ public class LogServiceLogger extends BaseLogger
     {
         // If the descriptor matches "<log-name> <key>=<value> ..."
         var descriptorMatcher = Pattern
-                .compile("(?<log>\\w+)(?<arguments>.*)", Pattern.CASE_INSENSITIVE)
+                .compile("(?<log>\\w+)(?<arguments>.*)", CASE_INSENSITIVE)
                 .matcher(descriptor);
 
         if (descriptorMatcher.matches())
@@ -146,14 +159,14 @@ public class LogServiceLogger extends BaseLogger
             // and the configuration, if any
             var configuration = new VariableMap<String>();
             var arguments = descriptorMatcher.group("arguments");
-            if (!Strings.isEmpty(arguments))
+            if (!isNullOrBlank(arguments))
             {
                 var propertyPattern = Pattern.compile("\\s*(?<key>[\\w+-]+)\\s*=\\s*(?<value>\\S+)\\s*",
-                        Pattern.CASE_INSENSITIVE);
+                        CASE_INSENSITIVE);
                 var properties = arguments.trim().split(" ");
                 for (var property : properties)
                 {
-                    if (!Strings.isEmpty(property))
+                    if (!isNullOrBlank(property))
                     {
                         var matcher = propertyPattern.matcher(property);
                         if (matcher.matches())
@@ -169,20 +182,24 @@ public class LogServiceLogger extends BaseLogger
             }
 
             // load the log as a Java Service
-            var log = LogServiceLoader.log(logName);
+            var log = logForName(console(), logName);
             if (log != null)
             {
                 // then override if the individual log has a level=<message> identifier
                 var message = configuration.asString("level");
                 if (message != null)
                 {
-                    log.level(OperationMessage.parseMessageType(Listener.consoleListener(), message).severity());
+                    log.level(parseMessageType(consoleListener(), message).severity());
                 }
 
                 // and then let the log configure itself with the remaining properties
                 log.configure(configuration);
 
                 return log;
+            }
+            else
+            {
+                fail("Could not find log named: $", logName);
             }
         }
         else

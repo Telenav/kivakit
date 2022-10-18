@@ -18,12 +18,12 @@
 
 package com.telenav.kivakit.core.value.count;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.interfaces.numeric.Zeroable;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 
 /**
  * Interface to something that has a {@link Count} value.
@@ -31,9 +31,9 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
  * @author jonathanl (shibo)
  * @see Count
  */
-@ApiQuality(stability = API_STABLE,
-            testing = TESTING_NONE,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = STABLE,
+             testing = UNTESTED,
+             documentation = DOCUMENTATION_COMPLETE)
 public interface Countable extends Zeroable
 {
     /**

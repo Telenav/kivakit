@@ -18,12 +18,12 @@
 
 package com.telenav.kivakit.internal.tests.core.time;
 
-import com.telenav.kivakit.core.time.Duration;
-import com.telenav.kivakit.core.time.Time;
 import com.telenav.kivakit.internal.testing.CoreUnitTest;
 import org.junit.Test;
 
+import static com.telenav.kivakit.core.time.Duration.ONE_DAY;
 import static com.telenav.kivakit.core.time.Duration.ONE_SECOND;
+import static com.telenav.kivakit.core.time.Time.now;
 
 /**
  * Time test
@@ -33,7 +33,7 @@ public class TimeTest extends CoreUnitTest
     @Test
     public void testBeforeAfter()
     {
-        var now = Time.now();
+        var now = now();
         var later = now.plus(ONE_SECOND);
         ensure(now.isBefore(later));
         ensure(now.isAtOrBefore(later));
@@ -46,7 +46,7 @@ public class TimeTest extends CoreUnitTest
     @Test
     public void testMinimumMaximum()
     {
-        var now = Time.now();
+        var now = now();
         var later = now.plus(ONE_SECOND);
         ensureEqual(now, now.minimum(later));
         ensureEqual(later, now.maximum(later));
@@ -57,7 +57,7 @@ public class TimeTest extends CoreUnitTest
     @Test
     public void testMinus()
     {
-        var now = Time.now().roundDown(ONE_SECOND);
+        var now = now().roundDown(ONE_SECOND);
         var later = now.plus(ONE_SECOND);
         ensureEqual(ONE_SECOND, later.minus(now));
     }
@@ -65,7 +65,7 @@ public class TimeTest extends CoreUnitTest
     @Test
     public void testPlus()
     {
-        var now = Time.now().roundDown(ONE_SECOND);
+        var now = now().roundDown(ONE_SECOND);
         var earlier = now.minus(ONE_SECOND);
 
         ensureEqual(now, earlier.plus(ONE_SECOND));
@@ -74,7 +74,7 @@ public class TimeTest extends CoreUnitTest
     @Test
     public void testRoundDown()
     {
-        var now = Time.now();
+        var now = now();
         var thisSecond = now.roundDown(ONE_SECOND);
         ensure(thisSecond.isAtOrBefore(now));
     }
@@ -82,7 +82,7 @@ public class TimeTest extends CoreUnitTest
     @Test
     public void testStartOfToday()
     {
-        var startOfToday = Time.now().asLocalTime().startOfDay();
-        ensure(Time.now().minus(startOfToday).isLessThanOrEqualTo(Duration.ONE_DAY));
+        var startOfToday = now().asLocalTime().startOfDay();
+        ensure(now().minus(startOfToday).isLessThanOrEqualTo(ONE_DAY));
     }
 }

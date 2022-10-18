@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.network.http;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.collections.map.VariableMap;
 import com.telenav.kivakit.network.core.BaseNetworkResource;
 import com.telenav.kivakit.network.core.NetworkAccessConstraints;
@@ -34,14 +34,15 @@ import java.net.PasswordAuthentication;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
-import java.util.Objects;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static com.telenav.kivakit.network.http.HttpStatus.OK;
 import static java.net.http.HttpRequest.BodyPublishers.noBody;
 import static java.net.http.HttpResponse.BodyHandlers.ofInputStream;
 import static java.net.http.HttpResponse.BodyHandlers.ofString;
+import static java.util.Objects.hash;
 
 /**
  * A network resource accessible via HTTP.
@@ -80,9 +81,9 @@ import static java.net.http.HttpResponse.BodyHandlers.ofString;
  * @author jonathanl (shibo)
  */
 @SuppressWarnings("unused") @UmlClassDiagram(diagram = DiagramHttp.class)
-@ApiQuality(stability = API_STABLE_EXTENSIBLE,
-            testing = TESTING_NONE,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = UNTESTED,
+             documentation = DOCUMENTATION_COMPLETE)
 public abstract class BaseHttpResource extends BaseNetworkResource implements HttpRequestFactory
 {
     @UmlAggregation
@@ -97,7 +98,7 @@ public abstract class BaseHttpResource extends BaseNetworkResource implements Ht
 
     private final VariableMap<String> responseHeader = new VariableMap<>();
 
-    private HttpStatus status = HttpStatus.OK;
+    private HttpStatus status = OK;
 
     /**
      * Constructs a resource accessible via HTTP
@@ -110,7 +111,7 @@ public abstract class BaseHttpResource extends BaseNetworkResource implements Ht
     }
 
     /**
-     * @return The content of this HTTP resource as a string
+     * Returns the content of this HTTP resource as a string
      */
     @Override
     public String asString()
@@ -129,7 +130,7 @@ public abstract class BaseHttpResource extends BaseNetworkResource implements Ht
     }
 
     /**
-     * @return The content encoding once the resource has been opened for reading
+     * Returns the content encoding once the resource has been opened for reading
      */
     public String encoding()
     {
@@ -150,11 +151,11 @@ public abstract class BaseHttpResource extends BaseNetworkResource implements Ht
     @Override
     public int hashCode()
     {
-        return Objects.hash(networkLocation);
+        return hash(networkLocation);
     }
 
     /**
-     * @return The content type, as determined by a Content-CheckType HTTP HEAD request
+     * Returns the content type, as determined by a Content-CheckType HTTP HEAD request
      */
     public String httpHeadRequestContentType()
     {
@@ -162,7 +163,7 @@ public abstract class BaseHttpResource extends BaseNetworkResource implements Ht
     }
 
     /**
-     * @return The value for the given HTTP header field, as determined by an HTTP HEAD request
+     * Returns the value for the given HTTP header field, as determined by an HTTP HEAD request
      */
     public String httpHeadRequestHeaderField(String fieldName)
     {
@@ -184,7 +185,7 @@ public abstract class BaseHttpResource extends BaseNetworkResource implements Ht
     }
 
     /**
-     * @return Always true
+     * Returns always true
      */
     @Override
     public boolean isRemote()
@@ -193,7 +194,7 @@ public abstract class BaseHttpResource extends BaseNetworkResource implements Ht
     }
 
     /**
-     * @return The network location of this HTTP resource
+     * Returns the network location of this HTTP resource
      */
     @Override
     public NetworkLocation location()
@@ -235,7 +236,7 @@ public abstract class BaseHttpResource extends BaseNetworkResource implements Ht
     }
 
     /**
-     * @return Response header variables
+     * Returns response header variables
      */
     public VariableMap<String> responseHeader()
     {
@@ -262,7 +263,7 @@ public abstract class BaseHttpResource extends BaseNetworkResource implements Ht
     }
 
     /**
-     * @return A configured HTTP client
+     * Returns a configured HTTP client
      */
     protected HttpClient newClient()
     {

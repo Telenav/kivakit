@@ -18,21 +18,20 @@
 
 package com.telenav.kivakit.core.collections;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.collections.set.ObjectSet;
-import com.telenav.kivakit.core.ensure.Ensure;
 import com.telenav.kivakit.interfaces.factory.Factory;
 
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.function.Function;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_STATIC_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
+import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
 
 /**
  * Set utility methods for working on sets. Prefer {@link ObjectSet} when possible.
@@ -40,7 +39,6 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NE
  * <p><b>Construction</b></p>
  *
  * <ul>
- *     <li>{@link #empty()}</li>
  *     <li>{@link #hashSet(Object[])}</li>
  *     <li>{@link #hashSet(Iterable)}</li>
  *     <li>{@link #hashSet(Collection)}</li>
@@ -49,36 +47,41 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NE
  * <p><b>Copying</b></p>
  *
  * <ul>
- *     <li>{@link #copy(Factory, Set)}</li>
+ *     <li>{@link #deepCopy(Factory, Set)}</li>
  *     <li>{@link #deepCopy(Factory, Set, Function)}</li>
  * </ul>
  *
  * <p><b>Other</b></p>
  *
  * <ul>
- *     <li>{@link #first(Set)}</li>
- *     <li>{@link #union(Set, Set)}</li>
+ *     <li>{@link #pickOne(Set)}</li>
+ *     <li>{@link #unionOf(Set, Set)}</li>
  * </ul>
  *
  * @author jonathanl (shibo)
  */
 @SuppressWarnings("unused")
-@ApiQuality(stability = API_STABLE_STATIC_EXTENSIBLE,
-            testing = TESTING_NOT_NEEDED,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = TESTING_NOT_NEEDED,
+             documentation = DOCUMENTATION_COMPLETE)
 public class Sets
 {
     /**
-     * @return A copy of the given set
+     * @param factory Creates a new set
+     * @param set The set to copy
+     * @return A deep copy of the given set
      */
-    public static <Value> Set<Value> copy(Factory<Set<Value>> factory,
-                                          Set<Value> set)
+    public static <Value> Set<Value> deepCopy(Factory<Set<Value>> factory,
+                                              Set<Value> set)
     {
         return deepCopy(factory, set, value -> value);
     }
 
     /**
-     * @return A copy of the given set
+     * @param factory Creates a new set
+     * @param set The set to copy
+     * @param clone The function to copy values
+     * @return A deep copy of the given set
      */
     public static <Value> Set<Value> deepCopy(Factory<Set<Value>> factory,
                                               Set<Value> set,
@@ -87,26 +90,16 @@ public class Sets
         var copy = factory.newInstance();
         for (var value : set)
         {
-            Ensure.ensureNotNull(value);
-            var clonedValue = clone.apply(value);
-            Ensure.ensureNotNull(clonedValue);
-            copy.add(clonedValue);
+            var clonedValue = clone.apply(ensureNotNull(value));
+            copy.add(ensureNotNull(clonedValue));
         }
         return copy;
     }
 
     /**
-     * Returns the empty set.
-     */
-    public static <Value> Set<Value> empty()
-    {
-        return Collections.emptySet();
-    }
-
-    /**
      * Returns the first available value in the set or null. Which value is returned is not defined.
      */
-    public static <Value> Value first(Set<Value> set)
+    public static <Value> Value pickOne(Set<Value> set)
     {
         return set.isEmpty() ? null : set.iterator().next();
     }
@@ -141,7 +134,7 @@ public class Sets
     /**
      * Returns the union of the two given sets
      */
-    public static <T> Set<T> union(Set<T> a, Set<T> b)
+    public static <T> Set<T> unionOf(Set<T> a, Set<T> b)
     {
         var union = new HashSet<T>();
         union.addAll(a);

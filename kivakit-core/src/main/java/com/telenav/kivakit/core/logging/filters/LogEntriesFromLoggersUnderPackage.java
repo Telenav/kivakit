@@ -18,14 +18,14 @@
 
 package com.telenav.kivakit.core.logging.filters;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.language.module.PackageReference;
 import com.telenav.kivakit.core.logging.LogEntry;
 import com.telenav.kivakit.interfaces.comparison.Filter;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 
 /**
  * A filter that accepts each {@link LogEntry}  that came from a package or sub-package
@@ -33,9 +33,9 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
  * @author jonathanl (shibo)
  */
 @SuppressWarnings("unused")
-@ApiQuality(stability = API_STABLE,
-            testing = TESTING_NONE,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = STABLE,
+             testing = UNTESTED,
+             documentation = DOCUMENTATION_COMPLETE)
 public class LogEntriesFromLoggersUnderPackage implements Filter<LogEntry>
 {
     /** The package */

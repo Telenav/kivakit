@@ -18,19 +18,16 @@
 
 package com.telenav.kivakit.core.project;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.collections.map.VariableMap;
 import com.telenav.kivakit.core.collections.set.ObjectSet;
 import com.telenav.kivakit.core.internal.lexakai.DiagramProject;
-import com.telenav.kivakit.core.language.Classes;
 import com.telenav.kivakit.core.messaging.repeaters.BaseRepeater;
 import com.telenav.kivakit.core.object.LazyMap;
 import com.telenav.kivakit.core.registry.RegistryTrait;
-import com.telenav.kivakit.core.string.Align;
 import com.telenav.kivakit.core.string.AsciiArt;
 import com.telenav.kivakit.core.version.Version;
 import com.telenav.kivakit.core.vm.JavaTrait;
-import com.telenav.kivakit.core.vm.Properties;
 import com.telenav.kivakit.interfaces.lifecycle.Initializable;
 import com.telenav.kivakit.interfaces.naming.Named;
 import com.telenav.kivakit.interfaces.naming.NamedObject;
@@ -41,9 +38,18 @@ import com.telenav.lexakai.annotations.visibility.UmlExcludeSuperTypes;
 import java.util.HashSet;
 import java.util.Set;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
+import static com.telenav.kivakit.core.collections.set.ObjectSet.emptySet;
+import static com.telenav.kivakit.core.language.Classes.newInstance;
+import static com.telenav.kivakit.core.object.LazyMap.lazyMap;
+import static com.telenav.kivakit.core.project.StartUpOptions.StartupOption.QUIET;
+import static com.telenav.kivakit.core.project.StartUpOptions.isStartupOptionEnabled;
+import static com.telenav.kivakit.core.string.Align.leftAlign;
+import static com.telenav.kivakit.core.string.Align.rightAlign;
+import static com.telenav.kivakit.core.version.Version.parseVersion;
+import static com.telenav.kivakit.core.vm.Properties.allProperties;
 
 /**
  * Base class for KivaKit projects, enabling run-time dependency management and initialization.
@@ -102,9 +108,9 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NE
  */
 @UmlClassDiagram(diagram = DiagramProject.class)
 @UmlExcludeSuperTypes({ Named.class })
-@ApiQuality(stability = API_STABLE_EXTENSIBLE,
-            testing = TESTING_NOT_NEEDED,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = TESTING_NOT_NEEDED,
+             documentation = DOCUMENTATION_COMPLETE)
 public abstract class Project extends BaseRepeater implements
         Initializable,
         Named,
@@ -114,7 +120,7 @@ public abstract class Project extends BaseRepeater implements
         RegistryTrait
 {
     /** Map from project class to project instance used by {@link #resolveProject(Class)} */
-    private static final LazyMap<Class<? extends Project>, Project> projects = LazyMap.of(Project::newProject);
+    private static final LazyMap<Class<? extends Project>, Project> projects = lazyMap(Project::newProject);
 
     /**
      * Resolves the given Project class to a singleton instance.
@@ -145,7 +151,7 @@ public abstract class Project extends BaseRepeater implements
     private boolean initialized;
 
     /**
-     * @return The maven artifactId of this project
+     * Returns the maven artifactId of this project
      */
     public String artifactId()
     {
@@ -153,7 +159,7 @@ public abstract class Project extends BaseRepeater implements
     }
 
     /**
-     * @return Build information about this project
+     * Returns build information about this project
      */
     public Build build()
     {
@@ -168,7 +174,7 @@ public abstract class Project extends BaseRepeater implements
     @UmlRelation(label = "depends on")
     public ObjectSet<Class<? extends Project>> dependencies()
     {
-        return ObjectSet.emptyObjectSet();
+        return emptySet();
     }
 
     /**
@@ -186,7 +192,7 @@ public abstract class Project extends BaseRepeater implements
     }
 
     /**
-     * @return The maven groupId for this project
+     * Returns the maven groupId for this project
      */
     public String groupId()
     {
@@ -217,11 +223,11 @@ public abstract class Project extends BaseRepeater implements
             onInitializing();
 
             // initialize the project
-            if (!StartUpOptions.isEnabled(StartUpOptions.StartupOption.QUIET))
+            if (!isStartupOptionEnabled(QUIET))
             {
                 announce("Loading$ $ build $",
-                        Align.right(getClass().getSimpleName(), 40, '.'),
-                        Align.left(projectVersion().toString(), 20, '.'), build());
+                        rightAlign(getClass().getSimpleName(), 40, '.'),
+                        leftAlign(projectVersion().toString(), 20, '.'), build());
             }
             onInitialize();
 
@@ -231,7 +237,7 @@ public abstract class Project extends BaseRepeater implements
     }
 
     /**
-     * @return The KivaKit version in use
+     * Returns the KivaKit version in use
      */
     @Override
     public final Version kivakitVersion()
@@ -240,7 +246,7 @@ public abstract class Project extends BaseRepeater implements
     }
 
     /**
-     * @return The maven project name for this project
+     * Returns the maven project name for this project
      */
     @Override
     public String name()
@@ -271,23 +277,23 @@ public abstract class Project extends BaseRepeater implements
     }
 
     /**
-     * @return The version of this project
+     * Returns the version of this project
      */
     public Version projectVersion()
     {
-        return Version.parseVersion(this, property("project-version"));
+        return parseVersion(this, property("project-version"));
     }
 
     /**
-     * @return System properties, environment variables and build properties for this project
+     * Returns system properties, environment variables and build properties for this project
      */
     public VariableMap<String> properties()
     {
-        return Properties.allProperties(getClass());
+        return allProperties(getClass());
     }
 
     /**
-     * @return The project property for the given key
+     * Returns the project property for the given key
      */
     public String property(String key)
     {
@@ -322,7 +328,7 @@ public abstract class Project extends BaseRepeater implements
      */
     private static Project newProject(Class<? extends Project> type)
     {
-        return Classes.newInstance(type);
+        return newInstance(type);
     }
 
     private void visitDependencies(Project project,

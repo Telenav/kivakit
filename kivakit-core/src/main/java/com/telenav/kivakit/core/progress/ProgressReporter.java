@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.core.progress;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramProgress;
 import com.telenav.kivakit.core.progress.reporters.BroadcastingProgressReporter;
 import com.telenav.kivakit.core.value.count.BaseCount;
@@ -27,9 +27,9 @@ import com.telenav.kivakit.interfaces.lifecycle.Resettable;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_DEFAULT_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
 
 /**
  * Reports the progress of some operation to an end-user in some manner. The operation begins when {@link #start()} is
@@ -43,9 +43,9 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NE
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramProgress.class)
 @UmlRelation(label = "reports progress to", referent = ProgressListener.class)
-@ApiQuality(stability = API_STABLE_DEFAULT_EXTENSIBLE,
-            testing = TESTING_NOT_NEEDED,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = TESTING_NOT_NEEDED,
+             documentation = DOCUMENTATION_COMPLETE)
 public interface ProgressReporter extends Resettable
 {
     /**
@@ -74,7 +74,7 @@ public interface ProgressReporter extends Resettable
     }
 
     /**
-     * @return True if progress is indefinite because the number of steps in not known
+     * Returns true if progress is indefinite because the number of steps in not known
      */
     default boolean isIndefinite()
     {

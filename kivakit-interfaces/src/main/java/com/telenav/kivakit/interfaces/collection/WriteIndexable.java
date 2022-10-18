@@ -18,13 +18,13 @@
 
 package com.telenav.kivakit.interfaces.collection;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.interfaces.internal.lexakai.DiagramCollection;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_DEFAULT_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 
 /**
  * An indexable object is {@link Indexable}, but also supports setting values.
@@ -32,14 +32,15 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
  * @author jonathanl (shibo)
  * @see Indexable
  */
+@SuppressWarnings("SpellCheckingInspection")
 @UmlClassDiagram(diagram = DiagramCollection.class)
-@ApiQuality(stability = API_STABLE_DEFAULT_EXTENSIBLE,
-            testing = TESTING_NONE,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = UNTESTED,
+             documentation = DOCUMENTATION_COMPLETE)
 public interface WriteIndexable<Value> extends Indexable<Value>
 {
     /**
-     * @return The value for the given index
+     * Returns the value for the given index
      */
     Value set(int index, Value value);
 }

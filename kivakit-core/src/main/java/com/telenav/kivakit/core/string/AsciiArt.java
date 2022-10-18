@@ -18,8 +18,7 @@
 
 package com.telenav.kivakit.core.string;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
-import com.telenav.kivakit.core.ensure.Ensure;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramString;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import org.jetbrains.annotations.NotNull;
@@ -27,10 +26,18 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Arrays;
 import java.util.Collection;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static com.telenav.kivakit.core.ensure.Ensure.ensure;
+import static com.telenav.kivakit.core.os.OperatingSystem.operatingSystem;
+import static com.telenav.kivakit.core.string.Align.leftAlign;
+import static com.telenav.kivakit.core.string.Align.center;
+import static com.telenav.kivakit.core.string.Formatter.format;
 import static com.telenav.kivakit.core.string.Join.join;
+import static com.telenav.kivakit.core.string.Strings.leading;
+import static com.telenav.kivakit.core.string.Strings.occurrences;
+import static java.lang.Math.max;
 
 /**
  * Provides methods to create "ASCII art", including:
@@ -45,12 +52,12 @@ import static com.telenav.kivakit.core.string.Join.join;
  * @author jonathanl (shibo)
  */
 @SuppressWarnings("unused") @UmlClassDiagram(diagram = DiagramString.class)
-@ApiQuality(stability = API_STABLE_EXTENSIBLE,
-            testing = TESTING_NONE,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = UNTESTED,
+             documentation = DOCUMENTATION_COMPLETE)
 public class AsciiArt
 {
-    private static final boolean isMac = System.getProperty("os.name").toLowerCase().contains("mac");
+    private static final boolean isMac = operatingSystem().isMac();
 
     private static final char HORIZONTAL_LINE_CHARACTER = isMac ? '\u2501' : '-';
 
@@ -75,7 +82,7 @@ public class AsciiArt
      */
     public static String bannerLine(String message)
     {
-        return Align.center(" " + message + " ", LINE_LENGTH, HORIZONTAL_LINE_CHARACTER);
+        return center(" " + message + " ", LINE_LENGTH, HORIZONTAL_LINE_CHARACTER);
     }
 
     /**
@@ -91,9 +98,9 @@ public class AsciiArt
      */
     public static String bottomLine(int extraWidth, String message, Object... arguments)
     {
-        message = " " + Strings.format(message, arguments) + " ";
+        message = " " + format(message, arguments) + " ";
         return BOTTOM_LEFT_LINE_CHARACTER + line(4) + message
-                + line(Math.max(4, LINE_LENGTH + extraWidth - 6 - message.length()))
+                + line(max(4, LINE_LENGTH + extraWidth - 6 - message.length()))
                 + BOTTOM_RIGHT_LINE_CHARACTER;
     }
 
@@ -114,38 +121,7 @@ public class AsciiArt
     }
 
     /**
-     * @return A box using the given horizontal and vertical line drawing characters that contains the given message
-     */
-    public static String box(String message, char horizontal, char vertical)
-    {
-        var builder = new StringBuilder();
-        var width = widestLine(message);
-        builder.append(repeat(width + 6, horizontal));
-        builder.append('\n');
-        var lines = message.split("\n");
-        for (var line : lines)
-        {
-            builder.append(vertical);
-            builder.append("  ");
-            builder.append(Align.left(line, width, ' '));
-            builder.append("  ");
-            builder.append(vertical);
-            builder.append('\n');
-        }
-        builder.append(repeat(width + 6, horizontal));
-        return builder.toString();
-    }
-
-    /**
-     * @return An ASCII art box containing the given message
-     */
-    public static String box(String message, Object... arguments)
-    {
-        return box(Strings.format(message, arguments), HORIZONTAL_LINE_CHARACTER, VERTICAL_LINE_CHARACTER);
-    }
-
-    /**
-     * @return The string to use as a bullet
+     * Returns the string to use as a bullet
      */
     public static String bullet()
     {
@@ -153,7 +129,7 @@ public class AsciiArt
     }
 
     /**
-     * @return Collection of values as a bulleted list
+     * Returns collection of values as a bulleted list
      */
     public static String bulleted(Collection<?> values)
     {
@@ -161,7 +137,7 @@ public class AsciiArt
     }
 
     /**
-     * @return Collection of values as a bulleted list using the given bullet
+     * Returns collection of values as a bulleted list using the given bullet
      */
     public static String bulleted(Collection<?> values, String bullet)
     {
@@ -169,7 +145,7 @@ public class AsciiArt
     }
 
     /**
-     * @return Collection of values as an indented bulleted list
+     * Returns collection of values as an indented bulleted list
      */
     public static String bulleted(int indent, Collection<?> values)
     {
@@ -177,7 +153,7 @@ public class AsciiArt
     }
 
     /**
-     * @return Collection of values as an indented bulleted list using the given bullet
+     * Returns collection of values as an indented bulleted list using the given bullet
      */
     public static String bulleted(int indent, Collection<?> values, String bullet)
     {
@@ -193,7 +169,7 @@ public class AsciiArt
     }
 
     /**
-     * @return The given text clipped at n characters with "[...]" appended if it is longer than n characters
+     * Returns the given text clipped at n characters with "[...]" appended if it is longer than n characters
      */
     public static String clip(String text, int n)
     {
@@ -202,11 +178,11 @@ public class AsciiArt
             return text;
         }
         var suffix = " [...]";
-        return Strings.leading(text, n - suffix.length()) + suffix;
+        return leading(text, n - suffix.length()) + suffix;
     }
 
     /**
-     * @return A line
+     * Returns a line
      */
     public static String line()
     {
@@ -214,7 +190,7 @@ public class AsciiArt
     }
 
     /**
-     * @return A line of the given number of characters
+     * Returns a line of the given number of characters
      */
     public static String line(int length)
     {
@@ -222,19 +198,19 @@ public class AsciiArt
     }
 
     /**
-     * @return A left-justified line with the given message
+     * Returns a left-justified line with the given message
      */
     public static String line(String message)
     {
-        return line(4) + " " + message + " " + line(Math.max(4, LINE_LENGTH - 6 - message.length()));
+        return line(4) + " " + message + " " + line(max(4, LINE_LENGTH - 6 - message.length()));
     }
 
     /**
-     * @return The number of lines in the string
+     * Returns the number of lines in the string
      */
     public static int lineCount(String string)
     {
-        return Strings.occurrences(string, '\n') + 1;
+        return occurrences(string, '\n') + 1;
     }
 
     /**
@@ -244,7 +220,7 @@ public class AsciiArt
      */
     public static String repeat(int times, char c)
     {
-        Ensure.ensure(times >= 0, "Times cannot be " + times);
+        ensure(times >= 0, "Times cannot be " + times);
         var buffer = new char[times];
         Arrays.fill(buffer, c);
         return new String(buffer);
@@ -257,12 +233,12 @@ public class AsciiArt
      */
     public static String repeat(int times, String string)
     {
-        Ensure.ensure(times >= 0);
+        ensure(times >= 0);
         return string.repeat(times);
     }
 
     /**
-     * @return The given number of spaces
+     * Returns the given number of spaces
      */
     public static String spaces(int count)
     {
@@ -270,19 +246,50 @@ public class AsciiArt
     }
 
     /**
-     * @return An ASCII art box with the given title and message
+     * Returns a box using the given horizontal and vertical line drawing characters that contains the given message
+     */
+    public static String textBox(String message, char horizontal, char vertical)
+    {
+        var builder = new StringBuilder();
+        var width = widestLine(message);
+        builder.append(repeat(width + 6, horizontal));
+        builder.append('\n');
+        var lines = message.split("\n");
+        for (var line : lines)
+        {
+            builder.append(vertical);
+            builder.append("  ");
+            builder.append(leftAlign(line, width, ' '));
+            builder.append("  ");
+            builder.append(vertical);
+            builder.append('\n');
+        }
+        builder.append(repeat(width + 6, horizontal));
+        return builder.toString();
+    }
+
+    /**
+     * Returns an ASCII art box containing the given message
+     */
+    public static String textBox(String message, Object... arguments)
+    {
+        return textBox(format(message, arguments), HORIZONTAL_LINE_CHARACTER, VERTICAL_LINE_CHARACTER);
+    }
+
+    /**
+     * Returns an ASCII art box with the given title and message
      */
     public static String textBox(String title, String message, Object... arguments)
     {
         title = title(title);
-        message = Strings.format(message, arguments);
+        message = format(message, arguments);
         var width = widestLine(title + "\n" + message) + 4;
         var builder = new StringBuilder();
-        builder.append(TOP_LEFT_LINE_CHARACTER).append(Align.center(title, width - 2, HORIZONTAL_LINE_CHARACTER)).append(TOP_RIGHT_LINE_CHARACTER).append("\n");
+        builder.append(TOP_LEFT_LINE_CHARACTER).append(center(title, width - 2, HORIZONTAL_LINE_CHARACTER)).append(TOP_RIGHT_LINE_CHARACTER).append("\n");
         for (var line : message.split("\n"))
         {
             builder.append(VERTICAL_LINE_CHARACTER).append(" ");
-            builder.append(Align.left(line, width - 4, ' '));
+            builder.append(leftAlign(line, width - 4, ' '));
             builder.append(" ").append(VERTICAL_LINE_CHARACTER);
             builder.append('\n');
         }
@@ -306,12 +313,12 @@ public class AsciiArt
         title = title(title, arguments);
         return (extraWidth > 0 ? " \n" : "")
                 + TOP_LEFT_LINE_CHARACTER + line(4) + title
-                + line(Math.max(4, LINE_LENGTH + extraWidth - 6 - title.length()))
+                + line(max(4, LINE_LENGTH + extraWidth - 6 - title.length()))
                 + TOP_RIGHT_LINE_CHARACTER;
     }
 
     /**
-     * @return The length of the widest line in potentially multi-line text
+     * Returns the length of the widest line in potentially multi-line text
      */
     public static int widestLine(String text)
     {
@@ -319,7 +326,7 @@ public class AsciiArt
         var lines = text.split("\n");
         for (var line : lines)
         {
-            width = Math.max(width, line.length());
+            width = max(width, line.length());
         }
         return width;
     }
@@ -327,6 +334,6 @@ public class AsciiArt
     @NotNull
     private static String title(String title, Object... arguments)
     {
-        return TITLE_LEFT_CHARACTER + " " + Formatter.format(title, arguments) + " " + TITLE_RIGHT_CHARACTER;
+        return TITLE_LEFT_CHARACTER + " " + format(title, arguments) + " " + TITLE_RIGHT_CHARACTER;
     }
 }

@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.core.collections.set;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramCollections;
 import com.telenav.kivakit.core.value.count.Maximum;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
@@ -31,9 +31,10 @@ import java.util.Iterator;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_INSUFFICIENT;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_INSUFFICIENT;
+import static com.telenav.kivakit.core.value.count.Maximum.MAXIMUM;
 
 /**
  * A convenient implementation of {@link Set} using {@link ConcurrentHashMap}.
@@ -41,16 +42,16 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_INSUFF
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramCollections.class)
-@ApiQuality(stability = API_STABLE_EXTENSIBLE,
-            testing = TESTING_INSUFFICIENT,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = TESTING_INSUFFICIENT,
+             documentation = DOCUMENTATION_COMPLETE)
 public class IdentitySet<Value> extends BaseSet<Value>
 {
     private final IdentityHashMap<Value, Value> map = new IdentityHashMap<>();
 
     public IdentitySet()
     {
-        this(Maximum.MAXIMUM);
+        this(MAXIMUM);
     }
 
     public IdentitySet(Maximum maximumSize)

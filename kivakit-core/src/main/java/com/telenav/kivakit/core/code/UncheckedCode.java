@@ -1,13 +1,12 @@
 package com.telenav.kivakit.core.code;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
-import com.telenav.kivakit.core.messaging.Listener;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.messaging.repeaters.RepeaterMixin;
 import com.telenav.kivakit.interfaces.value.Source;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_DEFAULT_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 
 /**
  * Removes exception handling from code that can throw a checked (or unchecked) {@link Exception}.
@@ -23,16 +22,16 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
  *
  *    [...]
  *
- * return UncheckedCode.of(this::doIt).or(false, "Unable to do it");
+ * return unchecked(this::doIt).orDefaultAndProblem(false, "Unable to do it");
  * </pre>
  *
  * @author jonathanl (shibo)
  */
 @SuppressWarnings("unused")
 @FunctionalInterface
-@ApiQuality(stability = API_STABLE_DEFAULT_EXTENSIBLE,
-            testing = TESTING_NONE,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = UNTESTED,
+             documentation = DOCUMENTATION_COMPLETE)
 public interface UncheckedCode<Value> extends RepeaterMixin
 {
     /**
@@ -47,7 +46,7 @@ public interface UncheckedCode<Value> extends RepeaterMixin
     }
 
     /**
-     * @return The value returned by the code, or a default value if an exception is thrown
+     * Returns the value returned by the code, or a default value if an exception is thrown
      */
     default Value orDefault(Source<Value> defaultValue)
     {
@@ -62,7 +61,7 @@ public interface UncheckedCode<Value> extends RepeaterMixin
     }
 
     /**
-     * @return The value returned by the code, or a default value if an exception is thrown
+     * Returns the value returned by the code, or a default value if an exception is thrown
      */
     default Value orDefault(Value defaultValue)
     {
@@ -78,12 +77,11 @@ public interface UncheckedCode<Value> extends RepeaterMixin
 
     /**
      * @param defaultValue A default value to return if the code throws an exception
-     * @param listener A listener to broadcast a warning message to if an exception is thrown
      * @param message A warning message to give to the listener if an exception is thrown
      * @param arguments Arguments to interpolate into the message
      * @return The value returned by the code, or the given default value if an exception is thrown
      */
-    default Value orDefaultAndProblem(Value defaultValue, Listener listener, String message, Object... arguments)
+    default Value orDefaultAndProblem(Value defaultValue, String message, Object... arguments)
     {
         try
         {
@@ -91,13 +89,13 @@ public interface UncheckedCode<Value> extends RepeaterMixin
         }
         catch (Exception e)
         {
-            listener.warning(e, message, arguments);
+            warning(e, message, arguments);
             return defaultValue;
         }
     }
 
     /**
-     * @return The value returned by this code, or null if an exception is thrown.
+     * Returns the value returned by this code, or null if an exception is thrown.
      */
     default Value orNull()
     {
@@ -106,6 +104,7 @@ public interface UncheckedCode<Value> extends RepeaterMixin
 
     /**
      * Runs this code
+     *
      * @return The value returned by the checked code
      * @throws Exception The exception that might be thrown by the code
      */

@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.network.email;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.time.Duration;
 import com.telenav.kivakit.core.time.Time;
 import com.telenav.kivakit.core.value.count.Count;
@@ -31,7 +31,6 @@ import com.telenav.kivakit.validation.Validator;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlAggregation;
 
-import javax.mail.Message;
 import javax.mail.Multipart;
 import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
@@ -42,10 +41,14 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.ensure.Ensure.illegalState;
+import static com.telenav.kivakit.core.time.Time.START_OF_UNIX_TIME;
+import static com.telenav.kivakit.core.time.Time.now;
+import static com.telenav.kivakit.core.value.count.Count.count;
+import static javax.mail.Message.RecipientType.TO;
 
 /**
  * Models an email.
@@ -72,9 +75,9 @@ import static com.telenav.kivakit.core.ensure.Ensure.illegalState;
  */
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramEmail.class)
-@ApiQuality(stability = API_STABLE_EXTENSIBLE,
-            testing = TESTING_NONE,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = UNTESTED,
+             documentation = DOCUMENTATION_COMPLETE)
 public class Email implements Validatable
 {
     @UmlAggregation(label = "to")
@@ -88,7 +91,7 @@ public class Email implements Validatable
     @UmlAggregation
     EmailBody body;
 
-    Time sentAt = Time.START_OF_UNIX_TIME;
+    Time sentAt = START_OF_UNIX_TIME;
 
     @UmlAggregation
     final List<EmailAttachment> attachments = new ArrayList<>();
@@ -167,7 +170,7 @@ public class Email implements Validatable
         {
             lastRetry.plus(durationBetweenRetries).untilNow().sleep();
         }
-        lastRetry = Time.now();
+        lastRetry = now();
         tries++;
     }
 
@@ -185,13 +188,13 @@ public class Email implements Validatable
         message.setContent(multipart);
         for (var address : to)
         {
-            message.addRecipient(Message.RecipientType.TO, resolve(address));
+            message.addRecipient(TO, resolve(address));
         }
     }
 
     Count tries()
     {
-        return Count.count(tries);
+        return count(tries);
     }
 
     private InternetAddress resolve(EmailAddress email)

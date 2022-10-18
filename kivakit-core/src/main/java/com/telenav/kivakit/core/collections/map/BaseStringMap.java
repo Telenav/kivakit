@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.core.collections.map;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.collections.list.StringList;
 import com.telenav.kivakit.core.internal.lexakai.DiagramCollections;
 import com.telenav.kivakit.core.language.primitive.Booleans;
@@ -46,9 +46,9 @@ import java.util.Map;
 import java.util.function.BiFunction;
 import java.util.function.Function;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_INSUFFICIENT;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_INSUFFICIENT;
 
 /**
  * A bounded map from string to value. Because KivaKit string maps support type conversion convenience methods, they
@@ -58,9 +58,9 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_INSUFF
  */
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramCollections.class)
-@ApiQuality(stability = API_STABLE_EXTENSIBLE,
-            testing = TESTING_INSUFFICIENT,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = TESTING_INSUFFICIENT,
+             documentation = DOCUMENTATION_COMPLETE)
 public abstract class BaseStringMap<Value> extends BaseMap<String, Value> implements
         RepeaterMixin,
         TryTrait
@@ -127,7 +127,7 @@ public abstract class BaseStringMap<Value> extends BaseMap<String, Value> implem
     }
 
     /**
-     * @return The value of the given key as a double. If the conversion from String to object fails, a problem is
+     * Returns the value of the given key as a double. If the conversion from String to object fails, a problem is
      * transmitted.
      */
     public Double asDouble(String key)
@@ -213,7 +213,7 @@ public abstract class BaseStringMap<Value> extends BaseMap<String, Value> implem
     public String asPathString(String key)
     {
         var value = asString(key);
-        return value == null ? null : Strip.trailing(value, "/");
+        return value == null ? null : Strip.stripTrailing(value, "/");
     }
 
     /**
@@ -336,7 +336,7 @@ public abstract class BaseStringMap<Value> extends BaseMap<String, Value> implem
     }
 
     /**
-     * @return The keys and values of this map separated by the given separator
+     * Returns the keys and values of this map separated by the given separator
      */
     public String join(String separator)
     {

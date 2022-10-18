@@ -18,21 +18,20 @@
 
 package com.telenav.kivakit.network.ftp;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.network.core.NetworkAccessConstraints;
 import com.telenav.kivakit.network.core.NetworkLocation;
 import com.telenav.kivakit.network.core.NetworkPath;
-import com.telenav.kivakit.network.core.Protocol;
 import com.telenav.kivakit.network.ftp.internal.lexakai.DiagramFtp;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlAggregation;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_ENUM_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.ensure.Ensure.ensure;
+import static com.telenav.kivakit.network.core.Protocol.FTP;
 
 /**
  * An FTP network location that can be accessed in {@link Mode#PASSIVE} or {@link Mode#ACTIVE}.
@@ -42,9 +41,9 @@ import static com.telenav.kivakit.core.ensure.Ensure.ensure;
  */
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramFtp.class)
-@ApiQuality(stability = API_STABLE_EXTENSIBLE,
-            testing = TESTING_NONE,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = UNTESTED,
+             documentation = DOCUMENTATION_COMPLETE)
 public class FtpNetworkLocation extends NetworkLocation
 {
     /**
@@ -55,9 +54,9 @@ public class FtpNetworkLocation extends NetworkLocation
      * @see <a href="https://en.wikipedia.org/wiki/File_Transfer_Protocol">FTP documentation</a>
      */
     @UmlClassDiagram(diagram = DiagramFtp.class)
-    @ApiQuality(stability = API_STABLE_ENUM_EXTENSIBLE,
-                testing = TESTING_NONE,
-                documentation = DOCUMENTATION_COMPLETE)
+    @CodeQuality(stability = STABLE_EXTENSIBLE,
+                 testing = UNTESTED,
+                 documentation = DOCUMENTATION_COMPLETE)
     public enum Mode
     {
         ACTIVE,
@@ -70,7 +69,7 @@ public class FtpNetworkLocation extends NetworkLocation
     public FtpNetworkLocation(NetworkPath path)
     {
         super(path);
-        ensure(Protocol.FTP.equals(path.port().protocol()));
+        ensure(FTP.equals(path.port().protocol()));
     }
 
     public Mode mode()

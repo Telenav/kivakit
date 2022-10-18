@@ -18,17 +18,17 @@
 
 package com.telenav.kivakit.core.logging.logs.text.formatters;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramLogs;
-import com.telenav.kivakit.core.language.Classes;
 import com.telenav.kivakit.core.logging.LogEntry;
 import com.telenav.kivakit.core.logging.logs.text.LogFormatter;
 import com.telenav.kivakit.core.messaging.MessageFormat;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static com.telenav.kivakit.core.language.Classes.simpleName;
 
 /**
  * A simple log formatter that does nothing fancy
@@ -36,9 +36,9 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramLogs.class)
-@ApiQuality(stability = API_STABLE,
-            testing = TESTING_NONE,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = STABLE,
+             testing = UNTESTED,
+             documentation = DOCUMENTATION_COMPLETE)
 public class SimpleLogFormatter implements LogFormatter
 {
     /**
@@ -49,7 +49,7 @@ public class SimpleLogFormatter implements LogFormatter
     {
         return entry.message().created().asUtc()
                 + " " + entry.context()
-                + " " + Classes.simpleName(entry.message().getClass())
+                + " " + simpleName(entry.message().getClass())
                 + " " + entry.threadName() + ": " + entry.formattedMessage(formats);
     }
 }

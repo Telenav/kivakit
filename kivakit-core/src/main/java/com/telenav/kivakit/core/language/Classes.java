@@ -18,8 +18,7 @@
 
 package com.telenav.kivakit.core.language;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
-import com.telenav.kivakit.core.string.Paths;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 
 import java.io.InputStream;
 import java.lang.reflect.Constructor;
@@ -27,10 +26,12 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_STATIC_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.ensure.Ensure.ensure;
+import static com.telenav.kivakit.core.string.Paths.pathOptionalHead;
+import static com.telenav.kivakit.core.string.Paths.pathOptionalSuffix;
 
 /**
  * Class utility methods
@@ -56,9 +57,9 @@ import static com.telenav.kivakit.core.ensure.Ensure.ensure;
  * @author jonathanl (shibo)
  */
 @SuppressWarnings({ "unchecked", "unused" })
-@ApiQuality(stability = API_STABLE_STATIC_EXTENSIBLE,
-            testing = TESTING_NONE,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = UNTESTED,
+             documentation = DOCUMENTATION_COMPLETE)
 public class Classes
 {
     /**
@@ -305,7 +306,7 @@ public class Classes
             {
                 return type.getSimpleName();
             }
-            return Paths.pathOptionalSuffix(type.getName(), '.').replace('$', '.');
+            return pathOptionalSuffix(type.getName(), '.').replace('$', '.');
         }
         return "Unknown";
     }
@@ -315,10 +316,10 @@ public class Classes
      */
     public static String simpleTopLevelClass(Class<?> type)
     {
-        var name = Paths.pathOptionalSuffix(type.getName(), '.');
+        var name = pathOptionalSuffix(type.getName(), '.');
         if (name.contains("$"))
         {
-            return Paths.pathOptionalHead(name, '$');
+            return pathOptionalHead(name, '$');
         }
         return name;
     }

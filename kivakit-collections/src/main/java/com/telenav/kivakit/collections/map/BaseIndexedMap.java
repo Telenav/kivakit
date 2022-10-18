@@ -18,11 +18,12 @@
 
 package com.telenav.kivakit.collections.map;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.collections.internal.lexakai.DiagramMap;
 import com.telenav.kivakit.core.collections.list.ObjectList;
 import com.telenav.kivakit.core.collections.map.BaseMap;
 import com.telenav.kivakit.core.value.count.Maximum;
+import com.telenav.kivakit.interfaces.collection.Addable;
 import com.telenav.kivakit.interfaces.collection.Indexable;
 import com.telenav.kivakit.interfaces.comparison.Matcher;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
@@ -34,31 +35,64 @@ import java.util.Comparator;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.function.BiFunction;
+import java.util.function.Function;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 
 /**
  * A map that allows access to data by both index and key. Note that {@link LinkedHashMap} preserves the order of values
  * in the map, but it does not allow indexing of the map.
+ *
+ * <p><b>Access</b></p>
+ *
+ * <ul>
+ *     <li>{@link #compute(Object, BiFunction)}</li>
+ *     <li>{@link #computeIfAbsent(Object, Function)}</li>
+ *     <li>{@link #computeIfPresent(Object, BiFunction)}</li>
+ *     <li>{@link #get(Object)}</li>
+ *     <li>{@link #get(Object, Object)}</li>
+ *     <li>{@link #get(int)}</li>
+ *     <li>{@link #indexOf(Object)}</li>
+ *     <li>{@link #iterator()}</li>
+ *     <li>{@link #keySet()}</li>
+ *     <li>{@link #put(Object, Object)}</li>
+ *     <li>{@link #putAll(Map)}</li>
+ *     <li>{@link #putIfAbsent(Object, Object)}</li>
+ *     <li>{@link #putIfNotNull(Object, Object)}</li>
+ *     <li>{@link #values()}</li>
+ * </ul>
+ *
+ * <p><b>Operations</b></p>
+ *
+ * <ul>
+ *     <li>{@link #clear()}</li>
+ *     <li>{@link #join()}</li>
+ *     <li>{@link #join(String)}</li>
+ *     <li>{@link #join(char)}</li>
+ *     <li>{@link #remove(Object)}</li>
+ *     <li>{@link #sort(Comparator)}</li>
+ * </ul>
  *
  * @author jonathanl (shibo)
  * @see Indexable
  */
 @UmlClassDiagram(diagram = DiagramMap.class)
 @UmlExcludeSuperTypes(Iterable.class)
-@ApiQuality(stability = API_STABLE_EXTENSIBLE,
-            testing = TESTING_NONE,
-            documentation = DOCUMENTATION_COMPLETE)
-public class BaseIndexedMap<Key, Value> extends BaseMap<Key, Value> implements
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = UNTESTED,
+             documentation = DOCUMENTATION_COMPLETE)
+public abstract class BaseIndexedMap<Key, Value> extends BaseMap<Key, Value> implements
         Iterable<Value>,
-        Indexable<Value>
+        Indexable<Value>,
+        Addable<Value>
 {
     /** The list of values in insertion order */
     private final ObjectList<Value> list;
 
-    public BaseIndexedMap(Maximum maximumSize)
+    protected BaseIndexedMap(Maximum maximumSize)
     {
         super(maximumSize);
         list = new ObjectList<>(maximumSize);

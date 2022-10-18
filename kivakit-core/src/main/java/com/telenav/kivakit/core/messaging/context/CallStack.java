@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.core.messaging.context;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramContext;
 import com.telenav.kivakit.core.language.reflection.Method;
 import com.telenav.kivakit.core.messaging.Debug;
@@ -27,13 +27,16 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static com.telenav.kivakit.core.language.reflection.Method.method;
+import static com.telenav.kivakit.core.messaging.context.CallStack.Matching.EXACT;
+import static java.lang.Thread.currentThread;
 
 /**
- * A stack of KivaKit {@link Method} objects for a given thread ({@link #stack(Thread)} or the current thread
- * {@link #stack()}.
+ * A stack of KivaKit {@link Method} objects for a given thread ({@link #callstack(Thread)} or the current thread
+ * {@link #callstack()}.
  * <p>
  * The caller of a given class on the stack (the "callee") can be determined with
  * {@link #callerOf(Proximity, Matching, Class, Matching, Class[])}, which takes the callee type and a variable number
@@ -49,14 +52,14 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramContext.class)
-@ApiQuality(stability = API_STABLE_EXTENSIBLE,
-            testing = TESTING_NONE,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = UNTESTED,
+             documentation = DOCUMENTATION_COMPLETE)
 public class CallStack
 {
     public static Method callerOf(Proximity proximity, Matching matching, Class<?> calleeType)
     {
-        return callerOf(proximity, matching, calleeType, Matching.EXACT);
+        return callerOf(proximity, matching, calleeType, EXACT);
     }
 
     /**
@@ -83,7 +86,7 @@ public class CallStack
                                   Class<?>... ignores)
     {
         // Get call stack
-        var stack = stack();
+        var stack = callstack();
 
         // Find the index of the callee on the stack using the matching rules
         var callee = calleeType == null ? 0 : findCallee(matching, proximity, stack, calleeType);
@@ -105,18 +108,18 @@ public class CallStack
         return null;
     }
 
-    public static List<Method> stack()
+    public static List<Method> callstack()
     {
-        return stack(Thread.currentThread());
+        return callstack(currentThread());
     }
 
     @SuppressWarnings("unused")
-    public static List<Method> stack(Thread thread)
+    public static List<Method> callstack(Thread thread)
     {
         var stack = new ArrayList<Method>();
-        for (var frame : Thread.currentThread().getStackTrace())
+        for (var frame : currentThread().getStackTrace())
         {
-            var method = Method.method(frame);
+            var method = method(frame);
             if (method != null)
             {
                 stack.add(method);
@@ -153,9 +156,9 @@ public class CallStack
         var index = 0;
         for (var method : stack)
         {
-            var matches = matching == Matching.EXACT
-                    ? calleeType.equals(method.parentType().type())
-                    : calleeType.isAssignableFrom(method.parentType().type());
+            var matches = matching == EXACT
+                    ? calleeType.equals(method.parentType().asJavaType())
+                    : calleeType.isAssignableFrom(method.parentType().asJavaType());
 
             switch (proximity)
             {
@@ -190,12 +193,12 @@ public class CallStack
     private static boolean shouldIgnore(Method caller, Matching matching, Class<?>... ignores)
     {
         var ignored = false;
-        var exact = matching == Matching.EXACT;
+        var exact = matching == EXACT;
         if (caller != null)
         {
             for (var ignore : ignores)
             {
-                if ((exact && ignore == caller.parentType().type()) || (!exact && ignore.isAssignableFrom(caller.parentType().type())))
+                if ((exact && ignore == caller.parentType().asJavaType()) || (!exact && ignore.isAssignableFrom(caller.parentType().asJavaType())))
                 {
                     ignored = true;
                 }

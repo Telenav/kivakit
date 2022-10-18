@@ -18,23 +18,27 @@
 
 package com.telenav.kivakit.core.time;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramTime;
 import com.telenav.kivakit.interfaces.time.Nanoseconds;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.time.ZoneId;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
 import static com.telenav.kivakit.core.time.BaseTime.Topology.LINEAR;
+import static com.telenav.kivakit.core.time.Day.dayOfMonth;
 import static com.telenav.kivakit.core.time.Duration.ZERO_DURATION;
 import static com.telenav.kivakit.core.time.Hour.militaryHour;
 import static com.telenav.kivakit.core.time.LocalTime.localTimeZone;
 import static com.telenav.kivakit.core.time.LocalTime.utcTimeZone;
+import static com.telenav.kivakit.core.time.Minute.minute;
 import static com.telenav.kivakit.core.time.Second.second;
+import static com.telenav.kivakit.interfaces.time.Nanoseconds.ONE_NANOSECOND;
+import static java.lang.System.currentTimeMillis;
 
 /**
  * An immutable <code>Time</code> class that represents a specific point in UNIX time. The underlying representation is
@@ -107,9 +111,9 @@ import static com.telenav.kivakit.core.time.Second.second;
  */
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramTime.class)
-@ApiQuality(stability = API_STABLE_EXTENSIBLE,
-            testing = TESTING_NONE,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = UNTESTED,
+             documentation = DOCUMENTATION_COMPLETE)
 public class Time extends BaseTime<Time>
 {
     /** The beginning of UNIX time: January 1, 1970, 0:00 GMT. */
@@ -119,7 +123,7 @@ public class Time extends BaseTime<Time>
     public static final Time MINIMUM = START_OF_UNIX_TIME;
 
     /** The end of time */
-    public static final Time MAXIMUM = epochMilliseconds(Long.MAX_VALUE);
+    public static final Time END_OF_UNIX_TIME = epochMilliseconds(Long.MAX_VALUE);
 
     /**
      * Retrieves a <code>Time</code> instance based on the given milliseconds.
@@ -150,12 +154,12 @@ public class Time extends BaseTime<Time>
      */
     public static Time now()
     {
-        return epochMilliseconds(System.currentTimeMillis());
+        return epochMilliseconds(currentTimeMillis());
     }
 
     public static Time utcTime(Year year, Month month, Day dayOfMonth, Hour hour)
     {
-        return utcTime(year, month, dayOfMonth, hour, Minute.minute(0), second(0));
+        return utcTime(year, month, dayOfMonth, hour, minute(0), second(0));
     }
 
     public static Time utcTime(Year year, Month month, Day dayOfMonth)
@@ -165,7 +169,7 @@ public class Time extends BaseTime<Time>
 
     public static Time utcTime(Year year, Month month)
     {
-        return utcTime(year, month, Day.dayOfMonth(1), militaryHour(0));
+        return utcTime(year, month, dayOfMonth(1), militaryHour(0));
     }
 
     public static Time utcTime(Year year,
@@ -212,7 +216,7 @@ public class Time extends BaseTime<Time>
      */
     public Duration elapsedSince()
     {
-        return Time.now().elapsedSince(this);
+        return now().elapsedSince(this);
     }
 
     /**
@@ -247,7 +251,7 @@ public class Time extends BaseTime<Time>
     }
 
     /**
-     * @return True if this time value is newer than the given {@link Duration}
+     * Returns true if this time value is newer than the given {@link Duration}
      */
     public boolean isNewerThan(Duration duration)
     {
@@ -255,7 +259,7 @@ public class Time extends BaseTime<Time>
     }
 
     /**
-     * @return True if this time value is newer than the given time value
+     * Returns true if this time value is newer than the given time value
      */
     public boolean isNewerThan(Time that)
     {
@@ -263,7 +267,7 @@ public class Time extends BaseTime<Time>
     }
 
     /**
-     * @return True if this time value is newer than or equal to the given duration
+     * Returns true if this time value is newer than or equal to the given duration
      */
     public boolean isNewerThanOrEqual(Duration duration)
     {
@@ -271,7 +275,7 @@ public class Time extends BaseTime<Time>
     }
 
     /**
-     * @return True if this time value is newer than or equal to the given time value
+     * Returns true if this time value is newer than or equal to the given time value
      */
     public boolean isNewerThanOrEqualTo(Time that)
     {
@@ -305,7 +309,7 @@ public class Time extends BaseTime<Time>
     }
 
     /**
-     * @return The amount of time left until the given amount of time has elapsed
+     * Returns the amount of time left until the given amount of time has elapsed
      */
     public Duration leftUntil(Duration elapsed)
     {
@@ -315,7 +319,7 @@ public class Time extends BaseTime<Time>
     @Override
     public Time maximum()
     {
-        return MAXIMUM;
+        return END_OF_UNIX_TIME;
     }
 
     @Override
@@ -327,7 +331,7 @@ public class Time extends BaseTime<Time>
     @Override
     public Nanoseconds nanosecondsPerUnit()
     {
-        return Nanoseconds.ONE;
+        return ONE_NANOSECOND;
     }
 
     @Override
@@ -339,7 +343,7 @@ public class Time extends BaseTime<Time>
     @Override
     public Time onNewTime(Nanoseconds nanoseconds)
     {
-        return Time.epochNanoseconds(nanoseconds);
+        return epochNanoseconds(nanoseconds);
     }
 
     /**
@@ -371,7 +375,7 @@ public class Time extends BaseTime<Time>
      */
     public Duration untilNow()
     {
-        return until(Time.now());
+        return until(now());
     }
 
     @Override

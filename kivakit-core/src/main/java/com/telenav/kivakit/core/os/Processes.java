@@ -18,24 +18,27 @@
 
 package com.telenav.kivakit.core.os;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
-import com.telenav.kivakit.core.io.IO;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.io.ProgressiveStringReader;
 import com.telenav.kivakit.core.messaging.Listener;
-import com.telenav.kivakit.core.progress.ProgressReporter;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_STATIC_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static com.telenav.kivakit.core.io.IO.CopyStyle.UNBUFFERED;
+import static com.telenav.kivakit.core.io.IO.close;
+import static com.telenav.kivakit.core.io.IO.copy;
+import static com.telenav.kivakit.core.io.IO.flush;
+import static com.telenav.kivakit.core.progress.ProgressReporter.nullProgressReporter;
 
 /**
  * Utility methods that work with Java {@link Process} objects.
  *
  * @author jonathanl (shibo)
  */
-@ApiQuality(stability = API_STABLE_STATIC_EXTENSIBLE,
-            testing = TESTING_NONE,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = UNTESTED,
+             documentation = DOCUMENTATION_COMPLETE)
 public class Processes
 {
     /**
@@ -50,11 +53,11 @@ public class Processes
         var in = process.getInputStream();
         try
         {
-            return new ProgressiveStringReader(listener, in).readString(ProgressReporter.nullProgressReporter());
+            return new ProgressiveStringReader(listener, in).readString(nullProgressReporter());
         }
         finally
         {
-            IO.close(listener, in);
+            close(listener, in);
         }
     }
 
@@ -64,8 +67,8 @@ public class Processes
     public static void redirectStandardErrorToConsole(Listener listener, Process process)
     {
         var input = process.getErrorStream();
-        IO.copy(listener, input, System.err, IO.CopyStyle.UNBUFFERED);
-        IO.flush(listener, System.err);
+        copy(listener, input, System.err, UNBUFFERED);
+        flush(listener, System.err);
     }
 
     /**
@@ -74,8 +77,8 @@ public class Processes
     public static void redirectStandardOutToConsole(Listener listener, Process process)
     {
         var input = process.getInputStream();
-        IO.copy(listener, input, System.out, IO.CopyStyle.UNBUFFERED);
-        IO.flush(listener, System.out);
+        copy(listener, input, System.out, UNBUFFERED);
+        flush(listener, System.out);
     }
 
     /**

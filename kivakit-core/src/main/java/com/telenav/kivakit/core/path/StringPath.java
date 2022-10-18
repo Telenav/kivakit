@@ -18,13 +18,12 @@
 
 package com.telenav.kivakit.core.path;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.KivaKit;
 import com.telenav.kivakit.core.collections.list.StringList;
 import com.telenav.kivakit.core.internal.lexakai.DiagramPath;
-import com.telenav.kivakit.core.language.reflection.property.KivaKitIncludeProperty;
+import com.telenav.kivakit.core.language.reflection.property.IncludeProperty;
 import com.telenav.kivakit.core.messaging.Listener;
-import com.telenav.kivakit.core.string.Strings;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import org.jetbrains.annotations.NotNull;
 
@@ -36,10 +35,14 @@ import java.util.Map;
 import java.util.function.Function;
 import java.util.regex.Pattern;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_INSUFFICIENT;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_INSUFFICIENT;
+import static com.telenav.kivakit.core.collections.list.StringList.splitOnPattern;
+import static com.telenav.kivakit.core.collections.list.StringList.stringList;
 import static com.telenav.kivakit.core.project.Project.resolveProject;
+import static com.telenav.kivakit.core.string.Strings.isNullOrBlank;
+import static com.telenav.kivakit.core.string.Strings.notNull;
 
 /**
  * A {@link Path} of strings that has a given separator string. This class contains numerous methods which down-cast the
@@ -80,9 +83,9 @@ import static com.telenav.kivakit.core.project.Project.resolveProject;
  */
 @SuppressWarnings({ "SpellCheckingInspection", "SwitchStatementWithTooFewBranches" })
 @UmlClassDiagram(diagram = DiagramPath.class)
-@ApiQuality(stability = API_STABLE_EXTENSIBLE,
-            testing = TESTING_INSUFFICIENT,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = TESTING_INSUFFICIENT,
+             documentation = DOCUMENTATION_COMPLETE)
 public class StringPath extends Path<String>
 {
     private static final Map<String, Pattern> patterns = new HashMap<>();
@@ -105,14 +108,14 @@ public class StringPath extends Path<String>
             if (matcher.lookingAt())
             {
                 var tail = matcher.group("path");
-                return new StringPath(matcher.group("root"), StringList.splitOnPattern(tail, separatorPattern));
+                return new StringPath(matcher.group("root"), splitOnPattern(tail, separatorPattern));
             }
         }
-        return new StringPath(null, StringList.splitOnPattern(path, separatorPattern));
+        return new StringPath(null, splitOnPattern(path, separatorPattern));
     }
 
     /**
-     * @return A string path for the given string and separator pattern
+     * Returns a string path for the given string and separator pattern
      */
     public static StringPath parseStringPath(Listener listener, String path, String separatorPattern)
     {
@@ -120,7 +123,7 @@ public class StringPath extends Path<String>
     }
 
     /**
-     * @return A path (sans scheme) for the given URI
+     * Returns a path (sans scheme) for the given URI
      */
     public static StringPath stringPath(List<String> elements)
     {
@@ -128,7 +131,7 @@ public class StringPath extends Path<String>
     }
 
     /**
-     * @return A path (sans scheme) for the given URI
+     * Returns a path (sans scheme) for the given URI
      */
     public static StringPath stringPath(String root, List<String> elements)
     {
@@ -136,18 +139,18 @@ public class StringPath extends Path<String>
     }
 
     /**
-     * @return A path for the given strings
+     * Returns a path for the given strings
      */
     public static StringPath stringPath(String first, String... rest)
     {
-        var list = StringList.stringList();
-        if (!Strings.isEmpty(first))
+        var list = stringList();
+        if (!isNullOrBlank(first))
         {
             list.add(first);
         }
         for (var at : rest)
         {
-            if (!Strings.isEmpty(at))
+            if (!isNullOrBlank(at))
             {
                 list.add(at);
             }
@@ -156,7 +159,7 @@ public class StringPath extends Path<String>
     }
 
     /**
-     * @return A path (sans scheme) for the given URI
+     * Returns a path (sans scheme) for the given URI
      */
     public static StringPath stringPath(URI uri)
     {
@@ -164,7 +167,7 @@ public class StringPath extends Path<String>
     }
 
     /**
-     * @return A path for the given NIO path
+     * Returns a path for the given NIO path
      */
     public static StringPath stringPath(java.nio.file.Path path)
     {
@@ -233,11 +236,11 @@ public class StringPath extends Path<String>
     }
 
     /**
-     * @return A Java NIO {@link Path} object for this path
+     * Returns a Java NIO {@link Path} object for this path
      */
     public java.nio.file.Path asJavaPath()
     {
-        if (!isEmpty() && get(0).equals("."))
+        if (!isEmpty() && ".".equals(get(0)))
         {
             return java.nio.file.Path.of(withoutFirst().join());
         }
@@ -248,7 +251,7 @@ public class StringPath extends Path<String>
      * Returns this path as a String
      */
     @Override
-    @KivaKitIncludeProperty
+    @IncludeProperty
     public String asString()
     {
         return join();
@@ -280,7 +283,7 @@ public class StringPath extends Path<String>
     }
 
     /**
-     * @return True if this path ends with the given suffix
+     * Returns true if this path ends with the given suffix
      */
     public boolean endsWith(String suffix)
     {
@@ -302,9 +305,9 @@ public class StringPath extends Path<String>
     public final String join(String separator)
     {
         var list = new StringList();
-        list.addAll(super.elements());
+        list.addAll(elements());
         var root = rootElement();
-        return Strings.notNull(root) + list.join(separator);
+        return notNull(root) + list.join(separator);
     }
 
     /**
@@ -351,7 +354,7 @@ public class StringPath extends Path<String>
     }
 
     /**
-     * @return True if this path starts with the given prefix
+     * Returns true if this path starts with the given prefix
      */
     public boolean startsWith(String prefix)
     {

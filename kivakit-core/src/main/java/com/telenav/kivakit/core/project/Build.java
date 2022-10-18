@@ -19,19 +19,23 @@
 package com.telenav.kivakit.core.project;
 
 import com.telenav.cactus.metadata.BuildMetadata;
-import com.telenav.cactus.metadata.BuildName;
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.collections.map.VariableMap;
-import com.telenav.kivakit.core.language.primitive.Ints;
 import com.telenav.kivakit.core.time.LocalTime;
 import com.telenav.kivakit.interfaces.naming.Named;
 
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+import static com.telenav.cactus.metadata.BuildMetadata.buildMetaData;
+import static com.telenav.cactus.metadata.BuildName.TELENAV_EPOCH_DAY;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static com.telenav.kivakit.core.collections.map.VariableMap.variableMap;
+import static com.telenav.kivakit.core.language.primitive.Ints.parseFastInt;
+import static com.telenav.kivakit.core.time.LocalTime.localTime;
+import static com.telenav.kivakit.core.time.LocalTime.utcTimeZone;
+import static java.time.format.DateTimeFormatter.ISO_INSTANT;
 
 /**
  * Information about a build, from the resource classpath resource /build.properties. The build information for a
@@ -51,18 +55,18 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
  * @author jonathanl (shibo)
  */
 @SuppressWarnings("unused")
-@ApiQuality(stability = API_STABLE_EXTENSIBLE,
-            testing = TESTING_NONE,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = UNTESTED,
+             documentation = DOCUMENTATION_COMPLETE)
 public class Build implements Named
 {
     /**
-     * @return Build information for the given class in the root of the project. This is typically the {@link Project}
+     * Returns build information for the given class in the root of the project. This is typically the {@link Project}
      * or Application class.
      */
     public static Build build(Class<?> projectType)
     {
-        return new Build(BuildMetadata.of(projectType));
+        return new Build(buildMetaData(projectType));
     }
 
     /** The metadata for this build */
@@ -78,15 +82,15 @@ public class Build implements Named
     }
 
     /**
-     * @return The build day in number of days since the start of the UNIX epoch
+     * Returns the build day in number of days since the start of the UNIX epoch
      */
     public int buildEpochDay()
     {
-        return BuildName.TELENAV_EPOCH_DAY + buildNumber();
+        return TELENAV_EPOCH_DAY + buildNumber();
     }
 
     /**
-     * @return The UTC date of this build in standard [year].[month].[day-of-month] format
+     * Returns the UTC date of this build in standard [year].[month].[day-of-month] format
      */
     public String buildFormattedDate()
     {
@@ -94,31 +98,31 @@ public class Build implements Named
     }
 
     /**
-     * @return The date of this build in UTC time
+     * Returns the date of this build in UTC time
      */
     public LocalDate buildJavaUtcDate()
     {
-        return LocalDate.parse(property("build-date"), DateTimeFormatter.ISO_INSTANT);
+        return LocalDate.parse(property("build-date"), ISO_INSTANT);
     }
 
     /**
-     * @return The KivaKit build number for the calling project in days since December 5, 2020
+     * Returns the KivaKit build number for the calling project in days since December 5, 2020
      */
     public int buildNumber()
     {
-        return Ints.parseFast(property("build-number"));
+        return parseFastInt(property("build-number"));
     }
 
     /**
-     * @return The date of the build in UTC time
+     * Returns the date of the build in UTC time
      */
     public LocalTime buildUtcTime()
     {
-        return LocalTime.localTime(LocalTime.utcTimeZone(), LocalDate.ofEpochDay(buildEpochDay()).atTime(0, 0));
+        return localTime(utcTimeZone(), LocalDate.ofEpochDay(buildEpochDay()).atTime(0, 0));
     }
 
     /**
-     * @return The name of this build, such as "sparkling piglet"
+     * Returns the name of this build, such as "sparkling piglet"
      */
     @Override
     public String name()
@@ -127,15 +131,15 @@ public class Build implements Named
     }
 
     /**
-     * @return Project properties
+     * Returns project properties
      */
     public VariableMap<String> properties()
     {
-        return VariableMap.variableMap(metadata.buildProperties());
+        return variableMap(metadata.buildProperties());
     }
 
     /**
-     * @return The project property for the given key
+     * Returns the project property for the given key
      */
     public String property(String key)
     {

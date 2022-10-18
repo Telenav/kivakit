@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.interfaces.collection;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.interfaces.internal.lexakai.DiagramCollection;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
@@ -27,9 +27,9 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.LinkedList;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_FURTHER_EVALUATION_NEEDED;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABILITY_UNDETERMINED;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 
 /**
  * An object, often a collection or related type, to which objects can be prepended.
@@ -38,11 +38,11 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
  */
 @SuppressWarnings({ "SpellCheckingInspection", "unused" })
 @UmlClassDiagram(diagram = DiagramCollection.class)
-@ApiQuality(stability = API_FURTHER_EVALUATION_NEEDED,
-            testing = TESTING_NONE,
-            documentation = DOCUMENTATION_COMPLETE,
-            reviews = 1,
-            reviewers = "shibo")
+@CodeQuality(stability = STABILITY_UNDETERMINED,
+             testing = UNTESTED,
+             documentation = DOCUMENTATION_COMPLETE,
+             reviews = 1,
+             reviewers = "shibo")
 public interface Prependable<Value> extends SpaceLimited
 {
     /**

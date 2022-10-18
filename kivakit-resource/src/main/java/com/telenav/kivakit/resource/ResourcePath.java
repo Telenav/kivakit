@@ -18,14 +18,13 @@
 
 package com.telenav.kivakit.resource;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.commandline.SwitchParser;
 import com.telenav.kivakit.conversion.BaseStringConverter;
 import com.telenav.kivakit.core.collections.list.StringList;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.path.Path;
 import com.telenav.kivakit.core.path.StringPath;
-import com.telenav.kivakit.core.string.Strip;
 import com.telenav.kivakit.filesystem.File;
 import com.telenav.kivakit.filesystem.FilePath;
 import com.telenav.kivakit.resource.internal.lexakai.DiagramResource;
@@ -37,10 +36,16 @@ import java.net.URI;
 import java.util.List;
 import java.util.function.Function;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static com.telenav.kivakit.commandline.SwitchParser.switchParser;
+import static com.telenav.kivakit.core.collections.list.StringList.split;
 import static com.telenav.kivakit.core.messaging.Listener.consoleListener;
+import static com.telenav.kivakit.core.string.Strip.stripLeading;
+import static com.telenav.kivakit.filesystem.File.parseFile;
+import static com.telenav.kivakit.filesystem.FilePath.parseFilePath;
+import static com.telenav.kivakit.resource.FileName.parseFileName;
 
 /**
  * A path to a resource of any kind. By default, the separator character for a resource is forward slash. But in the
@@ -75,24 +80,24 @@ import static com.telenav.kivakit.core.messaging.Listener.consoleListener;
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramResource.class)
 @UmlClassDiagram(diagram = DiagramResourcePath.class)
-@ApiQuality(stability = API_STABLE_EXTENSIBLE,
-            documentation = DOCUMENTATION_COMPLETE,
-            testing = TESTING_NONE)
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             documentation = DOCUMENTATION_COMPLETE,
+             testing = UNTESTED)
 public class ResourcePath extends StringPath implements
         UriIdentified,
         ResourcePathed
 {
     /**
-     * @return A resource path for the given string
+     * Returns a resource path for the given string
      */
     public static ResourcePath parseResourcePath(@NotNull Listener listener,
                                                  @NotNull String path)
     {
-        return FilePath.parseFilePath(listener, path);
+        return parseFilePath(listener, path);
     }
 
     /**
-     * @return A UNIX-style resource path for the given string
+     * Returns a UNIX-style resource path for the given string
      */
     public static ResourcePath parseUnixResourcePath(@NotNull Listener listener,
                                                      @NotNull String path)
@@ -101,13 +106,13 @@ public class ResourcePath extends StringPath implements
         if (path.startsWith("/"))
         {
             root = "/";
-            path = Strip.leading(path, "/");
+            path = stripLeading(path, "/");
         }
-        return new ResourcePath(new StringList(), root, StringList.split(path, "/"));
+        return new ResourcePath(new StringList(), root, split(path, "/"));
     }
 
     /**
-     * @return A resource path for the given string path
+     * Returns a resource path for the given string path
      */
     public static ResourcePath resourcePath(@NotNull StringPath path)
     {
@@ -118,7 +123,7 @@ public class ResourcePath extends StringPath implements
                                                                               @NotNull String name,
                                                                               @NotNull String description)
     {
-        return SwitchParser.switchParserBuilder(ResourcePath.class)
+        return switchParser(ResourcePath.class)
                 .name(name)
                 .converter(new ResourcePath.Converter(listener))
                 .description(description);
@@ -129,9 +134,9 @@ public class ResourcePath extends StringPath implements
      *
      * @author jonathanl (shibo)
      */
-    @ApiQuality(stability = API_STABLE_EXTENSIBLE,
-                testing = TESTING_NONE,
-                documentation = DOCUMENTATION_COMPLETE)
+    @CodeQuality(stability = STABLE_EXTENSIBLE,
+                 testing = UNTESTED,
+                 documentation = DOCUMENTATION_COMPLETE)
     public static class Converter extends BaseStringConverter<ResourcePath>
     {
         public Converter(@NotNull Listener listener)
@@ -193,7 +198,7 @@ public class ResourcePath extends StringPath implements
      */
     public File asFile()
     {
-        return File.parseFile(consoleListener(), asString());
+        return parseFile(consoleListener(), asString());
     }
 
     /**
@@ -201,7 +206,7 @@ public class ResourcePath extends StringPath implements
      */
     public FilePath asFilePath()
     {
-        return FilePath.parseFilePath(consoleListener(), asString());
+        return parseFilePath(consoleListener(), asString());
     }
 
     @Override
@@ -211,7 +216,7 @@ public class ResourcePath extends StringPath implements
     }
 
     /**
-     * @return The file extension of this resource path's filename
+     * Returns the file extension of this resource path's filename
      */
     @Override
     public Extension extension()
@@ -220,17 +225,17 @@ public class ResourcePath extends StringPath implements
     }
 
     /**
-     * @return The file name of this resource path
+     * Returns the file name of this resource path
      */
     @Override
     public FileName fileName()
     {
         var last = last();
-        return last == null ? null : FileName.parseFileName(consoleListener(), last);
+        return last == null ? null : parseFileName(consoleListener(), last);
     }
 
     /**
-     * @return True if this file path has a scheme
+     * Returns true if this file path has a scheme
      */
     public boolean hasScheme()
     {
@@ -257,7 +262,7 @@ public class ResourcePath extends StringPath implements
         // NOTE: We call super.join(String) here because it is not overridden
         return schemes.join(":")
                 + (hasScheme() ? ":" : "")
-                + super.join(separator());
+                + join(separator());
     }
 
     /**
@@ -315,7 +320,7 @@ public class ResourcePath extends StringPath implements
     }
 
     /**
-     * @return Any schemes for this filepath. For example, a file such as "jar:file:/test.zip" would have the schemes
+     * Returns any schemes for this filepath. For example, a file such as "jar:file:/test.zip" would have the schemes
      * "jar" and "file". In "s3://telenav/file.txt", there is only one scheme, "s3".
      */
     public StringList schemes()

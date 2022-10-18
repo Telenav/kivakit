@@ -1,17 +1,18 @@
 package com.telenav.kivakit.core.time;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
-import com.telenav.kivakit.core.language.Hash;
-import com.telenav.kivakit.core.language.Objects;
-import com.telenav.kivakit.core.string.Formatter;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 
 import java.time.ZoneId;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
+import static com.telenav.kivakit.core.language.Hash.hashMany;
+import static com.telenav.kivakit.core.language.Objects.areEqualPairs;
+import static com.telenav.kivakit.core.string.Formatter.format;
 import static com.telenav.kivakit.core.time.HourOfWeek.hourOfWeek;
+import static com.telenav.kivakit.core.time.TimeZones.utc;
 
 /**
  * Represents a span of hours of the week in a local timezone. For example, monday at 3pm to tuesday at 1pm in the
@@ -50,9 +51,9 @@ import static com.telenav.kivakit.core.time.HourOfWeek.hourOfWeek;
  * @author jonathanl (shibo)
  */
 @SuppressWarnings("unused")
-@ApiQuality(stability = API_STABLE_EXTENSIBLE,
-            testing = TESTING_NONE,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = UNTESTED,
+             documentation = DOCUMENTATION_COMPLETE)
 public class HourOfWeekSpan
 {
     /**
@@ -77,7 +78,7 @@ public class HourOfWeekSpan
      */
     public static HourOfWeekSpan hourOfWeekSpanUtc(HourOfWeek startHourOfWeek, HourOfWeek endHourOfWeek)
     {
-        return hourOfWeekSpan(startHourOfWeek, endHourOfWeek, TimeZones.utc());
+        return hourOfWeekSpan(startHourOfWeek, endHourOfWeek, utc());
     }
 
     /** The end hour */
@@ -109,7 +110,7 @@ public class HourOfWeekSpan
     }
 
     /**
-     * @return This UTC span of hours in local time
+     * Returns this UTC span of hours in local time
      */
     public HourOfWeekSpan asLocalTime(ZoneId zone)
     {
@@ -121,7 +122,7 @@ public class HourOfWeekSpan
     }
 
     /**
-     * @return This localtime span of hours in UTC time
+     * Returns this localtime span of hours in UTC time
      */
     public HourOfWeekSpan asUtc()
     {
@@ -133,7 +134,7 @@ public class HourOfWeekSpan
     }
 
     /**
-     * @return The end of this span of hours
+     * Returns the end of this span of hours
      */
     public HourOfWeek endHourOfWeek()
     {
@@ -146,7 +147,8 @@ public class HourOfWeekSpan
         if (object instanceof HourOfWeekSpan)
         {
             HourOfWeekSpan that = (HourOfWeekSpan) object;
-            return Objects.areEqualPairs(startHourOfWeek(), that.startHourOfWeek(),
+            return areEqualPairs(
+                    startHourOfWeek(), that.startHourOfWeek(),
                     endHourOfWeek(), that.endHourOfWeek());
         }
         return false;
@@ -155,7 +157,7 @@ public class HourOfWeekSpan
     @Override
     public int hashCode()
     {
-        return Hash.hashMany(startHourOfWeek(), endHourOfWeek());
+        return hashMany(startHourOfWeek(), endHourOfWeek());
     }
 
     /**
@@ -181,11 +183,11 @@ public class HourOfWeekSpan
      */
     public boolean includes(Time time)
     {
-        return includes(time.inTimeZone(TimeZones.utc()));
+        return includes(time.inTimeZone(utc()));
     }
 
     /**
-     * @return True if this span is in localtime
+     * Returns true if this span is in localtime
      */
     public boolean isLocal()
     {
@@ -193,7 +195,7 @@ public class HourOfWeekSpan
     }
 
     /**
-     * @return True if this span of hours is in UTC
+     * Returns true if this span of hours is in UTC
      */
     public boolean isUtc()
     {
@@ -211,11 +213,11 @@ public class HourOfWeekSpan
     @Override
     public String toString()
     {
-        return Formatter.format("[$ to $]", startHourOfWeek(), endHourOfWeek());
+        return format("[$ to $]", startHourOfWeek(), endHourOfWeek());
     }
 
     /**
-     * @return The time zone identifier of this span of hours
+     * Returns the time zone identifier of this span of hours
      */
     public ZoneId zoneId()
     {

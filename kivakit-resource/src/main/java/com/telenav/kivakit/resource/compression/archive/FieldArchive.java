@@ -18,15 +18,14 @@
 
 package com.telenav.kivakit.resource.compression.archive;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.language.reflection.Type;
-import com.telenav.kivakit.core.language.reflection.property.KivaKitIncludeProperty;
+import com.telenav.kivakit.core.language.reflection.property.IncludeProperty;
 import com.telenav.kivakit.core.language.reflection.property.Property;
 import com.telenav.kivakit.core.messaging.Repeater;
 import com.telenav.kivakit.core.messaging.repeaters.BaseRepeater;
 import com.telenav.kivakit.core.progress.ProgressReporter;
-import com.telenav.kivakit.core.string.CaseFormat;
-import com.telenav.kivakit.core.string.KivaKitFormat;
+import com.telenav.kivakit.core.string.FormatProperty;
 import com.telenav.kivakit.core.string.ObjectFormatter;
 import com.telenav.kivakit.core.version.Version;
 import com.telenav.kivakit.core.version.VersionedObject;
@@ -43,16 +42,21 @@ import com.telenav.lexakai.annotations.associations.UmlAggregation;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
 import org.jetbrains.annotations.NotNull;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.ensure.Ensure.ensure;
+import static com.telenav.kivakit.core.language.reflection.Type.type;
+import static com.telenav.kivakit.core.progress.ProgressReporter.nullProgressReporter;
+import static com.telenav.kivakit.core.string.CaseFormat.camelCaseToHyphenated;
+import static com.telenav.kivakit.core.string.CaseFormat.hyphenatedToCamel;
+import static com.telenav.kivakit.resource.compression.archive.ZipArchive.zipArchive;
 
 /**
  * <p>
  * A field archive serializes data into zip file entries in a {@link ZipArchive}. The constructor for this class takes a
  * {@link Resource}, which is used to construct the zip archive. {@link FieldArchive} only serializes fields that are
- * explicitly labeled with the {@link KivaKitArchivedField} annotation.
+ * explicitly labeled with the {@link ArchivedField} annotation.
  * </p>
  *
  * <p>
@@ -110,20 +114,20 @@ import static com.telenav.kivakit.core.ensure.Ensure.ensure;
  */
 @SuppressWarnings({ "unused", "resource" })
 @UmlClassDiagram(diagram = DiagramResourceArchive.class)
-@UmlRelation(label = "reads annotations", referent = KivaKitArchivedField.class)
+@UmlRelation(label = "reads annotations", referent = ArchivedField.class)
 @UmlRelation(label = "reads and writes", referent = NamedObject.class)
-@ApiQuality(stability = API_STABLE_EXTENSIBLE,
-            testing = TESTING_NONE,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = UNTESTED,
+             documentation = DOCUMENTATION_COMPLETE)
 public class FieldArchive extends BaseRepeater implements Closeable
 {
     /**
      * A particular field of an object
      */
     @SuppressWarnings("resource")
-    @ApiQuality(stability = API_STABLE_EXTENSIBLE,
-                testing = TESTING_NONE,
-                documentation = DOCUMENTATION_COMPLETE)
+    @CodeQuality(stability = STABLE_EXTENSIBLE,
+                 testing = UNTESTED,
+                 documentation = DOCUMENTATION_COMPLETE)
     private class ObjectField
     {
         /** The object */
@@ -163,12 +167,12 @@ public class FieldArchive extends BaseRepeater implements Closeable
     }
 
     /** The zip archive storing the fields */
-    @KivaKitFormat
+    @FormatProperty
     @UmlAggregation(label = "writes to")
     private ZipArchive zip;
 
     /** The version of data in this archive */
-    @KivaKitFormat
+    @FormatProperty
     private Version version;
 
     /** The zip file */
@@ -196,7 +200,7 @@ public class FieldArchive extends BaseRepeater implements Closeable
     public FieldArchive(@NotNull File file,
                         @NotNull ZipArchive.AccessMode mode)
     {
-        this(file, ProgressReporter.nullProgressReporter(), mode);
+        this(file, nullProgressReporter(), mode);
     }
 
     /**
@@ -239,8 +243,8 @@ public class FieldArchive extends BaseRepeater implements Closeable
                                           @NotNull String fieldName)
     {
         // Get the field
-        Type<?> type = Type.type(object);
-        var field = type.field(CaseFormat.hyphenatedToCamel(fieldName));
+        Type<?> type = type(object);
+        var field = type.field(hyphenatedToCamel(fieldName));
         ensure(field != null, "Cannot find field '$' in $", fieldName, type);
 
         // and to load object with object scoped name "[object-name].[field-name]"
@@ -294,11 +298,11 @@ public class FieldArchive extends BaseRepeater implements Closeable
         for (var object : objects)
         {
             // and for each archived field
-            Type<?> type = Type.type(object);
+            Type<?> type = type(object);
             for (var field : type.properties(new ArchivedFields()).sorted())
             {
                 // if it is not lazy,
-                if (!field.getter().annotation(KivaKitArchivedField.class).lazy())
+                if (!field.getter().annotation(ArchivedField.class).lazy())
                 {
                     // then load the field into the object.
                     if (loadFieldOf(reader, object, field.name()) == null)
@@ -345,7 +349,7 @@ public class FieldArchive extends BaseRepeater implements Closeable
                                       @NotNull String fieldName,
                                       @NotNull VersionedObject<T> object)
     {
-        zip().save(writer, CaseFormat.camelCaseToHyphenated(fieldName), object);
+        zip().save(writer, camelCaseToHyphenated(fieldName), object);
     }
 
     /**
@@ -360,7 +364,7 @@ public class FieldArchive extends BaseRepeater implements Closeable
 
         this.version = version;
 
-        for (var field : Type.type(object).properties(new ArchivedFields()).sorted())
+        for (var field : type(object).properties(new ArchivedFields()).sorted())
         {
             try
             {
@@ -407,12 +411,12 @@ public class FieldArchive extends BaseRepeater implements Closeable
     /**
      * Returns the field archive's underlying zip archive for special operations on the archive
      */
-    @KivaKitIncludeProperty
+    @IncludeProperty
     public ZipArchive zip()
     {
         if (zip == null)
         {
-            zip = ZipArchive.zipArchive(this, file, mode);
+            zip = zipArchive(this, file, mode);
         }
         return zip;
     }
@@ -420,6 +424,6 @@ public class FieldArchive extends BaseRepeater implements Closeable
     private String entryName(@NotNull NamedObject object,
                              @NotNull String fieldName)
     {
-        return object.objectName() + "." + CaseFormat.camelCaseToHyphenated(fieldName);
+        return object.objectName() + "." + camelCaseToHyphenated(fieldName);
     }
 }

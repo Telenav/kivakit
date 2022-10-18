@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.core.collections.set;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.collections.BaseCollection;
 import com.telenav.kivakit.core.value.count.Countable;
 import com.telenav.kivakit.core.value.count.Maximum;
@@ -36,9 +36,10 @@ import java.util.Set;
 import java.util.function.Function;
 import java.util.function.Predicate;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_INSUFFICIENT;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_INSUFFICIENT;
+import static com.telenav.kivakit.core.value.count.Maximum.MAXIMUM;
 import static java.util.Collections.emptySet;
 
 /**
@@ -54,7 +55,7 @@ import static java.util.Collections.emptySet;
  *     <li>{@link StringFormattable}</li>
  * </ul>
  *
- *  <p><b>Adding</b></p>
+ * <p><b>Adding</b></p>
  *
  * <ul>
  *     <li>{@link #add(Object)}</li>
@@ -72,9 +73,10 @@ import static java.util.Collections.emptySet;
  * <p><b>Conversion</b></p>
  *
  * <ul>
- *     <li>{@link #asSet()}</li>
  *     <li>{@link #asIterable(Matcher)}</li>
  *     <li>{@link #asIterator(Matcher)}</li>
+ *     <li>{@link #asList()}</li>
+ *     <li>{@link #asSet()}</li>
  *     <li>{@link #asString(Format)}</li>
  * </ul>
  *
@@ -84,7 +86,7 @@ import static java.util.Collections.emptySet;
  *     <li>{@link #copy()}</li>
  *     <li>{@link #first()}</li>
  *     <li>{@link #matching(Matcher)}</li>
- *     <li>{@link #mapped(Function)}</li>
+ *     <li>{@link #map(Function)}</li>
  * </ul>
  *
  * <p><b>Membership</b></p>
@@ -146,9 +148,10 @@ import static java.util.Collections.emptySet;
  *
  * <ul>
  *     <li>{@link #copy()} - A copy of this list</li>
- *     <li>{@link #mapped(Function)}</li>
+ *     <li>{@link #map(Function)}</li>
  *     <li>{@link #matching(Matcher)} - A copy of this list filtered to matching elements</li>
  *     <li>{@link #with(Object)}</li>
+ *     <li>{@link #with(Collection)}</li>
  *     <li>{@link #without(Matcher)} - This list without the matching elements</li>
  * </ul>
  *
@@ -159,9 +162,9 @@ import static java.util.Collections.emptySet;
  * @see Set
  */
 @SuppressWarnings("unused")
-@ApiQuality(stability = API_STABLE_EXTENSIBLE,
-            testing = TESTING_INSUFFICIENT,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = TESTING_INSUFFICIENT,
+             documentation = DOCUMENTATION_COMPLETE)
 public abstract class BaseSet<Value> extends BaseCollection<Value> implements
         Copyable<Value, BaseSet<Value>>,
         Set<Value>
@@ -206,7 +209,7 @@ public abstract class BaseSet<Value> extends BaseCollection<Value> implements
 
     protected BaseSet()
     {
-        this(Maximum.MAXIMUM);
+        this(MAXIMUM);
     }
 
     /**
@@ -222,9 +225,9 @@ public abstract class BaseSet<Value> extends BaseCollection<Value> implements
      * {@inheritDoc}
      */
     @Override
-    public <Output> BaseSet<Output> mapped(Function<Value, Output> mapper)
+    public <Output> BaseSet<Output> map(Function<Value, Output> mapper)
     {
-        return (BaseSet<Output>) super.mapped(mapper);
+        return (BaseSet<Output>) super.map(mapper);
     }
 
     /**

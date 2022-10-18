@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.commandline;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.commandline.internal.lexakai.DiagramArgument;
 import com.telenav.kivakit.commandline.internal.lexakai.DiagramCommandLine;
 import com.telenav.kivakit.conversion.Converter;
@@ -31,27 +31,32 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlAggregation;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.commandline.Quantifier.ONE_OR_MORE;
 import static com.telenav.kivakit.commandline.Quantifier.OPTIONAL;
 import static com.telenav.kivakit.commandline.Quantifier.REQUIRED;
+import static com.telenav.kivakit.commandline.Quantifier.ZERO_OR_MORE;
 import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
+import static com.telenav.kivakit.core.language.reflection.Type.typeForClass;
 
 /**
  * Parses a command-line {@link ArgumentValue}, as defined by a {@link Quantifier}, a type, a string converter for that
  * type and a human-readable description. An argument parser can be passed to {@link ArgumentValue#get(ArgumentParser)}
  * to retrieve the value of an argument.
  *
- * <p><b>Parser Builders</b></p>
+ * <p><b>Argument Parser Builders</b></p>
  *
  * <p>
  * New argument parsers can be created with the argument parser {@link Builder}, which can be accessed through
- * {@link #argumentParserBuilder(Class)}. The type parameter is the type of the argument parser being built. For
- * example, a float switch would be of type Float.class. The builder then allows attributes of the argument parser to be
- * specified:
+ * {@link #argumentParser(Class)}. The type parameter is the type of the argument parser being built. For example, a
+ * float switch would be of type Float.class. The builder then allows attributes of the argument parser to be
+ * specified.
+ * </p>
+ *
  * <ul>
+ *     <li>{@link #argumentParser(Class)}</li>
  *     <li>{@link Builder#description(String)} - A description of what the argument is for</li>
  *     <li>{@link Builder#required()} - The user must provide the argument or it is an error</li>
  *     <li>{@link Builder#optional()} - The user can omit the argument</li>
@@ -67,7 +72,7 @@ import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
  * </p>
  *
  * <pre>
- * ArgumentParser&lt;Version&gt; VERSION = argumentParserBuilder(Version.class)
+ * ArgumentParser&lt;Version&gt; VERSION = argumentParser(Version.class)
  *     .description("The input file version")
  *     .required()
  *     .build();</pre>
@@ -96,9 +101,9 @@ import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
 @SuppressWarnings({ "unused", "DuplicatedCode" })
 @UmlClassDiagram(diagram = DiagramArgument.class)
 @UmlClassDiagram(diagram = DiagramCommandLine.class, includeMembers = false)
-@ApiQuality(stability = API_STABLE_EXTENSIBLE,
-            testing = TESTING_NONE,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = UNTESTED,
+             documentation = DOCUMENTATION_COMPLETE)
 public class ArgumentParser<T>
 {
     /**
@@ -107,7 +112,7 @@ public class ArgumentParser<T>
      * @param type The type of object the argument parser will produce
      * @return The parser builder
      */
-    public static <T> Builder<T> argumentParserBuilder(Class<T> type)
+    public static <T> Builder<T> argumentParser(Class<T> type)
     {
         return new Builder<T>().type(type);
     }
@@ -126,13 +131,13 @@ public class ArgumentParser<T>
      */
     @SuppressWarnings("DuplicatedCode")
     @UmlClassDiagram(diagram = DiagramArgument.class)
-    @ApiQuality(stability = API_STABLE_EXTENSIBLE,
-                testing = TESTING_NONE,
-                documentation = DOCUMENTATION_COMPLETE)
+    @CodeQuality(stability = STABLE_EXTENSIBLE,
+                 testing = UNTESTED,
+                 documentation = DOCUMENTATION_COMPLETE)
     public static class Builder<T>
     {
         /** The parser that we're building */
-        private ArgumentParser<T> parser;
+        private final ArgumentParser<T> parser = new ArgumentParser<>();
 
         @UmlRelation(label = "creates")
         public ArgumentParser<T> build()
@@ -177,13 +182,13 @@ public class ArgumentParser<T>
 
         public Builder<T> type(Class<T> type)
         {
-            parser.type = Type.typeForClass(type);
+            parser.type = typeForClass(type);
             return this;
         }
 
         public Builder<T> zeroOrMore()
         {
-            parser.quantifier = Quantifier.ZERO_OR_MORE;
+            parser.quantifier = ZERO_OR_MORE;
             return this;
         }
     }
@@ -231,6 +236,11 @@ public class ArgumentParser<T>
         this.converter = converter;
         this.type = type;
         this.description = description;
+    }
+
+    private ArgumentParser()
+    {
+        this(null, null, null, null);
     }
 
     /**
@@ -288,7 +298,7 @@ public class ArgumentParser<T>
     public boolean isAllowedMultipleTimes()
     {
         return quantifier == ONE_OR_MORE
-                || quantifier == Quantifier.ZERO_OR_MORE;
+                || quantifier == ZERO_OR_MORE;
     }
 
     /**

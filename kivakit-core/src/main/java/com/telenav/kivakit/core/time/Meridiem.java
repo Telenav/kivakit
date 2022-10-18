@@ -18,16 +18,16 @@
 
 package com.telenav.kivakit.core.time;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramTime;
-import com.telenav.kivakit.core.language.primitive.Ints;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.ensure.Ensure.ensure;
 import static com.telenav.kivakit.core.ensure.Ensure.unsupported;
+import static com.telenav.kivakit.core.language.primitive.Ints.intIsBetweenInclusive;
 
 /**
  * Anti-meridiem (AM) or post-meridiem (PM) in the English system of keeping time, or military time for the rest of the
@@ -37,9 +37,9 @@ import static com.telenav.kivakit.core.ensure.Ensure.unsupported;
  */
 @SuppressWarnings({ "unused", "SpellCheckingInspection" })
 @UmlClassDiagram(diagram = DiagramTime.class)
-@ApiQuality(stability = API_STABLE,
-            testing = TESTING_NONE,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = STABLE,
+             testing = UNTESTED,
+             documentation = DOCUMENTATION_COMPLETE)
 public enum Meridiem
 {
     NO_MERIDIEM,
@@ -55,7 +55,7 @@ public enum Meridiem
      */
     public static int asMeridiemHour(int militaryHour)
     {
-        ensure(Ints.isBetweenInclusive(militaryHour, 0, 23));
+        ensure(intIsBetweenInclusive(militaryHour, 0, 23));
 
         if (militaryHour == 0 || militaryHour == 12)
         {
@@ -72,7 +72,7 @@ public enum Meridiem
      */
     public static Meridiem meridiem(int militaryHour)
     {
-        ensure(Ints.isBetweenInclusive(militaryHour, 0, 23));
+        ensure(intIsBetweenInclusive(militaryHour, 0, 23));
 
         return militaryHour < 12 ? AM : PM;
     }
@@ -82,7 +82,7 @@ public enum Meridiem
      */
     public int asMilitaryHour(int meridiemHour)
     {
-        ensure(Ints.isBetweenInclusive(meridiemHour, 1, 12), "Invalid meridiem hour: $", meridiemHour);
+        ensure(intIsBetweenInclusive(meridiemHour, 1, 12), "Invalid meridiem hour: $", meridiemHour);
 
         switch (this)
         {

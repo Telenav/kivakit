@@ -18,17 +18,14 @@
 
 package com.telenav.kivakit.resource.packages;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.collections.list.ObjectList;
-import com.telenav.kivakit.core.language.Classes;
 import com.telenav.kivakit.core.language.module.PackageReference;
 import com.telenav.kivakit.core.locale.Locale;
 import com.telenav.kivakit.core.locale.LocaleLanguage;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.messaging.repeaters.BaseRepeater;
 import com.telenav.kivakit.core.progress.ProgressReporter;
-import com.telenav.kivakit.core.string.Strip;
-import com.telenav.kivakit.filesystem.FilePath;
 import com.telenav.kivakit.filesystem.Folder;
 import com.telenav.kivakit.interfaces.comparison.Matcher;
 import com.telenav.kivakit.properties.PropertyMap;
@@ -54,24 +51,27 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Objects;
 import java.util.function.Consumer;
 import java.util.stream.Collectors;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_DEFAULT_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.ensure.Ensure.fail;
 import static com.telenav.kivakit.core.ensure.Ensure.unsupported;
+import static com.telenav.kivakit.core.language.Classes.resourceUri;
 import static com.telenav.kivakit.core.language.module.PackageReference.packageReference;
 import static com.telenav.kivakit.core.messaging.Listener.throwingListener;
+import static com.telenav.kivakit.core.string.Strip.stripLeading;
+import static com.telenav.kivakit.filesystem.FilePath.parseFilePath;
+import static com.telenav.kivakit.properties.PropertyMap.loadLocalizedPropertyMap;
 import static com.telenav.kivakit.resource.ResourceList.resourceList;
 import static com.telenav.kivakit.resource.packages.PackagePath.packagePath;
 import static com.telenav.kivakit.resource.packages.PackagePath.parsePackagePath;
 import static com.telenav.kivakit.resource.packages.PackageResource.packageResource;
+import static java.util.Objects.hash;
 
 /**
  * An abstraction for locating and copying {@link Resource}s in Java packages.
@@ -99,15 +99,42 @@ import static com.telenav.kivakit.resource.packages.PackageResource.packageResou
  * {@link ResourceFolder#safeCopyTo(ResourceFolder, CopyMode, ProgressReporter)}.
  * </p>
  *
+ * <p><b>Properties</b></p>
+ *
+ * <ul>
+ *     <li>{@link #exists()}</li>
+ *     <li>{@link #folders()}</li>
+ *     <li>{@link #isMaterialized()}</li>
+ *     <li>{@link #parent()}</li>
+ *     <li>{@link #path()}</li>
+ *     <li>{@link #reference()}</li>
+ *     <li>{@link #uri()}</li>
+ * </ul>
+ *
+ * <p><b>Access</b></p>
+ *
+ * <ul>
+ *     <li>{@link #child(String)}</li>
+ *     <li>{@link #folder(String)}</li>
+ *     <li>{@link #localizedProperties(Listener, Locale, LocaleLanguage)}</li>
+ *     <li>{@link #relativeTo(ResourceFolder)}</li>
+ *     <li>{@link #resource(FileName)}</li>
+ *     <li>{@link #resource(ResourcePathed)}</li>
+ *     <li>{@link #resource(String)}</li>
+ *     <li>{@link #resourceFolderIdentifier()}</li>
+ *     <li>{@link #resources()}</li>
+ *     <li>{@link #resources(Matcher)}</li>
+ * </ul>
+ *
  * @author jonathanl (shibo)
  * @see PackageReference
  * @see PackageResource
  */
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramResourceType.class)
-@ApiQuality(stability = API_STABLE_EXTENSIBLE,
-            documentation = DOCUMENTATION_COMPLETE,
-            testing = TESTING_NONE)
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             documentation = DOCUMENTATION_COMPLETE,
+             testing = UNTESTED)
 public class Package extends BaseRepeater implements ResourceFolder<Package>
 {
     /**
@@ -115,8 +142,8 @@ public class Package extends BaseRepeater implements ResourceFolder<Package>
      *
      * @param listener The listener to call with any problems
      */
-    public static Package packageContaining(@NotNull Listener listener,
-                                            @NotNull Class<?> packageType)
+    public static Package packageFor(@NotNull Listener listener,
+                                     @NotNull Class<?> packageType)
     {
         return new Package(listener, packagePath(packageType));
     }
@@ -157,9 +184,9 @@ public class Package extends BaseRepeater implements ResourceFolder<Package>
      * @see Resource#resolveResource(Listener, ResourceIdentifier)
      */
     @UmlClassDiagram(diagram = DiagramResourceService.class)
-    @ApiQuality(stability = API_STABLE_DEFAULT_EXTENSIBLE,
-                documentation = DOCUMENTATION_COMPLETE,
-                testing = TESTING_NONE)
+    @CodeQuality(stability = STABLE_EXTENSIBLE,
+                 documentation = DOCUMENTATION_COMPLETE,
+                 testing = UNTESTED)
     public static class Resolver implements ResourceFolderResolver
     {
         public static final String SCHEME = "classpath:";
@@ -173,7 +200,7 @@ public class Package extends BaseRepeater implements ResourceFolder<Package>
         @Override
         public Package resolve(@NotNull ResourceFolderIdentifier identifier)
         {
-            var filepath = FilePath.parseFilePath(this, Strip.leading(identifier.identifier(), SCHEME));
+            var filepath = parseFilePath(this, stripLeading(identifier.identifier(), SCHEME));
             return packageForPath(throwingListener(), packagePath(filepath));
         }
     }
@@ -260,7 +287,7 @@ public class Package extends BaseRepeater implements ResourceFolder<Package>
     @Override
     public int hashCode()
     {
-        return Objects.hash(path());
+        return hash(path());
     }
 
     /**
@@ -279,7 +306,7 @@ public class Package extends BaseRepeater implements ResourceFolder<Package>
                                            @NotNull Locale locale,
                                            @NotNull LocaleLanguage languageName)
     {
-        return PropertyMap.loadLocalizedPropertyMap(listener, path(), locale, languageName);
+        return loadLocalizedPropertyMap(listener, path(), locale, languageName);
     }
 
     /**
@@ -327,7 +354,7 @@ public class Package extends BaseRepeater implements ResourceFolder<Package>
         if (folder instanceof Package)
         {
             var relativeTo = (Package) folder;
-            return Package.packageForPath(this, (PackagePath) packagePath.relativeTo(relativeTo.packagePath));
+            return packageForPath(this, (PackagePath) packagePath.relativeTo(relativeTo.packagePath));
         }
         else
         {
@@ -429,7 +456,7 @@ public class Package extends BaseRepeater implements ResourceFolder<Package>
     {
         try
         {
-            return Classes.resourceUri(packagePath.packageType(), packagePath.join("/"));
+            return resourceUri(packagePath.packageType(), packagePath.join("/"));
         }
         catch (IllegalArgumentException ignored)
         {
@@ -439,9 +466,10 @@ public class Package extends BaseRepeater implements ResourceFolder<Package>
     }
 
     /**
-     * List of resources loaded from this package folder in any directory classpath that might contain this class.
+     * Returns a list of package resources matching the given matcher, and found in any directory on the classpath with
+     * a path that matches this package's path.
      *
-     * Returns any package resources that can be found in the directory classpath (if any) containing this class
+     * @param matcher The matcher that must match resources
      */
     private List<PackageResource> directoryResources(@NotNull Matcher<? super PackageResource> matcher)
     {
@@ -481,9 +509,10 @@ public class Package extends BaseRepeater implements ResourceFolder<Package>
     }
 
     /**
-     * List of resources loaded from this package folder in any jar that might contain this class.
+     * Returns a list of package resources matching the given matcher, and found in any JAR on the classpath with a path
+     * that matches this package's path.
      *
-     * @return Any package resources that can be found in the jar (if any) containing this class
+     * @param matcher The matcher that must match resources
      */
     private List<PackageResource> jarResources(@NotNull Matcher<? super PackageResource> matcher)
     {
@@ -523,7 +552,7 @@ public class Package extends BaseRepeater implements ResourceFolder<Package>
                         if (!name.endsWith("/") && name.startsWith(filepath))
                         {
                             // then strip off the leading filepath,
-                            var suffix = Strip.leading(name, filepath);
+                            var suffix = stripLeading(name, filepath);
                             // and if we have only a filename left,
                             if (!suffix.contains("/"))
                             {

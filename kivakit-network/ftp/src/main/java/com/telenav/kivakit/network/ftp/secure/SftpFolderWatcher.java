@@ -19,7 +19,7 @@
 package com.telenav.kivakit.network.ftp.secure;
 
 import com.jcraft.jsch.ChannelSftp.LsEntry;
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.collections.watcher.PeriodicCollectionChangeWatcher;
 import com.telenav.kivakit.core.time.Frequency;
 import com.telenav.kivakit.core.time.Time;
@@ -35,9 +35,10 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static com.telenav.kivakit.core.time.Time.epochMilliseconds;
 
 /**
  * A change watcher for an SFTP folder.
@@ -48,9 +49,9 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
  */
 @UmlClassDiagram(diagram = DiagramSecureFtp.class)
 @UmlRelation(label = "connects with", referent = SecureFtpConnector.class)
-@ApiQuality(stability = API_STABLE_EXTENSIBLE,
-            testing = TESTING_NONE,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = UNTESTED,
+             documentation = DOCUMENTATION_COMPLETE)
 public class SftpFolderWatcher extends PeriodicCollectionChangeWatcher<NetworkPath>
 {
     private boolean initialized;
@@ -185,6 +186,6 @@ public class SftpFolderWatcher extends PeriodicCollectionChangeWatcher<NetworkPa
      */
     private Time getTimeLastModified(LsEntry file)
     {
-        return Time.epochMilliseconds(file.getAttrs().getMTime());
+        return epochMilliseconds(file.getAttrs().getMTime());
     }
 }

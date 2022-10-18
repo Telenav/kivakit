@@ -1,13 +1,13 @@
 package com.telenav.kivakit.core.project;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.collections.set.ConcurrentHashSet;
 
 import java.util.Set;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
 
 /**
  * A set of options relevant to application startup
@@ -15,31 +15,31 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NE
  * @author jonathanl (shibo)
  */
 @SuppressWarnings("unused")
-@ApiQuality(stability = API_STABLE_EXTENSIBLE,
-            testing = TESTING_NOT_NEEDED,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = TESTING_NOT_NEEDED,
+             documentation = DOCUMENTATION_COMPLETE)
 public class StartUpOptions
 {
     /** The options */
     private static final Set<StartupOption> options = new ConcurrentHashSet<>();
 
     /** Disables the given option */
-    public static void disable(StartupOption option)
+    public static void disableStartupOption(StartupOption option)
     {
         options.remove(option);
     }
 
     /** Enables the given option */
-    public static void enable(StartupOption option)
+    public static void enableStartupOption(StartupOption option)
     {
-        disable(option);
+        disableStartupOption(option);
         options.add(option);
     }
 
     /**
      * Returns true if the given option is enabled
      */
-    public static boolean isEnabled(StartupOption option)
+    public static boolean isStartupOptionEnabled(StartupOption option)
     {
         return options.contains(option);
     }

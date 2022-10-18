@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.core.messaging;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramRepeater;
 import com.telenav.kivakit.core.messaging.repeaters.BaseRepeater;
 import com.telenav.kivakit.interfaces.messaging.Receiver;
@@ -26,9 +26,9 @@ import com.telenav.kivakit.interfaces.messaging.Transmittable;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import org.jetbrains.annotations.MustBeInvokedByOverriders;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_DEFAULT_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
 
 /**
  * A repeater is both a {@link Listener} and a {@link Broadcaster}, receiving messages in
@@ -68,7 +68,7 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NE
  *
  * }
  *
- * var processor = LOGGER.listenTo(new PayrollProcessor());
+ * var processor = listenTo(new PayrollProcessor());
  *
  * </pre>
  *
@@ -77,9 +77,9 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NE
  * @see Listener
  */
 @UmlClassDiagram(diagram = DiagramRepeater.class)
-@ApiQuality(stability = API_STABLE_DEFAULT_EXTENSIBLE,
-            testing = TESTING_NOT_NEEDED,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = TESTING_NOT_NEEDED,
+             documentation = DOCUMENTATION_COMPLETE)
 public interface Repeater extends
         Listener,
         Broadcaster,
@@ -119,4 +119,12 @@ public interface Repeater extends
         onReceive(message);
         return message;
     }
+
+    /**
+     * Returns true if this repeater has not received any failure message, as determined by calling
+     * {@link Message#isFailure()}.
+     *
+     * @return True if no failure has occurred.
+     */
+    boolean ok();
 }

@@ -18,14 +18,16 @@
 
 package com.telenav.kivakit.core.value.count;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramCount;
 import com.telenav.kivakit.interfaces.collection.Contains;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static java.lang.Math.max;
+import static java.lang.Math.min;
 
 /**
  * Represents a range of long values
@@ -34,9 +36,9 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
  */
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramCount.class)
-@ApiQuality(stability = API_STABLE_EXTENSIBLE,
-            testing = TESTING_NONE,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = UNTESTED,
+             documentation = DOCUMENTATION_COMPLETE)
 public class LongRange implements Contains<Long>
 {
     /** The minimum value */
@@ -63,8 +65,8 @@ public class LongRange implements Contains<Long>
      */
     public long constrainTo(long value)
     {
-        value = Math.min(maximum, value);
-        value = Math.max(minimum, value);
+        value = min(maximum, value);
+        value = max(minimum, value);
         return value;
     }
 

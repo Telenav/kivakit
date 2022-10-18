@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.core.collections.list;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.collections.BaseCollection;
 import com.telenav.kivakit.core.internal.lexakai.DiagramCollections;
 import com.telenav.kivakit.core.string.AsciiArt;
@@ -49,10 +49,10 @@ import java.util.function.Predicate;
 import java.util.function.UnaryOperator;
 import java.util.stream.Stream;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_DEFAULT_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_INSUFFICIENT;
-import static com.telenav.kivakit.core.collections.list.ObjectList.objectList;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_INSUFFICIENT;
+import static com.telenav.kivakit.core.value.count.Maximum.MAXIMUM;
 
 /**
  * A base class for bounded lists which adds convenient methods as well as support for various KivaKit interfaces:
@@ -66,13 +66,6 @@ import static com.telenav.kivakit.core.collections.list.ObjectList.objectList;
  *     <li>{@link RandomAccess}</li>
  *     <li>{@link Sectionable}</li>
  * </ul>
- *
- * <p><b>Functional Methods</b></p>
- *
- * <p>
- * Some methods are functional and return a new list. The method {@link #newInstance()} is used to create lists.
- * Subclasses create the subclass list type by overriding {@link #onNewInstance()}.
- * </p>
  *
  * <p><b>Adding</b></p>
  *
@@ -117,7 +110,7 @@ import static com.telenav.kivakit.core.collections.list.ObjectList.objectList;
  *     <li>{@link #last(Count)}</li>
  *     <li>{@link #last(int)}</li>
  *     <li>{@link #leftOf(int)}</li>
- *     <li>{@link #mapped(Function)}</li>
+ *     <li>{@link #map(Function)}</li>
  *     <li>{@link #matching(Matcher)}</li>
  *     <li>{@link #pop()}</li>
  *     <li>{@link #rightOf(int)}</li>
@@ -217,6 +210,11 @@ import static com.telenav.kivakit.core.collections.list.ObjectList.objectList;
  *
  * <p><b>Functional Methods</b></p>
  *
+ * <p>
+ * Some methods are functional and return a new list. The method {@link #newList()} is used to create lists.
+ * Subclasses create the subclass list type by overriding {@link #onNewList()}.
+ * </p>
+ *
  * <ul>
  *     <li>{@link #copy()} - A copy of this list</li>
  *     <li>{@link #without(Matcher)} - This list without the matching elements</li>
@@ -227,7 +225,7 @@ import static com.telenav.kivakit.core.collections.list.ObjectList.objectList;
  *     <li>{@link #leftOf(int)} - The elements in this list to the left on the given index, exclusive</li>
  *     <li>{@link #rightOf(int)} - The elements in this list to the right on the given index, exclusive</li>
  *     <li>{@link #matching(Matcher)} - A copy of this list filtered to matching elements</li>
- *     <li>{@link #mapped(Function)} - A copy of this list with elements mapped to another type</li>
+ *     <li>{@link #map(Function)} - A copy of this list with elements mapped to another type</li>
  *     <li>{@link #sorted()}</li>
  *     <li>{@link #sorted(Comparator)}</li>
  *     <li>{@link #reversed()} - This list reversed</li>
@@ -248,9 +246,9 @@ import static com.telenav.kivakit.core.collections.list.ObjectList.objectList;
  */
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramCollections.class, excludeAllSuperTypes = true)
-@ApiQuality(stability = API_STABLE_DEFAULT_EXTENSIBLE,
-            testing = TESTING_INSUFFICIENT,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = TESTING_INSUFFICIENT,
+             documentation = DOCUMENTATION_COMPLETE)
 public abstract class BaseList<Value> extends BaseCollection<Value> implements
         Appendable<Value>,
         Copyable<Value, BaseList<Value>>,
@@ -307,7 +305,7 @@ public abstract class BaseList<Value> extends BaseCollection<Value> implements
      */
     protected BaseList()
     {
-        this(Maximum.MAXIMUM);
+        this(MAXIMUM);
     }
 
     /**
@@ -315,7 +313,7 @@ public abstract class BaseList<Value> extends BaseCollection<Value> implements
      */
     protected BaseList(Collection<Value> collection)
     {
-        this(Maximum.MAXIMUM, collection);
+        this(MAXIMUM, collection);
     }
 
     /**
@@ -344,15 +342,15 @@ public abstract class BaseList<Value> extends BaseCollection<Value> implements
     }
 
     @Override
-    public BaseList<Value> appendThen(Value value)
-    {
-        return (BaseList<Value>) Appendable.super.appendThen(value);
-    }
-
-    @Override
     public BaseList<Value> appendAllThen(Iterable<? extends Value> values)
     {
         return (BaseList<Value>) Appendable.super.appendAllThen(values);
+    }
+
+    @Override
+    public BaseList<Value> appendThen(Value value)
+    {
+        return (BaseList<Value>) Appendable.super.appendThen(value);
     }
 
     /**
@@ -690,7 +688,7 @@ public abstract class BaseList<Value> extends BaseCollection<Value> implements
     @Override
     public ObjectList<Value> subList(int fromIndex, int toIndex)
     {
-        return objectList(list.subList(fromIndex, toIndex));
+        return ObjectList.list(list.subList(fromIndex, toIndex));
     }
 
     /**
@@ -720,6 +718,9 @@ public abstract class BaseList<Value> extends BaseCollection<Value> implements
         return list;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected Collection<Value> backingCollection()
     {
@@ -729,7 +730,7 @@ public abstract class BaseList<Value> extends BaseCollection<Value> implements
     /**
      * Returns the wrapped list
      */
-    protected List<Value> list()
+    protected List<Value> backingList()
     {
         return list;
     }

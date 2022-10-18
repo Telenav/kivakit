@@ -18,12 +18,11 @@
 
 package com.telenav.kivakit.network.ftp;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.collections.list.ObjectList;
 import com.telenav.kivakit.core.io.IO;
 import com.telenav.kivakit.core.progress.ProgressReporter;
 import com.telenav.kivakit.core.value.count.Bytes;
-import com.telenav.kivakit.core.value.count.Count;
 import com.telenav.kivakit.network.core.BaseNetworkResource;
 import com.telenav.kivakit.network.core.NetworkAccessConstraints;
 import com.telenav.kivakit.network.core.NetworkLocation;
@@ -34,19 +33,24 @@ import com.telenav.kivakit.resource.CopyMode;
 import com.telenav.kivakit.resource.Resource;
 import com.telenav.kivakit.resource.writing.WritableResource;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
-import org.apache.commons.net.ftp.FTP;
 import org.apache.commons.net.ftp.FTPClient;
 import org.apache.commons.net.ftp.FTPFile;
 import org.apache.commons.net.ftp.FTPReply;
+import org.jetbrains.annotations.NotNull;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static com.telenav.kivakit.core.value.count.Count.count;
+import static com.telenav.kivakit.network.core.NetworkAccessConstraints.defaultNetworkAccessConstraints;
+import static com.telenav.kivakit.network.ftp.FtpNetworkLocation.Mode.PASSIVE;
+import static org.apache.commons.net.ftp.FTP.ASCII_FILE_TYPE;
+import static org.apache.commons.net.ftp.FTP.BINARY_FILE_TYPE;
 
 /**
  * Simple FTP downloader. Note that this is made to download a single FTP file and then close the connection. At this
@@ -56,9 +60,9 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
  */
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramFtp.class)
-@ApiQuality(stability = API_STABLE_EXTENSIBLE,
-            testing = TESTING_NONE,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = UNTESTED,
+             documentation = DOCUMENTATION_COMPLETE)
 public class FtpResource extends BaseNetworkResource
 {
     /**
@@ -66,9 +70,9 @@ public class FtpResource extends BaseNetworkResource
      *
      * @author ericg
      */
-    @ApiQuality(stability = API_STABLE_EXTENSIBLE,
-                testing = TESTING_NONE,
-                documentation = DOCUMENTATION_COMPLETE)
+    @CodeQuality(stability = STABLE_EXTENSIBLE,
+                 testing = UNTESTED,
+                 documentation = DOCUMENTATION_COMPLETE)
     private static class FtpInput extends InputStream
     {
         private final FTPClient client;
@@ -133,7 +137,8 @@ public class FtpResource extends BaseNetworkResource
      * {@inheritDoc}
      */
     @Override
-    public void copyTo(WritableResource destination, CopyMode mode, ProgressReporter reporter)
+    public void copyTo(@NotNull WritableResource destination, @NotNull CopyMode mode,
+                       @NotNull ProgressReporter reporter)
     {
         try
         {
@@ -145,7 +150,7 @@ public class FtpResource extends BaseNetworkResource
             while ((readCount = in.read(buffer)) > 0)
             {
                 out.write(buffer, 0, readCount);
-                reporter.next(Count.count(readCount));
+                reporter.next(count(readCount));
             }
             reporter.end("Copied");
             out.flush();
@@ -186,7 +191,7 @@ public class FtpResource extends BaseNetworkResource
     }
 
     /**
-     * @return The files present in the given folder.
+     * Returns the files present in the given folder.
      */
     public ObjectList<FTPFile> listOfFiles(NetworkPath path)
     {
@@ -221,7 +226,7 @@ public class FtpResource extends BaseNetworkResource
             connect();
 
             // Note that we will be transferring ASCII files.
-            client.setFileType(FTP.ASCII_FILE_TYPE);
+            client.setFileType(ASCII_FILE_TYPE);
 
             // Retrieve the file in question.
             return new FtpInput(client, client.retrieveFileStream(networkLocation.networkPath().join()));
@@ -233,7 +238,7 @@ public class FtpResource extends BaseNetworkResource
     }
 
     /**
-     * @return An input stream for reading a binary file on an FTP server (i.e. a gzipped file)
+     * Returns an input stream for reading a binary file on an FTP server (i.e. a gzipped file)
      */
     public InputStream openBinaryFileForReading()
     {
@@ -242,7 +247,7 @@ public class FtpResource extends BaseNetworkResource
             connect();
 
             // Note that we will be transferring ASCII files.
-            client.setFileType(FTP.BINARY_FILE_TYPE);
+            client.setFileType(BINARY_FILE_TYPE);
 
             // Retrieve the file in question.
             return new FtpInput(client, client.retrieveFileStream(networkLocation.networkPath().join()));
@@ -269,7 +274,7 @@ public class FtpResource extends BaseNetworkResource
                 location.mode(((FtpNetworkLocation) networkLocation).mode());
             }
 
-            resources.add(new FtpResource(location, NetworkAccessConstraints.DEFAULT));
+            resources.add(new FtpResource(location, defaultNetworkAccessConstraints()));
         }
         return resources;
     }
@@ -295,7 +300,7 @@ public class FtpResource extends BaseNetworkResource
         if (networkLocation instanceof FtpNetworkLocation)
         {
             var mode = ((FtpNetworkLocation) networkLocation).mode();
-            if (FtpNetworkLocation.Mode.PASSIVE.equals(mode))
+            if (PASSIVE.equals(mode))
             {
                 client.enterLocalPassiveMode();
             }

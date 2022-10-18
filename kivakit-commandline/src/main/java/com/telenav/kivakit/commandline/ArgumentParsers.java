@@ -1,6 +1,6 @@
 package com.telenav.kivakit.commandline;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.conversion.core.language.IdentityConverter;
 import com.telenav.kivakit.conversion.core.language.primitive.BooleanConverter;
 import com.telenav.kivakit.conversion.core.language.primitive.IntegerConverter;
@@ -9,10 +9,10 @@ import com.telenav.kivakit.conversion.core.value.VersionConverter;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.version.Version;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_STATIC_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
-import static com.telenav.kivakit.commandline.ArgumentParser.argumentParserBuilder;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static com.telenav.kivakit.commandline.ArgumentParser.argumentParser;
 
 /**
  * Argument parsers builder factories for common data types.
@@ -35,42 +35,42 @@ import static com.telenav.kivakit.commandline.ArgumentParser.argumentParserBuild
  * @author jonathanl (shibo)
  */
 @SuppressWarnings("unused")
-@ApiQuality(stability = API_STABLE_STATIC_EXTENSIBLE,
-            testing = TESTING_NONE,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = UNTESTED,
+             documentation = DOCUMENTATION_COMPLETE)
 public class ArgumentParsers
 {
     public static ArgumentParser.Builder<Boolean> booleanArgumentParser(Listener listener, String description)
     {
-        return argumentParserBuilder(Boolean.class)
+        return argumentParser(Boolean.class)
                 .converter(new BooleanConverter(listener))
                 .description(description);
     }
 
     public static ArgumentParser.Builder<Integer> integerArgumentParser(Listener listener, String description)
     {
-        return argumentParserBuilder(Integer.class)
+        return argumentParser(Integer.class)
                 .converter(new IntegerConverter(listener))
                 .description(description);
     }
 
     public static ArgumentParser.Builder<Long> longArgumentParser(Listener listener, String description)
     {
-        return argumentParserBuilder(Long.class)
+        return argumentParser(Long.class)
                 .converter(new LongConverter(listener))
                 .description(description);
     }
 
     public static ArgumentParser.Builder<String> stringArgumentParser(Listener listener, String description)
     {
-        return argumentParserBuilder(String.class)
+        return argumentParser(String.class)
                 .converter(new IdentityConverter(listener))
                 .description(description);
     }
 
     public static ArgumentParser.Builder<Version> versionArgumentParser(Listener listener, String description)
     {
-        return argumentParserBuilder(Version.class)
+        return argumentParser(Version.class)
                 .converter(new VersionConverter(listener))
                 .description(description);
     }

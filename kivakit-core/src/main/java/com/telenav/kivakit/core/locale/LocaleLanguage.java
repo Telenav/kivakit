@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.core.locale;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.collections.list.ObjectList;
 import com.telenav.kivakit.core.internal.lexakai.DiagramLocale;
 import com.telenav.kivakit.core.value.name.Name;
@@ -27,10 +27,9 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 import java.util.HashMap;
 import java.util.Map;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
-import static com.telenav.kivakit.core.collections.list.ObjectList.objectList;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.ensure.Ensure.ensure;
 import static com.telenav.kivakit.core.locale.LocaleRegion.WORLD;
 
@@ -41,9 +40,9 @@ import static com.telenav.kivakit.core.locale.LocaleRegion.WORLD;
  */
 @SuppressWarnings({ "unused", "SpellCheckingInspection" })
 @UmlClassDiagram(diagram = DiagramLocale.class)
-@ApiQuality(stability = API_STABLE_EXTENSIBLE,
-            testing = TESTING_NONE,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = UNTESTED,
+             documentation = DOCUMENTATION_COMPLETE)
 public class LocaleLanguage extends Name implements Comparable<LocaleLanguage>
 {
     private static final Map<String, LocaleLanguage> forIso2Code = new HashMap<>();
@@ -232,11 +231,11 @@ public class LocaleLanguage extends Name implements Comparable<LocaleLanguage>
      */
     public static ObjectList<LocaleLanguage> allLanguages()
     {
-        return objectList(forIso2Code.values()).sorted();
+        return ObjectList.list(forIso2Code.values()).sorted();
     }
 
     /**
-     * @return The language for a two character ISO-639-1 code
+     * Returns the language for a two character ISO-639-1 code
      */
     public static LocaleLanguage languageForIso2Code(String code)
     {
@@ -244,7 +243,7 @@ public class LocaleLanguage extends Name implements Comparable<LocaleLanguage>
     }
 
     /**
-     * @return The language for a three character ISO-639-2/T language code
+     * Returns the language for a three character ISO-639-2/T language code
      */
     public static LocaleLanguage languageForIso3Code(String code)
     {
@@ -333,6 +332,6 @@ public class LocaleLanguage extends Name implements Comparable<LocaleLanguage>
      */
     public Locale world()
     {
-        return new Locale(WORLD, LocaleLanguage.allLanguages());
+        return new Locale(WORLD, allLanguages());
     }
 }

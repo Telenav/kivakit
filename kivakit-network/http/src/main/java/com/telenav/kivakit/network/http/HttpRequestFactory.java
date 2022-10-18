@@ -18,15 +18,15 @@
 
 package com.telenav.kivakit.network.http;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 
 import java.net.URI;
 import java.net.http.HttpRequest;
-import java.util.List;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_DEFAULT_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static com.telenav.kivakit.core.collections.list.ObjectList.list;
 
 /**
  * Allows customization of an {@link HttpRequest} through the {@link HttpRequest.Builder} interface as well as through
@@ -34,9 +34,9 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
  *
  * @author jonathanl (shibo)
  */
-@ApiQuality(stability = API_STABLE_DEFAULT_EXTENSIBLE,
-            testing = TESTING_NONE,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = UNTESTED,
+             documentation = DOCUMENTATION_COMPLETE)
 public interface HttpRequestFactory
 {
     /**
@@ -64,7 +64,7 @@ public interface HttpRequestFactory
      */
     default void header(HttpRequest request, String key, String value)
     {
-        request.headers().map().put(key, List.of(value));
+        request.headers().map().put(key, list(value));
     }
 
     /**

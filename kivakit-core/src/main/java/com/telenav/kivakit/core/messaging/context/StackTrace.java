@@ -18,9 +18,7 @@
 
 package com.telenav.kivakit.core.messaging.context;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
-import com.telenav.kivakit.core.language.Classes;
-import com.telenav.kivakit.core.string.Align;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.string.IndentingStringBuilder;
 import com.telenav.kivakit.interfaces.collection.Sized;
 import com.telenav.kivakit.interfaces.string.StringFormattable;
@@ -29,9 +27,13 @@ import org.jetbrains.annotations.NotNull;
 import java.util.HashMap;
 import java.util.Map;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static com.telenav.kivakit.core.language.Classes.simpleName;
+import static com.telenav.kivakit.core.string.Align.rightAlign;
+import static com.telenav.kivakit.core.string.IndentingStringBuilder.Indentation.indentation;
+import static java.lang.Thread.currentThread;
 
 /**
  * Holds stack trace information
@@ -39,9 +41,9 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
  * @author jonathanl (shibo)
  */
 @SuppressWarnings("unused")
-@ApiQuality(stability = API_STABLE_EXTENSIBLE,
-            testing = TESTING_NONE,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = UNTESTED,
+             documentation = DOCUMENTATION_COMPLETE)
 public class StackTrace implements
         Sized,
         StringFormattable
@@ -113,7 +115,7 @@ public class StackTrace implements
             {
                 // return the frame as a simplified string
                 var context = "(" + file + ":" + line + ")";
-                return "  " + Align.right(context, 40, ' ') + " " + method;
+                return "  " + rightAlign(context, 40, ' ') + " " + method;
             }
 
             // We don't want to include this frame
@@ -165,7 +167,7 @@ public class StackTrace implements
             cause = new StackTrace(throwable.getCause());
         }
         fullExceptionType = throwable.getClass().getName();
-        exceptionType = Classes.simpleName(throwable.getClass());
+        exceptionType = simpleName(throwable.getClass());
     }
 
     /**
@@ -245,15 +247,15 @@ public class StackTrace implements
 
     private String trace(boolean full)
     {
-        var builder = new IndentingStringBuilder(IndentingStringBuilder.Indentation.indentation(full ? 4 : 2));
+        var builder = new IndentingStringBuilder(indentation(full ? 4 : 2));
         if (full)
         {
-            builder.appendLine("Exception in thread \"" + Thread.currentThread().getName() + "\""
+            builder.appendLine("Exception in thread \"" + currentThread().getName() + "\""
                     + fullExceptionType + message());
         }
         else
         {
-            builder.appendLine(Align.right("(" + exceptionType + ")", 40, ' '));
+            builder.appendLine(rightAlign("(" + exceptionType + ")", 40, ' '));
         }
         var index = 0;
         var limit = 60;

@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.network.core;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.object.Lazy;
 import com.telenav.kivakit.network.core.internal.lexakai.DiagramPort;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
@@ -27,10 +27,11 @@ import java.net.Inet4Address;
 import java.net.InetAddress;
 import java.net.NetworkInterface;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
 import static com.telenav.kivakit.core.ensure.Ensure.fail;
+import static com.telenav.kivakit.core.object.Lazy.lazy;
 
 /**
  * The loopback adapter 'host'.
@@ -38,16 +39,16 @@ import static com.telenav.kivakit.core.ensure.Ensure.fail;
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramPort.class)
-@ApiQuality(stability = API_STABLE_EXTENSIBLE,
-            testing = TESTING_NOT_NEEDED,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = TESTING_NOT_NEEDED,
+             documentation = DOCUMENTATION_COMPLETE)
 public class Loopback extends Host
 {
     /** The loopback interface for this host */
-    private static final Lazy<Loopback> loopback = Lazy.lazy(Loopback::new);
+    private static final Lazy<Loopback> loopback = lazy(Loopback::new);
 
     /**
-     * @return The loopback address (normally 127.0.01) as a host
+     * Returns the loopback address (normally 127.0.01) as a host
      */
     public static Loopback loopback()
     {
@@ -60,7 +61,7 @@ public class Loopback extends Host
     }
 
     /**
-     * @return The loopback address (normally 127.0.0.1)
+     * Returns the loopback address (normally 127.0.0.1)
      */
     @Override
     public InetAddress onResolveAddress()

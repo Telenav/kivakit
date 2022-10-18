@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.filesystem;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.messaging.repeaters.BaseRepeater;
 import com.telenav.kivakit.core.thread.RepeatingThread;
 import com.telenav.kivakit.core.time.Duration;
@@ -34,10 +34,14 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
 import org.jetbrains.annotations.NotNull;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
 import static com.telenav.kivakit.core.time.Duration.seconds;
+import static com.telenav.kivakit.core.time.Duration.weeks;
+import static com.telenav.kivakit.core.value.count.Bytes.MAXIMUM_BYTES;
+import static com.telenav.kivakit.core.value.level.Percent.percent;
+import static com.telenav.kivakit.interfaces.comparison.Matcher.matchAll;
 
 /**
  * Removes nested files matching {@link #matcher(Matcher)} from the given folder when they meet expiration criteria.
@@ -74,24 +78,24 @@ import static com.telenav.kivakit.core.time.Duration.seconds;
  */
 @UmlClassDiagram(diagram = DiagramFileSystemFolder.class)
 @UmlRelation(label = "prunes old files from", referent = Folder.class)
-@ApiQuality(stability = API_STABLE_EXTENSIBLE,
-            testing = TESTING_NOT_NEEDED,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = TESTING_NOT_NEEDED,
+             documentation = DOCUMENTATION_COMPLETE)
 public class FolderPruner extends BaseRepeater implements
         Startable,
         Stoppable<Duration>
 {
     /** The maximum folder capacity */
-    private volatile Bytes capacity = Bytes.MAXIMUM;
+    private volatile Bytes capacity = MAXIMUM_BYTES;
 
     /** Matcher to restrict files that can be pruned */
-    private volatile Matcher<ResourcePathed> matcher = Matcher.matchAll();
+    private volatile Matcher<ResourcePathed> matcher = matchAll();
 
     /** The maximum age at which a file will be pruned */
-    private volatile Duration maximumAge = Duration.weeks(2);
+    private volatile Duration maximumAge = weeks(2);
 
     /** The minimum percentage of usable disk space that must be maintained on the folder's disk. */
-    private volatile Percent minimumUsableDiskSpace = Percent.percent(15);
+    private volatile Percent minimumUsableDiskSpace = percent(15);
 
     /** True if this pruner is running */
     private volatile boolean running;

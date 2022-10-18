@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.resource.writing;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.resource.Resource;
 import com.telenav.kivakit.resource.internal.lexakai.DiagramFileSystemFile;
 import com.telenav.kivakit.resource.internal.lexakai.DiagramResource;
@@ -29,9 +29,9 @@ import org.jetbrains.annotations.NotNull;
 import java.io.PrintWriter;
 import java.nio.charset.Charset;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_DEFAULT_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 
 /**
  * Adds the ability to write to {@link Resource} and {@link Writable}. A {@link ResourceWriter}, which provides a
@@ -42,9 +42,9 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
  */
 @UmlClassDiagram(diagram = DiagramFileSystemFile.class)
 @UmlClassDiagram(diagram = DiagramResource.class)
-@ApiQuality(stability = API_STABLE_DEFAULT_EXTENSIBLE,
-            documentation = DOCUMENTATION_COMPLETE,
-            testing = TESTING_NONE)
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             documentation = DOCUMENTATION_COMPLETE,
+             testing = UNTESTED)
 public interface WritableResource extends
         Resource,
         Writable

@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.core;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramProject;
 import com.telenav.kivakit.core.path.StringPath;
 import com.telenav.kivakit.core.project.Project;
@@ -26,9 +26,9 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.nio.file.Path;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_STATIC_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.ensure.Ensure.fail;
 import static com.telenav.kivakit.core.path.StringPath.parseStringPath;
 
@@ -47,15 +47,15 @@ import static com.telenav.kivakit.core.path.StringPath.parseStringPath;
  * @see Path
  */
 @UmlClassDiagram(diagram = DiagramProject.class)
-@ApiQuality(stability = API_STABLE_STATIC_EXTENSIBLE,
-            testing = TESTING_NONE,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = UNTESTED,
+             documentation = DOCUMENTATION_COMPLETE)
 public class KivaKit extends Project
 {
     /**
-     * @return The cache folder for KivaKit
+     * Returns the cache folder for KivaKit
      */
-    public StringPath cacheFolderPath()
+    public StringPath kivakitCacheFolderPath()
     {
         var version = projectVersion();
         if (version != null)
@@ -75,7 +75,7 @@ public class KivaKit extends Project
      *
      * @return Path to KivaKit home if it's available in the environment or as a system property.
      */
-    public StringPath homeFolderPath()
+    public StringPath kivakitHomeFolderPath()
     {
         var home = systemPropertyOrEnvironmentVariable("KIVAKIT_HOME");
         if (home == null)

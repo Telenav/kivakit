@@ -18,21 +18,24 @@
 
 package com.telenav.kivakit.conversion.core.time;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.conversion.internal.lexakai.DiagramConversionTime;
 import com.telenav.kivakit.core.messaging.Listener;
-import com.telenav.kivakit.core.string.Paths;
 import com.telenav.kivakit.core.time.LocalTime;
-import com.telenav.kivakit.core.time.TimeZones;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.time.Instant;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static com.telenav.kivakit.core.string.Paths.pathOptionalSuffix;
+import static com.telenav.kivakit.core.string.Paths.pathWithoutSuffix;
+import static com.telenav.kivakit.core.time.LocalTime.localTimeZone;
+import static com.telenav.kivakit.core.time.TimeZones.parseShortDisplayName;
+import static com.telenav.kivakit.core.time.TimeZones.shortDisplayName;
 
 /**
  * Converts time to and from a format that is a valid filename across Mac, Linux and Windows operating systems. Time
@@ -42,9 +45,9 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramConversionTime.class)
-@ApiQuality(stability = API_STABLE,
-            testing = TESTING_NONE,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = STABLE,
+             testing = UNTESTED,
+             documentation = DOCUMENTATION_COMPLETE)
 public class BaseFormattedLocalTimeConverter extends BaseFormattedConverter
 {
     /**
@@ -85,7 +88,7 @@ public class BaseFormattedLocalTimeConverter extends BaseFormattedConverter
     {
         var timeZone = value.timeZone();
         return formatter().format(Instant.ofEpochMilli(value.milliseconds())
-                .atZone(timeZone)) + (appendTimeZone() ? "_" + TimeZones.shortDisplayName(timeZone) : "");
+                .atZone(timeZone)) + (appendTimeZone() ? "_" + shortDisplayName(timeZone) : "");
     }
 
     /**
@@ -95,7 +98,7 @@ public class BaseFormattedLocalTimeConverter extends BaseFormattedConverter
     protected LocalTime onToValue(String value)
     {
         zone(zone(this, value));
-        var time = Paths.pathWithoutSuffix(value, '_');
+        var time = pathWithoutSuffix(value, '_');
         if (time == null)
         {
             time = value;
@@ -109,11 +112,11 @@ public class BaseFormattedLocalTimeConverter extends BaseFormattedConverter
         {
             return zone();
         }
-        var zone = TimeZones.parseShortDisplayName(listener, Paths.pathOptionalSuffix(value, '_'));
+        var zone = parseShortDisplayName(listener, pathOptionalSuffix(value, '_'));
         if (zone != null)
         {
             return zone;
         }
-        return LocalTime.localTimeZone();
+        return localTimeZone();
     }
 }

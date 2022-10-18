@@ -18,15 +18,12 @@
 
 package com.telenav.kivakit.filesystem;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.conversion.BaseStringConverter;
 import com.telenav.kivakit.core.collections.list.StringList;
 import com.telenav.kivakit.core.messaging.Listener;
-import com.telenav.kivakit.core.os.OperatingSystem;
 import com.telenav.kivakit.core.path.Path;
 import com.telenav.kivakit.core.path.StringPath;
-import com.telenav.kivakit.core.string.Strings;
-import com.telenav.kivakit.core.string.Strip;
 import com.telenav.kivakit.interfaces.comparison.Matcher;
 import com.telenav.kivakit.resource.Extension;
 import com.telenav.kivakit.resource.FileName;
@@ -42,31 +39,27 @@ import java.util.List;
 import java.util.function.Function;
 import java.util.regex.Pattern;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static com.telenav.kivakit.core.collections.list.StringList.split;
+import static com.telenav.kivakit.core.collections.list.StringList.stringList;
+import static com.telenav.kivakit.core.messaging.Listener.nullListener;
 import static com.telenav.kivakit.core.messaging.Listener.throwingListener;
+import static com.telenav.kivakit.core.os.OperatingSystem.operatingSystem;
+import static com.telenav.kivakit.core.string.Formatter.format;
+import static com.telenav.kivakit.core.string.Strings.isNullOrBlank;
+import static com.telenav.kivakit.core.string.Strip.stripLeading;
+import static com.telenav.kivakit.core.string.Strip.stripTrailing;
+import static com.telenav.kivakit.filesystem.Folders.currentFolder;
 
 /**
  * An abstraction for a path on any kind of filesystem or file-related data source.
  *
  * <p>
  * This class contains numerous methods which down-cast the return value of the superclass to make use easier for
- * clients. Methods that are unique to this class mainly have to do with filesystems:
+ * clients. Methods that are unique to this class mainly have to do with filesystems and paths.
  * </p>
- *
- * <ul>
- *     <li>{@link #asAbsolute()} - This file path as an absolute path</li>
- *     <li>{@link #asFile()} - This file path as a file</li>
- *     <li>{@link #asStringPath()} - This file path without any root or scheme</li>
- *     <li>{@link #asUnixString()} - This file path as a forward-slash separated string</li>
- *     <li>{@link #file(FileName)} - This file path with the given filename appended</li>
- *     <li>{@link #hasScheme()} - True if this filepath has a scheme as in s3://telenav/README.md</li>
- *     <li>{@link #isCurrentFolder()} - True if this filepath is the current folder's filepath</li>
- *     <li>{@link #schemes()} - List of schemes for this filepath, or an empty list if there are none</li>
- *     <li>{@link #withoutSchemes()} - This filepath without any scheme</li>
- * </ul>
  *
  * <p><b>Parsing</b></p>
  *
@@ -74,7 +67,7 @@ import static com.telenav.kivakit.core.messaging.Listener.throwingListener;
  *     <li>{@link #parseFilePath(Listener listener, String, Object...)} - The given string as a file path</li>
  * </ul>
  *
- * <p><b>Factories</b></p>
+ * <p><b>Factory Methods</b></p>
  *
  * <ul>
  *     <li>{@link #filePath(URI)} - A file path for the given URI</li>
@@ -84,13 +77,85 @@ import static com.telenav.kivakit.core.messaging.Listener.throwingListener;
  *     <li>{@link #filePath(StringPath)} - The given string path as a file path</li>
  * </ul>
  *
+ * <p><b>Properties</b></p>
+ *
+ * <ul>
+ *     <li>{@link #parent()} - Returns the parent of this path</li>
+ *     <li>{@link #root()} - Returns the root of this path</li>
+ *     <li>{@link #separator()} - Returns the path separator</li>
+ *     <li>{@link #schemes()} - List of schemes for this filepath, or an empty list if there are none</li>
+ * </ul>
+ *
+ * <p><b>Checks</b></p>
+ *
+ * <ul>
+ *     <li>{@link #hasScheme()} - True if this filepath has a scheme as in s3://telenav/README.md</li>
+ *     <li>{@link #isAbsolute()} - True if this is an absolute path</li>
+ *     <li>{@link #isCurrentFolder()} - True if this filepath is the current folder's filepath</li>
+ * </ul>
+ *
+ * <p><b>Files</b></p>
+ *
+ * <ul>
+ *     <li>{@link #withChild(Path)} - This path with the given child path</li>
+ *     <li>{@link #withChild(String)} - This path with the given child path</li>
+ *     <li>{@link #file(FileName)} - This file path with the given filename appended</li>
+ *     <li>{@link #hasExtension(Extension)} - True if this filepath has the given extension</li>
+ * </ul>
+ *
+ * <p><b>Conversions</b></p>
+ *
+ * <ul>
+ *     <li>{@link #asAbsolute()} - This file path as an absolute path</li>
+ *     <li>{@link #asFile()} - This file path as a file</li>
+ *     <li>{@link #asStringPath()} - This file path without any root or scheme</li>
+ *     <li>{@link #asUnixString()} - This file path as a forward-slash separated string</li>
+ * </ul>
+ *
+ * <p><b>Operations</b></p>
+ *
+ * <ul>
+ *     <li>{@link #first()}</li>
+ *     <li>{@link #first(int)}</li>
+ *     <li>{@link #last()}</li>
+ *     <li>{@link #last(int)}</li>
+ *     <li>{@link #matches(Matcher)}</li>
+ *     <li>{@link #normalized()}</li>
+ *     <li>{@link #subpath(int, int)}</li>
+ *     <li>{@link #transformed(Function)}</li>
+ * </ul>
+ *
+ * <p><b>Functional</b></p>
+ *
+ * <ul>
+ *     <li>{@link #withChild(Path)}</li>
+ *     <li>{@link #withChild(String)}</li>
+ *     <li>{@link #withExtension(Extension)}</li>
+ *     <li>{@link #withParent(String)}</li>
+ *     <li>{@link #withParent(Path)}</li>
+ *     <li>{@link #withPrefix(String)}</li>
+ *     <li>{@link #withTrailingSlash()}</li>
+ *     <li>{@link #withRoot(String)}</li>
+ *     <li>{@link #withScheme(String)}</li>
+ *     <li>{@link #withSchemes(StringList)}</li>
+ *     <li>{@link #withSeparator(String)}</li>
+ *     <li>{@link #withoutFirst()}</li>
+ *     <li>{@link #withoutLast()}</li>
+ *     <li>{@link #withoutOptionalPrefix(Path)}</li>
+ *     <li>{@link #withoutOptionalSuffix(Path)}</li>
+ *     <li>{@link #withoutPrefix(Path)}</li>
+ *     <li>{@link #withoutRoot()}</li>
+ *     <li>{@link #withoutSuffix(Path)}</li>
+ *     <li>{@link #withoutTrailingSlash()}</li>
+ * </ul>
+ *
  * @author jonathanl (shibo)
  */
 @SuppressWarnings({ "unused", "JavadocLinkAsPlainText" })
 @UmlClassDiagram(diagram = DiagramResourcePath.class)
-@ApiQuality(stability = API_STABLE_EXTENSIBLE,
-            testing = TESTING_NOT_NEEDED,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = UNTESTED,
+             documentation = DOCUMENTATION_COMPLETE)
 public class FilePath extends ResourcePath
 {
     /**
@@ -100,12 +165,12 @@ public class FilePath extends ResourcePath
     {
         // If there is a scheme,
         var scheme = uri.getScheme();
-        if (!Strings.isEmpty(scheme))
+        if (!isNullOrBlank(scheme))
         {
             // the default root is slash,
             var root = "/";
             var path = uri.getPath();
-            var schemes = StringList.stringList(scheme);
+            var schemes = stringList(scheme);
 
             // but if there is an authority (host:port),
             var authority = authority(uri);
@@ -118,7 +183,7 @@ public class FilePath extends ResourcePath
             // Add to the list of schemes if there is more than one (java:file).
             var subPart = uri.getSchemeSpecificPart();
             List<String> elements;
-            if (Strings.isEmpty(path))
+            if (isNullOrBlank(path))
             {
                 var subPath = filePath(URI.create(subPart));
                 schemes.addAll(subPath.schemes());
@@ -131,7 +196,7 @@ public class FilePath extends ResourcePath
             }
             else
             {
-                elements = StringList.split(Strip.leading(uri.getPath(), "/"), "/");
+                elements = split(stripLeading(uri.getPath(), "/"), "/");
             }
 
             // and create a new FilePath with the given scheme, root authority and elements.
@@ -172,7 +237,7 @@ public class FilePath extends ResourcePath
      */
     public static FilePath filePath(@NotNull StringPath path)
     {
-        return new FilePath(StringList.stringList(), path);
+        return new FilePath(stringList(), path);
     }
 
     /**
@@ -184,15 +249,15 @@ public class FilePath extends ResourcePath
     {
         if (path.isBlank())
         {
-            return empty();
+            return emptyFilePath();
         }
 
-        path = Strings.format(path, arguments);
+        path = format(path, arguments);
 
         if (path.contains("${"))
         {
-            var elements = StringList.split(path, "/");
-            return filePath(StringPath.stringPath(elements)).withoutFileScheme();
+            var elements = split(path, "/");
+            return filePath(stringPath(elements)).withoutFileScheme();
         }
 
         try
@@ -210,9 +275,9 @@ public class FilePath extends ResourcePath
      *
      * @author jonathanl (shibo)
      */
-    @ApiQuality(stability = API_STABLE_EXTENSIBLE,
-                testing = TESTING_NONE,
-                documentation = DOCUMENTATION_COMPLETE)
+    @CodeQuality(stability = STABLE_EXTENSIBLE,
+                 testing = UNTESTED,
+                 documentation = DOCUMENTATION_COMPLETE)
     public static class Converter extends BaseStringConverter<FilePath>
     {
         public Converter(@NotNull Listener listener)
@@ -264,7 +329,7 @@ public class FilePath extends ResourcePath
     {
         if (isCurrentFolder())
         {
-            return Folder.currentFolder().path();
+            return currentFolder().path();
         }
 
         if (schemes().isNonEmpty())
@@ -272,7 +337,7 @@ public class FilePath extends ResourcePath
             return this;
         }
 
-        return FilePath.filePath(asJavaPath().toAbsolutePath());
+        return filePath(asJavaPath().toAbsolutePath());
     }
 
     /**
@@ -299,7 +364,7 @@ public class FilePath extends ResourcePath
      */
     public StringPath asStringPath()
     {
-        return StringPath.stringPath(elements());
+        return stringPath(elements());
     }
 
     /**
@@ -310,7 +375,7 @@ public class FilePath extends ResourcePath
     {
         if (isAbsolute())
         {
-            if (OperatingSystem.operatingSystem().isWindows())
+            if (operatingSystem().isWindows())
             {
                 var pattern = Pattern.compile("(?<drive>[A-Za-z]):\\\\");
                 var matcher = pattern.matcher(rootElement());
@@ -370,7 +435,7 @@ public class FilePath extends ResourcePath
      */
     public boolean isCurrentFolder()
     {
-        return toString().equals(".") || equals(Folder.currentFolder().path());
+        return ".".equals(toString()) || equals(currentFolder().path());
     }
 
     @Override
@@ -512,7 +577,7 @@ public class FilePath extends ResourcePath
 
     public FilePath withPrefix(@NotNull String prefix)
     {
-        return parseFilePath(Listener.nullListener(), prefix + this);
+        return parseFilePath(nullListener(), prefix + this);
     }
 
     /**
@@ -526,7 +591,7 @@ public class FilePath extends ResourcePath
 
     public FilePath withScheme(@NotNull String scheme)
     {
-        return withSchemes(StringList.stringList(scheme));
+        return withSchemes(stringList(scheme));
     }
 
     @Override
@@ -561,7 +626,7 @@ public class FilePath extends ResourcePath
      */
     public FilePath withoutFileScheme()
     {
-        if (schemes().equals(StringList.stringList("file")))
+        if (schemes().equals(stringList("file")))
         {
             return withoutSchemes();
         }
@@ -615,7 +680,7 @@ public class FilePath extends ResourcePath
 
     public FilePath withoutPrefix(@NotNull String prefix)
     {
-        return parseFilePath(Listener.nullListener(), Strip.leading(toString(), prefix));
+        return parseFilePath(nullListener(), stripLeading(toString(), prefix));
     }
 
     /**
@@ -676,7 +741,7 @@ public class FilePath extends ResourcePath
 
         // and if there is a host,
         String authority = null;
-        if (!Strings.isEmpty(host))
+        if (!isNullOrBlank(host))
         {
             // add that to the root,
             authority = host;
@@ -692,9 +757,9 @@ public class FilePath extends ResourcePath
     }
 
     @NotNull
-    private static FilePath empty()
+    private static FilePath emptyFilePath()
     {
-        return new FilePath(List.of());
+        return new FilePath(new ArrayList<>());
     }
 
     @NotNull
@@ -711,16 +776,16 @@ public class FilePath extends ResourcePath
             root = "/";
 
             // and we strip and leading or trailing slashes from the path
-            path = Strip.leading(path, "/");
-            path = Strip.trailing(path, "/");
+            path = stripLeading(path, "/");
+            path = stripTrailing(path, "/");
         }
 
         // and if the path is not empty,
         var pathElements = new StringList();
-        if (!Strings.isEmpty(path))
+        if (!isNullOrBlank(path))
         {
             // we split the path into elements.
-            pathElements = StringList.split(path, "/");
+            pathElements = split(path, "/");
         }
 
         return new FilePath(new StringList(), root, pathElements);

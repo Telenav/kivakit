@@ -18,28 +18,34 @@
 
 package com.telenav.kivakit.core.collections;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramLanguage;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_STATIC_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
 
 /**
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramLanguage.class)
-@ApiQuality(stability = API_STABLE_STATIC_EXTENSIBLE,
-            testing = TESTING_NOT_NEEDED,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = TESTING_NOT_NEEDED,
+             documentation = DOCUMENTATION_COMPLETE)
 public class Lists
 {
+    /**
+     * Returns a mutable {@link ArrayList} for the given variable list of objects
+     *
+     * @param objects The objects to put in the list
+     * @return The new array list with the objects in it
+     */
     @SafeVarargs
-    public static <T> ArrayList<T> arrayList(T... objects)
+    public static <Value> ArrayList<Value> newArrayList(Value... objects)
     {
         return new ArrayList<>(List.of(objects));
     }

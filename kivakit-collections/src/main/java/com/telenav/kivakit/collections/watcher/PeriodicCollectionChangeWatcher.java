@@ -18,8 +18,9 @@
 
 package com.telenav.kivakit.collections.watcher;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.collections.internal.lexakai.DiagramWatcher;
+import com.telenav.kivakit.core.thread.KivaKitThread;
 import com.telenav.kivakit.core.time.Frequency;
 import com.telenav.kivakit.core.time.Time;
 import com.telenav.kivakit.interfaces.lifecycle.Startable;
@@ -29,9 +30,10 @@ import java.util.Collection;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static com.telenav.kivakit.core.thread.KivaKitThread.repeat;
 
 /**
  * A {@link CollectionChangeWatcher} that checks for changes at a given {@link Frequency}. After being started with
@@ -40,15 +42,27 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
  * {@link #onRemoved(Object)}. Modification of objects is determined by the timestamp returned by
  * {@link #lastModified(Object)}.
  *
+ * <p><b>Lifecycle</b></p>
+ *
+ * <ul>
+ *     <li>{@link #start()}</li>
+ *     <li>{@link #isRunning()}</li>
+ * </ul>
+ *
+ * <p><b>Collection Access</b></p>
+ *
+ * <ul>
+ *     <li>{@link #objects()} - Returns a collection of objects to watch</li>
+ *     <li>{@link #lastModified(Object)} - Determines the last time an object in the collection was modified</li>
+ * </ul>
+ *
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramWatcher.class)
-@ApiQuality(stability = API_STABLE_EXTENSIBLE,
-            testing = TESTING_NONE,
-            documentation = DOCUMENTATION_COMPLETE)
-public abstract class PeriodicCollectionChangeWatcher<T> extends BaseCollectionChangeWatcher<T> implements
-        Runnable,
-        Startable
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = UNTESTED,
+             documentation = DOCUMENTATION_COMPLETE)
+public abstract class PeriodicCollectionChangeWatcher<T> extends BaseCollectionChangeWatcher<T> implements Startable
 {
     /** The collection of objects to watch */
     private Collection<T> objects;
@@ -59,8 +73,8 @@ public abstract class PeriodicCollectionChangeWatcher<T> extends BaseCollectionC
     /** The frequency to check for changes */
     private final Frequency frequency;
 
-    /** True if this watcher is running */
-    private boolean running;
+    /** The background thread doing the watching */
+    private KivaKitThread watcher;
 
     protected PeriodicCollectionChangeWatcher(Frequency frequency)
     {
@@ -73,27 +87,7 @@ public abstract class PeriodicCollectionChangeWatcher<T> extends BaseCollectionC
     @Override
     public boolean isRunning()
     {
-        return running;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @SuppressWarnings("InfiniteLoopStatement")
-    @Override
-    public void run()
-    {
-        while (true)
-        {
-            try
-            {
-                compare();
-            }
-            catch (Exception ignored)
-            {
-            }
-            frequency.cycleLength().sleep();
-        }
+        return watcher.isRunning();
     }
 
     /**
@@ -102,15 +96,23 @@ public abstract class PeriodicCollectionChangeWatcher<T> extends BaseCollectionC
     @Override
     public boolean start()
     {
-        if (!running)
+        if (watcher == null || !watcher.isRunning())
         {
             objects = objects();
             for (var object : objects)
             {
                 previousLastModified.put(object, lastModified(object));
             }
-            new Thread(this).start();
-            running = true;
+            this.watcher = repeat(this, "CollectionWatcher", frequency, () ->
+            {
+                try
+                {
+                    compare();
+                }
+                catch (Exception ignored)
+                {
+                }
+            });
         }
         return true;
     }

@@ -18,12 +18,12 @@
 
 package com.telenav.kivakit.core.locale;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
-import com.telenav.kivakit.core.language.reflection.property.KivaKitExcludeProperty;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
+import com.telenav.kivakit.core.language.reflection.property.ExcludeProperty;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 
 /**
  * This class defines regions by name and relevant ISO codes. Provides the ISO region code, which can be represented by:
@@ -36,9 +36,9 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
  * @version 1.0.0 2012-7-12
  */
 @SuppressWarnings({ "JavadocLinkAsPlainText", "unused" })
-@ApiQuality(stability = API_STABLE_EXTENSIBLE,
-            testing = TESTING_NONE,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = UNTESTED,
+             documentation = DOCUMENTATION_COMPLETE)
 public class LocaleRegion
 {
     public static final LocaleRegion WORLD = new LocaleRegion("Earth", "EA", "EAR", -1);
@@ -582,7 +582,7 @@ public class LocaleRegion
      *
      * @return 3 letters' alpha3 code
      */
-    @KivaKitExcludeProperty
+    @ExcludeProperty
     public String alpha3Code()
     {
         return alpha3CountryCode;

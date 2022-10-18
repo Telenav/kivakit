@@ -18,15 +18,15 @@
 
 package com.telenav.kivakit.collections.watcher;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.collections.internal.lexakai.DiagramWatcher;
 import com.telenav.kivakit.core.collections.list.ObjectList;
 import com.telenav.kivakit.core.messaging.repeaters.BaseRepeater;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 
 /**
  * A base implementation of {@link CollectionChangeWatcher}. Change listeners can be added and removed with
@@ -34,14 +34,27 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
  * then wait for a change with {@link #waitForChange()}. Subclasses receive notification of changes with
  * {@link #onAdded(Object)}, {@link #onModified(Object)} and {@link #onRemoved(Object)}.
  *
+ * <p><b>Changes</b></p>
+ *
+ * <ul>
+ *     <li>{@link #waitForChange()}</li>
+ * </ul>
+ *
+ * <p><b>Listeners</b></p>
+ *
+ * <ul>
+ *     <li>{@link #addListener(CollectionChangeListener)}</li>
+ *     <li>{@link #removeListener(CollectionChangeListener)}</li>
+ * </ul>
+ *
  * @author jonathanl (shibo)
  * @see CollectionChangeWatcher
  */
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramWatcher.class)
-@ApiQuality(stability = API_STABLE_EXTENSIBLE,
-            testing = TESTING_NONE,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = UNTESTED,
+             documentation = DOCUMENTATION_COMPLETE)
 public abstract class BaseCollectionChangeWatcher<T> extends BaseRepeater implements CollectionChangeWatcher<T>
 {
     /** The list of listeners to notify if this collection changes */

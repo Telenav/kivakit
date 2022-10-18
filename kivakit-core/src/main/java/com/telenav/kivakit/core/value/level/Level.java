@@ -18,16 +18,18 @@
 
 package com.telenav.kivakit.core.value.level;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramCount;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.interfaces.value.DoubleValued;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.ensure.Ensure.ensure;
+import static java.lang.Double.compare;
+import static java.lang.Double.parseDouble;
 
 /**
  * A level from 0 to 1
@@ -36,9 +38,9 @@ import static com.telenav.kivakit.core.ensure.Ensure.ensure;
  */
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramCount.class)
-@ApiQuality(stability = API_STABLE_EXTENSIBLE,
-            testing = TESTING_NONE,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = UNTESTED,
+             documentation = DOCUMENTATION_COMPLETE)
 public class Level implements
         Comparable<Level>,
         DoubleValued
@@ -74,7 +76,7 @@ public class Level implements
      */
     public static Level parseLevel(Listener listener, String text, boolean lenient)
     {
-        var level = Double.parseDouble(text);
+        var level = parseDouble(text);
         if (level >= 0 && level <= 1.0)
         {
             return new Level(level);
@@ -83,11 +85,11 @@ public class Level implements
         {
             if (level < 0)
             {
-                return Level.ZERO;
+                return ZERO;
             }
             if (level > 1)
             {
-                return Level.ONE;
+                return ONE;
             }
         }
         listener.warning("Invalid level ${debug}", text);
@@ -148,7 +150,7 @@ public class Level implements
     @Override
     public int compareTo(Level that)
     {
-        return Double.compare(value, that.value);
+        return compare(value, that.value);
     }
 
     /**
@@ -197,7 +199,7 @@ public class Level implements
     }
 
     /**
-     * @return The distance of this weight from 1.0
+     * Returns the distance of this weight from 1.0
      */
     public Level inverse()
     {

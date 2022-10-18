@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.conversion;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.conversion.internal.lexakai.DiagramConversion;
 import com.telenav.kivakit.core.messaging.Broadcaster;
 import com.telenav.kivakit.core.messaging.Listener;
@@ -29,9 +29,9 @@ import com.telenav.kivakit.core.messaging.messages.status.Warning;
 import com.telenav.kivakit.core.messaging.repeaters.BaseRepeater;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 
 /**
  * Base class for implementing two-way converters.
@@ -40,6 +40,26 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
  * Adds to {@link BaseConverter} an implementation of {@link #unconvert(Object)} that checks for null, catches
  * exceptions and called {@link #onUnconvert(Object)}.
  * </p>
+ *
+ * <p><b>Conversions</b></p>
+ *
+ * <ul>
+ *     <li>{@link Converter#convert(Object)} - Called to convert <i>from</i> =&gt; <i>to</i></li>
+ *     <li>{@link #unconvert(Object)} - Called to convert <i>to</i> =&gt; <i>from</i></li>
+ * </ul>
+ *
+ * <p><b>Implementing Converters</b></p>
+ *
+ * <ul>
+ *     <li>{@link #onConvert(Object)}  - Called to convert <i>from</i> =&gt; <i>to</i></li>
+ *     <li>{@link #onUnconvert(Object)} - Called to convert <i>to</i> =&gt; <i>from</i></li>
+ * </ul>
+ *
+ * <p><b>Missing Values</b></p>
+ *
+ * <ul>
+ *     <li>{@link #nullValue()}</li>
+ * </ul>
  *
  * @param <From> The type to convert from
  * @param <To> The type to convert to
@@ -53,9 +73,9 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
  */
 @SuppressWarnings("SpellCheckingInspection")
 @UmlClassDiagram(diagram = DiagramConversion.class)
-@ApiQuality(stability = API_STABLE_EXTENSIBLE,
-            testing = TESTING_NONE,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = UNTESTED,
+             documentation = DOCUMENTATION_COMPLETE)
 public abstract class BaseTwoWayConverter<From, To> extends BaseConverter<From, To> implements TwoWayConverter<From, To>
 {
     /**

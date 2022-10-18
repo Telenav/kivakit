@@ -18,12 +18,9 @@
 
 package com.telenav.kivakit.core.path;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.collections.list.ObjectList;
-import com.telenav.kivakit.core.ensure.Ensure;
 import com.telenav.kivakit.core.internal.lexakai.DiagramPath;
-import com.telenav.kivakit.core.language.Hash;
-import com.telenav.kivakit.core.language.Objects;
 import com.telenav.kivakit.core.language.Streams;
 import com.telenav.kivakit.interfaces.collection.Sized;
 import com.telenav.kivakit.interfaces.string.StringFormattable;
@@ -37,10 +34,14 @@ import java.util.List;
 import java.util.function.Function;
 import java.util.stream.Stream;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static com.telenav.kivakit.core.collections.list.ObjectList.list;
 import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
+import static com.telenav.kivakit.core.language.Hash.hashMany;
+import static com.telenav.kivakit.core.language.Objects.areEqualPairs;
+import static java.lang.Math.min;
 
 /**
  * Abstraction of an immutable path of elements of a given type with an optional root element. Functional methods in
@@ -150,9 +151,9 @@ import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
  */
 @SuppressWarnings({ "UnusedReturnValue", "SpellCheckingInspection", "SwitchStatementWithTooFewBranches" })
 @UmlClassDiagram(diagram = DiagramPath.class)
-@ApiQuality(stability = API_STABLE_EXTENSIBLE,
-            testing = TESTING_NONE,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = UNTESTED,
+             documentation = DOCUMENTATION_COMPLETE)
 public abstract class Path<Element extends Comparable<Element>> implements
         Iterable<Element>,
         Comparable<Path<Element>>,
@@ -206,7 +207,7 @@ public abstract class Path<Element extends Comparable<Element>> implements
     {
         var a = elements();
         var b = that.elements();
-        for (int i = 0; i < Math.min(a.size(), b.size()); i++)
+        for (int i = 0; i < min(a.size(), b.size()); i++)
         {
             var result = a.get(i).compareTo(b.get(i));
             if (result != 0)
@@ -245,7 +246,7 @@ public abstract class Path<Element extends Comparable<Element>> implements
     }
 
     /**
-     * @return True if this path ends with the given suffix
+     * Returns true if this path ends with the given suffix
      */
     public boolean endsWith(Path<Element> suffix)
     {
@@ -262,7 +263,7 @@ public abstract class Path<Element extends Comparable<Element>> implements
         if (object instanceof Path)
         {
             var that = (Path<Element>) object;
-            return Objects.areEqualPairs(root, that.root, elements, that.elements);
+            return areEqualPairs(root, that.root, elements, that.elements);
         }
         return false;
     }
@@ -306,11 +307,11 @@ public abstract class Path<Element extends Comparable<Element>> implements
     @Override
     public int hashCode()
     {
-        return Hash.hashMany(root, elements);
+        return hashMany(root, elements);
     }
 
     /**
-     * @return True if this path is an absolute path with a root element
+     * Returns true if this path is an absolute path with a root element
      */
     public boolean isAbsolute()
     {
@@ -318,7 +319,7 @@ public abstract class Path<Element extends Comparable<Element>> implements
     }
 
     /**
-     * @return True if this path has no elements
+     * Returns true if this path has no elements
      */
     @Override
     public boolean isEmpty()
@@ -327,7 +328,7 @@ public abstract class Path<Element extends Comparable<Element>> implements
     }
 
     /**
-     * @return True if this is a relative path, having no root element
+     * Returns true if this is a relative path, having no root element
      */
     public boolean isRelative()
     {
@@ -335,7 +336,7 @@ public abstract class Path<Element extends Comparable<Element>> implements
     }
 
     /**
-     * @return True if this path is a root path (there is more than one on Windows)
+     * Returns true if this path is a root path (there is more than one on Windows)
      */
     public boolean isRoot()
     {
@@ -432,7 +433,7 @@ public abstract class Path<Element extends Comparable<Element>> implements
     }
 
     /**
-     * @return True if this path starts with the given path
+     * Returns true if this path starts with the given path
      */
     public boolean startsWith(Path<Element> prefix)
     {
@@ -462,7 +463,7 @@ public abstract class Path<Element extends Comparable<Element>> implements
                 return emptyPath();
             }
             var copy = copy();
-            copy.elements = ObjectList.objectList(elements.subList(start, end));
+            copy.elements = list(elements.subList(start, end));
             return copy;
         }
         return null;
@@ -477,7 +478,7 @@ public abstract class Path<Element extends Comparable<Element>> implements
         for (var element : this)
         {
             var transformed = function.apply(element);
-            Ensure.ensure(transformed != null);
+            ensureNotNull(transformed != null);
             elements.add(transformed);
         }
         return onCopy(root, elements);

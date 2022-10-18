@@ -246,7 +246,7 @@ public class HourOfWeekSpanTest extends CoreUnitTest
     }
 
     /**
-     * @return Monday at 3am to Saturday at 11pm in zone -07:00
+     * Returns monday at 3am to Saturday at 11pm in zone -07:00
      */
     @NotNull
     private HourOfWeekSpan localSpan()
@@ -267,7 +267,7 @@ public class HourOfWeekSpanTest extends CoreUnitTest
     }
 
     /**
-     * @return Monday at 3am to Saturday at 11pm in UTC
+     * Returns monday at 3am to Saturday at 11pm in UTC
      */
     @NotNull
     private HourOfWeekSpan utcSpan()
@@ -276,7 +276,7 @@ public class HourOfWeekSpanTest extends CoreUnitTest
     }
 
     /**
-     * @return Saturday at 3am, wrapping around to Tuesday 11pm in UTC
+     * Returns saturday at 3am, wrapping around to Tuesday 11pm in UTC
      */
     @NotNull
     private HourOfWeekSpan utcSpanWrapping()

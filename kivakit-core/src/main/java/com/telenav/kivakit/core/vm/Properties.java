@@ -1,29 +1,33 @@
 package com.telenav.kivakit.core.vm;
 
 import com.telenav.cactus.metadata.BuildMetadata;
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.collections.map.VariableMap;
-import com.telenav.kivakit.core.language.primitive.Booleans;
 import com.telenav.kivakit.core.os.OperatingSystem;
-import com.telenav.kivakit.core.project.Build;
 import com.telenav.kivakit.core.project.Project;
-import com.telenav.kivakit.core.time.LocalTime;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_STATIC_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+import static com.telenav.cactus.metadata.BuildMetadata.buildMetaData;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static com.telenav.kivakit.core.collections.map.VariableMap.variableMap;
+import static com.telenav.kivakit.core.language.primitive.Booleans.isFalse;
+import static com.telenav.kivakit.core.language.primitive.Booleans.isTrue;
+import static com.telenav.kivakit.core.project.Build.build;
+import static com.telenav.kivakit.core.time.LocalTime.now;
+import static com.telenav.kivakit.core.vm.JavaVirtualMachine.javaVirtualMachine;
 
 /**
  * Provides access to system properties, environment variables and project properties
  *
  * @author jonathanl (shibo)
  */
-@ApiQuality(stability = API_STABLE_STATIC_EXTENSIBLE,
-            testing = TESTING_NONE,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = UNTESTED,
+             documentation = DOCUMENTATION_COMPLETE)
 public class Properties
 {
     /** A map from root package name to project properties */
@@ -47,15 +51,15 @@ public class Properties
         var properties = projectProperties.get(packageName);
         if (properties == null)
         {
-            var build = Build.build(projectRoot);
+            var build = build(projectRoot);
 
-            properties = JavaVirtualMachine.javaVirtualMachine().systemPropertiesAndEnvironmentVariables();
-            properties.addAll(VariableMap.variableMap(BuildMetadata.of(projectRoot).projectProperties()));
+            properties = javaVirtualMachine().systemPropertiesAndEnvironmentVariables();
+            properties.addAll(variableMap(buildMetaData(projectRoot).projectProperties()));
             properties.put("version", properties.get("project-version"));
             properties.putIfNotNull("build-name", build.name());
             properties.putIfNotNull("build-date", build.buildFormattedDate());
             properties.putIfNotNull("build-number", Integer.toString(build.buildNumber()));
-            properties.put("date-and-time", LocalTime.now().asDateTimeString());
+            properties.put("date-and-time", now().asDateTimeString());
 
             properties = properties.expanded();
 
@@ -68,12 +72,12 @@ public class Properties
     public static boolean isSystemPropertyOrEnvironmentVariableFalse(String key)
     {
         var value = systemPropertyOrEnvironmentVariable(key);
-        return value == null || Booleans.isFalse(value);
+        return value == null || isFalse(value);
     }
 
     public static boolean isSystemPropertyOrEnvironmentVariableTrue(String key)
     {
-        return Booleans.isTrue(systemPropertyOrEnvironmentVariable(key));
+        return isTrue(systemPropertyOrEnvironmentVariable(key));
     }
 
     public static String systemPropertyOrEnvironmentVariable(String key)

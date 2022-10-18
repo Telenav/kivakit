@@ -18,11 +18,11 @@
 
 package com.telenav.kivakit.application;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.application.internal.lexakai.DiagramApplication;
 import com.telenav.kivakit.commandline.ApplicationMetadata;
-import com.telenav.kivakit.commandline.ArgumentValueList;
 import com.telenav.kivakit.commandline.ArgumentParser;
+import com.telenav.kivakit.commandline.ArgumentValueList;
 import com.telenav.kivakit.commandline.CommandLine;
 import com.telenav.kivakit.commandline.CommandLineParser;
 import com.telenav.kivakit.commandline.SwitchParser;
@@ -34,12 +34,10 @@ import com.telenav.kivakit.core.collections.list.StringList;
 import com.telenav.kivakit.core.collections.set.IdentitySet;
 import com.telenav.kivakit.core.collections.set.ObjectSet;
 import com.telenav.kivakit.core.function.Result;
-import com.telenav.kivakit.core.language.Classes;
 import com.telenav.kivakit.core.language.trait.LanguageTrait;
 import com.telenav.kivakit.core.locale.Locale;
 import com.telenav.kivakit.core.locale.LocaleLanguage;
 import com.telenav.kivakit.core.logging.Logger;
-import com.telenav.kivakit.core.logging.LoggerFactory;
 import com.telenav.kivakit.core.logging.logs.BaseLog;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.messaging.Message;
@@ -56,28 +54,24 @@ import com.telenav.kivakit.core.project.StartUpOptions;
 import com.telenav.kivakit.core.project.StartUpOptions.StartupOption;
 import com.telenav.kivakit.core.registry.Registry;
 import com.telenav.kivakit.core.registry.RegistryTrait;
-import com.telenav.kivakit.core.string.Align;
 import com.telenav.kivakit.core.string.AsciiArt;
 import com.telenav.kivakit.core.string.Formatter;
-import com.telenav.kivakit.core.string.Strip;
 import com.telenav.kivakit.core.thread.StateMachine;
 import com.telenav.kivakit.core.value.identifier.StringIdentifier;
 import com.telenav.kivakit.core.version.Version;
-import com.telenav.kivakit.core.vm.Properties;
 import com.telenav.kivakit.core.vm.ShutdownHook;
 import com.telenav.kivakit.filesystem.Folder;
 import com.telenav.kivakit.interfaces.naming.Named;
 import com.telenav.kivakit.interfaces.naming.NamedObject;
 import com.telenav.kivakit.properties.PropertyMap;
 import com.telenav.kivakit.resource.Extension;
-import com.telenav.kivakit.resource.Resource;
 import com.telenav.kivakit.resource.packages.PackageTrait;
 import com.telenav.kivakit.resource.serialization.ObjectSerializerRegistry;
 import com.telenav.kivakit.serialization.gson.GsonObjectSerializer;
 import com.telenav.kivakit.serialization.properties.PropertiesObjectSerializer;
 import com.telenav.kivakit.settings.Deployment;
 import com.telenav.kivakit.settings.DeploymentSet;
-import com.telenav.kivakit.settings.SettingsRegistryTrait;
+import com.telenav.kivakit.settings.SettingsTrait;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlAggregation;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
@@ -85,16 +79,13 @@ import com.telenav.lexakai.annotations.visibility.UmlExcludeMember;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeSuperTypes;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE;
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.application.Application.ExecutionState.CONSTRUCTING;
 import static com.telenav.kivakit.application.Application.ExecutionState.INITIALIZING;
 import static com.telenav.kivakit.application.Application.ExecutionState.READY;
@@ -106,9 +97,26 @@ import static com.telenav.kivakit.application.ExitCode.SUCCEEDED;
 import static com.telenav.kivakit.commandline.Quantifier.OPTIONAL;
 import static com.telenav.kivakit.commandline.Quantifier.REQUIRED;
 import static com.telenav.kivakit.commandline.SwitchParsers.booleanSwitchParser;
-import static com.telenav.kivakit.core.collections.set.ObjectSet.objectSet;
+import static com.telenav.kivakit.core.collections.list.ObjectList.list;
+import static com.telenav.kivakit.core.collections.set.ObjectSet.set;
 import static com.telenav.kivakit.core.ensure.Ensure.ensure;
 import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
+import static com.telenav.kivakit.core.function.Result.failure;
+import static com.telenav.kivakit.core.function.Result.success;
+import static com.telenav.kivakit.core.language.Classes.newInstance;
+import static com.telenav.kivakit.core.language.Classes.simpleName;
+import static com.telenav.kivakit.core.logging.LoggerFactory.newLogger;
+import static com.telenav.kivakit.core.project.Project.resolveProject;
+import static com.telenav.kivakit.core.project.StartUpOptions.isStartupOptionEnabled;
+import static com.telenav.kivakit.core.string.Align.rightAlign;
+import static com.telenav.kivakit.core.string.Strip.stripLeading;
+import static com.telenav.kivakit.core.vm.Properties.allProperties;
+import static com.telenav.kivakit.properties.PropertyMap.loadLocalizedPropertyMap;
+import static com.telenav.kivakit.properties.PropertyMap.loadPropertyMap;
+import static com.telenav.kivakit.properties.PropertyMap.propertyMap;
+import static com.telenav.kivakit.resource.Resource.resolveResource;
+import static com.telenav.kivakit.settings.DeploymentSet.loadDeploymentSet;
+import static java.util.Comparator.comparing;
 
 /**
  * Base class for KivaKit applications.
@@ -132,7 +140,7 @@ import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
  *
  * <ul>
  *     <li>{@link PackageTrait} - Provides access to packages and packaged resources</li>
- *     <li>{@link SettingsRegistryTrait} - Loads settings objects and deployment configurations</li>
+ *     <li>{@link SettingsTrait} - Loads settings objects and deployment configurations</li>
  *     <li>{@link RegistryTrait} - Service {@link Registry} access</li>
  *     <li>{@link LanguageTrait} - Enhancements that reduce language verbosity</li>
  *     <li>{@link Repeater} - Message broadcasting, listening and repeating</li>
@@ -259,28 +267,28 @@ import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
  */
 @SuppressWarnings({ "unused", "BooleanMethodIsAlwaysInverted" })
 @UmlClassDiagram(diagram = DiagramApplication.class)
-@ApiQuality(stability = API_STABLE_EXTENSIBLE,
-            testing = TESTING_NONE,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = UNTESTED,
+             documentation = DOCUMENTATION_COMPLETE)
 public abstract class Application extends BaseComponent implements
         PackageTrait,
         ProjectTrait,
-        SettingsRegistryTrait,
+        SettingsTrait,
         Named,
         ApplicationMetadata
 {
     /** The one and only application running in this process */
-    private static Application instance;
+    private static Application application;
 
     /** The default final destination for messages that bubble up to the application level */
-    private static final Logger LOGGER = LoggerFactory.newLogger();
+    private static final Logger LOGGER = newLogger();
 
     /**
-     * @return The currently running application
+     * Returns the currently running application
      */
-    public static Application get()
+    public static Application application()
     {
-        return instance;
+        return application;
     }
 
     /**
@@ -316,13 +324,13 @@ public abstract class Application extends BaseComponent implements
 
         try
         {
-            var application = Classes.newInstance(applicationType);
+            var application = newInstance(applicationType);
             listener.listenTo(application);
             return application.run(arguments);
         }
         catch (Exception e)
         {
-            return Result.failure(new ApplicationExit(FAILED, e), "Application failed");
+            return failure(new ApplicationExit(FAILED, e), "Application failed");
         }
     }
 
@@ -346,9 +354,9 @@ public abstract class Application extends BaseComponent implements
      */
     @UmlClassDiagram(diagram = DiagramApplication.class)
     @UmlExcludeSuperTypes
-    @ApiQuality(stability = API_STABLE,
-                testing = TESTING_NONE,
-                documentation = DOCUMENTATION_COMPLETE)
+    @CodeQuality(stability = STABLE,
+                 testing = UNTESTED,
+                 documentation = DOCUMENTATION_COMPLETE)
     public static class Identifier extends StringIdentifier
     {
         public Identifier(String identifier)
@@ -390,7 +398,7 @@ public abstract class Application extends BaseComponent implements
         register(this);
         register(LOGGER);
 
-        instance = this;
+        application = this;
     }
 
     /**
@@ -404,12 +412,12 @@ public abstract class Application extends BaseComponent implements
         // We can only add projects during application construction.
         ensure(state.is(CONSTRUCTING));
 
-        projects.add(Project.resolveProject(project));
+        projects.add(resolveProject(project));
         return this;
     }
 
     /**
-     * @return The non-switch argument at the given index parsed using the given argument parser
+     * Returns the non-switch argument at the given index parsed using the given argument parser
      */
     public <T> T argument(int index, ArgumentParser<T> parser)
     {
@@ -417,7 +425,7 @@ public abstract class Application extends BaseComponent implements
     }
 
     /**
-     * @return The first non-switch argument parsed using the given argument parser
+     * Returns the first non-switch argument parsed using the given argument parser
      */
     public <T> T argument(ArgumentParser<T> parser)
     {
@@ -425,7 +433,7 @@ public abstract class Application extends BaseComponent implements
     }
 
     /**
-     * @return All non-switch command line arguments
+     * Returns all non-switch command line arguments
      */
     public ArgumentValueList argumentList()
     {
@@ -433,7 +441,7 @@ public abstract class Application extends BaseComponent implements
     }
 
     /**
-     * @return A list of parsed arguments
+     * Returns a list of parsed arguments
      */
     public <T> ObjectList<T> arguments(ArgumentParser<T> parser)
     {
@@ -450,7 +458,7 @@ public abstract class Application extends BaseComponent implements
     }
 
     /**
-     * @return The application version as specified in the resource "/project.properties"
+     * Returns the application version as specified in the resource "/project.properties"
      */
     public Build build()
     {
@@ -458,7 +466,7 @@ public abstract class Application extends BaseComponent implements
     }
 
     /**
-     * @return The parsed command line
+     * Returns the parsed command line
      */
     @UmlRelation(label = "parses arguments into")
     public CommandLine commandLine()
@@ -468,7 +476,7 @@ public abstract class Application extends BaseComponent implements
     }
 
     /**
-     * @return A description of the application for use in help
+     * Returns a description of the application for use in help
      */
     @Override
     public String description()
@@ -489,7 +497,7 @@ public abstract class Application extends BaseComponent implements
     }
 
     /**
-     * @return The value for the command line switch parsed by the given switch parser, if any
+     * Returns the value for the command line switch parsed by the given switch parser, if any
      */
 
     public <T> T get(SwitchParser<T> parser)
@@ -498,7 +506,7 @@ public abstract class Application extends BaseComponent implements
     }
 
     /**
-     * @return The value for the command line switch parsed by given switch parser or the default value if the switch
+     * Returns the value for the command line switch parsed by given switch parser or the default value if the switch
      * does not exist
      */
     public <T> T get(SwitchParser<T> parser, T defaultValue)
@@ -507,7 +515,7 @@ public abstract class Application extends BaseComponent implements
     }
 
     /**
-     * @return True if this application has a value for the command line switch parsed by the given parser
+     * Returns true if this application has a value for the command line switch parsed by the given parser
      */
     public <T> boolean has(SwitchParser<T> parser)
     {
@@ -517,7 +525,7 @@ public abstract class Application extends BaseComponent implements
     @UmlRelation(label = "identified by")
     public Identifier identifier()
     {
-        return new Identifier(Classes.simpleName(getClass()));
+        return new Identifier(simpleName(getClass()));
     }
 
     public PropertyMap localizedProperties(Locale locale)
@@ -527,7 +535,7 @@ public abstract class Application extends BaseComponent implements
 
     public PropertyMap localizedProperties(Locale locale, LocaleLanguage language)
     {
-        return PropertyMap.loadLocalizedPropertyMap(this, packageForThis().path(), locale, language);
+        return loadLocalizedPropertyMap(this, packageForThis().path(), locale, language);
     }
 
     /**
@@ -543,9 +551,12 @@ public abstract class Application extends BaseComponent implements
      */
     public PropertyMap properties()
     {
-        return PropertyMap.propertyMap(Properties.allProperties(getClass()));
+        return propertyMap(allProperties(getClass()));
     }
 
+    /**
+     * Transitions this application to the {@link ExecutionState#READY} state
+     */
     public void ready()
     {
         state.transitionTo(READY);
@@ -583,7 +594,7 @@ public abstract class Application extends BaseComponent implements
             }
 
             // Enable start-up options,
-            startupOptions().forEach(StartUpOptions::enable);
+            startupOptions().forEach(StartUpOptions::enableStartupOption);
 
             // signal that we are initializing,
             state.transitionTo(INITIALIZING);
@@ -600,7 +611,7 @@ public abstract class Application extends BaseComponent implements
             onProjectsInitialized();
 
             // load deployments,
-            deployments = DeploymentSet.loadDeploymentSet(this, getClass());
+            deployments = loadDeploymentSet(this, getClass());
 
             // then through arguments
             var argumentList = new StringList();
@@ -610,9 +621,9 @@ public abstract class Application extends BaseComponent implements
                 if (argument.startsWith("-switches="))
                 {
                     // then load properties from the resource
-                    var resourceIdentifier = Strip.leading(argument, "-switches=");
-                    var resource = Resource.resolveResource(this, resourceIdentifier);
-                    var properties = PropertyMap.loadPropertyMap(this, resource);
+                    var resourceIdentifier = stripLeading(argument, "-switches=");
+                    var resource = resolveResource(this, resourceIdentifier);
+                    var properties = loadPropertyMap(this, resource);
 
                     // and add those properties to the argument list
                     for (var key : properties.keySet())
@@ -645,7 +656,7 @@ public abstract class Application extends BaseComponent implements
                 registerSettingsIn(get(DEPLOYMENT));
             }
 
-            if (!StartUpOptions.isEnabled(StartupOption.QUIET))
+            if (!isStartupOptionEnabled(StartupOption.QUIET))
             {
                 showStartupInformation();
             }
@@ -688,8 +699,8 @@ public abstract class Application extends BaseComponent implements
 
         // Return the application result.
         return exitCode == SUCCEEDED
-                ? Result.success(ApplicationExit.SUCCESS)
-                : Result.failure(new ApplicationExit(exitCode, exception), "Application failed");
+                ? success(ApplicationExit.SUCCESS)
+                : failure(new ApplicationExit(exitCode, exception), "Application failed");
     }
 
     @UmlExcludeMember
@@ -699,7 +710,7 @@ public abstract class Application extends BaseComponent implements
     }
 
     /**
-     * @return This command line in a text box intended for user feedback when starting an application
+     * Returns this command line in a text box intended for user feedback when starting an application
      */
     public String startupInformation(String title)
     {
@@ -732,7 +743,7 @@ public abstract class Application extends BaseComponent implements
             box.add("Switches:");
             box.add("");
             var sorted = new ArrayList<>(internalSwitchParsers());
-            sorted.sort(Comparator.comparing(SwitchParser::name));
+            sorted.sort(comparing(SwitchParser::name));
             var width = new StringList(sorted).longest().asInt();
             for (var switchParser : sorted)
             {
@@ -741,7 +752,7 @@ public abstract class Application extends BaseComponent implements
                 {
                     value = ((Folder) value).path().asContraction(80);
                 }
-                box.add("   $ = $", Align.right(switchParser.name(), width, ' '),
+                box.add("   $ = $", rightAlign(switchParser.name(), width, ' '),
                         value == null ? "N/A" : value);
             }
         }
@@ -750,7 +761,7 @@ public abstract class Application extends BaseComponent implements
     }
 
     /**
-     * @return The application version as specified in the resource "/project.properties"
+     * Returns the application version as specified in the resource "/project.properties"
      */
     @Override
     public Version version()
@@ -768,11 +779,11 @@ public abstract class Application extends BaseComponent implements
     }
 
     /**
-     * @return The argument parsers for this application
+     * Returns the argument parsers for this application
      */
-    protected List<ArgumentParser<?>> argumentParsers()
+    protected ObjectList<ArgumentParser<?>> argumentParsers()
     {
-        return Collections.emptyList();
+        return list();
     }
 
     protected boolean ignoreDeployments()
@@ -858,15 +869,15 @@ public abstract class Application extends BaseComponent implements
      */
     protected ObjectSet<StartupOption> startupOptions()
     {
-        return objectSet();
+        return set();
     }
 
     /**
-     * @return The switch parsers for this application
+     * Returns the switch parsers for this application
      */
     protected ObjectSet<SwitchParser<?>> switchParsers()
     {
-        return objectSet();
+        return set();
     }
 
     /**

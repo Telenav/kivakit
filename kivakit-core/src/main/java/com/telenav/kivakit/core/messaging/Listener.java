@@ -18,23 +18,23 @@
 
 package com.telenav.kivakit.core.messaging;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramBroadcaster;
 import com.telenav.kivakit.core.internal.lexakai.DiagramListener;
 import com.telenav.kivakit.core.internal.lexakai.DiagramRepeater;
 import com.telenav.kivakit.core.logging.Logger;
 import com.telenav.kivakit.core.messaging.listeners.ThrowingListener;
 import com.telenav.kivakit.core.messaging.messages.status.Problem;
-import com.telenav.kivakit.core.os.Console;
 import com.telenav.kivakit.interfaces.messaging.Transmittable;
 import com.telenav.kivakit.interfaces.naming.NamedObject;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeMember;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeSuperTypes;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static com.telenav.kivakit.core.os.Console.console;
 
 /**
  * Handles messages through {@link #onMessage(Message)}.
@@ -108,21 +108,21 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
 @UmlClassDiagram(diagram = DiagramListener.class)
 @UmlExcludeSuperTypes({ NamedObject.class })
 @FunctionalInterface
-@ApiQuality(stability = API_STABLE_EXTENSIBLE,
-            testing = TESTING_NONE,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = UNTESTED,
+             documentation = DOCUMENTATION_COMPLETE)
 public interface Listener extends MessageTransceiver
 {
     /**
-     * @return A listener that writes the messages it hears to the console
+     * Returns a listener that writes the messages it hears to the console
      */
     static Listener consoleListener()
     {
-        return Console.console();
+        return console();
     }
 
     /**
-     * @return A listener that does nothing with messages. Useful only when you want to discard output from something
+     * Returns a listener that does nothing with messages. Useful only when you want to discard output from something
      */
     static Listener nullListener()
     {
@@ -132,7 +132,7 @@ public interface Listener extends MessageTransceiver
     }
 
     /**
-     * @return A listener that throws exceptions
+     * Returns a listener that throws exceptions
      */
     static Listener throwingListener()
     {
@@ -140,7 +140,7 @@ public interface Listener extends MessageTransceiver
     }
 
     /**
-     * @return True if this listener doesn't do anything with the messages it gets
+     * Returns true if this listener doesn't do anything with the messages it gets
      */
     @UmlExcludeMember
     default boolean isDeaf()

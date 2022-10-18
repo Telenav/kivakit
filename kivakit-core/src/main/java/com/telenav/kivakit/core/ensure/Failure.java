@@ -1,19 +1,20 @@
 package com.telenav.kivakit.core.ensure;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
-import com.telenav.kivakit.core.language.Classes;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.logging.Logger;
-import com.telenav.kivakit.core.logging.LoggerFactory;
 import com.telenav.kivakit.core.messaging.Message;
 import com.telenav.kivakit.core.messaging.messages.OperationMessage;
-import com.telenav.kivakit.interfaces.factory.MapFactory;
+import com.telenav.kivakit.interfaces.function.Mapper;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_STATIC_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static com.telenav.kivakit.core.ensure.FailureReporter.throwingFailureReporter;
+import static com.telenav.kivakit.core.language.Classes.newInstance;
+import static com.telenav.kivakit.core.logging.LoggerFactory.newLogger;
 
 /**
  * Used by {@link Ensure} to report failures in a flexible way.
@@ -33,23 +34,23 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
  * <ul>
  *     <li>{@link #reporter(Class, FailureReporter)} - Sets the failure reporter to use for the given message</li>
  *     <li>{@link #reporter(Class)} - Gets the failure reporter to use for the given message type</li>
- *     <li>{@link #reporterFactory(MapFactory)}  - Uses the given factory to create failure reporters instead of the reporters registered with {@link #reporter(Class, FailureReporter)}</li>
+ *     <li>{@link #reporterFactory(Mapper)}  - Uses the given factory to create failure reporters instead of the reporters registered with {@link #reporter(Class, FailureReporter)}</li>
  * </ul>
  *
  * @author jonathanl (shibo)
  */
 @SuppressWarnings("unused")
-@ApiQuality(stability = API_STABLE_STATIC_EXTENSIBLE,
-            testing = TESTING_NONE,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = UNTESTED,
+             documentation = DOCUMENTATION_COMPLETE)
 public class Failure
 {
     /** Logger to receive announcements */
-    private static final Logger LOGGER = LoggerFactory.newLogger();
+    private static final Logger LOGGER = newLogger();
 
     /** Creates a {@link FailureReporter} given a message type. The default failure reporter throws an exception */
-    public static MapFactory<Class<? extends Message>, FailureReporter> reporterFactory =
-            ignored -> FailureReporter.throwingFailureReporter();
+    public static Mapper<Class<? extends Message>, FailureReporter> reporterFactory =
+            ignored -> throwingFailureReporter();
 
     /** Thread-local map from message type to reporter, useful in reporting different messages differently */
     public static ThreadLocal<Map<Class<? extends Message>, FailureReporter>> reporterMap = ThreadLocal.withInitial(HashMap::new);
@@ -76,9 +77,9 @@ public class Failure
      */
     public static void report(Class<? extends Message> type, Throwable e, String message, Object... arguments)
     {
-        var failureMessage = (OperationMessage) Classes.newInstance(type);
+        var failureMessage = (OperationMessage) newInstance(type);
         failureMessage.cause(e);
-        failureMessage.message(message);
+        failureMessage.messageForType(message);
         failureMessage.arguments(arguments);
         reporter(type).report(failureMessage);
     }
@@ -91,7 +92,7 @@ public class Failure
      */
     public static FailureReporter reporter(Class<? extends Message> type)
     {
-        return reporterMap.get().computeIfAbsent(type, ignored -> reporterFactory.newInstance(type));
+        return reporterMap.get().computeIfAbsent(type, ignored -> reporterFactory.map(type));
     }
 
     /**
@@ -111,7 +112,7 @@ public class Failure
      * because the method clears the thread-local map from message type to reporter and other threads might be using
      * values in the map.
      */
-    public static void reporterFactory(MapFactory<Class<? extends Message>, FailureReporter> factory)
+    public static void reporterFactory(Mapper<Class<? extends Message>, FailureReporter> factory)
     {
         // Install the reporter factory
         reporterFactory = factory;

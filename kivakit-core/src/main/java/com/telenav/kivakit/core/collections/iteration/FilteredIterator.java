@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.core.collections.iteration;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramCollections;
 import com.telenav.kivakit.interfaces.comparison.Filter;
 import com.telenav.kivakit.interfaces.comparison.Matcher;
@@ -26,21 +26,27 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.Iterator;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 
 /**
  * An {@link Iterator} that wraps and filters the values of another {@link Iterator}.
+ *
+ * <p><b>Creation</b></p>
+ *
+ * <ul>
+ *     <li>{@link FilteredIterator#FilteredIterator(Iterator, Matcher)}</li>
+ * </ul>
  *
  * @author jonathanl (shibo)
  * @see BaseIterator
  * @see Filter
  */
 @UmlClassDiagram(diagram = DiagramCollections.class)
-@ApiQuality(stability = API_STABLE,
-            testing = TESTING_NONE,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = STABLE,
+             testing = UNTESTED,
+             documentation = DOCUMENTATION_COMPLETE)
 public class FilteredIterator<Value> extends BaseIterator<Value>
 {
     /** The iterator to filter */

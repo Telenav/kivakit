@@ -21,16 +21,17 @@ package com.telenav.kivakit.internal.tests.resource.reading;
 import com.telenav.kivakit.testing.UnitTest;
 import org.junit.Test;
 
+import static java.lang.Integer.parseInt;
+
 public class LineReaderTest extends UnitTest
 {
     @Test
     public void test()
     {
         var i = 1;
-        var resource = packageResource("test.txt");
-        for (String line : resource.reader().readLines())
+        for (String line : packageResource("test.txt").reader().readLines())
         {
-            ensureEqual(i++, Integer.parseInt(line));
+            ensureEqual(i++, parseInt(line));
         }
     }
 }

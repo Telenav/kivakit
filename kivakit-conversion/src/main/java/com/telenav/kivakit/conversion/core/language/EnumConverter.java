@@ -18,17 +18,17 @@
 
 package com.telenav.kivakit.conversion.core.language;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.conversion.BaseStringConverter;
 import com.telenav.kivakit.conversion.internal.lexakai.DiagramConversionLanguage;
 import com.telenav.kivakit.core.messaging.Listener;
-import com.telenav.kivakit.core.string.CaseFormat;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
+import static com.telenav.kivakit.core.string.CaseFormat.lowerHyphenToUpperUnderscore;
 
 /**
  * Converts between strings and enum values. Lower case hyphenated values are accepted. For example, the enum value
@@ -37,9 +37,9 @@ import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramConversionLanguage.class)
-@ApiQuality(stability = API_STABLE,
-            testing = TESTING_NONE,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = STABLE,
+             testing = UNTESTED,
+             documentation = DOCUMENTATION_COMPLETE)
 public class EnumConverter<T extends Enum<T>> extends BaseStringConverter<T>
 {
     /** The type of enum */
@@ -52,8 +52,7 @@ public class EnumConverter<T extends Enum<T>> extends BaseStringConverter<T>
     public EnumConverter(Listener listener, Class<T> enumType)
     {
         super(listener);
-        ensureNotNull(enumType);
-        this.enumType = enumType;
+        this.enumType = ensureNotNull(enumType);
     }
 
     /**
@@ -62,6 +61,6 @@ public class EnumConverter<T extends Enum<T>> extends BaseStringConverter<T>
     @Override
     protected T onToValue(String value)
     {
-        return Enum.valueOf(enumType, CaseFormat.lowerHyphenToUpperUnderscore(value));
+        return Enum.valueOf(enumType, lowerHyphenToUpperUnderscore(value));
     }
 }

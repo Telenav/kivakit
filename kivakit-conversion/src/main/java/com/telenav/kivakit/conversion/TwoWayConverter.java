@@ -1,27 +1,35 @@
 package com.telenav.kivakit.conversion;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.conversion.internal.lexakai.DiagramConversion;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 
 /**
  * The superinterface, {@link Converter}, converts values from type &lt;From&gt; to type &lt;To&gt; while this interface
  * adds the ability to convert in the reverse direction from type &lt;To&gt; to type &lt;From&gt;.
  *
+ * <p><b>Reverse Conversions</b></p>
+ *
+ * <ul>
+ *     <li>{@link #unconvert(Object)}</li>
+ *     <li>{@link #unconverter(Listener)}</li>
+ * </ul>
+ *
  * @param <From> The original type
  * @param <To> The desired type
  * @author jonathanl (shibo)
+ * @see Converter
  */
 @SuppressWarnings({ "unused", "SpellCheckingInspection" })
 @UmlClassDiagram(diagram = DiagramConversion.class)
-@ApiQuality(stability = API_STABLE_EXTENSIBLE,
-            testing = TESTING_NONE,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = UNTESTED,
+             documentation = DOCUMENTATION_COMPLETE)
 public interface TwoWayConverter<From, To> extends Converter<From, To>
 {
     /**

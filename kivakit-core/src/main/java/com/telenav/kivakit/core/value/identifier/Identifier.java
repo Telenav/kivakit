@@ -18,17 +18,18 @@
 
 package com.telenav.kivakit.core.value.identifier;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramIdentifier;
-import com.telenav.kivakit.core.string.KivaKitFormat;
+import com.telenav.kivakit.core.string.FormatProperty;
 import com.telenav.kivakit.core.value.count.BitCount;
 import com.telenav.kivakit.interfaces.model.Identifiable;
 import com.telenav.kivakit.interfaces.value.LongValued;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static java.lang.Long.compare;
 
 /**
  * Base class for *long* identifiers
@@ -40,9 +41,9 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
  */
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramIdentifier.class)
-@ApiQuality(stability = API_STABLE_EXTENSIBLE,
-            testing = TESTING_NONE,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = UNTESTED,
+             documentation = DOCUMENTATION_COMPLETE)
 public class Identifier implements
         Identifiable,
         LongValued,
@@ -76,7 +77,7 @@ public class Identifier implements
     @Override
     public int compareTo(Identifier that)
     {
-        return Long.compare(identifier, that.identifier);
+        return compare(identifier, that.identifier);
     }
 
     @Override
@@ -96,7 +97,7 @@ public class Identifier implements
         return (int) identifier;
     }
 
-    @KivaKitFormat
+    @FormatProperty
     @Override
     public long identifier()
     {

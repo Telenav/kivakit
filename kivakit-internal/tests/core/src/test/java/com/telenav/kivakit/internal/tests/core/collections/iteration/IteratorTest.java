@@ -23,14 +23,11 @@ import com.telenav.kivakit.core.collections.iteration.CompoundIterator;
 import com.telenav.kivakit.core.collections.iteration.DeduplicatingIterator;
 import com.telenav.kivakit.core.collections.iteration.Iterables;
 import com.telenav.kivakit.core.collections.list.ObjectList;
-import com.telenav.kivakit.core.value.count.Maximum;
 import com.telenav.kivakit.interfaces.collection.NextIterator;
 import com.telenav.kivakit.internal.testing.CoreUnitTest;
 import org.junit.Test;
 
 import java.util.Collections;
-
-import static com.telenav.kivakit.core.collections.list.ObjectList.objectList;
 
 public class IteratorTest extends CoreUnitTest
 {
@@ -79,7 +76,7 @@ public class IteratorTest extends CoreUnitTest
                 return null;
             }
         };
-        ensureEqual(values(2, 4, 8, 16, 32, 64, 128, 256, 512, 1024), objectList(iterator));
+        ensureEqual(values(2, 4, 8, 16, 32, 64, 128, 256, 512, 1024), ObjectList.list(iterator));
     }
 
     @Test
@@ -100,7 +97,7 @@ public class IteratorTest extends CoreUnitTest
     {
         var values = values(2, 3, 2, 5, 2, 7, 2);
         var iterator = new DeduplicatingIterator<>(values.iterator());
-        var deduplicated = new ObjectList<Integer>(Maximum.MAXIMUM);
+        var deduplicated = new ObjectList<Integer>();
         deduplicated.appendAll(iterator);
         ensureEqual(values(2, 3, 5, 7), deduplicated);
     }

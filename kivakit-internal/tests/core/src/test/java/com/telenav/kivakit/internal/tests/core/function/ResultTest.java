@@ -1,28 +1,49 @@
 package com.telenav.kivakit.internal.tests.core.function;
 
+import com.telenav.kivakit.core.ensure.EnsureTrait;
 import com.telenav.kivakit.core.function.Result;
-import com.telenav.kivakit.core.function.ResultTrait;
-import com.telenav.kivakit.core.messaging.repeaters.BaseRepeater;import com.telenav.kivakit.internal.testing.CoreUnitTest;
+import com.telenav.kivakit.core.messaging.CheckedCode;
+import com.telenav.kivakit.core.messaging.repeaters.BaseRepeater;
 import com.telenav.kivakit.core.time.Time;
 import com.telenav.kivakit.interfaces.code.Code;
+import com.telenav.kivakit.internal.testing.CoreUnitTest;
 import org.junit.Test;
 
-public class ResultTest extends CoreUnitTest implements ResultTrait
-{
-    static class Operation extends BaseRepeater implements Code<String>
-    {
-        private final boolean succeed;
+import static com.telenav.kivakit.internal.tests.core.function.ResultTest.OperationResult.FAIL;
+import static com.telenav.kivakit.internal.tests.core.function.ResultTest.OperationResult.SUCCEED;
+import static com.telenav.kivakit.internal.tests.core.function.ResultTest.OperationResult.THROW;
 
-        public Operation(boolean succeed)
+@SuppressWarnings("CodeBlock2Expr")
+public class ResultTest extends CoreUnitTest implements
+        CheckedCode,
+        EnsureTrait
+{
+    enum OperationResult
+    {
+        SUCCEED,
+        FAIL,
+        THROW
+    }
+
+    static class Operation extends BaseRepeater implements Code<String>, EnsureTrait
+    {
+        private final OperationResult result;
+
+        public Operation(OperationResult result)
         {
-            this.succeed = succeed;
+            this.result = result;
         }
 
+        @Override
         public String run()
         {
-            if (succeed)
+            if (result == SUCCEED)
             {
                 return "Hello, World!";
+            }
+            if (result == THROW)
+            {
+                illegalState("Throwing!");
             }
             problem("Failed!");
             return null;
@@ -32,17 +53,46 @@ public class ResultTest extends CoreUnitTest implements ResultTrait
     @Test
     public void testCapture()
     {
-        var operation = new Operation(true);
+        var operation = new Operation(SUCCEED);
         var result = Result.run(operation, operation);
         ensure(result.succeeded());
         ensureEqual(result.get(), "Hello, World!");
 
-        operation = new Operation(false);
+        operation = new Operation(FAIL);
         result = Result.run(operation, operation);
         ensureEqual(result.get(), null);
         ensure(result.failed());
         ensure(result.messages().isNonEmpty());
-        ensure(result.messages().get(0).formatted().equals("Failed!"));
+        ensure("Failed!".equals(result.messages().get(0).formatted()));
+    }
+
+    @Test
+    public void testCheckedCodeFailure()
+    {
+        var operation = new Operation(FAIL);
+        var result = read(operation);
+        ensure(result.failed());
+        ensure(result.get() == null);
+        ensureEqual(result.messages().get(0).formatted(), "Code broadcast failure: Could not read string");
+    }
+
+    @Test
+    public void testCheckedCodeSuccess()
+    {
+        var operation = new Operation(SUCCEED);
+        var result = read(operation);
+        ensure(result.succeeded());
+        ensure(result.get().equals("Hello, World!"));
+    }
+
+    @Test
+    public void testCheckedCodeThrow()
+    {
+        var operation = new Operation(THROW);
+        var result = read(operation);
+        ensure(result.failed());
+        ensure(result.get() == null);
+        ensure(result.messages().get(0).formatted().startsWith("Code threw exception: Could not read string: Throwing!"));
     }
 
     @Test
@@ -68,6 +118,17 @@ public class ResultTest extends CoreUnitTest implements ResultTrait
     {
         ensureBroadcastsProblem(Result.absent(), result -> result.orProblem("missing"));
         ensureBroadcastsNoProblem(Result.success(3), result -> result.orProblem("missing"));
+    }
+
+    /**
+     * Tests the check method by invoking the given operation
+     */
+    Result<String> read(Operation operation)
+    {
+        return check("Could not read string", s -> !s.isBlank(), () ->
+        {
+            return success(listenTo(operation).run());
+        });
     }
 
     private Integer a()

@@ -1,12 +1,12 @@
 package com.telenav.kivakit.core.collections;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.collections.iteration.BaseIterator;
 import com.telenav.kivakit.core.collections.iteration.FilteredIterable;
+import com.telenav.kivakit.core.collections.list.BaseList;
 import com.telenav.kivakit.core.collections.list.ObjectList;
 import com.telenav.kivakit.core.collections.list.StringList;
 import com.telenav.kivakit.core.logging.Logger;
-import com.telenav.kivakit.core.logging.LoggerFactory;
 import com.telenav.kivakit.core.string.StringConversions;
 import com.telenav.kivakit.core.value.count.Count;
 import com.telenav.kivakit.core.value.count.Countable;
@@ -29,11 +29,12 @@ import java.util.Set;
 import java.util.function.Function;
 import java.util.function.Predicate;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_INSUFFICIENT;
-import static com.telenav.kivakit.core.collections.list.ObjectList.objectList;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_INSUFFICIENT;
 import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
+import static com.telenav.kivakit.core.logging.LoggerFactory.newLogger;
+import static com.telenav.kivakit.core.value.count.Maximum.maximum;
 import static com.telenav.kivakit.interfaces.string.StringFormattable.Format.TO_STRING;
 
 /**
@@ -80,7 +81,7 @@ import static com.telenav.kivakit.interfaces.string.StringFormattable.Format.TO_
  *
  * <ul>
  *     <li>{@link #first()}</li>
- *     <li>{@link #mapped(Function)}</li>
+ *     <li>{@link #map(Function)}</li>
  * </ul>
  *
  * <p><b>Membership</b></p>
@@ -141,7 +142,7 @@ import static com.telenav.kivakit.interfaces.string.StringFormattable.Format.TO_
  * <p><b>Functional Methods</b></p>
  *
  * <ul>
- *     <li>{@link #mapped(Function)}</li>
+ *     <li>{@link #map(Function)}</li>
  *     <li>{@link #with(Object)}</li>
  * </ul>
  *
@@ -157,9 +158,9 @@ import static com.telenav.kivakit.interfaces.string.StringFormattable.Format.TO_
  * @see StringFormattable
  */
 @SuppressWarnings("unused")
-@ApiQuality(stability = API_STABLE_EXTENSIBLE,
-            testing = TESTING_INSUFFICIENT,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = TESTING_INSUFFICIENT,
+             documentation = DOCUMENTATION_COMPLETE)
 public abstract class BaseCollection<Value> implements
         Addable<Value>,
         Collection<Value>,
@@ -169,7 +170,7 @@ public abstract class BaseCollection<Value> implements
         Sized,
         StringFormattable
 {
-    private static final Logger LOGGER = LoggerFactory.newLogger();
+    private static final Logger LOGGER = newLogger();
 
     /** The maximum number of values that can be stored in this list */
     private int maximumSize;
@@ -204,7 +205,7 @@ public abstract class BaseCollection<Value> implements
     }
 
     /**
-     * @return This list as an array
+     * Returns this list as an array
      */
     @SuppressWarnings({ "unchecked" })
     public Value[] asArray(Class<Value> type)
@@ -258,7 +259,7 @@ public abstract class BaseCollection<Value> implements
     }
 
     /**
-     * @return This list as a string list
+     * Returns this list as a string list
      */
     public StringList asStringList()
     {
@@ -339,7 +340,7 @@ public abstract class BaseCollection<Value> implements
      * Returns this bounded list with all elements mapped by the given mapper to the mapper's target type
      */
     @SuppressWarnings("unchecked")
-    public <Output> BaseCollection<Output> mapped(Function<Value, Output> mapper)
+    public <Output> BaseCollection<Output> map(Function<Value, Output> mapper)
     {
         var filtered = (BaseCollection<Output>) newCollection();
         for (var element : this)
@@ -361,11 +362,11 @@ public abstract class BaseCollection<Value> implements
     }
 
     /**
-     * @return The maximum size of this bounded list
+     * Returns the maximum size of this bounded list
      */
     public final Maximum maximumSize()
     {
-        return Maximum.maximum(maximumSize);
+        return maximum(maximumSize);
     }
 
     /**
@@ -426,7 +427,7 @@ public abstract class BaseCollection<Value> implements
     }
 
     /**
-     * @return The separator to use when joining this list
+     * Returns the separator to use when joining this list
      */
     @Override
     public String separator()
@@ -444,20 +445,21 @@ public abstract class BaseCollection<Value> implements
     }
 
     /**
-     * @return A copy of this collection sorted by the given comparator
+     * Returns a copy of this collection sorted by the given comparator
      */
-    public ObjectList<Value> sorted(Comparator<Value> comparator)
+    public BaseList<Value> sorted(Comparator<Value> comparator)
     {
-        var sorted = objectList(this);
+        var sorted = (BaseList<Value>) newCollection();
+        sorted.addAll(this);
         sorted.sort(comparator);
         return sorted;
     }
 
     /**
-     * @return An {@link ObjectList} with the values in this collection in sorted order.
+     * Returns an {@link ObjectList} with the values in this collection in sorted order.
      */
     @SuppressWarnings("unchecked")
-    public ObjectList<Value> sorted()
+    public BaseList<Value> sorted()
     {
         return sorted((a, b) ->
         {
@@ -559,6 +561,6 @@ public abstract class BaseCollection<Value> implements
      */
     protected String toString(Value value)
     {
-        return StringConversions.toString(value);
+        return StringConversions.toHumanizedString(value);
     }
 }

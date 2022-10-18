@@ -18,14 +18,12 @@
 
 package com.telenav.kivakit.core.progress.reporters;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramProgress;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.messaging.broadcasters.Multicaster;
 import com.telenav.kivakit.core.progress.ProgressListener;
 import com.telenav.kivakit.core.progress.ProgressReporter;
-import com.telenav.kivakit.core.string.AsciiArt;
-import com.telenav.kivakit.core.string.Strings;
 import com.telenav.kivakit.core.time.Duration;
 import com.telenav.kivakit.core.time.Rate;
 import com.telenav.kivakit.core.time.Time;
@@ -35,10 +33,17 @@ import com.telenav.kivakit.core.value.level.Percent;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import org.jetbrains.annotations.NotNull;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static com.telenav.kivakit.core.messaging.Listener.nullListener;
+import static com.telenav.kivakit.core.string.AsciiArt.bottomLine;
+import static com.telenav.kivakit.core.string.AsciiArt.topLine;
+import static com.telenav.kivakit.core.string.Formatter.format;
 import static com.telenav.kivakit.core.time.Duration.seconds;
+import static com.telenav.kivakit.core.time.Time.epochMilliseconds;
+import static com.telenav.kivakit.core.time.Time.now;
+import static com.telenav.kivakit.core.value.count.Count.count;
 
 /**
  * A progress reporter that sends progress messages to a {@link Listener} as an operation proceeds.
@@ -48,7 +53,7 @@ import static com.telenav.kivakit.core.time.Duration.seconds;
  * <p>
  * <b>Example - Broadcasting Progress of an Operation</b>
  * <pre>
- * var progress = BroadcastingProgressReporter.create(LOGGER, "bytes");
+ * var progress = progressReporter(this, "bytes");
  * progress.start("Downloading")
  * while ([...])
  * {
@@ -91,9 +96,9 @@ import static com.telenav.kivakit.core.time.Duration.seconds;
  */
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramProgress.class)
-@ApiQuality(stability = API_STABLE_EXTENSIBLE,
-            testing = TESTING_NONE,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = UNTESTED,
+             documentation = DOCUMENTATION_COMPLETE)
 public class BroadcastingProgressReporter extends Multicaster implements ProgressReporter
 {
     /** The slowest we should report progress */
@@ -102,19 +107,19 @@ public class BroadcastingProgressReporter extends Multicaster implements Progres
     /** The fastest rate at which we should report progress */
     private static final Duration REPORT_FASTEST = seconds(0.25);
 
-    public static BroadcastingProgressReporter createConcurrentProgressReporter(Listener listener)
+    public static BroadcastingProgressReporter concurrentProgressReporter(Listener listener)
     {
-        return createConcurrentProgressReporter(listener, "items");
+        return concurrentProgressReporter(listener, "items");
     }
 
-    public static BroadcastingProgressReporter createConcurrentProgressReporter(Listener listener, String itemName)
+    public static BroadcastingProgressReporter concurrentProgressReporter(Listener listener, String itemName)
     {
-        return createConcurrentProgressReporter(listener, itemName, null);
+        return concurrentProgressReporter(listener, itemName, null);
     }
 
-    public static BroadcastingProgressReporter createConcurrentProgressReporter(Listener listener,
-                                                                                String itemName,
-                                                                                BaseCount<?> steps)
+    public static BroadcastingProgressReporter concurrentProgressReporter(Listener listener,
+                                                                          String itemName,
+                                                                          BaseCount<?> steps)
     {
         return listener.listenTo(new ConcurrentBroadcastingProgressReporter()
                 .withUnits(itemName)
@@ -126,27 +131,27 @@ public class BroadcastingProgressReporter extends Multicaster implements Progres
      * @param itemName The item that is being processed, like "bytes"
      * @param steps The number of steps in the operation
      */
-    public static BroadcastingProgressReporter createProgressReporter(Listener listener, String itemName,
-                                                                      BaseCount<?> steps)
+    public static BroadcastingProgressReporter progressReporter(Listener listener, String itemName,
+                                                                BaseCount<?> steps)
     {
         return listener.listenTo(new BroadcastingProgressReporter()
                 .withUnits(itemName)
                 .withSteps(steps));
     }
 
-    public static BroadcastingProgressReporter createProgressReporter()
+    public static BroadcastingProgressReporter progressReporter()
     {
-        return BroadcastingProgressReporter.createProgressReporter(Listener.nullListener());
+        return progressReporter(nullListener());
     }
 
-    public static BroadcastingProgressReporter createProgressReporter(Listener listener)
+    public static BroadcastingProgressReporter progressReporter(Listener listener)
     {
-        return createProgressReporter(listener, "items");
+        return progressReporter(listener, "items");
     }
 
-    public static BroadcastingProgressReporter createProgressReporter(Listener listener, String itemName)
+    public static BroadcastingProgressReporter progressReporter(Listener listener, String itemName)
     {
-        return createProgressReporter(listener, itemName, null);
+        return progressReporter(listener, itemName, null);
     }
 
     /** The current step */
@@ -165,7 +170,7 @@ public class BroadcastingProgressReporter extends Multicaster implements Progres
     private int lastPercent;
 
     /** The last time we reported progress */
-    private Time lastReportedAt = Time.now();
+    private Time lastReportedAt = now();
 
     /** The progress listener to update */
     private ProgressListener listener;
@@ -174,7 +179,7 @@ public class BroadcastingProgressReporter extends Multicaster implements Progres
     private String phase;
 
     /** The time that progress reporting began */
-    private long start = Time.now().milliseconds();
+    private long start = now().milliseconds();
 
     /** True if this reporter has started reporting */
     private boolean started;
@@ -229,8 +234,8 @@ public class BroadcastingProgressReporter extends Multicaster implements Progres
         {
             ended = true;
             report(at());
-            var formatted = Strings.format(message, arguments);
-            feedback(AsciiArt.bottomLine("$ $ in $", formatted, unitName, Time.epochMilliseconds(start).elapsedSince()));
+            var formatted = format(message, arguments);
+            feedback(bottomLine("$ $ in $", formatted, unitName, epochMilliseconds(start).elapsedSince()));
         }
     }
 
@@ -240,16 +245,6 @@ public class BroadcastingProgressReporter extends Multicaster implements Progres
     public void feedback(String message)
     {
         information(phase == null ? message : phase + message);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public BroadcastingProgressReporter progressReporter(ProgressListener listener)
-    {
-        this.listener = listener;
-        return this;
     }
 
     /**
@@ -315,11 +310,21 @@ public class BroadcastingProgressReporter extends Multicaster implements Progres
      * {@inheritDoc}
      */
     @Override
+    public BroadcastingProgressReporter progressReporter(ProgressListener listener)
+    {
+        this.listener = listener;
+        return this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public void reset()
     {
         started = false;
         ended = false;
-        start = Time.now().milliseconds();
+        start = now().milliseconds();
         every = 10;
         at(0);
     }
@@ -334,8 +339,8 @@ public class BroadcastingProgressReporter extends Multicaster implements Progres
         {
             started = true;
             at(0);
-            feedback(AsciiArt.topLine(label + " " + unitName));
-            start = Time.now().milliseconds();
+            feedback(topLine(label + " " + unitName));
+            start = now().milliseconds();
             if (listener != null)
             {
                 listener.at(Percent._0);
@@ -363,7 +368,7 @@ public class BroadcastingProgressReporter extends Multicaster implements Progres
     @Override
     public Count steps()
     {
-        return steps < 0 ? null : Count.count(steps);
+        return steps < 0 ? null : count(steps);
     }
 
     /**
@@ -372,7 +377,7 @@ public class BroadcastingProgressReporter extends Multicaster implements Progres
     @Override
     public String toString()
     {
-        return toString(Count.count(at()));
+        return toString(count(at()));
     }
 
     /**
@@ -455,11 +460,11 @@ public class BroadcastingProgressReporter extends Multicaster implements Progres
 
         if (steps < 0)
         {
-            feedback(toString(Count.count(at)) + " ");
+            feedback(toString(count(at)) + " ");
         }
         else
         {
-            feedback(toString(Count.count(at)));
+            feedback(toString(count(at)));
         }
 
         var elapsed = lastReportedAt.elapsedSince().maximum(Duration.milliseconds(1));
@@ -484,7 +489,7 @@ public class BroadcastingProgressReporter extends Multicaster implements Progres
 
         every = Math.min(every, 1_000_000);
 
-        lastReportedAt = Time.now();
+        lastReportedAt = now();
     }
 
     private String toString(Count count)
@@ -495,7 +500,7 @@ public class BroadcastingProgressReporter extends Multicaster implements Progres
         builder.append(" of ");
         if (steps > 0)
         {
-            builder.append(Count.count(steps));
+            builder.append(count(steps));
             builder.append(" (");
             builder.append(Percent.percent(100.0 * count.get() / steps).asInt());
             builder.append("%)");
@@ -504,7 +509,7 @@ public class BroadcastingProgressReporter extends Multicaster implements Progres
         {
             builder.append("?");
         }
-        var elapsed = Time.epochMilliseconds(start).elapsedSince();
+        var elapsed = epochMilliseconds(start).elapsedSince();
         if (unitName != null)
         {
             builder.append(" ");

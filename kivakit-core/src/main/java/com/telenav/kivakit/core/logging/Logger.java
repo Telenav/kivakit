@@ -34,6 +34,8 @@ import com.telenav.lexakai.annotations.associations.UmlRelation;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeMember;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeSuperTypes;
 
+import static com.telenav.kivakit.core.logging.LoggerFactory.newLogger;
+
 /**
  * A {@link Logger} accepts {@link Message}s via {@link #log(Message)} and writes them to one or more {@link Log}s.
  * Filters can be added to the logger to restrict which messages are logged with {@link #addFilter(Filter)}.
@@ -51,11 +53,7 @@ import com.telenav.lexakai.annotations.visibility.UmlExcludeSuperTypes;
  * <p>
  * <b>Example</b>
  * <pre>
- * private static final Logger LOGGER = LoggerFactory.newLogger();
- *
- *    [...]
- *
- * var converter = new IntegerConverter(LOGGER);
+ * var converter = new IntegerConverter(this);
  * var agent = converter.convert("99");
  * </pre>
  * Another typical use case is for a logger to listen to an object that implements {@link Repeater}.
@@ -66,11 +64,39 @@ import com.telenav.lexakai.annotations.visibility.UmlExcludeSuperTypes;
  *
  *     [...]
  *
- * var reporter = LOGGER.listenTo(new ReportProcessor());
+ * var reporter = listenTo(new ReportProcessor());
  * </pre>
  * Logs are loaded dynamically through using the service provider interface (SPI) {@link Log}. Which log
  * implementation(s) are loaded for use in an application can be chosen by the end-user from the command line with the
  * system property KIVAKIT_LOG.
+ *
+ * <p><b>Factory Methods</b></p>
+ *
+ * <ul>
+ *     <li>{@link #logger()} - Returns a new logger instance</li>
+ * </ul>
+ *
+ * <p><b>Logging</b></p>
+ *
+ * <ul>
+ *     <li>{@link #codeContext()} - The code context for this logger</li>
+ *     <li>{@link #log(Message)} - Logs the given message</li>
+ *     <li>{@link #startTime()} - The time of creation for this logger</li>
+ * </ul>
+ *
+ * <p><b>Filtering</b></p>
+ *
+ * <ul>
+ *     <li>{@link #addFilter(Filter)} - Adds the given filter to this log</li>
+ *     <li>{@link #filters()} - Returns the list of filters for this log</li>
+ * </ul>
+ *
+ * <p><b>Logging</b></p>
+ *
+ * <p>
+ * More details about logging are available in <a
+ * href="../../../../../../../../../kivakit-core/documentation/logging.md">kivakit-core</a>.
+ * </p>
  *
  * @author jonathanl (shibo)
  * @see <a href="https://tinyurl.com/mhc3ss5s">KivaKit Logging Documentation</a>
@@ -96,10 +122,10 @@ public interface Logger extends
      * Generic logger instance returned by {@link #logger()}.
      * </p>
      */
-    Logger LOGGER = LoggerFactory.newLogger();
+    Logger LOGGER = newLogger();
 
     /**
-     * @return A logger instance for use in contexts where it is too awkward to implement or pass in a {@link Listener}.
+     * Returns a logger instance for use in contexts where it is too awkward to implement or pass in a {@link Listener}.
      * For example, some trivial classes and static methods may need to report problems, but are not important enough to
      * justify the complexity of reporting those problems an external listener.
      */
@@ -153,7 +179,7 @@ public interface Logger extends
     }
 
     /**
-     * @return The time this logger was constructed
+     * Returns the time this logger was constructed
      */
     @UmlExcludeMember
     Time startTime();

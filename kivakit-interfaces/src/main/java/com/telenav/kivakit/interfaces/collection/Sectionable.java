@@ -1,11 +1,13 @@
 package com.telenav.kivakit.interfaces.collection;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.interfaces.factory.Factory;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_FURTHER_EVALUATION_NEEDED;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABILITY_UNDETERMINED;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static java.lang.Math.max;
+import static java.lang.Math.min;
 
 /**
  * Retrieves different subsections from an {@link Indexable}.
@@ -15,23 +17,23 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
  * @author jonathanl (shibo)
  */
 @SuppressWarnings({ "SpellCheckingInspection", "unused" })
-@ApiQuality(stability = API_FURTHER_EVALUATION_NEEDED,
-            testing = TESTING_NONE,
-            documentation = DOCUMENTATION_COMPLETE,
-            reviews = 1,
-            reviewers = "shibo")
+@CodeQuality(stability = STABILITY_UNDETERMINED,
+             testing = UNTESTED,
+             documentation = DOCUMENTATION_COMPLETE,
+             reviews = 1,
+             reviewers = "shibo")
 public interface Sectionable<Value, Section extends Addable<Value> & Indexable<Value>> extends
         Indexable<Value>,
         Addable<Value>,
         Factory<Section>
 {
     /**
-     * @return The first n values in this object. If there are fewer than count values, all values are returned.
+     * Returns the first n values in this object. If there are fewer than count values, all values are returned.
      */
     default Section first(int count)
     {
         var list = newInstance();
-        for (var i = 0; i < Math.min(count, size()); i++)
+        for (var i = 0; i < min(count, size()); i++)
         {
             list.add(get(i));
         }
@@ -39,12 +41,12 @@ public interface Sectionable<Value, Section extends Addable<Value> & Indexable<V
     }
 
     /**
-     * @return The last n values in this object. If there are fewer than count values, all values are returned.
+     * Returns the last n values in this object. If there are fewer than count values, all values are returned.
      */
     default Section last(int count)
     {
         var list = newInstance();
-        for (var i = Math.max(size() - count - 1, 0); i < size(); i++)
+        for (var i = max(size() - count - 1, 0); i < size(); i++)
         {
             list.add(get(i));
         }
@@ -52,7 +54,7 @@ public interface Sectionable<Value, Section extends Addable<Value> & Indexable<V
     }
 
     /**
-     * @return The values in this object to the left of the index, exclusive
+     * Returns the values in this object to the left of the index, exclusive
      */
     default Section leftOf(int index)
     {
@@ -65,7 +67,7 @@ public interface Sectionable<Value, Section extends Addable<Value> & Indexable<V
     }
 
     /**
-     * @return The values in this object to the right of the index, exclusive
+     * Returns the values in this object to the right of the index, exclusive
      */
     default Section rightOf(int index)
     {

@@ -18,11 +18,12 @@
 
 package com.telenav.kivakit.core.logging;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.collections.map.VariableMap;
 import com.telenav.kivakit.core.internal.lexakai.DiagramLogging;
 import com.telenav.kivakit.core.internal.lexakai.DiagramLogs;
 import com.telenav.kivakit.core.logging.logs.text.ConsoleLog;
+import com.telenav.kivakit.core.messaging.Message;
 import com.telenav.kivakit.core.messaging.messages.Severity;
 import com.telenav.kivakit.core.time.Duration;
 import com.telenav.kivakit.interfaces.comparison.Filtered;
@@ -33,9 +34,11 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeSuperTypes;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_DEFAULT_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static com.telenav.kivakit.core.messaging.Messages.messageForType;
+import static com.telenav.kivakit.core.time.Duration.seconds;
 
 /**
  * Accepts log entries for some purpose, such as writing them to a file or displaying them in a terminal window.
@@ -61,6 +64,27 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
  * Which log implementation(s) are used in an application can be selected from the command line with the system
  * property KIVAKIT_LOG (see <a href="https://tinyurl.com/mhc3ss5s">KivaKit logging documentation</a> for details).
  *
+ * <p><b>Configuration</b></p>
+ *
+ * <ul>
+ *     <li>{@link #configure(VariableMap)} - Configures this log with the values from the KIVAKIT_LOG environment variable</li>
+ * </ul>
+ *
+ * <p><b>Logging</b></p>
+ *
+ * <ul>
+ *     <li>{@link #level(Severity)} - Sets the minimum severity level to log</li>
+ *     <li>{@link #log(LogEntry)}</li>
+ *     <li>{@link #maximumFlushTime()}</li>
+ * </ul>
+ *
+ * <p><b>Logging</b></p>
+ *
+ * <p>
+ * More details about logging are available in <a
+ * href="../../../../../../../../../kivakit-core/documentation/logging.md">kivakit-core</a>.
+ * </p>
+ *
  * @author jonathanl (shibo)
  * @see Logger
  * @see Filtered
@@ -73,9 +97,9 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
 @UmlClassDiagram(diagram = DiagramLogging.class)
 @UmlRelation(label = "logs", referent = LogEntry.class)
 @UmlExcludeSuperTypes({ Named.class, Flushable.class })
-@ApiQuality(stability = API_STABLE_DEFAULT_EXTENSIBLE,
-            testing = TESTING_NONE,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = UNTESTED,
+             documentation = DOCUMENTATION_COMPLETE)
 public interface Log extends
         Named,
         Filtered<LogEntry>,
@@ -97,6 +121,14 @@ public interface Log extends
     void level(Severity severity);
 
     /**
+     * Sets the minimum logging level to the severity for the given message type
+     */
+    default <T extends Message> void level(Class<T> message)
+    {
+        level(messageForType(message).severity());
+    }
+
+    /**
      * Logs the given entry
      */
     void log(LogEntry entry);
@@ -107,6 +139,6 @@ public interface Log extends
     @Override
     default Duration maximumFlushTime()
     {
-        return Duration.seconds(30);
+        return seconds(30);
     }
 }

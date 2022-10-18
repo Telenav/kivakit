@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.core.vm;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramThread;
 import com.telenav.kivakit.core.time.Duration;
 import com.telenav.kivakit.core.time.Time;
@@ -30,9 +30,12 @@ import java.lang.management.ThreadMXBean;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static com.telenav.kivakit.core.time.Duration.milliseconds;
+import static com.telenav.kivakit.core.time.Time.now;
+import static java.lang.Thread.currentThread;
 
 /**
  * Captures a snapshot of {@link ThreadStatus} for all running threads via the Java management API.
@@ -41,9 +44,9 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
  * @see ThreadStatus
  */
 @SuppressWarnings("unused") @UmlClassDiagram(diagram = DiagramThread.class)
-@ApiQuality(stability = API_STABLE_EXTENSIBLE,
-            testing = TESTING_NONE,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = UNTESTED,
+             documentation = DOCUMENTATION_COMPLETE)
 public class ThreadSnapshot
 {
     /** The status of each thread */
@@ -58,7 +61,7 @@ public class ThreadSnapshot
     }
 
     /**
-     * @return The time at which this snapshot was captured
+     * Returns the time at which this snapshot was captured
      */
     public Time capturedAt()
     {
@@ -70,7 +73,7 @@ public class ThreadSnapshot
      */
     public Duration cpuTime()
     {
-        return cpuTime(Thread.currentThread());
+        return cpuTime(currentThread());
     }
 
     /**
@@ -89,7 +92,7 @@ public class ThreadSnapshot
     }
 
     /**
-     * @return The status of all threads captured in the snapshot
+     * Returns the status of all threads captured in the snapshot
      */
     public List<ThreadStatus> snapshot()
     {
@@ -97,7 +100,7 @@ public class ThreadSnapshot
     }
 
     /**
-     * @return The total CPU time of all threads
+     * Returns the total CPU time of all threads
      */
     public Duration totalCpuTime()
     {
@@ -106,11 +109,11 @@ public class ThreadSnapshot
         {
             milliseconds += thread.cpuTime().asMilliseconds();
         }
-        return Duration.milliseconds(milliseconds);
+        return milliseconds(milliseconds);
     }
 
     /**
-     * @return Updates this thread snapshot
+     * Returns updates this thread snapshot
      */
     public ThreadSnapshot update()
     {
@@ -124,7 +127,7 @@ public class ThreadSnapshot
                 if (information != null)
                 {
                     var status = new ThreadStatus();
-                    status.cpuTime = Duration.milliseconds(management.getThreadCpuTime(identifier) / 1_000_000L);
+                    status.cpuTime = milliseconds(management.getThreadCpuTime(identifier) / 1_000_000L);
                     status.isDaemon = information.isDaemon();
                     status.name = information.getThreadName();
                     status.identifier = information.getThreadId();
@@ -133,7 +136,7 @@ public class ThreadSnapshot
                 }
             }
         }
-        capturedAt = Time.now();
+        capturedAt = now();
         this.threads = threads;
         return this;
     }

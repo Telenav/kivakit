@@ -18,11 +18,8 @@
 
 package com.telenav.kivakit.network.socket.server;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.messaging.repeaters.BaseRepeater;
-import com.telenav.kivakit.core.thread.KivaKitThread;
-import com.telenav.kivakit.core.thread.Threads;
-import com.telenav.kivakit.core.time.Duration;
 import com.telenav.kivakit.core.value.count.Maximum;
 
 import java.net.BindException;
@@ -31,9 +28,13 @@ import java.net.Socket;
 import java.util.concurrent.ExecutorService;
 import java.util.function.Consumer;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static com.telenav.kivakit.core.thread.KivaKitThread.run;
+import static com.telenav.kivakit.core.thread.Threads.threadPool;
+import static com.telenav.kivakit.core.time.Duration.seconds;
+import static com.telenav.kivakit.core.value.count.Maximum.MAXIMUM;
 
 /**
  * Listens for client connections on a given port. Each new connection is passed to the socket {@link Consumer} passed
@@ -41,9 +42,9 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
  *
  * @author jonathanl (shibo)
  */
-@ApiQuality(stability = API_STABLE_EXTENSIBLE,
-            testing = TESTING_NONE,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = UNTESTED,
+             documentation = DOCUMENTATION_COMPLETE)
 public class ConnectionListener extends BaseRepeater
 {
     /** The port to listen on */
@@ -53,11 +54,11 @@ public class ConnectionListener extends BaseRepeater
     private final int retries;
 
     /** The executor service to listen for connections */
-    private final ExecutorService executor = Threads.threadPool("Listener");
+    private final ExecutorService executor = threadPool("Listener");
 
     public ConnectionListener(int port)
     {
-        this(port, Maximum.MAXIMUM);
+        this(port, MAXIMUM);
     }
 
     public ConnectionListener(int port, Maximum retries)
@@ -75,7 +76,7 @@ public class ConnectionListener extends BaseRepeater
     public void listen(Consumer<Socket> connectionListener)
     {
         var outer = this;
-        KivaKitThread.run(this, "ConnectionListener", () ->
+        run(this, "ConnectionListener", () ->
         {
             int bindFailures = 0;
             while (bindFailures < retries)
@@ -112,11 +113,11 @@ public class ConnectionListener extends BaseRepeater
                     if (e instanceof BindException)
                     {
                         bindFailures++;
-                        Duration.seconds(15).sleep();
+                        seconds(15).sleep();
                     }
                     warning(e, "Connection failed");
                 }
-                Duration.seconds(1).sleep();
+                seconds(1).sleep();
             }
         });
     }

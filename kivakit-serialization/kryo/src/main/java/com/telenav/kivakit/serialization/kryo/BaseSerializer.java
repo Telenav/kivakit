@@ -4,18 +4,18 @@ import com.esotericsoftware.kryo.Kryo;
 import com.esotericsoftware.kryo.Serializer;
 import com.esotericsoftware.kryo.io.Input;
 import com.esotericsoftware.kryo.io.Output;
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.version.Version;
 import com.telenav.kivakit.serialization.kryo.internal.lexakai.DiagramKryo;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
-import java.util.Objects;
-
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
 import static com.telenav.kivakit.core.ensure.Ensure.unsupported;
+import static com.telenav.kivakit.serialization.kryo.KryoSerializationSession.kryoSerializationSession;
+import static java.util.Objects.requireNonNull;
 
 /**
  * Kryo serializer extension class for serializing a particular type of object. Provides a thread-local version to
@@ -25,9 +25,9 @@ import static com.telenav.kivakit.core.ensure.Ensure.unsupported;
  */
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramKryo.class)
-@ApiQuality(stability = API_STABLE_EXTENSIBLE,
-            testing = TESTING_NONE,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = UNTESTED,
+             documentation = DOCUMENTATION_COMPLETE)
 public abstract class BaseSerializer<Value> extends Serializer<Value>
 {
     private static final ThreadLocal<Version> threadLocalVersion = new ThreadLocal<>();
@@ -37,7 +37,7 @@ public abstract class BaseSerializer<Value> extends Serializer<Value>
      */
     public static void version(Version version)
     {
-        threadLocalVersion.set(Objects.requireNonNull(version));
+        threadLocalVersion.set(requireNonNull(version));
     }
 
     /** The type for this serializer */
@@ -48,7 +48,7 @@ public abstract class BaseSerializer<Value> extends Serializer<Value>
      */
     protected BaseSerializer(Class<Value> type)
     {
-        this.type = Objects.requireNonNull(type);
+        this.type = requireNonNull(type);
     }
 
     /**
@@ -59,11 +59,11 @@ public abstract class BaseSerializer<Value> extends Serializer<Value>
     @Override
     public Value read(Kryo kryo, Input input, Class<? extends Value> type)
     {
-        return onRead(KryoSerializationSession.kryoSerializationSession(kryo));
+        return onRead(kryoSerializationSession(kryo));
     }
 
     /**
-     * @return The type to serialize
+     * Returns the type to serialize
      */
     public final Class<?> type()
     {
@@ -78,11 +78,11 @@ public abstract class BaseSerializer<Value> extends Serializer<Value>
     @Override
     public final void write(Kryo kryo, Output output, Value value)
     {
-        onWrite(KryoSerializationSession.kryoSerializationSession(kryo), value);
+        onWrite(kryoSerializationSession(kryo), value);
     }
 
     /**
-     * @return The value as read by the subclass of this serializer using the given session
+     * Returns the value as read by the subclass of this serializer using the given session
      */
     protected abstract Value onRead(KryoSerializationSession session);
 
@@ -100,7 +100,7 @@ public abstract class BaseSerializer<Value> extends Serializer<Value>
     }
 
     /**
-     * @return The version of the serialization session in progress
+     * Returns the version of the serialization session in progress
      */
     protected Version version()
     {

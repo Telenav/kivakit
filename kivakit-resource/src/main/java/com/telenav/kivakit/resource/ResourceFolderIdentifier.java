@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.resource;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.filesystem.Folder;
 import com.telenav.kivakit.resource.internal.lexakai.DiagramResourceService;
@@ -26,9 +26,10 @@ import com.telenav.kivakit.resource.packages.Package;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import org.jetbrains.annotations.NotNull;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static com.telenav.kivakit.resource.ResourceFolder.resolveResourceFolder;
 
 /**
  * An identifier for a {@link ResourceFolder} implementation, including either a {@link Package} or a {@link Folder}.
@@ -39,9 +40,9 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
  * @see ResourceFolder
  */
 @UmlClassDiagram(diagram = DiagramResourceService.class)
-@ApiQuality(stability = API_STABLE_EXTENSIBLE,
-            testing = TESTING_NONE,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = UNTESTED,
+             documentation = DOCUMENTATION_COMPLETE)
 public class ResourceFolderIdentifier
 {
     private final String identifier;
@@ -58,7 +59,7 @@ public class ResourceFolderIdentifier
 
     public ResourceFolder<?> resolve(@NotNull Listener listener)
     {
-        return ResourceFolder.resolveResourceFolder(listener, this);
+        return resolveResourceFolder(listener, this);
     }
 
     @Override

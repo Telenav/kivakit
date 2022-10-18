@@ -18,8 +18,7 @@
 
 package com.telenav.kivakit.filesystem.local;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
-import com.telenav.kivakit.core.messaging.Listener;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.messaging.repeaters.BaseRepeater;
 import com.telenav.kivakit.core.thread.Monitor;
 import com.telenav.kivakit.core.time.Time;
@@ -48,11 +47,15 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.ApiType.PRIVATE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
+import static com.telenav.kivakit.annotations.code.quality.Audience.AUDIENCE_INTERNAL;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
 import static com.telenav.kivakit.core.ensure.Ensure.fail;
+import static com.telenav.kivakit.core.messaging.Listener.consoleListener;
+import static com.telenav.kivakit.core.time.Time.epochMilliseconds;
+import static com.telenav.kivakit.filesystem.FilePath.filePath;
+import static com.telenav.kivakit.filesystem.FilePath.parseFilePath;
 
 /**
  * Implementation of {@link FolderService} provider interface for the local filesystem.
@@ -62,19 +65,14 @@ import static com.telenav.kivakit.core.ensure.Ensure.fail;
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramFileSystemService.class)
 @UmlNotPublicApi
-@ApiQuality(stability = API_STABLE_EXTENSIBLE,
-            testing = TESTING_NOT_NEEDED,
-            documentation = DOCUMENTATION_COMPLETE,
-            type = PRIVATE)
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = TESTING_NOT_NEEDED,
+             documentation = DOCUMENTATION_COMPLETE,
+             audience = AUDIENCE_INTERNAL)
 public class LocalFolder extends BaseRepeater implements FolderService
 {
     // Monitor for serializing the creation of temporary files
     private static final Monitor temporaryLock = new Monitor();
-
-    public static LocalFolder home()
-    {
-        return new LocalFolder(System.getProperty("user.home"));
-    }
 
     /** The underlying Java file */
     private final java.io.File file;
@@ -90,7 +88,7 @@ public class LocalFolder extends BaseRepeater implements FolderService
 
     public LocalFolder(@NotNull java.io.File file)
     {
-        this(FilePath.filePath(file));
+        this(filePath(file));
     }
 
     public LocalFolder(@NotNull LocalFolder that)
@@ -101,7 +99,7 @@ public class LocalFolder extends BaseRepeater implements FolderService
 
     public LocalFolder(@NotNull String path)
     {
-        this(FilePath.parseFilePath(Listener.consoleListener(), path));
+        this(parseFilePath(consoleListener(), path));
     }
 
     public LocalFolder(@NotNull URI uri)
@@ -198,7 +196,7 @@ public class LocalFolder extends BaseRepeater implements FolderService
     {
         try
         {
-            return Time.epochMilliseconds(Files.readAttributes(path().asJavaPath(), BasicFileAttributes.class)
+            return epochMilliseconds(Files.readAttributes(path().asJavaPath(), BasicFileAttributes.class)
                     .creationTime()
                     .toMillis());
         }
@@ -338,7 +336,7 @@ public class LocalFolder extends BaseRepeater implements FolderService
                 {
                     for (var file : list)
                     {
-                        var path = FilePath.filePath(file).withoutFileScheme();
+                        var path = filePath(file).withoutFileScheme();
                         if (!isFolder(path))
                         {
                             files.add(new LocalFile(file));
@@ -484,7 +482,7 @@ public class LocalFolder extends BaseRepeater implements FolderService
     @Override
     public Time lastModified()
     {
-        return Time.epochMilliseconds(file.lastModified());
+        return epochMilliseconds(file.lastModified());
     }
 
     /**

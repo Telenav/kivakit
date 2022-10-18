@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.core.collections.map;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.collections.list.ObjectList;
 import com.telenav.kivakit.core.collections.list.StringList;
 import com.telenav.kivakit.core.internal.lexakai.DiagramCollections;
@@ -34,9 +34,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicLong;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_INSUFFICIENT;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_INSUFFICIENT;
+import static com.telenav.kivakit.core.value.count.Maximum.MAXIMUM;
+import static java.lang.Math.min;
 
 /**
  * Keeps a {@link ConcurrentMutableCount} for each key.
@@ -84,16 +86,16 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_INSUFF
  */
 @SuppressWarnings({ "UnusedReturnValue", "unused" })
 @UmlClassDiagram(diagram = DiagramCollections.class)
-@ApiQuality(stability = API_STABLE_EXTENSIBLE,
-            testing = TESTING_INSUFFICIENT,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = TESTING_INSUFFICIENT,
+             documentation = DOCUMENTATION_COMPLETE)
 public class CountMap<Key> extends ObjectMap<Key, ConcurrentMutableCount>
 {
     private AtomicLong total = new AtomicLong();
 
     public CountMap()
     {
-        this(Maximum.MAXIMUM);
+        this(MAXIMUM);
     }
 
     public CountMap(Maximum maximum)
@@ -103,13 +105,13 @@ public class CountMap<Key> extends ObjectMap<Key, ConcurrentMutableCount>
 
     public CountMap(CountMap<Key> that)
     {
-        super(Maximum.MAXIMUM);
+        super(MAXIMUM);
         mergeIn(that);
         total = that.total;
     }
 
     /**
-     * @return Entries sorted in ascending order with the given comparator
+     * Returns entries sorted in ascending order with the given comparator
      */
     public ObjectList<Map.Entry<Key, ConcurrentMutableCount>> ascendingEntries(
             Maximum maximum,
@@ -118,7 +120,7 @@ public class CountMap<Key> extends ObjectMap<Key, ConcurrentMutableCount>
         assert maximum != null;
         var sorted = new ObjectList<>(entrySet());
         sorted.sort(comparator);
-        return sorted.subList(0, Math.min(sorted.size(), maximum.asInt()));
+        return sorted.subList(0, min(sorted.size(), maximum.asInt()));
     }
 
     /**
@@ -164,7 +166,7 @@ public class CountMap<Key> extends ObjectMap<Key, ConcurrentMutableCount>
     }
 
     /**
-     * @return Entries sorted in descending order with the given comparator
+     * Returns entries sorted in descending order with the given comparator
      */
     public ObjectList<Map.Entry<Key, ConcurrentMutableCount>> descendingEntries(
             Maximum maximum,
@@ -173,7 +175,7 @@ public class CountMap<Key> extends ObjectMap<Key, ConcurrentMutableCount>
         assert maximum != null;
         ObjectList<Map.Entry<Key, ConcurrentMutableCount>> sorted = new ObjectList<>(entrySet());
         sorted.sort(comparator.reversed());
-        return sorted.subList(0, Math.min(sorted.size(), maximum.asInt()));
+        return sorted.subList(0, min(sorted.size(), maximum.asInt()));
     }
 
     /**

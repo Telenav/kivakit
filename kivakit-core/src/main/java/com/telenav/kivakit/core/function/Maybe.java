@@ -1,6 +1,6 @@
 package com.telenav.kivakit.core.function;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.code.UncheckedVoidCode;
 import com.telenav.kivakit.core.function.arities.PentaFunction;
 import com.telenav.kivakit.core.function.arities.TetraFunction;
@@ -8,7 +8,7 @@ import com.telenav.kivakit.core.function.arities.TriFunction;
 import com.telenav.kivakit.core.language.trait.TryCatchTrait;
 import com.telenav.kivakit.core.messaging.Repeater;
 import com.telenav.kivakit.core.messaging.messages.status.Problem;
-import com.telenav.kivakit.interfaces.monads.Presence;
+import com.telenav.kivakit.interfaces.function.Presence;
 import com.telenav.kivakit.interfaces.value.Source;
 
 import java.util.Objects;
@@ -18,17 +18,15 @@ import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.stream.Stream;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_INSUFFICIENT;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_INSUFFICIENT;
 import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
 
 /**
  * A substitute for {@link Optional} that adds functionality and integrates with {@link Repeater}
  *
- * <hr>
- *
- * <p><b>Construction</b></p>
+ * <p><b>Creation</b></p>
  *
  * <p>
  * A {@link Maybe} can be constructed in three ways:
@@ -38,8 +36,6 @@ import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
  *     <li>{@link #maybe(Object)} - Creates a {@link Maybe} whose value can be missing or not</li>
  *     <li>{@link #present(Object)} - Creates a {@link Maybe} whose value is always non-null</li>
  * </ol>
- *
- * <hr>
  *
  * <p><b>Terminal Operations</b></p>
  *
@@ -56,8 +52,6 @@ import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
  *     <li>{@link #asStream()} - Converts this value to a stream with zero or one element(s)</li>
  * </ul>
  *
- * <hr>
- *
  * <p><b>Functions</b></p>
  *
  * <ul>
@@ -70,8 +64,6 @@ import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
  *     <li>{@link #map(Function)} - Applies the given function to this value</li>
  * </ul>
  *
- * <hr>
- *
  * <p><b>Conditionals</b></p>
  *
  * <ul>
@@ -81,21 +73,19 @@ import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
  *     <li>{@link #ifPresentOr(Consumer, UncheckedVoidCode)} - Calls the given consumer if a value is present, otherwise calls the given code</li>
  * </ul>
  *
- * <hr>
- *
  * @author jonathanl (shibo)
  * @author viniciusluisr
  * @see <a href="https://github.com/viniciusluisr/improved-optional">improved-optional</a>
  */
-@ApiQuality(stability = API_STABLE_EXTENSIBLE,
-            testing = TESTING_INSUFFICIENT,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = TESTING_INSUFFICIENT,
+             documentation = DOCUMENTATION_COMPLETE)
 public class Maybe<Value> implements
         Presence,
         TryCatchTrait
 {
     /**
-     * @return Maybe value for null
+     * Returns maybe value for null
      */
     public static <Value> Maybe<Value> absent()
     {
@@ -103,7 +93,7 @@ public class Maybe<Value> implements
     }
 
     /**
-     * @return Maybe for the given (null or non-null) value
+     * Returns maybe for the given (null or non-null) value
      */
     public static <Value> Maybe<Value> maybe(Value value)
     {
@@ -111,7 +101,7 @@ public class Maybe<Value> implements
     }
 
     /**
-     * @return Maybe for the given non-null value
+     * Returns maybe for the given non-null value
      */
     public static <Value> Maybe<Value> present(Value value)
     {
@@ -504,7 +494,7 @@ public class Maybe<Value> implements
     {
         if (isAbsent())
         {
-            new Problem(message, arguments).throwAsIllegalStateException();
+            new Problem(message, arguments).throwMessage();
         }
 
         return value;

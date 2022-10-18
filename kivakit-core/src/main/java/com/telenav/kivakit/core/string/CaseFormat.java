@@ -18,16 +18,20 @@
 
 package com.telenav.kivakit.core.string;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramString;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_STATIC_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static com.telenav.kivakit.core.string.Strip.stripLeading;
+import static java.lang.Character.isLowerCase;
+import static java.lang.Character.toLowerCase;
+import static java.lang.Character.toUpperCase;
 
 /**
  * Converts between different styles of casing:
@@ -43,9 +47,9 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
  */
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramString.class)
-@ApiQuality(stability = API_STABLE_STATIC_EXTENSIBLE,
-            testing = TESTING_NONE,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = UNTESTED,
+             documentation = DOCUMENTATION_COMPLETE)
 public class CaseFormat
 {
     /**
@@ -55,7 +59,7 @@ public class CaseFormat
     {
         assert text != null;
 
-        return Strip.leading(text.replaceAll("(?=[A-Z][a-z0-9])", "-"), "-").toLowerCase();
+        return stripLeading(text.replaceAll("(?=[A-Z][a-z0-9])", "-"), "-").toLowerCase();
     }
 
     /**
@@ -65,7 +69,7 @@ public class CaseFormat
     {
         if (text.length() >= 1)
         {
-            return Character.toUpperCase(text.charAt(0)) + text.substring(1);
+            return toUpperCase(text.charAt(0)) + text.substring(1);
         }
         return text;
     }
@@ -77,7 +81,7 @@ public class CaseFormat
     {
         if (text != null && text.length() >= 1)
         {
-            return Character.toUpperCase(text.charAt(0)) + text.toLowerCase().substring(1);
+            return toUpperCase(text.charAt(0)) + text.toLowerCase().substring(1);
         }
         return text;
     }
@@ -90,7 +94,7 @@ public class CaseFormat
     {
         if (text.length() >= 1)
         {
-            return Character.toLowerCase(text.charAt(0)) + text.substring(1);
+            return toLowerCase(text.charAt(0)) + text.substring(1);
         }
         return text;
     }
@@ -119,19 +123,19 @@ public class CaseFormat
     }
 
     /**
-     * @return True if the text starts with an uppercase letter or non-letter, false otherwise
+     * Returns true if the text starts with an uppercase letter or non-letter, false otherwise
      */
     public static boolean isCapitalized(String text)
     {
         if (text != null && !text.isEmpty())
         {
-            return !Character.isLowerCase(text.charAt(0));
+            return !isLowerCase(text.charAt(0));
         }
         return false;
     }
 
     /**
-     * @return True if the given text contains a hyphen
+     * Returns true if the given text contains a hyphen
      */
     public static boolean isHyphenated(String text)
     {

@@ -18,18 +18,18 @@
 
 package com.telenav.kivakit.core.messaging.messages.status;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramMessageType;
-import com.telenav.kivakit.core.messaging.Message;
 import com.telenav.kivakit.core.messaging.messages.OperationStatusMessage;
 import com.telenav.kivakit.core.messaging.messages.Severity;
 import com.telenav.kivakit.core.messaging.messages.lifecycle.OperationHalted;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
 import static com.telenav.kivakit.core.messaging.Message.Status.FAILED;
+import static com.telenav.kivakit.core.messaging.Message.escapeMessageText;
 import static com.telenav.kivakit.core.messaging.messages.Severity.HIGH;
 
 /**
@@ -56,9 +56,9 @@ import static com.telenav.kivakit.core.messaging.messages.Severity.HIGH;
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramMessageType.class)
-@ApiQuality(stability = API_STABLE,
-            testing = TESTING_NOT_NEEDED,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = STABLE,
+             testing = TESTING_NOT_NEEDED,
+             documentation = DOCUMENTATION_COMPLETE)
 public class FatalProblem extends Problem
 {
     public FatalProblem(String message, Object... arguments)
@@ -70,7 +70,7 @@ public class FatalProblem extends Problem
 
     public FatalProblem(Throwable cause, String message, Object... arguments)
     {
-        super(message + ": " + Message.escapeMessageText(cause.getMessage()));
+        super(message + ": " + escapeMessageText(cause.getMessage()));
         cause(cause);
         arguments(arguments);
     }

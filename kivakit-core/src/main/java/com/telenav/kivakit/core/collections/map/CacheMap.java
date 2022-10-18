@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.core.collections.map;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramCollections;
 import com.telenav.kivakit.core.time.Duration;
 import com.telenav.kivakit.core.time.Time;
@@ -30,9 +30,12 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_INSUFFICIENT;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_INSUFFICIENT;
+import static com.telenav.kivakit.core.time.Duration.FOREVER;
+import static com.telenav.kivakit.core.time.Time.now;
+import static com.telenav.kivakit.core.value.count.Maximum.MAXIMUM;
 
 /**
  * A map that has a fixed size and that deletes the oldest entries when that size is exceeded. It also removes entries
@@ -43,9 +46,9 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_INSUFF
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramCollections.class)
-@ApiQuality(stability = API_STABLE_EXTENSIBLE,
-            testing = TESTING_INSUFFICIENT,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = TESTING_INSUFFICIENT,
+             documentation = DOCUMENTATION_COMPLETE)
 public class CacheMap<Key, Value> extends BaseMap<Key, Value>
 {
     /** The maximum allowed age of an entry */
@@ -59,7 +62,7 @@ public class CacheMap<Key, Value> extends BaseMap<Key, Value>
      */
     public CacheMap(Maximum cacheSize)
     {
-        this(cacheSize, Duration.MAXIMUM);
+        this(cacheSize, FOREVER);
     }
 
     /**
@@ -70,7 +73,7 @@ public class CacheMap<Key, Value> extends BaseMap<Key, Value>
      */
     public CacheMap(Maximum cacheSize, Duration maximumEntryAge)
     {
-        super(Maximum.MAXIMUM, new LinkedHashMap<>()
+        super(MAXIMUM, new LinkedHashMap<>()
         {
             @Override
             protected boolean removeEldestEntry(Map.Entry<Key, Value> eldest)
@@ -116,7 +119,7 @@ public class CacheMap<Key, Value> extends BaseMap<Key, Value>
     {
         if (expireOldEntries())
         {
-            updated.put(key, Time.now());
+            updated.put(key, now());
         }
         return super.put(key, value);
     }

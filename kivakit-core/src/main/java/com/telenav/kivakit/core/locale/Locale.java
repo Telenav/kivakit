@@ -18,22 +18,24 @@
 
 package com.telenav.kivakit.core.locale;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.collections.list.ObjectList;
 import com.telenav.kivakit.core.internal.lexakai.DiagramLocale;
-import com.telenav.kivakit.core.language.Objects;
 import com.telenav.kivakit.core.path.StringPath;
-import com.telenav.kivakit.core.string.StringConversions;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlAggregation;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Collection;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
-import static com.telenav.kivakit.core.collections.list.ObjectList.objectList;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static com.telenav.kivakit.core.collections.list.ObjectList.list;
+import static com.telenav.kivakit.core.language.Objects.isEqual;
+import static com.telenav.kivakit.core.locale.LocaleRegion.WORLD;
+import static com.telenav.kivakit.core.path.StringPath.stringPath;
+import static com.telenav.kivakit.core.string.StringConversions.toNonNullString;
 
 /**
  * A locale constructed from a {@link LocaleLanguage} and an optional {@link LocaleRegion}. Provides a unique path to
@@ -43,9 +45,9 @@ import static com.telenav.kivakit.core.collections.list.ObjectList.objectList;
  */
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramLocale.class)
-@ApiQuality(stability = API_STABLE_EXTENSIBLE,
-            testing = TESTING_NONE,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = UNTESTED,
+             documentation = DOCUMENTATION_COMPLETE)
 public class Locale
 {
     /** The region for the locale, which might increase specificity, for example, US and Australian English. */
@@ -66,7 +68,7 @@ public class Locale
     public Locale(LocaleRegion region, @NotNull Collection<LocaleLanguage> languages)
     {
         this.region = region;
-        this.languages = objectList(languages);
+        this.languages = list(languages);
     }
 
     /**
@@ -89,7 +91,7 @@ public class Locale
         if (object instanceof Locale)
         {
             var that = (Locale) object;
-            return Objects.isEqual(languages, that.languages);
+            return isEqual(languages, that.languages);
         }
         return false;
     }
@@ -104,11 +106,11 @@ public class Locale
     }
 
     /**
-     * @return True if this is the world locale
+     * Returns true if this is the world locale
      */
     public boolean isWorld()
     {
-        return region == LocaleRegion.WORLD;
+        return region == WORLD;
     }
 
     /**
@@ -130,7 +132,7 @@ public class Locale
     }
 
     /**
-     * @return The languages spoken in this locale
+     * Returns the languages spoken in this locale
      */
     public ObjectList<LocaleLanguage> languages()
     {
@@ -147,8 +149,8 @@ public class Locale
     public StringPath path(LocaleLanguage language)
     {
         return region == null
-                ? StringPath.stringPath("locales", language.name())
-                : StringPath.stringPath("locales", language.name(), region.name());
+                ? stringPath("locales", language.name())
+                : stringPath("locales", language.name(), region.name());
     }
 
     /**
@@ -160,7 +162,7 @@ public class Locale
     }
 
     /**
-     * @return Any region for this locale, or null if the locale is relevant to the whole world
+     * Returns any region for this locale, or null if the locale is relevant to the whole world
      */
     public LocaleRegion region()
     {
@@ -170,6 +172,6 @@ public class Locale
     @Override
     public String toString()
     {
-        return "[region = " + StringConversions.nonNullString(region.name()) + ": " + languages().join(", ") + "]";
+        return "[region = " + toNonNullString(region.name()) + ": " + languages().join(", ") + "]";
     }
 }

@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.collections.map;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.collections.internal.lexakai.DiagramMap;
 import com.telenav.kivakit.core.collections.map.BaseMap;
 import com.telenav.kivakit.core.collections.map.LinkedMap;
@@ -26,19 +26,48 @@ import com.telenav.kivakit.core.value.count.Maximum;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import org.jetbrains.annotations.NotNull;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+import java.util.Map;
+import java.util.function.BiFunction;
+import java.util.function.Function;
+
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static com.telenav.kivakit.core.value.count.Maximum.MAXIMUM;
 
 /**
  * A map from key to value, but also from value to key (with {@link #key(Object)}).
  *
+ * <p><b>Access</b></p>
+ *
+ * <ul>
+ *     <li>{@link #compute(Object, BiFunction)}</li>
+ *     <li>{@link #computeIfAbsent(Object, Function)}</li>
+ *     <li>{@link #computeIfPresent(Object, BiFunction)}</li>
+ *     <li>{@link #get(Object)}</li>
+ *     <li>{@link #get(Object, Object)}</li>
+ *     <li>{@link #key(Object)}</li>
+ *     <li>{@link #keySet()}</li>
+ *     <li>{@link #put(Object, Object)}</li>
+ *     <li>{@link #putAll(Map)}</li>
+ *     <li>{@link #putIfAbsent(Object, Object)}</li>
+ *     <li>{@link #putIfNotNull(Object, Object)}</li>
+ *     <li>{@link #values()}</li>
+ * </ul>
+ *
+ * <p><b>Operations</b></p>
+ *
+ * <ul>
+ *     <li>{@link #clear()}</li>
+ *     <li>{@link #remove(Object)}</li>
+ * </ul>
+ *
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramMap.class)
-@ApiQuality(stability = API_STABLE_EXTENSIBLE,
-            testing = TESTING_NONE,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = UNTESTED,
+             documentation = DOCUMENTATION_COMPLETE)
 public class TwoWayMap<Key, Value> extends BaseMap<Key, Value>
 {
     /** The reverse map from value to key */
@@ -46,7 +75,7 @@ public class TwoWayMap<Key, Value> extends BaseMap<Key, Value>
 
     public TwoWayMap()
     {
-        this(Maximum.MAXIMUM);
+        this(MAXIMUM);
     }
 
     public TwoWayMap(Maximum maximumSize)

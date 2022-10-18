@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.collections.map;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.collections.internal.lexakai.DiagramMap;
 import com.telenav.kivakit.core.value.count.Count;
 import com.telenav.kivakit.core.value.count.MutableCount;
@@ -27,27 +27,43 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 import java.util.IdentityHashMap;
 import java.util.Map;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 
 /**
  * A non-thread-safe map of reference counts. Counts are increased by calling {@link #reference(Object)}, and decreased
  * by calling {@link #dereference(Object)}. The method {@link #isReferenced(Object)} returns true if there is any
  * remaining reference to the given object.
  *
+ * <p><b>Referencing</b></p>
+ *
+ * <ul>
+ *     <li>{@link #reference(Object)}</li>
+ *     <li>{@link #dereference(Object)}</li>
+ *     <li>{@link #isReferenced(Object)}</li>
+ * </ul>
+ *
+ * <p><b>Reference Counts</b></p>
+ *
+ * <ul>
+ *     <li>{@link #count(Object)}</li>
+ *     <li>{@link #count(Object, Count)}</li>
+ * </ul>
+ *
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramMap.class)
-@ApiQuality(stability = API_STABLE_EXTENSIBLE,
-            testing = TESTING_NONE,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = UNTESTED,
+             documentation = DOCUMENTATION_COMPLETE)
 public class ReferenceCountMap<Key>
 {
+    /** Map from key to reference count */
     private final Map<Key, MutableCount> referenceCount = new IdentityHashMap<>();
 
     /**
-     * @return The reference count for the given object
+     * Returns the reference count for the given object
      */
     public Count count(Key object)
     {
@@ -77,7 +93,7 @@ public class ReferenceCountMap<Key>
     }
 
     /**
-     * @return True if the given object is referenced
+     * Returns true if the given object is referenced
      */
     public boolean isReferenced(Key object)
     {

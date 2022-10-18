@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.core.os;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.collections.map.VariableMap;
 import com.telenav.kivakit.core.internal.lexakai.DiagramOs;
 import com.telenav.kivakit.core.messaging.Listener;
@@ -28,9 +28,9 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 import java.io.File;
 import java.io.IOException;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
 import static com.telenav.kivakit.core.os.OperatingSystem.OperatingSystemType.MACOS;
 import static com.telenav.kivakit.core.os.OperatingSystem.OperatingSystemType.OTHER_OS;
@@ -39,6 +39,8 @@ import static com.telenav.kivakit.core.os.OperatingSystem.OperatingSystemType.WI
 import static com.telenav.kivakit.core.os.OperatingSystem.ProcessorArchitecture.APPLE;
 import static com.telenav.kivakit.core.os.OperatingSystem.ProcessorArchitecture.INTEL;
 import static com.telenav.kivakit.core.os.OperatingSystem.ProcessorArchitecture.OTHER_PROCESSOR;
+import static com.telenav.kivakit.core.os.Processes.captureOutput;
+import static com.telenav.kivakit.core.os.Processes.waitForTermination;
 
 /**
  * An abstraction of features of the underlying OS through Java interfaces. This object is a singleton, which can be
@@ -66,7 +68,7 @@ import static com.telenav.kivakit.core.os.OperatingSystem.ProcessorArchitecture.
  * <p><b>Variables</b></p>
  *
  * <ul>
- *     <li>{@link #environmentVariables()}m</li>
+ *     <li>{@link #environmentVariables()}</li>
  *     <li>{@link #systemPropertyOrEnvironmentVariable(String)}</li>
  *     <li>{@link #javaHome()}</li>
  * </ul>
@@ -75,9 +77,9 @@ import static com.telenav.kivakit.core.os.OperatingSystem.ProcessorArchitecture.
  */
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramOs.class)
-@ApiQuality(stability = API_STABLE_EXTENSIBLE,
-            testing = TESTING_NONE,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = UNTESTED,
+             documentation = DOCUMENTATION_COMPLETE)
 public class OperatingSystem implements Named
 {
     /** This operating system */
@@ -148,8 +150,8 @@ public class OperatingSystem implements Named
             builder.directory(folder);
             builder.redirectErrorStream(true);
             var process = builder.start();
-            var output = Processes.captureOutput(listener, process);
-            Processes.waitForTermination(process);
+            var output = captureOutput(listener, process);
+            waitForTermination(process);
             return output;
         }
         catch (IOException e)

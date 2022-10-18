@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.core.io;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramIo;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.progress.ProgressReporter;
@@ -38,9 +38,9 @@ import java.io.Writer;
 import java.util.stream.Collectors;
 import java.util.zip.ZipFile;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_STATIC_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
 import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
 import static com.telenav.kivakit.core.io.IO.CopyStyle.BUFFERED;
 
@@ -51,8 +51,8 @@ import static com.telenav.kivakit.core.io.IO.CopyStyle.BUFFERED;
  * <p><b>Buffering</b></p>
  *
  * <ul>
- *     <li>{@link #bufferInput(InputStream)}</li>
- *     <li>{@link #bufferOutput(OutputStream)}</li>
+ *     <li>{@link #buffer(InputStream)}</li>
+ *     <li>{@link #buffer(OutputStream)}</li>
  * </ul>
  *
  * <p><b>Reading</b></p>
@@ -61,8 +61,8 @@ import static com.telenav.kivakit.core.io.IO.CopyStyle.BUFFERED;
  *     <li>{@link #readByte(Listener, InputStream)}</li>
  *     <li>{@link #readBytes(Listener, InputStream)}</li>
  *     <li>{@link #skip(Listener, InputStream, long)}</li>
- *     <li>{@link #string(Listener, Reader)}</li>
- *     <li>{@link #string(Listener, InputStream)}</li>
+ *     <li>{@link #readString(Listener, Reader)}</li>
+ *     <li>{@link #readString(Listener, InputStream)}</li>
  * </ul>
  *
  * <p><b>Copying</b></p>
@@ -94,15 +94,15 @@ import static com.telenav.kivakit.core.io.IO.CopyStyle.BUFFERED;
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramIo.class)
-@ApiQuality(stability = API_STABLE_STATIC_EXTENSIBLE,
-            testing = TESTING_NOT_NEEDED,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = TESTING_NOT_NEEDED,
+             documentation = DOCUMENTATION_COMPLETE)
 public class IO
 {
     /**
      * Returns the given input stream buffered, if it is not already
      */
-    public static BufferedInputStream bufferInput(InputStream in)
+    public static BufferedInputStream buffer(InputStream in)
     {
         if (in instanceof BufferedInputStream)
         {
@@ -118,7 +118,7 @@ public class IO
     /**
      * Returns the given output stream buffered, if it is not already
      */
-    public static BufferedOutputStream bufferOutput(OutputStream out)
+    public static BufferedOutputStream buffer(OutputStream out)
     {
         if (out instanceof BufferedOutputStream)
         {
@@ -258,8 +258,8 @@ public class IO
      */
     public static boolean copy(Listener listener, InputStream input, OutputStream output, CopyStyle style)
     {
-        var in = style == BUFFERED ? bufferInput(input) : input;
-        var out = style == BUFFERED ? bufferOutput(output) : output;
+        var in = style == BUFFERED ? buffer(input) : input;
+        var out = style == BUFFERED ? buffer(output) : output;
         try
         {
             var buffer = new byte[style == BUFFERED ? 4096 : 1];
@@ -364,33 +364,17 @@ public class IO
     }
 
     /**
-     * Skips the given number of bytes in the given input stream
+     * Reads a string from the given input
      */
-    @SuppressWarnings("ResultOfMethodCallIgnored")
-    public static void skip(Listener listener, InputStream in, long offset)
+    public static String readString(Listener listener, InputStream in)
     {
-        try
-        {
-            in.skip(offset);
-        }
-        catch (IOException e)
-        {
-            listener.problem(e, "Can't skip bytes on input stream");
-        }
+        return readString(listener, new InputStreamReader(buffer(in)));
     }
 
     /**
      * Reads a string from the given input
      */
-    public static String string(Listener listener, InputStream in)
-    {
-        return string(listener, new InputStreamReader(bufferInput(in)));
-    }
-
-    /**
-     * Reads a string from the given input
-     */
-    public static String string(Listener listener, Reader in)
+    public static String readString(Listener listener, Reader in)
     {
         try
         {
@@ -403,6 +387,22 @@ public class IO
         {
             listener.problem(e, "Unable to read string from input stream");
             return null;
+        }
+    }
+
+    /**
+     * Skips the given number of bytes in the given input stream
+     */
+    @SuppressWarnings("ResultOfMethodCallIgnored")
+    public static void skip(Listener listener, InputStream in, long offset)
+    {
+        try
+        {
+            in.skip(offset);
+        }
+        catch (IOException e)
+        {
+            listener.problem(e, "Can't skip bytes on input stream");
         }
     }
 

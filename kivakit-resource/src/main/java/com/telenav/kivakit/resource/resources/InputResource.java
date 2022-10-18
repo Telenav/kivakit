@@ -18,9 +18,8 @@
 
 package com.telenav.kivakit.resource.resources;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.value.count.Bytes;
-import com.telenav.kivakit.resource.ResourcePath;
 import com.telenav.kivakit.resource.internal.lexakai.DiagramResourceType;
 import com.telenav.kivakit.resource.reading.BaseReadableResource;
 import com.telenav.kivakit.resource.reading.ReadableResource;
@@ -29,10 +28,12 @@ import org.jetbrains.annotations.NotNull;
 
 import java.io.InputStream;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.messaging.Listener.throwingListener;
+import static com.telenav.kivakit.resource.ResourcePath.parseUnixResourcePath;
+import static java.lang.Integer.toHexString;
 
 /**
  * An {@link InputStream} stream wrapper that allows *one-time* reading of an input stream as a
@@ -42,9 +43,9 @@ import static com.telenav.kivakit.core.messaging.Listener.throwingListener;
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramResourceType.class)
-@ApiQuality(stability = API_STABLE_EXTENSIBLE,
-            documentation = DOCUMENTATION_COMPLETE,
-            testing = TESTING_NONE)
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             documentation = DOCUMENTATION_COMPLETE,
+             testing = UNTESTED)
 public class InputResource extends BaseReadableResource
 {
     /** The input stream to read */
@@ -58,8 +59,7 @@ public class InputResource extends BaseReadableResource
      */
     public InputResource(@NotNull InputStream in)
     {
-        super(ResourcePath.parseUnixResourcePath(throwingListener(),
-                "/objects/InputResource/" + Integer.toHexString(in.hashCode())));
+        super(parseUnixResourcePath(throwingListener(), "/objects/InputResource/" + toHexString(in.hashCode())));
         this.in = in;
     }
 

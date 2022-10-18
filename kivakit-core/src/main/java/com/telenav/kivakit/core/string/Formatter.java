@@ -18,17 +18,26 @@
 
 package com.telenav.kivakit.core.string;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.collections.map.VariableMap;
 import com.telenav.kivakit.core.internal.lexakai.DiagramString;
-import com.telenav.kivakit.core.language.Classes;
-import com.telenav.kivakit.core.language.primitive.Doubles;
 import com.telenav.kivakit.interfaces.naming.Named;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static com.telenav.kivakit.core.language.Classes.simpleName;
+import static com.telenav.kivakit.core.language.primitive.Doubles.formatDouble;
+import static com.telenav.kivakit.core.string.Align.leftAlign;
+import static com.telenav.kivakit.core.string.Align.rightAlign;
+import static com.telenav.kivakit.core.string.StringConversions.toDebugString;
+import static com.telenav.kivakit.core.string.StringConversions.toHumanizedString;
+import static com.telenav.kivakit.core.string.Strings.replaceAll;
+import static java.lang.Integer.parseInt;
+import static java.lang.Long.parseLong;
+import static java.lang.Long.toBinaryString;
+import static java.lang.Long.toHexString;
 
 /**
  * Handles message formatting, given a message and an argument array. This class is used extensively throughout the
@@ -38,7 +47,7 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
  * <p><b>Interpolations</b></p>
  *
  * <ul>
- *     <li><b>$</b> - converts the corresponding argument to a string using {@link StringConversions#toString(Object)}.
+ *     <li><b>$</b> - converts the corresponding argument to a string using {@link StringConversions#toHumanizedString(Object)}.
  *             Long and Integer arguments are converted to a more readable comma-separated format</li>
  *     <li><b>$$</b> - evaluates to a literal '$'</li>
  *     <li><b>${class}</b> - converts a {@link Class} argument to a simple (non-qualified) class name</li>
@@ -79,9 +88,9 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
  * @see Named
  */
 @UmlClassDiagram(diagram = DiagramString.class)
-@ApiQuality(stability = API_STABLE,
-            testing = TESTING_NONE,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = STABLE,
+             testing = UNTESTED,
+             documentation = DOCUMENTATION_COMPLETE)
 public class Formatter
 {
     /**
@@ -99,7 +108,7 @@ public class Formatter
         }
         return message;
     }
-
+    
     @SuppressWarnings({ "unchecked" })
     private static <T> T cast(Object object, Class<T> type)
     {
@@ -200,7 +209,7 @@ public class Formatter
                         {
                             return "No key '" + command + "' in: " + message;
                         }
-                        builder.append(StringConversions.toString(value));
+                        builder.append(toHumanizedString(value));
                     }
                     else
                     {
@@ -212,15 +221,15 @@ public class Formatter
                                 break;
 
                             case "string":
-                                builder.append(StringConversions.toString(arguments[argumentIndex++]));
+                                builder.append(toHumanizedString(arguments[argumentIndex++]));
                                 break;
 
                             case "lower":
-                                builder.append(StringConversions.toString(arguments[argumentIndex++]).toLowerCase());
+                                builder.append(toHumanizedString(arguments[argumentIndex++]).toLowerCase());
                                 break;
 
                             case "upper":
-                                builder.append(StringConversions.toString(arguments[argumentIndex++]).toUpperCase());
+                                builder.append(toHumanizedString(arguments[argumentIndex++]).toUpperCase());
                                 break;
 
                             case "integer":
@@ -229,31 +238,31 @@ public class Formatter
                                 break;
 
                             case "float":
-                                builder.append(Doubles.format((float) arguments[argumentIndex++], 1));
+                                builder.append(formatDouble((float) arguments[argumentIndex++], 1));
                                 break;
 
                             case "double":
-                                builder.append(Doubles.format((double) arguments[argumentIndex++], 1));
+                                builder.append(formatDouble((double) arguments[argumentIndex++], 1));
                                 break;
 
                             case "right":
-                                builder.append(Align.right(arguments[argumentIndex++].toString(), 16, ' '));
+                                builder.append(rightAlign(arguments[argumentIndex++].toString(), 16, ' '));
                                 break;
 
                             case "left":
-                                builder.append(Align.left(arguments[argumentIndex++].toString(), 16, ' '));
+                                builder.append(leftAlign(arguments[argumentIndex++].toString(), 16, ' '));
                                 break;
 
                             case "hex":
-                                builder.append(Long.toHexString(Long.parseLong(arguments[argumentIndex++].toString())));
+                                builder.append(toHexString(parseLong(arguments[argumentIndex++].toString())));
                                 break;
 
                             case "binary":
-                                builder.append(Long.toBinaryString(Long.parseLong(arguments[argumentIndex++].toString())));
+                                builder.append(toBinaryString(parseLong(arguments[argumentIndex++].toString())));
                                 break;
 
                             case "debug":
-                                builder.append(StringConversions.toDebugString(arguments[argumentIndex++]));
+                                builder.append(toDebugString(arguments[argumentIndex++]));
                                 break;
 
                             case "class":
@@ -263,7 +272,7 @@ public class Formatter
                                 {
                                     return "Expected parameter of type '" + Class.class + "' for 'class'";
                                 }
-                                builder.append(Classes.simpleName(cast));
+                                builder.append(simpleName(cast));
                                 break;
                             }
 
@@ -298,10 +307,10 @@ public class Formatter
                             default:
                                 try
                                 {
-                                    var position = Integer.parseInt(command);
+                                    var position = parseInt(command);
                                     if (position >= 0 && position <= arguments.length - 1)
                                     {
-                                        builder.append(StringConversions.toString(arguments[position]));
+                                        builder.append(toHumanizedString(arguments[position]));
                                     }
                                     else
                                     {
@@ -340,7 +349,7 @@ public class Formatter
             var cause = e.getMessage();
             if (cause != null)
             {
-                cause = Strings.replaceAll(cause, "$", "$$");
+                cause = replaceAll(cause, "$", "$$");
             }
             else
             {

@@ -18,42 +18,49 @@
 
 package com.telenav.kivakit.core.collections.list;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.collections.map.VariableMap;
 import com.telenav.kivakit.core.internal.lexakai.DiagramString;
-import com.telenav.kivakit.core.os.Console;
 import com.telenav.kivakit.core.string.AsciiArt;
 import com.telenav.kivakit.core.string.StringConversions;
-import com.telenav.kivakit.core.string.Strings;
 import com.telenav.kivakit.core.value.count.Count;
 import com.telenav.kivakit.core.value.count.Maximum;
 import com.telenav.kivakit.interfaces.comparison.Matcher;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.Comparator;
 import java.util.Iterator;
 import java.util.function.Function;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_INSUFFICIENT;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_INSUFFICIENT;
+import static com.telenav.kivakit.core.os.Console.console;
+import static com.telenav.kivakit.core.string.Formatter.format;
+import static com.telenav.kivakit.core.value.count.Maximum.MAXIMUM;
+import static java.lang.Math.max;
 
 /**
  * A list of strings, adding useful string operations to {@link ObjectList}. Inherited methods that return lists are
  * overridden with down-casting methods for convenience. String lists can be constructed using the constructors, but
  * also using factory methods. Inherited methods are documented in {@link ObjectList} and {@link BaseList}.
  *
- * <p><b>Factory Methods</b></p>
+ * <p><b>Creation</b></p>
  *
  * <ul>
- *     <li>{@link #stringList(String...)} - A string list for the given strings</li>
- *     <li>{@link #stringList(Iterable)} - A string list of the given objects</li>
- *     <li>{@link #words(String)} - A list of the whitespace-separated words in the given string</li>
  *     <li>{@link #repeat(String, int)} - A list of the given string repeated the given number of times</li>
- *     <li>{@link #split(String, char)} - A list of strings from the given string split on the given character</li>
  *     <li>{@link #split(String, String)} - A list of strings from the given string split on the given string</li>
+ *     <li>{@link #split(String, char)} - A list of strings from the given string split on the given character</li>
  *     <li>{@link #splitOnPattern(String, String)} - A list of strings from the given string split on the given regular expression</li>
+ *     <li>{@link #stringList(Collection)} - A string list of the given collection of strings</li>
+ *     <li>{@link #stringList(Iterable)} - A string list of the given strings</li>
+ *     <li>{@link #stringList(Maximum, Collection)} - A list of the strings in the given collection</li>
+ *     <li>{@link #stringList(Maximum, Iterable)} - A list of the strings returned by the given iterable</li>
+ *     <li>{@link #stringList(Maximum, String...)} - A string list of the given strings</li>
+ *     <li>{@link #stringList(String...)} - A string list for the given strings</li>
+ *     <li>{@link #words(String)} - A list of the whitespace-separated words in the given string</li>
  * </ul>
  *
  * <p><b>Length</b></p>
@@ -82,13 +89,13 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_INSUFF
  * </ul>
  */
 @SuppressWarnings("unused") @UmlClassDiagram(diagram = DiagramString.class)
-@ApiQuality(stability = API_STABLE_EXTENSIBLE,
-            testing = TESTING_INSUFFICIENT,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = TESTING_INSUFFICIENT,
+             documentation = DOCUMENTATION_COMPLETE)
 public class StringList extends ObjectList<String>
 {
     /**
-     * @return A string list of the given text repeated the given number of times
+     * Returns a string list of the given text repeated the given number of times
      */
     public static StringList repeat(String text, int times)
     {
@@ -101,25 +108,25 @@ public class StringList extends ObjectList<String>
     }
 
     /**
-     * @return The list of strings resulting from splitting the given string on a delimiter character. The
+     * Returns the list of strings resulting from splitting the given string on a delimiter character. The
      * {@link StringList} is unbounded for backwards compatibility.
      */
     public static StringList split(String string, char delimiter)
     {
-        return split(Maximum.MAXIMUM, string, delimiter);
+        return split(MAXIMUM, string, delimiter);
     }
 
     /**
-     * @return The list of strings resulting from splitting the given string on a delimiter string. The
+     * Returns the list of strings resulting from splitting the given string on a delimiter string. The
      * {@link StringList} is unbounded for backwards compatibility.
      */
     public static StringList split(String string, String delimiter)
     {
-        return split(Maximum.MAXIMUM, string, delimiter);
+        return split(MAXIMUM, string, delimiter);
     }
 
     /**
-     * @return A string list of the given maximum size from the given text split on the given delimiter
+     * Returns a string list of the given maximum size from the given text split on the given delimiter
      */
     public static StringList split(Maximum maximumSize, String string, char delimiter)
     {
@@ -147,7 +154,7 @@ public class StringList extends ObjectList<String>
     }
 
     /**
-     * @return A string list of the given maximum size from the given text split on the given delimiter
+     * Returns a string list of the given maximum size from the given text split on the given delimiter
      */
     public static StringList split(Maximum maximumSize, String text, String delimiter)
     {
@@ -176,7 +183,7 @@ public class StringList extends ObjectList<String>
     }
 
     /**
-     * @return A string list split from the given text using a regular expression pattern
+     * Returns a string list split from the given text using a regular expression pattern
      */
     public static StringList splitOnPattern(String text, String pattern)
     {
@@ -186,7 +193,36 @@ public class StringList extends ObjectList<String>
     }
 
     /**
-     * @return A list of strings from the given iterable
+     * Returns a list of strings from the given iterable
+     */
+    public static <T> StringList stringList(Maximum maximumSize, Collection<T> values)
+    {
+        return new StringList(maximumSize, values);
+    }
+
+    /**
+     * Returns a list of strings from the given iterable
+     */
+    public static <T> StringList stringList(Maximum maximumSize, Iterable<T> values)
+    {
+        var list = new StringList(maximumSize);
+        for (var value : values)
+        {
+            list.addIfNotNull(value.toString());
+        }
+        return list;
+    }
+
+    /**
+     * Returns a list of strings from the given iterable
+     */
+    public static <T> StringList stringList(Collection<T> values)
+    {
+        return new StringList(values);
+    }
+
+    /**
+     * Returns a list of strings from the given iterable
      */
     public static <T> StringList stringList(Iterable<T> values)
     {
@@ -199,7 +235,7 @@ public class StringList extends ObjectList<String>
     }
 
     /**
-     * @return The given list of objects with a maximum size
+     * Returns the given list of objects with a maximum size
      */
     public static StringList stringList(Maximum maximumSize, String... strings)
     {
@@ -209,7 +245,7 @@ public class StringList extends ObjectList<String>
     }
 
     /**
-     * @return The given list of objects
+     * Returns the given list of objects
      */
     public static StringList stringList(String... strings)
     {
@@ -217,7 +253,7 @@ public class StringList extends ObjectList<String>
     }
 
     /**
-     * @return A list of words from the given text with word breaks occurring on whitespace
+     * Returns a list of words from the given text with word breaks occurring on whitespace
      */
     @SuppressWarnings("DuplicatedCode")
     public static StringList words(String text)
@@ -259,17 +295,22 @@ public class StringList extends ObjectList<String>
 
     public StringList()
     {
-        this(Maximum.MAXIMUM);
+        this(MAXIMUM);
     }
 
     public StringList(Iterable<?> iterable)
     {
-        this(Maximum.MAXIMUM, iterable);
+        this(MAXIMUM, iterable);
+    }
+
+    public StringList(Collection<String> collection)
+    {
+        super(collection);
     }
 
     public StringList(Iterator<?> iterator)
     {
-        this(Maximum.MAXIMUM, iterator);
+        this(MAXIMUM, iterator);
     }
 
     public StringList(Maximum maximumSize)
@@ -302,18 +343,12 @@ public class StringList extends ObjectList<String>
     }
 
     /**
-     * @return Adds the given formatted message to this string list
+     * Returns adds the given formatted message to this string list
      */
     public StringList add(String message, Object... arguments)
     {
-        add(Strings.format(message, arguments));
+        add(format(message, arguments));
         return this;
-    }
-
-    @Override
-    public StringList appendThen(String value)
-    {
-        return (StringList) super.appendThen(value);
     }
 
     @Override
@@ -322,13 +357,19 @@ public class StringList extends ObjectList<String>
         return (StringList) super.appendAllThen(values);
     }
 
+    @Override
+    public StringList appendThen(String value)
+    {
+        return (StringList) super.appendThen(value);
+    }
+
     public String[] asStringArray()
     {
         return toArray(new String[size()]);
     }
 
     /**
-     * @return This list of strings as a variable map where the even elements are keys and the odd elements are values.
+     * Returns this list of strings as a variable map where the even elements are keys and the odd elements are values.
      */
     public VariableMap<String> asVariableMap()
     {
@@ -353,7 +394,7 @@ public class StringList extends ObjectList<String>
     }
 
     /**
-     * @return This string list with each element in double quotes
+     * Returns this string list with each element in double quotes
      */
     public StringList doubleQuoted()
     {
@@ -384,7 +425,7 @@ public class StringList extends ObjectList<String>
     }
 
     /**
-     * @return This string list indented the given number of spaces
+     * Returns this string list indented the given number of spaces
      */
     public StringList indented(int spaces)
     {
@@ -407,14 +448,14 @@ public class StringList extends ObjectList<String>
     }
 
     /**
-     * @return The length of the longest string in this list
+     * Returns the length of the longest string in this list
      */
     public Count longest()
     {
         int count = 0;
         for (var at : this)
         {
-            count = Math.max(at.length(), count);
+            count = max(at.length(), count);
         }
         return Count.count(count);
     }
@@ -423,9 +464,9 @@ public class StringList extends ObjectList<String>
      * {@inheritDoc}
      */
     @Override
-    public <To> ObjectList<To> mapped(Function<String, To> mapper)
+    public <To> ObjectList<To> map(Function<String, To> mapper)
     {
-        return super.mapped(mapper);
+        return super.map(mapper);
     }
 
     /**
@@ -456,7 +497,7 @@ public class StringList extends ObjectList<String>
     }
 
     /**
-     * @return This list with all elements numbered starting at 1
+     * Returns this list with all elements numbered starting at 1
      */
     public StringList numbered()
     {
@@ -480,7 +521,7 @@ public class StringList extends ObjectList<String>
     }
 
     /**
-     * @return This string list with each element prefixed with the given prefix
+     * Returns this string list with each element prefixed with the given prefix
      */
     public StringList prefixedWith(String prefix)
     {
@@ -497,7 +538,7 @@ public class StringList extends ObjectList<String>
      */
     public StringList println()
     {
-        Console.println(join("\n"));
+        console().println(join("\n"));
         return this;
     }
 
@@ -520,7 +561,7 @@ public class StringList extends ObjectList<String>
     }
 
     /**
-     * @return This string list with each element in single quotes
+     * Returns this string list with each element in single quotes
      */
     public StringList singleQuoted()
     {
@@ -592,6 +633,15 @@ public class StringList extends ObjectList<String>
 
     protected String objectToString(Object object)
     {
-        return StringConversions.toString(object);
+        return StringConversions.toHumanizedString(object);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    protected StringList onNewList()
+    {
+        return new StringList();
     }
 }

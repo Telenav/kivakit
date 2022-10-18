@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.commandline;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.commandline.internal.lexakai.DiagramCommandLine;
 import com.telenav.kivakit.commandline.internal.lexakai.DiagramSwitch;
 import com.telenav.kivakit.conversion.BaseStringConverter;
@@ -43,13 +43,14 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.Set;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.commandline.Quantifier.OPTIONAL;
 import static com.telenav.kivakit.commandline.Quantifier.REQUIRED;
-import static com.telenav.kivakit.core.collections.set.ObjectSet.objectSet;
+import static com.telenav.kivakit.core.collections.set.ObjectSet.set;
 import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
+import static com.telenav.kivakit.core.language.reflection.Type.typeForClass;
 
 /**
  * A switch parser that can be passed to {@link CommandLine#get(SwitchParser)} to retrieve a switch value.
@@ -64,7 +65,7 @@ import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
  *
  * <p>
  * New switches can be created with the switch parser {@link Builder}, which can be accessed through
- * {@link #switchParserBuilder(Class)}. The type parameter is the type of the switch being built. For example, a float
+ * {@link #switchParser(Class)}. The type parameter is the type of the switch being built. For example, a float
  * switch would be of type Float.class. The builder then allows attributes of the switch parser to be specified:
  * <ul>
  *     <li>{@link Builder#name(String)} - The name of the switch on the command line, like "input"</li>
@@ -82,11 +83,11 @@ import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
  * command line will be converted from a string to a {@link Version} object with {@link VersionConverter}. Many classes
  * in KivaKit provide string converters, which makes it an easy job to construct switch parsers.
  * <pre>
- * public static Builder&lt;Version&gt; switchParser(Listener listener,
- *                                             String name,
- *                                             String description)
+ * public static Builder&lt;Version&gt; versionSwitchParser(Listener listener,
+ *                                                    String name,
+ *                                                    String description)
  * {
- *     return builder(Version.class)
+ *     return switchParser(Version.class)
  *         .name(name)
  *         .converter(new Version.Converter(listener))
  *         .description(description);
@@ -96,7 +97,7 @@ import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
  * <p><b>Values</b></p>
  *
  * <ul>
- *     <li>{@link #asObjectList(SwitchValue)}</li>
+ *     <li>{@link #asList(SwitchValue)}</li>
  *     <li>{@link #asObject(SwitchValue)}</li>
  *     <li>{@link #assignValue(SwitchValue, String)}</li>
  * </ul>
@@ -127,9 +128,9 @@ import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
 @UmlClassDiagram(diagram = DiagramSwitch.class)
 @UmlClassDiagram(diagram = DiagramCommandLine.class, includeMembers = false)
 @UmlExcludeSuperTypes
-@ApiQuality(stability = API_STABLE_EXTENSIBLE,
-            testing = TESTING_NONE,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = UNTESTED,
+             documentation = DOCUMENTATION_COMPLETE)
 public class SwitchParser<T> implements Named
 {
     /**
@@ -138,7 +139,7 @@ public class SwitchParser<T> implements Named
      * @param type The type
      * @return The builder
      */
-    public static <T> Builder<T> switchParserBuilder(Class<T> type)
+    public static <T> Builder<T> switchParser(Class<T> type)
     {
         return new Builder<T>().type(type);
     }
@@ -159,9 +160,9 @@ public class SwitchParser<T> implements Named
      * @author jonathanl (shibo)
      */
     @SuppressWarnings("DuplicatedCode")
-    @ApiQuality(stability = API_STABLE_EXTENSIBLE,
-                testing = TESTING_NONE,
-                documentation = DOCUMENTATION_COMPLETE)
+    @CodeQuality(stability = STABLE_EXTENSIBLE,
+                 testing = UNTESTED,
+                 documentation = DOCUMENTATION_COMPLETE)
     public static class Builder<T>
     {
         /** The switch parser we're building */
@@ -286,7 +287,7 @@ public class SwitchParser<T> implements Named
          */
         public Builder<T> type(@NotNull Class<T> type)
         {
-            parser.type = Type.typeForClass(type);
+            parser.type = typeForClass(type);
             return this;
         }
 
@@ -298,7 +299,7 @@ public class SwitchParser<T> implements Named
          */
         public Builder<T> validValues(@NotNull Set<T> validValues)
         {
-            parser.validValues = objectSet(validValues);
+            parser.validValues = set(validValues);
             return this;
         }
     }
@@ -362,7 +363,7 @@ public class SwitchParser<T> implements Named
      */
     @UmlNotPublicApi
     @UmlRelation(label = "gets")
-    public ObjectList<T> asObjectList(@NotNull SwitchValue switchValue)
+    public ObjectList<T> asList(@NotNull SwitchValue switchValue)
     {
         ensureNotNull(parent, "Switch parser was not added to command line parent");
 
@@ -426,7 +427,7 @@ public class SwitchParser<T> implements Named
      */
     public boolean isRequired()
     {
-        return quantifier == Quantifier.REQUIRED;
+        return quantifier == REQUIRED;
     }
 
     /**

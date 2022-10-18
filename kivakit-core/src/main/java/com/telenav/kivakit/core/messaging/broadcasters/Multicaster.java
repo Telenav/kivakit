@@ -18,7 +18,8 @@
 
 package com.telenav.kivakit.core.messaging.broadcasters;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
+import com.telenav.kivakit.core.collections.list.StringList;
 import com.telenav.kivakit.core.internal.lexakai.DiagramRepeater;
 import com.telenav.kivakit.core.language.Classes;
 import com.telenav.kivakit.core.logging.Logger;
@@ -27,14 +28,13 @@ import com.telenav.kivakit.core.messaging.Broadcaster;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.messaging.Message;
 import com.telenav.kivakit.core.messaging.context.CodeContext;
+import com.telenav.kivakit.core.messaging.listeners.AbortTransmissionException;
 import com.telenav.kivakit.core.messaging.messages.OperationMessage;
 import com.telenav.kivakit.core.string.IndentingStringBuilder;
 import com.telenav.kivakit.core.string.IndentingStringBuilder.Indentation;
 import com.telenav.kivakit.core.thread.locks.ReadWriteLock;
-import com.telenav.kivakit.core.vm.Properties;
 import com.telenav.kivakit.interfaces.comparison.Filter;
 import com.telenav.kivakit.interfaces.messaging.Transmittable;
-import com.telenav.kivakit.interfaces.naming.NamedObject;
 import com.telenav.kivakit.mixins.Mixins;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlAggregation;
@@ -42,14 +42,15 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static com.telenav.kivakit.core.collections.list.StringList.stringList;
 import static com.telenav.kivakit.core.ensure.Ensure.ensure;
 import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
 import static com.telenav.kivakit.core.string.IndentingStringBuilder.Style.TEXT;
+import static com.telenav.kivakit.interfaces.naming.NamedObject.syntheticName;
 
 /**
  * A multicaster is a broadcaster which can have more than one listener. As with any broadcaster, listeners can be added
@@ -92,9 +93,9 @@ import static com.telenav.kivakit.core.string.IndentingStringBuilder.Style.TEXT;
  */
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramRepeater.class)
-@ApiQuality(stability = API_STABLE,
-            testing = TESTING_NONE,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = STABLE,
+             testing = UNTESTED,
+             documentation = DOCUMENTATION_COMPLETE)
 public class Multicaster implements Broadcaster
 {
     /** Console logger for serious messaging problems */
@@ -114,7 +115,7 @@ public class Multicaster implements Broadcaster
     private transient ReadWriteLock lock;
 
     /** The name of this object */
-    private final transient String objectName;
+    private transient String objectName;
 
     /** Any broadcaster that is sending messages through this multicaster */
     private transient Broadcaster source;
@@ -131,7 +132,7 @@ public class Multicaster implements Broadcaster
 
     public Multicaster(Class<?> debugClassContext)
     {
-        objectName = NamedObject.syntheticName(this);
+        objectName = syntheticName(this);
         this.debugClassContext = debugClassContext;
         debugCodeContext(new CodeContext(debugClassContext));
     }
@@ -145,7 +146,7 @@ public class Multicaster implements Broadcaster
 
     protected Multicaster()
     {
-        objectName = NamedObject.syntheticName(this);
+        objectName = syntheticName(this);
         debugClassContext = getClass();
         debugCodeContext(new CodeContext(getClass()));
     }
@@ -238,7 +239,7 @@ public class Multicaster implements Broadcaster
     }
 
     /**
-     * @return True if no listeners can hear any messages
+     * Returns true if no listeners can hear any messages
      */
     public boolean isDeaf()
     {
@@ -265,12 +266,13 @@ public class Multicaster implements Broadcaster
     }
 
     /**
-     * @return The chain of broadcasters that leads to this {@link Multicaster}.
+     * Returns the chain of broadcasters that leads to this {@link Multicaster} in reversed order
+     * so this broadcaster is at the top of the stack.
      */
     @NotNull
-    public List<String> listenerChain()
+    public StringList listenerChain()
     {
-        var chain = new ArrayList<String>();
+        var chain = stringList();
         for (var at = (Broadcaster) this; at.messageSource() != null; at = at.messageSource())
         {
             var owner = Mixins.owner(at);
@@ -278,13 +280,18 @@ public class Multicaster implements Broadcaster
             {
                 at = (Broadcaster) owner;
             }
-            chain.add(Classes.simpleName(at.getClass()) + (at.listeners().isEmpty() ? " [no listener]" : ""));
+            var name = Classes.simpleName(at.getClass());
+            if (at.listeners().isEmpty())
+            {
+                name += " (No Listener)" ;
+            }
+            chain.add(name);
         }
-        return chain;
+        return chain.reversed();
     }
 
     /**
-     * @return An indented tree of listeners to this multi-caster
+     * Returns an indented tree of listeners to this multi-caster
      */
     public String listenerTree()
     {
@@ -294,15 +301,20 @@ public class Multicaster implements Broadcaster
     }
 
     /**
-     * @return The listener or listener chain
+     * Returns all listeners to this object
      */
     @Override
     public List<Listener> listeners()
     {
-        return lock().read(() -> audience
-                .stream()
-                .map(AudienceMember::listener)
-                .collect(Collectors.toList()));
+        return lock().read(() ->
+        {
+            var list = new ArrayList<Listener>();
+            for (var member : audience)
+            {
+                list.add(member.listener());
+            }
+            return list;
+        });
     }
 
     /**
@@ -327,9 +339,20 @@ public class Multicaster implements Broadcaster
      * {@inheritDoc}
      */
     @Override
+    public void objectName(String name)
+    {
+        objectName = name;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public String objectName()
     {
-        return objectName;
+        return objectName != null
+                ? objectName
+                : syntheticName(this);
     }
 
     /**
@@ -352,24 +375,45 @@ public class Multicaster implements Broadcaster
     {
         lock().read(() ->
         {
+            // If there is an audience,
             if (!audience.isEmpty())
             {
-                // Add this broadcaster's context to the message
+                // add this broadcaster's context to the message, if possible,
                 if (message instanceof OperationMessage)
                 {
                     ((OperationMessage) message).context(debugCodeContext);
                 }
 
-                // then send to members of the audience
+                // then, for each member of the audience,
                 for (var member : audience)
                 {
                     try
                     {
+                        // hand them the message.
                         member.receive(message);
+                    }
+                    catch (AbortTransmissionException e)
+                    {
+                        // If we get an exception of this special type, it was thrown
+                        // by ThrowingListener and so it should not be trapped here
+                        // because the intent of ThrowingListener is to throw an
+                        // exception when given a failure message.
+                        throw e;
                     }
                     catch (Exception e)
                     {
-                        LOGGER.problem(e, "Listener threw exception");
+                        // By trapping all other exceptions, we ensure that all members
+                        // of the audience receive the message, even if a prior listener
+                        // threw an exception. This is important because the listeners
+                        // may not be of equal importance to the program. It would be
+                        // undesirable for an exception in a trivial piece of code to
+                        // cause a message to be dropped that is important to a key piece
+                        // of code.
+                        LOGGER.problem(e, "When "
+                                + objectName()
+                                + " tried to deliver a message to "
+                                + member
+                                + ", the listener threw an exception");
                     }
                 }
             }
@@ -378,20 +422,12 @@ public class Multicaster implements Broadcaster
                 // If there is no receiver for this message, and it can be logged,
                 if (message instanceof Message)
                 {
-                    // then log it.
+                    // then log it (to the console).
                     LOGGER.log((Message) message);
                 }
 
-                // Notify that there was nowhere to send the message.
-                if (Properties.isSystemPropertyOrEnvironmentVariableFalse("KIVAKIT_IGNORE_MISSING_LISTENERS"))
-                {
-                    var text = new IndentingStringBuilder();
-                    for (var at : listenerChain())
-                    {
-                        text.appendLine(at);
-                    }
-                    LOGGER.warning("Broken listener chain:\n$", text.numbered().toString());
-                }
+                // Throw an error, because this is a serious problem. We don't want to lose messages.
+                throw new NoListenerError("No listener found:\n\n$", listenerChain().numbered().indented(4));
             }
         });
 

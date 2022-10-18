@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.core.collections.map;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.collections.list.StringList;
 import com.telenav.kivakit.core.internal.lexakai.DiagramCollections;
 import com.telenav.kivakit.core.language.reflection.property.Property;
@@ -29,9 +29,10 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 import java.util.HashSet;
 import java.util.Map;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_INSUFFICIENT;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_INSUFFICIENT;
+import static com.telenav.kivakit.core.value.count.Maximum.MAXIMUM;
 
 /**
  * A bounded map from string to value which supports variable interpolation into a string via {@link #expand(String)}.
@@ -44,13 +45,13 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_INSUFF
  */
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramCollections.class)
-@ApiQuality(stability = API_STABLE_EXTENSIBLE,
-            testing = TESTING_INSUFFICIENT,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = TESTING_INSUFFICIENT,
+             documentation = DOCUMENTATION_COMPLETE)
 public class VariableMap<Value> extends StringMap<Value> implements PropertyValue
 {
     /**
-     * @return A string variable map for the given string-to-string map
+     * Returns a string variable map for the given string-to-string map
      */
     public static VariableMap<String> variableMap(Map<String, String> that)
     {
@@ -63,7 +64,7 @@ public class VariableMap<Value> extends StringMap<Value> implements PropertyValu
     }
 
     /**
-     * @return This list of strings as a variable map where the even elements are keys and the odd elements are values.
+     * Returns this list of strings as a variable map where the even elements are keys and the odd elements are values.
      */
     public static VariableMap<String> variableMap(StringList list)
     {
@@ -83,7 +84,7 @@ public class VariableMap<Value> extends StringMap<Value> implements PropertyValu
      */
     public VariableMap()
     {
-        super(Maximum.MAXIMUM);
+        super(MAXIMUM);
     }
 
     /**
@@ -99,7 +100,7 @@ public class VariableMap<Value> extends StringMap<Value> implements PropertyValu
      */
     public VariableMap<Value> add(String name, Value value)
     {
-        super.put(name, value);
+        put(name, value);
         return this;
     }
 
@@ -108,7 +109,7 @@ public class VariableMap<Value> extends StringMap<Value> implements PropertyValu
      */
     public VariableMap<Value> addAll(VariableMap<Value> variables)
     {
-        super.putAll(variables);
+        putAll(variables);
         return this;
     }
 
@@ -122,7 +123,7 @@ public class VariableMap<Value> extends StringMap<Value> implements PropertyValu
     }
 
     /**
-     * @return This variable map with all the keys and values as double-quoted strings.
+     * Returns this variable map with all the keys and values as double-quoted strings.
      */
     public VariableMap<String> doubleQuoted()
     {
@@ -203,7 +204,7 @@ public class VariableMap<Value> extends StringMap<Value> implements PropertyValu
     }
 
     /**
-     * @return This variable map with all string values expanded by interpolating values for other keys in the map. For
+     * Returns this variable map with all string values expanded by interpolating values for other keys in the map. For
      * example, the entry for key "coordinate" might be the value "${location-x}, ${location-y}". If the value for the
      * key "location-x" is "9" and the value for "location-y" is "81", then the expanded variable map will have the
      * value "9, 81" for the key "coordinate"
@@ -232,7 +233,7 @@ public class VariableMap<Value> extends StringMap<Value> implements PropertyValu
     }
 
     /**
-     * @return This variable map with all the values as quoted strings.
+     * Returns this variable map with all the values as quoted strings.
      */
     public VariableMap<String> withQuotedValues()
     {

@@ -21,13 +21,16 @@ package com.telenav.kivakit.network.core;
 import com.telenav.kivakit.testing.UnitTest;
 import org.junit.Test;
 
+import static com.telenav.kivakit.network.core.Protocol.FTP;
+import static com.telenav.kivakit.network.core.Protocol.HTTP;
+
 public class ProtocolTest extends UnitTest
 {
     @Test
     public void test()
     {
-        ensureEqual("http", Protocol.HTTP.name().toLowerCase());
-        ensureEqual(Protocol.HTTP, Protocol.HTTP);
-        ensureNotEqual(Protocol.HTTP, Protocol.FTP);
+        ensureEqual("http", HTTP.name().toLowerCase());
+        ensureEqual(HTTP, HTTP);
+        ensureNotEqual(HTTP, FTP);
     }
 }

@@ -1,9 +1,7 @@
 package com.telenav.kivakit.core.value.count;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.language.primitive.Ints;
-import com.telenav.kivakit.core.language.primitive.Longs;
-import com.telenav.kivakit.core.language.primitive.Primes;
 import com.telenav.kivakit.core.value.level.Percent;
 import com.telenav.kivakit.interfaces.numeric.Numeric;
 import com.telenav.kivakit.interfaces.value.DoubleValued;
@@ -13,12 +11,16 @@ import com.telenav.kivakit.interfaces.value.Source;
 
 import java.util.function.Consumer;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.ensure.Ensure.ensure;
+import static com.telenav.kivakit.core.language.primitive.Longs.longIsBetweenExclusive;
+import static com.telenav.kivakit.core.language.primitive.Longs.longIsBetweenInclusive;
+import static com.telenav.kivakit.core.language.primitive.Primes.primeAllocationSize;
 import static com.telenav.kivakit.core.value.count.BitCount.bits;
 import static com.telenav.kivakit.core.value.count.Estimate.estimate;
+import static java.lang.Long.compare;
 import static java.lang.Math.min;
 
 /**
@@ -80,15 +82,11 @@ import static java.lang.Math.min;
  *     <li>{@link #asMinimum()} - This count as a {@link Minimum}</li>
  * </ul>
  *
- * <hr>
- *
  * <p><b>String Representations</b></p>
  *
  * <ul>
  *     <li>{@link #asString(Format)} - This count formatted in the given format</li>
  * </ul>
- *
- * <hr>
  *
  * <p><b>Comparison</b></p>
  *
@@ -101,8 +99,6 @@ import static java.lang.Math.min;
  *     <li>{@link #isZero()} - True if this count is zero</li>
  *     <li>{@link #isNonZero()} - True if this count is not zero</li>
  * </ul>
- *
- * <hr>
  *
  * <p><b>Minima and Maxima</b></p>
  *
@@ -186,9 +182,9 @@ import static java.lang.Math.min;
  * @see Minimum
  */
 @SuppressWarnings({ "unused", "unchecked" })
-@ApiQuality(stability = API_STABLE_EXTENSIBLE,
-            testing = TESTING_NONE,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = UNTESTED,
+             documentation = DOCUMENTATION_COMPLETE)
 public abstract class BaseCount<SubClass extends BaseCount<SubClass>> implements
         FormattedLongValued,
         Numeric<SubClass>,
@@ -276,7 +272,7 @@ public abstract class BaseCount<SubClass extends BaseCount<SubClass>> implements
      */
     public SubClass asPrimeAllocationSize()
     {
-        return onNewInstance(Primes.primeAllocationSize(asInt()));
+        return onNewInstance(primeAllocationSize(asInt()));
     }
 
     /**
@@ -293,7 +289,7 @@ public abstract class BaseCount<SubClass extends BaseCount<SubClass>> implements
     @Override
     public int compareTo(Countable that)
     {
-        return Long.compare(longValue(), that.count().longValue());
+        return compare(longValue(), that.count().longValue());
     }
 
     /**
@@ -481,7 +477,7 @@ public abstract class BaseCount<SubClass extends BaseCount<SubClass>> implements
      */
     public boolean isBetweenExclusive(BaseCount<?> minimum, BaseCount<?> exclusiveMaximum)
     {
-        return Longs.isBetweenExclusive(asLong(), minimum.asLong(), exclusiveMaximum.asLong());
+        return longIsBetweenExclusive(asLong(), minimum.asLong(), exclusiveMaximum.asLong());
     }
 
     /**
@@ -489,7 +485,7 @@ public abstract class BaseCount<SubClass extends BaseCount<SubClass>> implements
      */
     public boolean isBetweenInclusive(BaseCount<?> minimum, BaseCount<?> inclusiveMaximum)
     {
-        return Longs.isBetweenInclusive(asLong(), minimum.asLong(), inclusiveMaximum.asLong());
+        return longIsBetweenInclusive(asLong(), minimum.asLong(), inclusiveMaximum.asLong());
     }
 
     /**
@@ -717,7 +713,7 @@ public abstract class BaseCount<SubClass extends BaseCount<SubClass>> implements
      * {@inheritDoc}
      */
     @Override
-    public final SubClass newInstance(Long count)
+    public final SubClass map(Long count)
     {
         return onNewInstance(count.intValue());
     }
@@ -851,9 +847,9 @@ public abstract class BaseCount<SubClass extends BaseCount<SubClass>> implements
      */
     public SubClass powerOfTenCeiling(int digits)
     {
-        return inRangeExclusive((asLong() + Ints.powerOfTen(digits))
-                / Ints.powerOfTen(digits)
-                * Ints.powerOfTen(digits));
+        return inRangeExclusive((asLong() + Ints.intPowerOfTen(digits))
+                / Ints.intPowerOfTen(digits)
+                * Ints.intPowerOfTen(digits));
     }
 
     /**
@@ -864,7 +860,7 @@ public abstract class BaseCount<SubClass extends BaseCount<SubClass>> implements
      */
     public SubClass powerOfTenFloor(int digits)
     {
-        return inRangeExclusive(asLong() / Ints.powerOfTen(digits) * Ints.powerOfTen(digits));
+        return inRangeExclusive(asLong() / Ints.intPowerOfTen(digits) * Ints.intPowerOfTen(digits));
     }
 
     /**

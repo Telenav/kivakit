@@ -18,24 +18,21 @@
 
 package com.telenav.kivakit.resource.reading;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.collections.list.StringList;
-import com.telenav.kivakit.core.io.IO;
 import com.telenav.kivakit.core.messaging.repeaters.BaseRepeater;
 import com.telenav.kivakit.core.progress.ProgressReporter;
 import org.jetbrains.annotations.NotNull;
 
-import java.io.Closeable;
-import java.io.IOException;
 import java.io.LineNumberReader;
-import java.io.UncheckedIOException;
 import java.util.function.Consumer;
 import java.util.stream.Stream;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.collections.list.StringList.stringList;
+import static com.telenav.kivakit.core.io.IO.close;
 import static com.telenav.kivakit.core.progress.ProgressReporter.nullProgressReporter;
 
 /**
@@ -63,9 +60,9 @@ import static com.telenav.kivakit.core.progress.ProgressReporter.nullProgressRep
  *
  * @author jonathanl (shibo)
  */
-@ApiQuality(stability = API_STABLE_EXTENSIBLE,
-            testing = TESTING_NONE,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = UNTESTED,
+             documentation = DOCUMENTATION_COMPLETE)
 public class LineReader extends BaseRepeater
 {
     /** The resource to read */
@@ -94,7 +91,7 @@ public class LineReader extends BaseRepeater
     }
 
     /**
-     * Returns the lines in this resource as a list of strings
+     * Returns the lines in this resource as a list of strings. If a failure occurs, throws an exception.
      */
     public StringList lines()
     {
@@ -103,13 +100,18 @@ public class LineReader extends BaseRepeater
         {
             stream.forEach(lines::add);
         }
+        catch (Exception e)
+        {
+            problem(e, "Unable to read lines").throwMessage();
+        }
         return lines;
     }
 
     /**
      * Calls the given consumer with each line. This method ensures that the resource stream is closed.
+     * @return True if all lines were read successfully
      */
-    public void lines(@NotNull Consumer<String> consumer)
+    public boolean lines(@NotNull Consumer<String> consumer)
     {
         try (var reader = new LineNumberReader(listenTo(resource.reader(reporter)).textReader()))
         {
@@ -120,7 +122,7 @@ public class LineReader extends BaseRepeater
                 if (next == null)
                 {
                     reporter.end();
-                    return;
+                    return true;
                 }
                 reporter.next();
                 consumer.accept(next);
@@ -130,6 +132,8 @@ public class LineReader extends BaseRepeater
         {
             problem(e, "Error reading lines from: $", resource);
         }
+
+        return false;
     }
 
     /**
@@ -142,35 +146,11 @@ public class LineReader extends BaseRepeater
     public Stream<String> stream()
     {
         var reader = new LineNumberReader(listenTo(resource.reader(reporter)).textReader());
-        try
-        {
-            reporter.start();
-            return reader.lines().peek(line -> reporter.next()).onClose(closer(reader));
-        }
-        catch (Exception e)
-        {
-            IO.close(this, reader);
-            problem("Unable to read from: $", resource);
-            return Stream.empty();
-        }
-        finally
+        reporter.start();
+        return reader.lines().peek(line -> reporter.next()).onClose(() ->
         {
             reporter.end();
-        }
-    }
-
-    private Runnable closer(@NotNull Closeable closeable)
-    {
-        return () ->
-        {
-            try
-            {
-                closeable.close();
-            }
-            catch (IOException e)
-            {
-                throw new UncheckedIOException(e);
-            }
-        };
+            close(this, reader);
+        });
     }
 }

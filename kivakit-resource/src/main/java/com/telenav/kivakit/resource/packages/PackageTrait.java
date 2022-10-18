@@ -1,13 +1,13 @@
 package com.telenav.kivakit.resource.packages;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.messaging.Repeater;
 import com.telenav.kivakit.resource.Resource;
 import org.jetbrains.annotations.NotNull;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_DEFAULT_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.resource.packages.Package.parsePackage;
 
 /**
@@ -40,9 +40,9 @@ import static com.telenav.kivakit.resource.packages.Package.parsePackage;
  * @author jonathanl (shibo)
  */
 @SuppressWarnings("unused")
-@ApiQuality(stability = API_STABLE_DEFAULT_EXTENSIBLE,
-            documentation = DOCUMENTATION_COMPLETE,
-            testing = TESTING_NONE)
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             documentation = DOCUMENTATION_COMPLETE,
+             testing = UNTESTED)
 public interface PackageTrait extends Repeater
 {
     /**
@@ -50,7 +50,7 @@ public interface PackageTrait extends Repeater
      */
     default Package packageFor(@NotNull Class<?> type)
     {
-        return Package.packageContaining(this, type);
+        return Package.packageFor(this, type);
     }
 
     /**

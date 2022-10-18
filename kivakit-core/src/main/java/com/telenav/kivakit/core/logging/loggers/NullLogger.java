@@ -18,17 +18,17 @@
 
 package com.telenav.kivakit.core.logging.loggers;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.collections.set.ObjectSet;
 import com.telenav.kivakit.core.internal.lexakai.DiagramLogging;
 import com.telenav.kivakit.core.logging.Log;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeMember;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
-import static com.telenav.kivakit.core.collections.set.ObjectSet.objectSet;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static com.telenav.kivakit.core.collections.set.ObjectSet.set;
 
 /**
  * A logger that does nothing.
@@ -38,12 +38,19 @@ import static com.telenav.kivakit.core.collections.set.ObjectSet.objectSet;
  * <pre>
  * LogFactory.factory(NullLogger::new)</pre>
  *
+ * <p><b>Logging</b></p>
+ *
+ * <p>
+ * More details about logging are available in <a
+ * href="../../../../../../../../../kivakit-core/documentation/logging.md">kivakit-core</a>.
+ * </p>
+ *
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramLogging.class)
-@ApiQuality(stability = API_STABLE,
-            testing = TESTING_NONE,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = STABLE,
+             testing = UNTESTED,
+             documentation = DOCUMENTATION_COMPLETE)
 public class NullLogger extends BaseLogger
 {
     /**
@@ -56,6 +63,6 @@ public class NullLogger extends BaseLogger
     @UmlExcludeMember
     protected ObjectSet<Log> logs()
     {
-        return objectSet();
+        return set();
     }
 }

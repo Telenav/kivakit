@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.resource.writing;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.resource.internal.lexakai.DiagramFileSystemFile;
 import com.telenav.kivakit.resource.internal.lexakai.DiagramResource;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
@@ -29,9 +29,9 @@ import java.io.PrintWriter;
 import java.io.Writer;
 import java.nio.charset.Charset;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static java.nio.charset.StandardCharsets.UTF_8;
 
 /**
@@ -53,9 +53,9 @@ import static java.nio.charset.StandardCharsets.UTF_8;
  */
 @UmlClassDiagram(diagram = DiagramFileSystemFile.class)
 @UmlClassDiagram(diagram = DiagramResource.class)
-@ApiQuality(stability = API_STABLE_EXTENSIBLE,
-            documentation = DOCUMENTATION_COMPLETE,
-            testing = TESTING_NONE)
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             documentation = DOCUMENTATION_COMPLETE,
+             testing = UNTESTED)
 public class ResourceWriter
 {
     /** The resource to write to */

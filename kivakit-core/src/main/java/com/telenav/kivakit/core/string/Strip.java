@@ -18,13 +18,13 @@
 
 package com.telenav.kivakit.core.string;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramString;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_STATIC_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 
 /**
  * Strips leading and ending values, package prefixes and quotes from strings.
@@ -32,9 +32,9 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramString.class)
-@ApiQuality(stability = API_STABLE_STATIC_EXTENSIBLE,
-            testing = TESTING_NONE,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = UNTESTED,
+             documentation = DOCUMENTATION_COMPLETE)
 public class Strip
 {
     /**
@@ -44,7 +44,7 @@ public class Strip
      * @param ending The ending to strip off
      * @return The stripped string or the original string if the ending did not exist
      */
-    public static String ending(String text, String ending)
+    public static String stripEnding(String text, String ending)
     {
         if (text == null)
         {
@@ -78,9 +78,9 @@ public class Strip
     }
 
     /**
-     * @return The text with the leading string stripped if it exists
+     * Returns the text with the leading string stripped if it exists
      */
-    public static String leading(String text, String leading)
+    public static String stripLeading(String text, String leading)
     {
         if (text.startsWith(leading))
         {
@@ -89,7 +89,7 @@ public class Strip
         return text;
     }
 
-    public static String quotes(String text)
+    public static String stripQuotes(String text)
     {
         var substring = text.substring(1, text.length() - 1);
         if (text.startsWith("\"") && text.endsWith(("\"")))
@@ -104,9 +104,9 @@ public class Strip
     }
 
     /**
-     * @return The text with the trailing string stripped if it exists
+     * Returns the text with the trailing string stripped if it exists
      */
-    public static String trailing(String text, String trailer)
+    public static String stripTrailing(String text, String trailer)
     {
         if (text.endsWith(trailer))
         {

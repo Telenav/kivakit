@@ -18,10 +18,9 @@
 
 package com.telenav.kivakit.core.logging.logs.text;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.collections.map.VariableMap;
 import com.telenav.kivakit.core.internal.lexakai.DiagramLogs;
-import com.telenav.kivakit.core.language.Arrays;
 import com.telenav.kivakit.core.logging.LogEntry;
 import com.telenav.kivakit.core.logging.logs.BaseLog;
 import com.telenav.kivakit.core.logging.logs.text.formatters.SimpleLogFormatter;
@@ -32,10 +31,11 @@ import com.telenav.lexakai.annotations.visibility.UmlExcludeMember;
 import org.jetbrains.annotations.MustBeInvokedByOverriders;
 import org.jetbrains.annotations.NotNull;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_DEFAULT_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.ensure.Ensure.unsupported;
+import static com.telenav.kivakit.core.language.Arrays.arrayContains;
 import static com.telenav.kivakit.core.messaging.MessageFormat.FORMATTED;
 import static com.telenav.kivakit.core.messaging.MessageFormat.UNFORMATTED;
 import static com.telenav.kivakit.core.messaging.MessageFormat.WITHOUT_EXCEPTION;
@@ -44,14 +44,21 @@ import static com.telenav.kivakit.core.messaging.MessageFormat.WITH_EXCEPTION;
 /**
  * Base class for text logs
  *
+ * <p><b>Logging</b></p>
+ *
+ * <p>
+ * More details about logging are available in <a
+ * href="../../../../../../../../../kivakit-core/documentation/logging.md">kivakit-core</a>.
+ * </p>
+ *
  * @author jonathanl (shibo)
  */
 @SuppressWarnings({ "SpellCheckingInspection", "unused" })
 @UmlClassDiagram(diagram = DiagramLogs.class)
 @UmlRelation(label = "formats entries with", referent = LogFormatter.class)
-@ApiQuality(stability = API_STABLE_DEFAULT_EXTENSIBLE,
-            testing = TESTING_NONE,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = UNTESTED,
+             documentation = DOCUMENTATION_COMPLETE)
 public abstract class BaseTextLog extends BaseLog
 {
     /** The formatting to use */
@@ -112,7 +119,7 @@ public abstract class BaseTextLog extends BaseLog
     @NotNull
     private MessageFormat formattedOrNot()
     {
-        return Arrays.contains(formats, FORMATTED)
+        return arrayContains(formats, FORMATTED)
                 ? FORMATTED
                 : UNFORMATTED;
     }
@@ -123,7 +130,7 @@ public abstract class BaseTextLog extends BaseLog
     @NotNull
     private MessageFormat withExceptionOrWithout()
     {
-        return Arrays.contains(formats, WITH_EXCEPTION)
+        return arrayContains(formats, WITH_EXCEPTION)
                 ? WITH_EXCEPTION
                 : WITHOUT_EXCEPTION;
     }

@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.core.io;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramIo;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import org.jetbrains.annotations.NotNull;
@@ -26,9 +26,9 @@ import org.jetbrains.annotations.NotNull;
 import java.io.IOException;
 import java.io.Reader;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_INSUFFICIENT;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_INSUFFICIENT;
 
 /**
  * A simple stream that allows you to peek at what is coming next in an input stream, with {@link #lookAhead()}. The
@@ -37,9 +37,9 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_INSUFF
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramIo.class)
-@ApiQuality(stability = API_STABLE,
-            testing = TESTING_INSUFFICIENT,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = STABLE,
+             testing = TESTING_INSUFFICIENT,
+             documentation = DOCUMENTATION_COMPLETE)
 public class LookAheadReader extends Reader
 {
     /** Signal value for end of stream */
@@ -112,7 +112,7 @@ public class LookAheadReader extends Reader
     }
 
     /**
-     * @return The current character in the stream or END_OF_STREAM if the stream is out of input
+     * Returns the current character in the stream or END_OF_STREAM if the stream is out of input
      */
     public final int current()
     {
@@ -120,7 +120,7 @@ public class LookAheadReader extends Reader
     }
 
     /**
-     * @return True if the stream can be advanced with {@link #next()}
+     * Returns true if the stream can be advanced with {@link #next()}
      */
     public final boolean hasNext()
     {

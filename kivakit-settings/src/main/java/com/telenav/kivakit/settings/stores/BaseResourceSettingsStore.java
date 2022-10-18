@@ -1,7 +1,7 @@
 package com.telenav.kivakit.settings.stores;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
-import com.telenav.kivakit.conversion.core.language.object.KivaKitConverted;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
+import com.telenav.kivakit.conversion.core.language.object.ConvertedProperty;
 import com.telenav.kivakit.conversion.core.language.object.ObjectPopulator;
 import com.telenav.kivakit.core.registry.Registry;
 import com.telenav.kivakit.core.registry.RegistryTrait;
@@ -12,11 +12,11 @@ import com.telenav.kivakit.settings.BaseSettingsStore;
 import com.telenav.kivakit.settings.SettingsObject;
 import com.telenav.kivakit.settings.SettingsStore;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
-import static com.telenav.kivakit.resource.serialization.ObjectMetadata.OBJECT_INSTANCE;
-import static com.telenav.kivakit.resource.serialization.ObjectMetadata.OBJECT_TYPE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static com.telenav.kivakit.resource.serialization.ObjectMetadata.METADATA_OBJECT_INSTANCE;
+import static com.telenav.kivakit.resource.serialization.ObjectMetadata.METADATA_OBJECT_TYPE;
 
 /**
  * <b>Service Provider API</b>
@@ -55,7 +55,7 @@ import static com.telenav.kivakit.resource.serialization.ObjectMetadata.OBJECT_T
  * Here, the "class" key designates the class of the settings object to instantiate (note any the nested class has to be
  * indicated with '$' rather than '.'). The object that is created from this class is populated with the property values
  * by using {@link ObjectPopulator}, which automatically converts each property value into an object using the converter
- * framework. To do this, properties in the settings object are tagged with {@link KivaKitConverted} indicating which
+ * framework. To do this, properties in the settings object are tagged with {@link ConvertedProperty} indicating which
  * converter the {@link ObjectPopulator} should use to convert a string value in the properties file to the
  * corresponding object. For example, in this case the property converter for the settings class above is Port.Converter
  * and the port property is converted to a Port object:
@@ -68,7 +68,7 @@ import static com.telenav.kivakit.resource.serialization.ObjectMetadata.OBJECT_T
  * {
  *     private Port port;
  *
- *    {@literal @}KivaKitConverted(Port.Converter.class)
+ *    {@literal @}ConvertedProperty(Port.Converter.class)
  *     public void port( Port port)
  *     {
  *         this.port = port;
@@ -108,9 +108,9 @@ import static com.telenav.kivakit.resource.serialization.ObjectMetadata.OBJECT_T
  * @see SettingsStore
  * @see ResourceFolderSettingsStore
  */
-@ApiQuality(stability = API_STABLE_EXTENSIBLE,
-            testing = TESTING_NONE,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = UNTESTED,
+             documentation = DOCUMENTATION_COMPLETE)
 public abstract class BaseResourceSettingsStore extends BaseSettingsStore implements
         SettingsStore,
         RegistryTrait
@@ -127,7 +127,7 @@ public abstract class BaseResourceSettingsStore extends BaseSettingsStore implem
                 .serializer(resource.extension());
         if (reader != null)
         {
-            var object = reader.readObject(resource, OBJECT_TYPE, OBJECT_INSTANCE);
+            var object = reader.readObject(resource, METADATA_OBJECT_TYPE, METADATA_OBJECT_INSTANCE);
             if (object != null)
             {
                 return new SettingsObject(object);

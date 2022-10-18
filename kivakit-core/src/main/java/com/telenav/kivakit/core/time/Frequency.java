@@ -18,19 +18,25 @@
 
 package com.telenav.kivakit.core.time;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramTime;
 import com.telenav.kivakit.core.messaging.Listener;
-import com.telenav.kivakit.core.string.Strip;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
-import java.util.Objects;
-
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static com.telenav.kivakit.core.collections.list.ObjectList.list;
+import static com.telenav.kivakit.core.string.Strip.stripLeading;
+import static com.telenav.kivakit.core.time.Duration.*;
+import static com.telenav.kivakit.core.time.Duration.FOREVER;
 import static com.telenav.kivakit.core.time.Duration.ZERO_DURATION;
 import static com.telenav.kivakit.core.time.Duration.parseDuration;
+import static com.telenav.kivakit.core.time.Duration.seconds;
+import static com.telenav.kivakit.core.time.Time.now;
+import static java.lang.Character.isDigit;
+import static java.util.Objects.hash;
+import static java.util.Objects.requireNonNull;
 
 /**
  * A simple frequency domain object. Frequency is modeled as a {@link Duration} per cycle. Static factory methods allow
@@ -67,24 +73,24 @@ import static com.telenav.kivakit.core.time.Duration.parseDuration;
  */
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramTime.class)
-@ApiQuality(stability = API_STABLE_EXTENSIBLE,
-            testing = TESTING_NONE,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = UNTESTED,
+             documentation = DOCUMENTATION_COMPLETE)
 public class Frequency
 {
-    public static final Frequency ONCE = every(Duration.MAXIMUM);
+    public static final Frequency ONCE = every(FOREVER);
 
     public static final Frequency EVERY_SECOND = cyclesPerSecond(1);
 
     public static final Frequency EVERY_HALF_SECOND = cyclesPerSecond(2);
 
-    public static final Frequency EVERY_5_SECONDS = every(Duration.seconds(5));
+    public static final Frequency EVERY_5_SECONDS = every(seconds(5));
 
-    public static final Frequency EVERY_10_SECONDS = every(Duration.seconds(10));
+    public static final Frequency EVERY_10_SECONDS = every(seconds(10));
 
-    public static final Frequency EVERY_15_SECONDS = every(Duration.seconds(15));
+    public static final Frequency EVERY_15_SECONDS = every(seconds(15));
 
-    public static final Frequency EVERY_30_SECONDS = every(Duration.seconds(30));
+    public static final Frequency EVERY_30_SECONDS = every(seconds(30));
 
     public static final Frequency EVERY_MINUTE = cyclesPerMinute(1);
 
@@ -96,22 +102,22 @@ public class Frequency
 
     public static Frequency cyclesPerDay(int times)
     {
-        return every(Duration.ONE_DAY.dividedBy(times));
+        return every(ONE_DAY.dividedBy(times));
     }
 
     public static Frequency cyclesPerHour(int times)
     {
-        return every(Duration.ONE_HOUR.dividedBy(times));
+        return every(ONE_HOUR.dividedBy(times));
     }
 
     public static Frequency cyclesPerMinute(int times)
     {
-        return every(Duration.ONE_MINUTE.dividedBy(times));
+        return every(ONE_MINUTE.dividedBy(times));
     }
 
     public static Frequency cyclesPerSecond(int times)
     {
-        return every(Duration.ONE_SECOND.dividedBy(times));
+        return every(ONE_SECOND.dividedBy(times));
     }
 
     /**
@@ -131,11 +137,11 @@ public class Frequency
      */
     public static Frequency parseFrequency(Listener listener, String text)
     {
-        text = Strip.leading(text, "every").strip();
+        text = stripLeading(text, "every").strip();
 
         if (text.length() > 0)
         {
-            if (!Character.isDigit(text.charAt(0)))
+            if (!isDigit(text.charAt(0)))
             {
                 text = "1 " + text;
             }
@@ -155,9 +161,9 @@ public class Frequency
      * The start time of a cycle. The {@link #next()} method returns the time at which this cycle will repeat. The
      * amount of time before this time is returned by {@link #waitTimeBeforeNextCycle()}
      */
-    @ApiQuality(stability = API_STABLE_EXTENSIBLE,
-                testing = TESTING_NONE,
-                documentation = DOCUMENTATION_COMPLETE)
+    @CodeQuality(stability = STABLE_EXTENSIBLE,
+                 testing = UNTESTED,
+                 documentation = DOCUMENTATION_COMPLETE)
     public class Cycle
     {
         private final Time start;
@@ -172,7 +178,7 @@ public class Frequency
          */
         public Time next()
         {
-            return Time.now().plus(waitTimeBeforeNextCycle());
+            return now().plus(waitTimeBeforeNextCycle());
         }
 
         /**
@@ -198,11 +204,11 @@ public class Frequency
 
     protected Frequency(Duration cycleLength)
     {
-        this.cycleLength = Objects.requireNonNull(cycleLength);
+        this.cycleLength = requireNonNull(cycleLength);
     }
 
     /**
-     * @return The duration of one cycle
+     * Returns the duration of one cycle
      */
     public Duration cycleLength()
     {
@@ -229,7 +235,7 @@ public class Frequency
     @Override
     public int hashCode()
     {
-        return Objects.hash(cycleLength);
+        return hash(cycleLength);
     }
 
     /**
@@ -242,11 +248,11 @@ public class Frequency
     }
 
     /**
-     * @return A {@link Cycle} object which provides the wait time until the next cycle
+     * Returns a {@link Cycle} object which provides the wait time until the next cycle
      */
     public Cycle start()
     {
-        return start(Time.now());
+        return start(now());
     }
 
     @Override

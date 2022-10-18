@@ -18,13 +18,13 @@
 
 package com.telenav.kivakit.core.thread;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramThread;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.thread.ReentrancyTracker.Reentrancy.ENTERED;
 import static com.telenav.kivakit.core.thread.ReentrancyTracker.Reentrancy.EXITED;
 import static com.telenav.kivakit.core.thread.ReentrancyTracker.Reentrancy.EXITED_REENTRY;
@@ -45,9 +45,9 @@ import static com.telenav.kivakit.core.thread.ReentrancyTracker.Reentrancy.REENT
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramThread.class)
-@ApiQuality(stability = API_STABLE,
-            testing = TESTING_NONE,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = STABLE,
+             testing = UNTESTED,
+             documentation = DOCUMENTATION_COMPLETE)
 public class ReentrancyTracker
 {
     public enum Reentrancy
@@ -95,7 +95,7 @@ public class ReentrancyTracker
     }
 
     /**
-     * @return True if the current thread has reentered the code between the {@link #enter()} call and the
+     * Returns true if the current thread has reentered the code between the {@link #enter()} call and the
      * {@link #exit()} call
      */
     public boolean hasReentered()

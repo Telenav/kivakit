@@ -18,24 +18,26 @@
 
 package com.telenav.kivakit.core.messaging.listeners;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.collections.list.ObjectList;
 import com.telenav.kivakit.core.collections.list.StringList;
 import com.telenav.kivakit.core.internal.lexakai.DiagramListenerType;
 import com.telenav.kivakit.core.messaging.Broadcaster;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.messaging.Message;
-import com.telenav.kivakit.core.messaging.MessageFormat;
 import com.telenav.kivakit.core.value.count.Count;
 import com.telenav.kivakit.core.value.count.Maximum;
 import com.telenav.kivakit.interfaces.comparison.Filter;
 import com.telenav.kivakit.interfaces.comparison.Matcher;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.ensure.Ensure.unsupported;
+import static com.telenav.kivakit.core.messaging.MessageFormat.WITH_EXCEPTION;
+import static com.telenav.kivakit.core.value.count.Maximum.MAXIMUM;
+import static com.telenav.kivakit.interfaces.comparison.Filter.acceptAll;
 
 /**
  * A list of messages that listens for and adds incoming messages. Only messages that are accepted by a {@link Matcher}
@@ -54,13 +56,41 @@ import static com.telenav.kivakit.core.ensure.Ensure.unsupported;
  * The superinterface {@link MessageCounter} provides methods that count messages and collect statistics.
  * </p>
  *
+ * <p><b>Factory Methods</b></p>
+ *
+ * <ul>
+ *     <li>{@link #emptyMessageList()}</li>
+ * </ul>
+ *
+ * <p><b>Counting Messages</b></p>
+ *
+ * <ul>
+ *     <li>{@link #count(Message.Status)}</li>
+ *     <li>{@link #count(Class)}</li>
+ *     <li>{@link #countWorseThanOrEqualTo(Message.Status)}</li>
+ *     <li>{@link #countWorseThanOrEqualTo(Class)}</li>
+ * </ul>
+ *
+ * <p><b>Filtering</b></p>
+ *
+ * <ul>
+ *     <li>{@link #matching(Matcher)}</li>
+ *     <li>{@link #messagesOfType(Class)}</li>
+ * </ul>
+ *
+ * <p><b>Rebroadcasting</b></p>
+ *
+ * <ul>
+ *     <li>{@link #broadcastTo(Listener)}</li>
+ * </ul>
+ *
  * @author jonathanl (shibo)
  */
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramListenerType.class)
-@ApiQuality(stability = API_STABLE_EXTENSIBLE,
-            testing = TESTING_NONE,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = UNTESTED,
+             documentation = DOCUMENTATION_COMPLETE)
 public class MessageList extends ObjectList<Message> implements MessageCounter
 {
     private static final MessageList EMPTY = new MessageList()
@@ -72,7 +102,7 @@ public class MessageList extends ObjectList<Message> implements MessageCounter
         }
     };
 
-    public static MessageList empty()
+    public static MessageList emptyMessageList()
     {
         return EMPTY;
     }
@@ -82,12 +112,12 @@ public class MessageList extends ObjectList<Message> implements MessageCounter
 
     public MessageList(Matcher<Message> filter)
     {
-        this(Maximum.MAXIMUM, filter);
+        this(MAXIMUM, filter);
     }
 
     public MessageList()
     {
-        this(Filter.acceptAll());
+        this(acceptAll());
     }
 
     public MessageList(Maximum maximumSize, Matcher<Message> filter)
@@ -184,7 +214,7 @@ public class MessageList extends ObjectList<Message> implements MessageCounter
         var messages = new StringList(maximumSize());
         for (var message : this)
         {
-            messages.add(message.formatted(MessageFormat.WITH_EXCEPTION));
+            messages.add(message.formatted(WITH_EXCEPTION));
         }
         return messages;
     }
@@ -212,7 +242,7 @@ public class MessageList extends ObjectList<Message> implements MessageCounter
      * @param type The message type
      * @return The messages of the given type
      */
-    public ObjectList<Message> messages(Class<? extends Message> type)
+    public ObjectList<Message> messagesOfType(Class<? extends Message> type)
     {
         var messages = new ObjectList<Message>(maximumSize());
         for (var object : this)

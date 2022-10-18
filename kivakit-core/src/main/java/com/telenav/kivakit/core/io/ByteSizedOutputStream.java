@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.core.io;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramIo;
 import com.telenav.kivakit.core.value.count.ByteSized;
 import com.telenav.kivakit.core.value.count.Bytes;
@@ -28,9 +28,10 @@ import org.jetbrains.annotations.NotNull;
 import java.io.IOException;
 import java.io.OutputStream;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
+import static com.telenav.kivakit.core.value.count.Bytes.bytes;
 
 /**
  * An output stream that keeps track of how many bytes have been written. The number of bytes written is available
@@ -39,9 +40,9 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NE
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramIo.class)
-@ApiQuality(stability = API_STABLE,
-            testing = TESTING_NOT_NEEDED,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = STABLE,
+             testing = TESTING_NOT_NEEDED,
+             documentation = DOCUMENTATION_COMPLETE)
 
 public class ByteSizedOutputStream extends OutputStream implements ByteSized
 {
@@ -51,6 +52,9 @@ public class ByteSizedOutputStream extends OutputStream implements ByteSized
     /** The number of bytes written */
     private long size;
 
+    /**
+     * @param out The output stream to wrap
+     */
     public ByteSizedOutputStream(OutputStream out)
     {
         this.out = out;
@@ -80,7 +84,7 @@ public class ByteSizedOutputStream extends OutputStream implements ByteSized
     @Override
     public Bytes sizeInBytes()
     {
-        return Bytes.bytes(size);
+        return bytes(size);
     }
 
     /**

@@ -18,10 +18,9 @@
 
 package com.telenav.kivakit.resource.compression.archive;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
-import com.telenav.kivakit.core.code.UncheckedCode;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.io.IO;
-import com.telenav.kivakit.core.string.KivaKitFormat;
+import com.telenav.kivakit.core.string.FormatProperty;
 import com.telenav.kivakit.core.string.ObjectFormatter;
 import com.telenav.kivakit.core.time.Time;
 import com.telenav.kivakit.core.value.count.Bytes;
@@ -37,13 +36,23 @@ import org.jetbrains.annotations.NotNull;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.nio.file.FileSystem;
-import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.attribute.BasicFileAttributes;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static com.telenav.kivakit.core.code.UncheckedCode.unchecked;
+import static com.telenav.kivakit.core.io.IO.buffer;
+import static com.telenav.kivakit.core.time.Time.epochMilliseconds;
+import static com.telenav.kivakit.core.value.count.Bytes.bytes;
+import static com.telenav.kivakit.filesystem.FilePath.filePath;
+import static java.nio.file.Files.createDirectories;
+import static java.nio.file.Files.getLastModifiedTime;
+import static java.nio.file.Files.newInputStream;
+import static java.nio.file.Files.newOutputStream;
+import static java.nio.file.Files.readAttributes;
+import static java.nio.file.Files.size;
 import static java.nio.file.StandardOpenOption.CREATE;
 import static java.nio.file.StandardOpenOption.WRITE;
 
@@ -65,9 +74,9 @@ import static java.nio.file.StandardOpenOption.WRITE;
  */
 @UmlClassDiagram(diagram = DiagramResourceArchive.class)
 @UmlExcludeSuperTypes({ AutoCloseable.class })
-@ApiQuality(stability = API_STABLE_EXTENSIBLE,
-            testing = TESTING_NONE,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = UNTESTED,
+             documentation = DOCUMENTATION_COMPLETE)
 public class ZipEntry extends BaseWritableResource implements Closeable
 {
     private InputStream in;
@@ -99,10 +108,10 @@ public class ZipEntry extends BaseWritableResource implements Closeable
      * {@inheritDoc}
      */
     @Override
-    @KivaKitFormat
+    @FormatProperty
     public Time createdAt()
     {
-        return UncheckedCode.unchecked(() -> Time.epochMilliseconds(Files.readAttributes(path, BasicFileAttributes.class)
+        return unchecked(() -> epochMilliseconds(readAttributes(path, BasicFileAttributes.class)
                 .creationTime().toMillis())).orNull();
     }
 
@@ -118,11 +127,11 @@ public class ZipEntry extends BaseWritableResource implements Closeable
     /**
      * {@inheritDoc}
      */
-    @KivaKitFormat
+    @FormatProperty
     @Override
     public Time lastModified()
     {
-        return UncheckedCode.unchecked(() -> Time.epochMilliseconds(Files.getLastModifiedTime(path).toMillis())).orNull();
+        return unchecked(() -> epochMilliseconds(getLastModifiedTime(path).toMillis())).orNull();
     }
 
     /**
@@ -133,10 +142,10 @@ public class ZipEntry extends BaseWritableResource implements Closeable
     {
         if (in == null)
         {
-            var in = UncheckedCode.unchecked(() -> Files.newInputStream(path)).orNull();
+            var in = unchecked(() -> newInputStream(path)).orNull();
             if (in != null)
             {
-                this.in = IO.bufferInput(in);
+                this.in = buffer(in);
             }
             else
             {
@@ -160,12 +169,12 @@ public class ZipEntry extends BaseWritableResource implements Closeable
                 var parent = path.getParent();
                 if (parent != null)
                 {
-                    Files.createDirectories(parent);
+                    createDirectories(parent);
                 }
-                out = Files.newOutputStream(path, CREATE, WRITE);
+                out = newOutputStream(path, CREATE, WRITE);
                 if (out != null)
                 {
-                    this.out = IO.bufferOutput(out);
+                    this.out = buffer(out);
                 }
                 else
                 {
@@ -174,7 +183,7 @@ public class ZipEntry extends BaseWritableResource implements Closeable
             }
             catch (Exception e)
             {
-                problem(e, "Unable to open for writing").throwAsIllegalStateException();
+                problem(e, "Unable to open for writing").throwMessage();
             }
         }
         return out;
@@ -183,21 +192,21 @@ public class ZipEntry extends BaseWritableResource implements Closeable
     /**
      * {@inheritDoc}
      */
-    @KivaKitFormat
+    @FormatProperty
     @Override
     public FilePath path()
     {
-        return FilePath.filePath(path);
+        return filePath(path);
     }
 
     /**
      * {@inheritDoc}
      */
-    @KivaKitFormat
+    @FormatProperty
     @Override
     public Bytes sizeInBytes()
     {
-        return UncheckedCode.unchecked(() -> Bytes.bytes(Files.size(path))).orNull();
+        return unchecked(() -> bytes(size(path))).orNull();
     }
 
     /**

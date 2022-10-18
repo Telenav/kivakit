@@ -18,10 +18,12 @@
 
 package com.telenav.kivakit.core.value.level;
 
-import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.internal.lexakai.DiagramCount;
-import com.telenav.lexakai.annotations.LexakaiJavadoc;
+import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
+
+import static java.lang.Double.parseDouble;
+import static java.lang.String.format;
 
 /**
  * Level of certainty in the accuracy of something. Confidence objects can be constructed with {@link
@@ -55,9 +57,10 @@ public class Confidence extends Level
         return new Confidence(value / 255.0);
     }
 
+    @SuppressWarnings("unused")
     public static Confidence parseConfidence(Listener listener, String value)
     {
-        return Confidence.confidence(Double.parseDouble(value));
+        return confidence(parseDouble(value));
     }
 
     protected Confidence(double value)
@@ -67,7 +70,6 @@ public class Confidence extends Level
 
     protected Confidence()
     {
-        super();
     }
 
     public int asUnsignedByte()
@@ -114,7 +116,7 @@ public class Confidence extends Level
     @Override
     public String toString()
     {
-        return String.format("%.1f", asZeroToOne());
+        return format("%.1f", asZeroToOne());
     }
 
     @Override

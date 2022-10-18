@@ -3,11 +3,12 @@ package com.telenav.kivakit.serialization.kryo;
 import com.esotericsoftware.kryo.Kryo;
 import com.esotericsoftware.kryo.io.Input;
 import com.esotericsoftware.kryo.io.Output;
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.language.trait.TryTrait;
 import com.telenav.kivakit.core.path.StringPath;
 import com.telenav.kivakit.core.progress.ProgressReporter;
 import com.telenav.kivakit.core.version.Version;
+import com.telenav.kivakit.interfaces.serialization.SerializedObject;
 import com.telenav.kivakit.resource.serialization.ObjectMetadata;
 import com.telenav.kivakit.resource.serialization.ObjectSerializer;
 import com.telenav.kivakit.resource.serialization.SerializableObject;
@@ -17,13 +18,14 @@ import org.jetbrains.annotations.NotNull;
 import java.io.InputStream;
 import java.io.OutputStream;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
 import static com.telenav.kivakit.core.ensure.Ensure.fail;
-import static com.telenav.kivakit.resource.serialization.ObjectMetadata.OBJECT_TYPE;
-import static com.telenav.kivakit.resource.serialization.ObjectMetadata.OBJECT_VERSION;
+import static com.telenav.kivakit.core.progress.ProgressReporter.nullProgressReporter;
+import static com.telenav.kivakit.resource.serialization.ObjectMetadata.METADATA_OBJECT_TYPE;
+import static com.telenav.kivakit.resource.serialization.ObjectMetadata.METADATA_OBJECT_VERSION;
 
 /**
  * {@link Kryo} {@link ObjectSerializer} provider.
@@ -31,9 +33,9 @@ import static com.telenav.kivakit.resource.serialization.ObjectMetadata.OBJECT_V
  * @author jonathanl (shibo)
  * @see ObjectSerializer
  */
-@ApiQuality(stability = API_STABLE_EXTENSIBLE,
-            testing = TESTING_NONE,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = UNTESTED,
+             documentation = DOCUMENTATION_COMPLETE)
 public class KryoObjectSerializer implements
         ObjectSerializer,
         TryTrait
@@ -51,7 +53,7 @@ public class KryoObjectSerializer implements
      */
     public KryoObjectSerializer(KryoTypes types)
     {
-        this(types, ProgressReporter.nullProgressReporter());
+        this(types, nullProgressReporter());
     }
 
     /**
@@ -91,7 +93,7 @@ public class KryoObjectSerializer implements
             var input = new Input(inputStream);
 
             // read any type from the input,
-            if (type == null && OBJECT_TYPE.containedIn(metadata))
+            if (type == null && METADATA_OBJECT_TYPE.containedIn(metadata))
             {
                 type = (Class<T>) kryo.get().readObject(input, Class.class);
             }
@@ -100,13 +102,19 @@ public class KryoObjectSerializer implements
 
             // read any version,
             Version version = null;
-            if (OBJECT_VERSION.containedIn(metadata))
+            if (METADATA_OBJECT_VERSION.containedIn(metadata))
             {
                 version = kryo.get().readObject(input, Version.class);
             }
 
             // then read the object,
             var object = kryo.get().readObject(input, type);
+
+            // call any deserialization handler
+            if (object instanceof SerializedObject)
+            {
+                ((SerializedObject) object).onDeserialized();
+            }
 
             // and return it.
             return new SerializableObject<>(object, version);
@@ -123,7 +131,7 @@ public class KryoObjectSerializer implements
     @Override
     public <T> void writeObject(@NotNull OutputStream outputStream,
                                 @NotNull StringPath path,
-                                @NotNull SerializableObject<T> object,
+                                @NotNull SerializableObject<T> serializableObject,
                                 ObjectMetadata @NotNull ... metadata)
     {
         tryCatchThrow(() ->
@@ -132,20 +140,28 @@ public class KryoObjectSerializer implements
             var output = new Output(outputStream);
 
             // write any type,
-            if (OBJECT_TYPE.containedIn(metadata))
+            var object = serializableObject.object();
+
+            if (object instanceof SerializedObject)
             {
-                kryo.get().writeObject(output, object.object().getClass());
+                ((SerializedObject) object).onSerializing();
+            }
+
+            if (METADATA_OBJECT_TYPE.containedIn(metadata))
+            {
+                kryo.get().writeObject(output, object.getClass());
             }
 
             // write any version,
-            if (OBJECT_VERSION.containedIn(metadata))
+            if (METADATA_OBJECT_VERSION.containedIn(metadata))
             {
-                kryo.get().writeObject(output, object.version());
+                kryo.get().writeObject(output, serializableObject.version());
             }
 
             // and write the object.
-            kryo.get().writeObject(output, object.object());
+            kryo.get().writeObject(output, object);
             output.flush();
+
         }, "Unable to write object to $", path);
     }
 

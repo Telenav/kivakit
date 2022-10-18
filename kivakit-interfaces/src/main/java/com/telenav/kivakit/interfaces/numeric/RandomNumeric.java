@@ -1,14 +1,13 @@
 package com.telenav.kivakit.interfaces.numeric;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.interfaces.comparison.Matcher;
 
-import java.util.Objects;
-
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_DEFAULT_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.interfaces.comparison.Matcher.matchAll;
+import static java.util.Objects.requireNonNull;
 
 /**
  * Provides convenient random number methods given an implementation of {@link #randomLongExclusive(long, long)}, and
@@ -18,13 +17,13 @@ import static com.telenav.kivakit.interfaces.comparison.Matcher.matchAll;
  * @author jonathanl (shibo)
  */
 @SuppressWarnings("unused")
-@ApiQuality(stability = API_STABLE_DEFAULT_EXTENSIBLE,
-            testing = TESTING_NONE,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = UNTESTED,
+             documentation = DOCUMENTATION_COMPLETE)
 public interface RandomNumeric extends CastTrait
 {
     /**
-     * @return A random {@link Number} of the given type
+     * Returns a random {@link Number} of the given type
      */
     default <T extends Number> T random(Class<T> type)
     {
@@ -32,7 +31,7 @@ public interface RandomNumeric extends CastTrait
     }
 
     /**
-     * @return A random {@link Number} of the given type, matching the given matcher
+     * Returns a random {@link Number} of the given type, matching the given matcher
      */
     default <T extends Number> T random(Class<T> type, Matcher<T> matcher)
     {
@@ -40,7 +39,7 @@ public interface RandomNumeric extends CastTrait
     }
 
     /**
-     * @return Either true or false, randomly
+     * Returns either true or false, randomly
      */
     default boolean randomBoolean()
     {
@@ -48,7 +47,7 @@ public interface RandomNumeric extends CastTrait
     }
 
     /**
-     * @return A random byte value
+     * Returns a random byte value
      */
     default byte randomByte()
     {
@@ -56,7 +55,7 @@ public interface RandomNumeric extends CastTrait
     }
 
     /**
-     * @return A random byte value in the given range, exclusive
+     * Returns a random byte value in the given range, exclusive
      */
     default byte randomByteExclusive(byte minimum, byte maximum)
     {
@@ -64,7 +63,7 @@ public interface RandomNumeric extends CastTrait
     }
 
     /**
-     * @return A random byte value in the given range, inclusive
+     * Returns a random byte value in the given range, inclusive
      */
     default byte randomByteInclusive(byte minimum, byte maximum)
     {
@@ -72,7 +71,7 @@ public interface RandomNumeric extends CastTrait
     }
 
     /**
-     * @return A random char value
+     * Returns a random char value
      */
     default char randomChar()
     {
@@ -80,7 +79,7 @@ public interface RandomNumeric extends CastTrait
     }
 
     /**
-     * @return A random char value in the given range, exclusive
+     * Returns a random char value in the given range, exclusive
      */
     default char randomCharExclusive(char minimum, char maximum)
     {
@@ -88,7 +87,7 @@ public interface RandomNumeric extends CastTrait
     }
 
     /**
-     * @return A random char value in the given range, inclusive
+     * Returns a random char value in the given range, inclusive
      */
     default char randomCharInclusive(char minimum, char maximum)
     {
@@ -96,7 +95,7 @@ public interface RandomNumeric extends CastTrait
     }
 
     /**
-     * @return A random double value
+     * Returns a random double value
      */
     default double randomDouble()
     {
@@ -104,7 +103,7 @@ public interface RandomNumeric extends CastTrait
     }
 
     /**
-     * @return A random double value in the given range, inclusive
+     * Returns a random double value in the given range, inclusive
      */
     default double randomDouble(double minimum, double maximum)
     {
@@ -113,7 +112,7 @@ public interface RandomNumeric extends CastTrait
     }
 
     /**
-     * @return A random value between zero and one
+     * Returns a random value between zero and one
      */
     double randomDoubleZeroToOne();
 
@@ -129,7 +128,7 @@ public interface RandomNumeric extends CastTrait
                                                  Class<T> type,
                                                  Matcher<T> matcher)
     {
-        Objects.requireNonNull(matcher);
+        requireNonNull(matcher);
         T value;
         do
         {
@@ -151,7 +150,7 @@ public interface RandomNumeric extends CastTrait
     }
 
     /**
-     * @return A random float value
+     * Returns a random float value
      */
     default float randomFloat()
     {
@@ -189,7 +188,7 @@ public interface RandomNumeric extends CastTrait
     }
 
     /**
-     * @return A random index, between 0 and maximum - 1.
+     * Returns a random index, between 0 and maximum - 1.
      */
     default int randomIndex(int maximum)
     {
@@ -197,7 +196,7 @@ public interface RandomNumeric extends CastTrait
     }
 
     /**
-     * @return A random int value
+     * Returns a random int value
      */
     default int randomInt()
     {
@@ -205,7 +204,7 @@ public interface RandomNumeric extends CastTrait
     }
 
     /**
-     * @return A random int value in the given range, exclusive
+     * Returns a random int value in the given range, exclusive
      */
     default int randomIntExclusive(int minimum, int maximum)
     {
@@ -213,7 +212,7 @@ public interface RandomNumeric extends CastTrait
     }
 
     /**
-     * @return A random int value in the given range, inclusive
+     * Returns a random int value in the given range, inclusive
      */
     default int randomIntInclusive(int minimum, int maximum)
     {
@@ -221,7 +220,7 @@ public interface RandomNumeric extends CastTrait
     }
 
     /**
-     * @return A random long value
+     * Returns a random long value
      */
     default long randomLong()
     {
@@ -229,12 +228,12 @@ public interface RandomNumeric extends CastTrait
     }
 
     /**
-     * @return A random long value in the given range, exclusive
+     * Returns a random long value in the given range, exclusive
      */
     long randomLongExclusive(long minimum, long maximum);
 
     /**
-     * @return A random long value in the given range, inclusive
+     * Returns a random long value in the given range, inclusive
      */
     default long randomLongInclusive(long minimum, long maximum)
     {
@@ -242,7 +241,7 @@ public interface RandomNumeric extends CastTrait
     }
 
     /**
-     * @return A random short value
+     * Returns a random short value
      */
     default short randomShort()
     {
@@ -250,7 +249,7 @@ public interface RandomNumeric extends CastTrait
     }
 
     /**
-     * @return A random short value in the given range, exclusive
+     * Returns a random short value in the given range, exclusive
      */
     default short randomShortExclusive(short minimum, short maximum)
     {
@@ -258,7 +257,7 @@ public interface RandomNumeric extends CastTrait
     }
 
     /**
-     * @return A random short value in the given range, inclusive
+     * Returns a random short value in the given range, inclusive
      */
     default short randomShortInclusive(short minimum, short maximum)
     {
@@ -266,7 +265,7 @@ public interface RandomNumeric extends CastTrait
     }
 
     /**
-     * @return A random unsigned double value
+     * Returns a random unsigned double value
      */
     default double randomUnsignedDouble()
     {
@@ -274,7 +273,7 @@ public interface RandomNumeric extends CastTrait
     }
 
     /**
-     * @return A random unsigned double value inclusive of the maximum
+     * Returns a random unsigned double value inclusive of the maximum
      */
     default double randomUnsignedDouble(double maximum)
     {
@@ -282,7 +281,7 @@ public interface RandomNumeric extends CastTrait
     }
 
     /**
-     * @return A random positive int value
+     * Returns a random positive int value
      */
     default int randomUnsignedInt()
     {
@@ -290,7 +289,7 @@ public interface RandomNumeric extends CastTrait
     }
 
     /**
-     * @return A random positive long value
+     * Returns a random positive long value
      */
     default long randomUnsignedLong()
     {

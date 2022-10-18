@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.collections.set;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.collections.internal.lexakai.DiagramSet;
 import com.telenav.kivakit.core.collections.iteration.CompoundIterator;
 import com.telenav.kivakit.core.collections.iteration.FilteredIterable;
@@ -33,10 +33,11 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.ensure.Ensure.unsupported;
+import static java.util.Collections.unmodifiableSet;
 
 /**
  * A set which contains any number of other sets by reference. The included sets cannot be directly modified via the
@@ -45,9 +46,9 @@ import static com.telenav.kivakit.core.ensure.Ensure.unsupported;
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramSet.class)
-@ApiQuality(stability = API_STABLE_EXTENSIBLE,
-            testing = TESTING_NONE,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = UNTESTED,
+             documentation = DOCUMENTATION_COMPLETE)
 public class CompoundSet<Element> implements Set<Element>
 {
     private final List<Set<Element>> sets = new ArrayList<>();
@@ -65,7 +66,7 @@ public class CompoundSet<Element> implements Set<Element>
 
     public void add(Set<Element> set)
     {
-        sets.add(Collections.unmodifiableSet(set));
+        sets.add(unmodifiableSet(set));
     }
 
     @Override

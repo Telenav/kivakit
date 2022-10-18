@@ -18,25 +18,25 @@
 
 package com.telenav.kivakit.core.object;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramObject;
-import com.telenav.kivakit.interfaces.factory.MapFactory;
+import com.telenav.kivakit.interfaces.function.Mapper;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
 
 /**
  * A lazy-initializing map.
  *
  * <p>
- * Given a {@link MapFactory} that creates values for keys, lazy-creates map entries when {@link #get(Key)} is called.
- * After that the value is cached in the map and {@link #get(Key)} will return the same value. {@link #clear()} can be
- * used to clear the map, and {@link #remove(Key)} can be used to remove the value for a particular key.
+ * Given a {@link Mapper} that creates values for keys, lazy-creates map entries when {@link #get(Key)} is called. After
+ * that the value is cached in the map and {@link #get(Key)} will return the same value. {@link #clear()} can be used to
+ * clear the map, and {@link #remove(Key)} can be used to remove the value for a particular key.
  * </p>
  *
  * <p><b>Example</b></p>
@@ -52,26 +52,26 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NE
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramObject.class)
-@ApiQuality(stability = API_STABLE_EXTENSIBLE,
-            testing = TESTING_NOT_NEEDED,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = TESTING_NOT_NEEDED,
+             documentation = DOCUMENTATION_COMPLETE)
 public class LazyMap<Key, Value>
 {
     /**
-     * @return A {@link LazyMap} for the given {@link MapFactory}.
+     * Returns a {@link LazyMap} for the given {@link Mapper}.
      */
-    public static <Key, Value> LazyMap<Key, Value> of(MapFactory<Key, Value> factory)
+    public static <Key, Value> LazyMap<Key, Value> lazyMap(Mapper<Key, Value> factory)
     {
         return new LazyMap<>(factory);
     }
 
     /** The factory to create a new value */
-    private final MapFactory<Key, Value> factory;
+    private final Mapper<Key, Value> factory;
 
     /** The value, or null if it doesn't exist */
     private final Map<Key, Value> map = new ConcurrentHashMap<>();
 
-    protected LazyMap(MapFactory<Key, Value> factory)
+    protected LazyMap(Mapper<Key, Value> factory)
     {
         this.factory = factory;
     }
@@ -85,11 +85,11 @@ public class LazyMap<Key, Value>
     }
 
     /**
-     * @return The value
+     * Returns the value
      */
     public final Value get(Key key)
     {
-        return map.computeIfAbsent(key, factory::newInstance);
+        return map.computeIfAbsent(key, factory::map);
     }
 
     /**

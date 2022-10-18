@@ -19,8 +19,9 @@
 package com.telenav.kivakit.network.core.authentication.passwords;
 
 import com.telenav.kivakit.testing.UnitTest;
-import org.junit.Assert;
 import org.junit.Test;
+
+import static org.junit.Assert.assertEquals;
 
 @SuppressWarnings("SpellCheckingInspection")
 public class PlainTextPasswordTest extends UnitTest
@@ -37,7 +38,7 @@ public class PlainTextPasswordTest extends UnitTest
     public void testToString()
     {
         var password = new PlainTextPassword("This*is8hi");
-        Assert.assertEquals(password.toString(), "This*is8hi");
-        Assert.assertEquals(password.asString(), "**********");
+        assertEquals(password.toString(), "This*is8hi");
+        assertEquals(password.asString(), "**********");
     }
 }

@@ -18,20 +18,21 @@
 
 package com.telenav.kivakit.core.time;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramTime;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.time.ZoneId;
-import java.time.format.TextStyle;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static com.telenav.kivakit.core.messaging.Listener.nullListener;
+import static java.time.format.TextStyle.SHORT;
 
 /**
  * Utility methods to map between {@link ZoneId}s and their display names
@@ -68,9 +69,9 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
  */
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramTime.class)
-@ApiQuality(stability = API_STABLE_EXTENSIBLE,
-            testing = TESTING_NONE,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = UNTESTED,
+             documentation = DOCUMENTATION_COMPLETE)
 public class TimeZones
 {
     /** Map from a short display name (PST) to its zone id (America/Los Angeles) */
@@ -86,31 +87,31 @@ public class TimeZones
     }
 
     /**
-     * @return True if the given zone id represents UTC time
+     * Returns true if the given zone id represents UTC time
      */
     public static boolean isUtc(ZoneId zone)
     {
-        return zone.getId().equals("UTC") || zone.getId().equals("GMT") || zone.getId().equals(("UT"));
+        return "UTC".equals(zone.getId()) || "GMT".equals(zone.getId()) || "UT".equals(zone.getId());
     }
 
     /**
-     * @return True if the given identifier is a valid short display name (PST)
+     * Returns true if the given identifier is a valid short display name (PST)
      */
     public static boolean isValidShortDisplayName(String identifier)
     {
-        return parseShortDisplayName(Listener.nullListener(), identifier) != null;
+        return parseShortDisplayName(nullListener(), identifier) != null;
     }
 
     /**
-     * @return True if the given identifier is a valid zone id (America/Los Angeles)
+     * Returns true if the given identifier is a valid zone id (America/Los Angeles)
      */
     public static boolean isValidZoneId(String identifier)
     {
-        return parseZoneId(Listener.nullListener(), identifier) != null;
+        return parseZoneId(nullListener(), identifier) != null;
     }
 
     /**
-     * @return The zone id (America/Los Angeles) for the given short display name (PST), or null if there is none
+     * Returns the zone id (America/Los Angeles) for the given short display name (PST), or null if there is none
      */
     public static ZoneId parseShortDisplayName(Listener listener, String displayName)
     {
@@ -124,7 +125,7 @@ public class TimeZones
     }
 
     /**
-     * @return The zone id (America/Los Angeles) for the given identifier, or null if there is none
+     * Returns the zone id (America/Los Angeles) for the given identifier, or null if there is none
      */
     public static ZoneId parseZoneId(Listener listener, String identifier)
     {
@@ -140,14 +141,14 @@ public class TimeZones
     }
 
     /**
-     * @return The zone id for the given identifier (America/Los Angeles, or PST), or null if there is none
+     * Returns the zone id for the given identifier (America/Los Angeles, or PST), or null if there is none
      */
     public static ZoneId parseZoneIdOrDisplayName(Listener listener, String identifier)
     {
-        var zone = parseShortDisplayName(Listener.nullListener(), identifier);
+        var zone = parseShortDisplayName(nullListener(), identifier);
         if (zone == null)
         {
-            zone = parseZoneId(Listener.nullListener(), identifier);
+            zone = parseZoneId(nullListener(), identifier);
         }
         if (zone == null)
         {
@@ -157,11 +158,11 @@ public class TimeZones
     }
 
     /**
-     * @return The short display name (PST) for the given zone id (America/Los Angeles)
+     * Returns the short display name (PST) for the given zone id (America/Los Angeles)
      */
     public static String shortDisplayName(ZoneId zone)
     {
-        return zone.getDisplayName(TextStyle.SHORT, Locale.getDefault());
+        return zone.getDisplayName(SHORT, Locale.getDefault());
     }
 
     public static ZoneId utc()

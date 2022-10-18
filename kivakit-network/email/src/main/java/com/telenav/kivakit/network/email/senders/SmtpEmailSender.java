@@ -18,8 +18,8 @@
 
 package com.telenav.kivakit.network.email.senders;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
-import com.telenav.kivakit.conversion.core.language.object.KivaKitConverted;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
+import com.telenav.kivakit.conversion.core.language.object.ConvertedProperty;
 import com.telenav.kivakit.network.core.Host;
 import com.telenav.kivakit.network.core.authentication.Password;
 import com.telenav.kivakit.network.core.authentication.UserName;
@@ -30,9 +30,9 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.Properties;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 
 /**
  * Sends emails via SMTP using a host, username and password.
@@ -40,9 +40,9 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramEmail.class)
-@ApiQuality(stability = API_STABLE_EXTENSIBLE,
-            testing = TESTING_NONE,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = UNTESTED,
+             documentation = DOCUMENTATION_COMPLETE)
 public class SmtpEmailSender extends EmailSender
 {
     /**
@@ -50,9 +50,9 @@ public class SmtpEmailSender extends EmailSender
      *
      * @author jonathanl (shibo)
      */
-    @ApiQuality(stability = API_STABLE_EXTENSIBLE,
-                testing = TESTING_NONE,
-                documentation = DOCUMENTATION_COMPLETE)
+    @CodeQuality(stability = STABLE_EXTENSIBLE,
+                 testing = UNTESTED,
+                 documentation = DOCUMENTATION_COMPLETE)
     public static class Configuration extends EmailSender.Configuration
     {
         private Host host;
@@ -66,7 +66,7 @@ public class SmtpEmailSender extends EmailSender
             return host;
         }
 
-        @KivaKitConverted(Host.Converter.class)
+        @ConvertedProperty(Host.Converter.class)
         public Configuration host(Host host)
         {
             this.host = host;
@@ -78,7 +78,7 @@ public class SmtpEmailSender extends EmailSender
             return password;
         }
 
-        @KivaKitConverted(PlainTextPassword.Converter.class)
+        @ConvertedProperty(PlainTextPassword.Converter.class)
         public Configuration password(Password password)
         {
             this.password = password;
@@ -90,7 +90,7 @@ public class SmtpEmailSender extends EmailSender
             return username;
         }
 
-        @KivaKitConverted(UserName.Converter.class)
+        @ConvertedProperty(UserName.Converter.class)
         public Configuration username(UserName username)
         {
             this.username = username;

@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.core.language.reflection;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.collections.list.ObjectList;
 import com.telenav.kivakit.core.collections.map.StringMap;
 import com.telenav.kivakit.core.collections.map.VariableMap;
@@ -49,9 +49,9 @@ import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
 import static com.telenav.kivakit.core.ensure.Ensure.illegalArgument;
 import static com.telenav.kivakit.core.language.reflection.property.PropertyNamingConvention.ANY_NAMING_CONVENTION;
@@ -60,13 +60,97 @@ import static com.telenav.kivakit.core.language.reflection.property.PropertyNami
  * Reflects on a class and retains a set of {@link Property} objects that can be used to efficiently set property
  * values.
  *
+ * <p><b>Creation</b></p>
+ *
+ * <ul>
+ *     <li>{@link #type(Object)}</li>
+ *     <li>{@link #typeForClass(Class)}</li>
+ *     <li>{@link #typeForName(String)}</li>
+ *     <li>{@link #constructor(Class[])}</li>
+ *     <li>{@link #newInstance()}</li>
+ *     <li>{@link #newInstance(Object...)}</li>
+ * </ul>
+ *
+ * <p><b>Hierarchy</b></p>
+ *
+ * <ul>
+ *     <li>{@link #interfaces()}</li>
+ *     <li>{@link #is(Class)}</li>
+ *     <li>{@link #isDescendantOf(Class)}</li>
+ *     <li>{@link #isInOrUnder(PackageReference)}</li>
+ *     <li>{@link #superClass()}</li>
+ *     <li>{@link #superClasses()}</li>
+ *     <li>{@link #superInterfaces()}</li>
+ *     <li>{@link #superTypes()}</li>
+ * </ul>
+ *
+ * <p><b>Properties</b></p>
+ *
+ * <ul>
+ *     <li>{@link #arrayElementType()}</li>
+ *     <li>{@link #asJavaType()}</li>
+ *     <li>{@link #declaresToString()}</li>
+ *     <li>{@link #enumValues()}</li>
+ *     <li>{@link #fullyQualifiedName()}</li>
+ *     <li>{@link #name()}</li>
+ *     <li>{@link #packagePath()}</li>
+ *     <li>{@link #simpleName()}</li>
+ *     <li>{@link #simpleNameWithoutSyntheticSuffix()}</li>
+ * </ul>
+ *
+ * <p><b>Annotations</b></p>
+ *
+ * <ul>
+ *     <li>{@link #annotation(Class)}</li>
+ *     <li>{@link #annotations(Class)}</li>
+ *     <li>{@link #hasAnnotation(Class)}</li>
+ * </ul>
+ *
+ * <p><b>Beans Properties</b></p>
+ *
+ * <ul>
+ *     <li>{@link #properties(Object, PropertyFilter)}</li>
+ *     <li>{@link #properties(Object, PropertyFilter, Object)}</li>
+ *     <li>{@link #properties(PropertyFilter)}</li>
+ *     <li>{@link #property(String)}</li>
+ * </ul>
+ *
+ * <p><b>Fields</b></p>
+ *
+ * <ul>
+ *     <li>{@link #allFields()}</li>
+ *     <li>{@link #field(String)}</li>
+ *     <li>{@link #fields(Matcher)}</li>
+ *     <li>{@link #reachableFields(Object, Matcher)}</li>
+ *     <li>{@link #reachableObjects(Object)}</li>
+ *     <li>{@link #reachableObjects(Object, Matcher)}</li>
+ *     <li>{@link #reachableObjectsImplementing(Object, Class)}</li>
+ * </ul>
+ *
+ * <p><b>Methods</b></p>
+ *
+ * <ul>
+ *     <li>{@link #allMethods()}</li>
+ *     <li>{@link #method(String)}</li>
+ * </ul>
+ *
+ * <p><b>Modifiers</b></p>
+ *
+ * <ul>
+ *     <li>{@link #isPrimitive()}</li>
+ *     <li>{@link #isArray()}</li>
+ *     <li>{@link #isEnum()}</li>
+ *     <li>{@link #isInterface()}</li>
+ *     <li>{@link #isSystem()}</li>
+ * </ul>
+ *
  * @author jonathanl (shibo)
  */
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramReflection.class)
-@ApiQuality(stability = API_STABLE_EXTENSIBLE,
-            testing = TESTING_NONE,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = UNTESTED,
+             documentation = DOCUMENTATION_COMPLETE)
 public class Type<T> implements Named
 {
     /** Map from Class to Type */
@@ -184,9 +268,17 @@ public class Type<T> implements Named
     {
         if (isArray())
         {
-            return Type.type(type.getComponentType());
+            return type(type.getComponentType());
         }
         return null;
+    }
+
+    /**
+     * Returns the underlying Java type
+     */
+    public Class<T> asJavaType()
+    {
+        return type;
     }
 
     /**
@@ -310,7 +402,7 @@ public class Type<T> implements Named
         var interfaces = new ObjectList<Type<?>>();
         for (var at : type.getInterfaces())
         {
-            interfaces.add(Type.typeForClass(at));
+            interfaces.add(typeForClass(at));
         }
         return interfaces;
     }
@@ -358,6 +450,14 @@ public class Type<T> implements Named
     public boolean isInOrUnder(PackageReference reference)
     {
         return packagePath().startsWith(reference);
+    }
+
+    /**
+     * Returns true if this is a primitive type
+     */
+    public boolean isInterface()
+    {
+        return type.isInterface();
     }
 
     /**
@@ -447,7 +547,7 @@ public class Type<T> implements Named
     }
 
     /**
-     * @return Set of properties matching the given filter, where setter methods are preferred to direct field access
+     * Returns set of properties matching the given filter, where setter methods are preferred to direct field access
      */
     public ObjectList<Property> properties(PropertyFilter filter)
     {
@@ -511,7 +611,7 @@ public class Type<T> implements Named
 
             propertiesForFilter.put(filter, properties);
         }
-        return ObjectList.objectList(properties.values()).sorted();
+        return ObjectList.list(properties.values()).sorted();
     }
 
     /**
@@ -621,7 +721,7 @@ public class Type<T> implements Named
      */
     public ObjectList<Object> reachableObjectsImplementing(Object root, Class<?> _interface)
     {
-        return reachableObjects(root, field -> _interface.isAssignableFrom(field.type().type()));
+        return reachableObjects(root, field -> _interface.isAssignableFrom(field.type().asJavaType()));
     }
 
     /**
@@ -635,7 +735,7 @@ public class Type<T> implements Named
     /**
      * Returns the simple name of this type without any anonymous class number
      */
-    public String simpleNameWithoutAnonymousNestedClassNumber()
+    public String simpleNameWithoutSyntheticSuffix()
     {
         return simpleName().replaceAll("\\.[0-9]+", "");
     }
@@ -718,14 +818,6 @@ public class Type<T> implements Named
     }
 
     /**
-     * @return The underlying Java type
-     */
-    public Class<T> type()
-    {
-        return type;
-    }
-
-    /**
      * Returns the fields reachable from the given root which match the given matcher
      *
      * @param root The root object
@@ -748,7 +840,7 @@ public class Type<T> implements Named
                     {
                         if (!field.isPrimitive() && !field.isStatic())
                         {
-                            if (field.parentType().type().getModule().isOpen(field.parentType().type().getPackageName()))
+                            if (field.parentType().asJavaType().getModule().isOpen(field.parentType().asJavaType().getPackageName()))
                             {
                                 var value = field.get(root);
                                 field.object(root);

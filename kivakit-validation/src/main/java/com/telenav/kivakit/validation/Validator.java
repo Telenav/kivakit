@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.validation;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.messaging.Message;
 import com.telenav.kivakit.core.messaging.Transceiver;
@@ -29,9 +29,9 @@ import com.telenav.kivakit.validation.validators.NullValidator;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 
 /**
  * When {@link #validate(Listener)} is called, a {@link Validator} validates itself, using the listener parameter to
@@ -39,6 +39,18 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
  * sent the method returns true, allowing the caller to make success or failure decisions easily. The
  * {@link BaseValidator} class makes it easy to implement validators by hiding access to the listener and providing
  * methods that check conditions and broadcast messages.
+ *
+ * <p><b>Factory Methods</b></p>
+ *
+ * <ul>
+ *     <li>{@link #nullValidator()}</li>
+ * </ul>
+ *
+ * <p><b>Validation</b></p>
+ *
+ * <ul>
+ *     <li>{@link #validate(Listener)}</li>
+ * </ul>
  *
  * @author jonathanl (shibo)
  * @see BaseValidator
@@ -48,9 +60,9 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramValidation.class)
 @UmlRelation(label = "reports to", referent = Listener.class)
-@ApiQuality(stability = API_STABLE,
-            testing = TESTING_NONE,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = STABLE,
+             testing = UNTESTED,
+             documentation = DOCUMENTATION_COMPLETE)
 public interface Validator
 {
     /** A validator that does nothing */

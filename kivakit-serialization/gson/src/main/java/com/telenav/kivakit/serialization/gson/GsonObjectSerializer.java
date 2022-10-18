@@ -1,8 +1,5 @@
 package com.telenav.kivakit.serialization.gson;
 
-import com.telenav.kivakit.core.io.IO;
-import com.telenav.kivakit.core.language.Arrays;
-import com.telenav.kivakit.core.language.Classes;
 import com.telenav.kivakit.core.language.trait.TryTrait;
 import com.telenav.kivakit.core.path.StringPath;
 import com.telenav.kivakit.core.progress.ProgressReporter;
@@ -22,10 +19,14 @@ import java.io.OutputStream;
 import java.util.regex.Pattern;
 
 import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
+import static com.telenav.kivakit.core.io.IO.readString;
+import static com.telenav.kivakit.core.language.Arrays.arrayContains;
+import static com.telenav.kivakit.core.language.Classes.classForName;
 import static com.telenav.kivakit.core.progress.ProgressReporter.nullProgressReporter;
-import static com.telenav.kivakit.resource.serialization.ObjectMetadata.OBJECT_INSTANCE;
-import static com.telenav.kivakit.resource.serialization.ObjectMetadata.OBJECT_TYPE;
-import static com.telenav.kivakit.resource.serialization.ObjectMetadata.OBJECT_VERSION;
+import static com.telenav.kivakit.core.version.Version.parseVersion;
+import static com.telenav.kivakit.resource.serialization.ObjectMetadata.METADATA_OBJECT_INSTANCE;
+import static com.telenav.kivakit.resource.serialization.ObjectMetadata.METADATA_OBJECT_TYPE;
+import static com.telenav.kivakit.resource.serialization.ObjectMetadata.METADATA_OBJECT_VERSION;
 
 /**
  * JSON {@link ObjectSerializer} implementation using Google Gson library.
@@ -89,10 +90,10 @@ public class GsonObjectSerializer implements
         return tryCatchThrow(() ->
         {
             // Read JSON from input,
-            var json = IO.string(this, input);
+            var json = readString(this, input);
 
             // get the type to read,
-            var type = Arrays.contains(metadata, OBJECT_TYPE)
+            var type = arrayContains(metadata, METADATA_OBJECT_TYPE)
                     ? ensureNotNull(type(json, metadata, typeToRead))
                     : typeToRead;
 
@@ -115,17 +116,17 @@ public class GsonObjectSerializer implements
         {
             var json = factory.gson().toJson(object);
 
-            if (OBJECT_TYPE.containedIn(metadata))
+            if (METADATA_OBJECT_TYPE.containedIn(metadata))
             {
                 json = json.replaceAll("\\s*\\{", "{\n\"type\": \"" + object.object().getClass().getName() + "\"");
             }
 
-            if (OBJECT_VERSION.containedIn(metadata))
+            if (METADATA_OBJECT_VERSION.containedIn(metadata))
             {
                 json = json.replaceAll("\\s*\\{", "{\n\"version\": \"" + object.version() + "\"");
             }
 
-            if (OBJECT_INSTANCE.containedIn(metadata) && object.instance() != null)
+            if (METADATA_OBJECT_INSTANCE.containedIn(metadata) && object.instance() != null)
             {
                 json = json.replaceAll("\\s*\\{", "{\n\"instance\": \"" + object.instance() + "\"");
             }
@@ -142,7 +143,7 @@ public class GsonObjectSerializer implements
     {
         var instance = InstanceIdentifier.singletonInstanceIdentifier();
         var instanceMatcher = INSTANCE_PATTERN.matcher(json);
-        if (OBJECT_INSTANCE.containedIn(metadata) && instanceMatcher.find())
+        if (METADATA_OBJECT_INSTANCE.containedIn(metadata) && instanceMatcher.find())
         {
             instance = InstanceIdentifier.instanceIdentifierForEnumName(this, instanceMatcher.group("instance"));
         }
@@ -153,12 +154,12 @@ public class GsonObjectSerializer implements
     private <T> Class<T> type(String json, ObjectMetadata[] metadata, Class<T> typeToRead)
     {
         Class<T> type = typeToRead;
-        if (type == null && OBJECT_TYPE.containedIn(metadata))
+        if (type == null && METADATA_OBJECT_TYPE.containedIn(metadata))
         {
             var typeMatcher = TYPE_PATTERN.matcher(json);
             if (typeMatcher.find())
             {
-                type = Classes.classForName(typeMatcher.group("type"));
+                type = classForName(typeMatcher.group("type"));
             }
         }
 
@@ -172,7 +173,7 @@ public class GsonObjectSerializer implements
         var versionMatcher = VERSION_PATTERN.matcher(json);
         if (versionMatcher.find())
         {
-            version = Version.parseVersion(versionMatcher.group("version"));
+            version = parseVersion(versionMatcher.group("version"));
         }
         return version;
     }

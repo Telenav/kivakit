@@ -28,9 +28,9 @@ public class UnionTest extends SetOperationTest
     @Test
     public void test()
     {
-        final Set<Integer> a = set(1, 2, 3);
-        final Set<Integer> b = set(2, 3, 4);
-        final Union<Integer> union = new Union<>(a, b);
+        Set<Integer> a = set(1, 2, 3);
+        Set<Integer> b = set(2, 3, 4);
+        Union<Integer> union = new Union<>(a, b);
         ensureEqual(4, union.size());
         ensureFalse(union.isEmpty());
         ensure(union.contains(4));

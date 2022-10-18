@@ -20,17 +20,20 @@ package com.telenav.kivakit.internal.tests.filesystem;
 
 import com.telenav.kivakit.core.thread.latches.CompletionLatch;
 import com.telenav.kivakit.core.time.Duration;
-import com.telenav.kivakit.core.value.count.Bytes;
 import com.telenav.kivakit.core.value.level.Percent;
 import com.telenav.kivakit.filesystem.File;
 import com.telenav.kivakit.filesystem.Folder;
 import com.telenav.kivakit.filesystem.FolderPruner;
+import com.telenav.kivakit.filesystem.Folders;
 import com.telenav.kivakit.testing.UnitTest;
 import org.jetbrains.annotations.NotNull;
 import org.junit.Ignore;
 import org.junit.Test;
 
+import static com.telenav.kivakit.core.time.Duration.ONE_SECOND;
 import static com.telenav.kivakit.core.time.Duration.ZERO_DURATION;
+import static com.telenav.kivakit.core.time.Duration.milliseconds;
+import static com.telenav.kivakit.core.value.count.Bytes.bytes;
 
 @Ignore
 public class FolderPrunerTest extends UnitTest
@@ -47,7 +50,7 @@ public class FolderPrunerTest extends UnitTest
 
         // Start folder pruner
         var removed = new CompletionLatch();
-        FolderPruner pruner = new FolderPruner(folder, Duration.milliseconds(1).asFrequency())
+        FolderPruner pruner = new FolderPruner(folder, milliseconds(1).asFrequency())
         {
             @Override
             protected void onFileRemoved(@NotNull File file)
@@ -55,7 +58,7 @@ public class FolderPrunerTest extends UnitTest
                 removed.threadCompleted();
             }
         };
-        pruner.capacity(Bytes.bytes(4));
+        pruner.capacity(bytes(4));
         pruner.maximumAge(ZERO_DURATION);
         pruner.minimumUsableDiskSpace(Percent._0);
         pruner.start();
@@ -72,7 +75,7 @@ public class FolderPrunerTest extends UnitTest
         // Because of file system time granularity either file could get removed, but not both
         ensure(file1.exists() || file2.exists());
         ensureFalse(!file1.exists() && !file2.exists());
-        pruner.stop(Duration.ONE_SECOND);
+        pruner.stop(ONE_SECOND);
     }
 
     @Test
@@ -83,7 +86,7 @@ public class FolderPrunerTest extends UnitTest
             var folder = folder("disk-space-test");
             var file = folder.file("temp1");
             file.writer().saveText("test");
-            FolderPruner pruner = new FolderPruner(folder, Duration.milliseconds(25).asFrequency())
+            FolderPruner pruner = new FolderPruner(folder, milliseconds(25).asFrequency())
             {
                 @Override
                 protected void onFileRemoved(@NotNull File file)
@@ -95,13 +98,13 @@ public class FolderPrunerTest extends UnitTest
             pruner.start();
             Duration.seconds(0.1).sleep();
             ensureFalse(file.exists());
-            pruner.stop(Duration.ONE_SECOND);
+            pruner.stop(ONE_SECOND);
         }
     }
 
     private Folder folder(String name)
     {
-        var folder = Folder.kivakitTest(getClass()).folder(name);
+        var folder = Folders.kivakitTestFolder(getClass()).folder(name);
         folder.mkdirs();
         folder.clearAll();
         return folder;

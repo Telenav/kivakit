@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.core.string;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramString;
 import com.telenav.kivakit.interfaces.string.StringFormattable;
 import com.telenav.kivakit.interfaces.value.Source;
@@ -26,10 +26,14 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.ArrayList;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_STATIC_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static com.telenav.kivakit.core.string.CaseFormat.capitalizeOnlyFirstLetter;
 import static com.telenav.kivakit.core.string.Join.join;
+import static com.telenav.kivakit.core.string.Split.split;
+import static com.telenav.kivakit.interfaces.string.StringFormattable.Format.DEBUG;
+import static java.lang.String.*;
 
 /**
  * String conversion utilities
@@ -38,21 +42,13 @@ import static com.telenav.kivakit.core.string.Join.join;
  */
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramString.class)
-@ApiQuality(stability = API_STABLE_STATIC_EXTENSIBLE,
-            testing = TESTING_NONE,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = UNTESTED,
+             documentation = DOCUMENTATION_COMPLETE)
 public class StringConversions
 {
     /**
-     * @return The value as a string or an empty string if it is null
-     */
-    public static String nonNullString(Object value)
-    {
-        return value == null ? "" : toString(value);
-    }
-
-    /**
-     * @return The lowest bits of the given value as a binary string
+     * Returns the lowest bits of the given value as a binary string
      */
     public static String toBinaryString(int value, int bits)
     {
@@ -78,27 +74,27 @@ public class StringConversions
     {
         if (object instanceof StringFormattable)
         {
-            return ((StringFormattable) object).asString(StringFormattable.Format.DEBUG);
+            return ((StringFormattable) object).asString(DEBUG);
         }
-        return toString(object);
+        return toHumanizedString(object);
     }
 
     /**
-     * @return The given enum value as a displayable string
+     * Returns the given enum value as a displayable string
      */
     public static String toDisplayString(Enum<?> enumValue)
     {
-        var words = Split.split(enumValue.name(), "_");
+        var words = split(enumValue.name(), "_");
         var display = new ArrayList<String>();
         for (var word : words)
         {
-            display.add(CaseFormat.capitalizeOnlyFirstLetter(word.toLowerCase()));
+            display.add(capitalizeOnlyFirstLetter(word.toLowerCase()));
         }
         return join(display, " ");
     }
 
     /**
-     * @return The given text trivially converted to HTML
+     * Returns the given text trivially converted to HTML
      */
     public static String toHtmlString(String text)
     {
@@ -106,9 +102,17 @@ public class StringConversions
     }
 
     /**
-     * @return The given object as a string or the given value if it is null
+     * Returns the value as a string or an empty string if it is null
      */
-    public static String toString(Object object, String defaultValue)
+    public static String toNonNullString(Object value)
+    {
+        return value == null ? "" : toHumanizedString(value);
+    }
+
+    /**
+     * Returns the given object as a string or the given value if it is null
+     */
+    public static String toHumanizedString(Object object, String defaultValue)
     {
         if (object == null)
         {
@@ -116,26 +120,26 @@ public class StringConversions
         }
         if (object instanceof Source)
         {
-            return toString(((Source<?>) object).get());
+            return toHumanizedString(((Source<?>) object).get());
         }
         if (object instanceof Long)
         {
             var value = (long) object;
-            return String.format("%,d", value);
+            return format("%,d", value);
         }
         if (object instanceof Integer)
         {
             var value = (int) object;
-            return String.format("%,d", value);
+            return format("%,d", value);
         }
         return object.toString();
     }
 
     /**
-     * @return The given object as a string or "null" if it is null
+     * Returns the given object as a string or "null" if it is null
      */
-    public static String toString(Object object)
+    public static String toHumanizedString(Object object)
     {
-        return toString(object, "null");
+        return toHumanizedString(object, "null");
     }
 }

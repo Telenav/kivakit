@@ -4,11 +4,11 @@ import com.telenav.kivakit.internal.testing.CoreUnitTest;
 import org.junit.Test;
 
 import java.util.List;
-import java.util.Objects;
 import java.util.regex.Pattern;
 
 import static com.telenav.kivakit.conversion.core.language.LanguageConverterTest.Type.A;
 import static com.telenav.kivakit.conversion.core.language.LanguageConverterTest.Type.B;
+import static java.util.Objects.requireNonNull;
 
 public class LanguageConverterTest extends CoreUnitTest
 {
@@ -29,10 +29,10 @@ public class LanguageConverterTest extends CoreUnitTest
     {
         EnumConverter<Type> converter = new EnumConverter<>(this, Type.class);
 
-        ensureEqual(Type.A, converter.convert("A"));
+        ensureEqual(A, converter.convert("A"));
         ensureEqual("A", converter.unconvert(A));
 
-        ensureEqual(Type.B, converter.convert("B"));
+        ensureEqual(B, converter.convert("B"));
         ensureEqual("B", converter.unconvert(B));
     }
 
@@ -45,6 +45,6 @@ public class LanguageConverterTest extends CoreUnitTest
     @Test
     public void testPatternConverter()
     {
-        ensureEqual(Objects.requireNonNull(new PatternConverter(this).convert("a*b")).pattern(), Pattern.compile("a*b").pattern());
+        ensureEqual(requireNonNull(new PatternConverter(this).convert("a*b")).pattern(), Pattern.compile("a*b").pattern());
     }
 }

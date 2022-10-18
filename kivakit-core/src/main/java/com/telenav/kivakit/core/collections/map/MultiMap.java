@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.core.collections.map;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.collections.list.ObjectList;
 import com.telenav.kivakit.core.value.count.Count;
 import com.telenav.kivakit.core.value.count.Maximum;
@@ -28,11 +28,13 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static com.telenav.kivakit.core.value.count.Count.count;
 import static com.telenav.kivakit.core.value.count.Maximum.MAXIMUM;
 import static com.telenav.kivakit.core.value.count.Maximum.maximum;
+import static java.lang.Math.max;
 
 /**
  * A map from key to an {@link ObjectList} of values. Values can be added with {@link #add(Object, Object)} and
@@ -60,9 +62,9 @@ import static com.telenav.kivakit.core.value.count.Maximum.maximum;
  * @author jonathanl (shibo)
  */
 @SuppressWarnings("unused")
-@ApiQuality(stability = API_STABLE_EXTENSIBLE,
-            testing = TESTING_NONE,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = UNTESTED,
+             documentation = DOCUMENTATION_COMPLETE)
 public class MultiMap<Key, Value> extends BaseMap<Key, ObjectList<Value>>
 {
     public MultiMap()
@@ -169,9 +171,9 @@ public class MultiMap<Key, Value> extends BaseMap<Key, ObjectList<Value>>
         var maximum = 0;
         for (List<Value> list : values())
         {
-            maximum = Math.max(list.size(), maximum);
+            maximum = max(list.size(), maximum);
         }
-        return Count.count(maximum);
+        return count(maximum);
     }
 
     /**

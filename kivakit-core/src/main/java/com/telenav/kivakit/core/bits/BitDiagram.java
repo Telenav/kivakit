@@ -18,13 +18,14 @@
 
 package com.telenav.kivakit.core.bits;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramBits;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_INSUFFICIENT;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_INSUFFICIENT;
+import static java.lang.Long.bitCount;
 
 /**
  * A {@link BitDiagram} is a character string that visually depicts one or more bit fields of a primitive value such as
@@ -69,16 +70,19 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_INSUFF
  */
 @SuppressWarnings("SpellCheckingInspection")
 @UmlClassDiagram(diagram = DiagramBits.class)
-@ApiQuality(stability = API_STABLE,
-            testing = TESTING_INSUFFICIENT,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = STABLE,
+             testing = TESTING_INSUFFICIENT,
+             documentation = DOCUMENTATION_COMPLETE)
 public class BitDiagram
 {
     /**
      * The bit field for a given character in a bit diagram
      */
     @SuppressWarnings("unused")
-        public static class BitField
+    @CodeQuality(stability = STABLE,
+                 testing = TESTING_INSUFFICIENT,
+                 documentation = DOCUMENTATION_COMPLETE)
+    public static class BitField
     {
         /** The mask to access the bit field */
         private long mask;
@@ -102,7 +106,7 @@ public class BitDiagram
          */
         public int bits()
         {
-            return Long.bitCount(mask());
+            return bitCount(mask());
         }
 
         /**
@@ -241,7 +245,7 @@ public class BitDiagram
     }
 
     /**
-     * @return The {@link BitField} from this bit diagram for the given bit field character. For example, in a bit
+     * Returns the {@link BitField} from this bit diagram for the given bit field character. For example, in a bit
      * diagram of "AAA BBB", <i>field("A")</i> would return a bit field accessor for the top three bits, the "A"
      * bitfield.
      */

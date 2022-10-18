@@ -18,16 +18,16 @@
 
 package com.telenav.kivakit.core.logging;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramLogging;
 import com.telenav.kivakit.core.logging.loggers.LogServiceLogger;
 import com.telenav.kivakit.interfaces.factory.Factory;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 
 /**
  * Creates new {@link Logger} instances via {@link #newLogger()}. By default, instances of {@link LogServiceLogger} are
@@ -37,11 +37,12 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
  * @see Logger
  * @see LogServiceLogger
  */
+@SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramLogging.class)
 @UmlRelation(label = "creates", referent = Logger.class)
-@ApiQuality(stability = API_STABLE,
-            testing = TESTING_NONE,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = STABLE,
+             testing = UNTESTED,
+             documentation = DOCUMENTATION_COMPLETE)
 public class LoggerFactory
 {
     /** The current logger factory */
@@ -52,13 +53,13 @@ public class LoggerFactory
      *
      * @param factory The logger factory to use
      */
-    public static void factory(Factory<Logger> factory)
+    public static void globalLoggerFactory(Factory<Logger> factory)
     {
         LoggerFactory.factory = factory;
     }
 
     /**
-     * @return A new logger instance, created using the current logger factory
+     * Returns a new logger instance, created using the current logger factory
      */
     public static Logger newLogger()
     {

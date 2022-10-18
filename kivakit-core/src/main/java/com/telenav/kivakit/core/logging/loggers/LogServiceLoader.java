@@ -18,13 +18,11 @@
 
 package com.telenav.kivakit.core.logging.loggers;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
-import com.telenav.kivakit.core.ensure.Ensure;
-import com.telenav.kivakit.core.logging.Log;
-import com.telenav.kivakit.core.logging.Logger;
-import com.telenav.kivakit.core.logging.logs.text.ConsoleLog;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramLogging;
-import com.telenav.kivakit.core.string.AsciiArt;
+import com.telenav.kivakit.core.logging.Log;
+import com.telenav.kivakit.core.logging.logs.text.ConsoleLog;
+import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlAggregation;
 
@@ -32,56 +30,70 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ServiceLoader;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Audience.AUDIENCE_INTERNAL;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static com.telenav.kivakit.core.string.AsciiArt.textBox;
 
 /**
+ * <b>Not public API</b>
+ *
+ * <p>
  * Loads logs that implement the service provider interface (SPI) {@link Log}.
+ * </p>
+ *
+ * <p><b>Access</b></p>
+ *
+ * <ul>
+ *     <li>{@link #logForName(Listener, String)}</li>
+ * </ul>
  *
  * @author jonathanl (shibo)
+ * @see LogServiceLogger
  */
 @UmlClassDiagram(diagram = DiagramLogging.class)
-@ApiQuality(stability = API_STABLE,
-            testing = TESTING_NONE,
-            documentation = DOCUMENTATION_COMPLETE)
-public class LogServiceLoader
+@CodeQuality(audience = AUDIENCE_INTERNAL,
+             stability = STABLE_EXTENSIBLE,
+             testing = UNTESTED,
+             documentation = DOCUMENTATION_COMPLETE)
+class LogServiceLoader
 {
-    private static final Logger LOGGER = new ConsoleLogger();
-
     @UmlAggregation(label = "loads")
-    private static List<Log> logs;
+    private static List<Log> availableLogs;
 
-    public static Log log(String name)
+    /**
+     * Returns the log with the given name, or null if there is no log with the given name
+     */
+    public static Log logForName(Listener listener, String name)
     {
-        for (var log : logs())
+        for (var log : availableLogs(listener))
         {
             if (log.name().equalsIgnoreCase(name))
             {
                 return log;
             }
         }
-        Ensure.fail("No log called '" + name + "'");
         return null;
     }
 
-    public static synchronized List<Log> logs()
+    private static synchronized List<Log> availableLogs(Listener listener)
     {
-        if (logs == null)
+        if (availableLogs == null)
         {
-            logs = new ArrayList<>();
-            logs.add(new ConsoleLog());
+            availableLogs = new ArrayList<>();
+            availableLogs.add(new ConsoleLog());
             for (var service : ServiceLoader.load(Log.class))
             {
-                LOGGER.announce("Log '${class}' is available", service.getClass());
-                logs.add(service);
+                listener.announce("Log '${class}' is available", service.getClass());
+                availableLogs.add(service);
             }
-            if (logs.isEmpty())
+            if (availableLogs.isEmpty())
             {
-                LOGGER.announce(AsciiArt.box("Logging can be configured with KIVAKIT_LOG and KIVAKIT_LOG_LEVEL environment variables.\n"
+                listener.announce(textBox("Logging can be configured with KIVAKIT_LOG and KIVAKIT_LOG_LEVEL environment variables.\n"
                         + "See https://tinyurl.com/mhc3ss5s for details."));
             }
         }
-        return logs;
+        return availableLogs;
     }
 }

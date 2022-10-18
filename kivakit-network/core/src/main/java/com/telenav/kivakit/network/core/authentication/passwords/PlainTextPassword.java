@@ -18,10 +18,9 @@
 
 package com.telenav.kivakit.network.core.authentication.passwords;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.conversion.BaseStringConverter;
 import com.telenav.kivakit.core.messaging.Listener;
-import com.telenav.kivakit.core.string.AsciiArt;
 import com.telenav.kivakit.interfaces.string.StringFormattable;
 import com.telenav.kivakit.network.core.authentication.Password;
 import com.telenav.kivakit.network.core.internal.lexakai.DiagramAuthentication;
@@ -29,9 +28,10 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeSuperTypes;
 import org.jetbrains.annotations.NotNull;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static com.telenav.kivakit.core.string.AsciiArt.repeat;
 
 /**
  * A plain text password, which can be tested against a given password using {@link #matches(Password)}.
@@ -41,9 +41,9 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramAuthentication.class)
 @UmlExcludeSuperTypes({ StringFormattable.class })
-@ApiQuality(stability = API_STABLE_EXTENSIBLE,
-            testing = TESTING_NONE,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = UNTESTED,
+             documentation = DOCUMENTATION_COMPLETE)
 public class PlainTextPassword implements Password, StringFormattable
 {
     /**
@@ -62,9 +62,9 @@ public class PlainTextPassword implements Password, StringFormattable
      *
      * @author jonathanl (shibo)
      */
-    @ApiQuality(stability = API_STABLE_EXTENSIBLE,
-                testing = TESTING_NONE,
-                documentation = DOCUMENTATION_COMPLETE)
+    @CodeQuality(stability = STABLE_EXTENSIBLE,
+                 testing = UNTESTED,
+                 documentation = DOCUMENTATION_COMPLETE)
     public static class Converter extends BaseStringConverter<Password>
     {
         public Converter(Listener listener)
@@ -75,7 +75,7 @@ public class PlainTextPassword implements Password, StringFormattable
         @Override
         protected Password onToValue(String value)
         {
-            return PlainTextPassword.parsePlainTextPassword(this, value);
+            return parsePlainTextPassword(this, value);
         }
     }
 
@@ -91,7 +91,7 @@ public class PlainTextPassword implements Password, StringFormattable
     {
         if (password != null)
         {
-            return AsciiArt.repeat(password.length(), '*');
+            return repeat(password.length(), '*');
         }
         return null;
     }

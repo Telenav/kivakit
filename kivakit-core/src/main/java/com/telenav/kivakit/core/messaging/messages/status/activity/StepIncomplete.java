@@ -18,16 +18,18 @@
 
 package com.telenav.kivakit.core.messaging.messages.status.activity;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
-import com.telenav.kivakit.core.messaging.Message;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramMessageType;
 import com.telenav.kivakit.core.messaging.messages.OperationStatusMessage;
 import com.telenav.kivakit.core.messaging.messages.Severity;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
+import static com.telenav.kivakit.core.messaging.Message.Status.*;
+import static com.telenav.kivakit.core.messaging.Message.escapeMessageText;
+import static com.telenav.kivakit.core.messaging.messages.Severity.*;
 
 /**
  * The current step had to discard some result to continue
@@ -35,13 +37,11 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NE
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramMessageType.class)
-@ApiQuality(stability = API_STABLE,
-            testing = TESTING_NOT_NEEDED,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = STABLE,
+             testing = TESTING_NOT_NEEDED,
+             documentation = DOCUMENTATION_COMPLETE)
 public class StepIncomplete extends OperationStatusMessage
 {
-    public static final StepIncomplete INSTANCE = new StepIncomplete();
-
     public StepIncomplete(String message, Object... arguments)
     {
         super(message);
@@ -50,7 +50,7 @@ public class StepIncomplete extends OperationStatusMessage
 
     public StepIncomplete(Throwable cause, String message, Object... arguments)
     {
-        super(message + ": " + Message.escapeMessageText(cause.getMessage()));
+        super(message + ": " + escapeMessageText(cause.getMessage()));
         cause(cause);
         arguments(arguments);
     }
@@ -65,7 +65,7 @@ public class StepIncomplete extends OperationStatusMessage
     @Override
     public Severity severity()
     {
-        return Severity.MEDIUM;
+        return MEDIUM;
     }
 
     /**
@@ -74,6 +74,6 @@ public class StepIncomplete extends OperationStatusMessage
     @Override
     public final Status status()
     {
-        return Status.RESULT_INCOMPLETE;
+        return RESULT_INCOMPLETE;
     }
 }

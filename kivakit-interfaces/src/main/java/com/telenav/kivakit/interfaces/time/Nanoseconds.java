@@ -1,17 +1,19 @@
 package com.telenav.kivakit.interfaces.time;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.interfaces.numeric.Zeroable;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
-import java.util.Objects;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_DEFAULT_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static java.lang.Long.compare;
 import static java.lang.Math.addExact;
 import static java.lang.Math.subtractExact;
+import static java.lang.String.format;
+import static java.util.Objects.hash;
 
 /**
  * Accurate model of a number of nanoseconds, represented as a number of seconds and a number of nanoseconds. This
@@ -20,9 +22,9 @@ import static java.lang.Math.subtractExact;
  * @author jonathanl (shibo)
  */
 @SuppressWarnings("DuplicatedCode")
-@ApiQuality(stability = API_STABLE_DEFAULT_EXTENSIBLE,
-            testing = TESTING_NONE,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = UNTESTED,
+             documentation = DOCUMENTATION_COMPLETE)
 public class Nanoseconds implements
         Comparable<Nanoseconds>,
         Zeroable
@@ -34,7 +36,7 @@ public class Nanoseconds implements
     public static Nanoseconds ZERO = nanoseconds(0);
 
     /** One nanosecond */
-    public static Nanoseconds ONE = nanoseconds(1);
+    public static Nanoseconds ONE_NANOSECOND = nanoseconds(1);
 
     /** One nanosecond */
     public static Nanoseconds ONE_SECOND = nanoseconds(NANOSECONDS_PER_SECOND);
@@ -160,12 +162,12 @@ public class Nanoseconds implements
     @Override
     public int compareTo(Nanoseconds that)
     {
-        int result = Long.compare(seconds, that.seconds);
+        int result = compare(seconds, that.seconds);
         if (result != 0)
         {
             return result;
         }
-        return Long.compare(this.nanoseconds, that.nanoseconds);
+        return compare(this.nanoseconds, that.nanoseconds);
     }
 
     /**
@@ -219,11 +221,11 @@ public class Nanoseconds implements
     @Override
     public int hashCode()
     {
-        return Objects.hash(seconds(), nanoseconds());
+        return hash(seconds(), nanoseconds());
     }
 
     /**
-     * @return True if this is greater than that
+     * Returns true if this is greater than that
      */
     public boolean isGreaterThan(Nanoseconds that)
     {
@@ -231,7 +233,7 @@ public class Nanoseconds implements
     }
 
     /**
-     * @return True if this is greater than or equal to that
+     * Returns true if this is greater than or equal to that
      */
     public boolean isGreaterThanOrEqualTo(Nanoseconds that)
     {
@@ -239,7 +241,7 @@ public class Nanoseconds implements
     }
 
     /**
-     * @return True if this is less than that
+     * Returns true if this is less than that
      */
     public boolean isLessThan(Nanoseconds that)
     {
@@ -247,7 +249,7 @@ public class Nanoseconds implements
     }
 
     /**
-     * @return True if this is less than or equal to that
+     * Returns true if this is less than or equal to that
      */
     public boolean isLessThanOrEqualTo(Nanoseconds that)
     {
@@ -255,7 +257,7 @@ public class Nanoseconds implements
     }
 
     /**
-     * @return True if this is a negative number of nanoseconds
+     * Returns true if this is a negative number of nanoseconds
      */
     public boolean isNegative()
     {
@@ -263,7 +265,7 @@ public class Nanoseconds implements
     }
 
     /**
-     * @return True if this is zero nanoseconds
+     * Returns true if this is zero nanoseconds
      */
     @Override
     public boolean isZero()
@@ -377,11 +379,11 @@ public class Nanoseconds implements
     @Override
     public String toString()
     {
-        return String.format("%d.%09d", seconds(), nanoseconds());
+        return format("%d.%09d", seconds(), nanoseconds());
     }
 
     /**
-     * @return The number of nanoseconds, not including any seconds
+     * Returns the number of nanoseconds, not including any seconds
      */
     private long nanoseconds()
     {
@@ -389,7 +391,7 @@ public class Nanoseconds implements
     }
 
     /**
-     * @return The number of seconds, including any seconds in the nanoseconds field
+     * Returns the number of seconds, including any seconds in the nanoseconds field
      */
     private long seconds()
     {

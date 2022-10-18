@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.core.string;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.collections.list.StringList;
 import com.telenav.kivakit.core.internal.lexakai.DiagramReflection;
 import com.telenav.kivakit.core.language.reflection.Type;
@@ -28,31 +28,32 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.Collection;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_INSUFFICIENT;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_INSUFFICIENT;
 import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
 import static com.telenav.kivakit.core.ensure.Ensure.fail;
+import static com.telenav.kivakit.core.language.reflection.Type.type;
 import static com.telenav.kivakit.core.language.reflection.property.PropertyFilter.allProperties;
 import static com.telenav.kivakit.core.language.reflection.property.PropertyMemberSelector.ALL_FIELDS_AND_METHODS;
 import static com.telenav.kivakit.core.string.ObjectFormatter.ObjectFormat.SINGLE_LINE;
 
 /**
  * A convenient class for formatting particular fields and methods of an object as a debugging string. Fields to be
- * included in the formatted string must be marked with the {@link KivaKitFormat} annotation, which describes what
+ * included in the formatted string must be marked with the {@link FormatProperty} annotation, which describes what
  * format to use for each annotated member. Child objects will be formatted recursively.
  *
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramReflection.class)
-@ApiQuality(stability = API_STABLE_EXTENSIBLE,
-            testing = TESTING_INSUFFICIENT,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = TESTING_INSUFFICIENT,
+             documentation = DOCUMENTATION_COMPLETE)
 public class ObjectFormatter
 {
     /**
      * The format to use for properties of an object. This is independent of the format for each individual property,
-     * which is supplied by {@link KivaKitFormat}.
+     * which is supplied by {@link FormatProperty}.
      */
     public enum ObjectFormat
     {
@@ -87,7 +88,7 @@ public class ObjectFormatter
             return "null";
         }
 
-        Type<?> type = Type.type(object);
+        Type<?> type = type(object);
         var strings = new StringList();
         for (var property : type.properties(allProperties(ALL_FIELDS_AND_METHODS)))
         {
@@ -96,7 +97,7 @@ public class ObjectFormatter
                 var getter = property.getter();
                 if (getter != null)
                 {
-                    var annotation = getter.annotation(KivaKitFormat.class);
+                    var annotation = getter.annotation(FormatProperty.class);
                     if (annotation != null)
                     {
                         var value = getter.get(object);
@@ -148,7 +149,7 @@ public class ObjectFormatter
      */
     private String asString(ObjectFormat objectFormat, Format propertyFormat, int recursionLevel, Object propertyValue)
     {
-        ensureNotNull(propertyFormat, "@KivaKitFormat(\"$\") is not a known format", propertyFormat);
+        ensureNotNull(propertyFormat, "@FormatProperty(\"$\") is not a known format", propertyFormat);
 
         switch (propertyFormat)
         {
@@ -199,7 +200,7 @@ public class ObjectFormatter
         else
         {
             // Get the type object for this value
-            Type<?> valueType = Type.type(propertyValue);
+            Type<?> valueType = type(propertyValue);
 
             // If the value doesn't directly implement toString, and it's not a
             // system type (something implemented by Java)

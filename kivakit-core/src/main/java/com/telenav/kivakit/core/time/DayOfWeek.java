@@ -18,20 +18,20 @@
 
 package com.telenav.kivakit.core.time;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
+import com.telenav.kivakit.core.collections.list.ObjectList;
 import com.telenav.kivakit.core.internal.lexakai.DiagramTime;
-import com.telenav.kivakit.core.language.Hash;
 import com.telenav.kivakit.interfaces.string.StringFormattable;
 import com.telenav.kivakit.interfaces.time.Nanoseconds;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.List;
-
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static com.telenav.kivakit.core.collections.list.ObjectList.list;
 import static com.telenav.kivakit.core.ensure.Ensure.ensureBetweenInclusive;
+import static com.telenav.kivakit.core.language.Hash.hash;
 import static com.telenav.kivakit.core.time.BaseTime.Topology.CYCLIC;
 import static com.telenav.kivakit.core.time.Day.nanosecondsPerDay;
 import static com.telenav.kivakit.core.time.HourOfWeek.hourOfWeek;
@@ -62,9 +62,9 @@ import static com.telenav.kivakit.interfaces.string.StringFormattable.Format.USE
  * @see java.time.DayOfWeek
  */
 @SuppressWarnings("unused") @UmlClassDiagram(diagram = DiagramTime.class)
-@ApiQuality(stability = API_STABLE_EXTENSIBLE,
-            testing = TESTING_NONE,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = UNTESTED,
+             documentation = DOCUMENTATION_COMPLETE)
 public class DayOfWeek extends BaseTime<DayOfWeek>
 {
     public static final DayOfWeek MONDAY = isoDayOfWeek(0);
@@ -81,9 +81,9 @@ public class DayOfWeek extends BaseTime<DayOfWeek>
 
     public static final DayOfWeek SUNDAY = isoDayOfWeek(6);
 
-    public static List<DayOfWeek> daysOfWeek()
+    public static ObjectList<DayOfWeek> daysOfWeek()
     {
-        return List.of(MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY, SUNDAY);
+        return list(MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY, SUNDAY);
     }
 
     /**
@@ -147,7 +147,7 @@ public class DayOfWeek extends BaseTime<DayOfWeek>
     }
 
     /**
-     * @return This day of the week as a zero-based ISO-8601 ordinal value
+     * Returns this day of the week as a zero-based ISO-8601 ordinal value
      */
     public int asIsoOrdinal()
     {
@@ -207,7 +207,7 @@ public class DayOfWeek extends BaseTime<DayOfWeek>
     @Override
     public int hashCode()
     {
-        return Hash.hashCode(asIsoOrdinal());
+        return hash(asIsoOrdinal());
     }
 
     /**

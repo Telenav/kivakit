@@ -18,16 +18,21 @@
 
 package com.telenav.kivakit.core.time;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramTime;
 import com.telenav.kivakit.interfaces.numeric.Maximizable;
 import com.telenav.kivakit.interfaces.numeric.Minimizable;
 import com.telenav.kivakit.interfaces.value.DoubleValued;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static com.telenav.kivakit.core.language.Hash.hash;
+import static com.telenav.kivakit.core.time.Duration.*;
+import static com.telenav.kivakit.core.time.Duration.ONE_SECOND;
+import static com.telenav.kivakit.core.time.Duration.seconds;
+import static java.lang.String.format;
 
 /**
  * An abstract rate in <i>count</i> per {@link Duration}. Rates can be constructed as a count per Duration with
@@ -53,23 +58,23 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
  */
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramTime.class)
-@ApiQuality(stability = API_STABLE_EXTENSIBLE,
-            testing = TESTING_NONE,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = UNTESTED,
+             documentation = DOCUMENTATION_COMPLETE)
 public class Rate implements
         Comparable<Rate>,
         Maximizable<Rate>,
         Minimizable<Rate>,
         DoubleValued
 {
-    public static final Rate MAXIMUM = new Rate(Integer.MAX_VALUE, Duration.milliseconds(1));
+    public static final Rate MAXIMUM_RATE = new Rate(Integer.MAX_VALUE, milliseconds(1));
 
     /**
      * Returns the given rate per day
      */
     public static Rate perDay(double count)
     {
-        return new Rate(count, Duration.ONE_DAY);
+        return new Rate(count, ONE_DAY);
     }
 
     /**
@@ -77,7 +82,7 @@ public class Rate implements
      */
     public static Rate perHour(double count)
     {
-        return new Rate(count, Duration.ONE_HOUR);
+        return new Rate(count, ONE_HOUR);
     }
 
     /**
@@ -85,7 +90,7 @@ public class Rate implements
      */
     public static Rate perMinute(double count)
     {
-        return new Rate(count, Duration.ONE_MINUTE);
+        return new Rate(count, ONE_MINUTE);
     }
 
     /**
@@ -93,7 +98,7 @@ public class Rate implements
      */
     public static Rate perSecond(double count)
     {
-        return new Rate(count, Duration.ONE_SECOND);
+        return new Rate(count, ONE_SECOND);
     }
 
     /**
@@ -101,7 +106,7 @@ public class Rate implements
      */
     public static Rate perYear(double count)
     {
-        return new Rate(count, Duration.ONE_YEAR);
+        return new Rate(count, ONE_YEAR);
     }
 
     private final Duration duration;
@@ -154,7 +159,7 @@ public class Rate implements
     @Override
     public int hashCode()
     {
-        return Double.hashCode(count / duration.asMinutes());
+        return hash(count / duration.asMinutes());
     }
 
     /**
@@ -182,17 +187,17 @@ public class Rate implements
     @Override
     public Rate maximum()
     {
-        return Rate.MAXIMUM;
+        return MAXIMUM_RATE;
     }
 
     @Override
     public Rate minimum()
     {
-        return Rate.perYear(0);
+        return perYear(0);
     }
 
     @Override
-    public Rate newInstance(Long value)
+    public Rate map(Long value)
     {
         return perDay(value);
     }
@@ -202,7 +207,7 @@ public class Rate implements
      */
     public Rate perDay()
     {
-        return new Rate(count / duration.asDays(), Duration.ONE_DAY);
+        return new Rate(count / duration.asDays(), ONE_DAY);
     }
 
     /**
@@ -210,7 +215,7 @@ public class Rate implements
      */
     public Rate perHour()
     {
-        return new Rate(count / duration.asHours(), Duration.ONE_HOUR);
+        return new Rate(count / duration.asHours(), ONE_HOUR);
     }
 
     /**
@@ -218,7 +223,7 @@ public class Rate implements
      */
     public Rate perMinute()
     {
-        return new Rate(count / duration.asMinutes(), Duration.ONE_MINUTE);
+        return new Rate(count / duration.asMinutes(), ONE_MINUTE);
     }
 
     /**
@@ -226,7 +231,7 @@ public class Rate implements
      */
     public Rate perSecond()
     {
-        return new Rate(count / duration.asSeconds(), Duration.ONE_SECOND);
+        return new Rate(count / duration.asSeconds(), ONE_SECOND);
     }
 
     /**
@@ -234,7 +239,7 @@ public class Rate implements
      */
     public Rate perYear()
     {
-        return new Rate(count / duration.asYears(), Duration.ONE_YEAR);
+        return new Rate(count / duration.asYears(), ONE_YEAR);
     }
 
     /**
@@ -242,7 +247,7 @@ public class Rate implements
      */
     public Rate plus(Rate that)
     {
-        return Rate.perDay(perDay().count() + that.perDay().count());
+        return perDay(perDay().count() + that.perDay().count());
     }
 
     /**
@@ -253,23 +258,23 @@ public class Rate implements
     {
         if (isFasterThan(maximumRate))
         {
-            Duration.seconds(perSecond().count() / maximumRate.perSecond().count() - 1).sleep();
+            seconds(perSecond().count() / maximumRate.perSecond().count() - 1).sleep();
         }
     }
 
     @Override
     public String toString()
     {
-        var formatted = String.format(count < 100 ? "%,.1f" : "%,.0f", count);
-        if (duration.equals(Duration.ONE_SECOND))
+        var formatted = format(count < 100 ? "%,.1f" : "%,.0f", count);
+        if (duration.equals(ONE_SECOND))
         {
             return formatted + " per second";
         }
-        if (duration.equals(Duration.ONE_MINUTE))
+        if (duration.equals(ONE_MINUTE))
         {
             return formatted + " per minute";
         }
-        if (duration.equals(Duration.ONE_HOUR))
+        if (duration.equals(ONE_HOUR))
         {
             return formatted + " per hour";
         }

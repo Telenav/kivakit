@@ -18,24 +18,24 @@
 
 package com.telenav.kivakit.core.messaging.listeners;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.collections.list.StringList;
 import com.telenav.kivakit.core.internal.lexakai.DiagramListenerType;
-import com.telenav.kivakit.core.language.Classes;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.messaging.Message;
-import com.telenav.kivakit.core.messaging.messages.OperationMessage;
 import com.telenav.kivakit.core.messaging.messages.status.Problem;
 import com.telenav.kivakit.core.messaging.messages.status.Quibble;
 import com.telenav.kivakit.core.messaging.messages.status.Warning;
-import com.telenav.kivakit.core.string.Align;
-import com.telenav.kivakit.core.string.Plural;
 import com.telenav.kivakit.core.value.count.Count;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static com.telenav.kivakit.core.language.Classes.simpleName;
+import static com.telenav.kivakit.core.messaging.Messages.messageForType;
+import static com.telenav.kivakit.core.string.Align.rightAlign;
+import static com.telenav.kivakit.core.string.Plural.pluralizeEnglish;
 
 /**
  * A {@link Listener}, such as {@link MessageList} that is able to report how many of different kinds of messages it has
@@ -83,9 +83,9 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
  * @see MessageList
  */
 @SuppressWarnings("unused") @UmlClassDiagram(diagram = DiagramListenerType.class)
-@ApiQuality(stability = API_STABLE_EXTENSIBLE,
-            testing = TESTING_NONE,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = UNTESTED,
+             documentation = DOCUMENTATION_COMPLETE)
 public interface MessageCounter extends Listener
 {
     /**
@@ -117,7 +117,7 @@ public interface MessageCounter extends Listener
      */
     default Count countWorseThanOrEqualTo(Class<? extends Message> type)
     {
-        return countWorseThanOrEqualTo(OperationMessage.message(type).status());
+        return countWorseThanOrEqualTo(messageForType(type).status());
     }
 
     /**
@@ -163,7 +163,7 @@ public interface MessageCounter extends Listener
         var statistics = new StringList();
         for (var status : statuses)
         {
-            statistics.append(Align.right(status.name(), 24, ' '));
+            statistics.append(rightAlign(status.name(), 24, ' '));
             statistics.append(": ");
             statistics.append(count(status).asCommaSeparatedString());
         }
@@ -185,7 +185,7 @@ public interface MessageCounter extends Listener
             var count = count(type);
             if (count != null)
             {
-                statistics.append(Align.right(Plural.pluralizeEnglish(Classes.simpleName(type)), 24, ' ')
+                statistics.append(rightAlign(pluralizeEnglish(simpleName(type)), 24, ' ')
                         + ": " + count.asCommaSeparatedString());
             }
         }

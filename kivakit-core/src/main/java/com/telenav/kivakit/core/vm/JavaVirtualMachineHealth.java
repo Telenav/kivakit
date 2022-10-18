@@ -18,11 +18,11 @@
 
 package com.telenav.kivakit.core.vm;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramLanguage;
-import com.telenav.kivakit.core.language.reflection.property.KivaKitIncludeProperty;
+import com.telenav.kivakit.core.language.reflection.property.IncludeProperty;
 import com.telenav.kivakit.core.logging.LogEntry;
-import com.telenav.kivakit.core.string.KivaKitFormat;
+import com.telenav.kivakit.core.string.FormatProperty;
 import com.telenav.kivakit.core.string.ObjectFormatter;
 import com.telenav.kivakit.core.time.Duration;
 import com.telenav.kivakit.core.time.Time;
@@ -33,10 +33,14 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.string.ObjectFormatter.ObjectFormat.MULTILINE;
+import static com.telenav.kivakit.core.time.Duration.ZERO_DURATION;
+import static com.telenav.kivakit.core.time.Time.now;
+import static com.telenav.kivakit.core.value.count.Count.count;
+import static com.telenav.kivakit.core.vm.JavaVirtualMachine.javaVirtualMachine;
 
 /**
  * Information about the Java virtual machine that relates to health and resources
@@ -45,9 +49,9 @@ import static com.telenav.kivakit.core.string.ObjectFormatter.ObjectFormat.MULTI
  */
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramLanguage.class)
-@ApiQuality(stability = API_STABLE_EXTENSIBLE,
-            testing = TESTING_NONE,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = UNTESTED,
+             documentation = DOCUMENTATION_COMPLETE)
 public class JavaVirtualMachineHealth
 {
     /** The amount of free memory */
@@ -79,7 +83,7 @@ public class JavaVirtualMachineHealth
     /**
      * Returns the percentage of CPU time consumed by the calling thread
      */
-    @KivaKitFormat
+    @FormatProperty
     public double cpuUse()
     {
         if (lastSnapshot != null)
@@ -94,25 +98,25 @@ public class JavaVirtualMachineHealth
     /**
      * The CPU time elapsed since the last snapshot
      */
-    @KivaKitFormat
+    @FormatProperty
     public Duration elapsedCpuTimeSinceLastSnapshot()
     {
-        return lastSnapshot == null ? Duration.ZERO_DURATION : snapshot.totalCpuTime().minus(lastSnapshot.totalCpuTime());
+        return lastSnapshot == null ? ZERO_DURATION : snapshot.totalCpuTime().minus(lastSnapshot.totalCpuTime());
     }
 
     /**
      * The amount of time that has elapsed since the last snapshot
      */
-    @KivaKitFormat
+    @FormatProperty
     public Duration elapsedSinceLastSnapshot()
     {
-        return lastSnapshot == null ? Duration.ZERO_DURATION : snapshot.capturedAt().elapsedSince(lastSnapshot.capturedAt());
+        return lastSnapshot == null ? ZERO_DURATION : snapshot.capturedAt().elapsedSince(lastSnapshot.capturedAt());
     }
 
     /**
      * Returns the amount of free memory
      */
-    @KivaKitFormat
+    @FormatProperty
     public Bytes freeMemory()
     {
         return freeMemory;
@@ -134,13 +138,13 @@ public class JavaVirtualMachineHealth
     public Count loggedMessageCount(String messageType)
     {
         var count = this.messageType.get(messageType);
-        return count == null ? Count._0 : Count.count(count);
+        return count == null ? Count._0 : count(count);
     }
 
     /**
      * Returns the maximum memory that Java will attempt to use
      */
-    @KivaKitFormat
+    @FormatProperty
     public Bytes maximumMemory()
     {
         return maximumMemory;
@@ -149,13 +153,13 @@ public class JavaVirtualMachineHealth
     /**
      * Returns the percentage of available memory that is being used
      */
-    @KivaKitFormat
+    @FormatProperty
     public double memoryUse()
     {
         return usedMemory().percentOf(maximumMemory).asZeroToOne();
     }
 
-    @KivaKitFormat
+    @FormatProperty
     public Map<String, Integer> messageType()
     {
         return messageType;
@@ -164,7 +168,7 @@ public class JavaVirtualMachineHealth
     /**
      * Returns the number of processors
      */
-    @KivaKitFormat
+    @FormatProperty
     public Count processors()
     {
         return processors;
@@ -187,7 +191,7 @@ public class JavaVirtualMachineHealth
     /**
      * Returns the total amount of memory available to Java
      */
-    @KivaKitFormat
+    @FormatProperty
     public Bytes totalMemory()
     {
         return totalMemory;
@@ -196,7 +200,7 @@ public class JavaVirtualMachineHealth
     /**
      * Returns the amount of time since monitoring began
      */
-    @KivaKitFormat
+    @FormatProperty
     public Duration upTime()
     {
         return started.elapsedSince();
@@ -209,10 +213,10 @@ public class JavaVirtualMachineHealth
     {
         if (started == null)
         {
-            started = Time.now();
+            started = now();
         }
 
-        var vm = JavaVirtualMachine.javaVirtualMachine();
+        var vm = javaVirtualMachine();
         freeMemory = vm.freeMemory();
         maximumMemory = vm.maximumMemory();
         totalMemory = vm.totalMemory();
@@ -225,7 +229,7 @@ public class JavaVirtualMachineHealth
     /**
      * Returns the amount of memory Java is using
      */
-    @KivaKitIncludeProperty
+    @IncludeProperty
     public Bytes usedMemory()
     {
         return totalMemory().minus(freeMemory());

@@ -1,12 +1,12 @@
 package com.telenav.kivakit.network.http;
 
-import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.testing.UnitTest;
 import org.junit.Test;
 
 import java.util.Calendar;
 import java.util.TimeZone;
 
+import static com.telenav.kivakit.core.messaging.Listener.nullListener;
 import static org.junit.Assert.assertEquals;
 
 public class HttpDateTimeConverterTest extends UnitTest
@@ -14,7 +14,7 @@ public class HttpDateTimeConverterTest extends UnitTest
     @Test
     public void testConvert()
     {
-        var converter = new HttpDateTimeConverter(Listener.nullListener());
+        var converter = new HttpDateTimeConverter(nullListener());
         var time = converter.convert("Mon, 19 Jul 2021 13:05:31 GMT");
 
         var calendar = Calendar.getInstance(TimeZone.getTimeZone("GMT"));

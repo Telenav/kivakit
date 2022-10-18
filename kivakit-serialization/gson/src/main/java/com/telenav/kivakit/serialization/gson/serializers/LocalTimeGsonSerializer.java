@@ -18,14 +18,14 @@
 
 package com.telenav.kivakit.serialization.gson.serializers;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.conversion.core.time.LocalDateTimeConverter;
 import com.telenav.kivakit.core.time.LocalTime;
 import com.telenav.kivakit.serialization.gson.PrimitiveGsonSerializer;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.messaging.Listener.throwingListener;
 import static com.telenav.kivakit.core.time.LocalTime.localTimeZone;
 
@@ -34,9 +34,9 @@ import static com.telenav.kivakit.core.time.LocalTime.localTimeZone;
  *
  * @author jonathanl (shibo)
  */
-@ApiQuality(stability = API_STABLE_EXTENSIBLE,
-            testing = TESTING_NONE,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = UNTESTED,
+             documentation = DOCUMENTATION_COMPLETE)
 public class LocalTimeGsonSerializer extends PrimitiveGsonSerializer<LocalTime, String>
 {
     public LocalTimeGsonSerializer()

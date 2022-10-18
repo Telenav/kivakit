@@ -19,21 +19,20 @@
 package com.telenav.kivakit.internal.tests.core.messaging;
 
 import com.telenav.kivakit.core.collections.map.VariableMap;
-import com.telenav.kivakit.core.language.reflection.property.KivaKitIncludeProperty;
-import com.telenav.kivakit.core.string.KivaKitFormat;
-import com.telenav.kivakit.internal.testing.CoreUnitTest;
+import com.telenav.kivakit.core.string.FormatProperty;
 import com.telenav.kivakit.interfaces.string.StringFormattable;
+import com.telenav.kivakit.internal.testing.CoreUnitTest;
 import org.jetbrains.annotations.NotNull;
-import org.junit.Assert;
 import org.junit.Test;
 
 import static com.telenav.kivakit.core.string.Formatter.format;
+import static org.junit.Assert.assertEquals;
 
 public class MessageFormatterTest extends CoreUnitTest
 {
     private static class Bean implements StringFormattable
     {
-        @KivaKitFormat
+        @FormatProperty
         final
         int x = 5;
 
@@ -47,20 +46,20 @@ public class MessageFormatterTest extends CoreUnitTest
     @Test
     public void test()
     {
-        Assert.assertEquals("$", format("$$"));
-        Assert.assertEquals("$100 worth of ice cream", format("$$100 worth of $", "ice cream"));
-        Assert.assertEquals("x = 9, y = 10", format("x = $, y = $", 9, 10));
-        Assert.assertEquals("5 = hello", format("${a} = ${b}", new VariableMap<>().add("a", 5).add("b", "hello")));
-        Assert.assertEquals("5", format("${debug}", 5));
-        Assert.assertEquals("5", format("$", 5));
-        Assert.assertEquals(" 5", format(" ${debug}", 5));
-        Assert.assertEquals("5 ", format("${debug} ", 5));
-        Assert.assertEquals(" 5 7 ", format(" ${debug} ${debug} ", 5, 7));
-        Assert.assertEquals("MessageFormatterTest", format("${class}", MessageFormatterTest.class));
-        Assert.assertEquals("enabled", format("${flag}", true));
-        Assert.assertEquals("disabled", format("${flag}", false));
-        Assert.assertEquals("[MessageFormatterTest.Bean x = 5]",
+        assertEquals("$", format("$$"));
+        assertEquals("$100 worth of ice cream", format("$$100 worth of $", "ice cream"));
+        assertEquals("x = 9, y = 10", format("x = $, y = $", 9, 10));
+        assertEquals("5 = hello", format("${a} = ${b}", new VariableMap<>().add("a", 5).add("b", "hello")));
+        assertEquals("5", format("${debug}", 5));
+        assertEquals("5", format("$", 5));
+        assertEquals(" 5", format(" ${debug}", 5));
+        assertEquals("5 ", format("${debug} ", 5));
+        assertEquals(" 5 7 ", format(" ${debug} ${debug} ", 5, 7));
+        assertEquals("MessageFormatterTest", format("${class}", MessageFormatterTest.class));
+        assertEquals("enabled", format("${flag}", true));
+        assertEquals("disabled", format("${flag}", false));
+        assertEquals("[MessageFormatterTest.Bean x = 5]",
                 format("${object}", new Bean()).replaceAll("≡\\d+ ", ""));
-        Assert.assertEquals("*5*", format("${debug}", new Bean()));
+        assertEquals("*5*", format("${debug}", new Bean()));
     }
 }

@@ -18,20 +18,20 @@
 
 package com.telenav.kivakit.interfaces.time;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
 
 /**
  * The reason why a thread completed, either it was interrupted, it timed out or it succeeded.
  *
  * @author jonathanl (shibo)
  */
-@ApiQuality(stability = API_STABLE,
-            testing = TESTING_NOT_NEEDED,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = STABLE,
+             testing = TESTING_NOT_NEEDED,
+             documentation = DOCUMENTATION_COMPLETE)
 public enum WakeState
 {
     /** Waiting was interrupted */
@@ -47,7 +47,7 @@ public enum WakeState
     TERMINATED;
 
     /**
-     * @return A wake state with the given thrown exception
+     * Returns a wake state with the given thrown exception
      */
     static WakeState terminated(Throwable thrown)
     {
@@ -60,7 +60,7 @@ public enum WakeState
     private Throwable thrown;
 
     /**
-     * @return True if the operation was completed
+     * Returns true if the operation was completed
      */
     public boolean completed()
     {
@@ -68,7 +68,7 @@ public enum WakeState
     }
 
     /**
-     * @return True if the operation did not complete
+     * Returns true if the operation did not complete
      */
     public boolean failed()
     {
@@ -76,7 +76,7 @@ public enum WakeState
     }
 
     /**
-     * @return Any exception that was thrown
+     * Returns any exception that was thrown
      */
     public Throwable thrown()
     {

@@ -1,21 +1,23 @@
 package com.telenav.kivakit.core.messaging.listeners;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.messaging.Broadcaster;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.messaging.Message;
 import com.telenav.kivakit.core.messaging.Repeater;
 import com.telenav.kivakit.core.messaging.messages.status.Problem;
-import com.telenav.kivakit.core.time.Duration;
 import com.telenav.kivakit.core.time.Frequency;
 import com.telenav.kivakit.core.time.Rate;
 import com.telenav.kivakit.core.time.RateCalculator;
 import com.telenav.kivakit.core.time.Time;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.time.Duration.ONE_MINUTE;
+import static com.telenav.kivakit.core.time.Duration.minutes;
+import static com.telenav.kivakit.core.time.Frequency.every;
+import static com.telenav.kivakit.core.time.Rate.perMinute;
 
 /**
  * Base class for implementing message alarms that trigger when alarming messages are received at a high rate.
@@ -55,16 +57,16 @@ import static com.telenav.kivakit.core.time.Duration.ONE_MINUTE;
  * @author jonathanl (shibo)
  */
 @SuppressWarnings("unused")
-@ApiQuality(stability = API_STABLE_EXTENSIBLE,
-            testing = TESTING_NONE,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = UNTESTED,
+             documentation = DOCUMENTATION_COMPLETE)
 public abstract class MessageAlarm implements Listener
 {
     /** Computes the rate of errors received */
     private final RateCalculator errorRate = new RateCalculator(ONE_MINUTE);
 
     /** The maximum frequency at which this alarm can be triggered */
-    private Frequency maximumTriggerFrequency = Frequency.every(Duration.minutes(30));
+    private Frequency maximumTriggerFrequency = every(minutes(30));
 
     /** The time at which this alarm can next be triggered */
     private Time nextAllowedTriggerTime;
@@ -73,7 +75,7 @@ public abstract class MessageAlarm implements Listener
     private Frequency.Cycle triggerCycle;
 
     /** The maximum rate above which an alarm is triggered */
-    private Rate triggerRate = Rate.perMinute(10);
+    private Rate triggerRate = perMinute(10);
 
     /**
      * Sets the maximum frequency at which this alarm can be triggered
@@ -138,7 +140,7 @@ public abstract class MessageAlarm implements Listener
     }
 
     /**
-     * @return The rate above which this alarm will be triggered
+     * Returns the rate above which this alarm will be triggered
      */
     public Rate triggerRate()
     {
@@ -164,7 +166,7 @@ public abstract class MessageAlarm implements Listener
     protected abstract void onTrigger(Rate rate);
 
     /**
-     * @return The current rate of error messages
+     * Returns the current rate of error messages
      */
     protected Rate rate()
     {
@@ -172,7 +174,7 @@ public abstract class MessageAlarm implements Listener
     }
 
     /**
-     * @return True if it's allowed to trigger the alarm at this time
+     * Returns true if it's allowed to trigger the alarm at this time
      */
     private boolean isTriggerAllowedNow()
     {
@@ -201,7 +203,7 @@ public abstract class MessageAlarm implements Listener
     }
 
     /**
-     * @return The time at which this alarm can next be triggered
+     * Returns the time at which this alarm can next be triggered
      */
     private Time nextAllowedTriggerTime()
     {

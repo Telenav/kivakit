@@ -20,14 +20,15 @@ package com.telenav.kivakit.serialization.kryo.types;
 
 import com.esotericsoftware.kryo.Kryo;
 import com.esotericsoftware.kryo.Serializer;
-import com.telenav.kivakit.annotations.code.ApiQuality;
-import com.telenav.kivakit.core.language.Hash;
-import com.telenav.kivakit.core.string.Strings;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.ApiType.PRIVATE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Audience.AUDIENCE_INTERNAL;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static com.telenav.kivakit.core.language.Hash.hashMany;
+import static com.telenav.kivakit.core.string.Formatter.format;
+import static com.telenav.kivakit.serialization.kryo.types.KryoTypes.KRYO_TYPES_SIZE;
 
 /**
  * <b>Not public API</b>
@@ -38,10 +39,10 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
  *
  * @author jonathanl (shibo)
  */
-@ApiQuality(stability = API_STABLE_EXTENSIBLE,
-            testing = TESTING_NONE,
-            documentation = DOCUMENTATION_COMPLETE,
-            type = PRIVATE)
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = UNTESTED,
+             documentation = DOCUMENTATION_COMPLETE,
+             audience = AUDIENCE_INTERNAL)
 class KryoTypeEntry
 {
     /** The serialized type */
@@ -86,13 +87,13 @@ class KryoTypeEntry
     @Override
     public int hashCode()
     {
-        return Hash.hashMany(type, identifier);
+        return hashMany(type, identifier);
     }
 
     @Override
     public String toString()
     {
-        return Strings.format("${class} ($)", type(), identifier());
+        return format("${class} ($)", type(), identifier());
     }
 
     KryoTypeEntry identifier(int identifier)
@@ -108,7 +109,7 @@ class KryoTypeEntry
 
     boolean isDynamic()
     {
-        return identifier < KryoTypes.KRYO_TYPES_SIZE;
+        return identifier < KRYO_TYPES_SIZE;
     }
 
     void register(Kryo kryo)

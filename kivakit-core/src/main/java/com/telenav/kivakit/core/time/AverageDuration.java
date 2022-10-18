@@ -18,12 +18,12 @@
 
 package com.telenav.kivakit.core.time;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.math.Average;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.time.Duration.milliseconds;
 
 /**
@@ -32,9 +32,9 @@ import static com.telenav.kivakit.core.time.Duration.milliseconds;
  * @author jonathanl (shibo)
  */
 @SuppressWarnings("unused")
-@ApiQuality(stability = API_STABLE_EXTENSIBLE,
-            testing = TESTING_NONE,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = UNTESTED,
+             documentation = DOCUMENTATION_COMPLETE)
 public class AverageDuration extends Average
 {
     /**
@@ -42,7 +42,7 @@ public class AverageDuration extends Average
      */
     public void add(Duration duration)
     {
-        super.add(duration.asMilliseconds());
+        add(duration.asMilliseconds());
     }
 
     /**
@@ -58,7 +58,7 @@ public class AverageDuration extends Average
      */
     public Duration maximumDuration()
     {
-        return milliseconds(super.maximum());
+        return milliseconds(maximum());
     }
 
     /**
@@ -66,7 +66,7 @@ public class AverageDuration extends Average
      */
     public Duration minimumDuration()
     {
-        return milliseconds(super.minimum());
+        return milliseconds(minimum());
     }
 
     /**
@@ -83,6 +83,6 @@ public class AverageDuration extends Average
      */
     public Duration totalDuration()
     {
-        return milliseconds(super.total());
+        return milliseconds(total());
     }
 }

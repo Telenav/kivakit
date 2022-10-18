@@ -1,21 +1,25 @@
 package com.telenav.kivakit.core.io;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.messaging.Listener;
-import com.telenav.kivakit.core.string.Paths;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
 import java.net.URI;
 import java.nio.file.FileSystem;
-import java.nio.file.FileSystems;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_STATIC_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
+import static com.telenav.kivakit.core.string.Paths.pathHead;
+import static java.nio.file.FileSystems.newFileSystem;
 
 /**
  * Convenience functions for working with {@link FileSystem}s:
@@ -29,16 +33,16 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NE
  * @author jonathanl (shibo)
  */
 @SuppressWarnings("unused")
-@ApiQuality(stability = API_STABLE_STATIC_EXTENSIBLE,
-            testing = TESTING_NOT_NEEDED,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = TESTING_NOT_NEEDED,
+             documentation = DOCUMENTATION_COMPLETE)
 public class Nio
 {
     /** Map from URI string to filesystem */
     private static final Map<String, FileSystem> filesystemForUri = new HashMap<>();
 
     /** Closes the given filesystem */
-    public static void close(Listener listener, @NotNull FileSystem filesystem)
+    public static synchronized void close(Listener listener, @NotNull FileSystem filesystem)
     {
         for (var key : new HashSet<>(filesystemForUri.keySet()))
         {
@@ -59,6 +63,27 @@ public class Nio
         }
     }
 
+    public static synchronized List<Path> filesAndFolders(Listener listener, Path path)
+    {
+        var files = new ArrayList<Path>();
+        try
+        {
+            try (var stream = Files.newDirectoryStream(path))
+            {
+                for (var at : stream)
+                {
+                    files.add(at);
+                }
+            }
+        }
+        catch (Exception e)
+        {
+            listener.problem(e, "Unable to get list of files in: $", path);
+        }
+
+        return files;
+    }
+
     /**
      * Gets the filesystem for the given URI
      *
@@ -66,7 +91,7 @@ public class Nio
      * @param uri The URI
      * @return The filesystem
      */
-    public static FileSystem filesystem(Listener listener, URI uri)
+    public static synchronized FileSystem filesystem(Listener listener, URI uri)
     {
         return filesystem(listener, uri, new HashMap<>());
     }
@@ -79,9 +104,9 @@ public class Nio
      * @param variables Variables passed to the filesystem
      * @return The filesystem
      */
-    public static FileSystem filesystem(Listener listener, URI uri, Map<String, String> variables)
+    public static synchronized FileSystem filesystem(Listener listener, URI uri, Map<String, String> variables)
     {
-        var key = Paths.pathHead(uri.toString(), "!/");
+        var key = pathHead(uri.toString(), "!/");
         if (key == null)
         {
             key = uri.toString();
@@ -91,12 +116,12 @@ public class Nio
         {
             try
             {
-                filesystem = FileSystems.newFileSystem(uri, variables);
+                filesystem = newFileSystem(URI.create(key), variables);
                 filesystemForUri.put(key, filesystem);
             }
             catch (Exception e)
             {
-                listener.problem(e, "Unable to create filesystem for: $", uri);
+                listener.problem(e, "Unable to create filesystem: $", key);
                 return null;
             }
         }

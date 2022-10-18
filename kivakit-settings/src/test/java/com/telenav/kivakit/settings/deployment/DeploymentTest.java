@@ -18,53 +18,54 @@
 
 package com.telenav.kivakit.settings.deployment;
 
-import com.telenav.kivakit.core.messaging.Listener;
-import com.telenav.kivakit.settings.SettingsRegistry;
-import com.telenav.kivakit.testing.UnitTest;
-import com.telenav.kivakit.core.time.Duration;
 import com.telenav.kivakit.settings.Deployment;
 import com.telenav.kivakit.settings.ServerSettings;
-import com.telenav.kivakit.settings.SettingsRegistryTrait;
+import com.telenav.kivakit.settings.SettingsTrait;
+import com.telenav.kivakit.testing.UnitTest;
 import org.junit.Test;
 
-public class DeploymentTest extends UnitTest implements SettingsRegistryTrait
+import static com.telenav.kivakit.core.messaging.Listener.throwingListener;
+import static com.telenav.kivakit.core.time.Duration.ONE_MINUTE;
+import static com.telenav.kivakit.settings.SettingsRegistry.settingsFor;
+
+public class DeploymentTest extends UnitTest implements SettingsTrait
 {
-    public static class China extends Deployment implements SettingsRegistryTrait
+    public static class China extends Deployment implements SettingsTrait
     {
         public China()
         {
-            super(Listener.throwingListener(),"china", "test china deployment");
+            super(throwingListener(),"china", "test china deployment");
 
             var settings = new ServerSettings();
-            settings.timeout(Duration.ONE_MINUTE);
+            settings.timeout(ONE_MINUTE);
             settings.port(9090);
 
             registerSettings(settings);
         }
     }
 
-    public static class Development extends Deployment implements SettingsRegistryTrait
+    public static class Development extends Deployment implements SettingsTrait
     {
         public Development()
         {
-            super(Listener.throwingListener(),"development", "test development deployment");
+            super(throwingListener(),"development", "test development deployment");
 
             var settings = new ServerSettings();
-            settings.timeout(Duration.ONE_MINUTE);
+            settings.timeout(ONE_MINUTE);
             settings.port(8080);
 
             registerSettings(settings);
         }
     }
 
-    public static class Production extends Deployment implements SettingsRegistryTrait
+    public static class Production extends Deployment implements SettingsTrait
     {
         public Production()
         {
-            super(Listener.throwingListener(),"production", "test production deployment");
+            super(throwingListener(),"production", "test production deployment");
 
             var settings = new ServerSettings();
-            settings.timeout(Duration.ONE_MINUTE);
+            settings.timeout(ONE_MINUTE);
             settings.port(80);
 
             registerSettings(settings);
@@ -76,9 +77,9 @@ public class DeploymentTest extends UnitTest implements SettingsRegistryTrait
     {
         registerSettingsIn(new China());
 
-        var settings = SettingsRegistry.settingsRegistryFor(this).requireSettings(ServerSettings.class);
+        var settings = settingsFor(this).requireSettings(ServerSettings.class);
         ensureEqual(settings.port(), 9090);
-        ensureEqual(settings.timeout(), Duration.ONE_MINUTE);
+        ensureEqual(settings.timeout(), ONE_MINUTE);
     }
 
     @Test
@@ -86,9 +87,9 @@ public class DeploymentTest extends UnitTest implements SettingsRegistryTrait
     {
         registerSettingsIn(new Development());
 
-        var settings = SettingsRegistry.settingsRegistryFor(this).requireSettings(ServerSettings.class);
+        var settings = settingsFor(this).requireSettings(ServerSettings.class);
         ensureEqual(8080, settings.port());
-        ensureEqual(Duration.ONE_MINUTE, settings.timeout());
+        ensureEqual(ONE_MINUTE, settings.timeout());
     }
 
     @Test
@@ -96,8 +97,8 @@ public class DeploymentTest extends UnitTest implements SettingsRegistryTrait
     {
         registerSettingsIn(new Production());
 
-        var settings = SettingsRegistry.settingsRegistryFor(this).requireSettings(ServerSettings.class);
+        var settings = settingsFor(this).requireSettings(ServerSettings.class);
         ensureEqual(80, settings.port());
-        ensureEqual(Duration.ONE_MINUTE, settings.timeout());
+        ensureEqual(ONE_MINUTE, settings.timeout());
     }
 }

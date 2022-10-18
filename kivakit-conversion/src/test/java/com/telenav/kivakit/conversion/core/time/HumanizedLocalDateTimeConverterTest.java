@@ -19,10 +19,10 @@
 package com.telenav.kivakit.conversion.core.time;
 
 import com.telenav.kivakit.internal.testing.CoreUnitTest;
-import com.telenav.kivakit.core.time.LocalTime;
 import org.junit.Test;
 
 import static com.telenav.kivakit.core.time.Hour.hourOfDay;
+import static com.telenav.kivakit.core.time.LocalTime.now;
 import static com.telenav.kivakit.core.time.Meridiem.PM;
 import static com.telenav.kivakit.core.time.Minute.minute;
 
@@ -33,7 +33,7 @@ public class HumanizedLocalDateTimeConverterTest extends CoreUnitTest
     {
         var converter = new HumanizedLocalDateTimeConverter(this);
 
-        var now = LocalTime.now();
+        var now = now();
 
         var expected = now.startOfDay()
                 .withHourOfDay(hourOfDay(6, PM))

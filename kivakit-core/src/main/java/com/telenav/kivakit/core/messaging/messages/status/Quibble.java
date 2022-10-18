@@ -18,16 +18,18 @@
 
 package com.telenav.kivakit.core.messaging.messages.status;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
-import com.telenav.kivakit.core.messaging.Message;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramMessageType;
 import com.telenav.kivakit.core.messaging.messages.OperationStatusMessage;
 import com.telenav.kivakit.core.messaging.messages.Severity;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
+import static com.telenav.kivakit.core.messaging.Message.Status.*;
+import static com.telenav.kivakit.core.messaging.Message.escapeMessageText;
+import static com.telenav.kivakit.core.messaging.messages.Severity.*;
 
 /**
  * A notice that something trivial has gone wrong.
@@ -52,9 +54,9 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NE
  *  @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramMessageType.class)
-@ApiQuality(stability = API_STABLE,
-            testing = TESTING_NOT_NEEDED,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = STABLE,
+             testing = TESTING_NOT_NEEDED,
+             documentation = DOCUMENTATION_COMPLETE)
 public class Quibble extends OperationStatusMessage
 {
     public Quibble(String message, Object... arguments)
@@ -65,7 +67,7 @@ public class Quibble extends OperationStatusMessage
 
     public Quibble(Throwable cause, String message, Object... arguments)
     {
-        super(message + ": " + Message.escapeMessageText(cause.getMessage()));
+        super(message + ": " + escapeMessageText(cause.getMessage()));
         cause(cause);
         arguments(arguments);
     }
@@ -80,7 +82,7 @@ public class Quibble extends OperationStatusMessage
     @Override
     public Severity severity()
     {
-        return Severity.LOW;
+        return LOW;
     }
 
     /**
@@ -89,6 +91,6 @@ public class Quibble extends OperationStatusMessage
     @Override
     public Status status()
     {
-        return Status.COMPLETED;
+        return COMPLETED;
     }
 }

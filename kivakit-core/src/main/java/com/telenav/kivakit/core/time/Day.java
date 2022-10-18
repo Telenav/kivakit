@@ -1,14 +1,14 @@
 package com.telenav.kivakit.core.time;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
-import com.telenav.kivakit.core.language.primitive.Ints;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.interfaces.time.Nanoseconds;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.ensure.Ensure.ensure;
 import static com.telenav.kivakit.core.ensure.Ensure.unsupported;
+import static com.telenav.kivakit.core.language.primitive.Ints.intIsBetweenInclusive;
 import static com.telenav.kivakit.core.time.BaseTime.Topology.CYCLIC;
 import static com.telenav.kivakit.core.time.BaseTime.Topology.LINEAR;
 import static com.telenav.kivakit.core.time.Day.Type.DAY;
@@ -25,16 +25,16 @@ import static java.lang.Integer.MAX_VALUE;
  * @author jonathanl (shibo)
  */
 @SuppressWarnings("unused")
-@ApiQuality(stability = API_STABLE_EXTENSIBLE,
-            testing = TESTING_NONE,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = UNTESTED,
+             documentation = DOCUMENTATION_COMPLETE)
 public class Day extends BaseTime<Day>
 {
     /** The number of nanoseconds per day */
     static final Nanoseconds nanosecondsPerDay = nanosecondsPerHour.times(24);
 
     /**
-     * @return An absolute day from 0 to n
+     * Returns an absolute day from 0 to n
      */
     public static Day day(int day)
     {
@@ -42,7 +42,7 @@ public class Day extends BaseTime<Day>
     }
 
     /**
-     * @return A day since the start of a month, from 1 to 31
+     * Returns a day since the start of a month, from 1 to 31
      */
     public static Day dayOfMonth(int day)
     {
@@ -50,7 +50,7 @@ public class Day extends BaseTime<Day>
     }
 
     /**
-     * @return A day since the start of the UNIX epoch, from 0 to n
+     * Returns a day since the start of the UNIX epoch, from 0 to n
      */
     public static Day dayOfUnixEpoch(int day)
     {
@@ -58,7 +58,7 @@ public class Day extends BaseTime<Day>
     }
 
     /**
-     * @return A day since the start of the year, from 0 to 365 (in leap years)
+     * Returns a day since the start of the year, from 0 to 365 (in leap years)
      */
     public static Day dayOfYear(int day)
     {
@@ -66,7 +66,7 @@ public class Day extends BaseTime<Day>
     }
 
     /**
-     * @return A day since the start of the week as an ISO ordinal
+     * Returns a day since the start of the week as an ISO ordinal
      */
     public static Day isoDayOfWeek(int day)
     {
@@ -74,7 +74,7 @@ public class Day extends BaseTime<Day>
     }
 
     /**
-     * @return A day since the start of the week as a Java ordinal
+     * Returns a day since the start of the week as a Java ordinal
      */
     public static Day javaDayOfWeek(int day)
     {
@@ -123,7 +123,7 @@ public class Day extends BaseTime<Day>
     }
 
     /**
-     * @return This day as a day of the week if it is a day of the week, otherwise, an exception will be thrown.
+     * Returns this day as a day of the week if it is a day of the week, otherwise, an exception will be thrown.
      */
     public DayOfWeek asDayOfWeek()
     {
@@ -133,7 +133,7 @@ public class Day extends BaseTime<Day>
     }
 
     /**
-     * @return This day as a zero-based index
+     * Returns this day as a zero-based index
      */
     public int asIndex()
     {
@@ -167,7 +167,7 @@ public class Day extends BaseTime<Day>
     }
 
     /**
-     * @return False if this day is invalid, true if it might be valid. If true is returned, the day might still be
+     * Returns false if this day is invalid, true if it might be valid. If true is returned, the day might still be
      * invalid in some context, for example, the 31st day of the month doesn't exist for all months.
      */
     public boolean isValid()
@@ -178,16 +178,16 @@ public class Day extends BaseTime<Day>
                 return asUnits() >= 0;
 
             case DAY_OF_MONTH:
-                return Ints.isBetweenInclusive(asUnits(), 1, 31);
+                return intIsBetweenInclusive(asUnits(), 1, 31);
 
             case DAY_OF_WEEK:
-                return Ints.isBetweenInclusive(asUnits(), 0, 6);
+                return intIsBetweenInclusive(asUnits(), 0, 6);
 
             case DAY_OF_YEAR:
-                return Ints.isBetweenInclusive(asUnits(), 0, 365);
+                return intIsBetweenInclusive(asUnits(), 0, 365);
 
             case DAY_OF_UNIX_EPOCH:
-                return Ints.isBetweenInclusive(asUnits(), 0, MAX_VALUE);
+                return intIsBetweenInclusive(asUnits(), 0, MAX_VALUE);
 
             default:
                 return unsupported();

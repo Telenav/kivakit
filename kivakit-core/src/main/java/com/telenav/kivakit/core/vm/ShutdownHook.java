@@ -18,11 +18,11 @@
 
 package com.telenav.kivakit.core.vm;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramLanguage;
 import com.telenav.kivakit.core.logging.Logger;
 import com.telenav.kivakit.core.logging.loggers.ConsoleLogger;
-import com.telenav.kivakit.core.string.Strings;
+import com.telenav.kivakit.core.string.Formatter;
 import com.telenav.kivakit.core.thread.KivaKitThread;
 import com.telenav.kivakit.core.time.Duration;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
@@ -30,10 +30,11 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.PriorityQueue;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_STATIC_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.thread.KivaKitThread.State.EXITED;
+import static com.telenav.kivakit.core.time.Duration.minutes;
 import static com.telenav.kivakit.core.vm.ShutdownHook.Order.MIDDLE;
 import static com.telenav.kivakit.interfaces.time.WakeState.TIMED_OUT;
 
@@ -41,7 +42,7 @@ import static com.telenav.kivakit.interfaces.time.WakeState.TIMED_OUT;
  * Adds <i>ordered</i> execution of shutdown hooks to the functionality provided by
  * {@link Runtime#addShutdownHook(Thread)}. When the virtual machine shuts down, the hooks registered with
  * {@link ShutdownHook} will be called sequentially according to the ordering provided when the hooks were registered
- * with {@link #register(String, Order, Duration, Runnable)}.
+ * with {@link #registerShutdownHook(String, Order, Duration, Runnable)}.
  *
  * <p>
  * Hooks can request that they be run {@link Order#FIRST}, {@link Order#MIDDLE} or {@link Order#LAST}. The order of
@@ -59,9 +60,9 @@ import static com.telenav.kivakit.interfaces.time.WakeState.TIMED_OUT;
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramLanguage.class)
-@ApiQuality(stability = API_STABLE_STATIC_EXTENSIBLE,
-            testing = TESTING_NONE,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = UNTESTED,
+             documentation = DOCUMENTATION_COMPLETE)
 public class ShutdownHook implements Comparable<ShutdownHook>
 {
     /** We use a console logger here because it is never involved in shutdown processes */
@@ -106,19 +107,19 @@ public class ShutdownHook implements Comparable<ShutdownHook>
         }, "KivaKit-Shutdown"));
     }
 
-    public static void register(String name, Order order, Runnable code)
+    public static void registerShutdownHook(String name, Order order, Runnable code)
     {
-        register(name, order, Duration.minutes(1), code);
+        registerShutdownHook(name, order, minutes(1), code);
     }
 
-    public static void register(String name, Duration maximumWait, Runnable code)
+    public static void registerShutdownHook(String name, Duration maximumWait, Runnable code)
     {
-        register(name, MIDDLE, maximumWait, code);
+        registerShutdownHook(name, MIDDLE, maximumWait, code);
     }
 
-    public static void register(String name, Runnable code)
+    public static void registerShutdownHook(String name, Runnable code)
     {
-        register(name, MIDDLE, code);
+        registerShutdownHook(name, MIDDLE, code);
     }
 
     /**
@@ -130,7 +131,7 @@ public class ShutdownHook implements Comparable<ShutdownHook>
      * @param maximumWait The maximum time to wait for the hook's code to complete
      * @param code The shutdown hook code to run when the VM shuts down.
      */
-    public static void register(String name, Order order, Duration maximumWait, Runnable code)
+    public static void registerShutdownHook(String name, Order order, Duration maximumWait, Runnable code)
     {
         synchronized (hooks())
         {
@@ -190,7 +191,7 @@ public class ShutdownHook implements Comparable<ShutdownHook>
     @Override
     public String toString()
     {
-        return Strings.format("[${class} name = $, order = $]", getClass(), name, order);
+        return Formatter.format("[${class} name = $, order = $]", getClass(), name, order);
     }
 
     private static synchronized PriorityQueue<ShutdownHook> hooks()

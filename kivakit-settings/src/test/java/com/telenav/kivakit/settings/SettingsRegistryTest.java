@@ -17,7 +17,6 @@ package com.telenav.kivakit.settings;///////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 import com.telenav.kivakit.core.registry.InstanceIdentifier;
-import com.telenav.kivakit.core.time.Duration;
 import com.telenav.kivakit.resource.packages.PackageTrait;
 import com.telenav.kivakit.serialization.gson.GsonSerializationProject;
 import com.telenav.kivakit.serialization.gson.factory.KivaKitCoreGsonFactory;
@@ -30,8 +29,8 @@ import org.junit.Test;
 
 import static com.telenav.kivakit.core.registry.InstanceIdentifier.instanceIdentifier;
 import static com.telenav.kivakit.core.time.Duration.ONE_MINUTE;
-import static com.telenav.kivakit.settings.SettingsRegistry.settingsRegistryFor;
-import static com.telenav.kivakit.settings.SettingsRegistryTest.WhichServer.SERVER1;
+import static com.telenav.kivakit.core.time.Duration.seconds;
+import static com.telenav.kivakit.settings.SettingsRegistry.settingsFor;
 
 public class SettingsRegistryTest extends UnitTest implements PackageTrait
 {
@@ -65,13 +64,13 @@ public class SettingsRegistryTest extends UnitTest implements PackageTrait
             server.port(9000);
 
             // and adds it to global configuration set
-            settingsRegistryFor(this).registerSettings(server);
+            settingsFor(this).registerSettings(server);
         }
 
         // Get configuration
         {
             // Client code, possibly in a library class, later retrieves the configuration
-            var server = settingsRegistryFor(this).requireSettings(ServerSettings.class);
+            var server = settingsFor(this).requireSettings(ServerSettings.class);
             ensureEqual(ONE_MINUTE, server.timeout());
             ensureEqual(9000, server.port());
         }
@@ -92,7 +91,7 @@ public class SettingsRegistryTest extends UnitTest implements PackageTrait
         {
             // Client code can then retrieve both settings
             var server1 = settings.requireSettings(ClientSettings.class, WhichServer.SERVER1);
-            ensureEqual(Duration.seconds(6), server1.timeout());
+            ensureEqual(seconds(6), server1.timeout());
             ensureEqual(9999, server1.port());
         }
     }
@@ -124,11 +123,11 @@ public class SettingsRegistryTest extends UnitTest implements PackageTrait
         // Get settings
         {
             // Client code can then retrieve both settings
-            var server1 = settingsRegistryFor(this).requireSettings(ServerSettings.class, SERVER1);
+            var server1 = settingsFor(this).requireSettings(ServerSettings.class, SERVER1);
             ensureEqual(ONE_MINUTE, server1.timeout());
             ensureEqual(8080, server1.port());
 
-            var server2 = settingsRegistryFor(this).requireSettings(ServerSettings.class, SERVER2);
+            var server2 = settingsFor(this).requireSettings(ServerSettings.class, SERVER2);
             ensureEqual(ONE_MINUTE, server2.timeout());
             ensureEqual(80, server2.port());
         }
@@ -140,13 +139,13 @@ public class SettingsRegistryTest extends UnitTest implements PackageTrait
         // Configure
         {
             // Add all properties files in this package to the global set
-            globalSettings().registerSettingsIn(new ResourceFolderSettingsStore(this, packageForThis()));
+            globalSettings().registerSettingsIn(packageForThis());
         }
 
         // Get settings
         {
             // Client code, possibly in a library class, later retrieves the settings
-            var serverSettings = settingsRegistryFor(this).requireSettings(ServerSettings.class);
+            var serverSettings = settingsFor(this).requireSettings(ServerSettings.class);
             ensureEqual(ONE_MINUTE, serverSettings.timeout());
             ensureEqual(7000, serverSettings.port());
         }
@@ -155,7 +154,7 @@ public class SettingsRegistryTest extends UnitTest implements PackageTrait
     @NotNull
     private SettingsRegistry globalSettings()
     {
-        var global = settingsRegistryFor(this);
+        var global = settingsFor(this);
         global.unload();
         global.clearListeners();
         global.addListener(this);

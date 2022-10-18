@@ -1,13 +1,13 @@
 package com.telenav.kivakit.core.time;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
-import com.telenav.kivakit.core.language.primitive.Ints;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.interfaces.time.Nanoseconds;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.ensure.Ensure.ensure;
+import static com.telenav.kivakit.core.language.primitive.Ints.intIsBetweenInclusive;
 import static com.telenav.kivakit.core.time.BaseTime.Topology.CYCLIC;
 import static com.telenav.kivakit.core.time.Second.nanosecondsPerSecond;
 
@@ -17,16 +17,16 @@ import static com.telenav.kivakit.core.time.Second.nanosecondsPerSecond;
  * @author jonathanl (shibo)
  */
 @SuppressWarnings("unused")
-@ApiQuality(stability = API_STABLE_EXTENSIBLE,
-            testing = TESTING_NONE,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = UNTESTED,
+             documentation = DOCUMENTATION_COMPLETE)
 public class Minute extends BaseTime<Minute>
 {
     static final Nanoseconds nanosecondsPerMinute = nanosecondsPerSecond.times(60);
 
     public static Minute minute(int minute)
     {
-        ensure(Ints.isBetweenInclusive(minute, 0, 59));
+        ensure(intIsBetweenInclusive(minute, 0, 59));
 
         return new Minute(minute);
     }

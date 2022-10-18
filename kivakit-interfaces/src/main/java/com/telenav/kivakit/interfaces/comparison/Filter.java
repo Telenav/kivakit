@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.interfaces.comparison;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.interfaces.internal.lexakai.DiagramComparison;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import org.jetbrains.annotations.NotNull;
@@ -26,9 +26,9 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Collection;
 import java.util.function.Predicate;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_DEFAULT_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 
 /**
  * A filter which matches values allowing for boolean expressions. All {@link Filter}s are {@link Matcher}s and
@@ -63,13 +63,13 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
  */
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramComparison.class)
-@ApiQuality(stability = API_STABLE_DEFAULT_EXTENSIBLE,
-            testing = TESTING_NONE,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = UNTESTED,
+             documentation = DOCUMENTATION_COMPLETE)
 public interface Filter<Value> extends Matcher<Value>
 {
     /**
-     * @return A filter that accepts value matching the given predicate
+     * Returns a filter that accepts value matching the given predicate
      * <p>
      * Note: All {@link Matcher}s and {@link Filter}s are {@link Predicate}s).
      * </p>
@@ -89,7 +89,7 @@ public interface Filter<Value> extends Matcher<Value>
     }
 
     /**
-     * @return A filter that accepts all values
+     * Returns a filter that accepts all values
      */
     static <T> Filter<T> acceptAll()
     {
@@ -97,7 +97,7 @@ public interface Filter<Value> extends Matcher<Value>
     }
 
     /**
-     * @return A filter that accepts no values
+     * Returns a filter that accepts no values
      */
     static <T> Filter<T> acceptNone()
     {
@@ -112,7 +112,7 @@ public interface Filter<Value> extends Matcher<Value>
     boolean accepts(Value value);
 
     /**
-     * @return A filter that accepts a value if this filter and the given predicate both accept the value.
+     * Returns a filter that accepts a value if this filter and the given predicate both accept the value.
      * <p>
      * Note: All {@link Matcher}s and {@link Filter}s are {@link Predicate}s).
      * </p>
@@ -124,7 +124,7 @@ public interface Filter<Value> extends Matcher<Value>
     }
 
     /**
-     * @return A filter that excludes values matched by the given predicate.
+     * Returns a filter that excludes values matched by the given predicate.
      * <p>
      * Note: All {@link Matcher}s and {@link Filter}s are {@link Predicate}s).
      * </p>
@@ -135,7 +135,7 @@ public interface Filter<Value> extends Matcher<Value>
     }
 
     /**
-     * @return A filter that includes values matched by this filter or the given predicate.
+     * Returns a filter that includes values matched by this filter or the given predicate.
      * <p>
      * Note: All {@link Matcher}s and {@link Filter}s are {@link Predicate}s).
      * </p>
@@ -152,7 +152,7 @@ public interface Filter<Value> extends Matcher<Value>
     }
 
     /**
-     * @return A filter that matches values that this filter does not match.
+     * Returns a filter that matches values that this filter does not match.
      */
     default Filter<Value> not()
     {
@@ -160,7 +160,7 @@ public interface Filter<Value> extends Matcher<Value>
     }
 
     /**
-     * @return A filter that includes values matched by this filter or the given predicate.
+     * Returns a filter that includes values matched by this filter or the given predicate.
      * <p>
      * Note: All {@link Matcher}s and {@link Filter}s are {@link Predicate}s).
      * </p>

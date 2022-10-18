@@ -18,9 +18,8 @@
 
 package com.telenav.kivakit.core.language.reflection.property;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramReflection;
-import com.telenav.kivakit.core.language.Hash;
 import com.telenav.kivakit.core.language.reflection.Field;
 import com.telenav.kivakit.core.language.reflection.Member;
 import com.telenav.kivakit.core.language.reflection.Method;
@@ -35,21 +34,44 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.function.Supplier;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.ensure.Ensure.ensure;
+import static com.telenav.kivakit.core.language.Hash.hashMany;
 
 /**
- * A property with a getter and/or setter
+ * A property with a getter and/or setter.
+ *
+ * <p><b>Access</b></p>
+ *
+ * <ul>
+ *     <li>{@link #get(Object)}</li>
+ *     <li>{@link #set(Object, Supplier)}</li>
+ * </ul>
+ *
+ * <p><b>Properties</b></p>
+ *
+ * <ul>
+ *     <li>{@link #field()}</li>
+ *     <li>{@link #getter()}</li>
+ *     <li>{@link #getter(Getter)}</li>
+ *     <li>{@link #isOptional()}</li>
+ *     <li>{@link #member()}</li>
+ *     <li>{@link #method()}</li>
+ *     <li>{@link #name()}</li>
+ *     <li>{@link #setter()}</li>
+ *     <li>{@link #setter(Setter)}</li>
+ *     <li>{@link #parentType()}</li>
+ * </ul>
  *
  * @author jonathanl (shibo)
  */
 @SuppressWarnings({ "DuplicatedCode", "unused" })
 @UmlClassDiagram(diagram = DiagramReflection.class)
-@ApiQuality(stability = API_STABLE_EXTENSIBLE,
-            testing = TESTING_NONE,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = UNTESTED,
+             documentation = DOCUMENTATION_COMPLETE)
 public class Property implements Named, Comparable<Property>
 {
     /** The property getter */
@@ -152,15 +174,15 @@ public class Property implements Named, Comparable<Property>
     @Override
     public int hashCode()
     {
-        return Hash.hashMany(name);
+        return hashMany(name);
     }
 
     /**
-     * Returns true if this property is optional because it was annotated with {@link KivaKitOptionalProperty}
+     * Returns true if this property is optional because it was annotated with {@link OptionalProperty}
      */
     public boolean isOptional()
     {
-        return setter.hasAnnotation(KivaKitOptionalProperty.class);
+        return setter.hasAnnotation(OptionalProperty.class);
     }
 
     /**
@@ -196,6 +218,22 @@ public class Property implements Named, Comparable<Property>
     public String name()
     {
         return name;
+    }
+
+    /**
+     * Returns the type for which this property is defined
+     */
+    public Type<?> parentType()
+    {
+        if (getter != null)
+        {
+            return getter.type();
+        }
+        if (setter != null)
+        {
+            return setter.type();
+        }
+        return null;
     }
 
     /**
@@ -246,22 +284,6 @@ public class Property implements Named, Comparable<Property>
     @Override
     public String toString()
     {
-        return "[Property name = " + name() + ", type = " + type().simpleName() + "]";
-    }
-
-    /**
-     * Returns the type for which this property is defined
-     */
-    public Type<?> type()
-    {
-        if (getter != null)
-        {
-            return getter.type();
-        }
-        if (setter != null)
-        {
-            return setter.type();
-        }
-        return null;
+        return "[Property name = " + name() + ", type = " + parentType().simpleName() + "]";
     }
 }

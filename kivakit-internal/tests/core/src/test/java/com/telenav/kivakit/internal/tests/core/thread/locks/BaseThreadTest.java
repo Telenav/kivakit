@@ -21,6 +21,8 @@ import com.telenav.kivakit.internal.testing.CoreUnitTest;
 import com.telenav.kivakit.core.time.Duration;
 import com.telenav.kivakit.core.time.Time;
 
+import static com.telenav.kivakit.core.time.Duration.ONE_SECOND;
+
 /**
  * @author jonathanl (shibo)
  */
@@ -31,7 +33,7 @@ public abstract class BaseThreadTest extends CoreUnitTest
     public void run()
     {
         var retries = 0;
-        var pause = Duration.ONE_SECOND;
+        var pause = ONE_SECOND;
         while (true)
         {
             start = Time.now();
@@ -52,7 +54,7 @@ public abstract class BaseThreadTest extends CoreUnitTest
         }
     }
 
-    protected void accurateSleep(Duration minimum, final Duration maximum)
+    protected void accurateSleep(Duration minimum, Duration maximum)
     {
         var start = Time.now();
         minimum.sleep();
@@ -64,7 +66,7 @@ public abstract class BaseThreadTest extends CoreUnitTest
         ensureElapsedGreaterThan(start, minimum);
     }
 
-    protected void ensureElapsedGreaterThan(Time start, final Duration minimum)
+    protected void ensureElapsedGreaterThan(Time start, Duration minimum)
     {
         ensure(start.elapsedSince().isGreaterThan(minimum));
     }
@@ -74,7 +76,7 @@ public abstract class BaseThreadTest extends CoreUnitTest
         ensureElapsedLessThan(start, maximum);
     }
 
-    protected void ensureElapsedLessThan(Time start, final Duration maximum)
+    protected void ensureElapsedLessThan(Time start, Duration maximum)
     {
         ensure(start.elapsedSince().isLessThan(maximum));
     }

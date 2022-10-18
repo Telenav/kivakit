@@ -18,15 +18,16 @@
 
 package com.telenav.kivakit.core.logging.logs.text.formatters;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramLogs;
 import com.telenav.kivakit.core.logging.LogEntry;
 import com.telenav.kivakit.core.messaging.MessageFormat;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static com.telenav.kivakit.core.logging.logs.text.formatters.BaseColumnarFormatter.ColumnLayout.*;
 
 /**
  * Formats log entries into flexible delimited columns.
@@ -35,19 +36,19 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
  */
 @SuppressWarnings("DuplicatedCode")
 @UmlClassDiagram(diagram = DiagramLogs.class)
-@ApiQuality(stability = API_STABLE,
-            testing = TESTING_NONE,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = STABLE,
+             testing = UNTESTED,
+             documentation = DOCUMENTATION_COMPLETE)
 public class NarrowLogFormatter extends BaseColumnarFormatter
 {
     /** The code context column */
-    private final Column contextColumn = new Column(12, 12, ColumnLayout.CLIP_RIGHT);
+    private final Column contextColumn = new Column(12, 12, CLIP_RIGHT);
 
     /** The message column */
-    private final Column messageColumn = new Column(128, 128, ColumnLayout.WRAP);
+    private final Column messageColumn = new Column(128, 128, WRAP);
 
     /** The message type column */
-    private final Column typeColumn = new Column(4, 4, ColumnLayout.CLIP_RIGHT);
+    private final Column typeColumn = new Column(4, 4, CLIP_RIGHT);
 
     /**
      * {@inheritDoc}

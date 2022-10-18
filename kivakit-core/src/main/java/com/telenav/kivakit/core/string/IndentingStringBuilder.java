@@ -18,18 +18,23 @@
 
 package com.telenav.kivakit.core.string;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.collections.list.StringList;
-import com.telenav.kivakit.core.ensure.Ensure;
 import com.telenav.kivakit.core.internal.lexakai.DiagramString;
 import com.telenav.kivakit.core.value.count.Count;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static com.telenav.kivakit.core.ensure.Ensure.ensure;
+import static com.telenav.kivakit.core.string.AsciiArt.repeat;
+import static com.telenav.kivakit.core.string.IndentingStringBuilder.Indentation.indentation;
 import static com.telenav.kivakit.core.string.IndentingStringBuilder.Style.HTML;
 import static com.telenav.kivakit.core.string.IndentingStringBuilder.Style.TEXT;
+import static com.telenav.kivakit.core.string.Join.join;
+import static com.telenav.kivakit.core.string.Split.split;
+import static com.telenav.kivakit.core.value.count.Count.count;
 
 /**
  * Builds a string with indentation levels. The constructor {@link #IndentingStringBuilder(Style, Indentation)} takes
@@ -42,9 +47,9 @@ import static com.telenav.kivakit.core.string.IndentingStringBuilder.Style.TEXT;
  */
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramString.class)
-@ApiQuality(stability = API_STABLE_EXTENSIBLE,
-            testing = TESTING_NONE,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = UNTESTED,
+             documentation = DOCUMENTATION_COMPLETE)
 public class IndentingStringBuilder
 {
     /**
@@ -98,7 +103,7 @@ public class IndentingStringBuilder
 
     public IndentingStringBuilder()
     {
-        this(TEXT, Indentation.indentation(4));
+        this(TEXT, indentation(4));
     }
 
     public IndentingStringBuilder(Indentation indentation)
@@ -120,7 +125,7 @@ public class IndentingStringBuilder
      */
     public IndentingStringBuilder appendLine(String line)
     {
-        lines.add(AsciiArt.repeat(level * indentation.asInt(), " ") + line);
+        lines.add(repeat(level * indentation.asInt(), " ") + line);
         return this;
     }
 
@@ -129,7 +134,7 @@ public class IndentingStringBuilder
      */
     public IndentingStringBuilder appendLines(String lines)
     {
-        for (var line : Split.split(lines, "\n"))
+        for (var line : split(lines, "\n"))
         {
             appendLine(line);
         }
@@ -171,7 +176,7 @@ public class IndentingStringBuilder
      */
     public IndentingStringBuilder level(int level)
     {
-        Ensure.ensure(level >= 0);
+        ensure(level >= 0);
         this.level = level;
         return this;
     }
@@ -181,7 +186,7 @@ public class IndentingStringBuilder
      */
     public Count lineCount()
     {
-        return Count.count(lines);
+        return count(lines);
     }
 
     /**
@@ -190,18 +195,6 @@ public class IndentingStringBuilder
     public StringList lines()
     {
         return lines;
-    }
-
-    /**
-     * Numbers the indented lines
-     */
-    public IndentingStringBuilder numbered()
-    {
-        for (int index = 0; index < lines.size(); index++)
-        {
-            lines.set(index, (index + 1) + ". " + lines.get(index));
-        }
-        return this;
     }
 
     /**
@@ -219,7 +212,7 @@ public class IndentingStringBuilder
     @Override
     public String toString()
     {
-        return Join.join(lines, style == HTML ? "<br/>" : "\n");
+        return join(lines, style == HTML ? "<br/>" : "\n");
     }
 
     /**
@@ -228,7 +221,7 @@ public class IndentingStringBuilder
     @SuppressWarnings("SpellCheckingInspection")
     public IndentingStringBuilder unindent()
     {
-        Ensure.ensure(level >= 1);
+        ensure(level >= 1);
         level--;
         return this;
     }

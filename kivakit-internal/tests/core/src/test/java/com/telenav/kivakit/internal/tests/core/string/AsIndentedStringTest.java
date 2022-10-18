@@ -18,11 +18,13 @@
 
 package com.telenav.kivakit.internal.tests.core.string;
 
-import com.telenav.kivakit.core.language.reflection.property.KivaKitIncludeProperty;import com.telenav.kivakit.core.string.AsIndentedString;
+import com.telenav.kivakit.core.language.reflection.property.IncludeProperty;import com.telenav.kivakit.core.string.AsIndentedString;
 import com.telenav.kivakit.core.string.ObjectIndenter;
 import com.telenav.kivakit.internal.testing.CoreUnitTest;
 import com.telenav.kivakit.core.value.count.Maximum;
 import org.junit.Test;
+
+import static com.telenav.kivakit.interfaces.string.StringFormattable.Format.TEXT;
 
 /**
  * @author jonathanl (shibo)
@@ -32,10 +34,10 @@ public class AsIndentedStringTest extends CoreUnitTest implements AsIndentedStri
 {
     static class Bar implements AsIndentedString
     {
-        @KivaKitIncludeProperty
+        @IncludeProperty
         private final int y = 5;
 
-        @KivaKitIncludeProperty
+        @IncludeProperty
         private final int z = 7;
 
         @Override
@@ -47,13 +49,13 @@ public class AsIndentedStringTest extends CoreUnitTest implements AsIndentedStri
 
     static class Foo implements AsIndentedString
     {
-        @KivaKitIncludeProperty
+        @IncludeProperty
         private final Bar bar = new Bar();
 
-        @KivaKitIncludeProperty
+        @IncludeProperty
         private final int y = 1;
 
-        @KivaKitIncludeProperty
+        @IncludeProperty
         private final int z = 3;
 
         @Override
@@ -63,10 +65,10 @@ public class AsIndentedStringTest extends CoreUnitTest implements AsIndentedStri
         }
     }
 
-    @KivaKitIncludeProperty
+    @IncludeProperty
     private final Foo foo = new Foo();
 
-    @KivaKitIncludeProperty
+    @IncludeProperty
     private final int x = 9;
 
     @Test
@@ -84,10 +86,10 @@ public class AsIndentedStringTest extends CoreUnitTest implements AsIndentedStri
     @Test
     public void testPrune()
     {
-        var indenter = new ObjectIndenter(Format.TEXT)
+        var indenter = new ObjectIndenter(TEXT)
                 .levels(Maximum._4)
                 .pruneAt(Bar.class);
-        asString(Format.TEXT, indenter);
+        asString(TEXT, indenter);
         ensureEqual("foo:\n" +
                 "  bar: Bar\n" +
                 "  y: 1\n" +

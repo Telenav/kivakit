@@ -18,18 +18,20 @@
 
 package com.telenav.kivakit.core.messaging.context;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramThread;
-import com.telenav.kivakit.core.language.Classes;
 import com.telenav.kivakit.core.language.module.PackageReference;
 import com.telenav.kivakit.interfaces.value.Source;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.lang.reflect.Method;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static com.telenav.kivakit.core.language.Classes.classForName;
+import static com.telenav.kivakit.core.language.Classes.simpleName;
+import static com.telenav.kivakit.core.language.module.PackageReference.packageReference;
 
 /**
  * Information about a location in code, including the host and class. Line numbers are not available.
@@ -37,9 +39,9 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramThread.class)
-@ApiQuality(stability = API_STABLE_EXTENSIBLE,
-            testing = TESTING_NONE,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = UNTESTED,
+             documentation = DOCUMENTATION_COMPLETE)
 public class CodeContext
 {
     private static Source<String> hostResolver = () -> "localhost";
@@ -70,7 +72,7 @@ public class CodeContext
     {
         this.type = type;
         fullTypeName = type.getName();
-        typeName = Classes.simpleName(type);
+        typeName = simpleName(type);
     }
 
     public CodeContext(Method callerOf)
@@ -79,7 +81,7 @@ public class CodeContext
         {
             type = callerOf.getDeclaringClass();
             fullTypeName = type.getName();
-            typeName = Classes.simpleName(type);
+            typeName = simpleName(type);
         }
     }
 
@@ -115,7 +117,7 @@ public class CodeContext
      */
     public PackageReference packagePath()
     {
-        return PackageReference.packageReference(type);
+        return packageReference(type);
     }
 
     /**
@@ -134,7 +136,7 @@ public class CodeContext
     {
         if (type == null)
         {
-            type = Classes.classForName(fullTypeName);
+            type = classForName(fullTypeName);
         }
         return type;
     }

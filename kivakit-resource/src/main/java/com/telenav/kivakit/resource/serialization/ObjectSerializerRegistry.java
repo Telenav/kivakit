@@ -1,6 +1,6 @@
 package com.telenav.kivakit.resource.serialization;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.collections.list.ObjectList;
 import com.telenav.kivakit.resource.Extension;
 import org.jetbrains.annotations.NotNull;
@@ -8,10 +8,10 @@ import org.jetbrains.annotations.NotNull;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_DEFAULT_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
-import static com.telenav.kivakit.core.collections.list.ObjectList.objectList;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static com.telenav.kivakit.core.collections.list.ObjectList.list;
 
 /**
  * A map from {@link Extension} to {@link ObjectSerializer}. By default, serializers are available for
@@ -19,9 +19,9 @@ import static com.telenav.kivakit.core.collections.list.ObjectList.objectList;
  *
  * @author jonathanl (shibo)
  */
-@ApiQuality(stability = API_STABLE_DEFAULT_EXTENSIBLE,
-            documentation = DOCUMENTATION_COMPLETE,
-            testing = TESTING_NONE)
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             documentation = DOCUMENTATION_COMPLETE,
+             testing = UNTESTED)
 public class ObjectSerializerRegistry
 {
     private final Map<Extension, ObjectSerializer> serializers = new LinkedHashMap<>();
@@ -55,6 +55,6 @@ public class ObjectSerializerRegistry
      */
     public ObjectList<ObjectSerializer> serializers()
     {
-        return objectList(serializers.values());
+        return list(serializers.values());
     }
 }

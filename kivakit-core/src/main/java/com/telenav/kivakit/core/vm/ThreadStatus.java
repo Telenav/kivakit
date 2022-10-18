@@ -18,14 +18,14 @@
 
 package com.telenav.kivakit.core.vm;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramThread;
 import com.telenav.kivakit.core.time.Duration;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 
 /**
  * Information about the state of a thread from Java's management API.
@@ -34,9 +34,9 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
  */
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramThread.class)
-@ApiQuality(stability = API_STABLE_EXTENSIBLE,
-            testing = TESTING_NONE,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = UNTESTED,
+             documentation = DOCUMENTATION_COMPLETE)
 public class ThreadStatus
 {
     /** The total amount of CPU time consumed so far */
@@ -55,7 +55,7 @@ public class ThreadStatus
     long identifier;
 
     /**
-     * @return The CPU time consumed by this thread
+     * Returns the CPU time consumed by this thread
      */
     public Duration cpuTime()
     {
@@ -71,7 +71,7 @@ public class ThreadStatus
     }
 
     /**
-     * @return True if this thread is a daemon
+     * Returns true if this thread is a daemon
      */
     public boolean isDaemon()
     {
@@ -79,7 +79,7 @@ public class ThreadStatus
     }
 
     /**
-     * @return True if this is a KivaKit thread
+     * Returns true if this is a KivaKit thread
      */
     public boolean isKivaKit()
     {
@@ -87,7 +87,7 @@ public class ThreadStatus
     }
 
     /**
-     * @return The name of this thread
+     * Returns the name of this thread
      */
     public String name()
     {
@@ -95,7 +95,7 @@ public class ThreadStatus
     }
 
     /**
-     * @return This thread's state according to Java
+     * Returns this thread's state according to Java
      */
     public Thread.State state()
     {

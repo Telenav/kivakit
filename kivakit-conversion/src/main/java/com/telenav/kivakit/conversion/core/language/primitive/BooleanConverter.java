@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.conversion.core.language.primitive;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.conversion.BaseStringConverter;
 import com.telenav.kivakit.conversion.internal.lexakai.DiagramConversionPrimitive;
 import com.telenav.kivakit.core.language.primitive.Booleans;
@@ -26,9 +26,10 @@ import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeMember;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static com.telenav.kivakit.core.language.primitive.Booleans.*;
 
 /**
  * Converts between booleans and strings. Several values in addition to "true" and "false" can be used to represent
@@ -37,9 +38,9 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramConversionPrimitive.class)
-@ApiQuality(stability = API_STABLE,
-            testing = TESTING_NONE,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = STABLE,
+             testing = UNTESTED,
+             documentation = DOCUMENTATION_COMPLETE)
 public class BooleanConverter extends BaseStringConverter<Boolean>
 {
     /**
@@ -57,11 +58,11 @@ public class BooleanConverter extends BaseStringConverter<Boolean>
     @UmlExcludeMember
     protected Boolean onToValue(String value)
     {
-        if (Booleans.isTrue(value))
+        if (isTrue(value))
         {
             return true;
         }
-        if (Booleans.isFalse(value))
+        if (isFalse(value))
         {
             return false;
         }

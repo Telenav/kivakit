@@ -1,6 +1,6 @@
 package com.telenav.kivakit.mixins;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.interfaces.factory.Factory;
 import com.telenav.kivakit.interfaces.naming.NamedObject;
 import com.telenav.kivakit.mixins.internal.lexakai.DiagramMixin;
@@ -8,24 +8,31 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.IdentityHashMap;
 import java.util.Map;
-import java.util.Objects;
 import java.util.concurrent.ConcurrentHashMap;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Audience.AUDIENCE_INTERNAL;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.TESTED;
+import static java.util.Objects.hash;
 
 /**
  * Stores the state objects for {@link Mixin}s, allowing {@link Mixin} interfaces to be stateful by having associated
  * values.
  *
+ * <p><b>Mixins</b></p>
+ *
+ * <ul>
+ *     <li>{@link #owner(Object)}</li>
+ * </ul>
+ *
  * @author jonathanl (shibo)
  * @see Mixin
  */
 @UmlClassDiagram(diagram = DiagramMixin.class)
-@ApiQuality(stability = API_STABLE,
-            testing = TESTING_NONE,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = STABLE,
+             testing = TESTED,
+             documentation = DOCUMENTATION_COMPLETE)
 public class Mixins
 {
     /** Map from an object and mixin type to the attached mixin state */
@@ -35,8 +42,12 @@ public class Mixins
     private static final Map<Object, Object> owner = new IdentityHashMap<>();
 
     /**
+     * <b>Not public API</b>
+     *
+     * <p>
      * Creates or accesses mixin state of a given type that is associated with an object. The object and mixin type are
      * used as a key to look up state created by the given mixin state factory.
+     * </p>
      *
      * @param object The object to attach mixin state to
      * @param mixinType The identity of the mixin that's being attached (multiple mixins can be attached to an object)
@@ -75,6 +86,8 @@ public class Mixins
     }
 
     /**
+     * Returns the object that the given state was attached to
+     *
      * @param state The mixin state
      * @return The object that owns the mixin state
      */
@@ -84,8 +97,15 @@ public class Mixins
     }
 
     /**
+     * <b>Not public API</b>
+     *
      * @author jonathanl (shibo)
      */
+    @SuppressWarnings("SpellCheckingInspection")
+    @CodeQuality(audience = AUDIENCE_INTERNAL,
+                 stability = STABLE,
+                 testing = TESTED,
+                 documentation = DOCUMENTATION_COMPLETE)
     private static class MixinKey
     {
         private final Object attachTo;
@@ -112,7 +132,7 @@ public class Mixins
         @Override
         public int hashCode()
         {
-            return Objects.hash(attachTo, mixinType);
+            return hash(attachTo, mixinType);
         }
 
         @Override

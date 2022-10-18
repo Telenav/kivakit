@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.conversion;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.conversion.internal.lexakai.DiagramConversion;
 import com.telenav.kivakit.core.collections.list.ObjectList;
 import com.telenav.kivakit.core.collections.list.StringList;
@@ -26,14 +26,40 @@ import com.telenav.kivakit.core.collections.set.ObjectSet;
 import com.telenav.kivakit.interfaces.string.Parsable;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static com.telenav.kivakit.core.collections.list.StringList.split;
 
 /**
  * A bidirectional converter between {@link String} values and values of the given type. The {@link Converter} interface
  * converts from {@link String} to type &lt;Value&gt; and the method {@link #unconvert(Object)} converts a &lt;Value&gt;
  * back to a {@link String}.
+ *
+ * <p><b>Parsing</b></p>
+ *
+ * <ul>
+ *     <li>{@link #parse(String)} - Implements {@link Parsable} by calling {@link #convert(Object)}</li>
+ * </ul>
+ *
+ * <p><b>Collections</b></p>
+ *
+ * <ul>
+ *     <li>{@link #convertToList(String, String)} - Converts the given text and separator to an {@link ObjectList} using this converter</li>
+ *     <li>{@link #convertToList(Iterable)} - Converts the given sequence of objects to an {@link ObjectList} using this converter</li>
+ *     <li>{@link #convertToSet(String, String)} - Converts the given text and separator to an {@link ObjectSet} using this converter</li>
+ *     <li>{@link #convertToSet(Iterable)} - Converts the given sequence of objects to an {@link ObjectSet} using this converter</li>
+ *     <li>{@link #listConverter()} - Returns a StringConverter&lt;ObjectList&gt; that converts text to an object list using this converter</li>
+ *     <li>{@link #listConverter(String)} - Returns a StringConverter&lt;ObjectList&gt; that converts text and a separator to an object list using this converter</li>
+ *     <li>{@link #setConverter()} - Returns a StringConverter&lt;ObjectSet&gt; that converts text to an object set using this converter</li>
+ *     <li>{@link #setConverter(String)} - Returns a StringConverter&lt;ObjectSet&gt; that converts text and a separator to an object set using this converter</li>
+ * </ul>
+ *
+ * <p><b>Reverse Conversion</b></p>
+ *
+ * <ul>
+ *     <li>{@link #unconvertAll(Iterable)} - Returns a sequence of values to a {@link StringList}</li>
+ * </ul>
  *
  * @param <Value> The value to convert to and from
  * @author jonathanl (shibo)
@@ -41,9 +67,9 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
  */
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramConversion.class)
-@ApiQuality(stability = API_STABLE_EXTENSIBLE,
-            testing = TESTING_NONE,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = UNTESTED,
+             documentation = DOCUMENTATION_COMPLETE)
 public interface StringConverter<Value> extends
         TwoWayConverter<String, Value>,
         Parsable<Value>
@@ -57,7 +83,7 @@ public interface StringConverter<Value> extends
      */
     default ObjectList<Value> convertToList(String value, String delimiter)
     {
-        return convertToList(StringList.split(value, delimiter));
+        return convertToList(split(value, delimiter));
     }
 
     /**
@@ -84,7 +110,7 @@ public interface StringConverter<Value> extends
      */
     default ObjectSet<Value> convertToSet(String value, String delimiter)
     {
-        return convertToSet(StringList.split(value, delimiter));
+        return convertToSet(split(value, delimiter));
     }
 
     /**
@@ -140,12 +166,38 @@ public interface StringConverter<Value> extends
     }
 
     /**
+     * Returns a list converter that uses the given delimiter
+     *
+     * @param delimiter The delimiter
+     */
+    default StringConverter<ObjectSet<Value>> setConverter(String delimiter)
+    {
+        var outer = this;
+        return new BaseStringConverter<>(this)
+        {
+            @Override
+            protected ObjectSet<Value> onToValue(String value)
+            {
+                return outer.convertToSet(value, delimiter);
+            }
+        };
+    }
+
+    /**
+     * Returns a list converter that separates items with commas
+     */
+    default StringConverter<ObjectSet<Value>> setConverter()
+    {
+        return setConverter(",");
+    }
+
+    /**
      * Converts the given {@link Iterable} of objects to a list of strings
      *
      * @return A list of strings, one for each unconverted value
      */
     @SuppressWarnings("SpellCheckingInspection")
-    default StringList unconvertCollection(Iterable<Value> values)
+    default StringList unconvertAll(Iterable<Value> values)
     {
         var list = new StringList();
         for (var value : values)

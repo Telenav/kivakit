@@ -17,7 +17,7 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 package com.telenav.kivakit.core.io;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramIo;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import org.jetbrains.annotations.NotNull;
@@ -32,9 +32,9 @@ import java.nio.charset.CharsetEncoder;
 import java.nio.charset.CoderResult;
 import java.util.Arrays;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_SUFFICIENT;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.TESTED;
 import static java.lang.Math.ceil;
 import static java.lang.Math.max;
 import static java.lang.Math.min;
@@ -47,9 +47,9 @@ import static java.nio.charset.StandardCharsets.UTF_8;
  */
 @SuppressWarnings({ "UnusedReturnValue", "SpellCheckingInspection" })
 @UmlClassDiagram(diagram = DiagramIo.class)
-@ApiQuality(stability = API_STABLE_EXTENSIBLE,
-            testing = TESTING_SUFFICIENT,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = TESTED,
+             documentation = DOCUMENTATION_COMPLETE)
 public class StringInputStream extends InputStream
 {
     /**
@@ -69,7 +69,7 @@ public class StringInputStream extends InputStream
          * Throw an exception on encoding failure (the exception will be that thrown by
          * {@link CoderResult#throwException() }).
          */
-        THROW;
+        THROW
     }
 
     /** Character encoder */

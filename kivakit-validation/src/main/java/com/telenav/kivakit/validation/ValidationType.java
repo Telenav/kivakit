@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.validation;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.value.name.Name;
 import com.telenav.kivakit.validation.internal.lexakai.DiagramValidation;
 import com.telenav.kivakit.validation.types.ValidateAll;
@@ -27,9 +27,9 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 import java.util.HashSet;
 import java.util.Set;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 
 /**
  * A kind of validation as restricted to a particular set of {@link Validatable} types.
@@ -42,15 +42,29 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
  * conditionally depending on what {@link #shouldValidate(Class)} returns for one or more different target types.
  * </p>
  *
+ * <p><b>Factory Methods</b></p>
+ *
+ * <ul>
+ *     <li>{@link #validateAll()}</li>
+ * </ul>
+ *
+ * <p><b>Filtering {@link Validatable}s</b></p>
+ *
+ * <ul>
+ *     <li>{@link #include(Class)}</li>
+ *     <li>{@link #exclude(Class)}</li>
+ *     <li>{@link #shouldValidate(Class)}</li>
+ * </ul>
+ *
  * @author jonathanl (shibo)
  * @see Validatable
  * @see Validator
  */
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramValidation.class)
-@ApiQuality(stability = API_STABLE,
-            testing = TESTING_NONE,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = STABLE,
+             testing = UNTESTED,
+             documentation = DOCUMENTATION_COMPLETE)
 public class ValidationType extends Name
 {
     /**
@@ -83,7 +97,7 @@ public class ValidationType extends Name
     }
 
     /**
-     * @return True if this validation should validate the given type
+     * Returns true if this validation should validate the given type
      */
     public <T extends Validatable> boolean shouldValidate(Class<T> type)
     {

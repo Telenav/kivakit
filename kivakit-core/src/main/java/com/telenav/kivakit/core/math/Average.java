@@ -18,14 +18,15 @@
 
 package com.telenav.kivakit.core.math;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
-import com.telenav.kivakit.core.string.KivaKitFormat;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
+import com.telenav.kivakit.core.string.FormatProperty;
 import com.telenav.kivakit.core.string.ObjectFormatter;
 import com.telenav.kivakit.interfaces.lifecycle.Resettable;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_INSUFFICIENT;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_INSUFFICIENT;
+import static java.lang.Math.*;
 
 /**
  * Computes a simple average, as well as a minimum and maximum value from a series of <i>double</i> sample values.
@@ -33,9 +34,9 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_INSUFF
  *
  * @author jonathanl (shibo)
  */
-@ApiQuality(stability = API_STABLE_EXTENSIBLE,
-            testing = TESTING_INSUFFICIENT,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = TESTING_INSUFFICIENT,
+             documentation = DOCUMENTATION_COMPLETE)
 public class Average implements Resettable
 {
     /** The total of all samples added */
@@ -55,8 +56,8 @@ public class Average implements Resettable
      */
     public void add(Average that)
     {
-        minimum = Math.min(minimum, that.minimum);
-        maximum = Math.max(maximum, that.maximum);
+        minimum = min(minimum, that.minimum);
+        maximum = max(maximum, that.maximum);
         total += that.total;
         samples += that.samples;
     }
@@ -79,9 +80,9 @@ public class Average implements Resettable
     }
 
     /**
-     * @return The average of all samples that have been added
+     * Returns the average of all samples that have been added
      */
-    @KivaKitFormat
+    @FormatProperty
     public double average()
     {
         if (samples > 0)
@@ -92,18 +93,18 @@ public class Average implements Resettable
     }
 
     /**
-     * @return The largest sample
+     * Returns the largest sample
      */
-    @KivaKitFormat
+    @FormatProperty
     public double maximum()
     {
         return maximum;
     }
 
     /**
-     * @return The smallest sample
+     * Returns the smallest sample
      */
-    @KivaKitFormat
+    @FormatProperty
     public double minimum()
     {
         return minimum;
@@ -120,9 +121,9 @@ public class Average implements Resettable
     }
 
     /**
-     * @return The number of samples in this average
+     * Returns the number of samples in this average
      */
-    @KivaKitFormat
+    @FormatProperty
     public int samples()
     {
         return samples;
@@ -135,9 +136,9 @@ public class Average implements Resettable
     }
 
     /**
-     * @return The total of all samples in this average
+     * Returns the total of all samples in this average
      */
-    @KivaKitFormat
+    @FormatProperty
     public double total()
     {
         return total;

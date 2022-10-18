@@ -18,17 +18,18 @@
 
 package com.telenav.kivakit.core.value.count;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramCount;
 import com.telenav.kivakit.core.value.level.Percent;
 import com.telenav.kivakit.interfaces.collection.Clearable;
 import com.telenav.kivakit.interfaces.value.LongValued;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.ensure.Ensure.ensure;
+import static com.telenav.kivakit.core.value.level.Percent.percent;
 
 /**
  * A mutable count value useful in lambdas and inner classes. Can be {@link #increment()}ed, {@link #decrement()}ed,
@@ -39,9 +40,9 @@ import static com.telenav.kivakit.core.ensure.Ensure.ensure;
  */
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramCount.class)
-@ApiQuality(stability = API_STABLE_EXTENSIBLE,
-            testing = TESTING_NONE,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = UNTESTED,
+             documentation = DOCUMENTATION_COMPLETE)
 public class MutableCount implements
         Countable,
         Clearable,
@@ -195,7 +196,7 @@ public class MutableCount implements
         {
             return Percent._0;
         }
-        return Percent.percent(asLong() * 100.0 / total.asLong());
+        return percent(asLong() * 100.0 / total.asLong());
     }
 
     /**

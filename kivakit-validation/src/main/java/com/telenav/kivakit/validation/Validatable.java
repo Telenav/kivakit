@@ -18,20 +18,33 @@
 
 package com.telenav.kivakit.validation;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.validation.internal.lexakai.DiagramValidation;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.validation.ValidationType.validateAll;
 
 /**
  * An object that is {@link Validatable} can create a {@link Validator} for a given type of validation, represented by
  * {@link ValidationType}.
+ *
+ * <p><b>Validation</b></p>
+ *
+ * <ul>
+ *     <li>{@link #isValid(Listener)} - Validates this object, broadcasting any problems to the given listener</li>
+ * </ul>
+ *
+ * <p><b>Validators</b></p>
+ *
+ * <ul>
+ *     <li>{@link #validator()} - The default Validator which validates all values ({@link ValidationType#validateAll()})</li>
+ *     <li>{@link #validator(ValidationType)} - Validator for the given type of validation</li>
+ * </ul>
  *
  * @author jonathanl (shibo)
  * @see Validator
@@ -40,9 +53,9 @@ import static com.telenav.kivakit.validation.ValidationType.validateAll;
 @UmlClassDiagram(diagram = DiagramValidation.class)
 @UmlRelation(label = "how to validate", referent = ValidationType.class)
 @UmlRelation(label = "provides", referent = Validator.class)
-@ApiQuality(stability = API_STABLE,
-            testing = TESTING_NONE,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = STABLE,
+             testing = UNTESTED,
+             documentation = DOCUMENTATION_COMPLETE)
 public interface Validatable
 {
     /**

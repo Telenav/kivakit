@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.conversion;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.conversion.internal.lexakai.DiagramConversion;
 import com.telenav.kivakit.core.messaging.Repeater;
 import com.telenav.kivakit.core.messaging.Transceiver;
@@ -26,13 +26,27 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.Collection;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 
 /**
  * A converter converts from one type to another. Converters are message {@link Repeater}s, relaying information about
  * any conversion issues to listeners.
+ *
+ * <p><b>Conversions</b></p>
+ *
+ * <ul>
+ *     <li>{@link #convert(Object)}</li>
+ *     <li>{@link #convertOrDefault(Object, Object)}</li>
+ * </ul>
+ *
+ * <p><b>Collections</b></p>
+ *
+ * <ul>
+ *     <li>{@link #join(Collection)}</li>
+ *     <li>{@link #join(Collection, String)}</li>
+ * </ul>
  *
  * @param <From> Source type
  * @param <To> Destination type
@@ -42,9 +56,9 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
  */
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramConversion.class)
-@ApiQuality(stability = API_STABLE_EXTENSIBLE,
-            testing = TESTING_NONE,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = UNTESTED,
+             documentation = DOCUMENTATION_COMPLETE)
 public interface Converter<From, To> extends Repeater
 {
     /**

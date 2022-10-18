@@ -18,13 +18,13 @@
 
 package com.telenav.kivakit.core.value.mutable;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramValue;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.ensure.Ensure.ensure;
 
 /**
@@ -36,9 +36,9 @@ import static com.telenav.kivakit.core.ensure.Ensure.ensure;
  */
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramValue.class)
-@ApiQuality(stability = API_STABLE_EXTENSIBLE,
-            testing = TESTING_NONE,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = UNTESTED,
+             documentation = DOCUMENTATION_COMPLETE)
 public class MutableIndex extends MutableLong
 {
     /**
@@ -63,7 +63,7 @@ public class MutableIndex extends MutableLong
      */
     public int index()
     {
-        return (int) super.get();
+        return (int) get();
     }
 
     /**
@@ -71,7 +71,7 @@ public class MutableIndex extends MutableLong
      */
     public void index(int index)
     {
-        super.set(index);
+        set(index);
     }
 
     /**
@@ -80,6 +80,6 @@ public class MutableIndex extends MutableLong
     @SuppressWarnings("UnusedReturnValue")
     public int offset(int that)
     {
-        return (int) super.plus(that);
+        return (int) plus(that);
     }
 }

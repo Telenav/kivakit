@@ -18,11 +18,9 @@
 
 package com.telenav.kivakit.core.logging;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramLogging;
-import com.telenav.kivakit.core.language.Classes;
-import com.telenav.kivakit.core.language.Objects;
-import com.telenav.kivakit.core.language.reflection.property.KivaKitIncludeProperty;
+import com.telenav.kivakit.core.language.reflection.property.IncludeProperty;
 import com.telenav.kivakit.core.logging.logs.text.LogFormatter;
 import com.telenav.kivakit.core.logging.logs.text.formatters.NarrowLogFormatter;
 import com.telenav.kivakit.core.messaging.Message;
@@ -38,10 +36,14 @@ import com.telenav.lexakai.annotations.visibility.UmlExcludeMember;
 
 import java.util.concurrent.atomic.AtomicInteger;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
+import static com.telenav.kivakit.core.language.Classes.simpleName;
+import static com.telenav.kivakit.core.language.Objects.isEqual;
+import static com.telenav.kivakit.core.messaging.messages.Severity.MEDIUM;
+import static com.telenav.kivakit.core.time.Time.now;
 
 /**
  * A log entry object containing a message and meta-information about the origin of the message and its nature.
@@ -71,9 +73,9 @@ import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
  * @author jonathanl (shibo)
  */
 @SuppressWarnings("unused") @UmlClassDiagram(diagram = DiagramLogging.class)
-@ApiQuality(stability = API_STABLE_EXTENSIBLE,
-            testing = TESTING_NONE,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = UNTESTED,
+             documentation = DOCUMENTATION_COMPLETE)
 public class LogEntry implements Triaged
 {
     /**
@@ -136,8 +138,8 @@ public class LogEntry implements Triaged
         assert context != null;
         threadName = thread.getName();
         this.message = message;
-        created = Time.now();
-        messageType = Classes.simpleName(message.getClass());
+        created = now();
+        messageType = simpleName(message.getClass());
         stackTrace = message.stackTrace();
         severity = message.severity();
         sequenceNumber = nextSequenceNumber.getAndIncrement();
@@ -151,7 +153,7 @@ public class LogEntry implements Triaged
     /**
      * Returns the code context for this log entry
      */
-    @KivaKitIncludeProperty
+    @IncludeProperty
     public CodeContext context()
     {
         return context;
@@ -177,7 +179,7 @@ public class LogEntry implements Triaged
         ensureNotNull(context);
 
         // If the formatted entry exists and we're re-formatting with the same formatter,
-        if (formattedEntry != null && Objects.isEqual(formatter, lastFormatter))
+        if (formattedEntry != null && isEqual(formatter, lastFormatter))
         {
             // then reuse the formatted text we made last time
             return formattedEntry;
@@ -216,7 +218,7 @@ public class LogEntry implements Triaged
      */
     public boolean isSevere()
     {
-        return severity().isGreaterThanOrEqualTo(Severity.MEDIUM);
+        return severity().isGreaterThanOrEqualTo(MEDIUM);
     }
 
     /**

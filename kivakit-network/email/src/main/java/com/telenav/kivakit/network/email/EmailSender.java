@@ -18,13 +18,11 @@
 
 package com.telenav.kivakit.network.email;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
-import com.telenav.kivakit.core.language.Classes;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.messaging.repeaters.BaseRepeater;
 import com.telenav.kivakit.core.thread.RepeatingThread;
 import com.telenav.kivakit.core.thread.latches.CompletionLatch;
 import com.telenav.kivakit.core.time.Duration;
-import com.telenav.kivakit.core.time.Frequency;
 import com.telenav.kivakit.core.time.Rate;
 import com.telenav.kivakit.core.time.RateCalculator;
 import com.telenav.kivakit.core.value.count.Maximum;
@@ -39,14 +37,20 @@ import com.telenav.lexakai.annotations.associations.UmlAggregation;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
 
 import javax.mail.Authenticator;
-import javax.mail.Message;
 import javax.mail.Session;
 import javax.mail.internet.MimeMessage;
 import java.util.Properties;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static com.telenav.kivakit.core.language.Classes.simpleName;
+import static com.telenav.kivakit.core.time.Duration.FOREVER;
+import static com.telenav.kivakit.core.time.Duration.ONE_MINUTE;
+import static com.telenav.kivakit.core.time.Duration.seconds;
+import static com.telenav.kivakit.core.time.Frequency.CONTINUOUSLY;
+import static com.telenav.kivakit.core.value.count.Maximum.maximum;
+import static javax.mail.Message.RecipientType.TO;
 
 /**
  * An email sender. Emails can be added with {@link #enqueue(Email)} and they will be sent as soon as possible. Emails
@@ -64,9 +68,9 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
 @SuppressWarnings("unused") @UmlClassDiagram(diagram = DiagramEmail.class)
 @UmlRelation(label = "sends", referent = Email.class)
 @UmlRelation(label = "configured by", referent = EmailSender.Configuration.class)
-@ApiQuality(stability = API_STABLE_EXTENSIBLE,
-            testing = TESTING_NONE,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = UNTESTED,
+             documentation = DOCUMENTATION_COMPLETE)
 public abstract class EmailSender extends BaseRepeater implements
         Startable,
         Stoppable<Duration>,
@@ -79,9 +83,9 @@ public abstract class EmailSender extends BaseRepeater implements
      * @author jonathanl (shibo)
      */
     @UmlClassDiagram(diagram = DiagramEmail.class)
-    @ApiQuality(stability = API_STABLE_EXTENSIBLE,
-                testing = TESTING_NONE,
-                documentation = DOCUMENTATION_COMPLETE)
+    @CodeQuality(stability = STABLE_EXTENSIBLE,
+                 testing = UNTESTED,
+                 documentation = DOCUMENTATION_COMPLETE)
     public static class Configuration
     {
         private Rate maximumSendRate;
@@ -101,22 +105,22 @@ public abstract class EmailSender extends BaseRepeater implements
 
     private final Configuration configuration;
 
-    private Maximum maximumRetries = Maximum.maximum(16);
+    private Maximum maximumRetries = maximum(16);
 
     @UmlAggregation
     private final EmailQueue queue = new EmailQueue();
 
     private final CompletionLatch queueEmpty = new CompletionLatch();
 
-    private final RateCalculator rate = new RateCalculator(Duration.ONE_MINUTE);
+    private final RateCalculator rate = new RateCalculator(ONE_MINUTE);
 
-    private Duration retryPeriod = Duration.seconds(30);
+    private Duration retryPeriod = seconds(30);
 
     private volatile boolean running;
 
     private boolean enabled = true;
 
-    private final RepeatingThread thread = new RepeatingThread(this, Classes.simpleName(EmailSender.class), Frequency.CONTINUOUSLY)
+    private final RepeatingThread thread = new RepeatingThread(this, simpleName(EmailSender.class), CONTINUOUSLY)
     {
         @Override
         protected void onRun()
@@ -129,7 +133,7 @@ public abstract class EmailSender extends BaseRepeater implements
                 {
                     if (email.tries().isLessThan(maximumRetries))
                     {
-                        if (!queue().enqueue(email, Duration.seconds(5)))
+                        if (!queue().enqueue(email, seconds(5)))
                         {
                             warning("Unable to re-queue email");
                         }
@@ -181,7 +185,7 @@ public abstract class EmailSender extends BaseRepeater implements
     {
         if (!closed)
         {
-            if (!queue().enqueue(email, Duration.seconds(5)))
+            if (!queue().enqueue(email, seconds(5)))
             {
                 if (!queue().isClosed())
                 {
@@ -217,7 +221,7 @@ public abstract class EmailSender extends BaseRepeater implements
     @Override
     public Duration maximumFlushTime()
     {
-        return Duration.MAXIMUM;
+        return FOREVER;
     }
 
     public EmailSender maximumRetries(Maximum maximumRetries)
@@ -229,7 +233,7 @@ public abstract class EmailSender extends BaseRepeater implements
     @Override
     public Duration maximumStopTime()
     {
-        return Duration.MAXIMUM;
+        return FOREVER;
     }
 
     public EmailSender retryPeriod(Duration durationBetweenRetries)
@@ -295,7 +299,7 @@ public abstract class EmailSender extends BaseRepeater implements
                     var message = new MimeMessage(session);
                     email.composeMessage(message);
                     transport.connect();
-                    transport.sendMessage(message, message.getRecipients(Message.RecipientType.TO));
+                    transport.sendMessage(message, message.getRecipients(TO));
                     transport.close();
                 }
                 return true;

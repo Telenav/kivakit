@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.core.language.reflection;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.collections.list.ObjectList;
 import com.telenav.kivakit.core.internal.lexakai.DiagramReflection;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
@@ -26,37 +26,74 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Modifier;
 import java.lang.reflect.ParameterizedType;
-import java.util.ArrayList;
-import java.util.List;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
-import static com.telenav.kivakit.core.collections.list.ObjectList.objectList;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static com.telenav.kivakit.core.collections.list.ObjectList.list;
 import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
+import static com.telenav.kivakit.core.language.reflection.Type.typeForClass;
 
 /**
  * Holds a class and method name when a proper Java reflection {@link java.lang.reflect.Method} cannot be determined, as
  * in the case of the limited and poorly designed {@link StackTraceElement} class.
  *
+ * <p><b>Access</b></p>
+ *
+ * <ul>
+ *     <li>{@link #invoke(Object, Object...)}</li>
+ * </ul>
+ *
+ * <p><b>Annotations</b></p>
+ *
+ * <ul>
+ *     <li>{@link #annotation(Class)}</li>
+ *     <li>{@link #hasAnnotation(Class)}</li>
+ * </ul>
+ *
+ * <p><b>Modifiers</b></p>
+ *
+ * <ul>
+ *     <li>{@link #isFinal()}</li>
+ *     <li>{@link #isNative()}</li>
+ *     <li>{@link #isPrivate()}</li>
+ *     <li>{@link #isProtected()}</li>
+ *     <li>{@link #isPublic()}</li>
+ *     <li>{@link #isStatic()}</li>
+ *     <li>{@link #isSynchronized()}</li>
+ *     <li>{@link #isSynthetic()}</li>
+ *     <li>{@link #modifiers()}</li>
+ * </ul>
+ *
+ * <p><b>Properties</b></p>
+ *
+ * <ul>
+ *     <li>{@link #arrayElementType()}</li>
+ *     <li>{@link #genericTypeParameters()}</li>
+ *     <li>{@link #name()}</li>
+ *     <li>{@link #parameterTypes()}</li>
+ *     <li>{@link #parentType()}</li>
+ *     <li>{@link #returnType()}</li>
+ * </ul>
+ *
  * @author jonathanl (shibo)
  */
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramReflection.class)
-@ApiQuality(stability = API_STABLE_EXTENSIBLE,
-            testing = TESTING_NONE,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = UNTESTED,
+             documentation = DOCUMENTATION_COMPLETE)
 public class Method extends Member
 {
     /**
-     * @return A {@link Method} instance for the given stack frame
+     * Returns a {@link Method} instance for the given stack frame
      */
     public static Method method(StackTraceElement stackFrame)
     {
         try
         {
             var type = Class.forName(stackFrame.getClassName());
-            return new Method(Type.typeForClass(type), stackFrame.getMethodName());
+            return new Method(typeForClass(type), stackFrame.getMethodName());
         }
         catch (Exception ignored)
         {
@@ -73,14 +110,14 @@ public class Method extends Member
     /** The method type */
     private final Type<?> type;
 
-    public Method(Type<?> type, java.lang.reflect.Method method)
+    protected Method(Type<?> type, java.lang.reflect.Method method)
     {
         this.type = ensureNotNull(type);
         this.method = ensureNotNull(method);
         name = method.getName();
     }
 
-    public Method(Type<?> type, String name)
+    protected Method(Type<?> type, String name)
     {
         this.type = ensureNotNull(type);
         this.name = ensureNotNull(name);
@@ -100,12 +137,12 @@ public class Method extends Member
      */
     @Override
     @SuppressWarnings("unchecked")
-    public <T> List<Type<T>> arrayElementType()
+    public <T> ObjectList<Type<T>> arrayElementType()
     {
         if (method.getReturnType().isArray())
         {
             var list = new ObjectList<Type<T>>();
-            list.add(Type.typeForClass((Class<T>) method.getReturnType().getComponentType()));
+            list.add(typeForClass((Class<T>) method.getReturnType().getComponentType()));
             return list;
         }
 
@@ -117,26 +154,18 @@ public class Method extends Member
      */
     @Override
     @SuppressWarnings("unchecked")
-    public <T> List<Type<T>> genericTypeParameters()
+    public <T> ObjectList<Type<T>> genericTypeParameters()
     {
-        var list = new ArrayList<Type<T>>();
+        var list = new ObjectList<Type<T>>();
         var genericType = (ParameterizedType) method.getGenericReturnType();
         for (var at : genericType.getActualTypeArguments())
         {
             if (at instanceof Class)
             {
-                list.add(Type.typeForClass((Class<T>) at));
+                list.add(typeForClass((Class<T>) at));
             }
         }
         return list;
-    }
-
-    /**
-     * Returns true if this field has an annotation of the given type
-     */
-    public boolean hasAnnotation(Class<? extends Annotation> type)
-    {
-        return annotation(type) != null;
     }
 
     /**
@@ -164,24 +193,25 @@ public class Method extends Member
     }
 
     /**
-     * Returns true if this is a static method
+     * Returns true if this is a native method
      */
-    public boolean isPublic()
+    public boolean isNative()
     {
-        return Modifier.isPublic(method.getModifiers());
+        return Modifier.isNative(modifiers());
     }
 
     /**
-     * Returns true if this is a static method
+     * Returns true if this is a synchronized method
      */
-    public boolean isStatic()
+    public boolean isSynchronized()
     {
-        return Modifier.isStatic(method.getModifiers());
+        return Modifier.isSynchronized(modifiers());
     }
 
     /**
      * Returns true if this is a synthetic method
      */
+    @Override
     public boolean isSynthetic()
     {
         return method.isSynthetic();
@@ -213,6 +243,12 @@ public class Method extends Member
         return method;
     }
 
+    @Override
+    public int modifiers()
+    {
+        return method.getModifiers();
+    }
+
     /**
      * {@inheritDoc}
      */
@@ -231,6 +267,15 @@ public class Method extends Member
     }
 
     /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Type<?> parentType()
+    {
+        return type;
+    }
+
+    /**
      * Returns the return type for this method
      */
     public Class<?> returnType()
@@ -244,15 +289,6 @@ public class Method extends Member
     @Override
     public String toString()
     {
-        return type + "." + name() + "(" + objectList(method.getParameterTypes()).join() + ")";
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public Type<?> parentType()
-    {
-        return type;
+        return type + "." + name() + "(" + list(method.getParameterTypes()).join() + ")";
     }
 }

@@ -26,12 +26,10 @@ import com.google.gson.InstanceCreator;
 import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonSerializer;
 import com.google.gson.TypeAdapterFactory;
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.conversion.StringConverter;
-import com.telenav.kivakit.core.collections.list.ObjectList;
 import com.telenav.kivakit.core.collections.set.ObjectSet;
 import com.telenav.kivakit.core.language.Hash;
-import com.telenav.kivakit.core.language.Objects;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.messaging.repeaters.BaseRepeater;
 import com.telenav.kivakit.core.version.Version;
@@ -42,9 +40,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static com.telenav.kivakit.core.collections.list.ObjectList.list;
+import static com.telenav.kivakit.core.collections.set.ObjectSet.set;
+import static com.telenav.kivakit.core.language.Objects.areEqualPairs;
 import static com.telenav.kivakit.core.version.Version.parseVersion;
 
 /**
@@ -83,9 +84,9 @@ import static com.telenav.kivakit.core.version.Version.parseVersion;
  *
  * @author jonathanl (shibo)
  */
-@ApiQuality(stability = API_STABLE_EXTENSIBLE,
-            testing = TESTING_NONE,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = UNTESTED,
+             documentation = DOCUMENTATION_COMPLETE)
 public abstract class BaseGsonFactory extends BaseRepeater implements GsonFactory
 {
     /**
@@ -98,7 +99,7 @@ public abstract class BaseGsonFactory extends BaseRepeater implements GsonFactor
      */
     private static class GsonSettings
     {
-        private final ObjectSet<Class<?>> classesToExclude = ObjectSet.objectSet();
+        private final ObjectSet<Class<?>> classesToExclude = set();
 
         private String dateFormat;
 
@@ -106,9 +107,9 @@ public abstract class BaseGsonFactory extends BaseRepeater implements GsonFactor
 
         private boolean escapeHtml;
 
-        private final ObjectSet<ExclusionStrategy> exclusionStrategies = new ObjectSet<>();
+        private final ObjectSet<ExclusionStrategy> exclusionStrategies = set();
 
-        private final ObjectSet<String> fieldsToExclude = ObjectSet.objectSet();
+        private final ObjectSet<String> fieldsToExclude = set();
 
         private final Map<Class<?>, InstanceCreator<?>> instanceCreators = new HashMap<>();
 
@@ -156,7 +157,7 @@ public abstract class BaseGsonFactory extends BaseRepeater implements GsonFactor
 
             builder.setVersion(version.asDouble());
             builder.setDateFormat(dateFormat);
-            builder.setExclusionStrategies(ObjectList.objectList(exclusionStrategies).asArray(ExclusionStrategy.class));
+            builder.setExclusionStrategies(list(exclusionStrategies).asArray(ExclusionStrategy.class));
 
             if (!escapeHtml)
             {
@@ -187,7 +188,7 @@ public abstract class BaseGsonFactory extends BaseRepeater implements GsonFactor
             if (object instanceof GsonSettings)
             {
                 GsonSettings that = (GsonSettings) object;
-                return Objects.areEqualPairs(
+                return areEqualPairs(
                         typeAdapterFactories, that.typeAdapterFactories,
                         serializers, that.serializers,
                         deserializers, that.deserializers,
@@ -225,7 +226,7 @@ public abstract class BaseGsonFactory extends BaseRepeater implements GsonFactor
 
     private final GsonSettings settings = new GsonSettings();
 
-    public BaseGsonFactory(Listener listener)
+    protected BaseGsonFactory(Listener listener)
     {
         addListener(listener);
     }

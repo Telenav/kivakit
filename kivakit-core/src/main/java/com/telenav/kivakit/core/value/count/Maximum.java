@@ -18,18 +18,20 @@
 
 package com.telenav.kivakit.core.value.count;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramCount;
 import com.telenav.kivakit.core.messaging.Listener;
-import com.telenav.kivakit.core.string.Strings;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.Collection;
 import java.util.Iterator;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static com.telenav.kivakit.core.string.Strings.removeAll;
+import static java.lang.Integer.parseInt;
+import static java.lang.Long.numberOfTrailingZeros;
 
 /**
  * A count value that is an maximum. This class mainly exists to clarify APIs by giving a meaning to the count value.
@@ -38,9 +40,9 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
  */
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramCount.class)
-@ApiQuality(stability = API_STABLE_EXTENSIBLE,
-            testing = TESTING_NONE,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = UNTESTED,
+             documentation = DOCUMENTATION_COMPLETE)
 public class Maximum extends BaseCount<Maximum>
 {
     public static final Maximum _0 = new Maximum(0);
@@ -216,7 +218,7 @@ public class Maximum extends BaseCount<Maximum>
         if ((value & value - 1) == 0)
         {
             // return the cached value
-            return CACHED_POWERS_OF_TWO[Long.numberOfTrailingZeros(value)];
+            return CACHED_POWERS_OF_TWO[numberOfTrailingZeros(value)];
         }
 
         // If the value isn't < CACHE_SIZE (65,536) and it's not a power of two we have to allocate
@@ -250,9 +252,9 @@ public class Maximum extends BaseCount<Maximum>
     {
         if (text.indexOf(',') > 0)
         {
-            text = Strings.removeAll(text, ',');
+            text = removeAll(text, ',');
         }
-        return maximum(Integer.parseInt(text));
+        return maximum(parseInt(text));
     }
 
     protected Maximum(long count)

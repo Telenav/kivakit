@@ -18,8 +18,7 @@
 
 package com.telenav.kivakit.resource.reading;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
-import com.telenav.kivakit.core.io.IO;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.progress.ProgressReporter;
 import com.telenav.kivakit.core.progress.reporters.ProgressiveInputStream;
 import com.telenav.kivakit.core.value.count.ByteSized;
@@ -28,9 +27,10 @@ import org.jetbrains.annotations.NotNull;
 
 import java.io.InputStream;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_DEFAULT_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
+import static com.telenav.kivakit.core.io.IO.buffer;
 
 /**
  * Interface to something which can be opened for reading. The input stream can be obtained with
@@ -53,9 +53,9 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NE
  *
  * @author jonathanl (shibo)
  */
-@ApiQuality(stability = API_STABLE_DEFAULT_EXTENSIBLE,
-            testing = TESTING_NOT_NEEDED,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = TESTING_NOT_NEEDED,
+             documentation = DOCUMENTATION_COMPLETE)
 public interface Readable extends ByteSized
 {
     /**
@@ -101,7 +101,7 @@ public interface Readable extends ByteSized
      */
     default InputStream openForReading()
     {
-        return IO.bufferInput(onOpenForReading());
+        return buffer(onOpenForReading());
     }
 
     /**

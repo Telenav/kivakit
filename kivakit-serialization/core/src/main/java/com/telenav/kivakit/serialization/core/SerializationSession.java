@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.serialization.core;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.code.UncheckedVoidCode;
 import com.telenav.kivakit.core.collections.list.ObjectList;
 import com.telenav.kivakit.core.language.trait.TryTrait;
@@ -45,10 +45,11 @@ import java.io.OutputStream;
 import java.net.Socket;
 import java.util.Collection;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_DEFAULT_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.ensure.Ensure.ensureFalse;
+import static com.telenav.kivakit.core.time.Duration.FOREVER;
 import static com.telenav.kivakit.serialization.core.SerializationSession.SessionType.RESOURCE_SERIALIZATION_SESSION;
 
 /**
@@ -137,9 +138,9 @@ import static com.telenav.kivakit.serialization.core.SerializationSession.Sessio
  * @see Version
  */
 @SuppressWarnings("unused")
-@ApiQuality(stability = API_STABLE_DEFAULT_EXTENSIBLE,
-            testing = TESTING_NONE,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = UNTESTED,
+             documentation = DOCUMENTATION_COMPLETE)
 public interface SerializationSession extends
         Named,
         Closeable,
@@ -181,12 +182,12 @@ public interface SerializationSession extends
     }
 
     /**
-     * @return True if data is being read
+     * Returns true if data is being read
      */
     boolean isReading();
 
     /**
-     * @return True if data is being written
+     * Returns true if data is being written
      */
     boolean isWriting();
 
@@ -196,7 +197,7 @@ public interface SerializationSession extends
     @Override
     default Duration maximumFlushTime()
     {
-        return Duration.MAXIMUM;
+        return FOREVER;
     }
 
     /**
@@ -205,7 +206,7 @@ public interface SerializationSession extends
     void onClose();
 
     /**
-     * @return Opens the given socket for reading and writing. Version handshaking is performed automatically for
+     * Returns opens the given socket for reading and writing. Version handshaking is performed automatically for
      * {@link SessionType#SERVER_SOCKET_SERIALIZATION_SESSION}s and
      * {@link SessionType#CLIENT_SOCKET_SERIALIZATION_SESSION}s with the version of the connected endpoint returned to
      * the caller.
@@ -277,7 +278,7 @@ public interface SerializationSession extends
     Version open(InputStream input, OutputStream output, SessionType sessionType, Version version);
 
     /**
-     * @return A serializable object
+     * Returns a serializable object
      */
     <T> SerializableObject<T> read();
 

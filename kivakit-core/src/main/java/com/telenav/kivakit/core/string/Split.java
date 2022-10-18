@@ -18,18 +18,19 @@
 
 package com.telenav.kivakit.core.string;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
+import com.telenav.kivakit.core.collections.list.StringList;
 import com.telenav.kivakit.core.internal.lexakai.DiagramString;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 import java.util.stream.Collectors;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_STATIC_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static com.telenav.kivakit.core.collections.list.StringList.stringList;
 
 /**
  * String splitting utilities.
@@ -37,28 +38,28 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
  * @author jonathanl (shibo)
  */
 @SuppressWarnings("DuplicatedCode") @UmlClassDiagram(diagram = DiagramString.class)
-@ApiQuality(stability = API_STABLE_STATIC_EXTENSIBLE,
-            testing = TESTING_NONE,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = UNTESTED,
+             documentation = DOCUMENTATION_COMPLETE)
 public class Split
 {
     /**
      * Splits the given text on the given delimiter, returning a list of strings
      *
      * @param text The text to split
-     * @param delimiter The delimiter to split on
+     * @param pattern The regular expression to split on
      * @return The list of strings
      */
-    public static List<String> split(String text, String delimiter)
+    public static StringList split(String text, String pattern)
     {
-        return Arrays.stream(text.split(delimiter, Integer.MAX_VALUE))
-                .collect(Collectors.toList());
+        return stringList(Arrays.stream(text.split(pattern, Integer.MAX_VALUE))
+                .collect(Collectors.toList()));
     }
 
     /**
-     * @return A list of words from the given text with word breaks occurring on whitespace
+     * Returns a list of words from the given text with word breaks occurring on whitespace
      */
-    public static List<String> splitIntoWords(String text)
+    public static StringList splitIntoWords(String text)
     {
         var list = new ArrayList<String>();
 
@@ -92,11 +93,11 @@ public class Split
             list.add(text.substring(startOfWord));
         }
 
-        return list;
+        return stringList(list);
     }
 
     /**
-     * @return The two strings resulting from splitting the given text using the given separator
+     * Returns the two strings resulting from splitting the given text using the given separator
      */
     public static String[] splitOnFirst(String text, char separator)
     {

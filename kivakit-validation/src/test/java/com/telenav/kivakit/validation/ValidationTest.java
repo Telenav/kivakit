@@ -21,6 +21,7 @@ package com.telenav.kivakit.validation;
 import com.telenav.kivakit.core.ensure.Ensure;
 import com.telenav.kivakit.internal.testing.CoreUnitTest;
 
+@SuppressWarnings("unused")
 public class ValidationTest extends CoreUnitTest
 {
     public static class A implements Validatable

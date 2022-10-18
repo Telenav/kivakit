@@ -18,27 +18,21 @@
 
 package com.telenav.kivakit.core.logging.logs;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.collections.list.ObjectList;
 import com.telenav.kivakit.core.collections.map.CountMap;
 import com.telenav.kivakit.core.internal.lexakai.DiagramLogs;
-import com.telenav.kivakit.core.language.Classes;
-import com.telenav.kivakit.core.language.reflection.property.KivaKitIncludeProperty;
+import com.telenav.kivakit.core.language.reflection.property.IncludeProperty;
 import com.telenav.kivakit.core.logging.Log;
 import com.telenav.kivakit.core.logging.LogEntry;
 import com.telenav.kivakit.core.logging.filters.LogEntriesWithSeverityGreaterThanOrEqualTo;
-import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.messaging.messages.Severity;
 import com.telenav.kivakit.core.messaging.messages.status.Problem;
-import com.telenav.kivakit.core.os.Console;
 import com.telenav.kivakit.core.string.ObjectFormatter;
 import com.telenav.kivakit.core.string.Plural;
 import com.telenav.kivakit.core.thread.RepeatingThread;
 import com.telenav.kivakit.core.thread.StateWatcher;
 import com.telenav.kivakit.core.time.Duration;
-import com.telenav.kivakit.core.vm.JavaVirtualMachine;
-import com.telenav.kivakit.core.vm.Properties;
-import com.telenav.kivakit.core.vm.ShutdownHook;
 import com.telenav.kivakit.interfaces.comparison.Filter;
 import com.telenav.kivakit.interfaces.lifecycle.Startable;
 import com.telenav.kivakit.interfaces.lifecycle.Stoppable;
@@ -49,14 +43,22 @@ import java.util.List;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.atomic.AtomicBoolean;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
+import static com.telenav.kivakit.core.language.Classes.simpleName;
+import static com.telenav.kivakit.core.messaging.Listener.nullListener;
 import static com.telenav.kivakit.core.messaging.messages.Severity.NONE;
+import static com.telenav.kivakit.core.os.Console.console;
 import static com.telenav.kivakit.core.thread.KivaKitThread.State.STOP_REQUESTED;
+import static com.telenav.kivakit.core.time.Duration.FOREVER;
+import static com.telenav.kivakit.core.time.Duration.ONE_MINUTE;
 import static com.telenav.kivakit.core.time.Frequency.CONTINUOUSLY;
+import static com.telenav.kivakit.core.vm.JavaVirtualMachine.javaVirtualMachine;
+import static com.telenav.kivakit.core.vm.Properties.isSystemPropertyOrEnvironmentVariableFalse;
 import static com.telenav.kivakit.core.vm.ShutdownHook.Order.LAST;
+import static com.telenav.kivakit.core.vm.ShutdownHook.registerShutdownHook;
 
 /**
  * Base class for log implementations. Handles background queueing of log entries. By default, logging is asynchronous.
@@ -101,13 +103,20 @@ import static com.telenav.kivakit.core.vm.ShutdownHook.Order.LAST;
  *     <li>{@link #isRunning()}</li>
  * </ul>
  *
+ * <p><b>Logging</b></p>
+ *
+ * <p>
+ * More details about logging are available in <a
+ * href="../../../../../../../../../kivakit-core/documentation/logging.md">kivakit-core</a>.
+ * </p>
+ *
  * @author jonathanl (shibo)
  */
 @SuppressWarnings("UseOfSystemOutOrSystemErr")
 @UmlClassDiagram(diagram = DiagramLogs.class)
-@ApiQuality(stability = API_STABLE_EXTENSIBLE,
-            testing = TESTING_NONE,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = UNTESTED,
+             documentation = DOCUMENTATION_COMPLETE)
 public abstract class BaseLog implements
         Startable,
         Stoppable<Duration>,
@@ -122,7 +131,7 @@ public abstract class BaseLog implements
     static
     {
         // Determine if we are asynchronous or not
-        isAsynchronous = Properties.isSystemPropertyOrEnvironmentVariableFalse("KIVAKIT_LOG_SYNCHRONOUS");
+        isAsynchronous = isSystemPropertyOrEnvironmentVariableFalse("KIVAKIT_LOG_SYNCHRONOUS");
     }
 
     /**
@@ -178,10 +187,10 @@ public abstract class BaseLog implements
         if (isAsynchronous())
         {
             // when the VM shuts down
-            ShutdownHook.register(getClass().getSimpleName() + ".flush()", LAST, () ->
+            registerShutdownHook(getClass().getSimpleName() + ".flush()", LAST, () ->
             {
                 // flush asynchronous entries for up to one minute
-                flush(Duration.ONE_MINUTE);
+                flush(ONE_MINUTE);
             });
         }
     }
@@ -306,7 +315,7 @@ public abstract class BaseLog implements
 
         if (!closed && accept(entry))
         {
-            JavaVirtualMachine.javaVirtualMachine().health().logEntry(entry);
+            javaVirtualMachine().health().logEntry(entry);
 
             if (isAsynchronous())
             {
@@ -338,11 +347,11 @@ public abstract class BaseLog implements
     @Override
     public final Duration maximumStopTime()
     {
-        return Duration.MAXIMUM;
+        return FOREVER;
     }
 
     /**
-     * @return The number of times each type of message has been logged so far
+     * Returns the number of times each type of message has been logged so far
      */
     public CountMap<String> messageCounts()
     {
@@ -358,7 +367,7 @@ public abstract class BaseLog implements
     @Override
     public String name()
     {
-        return Classes.simpleName(getClass());
+        return simpleName(getClass());
     }
 
     /**
@@ -367,7 +376,7 @@ public abstract class BaseLog implements
     @Override
     public final boolean start()
     {
-        writerThread = new RepeatingThread(Listener.nullListener(), name() + "-Log", CONTINUOUSLY)
+        writerThread = new RepeatingThread(nullListener(), name() + "-Log", CONTINUOUSLY)
         {
             @Override
             protected void onRun()
@@ -422,7 +431,7 @@ public abstract class BaseLog implements
             }
 
             {
-                addListener(new Console());
+                addListener(console());
             }
         };
         return writerThread.start();
@@ -483,7 +492,7 @@ public abstract class BaseLog implements
      * The maximum queue size for asynchronous logging
      */
     @SuppressWarnings("SameReturnValue")
-    @KivaKitIncludeProperty
+    @IncludeProperty
     protected int queueSize()
     {
         return 20_000;
@@ -493,7 +502,7 @@ public abstract class BaseLog implements
      * Returns the number of retries that should be attempted before giving up on logging an entry
      */
     @SuppressWarnings("SameReturnValue")
-    @KivaKitIncludeProperty
+    @IncludeProperty
     protected int retries()
     {
         return 3;

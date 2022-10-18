@@ -18,8 +18,7 @@
 
 package com.telenav.kivakit.serialization.kryo.test;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
-import com.telenav.kivakit.core.path.StringPath;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.value.count.Count;
 import com.telenav.kivakit.core.version.Version;
 import com.telenav.kivakit.resource.serialization.SerializableObject;
@@ -29,18 +28,19 @@ import com.telenav.kivakit.serialization.kryo.KryoObjectSerializer;
 import com.telenav.kivakit.serialization.kryo.KryoSerializationSession;
 import com.telenav.kivakit.serialization.kryo.KryoSerializationSessionFactory;
 import com.telenav.kivakit.serialization.kryo.types.KivaKitCoreKryoTypes;
-import com.telenav.kivakit.serialization.kryo.types.KryoTypes;
 import com.telenav.kivakit.serialization.kryo.types.KivaKitResourceKryoTypes;
+import com.telenav.kivakit.serialization.kryo.types.KryoTypes;
 import com.telenav.kivakit.testing.UnitTest;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static com.telenav.kivakit.core.path.StringPath.stringPath;
 import static com.telenav.kivakit.core.version.Version.version;
-import static com.telenav.kivakit.resource.serialization.ObjectMetadata.OBJECT_VERSION;
+import static com.telenav.kivakit.resource.serialization.ObjectMetadata.METADATA_OBJECT_VERSION;
 import static com.telenav.kivakit.serialization.core.SerializationSession.SessionType.RESOURCE_SERIALIZATION_SESSION;
 
 /**
@@ -59,9 +59,9 @@ import static com.telenav.kivakit.serialization.core.SerializationSession.Sessio
  * @author jonathanl (shibo)
  */
 @SuppressWarnings("unused")
-@ApiQuality(stability = API_STABLE_EXTENSIBLE,
-            testing = TESTING_NONE,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = UNTESTED,
+             documentation = DOCUMENTATION_COMPLETE)
 public abstract class KryoUnitTest extends UnitTest
 {
     private SerializationSessionFactory factory;
@@ -99,15 +99,15 @@ public abstract class KryoUnitTest extends UnitTest
     protected <T> void testSerialization(T object, Version version)
     {
         var output = new ByteArrayOutputStream();
-        var serializer = new KryoObjectSerializer(kryoTypes());
-        var path = StringPath.stringPath("/a/b/c");
+        var serializer = listenTo(new KryoObjectSerializer(kryoTypes()));
+        var path = stringPath("/a/b/c");
 
         var write = new SerializableObject<>(object, version);
-        serializer.writeObject(output, path, write, OBJECT_VERSION);
+        serializer.writeObject(output, path, write, METADATA_OBJECT_VERSION);
 
         var input = new ByteArrayInputStream(output.toByteArray());
 
-        var read = serializer.readObject(input, path, object.getClass(), OBJECT_VERSION);
+        var read = serializer.readObject(input, path, object.getClass(), METADATA_OBJECT_VERSION);
         ensureEqual(write, read);
     }
 

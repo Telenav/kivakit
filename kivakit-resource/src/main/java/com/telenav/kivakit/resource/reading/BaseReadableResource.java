@@ -18,13 +18,12 @@
 
 package com.telenav.kivakit.resource.reading;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.io.IO;
 import com.telenav.kivakit.core.messaging.repeaters.BaseRepeater;
 import com.telenav.kivakit.core.object.Lazy;
 import com.telenav.kivakit.core.progress.ProgressReporter;
 import com.telenav.kivakit.core.progress.reporters.ProgressiveInputStream;
-import com.telenav.kivakit.core.time.Time;
 import com.telenav.kivakit.filesystem.File;
 import com.telenav.kivakit.filesystem.FilePath;
 import com.telenav.kivakit.filesystem.Folder;
@@ -41,13 +40,20 @@ import org.jetbrains.annotations.NotNull;
 
 import java.io.InputStream;
 import java.nio.charset.Charset;
-import java.nio.charset.StandardCharsets;
-import java.util.Objects;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.ensure.Ensure.unsupported;
+import static com.telenav.kivakit.core.io.IO.copyAndClose;
+import static com.telenav.kivakit.core.object.Lazy.lazy;
+import static com.telenav.kivakit.core.time.Time.now;
+import static com.telenav.kivakit.filesystem.File.parseFile;
+import static com.telenav.kivakit.filesystem.Folder.FolderType.CLEAN_UP_ON_EXIT;
+import static com.telenav.kivakit.filesystem.Folder.temporaryFolderForProcess;
+import static com.telenav.kivakit.resource.CopyMode.OVERWRITE;
+import static java.nio.charset.StandardCharsets.UTF_8;
+import static java.util.Objects.hash;
 
 /**
  * A base implementation of the {@link Resource} interface. Adds the following methods:
@@ -60,21 +66,21 @@ import static com.telenav.kivakit.core.ensure.Ensure.unsupported;
  */
 @UmlClassDiagram(diagram = DiagramResource.class)
 @UmlClassDiagram(diagram = DiagramFileSystemFile.class)
-@ApiQuality(stability = API_STABLE_EXTENSIBLE,
-            testing = TESTING_NONE,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = UNTESTED,
+             documentation = DOCUMENTATION_COMPLETE)
 public abstract class BaseReadableResource extends BaseRepeater implements Resource
 {
     /**
      * The temporary cache folder for storing materialized files
      */
-    private static final Lazy<Folder> cacheFolder = Lazy.lazy(() ->
-            Folder.temporaryForProcess(Folder.FolderType.CLEAN_UP_ON_EXIT).ensureExists());
+    private static final Lazy<Folder> cacheFolder = lazy(() ->
+            temporaryFolderForProcess(CLEAN_UP_ON_EXIT).ensureExists());
 
     /**
      * Character mapping (default is UTF-8)
      */
-    private Charset charset = StandardCharsets.UTF_8;
+    private Charset charset = UTF_8;
 
     /**
      * Compression (default is none, but may be derived from resource extension)
@@ -156,7 +162,7 @@ public abstract class BaseReadableResource extends BaseRepeater implements Resou
             // copy the resource stream (which might involve compression or decompression or both).
             var input = openForReading(reporter);
             var output = destination.openForWriting();
-            if (!IO.copyAndClose(this, input, output))
+            if (!copyAndClose(this, input, output))
             {
                 throw new IllegalStateException("Unable to copy " + this + " to " + destination);
             }
@@ -234,7 +240,7 @@ public abstract class BaseReadableResource extends BaseRepeater implements Resou
     @Override
     public int hashCode()
     {
-        return Objects.hash(path);
+        return hash(path);
     }
 
     // Ensure the remote resource is locally accessible
@@ -251,9 +257,9 @@ public abstract class BaseReadableResource extends BaseRepeater implements Resou
                     if (!cached.exists())
                     {
                         cached.parent().ensureExists();
-                        var start = Time.now();
+                        var start = now();
                         trace("Materializing $ to $", this, cached.path().asAbsolute());
-                        safeCopyTo(cached, CopyMode.OVERWRITE, reporter);
+                        safeCopyTo(cached, OVERWRITE, reporter);
                         trace("Materialized ${debug} ($) from ${debug} in ${debug}", cached.path().asAbsolute(),
                                 cached.sizeInBytes(), this, start.elapsedSince());
                     }
@@ -277,7 +283,7 @@ public abstract class BaseReadableResource extends BaseRepeater implements Resou
         }
 
         // add a decompression layer if need be,
-        var decompressed = codec().decompressed(IO.bufferInput(in));
+        var decompressed = codec().decompressed(IO.buffer(in));
 
         // start the reporter
         reporter.start(fileName().name());
@@ -309,7 +315,7 @@ public abstract class BaseReadableResource extends BaseRepeater implements Resou
         // Flatten path being cached into a long filename by turning all file system meta characters
         // into underscores.
         // For example, "a/b/c.txt" becomes "a_b_c.txt"
-        return File.parseFile(this, cacheFolder.get() + "/" + path().toString().replaceAll("[/:]", "_"));
+        return parseFile(this, cacheFolder.get() + "/" + path().toString().replaceAll("[/:]", "_"));
     }
 
     private String uniqueIdentifier()

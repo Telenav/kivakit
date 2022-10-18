@@ -1,6 +1,6 @@
 package com.telenav.kivakit.resource.serialization;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.language.trait.TryTrait;
 import com.telenav.kivakit.core.messaging.repeaters.RepeaterMixin;
 import com.telenav.kivakit.core.path.StringPath;
@@ -11,9 +11,9 @@ import org.jetbrains.annotations.NotNull;
 
 import java.io.OutputStream;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_DEFAULT_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 
 /**
  * Interface to code that can write {@link SerializableObject}s to a {@link WritableResource}.
@@ -22,9 +22,9 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
  * @see WritableResource
  * @see SerializableObject
  */
-@ApiQuality(stability = API_STABLE_DEFAULT_EXTENSIBLE,
-            documentation = DOCUMENTATION_COMPLETE,
-            testing = TESTING_NONE)
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             documentation = DOCUMENTATION_COMPLETE,
+             testing = UNTESTED)
 public interface ObjectWriter extends
         RepeaterMixin,
         TryTrait

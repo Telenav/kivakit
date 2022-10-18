@@ -18,12 +18,14 @@
 
 package com.telenav.kivakit.collections.set;
 
+import com.telenav.kivakit.core.collections.set.ObjectSet;
 import com.telenav.kivakit.internal.testing.CoreUnitTest;
 import org.junit.Test;
 
-import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
+
+import static com.telenav.kivakit.core.collections.set.ObjectSet.set;
 
 @SuppressWarnings("SpellCheckingInspection")
 public class SetDifferencerTest extends CoreUnitTest
@@ -147,8 +149,8 @@ public class SetDifferencerTest extends CoreUnitTest
         return value;
     }
 
-    private Set<Value> values(Value... values)
+    private ObjectSet<Value> values(Value... values)
     {
-        return new HashSet<>(Arrays.asList(values));
+        return set(values);
     }
 }

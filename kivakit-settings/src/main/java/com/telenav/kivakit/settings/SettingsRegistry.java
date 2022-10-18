@@ -18,24 +18,26 @@
 
 package com.telenav.kivakit.settings;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.logging.Logger;
-import com.telenav.kivakit.core.logging.LoggerFactory;
 import com.telenav.kivakit.core.object.Lazy;
 import com.telenav.kivakit.core.registry.InstanceIdentifier;
 import com.telenav.kivakit.core.registry.Registry;
 import com.telenav.kivakit.core.vm.JavaTrait;
-import com.telenav.kivakit.filesystem.Folder;
 import com.telenav.kivakit.resource.ResourceFolder;
 import com.telenav.kivakit.settings.internal.lexakai.DiagramSettings;
 import com.telenav.kivakit.settings.stores.MemorySettingsStore;
 import com.telenav.kivakit.settings.stores.ResourceFolderSettingsStore;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.ensure.Ensure.fail;
+import static com.telenav.kivakit.core.logging.LoggerFactory.newLogger;
+import static com.telenav.kivakit.core.object.Lazy.lazy;
+import static com.telenav.kivakit.core.registry.Registry.registryFor;
+import static com.telenav.kivakit.filesystem.Folder.parseFolder;
 import static com.telenav.kivakit.settings.SettingsStore.AccessMode.LOAD;
 
 /**
@@ -46,26 +48,26 @@ import static com.telenav.kivakit.settings.SettingsStore.AccessMode.LOAD;
  * <p><b>Settings</b></p>
  *
  * <p>
- * The global {@link SettingsRegistry} registry is returned by {@link #global()}, and it is the default registry returned by
- * {@link #settingsRegistryFor(Object)}. The global settings registry is normally the central point of settings
+ * The global {@link SettingsRegistry} registry is returned by {@link #globalSettings()}, and it is the default registry
+ * returned by {@link #settingsFor(Object)}. The global settings registry is normally the central point of settings
  * registration and lookup for an application. It allows settings objects to be easily queried from client code
- * anywhere. Convenient access to the global settings registry is provided by {@link SettingsRegistryTrait}, and by the
+ * anywhere. Convenient access to the global settings registry is provided by {@link SettingsTrait}, and by the
  * <i>Component</i> class in
- * <i>kivakit-component</i>, which implements {@link SettingsRegistryTrait}. A component can have its own settings registry
- * (not a common use case) by overriding the {@link SettingsRegistryTrait#settingsRegistry()} method (which returns the global
- * settings registry by default).
+ * <i>kivakit-component</i>, which implements {@link SettingsTrait}. A component can have its own settings
+ * registry (not a common use case) by overriding the {@link SettingsTrait#settingsForThis()} method (which
+ * returns the global settings registry by default).
  * </p>
  *
  * <p><b>How Settings are Registered</b></p>
  *
  * <p>
- * A component can easily register settings objects with the {@link SettingsRegistryTrait} <i>registerSettings*()</i> methods.
- * In particular, they can be registered from a {@link SettingsStore} with the method
+ * A component can easily register settings objects with the {@link SettingsTrait} <i>registerSettings*()</i>
+ * methods. In particular, they can be registered from a {@link SettingsStore} with the method
  * {@link #registerSettingsIn(SettingsStore)}. A typical way for a component to register the settings objects in a
  * {@link SettingsStore} is something like:
  * </p>
  * <pre>
- * registerSettingsIn(PackageSettingsStore.of(package));</pre>
+ * registerSettingsIn(packageForThis());</pre>
  *
  * <p>
  * Settings that are loaded from stores or explicitly added with registration methods are indexed in the store under
@@ -101,7 +103,7 @@ import static com.telenav.kivakit.settings.SettingsStore.AccessMode.LOAD;
  * <p><b>How Settings are Looked Up</b></p>
  *
  * <p>
- * The <i>lookupSettings*()</i> and <i>requireSettings*()</i> methods provided by {@link SettingsRegistryTrait} can be used to locate settings
+ * The <i>lookupSettings*()</i> and <i>requireSettings*()</i> methods provided by {@link SettingsTrait} can be used to locate settings
  * objects from any Component (see the <i>kivakit-component</i> project). Settings are located according to this
  * series of steps:
  * <ol>
@@ -119,24 +121,24 @@ import static com.telenav.kivakit.settings.SettingsStore.AccessMode.LOAD;
  * </p>
  *
  * @author jonathanl (shibo)
- * @see SettingsRegistryTrait
+ * @see SettingsTrait
  * @see Registry
  * @see Deployment
  * @see MemorySettingsStore
  * @see ResourceFolderSettingsStore
  */
 @UmlClassDiagram(diagram = DiagramSettings.class)
-@ApiQuality(stability = API_STABLE_EXTENSIBLE,
-            testing = TESTING_NONE,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = UNTESTED,
+             documentation = DOCUMENTATION_COMPLETE)
 public class SettingsRegistry extends MemorySettingsStore implements
-        SettingsRegistryTrait,
+        SettingsTrait,
         JavaTrait
 {
-    private static final Logger LOGGER = LoggerFactory.newLogger();
+    private static final Logger LOGGER = newLogger();
 
     /** The global settings registry */
-    private static final Lazy<SettingsRegistry> global = Lazy.lazy(() ->
+    private static final Lazy<SettingsRegistry> global = lazy(() ->
             LOGGER.listenTo(new SettingsRegistry()
             {
                 @Override
@@ -147,9 +149,9 @@ public class SettingsRegistry extends MemorySettingsStore implements
             }));
 
     /**
-     * @return The global settings object
+     * Returns the global settings object
      */
-    public static SettingsRegistry global()
+    public static SettingsRegistry globalSettings()
     {
         return global.get();
     }
@@ -159,13 +161,13 @@ public class SettingsRegistry extends MemorySettingsStore implements
      *
      * @return The settings registry for the given object
      */
-    public static synchronized SettingsRegistry settingsRegistryFor(Object ignored)
+    public static synchronized SettingsRegistry settingsFor(Object ignored)
     {
-        return global();
+        return globalSettings();
     }
 
     /**
-     * @return The settings object of the requested type from the global {@link Registry} or from the package of default
+     * Returns the settings object of the requested type from the global {@link Registry} or from the package of default
      * settings if it is not found there.
      */
     @Override
@@ -177,7 +179,7 @@ public class SettingsRegistry extends MemorySettingsStore implements
         loadSettingsFolders();
 
         // then look in the global object registry for the settings object,
-        var settings = Registry.registryFor(this).lookup(type, instance);
+        var settings = registryFor(this).lookup(type, instance);
 
         // and if settings still have not been explicitly defined,
         if (settings == null)
@@ -200,7 +202,7 @@ public class SettingsRegistry extends MemorySettingsStore implements
     }
 
     /**
-     * @return The settings object for the given type and instance identifier
+     * Returns the settings object for the given type and instance identifier
      */
     @Override
     public <T> T lookupSettings(Class<T> type, InstanceIdentifier instance)
@@ -209,7 +211,7 @@ public class SettingsRegistry extends MemorySettingsStore implements
     }
 
     /**
-     * @return Adds the given instance of a settings object to this set
+     * Returns adds the given instance of a settings object to this set
      */
     @Override
     public synchronized SettingsRegistry registerSettings(Object settings, InstanceIdentifier instance)
@@ -264,7 +266,7 @@ public class SettingsRegistry extends MemorySettingsStore implements
             for (var path : settingsFolders.split(",\\s*"))
             {
                 // and install
-                var folder = Folder.parseFolder(this, path);
+                var folder = parseFolder(this, path);
                 if (folder != null)
                 {
                     indexAll(new ResourceFolderSettingsStore(this, folder));

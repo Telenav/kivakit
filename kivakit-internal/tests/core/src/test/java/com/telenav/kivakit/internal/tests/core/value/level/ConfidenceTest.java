@@ -17,30 +17,39 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.telenav.kivakit.internal.tests.core.value.level;
+
 import com.telenav.kivakit.internal.testing.CoreUnitTest;
-import com.telenav.kivakit.core.value.level.Confidence;
 import org.junit.Test;
+
+import static com.telenav.kivakit.core.value.level.Confidence.FULL;
+import static com.telenav.kivakit.core.value.level.Confidence.LOW;
+import static com.telenav.kivakit.core.value.level.Confidence.MEDIUM;
+import static com.telenav.kivakit.core.value.level.Confidence.NO;
+import static com.telenav.kivakit.core.value.level.Confidence.ZERO;
+import static com.telenav.kivakit.core.value.level.Confidence.confidence;
+import static com.telenav.kivakit.core.value.level.Confidence.confidenceForByte;
+import static com.telenav.kivakit.core.value.level.Confidence.confidenceForInt;
 
 public class ConfidenceTest extends CoreUnitTest
 {
     @Test
     public void test()
     {
-        ensureEqual(Confidence.NO, Confidence.confidenceForByte((byte) 0x0));
-        ensureEqual(Confidence.FULL, Confidence.confidenceForByte(Byte.MAX_VALUE));
-        ensureEqual(Confidence.NO, Confidence.confidenceForInt(0));
-        ensureEqual(Confidence.FULL, Confidence.confidenceForInt(255));
-        ensure(Confidence.MEDIUM.isGreaterThan(Confidence.ZERO));
-        ensure(Confidence.FULL.isGreaterThan(Confidence.MEDIUM));
-        ensure(Confidence.LOW.isLessThan(Confidence.MEDIUM));
-        ensure(Confidence.LOW.isLessThan(Confidence.FULL));
-        ensure(Confidence.LOW.isGreaterThan(Confidence.ZERO));
-        ensure(Confidence.ZERO.isZero());
-        ensureFalse(Confidence.LOW.isZero());
-        ensureEqual(0, Confidence.NO.asUnsignedByte());
-        ensureEqual(255, Confidence.FULL.asUnsignedByte());
-        ensureThrows(() -> Confidence.confidence(2));
-        ensureThrows(() -> Confidence.confidence(-1));
-        Confidence.confidence(1);
+        ensureEqual(NO, confidenceForByte((byte) 0x0));
+        ensureEqual(FULL, confidenceForByte(Byte.MAX_VALUE));
+        ensureEqual(NO, confidenceForInt(0));
+        ensureEqual(FULL, confidenceForInt(255));
+        ensure(MEDIUM.isGreaterThan(ZERO));
+        ensure(FULL.isGreaterThan(MEDIUM));
+        ensure(LOW.isLessThan(MEDIUM));
+        ensure(LOW.isLessThan(FULL));
+        ensure(LOW.isGreaterThan(ZERO));
+        ensure(ZERO.isZero());
+        ensureFalse(LOW.isZero());
+        ensureEqual(0, NO.asUnsignedByte());
+        ensureEqual(255, FULL.asUnsignedByte());
+        ensureThrows(() -> confidence(2));
+        ensureThrows(() -> confidence(-1));
+        confidence(1);
     }
 }

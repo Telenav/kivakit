@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.filesystem;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.collections.watcher.CollectionChangeListener;
 import com.telenav.kivakit.collections.watcher.PeriodicCollectionChangeWatcher;
 import com.telenav.kivakit.core.time.Frequency;
@@ -31,9 +31,9 @@ import org.jetbrains.annotations.NotNull;
 import java.util.HashSet;
 import java.util.Set;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
 
 /**
  * Watches for changes to the contents of a {@link Folder}. {@link CollectionChangeListener}s are notified when changes
@@ -60,9 +60,9 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NE
  */
 @UmlClassDiagram(diagram = DiagramFileSystemFolder.class)
 @UmlRelation(label = "watches", referent = Folder.class)
-@ApiQuality(stability = API_STABLE_EXTENSIBLE,
-            testing = TESTING_NOT_NEEDED,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = TESTING_NOT_NEEDED,
+             documentation = DOCUMENTATION_COMPLETE)
 public class FolderChangeWatcher extends PeriodicCollectionChangeWatcher<FileSystemObject>
 {
     /** The folder to watch */

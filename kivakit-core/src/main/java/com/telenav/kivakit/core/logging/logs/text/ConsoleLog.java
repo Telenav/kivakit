@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.core.logging.logs.text;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramLogs;
 import com.telenav.kivakit.core.logging.LogEntry;
 import com.telenav.kivakit.core.logging.loggers.LogServiceLogger;
@@ -27,16 +27,24 @@ import com.telenav.kivakit.core.time.Duration;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeMember;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
-import static com.telenav.kivakit.core.os.Console.OutputStream.ERROR;
-import static com.telenav.kivakit.core.os.Console.OutputStream.NORMAL;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static com.telenav.kivakit.core.os.Console.OutputType.ERROR;
+import static com.telenav.kivakit.core.os.Console.OutputType.NORMAL;
+import static com.telenav.kivakit.core.os.Console.console;
 
 /**
  * A text log that logs to the console. Severe log entries are logged to stderr, others to stdout. The formatter can be
  * specified from the command line as "formatter=columnar" or "formatter=unformatted". See {@link LogServiceLogger} for
  * details.
+ *
+ * <p><b>Logging</b></p>
+ *
+ * <p>
+ * More details about logging are available in <a
+ * href="../../../../../../../../../kivakit-core/documentation/logging.md">kivakit-core</a>.
+ * </p>
  *
  * @author jonathanl (shibo)
  * @see Console
@@ -46,13 +54,13 @@ import static com.telenav.kivakit.core.os.Console.OutputStream.NORMAL;
  */
 @SuppressWarnings("SpellCheckingInspection")
 @UmlClassDiagram(diagram = DiagramLogs.class)
-@ApiQuality(stability = API_STABLE,
-            testing = TESTING_NONE,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = STABLE,
+             testing = UNTESTED,
+             documentation = DOCUMENTATION_COMPLETE)
 public class ConsoleLog extends BaseTextLog
 {
     /** The console to log to */
-    private final Console console = new Console();
+    private final Console console = console();
 
     /**
      * {@inheritDoc}
@@ -80,7 +88,6 @@ public class ConsoleLog extends BaseTextLog
      */
     @Override
     @UmlExcludeMember
-    @SuppressWarnings("AccessStaticViaInstance")
     public synchronized void onLog(LogEntry entry)
     {
         var outputType = entry.isSevere() ? ERROR : NORMAL;

@@ -18,16 +18,16 @@
 
 package com.telenav.kivakit.core.language.reflection.filters.field;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramReflection;
 import com.telenav.kivakit.core.language.reflection.Field;
 import com.telenav.kivakit.core.language.reflection.Method;
 import com.telenav.kivakit.core.language.reflection.property.PropertySet;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.language.reflection.property.PropertyNamingConvention.ANY_NAMING_CONVENTION;
 
 /**
@@ -36,9 +36,9 @@ import static com.telenav.kivakit.core.language.reflection.property.PropertyNami
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramReflection.class)
-@ApiQuality(stability = API_STABLE,
-            testing = TESTING_NONE,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = STABLE,
+             testing = UNTESTED,
+             documentation = DOCUMENTATION_COMPLETE)
 public class AllFields extends PropertySet
 {
     /**

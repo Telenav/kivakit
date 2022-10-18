@@ -18,16 +18,15 @@
 
 package com.telenav.kivakit.core.messaging;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramBroadcaster;
 import com.telenav.kivakit.core.internal.lexakai.DiagramListener;
 import com.telenav.kivakit.core.internal.lexakai.DiagramMessaging;
-import com.telenav.kivakit.core.language.Classes;
 import com.telenav.kivakit.core.messaging.context.CodeContext;
 import com.telenav.kivakit.core.messaging.context.StackTrace;
 import com.telenav.kivakit.core.messaging.messages.Importance;
+import com.telenav.kivakit.core.messaging.messages.MessageException;
 import com.telenav.kivakit.core.messaging.messages.OperationLifecycleMessage;
-import com.telenav.kivakit.core.messaging.messages.OperationMessage;
 import com.telenav.kivakit.core.messaging.messages.OperationStatusMessage;
 import com.telenav.kivakit.core.messaging.messages.Severity;
 import com.telenav.kivakit.core.messaging.messages.Triaged;
@@ -44,7 +43,6 @@ import com.telenav.kivakit.core.messaging.messages.status.activity.StepFailure;
 import com.telenav.kivakit.core.messaging.messages.status.activity.StepIncomplete;
 import com.telenav.kivakit.core.messaging.messages.status.activity.StepSuccess;
 import com.telenav.kivakit.core.string.Formatter;
-import com.telenav.kivakit.core.string.Strings;
 import com.telenav.kivakit.core.time.Frequency;
 import com.telenav.kivakit.core.time.Time;
 import com.telenav.kivakit.interfaces.messaging.Transmittable;
@@ -55,12 +53,16 @@ import com.telenav.lexakai.annotations.associations.UmlRelation;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeMember;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeSuperTypes;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static com.telenav.kivakit.core.language.Classes.newInstance;
+import static com.telenav.kivakit.core.language.Classes.simpleName;
 import static com.telenav.kivakit.core.messaging.MessageFormat.FORMATTED;
 import static com.telenav.kivakit.core.messaging.MessageFormat.WITHOUT_EXCEPTION;
 import static com.telenav.kivakit.core.messaging.MessageFormat.WITH_EXCEPTION;
+import static com.telenav.kivakit.core.messaging.Messages.parseMessageType;
+import static com.telenav.kivakit.core.string.Strings.replaceAll;
 
 /**
  * An interface to retrieve the basic attributes of a message, find out what it means and format it as text. A message's
@@ -127,9 +129,9 @@ import static com.telenav.kivakit.core.messaging.MessageFormat.WITH_EXCEPTION;
 @UmlClassDiagram(diagram = DiagramListener.class)
 @UmlExcludeSuperTypes({ StringFormattable.class })
 @UmlRelation(label = "formats with", diagram = DiagramMessaging.class, referent = Formatter.class)
-@ApiQuality(stability = API_STABLE,
-            testing = TESTING_NONE,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = STABLE,
+             testing = UNTESTED,
+             documentation = DOCUMENTATION_COMPLETE)
 public interface Message extends
         Transmittable,
         Triaged,
@@ -137,19 +139,19 @@ public interface Message extends
         Named
 {
     /**
-     * @return The given string with message markers escaped
+     * Returns the given string with message markers escaped
      */
     static String escapeMessageText(String text)
     {
-        return Strings.replaceAll(text, "$", "$$");
+        return replaceAll(text, "$", "$$");
     }
 
     /**
-     * @return The message with the given simple name (Problem, Warning, etc.)
+     * Returns the message with the given simple name (Problem, Warning, etc.)
      */
     static Message parseMessageName(Listener listener, String name)
     {
-        return OperationMessage.parseMessageType(listener, name);
+        return parseMessageType(listener, name);
     }
 
     /**
@@ -250,17 +252,17 @@ public interface Message extends
     }
 
     /**
-     * @return Message arguments used to produce formatted message
+     * Returns message arguments used to produce formatted message
      */
     Object[] arguments();
 
     /**
-     * @return This message as an exception
+     * Returns this message as an exception
      */
     RuntimeException asException();
 
     /**
-     * @return Any cause or null if none
+     * Returns any cause or null if none
      */
     Throwable cause();
 
@@ -274,22 +276,22 @@ public interface Message extends
     Message cause(Throwable cause);
 
     /**
-     * @return The context where this message was created
+     * Returns the context where this message was created
      */
     CodeContext context();
 
     /**
-     * @return The time at which this message was created
+     * Returns the time at which this message was created
      */
     Time created();
 
     /**
-     * @return The formatted message without stack trace information
+     * Returns the formatted message without stack trace information
      */
     String description();
 
     /**
-     * @return Formatted message, including any stack trace information
+     * Returns formatted message, including any stack trace information
      */
     String formatted(MessageFormat... format);
 
@@ -299,7 +301,7 @@ public interface Message extends
     }
 
     /**
-     * @return The importance of this message, without respect to severity
+     * Returns the importance of this message, without respect to severity
      */
     @UmlRelation(label = "message importance")
     Importance importance();
@@ -322,7 +324,7 @@ public interface Message extends
     }
 
     /**
-     * @return True if the status of this message is worse than the given value
+     * Returns true if the status of this message is worse than the given value
      */
     @UmlExcludeMember
     default boolean isWorseThan(Status status)
@@ -331,16 +333,16 @@ public interface Message extends
     }
 
     /**
-     * @return True if the status of this message is worse than the given message
+     * Returns true if the status of this message is worse than the given message
      */
     @UmlExcludeMember
     default <T extends Message> boolean isWorseThan(Class<T> message)
     {
-        return isWorseThan(Classes.newInstance(message).status());
+        return isWorseThan(newInstance(message).status());
     }
 
     /**
-     * @return True if the status of this message is worse than the given value
+     * Returns true if the status of this message is worse than the given value
      */
     @UmlExcludeMember
     default boolean isWorseThanOrEqualTo(Status status)
@@ -349,16 +351,16 @@ public interface Message extends
     }
 
     /**
-     * @return True if the status of this message is worse than the given message
+     * Returns true if the status of this message is worse than the given message
      */
     @UmlExcludeMember
     default <T extends Message> boolean isWorseThanOrEqualTo(Class<T> message)
     {
-        return isWorseThanOrEqualTo(Classes.newInstance(message).status());
+        return isWorseThanOrEqualTo(newInstance(message).status());
     }
 
     /**
-     * @return The frequency with which this message should be logged or null if the message should always be logged.
+     * Returns the frequency with which this message should be logged or null if the message should always be logged.
      * <p>
      * NOTE: Message identity is determined by looking at the un-formatted message returned by message(). If message()
      * does not return a constant string, a bounded map error may occur as the system attempts to track too many message
@@ -369,49 +371,46 @@ public interface Message extends
     @Override
     default String name()
     {
-        return Classes.simpleName(getClass());
+        return simpleName(getClass());
     }
 
     /**
-     * @return The operational status represented by this message, if any
+     * Returns the operational status represented by this message, if any
      */
     @UmlRelation(label = "operation status")
     OperationStatus operationStatus();
 
     /**
-     * @return The severity of this message
+     * Returns the severity of this message
      */
     @Override
     @UmlRelation(label = "message severity")
     Severity severity();
 
     /**
-     * @return Any stack trace associated with this message (or null if none applies)
+     * Returns any stack trace associated with this message (or null if none applies)
      */
     StackTrace stackTrace();
 
     /**
-     * @return The status of a step in an ongoing operation, if the message is relevant to this
+     * Returns the status of a step in an ongoing operation, if the message is relevant to this
      */
     @UmlRelation(label = "message status")
     Status status();
 
     /**
-     * @return The un-formatted message text. See {@link Formatter#format(String, Object...)} for details on how this
+     * Returns the un-formatted message text. See {@link Formatter#format(String, Object...)} for details on how this
      * text is formatted using the {@link #arguments()} to the message.
      */
     String text();
 
+    /**
+     * Throws this message as a {@link MessageException}.
+     */
     @UmlExcludeMember
-    default void throwAsIllegalArgumentException()
+    default void throwMessage()
     {
-        throw new IllegalArgumentException(formatted(WITH_EXCEPTION));
-    }
-
-    @UmlExcludeMember
-    default void throwAsIllegalStateException()
-    {
-        throw new IllegalStateException(formatted(WITH_EXCEPTION));
+        throw new MessageException(this);
     }
 
     /**

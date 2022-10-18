@@ -1,6 +1,6 @@
 package com.telenav.kivakit.core.messaging;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.messaging.context.CodeContext;
 import com.telenav.kivakit.core.messaging.messages.lifecycle.OperationHalted;
 import com.telenav.kivakit.core.messaging.messages.status.Announcement;
@@ -14,9 +14,10 @@ import com.telenav.kivakit.core.messaging.messages.status.Trace;
 import com.telenav.kivakit.core.messaging.messages.status.Warning;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeMember;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_DEFAULT_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
+import static com.telenav.kivakit.core.messaging.Debug.registerDebug;
 
 /**
  * Methods that transmit different kinds of messages.
@@ -24,9 +25,9 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NE
  * @author jonathanl (shibo)
  */
 @SuppressWarnings({ "unused", "UnusedReturnValue" })
-@ApiQuality(stability = API_STABLE_DEFAULT_EXTENSIBLE,
-            testing = TESTING_NOT_NEEDED,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = TESTING_NOT_NEEDED,
+             documentation = DOCUMENTATION_COMPLETE)
 public interface MessageTransceiver extends Transceiver
 {
     /**
@@ -42,15 +43,15 @@ public interface MessageTransceiver extends Transceiver
     }
 
     /**
-     * @return Debug object for this
+     * Returns debug object for this
      */
     default Debug debug()
     {
-        return Debug.of(debugClassContext(), this);
+        return registerDebug(debugClassContext(), this);
     }
 
     /**
-     * @return The class where this transceiver is
+     * Returns the class where this transceiver is
      */
     @UmlExcludeMember
     default Class<?> debugClassContext()
@@ -90,7 +91,7 @@ public interface MessageTransceiver extends Transceiver
     {
         var problem = new FatalProblem(text, arguments);
         transmit(problem);
-        problem.throwAsIllegalStateException();
+        problem.throwMessage();
         return null;
     }
 
@@ -107,7 +108,7 @@ public interface MessageTransceiver extends Transceiver
     {
         var problem = new FatalProblem(cause, text, arguments);
         transmit(problem);
-        problem.throwAsIllegalStateException();
+        problem.throwMessage();
         return null;
     }
 
@@ -191,7 +192,7 @@ public interface MessageTransceiver extends Transceiver
     }
 
     /**
-     * @return True if debugging is on for this {@link Transceiver}
+     * Returns true if debugging is on for this {@link Transceiver}
      */
     default boolean isDebugOn()
     {

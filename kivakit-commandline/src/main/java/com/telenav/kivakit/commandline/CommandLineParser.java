@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.commandline;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.commandline.internal.lexakai.DiagramArgument;
 import com.telenav.kivakit.commandline.internal.lexakai.DiagramCommandLine;
 import com.telenav.kivakit.commandline.parsing.ArgumentParserList;
@@ -28,11 +28,6 @@ import com.telenav.kivakit.commandline.parsing.SwitchValueListValidator;
 import com.telenav.kivakit.core.KivaKit;
 import com.telenav.kivakit.core.messaging.listeners.MessageList;
 import com.telenav.kivakit.core.messaging.messages.OperationMessage;
-import com.telenav.kivakit.core.string.AsciiArt;
-import com.telenav.kivakit.core.string.Strings;
-import com.telenav.kivakit.core.string.Wrap;
-import com.telenav.kivakit.core.time.Duration;
-import com.telenav.kivakit.interfaces.comparison.Matcher;
 import com.telenav.kivakit.validation.BaseValidator;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlAggregation;
@@ -42,10 +37,14 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.Collection;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.project.Project.resolveProject;
+import static com.telenav.kivakit.core.string.AsciiArt.textBox;
+import static com.telenav.kivakit.core.string.Formatter.format;
+import static com.telenav.kivakit.core.string.Wrap.wrapRegion;
+import static com.telenav.kivakit.core.time.Duration.seconds;
 
 /**
  * Parses an array of command line arguments into a list of {@link SwitchValueList} of the form "-switch=value" and a
@@ -108,7 +107,7 @@ import static com.telenav.kivakit.core.project.Project.resolveProject;
  *         {
  *             result += argument.get(NUMBER) * multiplier;
  *         }
- *         LOGGER.information("result = $", result);
+ *         information("result = $", result);
  *     }
  * </pre>
  *
@@ -122,9 +121,9 @@ import static com.telenav.kivakit.core.project.Project.resolveProject;
 @UmlClassDiagram(diagram = DiagramCommandLine.class)
 @UmlRelation(label = "validates", referent = ArgumentValueList.class)
 @UmlRelation(diagram = DiagramCommandLine.class, label = "validates", referent = SwitchValueList.class)
-@ApiQuality(stability = API_STABLE_EXTENSIBLE,
-            testing = TESTING_NONE,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = UNTESTED,
+             documentation = DOCUMENTATION_COMPLETE)
 public class CommandLineParser
 {
     /** Parsers for arguments */
@@ -210,15 +209,15 @@ public class CommandLineParser
     protected void exit(@NotNull String message,
                         Object... arguments)
     {
-        var formatted = Strings.format(message, arguments);
-        System.err.println("\n" + AsciiArt.textBox("COMMAND LINE ERROR(S)", formatted));
+        var formatted = format(message, arguments);
+        System.err.println("\n" + textBox("COMMAND LINE ERROR(S)", formatted));
         System.err.flush();
-        Duration.seconds(0.25).sleep();
+        seconds(0.25).sleep();
         System.out.println(help() + "\n");
         System.out.flush();
 
         // If the application allows calling System.exit()
-        if (application.callSystemExitOnUnrecoverableError())
+        if (application.callSystemExitOnCommandLineError())
         {
             // then quit the whole VM
             System.exit(1);
@@ -236,7 +235,7 @@ public class CommandLineParser
     void validate(@NotNull SwitchValueList switches,
                   @NotNull ArgumentValueList arguments)
     {
-        var messages = new MessageList(Matcher.matchAll());
+        var messages = new MessageList();
 
         var validator = new BaseValidator()
         {
@@ -255,13 +254,13 @@ public class CommandLineParser
     }
 
     /**
-     * @return A help message for this command line, giving help for all switches and arguments
+     * Returns a help message for this command line, giving help for all switches and arguments
      */
     private String help()
     {
         var kivakitVersion = "\nKivaKit " + resolveProject(KivaKit.class).projectVersion() + " (" + resolveProject(KivaKit.class).build().name() + ")";
         var usage = "\n\nUsage: " + application.getClass().getSimpleName() + " " + application.version() + " <switches> <arguments>\n\n";
-        var description = Wrap.wrapRegion(application.description(), 100).trim() + "\n\n";
+        var description = wrapRegion(application.description(), 100).trim() + "\n\n";
         var arguments = "Arguments:\n\n" + argumentParsers.help();
         var switches = "\n\nSwitches:\n\n" + switchParsers.help();
 

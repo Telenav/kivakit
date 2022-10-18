@@ -18,26 +18,26 @@
 
 package com.telenav.kivakit.core.string;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramString;
 import com.telenav.kivakit.core.language.reflection.Type;
-import com.telenav.kivakit.core.language.reflection.property.KivaKitIncludeProperty;
+import com.telenav.kivakit.core.language.reflection.property.IncludeProperty;
 import com.telenav.kivakit.core.language.reflection.property.Property;
 import com.telenav.kivakit.core.value.count.Maximum;
 import com.telenav.kivakit.interfaces.string.StringFormattable;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import org.jetbrains.annotations.NotNull;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.interfaces.string.StringFormattable.Format.TEXT;
 
 /**
  * An {@link StringFormattable} sub-interface that traverses a tree of objects, adding information to an
  * {@link ObjectIndenter} object as it goes. An {@link ObjectIndenter} handles string indenting, directs recursion and
  * performs reflection on fields and methods that are tagged with the annotation
- * {@literal @}{@link KivaKitIncludeProperty}.
+ * {@literal @}{@link IncludeProperty}.
  * <p>
  * The method {@link #asString(Format, ObjectIndenter)} uses the given {@link ObjectIndenter} object to determine if it
  * should recurse or not as well as to perform labeling and indentation of text lines. The {@link #asString()}
@@ -48,14 +48,14 @@ import static com.telenav.kivakit.interfaces.string.StringFormattable.Format.TEX
  * @author jonathanl (shibo)
  * @see StringFormattable
  * @see ObjectIndenter
- * @see KivaKitIncludeProperty
+ * @see IncludeProperty
  * @see Property
  * @see Type
  */
 @UmlClassDiagram(diagram = DiagramString.class)
-@ApiQuality(stability = API_STABLE,
-            testing = TESTING_NONE,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = STABLE,
+             testing = UNTESTED,
+             documentation = DOCUMENTATION_COMPLETE)
 public interface AsIndentedString extends StringFormattable
 {
     /**

@@ -18,18 +18,20 @@
 
 package com.telenav.kivakit.core.version;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
-import com.telenav.kivakit.core.language.primitive.Ints;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.messaging.Listener;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.Objects;
 import java.util.regex.Pattern;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_INSUFFICIENT;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_INSUFFICIENT;
 import static com.telenav.kivakit.core.ensure.Ensure.fail;
+import static com.telenav.kivakit.core.language.Hash.hashMany;
+import static com.telenav.kivakit.core.language.primitive.Ints.parseInt;
+import static com.telenav.kivakit.core.messaging.Listener.throwingListener;
+import static com.telenav.kivakit.core.version.ReleaseType.parseRelease;
 import static java.util.regex.Pattern.CASE_INSENSITIVE;
 
 /**
@@ -82,9 +84,9 @@ import static java.util.regex.Pattern.CASE_INSENSITIVE;
  * @see <a href=https://semver.org>*Semantic Versioning*</a>
  */
 @SuppressWarnings("unused")
-@ApiQuality(stability = API_STABLE_EXTENSIBLE,
-            testing = TESTING_INSUFFICIENT,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = TESTING_INSUFFICIENT,
+             documentation = DOCUMENTATION_COMPLETE)
 public class Version
 {
     /** Value for no patch revision */
@@ -111,7 +113,7 @@ public class Version
      */
     public static Version parseVersion(String text)
     {
-        return parseVersion(Listener.throwingListener(), text);
+        return parseVersion(throwingListener(), text);
     }
 
     /**
@@ -127,17 +129,17 @@ public class Version
         if (matcher.matches())
         {
             // Extract the required major and minor versions
-            var major = Ints.parseInt(listener, matcher.group("major"));
+            var major = parseInt(listener, matcher.group("major"));
             var minor = matcher.group("minor");
-            var minorVersion = minor == null ? NO_MINOR : Ints.parseInt(listener, minor);
+            var minorVersion = minor == null ? NO_MINOR : parseInt(listener, minor);
 
             // then get the patch group and convert it to a number or NO_PATCH if there is none
             var patch = matcher.group("patch");
-            var patchNumber = patch == null ? NO_PATCH : Ints.parseInt(listener, patch);
+            var patchNumber = patch == null ? NO_PATCH : parseInt(listener, patch);
 
             // and the release name or null if there is none
             var releaseName = matcher.group("release");
-            var release = releaseName == null ? null : ReleaseType.parseRelease(listener, releaseName);
+            var release = releaseName == null ? null : parseRelease(listener, releaseName);
             var snapshot = "SNAPSHOT".equalsIgnoreCase(matcher.group("snapshot"));
 
             // and finally, construct the version object
@@ -149,7 +151,7 @@ public class Version
     }
 
     /**
-     * @return A version for the given major, minor and patch values, as in 8.0.1
+     * Returns a version for the given major, minor and patch values, as in 8.0.1
      */
     public static Version version(int major, int minor, int patch)
     {
@@ -157,7 +159,7 @@ public class Version
     }
 
     /**
-     * @return A version for the given major, minor, patch and release values, as in 8.0.1-Beta
+     * Returns a version for the given major, minor, patch and release values, as in 8.0.1-Beta
      */
     public static Version version(int major,
                                   int minor,
@@ -169,7 +171,7 @@ public class Version
     }
 
     /**
-     * @return A version for the given major and minor values, as in 8.0
+     * Returns a version for the given major and minor values, as in 8.0
      */
     public static Version version(int major, int minor)
     {
@@ -177,7 +179,7 @@ public class Version
     }
 
     /**
-     * @return A version for the given major and minor values, as in 8.0
+     * Returns a version for the given major and minor values, as in 8.0
      */
     public static Version version(int major)
     {
@@ -192,7 +194,7 @@ public class Version
      */
     public static Version version(String text)
     {
-        return parseVersion(Listener.throwingListener(), text);
+        return parseVersion(throwingListener(), text);
     }
 
     /** The major version */
@@ -224,7 +226,7 @@ public class Version
     }
 
     /**
-     * @return This version as a double. For example, if major is 1 and minor is 9, the return value will be 1.9.
+     * Returns this version as a double. For example, if major is 1 and minor is 9, the return value will be 1.9.
      */
     public double asDouble()
     {
@@ -284,7 +286,7 @@ public class Version
     @Override
     public int hashCode()
     {
-        return Objects.hash(major, minor, patch, releaseType);
+        return hashMany(major, minor, patch, releaseType);
     }
 
     /**
@@ -381,7 +383,7 @@ public class Version
     }
 
     /**
-     * @return The patch number, as in [major].[minor].[patch], or NO_PATCH if there is no patch number
+     * Returns the patch number, as in [major].[minor].[patch], or NO_PATCH if there is no patch number
      */
     public int patch()
     {
@@ -407,7 +409,7 @@ public class Version
     }
 
     /**
-     * @return This version without the patch number
+     * Returns this version without the patch number
      */
     public Version withoutPatch()
     {
@@ -415,7 +417,7 @@ public class Version
     }
 
     /**
-     * @return This version without the {@link ReleaseType}
+     * Returns this version without the {@link ReleaseType}
      */
     public Version withoutRelease()
     {
@@ -423,7 +425,7 @@ public class Version
     }
 
     /**
-     * @return This version as a non-snapshot
+     * Returns this version as a non-snapshot
      */
     public Version withoutSnapshot()
     {

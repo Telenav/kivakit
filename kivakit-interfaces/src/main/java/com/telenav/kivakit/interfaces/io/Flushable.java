@@ -18,14 +18,14 @@
 
 package com.telenav.kivakit.interfaces.io;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.interfaces.internal.lexakai.DiagramIo;
 import com.telenav.kivakit.interfaces.time.LengthOfTime;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
 
 /**
  * An object that can be flushed, like a queue or output stream.
@@ -33,9 +33,9 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NE
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramIo.class)
-@ApiQuality(stability = API_STABLE,
-            testing = TESTING_NOT_NEEDED,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = STABLE,
+             testing = TESTING_NOT_NEEDED,
+             documentation = DOCUMENTATION_COMPLETE)
 public interface Flushable<Duration extends LengthOfTime<Duration>>
 {
     /**
@@ -55,7 +55,7 @@ public interface Flushable<Duration extends LengthOfTime<Duration>>
     }
 
     /**
-     * @return The maximum time to wait when {@link #flush()} is called. Normally this is the largest duration possible,
+     * Returns the maximum time to wait when {@link #flush()} is called. Normally this is the largest duration possible,
      * which for all practical purposes is "forever".
      */
     Duration maximumFlushTime();

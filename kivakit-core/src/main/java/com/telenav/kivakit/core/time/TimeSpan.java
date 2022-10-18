@@ -1,10 +1,13 @@
 package com.telenav.kivakit.core.time;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static com.telenav.kivakit.core.time.Time.END_OF_UNIX_TIME;
+import static com.telenav.kivakit.core.time.Time.START_OF_UNIX_TIME;
+import static com.telenav.kivakit.core.time.Time.now;
 
 /**
  * A span of time
@@ -36,9 +39,9 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
  * @author jonathanl (shibo)
  */
 @SuppressWarnings("unused")
-@ApiQuality(stability = API_STABLE_EXTENSIBLE,
-            testing = TESTING_NONE,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = UNTESTED,
+             documentation = DOCUMENTATION_COMPLETE)
 public class TimeSpan
 {
     /**
@@ -62,7 +65,7 @@ public class TimeSpan
      */
     public static TimeSpan timeSpanFromNow(Duration duration)
     {
-        var now = Time.now();
+        var now = now();
         return timeSpan(now, now.plus(duration));
     }
 
@@ -71,7 +74,7 @@ public class TimeSpan
      */
     public static TimeSpan timeSpanToNow(Duration duration)
     {
-        var now = Time.now();
+        var now = now();
         return timeSpan(now.minus(duration), now);
     }
 
@@ -80,7 +83,7 @@ public class TimeSpan
      */
     public static TimeSpan unixEpoch()
     {
-        return new TimeSpan(Time.START_OF_UNIX_TIME, Time.MAXIMUM);
+        return new TimeSpan(START_OF_UNIX_TIME, END_OF_UNIX_TIME);
     }
 
     /** The start of this timespan */
@@ -96,7 +99,7 @@ public class TimeSpan
     }
 
     /**
-     * @return True if this time span contains the given time (endpoints are inclusive)
+     * Returns true if this time span contains the given time (endpoints are inclusive)
      */
     public boolean contains(Time time)
     {

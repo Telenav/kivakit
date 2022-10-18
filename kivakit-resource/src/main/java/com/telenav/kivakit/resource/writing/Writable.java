@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.resource.writing;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.progress.ProgressReporter;
 import com.telenav.kivakit.core.progress.reporters.ProgressiveOutputStream;
 import com.telenav.kivakit.core.value.count.BaseCount;
@@ -26,10 +26,10 @@ import org.jetbrains.annotations.NotNull;
 
 import java.io.OutputStream;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
-import static com.telenav.kivakit.core.io.IO.bufferOutput;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static com.telenav.kivakit.core.io.IO.buffer;
 import static com.telenav.kivakit.core.progress.ProgressReporter.nullProgressReporter;
 
 /**
@@ -47,9 +47,9 @@ import static com.telenav.kivakit.core.progress.ProgressReporter.nullProgressRep
  *
  * @author jonathanl (shibo)
  */
-@ApiQuality(stability = API_STABLE_EXTENSIBLE,
-            documentation = DOCUMENTATION_COMPLETE,
-            testing = TESTING_NONE)
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             documentation = DOCUMENTATION_COMPLETE,
+             testing = UNTESTED)
 public interface Writable
 {
     /**
@@ -84,6 +84,6 @@ public interface Writable
      */
     default OutputStream openForWriting(@NotNull ProgressReporter reporter)
     {
-        return new ProgressiveOutputStream(bufferOutput(onOpenForWriting()), reporter);
+        return new ProgressiveOutputStream(buffer(onOpenForWriting()), reporter);
     }
 }

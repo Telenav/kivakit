@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.settings;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.commandline.SwitchParser;
 import com.telenav.kivakit.conversion.BaseStringConverter;
 import com.telenav.kivakit.core.messaging.Listener;
@@ -32,9 +32,10 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 import java.io.Serializable;
 import java.util.Objects;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static com.telenav.kivakit.commandline.SwitchParser.switchParser;
 
 /**
  * <p>
@@ -50,9 +51,9 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
  *
  * <p>
  * Deployments can be added to a {@link DeploymentSet} via {@link DeploymentSet#addDeploymentsIn(ResourceFolder)}. The
- * method SwitchParser.deployment(DeploymentSet) will create a command line SwitchParser that can select among several
- * deployments in a {@link DeploymentSet} by name. This is handled automatically if the application places deployments
- * in the application-relative package "deployments".
+ * method {@link #deploymentSwitchParser(Listener, DeploymentSet, String)} will create a command line SwitchParser that
+ * can select among several deployments in a {@link DeploymentSet} by name. This is handled automatically if the
+ * application places deployments in the application-relative package "deployments".
  * </p>
  *
  * <p>
@@ -64,8 +65,8 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
  *
  * <p>
  * Here, settings objects in the "production" {@link Deployment} will be installed into the global settings registry. At
- * a later point, the application can look up those objects with {@link SettingsRegistryTrait#lookupSettings(Class)} and
- * {@link SettingsRegistryTrait#lookupSettings(Class, InstanceIdentifier)}, both of which are provided by the
+ * a later point, the application can look up those objects with {@link SettingsTrait#lookupSettings(Class)} and
+ * {@link SettingsTrait#lookupSettings(Class, InstanceIdentifier)}, both of which are provided by the
  * <i>Component</i> class in the <i>kivakit-component</i> project.
  * </p>
  *
@@ -107,7 +108,7 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
  *
  * <p>
  * When KivaKit loads this properties file, it will instantiate the ServerSettings class specified by "class" and
- * configure the resulting object. It does this by using the {@literal @}KivaKitConverted annotation to convert the
+ * configure the resulting object. It does this by using the {@literal @}ConvertedProperty annotation to convert the
  * value for the "port" key in the properties file into an object which it then passes to the annotated port(Port)
  * method:
  * </p>
@@ -119,7 +120,7 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
  * {
  *     private Port port;
  *
- *    {@literal @}KivaKitConverted(Port.Converter.class)
+ *    {@literal @}ConvertedProperty(Port.Converter.class)
  *     public void port( Port port)
  *     {
  *         this.port = port;
@@ -157,9 +158,9 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
  */
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramSettings.class, excludeSuperTypes = { Serializable.class })
-@ApiQuality(stability = API_STABLE,
-            testing = TESTING_NONE,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = STABLE,
+             testing = UNTESTED,
+             documentation = DOCUMENTATION_COMPLETE)
 public class Deployment extends MemorySettingsStore implements Serializable
 {
     /**
@@ -174,7 +175,7 @@ public class Deployment extends MemorySettingsStore implements Serializable
                                                                           DeploymentSet deployments,
                                                                           String switchName)
     {
-        return SwitchParser.switchParserBuilder(Deployment.class)
+        return switchParser(Deployment.class)
                 .name("deployment")
                 .validValues(deployments.deployments())
                 .converter(new Deployment.Converter(listener, deployments))
@@ -186,9 +187,9 @@ public class Deployment extends MemorySettingsStore implements Serializable
      *
      * @author jonathanl (shibo)
      */
-    @ApiQuality(stability = API_STABLE,
-                testing = TESTING_NONE,
-                documentation = DOCUMENTATION_COMPLETE)
+    @CodeQuality(stability = STABLE,
+                 testing = UNTESTED,
+                 documentation = DOCUMENTATION_COMPLETE)
     public static class Converter extends BaseStringConverter<Deployment>
     {
         /** Set of deployments to choose from */
@@ -235,7 +236,7 @@ public class Deployment extends MemorySettingsStore implements Serializable
     }
 
     /**
-     * @return A description of the purpose of this deployment
+     * Returns a description of the purpose of this deployment
      */
     public String description()
     {

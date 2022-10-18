@@ -18,14 +18,15 @@
 
 package com.telenav.kivakit.core.version;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
-import com.telenav.kivakit.core.language.Hash;
-import com.telenav.kivakit.core.language.Objects;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.interfaces.naming.NamedObject;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static com.telenav.kivakit.core.language.Hash.hashMany;
+import static com.telenav.kivakit.core.language.Objects.areEqualPairs;
+import static com.telenav.kivakit.interfaces.naming.NamedObject.syntheticName;
 
 /**
  * An object of a particular version. Used in kryo serialization. For example FieldArchive and ZipArchive both have
@@ -34,9 +35,9 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
  *
  * @author jonathanl (shibo)
  */
-@ApiQuality(stability = API_STABLE,
-            testing = TESTING_NONE,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = STABLE,
+             testing = UNTESTED,
+             documentation = DOCUMENTATION_COMPLETE)
 public class VersionedObject<T> implements
         NamedObject,
         Versioned
@@ -63,7 +64,7 @@ public class VersionedObject<T> implements
         if (object instanceof VersionedObject)
         {
             var that = (VersionedObject<?>) object;
-            return Objects.areEqualPairs(
+            return areEqualPairs(
                     this.object, that.object,
                     this.version, that.version);
         }
@@ -73,11 +74,11 @@ public class VersionedObject<T> implements
     @Override
     public int hashCode()
     {
-        return Hash.hashMany(this.object, this.version);
+        return hashMany(this.object, this.version);
     }
 
     /**
-     * @return The object
+     * Returns the object
      */
     public T object()
     {
@@ -87,7 +88,7 @@ public class VersionedObject<T> implements
     @Override
     public String objectName()
     {
-        return NamedObject.syntheticName(object);
+        return syntheticName(object);
     }
 
     @Override
@@ -97,7 +98,7 @@ public class VersionedObject<T> implements
     }
 
     /**
-     * @return The version of the object
+     * Returns the version of the object
      */
     @Override
     public Version version()

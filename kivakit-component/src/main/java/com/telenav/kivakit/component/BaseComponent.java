@@ -1,15 +1,15 @@
 package com.telenav.kivakit.component;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.component.internal.lexakai.DiagramComponent;
 import com.telenav.kivakit.core.messaging.Repeater;
 import com.telenav.kivakit.core.messaging.repeaters.BaseRepeater;
-import com.telenav.kivakit.interfaces.naming.NamedObject;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static com.telenav.kivakit.interfaces.naming.NamedObject.syntheticName;
 
 /**
  * Base class for KivaKit components. For details, see {@link Component}.
@@ -19,13 +19,13 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
  * @see Repeater
  */
 @UmlClassDiagram(diagram = DiagramComponent.class)
-@ApiQuality(stability = API_STABLE_EXTENSIBLE,
-            testing = TESTING_NONE,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = UNTESTED,
+             documentation = DOCUMENTATION_COMPLETE)
 public class BaseComponent extends BaseRepeater implements Component
 {
     /** The name of this object for debugging purposes */
-    private String objectName = NamedObject.syntheticName(this);
+    private String objectName;
 
     /**
      * Sets the object name for this component
@@ -44,6 +44,10 @@ public class BaseComponent extends BaseRepeater implements Component
     @Override
     public String objectName()
     {
+        if (objectName == null)
+        {
+            objectName = syntheticName(this);
+        }
         return objectName;
     }
 }

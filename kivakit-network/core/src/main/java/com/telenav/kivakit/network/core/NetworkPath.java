@@ -18,16 +18,13 @@
 
 package com.telenav.kivakit.network.core;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.commandline.SwitchParser;
 import com.telenav.kivakit.conversion.BaseStringConverter;
-import com.telenav.kivakit.core.collections.list.StringList;
-import com.telenav.kivakit.core.logging.Logger;
-import com.telenav.kivakit.core.logging.LoggerFactory;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.path.Path;
 import com.telenav.kivakit.core.path.StringPath;
-import com.telenav.kivakit.core.string.KivaKitFormat;
+import com.telenav.kivakit.core.string.FormatProperty;
 import com.telenav.kivakit.filesystem.FilePath;
 import com.telenav.kivakit.network.core.internal.lexakai.DiagramNetworkLocation;
 import com.telenav.kivakit.resource.Extension;
@@ -40,11 +37,12 @@ import java.net.URISyntaxException;
 import java.util.List;
 import java.util.function.Function;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE;
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
-import static com.telenav.kivakit.commandline.SwitchParser.switchParserBuilder;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
+import static com.telenav.kivakit.commandline.SwitchParser.switchParser;
+import static com.telenav.kivakit.core.collections.list.StringList.stringList;
 
 /**
  * An abstraction for network paths.
@@ -111,13 +109,11 @@ import static com.telenav.kivakit.commandline.SwitchParser.switchParserBuilder;
  */
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramNetworkLocation.class)
-@ApiQuality(stability = API_STABLE_EXTENSIBLE,
-            testing = TESTING_NOT_NEEDED,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = TESTING_NOT_NEEDED,
+             documentation = DOCUMENTATION_COMPLETE)
 public class NetworkPath extends FilePath
 {
-    private static final Logger LOGGER = LoggerFactory.newLogger();
-
     /**
      * Returns a network path for the given URI
      *
@@ -138,7 +134,7 @@ public class NetworkPath extends FilePath
     public static NetworkPath networkPath(Listener listener, Port port, String path)
     {
         var root = "/" + port + "/";
-        return new NetworkPath(port, StringPath.parseStringPath(listener, path, "/", "/").withRoot(root));
+        return new NetworkPath(port, parseStringPath(listener, path, "/", "/").withRoot(root));
     }
 
     /**
@@ -153,7 +149,7 @@ public class NetworkPath extends FilePath
                                                                             String name,
                                                                             String description)
     {
-        return switchParserBuilder(NetworkPath.class)
+        return switchParser(NetworkPath.class)
                 .name(name)
                 .converter(new NetworkPath.Converter(listener))
                 .description(description);
@@ -183,9 +179,9 @@ public class NetworkPath extends FilePath
      *
      * @author jonathanl (shibo)
      */
-    @ApiQuality(stability = API_STABLE,
-                testing = TESTING_NOT_NEEDED,
-                documentation = DOCUMENTATION_COMPLETE)
+    @CodeQuality(stability = STABLE,
+                 testing = TESTING_NOT_NEEDED,
+                 documentation = DOCUMENTATION_COMPLETE)
     public static class Converter extends BaseStringConverter<NetworkPath>
     {
         public Converter(Listener listener)
@@ -204,7 +200,7 @@ public class NetworkPath extends FilePath
 
     protected NetworkPath(Port port, String root, List<String> elements)
     {
-        super(StringList.stringList(port.protocol().name()), root, elements);
+        super(stringList(port.protocol().name()), root, elements);
         this.port = port;
     }
 
@@ -233,19 +229,18 @@ public class NetworkPath extends FilePath
     }
 
     /**
-     * @return This network path as a URI
+     * Returns this network path as a URI
      */
     @Override
     public URI asUri()
     {
         try
         {
-            return new URI(port.toString() + "/" + super.toString());
+            return new URI(port.toString() + "/" + this);
         }
         catch (URISyntaxException e)
         {
-            LOGGER.problem(e, "Unable to convert $ to a URI", this);
-            return null;
+            throw new IllegalStateException("Unable to convert " + this + " to a URI", e);
         }
     }
 
@@ -277,9 +272,9 @@ public class NetworkPath extends FilePath
     }
 
     /**
-     * @return The port for this network path (which includes the host and protocol)
+     * Returns the port for this network path (which includes the host and protocol)
      */
-    @KivaKitFormat
+    @FormatProperty
     public Port port()
     {
         return port;

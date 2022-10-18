@@ -18,17 +18,17 @@
 
 package com.telenav.kivakit.interfaces.string;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.interfaces.internal.lexakai.DiagramString;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeSuperTypes;
 import org.jetbrains.annotations.NotNull;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_DEFAULT_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_ENUM_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
+import static com.telenav.kivakit.interfaces.string.StringFormattable.Format.TEXT;
 
 /**
  * Interface to an object that can produce one or more different kinds of string representations. This can be useful
@@ -40,18 +40,18 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NE
 @SuppressWarnings("SpellCheckingInspection")
 @UmlRelation(label = "formats with", referent = StringFormattable.Format.class)
 @UmlClassDiagram(diagram = DiagramString.class)
-@ApiQuality(stability = API_STABLE_DEFAULT_EXTENSIBLE,
-            testing = TESTING_NOT_NEEDED,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = TESTING_NOT_NEEDED,
+             documentation = DOCUMENTATION_COMPLETE)
 public interface StringFormattable extends AsString
 {
     /**
      * The type of format for a string returned by {@link StringFormattable#asString(Format)}
      */
     @UmlClassDiagram(diagram = DiagramString.class)
-    @ApiQuality(stability = API_STABLE_ENUM_EXTENSIBLE,
-                testing = TESTING_NOT_NEEDED,
-                documentation = DOCUMENTATION_COMPLETE)
+    @CodeQuality(stability = STABLE_EXTENSIBLE,
+                 testing = TESTING_NOT_NEEDED,
+                 documentation = DOCUMENTATION_COMPLETE)
     @UmlExcludeSuperTypes enum Format
     {
         /** A format suitable for debug tracing */
@@ -108,6 +108,6 @@ public interface StringFormattable extends AsString
     @Override
     default String asString()
     {
-        return asString(Format.TEXT);
+        return asString(TEXT);
     }
 }

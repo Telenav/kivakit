@@ -1,7 +1,5 @@
 package com.telenav.kivakit.internal.tests.core.time;
 
-import com.telenav.kivakit.core.time.DayOfWeek;
-import com.telenav.kivakit.core.time.Hour;
 import com.telenav.kivakit.core.time.HourOfWeek;
 import com.telenav.kivakit.internal.testing.CoreUnitTest;
 import org.junit.Test;
@@ -14,7 +12,9 @@ import static com.telenav.kivakit.core.time.DayOfWeek.SATURDAY;
 import static com.telenav.kivakit.core.time.DayOfWeek.SUNDAY;
 import static com.telenav.kivakit.core.time.DayOfWeek.TUESDAY;
 import static com.telenav.kivakit.core.time.DayOfWeek.WEDNESDAY;
+import static com.telenav.kivakit.core.time.DayOfWeek.daysOfWeek;
 import static com.telenav.kivakit.core.time.Hour.militaryHour;
+import static com.telenav.kivakit.core.time.Hour.militaryHours;
 import static com.telenav.kivakit.core.time.HourOfWeek.hourOfWeek;
 import static com.telenav.kivakit.core.value.count.Count._100;
 import static com.telenav.kivakit.core.value.count.Count._2;
@@ -37,10 +37,10 @@ public class HourOfWeekTest extends CoreUnitTest
     public void testConversions()
     {
         // For all days of the week,
-        DayOfWeek.daysOfWeek().forEach(dayOfWeek ->
+        daysOfWeek().forEach(dayOfWeek ->
         {
             // and all hours of the day,
-            Hour.militaryHours().forEach(hourOfDay ->
+            militaryHours().forEach(hourOfDay ->
             {
                 // create an HourOfWeek,
                 var hourOfWeek = hourOfWeek(dayOfWeek, hourOfDay);

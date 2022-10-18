@@ -1,23 +1,24 @@
 package com.telenav.kivakit.conversion.core.time;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.conversion.BaseStringConverter;
 import com.telenav.kivakit.conversion.core.language.primitive.LongConverter;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.time.Duration;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static com.telenav.kivakit.core.time.Duration.milliseconds;
 
 /**
  * Converts milliseconds to and from {@link Duration}
  *
  * @author jonathanl (shibo)
  */
-@ApiQuality(stability = API_STABLE,
-            testing = TESTING_NONE,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = STABLE,
+             testing = UNTESTED,
+             documentation = DOCUMENTATION_COMPLETE)
 public class MillisecondsConverter extends BaseStringConverter<Duration>
 {
     /** The underlying long value converter */
@@ -41,6 +42,6 @@ public class MillisecondsConverter extends BaseStringConverter<Duration>
         var milliseconds = longConverter.convert(value);
         return milliseconds == null
                 ? null
-                : Duration.milliseconds(milliseconds);
+                : milliseconds(milliseconds);
     }
 }

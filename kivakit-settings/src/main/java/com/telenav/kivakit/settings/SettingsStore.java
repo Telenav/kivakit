@@ -1,6 +1,6 @@
 package com.telenav.kivakit.settings;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.collections.set.ObjectSet;
 import com.telenav.kivakit.core.messaging.Repeater;
 import com.telenav.kivakit.core.registry.RegistryTrait;
@@ -8,9 +8,9 @@ import com.telenav.kivakit.interfaces.naming.Named;
 
 import java.util.Set;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 
 /**
  * <b>Service Provider API</b>
@@ -21,7 +21,7 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
  *
  * <p>
  * <i>NOTE: This store object should not be accessed directly by user code. Instead, use
- * {@link SettingsRegistryTrait}.</i>
+ * {@link SettingsTrait}.</i>
  * </p>
  *
  * <p><b>Loading and Saving</b></p>
@@ -43,9 +43,9 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
  * @author jonathanl (shibo)
  */
 @SuppressWarnings({ "UnusedReturnValue", "unused" })
-@ApiQuality(stability = API_STABLE_EXTENSIBLE,
-            testing = TESTING_NONE,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = UNTESTED,
+             documentation = DOCUMENTATION_COMPLETE)
 public interface SettingsStore extends
         RegistryTrait,
         Repeater,
@@ -87,7 +87,7 @@ public interface SettingsStore extends
      *
      * @return The access modes this store supports
      */
-    Set<AccessMode> accessModes();
+    ObjectSet<AccessMode> accessModes();
 
     /**
      * <b>Service Provider API</b>

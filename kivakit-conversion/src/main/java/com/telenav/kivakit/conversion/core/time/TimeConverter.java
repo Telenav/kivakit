@@ -1,6 +1,6 @@
 package com.telenav.kivakit.conversion.core.time;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.conversion.BaseStringConverter;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.time.Time;
@@ -8,9 +8,10 @@ import com.telenav.kivakit.core.time.Time;
 import java.time.Instant;
 import java.time.format.DateTimeFormatter;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static com.telenav.kivakit.core.time.Time.epochMilliseconds;
 import static com.telenav.kivakit.core.time.TimeFormats.KIVAKIT_DATE;
 import static com.telenav.kivakit.core.time.TimeFormats.KIVAKIT_DATE_TIME;
 import static com.telenav.kivakit.core.time.TimeFormats.KIVAKIT_TIME;
@@ -21,9 +22,9 @@ import static com.telenav.kivakit.core.time.TimeFormats.KIVAKIT_TIME;
  * @author jonathanl (shibo)
  */
 @SuppressWarnings("unused")
-@ApiQuality(stability = API_STABLE,
-            testing = TESTING_NONE,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = STABLE,
+             testing = UNTESTED,
+             documentation = DOCUMENTATION_COMPLETE)
 public class TimeConverter extends BaseStringConverter<Time>
 {
     /**
@@ -71,6 +72,6 @@ public class TimeConverter extends BaseStringConverter<Time>
     @Override
     protected Time onToValue(String dateTimeString)
     {
-        return Time.epochMilliseconds(Instant.from(formatter.parse(dateTimeString)).toEpochMilli());
+        return epochMilliseconds(Instant.from(formatter.parse(dateTimeString)).toEpochMilli());
     }
 }

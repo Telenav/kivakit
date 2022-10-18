@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.conversion.core.time;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.conversion.BaseStringConverter;
 import com.telenav.kivakit.conversion.internal.lexakai.DiagramConversionTime;
 import com.telenav.kivakit.core.messaging.Listener;
@@ -29,17 +29,18 @@ import java.time.Instant;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static com.telenav.kivakit.core.time.LocalTime.milliseconds;
 
 /**
  * Convert to/from local time
  */
 @UmlClassDiagram(diagram = DiagramConversionTime.class)
-@ApiQuality(stability = API_STABLE,
-            testing = TESTING_NONE,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = STABLE,
+             testing = UNTESTED,
+             documentation = DOCUMENTATION_COMPLETE)
 public class BaseFormattedConverter extends BaseStringConverter<LocalTime>
 {
     /** The date time formatter */
@@ -111,6 +112,6 @@ public class BaseFormattedConverter extends BaseStringConverter<LocalTime>
     {
         var parsed = formatter().parse(value);
         var time = Instant.from(parsed);
-        return LocalTime.milliseconds(zone, time.toEpochMilli());
+        return milliseconds(zone, time.toEpochMilli());
     }
 }

@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.resource.spi;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.messaging.repeaters.RepeaterMixin;
 import com.telenav.kivakit.filesystem.Folder;
 import com.telenav.kivakit.resource.ResourceFolder;
@@ -31,10 +31,10 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.ServiceLoader;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE;
-import static com.telenav.kivakit.annotations.code.ApiType.SERVICE_PROVIDER_INTERFACE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
+import static com.telenav.kivakit.annotations.code.quality.Audience.AUDIENCE_SERVICE_PROVIDER_INTERFACE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
 
 /**
  * A service provider interface that resolves {@link ResourceFolder}s (including {@link Package}s and {@link Folder}s).
@@ -48,19 +48,19 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NE
  */
 @UmlClassDiagram(diagram = DiagramResourceService.class)
 @UmlRelation(label = "parses", referent = ResourceIdentifier.class)
-@ApiQuality(stability = API_STABLE,
-            documentation = DOCUMENTATION_COMPLETE,
-            testing = TESTING_NOT_NEEDED,
-            type = SERVICE_PROVIDER_INTERFACE)
+@CodeQuality(stability = STABLE,
+             documentation = DOCUMENTATION_COMPLETE,
+             testing = TESTING_NOT_NEEDED,
+             audience = AUDIENCE_SERVICE_PROVIDER_INTERFACE)
 public interface ResourceFolderResolver extends RepeaterMixin
 {
     /**
-     * @return True if this resource factory understands the given resource identifier
+     * Returns true if this resource factory understands the given resource identifier
      */
     boolean accepts(@NotNull ResourceFolderIdentifier identifier);
 
     /**
-     * @return A new resource for the given resource identifier
+     * Returns a new resource for the given resource identifier
      */
     @UmlRelation(label = "creates")
     ResourceFolder<?> resolve(@NotNull ResourceFolderIdentifier identifier);

@@ -18,10 +18,8 @@
 
 package com.telenav.kivakit.network.core;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
-import com.telenav.kivakit.core.logging.LoggerCodeContext;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.object.Lazy;
-import com.telenav.kivakit.core.os.OperatingSystem;
 import com.telenav.kivakit.network.core.internal.lexakai.DiagramPort;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
@@ -30,10 +28,13 @@ import java.net.InetAddress;
 import java.net.NetworkInterface;
 import java.net.UnknownHostException;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
 import static com.telenav.kivakit.core.ensure.Ensure.fail;
+import static com.telenav.kivakit.core.messaging.context.CodeContext.hostResolver;
+import static com.telenav.kivakit.core.object.Lazy.lazy;
+import static com.telenav.kivakit.core.os.OperatingSystem.operatingSystem;
 
 /**
  * The local {@link Host}.
@@ -41,17 +42,17 @@ import static com.telenav.kivakit.core.ensure.Ensure.fail;
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramPort.class)
-@ApiQuality(stability = API_STABLE,
-            testing = TESTING_NOT_NEEDED,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = STABLE,
+             testing = TESTING_NOT_NEEDED,
+             documentation = DOCUMENTATION_COMPLETE)
 public class LocalHost extends Host
 {
     /** The local host */
-    private static final Lazy<LocalHost> localhost = Lazy.lazy(LocalHost::new);
+    private static final Lazy<LocalHost> localhost = lazy(LocalHost::new);
 
     static
     {
-        LoggerCodeContext.hostResolver(LocalHost::hostname);
+        hostResolver(LocalHost::hostname);
     }
 
     /**
@@ -89,7 +90,7 @@ public class LocalHost extends Host
     @Override
     public InetAddress onResolveAddress()
     {
-        if (OperatingSystem.operatingSystem().isWindows())
+        if (operatingSystem().isWindows())
         {
             try
             {

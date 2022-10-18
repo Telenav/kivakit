@@ -1,6 +1,6 @@
 package com.telenav.kivakit.interfaces.time;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.interfaces.code.Callback;
 import com.telenav.kivakit.interfaces.internal.lexakai.DiagramTime;
 import com.telenav.kivakit.interfaces.string.StringFormattable;
@@ -13,14 +13,15 @@ import java.util.Date;
 import java.util.TimeZone;
 import java.util.Timer;
 import java.util.TimerTask;
-import java.util.concurrent.TimeUnit;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.interfaces.time.WakeState.COMPLETED;
 import static com.telenav.kivakit.interfaces.time.WakeState.INTERRUPTED;
 import static com.telenav.kivakit.interfaces.time.WakeState.TIMED_OUT;
+import static com.telenav.kivakit.interfaces.time.WakeState.terminated;
+import static java.util.concurrent.TimeUnit.MILLISECONDS;
 
 /**
  * Interface to an object having a length of time, measured in nanoseconds.
@@ -89,9 +90,9 @@ import static com.telenav.kivakit.interfaces.time.WakeState.TIMED_OUT;
  */
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramTime.class)
-@ApiQuality(stability = API_STABLE,
-            testing = TESTING_NONE,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = STABLE,
+             testing = UNTESTED,
+             documentation = DOCUMENTATION_COMPLETE)
 public interface LengthOfTime<Duration extends LongValued & LengthOfTime<Duration>> extends
         LongValued,
         Comparable<LengthOfTime<?>>,
@@ -168,7 +169,7 @@ public interface LengthOfTime<Duration extends LongValued & LengthOfTime<Duratio
     {
         try
         {
-            if (awaitable.await(milliseconds(), TimeUnit.MILLISECONDS))
+            if (awaitable.await(milliseconds(), MILLISECONDS))
             {
                 return COMPLETED;
             }
@@ -180,7 +181,7 @@ public interface LengthOfTime<Duration extends LongValued & LengthOfTime<Duratio
         }
         catch (Exception e)
         {
-            return WakeState.terminated(e);
+            return terminated(e);
         }
     }
 
@@ -194,7 +195,7 @@ public interface LengthOfTime<Duration extends LongValued & LengthOfTime<Duratio
     }
 
     /**
-     * @return The positive difference between this length of time and that one
+     * Returns the positive difference between this length of time and that one
      */
     default Duration difference(Duration that)
     {
@@ -209,7 +210,7 @@ public interface LengthOfTime<Duration extends LongValued & LengthOfTime<Duratio
     }
 
     /**
-     * @return This length of time divided by the given divisor
+     * Returns this length of time divided by the given divisor
      */
     default Duration dividedBy(double value)
     {
@@ -217,7 +218,7 @@ public interface LengthOfTime<Duration extends LongValued & LengthOfTime<Duratio
     }
 
     /**
-     * @return This length of time divided by the given divisor
+     * Returns this length of time divided by the given divisor
      */
     default double dividedBy(Duration that)
     {
@@ -225,7 +226,7 @@ public interface LengthOfTime<Duration extends LongValued & LengthOfTime<Duratio
     }
 
     /**
-     * @return This length of time divided by the given divisor
+     * Returns this length of time divided by the given divisor
      */
     default Duration dividedBy(long value)
     {
@@ -233,7 +234,7 @@ public interface LengthOfTime<Duration extends LongValued & LengthOfTime<Duratio
     }
 
     /**
-     * @return The number of milliseconds
+     * Returns the number of milliseconds
      */
     @Override
     default long longValue()
@@ -242,7 +243,7 @@ public interface LengthOfTime<Duration extends LongValued & LengthOfTime<Duratio
     }
 
     /**
-     * @return This length of time minus the given length of time
+     * Returns this length of time minus the given length of time
      */
     default Duration minus(LengthOfTime<?> that)
     {
@@ -250,7 +251,7 @@ public interface LengthOfTime<Duration extends LongValued & LengthOfTime<Duratio
     }
 
     /**
-     * @return This length of time modulus the given length of time
+     * Returns this length of time modulus the given length of time
      */
     default Duration modulo(Duration that)
     {
@@ -258,17 +259,17 @@ public interface LengthOfTime<Duration extends LongValued & LengthOfTime<Duratio
     }
 
     /**
-     * @return The nearest duration of the given unit
+     * Returns the nearest duration of the given unit
      */
     Duration nearest(Duration unit);
 
     /**
-     * @return A new instance of the class implementing this interface
+     * Returns a new instance of the class implementing this interface
      */
     Duration newDuration(Nanoseconds nanoseconds);
 
     /**
-     * @return This length of time plus the given length of time
+     * Returns this length of time plus the given length of time
      */
     default Duration plus(LengthOfTime<?> that)
     {
@@ -292,7 +293,7 @@ public interface LengthOfTime<Duration extends LongValued & LengthOfTime<Duratio
     }
 
     /**
-     * @return This duration rounded down to the closest unit
+     * Returns this duration rounded down to the closest unit
      */
     default Duration roundDown(Duration unit)
     {
@@ -300,7 +301,7 @@ public interface LengthOfTime<Duration extends LongValued & LengthOfTime<Duratio
     }
 
     /**
-     * @return This duration rounded up to the closest unit
+     * Returns this duration rounded up to the closest unit
      */
     default Duration roundUp(Duration unit)
     {
@@ -326,7 +327,7 @@ public interface LengthOfTime<Duration extends LongValued & LengthOfTime<Duratio
     }
 
     /**
-     * @return This length of time multiplied by the given factor
+     * Returns this length of time multiplied by the given factor
      */
     default Duration times(double factor)
     {
@@ -334,7 +335,7 @@ public interface LengthOfTime<Duration extends LongValued & LengthOfTime<Duratio
     }
 
     /**
-     * @return This length of time multiplied by the given factor
+     * Returns this length of time multiplied by the given factor
      */
     default Duration times(int factor)
     {

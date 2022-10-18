@@ -18,24 +18,25 @@
 
 package com.telenav.kivakit.core.collections.list;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramCollections;
 import com.telenav.kivakit.core.value.count.Count;
 import com.telenav.kivakit.core.value.count.Maximum;
 import com.telenav.kivakit.interfaces.comparison.Matcher;
-import com.telenav.kivakit.interfaces.factory.IntMapFactory;
-import com.telenav.kivakit.interfaces.factory.LongMapFactory;
+import com.telenav.kivakit.interfaces.function.IntMapper;
+import com.telenav.kivakit.interfaces.function.LongMapper;
 import com.telenav.kivakit.interfaces.value.LongValued;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.function.Function;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_INSUFFICIENT;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_INSUFFICIENT;
+import static com.telenav.kivakit.core.value.count.Maximum.MAXIMUM;
+import static java.lang.Math.round;
 
 /**
  * A bounded list of objects with overrides of methods from {@link BaseList} to downcast return values to
@@ -50,96 +51,157 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_INSUFF
  * </ul>
  *
  * <p>
- * The methods {@link #objectList(Object[])} and {@link #objectList(Maximum, Object[])} can be used to construct constant lists.
- * The factory methods {@link #objectListFromInts(IntMapFactory, int...)} and {@link #objectListFromLongs(LongMapFactory, long...)}
+ * The methods {@link #list(Object[])} and {@link #list(Maximum, Object[])} can be used to construct constant lists.
+ * The factory methods {@link #listFromInts(IntMapper, int...)} and {@link #listFromLongs(LongMapper, long...)}
  * construct lists of objects from integer and long values using the given map factories to convert the values into
- * objects. The method {@link #objectList(Iterable, LongMapFactory)} iterates through the given {@link LongValued} object
+ * objects. The method {@link #listFromLongs(LongMapper, Iterable)} iterates through the given {@link LongValued} object
  * values, passing each quantum to the given primitive map factory and adding the resulting object to a new object list.
  * </p>
+ *
+ * <p><b>Creation</b></p>
+ *
+ * <ul>
+ *     <li>{@link #emptyList()}</li>
+ *     <li>{@link #list(Maximum, Iterable)}</li>
+ *     <li>{@link #list(Maximum, Collection)}</li>
+ *     <li>{@link #list(Maximum, Iterator)}</li>
+ *     <li>{@link #list(Maximum, Object...)}</li>
+ *     <li>{@link #list(Iterable)}</li>
+ *     <li>{@link #list(Collection)}</li>
+ *     <li>{@link #list(Iterator)}</li>
+ *     <li>{@link #list(Object...)}</li>
+ *     <li>{@link #listFromArray(Object[])}</li>
+ *     <li>{@link #listFromLongs(long[])}</li>
+ *     <li>{@link #listFromLongs(LongMapper, long...)}</li>
+ *     <li>{@link #listFromLongs(LongMapper, Iterable)}</li>
+ *     <li>{@link #listFromInts(IntMapper, int...)}</li>
+ * </ul>
  *
  * @param <Value> The object type
  * @author jonathanl (shibo)
  * @see BaseList
- * @see LongMapFactory
- * @see LongMapFactory
- * @see IntMapFactory
+ * @see LongMapper
+ * @see LongMapper
+ * @see IntMapper
  */
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramCollections.class)
-@ApiQuality(stability = API_STABLE_EXTENSIBLE,
-            testing = TESTING_INSUFFICIENT,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = TESTING_INSUFFICIENT,
+             documentation = DOCUMENTATION_COMPLETE)
 public class ObjectList<Value> extends BaseList<Value>
 {
     /**
-     * @return An empty object list
+     * Returns an empty object list
      */
-    public static <T> ObjectList<T> emptyObjectList()
+    public static <T> ObjectList<T> emptyList()
     {
-        return new ObjectList<>(Maximum._0);
+        return new ObjectList<>();
     }
 
     /**
-     * @return A list of objects from the given iterable
+     * Returns a list of objects from the given iterable
      */
-    public static <T> ObjectList<T> objectList(Iterable<T> values)
-    {
-        var list = new ObjectList<T>();
-        list.appendAll(values);
-        return list;
-    }
-
-    /**
-     * @return A list of objects from the given iterator
-     */
-    public static <T> ObjectList<T> objectList(Iterator<T> values)
-    {
-        var list = new ObjectList<T>();
-        list.appendAll(values);
-        return list;
-    }
-
-    /**
-     * @return A list of elements from the given integers created using the given map factory
-     */
-    public static <T> ObjectList<T> objectList(Iterable<LongValued> values, LongMapFactory<T> factory)
-    {
-        var objects = new ObjectList<T>();
-        for (var value : values)
-        {
-            objects.add(factory.newInstance(value.longValue()));
-        }
-        return objects;
-    }
-
-    /**
-     * @return The given list of objects with a maximum size
-     */
-    @SafeVarargs
-    public static <T> ObjectList<T> objectList(Maximum maximumSize, T... objects)
+    public static <T> ObjectList<T> list(Maximum maximumSize, Iterable<T> values)
     {
         var list = new ObjectList<T>(maximumSize);
-        list.addAll(Arrays.asList(objects));
+        list.appendAll(values);
         return list;
     }
 
     /**
-     * @return The given list of objects
+     * Returns a list of objects from the given iterable
      */
-    @SafeVarargs
-    public static <T> ObjectList<T> objectList(T... objects)
+    public static <T> ObjectList<T> list(Maximum maximumSize, Collection<T> values)
     {
-        return objectList(Maximum._1024, objects);
+        return new ObjectList<>(values);
     }
 
-    public static <T> ObjectList<T> objectListFromArray(T[] objects)
+    /**
+     * Returns a list of objects from the given iterator
+     */
+    public static <T> ObjectList<T> list(Maximum maximumSize, Iterator<T> values)
+    {
+        var list = new ObjectList<T>();
+        list.appendAll(values);
+        return list;
+    }
+
+    /**
+     * Returns a list of objects from the given iterable
+     */
+    public static <T> ObjectList<T> list(Iterable<T> values)
+    {
+        var list = new ObjectList<T>();
+        list.appendAll(values);
+        return list;
+    }
+
+    /**
+     * Returns a list of objects from the given iterable
+     */
+    public static <T> ObjectList<T> list(Collection<T> values)
+    {
+        return new ObjectList<>(values);
+    }
+
+    /**
+     * Returns a list of objects from the given iterator
+     */
+    public static <T> ObjectList<T> list(Iterator<T> values)
+    {
+        var list = new ObjectList<T>();
+        list.appendAll(values);
+        return list;
+    }
+
+    /**
+     * Returns the given list of objects with a maximum size
+     */
+    @SafeVarargs
+    public static <T> ObjectList<T> list(Maximum maximumSize, T... objects)
+    {
+        var list = new ObjectList<T>(maximumSize);
+        list.addAll(objects);
+        return list;
+    }
+
+    /**
+     * Returns the given list of objects
+     */
+    @SafeVarargs
+    public static <T> ObjectList<T> list(T... objects)
     {
         var list = new ObjectList<T>();
         list.addAll(objects);
         return list;
     }
 
-    public static ObjectList<Long> objectListFromArray(long[] objects)
+    public static <T> ObjectList<T> listFromArray(T[] objects)
+    {
+        var list = new ObjectList<T>();
+        list.addAll(objects);
+        return list;
+    }
+
+    /**
+     * Returns a list of elements from the given integers created using the given map factory
+     */
+    @SuppressWarnings("SpellCheckingInspection")
+    public static <T> ObjectList<T> listFromInts(IntMapper<T> factory, int... values)
+    {
+        var objects = new ObjectList<T>();
+        for (var value : values)
+        {
+            objects.add(factory.map(value));
+        }
+        return objects;
+    }
+
+    /**
+     * Returns a list of longs containing the values in the given array
+     */
+    public static ObjectList<Long> listFromLongs(long[] objects)
     {
         var list = new ObjectList<Long>();
         for (var at : objects)
@@ -150,27 +212,27 @@ public class ObjectList<Value> extends BaseList<Value>
     }
 
     /**
-     * @return A list of elements from the given integers created using the given map factory
+     * Returns a list of elements from the given integers created using the given map factory
      */
-    public static <T> ObjectList<T> objectListFromInts(IntMapFactory<T> factory, int... values)
+    public static <T> ObjectList<T> listFromLongs(LongMapper<T> factory, Iterable<LongValued> values)
     {
         var objects = new ObjectList<T>();
         for (var value : values)
         {
-            objects.add(factory.newInstance(value));
+            objects.add(factory.map(value.longValue()));
         }
         return objects;
     }
 
     /**
-     * @return A list of elements from the given integers created using the given map factory
+     * Returns a list of elements from the given integers created using the given map factory
      */
-    public static <T> ObjectList<T> objectListFromLongs(LongMapFactory<T> factory, long... values)
+    public static <T> ObjectList<T> listFromLongs(LongMapper<T> factory, long... values)
     {
         var objects = new ObjectList<T>();
         for (var value : values)
         {
-            objects.add(factory.newInstance(value));
+            objects.add(factory.map(value));
         }
         return objects;
     }
@@ -180,7 +242,7 @@ public class ObjectList<Value> extends BaseList<Value>
      */
     public ObjectList()
     {
-        this(Maximum.MAXIMUM);
+        this(MAXIMUM);
     }
 
     /**
@@ -189,6 +251,14 @@ public class ObjectList<Value> extends BaseList<Value>
     public ObjectList(Maximum maximumSize)
     {
         super(maximumSize);
+    }
+
+    /**
+     * A list of objects with the given upper bound
+     */
+    public ObjectList(Maximum maximumSize, Collection<Value> collection)
+    {
+        super(maximumSize, collection);
     }
 
     /**
@@ -268,9 +338,9 @@ public class ObjectList<Value> extends BaseList<Value>
      * {@inheritDoc}
      */
     @Override
-    public <To> ObjectList<To> mapped(Function<Value, To> mapper)
+    public <To> ObjectList<To> map(Function<Value, To> mapper)
     {
-        return (ObjectList<To>) super.mapped(mapper);
+        return (ObjectList<To>) super.map(mapper);
     }
 
     /**
@@ -300,34 +370,23 @@ public class ObjectList<Value> extends BaseList<Value>
     @Override
     public boolean onAppend(Value value)
     {
-        return super.add(value);
+        return add(value);
     }
 
     /**
-     * Creates an empty new list. Subclasses can return a subclass list type.
-     *
-     * @return The new list
-     */
-    @Override
-    public ObjectList<Value> onNewInstance()
-    {
-        return new ObjectList<>();
-    }
-
-    /**
-     * @return This object list partitioned in to n object lists
+     * Returns this object list partitioned in to n object lists
      */
     public ObjectList<ObjectList<Value>> partition(Count partitions)
     {
         var lists = new ObjectList<ObjectList<Value>>(maximumSize());
         var i = 0;
         var list = -1;
-        var every = (int) Math.round((double) size() / (double) partitions.asInt());
+        var every = (int) round((double) size() / (double) partitions.asInt());
         for (var object : this)
         {
             if (i++ % every == 0 && list < partitions.asInt() - 1)
             {
-                lists.add(new ObjectList<>(Maximum.MAXIMUM));
+                lists.add(new ObjectList<>());
                 list++;
             }
             lists.get(list).add(object);
@@ -351,6 +410,15 @@ public class ObjectList<Value> extends BaseList<Value>
     public ObjectList<Value> rightOf(int index)
     {
         return (ObjectList<Value>) super.rightOf(index);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public ObjectList<Value> sorted()
+    {
+        return (ObjectList<Value>) super.sorted();
     }
 
     /**
@@ -389,6 +457,6 @@ public class ObjectList<Value> extends BaseList<Value>
     @Override
     protected BaseList<Value> onNewList()
     {
-        return objectList();
+        return list();
     }
 }

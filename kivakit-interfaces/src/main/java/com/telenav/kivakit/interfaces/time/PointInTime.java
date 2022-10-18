@@ -1,12 +1,12 @@
 package com.telenav.kivakit.interfaces.time;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 
 import java.time.Instant;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_DEFAULT_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
 
 /**
  * Interface to an object having a length of time, measured in milliseconds.
@@ -79,15 +79,15 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NE
  *
  * @author jonathanl (shibo)
  */
-@ApiQuality(stability = API_STABLE_DEFAULT_EXTENSIBLE,
-            testing = TESTING_NOT_NEEDED,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = TESTING_NOT_NEEDED,
+             documentation = DOCUMENTATION_COMPLETE)
 public interface PointInTime<Time extends PointInTime<Time, Duration>, Duration extends LengthOfTime<Duration>> extends
         Comparable<PointInTime<?, ?>>,
         TimeMeasurement
 {
     /**
-     * @return A Java {@link Instant} for this time value
+     * Returns a Java {@link Instant} for this time value
      */
     default Instant asJavaInstant()
     {
@@ -104,7 +104,7 @@ public interface PointInTime<Time extends PointInTime<Time, Duration>, Duration 
     }
 
     /**
-     * @return True if this time value is after the given value
+     * Returns true if this time value is after the given value
      */
     default boolean isAfter(Time that)
     {
@@ -112,7 +112,7 @@ public interface PointInTime<Time extends PointInTime<Time, Duration>, Duration 
     }
 
     /**
-     * @return True if this time value is at or after the given value
+     * Returns true if this time value is at or after the given value
      */
     default boolean isAtOrAfter(Time that)
     {
@@ -120,7 +120,7 @@ public interface PointInTime<Time extends PointInTime<Time, Duration>, Duration 
     }
 
     /**
-     * @return True if this time value is at or before the given value
+     * Returns true if this time value is at or before the given value
      */
     default boolean isAtOrBefore(Time that)
     {
@@ -128,7 +128,7 @@ public interface PointInTime<Time extends PointInTime<Time, Duration>, Duration 
     }
 
     /**
-     * @return True if this time value is before the given value
+     * Returns true if this time value is before the given value
      */
     default boolean isBefore(Time that)
     {
@@ -136,7 +136,7 @@ public interface PointInTime<Time extends PointInTime<Time, Duration>, Duration 
     }
 
     /**
-     * @return True if this time value is after the given value
+     * Returns true if this time value is after the given value
      */
     default boolean isGreaterThan(Time that)
     {
@@ -144,7 +144,7 @@ public interface PointInTime<Time extends PointInTime<Time, Duration>, Duration 
     }
 
     /**
-     * @return True if this time value is at or after the given value
+     * Returns true if this time value is at or after the given value
      */
     default boolean isGreaterThanOrEqualTo(Time that)
     {
@@ -152,7 +152,7 @@ public interface PointInTime<Time extends PointInTime<Time, Duration>, Duration 
     }
 
     /**
-     * @return True if this time value is before the given value
+     * Returns true if this time value is before the given value
      */
     default boolean isLessThan(Time that)
     {
@@ -160,7 +160,7 @@ public interface PointInTime<Time extends PointInTime<Time, Duration>, Duration 
     }
 
     /**
-     * @return True if this time value is at or before the given value
+     * Returns true if this time value is at or before the given value
      */
     default boolean isLessThanOrEqualTo(Time that)
     {
@@ -168,7 +168,7 @@ public interface PointInTime<Time extends PointInTime<Time, Duration>, Duration 
     }
 
     /**
-     * @return True if this is a negative point in time
+     * Returns true if this is a negative point in time
      */
     default boolean isNegative()
     {
@@ -176,7 +176,7 @@ public interface PointInTime<Time extends PointInTime<Time, Duration>, Duration 
     }
 
     /**
-     * @return True if this is time zero
+     * Returns true if this is time zero
      */
     @Override
     default boolean isZero()
@@ -185,12 +185,12 @@ public interface PointInTime<Time extends PointInTime<Time, Duration>, Duration 
     }
 
     /**
-     * @return The maximum point in time
+     * Returns the maximum point in time
      */
     Time maximum();
 
     /**
-     * @return The largest of this point in time and the given point in time
+     * Returns the largest of this point in time and the given point in time
      */
     @SuppressWarnings("unchecked")
     default Time maximum(Time that)
@@ -199,12 +199,12 @@ public interface PointInTime<Time extends PointInTime<Time, Duration>, Duration 
     }
 
     /**
-     * @return The minimum point in time
+     * Returns the minimum point in time
      */
     Time minimum();
 
     /**
-     * @return The smallest of this point in time and the given point in time
+     * Returns the smallest of this point in time and the given point in time
      */
     @SuppressWarnings("unchecked")
     default Time minimum(Time that)
@@ -221,7 +221,7 @@ public interface PointInTime<Time extends PointInTime<Time, Duration>, Duration 
     }
 
     /**
-     * @return This point in time minus the given point in time as a duration
+     * Returns this point in time minus the given point in time as a duration
      */
     default Duration minus(Time that)
     {
@@ -229,7 +229,7 @@ public interface PointInTime<Time extends PointInTime<Time, Duration>, Duration 
     }
 
     /**
-     * @return The nearest point in time of the given unit
+     * Returns the nearest point in time of the given unit
      */
     default Time nearest(Duration unit)
     {
@@ -255,7 +255,7 @@ public interface PointInTime<Time extends PointInTime<Time, Duration>, Duration 
     }
 
     /**
-     * @return This point in time rounded down to the closest unit
+     * Returns this point in time rounded down to the closest unit
      */
     default Time roundDown(Duration unit)
     {
@@ -263,7 +263,7 @@ public interface PointInTime<Time extends PointInTime<Time, Duration>, Duration 
     }
 
     /**
-     * @return This point in time rounded up to the closest unit
+     * Returns this point in time rounded up to the closest unit
      */
     default Time roundUp(Duration unit)
     {

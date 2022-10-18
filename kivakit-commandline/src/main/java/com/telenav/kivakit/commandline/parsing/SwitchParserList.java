@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.commandline.parsing;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.collections.map.IndexedNameMap;
 import com.telenav.kivakit.commandline.SwitchParser;
 import com.telenav.kivakit.commandline.internal.lexakai.DiagramCommandLine;
@@ -29,13 +29,13 @@ import com.telenav.lexakai.annotations.associations.UmlAggregation;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeSuperTypes;
 import com.telenav.lexakai.annotations.visibility.UmlNotPublicApi;
 
-import java.util.Comparator;
 import java.util.Iterator;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.ApiType.PRIVATE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Audience.AUDIENCE_INTERNAL;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static java.util.Comparator.comparing;
 
 /**
  * <b>Not Public API</b>
@@ -49,10 +49,10 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
 @UmlClassDiagram(diagram = DiagramValidation.class)
 @UmlClassDiagram(diagram = DiagramCommandLine.class)
 @UmlExcludeSuperTypes
-@ApiQuality(stability = API_STABLE_EXTENSIBLE,
-            testing = TESTING_NONE,
-            documentation = DOCUMENTATION_COMPLETE,
-            type = PRIVATE)
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = UNTESTED,
+             documentation = DOCUMENTATION_COMPLETE,
+             audience = AUDIENCE_INTERNAL)
 public class SwitchParserList implements Iterable<SwitchParser<?>>
 {
     @UmlAggregation
@@ -65,24 +65,24 @@ public class SwitchParserList implements Iterable<SwitchParser<?>>
      */
     public void add(SwitchParser<?> parser)
     {
-        parsers.put(parser);
+        parsers.add(parser);
     }
 
     /**
-     * @return The switch parser with the given name
+     * Returns the switch parser with the given name
      */
     public SwitchParser<?> forName(String name)
     {
-        return parsers.forName(name);
+        return parsers.get(name);
     }
 
     /**
-     * @return The help for the switch list
+     * Returns the help for the switch list
      */
     public String help()
     {
         var descriptions = new StringList();
-        parsers.sort(Comparator.comparing(SwitchParser::name));
+        parsers.sort(comparing(SwitchParser::name));
 
         int required = 0;
         for (var parser : parsers)

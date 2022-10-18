@@ -18,23 +18,37 @@
 
 package com.telenav.kivakit.resource;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import org.jetbrains.annotations.NotNull;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.ensure.Ensure.unsupported;
 
 /**
  * The mode for copying resources. Resources can be updated (copied if they don't exist yet), overwritten (copied over
  * top of any existing resource) or not overwritten (not copied if the resource already exists).
  *
+ * <p><b>Values</b></p>
+ *
+ * <ul>
+ *     <li>{@link #OVERWRITE}</li>
+ *     <li>{@link #UPDATE}</li>
+ *     <li>{@link #DO_NOT_OVERWRITE}</li>
+ * </ul>
+ *
+ * <p><b>Copying</b></p>
+ *
+ * <ul>
+ *     <li>{@link #canCopy(Resource, Resource)} - Returns true if this copy mode allows the given copy operation</li>
+ * </ul>
+ *
  * @author jonathanl (shibo)
  */
-@ApiQuality(stability = API_STABLE,
-            testing = TESTING_NONE,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = STABLE,
+             testing = UNTESTED,
+             documentation = DOCUMENTATION_COMPLETE)
 public enum CopyMode
 {
     /** Copy to the destination even if it already exists */

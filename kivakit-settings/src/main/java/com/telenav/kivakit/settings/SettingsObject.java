@@ -18,8 +18,7 @@
 
 package com.telenav.kivakit.settings;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
-import com.telenav.kivakit.core.language.Hash;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.registry.InstanceIdentifier;
 import com.telenav.kivakit.core.registry.RegistryTrait;
 import com.telenav.kivakit.resource.serialization.SerializableObject;
@@ -29,11 +28,13 @@ import com.telenav.lexakai.annotations.visibility.UmlNotPublicApi;
 
 import java.security.Key;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.ensure.Ensure.ensureFalse;
 import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
+import static com.telenav.kivakit.core.language.Hash.hashMany;
+import static com.telenav.kivakit.core.language.Hash.identityHash;
 import static com.telenav.kivakit.core.registry.InstanceIdentifier.instanceIdentifier;
 import static com.telenav.kivakit.core.registry.InstanceIdentifier.singletonInstanceIdentifier;
 
@@ -52,9 +53,9 @@ import static com.telenav.kivakit.core.registry.InstanceIdentifier.singletonInst
 @UmlNotPublicApi
 @UmlExcludeType(Comparable.class)
 @UmlExcludeType
-@ApiQuality(stability = API_STABLE,
-            testing = TESTING_NONE,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = STABLE,
+             testing = UNTESTED,
+             documentation = DOCUMENTATION_COMPLETE)
 public class SettingsObject implements RegistryTrait
 {
     /**
@@ -128,7 +129,7 @@ public class SettingsObject implements RegistryTrait
         @Override
         public int hashCode()
         {
-            return Hash.hashMany(type, instance);
+            return hashMany(type, instance);
         }
 
         /**
@@ -203,7 +204,7 @@ public class SettingsObject implements RegistryTrait
     @Override
     public int hashCode()
     {
-        return Hash.identityHash(object);
+        return identityHash(object);
     }
 
     public SettingsObjectIdentifier identifier()

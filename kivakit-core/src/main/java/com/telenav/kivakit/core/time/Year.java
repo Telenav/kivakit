@@ -1,15 +1,16 @@
 package com.telenav.kivakit.core.time;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.interfaces.time.Nanoseconds;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.ensure.Ensure.ensure;
 import static com.telenav.kivakit.core.time.BaseTime.Topology.LINEAR;
 import static com.telenav.kivakit.core.time.Day.dayOfMonth;
 import static com.telenav.kivakit.core.time.Hour.militaryHour;
+import static com.telenav.kivakit.core.time.LocalTime.localTime;
 import static com.telenav.kivakit.core.time.LocalTime.utcTimeZone;
 import static com.telenav.kivakit.core.time.Minute.minute;
 import static com.telenav.kivakit.core.time.Second.second;
@@ -32,9 +33,9 @@ import static com.telenav.kivakit.core.time.Second.second;
  *
  * @author jonathanl (shibo)
  */
-@ApiQuality(stability = API_STABLE_EXTENSIBLE,
-            testing = TESTING_NONE,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = UNTESTED,
+             documentation = DOCUMENTATION_COMPLETE)
 @SuppressWarnings("unused")
 public class Year extends BaseTime<Year>
 {
@@ -80,7 +81,7 @@ public class Year extends BaseTime<Year>
 
     public Time at(Month month)
     {
-        return LocalTime.localTime(utcTimeZone(),
+        return localTime(utcTimeZone(),
                 this,
                 month,
                 dayOfMonth(1),

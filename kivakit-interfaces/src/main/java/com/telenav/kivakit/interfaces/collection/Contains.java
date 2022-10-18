@@ -18,13 +18,13 @@
 
 package com.telenav.kivakit.interfaces.collection;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.interfaces.internal.lexakai.DiagramCollection;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_FURTHER_EVALUATION_NEEDED;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABILITY_UNDETERMINED;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
 
 /**
  * An interface for any object that can contain values, typically a collection.
@@ -34,15 +34,15 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NE
 @SuppressWarnings("unused")
 @FunctionalInterface
 @UmlClassDiagram(diagram = DiagramCollection.class)
-@ApiQuality(stability = API_FURTHER_EVALUATION_NEEDED,
-            testing = TESTING_NOT_NEEDED,
-            documentation = DOCUMENTATION_COMPLETE,
-            reviews = 1,
-            reviewers = "shibo")
+@CodeQuality(stability = STABILITY_UNDETERMINED,
+             testing = TESTING_NOT_NEEDED,
+             documentation = DOCUMENTATION_COMPLETE,
+             reviews = 1,
+             reviewers = "shibo")
 public interface Contains<Value>
 {
     /**
-     * @return True if the given value is contained in this object
+     * Returns true if the given value is contained in this object
      */
     boolean contains(Value value);
 

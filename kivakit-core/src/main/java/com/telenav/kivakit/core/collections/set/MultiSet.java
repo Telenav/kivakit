@@ -18,8 +18,7 @@
 
 package com.telenav.kivakit.core.collections.set;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
-import com.telenav.kivakit.core.collections.iteration.Iterables;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.collections.map.BaseMap;
 import com.telenav.kivakit.core.value.count.Count;
 import com.telenav.kivakit.core.value.count.Maximum;
@@ -28,10 +27,13 @@ import com.telenav.kivakit.interfaces.collection.NextIterator;
 import java.util.Iterator;
 import java.util.Set;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static com.telenav.kivakit.core.collections.iteration.Iterables.iterable;
+import static com.telenav.kivakit.core.value.count.Count.count;
 import static com.telenav.kivakit.core.value.count.Maximum.MAXIMUM;
+import static java.lang.Math.max;
 
 /**
  * A map from key to an {@link ObjectSet} of values. Values can be added with {@link #add(Object, Object)}. A flattened
@@ -54,9 +56,9 @@ import static com.telenav.kivakit.core.value.count.Maximum.MAXIMUM;
  * @author jonathanl (shibo)
  */
 @SuppressWarnings("unused")
-@ApiQuality(stability = API_STABLE_EXTENSIBLE,
-            testing = TESTING_NONE,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = UNTESTED,
+             documentation = DOCUMENTATION_COMPLETE)
 public class MultiSet<Key, Value> extends BaseMap<Key, ObjectSet<Value>>
 {
     /** The maximum number of values in the set for each key */
@@ -98,7 +100,7 @@ public class MultiSet<Key, Value> extends BaseMap<Key, ObjectSet<Value>>
      */
     public Iterable<Value> flatValues()
     {
-        return Iterables.iterable(() -> new NextIterator<>()
+        return iterable(() -> new NextIterator<>()
         {
             private final Iterator<ObjectSet<Value>> sets = values().iterator();
 
@@ -142,9 +144,9 @@ public class MultiSet<Key, Value> extends BaseMap<Key, ObjectSet<Value>>
         var maximum = 0;
         for (var set : values())
         {
-            maximum = Math.max(set.size(), maximum);
+            maximum = max(set.size(), maximum);
         }
-        return Count.count(maximum);
+        return count(maximum);
     }
 
     /**

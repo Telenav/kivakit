@@ -18,16 +18,13 @@
 
 package com.telenav.kivakit.collections.set;
 
+import com.telenav.kivakit.core.collections.set.ObjectSet;
 import com.telenav.kivakit.internal.testing.CoreUnitTest;
-
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Set;
 
 public abstract class SetOperationTest extends CoreUnitTest
 {
-    protected Set<Integer> set(Integer... values)
+    protected ObjectSet<Integer> set(Integer... values)
     {
-        return new HashSet<>(Arrays.asList(values));
+        return ObjectSet.set(values);
     }
 }

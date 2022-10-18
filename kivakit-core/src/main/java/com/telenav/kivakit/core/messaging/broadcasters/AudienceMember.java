@@ -18,20 +18,21 @@
 
 package com.telenav.kivakit.core.messaging.broadcasters;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramRepeater;
 import com.telenav.kivakit.core.messaging.Broadcaster;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.interfaces.comparison.Filter;
 import com.telenav.kivakit.interfaces.messaging.Transmittable;
+import com.telenav.kivakit.interfaces.naming.NamedObject;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlAggregation;
 
-import java.util.Objects;
-
-import static com.telenav.kivakit.annotations.code.ApiStability.API_PRIVATE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Audience.AUDIENCE_INTERNAL;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static java.util.Objects.hash;
 
 /**
  * A filtered {@link Multicaster} listener
@@ -39,9 +40,10 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramRepeater.class)
-@ApiQuality(stability = API_PRIVATE,
-            testing = TESTING_NONE,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = STABLE,
+             testing = UNTESTED,
+             documentation = DOCUMENTATION_COMPLETE,
+             audience = AUDIENCE_INTERNAL)
 class AudienceMember
 {
     /** The listener */
@@ -85,7 +87,7 @@ class AudienceMember
     @Override
     public int hashCode()
     {
-        return Objects.hash(listener);
+        return hash(listener);
     }
 
     /**
@@ -105,5 +107,11 @@ class AudienceMember
         {
             listener.receive(message);
         }
+    }
+
+    @Override
+    public String toString()
+    {
+        return "[Listener " + NamedObject.syntheticName(listener) + "]";
     }
 }

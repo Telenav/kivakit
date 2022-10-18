@@ -18,15 +18,13 @@
 
 package com.telenav.kivakit.internal.testing;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.ensure.Ensure;
 import com.telenav.kivakit.core.ensure.EnsureTrait;
 import com.telenav.kivakit.core.ensure.Failure;
 import com.telenav.kivakit.core.function.ResultTrait;
-import com.telenav.kivakit.core.language.primitive.Booleans;
 import com.telenav.kivakit.core.language.trait.LanguageTrait;
 import com.telenav.kivakit.core.logging.Logger;
-import com.telenav.kivakit.core.logging.LoggerFactory;
 import com.telenav.kivakit.core.messaging.Broadcaster;
 import com.telenav.kivakit.core.messaging.Message;
 import com.telenav.kivakit.core.messaging.Repeater;
@@ -53,9 +51,11 @@ import java.util.Collection;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_UNSTABLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.UNSTABLE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
+import static com.telenav.kivakit.core.language.primitive.Booleans.isTrue;
+import static com.telenav.kivakit.core.logging.LoggerFactory.newLogger;
 import static com.telenav.kivakit.core.messaging.Listener.nullListener;
 import static com.telenav.kivakit.core.os.Console.console;
 import static com.telenav.kivakit.core.project.Project.resolveProject;
@@ -161,9 +161,9 @@ import static com.telenav.kivakit.core.project.Project.resolveProject;
 @UmlClassDiagram(diagram = DiagramTest.class)
 @UmlRelation(label = "uses", referent = RandomValueFactory.class)
 @UmlRelation(label = "reports validation failures with", referent = JUnitFailureReporter.class)
-@ApiQuality(stability = API_UNSTABLE,
-            testing = TESTING_NOT_NEEDED,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = UNSTABLE,
+             testing = TESTING_NOT_NEEDED,
+             documentation = DOCUMENTATION_COMPLETE)
 public abstract class CoreUnitTest extends TestWatcher implements
         RepeaterMixin,
         ResultTrait,
@@ -179,12 +179,12 @@ public abstract class CoreUnitTest extends TestWatcher implements
     private static boolean quickTest;
 
     /** Logger for test output */
-    private static final Logger LOGGER = LoggerFactory.newLogger();
+    private static final Logger LOGGER = newLogger();
 
     @BeforeClass
     public static void testSetup()
     {
-        quickTest = Booleans.isTrue(System.getProperty("testQuick"));
+        quickTest = isTrue(System.getProperty("testQuick"));
         ClassLoader.getSystemClassLoader().setDefaultAssertionStatus(true);
         Failure.reporterFactory(messageType -> new JUnitFailureReporter());
     }

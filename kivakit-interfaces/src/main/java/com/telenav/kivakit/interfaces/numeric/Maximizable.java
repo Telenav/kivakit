@@ -18,15 +18,16 @@
 
 package com.telenav.kivakit.interfaces.numeric;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
-import com.telenav.kivakit.interfaces.factory.MapFactory;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
+import com.telenav.kivakit.interfaces.function.Mapper;
 import com.telenav.kivakit.interfaces.internal.lexakai.DiagramNumeric;
 import com.telenav.kivakit.interfaces.value.LongValued;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
+import static java.lang.Math.max;
 
 /**
  * Determines which of two objects is the maximum. For example, the Angle object is {@link Maximizable} and implements
@@ -39,17 +40,17 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NE
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramNumeric.class)
-@ApiQuality(stability = API_STABLE,
-            testing = TESTING_NOT_NEEDED,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = STABLE,
+             testing = TESTING_NOT_NEEDED,
+             documentation = DOCUMENTATION_COMPLETE)
 public interface Maximizable<Value> extends
         LongValued,
-        MapFactory<Long, Value>
+        Mapper<Long, Value>
 
 {
     default Value maximize(long value)
     {
-        return newInstance(Math.max(longValue(), value));
+        return map(max(longValue(), value));
     }
 
     default Value maximize(LongValued value)

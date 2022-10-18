@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.core.messaging;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramBroadcaster;
 import com.telenav.kivakit.core.internal.lexakai.DiagramRepeater;
 import com.telenav.kivakit.interfaces.comparison.Filter;
@@ -28,9 +28,11 @@ import com.telenav.lexakai.annotations.associations.UmlRelation;
 
 import java.util.List;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_DEFAULT_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static com.telenav.kivakit.core.messaging.Listener.nullListener;
+import static com.telenav.kivakit.interfaces.comparison.Filter.acceptAll;
 
 /**
  * Broadcasts a message to zero or more listeners via {@link #transmit(Transmittable)}. Listeners can be added with
@@ -58,9 +60,9 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
 @UmlClassDiagram(diagram = DiagramBroadcaster.class)
 @UmlClassDiagram(diagram = DiagramRepeater.class)
 @UmlRelation(label = "transmits", referent = Listener.class, refereeCardinality = "1", referentCardinality = "*")
-@ApiQuality(stability = API_STABLE_DEFAULT_EXTENSIBLE,
-            testing = TESTING_NONE,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = UNTESTED,
+             documentation = DOCUMENTATION_COMPLETE)
 public interface Broadcaster extends MessageTransceiver
 {
     /**
@@ -87,7 +89,7 @@ public interface Broadcaster extends MessageTransceiver
      */
     default void addListener(Listener listener)
     {
-        addListener(listener, Filter.acceptAll());
+        addListener(listener, acceptAll());
     }
 
     /**
@@ -104,12 +106,12 @@ public interface Broadcaster extends MessageTransceiver
     }
 
     /**
-     * @return True if this broadcaster has any listeners
+     * Returns true if this broadcaster has any listeners
      */
     boolean hasListeners();
 
     /**
-     * @return The listeners to this broadcaster
+     * Returns the listeners to this broadcaster
      */
     List<Listener> listeners();
 
@@ -168,7 +170,7 @@ public interface Broadcaster extends MessageTransceiver
     default void silence()
     {
         clearListeners();
-        addListener(Listener.nullListener());
+        addListener(nullListener());
     }
 
     /**

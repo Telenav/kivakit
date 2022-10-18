@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.resource.resources;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.io.IO;
 import com.telenav.kivakit.core.time.Time;
 import com.telenav.kivakit.core.value.count.Bytes;
@@ -31,10 +31,12 @@ import org.jetbrains.annotations.NotNull;
 import java.io.IOException;
 import java.io.InputStream;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
+import static com.telenav.kivakit.core.io.IO.skip;
+import static com.telenav.kivakit.core.value.count.Bytes.bytes;
 
 /**
  * A portion of a resource from one offset into the resource to another.
@@ -42,9 +44,9 @@ import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramResourceType.class)
-@ApiQuality(stability = API_STABLE_EXTENSIBLE,
-            documentation = DOCUMENTATION_COMPLETE,
-            testing = TESTING_NONE)
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             documentation = DOCUMENTATION_COMPLETE,
+             testing = UNTESTED)
 public class ResourceSection extends BaseReadableResource
 {
     /** The resource to read */
@@ -91,7 +93,7 @@ public class ResourceSection extends BaseReadableResource
     public InputStream onOpenForReading()
     {
         InputStream in = resource.openForReading();
-        IO.skip(this, in, startOffset);
+        skip(this, in, startOffset);
         return new InputStream()
         {
             private long offset = startOffset;
@@ -120,7 +122,7 @@ public class ResourceSection extends BaseReadableResource
     @Override
     public Bytes sizeInBytes()
     {
-        return Bytes.bytes(endOffset - startOffset);
+        return bytes(endOffset - startOffset);
     }
 
     @Override

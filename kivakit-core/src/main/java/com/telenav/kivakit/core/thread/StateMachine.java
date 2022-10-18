@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.core.thread;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramThread;
 import com.telenav.kivakit.core.messaging.repeaters.BaseRepeater;
 import com.telenav.kivakit.core.time.Duration;
@@ -26,14 +26,15 @@ import com.telenav.kivakit.interfaces.code.Code;
 import com.telenav.kivakit.interfaces.time.WakeState;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
-import java.util.Objects;
 import java.util.Optional;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static com.telenav.kivakit.core.time.Duration.FOREVER;
+import static com.telenav.kivakit.interfaces.time.WakeState.COMPLETED;
 
 /**
  * A simple state machine with a single state that can be transitioned from one state to another and which allows a
@@ -87,9 +88,9 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
  */
 @SuppressWarnings({ "unused", "UnusedReturnValue" })
 @UmlClassDiagram(diagram = DiagramThread.class)
-@ApiQuality(stability = API_STABLE_EXTENSIBLE,
-            testing = TESTING_NONE,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = UNTESTED,
+             documentation = DOCUMENTATION_COMPLETE)
 public final class StateMachine<State> extends BaseRepeater
 {
     /** The current state of the receiver */
@@ -122,15 +123,15 @@ public final class StateMachine<State> extends BaseRepeater
     }
 
     /**
-     * @return True if the current state is the given state
+     * Returns true if the current state is the given state
      */
     public boolean is(State state)
     {
-        return whileLocked(() -> Objects.equals(at, state));
+        return whileLocked(() -> at == state);
     }
 
     /**
-     * @return True if the current state is the given state
+     * Returns true if the current state is the given state
      */
     public boolean is(Predicate<State> predicate)
     {
@@ -138,7 +139,7 @@ public final class StateMachine<State> extends BaseRepeater
     }
 
     /**
-     * @return True if the current state is the given state
+     * Returns true if the current state is the given state
      */
     public boolean isNot(Predicate<State> predicate)
     {
@@ -146,11 +147,11 @@ public final class StateMachine<State> extends BaseRepeater
     }
 
     /**
-     * @return True if the current state is not the given state
+     * Returns true if the current state is not the given state
      */
     public boolean isNot(State state)
     {
-        return whileLocked(() -> !Objects.equals(at, state));
+        return whileLocked(() -> at != state);
     }
 
     /**
@@ -228,7 +229,7 @@ public final class StateMachine<State> extends BaseRepeater
             {
                 // then wait for the desired state to arrive.
                 trace("$ => $ (wait for $ for up to $)", from, to, waitFor, maximumWait);
-                return waitFor(waitFor, maximumWait) == WakeState.COMPLETED;
+                return waitFor(waitFor, maximumWait) == COMPLETED;
             }
 
             // We were not in the 'from' state.
@@ -246,7 +247,7 @@ public final class StateMachine<State> extends BaseRepeater
                                            State waitFor,
                                            Runnable before)
     {
-        return transition(from, to, waitFor, Duration.MAXIMUM, before);
+        return transition(from, to, waitFor, FOREVER, before);
     }
 
     public void transitionAndWaitForNot(State state)
@@ -296,7 +297,7 @@ public final class StateMachine<State> extends BaseRepeater
      */
     public WakeState waitFor(State state)
     {
-        return waitFor(state, Duration.MAXIMUM);
+        return waitFor(state, FOREVER);
     }
 
     /**
@@ -318,7 +319,7 @@ public final class StateMachine<State> extends BaseRepeater
      */
     public WakeState waitFor(Predicate<State> predicate)
     {
-        return waitFor(predicate, Duration.MAXIMUM);
+        return waitFor(predicate, FOREVER);
     }
 
     /**
@@ -361,7 +362,7 @@ public final class StateMachine<State> extends BaseRepeater
      */
     public WakeState waitForNot(State state)
     {
-        return waitForNot(state, Duration.MAXIMUM);
+        return waitForNot(state, FOREVER);
     }
 
     /**

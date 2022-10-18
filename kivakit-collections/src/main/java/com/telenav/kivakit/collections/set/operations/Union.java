@@ -18,19 +18,19 @@
 
 package com.telenav.kivakit.collections.set.operations;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.collections.internal.lexakai.DiagramSet;
 import com.telenav.kivakit.collections.set.LogicalSet;
 import com.telenav.kivakit.core.collections.iteration.BaseIterator;
-import com.telenav.kivakit.core.language.Hash;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.Iterator;
 import java.util.Set;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static com.telenav.kivakit.core.language.Hash.hashMany;
 
 /**
  * The logical union of two sets. The two sets are combined without creating any new set.
@@ -40,9 +40,9 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramSet.class)
-@ApiQuality(stability = API_STABLE_EXTENSIBLE,
-            testing = TESTING_NONE,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = UNTESTED,
+             documentation = DOCUMENTATION_COMPLETE)
 public class Union<T> extends LogicalSet<T>
 {
     private final Set<T> larger;
@@ -93,7 +93,7 @@ public class Union<T> extends LogicalSet<T>
     @Override
     public int hashCode()
     {
-        return Hash.hashMany(larger, smaller);
+        return hashMany(larger, smaller);
     }
 
     @Override

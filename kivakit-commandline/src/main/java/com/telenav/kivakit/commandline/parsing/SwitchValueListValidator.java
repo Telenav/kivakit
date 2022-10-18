@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.commandline.parsing;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.commandline.SwitchValueList;
 import com.telenav.kivakit.commandline.internal.lexakai.DiagramValidation;
 import com.telenav.kivakit.validation.BaseValidator;
@@ -28,10 +28,11 @@ import com.telenav.lexakai.annotations.visibility.UmlNotPublicApi;
 
 import java.util.HashMap;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.ApiType.PRIVATE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Audience.AUDIENCE_INTERNAL;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static java.lang.Boolean.TRUE;
 
 /**
  * <b>Not Public API</b>
@@ -42,10 +43,10 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
  */
 @SuppressWarnings("DuplicatedCode") @UmlClassDiagram(diagram = DiagramValidation.class)
 @UmlNotPublicApi
-@ApiQuality(stability = API_STABLE_EXTENSIBLE,
-            testing = TESTING_NONE,
-            documentation = DOCUMENTATION_COMPLETE,
-            type = PRIVATE)
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = UNTESTED,
+             documentation = DOCUMENTATION_COMPLETE,
+             audience = AUDIENCE_INTERNAL)
 public class SwitchValueListValidator extends BaseValidator
 {
     /** The list of switches to validate */
@@ -90,7 +91,7 @@ public class SwitchValueListValidator extends BaseValidator
                 // and if it is invalid or has a duplicate, report failure
                 problemIfNull(parser.asObject(switchValue), "Switch '${debug}' is invalid", switchValue);
                 problemIf(found.containsKey(parser.name()), "Duplicate switch '${debug}'", switchValue);
-                found.put(parser.name(), Boolean.TRUE);
+                found.put(parser.name(), TRUE);
             }
             else
             {

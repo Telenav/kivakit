@@ -1,11 +1,13 @@
 package com.telenav.kivakit.interfaces.value;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.interfaces.numeric.Zeroable;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_DEFAULT_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
+import static java.lang.Long.compare;
+import static java.lang.Math.abs;
 
 /**
  * An object that has a long representation
@@ -14,21 +16,21 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NE
  */
 @FunctionalInterface
 @SuppressWarnings("unused")
-@ApiQuality(stability = API_STABLE_DEFAULT_EXTENSIBLE,
-            testing = TESTING_NOT_NEEDED,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = TESTING_NOT_NEEDED,
+             documentation = DOCUMENTATION_COMPLETE)
 public interface LongValued extends Zeroable
 {
     /**
-     * @return The absolute difference between this long value and that long value
+     * Returns the absolute difference between this long value and that long value
      */
     default long absoluteDifference(LongValued that)
     {
-        return Math.abs(longValue() - that.longValue());
+        return abs(longValue() - that.longValue());
     }
 
     /**
-     * @return This long value cast to a byte
+     * Returns this long value cast to a byte
      */
     default byte asByte()
     {
@@ -36,7 +38,7 @@ public interface LongValued extends Zeroable
     }
 
     /**
-     * @return This long value cast to a char
+     * Returns this long value cast to a char
      */
     default char asChar()
     {
@@ -44,7 +46,7 @@ public interface LongValued extends Zeroable
     }
 
     /**
-     * @return This long value cast to a double
+     * Returns this long value cast to a double
      */
     default double asDouble()
     {
@@ -52,7 +54,7 @@ public interface LongValued extends Zeroable
     }
 
     /**
-     * @return This long value cast to a float
+     * Returns this long value cast to a float
      */
     default float asFloat()
     {
@@ -60,7 +62,7 @@ public interface LongValued extends Zeroable
     }
 
     /**
-     * @return This long value cast to an int
+     * Returns this long value cast to an int
      */
     default int asInt()
     {
@@ -68,7 +70,7 @@ public interface LongValued extends Zeroable
     }
 
     /**
-     * @return This value
+     * Returns this value
      */
     default long asLong()
     {
@@ -76,7 +78,7 @@ public interface LongValued extends Zeroable
     }
 
     /**
-     * @return This long value cast to a short
+     * Returns this long value cast to a short
      */
     default short asShort()
     {
@@ -94,7 +96,7 @@ public interface LongValued extends Zeroable
     }
 
     /**
-     * @return True if this > that
+     * Returns true if this > that
      */
     default boolean isGreaterThan(LongValued that)
     {
@@ -102,7 +104,7 @@ public interface LongValued extends Zeroable
     }
 
     /**
-     * @return True if this >= that
+     * Returns true if this >= that
      */
     default boolean isGreaterThanOrEqualTo(LongValued that)
     {
@@ -110,7 +112,7 @@ public interface LongValued extends Zeroable
     }
 
     /**
-     * @return True if this < that
+     * Returns true if this < that
      */
 
     default boolean isLessThan(LongValued that)
@@ -119,7 +121,7 @@ public interface LongValued extends Zeroable
     }
 
     /**
-     * @return True if this <= that
+     * Returns true if this <= that
      */
     default boolean isLessThanOrEqualTo(LongValued that)
     {
@@ -136,15 +138,15 @@ public interface LongValued extends Zeroable
     }
 
     /**
-     * @return A {@link Comparable} that compares this object to another {@link LongValued} object.
+     * Returns a {@link Comparable} that compares this object to another {@link LongValued} object.
      */
     default Comparable<LongValued> longComparable()
     {
-        return that -> Long.compare(longValue(), that.longValue());
+        return that -> compare(longValue(), that.longValue());
     }
 
     /**
-     * @return The long value for this object
+     * Returns the long value for this object
      */
     long longValue();
 }

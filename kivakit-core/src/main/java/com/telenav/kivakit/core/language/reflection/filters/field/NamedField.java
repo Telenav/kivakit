@@ -18,16 +18,16 @@
 
 package com.telenav.kivakit.core.language.reflection.filters.field;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramReflection;
-import com.telenav.kivakit.core.language.Hash;
 import com.telenav.kivakit.core.language.reflection.Field;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
+import static com.telenav.kivakit.core.language.Hash.hashMany;
 
 /**
  * This filter matches a field with a particular name
@@ -35,9 +35,9 @@ import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramReflection.class)
-@ApiQuality(stability = API_STABLE,
-            testing = TESTING_NONE,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = STABLE,
+             testing = UNTESTED,
+             documentation = DOCUMENTATION_COMPLETE)
 public class NamedField extends AllFields
 {
     /** The field name */
@@ -68,7 +68,7 @@ public class NamedField extends AllFields
     @Override
     public int hashCode()
     {
-        return Hash.hashMany(name);
+        return hashMany(name);
     }
 
     /**

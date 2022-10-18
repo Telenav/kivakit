@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.resource.resources;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.io.StringInputStream;
 import com.telenav.kivakit.core.time.Time;
 import com.telenav.kivakit.core.value.count.Bytes;
@@ -32,11 +32,14 @@ import org.jetbrains.annotations.NotNull;
 import java.io.InputStream;
 import java.util.function.Function;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.messaging.Listener.nullListener;
+import static com.telenav.kivakit.core.time.Time.now;
+import static com.telenav.kivakit.core.value.count.Bytes.bytes;
 import static com.telenav.kivakit.resource.ResourcePath.parseUnixResourcePath;
+import static java.lang.Integer.toHexString;
 
 /**
  * A {@link ReadableResource} formed from a string passed to the constructor {@link #StringResource(String)}.
@@ -44,16 +47,16 @@ import static com.telenav.kivakit.resource.ResourcePath.parseUnixResourcePath;
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramResourceType.class)
-@ApiQuality(stability = API_STABLE_EXTENSIBLE,
-            documentation = DOCUMENTATION_COMPLETE,
-            testing = TESTING_NONE)
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             documentation = DOCUMENTATION_COMPLETE,
+             testing = UNTESTED)
 public class StringResource extends BaseReadableResource
 {
     /** The text to read */
     private final String text;
 
     /** The time of creation of this object */
-    private final Time created = Time.now();
+    private final Time created = now();
 
     /**
      * @param text The text to read
@@ -61,7 +64,7 @@ public class StringResource extends BaseReadableResource
     public StringResource(@NotNull String text)
     {
         this(parseUnixResourcePath(nullListener(),
-                "/objects/String@" + Integer.toHexString(text.hashCode())), text);
+                "/objects/String@" + toHexString(text.hashCode())), text);
     }
 
     /**
@@ -99,7 +102,7 @@ public class StringResource extends BaseReadableResource
     @Override
     public Bytes sizeInBytes()
     {
-        return Bytes.bytes(text.length());
+        return bytes(text.length());
     }
 
     /**

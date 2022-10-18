@@ -18,14 +18,11 @@
 
 package com.telenav.kivakit.core.language.module;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
-import com.telenav.kivakit.core.collections.list.ObjectList;
-import com.telenav.kivakit.core.ensure.Ensure;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramPath;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.path.Path;
 import com.telenav.kivakit.core.path.StringPath;
-import com.telenav.kivakit.core.string.Strip;
 import com.telenav.kivakit.interfaces.comparison.Matcher;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import org.jetbrains.annotations.NotNull;
@@ -41,9 +38,15 @@ import java.util.stream.Collectors;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NEEDED;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
+import static com.telenav.kivakit.core.collections.list.ObjectList.list;
+import static com.telenav.kivakit.core.ensure.Ensure.ensure;
+import static com.telenav.kivakit.core.messaging.Listener.nullListener;
+import static com.telenav.kivakit.core.messaging.Listener.throwingListener;
+import static com.telenav.kivakit.core.string.Strip.stripEnding;
+import static com.telenav.kivakit.core.string.Strip.stripLeading;
 
 /**
  * Represents the path to a Java package. The PackagePath object in kivakit-resource differs from this class.
@@ -83,25 +86,25 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NOT_NE
  * <p><b>Examples</b></p>
  *
  * <pre>
- * PackageReference.of(MyClass.class)
- * PackageReference.parsePackageReference(MyClass.class, "resources/images")
- * PackageReference.parsePackageReference(MyClass.class, "resources.images")
- * PackageReference.parsePackageReference(getClass(), "resources/images")
- * PackageReference.parsePackageReference("com.telenav.kivakit/core")
- * PackageReference.parsePackageReference("com.telenav.kivakit.core")
+ * packageReference(MyClass.class)
+ * parsePackageReference(MyClass.class, "resources/images")
+ * parsePackageReference(MyClass.class, "resources.images")
+ * parsePackageReference(getClass(), "resources/images")
+ * parsePackageReference("com.telenav.kivakit/core")
+ * parsePackageReference("com.telenav.kivakit.core")
  * </pre>
  *
  * @author jonathanl (shibo)
  */
 @SuppressWarnings({ "unused", "DuplicatedCode", "SpellCheckingInspection" })
 @UmlClassDiagram(diagram = DiagramPath.class)
-@ApiQuality(stability = API_STABLE_EXTENSIBLE,
-            testing = TESTING_NOT_NEEDED,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = TESTING_NOT_NEEDED,
+             documentation = DOCUMENTATION_COMPLETE)
 public final class PackageReference extends StringPath
 {
     /** Reference to the com.telenav package */
-    public static final PackageReference TELENAV = parsePackageReference(Listener.nullListener(), "com.telenav");
+    public static final PackageReference TELENAV = parsePackageReference(nullListener(), "com.telenav");
 
     /**
      * Returns true if the given path is a package reference
@@ -112,7 +115,7 @@ public final class PackageReference extends StringPath
     }
 
     /**
-     * @return A package path for the package that contains the given class
+     * Returns a package path for the package that contains the given class
      */
     public static PackageReference packageReference(Class<?> type, StringPath path)
     {
@@ -120,7 +123,7 @@ public final class PackageReference extends StringPath
     }
 
     /**
-     * @return Package path for the given Java path object
+     * Returns package path for the given Java path object
      */
     public static PackageReference packageReference(StringPath path)
     {
@@ -128,15 +131,15 @@ public final class PackageReference extends StringPath
     }
 
     /**
-     * @return A package path for the package that contains the given class
+     * Returns a package path for the package that contains the given class
      */
     public static PackageReference packageReference(Class<?> type)
     {
-        return packageReference(type, parseStringPath(Listener.nullListener(), type.getName(), null, "\\.").withoutLast());
+        return packageReference(type, parseStringPath(nullListener(), type.getName(), null, "\\.").withoutLast());
     }
 
     /**
-     * @return The package path specified by the given path. The path may be separated by either '.' or '/'.
+     * Returns the package path specified by the given path. The path may be separated by either '.' or '/'.
      */
     public static PackageReference parsePackageReference(Listener listener, String path)
     {
@@ -144,7 +147,7 @@ public final class PackageReference extends StringPath
     }
 
     /**
-     * @return A package path relative to the package containing the given class
+     * Returns a package path relative to the package containing the given class
      */
     public static PackageReference parsePackageReference(Listener listener, Class<?> type, String relativePath)
     {
@@ -172,7 +175,7 @@ public final class PackageReference extends StringPath
     }
 
     /**
-     * @return True if the given resource is in this package
+     * Returns true if the given resource is in this package
      */
     public boolean contains(ModuleResource resource)
     {
@@ -180,7 +183,7 @@ public final class PackageReference extends StringPath
     }
 
     /**
-     * @return True if the given resource is in this package or any sub-package
+     * Returns true if the given resource is in this package or any sub-package
      */
     public boolean containsNested(ModuleResource resource)
     {
@@ -188,7 +191,7 @@ public final class PackageReference extends StringPath
     }
 
     /**
-     * @return A list of sub packages under this package from the directories in classpath
+     * Returns a list of sub packages under this package from the directories in classpath
      */
     public Set<PackageReference> filesystemSubPackages(Listener listener)
     {
@@ -205,7 +208,7 @@ public final class PackageReference extends StringPath
                 {
                     var filepath = join("/") + "/";
 
-                    var directory = StringPath.stringPath(location.toURI()).withChild(filepath).asJavaPath();
+                    var directory = stringPath(location.toURI()).withChild(filepath).asJavaPath();
 
                     if (Files.exists(directory))
                     {
@@ -235,7 +238,7 @@ public final class PackageReference extends StringPath
     }
 
     /**
-     * @return True if this reference is relative to some class in the referenced package (the "package type")
+     * Returns true if this reference is relative to some class in the referenced package (the "package type")
      */
     public boolean hasPackageType()
     {
@@ -243,7 +246,7 @@ public final class PackageReference extends StringPath
     }
 
     /**
-     * @return A list of sub packages under this package from the jars in classpath
+     * Returns a list of sub packages under this package from the jars in classpath
      */
     public Set<PackageReference> jarSubPackages(Listener listener)
     {
@@ -284,8 +287,8 @@ public final class PackageReference extends StringPath
                         if (name.endsWith("/") && name.startsWith(filepath))
                         {
                             // then strip off the leading filepath,
-                            var suffix = Strip.leading(name, filepath);
-                            suffix = Strip.ending(suffix, "/");
+                            var suffix = stripLeading(name, filepath);
+                            suffix = stripEnding(suffix, "/");
 
                             // and if we have only a folder name left,
                             if (!suffix.contains("/") && !suffix.isEmpty())
@@ -312,18 +315,18 @@ public final class PackageReference extends StringPath
     }
 
     /**
-     * @return The named resource in this package for the given path or null if it cannot be found. The relative path
+     * Returns the named resource in this package for the given path or null if it cannot be found. The relative path
      * must be separated by slashes, not dots because the filename may contain dots (like "a.txt").
      */
     public ModuleResource moduleResource(Listener listener, String relativePath)
     {
         var path = parseStringPath(listener, relativePath, "/", "/");
-        Ensure.ensure(path.isRelative());
+        ensure(path.isRelative());
         return Modules.moduleResource(listener, withChild(path));
     }
 
     /**
-     * @return An input stream to access the given resource
+     * Returns an input stream to access the given resource
      */
     public InputStream moduleResourceStream(String path)
     {
@@ -331,7 +334,7 @@ public final class PackageReference extends StringPath
     }
 
     /**
-     * @return A list of the resources directly in the package specified by this path
+     * Returns a list of the resources directly in the package specified by this path
      */
     public List<ModuleResource> moduleResources(Listener listener)
     {
@@ -339,7 +342,7 @@ public final class PackageReference extends StringPath
     }
 
     /**
-     * @return A list of resources in and under this package
+     * Returns a list of resources in and under this package
      */
     public List<ModuleResource> nestedModuleResources(Listener listener)
     {
@@ -347,7 +350,7 @@ public final class PackageReference extends StringPath
                 .stream()
                 .filter(resource -> parsePackageReference(listener, resource.javaPath().toString()).startsWith(this))
                 .collect(Collectors.toList());
-        listener.trace("Found nested resources:\n$", ObjectList.objectList(resources).join("\n"));
+        listener.trace("Found nested resources:\n$", list(resources).join("\n"));
         return resources;
     }
 
@@ -360,7 +363,7 @@ public final class PackageReference extends StringPath
     }
 
     /**
-     * @return A type within the package
+     * Returns a type within the package
      */
     public Class<?> packageType()
     {
@@ -394,7 +397,7 @@ public final class PackageReference extends StringPath
     }
 
     /**
-     * @return A list of resources in and under this package
+     * Returns a list of resources in and under this package
      */
     public Set<PackageReference> subPackages(Listener listener)
     {
@@ -402,7 +405,7 @@ public final class PackageReference extends StringPath
                 .stream()
                 .map(resource -> resource.packageReference().withPackageType(packageType))
                 .collect(Collectors.toSet());
-        listener.trace("Found sub-packages:\n$", ObjectList.objectList(packages).join("\n"));
+        listener.trace("Found sub-packages:\n$", list(packages).join("\n"));
         packages.addAll(jarSubPackages(listener));
         packages.addAll(filesystemSubPackages(listener));
         return packages;
@@ -457,7 +460,7 @@ public final class PackageReference extends StringPath
     @Override
     public PackageReference withParent(String path)
     {
-        return (PackageReference) super.withParent(PackageReference.parsePackageReference(Listener.throwingListener(), path));
+        return (PackageReference) super.withParent(parsePackageReference(throwingListener(), path));
     }
 
     /**
@@ -564,8 +567,8 @@ public final class PackageReference extends StringPath
     {
         if (path.contains("/"))
         {
-            return parseStringPath(Listener.throwingListener(), path, "/");
+            return parseStringPath(throwingListener(), path, "/");
         }
-        return parseStringPath(Listener.throwingListener(), path, "\\.");
+        return parseStringPath(throwingListener(), path, "\\.");
     }
 }

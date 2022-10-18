@@ -18,17 +18,17 @@
 
 package com.telenav.kivakit.commandline;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.commandline.internal.lexakai.DiagramSwitch;
-import com.telenav.kivakit.core.language.Hash;
 import com.telenav.kivakit.interfaces.naming.Named;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
 import org.jetbrains.annotations.NotNull;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static com.telenav.kivakit.core.language.Hash.hashMany;
 
 /**
  * <b>Not public API</b>
@@ -39,9 +39,9 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
  */
 @UmlClassDiagram(diagram = DiagramSwitch.class)
 @UmlRelation(label = "gets value with", referent = SwitchParser.class)
-@ApiQuality(stability = API_STABLE_EXTENSIBLE,
-            testing = TESTING_NONE,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = UNTESTED,
+             documentation = DOCUMENTATION_COMPLETE)
 public class SwitchValue extends ArgumentValue implements Named
 {
     /** The name of this switch argument */
@@ -73,7 +73,7 @@ public class SwitchValue extends ArgumentValue implements Named
     }
 
     /**
-     * @return The typed value of this switch converted using the given switch parser
+     * Returns the typed value of this switch converted using the given switch parser
      */
     public <T> T get(@NotNull SwitchParser<T> parser)
     {
@@ -86,7 +86,7 @@ public class SwitchValue extends ArgumentValue implements Named
     @Override
     public int hashCode()
     {
-        return Hash.hashMany(name());
+        return hashMany(name());
     }
 
     /**

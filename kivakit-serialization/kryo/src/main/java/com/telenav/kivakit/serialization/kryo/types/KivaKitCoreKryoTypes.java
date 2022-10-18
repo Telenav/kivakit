@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.serialization.kryo.types;
 
-import com.telenav.kivakit.annotations.code.ApiQuality;
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.collections.list.ObjectList;
 import com.telenav.kivakit.core.collections.set.ObjectSet;
 import com.telenav.kivakit.core.logging.LogEntry;
@@ -72,6 +72,8 @@ import com.telenav.kivakit.core.vm.JavaVirtualMachineHealth;
 import com.telenav.kivakit.core.vm.ThreadStatus;
 import com.telenav.kivakit.interfaces.time.Nanoseconds;
 import com.telenav.kivakit.serialization.kryo.internal.lexakai.DiagramKryo;
+import com.telenav.kivakit.serialization.kryo.serializers.AtomicIntegerSerializer;
+import com.telenav.kivakit.serialization.kryo.serializers.AtomicLongSerializer;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.time.ZoneId;
@@ -79,10 +81,12 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.concurrent.atomic.AtomicLong;
 
-import static com.telenav.kivakit.annotations.code.ApiStability.API_STABLE_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.DocumentationQuality.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 
 /**
  * Kryo types to register for kivakit-core
@@ -90,9 +94,9 @@ import static com.telenav.kivakit.annotations.code.TestingQuality.TESTING_NONE;
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramKryo.class)
-@ApiQuality(stability = API_STABLE_EXTENSIBLE,
-            testing = TESTING_NONE,
-            documentation = DOCUMENTATION_COMPLETE)
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = UNTESTED,
+             documentation = DOCUMENTATION_COMPLETE)
 public class KivaKitCoreKryoTypes extends KryoTypes
 {
     public KivaKitCoreKryoTypes()
@@ -147,6 +151,8 @@ public class KivaKitCoreKryoTypes extends KryoTypes
             register(ThreadStatus.class);
             register(Thread.State.class);
             register(Class.class);
+            register(AtomicInteger.class, new AtomicIntegerSerializer());
+            register(AtomicLong.class, new AtomicLongSerializer());
         });
 
         group("time", () ->
