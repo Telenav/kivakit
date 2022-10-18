@@ -125,8 +125,6 @@ public class Frequency
      */
     public static Frequency every(Duration duration)
     {
-        System.out.println(list(3, 1, 2).sorted().join(", "));
-
         return new Frequency(duration);
     }
 

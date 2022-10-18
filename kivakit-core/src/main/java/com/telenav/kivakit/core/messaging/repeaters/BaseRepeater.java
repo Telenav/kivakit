@@ -63,7 +63,7 @@ import static com.telenav.kivakit.core.ensure.Ensure.ensure;
 public class BaseRepeater extends Multicaster implements Repeater
 {
     /** The number of failures that this repeater has seen */
-    private final AtomicInteger failures = new AtomicInteger();
+    private final transient AtomicInteger failures = new AtomicInteger();
 
     public BaseRepeater(String objectName, Class<?> classContext)
     {
