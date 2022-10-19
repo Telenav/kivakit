@@ -6,8 +6,11 @@ import com.telenav.kivakit.core.messaging.Repeater;
 import com.telenav.kivakit.core.messaging.messages.status.Problem;
 import com.telenav.kivakit.interfaces.code.Code;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
+import java.util.Objects;
+import java.util.function.Predicate;
+
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 
 /**
@@ -81,6 +84,46 @@ public interface ResultTrait extends Repeater
     default <T> Result<T> failure(Throwable throwable, String text, Object... arguments)
     {
         return listenTo(Result.failure(throwable, text, arguments));
+    }
+
+    /**
+     * If the given value is valid when tested by the given predicate, a success {@link Result} is returned. If the
+     * value is not valid, a failure {@link Result} is returned with the given formatted message.
+     *
+     * @param value The value to check
+     * @param valid The validity predicate
+     * @param text The failure message
+     * @param arguments Arguments when formatting a failure
+     * @return The {@link Result}
+     */
+    default <T> Result<T> result(T value, Predicate<T> valid, String text, Object... arguments)
+    {
+        return valid.test(value) ? success(value) : failure(text, arguments);
+    }
+
+    /**
+     * If the given value is non-null, a success {@link Result} is returned. If the value is not valid, a failure
+     * {@link Result} is returned with the given formatted message.
+     *
+     * @param value The value to check
+     * @return The {@link Result}
+     */
+    default <T> Result<T> result(T value)
+    {
+        return result(value, Objects::nonNull, "Value $ is not valid", value);
+    }
+
+    /**
+     * If the given value is valid when tested by the given predicate, a success {@link Result} is returned. If the
+     * value is not valid, a failure {@link Result} is returned with the given formatted message.
+     *
+     * @param value The value to check
+     * @param valid The validity predicate
+     * @return The {@link Result}
+     */
+    default <T> Result<T> result(T value, Predicate<T> valid)
+    {
+        return result(value, valid, "Value $ is not valid", value);
     }
 
     /**
