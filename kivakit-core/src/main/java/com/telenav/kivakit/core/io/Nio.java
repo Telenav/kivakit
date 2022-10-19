@@ -7,6 +7,7 @@ import org.jetbrains.annotations.NotNull;
 import java.io.IOException;
 import java.net.URI;
 import java.nio.file.FileSystem;
+import java.nio.file.FileSystemAlreadyExistsException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -19,6 +20,7 @@ import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMEN
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
 import static com.telenav.kivakit.core.string.Paths.pathHead;
+import static java.nio.file.FileSystems.getFileSystem;
 import static java.nio.file.FileSystems.newFileSystem;
 
 /**
@@ -117,13 +119,17 @@ public class Nio
             try
             {
                 filesystem = newFileSystem(URI.create(key), variables);
-                filesystemForUri.put(key, filesystem);
+            }
+            catch (FileSystemAlreadyExistsException e)
+            {
+                filesystem = getFileSystem(URI.create(key));
             }
             catch (Exception e)
             {
                 listener.problem(e, "Unable to create filesystem: $", key);
                 return null;
             }
+            filesystemForUri.put(key, filesystem);
         }
         return filesystem;
     }

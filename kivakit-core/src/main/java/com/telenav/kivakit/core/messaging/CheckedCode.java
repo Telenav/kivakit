@@ -69,7 +69,7 @@ public interface CheckedCode extends
             }
             if (!postCondition.test(result.get()))
             {
-                return failure("Code failed post-condition: $", message);
+                return failure("Result failed post-condition: $", message);
             }
             return result;
         }
