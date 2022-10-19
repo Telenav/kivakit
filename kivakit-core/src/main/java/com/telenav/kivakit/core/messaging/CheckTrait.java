@@ -1,5 +1,6 @@
 package com.telenav.kivakit.core.messaging;
 
+import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.function.Result;
 import com.telenav.kivakit.core.function.ResultTrait;
 import com.telenav.kivakit.core.messaging.messages.status.Problem;
@@ -7,6 +8,10 @@ import com.telenav.kivakit.interfaces.code.Code;
 import com.telenav.kivakit.interfaces.comparison.Matcher;
 
 import java.util.function.Predicate;
+
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 
 /**
  * Executes a block of code, handling exceptions and problem messages.
@@ -42,7 +47,10 @@ import java.util.function.Predicate;
  *
  * @author jonathanl (shibo)
  */
-public interface CheckedCode extends
+@CodeQuality(stability = STABLE_EXTENSIBLE,
+             testing = UNTESTED,
+             documentation = DOCUMENTATION_COMPLETE)
+public interface CheckTrait extends
         Repeater,
         ResultTrait
 {

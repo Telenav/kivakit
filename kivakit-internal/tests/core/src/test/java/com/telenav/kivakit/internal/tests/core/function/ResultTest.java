@@ -2,7 +2,7 @@ package com.telenav.kivakit.internal.tests.core.function;
 
 import com.telenav.kivakit.core.ensure.EnsureTrait;
 import com.telenav.kivakit.core.function.Result;
-import com.telenav.kivakit.core.messaging.CheckedCode;
+import com.telenav.kivakit.core.messaging.CheckTrait;
 import com.telenav.kivakit.core.messaging.repeaters.BaseRepeater;
 import com.telenav.kivakit.core.time.Time;
 import com.telenav.kivakit.interfaces.code.Code;
@@ -15,7 +15,7 @@ import static com.telenav.kivakit.internal.tests.core.function.ResultTest.Operat
 
 @SuppressWarnings("CodeBlock2Expr")
 public class ResultTest extends CoreUnitTest implements
-        CheckedCode,
+        CheckTrait,
         EnsureTrait
 {
     enum OperationResult
