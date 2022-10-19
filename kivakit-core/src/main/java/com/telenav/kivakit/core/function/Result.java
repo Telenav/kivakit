@@ -318,9 +318,8 @@ public class Result<Value> extends Maybe<Value> implements RepeaterMixin
     @Override
     public boolean equals(Object object)
     {
-        if (object instanceof Result<?>)
+        if (object instanceof Result<?> that)
         {
-            var that = (Result<?>) object;
             return super.equals(that) && succeeded() == that.succeeded();
         }
         return false;
