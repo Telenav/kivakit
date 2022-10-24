@@ -335,7 +335,10 @@ public interface ResourceFolder<T extends ResourceFolder<T>> extends
         list.addAll(resources());
         for (var at : folders())
         {
-            at.nestedResources(matcher);
+            if (!equals(at))
+            {
+                list.addAll(at.nestedResources(matcher));
+            }
         }
         return list;
     }

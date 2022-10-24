@@ -248,14 +248,11 @@ public abstract class BaseCollection<Value> implements
     @Override
     public String asString(StringFormattable.@NotNull Format format)
     {
-        switch (format)
+        return switch (format)
         {
-            case DEBUG:
-                return join(separator(), StringConversions::toDebugString);
-
-            default:
-                return join();
-        }
+            case DEBUG -> join(separator(), StringConversions::toDebugString);
+            default -> join();
+        };
     }
 
     /**
@@ -340,9 +337,9 @@ public abstract class BaseCollection<Value> implements
      * Returns this bounded list with all elements mapped by the given mapper to the mapper's target type
      */
     @SuppressWarnings("unchecked")
-    public <Output> BaseCollection<Output> map(Function<Value, Output> mapper)
+    public <To> BaseCollection<To> map(Function<Value, To> mapper)
     {
-        var filtered = (BaseCollection<Output>) newCollection();
+        var filtered = (BaseCollection<To>) newCollection();
         for (var element : this)
         {
             filtered.add(mapper.apply(element));
