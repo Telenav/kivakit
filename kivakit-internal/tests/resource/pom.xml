@@ -23,8 +23,6 @@
     </parent>
 
     <artifactId>kivakit-internal-tests-resource</artifactId>
-    <version>1.8.2</version>
-
     <properties>
         <maven.javadoc.skip>true</maven.javadoc.skip>
         <do.not.publish>true</do.not.publish>

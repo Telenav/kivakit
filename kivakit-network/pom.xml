@@ -23,8 +23,6 @@
 
     <groupId>com.telenav.kivakit</groupId>
     <artifactId>kivakit-network</artifactId>
-    <version>1.8.2</version>
-
     <packaging>pom</packaging>
 
     <modules>

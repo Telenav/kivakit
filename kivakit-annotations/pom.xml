@@ -23,6 +23,4 @@
     </parent>
 
     <artifactId>kivakit-annotations</artifactId>
-    <version>1.8.2</version>
-
-</project>
+    </project>

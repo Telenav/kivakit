@@ -23,8 +23,6 @@
 
     <groupId>com.telenav.kivakit</groupId>
     <artifactId>kivakit-internal-tests</artifactId>
-    <version>1.8.2</version>
-
     <packaging>pom</packaging>
     <description>
         Support for testing of core classes to avoid circular dependencies.
