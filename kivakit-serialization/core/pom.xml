@@ -17,14 +17,12 @@
 
     <parent>
         <groupId>com.telenav.kivakit</groupId>
-        <artifactId>telenav-superpom-kivakit</artifactId>
-        <version>2.2.1</version>
-        <relativePath/>
+        <artifactId>kivakit-parent</artifactId>
+        <version>1.8.2</version>
+        <relativePath>../../pom.xml</relativePath>
     </parent>
 
     <artifactId>kivakit-serialization-core</artifactId>
-    <version>1.8.1</version>
-
     <dependencies>
 
         <!-- KivaKit -->
