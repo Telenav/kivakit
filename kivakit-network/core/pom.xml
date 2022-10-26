@@ -31,17 +31,8 @@
 
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>kivakit-commandline</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>${project.groupId}</groupId>
             <artifactId>kivakit-resource</artifactId>
         </dependency>
-        <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>kivakit-conversion</artifactId>
-        </dependency>
-
         <!-- Testing -->
 
         <dependency>

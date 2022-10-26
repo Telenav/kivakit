@@ -32,10 +32,6 @@
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>kivakit-internal-testing</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>${project.groupId}</groupId>
             <artifactId>kivakit-testing</artifactId>
         </dependency>
     </dependencies>

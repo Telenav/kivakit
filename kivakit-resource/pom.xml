@@ -31,10 +31,6 @@
 
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>kivakit-collections</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>${project.groupId}</groupId>
             <artifactId>kivakit-commandline</artifactId>
         </dependency>
     </dependencies>

@@ -31,21 +31,12 @@
 
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>kivakit-resource</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>${project.groupId}</groupId>
             <artifactId>kivakit-serialization-gson</artifactId>
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>kivakit-serialization-properties</artifactId>
         </dependency>
-        <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>kivakit-commandline</artifactId>
-        </dependency>
-
         <!-- Testing -->
 
         <dependency>

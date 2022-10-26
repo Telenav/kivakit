@@ -36,11 +36,6 @@
 
         <!-- Annotations -->
 
-        <dependency>
-            <groupId>com.telenav.lexakai</groupId>
-            <artifactId>lexakai-annotations</artifactId>
-        </dependency>
-
         <!-- Testing -->
 
         <dependency>

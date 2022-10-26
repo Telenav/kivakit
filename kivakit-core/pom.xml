@@ -37,14 +37,6 @@
         <!-- KivaKit -->
 
         <dependency>
-            <groupId>com.telenav.kivakit</groupId>
-            <artifactId>kivakit-annotations</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>kivakit-interfaces</artifactId>
-        </dependency>
-        <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>kivakit-mixins</artifactId>
         </dependency>

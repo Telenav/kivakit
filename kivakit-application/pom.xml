@@ -33,10 +33,6 @@
             <groupId>${project.groupId}</groupId>
             <artifactId>kivakit-component</artifactId>
         </dependency>
-        <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>kivakit-commandline</artifactId>
-        </dependency>
-    </dependencies>
+        </dependencies>
 
 </project>
