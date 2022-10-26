@@ -63,7 +63,7 @@ import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
  *     <li>{@link #map(TetraFunction, Object, Object, Object)} - Returns the result of applying the given four-argument function to this value and the given arguments</li>
  *     <li>{@link #map(PentaFunction, Object, Object, Object, Object)} - Returns the result of applying the given five-argument function to this value and the given arguments</li>
  *     <li>{@link #map(Function)} - Applies the given function to this value</li>
- *     <li>{@link #thenRetry(Count, Source)}  - Retries the given source up to the given maximum number of times or until source returns a non-null value</li>
+ *     <li>{@link #mapWithRetries(Count, Function)} - Retries the given source up to the given maximum number of times or until source returns a non-null value</li>
  * </ul>
  *
  * <p><b>Conditionals</b></p>
