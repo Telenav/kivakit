@@ -8,6 +8,7 @@ import com.telenav.kivakit.core.function.arities.TriFunction;
 import com.telenav.kivakit.core.language.trait.TryCatchTrait;
 import com.telenav.kivakit.core.messaging.Repeater;
 import com.telenav.kivakit.core.messaging.messages.status.Problem;
+import com.telenav.kivakit.core.value.count.Count;
 import com.telenav.kivakit.interfaces.function.Presence;
 import com.telenav.kivakit.interfaces.value.Source;
 
@@ -62,6 +63,7 @@ import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
  *     <li>{@link #map(TetraFunction, Object, Object, Object)} - Returns the result of applying the given four-argument function to this value and the given arguments</li>
  *     <li>{@link #map(PentaFunction, Object, Object, Object, Object)} - Returns the result of applying the given five-argument function to this value and the given arguments</li>
  *     <li>{@link #map(Function)} - Applies the given function to this value</li>
+ *     <li>{@link #thenRetry(Count, Source)}  - Retries the given source up to the given maximum number of times or until source returns a non-null value</li>
  * </ul>
  *
  * <p><b>Conditionals</b></p>
@@ -77,12 +79,13 @@ import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
  * @author viniciusluisr
  * @see <a href="https://github.com/viniciusluisr/improved-optional">improved-optional</a>
  */
-@CodeQuality(stability = STABLE_EXTENSIBLE,
-             testing = TESTING_INSUFFICIENT,
-             documentation = DOCUMENTATION_COMPLETE)
+@SuppressWarnings("unused") @CodeQuality(stability = STABLE_EXTENSIBLE,
+                                         testing = TESTING_INSUFFICIENT,
+                                         documentation = DOCUMENTATION_COMPLETE)
 public class Maybe<Value> implements
         Presence,
-        TryCatchTrait
+        TryCatchTrait,
+        Source<Value>
 {
     /**
      * Returns maybe value for null
@@ -215,6 +218,7 @@ public class Maybe<Value> implements
     /**
      * Returns any value that might be present, or null if there is none
      */
+    @Override
     public Value get()
     {
         return value;
@@ -423,6 +427,35 @@ public class Maybe<Value> implements
         }
 
         return newAbsent();
+    }
+
+    /**
+     * If a value is present, retries the given value mapper up to the given maximum number of times or until the mapper
+     * returns a non-null value. If no mapped value can be produced, returns {@link #absent()}.
+     *
+     * @param retries The number of times to retry
+     * @param mapper The mapping function
+     * @return This value or the value produced by the given source
+     */
+    public <ResultType> Maybe<ResultType> mapWithRetries(Count retries,
+                                                         Function<? super Value, ? extends ResultType> mapper)
+    {
+        if (isPresent())
+        {
+            retries.loop(() ->
+            {
+                Maybe<ResultType> maybe = tryCatch(() ->
+                {
+                    var mapped = ensureNotNull(mapper).apply(value);
+                    if (mapped != null)
+                    {
+                        return newMaybe(mapped);
+                    }
+                    return absent();
+                });
+            });
+        }
+        return absent();
     }
 
     /**
