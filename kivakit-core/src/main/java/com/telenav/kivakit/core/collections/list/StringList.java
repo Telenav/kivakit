@@ -358,6 +358,12 @@ public class StringList extends ObjectList<String>
     }
 
     @Override
+    public StringList appendIfNotNullThen(String value)
+    {
+        return (StringList) super.appendIfNotNullThen(value);
+    }
+
+    @Override
     public StringList appendThen(String value)
     {
         return (StringList) super.appendThen(value);

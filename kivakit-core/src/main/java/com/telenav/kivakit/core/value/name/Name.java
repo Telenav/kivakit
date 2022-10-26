@@ -120,9 +120,8 @@ public class Name implements
     @Override
     public boolean equals(Object object)
     {
-        if (object instanceof Name)
+        if (object instanceof Name that)
         {
-            var that = (Name) object;
             return name.equals(that.name);
         }
         return false;

@@ -49,7 +49,7 @@ public class Nio
         for (var key : new HashSet<>(filesystemForUri.keySet()))
         {
             var existing = filesystemForUri.get(key);
-            if (existing != null)
+            if (existing == filesystem)
             {
                 //noinspection resource
                 filesystemForUri.remove(key);

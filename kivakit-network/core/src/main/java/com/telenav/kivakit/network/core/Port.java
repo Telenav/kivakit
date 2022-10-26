@@ -287,9 +287,8 @@ public class Port implements AsString
     @Override
     public boolean equals(Object object)
     {
-        if (object instanceof Port)
+        if (object instanceof Port that)
         {
-            var that = (Port) object;
             return portNumber == that.portNumber && host.equals(that.host);
         }
         return false;

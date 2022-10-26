@@ -241,9 +241,8 @@ public class PackageResource extends BaseReadableResource
     @Override
     public boolean equals(Object object)
     {
-        if (object instanceof PackageResource)
+        if (object instanceof PackageResource that)
         {
-            var that = (PackageResource) object;
             return areEqualPairs(
                     packagePath, that.packagePath,
                     name, that.name);
@@ -322,7 +321,11 @@ public class PackageResource extends BaseReadableResource
     public Resource relativeTo(@NotNull ResourceFolder<?> folder)
     {
         var relativePath = packagePath.relativeTo(folder.path());
-        return packageResource(this, (PackagePath) relativePath, fileName());
+        if (relativePath.isEmpty())
+        {
+            return packageResource(this, packagePath, fileName());
+        }
+        return packageResource(this, packagePath.withChild(relativePath), fileName());
     }
 
     /**

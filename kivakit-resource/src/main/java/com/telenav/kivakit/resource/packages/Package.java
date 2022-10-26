@@ -239,9 +239,8 @@ public class Package extends BaseRepeater implements ResourceFolder<Package>
     @Override
     public boolean equals(Object object)
     {
-        if (object instanceof Package)
+        if (object instanceof Package that)
         {
-            Package that = (Package) object;
             return path().equals(that.path());
         }
         return false;
@@ -351,9 +350,8 @@ public class Package extends BaseRepeater implements ResourceFolder<Package>
     @Override
     public ResourceFolder<?> relativeTo(@NotNull ResourceFolder<?> folder)
     {
-        if (folder instanceof Package)
+        if (folder instanceof Package relativeTo)
         {
-            var relativeTo = (Package) folder;
             return packageForPath(this, (PackagePath) packagePath.relativeTo(relativeTo.packagePath));
         }
         else

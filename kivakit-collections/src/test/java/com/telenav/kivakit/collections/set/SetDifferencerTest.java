@@ -37,9 +37,8 @@ public class SetDifferencerTest extends CoreUnitTest
         @Override
         public boolean equals(Object object)
         {
-            if (object instanceof SetDifferencerTest.Value)
+            if (object instanceof Value that)
             {
-                var that = (SetDifferencerTest.Value) object;
                 return id == that.id;
             }
             return false;

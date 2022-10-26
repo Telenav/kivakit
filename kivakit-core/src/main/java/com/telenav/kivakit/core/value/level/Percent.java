@@ -181,9 +181,8 @@ public final class Percent implements
     @Override
     public boolean equals(Object object)
     {
-        if (object instanceof Percent)
+        if (object instanceof Percent that)
         {
-            Percent that = (Percent) object;
             return percent == that.percent;
         }
         return false;

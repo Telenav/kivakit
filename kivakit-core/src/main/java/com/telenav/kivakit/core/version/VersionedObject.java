@@ -61,9 +61,8 @@ public class VersionedObject<T> implements
     @Override
     public boolean equals(Object object)
     {
-        if (object instanceof VersionedObject)
+        if (object instanceof VersionedObject<?> that)
         {
-            var that = (VersionedObject<?>) object;
             return areEqualPairs(
                     this.object, that.object,
                     this.version, that.version);

@@ -347,6 +347,15 @@ public abstract class BaseList<Value> extends BaseCollection<Value> implements
         return (BaseList<Value>) Appendable.super.appendAllThen(values);
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public BaseList<Value> appendIfNotNullThen(Value value)
+    {
+        return (BaseList<Value>) Appendable.super.appendIfNotNullThen(value);
+    }
+
     @Override
     public BaseList<Value> appendThen(Value value)
     {
@@ -397,10 +406,8 @@ public abstract class BaseList<Value> extends BaseCollection<Value> implements
     @Override
     public boolean equals(Object object)
     {
-        if (object instanceof List)
+        if (object instanceof List<?> that)
         {
-            var that = (List<?>) object;
-
             // The lists are only seen as equal if they have the same objects in
             // the same order.
             if (size() == that.size())

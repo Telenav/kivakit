@@ -61,9 +61,8 @@ public class SerializableObject<T> extends VersionedObject<T>
     {
         if (super.equals(object))
         {
-            if (object instanceof SerializableObject)
+            if (object instanceof SerializableObject<?> that)
             {
-                var that = (SerializableObject<?>) object;
                 return areEqualPairs(this.instance, that.instance);
             }
         }

@@ -46,6 +46,7 @@ import static com.telenav.kivakit.core.string.Strip.stripEnding;
 import static com.telenav.kivakit.core.string.Strip.stripTrailing;
 import static com.telenav.kivakit.filesystem.FilePath.filePath;
 import static com.telenav.kivakit.resource.Extension.allExtensions;
+import static com.telenav.kivakit.resource.ResourcePath.parseResourcePath;
 
 /**
  * A file name, with a base name and an {@link Extension}.
@@ -120,7 +121,10 @@ import static com.telenav.kivakit.resource.Extension.allExtensions;
 @CodeQuality(stability = STABLE_EXTENSIBLE,
              testing = UNTESTED,
              documentation = DOCUMENTATION_COMPLETE)
-public class FileName implements Named, Comparable<FileName>
+public class FileName implements
+        Named,
+        Comparable<FileName>,
+        ResourcePathed
 {
     /**
      * Returns a filename for the current date
@@ -278,6 +282,7 @@ public class FileName implements Named, Comparable<FileName>
     /**
      * Returns the compound extension of this filename, like ".tar.gz"
      */
+    @Override
     public Extension compoundExtension()
     {
         if (name().contains("."))
@@ -311,9 +316,8 @@ public class FileName implements Named, Comparable<FileName>
     @Override
     public boolean equals(Object object)
     {
-        if (object instanceof FileName)
+        if (object instanceof FileName that)
         {
-            var that = (FileName) object;
             return name.equals(that.name);
         }
         return false;
@@ -323,6 +327,7 @@ public class FileName implements Named, Comparable<FileName>
      * Returns the final extension of this filename. For example, the extension of "data.tar.gz" is ".gz". To get the
      * full compound extension, ".tar.gz", use {@link #compoundExtension()}.
      */
+    @Override
     public Extension extension()
     {
         if (name().contains("."))
@@ -399,6 +404,15 @@ public class FileName implements Named, Comparable<FileName>
     public FileName normalized()
     {
         return parseFileName(throwingListener(), filePath(this).normalized().toString());
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public ResourcePath path()
+    {
+        return parseResourcePath(throwingListener(), name);
     }
 
     /**

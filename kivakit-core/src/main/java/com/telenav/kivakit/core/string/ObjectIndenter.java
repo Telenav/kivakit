@@ -165,10 +165,9 @@ public class ObjectIndenter
             else
             {
                 //noinspection SpellCheckingInspection
-                if (object instanceof Collection)
+                if (object instanceof Collection<?> collection)
                 {
                     // add the elements in brackets
-                    var collection = (Collection<?>) object;
                     bracketed(collection, object1 -> asString(format));
                 }
                 // otherwise, if it's an AsIndentedString, and we're recursing (to avoid infinite recursion),

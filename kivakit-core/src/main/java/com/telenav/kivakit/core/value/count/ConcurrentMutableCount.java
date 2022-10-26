@@ -138,9 +138,8 @@ public class ConcurrentMutableCount implements
     @Override
     public boolean equals(Object object)
     {
-        if (object instanceof ConcurrentMutableCount)
+        if (object instanceof ConcurrentMutableCount that)
         {
-            var that = (ConcurrentMutableCount) object;
             return asInt() == that.asInt();
         }
         return false;

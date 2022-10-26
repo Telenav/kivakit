@@ -116,9 +116,8 @@ public class Property implements Named, Comparable<Property>
     @Override
     public boolean equals(Object object)
     {
-        if (object instanceof Property)
+        if (object instanceof Property that)
         {
-            var that = (Property) object;
             return name.equals(that.name);
         }
         return false;

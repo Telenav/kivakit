@@ -123,9 +123,8 @@ public class QueryParameters
     @Override
     public boolean equals(Object object)
     {
-        if (object instanceof QueryParameters)
+        if (object instanceof QueryParameters that)
         {
-            var that = (QueryParameters) object;
             return asVariableMap().equals(that.asVariableMap());
         }
         return false;

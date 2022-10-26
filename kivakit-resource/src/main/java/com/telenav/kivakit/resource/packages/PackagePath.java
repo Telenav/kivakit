@@ -546,7 +546,7 @@ public final class PackagePath extends ResourcePath
     @NotNull
     private static StringPath path(@NotNull String path)
     {
-        if (path.contains("/"))
+        if (path.contains("/") || !isPackagePath(path))
         {
             return parseStringPath(throwingListener(), path, "/");
         }

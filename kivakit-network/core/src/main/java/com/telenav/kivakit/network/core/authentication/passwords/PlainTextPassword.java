@@ -100,9 +100,8 @@ public class PlainTextPassword implements Password, StringFormattable
     @Override
     public boolean matches(Password uncast)
     {
-        if (uncast instanceof PlainTextPassword)
+        if (uncast instanceof PlainTextPassword that)
         {
-            var that = (PlainTextPassword) uncast;
             return password.equals(that.password);
         }
         return false;

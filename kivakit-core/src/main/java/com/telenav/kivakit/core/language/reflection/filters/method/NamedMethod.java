@@ -53,9 +53,8 @@ public class NamedMethod extends AllMethods
     @Override
     public boolean equals(Object object)
     {
-        if (object instanceof NamedMethod)
+        if (object instanceof NamedMethod that)
         {
-            var that = (NamedMethod) object;
             return name.equals(that.name);
         }
         return false;

@@ -73,9 +73,8 @@ class AudienceMember
     @Override
     public boolean equals(Object object)
     {
-        if (object instanceof AudienceMember)
+        if (object instanceof AudienceMember that)
         {
-            AudienceMember that = (AudienceMember) object;
             return listener == that.listener;
         }
         return false;

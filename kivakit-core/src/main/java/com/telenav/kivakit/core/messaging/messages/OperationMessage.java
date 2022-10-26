@@ -260,9 +260,8 @@ public abstract class OperationMessage implements Named, Message
     @Override
     public boolean equals(Object object)
     {
-        if (object instanceof OperationMessage)
+        if (object instanceof OperationMessage that)
         {
-            var that = (OperationMessage) object;
             return areEqualPairs(
                     this.getClass(), that.getClass(),
                     this.created, that.created,

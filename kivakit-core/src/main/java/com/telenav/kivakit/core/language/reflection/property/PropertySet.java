@@ -101,9 +101,8 @@ public class PropertySet implements PropertyFilter
     @Override
     public boolean equals(Object object)
     {
-        if (object instanceof PropertySet)
+        if (object instanceof PropertySet that)
         {
-            var that = (PropertySet) object;
             return getClass().equals(that.getClass());
         }
         return false;

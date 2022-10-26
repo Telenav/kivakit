@@ -40,7 +40,7 @@ import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
  * <p><b>Terminal Operations</b></p>
  *
  * <ul>
- *     <li>{@link #isPresent()} - Returns true if a value is present</li>
+ *     <li>{@link #isPresent()} - Returns true if a value is present and it is not the boolean value <i>false</i></li>
  *     <li>{@link #isAbsent()} - Returns true if no value is present</li>
  *     <li>{@link #get()} - Any value that might be present, or null if no value is present</li>
  *     <li>{@link #has()} - Returns true if a value is present</li>
@@ -205,9 +205,8 @@ public class Maybe<Value> implements
     @Override
     public boolean equals(Object object)
     {
-        if (object instanceof Maybe)
+        if (object instanceof Maybe<?> that)
         {
-            var that = (Maybe<?>) object;
             return Objects.equals(value, that.value);
         }
         return false;
@@ -282,11 +281,16 @@ public class Maybe<Value> implements
     }
 
     /**
-     * Returns true if there is a value present
+     * Returns true if there is a value present and it is not {@link Boolean#FALSE}. The check for false allows false
+     * monads to be treated as if they were null.
      */
     @Override
     public boolean isPresent()
     {
+        if (value instanceof Boolean)
+        {
+            return (Boolean) value;
+        }
         return value != null;
     }
 

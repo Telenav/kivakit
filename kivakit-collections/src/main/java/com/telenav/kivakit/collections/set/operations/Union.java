@@ -72,9 +72,8 @@ public class Union<T> extends LogicalSet<T>
     @Override
     public boolean equals(Object object)
     {
-        if (object instanceof Set)
+        if (object instanceof Set<?> that)
         {
-            var that = (Set<?>) object;
             if (size() == that.size())
             {
                 for (Object value : this)

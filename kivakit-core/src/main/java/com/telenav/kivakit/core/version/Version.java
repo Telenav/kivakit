@@ -248,9 +248,8 @@ public class Version
     @Override
     public boolean equals(Object object)
     {
-        if (object instanceof Version)
+        if (object instanceof Version that)
         {
-            var that = (Version) object;
             return major == that.major
                     && minor == that.minor
                     && patch == that.patch

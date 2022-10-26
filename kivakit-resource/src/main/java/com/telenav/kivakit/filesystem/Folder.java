@@ -660,9 +660,8 @@ public class Folder extends BaseRepeater implements
     @Override
     public boolean equals(Object object)
     {
-        if (object instanceof Folder)
+        if (object instanceof Folder that)
         {
-            var that = (Folder) object;
             return path().equals(that.path());
         }
         return false;

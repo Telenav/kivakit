@@ -36,7 +36,6 @@ import static com.telenav.kivakit.core.time.DayOfWeek.javaDayOfWeek;
 import static com.telenav.kivakit.core.time.Hour.militaryHour;
 import static com.telenav.kivakit.core.time.Second.second;
 import static com.telenav.kivakit.core.time.TimeFormats.*;
-import static com.telenav.kivakit.core.time.TimeFormats.KIVAKIT_DATE_TIME;
 import static com.telenav.kivakit.core.time.TimeZones.shortDisplayName;
 import static java.lang.String.format;
 import static java.time.temporal.ChronoField.DAY_OF_MONTH;

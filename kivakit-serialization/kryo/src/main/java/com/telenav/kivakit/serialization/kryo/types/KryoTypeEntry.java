@@ -76,9 +76,8 @@ class KryoTypeEntry
     @Override
     public boolean equals(Object object)
     {
-        if (object instanceof KryoTypeEntry)
+        if (object instanceof KryoTypeEntry that)
         {
-            KryoTypeEntry that = (KryoTypeEntry) object;
             return type.equals(that.type) && identifier == that.identifier;
         }
         return false;

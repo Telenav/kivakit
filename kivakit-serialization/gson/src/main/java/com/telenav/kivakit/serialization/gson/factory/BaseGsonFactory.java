@@ -185,9 +185,8 @@ public abstract class BaseGsonFactory extends BaseRepeater implements GsonFactor
         @Override
         public boolean equals(Object object)
         {
-            if (object instanceof GsonSettings)
+            if (object instanceof GsonSettings that)
             {
-                GsonSettings that = (GsonSettings) object;
                 return areEqualPairs(
                         typeAdapterFactories, that.typeAdapterFactories,
                         serializers, that.serializers,

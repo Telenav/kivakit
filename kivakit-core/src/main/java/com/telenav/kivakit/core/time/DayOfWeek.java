@@ -193,9 +193,8 @@ public class DayOfWeek extends BaseTime<DayOfWeek>
     @Override
     public boolean equals(Object object)
     {
-        if (object instanceof DayOfWeek)
+        if (object instanceof DayOfWeek that)
         {
-            DayOfWeek that = (DayOfWeek) object;
             return this.asIsoOrdinal() == that.asIsoOrdinal();
         }
         return false;

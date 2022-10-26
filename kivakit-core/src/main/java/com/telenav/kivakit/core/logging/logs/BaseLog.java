@@ -234,9 +234,8 @@ public abstract class BaseLog implements
     @Override
     public boolean equals(Object object)
     {
-        if (object instanceof BaseLog)
+        if (object instanceof BaseLog that)
         {
-            var that = (BaseLog) object;
             return name().equals(that.name());
         }
         return false;

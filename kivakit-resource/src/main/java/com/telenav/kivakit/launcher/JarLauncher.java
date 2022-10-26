@@ -271,7 +271,7 @@ public class JarLauncher extends BaseRepeater
                 switch (redirectTo)
                 {
                     // the console
-                    case CONSOLE:
+                    case CONSOLE ->
                     {
                         announcement.put("stdout", "console");
                         announcement.put("stderr", "console");
@@ -283,7 +283,7 @@ public class JarLauncher extends BaseRepeater
                     }
 
                     // or to a file.
-                    case FILE:
+                    case FILE ->
                     {
                         var stderr = folder().file(base + "-" + pid + "-stderr.txt");
                         var stdout = folder().file(base + "-" + pid + "-stdout.txt");
@@ -295,9 +295,7 @@ public class JarLauncher extends BaseRepeater
                                 .redirectOutput(stdout.asJavaFile())
                                 .start();
                     }
-
-                    default:
-                        unsupported("Unsupported redirection");
+                    default -> unsupported("Unsupported redirection");
                 }
             }
             catch (IOException e)

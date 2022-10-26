@@ -285,9 +285,8 @@ public class LocaleLanguage extends Name implements Comparable<LocaleLanguage>
     @Override
     public boolean equals(Object object)
     {
-        if (object instanceof LocaleLanguage)
+        if (object instanceof LocaleLanguage that)
         {
-            var that = (LocaleLanguage) object;
             return iso2Code.equals(that.iso2Code);
         }
         return false;

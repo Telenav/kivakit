@@ -144,9 +144,8 @@ public class HourOfWeekSpan
     @Override
     public boolean equals(Object object)
     {
-        if (object instanceof HourOfWeekSpan)
+        if (object instanceof HourOfWeekSpan that)
         {
-            HourOfWeekSpan that = (HourOfWeekSpan) object;
             return areEqualPairs(
                     startHourOfWeek(), that.startHourOfWeek(),
                     endHourOfWeek(), that.endHourOfWeek());

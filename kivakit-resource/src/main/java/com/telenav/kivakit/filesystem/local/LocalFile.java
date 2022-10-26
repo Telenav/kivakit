@@ -170,9 +170,8 @@ public class LocalFile extends BaseWritableResource implements FileService
     @Override
     public boolean equals(Object object)
     {
-        if (object instanceof LocalFile)
+        if (object instanceof LocalFile that)
         {
-            var that = (LocalFile) object;
             return file.equals(that.file);
         }
         return false;

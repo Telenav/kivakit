@@ -265,9 +265,8 @@ public class LocalFolder extends BaseRepeater implements FolderService
     @Override
     public boolean equals(Object object)
     {
-        if (object instanceof LocalFolder)
+        if (object instanceof LocalFolder that)
         {
-            var that = (LocalFolder) object;
             return path.join().equals(that.path.join());
         }
         return false;

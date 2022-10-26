@@ -64,9 +64,8 @@ public class SwitchValue extends ArgumentValue implements Named
     @Override
     public boolean equals(Object object)
     {
-        if (object instanceof SwitchValue)
+        if (object instanceof SwitchValue that)
         {
-            var that = (SwitchValue) object;
             return name.equals(that.name);
         }
         return false;

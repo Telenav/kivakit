@@ -110,9 +110,8 @@ public class EmailAddress
     @Override
     public boolean equals(Object object)
     {
-        if (object instanceof EmailAddress)
+        if (object instanceof EmailAddress that)
         {
-            var that = (EmailAddress) object;
             return email.equals(that.email);
         }
         return false;

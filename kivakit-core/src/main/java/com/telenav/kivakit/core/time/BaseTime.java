@@ -197,9 +197,8 @@ public abstract class BaseTime<TimeType extends BaseTime<TimeType>> implements
     @Override
     public boolean equals(Object object)
     {
-        if (object instanceof BaseTime)
+        if (object instanceof BaseTime<?> that)
         {
-            var that = (BaseTime<?>) object;
             return this.nanoseconds().equals(that.nanoseconds());
         }
         return false;

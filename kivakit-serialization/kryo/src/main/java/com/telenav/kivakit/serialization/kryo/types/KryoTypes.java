@@ -150,9 +150,8 @@ public class KryoTypes implements Named
     @Override
     public boolean equals(Object object)
     {
-        if (object instanceof KryoTypes)
+        if (object instanceof KryoTypes that)
         {
-            KryoTypes that = (KryoTypes) object;
             return entries.equals(that.entries);
         }
         return false;

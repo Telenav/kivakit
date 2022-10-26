@@ -64,9 +64,8 @@ public class StringIdentifier implements Comparable<StringIdentifier>
     @Override
     public boolean equals(Object object)
     {
-        if (object instanceof StringIdentifier)
+        if (object instanceof StringIdentifier that)
         {
-            var that = (StringIdentifier) object;
             return identifier.equals(that.identifier);
         }
         return false;

@@ -25,8 +25,8 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 import java.util.Collection;
 import java.util.Iterator;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABILITY_UNDETERMINED;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABILITY_UNDETERMINED;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
 
 /**
@@ -118,6 +118,18 @@ public interface Appendable<Value> extends SpaceLimited
     }
 
     /**
+     * Variant of appendAll that can be chained
+     *
+     * @param values The values to append
+     * @return This object, for chaining
+     */
+    default Appendable<Value> appendAllThen(Iterable<? extends Value> values)
+    {
+        appendAll(values);
+        return this;
+    }
+
+    /**
      * Appends the given value if it is not null
      *
      * @param value The value to append
@@ -133,14 +145,17 @@ public interface Appendable<Value> extends SpaceLimited
     }
 
     /**
-     * Variant of appendAll that can be chained
+     * Appends the given value if it is not null
      *
-     * @param values The values to append
+     * @param value The value to append
      * @return This object, for chaining
      */
-    default Appendable<Value> appendAllThen(Iterable<? extends Value> values)
+    default Appendable<Value> appendIfNotNullThen(Value value)
     {
-        appendAll(values);
+        if (value != null)
+        {
+            append(value);
+        }
         return this;
     }
 
