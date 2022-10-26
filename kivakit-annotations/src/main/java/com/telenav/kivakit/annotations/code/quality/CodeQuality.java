@@ -35,11 +35,12 @@ import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_UNDET
 @SuppressWarnings({ "unused", "JavadocDeclaration" })
 @Retention(RetentionPolicy.SOURCE)
 @Target(ElementType.TYPE)
-@CodeQuality(stability = STABILITY_UNDETERMINED,
-             testing = TESTING_NOT_NEEDED,
+@CodeQuality(audience = AUDIENCE_PUBLIC,
+             stability = STABILITY_UNDETERMINED,
              documentation = DOCUMENTATION_COMPLETE,
-             reviews = 1,
-             reviewers = "shibo")
+             testing = TESTING_NOT_NEEDED,
+             reviews = 2,
+             reviewers = { "shibo", "tim" })
 public @interface CodeQuality
 {
     /**
