@@ -59,7 +59,7 @@
         <junit5.version>5.9.0</junit5.version>
         <kryo.version>0.45</kryo.version>
         <lexakai-bom.version>1.0.15</lexakai-bom.version>
-        <lexakai-annotations.version>1.0.10</lexakai-annotations.version>
+        <lexakai-annotations.version>1.0.9</lexakai-annotations.version>
         <mail.version>1.6.2</mail.version>
         <sshtools.version>0.2.9</sshtools.version>
         <sun-activation.version>1.2.0</sun-activation.version>
