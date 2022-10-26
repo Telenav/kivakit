@@ -32,7 +32,7 @@
             <artifactId>kivakit-annotations</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.telenav.lexakai</groupId>
+            <groupId>com.telenav.lexakai.annotations</groupId>
             <artifactId>lexakai-annotations</artifactId>
         </dependency>
         <dependency>

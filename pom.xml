@@ -87,7 +87,7 @@
 
             <!-- Pull in libraries defined in Lexakai Annotations -->
             <dependency>
-                <groupId>com.telenav.lexakai</groupId>
+                <groupId>com.telenav.lexakai.annotations</groupId>
                 <artifactId>lexakai-annotations</artifactId>
                 <version>${lexakai-annotations.version}</version>
             </dependency>
