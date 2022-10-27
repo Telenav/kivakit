@@ -79,7 +79,7 @@ import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
  * <p><b>Example - Absent Value</b></p>
  *
  * <pre>
- * ensureEqual(present("abc")  // "abc"
+ * ensureEqual(present("abc")            // "abc"
  *     .map(Integer::parseInt)           // null
  *     .map(Integer::sum, 123)           // null
  *     .map(String::valueOf)             // null
@@ -103,7 +103,7 @@ import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
  * <p><b>Example - Asynchronous Mapping</b></p>
  *
  * <pre>
- * var sum = result(3).mapTask(value -&gt; new FutureTask&lt;&gt;(() &gt; value + 3)).get();
+ * var sum = result(3).mapTask(value -&gt; new FutureTask&lt;&gt;(() &gt; value + 3)).get().get();
  * </pre>
  *
  * @author jonathanl (shibo)
