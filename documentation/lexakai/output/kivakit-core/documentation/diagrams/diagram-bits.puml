@@ -1,0 +1,23 @@
+
+@startuml
+
+    !include lexakai.theme
+    
+    title "diagram-bits"
+    
+    class BitDiagram
+    {
+        --(constructors)--
+        +BitDiagram(String)
+        --
+        +BitField field(char fieldCharacter)
+    }
+    
+    class Bits
+    {
+        --
+        +long oneBits(Countable)
+    }
+    
+@enduml
+

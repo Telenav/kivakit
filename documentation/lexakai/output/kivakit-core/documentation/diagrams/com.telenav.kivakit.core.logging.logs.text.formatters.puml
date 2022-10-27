@@ -1,0 +1,62 @@
+
+@startuml
+
+    !include lexakai.theme
+    
+    title "com.telenav.kivakit.core.logging.logs.text.formatters"
+    
+    abstract BaseColumnarFormatter
+    
+    interface LogFormatter
+    
+    LogFormatter <|-- BaseColumnarFormatter
+    abstract class BaseColumnarFormatter
+    {
+    }
+    
+    class BaseColumnarFormatter.Column
+    {
+        --(constructors)--
+        #Column(int, int, ColumnLayout)
+    }
+    
+    enum BaseColumnarFormatter.ColumnLayout
+    {
+        CLIP_LEFT
+        CLIP_RIGHT
+        WRAP
+    }
+    
+    class BaseColumnarFormatter.LineOutput
+    {
+        --
+        #String format()
+        --(collection)--
+        #void addColumnText(Column, String value)
+    }
+    
+    BaseColumnarFormatter <|-- NarrowLogFormatter
+    class NarrowLogFormatter
+    {
+    }
+    
+    LogFormatter <|-- SimpleLogFormatter
+    class SimpleLogFormatter
+    {
+    }
+    
+    enum WideLogFormatter.TimeType
+    {
+        ABSOLUTE_TIME
+        ELAPSED
+    }
+    
+    BaseColumnarFormatter <|-- WideLogFormatter
+    class WideLogFormatter
+    {
+        --(time)--
+        +void timeType(TimeType)
+    }
+    
+@enduml
+

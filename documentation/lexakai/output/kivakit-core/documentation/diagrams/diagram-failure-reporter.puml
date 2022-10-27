@@ -1,0 +1,22 @@
+
+@startuml
+
+    !include lexakai.theme
+    
+    title "diagram-failure-reporter"
+    
+    interface Listener
+    Listener <|-- FailureReporter
+    interface FailureReporter
+    {
+        --
+        +void report(Message)
+        --(status)--
+        +FailureReporter assertingFailureReporter()
+        +FailureReporter emptyFailureReporter()
+        +FailureReporter loggingFailureReporter()
+        +FailureReporter throwingFailureReporter()
+    }
+    
+@enduml
+

@@ -1,0 +1,16 @@
+
+@startuml
+
+    !include lexakai.theme
+    
+    title "com.telenav.kivakit.interfaces.serialization"
+    
+    interface SerializedObject
+    {
+        --
+        +void onDeserialized()
+        +void onSerializing()
+    }
+    
+@enduml
+

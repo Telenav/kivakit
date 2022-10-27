@@ -1,0 +1,55 @@
+
+@startuml
+
+    !include lexakai.theme
+    
+    title "com.telenav.kivakit.core.value.identifier"
+    
+    interface Comparable
+    interface LongValued
+    interface Factory
+    interface Identifiable
+    
+    Identifiable <|-- Identifier
+    LongValued <|-- Identifier
+    Comparable <|-- Identifier
+    class Identifier
+    {
+        --(constructors)--
+        +Identifier(long)
+        --(collection)--
+        +BitCount bitsToRepresent()
+    }
+    
+    Factory <|-- IdentifierFactory
+    class IdentifierFactory
+    {
+        --(constructors)--
+        +IdentifierFactory()
+        +IdentifierFactory(long)
+    }
+    
+    Comparable <|-- IntegerIdentifier
+    LongValued <|-- IntegerIdentifier
+    Identifiable <|-- IntegerIdentifier
+    class IntegerIdentifier
+    {
+        --(constructors)--
+        #IntegerIdentifier()
+        +IntegerIdentifier(int)
+    }
+    
+    Comparable <|-- StringIdentifier
+    class StringIdentifier
+    {
+        --(constructors)--
+        #StringIdentifier()
+        +StringIdentifier(String)
+        --(conversion)--
+        +String asString()
+        --(identity)--
+        +String identifier()
+    }
+    
+@enduml
+

@@ -1,0 +1,98 @@
+
+@startuml
+
+    !include lexakai.theme
+    
+    title "diagram-language"
+    
+    abstract BaseRepeater
+    
+    interface Sized
+    interface Comparable
+    
+    Sized <|-- Differences
+    Differences o-- StringList
+    class Differences
+    {
+        --
+        +boolean compare(String description, Iterable<T>, Iterable<T>)
+        +boolean compare(String description, T a, T b)
+        --(checks)--
+        +boolean isDifferent()
+        +boolean isIdentical()
+        --(collection)--
+        +void add(String description)
+        +void add(Differences that)
+    }
+    
+    BaseRepeater <|-- JavaVirtualMachine
+    JavaVirtualMachine o-- JavaVirtualMachineHealth
+    class JavaVirtualMachine
+    {
+        --
+        +boolean assertionsEnabled()
+        +void dumpHeap(Path)
+        +JavaVirtualMachineHealth health()
+        +void invalidateProperties()
+        +JavaVirtualMachine javaVirtualMachine()
+        +ThreadSnapshot threadSnapshot()
+        --(collection)--
+        +Count processors()
+        +VariableMap<String> systemProperties()
+        +VariableMap<String> systemPropertiesAndEnvironmentVariables()
+        --(primitive)--
+        +Bytes freeMemory()
+        +Bytes maximumMemory()
+        +Bytes totalMemory()
+        +Bytes usedMemory()
+    }
+    
+    class JavaVirtualMachineHealth
+    {
+        --
+        +double cpuUse()
+        +void logEntry(LogEntry)
+        +double memoryUse()
+        +ThreadSnapshot threadSnapshot()
+        +JavaVirtualMachineHealth update()
+        --(collection)--
+        +Duration elapsedCpuTimeSinceLastSnapshot()
+        +Duration elapsedSinceLastSnapshot()
+        +Count loggedMessageCount(String messageType)
+        +Count processors()
+        --(primitive)--
+        +Bytes freeMemory()
+        +Bytes maximumMemory()
+        +Map<String,Integer> messageType()
+        +Bytes totalMemory()
+        +Bytes usedMemory()
+        --(time)--
+        +Duration upTime()
+    }
+    
+    class Lists
+    {
+        --(collection)--
+        +ArrayList<Value> newArrayList(Value... objects)
+    }
+    
+    Comparable <|-- ShutdownHook
+    class ShutdownHook
+    {
+        --(lookup)--
+        +void registerShutdownHook(String name, Runnable code)
+        +void registerShutdownHook(String name, Order, Duration maximumWait, Runnable code)
+        +void registerShutdownHook(String name, Duration maximumWait, Runnable code)
+        +void registerShutdownHook(String name, Order, Runnable code)
+    }
+    
+    class Streams
+    {
+        --
+        +Stream<T> parallelStream(Iterable<T>)
+        +Stream<T> stream(Processing, Iterable<T>)
+        +Stream<T> stream(Iterable<T>)
+    }
+    
+@enduml
+

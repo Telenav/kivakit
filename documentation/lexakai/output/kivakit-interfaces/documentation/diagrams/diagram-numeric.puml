@@ -1,0 +1,44 @@
+
+@startuml
+
+    !include lexakai.theme
+    
+    title "diagram-numeric"
+    
+    interface LongValued
+    interface Mapper<Long,Value>
+    LongValued <|-- Maximizable
+    Mapper <|-- Maximizable
+    interface Maximizable<Value>
+    {
+        --
+        +Value maximize(LongValued)
+        +Value maximize(long value)
+        --(math)--
+        +Value maximum()
+    }
+    
+    interface LongValued
+    interface Mapper<Long,Value>
+    LongValued <|-- Minimizable
+    Mapper <|-- Minimizable
+    interface Minimizable<Value>
+    {
+        --
+        +Value minimize(LongValued)
+        +Value minimize(long value)
+        --(math)--
+        +Value minimum()
+    }
+    
+    interface Emptiness
+    Emptiness <|-- Sized
+    interface Sized
+    {
+        --(collection)--
+        +boolean isEmpty()
+        +int size()
+    }
+    
+@enduml
+

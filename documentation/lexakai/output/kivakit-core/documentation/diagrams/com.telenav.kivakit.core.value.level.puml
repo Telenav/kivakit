@@ -1,0 +1,87 @@
+
+@startuml
+
+    !include lexakai.theme
+    
+    title "com.telenav.kivakit.core.value.level"
+    
+    interface Comparable
+    interface DoubleValued
+    
+    Level <|-- Confidence
+    class Confidence
+    {
+        --(constructors)--
+        #Confidence()
+        #Confidence(double)
+        --
+        +Confidence confidence(double value)
+        --(parsing)--
+        +Confidence parseConfidence(Listener, String value)
+        --(primitive)--
+        +int asUnsignedByte()
+        +Confidence confidenceForByte(byte level)
+        +Confidence confidenceForInt(int value)
+    }
+    
+    Comparable <|-- Level
+    DoubleValued <|-- Level
+    class Level
+    {
+        --(constructors)--
+        #Level()
+        +Level(double)
+        --
+        +Level inverse()
+        +Level reciprocal()
+        --(conversion)--
+        +Level asLevel()
+        +double asZeroToOne()
+        --(extension points)--
+        #Level onNewInstance(double value)
+        --(math)--
+        +Percent asPercent()
+        +Level dividedBy(Level that)
+        +Level minus(Level that)
+        +Level plus(Level that)
+        +Level times(Level that)
+        --(parsing)--
+        +Level parseLevel(Listener, String text, boolean lenient)
+        --(primitive)--
+        +Level levelForByte(byte level)
+    }
+    
+    Comparable <|-- Percent
+    DoubleValued <|-- Percent
+    class Percent
+    {
+        --
+        +long scale(long value)
+        +double scale(double factor)
+        +int scale(int value)
+        --(conversion)--
+        +Level asLevel()
+        +double asUnitValue()
+        +double asZeroToOne()
+        --(math)--
+        +Percent dividedBy(double divisor)
+        +Percent inverse()
+        +Percent minus(Percent that)
+        +Percent parsePercent(Listener, String text)
+        +double percent()
+        +Percent percent(double percent)
+        +Percent plus(Percent that)
+        +Percent times(double scaleFactor)
+    }
+    
+    Level <|-- Weight
+    class Weight
+    {
+        --(constructors)--
+        #Weight()
+        --
+        +Weight weight(double weight)
+    }
+    
+@enduml
+

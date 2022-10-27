@@ -1,0 +1,525 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="218.75px" preserveAspectRatio="none" style="width:2453px;height:218px;background:#333333;" version="1.1" viewBox="0 0 2453 218" width="2453.125px" zoomAndPan="magnify"><defs/><g><rect fill="#48494B" height="41.2028" rx="8.3333" ry="8.3333" style="stroke:#545454;stroke-width:1.0416666666666667;" width="467.7083" x="985.6771" y="2.0833"/><text fill="#C0C0C0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="20.8333" lengthAdjust="spacing" textLength="444.7917" x="997.1354" y="30.5583">com.telenav.kivakit.resource.internal.lexakai</text><!--MD5=[d0a12be03067cdc29bc4127bc14fabc5]
+class UmlDiagramIdentifier--><rect codeLine="67" fill="#282828" height="48.055" id="UmlDiagramIdentifier" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="178.125" x="1104.6875" y="53.7028"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="178.125" x="1104.6875" y="53.7028"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="178.125" x="1104.6875" y="76.7578"/><rect codeLine="67" fill="none" height="48.055" id="UmlDiagramIdentifier" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="178.125" x="1104.6875" y="53.7028"/><ellipse cx="1119.2708" cy="69.397" fill="#008400" rx="10.4167" ry="10.4167" style="stroke:#239C23;stroke-width:1.0416666666666667;"/><path d="M1116.6748,66.5588 L1116.6748,64.9719 L1122.1008,64.9719 L1122.1008,66.5588 L1120.2881,66.5588 L1120.2881,72.4976 L1122.1008,72.4976 L1122.1008,74.0845 L1116.6748,74.0845 L1116.6748,72.4976 L1118.4875,72.4976 L1118.4875,66.5588 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-style="italic" font-weight="bold" lengthAdjust="spacing" textLength="140.625" x="1135.9375" y="74.1211">UmlDiagramIdentifier</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="1105.7292" x2="1281.7708" y1="85.0911" y2="85.0911"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="1105.7292" x2="1281.7708" y1="93.4245" y2="93.4245"/><!--MD5=[da398c1887640d7c561d8c10a0ac3096]
+class DiagramFileSystem--><rect codeLine="9" fill="#282828" height="48.055" id="DiagramFileSystem" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="162.5" x="7.2917" y="164.1195"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="162.5" x="7.2917" y="164.1195"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="162.5" x="7.2917" y="187.1745"/><rect codeLine="9" fill="none" height="48.055" id="DiagramFileSystem" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="162.5" x="7.2917" y="164.1195"/><ellipse cx="21.875" cy="179.8136" fill="#008400" rx="10.4167" ry="10.4167" style="stroke:#239C23;stroke-width:1.0416666666666667;"/><path d="M19.279,176.9755 L19.279,175.3886 L24.705,175.3886 L24.705,176.9755 L22.8923,176.9755 L22.8923,182.9142 L24.705,182.9142 L24.705,184.5011 L19.279,184.5011 L19.279,182.9142 L21.0917,182.9142 L21.0917,176.9755 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-style="italic" font-weight="bold" lengthAdjust="spacing" textLength="125" x="38.5417" y="184.5378">DiagramFileSystem</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="8.3333" x2="168.75" y1="195.5078" y2="195.5078"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="8.3333" x2="168.75" y1="203.8411" y2="203.8411"/><!--MD5=[4ae222c40314618d6fe61075c188e830]
+class DiagramFileSystemFile--><rect codeLine="15" fill="#282828" height="48.055" id="DiagramFileSystemFile" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="185.4167" x="206.25" y="164.1195"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="185.4167" x="206.25" y="164.1195"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="185.4167" x="206.25" y="187.1745"/><rect codeLine="15" fill="none" height="48.055" id="DiagramFileSystemFile" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="185.4167" x="206.25" y="164.1195"/><ellipse cx="220.8333" cy="179.8136" fill="#008400" rx="10.4167" ry="10.4167" style="stroke:#239C23;stroke-width:1.0416666666666667;"/><path d="M218.2373,176.9755 L218.2373,175.3886 L223.6633,175.3886 L223.6633,176.9755 L221.8506,176.9755 L221.8506,182.9142 L223.6633,182.9142 L223.6633,184.5011 L218.2373,184.5011 L218.2373,182.9142 L220.05,182.9142 L220.05,176.9755 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-style="italic" font-weight="bold" lengthAdjust="spacing" textLength="147.9167" x="237.5" y="184.5378">DiagramFileSystemFile</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="207.2917" x2="390.625" y1="195.5078" y2="195.5078"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="207.2917" x2="390.625" y1="203.8411" y2="203.8411"/><!--MD5=[5f8d2f05bb343ad5f106ab336af81010]
+class DiagramFileSystemFolder--><rect codeLine="21" fill="#282828" height="48.055" id="DiagramFileSystemFolder" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="203.125" x="428.6458" y="164.1195"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="203.125" x="428.6458" y="164.1195"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="203.125" x="428.6458" y="187.1745"/><rect codeLine="21" fill="none" height="48.055" id="DiagramFileSystemFolder" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="203.125" x="428.6458" y="164.1195"/><ellipse cx="443.2292" cy="179.8136" fill="#008400" rx="10.4167" ry="10.4167" style="stroke:#239C23;stroke-width:1.0416666666666667;"/><path d="M440.6331,176.9755 L440.6331,175.3886 L446.0592,175.3886 L446.0592,176.9755 L444.2464,176.9755 L444.2464,182.9142 L446.0592,182.9142 L446.0592,184.5011 L440.6331,184.5011 L440.6331,182.9142 L442.4459,182.9142 L442.4459,176.9755 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-style="italic" font-weight="bold" lengthAdjust="spacing" textLength="165.625" x="459.8958" y="184.5378">DiagramFileSystemFolder</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="429.6875" x2="630.7292" y1="195.5078" y2="195.5078"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="429.6875" x2="630.7292" y1="203.8411" y2="203.8411"/><!--MD5=[2dc3c85f6d96a2a61aedeef430935dfe]
+class DiagramFileSystemService--><rect codeLine="27" fill="#282828" height="48.055" id="DiagramFileSystemService" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="207.2917" x="668.2292" y="164.1195"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="207.2917" x="668.2292" y="164.1195"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="207.2917" x="668.2292" y="187.1745"/><rect codeLine="27" fill="none" height="48.055" id="DiagramFileSystemService" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="207.2917" x="668.2292" y="164.1195"/><ellipse cx="682.8125" cy="179.8136" fill="#008400" rx="10.4167" ry="10.4167" style="stroke:#239C23;stroke-width:1.0416666666666667;"/><path d="M680.2165,176.9755 L680.2165,175.3886 L685.6425,175.3886 L685.6425,176.9755 L683.8298,176.9755 L683.8298,182.9142 L685.6425,182.9142 L685.6425,184.5011 L680.2165,184.5011 L680.2165,182.9142 L682.0292,182.9142 L682.0292,176.9755 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-style="italic" font-weight="bold" lengthAdjust="spacing" textLength="169.7917" x="699.4792" y="184.5378">DiagramFileSystemService</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="669.2708" x2="874.4792" y1="195.5078" y2="195.5078"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="669.2708" x2="874.4792" y1="203.8411" y2="203.8411"/><!--MD5=[5201dc3de443ea3eb2c01fe55c551649]
+class DiagramJarLauncher--><rect codeLine="33" fill="#282828" height="48.055" id="DiagramJarLauncher" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="168.75" x="912.5" y="164.1195"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="168.75" x="912.5" y="164.1195"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="168.75" x="912.5" y="187.1745"/><rect codeLine="33" fill="none" height="48.055" id="DiagramJarLauncher" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="168.75" x="912.5" y="164.1195"/><ellipse cx="927.0833" cy="179.8136" fill="#008400" rx="10.4167" ry="10.4167" style="stroke:#239C23;stroke-width:1.0416666666666667;"/><path d="M924.4873,176.9755 L924.4873,175.3886 L929.9133,175.3886 L929.9133,176.9755 L928.1006,176.9755 L928.1006,182.9142 L929.9133,182.9142 L929.9133,184.5011 L924.4873,184.5011 L924.4873,182.9142 L926.3,182.9142 L926.3,176.9755 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-style="italic" font-weight="bold" lengthAdjust="spacing" textLength="131.25" x="943.75" y="184.5378">DiagramJarLauncher</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="913.5417" x2="1080.2083" y1="195.5078" y2="195.5078"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="913.5417" x2="1080.2083" y1="203.8411" y2="203.8411"/><!--MD5=[dd83f34ac863ef7e1fedb89579e478c3]
+class DiagramResource--><rect codeLine="39" fill="#282828" height="48.055" id="DiagramResource" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="151.0417" x="1118.2292" y="164.1195"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="151.0417" x="1118.2292" y="164.1195"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="151.0417" x="1118.2292" y="187.1745"/><rect codeLine="39" fill="none" height="48.055" id="DiagramResource" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="151.0417" x="1118.2292" y="164.1195"/><ellipse cx="1132.8125" cy="179.8136" fill="#008400" rx="10.4167" ry="10.4167" style="stroke:#239C23;stroke-width:1.0416666666666667;"/><path d="M1130.2165,176.9755 L1130.2165,175.3886 L1135.6425,175.3886 L1135.6425,176.9755 L1133.8298,176.9755 L1133.8298,182.9142 L1135.6425,182.9142 L1135.6425,184.5011 L1130.2165,184.5011 L1130.2165,182.9142 L1132.0292,182.9142 L1132.0292,176.9755 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-style="italic" font-weight="bold" lengthAdjust="spacing" textLength="113.5417" x="1149.4792" y="184.5378">DiagramResource</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="1119.2708" x2="1268.2292" y1="195.5078" y2="195.5078"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="1119.2708" x2="1268.2292" y1="203.8411" y2="203.8411"/><!--MD5=[4c7a940a3a55320d93b8c305c224295a]
+class DiagramResourceArchive--><rect codeLine="45" fill="#282828" height="48.055" id="DiagramResourceArchive" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="198.9583" x="1305.7292" y="164.1195"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="198.9583" x="1305.7292" y="164.1195"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="198.9583" x="1305.7292" y="187.1745"/><rect codeLine="45" fill="none" height="48.055" id="DiagramResourceArchive" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="198.9583" x="1305.7292" y="164.1195"/><ellipse cx="1320.3125" cy="179.8136" fill="#008400" rx="10.4167" ry="10.4167" style="stroke:#239C23;stroke-width:1.0416666666666667;"/><path d="M1317.7165,176.9755 L1317.7165,175.3886 L1323.1425,175.3886 L1323.1425,176.9755 L1321.3298,176.9755 L1321.3298,182.9142 L1323.1425,182.9142 L1323.1425,184.5011 L1317.7165,184.5011 L1317.7165,182.9142 L1319.5292,182.9142 L1319.5292,176.9755 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-style="italic" font-weight="bold" lengthAdjust="spacing" textLength="161.4583" x="1336.9792" y="184.5378">DiagramResourceArchive</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="1306.7708" x2="1503.6458" y1="195.5078" y2="195.5078"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="1306.7708" x2="1503.6458" y1="203.8411" y2="203.8411"/><!--MD5=[5ad678147a019d619524129e37257861]
+class DiagramResourceCompression--><rect codeLine="51" fill="#282828" height="48.055" id="DiagramResourceCompression" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="237.5" x="1541.6667" y="164.1195"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="237.5" x="1541.6667" y="164.1195"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="237.5" x="1541.6667" y="187.1745"/><rect codeLine="51" fill="none" height="48.055" id="DiagramResourceCompression" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="237.5" x="1541.6667" y="164.1195"/><ellipse cx="1556.25" cy="179.8136" fill="#008400" rx="10.4167" ry="10.4167" style="stroke:#239C23;stroke-width:1.0416666666666667;"/><path d="M1553.654,176.9755 L1553.654,175.3886 L1559.08,175.3886 L1559.08,176.9755 L1557.2673,176.9755 L1557.2673,182.9142 L1559.08,182.9142 L1559.08,184.5011 L1553.654,184.5011 L1553.654,182.9142 L1555.4667,182.9142 L1555.4667,176.9755 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-style="italic" font-weight="bold" lengthAdjust="spacing" textLength="200" x="1572.9167" y="184.5378">DiagramResourceCompression</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="1542.7083" x2="1778.125" y1="195.5078" y2="195.5078"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="1542.7083" x2="1778.125" y1="203.8411" y2="203.8411"/><!--MD5=[0e65989fca89df9140753e080ed58eb6]
+class DiagramResourcePath--><rect codeLine="57" fill="#282828" height="48.055" id="DiagramResourcePath" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="179.1667" x="1815.625" y="164.1195"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="179.1667" x="1815.625" y="164.1195"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="179.1667" x="1815.625" y="187.1745"/><rect codeLine="57" fill="none" height="48.055" id="DiagramResourcePath" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="179.1667" x="1815.625" y="164.1195"/><ellipse cx="1830.2083" cy="179.8136" fill="#008400" rx="10.4167" ry="10.4167" style="stroke:#239C23;stroke-width:1.0416666666666667;"/><path d="M1827.6123,176.9755 L1827.6123,175.3886 L1833.0383,175.3886 L1833.0383,176.9755 L1831.2256,176.9755 L1831.2256,182.9142 L1833.0383,182.9142 L1833.0383,184.5011 L1827.6123,184.5011 L1827.6123,182.9142 L1829.425,182.9142 L1829.425,176.9755 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-style="italic" font-weight="bold" lengthAdjust="spacing" textLength="141.6667" x="1846.875" y="184.5378">DiagramResourcePath</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="1816.6667" x2="1993.75" y1="195.5078" y2="195.5078"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="1816.6667" x2="1993.75" y1="203.8411" y2="203.8411"/><!--MD5=[0a06d2e1a9c5983ccba1518e3b90ff6e]
+class DiagramResourceService--><rect codeLine="63" fill="#282828" height="48.055" id="DiagramResourceService" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="195.8333" x="2031.25" y="164.1195"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="195.8333" x="2031.25" y="164.1195"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="195.8333" x="2031.25" y="187.1745"/><rect codeLine="63" fill="none" height="48.055" id="DiagramResourceService" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="195.8333" x="2031.25" y="164.1195"/><ellipse cx="2045.8333" cy="179.8136" fill="#008400" rx="10.4167" ry="10.4167" style="stroke:#239C23;stroke-width:1.0416666666666667;"/><path d="M2043.2373,176.9755 L2043.2373,175.3886 L2048.6633,175.3886 L2048.6633,176.9755 L2046.8506,176.9755 L2046.8506,182.9142 L2048.6633,182.9142 L2048.6633,184.5011 L2043.2373,184.5011 L2043.2373,182.9142 L2045.05,182.9142 L2045.05,176.9755 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-style="italic" font-weight="bold" lengthAdjust="spacing" textLength="158.3333" x="2062.5" y="184.5378">DiagramResourceService</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="2032.2917" x2="2226.0417" y1="195.5078" y2="195.5078"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="2032.2917" x2="2226.0417" y1="203.8411" y2="203.8411"/><!--MD5=[24067432123c7afa3704b2864b851fea]
+class DiagramResourceType--><rect codeLine="69" fill="#282828" height="48.055" id="DiagramResourceType" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="182.2917" x="2264.0625" y="164.1195"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="182.2917" x="2264.0625" y="164.1195"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="182.2917" x="2264.0625" y="187.1745"/><rect codeLine="69" fill="none" height="48.055" id="DiagramResourceType" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="182.2917" x="2264.0625" y="164.1195"/><ellipse cx="2278.6458" cy="179.8136" fill="#008400" rx="10.4167" ry="10.4167" style="stroke:#239C23;stroke-width:1.0416666666666667;"/><path d="M2276.0498,176.9755 L2276.0498,175.3886 L2281.4758,175.3886 L2281.4758,176.9755 L2279.6631,176.9755 L2279.6631,182.9142 L2281.4758,182.9142 L2281.4758,184.5011 L2276.0498,184.5011 L2276.0498,182.9142 L2277.8625,182.9142 L2277.8625,176.9755 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-style="italic" font-weight="bold" lengthAdjust="spacing" textLength="144.7917" x="2295.3125" y="184.5378">DiagramResourceType</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="2265.1042" x2="2445.3125" y1="195.5078" y2="195.5078"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="2265.1042" x2="2445.3125" y1="203.8411" y2="203.8411"/><!--MD5=[0d0b6be4c4cf20eca6c8ecb8f47956a0]
+reverse link UmlDiagramIdentifier to DiagramFileSystem--><path codeLine="8" d="M1083.5625,82.9007 C897.7917,91.1299 510.8646,113.2236 187.5,164.1195 C181.75,165.0257 175.8438,166.0778 169.9063,167.2236 " fill="none" id="UmlDiagramIdentifier-backto-DiagramFileSystem" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="1083.2708,75.6195,1104.3958,82.0049,1083.8958,90.182,1083.2708,75.6195" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[b5d3d05123ece52aa34c0506ebb8cfc6]
+reverse link UmlDiagramIdentifier to DiagramFileSystemFile--><path codeLine="14" d="M1083.3854,87.4424 C931.3333,100.2236 649.125,126.6507 410.4167,164.1195 C404.3646,165.0674 398.1458,166.1299 391.8854,167.2445 " fill="none" id="UmlDiagramIdentifier-backto-DiagramFileSystemFile" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="1083.0313,80.1507,1104.4063,85.6924,1084.2396,94.682,1083.0313,80.1507" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[8e8fa42f10570bf16d141905f3397f83]
+reverse link UmlDiagramIdentifier to DiagramFileSystemFolder--><path codeLine="20" d="M1083.8125,94.8799 C973.8542,111.3174 799.9792,138.0049 650,164.1195 C644.0521,165.1507 637.9479,166.2445 631.7917,167.359 " fill="none" id="UmlDiagramIdentifier-backto-DiagramFileSystemFolder" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="1082.9167,87.6403,1104.5938,91.7757,1085.0625,102.0674,1082.9167,87.6403" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[a23398bb2de575cb5f604793de09a91a]
+reverse link UmlDiagramIdentifier to DiagramFileSystemService--><path codeLine="26" d="M1083.8958,106.9111 C1014.5833,124.7132 926.2083,147.4007 861.2188,164.0986 " fill="none" id="UmlDiagramIdentifier-backto-DiagramFileSystemService" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="1082.2917,99.7965,1104.2813,101.682,1085.9167,113.9215,1082.2917,99.7965" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[8493408d932618f4af1c3fd54947d2a6]
+reverse link UmlDiagramIdentifier to DiagramJarLauncher--><path codeLine="32" d="M1133.7292,111.7236 C1102.9479,128.6715 1066.2188,148.8799 1038.5625,164.0986 " fill="none" id="UmlDiagramIdentifier-backto-DiagramJarLauncher" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="1130.2292,105.3278,1152,101.682,1137.2604,118.109,1130.2292,105.3278" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[4ec6e3c4604fb8b30094b5a5ad2a2f9a]
+reverse link UmlDiagramIdentifier to DiagramResource--><path codeLine="38" d="M1193.75,122.6195 C1193.75,136.8382 1193.75,152.0361 1193.75,164.0986 " fill="none" id="UmlDiagramIdentifier-backto-DiagramResource" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="1186.4583,122.5153,1193.75,101.682,1201.0417,122.5153,1186.4583,122.5153" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[5b03071131f08d2184889bb97c3d2bfd]
+reverse link UmlDiagramIdentifier to DiagramResourceArchive--><path codeLine="44" d="M1257.2813,111.2445 C1290.5313,128.2861 1330.4479,148.734 1360.4271,164.0986 " fill="none" id="UmlDiagramIdentifier-backto-DiagramResourceArchive" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="1253.8125,117.6611,1238.5938,101.682,1260.4583,104.682,1253.8125,117.6611" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[49a24db30409e4dae67a8a79edc0a8eb]
+reverse link UmlDiagramIdentifier to DiagramResourceCompression--><path codeLine="50" d="M1303.1979,104.109 C1381.4167,122.2653 1485.7708,146.4945 1561.4896,164.0674 " fill="none" id="UmlDiagramIdentifier-backto-DiagramResourceCompression" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="1301.5417,111.2132,1282.8958,99.4007,1304.8438,97.0049,1301.5417,111.2132" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[c530749480f0d155b5d4600f834bcf0c]
+reverse link UmlDiagramIdentifier to DiagramResourcePath--><path codeLine="56" d="M1304.1042,91.9528 C1425.5104,107.0674 1626.2083,133.682 1797.9167,164.1195 C1803.6354,165.1299 1809.5208,166.234 1815.4375,167.3799 " fill="none" id="UmlDiagramIdentifier-backto-DiagramResourcePath" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="1302.8958,99.1507,1283.1146,89.3486,1304.6875,84.6715,1302.8958,99.1507" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[98d6382e800139502114e215dbaaa453]
+reverse link UmlDiagramIdentifier to DiagramResourceService--><path codeLine="62" d="M1303.7813,86.932 C1461.5104,99.4736 1760.7396,125.984 2013.5417,164.1195 C2019.3125,164.9945 2025.2292,165.9528 2031.1875,166.9736 " fill="none" id="UmlDiagramIdentifier-backto-DiagramResourceService" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="1303.1458,94.2028,1282.9479,85.2965,1304.2917,79.6611,1303.1458,94.2028" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[4a850598fa03052c17e8e9011e49a36a]
+reverse link UmlDiagramIdentifier to DiagramResourceType--><path codeLine="68" d="M1303.7917,83.0882 C1495.8229,91.7445 1904.25,114.6715 2245.8333,164.1195 C2251.7813,164.984 2257.8958,165.9736 2264.0521,167.0465 " fill="none" id="UmlDiagramIdentifier-backto-DiagramResourceType" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="1303.3438,90.3695,1282.8438,82.1611,1303.9792,75.7965,1303.3438,90.3695" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[fd63af5319164f8d5d6185a4ef6ca8ec]
+@startuml
+
+    !include lexakai.theme
+    
+    title "com.telenav.kivakit.resource.internal.lexakai"
+    
+    interface UmlDiagramIdentifier
+    UmlDiagramIdentifier <|- - DiagramFileSystem
+    interface DiagramFileSystem
+    {
+    }
+    
+    interface UmlDiagramIdentifier
+    UmlDiagramIdentifier <|- - DiagramFileSystemFile
+    interface DiagramFileSystemFile
+    {
+    }
+    
+    interface UmlDiagramIdentifier
+    UmlDiagramIdentifier <|- - DiagramFileSystemFolder
+    interface DiagramFileSystemFolder
+    {
+    }
+    
+    interface UmlDiagramIdentifier
+    UmlDiagramIdentifier <|- - DiagramFileSystemService
+    interface DiagramFileSystemService
+    {
+    }
+    
+    interface UmlDiagramIdentifier
+    UmlDiagramIdentifier <|- - DiagramJarLauncher
+    interface DiagramJarLauncher
+    {
+    }
+    
+    interface UmlDiagramIdentifier
+    UmlDiagramIdentifier <|- - DiagramResource
+    interface DiagramResource
+    {
+    }
+    
+    interface UmlDiagramIdentifier
+    UmlDiagramIdentifier <|- - DiagramResourceArchive
+    interface DiagramResourceArchive
+    {
+    }
+    
+    interface UmlDiagramIdentifier
+    UmlDiagramIdentifier <|- - DiagramResourceCompression
+    interface DiagramResourceCompression
+    {
+    }
+    
+    interface UmlDiagramIdentifier
+    UmlDiagramIdentifier <|- - DiagramResourcePath
+    interface DiagramResourcePath
+    {
+    }
+    
+    interface UmlDiagramIdentifier
+    UmlDiagramIdentifier <|- - DiagramResourceService
+    interface DiagramResourceService
+    {
+    }
+    
+    interface UmlDiagramIdentifier
+    UmlDiagramIdentifier <|- - DiagramResourceType
+    interface DiagramResourceType
+    {
+    }
+    
+@enduml
+
+@startuml
+
+
+
+
+
+
+
+
+
+skinparam backgroundColor #333333
+
+
+
+
+
+
+skinparam  {
+    defaultFontName   "Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif"
+    defaultFontSize   12
+    defaultTextAlignment left
+    shadowing false
+    RoundCorner 10
+    TitleFontSize 18
+}
+
+skinparam defaultFontName       "Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif"
+skinparam defaultFontSize       12
+skinparam dpi                   100
+skinparam shadowing             false
+skinparam roundcorner           16
+skinparam ParticipantPadding    40
+skinparam BoxPadding            40
+skinparam Padding               3
+skinparam ArrowColor            #545454
+skinparam stereotype {
+    CBackgroundColor #0066cf
+    CBorderColor #0086ef
+    ABackgroundColor #C8Ac00
+    ABorderColor #D8Bc00
+    IBackgroundColor #008400
+    IBorderColor #239c23
+    EBackgroundColor #cf6300
+    EBorderColor #ef8300
+    NBackgroundColor #3380b9
+    NBorderColor #004d86
+}
+skinparam title {
+	FontColor	                 #c0c0c0
+ 	BorderColor                  #545454
+	FontSize	    	         20
+	BorderRoundCorner            16
+	BorderThickness 	         1
+	BackgroundColor              #48494b
+}
+
+
+skinparam legend {
+	BackgroundColor #303030
+	BorderColor #404040
+	FontColor #a0a0a0
+}
+
+	skinparam swimlane {
+	BorderColor #5e5e5e
+	BorderThickness 2
+	TitleBackgroundColor  #6d6d6d-#484848
+	TitleFontColor #303030
+}
+
+skinparam activity {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BarColor #00FF00
+	StartColor #0060a8
+	EndColor #0060a8
+	DiamondBackgroundColor #6d6d6d-#3a3a3a
+  	DiamondBorderColor #3a3a3a
+  	DiamondFontColor #fefefe
+}
+
+
+skinparam participant {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	ParticipantBorderThickness 2
+}
+
+
+skinparam actor {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam arrow {
+	Thickness 1.5
+	Color #545454
+	FontColor #a0a0a0
+    FontStyle bold
+    MessageAlignment center
+}
+
+
+
+skinparam sequence {
+	BorderColor #303030
+	TitleFontColor #303030
+	BackgroundColor #333333
+	StartColor #303030
+	EndColor #303030
+	BoxBackgroundColor #333333
+	BoxBorderColor #484848
+	BoxFontColor #484848
+	LifeLineBorderColor #484848
+	LifeLineBorderThickness 2
+	LifeLineBackgroundColor #3a3a3a
+	GroupBorderColor #484848
+	GroupFontColor #484848
+	GroupHeaderFontColor #0060a8
+	GroupBackgroundColor #484848
+	GroupHeaderBackgroundColor #333333
+	DividerBackgroundColor #484848
+    DividerBorderColor #484848
+    DividerBorderThickness 2
+    DividerFontColor #D8Bc00
+	ReferenceBackgroundColor #333333
+	ReferenceBorderColor #484848
+	ReferenceFontColor #fefefe
+	ReferenceHeaderBackgroundColor #484848
+}
+
+
+skinparam partition {
+	BorderColor #303030
+	FontColor #333333
+	BackgroundColor #333333
+}
+
+
+skinparam collections {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam control {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam entity {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam boundary {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam agent {
+	BackgroundColor #ff8000
+	BorderColor #ff9933
+	FontColor #484848
+}
+
+
+skinparam note {
+	BorderThickness 1
+	BackgroundColor #1b1b1a
+	BorderColor #5e5e5e
+	FontSize 11
+	FontColor #a0a0a0
+}
+
+
+skinparam artifact {
+	BorderThickness 10
+	BorderColor #5e5e5e
+	BackgroundColor #1b1b1a
+	FontColor #D8Bc00
+}
+
+
+skinparam component {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam interface {
+	BackgroundColor  #008400
+	BorderColor  #007F00
+	FontColor #484848
+}
+
+
+skinparam storage {
+	BackgroundColor #ff8000
+  	BorderColor #cc6600
+	FontColor #222222
+}
+
+
+skinparam node {
+	BackgroundColor #333333
+	BorderColor #333333
+	FontColor #C8Ac00
+}
+
+
+skinparam cloud {
+	BackgroundColor #484848-black
+	BorderColor #484848
+	FontColor #D8Bc00
+}
+
+
+skinparam database {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BackgroundColor  #333333
+}
+
+
+skinparam class {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	HeaderBackgroundColor #1b1b1a
+    BackgroundColor #282828
+    BorderColor #5e5e5e
+ 	StereotypeFontColor #a0a0a0
+    StereotypeFontStyle bold
+	BorderThickness 1
+	AttributeFontColor #D8Bc00
+	AttributeFontSize 11
+    FontColor #D8Bc00
+    FontStyle bold
+}
+
+
+skinparam object {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	StereotypeFontColor #484848
+	BorderThickness 1
+	AttributeFontColor #fefefe
+	AttributeFontSize 11
+}
+
+
+skinparam usecase {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BorderThickness 2
+	StereotypeFontColor #303030
+}
+
+
+skinparam rectangle {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BackgroundColor #333333
+	BorderThickness 2
+	StereotypeFontColor #303030
+}
+
+
+skinparam package {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BackgroundColor #333333
+	BorderThickness 2
+}
+
+
+skinparam folder {
+	BackgroundColor #6d6d6d
+  	BorderColor #ff8000
+	FontColor #ff8000
+	BorderThickness 2
+}
+
+
+skinparam frame {
+	BackgroundColor #6d6d6d
+  	BorderColor #0060a8
+	FontColor #0060a8
+	BorderThickness 2
+}
+
+
+skinparam state {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	StartColor #0060a8
+	EndColor #0060a8
+	AttributeFontColor #fefefe
+	AttributeFontSize 11
+}
+
+
+skinparam queue {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam card {
+	BackgroundColor #0060a8
+	BorderColor #004d86
+	FontColor $INFO_TEXT
+}
+
+
+skinparam file {
+	BackgroundColor #6d6d6d-#484848
+	BorderColor #0060a8
+	FontColor #fefefe
+}
+
+
+skinparam stack {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+    
+    title "com.telenav.kivakit.resource.internal.lexakai"
+    
+    interface UmlDiagramIdentifier
+    UmlDiagramIdentifier <|- - DiagramFileSystem
+    interface DiagramFileSystem
+    {
+    }
+    
+    interface UmlDiagramIdentifier
+    UmlDiagramIdentifier <|- - DiagramFileSystemFile
+    interface DiagramFileSystemFile
+    {
+    }
+    
+    interface UmlDiagramIdentifier
+    UmlDiagramIdentifier <|- - DiagramFileSystemFolder
+    interface DiagramFileSystemFolder
+    {
+    }
+    
+    interface UmlDiagramIdentifier
+    UmlDiagramIdentifier <|- - DiagramFileSystemService
+    interface DiagramFileSystemService
+    {
+    }
+    
+    interface UmlDiagramIdentifier
+    UmlDiagramIdentifier <|- - DiagramJarLauncher
+    interface DiagramJarLauncher
+    {
+    }
+    
+    interface UmlDiagramIdentifier
+    UmlDiagramIdentifier <|- - DiagramResource
+    interface DiagramResource
+    {
+    }
+    
+    interface UmlDiagramIdentifier
+    UmlDiagramIdentifier <|- - DiagramResourceArchive
+    interface DiagramResourceArchive
+    {
+    }
+    
+    interface UmlDiagramIdentifier
+    UmlDiagramIdentifier <|- - DiagramResourceCompression
+    interface DiagramResourceCompression
+    {
+    }
+    
+    interface UmlDiagramIdentifier
+    UmlDiagramIdentifier <|- - DiagramResourcePath
+    interface DiagramResourcePath
+    {
+    }
+    
+    interface UmlDiagramIdentifier
+    UmlDiagramIdentifier <|- - DiagramResourceService
+    interface DiagramResourceService
+    {
+    }
+    
+    interface UmlDiagramIdentifier
+    UmlDiagramIdentifier <|- - DiagramResourceType
+    interface DiagramResourceType
+    {
+    }
+    
+@enduml
+
+PlantUML version 1.2021.01(Tue Feb 02 00:55:08 MST 2021)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Default Encoding: UTF-8
+Language: en
+Country: US
+--></g></svg>

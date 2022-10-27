@@ -1,0 +1,69 @@
+
+@startuml
+
+    !include lexakai.theme
+    
+    title "com.telenav.kivakit.core.language.module"
+    
+    class ModuleResource
+    {
+        --(constructors)--
+        #ModuleResource(PackageReference, URI)
+        --
+        +ModuleResource moduleResource(Listener, ModuleReference, URI)
+        +PackageReference packageReference()
+        --(network)--
+        +URI uri()
+        --(path)--
+        +Path fileNameAsJavaPath()
+        +Path javaPath()
+        --(primitive)--
+        +Bytes size()
+        --(time)--
+        +Time created()
+        +Time lastModified()
+    }
+    
+    class Modules
+    {
+        --
+        +ModuleResource moduleResource(Listener, StringPath)
+        --(collection)--
+        +List<ModuleResource> allNestedModuleResources(Listener, PackageReference)
+        +List<ModuleResource> moduleResources(Listener, PackageReference)
+        +List<ModuleResource> nestedModuleResources(Listener, PackageReference)
+        +List<ModuleResource> nestedModuleResources(Listener, PackageReference, Matcher<ModuleResource>)
+    }
+    
+    StringPath <|-- PackageReference
+    class PackageReference
+    {
+        --
+        +Set<PackageReference> filesystemSubPackages(Listener)
+        +Set<PackageReference> jarSubPackages(Listener)
+        +ModuleResource moduleResource(Listener, String relativePath)
+        +PackageReference packageReference(Class<?> type, StringPath)
+        +PackageReference packageReference(StringPath)
+        +PackageReference packageReference(Class<?> type)
+        +Class<?> packageType()
+        +Set<PackageReference> subPackages(Listener)
+        --(checks)--
+        +boolean hasPackageType()
+        +boolean isPackageReference(String path)
+        --(collection)--
+        +boolean contains(ModuleResource)
+        +boolean containsNested(ModuleResource)
+        +List<ModuleResource> moduleResources(Listener)
+        +List<ModuleResource> nestedModuleResources(Listener)
+        +List<ModuleResource> nestedModuleResources(Listener, Matcher<ModuleResource>)
+        --(functional)--
+        +PackageReference withPackageType(Class<?> type)
+        --(parsing)--
+        +PackageReference parsePackageReference(Listener, Class<?> type, String relativePath)
+        +PackageReference parsePackageReference(Listener, String path)
+        --(read)--
+        +InputStream moduleResourceStream(String path)
+    }
+    
+@enduml
+

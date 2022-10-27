@@ -1,0 +1,53 @@
+
+@startuml
+
+    !include lexakai.theme
+    
+    title "diagram-kryo"
+    
+    abstract BaseRepeater
+    
+    interface Named
+    interface SerializationSession
+    
+    Serializer <|-- BaseSerializer
+    abstract class BaseSerializer<Value>
+    {
+        --(constructors)--
+        #BaseSerializer(Class<Value>)
+        --
+        +Class<?> type()
+        --(extension points)--
+        #Value onRead(KryoSerializationSession)
+        --(identity)--
+        +void version(Version)
+        #void unsupportedVersion()
+        #Version version()
+        --(write)--
+        #void onWrite(KryoSerializationSession, Value)
+    }
+    
+    KryoTypes <|-- KivaKitCoreKryoTypes
+    class KivaKitCoreKryoTypes
+    {
+        --(constructors)--
+        +KivaKitCoreKryoTypes()
+    }
+    
+    BaseRepeater <|-- KryoSerializationSession
+    Named <|-- KryoSerializationSession
+    SerializationSession <|-- KryoSerializationSession
+    class KryoSerializationSession
+    {
+        --(constructors)--
+        +KryoSerializationSession(KryoTypes)
+        --
+        +KryoTypes kryoTypes()
+        +Serializer<? extends T> serializer(Class<T> type)
+        --(serialization)--
+        +KryoSerializationSession kryoSerializationSession(Kryo)
+        +KryoSerializationSession trackReferences(boolean track)
+    }
+    
+@enduml
+

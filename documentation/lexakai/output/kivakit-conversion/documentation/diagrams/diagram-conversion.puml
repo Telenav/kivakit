@@ -1,0 +1,101 @@
+
+@startuml
+
+    !include lexakai.theme
+    
+    title "Type Conversion"
+    
+    abstract BaseConverter
+    abstract BaseRepeater
+    
+    interface TwoWayConverter
+    interface Converter
+    interface StringConverter
+    
+    BaseRepeater <|-- BaseConverter
+    Converter <|-- BaseConverter
+    abstract class BaseConverter<From, To>
+    {
+        --(constructors)--
+        #BaseConverter(Listener)
+        --
+        +BaseConverter<From,To> allowNull(boolean allowNull)
+        +boolean allowsNull()
+        --(extension points)--
+        #To onConvert(From value)
+    }
+    
+    BaseConverter <|-- BaseStringConverter
+    StringConverter <|-- BaseStringConverter
+    abstract class BaseStringConverter<Value>
+    {
+        --(constructors)--
+        #BaseStringConverter(Listener)
+        #BaseStringConverter(Listener, BiFunction<Listener, String, Value>)
+        #BaseStringConverter(Listener, Function<String, Value>)
+        --
+        #String nullString()
+        --(collection)--
+        +BaseStringConverter<Value> allowEmptyString(boolean allowEmpty)
+        +boolean allowsEmptyString()
+        --(extension points)--
+        #String onToString(Value)
+        #Value onToValue(String value)
+    }
+    
+    BaseConverter <|-- BaseTwoWayConverter
+    TwoWayConverter <|-- BaseTwoWayConverter
+    abstract class BaseTwoWayConverter<From, To>
+    {
+        --(constructors)--
+        #BaseTwoWayConverter(Listener)
+        --
+        #From nullValue()
+        --(extension points)--
+        #From onUnconvert(To)
+    }
+    
+    annotation ConvertedProperty
+    
+    interface Repeater
+    Repeater <|-- Converter
+    interface Converter<From, To>
+    {
+        --(conversion)--
+        +To convert(From)
+        +To convertOrDefault(From, To defaultValue)
+        --(lifecycle)--
+        +String join(Collection<From> values)
+        +String join(Collection<From> values, String separator)
+    }
+    
+    interface Parsable
+    interface TwoWayConverter<String,Value>
+    TwoWayConverter <|-- StringConverter
+    Parsable <|-- StringConverter
+    interface StringConverter<Value>
+    {
+        --
+        +ObjectSet<Value> convertToSet(String value, String delimiter)
+        +ObjectSet<Value> convertToSet(Iterable<String> list)
+        +StringConverter<ObjectSet<Value>> setConverter(String delimiter)
+        +StringConverter<ObjectSet<Value>> setConverter()
+        --(collection)--
+        +ObjectList<Value> convertToList(Iterable<String> list)
+        +ObjectList<Value> convertToList(String value, String delimiter)
+        +StringConverter<ObjectList<Value>> listConverter()
+        +StringConverter<ObjectList<Value>> listConverter(String delimiter)
+        +StringList unconvertAll(Iterable<Value> values)
+    }
+    
+    interface Converter
+    Converter <|-- TwoWayConverter
+    interface TwoWayConverter<From, To>
+    {
+        --
+        +From unconvert(To)
+        +Converter<To,From> unconverter(Listener)
+    }
+    
+@enduml
+

@@ -1,0 +1,128 @@
+
+@startuml
+
+    !include lexakai.theme
+    
+    title "com.telenav.kivakit.core.vm"
+    
+    abstract BaseRepeater
+    
+    interface Comparable
+    
+    interface JavaTrait
+    {
+        --
+        +JavaVirtualMachine javaVirtualMachine()
+        +String systemPropertyOrEnvironmentVariable(String key)
+        +String systemPropertyOrEnvironmentVariable(String key, String defaultValue)
+        --(checks)--
+        +boolean isSystemPropertyOrEnvironmentVariableTrue(String key)
+    }
+    
+    BaseRepeater <|-- JavaVirtualMachine
+    JavaVirtualMachine o-- JavaVirtualMachineHealth
+    class JavaVirtualMachine
+    {
+        --
+        +boolean assertionsEnabled()
+        +void dumpHeap(Path)
+        +JavaVirtualMachineHealth health()
+        +void invalidateProperties()
+        +JavaVirtualMachine javaVirtualMachine()
+        +ThreadSnapshot threadSnapshot()
+        --(collection)--
+        +Count processors()
+        +VariableMap<String> systemProperties()
+        +VariableMap<String> systemPropertiesAndEnvironmentVariables()
+        --(primitive)--
+        +Bytes freeMemory()
+        +Bytes maximumMemory()
+        +Bytes totalMemory()
+        +Bytes usedMemory()
+    }
+    
+    class JavaVirtualMachineHealth
+    {
+        --
+        +double cpuUse()
+        +void logEntry(LogEntry)
+        +double memoryUse()
+        +ThreadSnapshot threadSnapshot()
+        +JavaVirtualMachineHealth update()
+        --(collection)--
+        +Duration elapsedCpuTimeSinceLastSnapshot()
+        +Duration elapsedSinceLastSnapshot()
+        +Count loggedMessageCount(String messageType)
+        +Count processors()
+        --(primitive)--
+        +Bytes freeMemory()
+        +Bytes maximumMemory()
+        +Map<String,Integer> messageType()
+        +Bytes totalMemory()
+        +Bytes usedMemory()
+        --(time)--
+        +Duration upTime()
+    }
+    
+    enum ShutdownHook.Order
+    {
+        FIRST
+        LAST
+        MIDDLE
+    }
+    
+    class Properties
+    {
+        --
+        +String systemPropertyOrEnvironmentVariable(String key)
+        +String systemPropertyOrEnvironmentVariable(String key, String defaultValue)
+        --(checks)--
+        +boolean isSystemPropertyOrEnvironmentVariableFalse(String key)
+        +boolean isSystemPropertyOrEnvironmentVariableTrue(String key)
+        --(collection)--
+        +VariableMap<String> allProperties(Class<?> projectRoot)
+    }
+    
+    Comparable <|-- ShutdownHook
+    class ShutdownHook
+    {
+        --(lookup)--
+        +void registerShutdownHook(String name, Runnable code)
+        +void registerShutdownHook(String name, Order, Duration maximumWait, Runnable code)
+        +void registerShutdownHook(String name, Duration maximumWait, Runnable code)
+        +void registerShutdownHook(String name, Order, Runnable code)
+    }
+    
+    ThreadSnapshot "1" o-- "*" ThreadStatus
+    class ThreadSnapshot
+    {
+        --(constructors)--
+        +ThreadSnapshot()
+        --
+        +ThreadSnapshot update()
+        --(collection)--
+        +List<ThreadStatus> snapshot()
+        --(time)--
+        +Time capturedAt()
+        +Duration cpuTime()
+        +Duration cpuTime(Thread)
+        +Duration totalCpuTime()
+    }
+    
+    class ThreadStatus
+    {
+        --
+        +Thread.State state()
+        --(checks)--
+        +boolean isDaemon()
+        +boolean isKivaKit()
+        --(identity)--
+        +long identifier()
+        --(naming)--
+        +String name()
+        --(time)--
+        +Duration cpuTime()
+    }
+    
+@enduml
+

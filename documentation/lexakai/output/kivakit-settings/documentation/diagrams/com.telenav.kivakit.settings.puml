@@ -1,0 +1,166 @@
+
+@startuml
+
+    !include lexakai.theme
+    
+    title "com.telenav.kivakit.settings"
+    
+    abstract BaseRepeater
+    abstract BaseStringConverter
+    
+    interface Serializable
+    interface JavaTrait
+    interface SettingsTrait
+    interface RegistryTrait
+    interface SettingsStore
+    
+    enum SettingsStore.AccessMode
+    {
+        DELETE
+        INDEX
+        LOAD
+        SAVE
+        UNLOAD
+    }
+    
+    BaseRepeater <|-- BaseSettingsStore
+    SettingsStore <|-- BaseSettingsStore
+    RegistryTrait <|-- BaseSettingsStore
+    JavaTrait <|-- BaseSettingsStore
+    abstract class BaseSettingsStore
+    {
+        --
+        +SettingsStore propagateChangesTo()
+        +void reload()
+        #void onUnload()
+        --(extension points)--
+        #boolean onDelete(SettingsObject)
+        #boolean onSave(SettingsObject)
+        --(read)--
+        #Set<SettingsObject> onLoad()
+        --(search)--
+        +T lookup(SettingsObject.SettingsObjectIdentifier)
+    }
+    
+    BaseStringConverter <|-- Deployment.Converter
+    class Deployment.Converter
+    {
+        --(constructors)--
+        +Converter(Listener, DeploymentSet)
+    }
+    
+    MemorySettingsStore <|-- Deployment
+    Serializable <|-- Deployment
+    class Deployment
+    {
+        --(constructors)--
+        +Deployment(Listener, String, String)
+        --
+        +String description()
+        --(command line parsing)--
+        +SwitchParser.Builder<Deployment> deploymentSwitchParser(Listener, DeploymentSet, String switchName)
+    }
+    
+    BaseRepeater <|-- DeploymentSet
+    RegistryTrait <|-- DeploymentSet
+    DeploymentSet "1" o-- "*" Deployment
+    class DeploymentSet
+    {
+        --(constructors)--
+        #DeploymentSet()
+        --(collection)--
+        +boolean isEmpty()
+        +int size()
+        --(command line parsing)--
+        +SwitchParser.Builder<Deployment> switchParser(String name)
+        --(configuration)--
+        +void add(Deployment)
+        +void addAll(Collection<Deployment> deployments)
+        +DeploymentSet addDeploymentsIn(ResourceFolder<?>)
+        +Deployment deployment(String name)
+        +DeploymentSet deploymentSet(Listener, Deployment, Deployment... more)
+        +Set<Deployment> deployments()
+        +DeploymentSet loadDeploymentSet(Listener, Class<?> relativeTo)
+    }
+    
+    Project <|-- SettingsProject
+    class SettingsProject
+    {
+    }
+    
+    MemorySettingsStore <|-- SettingsRegistry
+    SettingsTrait <|-- SettingsRegistry
+    JavaTrait <|-- SettingsRegistry
+    class SettingsRegistry
+    {
+        --
+        +SettingsRegistry globalSettings()
+        +SettingsRegistry settingsFor(Object ignored)
+    }
+    
+    interface Iterable<Object>
+    interface Named
+    interface RegistryTrait
+    interface Repeater
+    RegistryTrait <|-- SettingsStore
+    Repeater <|-- SettingsStore
+    Named <|-- SettingsStore
+    Iterable <|-- SettingsStore
+    interface SettingsStore
+    {
+        --
+        +ObjectSet<AccessMode> accessModes()
+        +void propagateChangesTo(SettingsStore)
+        +boolean supports(AccessMode)
+        +boolean unindex(SettingsObject)
+        +boolean unload()
+        --(collection)--
+        +boolean index(SettingsObject)
+        +boolean indexAll(SettingsStore)
+        --(filesystem)--
+        +boolean delete(SettingsObject)
+        --(functional)--
+        +ObjectSet<SettingsObject> indexed()
+        --(lookup)--
+        +boolean registerAllIn(SettingsStore)
+        --(read)--
+        +Set<SettingsObject> load()
+        --(write)--
+        +boolean save(SettingsObject)
+        +void saveAllFrom(SettingsStore that)
+    }
+    
+    interface Repeater
+    Repeater <|-- SettingsTrait
+    SettingsTrait --> T : "gets values"
+    interface SettingsTrait
+    {
+        --
+        +SettingsRegistry settingsForThis()
+        +ObjectSet<SettingsObject> settingsIn(SettingsStore)
+        +boolean unloadSettings()
+        --(checks)--
+        +boolean hasSettings(Class<?> type)
+        +boolean hasSettings(Class<?> type, Enum<?> instance)
+        +boolean hasSettings(Class<?> type, InstanceIdentifier)
+        --(lookup)--
+        +T lookupSettings(Class<T> type, InstanceIdentifier)
+        +T lookupSettings(Class<T> type, Enum<?> instance)
+        +T lookupSettings(Class<T> type)
+        +T lookupSettings(Class<T> settingsClass, InstanceIdentifier, ResourceFolder<?> defaultSettings)
+        +SettingsRegistry registerSettings(Object settings, InstanceIdentifier)
+        +SettingsRegistry registerSettings(Object settings, Enum<?> instance)
+        +SettingsRegistry registerSettings(Object settings)
+        +SettingsRegistry registerSettingsIn(Package _package)
+        +SettingsRegistry registerSettingsIn(SettingsStore)
+        +T requireSettings(Class<T> type, InstanceIdentifier)
+        +T requireSettings(Class<T> type, Enum<?> instance)
+        +T requireSettings(Class<T> type)
+        --(write)--
+        +boolean saveSettings(SettingsStore, Object, InstanceIdentifier)
+        +boolean saveSettings(SettingsStore, Object)
+        +boolean saveSettings(SettingsStore, Object, Enum<?> instance)
+    }
+    
+@enduml
+

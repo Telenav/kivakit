@@ -1,0 +1,88 @@
+
+@startuml
+
+    !include lexakai.theme
+    
+    title "com.telenav.kivakit.core.messaging.listeners"
+    
+    abstract BaseRepeater
+    
+    interface Listener
+    interface MessageCounter
+    
+    MessageException <|-- AbortTransmissionException
+    class AbortTransmissionException
+    {
+        --(constructors)--
+        +AbortTransmissionException(Message)
+    }
+    
+    Listener <|-- MessageAlarm
+    abstract class MessageAlarm
+    {
+        --
+        +void trigger(Rate)
+        +Rate triggerRate()
+        #void onTrigger(Rate)
+        #Rate rate()
+        --(checks)--
+        +boolean shouldTrigger()
+        #boolean isAlarming(Message)
+        --(messaging)--
+        +MessageAlarm maximumTriggerFrequency(Frequency maximumTriggerFrequency)
+        +MessageAlarm triggerRate(Rate triggerRate)
+    }
+    
+    BaseRepeater <|-- MessageChecker
+    class MessageChecker
+    {
+        --
+        +boolean check()
+        --(messaging)--
+        +MessageChecker check(Runnable code)
+        +MessageChecker expect(Class<? extends Message> messageClass)
+        +MessageChecker expect(Class<? extends Message> messageClass, int count)
+    }
+    
+    interface Listener
+    Listener <|-- MessageCounter
+    interface MessageCounter
+    {
+        --
+        +boolean failed()
+        +boolean failed(Class<? extends Message> type)
+        +void ifFailedThrow()
+        --(collection)--
+        +Count count(Message.Status type)
+        +Count count(Class<? extends Message> type)
+        +Count countWorseThanOrEqualTo(Class<? extends Message> type)
+        +Count countWorseThanOrEqualTo(Message.Status)
+        +StringList statistics(Message.Status... statuses)
+        +StringList statistics(Class<? extends Message>... types)
+        --(status)--
+        +boolean succeeded()
+    }
+    
+    ObjectList <|-- MessageList
+    MessageCounter <|-- MessageList
+    class MessageList
+    {
+        --(constructors)--
+        +MessageList()
+        +MessageList(Matcher<Message>)
+        +MessageList(Maximum, Matcher<Message>)
+        --(collection)--
+        +MessageList emptyMessageList()
+        +StringList formatted()
+        +ObjectList<Message> messagesOfType(Class<? extends Message> type)
+        --(messaging)--
+        +void broadcastTo(Listener)
+    }
+    
+    Listener <|-- ThrowingListener
+    class ThrowingListener
+    {
+    }
+    
+@enduml
+

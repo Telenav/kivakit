@@ -1,0 +1,57 @@
+
+@startuml
+
+    !include lexakai.theme
+    
+    title "diagram-life-cycle"
+    
+    interface Initializable
+    {
+        --(lifecycle)--
+        +void initialize()
+        +void onInitialize()
+    }
+    
+    interface Operation
+    {
+        --(lifecycle)--
+        +boolean isRunning()
+    }
+    
+    interface Operation
+    Operation <|-- Pausable
+    interface Pausable
+    {
+        --(checks)--
+        +boolean isPaused()
+        --(lifecycle)--
+        +void pause()
+        +void resume()
+    }
+    
+    interface Resettable
+    {
+        --(lifecycle)--
+        +void reset()
+    }
+    
+    interface Operation
+    Operation <|-- Startable
+    interface Startable
+    {
+        --(lifecycle)--
+        +boolean start()
+    }
+    
+    interface Operation
+    Operation <|-- Stoppable
+    interface Stoppable<Duration>
+    {
+        --(lifecycle)--
+        +Duration maximumStopTime()
+        +void stop(Duration wait)
+        +void stop()
+    }
+    
+@enduml
+

@@ -1,0 +1,42 @@
+
+@startuml
+
+    !include lexakai.theme
+    
+    title "diagram-authentication"
+    
+    interface Password
+    
+    PlainTextPassword <|-- DigestPassword
+    class DigestPassword
+    {
+        --(constructors)--
+        +DigestPassword(String)
+    }
+    
+    interface Matcher
+    Matcher <|-- Password
+    interface Password
+    {
+    }
+    
+    Password <|-- PlainTextPassword
+    class PlainTextPassword
+    {
+        --(constructors)--
+        #PlainTextPassword(String)
+        --(parsing)--
+        +PlainTextPassword parsePlainTextPassword(Listener, String text)
+    }
+    
+    Name <|-- UserName
+    class UserName
+    {
+        --(constructors)--
+        #UserName(String)
+        --(naming)--
+        +UserName parseUserName(Listener, String text)
+    }
+    
+@enduml
+

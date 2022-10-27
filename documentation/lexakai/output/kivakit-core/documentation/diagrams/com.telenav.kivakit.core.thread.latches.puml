@@ -1,0 +1,37 @@
+
+@startuml
+
+    !include lexakai.theme
+    
+    title "com.telenav.kivakit.core.thread.latches"
+    
+    CompletionLatch --> WakeState : "waits until"
+    class CompletionLatch
+    {
+        --(constructors)--
+        +CompletionLatch()
+        +CompletionLatch(Count)
+        --(lifecycle)--
+        +boolean allThreadsHaveCompleted()
+        +void reset()
+        +void threadCompleted()
+        --(thread)--
+        +WakeState waitForAllThreadsToComplete()
+        +WakeState waitForAllThreadsToComplete(Duration)
+    }
+    
+    class InitializationLatch
+    {
+        --
+        +void initializationComplete()
+        --(checks)--
+        +boolean isInitialized()
+        --(lifecycle)--
+        +void reset()
+        --(thread)--
+        +boolean awaitInitialization(Duration)
+        +boolean awaitInitialization()
+    }
+    
+@enduml
+

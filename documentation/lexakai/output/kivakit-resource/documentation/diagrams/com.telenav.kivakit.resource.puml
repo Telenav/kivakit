@@ -1,0 +1,402 @@
+
+@startuml
+
+    !include lexakai.theme
+    
+    title "com.telenav.kivakit.resource"
+    
+    abstract BaseStringConverter
+    abstract BaseResourceList
+    
+    interface Named
+    interface Comparable
+    interface UriIdentified
+    interface ResourcePathed
+    interface Matcher
+    interface Matchable
+    
+    enum Resource.Action
+    {
+        DELETE
+        RENAME
+    }
+    
+    ObjectList <|-- BaseResourceList
+    abstract class BaseResourceList<T>
+    {
+        --
+        +byte[] digest()
+        --(collection)--
+        +BaseResourceList<T> matching(Extension)
+        +BaseResourceList<T> relativeTo(ResourceFolder<?>)
+        +BaseResourceList<T> sortedLargestToSmallest()
+        +BaseResourceList<T> sortedOldestToNewest()
+        +Bytes totalSize()
+        #BaseResourceList<T> newResourceList()
+        --(factory)--
+        #T newResource(ResourcePath)
+        --(filtering)--
+        #boolean accepts(FileName)
+        --(math)--
+        +Resource largest()
+        +Resource smallest()
+    }
+    
+    BaseStringConverter <|-- Resource.Converter
+    class Resource.Converter
+    {
+        --(constructors)--
+        +Converter(Listener)
+    }
+    
+    BaseStringConverter <|-- ResourcePath.Converter
+    class ResourcePath.Converter
+    {
+        --(constructors)--
+        +Converter(Listener)
+    }
+    
+    BaseStringConverter <|-- ResourceFolder.Converter
+    class ResourceFolder.Converter
+    {
+        --(constructors)--
+        +Converter(Listener)
+    }
+    
+    enum CopyMode
+    {
+        DO_NOT_OVERWRITE
+        OVERWRITE
+        UPDATE
+    }
+    
+    interface Deletable
+    {
+        --(filesystem)--
+        +boolean delete()
+    }
+    
+    Named <|-- Extension
+    Matchable <|-- Extension
+    Comparable <|-- Extension
+    class Extension
+    {
+        --(constructors)--
+        #Extension(String)
+        --
+        +Codec codec()
+        +boolean ends(ResourcePath)
+        +boolean ends(Resource)
+        --(checks)--
+        +boolean endsWith(Extension)
+        +boolean isArchive()
+        +boolean isExecutable()
+        --(collection)--
+        +ObjectList<Extension> allExtensions()
+        +ObjectList<Extension> archiveExtensions()
+        +ObjectList<Extension> executableExtensions()
+        +Count length()
+        --(filesystem)--
+        +Extension gzipped()
+        +Extension parseExtension(Listener, String text)
+        +Extension parseExtension(String text)
+        +Extension withExtension(Extension)
+    }
+    
+    Named <|-- FileName
+    Comparable <|-- FileName
+    ResourcePathed <|-- FileName
+    class FileName
+    {
+        --(constructors)--
+        #FileName(String)
+        --
+        +boolean matches(Pattern)
+        --(checks)--
+        +boolean endsWith(String suffix)
+        +boolean endsWith(Extension)
+        +boolean startsWith(String prefix)
+        --(filesystem)--
+        +FilePath asPath()
+        +FileName baseName()
+        +FileName fileNameForDate()
+        +FileName fileNameForDate(LocalTime, ZoneId)
+        +FileName fileNameForDate(LocalTime)
+        +FileName fileNameForDateTime(LocalTime, ZoneId)
+        +FileName fileNameForDateTime()
+        +FileName fileNameForDateTime(LocalTime)
+        +FileName fileNameForTime(LocalTime, ZoneId)
+        +FileName fileNameForTime(LocalTime)
+        +Matcher<FileName> fileNameMatcher()
+        +FileName normalized()
+        +LocalTime parseDateTimeFileName(Listener, String text, ZoneId)
+        +LocalTime parseDateTimeFileName(Listener, String text)
+        +FileName parseFileName(Listener, String text)
+        +FileName prefixedWith(String prefix)
+        +FileName toLowerCase()
+        +FileName toUpperCase()
+        +FileName withExtension(Extension)
+        +FileName withSuffix(String suffix)
+        +FileName withoutCompoundExtension()
+        +FileName withoutExtension(Extension)
+        +FileName withoutExtension()
+        +FileName withoutKnownExtensions()
+        --(matching)--
+        +Matcher<Resource> matcher()
+        --(time)--
+        +LocalTime localDateTime()
+        +LocalTime localDateTime(Listener)
+    }
+    
+    enum FolderCopyMode
+    {
+        FLATTEN
+        PRESERVE_HIERARCHY
+    }
+    
+    interface Renamable
+    {
+        --(filesystem)--
+        +boolean renameTo(ResourcePathed)
+    }
+    
+    interface AsString
+    interface ByteSized
+    interface CreatedAt
+    interface Deletable
+    interface Modifiable
+    interface ModifiedAt
+    interface ReadableResource
+    interface Repeater
+    interface ResourcePathed
+    interface Resourceful
+    interface UriIdentified
+    ResourcePathed <|-- Resource
+    Modifiable <|-- Resource
+    ModifiedAt <|-- Resource
+    CreatedAt <|-- Resource
+    Deletable <|-- Resource
+    ByteSized <|-- Resource
+    AsString <|-- Resource
+    ReadableResource <|-- Resource
+    Repeater <|-- Resource
+    Resourceful <|-- Resource
+    UriIdentified <|-- Resource
+    Resource --> Codec : "uses"
+    interface Resource
+    {
+        --
+        +boolean can(Action)
+        +ObjectSet<Action> can()
+        +Codec codec()
+        +void dematerialize()
+        +Resource relativeTo(ResourceFolder<?>)
+        +Resource resolveResource(Listener, String identifier)
+        +Resource resolveResource(Listener, ResourceIdentifier)
+        +Resource resolveResource(Listener, ResourcePath)
+        --(checks)--
+        +boolean endsWith(String end)
+        +boolean hasParent()
+        +boolean isEmpty()
+        +boolean isLocal()
+        +boolean isMaterializable()
+        +boolean isOlderThan(Resource that)
+        +boolean isPackaged()
+        +boolean isRemote()
+        +boolean isSame(Resource that)
+        --(command line parsing)--
+        +ArgumentParser.Builder<Resource> resourceArgumentParser(Listener, String description)
+        +SwitchParser.Builder<Resource> resourceSwitchParser(Listener, String name, String description)
+        --(conversion)--
+        +WritableResource asWritable()
+        --(filesystem)--
+        +void ensureExists()
+        +boolean exists()
+        +ResourceFolder<?> parent()
+        +boolean renameTo(Resource that)
+        +void safeCopyTo(ResourceFolder<?> destination, CopyMode)
+        +void safeCopyTo(WritableResource destination, CopyMode)
+        +void safeCopyTo(WritableResource destination, CopyMode, ProgressReporter)
+        +void safeCopyTo(ResourceFolder<?> destination, CopyMode, ProgressReporter)
+        --(functional)--
+        +Resource materialized(ProgressReporter)
+        --(identity)--
+        +ResourceIdentifier resourceIdentifier(String identifier)
+    }
+    
+    interface Matchable
+    interface Repeater
+    interface ResourcePathed
+    interface UriIdentified
+    Repeater <|-- ResourceFolder
+    UriIdentified <|-- ResourceFolder
+    ResourcePathed <|-- ResourceFolder
+    Matchable <|-- ResourceFolder
+    interface ResourceFolder<T>
+    {
+        --
+        +Resource resource(ResourcePathed name)
+        +Resource resource(FileName)
+        +Resource resource(String name)
+        --(checks)--
+        +boolean hasTrailingSlash()
+        +boolean isMaterialized()
+        +boolean isWritable()
+        --(collection)--
+        +boolean contains(ResourcePathed that)
+        +boolean isEmpty()
+        +ResourceList nestedResources(Matcher<ResourcePathed>)
+        +ResourceList nestedResources()
+        +ResourceList resources()
+        +ResourceList resources(Matcher<ResourcePathed>)
+        --(filesystem)--
+        +ResourceFolder<?> absolute()
+        +void copyTo(Folder destination, CopyMode, FolderCopyMode folderMode, Matcher<ResourcePathed>, ProgressReporter)
+        +void copyTo(Folder destination, CopyMode, Matcher<ResourcePathed>, ProgressReporter)
+        +void copyTo(Folder destination, CopyMode, ProgressReporter)
+        +boolean delete()
+        +boolean exists()
+        +T folder(String path)
+        +ObjectList<T> folders()
+        +Folder materialize()
+        +Folder materializeTo(Folder)
+        +ResourceFolder<?> mkdirs()
+        +ObjectList<T> nestedFolders(Matcher<T>)
+        +ResourceFolder<?> newFolder(ResourcePath relativePath)
+        +ResourceFolder<?> parent()
+        +ResourceFolder<?> relativeTo(ResourceFolder<?>)
+        +boolean renameTo(ResourceFolder<?>)
+        +ResourceFolder<?> resolveResourceFolder(Listener, String identifier)
+        +ResourceFolder<?> resolveResourceFolder(Listener, ResourceFolderIdentifier)
+        +ResourceFolderIdentifier resourceFolderIdentifier(String identifier)
+        +ResourceFolderIdentifier resourceFolderIdentifier()
+        +void safeCopyTo(ResourceFolder<?>, CopyMode, Matcher<ResourcePathed>, ProgressReporter)
+        +void safeCopyTo(ResourceFolder<?>, CopyMode, ProgressReporter)
+        +WritableResource temporaryFile(FileName baseName)
+        +WritableResource temporaryFile(FileName baseName, Extension)
+        +ResourceFolder<?> temporaryFolder(FileName baseName)
+        +ResourceFolder<?> withTrailingSlash()
+        --(matching)--
+        +Matcher<ResourcePathed> matchAllPathsIn()
+        +Matcher<ResourcePathed> matchAllPathsUnder()
+    }
+    
+    class ResourceFolderIdentifier
+    {
+        --(constructors)--
+        +ResourceFolderIdentifier(String)
+        --(filesystem)--
+        +ResourceFolder<?> resolve(Listener)
+        --(identity)--
+        +String identifier()
+    }
+    
+    Matcher <|-- ResourceGlob
+    class ResourceGlob
+    {
+        --(constructors)--
+        #ResourceGlob(Matcher<ResourcePathed>)
+        --
+        +ResourceGlob glob(Matcher<ResourcePathed>)
+        +ResourceGlob glob(Pattern)
+        +ResourceGlob glob(Matchable<ResourcePathed>)
+        +ResourceGlob glob(String glob)
+        +ResourceGlob globAll()
+        +ResourceGlob globAllIn(ResourceFolder<?>)
+        +ResourceGlob globAllUnder(ResourceFolder<?>)
+        +ResourceGlob in(ResourceFolder<?>)
+        +ResourceGlob select(Matchable<ResourcePathed> that)
+        +ResourceGlob under(ResourceFolder<?>)
+        --(logical)--
+        +ResourceGlob not()
+        --(math)--
+        +ResourceGlob minus(Matchable<ResourcePathed> that)
+        +ResourceGlob plus(Matchable<ResourcePathed> that)
+    }
+    
+    class ResourceIdentifier
+    {
+        --(constructors)--
+        +ResourceIdentifier(String)
+        --
+        +Resource resolve(Listener)
+        --(identity)--
+        +String identifier()
+    }
+    
+    BaseResourceList <|-- ResourceList
+    ResourceList --> Resource : "contains"
+    class ResourceList
+    {
+        --(constructors)--
+        +ResourceList()
+        +ResourceList(Iterable<? extends Resource>)
+        --(collection)--
+        +ResourceList resourceList(Resource... resources)
+        +ResourceList resourceList(Iterable<? extends Resource> resources)
+    }
+    
+    StringPath <|-- ResourcePath
+    UriIdentified <|-- ResourcePath
+    ResourcePathed <|-- ResourcePath
+    class ResourcePath
+    {
+        --(constructors)--
+        #ResourcePath(ResourcePath)
+        #ResourcePath(StringList, List<String>)
+        #ResourcePath(StringList, String, List<String>)
+        --(checks)--
+        +boolean hasScheme()
+        +boolean hasTrailingSlash()
+        --(collection)--
+        +StringList schemes()
+        --(filesystem)--
+        +File asFile()
+        --(path)--
+        +ResourcePath asAbsolute()
+        +FilePath asFilePath()
+        +ResourcePath normalized()
+        +ResourcePath parseResourcePath(Listener, String path)
+        +ResourcePath parseUnixResourcePath(Listener, String path)
+        +ResourcePath relativeTo(ResourcePath)
+        +ResourcePath resourcePath(StringPath)
+        +SwitchParser.Builder<ResourcePath> resourcePathSwitchParser(Listener, String name, String description)
+        +FilePath withExtension(Extension)
+        +ResourcePath withSchemes(StringList schemes)
+        +ResourcePath withoutSchemes()
+    }
+    
+    interface UriIdentified
+    UriIdentified <|-- ResourcePathed
+    ResourcePathed --> ResourcePath : "supplies"
+    interface ResourcePathed
+    {
+        --
+        +boolean matches(Matcher<String>)
+        --(filesystem)--
+        +java.io.File asJavaFile()
+        +FileName baseFileName()
+        +Extension compoundExtension()
+        +Extension extension()
+        +FileName fileName()
+        +boolean hasExtension(Extension)
+        --(network)--
+        +URL url()
+        --(path)--
+        +ResourcePath path()
+    }
+    
+    interface Resourceful
+    {
+        --
+        +Resource resource()
+    }
+    
+    interface UriIdentified
+    {
+        --(network)--
+        +URI uri()
+    }
+    
+@enduml
+

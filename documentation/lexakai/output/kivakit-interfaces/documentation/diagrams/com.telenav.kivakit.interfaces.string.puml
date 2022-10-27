@@ -1,0 +1,45 @@
+
+@startuml
+
+    !include lexakai.theme
+    
+    title "com.telenav.kivakit.interfaces.string"
+    
+    interface AsString
+    {
+        --(conversion)--
+        +String asString()
+    }
+    
+    enum StringFormattable.Format
+    {
+        COMPACT
+        DEBUG
+        FILESYSTEM
+        HTML
+        LOG
+        PROGRAMMATIC
+        TEXT
+        TO_STRING
+        USER_LABEL
+        USER_MULTILINE
+        USER_SINGLE_LINE
+    }
+    
+    interface Parsable<Value>
+    {
+        --(parsing)--
+        +Value parse(String text)
+    }
+    
+    interface AsString
+    AsString <|-- StringFormattable
+    StringFormattable --> StringFormattable.Format : "formats with"
+    interface StringFormattable
+    {
+        --(conversion)--
+        +String asString(Format)
+    }
+    
+@enduml
+

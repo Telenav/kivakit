@@ -1,0 +1,97 @@
+
+@startuml
+
+    !include lexakai.theme
+    
+    title "diagram-primitive"
+    
+    class Arrays
+    {
+        --
+        +Value[] concatenateArrays(Value[], Value[] b)
+        --(collection)--
+        +boolean arrayContains(Value[] array, Value object)
+        +int[] reverseArray(int[] elements)
+        +void reverseArray(byte[] array, int fromIndex, int toIndex)
+        +void reverseArray(byte[] array)
+        +long[] reverseArray(long[] elements)
+        +void reverseArrayRange(long[] array, int fromIndex, int toIndex)
+        --(conversion)--
+        +String asHexadecimalString(byte[] bytes)
+    }
+    
+    class Booleans
+    {
+        --(checks)--
+        +boolean isFalse(String)
+        +boolean isTrue(String)
+    }
+    
+    class Doubles
+    {
+        --(primitive)--
+        +double doubleInRange(double value, double minimum, double maximum)
+        +boolean doubleIsBetweenExclusive(double value, double minimum, double maximum)
+        +boolean doubleIsBetweenInclusive(double value, double minimum, double maximum)
+        +int doubleRounded(double value)
+        +String formatDouble(double value)
+        +String formatDouble(double value, int decimals)
+        +double parseFastDouble(String value, double denominator)
+    }
+    
+    class Ints
+    {
+        --(parsing)--
+        +int parseFastNaturalNumber(String)
+        --(primitive)--
+        +String intAsCommaSeparated(int value)
+        +int intDigits(int value)
+        +int intForWords(int highWord, int lowWord)
+        +int intHighWord(int value)
+        +int intInRangeInclusive(int value, int minimum, int maximum)
+        +boolean intIsBetweenExclusive(int value, int low, int high)
+        +boolean intIsBetweenInclusive(int value, int low, int high)
+        +int intLowWord(int value)
+        +int intPowerOfTen(int power)
+        +int intQuantized(int value, int quantum)
+        +int intSignExtend(int value, int bits)
+        +String intToHex(int value)
+        +String intToHex(int value, int length)
+        +int parseFastInt(String text)
+        +int parseFastInt(String text, int invalidValue)
+        +int parseInt(Listener, String text)
+    }
+    
+    class Longs
+    {
+        --(parsing)--
+        +long parseFastNaturalNumber(String)
+        --(primitive)--
+        +String longAsCommaSeparated(long value)
+        +long longForWords(int high, int low)
+        +int longHighWord(long value)
+        +long longInRangeInclusive(long value, long min, long max)
+        +boolean longIsBetweenExclusive(long value, long low, long high)
+        +boolean longIsBetweenInclusive(long value, long low, long high)
+        +int longLowWord(long value)
+        +long longRandom(Random, long minimum, long maximumExclusive)
+        +boolean longSearchWords(long value, int bits, int searchFor)
+        +String longToHex(long value)
+        +String longToHex(long value, long length)
+        +long parseFastLong(String)
+        +long parseFastLong(String, long invalid)
+    }
+    
+    class Primes
+    {
+        --
+        +void main(String[] args)
+        +int primePowerOfTwo(int value)
+        --(checks)--
+        +boolean isPrime(long)
+        --(collection)--
+        +long primeAllocationSize(long size)
+    }
+    
+@enduml
+

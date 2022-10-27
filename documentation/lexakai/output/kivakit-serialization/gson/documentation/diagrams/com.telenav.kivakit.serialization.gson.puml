@@ -1,0 +1,39 @@
+
+@startuml
+
+    !include lexakai.theme
+    
+    title "com.telenav.kivakit.serialization.gson"
+    
+    interface JsonSerializerDeserializer
+    interface ObjectSerializer
+    interface TryTrait
+    interface RegistryTrait
+    
+    ObjectSerializer <|-- GsonObjectSerializer
+    RegistryTrait <|-- GsonObjectSerializer
+    TryTrait <|-- GsonObjectSerializer
+    class GsonObjectSerializer
+    {
+        --(constructors)--
+        +GsonObjectSerializer()
+        +GsonObjectSerializer(ProgressReporter)
+    }
+    
+    Project <|-- GsonSerializationProject
+    class GsonSerializationProject
+    {
+    }
+    
+    JsonSerializerDeserializer <|-- PrimitiveGsonSerializer
+    abstract class PrimitiveGsonSerializer<T, Primitive>
+    {
+        --(constructors)--
+        #PrimitiveGsonSerializer(Class<Primitive>)
+        --(conversion)--
+        #T toObject(Primitive)
+        #Primitive toPrimitive(T object)
+    }
+    
+@enduml
+

@@ -1,0 +1,56 @@
+
+@startuml
+
+    !include lexakai.theme
+    
+    title "Converters - Language"
+    
+    abstract BaseRepeater
+    abstract BaseStringConverter
+    
+    BaseStringConverter <|-- ClassConverter
+    class ClassConverter
+    {
+        --(constructors)--
+        +ClassConverter(Listener)
+    }
+    
+    BaseStringConverter <|-- EnumConverter
+    class EnumConverter<T>
+    {
+        --(constructors)--
+        +EnumConverter(Listener, Class<T>)
+    }
+    
+    BaseStringConverter <|-- IdentityConverter
+    class IdentityConverter
+    {
+        --(constructors)--
+        +IdentityConverter(Listener)
+    }
+    
+    BaseRepeater <|-- ObjectPopulator
+    class ObjectPopulator
+    {
+        --(constructors)--
+        +ObjectPopulator(PropertyFilter, Source<PropertyValue>)
+        --
+        +T populate(T object)
+    }
+    
+    BaseStringConverter <|-- PatternConverter
+    class PatternConverter
+    {
+        --(constructors)--
+        +PatternConverter(Listener)
+    }
+    
+    BaseStringConverter <|-- ThrowableConverter
+    class ThrowableConverter
+    {
+        --(constructors)--
+        +ThrowableConverter(Listener)
+    }
+    
+@enduml
+

@@ -1,0 +1,62 @@
+
+@startuml
+
+    !include lexakai.theme
+    
+    title "com.telenav.kivakit.serialization.core"
+    
+    interface Closeable
+    interface Flushable
+    interface Named
+    interface Repeater
+    interface TryTrait
+    interface Versioned
+    Named <|-- SerializationSession
+    Closeable <|-- SerializationSession
+    Flushable <|-- SerializationSession
+    Versioned <|-- SerializationSession
+    Repeater <|-- SerializationSession
+    TryTrait <|-- SerializationSession
+    interface SerializationSession
+    {
+        --
+        +void open(OutputStream, SessionType, Version)
+        +void open(OutputStream, Version)
+        --(checks)--
+        +boolean isActive()
+        +boolean isReading()
+        +boolean isWriting()
+        --(identity)--
+        +Version open(InputStream, OutputStream, SessionType, Version)
+        +Version open(Socket, SessionType, Version, ProgressReporter)
+        +Version open(InputStream)
+        +Version open(InputStream, SessionType)
+        --(io)--
+        +void onClose()
+        --(read)--
+        +T read(Class<T> type)
+        +SerializableObject<T> read()
+        +ObjectList<Element> readList(Class<Element> type)
+        +void readResource(Resource, UncheckedVoidCode)
+        --(write)--
+        +void write(SerializableObject<T>)
+        +void write(T object)
+        +void writeList(Collection<Element> list)
+        +void writeResource(WritableResource, Version, UncheckedVoidCode)
+    }
+    
+    interface SerializationSessionFactory
+    {
+        --(serialization)--
+        +SerializationSession newSession(Listener)
+    }
+    
+    enum SerializationSession.SessionType
+    {
+        CLIENT_SOCKET_SERIALIZATION_SESSION
+        RESOURCE_SERIALIZATION_SESSION
+        SERVER_SOCKET_SERIALIZATION_SESSION
+    }
+    
+@enduml
+

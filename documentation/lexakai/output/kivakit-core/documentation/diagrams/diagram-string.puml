@@ -1,0 +1,312 @@
+
+@startuml
+
+    !include lexakai.theme
+    
+    title "diagram-string"
+    
+    class Align
+    {
+        --
+        +String center(String text, int length, char)
+        +String leftAlign(String, int length, char)
+        +String rightAlign(String text, int length, char)
+    }
+    
+    interface StringFormattable
+    StringFormattable <|-- AsIndentedString
+    interface AsIndentedString
+    {
+        --(conversion)--
+        +ObjectIndenter asString(Format, ObjectIndenter)
+    }
+    
+    class AsciiArt
+    {
+        --
+        +String bannerLine(String message)
+        +String bottomLine(int width)
+        +String bottomLine()
+        +String bottomLine(String message, Object... arguments)
+        +String bottomLine(int extraWidth, String message, Object... arguments)
+        +String bullet()
+        +String bulleted(Collection<?> values, String bullet)
+        +String bulleted(Collection<?> values)
+        +String bulleted(int indent, Collection<?> values)
+        +String bulleted(int indent, Collection<?> values, String bullet)
+        +String clip(String text, int)
+        +String line(String message)
+        +String line(int length)
+        +String line()
+        +String repeat(int times, char)
+        +String repeat(int times, String)
+        +String spaces(int count)
+        +String textBox(String message, char horizontal, char vertical)
+        +String textBox(String message, Object... arguments)
+        +String textBox(String title, String message, Object... arguments)
+        +String topLine(String title, Object... arguments)
+        +String topLine(int extraWidth, String title, Object... arguments)
+        +int widestLine(String text)
+        --(collection)--
+        +int lineCount(String)
+    }
+    
+    class CaseFormat
+    {
+        --
+        +String camelCaseToHyphenated(String text)
+        +String capitalize(String text)
+        +String decapitalize(String text)
+        +String hyphenatedToCamel(String)
+        +String lowerHyphenToUpperUnderscore(String)
+        +String upperUnderscoreToLowerHyphen(String)
+        --(checks)--
+        +boolean isCapitalized(String text)
+        +boolean isHyphenated(String text)
+        +boolean isLowercase(String text)
+        --(collection)--
+        +String capitalizeOnlyFirstLetter(String text)
+        --(naming)--
+        +String hyphenatedName(Class<?> type)
+    }
+    
+    class Escape
+    {
+        --
+        +String escapeJavaScript(String text)
+        +String escapeSql(String text)
+        +String escapeXml(String xml)
+        +String unescapeXml(String xml)
+    }
+    
+    annotation FormatProperty
+    
+    class Formatter
+    {
+        --
+        +String format(String message, Object... arguments)
+    }
+    
+    class Indent
+    {
+        --
+        +String indentBy(int spaces, String text)
+        +String indentWith(String indentation, String text)
+    }
+    
+    class IndentingStringBuilder
+    {
+        --(constructors)--
+        +IndentingStringBuilder()
+        +IndentingStringBuilder(Indentation)
+        +IndentingStringBuilder(Style, Indentation)
+        --
+        +int indentationLevel()
+        --(building)--
+        +IndentingStringBuilder appendLine(String line)
+        +IndentingStringBuilder appendLines(String lines)
+        +IndentingStringBuilder defaultTextIndenter()
+        +IndentingStringBuilder indent()
+        +IndentingStringBuilder level(int level)
+        +IndentingStringBuilder removeLastLine()
+        +IndentingStringBuilder unindent()
+        --(checks)--
+        +boolean isIndented()
+        --(collection)--
+        +boolean containsLine(String line)
+        +Count lineCount()
+        +StringList lines()
+    }
+    
+    class Join
+    {
+        --(lifecycle)--
+        +String join(Collection<T> values, String separator, Function<T,String> toString)
+        +String join(Iterable<T> values, String separator)
+    }
+    
+    class ObjectIndenter
+    {
+        --(constructors)--
+        +ObjectIndenter(StringFormattable.Format)
+        +ObjectIndenter(StringFormattable.Format, int)
+        +ObjectIndenter(StringFormattable.Format, int, PropertyFilter)
+        --
+        +boolean haveVisited(Object)
+        +int indentationLevel()
+        +ObjectIndenter label(String label)
+        +ObjectIndenter levels(Maximum levels)
+        +ObjectIndenter pruneAt(Class<?> leaf)
+        +ObjectIndenter text(String label)
+        +void visited(Object)
+        --(checks)--
+        +boolean canExplore(Object value)
+        +boolean isLeaf(Object)
+        --(collection)--
+        +void add(String line, Object... arguments)
+        --(conversion)--
+        +ObjectIndenter asString(Object)
+        --(functional)--
+        +ObjectIndenter bracketed(Iterable<?>, Consumer<Object>)
+        +ObjectIndenter indented(Runnable code)
+        +ObjectIndenter indented(String label, Runnable code)
+        +ObjectIndenter labeled(String label, Object)
+    }
+    
+    class Paths
+    {
+        --(path)--
+        +String pathConcatenate(String head, String... tails)
+        +String pathHead(String path, char separator)
+        +String pathHead(String path, String separator)
+        +String pathOptionalHead(String path, String separator)
+        +String pathOptionalHead(String path, char separator)
+        +String pathOptionalSuffix(String path, char separator)
+        +String pathTail(String, String separator)
+        +String pathTail(String text, char separator)
+        +String pathToPackage(String path)
+        +String pathWithoutOptionalSuffix(String path, char separator)
+        +String pathWithoutSuffix(String path, char separator)
+    }
+    
+    class Plural
+    {
+        --
+        +String pluralizeEnglish(String text)
+        +String pluralizeEnglish(int size, String text)
+    }
+    
+    class Separators
+    {
+        --(constructors)--
+        +Separators()
+        +Separators(String, String, int)
+        +Separators(String)
+        --
+        +String child(int relativeLevel)
+        +Separators child()
+        +String current()
+    }
+    
+    class Split
+    {
+        --(collection)--
+        +StringList split(String text, String pattern)
+        +StringList splitIntoWords(String text)
+        +String[] splitOnFirst(String text, char separator)
+    }
+    
+    class StringConversions
+    {
+        --(conversion)--
+        +String toBinaryString(int value, int bits)
+        +String toDebugString(Object)
+        +String toDisplayString(Enum<?> enumValue)
+        +String toHtmlString(String text)
+        +String toHumanizedString(Object, String defaultValue)
+        +String toHumanizedString(Object)
+        +String toNonNullString(Object value)
+    }
+    
+    ObjectList <|-- StringList
+    class StringList
+    {
+        --(constructors)--
+        +StringList()
+        +StringList(Collection<String>)
+        +StringList(Iterable<?>)
+        +StringList(Iterator<?>)
+        +StringList(Maximum)
+        +StringList(Maximum, Iterable<?>)
+        +StringList(Maximum, Iterator<?>)
+        +StringList(Maximum, String)
+        --
+        #String objectToString(Object)
+        --(collection)--
+        +StringList add(String message, Object... arguments)
+        +String[] asStringArray()
+        +VariableMap<String> asVariableMap()
+        +StringList doubleQuoted()
+        +StringList indented(int spaces)
+        +Count longest()
+        +StringList numbered()
+        +StringList prefixedWith(String prefix)
+        +StringList println()
+        +StringList repeat(String text, int times)
+        +StringList singleQuoted()
+        +StringList split(String, String delimiter)
+        +StringList split(Maximum maximumSize, String, char delimiter)
+        +StringList split(Maximum maximumSize, String text, String delimiter)
+        +StringList split(String, char delimiter)
+        +StringList splitOnPattern(String text, String pattern)
+        +StringList stringList(Collection<T> values)
+        +StringList stringList(Maximum maximumSize, Collection<T> values)
+        +StringList stringList(Iterable<T> values)
+        +StringList stringList(Maximum maximumSize, Iterable<T> values)
+        +StringList stringList(String... strings)
+        +StringList stringList(Maximum maximumSize, String... strings)
+        +StringList words(String text)
+    }
+    
+    class StringSimilarity
+    {
+        --
+        +int compareStrings(String a, String b)
+        +int levenshteinDistance(String source, String target)
+        --(math)--
+        +Percent levenshteinDifference(String a, String b)
+        +Percent levenshteinSimilarity(String a, String b)
+    }
+    
+    class Strings
+    {
+        --
+        +boolean equalIgnoringCase(String a, String b)
+        +boolean equalsAllowNull(String a, String b)
+        +String leading(String text, int)
+        +String notNull(String value)
+        +int occurrences(String text, char character)
+        +String replace(String, int start, int end, String replacement)
+        +String replaceAll(String, String searchFor, String replaceWith)
+        +String trailing(String, int)
+        --(checks)--
+        +String ensureEndsWith(String text, String terminator)
+        +boolean isAllBytes(String text)
+        +boolean isAscii(String text)
+        +boolean isExtendedAscii(String value)
+        +boolean isJavaIdentifier(String text)
+        +boolean isLowerCase(String text)
+        +boolean isNaturalNumber(String)
+        +boolean isNullOrBlank(String text)
+        +boolean isOneOf(String value, String... options)
+        +boolean startsWithIgnoreCase(String text, String prefix)
+        --(collection)--
+        +boolean containsAnyOf(String text, String characters)
+        +boolean containsIgnoreCase(String a, String b)
+        +int digitCount(String text)
+        +String extractFirstGroup(String text, String pattern)
+        +String remove(String text, int start, int end)
+        +String removeAll(String, char remove)
+        --(primitive)--
+        +String doubleQuoted(String)
+        +int nthCharacter(String text, int, char)
+    }
+    
+    class Strip
+    {
+        --
+        +String stripEnding(String text, String ending)
+        +String stripLeading(String text, String leading)
+        +String stripQuotes(String text)
+        +String stripTrailing(String text, String trailer)
+    }
+    
+    class Wrap
+    {
+        --
+        +String wrap(String text, int maximumWidth)
+        +String wrapRegion(String text, int maximumWidth)
+    }
+    
+@enduml
+

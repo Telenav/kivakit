@@ -1,0 +1,135 @@
+
+@startuml
+
+    !include lexakai.theme
+    
+    title "Logging"
+    
+    abstract BaseLogger
+    
+    interface Triaged
+    interface Logger
+    
+    Logger <|-- BaseLogger
+    abstract class BaseLogger
+    {
+        --(constructors)--
+        #BaseLogger()
+        #BaseLogger(LoggerCodeContext)
+        --(filtering)--
+        #boolean accept(LogEntry)
+    }
+    
+    BaseLogger <|-- ConsoleLogger
+    class ConsoleLogger
+    {
+    }
+    
+    interface Closeable
+    interface Filtered
+    Filtered <|-- Log
+    Closeable <|-- Log
+    Log --> LogEntry : "logs"
+    interface Log
+    {
+        --
+        +void configure(VariableMap<String> properties)
+        +void level(Class<T> message)
+        +void level(Severity)
+        +void log(LogEntry)
+    }
+    
+    Triaged <|-- LogEntry
+    LogEntry o-- CodeContext
+    LogEntry o-- StackTrace
+    class LogEntry
+    {
+        --
+        +CodeContext context()
+        +String format(LogFormatter, MessageFormat... formats)
+        +int sequenceNumber()
+        --(checks)--
+        +boolean isSevere()
+        --(messaging)--
+        +String formattedMessage(MessageFormat... formats)
+        +Message message()
+        +String messageType()
+        +StackTrace stackTrace()
+        --(naming)--
+        +String threadName()
+        --(time)--
+        +Time created()
+    }
+    
+    LogServiceLoader "1" o-- "*" Log : "loads"
+    class LogServiceLoader
+    {
+        --(naming)--
+        +Log logForName(Listener, String name)
+    }
+    
+    BaseLogger <|-- LogServiceLogger
+    LogServiceLogger --> Log : "configures"
+    LogServiceLogger --> LogServiceLoader : "loads log services with"
+    LogServiceLogger "1" o-- "*" Log : "logs to"
+    class LogServiceLogger
+    {
+    }
+    
+    interface Filtered
+    interface Listener
+    Listener <|-- Logger
+    Filtered <|-- Logger
+    interface Logger
+    {
+        --
+        +LoggerCodeContext codeContext()
+        +void log(Message)
+        +Logger logger()
+        --(collection)--
+        +void addFilter(Filter<LogEntry>)
+    }
+    
+    CodeContext <|-- LoggerCodeContext
+    class LoggerCodeContext
+    {
+        --(constructors)--
+        +LoggerCodeContext()
+        +LoggerCodeContext(Method)
+        +LoggerCodeContext(String)
+    }
+    
+    LoggerFactory --> Logger : "creates"
+    class LoggerFactory
+    {
+        --(factory)--
+        +void globalLoggerFactory(Factory<Logger>)
+        +Logger newLogger()
+    }
+    
+    BaseLogger <|-- NullLogger
+    class NullLogger
+    {
+    }
+    
+    interface Receiver
+    interface Transmitter
+    Receiver <|-- Transceiver
+    Transmitter <|-- Transceiver
+    Transceiver --> Debug : "delegates to"
+    note right of Transceiver
+        Functionality common to transmitters and receivers
+    endnote
+    interface Transceiver
+    {
+    }
+    
+    Triaged --> Severity : "has"
+    interface Triaged
+    {
+        --
+        +Severity severity()
+    }
+    
+@enduml
+

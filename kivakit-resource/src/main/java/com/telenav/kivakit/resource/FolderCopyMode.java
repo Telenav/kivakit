@@ -46,5 +46,5 @@ public enum FolderCopyMode
     FLATTEN,
 
     /** Copy resources by path from the source, preserving the folder hierarchy */
-    PRESERVE_HIERARCHY;
+    PRESERVE_HIERARCHY
 }

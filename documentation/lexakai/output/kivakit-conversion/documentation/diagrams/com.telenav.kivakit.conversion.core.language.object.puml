@@ -1,0 +1,37 @@
+
+@startuml
+
+    !include lexakai.theme
+    
+    title "com.telenav.kivakit.conversion.core.language.object"
+    
+    abstract BaseConverter
+    abstract BaseRepeater
+    
+    annotation ConvertedProperty
+    
+    PropertySet <|-- ConvertedPropertySet
+    class ConvertedPropertySet
+    {
+        --(constructors)--
+        +ConvertedPropertySet(PropertyNamingConvention, PropertyMemberSelector)
+    }
+    
+    BaseConverter <|-- ObjectConverter
+    class ObjectConverter<Value>
+    {
+        --(constructors)--
+        +ObjectConverter(Listener, Class<Value>)
+    }
+    
+    BaseRepeater <|-- ObjectPopulator
+    class ObjectPopulator
+    {
+        --(constructors)--
+        +ObjectPopulator(PropertyFilter, Source<PropertyValue>)
+        --
+        +T populate(T object)
+    }
+    
+@enduml
+

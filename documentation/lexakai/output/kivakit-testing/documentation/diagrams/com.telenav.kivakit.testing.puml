@@ -1,0 +1,37 @@
+
+@startuml
+
+    !include lexakai.theme
+    
+    title "com.telenav.kivakit.testing"
+    
+    interface ProjectTrait
+    interface PackageTrait
+    interface JavaTrait
+    interface NamedObject
+    interface LanguageTrait
+    interface Repeater
+    interface RegistryTrait
+    
+    interface QuickTest
+    {
+    }
+    
+    interface SlowTest
+    {
+    }
+    
+    CoreUnitTest <|-- UnitTest
+    JavaTrait <|-- UnitTest
+    ProjectTrait <|-- UnitTest
+    PackageTrait <|-- UnitTest
+    RegistryTrait <|-- UnitTest
+    LanguageTrait <|-- UnitTest
+    Repeater <|-- UnitTest
+    NamedObject <|-- UnitTest
+    class UnitTest
+    {
+    }
+    
+@enduml
+

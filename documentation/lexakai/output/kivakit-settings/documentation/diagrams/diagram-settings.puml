@@ -1,0 +1,66 @@
+
+@startuml
+
+    !include lexakai.theme
+    
+    title "Settings"
+    
+    abstract BaseResourceSettingsStore
+    abstract BaseRepeater
+    
+    interface JavaTrait
+    interface SettingsTrait
+    interface RegistryTrait
+    
+    MemorySettingsStore <|-- Deployment
+    class Deployment
+    {
+        --(constructors)--
+        +Deployment(Listener, String, String)
+        --
+        +String description()
+        --(command line parsing)--
+        +SwitchParser.Builder<Deployment> deploymentSwitchParser(Listener, DeploymentSet, String switchName)
+    }
+    
+    BaseRepeater <|-- DeploymentSet
+    RegistryTrait <|-- DeploymentSet
+    DeploymentSet "1" o-- "*" Deployment
+    class DeploymentSet
+    {
+        --(constructors)--
+        #DeploymentSet()
+        --(collection)--
+        +boolean isEmpty()
+        +int size()
+        --(command line parsing)--
+        +SwitchParser.Builder<Deployment> switchParser(String name)
+        --(configuration)--
+        +void add(Deployment)
+        +void addAll(Collection<Deployment> deployments)
+        +DeploymentSet addDeploymentsIn(ResourceFolder<?>)
+        +Deployment deployment(String name)
+        +DeploymentSet deploymentSet(Listener, Deployment, Deployment... more)
+        +Set<Deployment> deployments()
+        +DeploymentSet loadDeploymentSet(Listener, Class<?> relativeTo)
+    }
+    
+    BaseResourceSettingsStore <|-- ResourceFolderSettingsStore
+    class ResourceFolderSettingsStore
+    {
+        --(constructors)--
+        +ResourceFolderSettingsStore(Listener, ResourceFolder<?>)
+    }
+    
+    MemorySettingsStore <|-- SettingsRegistry
+    SettingsTrait <|-- SettingsRegistry
+    JavaTrait <|-- SettingsRegistry
+    class SettingsRegistry
+    {
+        --
+        +SettingsRegistry globalSettings()
+        +SettingsRegistry settingsFor(Object ignored)
+    }
+    
+@enduml
+

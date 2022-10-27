@@ -59,7 +59,7 @@ public class Packages
     {
         var path = new ArrayList<String>();
         var type = new ArrayList<String>();
-        for (var at : split(packaged, "."))
+        for (var at : split(packaged, "\\."))
         {
             if (isLowerCase(at))
             {

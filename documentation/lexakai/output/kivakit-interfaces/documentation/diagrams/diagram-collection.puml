@@ -1,0 +1,137 @@
+
+@startuml
+
+    !include lexakai.theme
+    
+    title "diagram-collection"
+    
+    interface SpaceLimited
+    SpaceLimited <|-- Addable
+    interface Addable<Value>
+    {
+        --(collection)--
+        +boolean add(Value)
+        +boolean addAll(Collection<? extends Value> values)
+        +boolean addAll(Iterator<? extends Value> values)
+        +boolean addAll(Value[] values)
+        +boolean addAll(Iterable<? extends Value> values)
+        +int addAllMatching(Iterable<? extends Value> values, Matcher<Value>)
+        +int addAllMatching(Collection<? extends Value> values, Matcher<Value>)
+        +int addAllMatching(Value[] values, Matcher<Value>)
+        +int addAllMatching(Iterator<? extends Value> values, Matcher<Value>)
+        +boolean addIfNotNull(Value)
+        +boolean onAdd(Value)
+    }
+    
+    interface SpaceLimited
+    SpaceLimited <|-- Appendable
+    interface Appendable<Value>
+    {
+        --
+        +boolean append(Value)
+        +boolean appendAll(Collection<? extends Value> values)
+        +boolean appendAll(Iterable<? extends Value> values)
+        +boolean appendAll(Value[] values)
+        +boolean appendAll(Iterator<? extends Value> values)
+        +Appendable<Value> appendAllThen(Iterable<? extends Value> values)
+        +boolean appendIfNotNull(Value)
+        +Appendable<Value> appendIfNotNullThen(Value)
+        +Appendable<Value> appendThen(Value)
+        --(collection)--
+        +void push(Value)
+        --(extension points)--
+        +boolean onAppend(Value)
+    }
+    
+    interface Clearable
+    {
+        --(collection)--
+        +void clear()
+    }
+    
+    interface Contains<Value>
+    {
+        --(collection)--
+        +boolean contains(Value)
+        +boolean containsAll(Iterable<Value> values)
+        +boolean containsNone(Iterable<Value> values)
+    }
+    
+    interface Sequence
+    interface Sized
+    Sized <|-- Indexable
+    Sequence <|-- Indexable
+    interface Indexable<Value>
+    {
+        --
+        +Value get(int index)
+        +Value getOrDefault(int index, Value defaultValue)
+        --(checks)--
+        +boolean endsWith(Indexable<Value> that)
+        +boolean isEqualTo(Indexable<Value> that)
+        +boolean startsWith(Indexable<Value> that)
+        --(collection)--
+        +Value last()
+    }
+    
+    interface Indexed
+    {
+        --(collection)--
+        +int index()
+    }
+    
+    interface SpaceLimited
+    SpaceLimited <|-- Prependable
+    interface Prependable<Value>
+    {
+        --
+        +boolean prepend(Value)
+        +boolean prependAll(Iterator<? extends Value> values)
+        +boolean prependAll(Collection<? extends Value> values)
+        +boolean prependAll(Iterable<? extends Value> values)
+        +boolean prependAll(Value[] values)
+        +boolean prependIfNotNull(Value)
+        --(extension points)--
+        +boolean onPrepend(Value)
+    }
+    
+    interface Iterable<Value>
+    interface Joinable
+    Iterable <|-- Sequence
+    Joinable <|-- Sequence
+    interface Sequence<Value>
+    {
+        --
+        +Set<Value> asSet()
+        +Value head()
+        --(checks)--
+        +boolean isEqualTo(Sequence<Value> that)
+        --(collection)--
+        +int asHashCode()
+        +Iterable<Value> asIterable()
+        +Iterable<Value> asIterable(Matcher<Value>)
+        +Iterator<Value> asIterator()
+        +Iterator<Value> asIterator(Matcher<Value>)
+        +List<Value> asList()
+        +Value findFirst(Class<? extends Value> type)
+        +Value findFirst(Matcher<Value>)
+        +Value first()
+        +int indexOfFirst(Matcher<Value>)
+        +int indexOfFirst(Value)
+        +List<Value> tail()
+        --(matching)--
+        +boolean allMatch(Matcher<Value>)
+        +boolean anyMatch(Matcher<Value>)
+        +boolean noneMatch(Matcher<Value>)
+    }
+    
+    interface Indexable
+    Indexable <|-- WriteIndexable
+    interface WriteIndexable<Value>
+    {
+        --
+        +Value set(int index, Value)
+    }
+    
+@enduml
+

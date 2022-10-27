@@ -1,0 +1,459 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="297.9167px" preserveAspectRatio="none" style="width:1792px;height:297px;background:#333333;" version="1.1" viewBox="0 0 1792 297" width="1792.7083px" zoomAndPan="magnify"><defs/><g><rect fill="#48494B" height="41.2028" rx="8.3333" ry="8.3333" style="stroke:#545454;stroke-width:1.0416666666666667;" width="409.375" x="684.6354" y="2.0833"/><text fill="#C0C0C0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="20.8333" lengthAdjust="spacing" textLength="386.4583" x="696.0938" y="30.5583">com.telenav.kivakit.core.logging.filters</text><!--MD5=[bddb511951cf0a1d6a79f67b0c2ed87d]
+class Filter--><rect codeLine="7" fill="#282828" height="48.055" id="Filter" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="70.8333" x="853.125" y="53.7028"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="70.8333" x="853.125" y="53.7028"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="70.8333" x="853.125" y="76.7578"/><rect codeLine="7" fill="none" height="48.055" id="Filter" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="70.8333" x="853.125" y="53.7028"/><ellipse cx="867.7083" cy="69.397" fill="#008400" rx="10.4167" ry="10.4167" style="stroke:#239C23;stroke-width:1.0416666666666667;"/><path d="M865.1123,66.5588 L865.1123,64.9719 L870.5383,64.9719 L870.5383,66.5588 L868.7256,66.5588 L868.7256,72.4976 L870.5383,72.4976 L870.5383,74.0845 L865.1123,74.0845 L865.1123,72.4976 L866.925,72.4976 L866.925,66.5588 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-style="italic" font-weight="bold" lengthAdjust="spacing" textLength="33.3333" x="884.375" y="74.1211">Filter</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="854.1667" x2="922.9167" y1="85.0911" y2="85.0911"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="854.1667" x2="922.9167" y1="93.4245" y2="93.4245"/><!--MD5=[03a25db5079372dfff592c5f3cc70847]
+class LogEntriesFromLoggersUnderPackage--><rect codeLine="10" fill="#282828" height="83.3781" id="LogEntriesFromLoggersUnderPackage" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="354.1667" x="7.2917" y="185.9945"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="354.1667" x="7.2917" y="185.9945"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="354.1667" x="7.2917" y="209.0495"/><rect codeLine="10" fill="none" height="83.3781" id="LogEntriesFromLoggersUnderPackage" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="354.1667" x="7.2917" y="185.9945"/><ellipse cx="54.6875" cy="201.6886" fill="#0066CF" rx="10.4167" ry="10.4167" style="stroke:#0086EF;stroke-width:1.0416666666666667;"/><path d="M56.5979,206.1137 Q56.1707,206.3334 55.7007,206.4433 Q55.2307,206.5531 54.7119,206.5531 Q52.8687,206.5531 51.8982,205.3385 Q50.9277,204.1239 50.9277,201.829 Q50.9277,199.528 51.8982,198.3134 Q52.8687,197.0988 54.7119,197.0988 Q55.2307,197.0988 55.7068,197.2087 Q56.1829,197.3185 56.5979,197.5382 L56.5979,199.5402 Q56.134,199.113 55.6976,198.9146 Q55.2612,198.7162 54.7974,198.7162 Q53.8086,198.7162 53.3051,199.5005 Q52.8015,200.2848 52.8015,201.829 Q52.8015,203.3671 53.3051,204.1514 Q53.8086,204.9357 54.7974,204.9357 Q55.2612,204.9357 55.6976,204.7373 Q56.134,204.539 56.5979,204.1117 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="244.7917" x="77.6042" y="206.4128">LogEntriesFromLoggersUnderPackage</text><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="8.3333" x2="360.4167" y1="217.3828" y2="217.3828"/><ellipse cx="18.75" cy="252.7527" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="321.875" x="30.2083" y="259.6639">LogEntriesFromLoggersUnderPackage(PackageReference)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="8.3333" x2="140.625" y1="235.5886" y2="235.5886"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="81.25" x="143.75" y="239.3982">(constructors)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="228.125" x2="360.4167" y1="235.5886" y2="235.5886"/><!--MD5=[373efa073dfed342cb21d7e753cc604b]
+class LogEntriesOfType--><rect codeLine="17" fill="#282828" height="127.0345" id="LogEntriesOfType" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="293.75" x="397.9167" y="164.1195"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="293.75" x="397.9167" y="164.1195"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="293.75" x="397.9167" y="187.1745"/><rect codeLine="17" fill="none" height="127.0345" id="LogEntriesOfType" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="293.75" x="397.9167" y="164.1195"/><ellipse cx="479.6875" cy="179.8136" fill="#0066CF" rx="10.4167" ry="10.4167" style="stroke:#0086EF;stroke-width:1.0416666666666667;"/><path d="M481.5979,184.2387 Q481.1707,184.4584 480.7007,184.5683 Q480.2307,184.6781 479.7119,184.6781 Q477.8687,184.6781 476.8982,183.4635 Q475.9277,182.2489 475.9277,179.954 Q475.9277,177.653 476.8982,176.4384 Q477.8687,175.2238 479.7119,175.2238 Q480.2307,175.2238 480.7068,175.3337 Q481.1829,175.4435 481.5979,175.6632 L481.5979,177.6652 Q481.134,177.238 480.6976,177.0396 Q480.2612,176.8412 479.7974,176.8412 Q478.8086,176.8412 478.3051,177.6255 Q477.8015,178.4098 477.8015,179.954 Q477.8015,181.4921 478.3051,182.2764 Q478.8086,183.0607 479.7974,183.0607 Q480.2612,183.0607 480.6976,182.8623 Q481.134,182.664 481.5979,182.2367 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="115.625" x="502.6042" y="184.5378">LogEntriesOfType</text><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="398.9583" x2="690.625" y1="195.5078" y2="195.5078"/><ellipse cx="409.375" cy="230.8777" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="261.4583" x="420.8333" y="237.7889">LogEntriesOfType(Class&lt;? extends Message&gt;)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="398.9583" x2="501.0417" y1="213.7136" y2="213.7136"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="81.25" x="504.1667" y="217.5232">(constructors)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="588.5417" x2="690.625" y1="213.7136" y2="213.7136"/><ellipse cx="409.375" cy="274.5341" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="240.625" x="420.8333" y="281.4453">void includeCodeContext(Class&lt;?&gt; within)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="398.9583" x2="515.625" y1="257.37" y2="257.37"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="52.0833" x="518.75" y="261.1796">(filtering)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="573.9583" x2="690.625" y1="257.37" y2="257.37"/><!--MD5=[edb8e73446fd701a67431aa0767618b6]
+class LogEntriesSubclassing--><rect codeLine="26" fill="#282828" height="83.3781" id="LogEntriesSubclassing" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="319.7917" x="728.6458" y="185.9945"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="319.7917" x="728.6458" y="185.9945"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="319.7917" x="728.6458" y="209.0495"/><rect codeLine="26" fill="none" height="83.3781" id="LogEntriesSubclassing" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="319.7917" x="728.6458" y="185.9945"/><ellipse cx="808.3333" cy="201.6886" fill="#0066CF" rx="10.4167" ry="10.4167" style="stroke:#0086EF;stroke-width:1.0416666666666667;"/><path d="M810.2437,206.1137 Q809.8165,206.3334 809.3465,206.4433 Q808.8765,206.5531 808.3577,206.5531 Q806.5145,206.5531 805.544,205.3385 Q804.5736,204.1239 804.5736,201.829 Q804.5736,199.528 805.544,198.3134 Q806.5145,197.0988 808.3577,197.0988 Q808.8765,197.0988 809.3526,197.2087 Q809.8287,197.3185 810.2437,197.5382 L810.2437,199.5402 Q809.7799,199.113 809.3435,198.9146 Q808.9071,198.7162 808.4432,198.7162 Q807.4544,198.7162 806.9509,199.5005 Q806.4473,200.2848 806.4473,201.829 Q806.4473,203.3671 806.9509,204.1514 Q807.4544,204.9357 808.4432,204.9357 Q808.9071,204.9357 809.3435,204.7373 Q809.7799,204.539 810.2437,204.1117 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="145.8333" x="831.25" y="206.4128">LogEntriesSubclassing</text><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="729.6875" x2="1047.3958" y1="217.3828" y2="217.3828"/><ellipse cx="740.1042" cy="252.7527" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="287.5" x="751.5625" y="259.6639">LogEntriesSubclassing(Class&lt;? extends Message&gt;)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="729.6875" x2="844.7917" y1="235.5886" y2="235.5886"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="81.25" x="847.9167" y="239.3982">(constructors)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="932.2917" x2="1047.3958" y1="235.5886" y2="235.5886"/><!--MD5=[cdf4643c2a6d717b0b52bf0c8b4a7521]
+class LogEntriesWithSeverityGreaterThanOrEqualTo--><rect codeLine="33" fill="#282828" height="83.3781" id="LogEntriesWithSeverityGreaterThanOrEqualTo" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="340.625" x="1084.8958" y="185.9945"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="340.625" x="1084.8958" y="185.9945"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="340.625" x="1084.8958" y="209.0495"/><rect codeLine="33" fill="none" height="83.3781" id="LogEntriesWithSeverityGreaterThanOrEqualTo" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="340.625" x="1084.8958" y="185.9945"/><ellipse cx="1102.7604" cy="201.6886" fill="#0066CF" rx="10.4167" ry="10.4167" style="stroke:#0086EF;stroke-width:1.0416666666666667;"/><path d="M1104.6708,206.1137 Q1104.2436,206.3334 1103.7736,206.4433 Q1103.3036,206.5531 1102.7848,206.5531 Q1100.9416,206.5531 1099.9711,205.3385 Q1099.0007,204.1239 1099.0007,201.829 Q1099.0007,199.528 1099.9711,198.3134 Q1100.9416,197.0988 1102.7848,197.0988 Q1103.3036,197.0988 1103.7797,197.2087 Q1104.2558,197.3185 1104.6708,197.5382 L1104.6708,199.5402 Q1104.2069,199.113 1103.7705,198.9146 Q1103.3341,198.7162 1102.8703,198.7162 Q1101.8815,198.7162 1101.378,199.5005 Q1100.8744,200.2848 1100.8744,201.829 Q1100.8744,203.3671 1101.378,204.1514 Q1101.8815,204.9357 1102.8703,204.9357 Q1103.3341,204.9357 1103.7705,204.7373 Q1104.2069,204.539 1104.6708,204.1117 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="295.8333" x="1120.1563" y="206.4128">LogEntriesWithSeverityGreaterThanOrEqualTo</text><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="1085.9375" x2="1424.4792" y1="217.3828" y2="217.3828"/><ellipse cx="1096.3542" cy="252.7527" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="308.3333" x="1107.8125" y="259.6639">LogEntriesWithSeverityGreaterThanOrEqualTo(Severity)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="1085.9375" x2="1211.4583" y1="235.5886" y2="235.5886"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="81.25" x="1214.5833" y="239.3982">(constructors)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="1298.9583" x2="1424.4792" y1="235.5886" y2="235.5886"/><!--MD5=[f7eac32e94e30e821e9f5688b4d96a57]
+class LogEntriesWithSeverityLessThanOrEqualTo--><rect codeLine="40" fill="#282828" height="83.3781" id="LogEntriesWithSeverityLessThanOrEqualTo" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="323.9583" x="1461.9792" y="185.9945"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="323.9583" x="1461.9792" y="185.9945"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="323.9583" x="1461.9792" y="209.0495"/><rect codeLine="40" fill="none" height="83.3781" id="LogEntriesWithSeverityLessThanOrEqualTo" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="323.9583" x="1461.9792" y="185.9945"/><ellipse cx="1480.3125" cy="201.6886" fill="#0066CF" rx="10.4167" ry="10.4167" style="stroke:#0086EF;stroke-width:1.0416666666666667;"/><path d="M1482.2229,206.1137 Q1481.7957,206.3334 1481.3257,206.4433 Q1480.8557,206.5531 1480.3369,206.5531 Q1478.4937,206.5531 1477.5232,205.3385 Q1476.5527,204.1239 1476.5527,201.829 Q1476.5527,199.528 1477.5232,198.3134 Q1478.4937,197.0988 1480.3369,197.0988 Q1480.8557,197.0988 1481.3318,197.2087 Q1481.8079,197.3185 1482.2229,197.5382 L1482.2229,199.5402 Q1481.759,199.113 1481.3226,198.9146 Q1480.8862,198.7162 1480.4224,198.7162 Q1479.4336,198.7162 1478.9301,199.5005 Q1478.4265,200.2848 1478.4265,201.829 Q1478.4265,203.3671 1478.9301,204.1514 Q1479.4336,204.9357 1480.4224,204.9357 Q1480.8862,204.9357 1481.3226,204.7373 Q1481.759,204.539 1482.2229,204.1117 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="278.125" x="1497.8125" y="206.4128">LogEntriesWithSeverityLessThanOrEqualTo</text><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="1463.0208" x2="1784.8958" y1="217.3828" y2="217.3828"/><ellipse cx="1473.4375" cy="252.7527" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="291.6667" x="1484.8958" y="259.6639">LogEntriesWithSeverityLessThanOrEqualTo(Severity)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="1463.0208" x2="1580.2083" y1="235.5886" y2="235.5886"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="81.25" x="1583.3333" y="239.3982">(constructors)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="1667.7083" x2="1784.8958" y1="235.5886" y2="235.5886"/><!--MD5=[9ee94378ee25b26cd037f73f43433f98]
+reverse link Filter to LogEntriesFromLoggersUnderPackage--><path codeLine="9" d="M832.3021,85.432 C737.8438,97.3382 541.7083,124.6299 379.1667,164.1195 C353.9688,170.2445 327.3125,177.9528 302.0625,185.8486 " fill="none" id="Filter-backto-LogEntriesFromLoggersUnderPackage" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="831.4167,78.1924,852.9896,82.8695,833.2083,92.6715,831.4167,78.1924" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[1963b1f7b249d03a9fd862e0617c9317]
+reverse link Filter to LogEntriesOfType--><path codeLine="16" d="M833.7292,102.2861 C794.9896,118.9528 741.1354,142.1299 690.3958,163.9632 " fill="none" id="Filter-backto-LogEntriesOfType" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="831.0313,95.5153,853.0521,93.9736,836.7917,108.9111,831.0313,95.5153" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[46f2e8279952940bc5f9f33831fd158c]
+reverse link Filter to LogEntriesSubclassing--><path codeLine="25" d="M888.5417,122.8486 C888.5417,142.807 888.5417,166.2549 888.5417,185.807 " fill="none" id="Filter-backto-LogEntriesSubclassing" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="881.25,122.6507,888.5417,101.8174,895.8333,122.6507,881.25,122.6507" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[526b4125ed4d158b702b5a11096abac0]
+reverse link Filter to LogEntriesWithSeverityGreaterThanOrEqualTo--><path codeLine="32" d="M943.6771,100.9424 C999.2292,123.359 1086.2188,158.4424 1154.1771,185.859 " fill="none" id="Filter-backto-LogEntriesWithSeverityGreaterThanOrEqualTo" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="940.625,107.5778,924.0313,93.0153,946.0833,94.057,940.625,107.5778" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[36d582f1ad220fde89ed7f7cb1637bba]
+reverse link Filter to LogEntriesWithSeverityLessThanOrEqualTo--><path codeLine="39" d="M944.9063,83.9632 C1045.9792,94.1507 1264.2292,119.5674 1443.75,164.1195 C1467.6979,170.057 1492.9688,177.8382 1516.7604,185.8799 " fill="none" id="Filter-backto-LogEntriesWithSeverityLessThanOrEqualTo" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="944.0729,91.2132,924.0625,81.9111,945.5,76.6924,944.0729,91.2132" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[dabd18ac81bee4485e4101841bd66854]
+@startuml
+
+    !include lexakai.theme
+    
+    title "com.telenav.kivakit.core.logging.filters"
+    
+    interface Filter
+    
+    Filter <|- - LogEntriesFromLoggersUnderPackage
+    class LogEntriesFromLoggersUnderPackage
+    {
+        - -(constructors)- -
+        +LogEntriesFromLoggersUnderPackage(PackageReference)
+    }
+    
+    Filter <|- - LogEntriesOfType
+    class LogEntriesOfType
+    {
+        - -(constructors)- -
+        +LogEntriesOfType(Class<? extends Message>)
+        - -(filtering)- -
+        +void includeCodeContext(Class<?> within)
+    }
+    
+    Filter <|- - LogEntriesSubclassing
+    class LogEntriesSubclassing
+    {
+        - -(constructors)- -
+        +LogEntriesSubclassing(Class<? extends Message>)
+    }
+    
+    Filter <|- - LogEntriesWithSeverityGreaterThanOrEqualTo
+    class LogEntriesWithSeverityGreaterThanOrEqualTo
+    {
+        - -(constructors)- -
+        +LogEntriesWithSeverityGreaterThanOrEqualTo(Severity)
+    }
+    
+    Filter <|- - LogEntriesWithSeverityLessThanOrEqualTo
+    class LogEntriesWithSeverityLessThanOrEqualTo
+    {
+        - -(constructors)- -
+        +LogEntriesWithSeverityLessThanOrEqualTo(Severity)
+    }
+    
+@enduml
+
+@startuml
+
+
+
+
+
+
+
+
+
+skinparam backgroundColor #333333
+
+
+
+
+
+
+skinparam  {
+    defaultFontName   "Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif"
+    defaultFontSize   12
+    defaultTextAlignment left
+    shadowing false
+    RoundCorner 10
+    TitleFontSize 18
+}
+
+skinparam defaultFontName       "Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif"
+skinparam defaultFontSize       12
+skinparam dpi                   100
+skinparam shadowing             false
+skinparam roundcorner           16
+skinparam ParticipantPadding    40
+skinparam BoxPadding            40
+skinparam Padding               3
+skinparam ArrowColor            #545454
+skinparam stereotype {
+    CBackgroundColor #0066cf
+    CBorderColor #0086ef
+    ABackgroundColor #C8Ac00
+    ABorderColor #D8Bc00
+    IBackgroundColor #008400
+    IBorderColor #239c23
+    EBackgroundColor #cf6300
+    EBorderColor #ef8300
+    NBackgroundColor #3380b9
+    NBorderColor #004d86
+}
+skinparam title {
+	FontColor	                 #c0c0c0
+ 	BorderColor                  #545454
+	FontSize	    	         20
+	BorderRoundCorner            16
+	BorderThickness 	         1
+	BackgroundColor              #48494b
+}
+
+
+skinparam legend {
+	BackgroundColor #303030
+	BorderColor #404040
+	FontColor #a0a0a0
+}
+
+	skinparam swimlane {
+	BorderColor #5e5e5e
+	BorderThickness 2
+	TitleBackgroundColor  #6d6d6d-#484848
+	TitleFontColor #303030
+}
+
+skinparam activity {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BarColor #00FF00
+	StartColor #0060a8
+	EndColor #0060a8
+	DiamondBackgroundColor #6d6d6d-#3a3a3a
+  	DiamondBorderColor #3a3a3a
+  	DiamondFontColor #fefefe
+}
+
+
+skinparam participant {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	ParticipantBorderThickness 2
+}
+
+
+skinparam actor {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam arrow {
+	Thickness 1.5
+	Color #545454
+	FontColor #a0a0a0
+    FontStyle bold
+    MessageAlignment center
+}
+
+
+
+skinparam sequence {
+	BorderColor #303030
+	TitleFontColor #303030
+	BackgroundColor #333333
+	StartColor #303030
+	EndColor #303030
+	BoxBackgroundColor #333333
+	BoxBorderColor #484848
+	BoxFontColor #484848
+	LifeLineBorderColor #484848
+	LifeLineBorderThickness 2
+	LifeLineBackgroundColor #3a3a3a
+	GroupBorderColor #484848
+	GroupFontColor #484848
+	GroupHeaderFontColor #0060a8
+	GroupBackgroundColor #484848
+	GroupHeaderBackgroundColor #333333
+	DividerBackgroundColor #484848
+    DividerBorderColor #484848
+    DividerBorderThickness 2
+    DividerFontColor #D8Bc00
+	ReferenceBackgroundColor #333333
+	ReferenceBorderColor #484848
+	ReferenceFontColor #fefefe
+	ReferenceHeaderBackgroundColor #484848
+}
+
+
+skinparam partition {
+	BorderColor #303030
+	FontColor #333333
+	BackgroundColor #333333
+}
+
+
+skinparam collections {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam control {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam entity {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam boundary {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam agent {
+	BackgroundColor #ff8000
+	BorderColor #ff9933
+	FontColor #484848
+}
+
+
+skinparam note {
+	BorderThickness 1
+	BackgroundColor #1b1b1a
+	BorderColor #5e5e5e
+	FontSize 11
+	FontColor #a0a0a0
+}
+
+
+skinparam artifact {
+	BorderThickness 10
+	BorderColor #5e5e5e
+	BackgroundColor #1b1b1a
+	FontColor #D8Bc00
+}
+
+
+skinparam component {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam interface {
+	BackgroundColor  #008400
+	BorderColor  #007F00
+	FontColor #484848
+}
+
+
+skinparam storage {
+	BackgroundColor #ff8000
+  	BorderColor #cc6600
+	FontColor #222222
+}
+
+
+skinparam node {
+	BackgroundColor #333333
+	BorderColor #333333
+	FontColor #C8Ac00
+}
+
+
+skinparam cloud {
+	BackgroundColor #484848-black
+	BorderColor #484848
+	FontColor #D8Bc00
+}
+
+
+skinparam database {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BackgroundColor  #333333
+}
+
+
+skinparam class {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	HeaderBackgroundColor #1b1b1a
+    BackgroundColor #282828
+    BorderColor #5e5e5e
+ 	StereotypeFontColor #a0a0a0
+    StereotypeFontStyle bold
+	BorderThickness 1
+	AttributeFontColor #D8Bc00
+	AttributeFontSize 11
+    FontColor #D8Bc00
+    FontStyle bold
+}
+
+
+skinparam object {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	StereotypeFontColor #484848
+	BorderThickness 1
+	AttributeFontColor #fefefe
+	AttributeFontSize 11
+}
+
+
+skinparam usecase {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BorderThickness 2
+	StereotypeFontColor #303030
+}
+
+
+skinparam rectangle {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BackgroundColor #333333
+	BorderThickness 2
+	StereotypeFontColor #303030
+}
+
+
+skinparam package {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BackgroundColor #333333
+	BorderThickness 2
+}
+
+
+skinparam folder {
+	BackgroundColor #6d6d6d
+  	BorderColor #ff8000
+	FontColor #ff8000
+	BorderThickness 2
+}
+
+
+skinparam frame {
+	BackgroundColor #6d6d6d
+  	BorderColor #0060a8
+	FontColor #0060a8
+	BorderThickness 2
+}
+
+
+skinparam state {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	StartColor #0060a8
+	EndColor #0060a8
+	AttributeFontColor #fefefe
+	AttributeFontSize 11
+}
+
+
+skinparam queue {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam card {
+	BackgroundColor #0060a8
+	BorderColor #004d86
+	FontColor $INFO_TEXT
+}
+
+
+skinparam file {
+	BackgroundColor #6d6d6d-#484848
+	BorderColor #0060a8
+	FontColor #fefefe
+}
+
+
+skinparam stack {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+    
+    title "com.telenav.kivakit.core.logging.filters"
+    
+    interface Filter
+    
+    Filter <|- - LogEntriesFromLoggersUnderPackage
+    class LogEntriesFromLoggersUnderPackage
+    {
+        - -(constructors)- -
+        +LogEntriesFromLoggersUnderPackage(PackageReference)
+    }
+    
+    Filter <|- - LogEntriesOfType
+    class LogEntriesOfType
+    {
+        - -(constructors)- -
+        +LogEntriesOfType(Class<? extends Message>)
+        - -(filtering)- -
+        +void includeCodeContext(Class<?> within)
+    }
+    
+    Filter <|- - LogEntriesSubclassing
+    class LogEntriesSubclassing
+    {
+        - -(constructors)- -
+        +LogEntriesSubclassing(Class<? extends Message>)
+    }
+    
+    Filter <|- - LogEntriesWithSeverityGreaterThanOrEqualTo
+    class LogEntriesWithSeverityGreaterThanOrEqualTo
+    {
+        - -(constructors)- -
+        +LogEntriesWithSeverityGreaterThanOrEqualTo(Severity)
+    }
+    
+    Filter <|- - LogEntriesWithSeverityLessThanOrEqualTo
+    class LogEntriesWithSeverityLessThanOrEqualTo
+    {
+        - -(constructors)- -
+        +LogEntriesWithSeverityLessThanOrEqualTo(Severity)
+    }
+    
+@enduml
+
+PlantUML version 1.2021.01(Tue Feb 02 00:55:08 MST 2021)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Default Encoding: UTF-8
+Language: en
+Country: US
+--></g></svg>

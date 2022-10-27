@@ -1,0 +1,16 @@
+
+@startuml
+
+    !include lexakai.theme
+    
+    title "com.telenav.kivakit.interfaces.factory"
+    
+    interface Factory<Value>
+    {
+        --(factory)--
+        +Value newInstance()
+        +Value onNewInstance()
+    }
+    
+@enduml
+

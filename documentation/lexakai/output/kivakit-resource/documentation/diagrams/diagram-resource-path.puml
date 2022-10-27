@@ -1,0 +1,189 @@
+
+@startuml
+
+    !include lexakai.theme
+    
+    title "Resources - Paths"
+    
+    interface Named
+    interface Comparable
+    interface UriIdentified
+    interface ResourcePathed
+    interface Matchable
+    
+    Named <|-- Extension
+    Matchable <|-- Extension
+    Comparable <|-- Extension
+    class Extension
+    {
+        --(constructors)--
+        #Extension(String)
+        --
+        +Codec codec()
+        +boolean ends(ResourcePath)
+        +boolean ends(Resource)
+        --(checks)--
+        +boolean endsWith(Extension)
+        +boolean isArchive()
+        +boolean isExecutable()
+        --(collection)--
+        +ObjectList<Extension> allExtensions()
+        +ObjectList<Extension> archiveExtensions()
+        +ObjectList<Extension> executableExtensions()
+        +Count length()
+        --(filesystem)--
+        +Extension gzipped()
+        +Extension parseExtension(Listener, String text)
+        +Extension parseExtension(String text)
+        +Extension withExtension(Extension)
+    }
+    
+    Named <|-- FileName
+    Comparable <|-- FileName
+    ResourcePathed <|-- FileName
+    class FileName
+    {
+        --(constructors)--
+        #FileName(String)
+        --
+        +boolean matches(Pattern)
+        --(checks)--
+        +boolean endsWith(String suffix)
+        +boolean endsWith(Extension)
+        +boolean startsWith(String prefix)
+        --(filesystem)--
+        +FilePath asPath()
+        +FileName baseName()
+        +FileName fileNameForDate()
+        +FileName fileNameForDate(LocalTime, ZoneId)
+        +FileName fileNameForDate(LocalTime)
+        +FileName fileNameForDateTime(LocalTime, ZoneId)
+        +FileName fileNameForDateTime()
+        +FileName fileNameForDateTime(LocalTime)
+        +FileName fileNameForTime(LocalTime, ZoneId)
+        +FileName fileNameForTime(LocalTime)
+        +Matcher<FileName> fileNameMatcher()
+        +FileName normalized()
+        +LocalTime parseDateTimeFileName(Listener, String text, ZoneId)
+        +LocalTime parseDateTimeFileName(Listener, String text)
+        +FileName parseFileName(Listener, String text)
+        +FileName prefixedWith(String prefix)
+        +FileName toLowerCase()
+        +FileName toUpperCase()
+        +FileName withExtension(Extension)
+        +FileName withSuffix(String suffix)
+        +FileName withoutCompoundExtension()
+        +FileName withoutExtension(Extension)
+        +FileName withoutExtension()
+        +FileName withoutKnownExtensions()
+        --(matching)--
+        +Matcher<Resource> matcher()
+        --(time)--
+        +LocalTime localDateTime()
+        +LocalTime localDateTime(Listener)
+    }
+    
+    ResourcePath <|-- FilePath
+    class FilePath
+    {
+        --(constructors)--
+        #FilePath(FilePath)
+        #FilePath(List<String>)
+        #FilePath(StringList, StringPath)
+        #FilePath(StringList, String, List<String>)
+        --(conversion)--
+        +StringPath asStringPath()
+        +String asUnixString()
+        +URI asUri()
+        --(filesystem)--
+        +FilePath file(FileName child)
+        +FilePath filePath(FileName)
+        +FilePath filePath(java.nio.file.Path)
+        +FilePath filePath(URI)
+        +FilePath filePath(java.io.File)
+        +FilePath filePath(StringPath)
+        +boolean isCurrentFolder()
+        +FilePath parseFilePath(Listener, String path, Object... arguments)
+        +FilePath withPrefix(String prefix)
+        +FilePath withScheme(String scheme)
+        +FilePath withTrailingSlash()
+        +FilePath withoutFileScheme()
+        +FilePath withoutPrefix(String prefix)
+        +FilePath withoutTrailingSlash()
+    }
+    
+    ResourcePath <|-- PackagePath
+    class PackagePath
+    {
+        --
+        +Class<?> packageType()
+        --(checks)--
+        +boolean hasPackageType()
+        --(conversion)--
+        +Package asPackage(Listener)
+        +PackageReference asPackageReference()
+        --(path)--
+        +Set<PackagePath> directorySubPackages(Listener)
+        +boolean isPackagePath(String path)
+        +Set<PackagePath> jarSubPackages(Listener)
+        +PackagePath packagePath(PackageReference)
+        +PackagePath packagePath(Class<?> type, StringPath)
+        +PackagePath packagePath(StringPath)
+        +PackagePath packagePath(Class<?> type)
+        +PackagePath parsePackagePath(Listener, String path)
+        +PackagePath parsePackagePath(Listener, Class<?> type, String relativePath)
+        +PackagePath withPackageType(Class<?> type)
+    }
+    
+    StringPath <|-- ResourcePath
+    UriIdentified <|-- ResourcePath
+    ResourcePathed <|-- ResourcePath
+    class ResourcePath
+    {
+        --(constructors)--
+        #ResourcePath(ResourcePath)
+        #ResourcePath(StringList, List<String>)
+        #ResourcePath(StringList, String, List<String>)
+        --(checks)--
+        +boolean hasScheme()
+        +boolean hasTrailingSlash()
+        --(collection)--
+        +StringList schemes()
+        --(filesystem)--
+        +File asFile()
+        --(path)--
+        +ResourcePath asAbsolute()
+        +FilePath asFilePath()
+        +ResourcePath normalized()
+        +ResourcePath parseResourcePath(Listener, String path)
+        +ResourcePath parseUnixResourcePath(Listener, String path)
+        +ResourcePath relativeTo(ResourcePath)
+        +ResourcePath resourcePath(StringPath)
+        +SwitchParser.Builder<ResourcePath> resourcePathSwitchParser(Listener, String name, String description)
+        +FilePath withExtension(Extension)
+        +ResourcePath withSchemes(StringList schemes)
+        +ResourcePath withoutSchemes()
+    }
+    
+    interface UriIdentified
+    UriIdentified <|-- ResourcePathed
+    ResourcePathed --> ResourcePath : "supplies"
+    interface ResourcePathed
+    {
+        --
+        +boolean matches(Matcher<String>)
+        --(filesystem)--
+        +java.io.File asJavaFile()
+        +FileName baseFileName()
+        +Extension compoundExtension()
+        +Extension extension()
+        +FileName fileName()
+        +boolean hasExtension(Extension)
+        --(network)--
+        +URL url()
+        --(path)--
+        +ResourcePath path()
+    }
+    
+@enduml
+

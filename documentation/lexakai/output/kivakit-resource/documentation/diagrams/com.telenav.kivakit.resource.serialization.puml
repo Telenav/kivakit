@@ -1,0 +1,73 @@
+
+@startuml
+
+    !include lexakai.theme
+    
+    title "com.telenav.kivakit.resource.serialization"
+    
+    enum ObjectMetadata
+    {
+        METADATA_OBJECT_INSTANCE
+        METADATA_OBJECT_TYPE
+        METADATA_OBJECT_VERSION
+    }
+    
+    interface RepeaterMixin
+    RepeaterMixin <|-- ObjectReader
+    interface ObjectReader
+    {
+        --
+        +ProgressReporter progressReporter()
+        --(read)--
+        +SerializableObject<T> readObject(InputStream, StringPath, Class<T> type, ObjectMetadata...)
+        +SerializableObject<T> readObject(InputStream, StringPath, ObjectMetadata...)
+        +SerializableObject<T> readObject(Resource, ObjectMetadata...)
+        +SerializableObject<T> readObject(Resource, Class<T> type, ObjectMetadata...)
+    }
+    
+    interface ObjectReader
+    interface ObjectWriter
+    ObjectReader <|-- ObjectSerializer
+    ObjectWriter <|-- ObjectSerializer
+    interface ObjectSerializer
+    {
+    }
+    
+    class ObjectSerializerRegistry
+    {
+        --
+        +ObjectSerializer serializer(Extension)
+        --(collection)--
+        +ObjectSerializerRegistry add(Extension, ObjectSerializer)
+        +ObjectList<ObjectSerializer> serializers()
+    }
+    
+    interface RepeaterMixin
+    interface TryTrait
+    RepeaterMixin <|-- ObjectWriter
+    TryTrait <|-- ObjectWriter
+    interface ObjectWriter
+    {
+        --
+        +ProgressReporter progressReporter()
+        --(write)--
+        +void writeObject(WritableResource, SerializableObject<T>, ObjectMetadata...)
+        +void writeObject(OutputStream, StringPath, SerializableObject<T>, ObjectMetadata...)
+        +void writeObject(OutputStream, StringPath, T object, ObjectMetadata...)
+    }
+    
+    VersionedObject <|-- SerializableObject
+    class SerializableObject<T>
+    {
+        --(constructors)--
+        +SerializableObject(T)
+        +SerializableObject(T, Version)
+        +SerializableObject(T, Version, InstanceIdentifier)
+        +SerializableObject(VersionedObject<T>)
+        +SerializableObject(VersionedObject<T>, InstanceIdentifier)
+        --(identity)--
+        +InstanceIdentifier instance()
+    }
+    
+@enduml
+

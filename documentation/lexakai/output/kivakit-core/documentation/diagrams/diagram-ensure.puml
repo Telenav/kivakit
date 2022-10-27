@@ -1,0 +1,70 @@
+
+@startuml
+
+    !include lexakai.theme
+    
+    title "diagram-ensure"
+    
+    Ensure --> EnsureProblem : "reports"
+    class Ensure
+    {
+        --
+        +T ensure(Supplier<Boolean> valid, String message, Object... arguments)
+        +T ensure(boolean condition, String message, Object... arguments)
+        +T ensure(boolean condition, Throwable, String message, Object... arguments)
+        +boolean ensure(boolean condition)
+        +void ensureNonZero(Number value)
+        +void ensureThrows(Runnable code)
+        +void ensureWithin(double expected, double actual, double maximumDifference)
+        +void ensureZero(Number value)
+        +T illegalState(String message, Object... arguments)
+        +T illegalState(Throwable, String message, Object... arguments)
+        --(checks)--
+        +double ensureBetween(double actual, double low, double high)
+        +long ensureBetweenExclusive(long value, long minimum, long maximum, String message, Object... arguments)
+        +long ensureBetweenExclusive(long value, long minimum, long maximum)
+        +long ensureBetweenInclusive(long value, long minimum, long maximum, String message, Object... arguments)
+        +long ensureBetweenInclusive(long value, long minimum, long maximum)
+        +boolean ensureClose(Duration given, Duration expected)
+        +T ensureEqual(T given, T expected, String message, Object... arguments)
+        +T ensureEqual(T given, T expected)
+        +boolean ensureFalse(boolean condition, String message, Object... arguments)
+        +boolean ensureFalse(boolean condition)
+        +T ensureNotEqual(T given, T expected, String message, Object... arguments)
+        +T ensureNotEqual(T given, T expected)
+        +T ensureNotNull(T object, String message, Object... arguments)
+        +T ensureNotNull(T object)
+        +T ensureNull(T object, String message, Object... arguments)
+        +T ensureNull(T object)
+        --(collection)--
+        +void ensureEqualArray(T[] a, T[] b)
+        +void ensureEqualArray(byte[] a, byte[], String message, Object... arguments)
+        +void ensureEqualArray(byte[] a, byte[])
+        --(command line parsing)--
+        +T illegalArgument(String message, Object... arguments)
+        --(functional)--
+        +T unimplemented()
+        +T unsupported()
+        +T unsupported(String message, Object... arguments)
+        --(io)--
+        +void ensureClose(Number given, Number expected, int numberOfDecimalsToMatch)
+        --(messaging)--
+        +void ensureBroadcastsNoProblem(T broadcaster, Consumer<T> code)
+        +void ensureBroadcastsProblem(T broadcaster, Consumer<T> code)
+        --(status)--
+        +T fail(Throwable, String message, Object... arguments)
+        +T fail()
+        +T fail(String message, Object... arguments)
+    }
+    
+    Problem <|-- EnsureProblem
+    class EnsureProblem
+    {
+        --(constructors)--
+        +EnsureProblem()
+        +EnsureProblem(String, Object)
+        +EnsureProblem(Throwable, String, Object)
+    }
+    
+@enduml
+

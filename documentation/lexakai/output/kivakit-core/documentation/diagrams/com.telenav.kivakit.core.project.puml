@@ -1,0 +1,94 @@
+
+@startuml
+
+    !include lexakai.theme
+    
+    title "com.telenav.kivakit.core.project"
+    
+    abstract BaseRepeater
+    
+    interface Named
+    interface Initializable
+    interface ProjectTrait
+    interface NamedObject
+    interface JavaTrait
+    interface RegistryTrait
+    
+    Named <|-- Build
+    Build --> String : "creates"
+    Build --> LocalDate : "creates"
+    Build --> LocalTime : "creates"
+    class Build
+    {
+        --(constructors)--
+        #Build()
+        --
+        +String property(String key)
+        --(building)--
+        +Build build(Class<?> projectType)
+        +int buildEpochDay()
+        +String buildFormattedDate()
+        +LocalDate buildJavaUtcDate()
+        +int buildNumber()
+        +LocalTime buildUtcTime()
+        --(collection)--
+        +VariableMap<String> properties()
+    }
+    
+    BaseRepeater <|-- Project
+    Initializable <|-- Project
+    NamedObject <|-- Project
+    JavaTrait <|-- Project
+    ProjectTrait <|-- Project
+    RegistryTrait <|-- Project
+    Project "1" --> "*" Class : "depends on"
+    abstract class Project
+    {
+        --
+        +ObjectSet<Class<? extends Project>> dependencies()
+        +void onInitialized()
+        +void onInitializing()
+        +String property(String key)
+        +T resolveProject(Class<T> type)
+        +void visitDependencies(Visitor)
+        --(building)--
+        +Build build()
+        --(collection)--
+        +VariableMap<String> properties()
+        --(identity)--
+        +String artifactId()
+        +String groupId()
+        +Version projectVersion()
+    }
+    
+    interface ProjectTrait
+    {
+        --
+        +Project kivakit()
+        +T project(Class<T> type)
+        --(identity)--
+        +Version kivakitVersion()
+    }
+    
+    class StartUpOptions
+    {
+        --
+        +void disableStartupOption(StartupOption)
+        +void enableStartupOption(StartupOption)
+        --(checks)--
+        +boolean isStartupOptionEnabled(StartupOption)
+    }
+    
+    enum StartUpOptions.StartupOption
+    {
+        QUIET
+    }
+    
+    interface Project.Visitor
+    {
+        --
+        +void at(Project at, int level)
+    }
+    
+@enduml
+

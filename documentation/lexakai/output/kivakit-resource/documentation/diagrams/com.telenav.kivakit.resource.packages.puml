@@ -1,0 +1,95 @@
+
+@startuml
+
+    !include lexakai.theme
+    
+    title "com.telenav.kivakit.resource.packages"
+    
+    abstract BaseRepeater
+    abstract BaseReadableResource
+    
+    interface ResourceFolder
+    interface ResourceResolver
+    interface ResourceFolderResolver
+    
+    BaseRepeater <|-- Package
+    ResourceFolder <|-- Package
+    class Package
+    {
+        --(constructors)--
+        +Package(Listener, PackagePath)
+        --
+        +Package child(String name)
+        +Package packageFor(Listener, Class<?> packageType)
+        +PackageReference reference()
+        --(collection)--
+        +PropertyMap localizedProperties(Listener, Locale, LocaleLanguage languageName)
+        --(parsing)--
+        +Package parsePackage(Listener, Class<?> packageType, String path)
+        --(path)--
+        +Package packageForPath(Listener, PackagePath)
+    }
+    
+    ResourcePath <|-- PackagePath
+    class PackagePath
+    {
+        --
+        +Class<?> packageType()
+        --(checks)--
+        +boolean hasPackageType()
+        --(conversion)--
+        +Package asPackage(Listener)
+        +PackageReference asPackageReference()
+        --(path)--
+        +Set<PackagePath> directorySubPackages(Listener)
+        +boolean isPackagePath(String path)
+        +Set<PackagePath> jarSubPackages(Listener)
+        +PackagePath packagePath(PackageReference)
+        +PackagePath packagePath(Class<?> type, StringPath)
+        +PackagePath packagePath(StringPath)
+        +PackagePath packagePath(Class<?> type)
+        +PackagePath parsePackagePath(Listener, String path)
+        +PackagePath parsePackagePath(Listener, Class<?> type, String relativePath)
+        +PackagePath withPackageType(Class<?> type)
+    }
+    
+    ResourceResolver <|-- PackageResource.PackageResolver
+    class PackageResource.PackageResolver
+    {
+    }
+    
+    BaseReadableResource <|-- PackageResource
+    class PackageResource
+    {
+        --(constructors)--
+        #PackageResource(Listener, PackagePath, ModuleResource, FileName)
+        --
+        +PackageResource packageResource(Listener, PackagePath, String path)
+        +PackageResource packageResource(Listener, Class<?> type, String path)
+        +PackageResource packageResource(Listener, PackagePath, ResourcePathed relative)
+        +PackageResource packageResource(Listener, ModuleResource)
+        +PackageResource packageResource(Listener, PackagePath, FileName)
+    }
+    
+    interface Repeater
+    Repeater <|-- PackageTrait
+    interface PackageTrait
+    {
+        --
+        +Package packageFor(Class<?> type)
+        +Package packageForThis()
+        +PackageResource packageResource(Class<?> type, String relativePath)
+        +PackageResource packageResource(String relativePath)
+        --(path)--
+        +Package packageForRelativePath(String relativePath)
+        +PackagePath packagePathFor(Class<?> type)
+        +PackagePath packagePathForThis()
+    }
+    
+    ResourceFolderResolver <|-- Package.Resolver
+    class Package.Resolver
+    {
+    }
+    
+@enduml
+

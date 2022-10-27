@@ -1,0 +1,471 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="738.5417px" preserveAspectRatio="none" style="width:885px;height:738px;background:#333333;" version="1.1" viewBox="0 0 885 738" width="885.4167px" zoomAndPan="magnify"><defs/><g><rect fill="#48494B" height="41.2028" rx="8.3333" ry="8.3333" style="stroke:#545454;stroke-width:1.0416666666666667;" width="101.0417" x="385.1563" y="2.0833"/><text fill="#C0C0C0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="20.8333" lengthAdjust="spacing" textLength="78.125" x="396.6146" y="30.5583">Projects</text><!--MD5=[762aa3d0df6a9d47bd8e105afbd066b5]
+class BaseRepeater--><rect codeLine="7" fill="#282828" height="48.055" id="BaseRepeater" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="123.9583" x="7.2917" y="53.7028"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="123.9583" x="7.2917" y="53.7028"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="123.9583" x="7.2917" y="76.7578"/><rect codeLine="7" fill="none" height="48.055" id="BaseRepeater" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="123.9583" x="7.2917" y="53.7028"/><ellipse cx="21.875" cy="69.397" fill="#C8AC00" rx="10.4167" ry="10.4167" style="stroke:#D8BC00;stroke-width:1.0416666666666667;"/><path d="M21.4681,66.099 L20.6197,69.8283 L22.3226,69.8283 Z M20.3695,64.4511 L22.5728,64.4511 L25.0326,73.5636 L23.232,73.5636 L22.6705,71.3114 L20.2596,71.3114 L19.7103,73.5636 L17.9097,73.5636 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-style="italic" font-weight="bold" lengthAdjust="spacing" textLength="86.4583" x="38.5417" y="74.1211">BaseRepeater</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="8.3333" x2="130.2083" y1="85.0911" y2="85.0911"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="8.3333" x2="130.2083" y1="93.4245" y2="93.4245"/><!--MD5=[c6dd7699ff04048cb9365e543f81bf42]
+class Initializable--><rect codeLine="9" fill="#282828" height="48.055" id="Initializable" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="113.5417" x="167.7083" y="53.7028"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="113.5417" x="167.7083" y="53.7028"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="113.5417" x="167.7083" y="76.7578"/><rect codeLine="9" fill="none" height="48.055" id="Initializable" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="113.5417" x="167.7083" y="53.7028"/><ellipse cx="182.2917" cy="69.397" fill="#008400" rx="10.4167" ry="10.4167" style="stroke:#239C23;stroke-width:1.0416666666666667;"/><path d="M179.6956,66.5588 L179.6956,64.9719 L185.1217,64.9719 L185.1217,66.5588 L183.3089,66.5588 L183.3089,72.4976 L185.1217,72.4976 L185.1217,74.0845 L179.6956,74.0845 L179.6956,72.4976 L181.5084,72.4976 L181.5084,66.5588 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-style="italic" font-weight="bold" lengthAdjust="spacing" textLength="76.0417" x="198.9583" y="74.1211">Initializable</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="168.75" x2="280.2083" y1="85.0911" y2="85.0911"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="168.75" x2="280.2083" y1="93.4245" y2="93.4245"/><!--MD5=[2d01ac37af1bea71bcd947d45699fea9]
+class ProjectTrait--><rect codeLine="10" fill="#282828" height="48.055" id="ProjectTrait" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="111.4583" x="317.7083" y="53.7028"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="111.4583" x="317.7083" y="53.7028"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="111.4583" x="317.7083" y="76.7578"/><rect codeLine="10" fill="none" height="48.055" id="ProjectTrait" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="111.4583" x="317.7083" y="53.7028"/><ellipse cx="332.2917" cy="69.397" fill="#008400" rx="10.4167" ry="10.4167" style="stroke:#239C23;stroke-width:1.0416666666666667;"/><path d="M329.6956,66.5588 L329.6956,64.9719 L335.1217,64.9719 L335.1217,66.5588 L333.3089,66.5588 L333.3089,72.4976 L335.1217,72.4976 L335.1217,74.0845 L329.6956,74.0845 L329.6956,72.4976 L331.5084,72.4976 L331.5084,66.5588 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-style="italic" font-weight="bold" lengthAdjust="spacing" textLength="73.9583" x="348.9583" y="74.1211">ProjectTrait</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="318.75" x2="428.125" y1="85.0911" y2="85.0911"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="318.75" x2="428.125" y1="93.4245" y2="93.4245"/><!--MD5=[5cc06ecdd9480702b567e3f11ad511a4]
+class NamedObject--><rect codeLine="11" fill="#282828" height="48.055" id="NamedObject" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="123.9583" x="465.625" y="53.7028"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="123.9583" x="465.625" y="53.7028"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="123.9583" x="465.625" y="76.7578"/><rect codeLine="11" fill="none" height="48.055" id="NamedObject" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="123.9583" x="465.625" y="53.7028"/><ellipse cx="480.2083" cy="69.397" fill="#008400" rx="10.4167" ry="10.4167" style="stroke:#239C23;stroke-width:1.0416666666666667;"/><path d="M477.6123,66.5588 L477.6123,64.9719 L483.0383,64.9719 L483.0383,66.5588 L481.2256,66.5588 L481.2256,72.4976 L483.0383,72.4976 L483.0383,74.0845 L477.6123,74.0845 L477.6123,72.4976 L479.425,72.4976 L479.425,66.5588 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-style="italic" font-weight="bold" lengthAdjust="spacing" textLength="86.4583" x="496.875" y="74.1211">NamedObject</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="466.6667" x2="588.5417" y1="85.0911" y2="85.0911"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="466.6667" x2="588.5417" y1="93.4245" y2="93.4245"/><!--MD5=[c20ec3b23c5cd026e431ec936aacf9ea]
+class JavaTrait--><rect codeLine="12" fill="#282828" height="48.055" id="JavaTrait" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="94.7917" x="626.0417" y="53.7028"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="94.7917" x="626.0417" y="53.7028"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="94.7917" x="626.0417" y="76.7578"/><rect codeLine="12" fill="none" height="48.055" id="JavaTrait" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="94.7917" x="626.0417" y="53.7028"/><ellipse cx="640.625" cy="69.397" fill="#008400" rx="10.4167" ry="10.4167" style="stroke:#239C23;stroke-width:1.0416666666666667;"/><path d="M638.029,66.5588 L638.029,64.9719 L643.455,64.9719 L643.455,66.5588 L641.6423,66.5588 L641.6423,72.4976 L643.455,72.4976 L643.455,74.0845 L638.029,74.0845 L638.029,72.4976 L639.8417,72.4976 L639.8417,66.5588 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-style="italic" font-weight="bold" lengthAdjust="spacing" textLength="57.2917" x="657.2917" y="74.1211">JavaTrait</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="627.0833" x2="719.7917" y1="85.0911" y2="85.0911"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="627.0833" x2="719.7917" y1="93.4245" y2="93.4245"/><!--MD5=[34eb2c3cd1bd084029c026d450c2586e]
+class RegistryTrait--><rect codeLine="13" fill="#282828" height="48.055" id="RegistryTrait" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="120.8333" x="757.8125" y="53.7028"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="120.8333" x="757.8125" y="53.7028"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="120.8333" x="757.8125" y="76.7578"/><rect codeLine="13" fill="none" height="48.055" id="RegistryTrait" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="120.8333" x="757.8125" y="53.7028"/><ellipse cx="772.3958" cy="69.397" fill="#008400" rx="10.4167" ry="10.4167" style="stroke:#239C23;stroke-width:1.0416666666666667;"/><path d="M769.7998,66.5588 L769.7998,64.9719 L775.2258,64.9719 L775.2258,66.5588 L773.4131,66.5588 L773.4131,72.4976 L775.2258,72.4976 L775.2258,74.0845 L769.7998,74.0845 L769.7998,72.4976 L771.6125,72.4976 L771.6125,66.5588 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-style="italic" font-weight="bold" lengthAdjust="spacing" textLength="83.3333" x="789.0625" y="74.1211">RegistryTrait</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="758.8542" x2="877.6042" y1="85.0911" y2="85.0911"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="758.8542" x2="877.6042" y1="93.4245" y2="93.4245"/><!--MD5=[79d378210367c0c6ec62ef762ddfbd1b]
+class Project--><rect codeLine="30" fill="#282828" height="336.9832" id="Project" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="336.4583" x="281.7708" y="186.5153"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="336.4583" x="281.7708" y="186.5153"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="336.4583" x="281.7708" y="209.5703"/><rect codeLine="30" fill="none" height="336.9832" id="Project" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="336.4583" x="281.7708" y="186.5153"/><ellipse cx="420.8333" cy="202.2095" fill="#C8AC00" rx="10.4167" ry="10.4167" style="stroke:#D8BC00;stroke-width:1.0416666666666667;"/><path d="M420.4264,198.9115 L419.578,202.6408 L421.2809,202.6408 Z M419.3278,197.2636 L421.5312,197.2636 L423.9909,206.3761 L422.1903,206.3761 L421.6288,204.1239 L419.2179,204.1239 L418.6686,206.3761 L416.8681,206.3761 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-style="italic" font-weight="bold" lengthAdjust="spacing" textLength="43.75" x="443.75" y="206.9336">Project</text><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="282.8125" x2="617.1875" y1="217.9036" y2="217.9036"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="282.8125" x2="617.1875" y1="226.237" y2="226.237"/><ellipse cx="293.2292" cy="237.6953" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="304.1667" x="304.6875" y="244.6065">ObjectSet&lt;Class&lt;? extends Project&gt;&gt; dependencies()</text><ellipse cx="293.2292" cy="257.4402" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="103.125" x="304.6875" y="264.3514">void onInitialized()</text><ellipse cx="293.2292" cy="277.1851" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="107.2917" x="304.6875" y="284.0963">void onInitializing()</text><ellipse cx="293.2292" cy="296.9299" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="148.9583" x="304.6875" y="303.8411">String property(String key)</text><ellipse cx="293.2292" cy="316.6748" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="181.25" x="304.6875" y="323.586">T resolveProject(Class&lt;T&gt; type)</text><ellipse cx="293.2292" cy="336.4197" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="172.9167" x="304.6875" y="343.3309">void visitDependencies(Visitor)</text><ellipse cx="293.2292" cy="380.0761" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="66.6667" x="304.6875" y="386.9873">Build build()</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="282.8125" x2="419.7917" y1="362.912" y2="362.912"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="54.1667" x="422.9167" y="366.7216">(building)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="480.2083" x2="617.1875" y1="362.912" y2="362.912"/><ellipse cx="293.2292" cy="423.7325" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="189.5833" x="304.6875" y="430.6437">VariableMap&lt;String&gt; properties()</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="282.8125" x2="415.625" y1="406.5684" y2="406.5684"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="62.5" x="418.75" y="410.378">(collection)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="484.375" x2="617.1875" y1="406.5684" y2="406.5684"/><ellipse cx="293.2292" cy="467.3889" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="94.7917" x="304.6875" y="474.3001">String artifactId()</text><ellipse cx="293.2292" cy="487.1338" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="89.5833" x="304.6875" y="494.045">String groupId()</text><ellipse cx="293.2292" cy="506.8787" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="136.4583" x="304.6875" y="513.7899">Version projectVersion()</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="282.8125" x2="421.875" y1="450.2248" y2="450.2248"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="50" x="425" y="454.0344">(identity)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="478.125" x2="617.1875" y1="450.2248" y2="450.2248"/><!--MD5=[548d2f05ba649d56cc61583ef4d795ed]
+class KivaKit--><rect codeLine="16" fill="#282828" height="103.123" id="KivaKit" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="230.2083" x="229.1667" y="628.7028"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="230.2083" x="229.1667" y="628.7028"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="230.2083" x="229.1667" y="651.7578"/><rect codeLine="16" fill="none" height="103.123" id="KivaKit" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="230.2083" x="229.1667" y="628.7028"/><ellipse cx="313.5417" cy="644.397" fill="#0066CF" rx="10.4167" ry="10.4167" style="stroke:#0086EF;stroke-width:1.0416666666666667;"/><path d="M315.4521,648.822 Q315.0248,649.0417 314.5549,649.1516 Q314.0849,649.2615 313.5661,649.2615 Q311.7228,649.2615 310.7524,648.0469 Q309.7819,646.8323 309.7819,644.5374 Q309.7819,642.2363 310.7524,641.0217 Q311.7228,639.8071 313.5661,639.8071 Q314.0849,639.8071 314.561,639.917 Q315.037,640.0269 315.4521,640.2466 L315.4521,642.2485 Q314.9882,641.8213 314.5518,641.6229 Q314.1154,641.4246 313.6515,641.4246 Q312.6628,641.4246 312.1592,642.2089 Q311.6557,642.9932 311.6557,644.5374 Q311.6557,646.0754 312.1592,646.8597 Q312.6628,647.644 313.6515,647.644 Q314.1154,647.644 314.5518,647.4457 Q314.9882,647.2473 315.4521,646.8201 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="46.875" x="336.4583" y="649.1211">KivaKit</text><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="230.2083" x2="458.3333" y1="660.0911" y2="660.0911"/><ellipse cx="240.625" cy="695.461" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="197.9167" x="252.0833" y="702.3722">StringPath kivakitCacheFolderPath()</text><ellipse cx="240.625" cy="715.2059" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="195.8333" x="252.0833" y="722.1171">StringPath kivakitHomeFolderPath()</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="230.2083" x2="308.8542" y1="678.2969" y2="678.2969"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="64.5833" x="311.9792" y="682.1065">(filesystem)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="379.6875" x2="458.3333" y1="678.2969" y2="678.2969"/><!--MD5=[41e1c6cf192918703501b24b2053926c]
+class Class--><rect fill="#282828" height="48.055" id="Class" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="72.9167" x="521.3542" y="656.307"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="72.9167" x="521.3542" y="656.307"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="72.9167" x="521.3542" y="679.362"/><rect fill="none" height="48.055" id="Class" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="72.9167" x="521.3542" y="656.307"/><ellipse cx="535.9375" cy="672.0011" fill="#0066CF" rx="10.4167" ry="10.4167" style="stroke:#0086EF;stroke-width:1.0416666666666667;"/><path d="M537.8479,676.4262 Q537.4207,676.6459 536.9507,676.7558 Q536.4807,676.8656 535.9619,676.8656 Q534.1187,676.8656 533.1482,675.651 Q532.1777,674.4364 532.1777,672.1415 Q532.1777,669.8405 533.1482,668.6259 Q534.1187,667.4113 535.9619,667.4113 Q536.4807,667.4113 536.9568,667.5212 Q537.4329,667.631 537.8479,667.8507 L537.8479,669.8527 Q537.384,669.4255 536.9476,669.2271 Q536.5112,669.0287 536.0474,669.0287 Q535.0586,669.0287 534.5551,669.813 Q534.0515,670.5973 534.0515,672.1415 Q534.0515,673.6796 534.5551,674.4639 Q535.0586,675.2482 536.0474,675.2482 Q536.5112,675.2482 536.9476,675.0498 Q537.384,674.8515 537.8479,674.4242 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="35.4167" x="552.6042" y="676.7253">Class</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="522.3958" x2="593.2292" y1="687.6953" y2="687.6953"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="522.3958" x2="593.2292" y1="696.0286" y2="696.0286"/><!--MD5=[38b2542b9dd06442503ab05d940767e8]
+reverse link Project to KivaKit--><path codeLine="15" d="M388.9063,543.557 C378.625,574.7965 368.7813,604.7236 360.9688,628.4736 " fill="none" id="Project-backto-KivaKit" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="382.0938,540.9528,395.5313,523.4424,395.9479,545.5049,382.0938,540.9528" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[7453806a21318ed7049d0586191cd2fc]
+reverse link BaseRepeater to Project--><path codeLine="23" d="M118.1771,114.0465 C159.8229,144.1507 222.2292,189.2445 281.7396,232.2549 " fill="none" id="BaseRepeater-backto-Project" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="113.7396,119.8278,101.125,101.7236,122.2813,108.0153,113.7396,119.8278" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[5fa296f47dfe0a5e26e311b52a20f854]
+reverse link Initializable to Project--><path codeLine="24" d="M256.8021,118.0986 C272.2708,136.9528 291.9479,160.9424 312.8125,186.3695 " fill="none" id="Initializable-backto-Project" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="250.9375,122.4528,243.3646,101.7236,262.2188,113.2028,250.9375,122.4528" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[1f13e9f7ab995e26c4706bc8b024967b]
+reverse link NamedObject to Project--><path codeLine="25" d="M515.5,121.9632 C510.4063,140.1715 504.1146,162.6507 497.4792,186.3695 " fill="none" id="NamedObject-backto-Project" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="508.5313,119.8174,521.1667,101.7236,522.5729,123.7445,508.5313,119.8174" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[6b7516cfacf2b3c19032d1171a0273fb]
+reverse link JavaTrait to Project--><path codeLine="26" d="M641.5625,118.0986 C626.3125,136.9528 606.8958,160.9424 586.3229,186.3695 " fill="none" id="JavaTrait-backto-Project" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="636.0417,113.3278,654.8125,101.7236,647.375,122.5049,636.0417,113.3278" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[da352d58be9a77439d1959794f1aa796]
+reverse link ProjectTrait to Project--><path codeLine="27" d="M385.5417,121.9632 C390.6354,140.1715 396.9271,162.6507 403.5625,186.3695 " fill="none" id="ProjectTrait-backto-Project" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="378.4688,123.7445,379.875,101.7236,392.5104,119.8174,378.4688,123.7445" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[8b3669c2cea3f58b0a0e93f01eb415f4]
+reverse link RegistryTrait to Project--><path codeLine="28" d="M770.75,114.2757 C731.8125,143.4528 674.2292,186.5986 618.5938,228.2861 " fill="none" id="RegistryTrait-backto-Project" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="766.4688,108.3799,787.5104,101.7236,775.2083,120.0465,766.4688,108.3799" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[71a06216e212f516944bb6287757ed0f]
+link Project to Class--><path codeLine="29" d="M506.0521,523.4424 C522.4167,572.7028 538.5521,621.2549 548.3438,650.734 " fill="none" id="Project-to-Class" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#545454" points="550.1042,656.0049,551.1108,645.7952,548.4661,651.0609,543.2004,648.4161,550.1042,656.0049" style="stroke:#545454;stroke-width:1.5625;"/><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="76.0417" x="533.8542" y="590.7878">depends on</text><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="8.3333" x="496.9556" y="547.3188">1</text><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="6.25" x="537.5013" y="642.3624">*</text><!--MD5=[47edf50c11cc7502fdcef944a5f41137]
+@startuml
+
+    !include lexakai.theme
+    
+    title "Projects"
+    
+    abstract BaseRepeater
+    
+    interface Initializable
+    interface ProjectTrait
+    interface NamedObject
+    interface JavaTrait
+    interface RegistryTrait
+    
+    Project <|- - KivaKit
+    class KivaKit
+    {
+        - -(filesystem)- -
+        +StringPath kivakitCacheFolderPath()
+        +StringPath kivakitHomeFolderPath()
+    }
+    
+    BaseRepeater <|- - Project
+    Initializable <|- - Project
+    NamedObject <|- - Project
+    JavaTrait <|- - Project
+    ProjectTrait <|- - Project
+    RegistryTrait <|- - Project
+    Project "1" - -> "*" Class : "depends on"
+    abstract class Project
+    {
+        - -
+        +ObjectSet<Class<? extends Project>> dependencies()
+        +void onInitialized()
+        +void onInitializing()
+        +String property(String key)
+        +T resolveProject(Class<T> type)
+        +void visitDependencies(Visitor)
+        - -(building)- -
+        +Build build()
+        - -(collection)- -
+        +VariableMap<String> properties()
+        - -(identity)- -
+        +String artifactId()
+        +String groupId()
+        +Version projectVersion()
+    }
+    
+@enduml
+
+@startuml
+
+
+
+
+
+
+
+
+
+skinparam backgroundColor #333333
+
+
+
+
+
+
+skinparam  {
+    defaultFontName   "Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif"
+    defaultFontSize   12
+    defaultTextAlignment left
+    shadowing false
+    RoundCorner 10
+    TitleFontSize 18
+}
+
+skinparam defaultFontName       "Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif"
+skinparam defaultFontSize       12
+skinparam dpi                   100
+skinparam shadowing             false
+skinparam roundcorner           16
+skinparam ParticipantPadding    40
+skinparam BoxPadding            40
+skinparam Padding               3
+skinparam ArrowColor            #545454
+skinparam stereotype {
+    CBackgroundColor #0066cf
+    CBorderColor #0086ef
+    ABackgroundColor #C8Ac00
+    ABorderColor #D8Bc00
+    IBackgroundColor #008400
+    IBorderColor #239c23
+    EBackgroundColor #cf6300
+    EBorderColor #ef8300
+    NBackgroundColor #3380b9
+    NBorderColor #004d86
+}
+skinparam title {
+	FontColor	                 #c0c0c0
+ 	BorderColor                  #545454
+	FontSize	    	         20
+	BorderRoundCorner            16
+	BorderThickness 	         1
+	BackgroundColor              #48494b
+}
+
+
+skinparam legend {
+	BackgroundColor #303030
+	BorderColor #404040
+	FontColor #a0a0a0
+}
+
+	skinparam swimlane {
+	BorderColor #5e5e5e
+	BorderThickness 2
+	TitleBackgroundColor  #6d6d6d-#484848
+	TitleFontColor #303030
+}
+
+skinparam activity {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BarColor #00FF00
+	StartColor #0060a8
+	EndColor #0060a8
+	DiamondBackgroundColor #6d6d6d-#3a3a3a
+  	DiamondBorderColor #3a3a3a
+  	DiamondFontColor #fefefe
+}
+
+
+skinparam participant {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	ParticipantBorderThickness 2
+}
+
+
+skinparam actor {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam arrow {
+	Thickness 1.5
+	Color #545454
+	FontColor #a0a0a0
+    FontStyle bold
+    MessageAlignment center
+}
+
+
+
+skinparam sequence {
+	BorderColor #303030
+	TitleFontColor #303030
+	BackgroundColor #333333
+	StartColor #303030
+	EndColor #303030
+	BoxBackgroundColor #333333
+	BoxBorderColor #484848
+	BoxFontColor #484848
+	LifeLineBorderColor #484848
+	LifeLineBorderThickness 2
+	LifeLineBackgroundColor #3a3a3a
+	GroupBorderColor #484848
+	GroupFontColor #484848
+	GroupHeaderFontColor #0060a8
+	GroupBackgroundColor #484848
+	GroupHeaderBackgroundColor #333333
+	DividerBackgroundColor #484848
+    DividerBorderColor #484848
+    DividerBorderThickness 2
+    DividerFontColor #D8Bc00
+	ReferenceBackgroundColor #333333
+	ReferenceBorderColor #484848
+	ReferenceFontColor #fefefe
+	ReferenceHeaderBackgroundColor #484848
+}
+
+
+skinparam partition {
+	BorderColor #303030
+	FontColor #333333
+	BackgroundColor #333333
+}
+
+
+skinparam collections {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam control {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam entity {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam boundary {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam agent {
+	BackgroundColor #ff8000
+	BorderColor #ff9933
+	FontColor #484848
+}
+
+
+skinparam note {
+	BorderThickness 1
+	BackgroundColor #1b1b1a
+	BorderColor #5e5e5e
+	FontSize 11
+	FontColor #a0a0a0
+}
+
+
+skinparam artifact {
+	BorderThickness 10
+	BorderColor #5e5e5e
+	BackgroundColor #1b1b1a
+	FontColor #D8Bc00
+}
+
+
+skinparam component {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam interface {
+	BackgroundColor  #008400
+	BorderColor  #007F00
+	FontColor #484848
+}
+
+
+skinparam storage {
+	BackgroundColor #ff8000
+  	BorderColor #cc6600
+	FontColor #222222
+}
+
+
+skinparam node {
+	BackgroundColor #333333
+	BorderColor #333333
+	FontColor #C8Ac00
+}
+
+
+skinparam cloud {
+	BackgroundColor #484848-black
+	BorderColor #484848
+	FontColor #D8Bc00
+}
+
+
+skinparam database {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BackgroundColor  #333333
+}
+
+
+skinparam class {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	HeaderBackgroundColor #1b1b1a
+    BackgroundColor #282828
+    BorderColor #5e5e5e
+ 	StereotypeFontColor #a0a0a0
+    StereotypeFontStyle bold
+	BorderThickness 1
+	AttributeFontColor #D8Bc00
+	AttributeFontSize 11
+    FontColor #D8Bc00
+    FontStyle bold
+}
+
+
+skinparam object {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	StereotypeFontColor #484848
+	BorderThickness 1
+	AttributeFontColor #fefefe
+	AttributeFontSize 11
+}
+
+
+skinparam usecase {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BorderThickness 2
+	StereotypeFontColor #303030
+}
+
+
+skinparam rectangle {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BackgroundColor #333333
+	BorderThickness 2
+	StereotypeFontColor #303030
+}
+
+
+skinparam package {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BackgroundColor #333333
+	BorderThickness 2
+}
+
+
+skinparam folder {
+	BackgroundColor #6d6d6d
+  	BorderColor #ff8000
+	FontColor #ff8000
+	BorderThickness 2
+}
+
+
+skinparam frame {
+	BackgroundColor #6d6d6d
+  	BorderColor #0060a8
+	FontColor #0060a8
+	BorderThickness 2
+}
+
+
+skinparam state {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	StartColor #0060a8
+	EndColor #0060a8
+	AttributeFontColor #fefefe
+	AttributeFontSize 11
+}
+
+
+skinparam queue {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam card {
+	BackgroundColor #0060a8
+	BorderColor #004d86
+	FontColor $INFO_TEXT
+}
+
+
+skinparam file {
+	BackgroundColor #6d6d6d-#484848
+	BorderColor #0060a8
+	FontColor #fefefe
+}
+
+
+skinparam stack {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+    
+    title "Projects"
+    
+    abstract BaseRepeater
+    
+    interface Initializable
+    interface ProjectTrait
+    interface NamedObject
+    interface JavaTrait
+    interface RegistryTrait
+    
+    Project <|- - KivaKit
+    class KivaKit
+    {
+        - -(filesystem)- -
+        +StringPath kivakitCacheFolderPath()
+        +StringPath kivakitHomeFolderPath()
+    }
+    
+    BaseRepeater <|- - Project
+    Initializable <|- - Project
+    NamedObject <|- - Project
+    JavaTrait <|- - Project
+    ProjectTrait <|- - Project
+    RegistryTrait <|- - Project
+    Project "1" - -> "*" Class : "depends on"
+    abstract class Project
+    {
+        - -
+        +ObjectSet<Class<? extends Project>> dependencies()
+        +void onInitialized()
+        +void onInitializing()
+        +String property(String key)
+        +T resolveProject(Class<T> type)
+        +void visitDependencies(Visitor)
+        - -(building)- -
+        +Build build()
+        - -(collection)- -
+        +VariableMap<String> properties()
+        - -(identity)- -
+        +String artifactId()
+        +String groupId()
+        +Version projectVersion()
+    }
+    
+@enduml
+
+PlantUML version 1.2021.01(Tue Feb 02 00:55:08 MST 2021)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Default Encoding: UTF-8
+Language: en
+Country: US
+--></g></svg>

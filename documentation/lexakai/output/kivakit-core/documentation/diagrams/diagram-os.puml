@@ -1,0 +1,32 @@
+
+@startuml
+
+    !include lexakai.theme
+    
+    title "diagram-os"
+    
+    interface Named
+    
+    Named <|-- OperatingSystem
+    class OperatingSystem
+    {
+        --
+        +String execute(Listener, File folder, String... command)
+        +String javaExecutable()
+        +String javaHome()
+        +OperatingSystem operatingSystem()
+        +OperatingSystemType operatingSystemType()
+        +ProcessorArchitecture processorArchitecture()
+        +String systemPropertyOrEnvironmentVariable(String variable)
+        --(checks)--
+        +boolean isMac()
+        +boolean isUnix()
+        +boolean isWindows()
+        --(collection)--
+        +VariableMap<String> environmentVariables()
+        --(identity)--
+        +int processIdentifier()
+    }
+    
+@enduml
+

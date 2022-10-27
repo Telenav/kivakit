@@ -1,0 +1,116 @@
+
+@startuml
+
+    !include lexakai.theme
+    
+    title "Network Locations"
+    
+    abstract BaseReadableResource
+    
+    interface NetworkResource
+    interface Comparable
+    interface Validatable
+    interface StringFormattable
+    
+    BaseReadableResource <|-- BaseNetworkResource
+    NetworkResource <|-- BaseNetworkResource
+    abstract class BaseNetworkResource
+    {
+        --(constructors)--
+        #BaseNetworkResource(BaseReadableResource)
+        #BaseNetworkResource(NetworkLocation)
+        --(network)--
+        +URI asUri()
+        +URL asUrl()
+    }
+    
+    Validatable <|-- NetworkAccessConstraints
+    NetworkAccessConstraints o-- Duration
+    NetworkAccessConstraints o-- UserName
+    NetworkAccessConstraints o-- Password
+    class NetworkAccessConstraints
+    {
+        --
+        +void password(Password)
+        +Password password()
+        --(naming)--
+        +void userName(UserName)
+        +UserName userName()
+        --(network)--
+        +NetworkAccessConstraints defaultNetworkAccessConstraints()
+        +Duration timeout()
+        +NetworkAccessConstraints timeout(Duration timeout)
+    }
+    
+    StringFormattable <|-- NetworkLocation
+    Comparable <|-- NetworkLocation
+    NetworkLocation o-- NetworkAccessConstraints
+    NetworkLocation o-- NetworkPath
+    NetworkLocation o-- Port
+    NetworkLocation o-- QueryParameters : "optional"
+    class NetworkLocation
+    {
+        --(constructors)--
+        +NetworkLocation(NetworkLocation)
+        +NetworkLocation(NetworkPath)
+        --
+        +void constraints(NetworkAccessConstraints)
+        +void reference(String fragment)
+        +String reference()
+        --(checks)--
+        +boolean isChildOf(NetworkLocation that)
+        --(network)--
+        +URI asUri()
+        +URL asUrl()
+        +NetworkAccessConstraints constraints()
+        +Host host()
+        +NetworkLocation networkLocation(Listener, URI)
+        +NetworkPath networkPath()
+        +NetworkLocation parseNetworkLocation(Listener, String text)
+        +Port port()
+        +Protocol protocol()
+        +NetworkLocation withPath(NetworkPath)
+        +NetworkLocation withQueryParameters(QueryParameters)
+        --(search)--
+        +QueryParameters queryParameters()
+        +void queryParameters(QueryParameters)
+    }
+    
+    FilePath <|-- NetworkPath
+    class NetworkPath
+    {
+        --(constructors)--
+        #NetworkPath(NetworkPath)
+        #NetworkPath(Port, String, List<String>)
+        #NetworkPath(Port, StringPath)
+        --(network)--
+        +NetworkPath networkPath(Listener, Port, String path)
+        +NetworkPath networkPath(Listener, URI)
+        +SwitchParser.Builder<NetworkPath> networkPathSwitchParser(Listener, String name, String description)
+        +NetworkPath parseNetworkPath(Listener, String text)
+        +Port port()
+    }
+    
+    interface Resource
+    Resource <|-- NetworkResource
+    NetworkResource --> NetworkLocation : "located at"
+    interface NetworkResource
+    {
+        --(network)--
+        +NetworkLocation location()
+    }
+    
+    class QueryParameters
+    {
+        --(constructors)--
+        #QueryParameters(String)
+        +QueryParameters(VariableMap<String>)
+        --(collection)--
+        +VariableMap<String> asVariableMap()
+        +boolean isEmpty()
+        --(search)--
+        +QueryParameters parseQueryParameters(Listener, String text)
+    }
+    
+@enduml
+

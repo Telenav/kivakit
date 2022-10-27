@@ -1,0 +1,40 @@
+
+@startuml
+
+    !include lexakai.theme
+    
+    title "com.telenav.kivakit.core.progress"
+    
+    interface ProgressListener
+    {
+        --
+        +void at(Percent at)
+    }
+    
+    interface Resettable
+    Resettable <|-- ProgressReporter
+    ProgressReporter --> ProgressListener : "reports progress to"
+    interface ProgressReporter
+    {
+        --
+        +ProgressReporter nullProgressReporter()
+        +ProgressReporter phase(String phase)
+        +ProgressReporter progressReporter(ProgressListener)
+        +ProgressReporter steps(BaseCount<?> steps)
+        --(checks)--
+        +boolean isIndefinite()
+        --(collection)--
+        +Count steps()
+        --(iteration)--
+        +void next()
+        +void next(Count steps)
+        +void next(int steps)
+        --(lifecycle)--
+        +void end()
+        +void end(String message, Object... arguments)
+        +ProgressReporter start()
+        +ProgressReporter start(String label)
+    }
+    
+@enduml
+

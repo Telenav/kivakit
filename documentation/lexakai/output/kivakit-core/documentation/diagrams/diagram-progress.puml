@@ -1,0 +1,95 @@
+
+@startuml
+
+    !include lexakai.theme
+    
+    title "diagram-progress"
+    
+    interface ProgressReporter
+    
+    Multicaster <|-- BroadcastingProgressReporter
+    ProgressReporter <|-- BroadcastingProgressReporter
+    class BroadcastingProgressReporter
+    {
+        --(constructors)--
+        #BroadcastingProgressReporter()
+        #BroadcastingProgressReporter(BroadcastingProgressReporter)
+        --
+        +void at(long at)
+        +long at()
+        +BroadcastingProgressReporter concurrentProgressReporter(Listener, String itemName, BaseCount<?> steps)
+        +BroadcastingProgressReporter concurrentProgressReporter(Listener, String itemName)
+        +BroadcastingProgressReporter concurrentProgressReporter(Listener)
+        +void feedback(String message)
+        +BroadcastingProgressReporter progressReporter(Listener)
+        +BroadcastingProgressReporter progressReporter(Listener, String itemName, BaseCount<?> steps)
+        +BroadcastingProgressReporter progressReporter()
+        +BroadcastingProgressReporter progressReporter(Listener, String itemName)
+        #long increase(long increase)
+        --(filesystem)--
+        #BroadcastingProgressReporter copy()
+        --(functional)--
+        +BroadcastingProgressReporter withPhase(String phase)
+        +BroadcastingProgressReporter withSteps(BaseCount<?> steps)
+        +BroadcastingProgressReporter withUnits(String unitName)
+        --(iteration)--
+        +void next(long increase)
+        --(math)--
+        #long increment()
+    }
+    
+    BroadcastingProgressReporter <|-- ConcurrentBroadcastingProgressReporter
+    class ConcurrentBroadcastingProgressReporter
+    {
+        --(constructors)--
+        #ConcurrentBroadcastingProgressReporter()
+        +ConcurrentBroadcastingProgressReporter(BroadcastingProgressReporter)
+    }
+    
+    interface ProgressListener
+    {
+        --
+        +void at(Percent at)
+    }
+    
+    interface Resettable
+    Resettable <|-- ProgressReporter
+    ProgressReporter --> ProgressListener : "reports progress to"
+    interface ProgressReporter
+    {
+        --
+        +ProgressReporter nullProgressReporter()
+        +ProgressReporter phase(String phase)
+        +ProgressReporter progressReporter(ProgressListener)
+        +ProgressReporter steps(BaseCount<?> steps)
+        --(checks)--
+        +boolean isIndefinite()
+        --(collection)--
+        +Count steps()
+        --(iteration)--
+        +void next()
+        +void next(Count steps)
+        +void next(int steps)
+        --(lifecycle)--
+        +void end()
+        +void end(String message, Object... arguments)
+        +ProgressReporter start()
+        +ProgressReporter start(String label)
+    }
+    
+    InputStream <|-- ProgressiveInputStream
+    class ProgressiveInputStream
+    {
+        --(constructors)--
+        +ProgressiveInputStream(InputStream, ProgressReporter)
+    }
+    
+    OutputStream <|-- ProgressiveOutputStream
+    class ProgressiveOutputStream
+    {
+        --(constructors)--
+        +ProgressiveOutputStream(OutputStream, ProgressReporter)
+    }
+    
+@enduml
+

@@ -1,0 +1,545 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="607.2917px" preserveAspectRatio="none" style="width:1520px;height:607px;background:#333333;" version="1.1" viewBox="0 0 1520 607" width="1520.8333px" zoomAndPan="magnify"><defs/><g><rect fill="#48494B" height="41.2028" rx="8.3333" ry="8.3333" style="stroke:#545454;stroke-width:1.0416666666666667;" width="293.75" x="606.25" y="2.0833"/><text fill="#C0C0C0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="20.8333" lengthAdjust="spacing" textLength="270.8333" x="617.7083" y="30.5583">com.telenav.kivakit.core.os</text><!--MD5=[7c5c88a606935469d5f89b0b5794816c]
+class Named--><rect codeLine="7" fill="#282828" height="48.055" id="Named" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="82.2917" x="896.3542" y="93.2861"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="82.2917" x="896.3542" y="93.2861"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="82.2917" x="896.3542" y="116.3411"/><rect codeLine="7" fill="none" height="48.055" id="Named" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="82.2917" x="896.3542" y="93.2861"/><ellipse cx="910.9375" cy="108.9803" fill="#008400" rx="10.4167" ry="10.4167" style="stroke:#239C23;stroke-width:1.0416666666666667;"/><path d="M908.3415,106.1422 L908.3415,104.5553 L913.7675,104.5553 L913.7675,106.1422 L911.9548,106.1422 L911.9548,112.0809 L913.7675,112.0809 L913.7675,113.6678 L908.3415,113.6678 L908.3415,112.0809 L910.1542,112.0809 L910.1542,106.1422 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-style="italic" font-weight="bold" lengthAdjust="spacing" textLength="44.7917" x="927.6042" y="113.7044">Named</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="897.3958" x2="977.6042" y1="124.6745" y2="124.6745"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="897.3958" x2="977.6042" y1="133.0078" y2="133.0078"/><!--MD5=[085076096658226fe7d3ac7a26d9b629]
+class Listener--><rect codeLine="8" fill="#282828" height="48.055" id="Listener" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="89.5833" x="1227.0833" y="93.2861"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="89.5833" x="1227.0833" y="93.2861"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="89.5833" x="1227.0833" y="116.3411"/><rect codeLine="8" fill="none" height="48.055" id="Listener" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="89.5833" x="1227.0833" y="93.2861"/><ellipse cx="1241.6667" cy="108.9803" fill="#008400" rx="10.4167" ry="10.4167" style="stroke:#239C23;stroke-width:1.0416666666666667;"/><path d="M1239.0706,106.1422 L1239.0706,104.5553 L1244.4967,104.5553 L1244.4967,106.1422 L1242.6839,106.1422 L1242.6839,112.0809 L1244.4967,112.0809 L1244.4967,113.6678 L1239.0706,113.6678 L1239.0706,112.0809 L1240.8834,112.0809 L1240.8834,106.1422 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-style="italic" font-weight="bold" lengthAdjust="spacing" textLength="52.0833" x="1258.3333" y="113.7044">Listener</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="1228.125" x2="1315.625" y1="124.6745" y2="124.6745"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="1228.125" x2="1315.625" y1="133.0078" y2="133.0078"/><!--MD5=[c1a1fc4cfe30b7d369738b7190ecddf1]
+class Flushable--><rect codeLine="9" fill="#282828" height="48.055" id="Flushable" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="100" x="1353.125" y="93.2861"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="100" x="1353.125" y="93.2861"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="100" x="1353.125" y="116.3411"/><rect codeLine="9" fill="none" height="48.055" id="Flushable" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="100" x="1353.125" y="93.2861"/><ellipse cx="1367.7083" cy="108.9803" fill="#008400" rx="10.4167" ry="10.4167" style="stroke:#239C23;stroke-width:1.0416666666666667;"/><path d="M1365.1123,106.1422 L1365.1123,104.5553 L1370.5383,104.5553 L1370.5383,106.1422 L1368.7256,106.1422 L1368.7256,112.0809 L1370.5383,112.0809 L1370.5383,113.6678 L1365.1123,113.6678 L1365.1123,112.0809 L1366.925,112.0809 L1366.925,106.1422 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-style="italic" font-weight="bold" lengthAdjust="spacing" textLength="62.5" x="1384.375" y="113.7044">Flushable</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="1354.1667" x2="1452.0833" y1="124.6745" y2="124.6745"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="1354.1667" x2="1452.0833" y1="133.0078" y2="133.0078"/><!--MD5=[315b61b427ec618d6861d47eee00cca3]
+class Console--><rect codeLine="13" fill="#282828" height="190.4358" id="Console" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="352.0833" x="1161.4583" y="326.0986"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="352.0833" x="1161.4583" y="326.0986"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="352.0833" x="1161.4583" y="349.1536"/><rect codeLine="13" fill="none" height="190.4358" id="Console" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="352.0833" x="1161.4583" y="326.0986"/><ellipse cx="1303.6458" cy="341.7928" fill="#0066CF" rx="10.4167" ry="10.4167" style="stroke:#0086EF;stroke-width:1.0416666666666667;"/><path d="M1305.5562,346.2179 Q1305.129,346.4376 1304.659,346.5474 Q1304.189,346.6573 1303.6702,346.6573 Q1301.827,346.6573 1300.8565,345.4427 Q1299.8861,344.2281 1299.8861,341.9332 Q1299.8861,339.6322 1300.8565,338.4176 Q1301.827,337.203 1303.6702,337.203 Q1304.189,337.203 1304.6651,337.3128 Q1305.1412,337.4227 1305.5562,337.6424 L1305.5562,339.6444 Q1305.0924,339.2171 1304.656,339.0188 Q1304.2196,338.8204 1303.7557,338.8204 Q1302.7669,338.8204 1302.2634,339.6047 Q1301.7598,340.389 1301.7598,341.9332 Q1301.7598,343.4713 1302.2634,344.2556 Q1302.7669,345.0399 1303.7557,345.0399 Q1304.2196,345.0399 1304.656,344.8415 Q1305.0924,344.6431 1305.5562,344.2159 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="53.125" x="1326.5625" y="346.5169">Console</text><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="1162.5" x2="1512.5" y1="357.487" y2="357.487"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="1162.5" x2="1512.5" y1="365.8203" y2="365.8203"/><ellipse cx="1172.9167" cy="377.2786" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="101.0417" x="1184.375" y="384.1899">Console console()</text><ellipse cx="1172.9167" cy="397.0235" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="309.375" x="1184.375" y="403.9347">void print(OutputType, String text, Object... arguments)</text><ellipse cx="1172.9167" cy="416.7684" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="236.4583" x="1184.375" y="423.6796">void print(String text, Object... arguments)</text><ellipse cx="1172.9167" cy="436.5133" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="319.7917" x="1184.375" y="443.4245">void println(OutputType, String text, Object... arguments)</text><ellipse cx="1172.9167" cy="456.2581" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="246.875" x="1184.375" y="463.1694">void println(String text, Object... arguments)</text><ellipse cx="1172.9167" cy="499.9146" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="131.25" x="1184.375" y="506.8258">PrintWriter printWriter()</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="1162.5" x2="1316.6667" y1="482.7504" y2="482.7504"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="35.4167" x="1319.7917" y="486.5601">(write)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="1358.3333" x2="1512.5" y1="482.7504" y2="482.7504"/><!--MD5=[ec5cd1b38ea036ec23b67d82d9cb462b]
+class ConsoleTrait--><rect codeLine="25" fill="#282828" height="87.5448" id="ConsoleTrait" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="279.1667" x="40.625" y="73.4945"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="279.1667" x="40.625" y="73.4945"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="279.1667" x="40.625" y="96.5495"/><rect codeLine="25" fill="none" height="87.5448" id="ConsoleTrait" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="279.1667" x="40.625" y="73.4945"/><ellipse cx="131.25" cy="89.1886" fill="#008400" rx="10.4167" ry="10.4167" style="stroke:#239C23;stroke-width:1.0416666666666667;"/><path d="M128.654,86.3505 L128.654,84.7636 L134.08,84.7636 L134.08,86.3505 L132.2673,86.3505 L132.2673,92.2892 L134.08,92.2892 L134.08,93.8761 L128.654,93.8761 L128.654,92.2892 L130.4667,92.2892 L130.4667,86.3505 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-style="italic" font-weight="bold" lengthAdjust="spacing" textLength="83.3333" x="154.1667" y="93.9128">ConsoleTrait</text><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="41.6667" x2="318.75" y1="104.8828" y2="104.8828"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="41.6667" x2="318.75" y1="113.2161" y2="113.2161"/><ellipse cx="52.0833" cy="124.6745" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="236.4583" x="63.5417" y="131.5857">void print(String text, Object... arguments)</text><ellipse cx="52.0833" cy="144.4194" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="246.875" x="63.5417" y="151.3306">void println(String text, Object... arguments)</text><!--MD5=[99ce642fc2b4e1123d74d20c36a45567]
+class OperatingSystem--><rect codeLine="33" fill="#282828" height="356.7281" id="OperatingSystem" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="375" x="750" y="243.2861"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="375" x="750" y="243.2861"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="375" x="750" y="266.3411"/><rect codeLine="33" fill="none" height="356.7281" id="OperatingSystem" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="375" x="750" y="243.2861"/><ellipse cx="874.4792" cy="258.9803" fill="#0066CF" rx="10.4167" ry="10.4167" style="stroke:#0086EF;stroke-width:1.0416666666666667;"/><path d="M876.3896,263.4054 Q875.9623,263.6251 875.4924,263.7349 Q875.0224,263.8448 874.5036,263.8448 Q872.6603,263.8448 871.6899,262.6302 Q870.7194,261.4156 870.7194,259.1207 Q870.7194,256.8197 871.6899,255.6051 Q872.6603,254.3905 874.5036,254.3905 Q875.0224,254.3905 875.4985,254.5003 Q875.9745,254.6102 876.3896,254.8299 L876.3896,256.8319 Q875.9257,256.4046 875.4893,256.2063 Q875.0529,256.0079 874.589,256.0079 Q873.6003,256.0079 873.0967,256.7922 Q872.5932,257.5765 872.5932,259.1207 Q872.5932,260.6588 873.0967,261.4431 Q873.6003,262.2274 874.589,262.2274 Q875.0529,262.2274 875.4893,262.029 Q875.9257,261.8306 876.3896,261.4034 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="111.4583" x="897.3958" y="263.7044">OperatingSystem</text><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="751.0417" x2="1123.9583" y1="274.6745" y2="274.6745"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="751.0417" x2="1123.9583" y1="283.0078" y2="283.0078"/><ellipse cx="761.4583" cy="294.4661" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="302.0833" x="772.9167" y="301.3774">String execute(Listener, File folder, String... command)</text><ellipse cx="761.4583" cy="314.211" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="127.0833" x="772.9167" y="321.1222">String javaExecutable()</text><ellipse cx="761.4583" cy="333.9559" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="98.9583" x="772.9167" y="340.8671">String javaHome()</text><ellipse cx="761.4583" cy="353.7008" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="201.0417" x="772.9167" y="360.612">OperatingSystem operatingSystem()</text><ellipse cx="761.4583" cy="373.4456" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="255.2083" x="772.9167" y="380.3569">OperatingSystemType operatingSystemType()</text><ellipse cx="761.4583" cy="393.1905" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="264.5833" x="772.9167" y="400.1017">ProcessorArchitecture processorArchitecture()</text><ellipse cx="761.4583" cy="412.9354" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="342.7083" x="772.9167" y="419.8466">String systemPropertyOrEnvironmentVariable(String variable)</text><ellipse cx="761.4583" cy="456.5918" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="87.5" x="772.9167" y="463.503">boolean isMac()</text><ellipse cx="761.4583" cy="476.3367" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="91.6667" x="772.9167" y="483.2479">boolean isUnix()</text><ellipse cx="761.4583" cy="496.0815" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="114.5833" x="772.9167" y="502.9928">boolean isWindows()</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="751.0417" x2="910.9375" y1="439.4277" y2="439.4277"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="46.875" x="914.0625" y="443.2373">(checks)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="964.0625" x2="1123.9583" y1="439.4277" y2="439.4277"/><ellipse cx="761.4583" cy="539.738" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="253.125" x="772.9167" y="546.6492">VariableMap&lt;String&gt; environmentVariables()</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="751.0417" x2="903.125" y1="522.5739" y2="522.5739"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="62.5" x="906.25" y="526.3835">(collection)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="971.875" x2="1123.9583" y1="522.5739" y2="522.5739"/><ellipse cx="761.4583" cy="583.3944" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="120.8333" x="772.9167" y="590.3056">int processIdentifier()</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="751.0417" x2="909.375" y1="566.2303" y2="566.2303"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="50" x="912.5" y="570.0399">(identity)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="965.625" x2="1123.9583" y1="566.2303" y2="566.2303"/><!--MD5=[c94047b2de38e7dae3498b7e0721dc05]
+class OperatingSystem.OperatingSystemType--><rect codeLine="53" fill="#282828" height="127.0345" id="OperatingSystem.OperatingSystemType" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="294.7917" x="356.7708" y="53.7028"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="294.7917" x="356.7708" y="53.7028"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="294.7917" x="356.7708" y="76.7578"/><rect codeLine="53" fill="none" height="127.0345" id="OperatingSystem.OperatingSystemType" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="294.7917" x="356.7708" y="53.7028"/><ellipse cx="371.3542" cy="69.397" fill="#CF6300" rx="10.4167" ry="10.4167" style="stroke:#EF8300;stroke-width:1.0416666666666667;"/><path d="M374.41,74.0845 L368.7337,74.0845 L368.7337,64.9719 L374.41,64.9719 L374.41,66.5588 L370.5343,66.5588 L370.5343,68.5242 L374.0438,68.5242 L374.0438,70.1111 L370.5343,70.1111 L370.5343,72.4976 L374.41,72.4976 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="257.2917" x="388.0208" y="74.1211">OperatingSystem.OperatingSystemType</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="357.8125" x2="650.5208" y1="85.0911" y2="85.0911"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="41.6667" x="366.1458" y="103.4607">MACOS</text><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="60.4167" x="366.1458" y="123.2056">OTHER_OS</text><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="27.0833" x="366.1458" y="142.9504">UNIX</text><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="54.1667" x="366.1458" y="162.6953">WINDOWS</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="357.8125" x2="650.5208" y1="172.404" y2="172.404"/><!--MD5=[9a70f518f9da91711b4788d08faf8a16]
+class Console.OutputType--><rect codeLine="61" fill="#282828" height="87.5448" id="Console.OutputType" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="170.8333" x="688.5417" y="73.4945"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="170.8333" x="688.5417" y="73.4945"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="170.8333" x="688.5417" y="96.5495"/><rect codeLine="61" fill="none" height="87.5448" id="Console.OutputType" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="170.8333" x="688.5417" y="73.4945"/><ellipse cx="703.125" cy="89.1886" fill="#CF6300" rx="10.4167" ry="10.4167" style="stroke:#EF8300;stroke-width:1.0416666666666667;"/><path d="M706.1808,93.8761 L700.5046,93.8761 L700.5046,84.7636 L706.1808,84.7636 L706.1808,86.3505 L702.3051,86.3505 L702.3051,88.3158 L705.8146,88.3158 L705.8146,89.9028 L702.3051,89.9028 L702.3051,92.2892 L706.1808,92.2892 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="133.3333" x="719.7917" y="93.9128">Console.OutputType</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="689.5833" x2="858.3333" y1="104.8828" y2="104.8828"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="37.5" x="697.9167" y="123.2524">ERROR</text><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="48.9583" x="697.9167" y="142.9972">NORMAL</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="689.5833" x2="858.3333" y1="152.7059" y2="152.7059"/><!--MD5=[d3016598afa6510eabfc30c2ce3327a6]
+class Processes--><rect codeLine="67" fill="#282828" height="198.7691" id="Processes" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="345.8333" x="7.2917" y="321.932"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="345.8333" x="7.2917" y="321.932"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="345.8333" x="7.2917" y="344.987"/><rect codeLine="67" fill="none" height="198.7691" id="Processes" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="345.8333" x="7.2917" y="321.932"/><ellipse cx="141.1458" cy="337.6261" fill="#0066CF" rx="10.4167" ry="10.4167" style="stroke:#0086EF;stroke-width:1.0416666666666667;"/><path d="M143.0562,342.0512 Q142.629,342.2709 142.159,342.3808 Q141.689,342.4906 141.1702,342.4906 Q139.327,342.4906 138.3565,341.276 Q137.3861,340.0614 137.3861,337.7665 Q137.3861,335.4655 138.3565,334.2509 Q139.327,333.0363 141.1702,333.0363 Q141.689,333.0363 142.1651,333.1462 Q142.6412,333.256 143.0562,333.4757 L143.0562,335.4777 Q142.5924,335.0505 142.156,334.8521 Q141.7196,334.6537 141.2557,334.6537 Q140.2669,334.6537 139.7634,335.438 Q139.2598,336.2223 139.2598,337.7665 Q139.2598,339.3046 139.7634,340.0889 Q140.2669,340.8732 141.2557,340.8732 Q141.7196,340.8732 142.156,340.6748 Q142.5924,340.4765 143.0562,340.0492 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="63.5417" x="164.0625" y="342.3503">Processes</text><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="8.3333" x2="352.0833" y1="353.3203" y2="353.3203"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="8.3333" x2="352.0833" y1="361.6536" y2="361.6536"/><ellipse cx="18.75" cy="373.112" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="305.2083" x="30.2083" y="380.0232">void redirectStandardOutToConsole(Listener, Process)</text><ellipse cx="18.75" cy="416.7684" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="313.5417" x="30.2083" y="423.6796">void redirectStandardErrorToConsole(Listener, Process)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="8.3333" x2="155.7292" y1="399.6043" y2="399.6043"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="42.7083" x="158.8542" y="403.4139">(status)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="204.6875" x2="352.0833" y1="399.6043" y2="399.6043"/><ellipse cx="18.75" cy="460.4248" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="187.5" x="30.2083" y="467.336">void waitForTermination(Process)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="8.3333" x2="154.6875" y1="443.2607" y2="443.2607"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="44.7917" x="157.8125" y="447.0703">(thread)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="205.7292" x2="352.0833" y1="443.2607" y2="443.2607"/><ellipse cx="18.75" cy="504.0812" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="221.875" x="30.2083" y="510.9924">String captureOutput(Listener, Process)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="8.3333" x2="159.375" y1="486.9171" y2="486.9171"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="35.4167" x="162.5" y="490.7267">(write)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="201.0417" x2="352.0833" y1="486.9171" y2="486.9171"/><!--MD5=[fa2109ea6b8be74422b6eba955239c88]
+class OperatingSystem.ProcessorArchitecture--><rect codeLine="79" fill="#282828" height="107.2896" id="OperatingSystem.ProcessorArchitecture" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="292.7083" x="390.1042" y="367.7653"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="292.7083" x="390.1042" y="367.7653"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="292.7083" x="390.1042" y="390.8203"/><rect codeLine="79" fill="none" height="107.2896" id="OperatingSystem.ProcessorArchitecture" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="292.7083" x="390.1042" y="367.7653"/><ellipse cx="404.6875" cy="383.4595" fill="#CF6300" rx="10.4167" ry="10.4167" style="stroke:#EF8300;stroke-width:1.0416666666666667;"/><path d="M407.7433,388.147 L402.0671,388.147 L402.0671,379.0344 L407.7433,379.0344 L407.7433,380.6213 L403.8676,380.6213 L403.8676,382.5867 L407.3771,382.5867 L407.3771,384.1736 L403.8676,384.1736 L403.8676,386.5601 L407.7433,386.5601 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="255.2083" x="421.3542" y="388.1836">OperatingSystem.ProcessorArchitecture</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="391.1458" x2="681.7708" y1="399.1536" y2="399.1536"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="33.3333" x="399.4792" y="417.5232">APPLE</text><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="31.25" x="399.4792" y="437.2681">INTEL</text><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="111.4583" x="399.4792" y="457.0129">OTHER_PROCESSOR</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="391.1458" x2="681.7708" y1="466.7216" y2="466.7216"/><!--MD5=[bed5fecda82af573d6d7d99e3ba747f9]
+reverse link Flushable to Console--><path codeLine="11" d="M1393.625,162.0361 C1384.3333,204.7757 1369.8958,271.2236 1357.9896,326.0257 " fill="none" id="Flushable-backto-Console" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="1386.5313,160.2965,1398.0833,141.484,1400.7917,163.3903,1386.5313,160.2965" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[f7a153f5f0dabdd172636143b4e7e0e5]
+reverse link Listener to Console--><path codeLine="12" d="M1281.375,162.0361 C1290.6667,204.7757 1305.1042,271.2236 1317.0104,326.0257 " fill="none" id="Listener-backto-Console" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="1274.2083,163.3903,1276.9167,141.484,1288.4688,160.2965,1274.2083,163.3903" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[760122d6fb29d88f7669139d0dace74d]
+reverse link Named to OperatingSystem--><path codeLine="32" d="M937.5,162.4632 C937.5,184.6195 937.5,213.0674 937.5,242.932 " fill="none" id="Named-backto-OperatingSystem" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="930.2083,162.3174,937.5,141.484,944.7917,162.3174,930.2083,162.3174" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[5b93120ae44b09a070769706ffd998a1]
+link ConsoleTrait to OperatingSystem.OperatingSystemType--><!--MD5=[5f3597f04f64067b5c6d8eca8ff178a1]
+link OperatingSystem.OperatingSystemType to Console.OutputType--><!--MD5=[ecef8b7065e10da53d42b4e9283629da]
+link ConsoleTrait to Processes--><!--MD5=[8eb85c087668af6bbf82ed3da21b2ab2]
+link Processes to OperatingSystem.ProcessorArchitecture--><!--MD5=[ebad378cda9c2a9b195f49726506c40e]
+@startuml
+
+    !include lexakai.theme
+    
+    title "com.telenav.kivakit.core.os"
+    
+    interface Named
+    interface Listener
+    interface Flushable
+    
+    Flushable <|- - Console
+    Listener <|- - Console
+    class Console
+    {
+        - -
+        +Console console()
+        +void print(OutputType, String text, Object... arguments)
+        +void print(String text, Object... arguments)
+        +void println(OutputType, String text, Object... arguments)
+        +void println(String text, Object... arguments)
+        - -(write)- -
+        +PrintWriter printWriter()
+    }
+    
+    interface ConsoleTrait
+    {
+        - -
+        +void print(String text, Object... arguments)
+        +void println(String text, Object... arguments)
+    }
+    
+    Named <|- - OperatingSystem
+    class OperatingSystem
+    {
+        - -
+        +String execute(Listener, File folder, String... command)
+        +String javaExecutable()
+        +String javaHome()
+        +OperatingSystem operatingSystem()
+        +OperatingSystemType operatingSystemType()
+        +ProcessorArchitecture processorArchitecture()
+        +String systemPropertyOrEnvironmentVariable(String variable)
+        - -(checks)- -
+        +boolean isMac()
+        +boolean isUnix()
+        +boolean isWindows()
+        - -(collection)- -
+        +VariableMap<String> environmentVariables()
+        - -(identity)- -
+        +int processIdentifier()
+    }
+    
+    enum OperatingSystem.OperatingSystemType
+    {
+        MACOS
+        OTHER_OS
+        UNIX
+        WINDOWS
+    }
+    
+    enum Console.OutputType
+    {
+        ERROR
+        NORMAL
+    }
+    
+    class Processes
+    {
+        - -
+        +void redirectStandardOutToConsole(Listener, Process)
+        - -(status)- -
+        +void redirectStandardErrorToConsole(Listener, Process)
+        - -(thread)- -
+        +void waitForTermination(Process)
+        - -(write)- -
+        +String captureOutput(Listener, Process)
+    }
+    
+    enum OperatingSystem.ProcessorArchitecture
+    {
+        APPLE
+        INTEL
+        OTHER_PROCESSOR
+    }
+    
+@enduml
+
+@startuml
+
+
+
+
+
+
+
+
+
+skinparam backgroundColor #333333
+
+
+
+
+
+
+skinparam  {
+    defaultFontName   "Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif"
+    defaultFontSize   12
+    defaultTextAlignment left
+    shadowing false
+    RoundCorner 10
+    TitleFontSize 18
+}
+
+skinparam defaultFontName       "Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif"
+skinparam defaultFontSize       12
+skinparam dpi                   100
+skinparam shadowing             false
+skinparam roundcorner           16
+skinparam ParticipantPadding    40
+skinparam BoxPadding            40
+skinparam Padding               3
+skinparam ArrowColor            #545454
+skinparam stereotype {
+    CBackgroundColor #0066cf
+    CBorderColor #0086ef
+    ABackgroundColor #C8Ac00
+    ABorderColor #D8Bc00
+    IBackgroundColor #008400
+    IBorderColor #239c23
+    EBackgroundColor #cf6300
+    EBorderColor #ef8300
+    NBackgroundColor #3380b9
+    NBorderColor #004d86
+}
+skinparam title {
+	FontColor	                 #c0c0c0
+ 	BorderColor                  #545454
+	FontSize	    	         20
+	BorderRoundCorner            16
+	BorderThickness 	         1
+	BackgroundColor              #48494b
+}
+
+
+skinparam legend {
+	BackgroundColor #303030
+	BorderColor #404040
+	FontColor #a0a0a0
+}
+
+	skinparam swimlane {
+	BorderColor #5e5e5e
+	BorderThickness 2
+	TitleBackgroundColor  #6d6d6d-#484848
+	TitleFontColor #303030
+}
+
+skinparam activity {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BarColor #00FF00
+	StartColor #0060a8
+	EndColor #0060a8
+	DiamondBackgroundColor #6d6d6d-#3a3a3a
+  	DiamondBorderColor #3a3a3a
+  	DiamondFontColor #fefefe
+}
+
+
+skinparam participant {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	ParticipantBorderThickness 2
+}
+
+
+skinparam actor {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam arrow {
+	Thickness 1.5
+	Color #545454
+	FontColor #a0a0a0
+    FontStyle bold
+    MessageAlignment center
+}
+
+
+
+skinparam sequence {
+	BorderColor #303030
+	TitleFontColor #303030
+	BackgroundColor #333333
+	StartColor #303030
+	EndColor #303030
+	BoxBackgroundColor #333333
+	BoxBorderColor #484848
+	BoxFontColor #484848
+	LifeLineBorderColor #484848
+	LifeLineBorderThickness 2
+	LifeLineBackgroundColor #3a3a3a
+	GroupBorderColor #484848
+	GroupFontColor #484848
+	GroupHeaderFontColor #0060a8
+	GroupBackgroundColor #484848
+	GroupHeaderBackgroundColor #333333
+	DividerBackgroundColor #484848
+    DividerBorderColor #484848
+    DividerBorderThickness 2
+    DividerFontColor #D8Bc00
+	ReferenceBackgroundColor #333333
+	ReferenceBorderColor #484848
+	ReferenceFontColor #fefefe
+	ReferenceHeaderBackgroundColor #484848
+}
+
+
+skinparam partition {
+	BorderColor #303030
+	FontColor #333333
+	BackgroundColor #333333
+}
+
+
+skinparam collections {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam control {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam entity {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam boundary {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam agent {
+	BackgroundColor #ff8000
+	BorderColor #ff9933
+	FontColor #484848
+}
+
+
+skinparam note {
+	BorderThickness 1
+	BackgroundColor #1b1b1a
+	BorderColor #5e5e5e
+	FontSize 11
+	FontColor #a0a0a0
+}
+
+
+skinparam artifact {
+	BorderThickness 10
+	BorderColor #5e5e5e
+	BackgroundColor #1b1b1a
+	FontColor #D8Bc00
+}
+
+
+skinparam component {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam interface {
+	BackgroundColor  #008400
+	BorderColor  #007F00
+	FontColor #484848
+}
+
+
+skinparam storage {
+	BackgroundColor #ff8000
+  	BorderColor #cc6600
+	FontColor #222222
+}
+
+
+skinparam node {
+	BackgroundColor #333333
+	BorderColor #333333
+	FontColor #C8Ac00
+}
+
+
+skinparam cloud {
+	BackgroundColor #484848-black
+	BorderColor #484848
+	FontColor #D8Bc00
+}
+
+
+skinparam database {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BackgroundColor  #333333
+}
+
+
+skinparam class {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	HeaderBackgroundColor #1b1b1a
+    BackgroundColor #282828
+    BorderColor #5e5e5e
+ 	StereotypeFontColor #a0a0a0
+    StereotypeFontStyle bold
+	BorderThickness 1
+	AttributeFontColor #D8Bc00
+	AttributeFontSize 11
+    FontColor #D8Bc00
+    FontStyle bold
+}
+
+
+skinparam object {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	StereotypeFontColor #484848
+	BorderThickness 1
+	AttributeFontColor #fefefe
+	AttributeFontSize 11
+}
+
+
+skinparam usecase {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BorderThickness 2
+	StereotypeFontColor #303030
+}
+
+
+skinparam rectangle {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BackgroundColor #333333
+	BorderThickness 2
+	StereotypeFontColor #303030
+}
+
+
+skinparam package {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BackgroundColor #333333
+	BorderThickness 2
+}
+
+
+skinparam folder {
+	BackgroundColor #6d6d6d
+  	BorderColor #ff8000
+	FontColor #ff8000
+	BorderThickness 2
+}
+
+
+skinparam frame {
+	BackgroundColor #6d6d6d
+  	BorderColor #0060a8
+	FontColor #0060a8
+	BorderThickness 2
+}
+
+
+skinparam state {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	StartColor #0060a8
+	EndColor #0060a8
+	AttributeFontColor #fefefe
+	AttributeFontSize 11
+}
+
+
+skinparam queue {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam card {
+	BackgroundColor #0060a8
+	BorderColor #004d86
+	FontColor $INFO_TEXT
+}
+
+
+skinparam file {
+	BackgroundColor #6d6d6d-#484848
+	BorderColor #0060a8
+	FontColor #fefefe
+}
+
+
+skinparam stack {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+    
+    title "com.telenav.kivakit.core.os"
+    
+    interface Named
+    interface Listener
+    interface Flushable
+    
+    Flushable <|- - Console
+    Listener <|- - Console
+    class Console
+    {
+        - -
+        +Console console()
+        +void print(OutputType, String text, Object... arguments)
+        +void print(String text, Object... arguments)
+        +void println(OutputType, String text, Object... arguments)
+        +void println(String text, Object... arguments)
+        - -(write)- -
+        +PrintWriter printWriter()
+    }
+    
+    interface ConsoleTrait
+    {
+        - -
+        +void print(String text, Object... arguments)
+        +void println(String text, Object... arguments)
+    }
+    
+    Named <|- - OperatingSystem
+    class OperatingSystem
+    {
+        - -
+        +String execute(Listener, File folder, String... command)
+        +String javaExecutable()
+        +String javaHome()
+        +OperatingSystem operatingSystem()
+        +OperatingSystemType operatingSystemType()
+        +ProcessorArchitecture processorArchitecture()
+        +String systemPropertyOrEnvironmentVariable(String variable)
+        - -(checks)- -
+        +boolean isMac()
+        +boolean isUnix()
+        +boolean isWindows()
+        - -(collection)- -
+        +VariableMap<String> environmentVariables()
+        - -(identity)- -
+        +int processIdentifier()
+    }
+    
+    enum OperatingSystem.OperatingSystemType
+    {
+        MACOS
+        OTHER_OS
+        UNIX
+        WINDOWS
+    }
+    
+    enum Console.OutputType
+    {
+        ERROR
+        NORMAL
+    }
+    
+    class Processes
+    {
+        - -
+        +void redirectStandardOutToConsole(Listener, Process)
+        - -(status)- -
+        +void redirectStandardErrorToConsole(Listener, Process)
+        - -(thread)- -
+        +void waitForTermination(Process)
+        - -(write)- -
+        +String captureOutput(Listener, Process)
+    }
+    
+    enum OperatingSystem.ProcessorArchitecture
+    {
+        APPLE
+        INTEL
+        OTHER_PROCESSOR
+    }
+    
+@enduml
+
+PlantUML version 1.2021.01(Tue Feb 02 00:55:08 MST 2021)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Default Encoding: UTF-8
+Language: en
+Country: US
+--></g></svg>

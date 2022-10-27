@@ -1,0 +1,33 @@
+
+@startuml
+
+    !include lexakai.theme
+    
+    title "com.telenav.kivakit.core.logging.logs.text"
+    
+    abstract BaseTextLog
+    abstract BaseLog
+    
+    BaseLog <|-- BaseTextLog
+    BaseTextLog --> LogFormatter : "formats entries with"
+    abstract class BaseTextLog
+    {
+        --
+        +void formatter(LogFormatter)
+        #String formatted(LogEntry)
+    }
+    
+    BaseTextLog <|-- ConsoleLog
+    class ConsoleLog
+    {
+    }
+    
+    interface LogFormatter
+    {
+        --
+        +String format(LogEntry, MessageFormat... formats)
+        +LogFormatter formatter()
+    }
+    
+@enduml
+

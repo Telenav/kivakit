@@ -1,0 +1,78 @@
+
+@startuml
+
+    !include lexakai.theme
+    
+    title "diagram-object"
+    
+    interface Clearable
+    interface Iterable
+    
+    class Hash
+    {
+        --(collection)--
+        +int hash(int[] a)
+        +int hash(long[] a, int start, int end)
+        +int hash(long[] a)
+        +int hash(char[], int start, int end)
+        +int hash(Iterator<Object> objects)
+        +int hash(byte[] a, int start, int end)
+        +int hash(int[] a, int start, int end)
+        +int hash(Object)
+        +int hash(long value)
+        +int hash(byte[] a)
+        +int hashMany(Object... objects)
+        +int identityHash(Object)
+        +int knuthHash(long value)
+        +int knuthHash(int value)
+    }
+    
+    Clearable <|-- Lazy
+    class Lazy<Value>
+    {
+        --(constructors)--
+        #Lazy(Factory<Value>)
+        --
+        +Value get()
+        +boolean has()
+        +Lazy<V> lazy(Factory<V>)
+    }
+    
+    class LazyMap<Key, Value>
+    {
+        --(constructors)--
+        #LazyMap(Mapper<Key, Value>)
+        --
+        +Value get(Key)
+        --(collection)--
+        +void clear()
+        +LazyMap<Key,Value> lazyMap(Mapper<Key,Value> factory)
+        +void remove(Key)
+    }
+    
+    class Objects
+    {
+        --
+        +boolean areEqualPairs(Object... values)
+        +Value nonNullOr(Value, Value defaultValue)
+        --(checks)--
+        +boolean isAnyNull(Object... objects)
+        +boolean isEqual(Object a, Object)
+        +boolean isNotNull(Object)
+        +boolean isNull(Object)
+    }
+    
+    Iterable <|-- Pair
+    class Pair<T>
+    {
+        --(constructors)--
+        +Pair(T, T)
+        --
+        +T a()
+        +T b()
+        --(checks)--
+        +boolean isIdentity()
+    }
+    
+@enduml
+

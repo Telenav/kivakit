@@ -1,0 +1,69 @@
+
+@startuml
+
+    !include lexakai.theme
+    
+    title "diagram-iteration"
+    
+    interface Iterable
+    interface Iterator
+    
+    Iterable <|-- BaseIterable
+    BaseIterable --> NextIterator : "creates"
+    abstract class BaseIterable<Value>
+    {
+        --(collection)--
+        +BaseIterable<Value> matching(Matcher<Value>)
+        #NextIterator<Value> newNextIterator()
+        --(matching)--
+        +Matcher<Value> matcher()
+    }
+    
+    Iterator <|-- BaseIterator
+    abstract class BaseIterator<Value>
+    {
+        --(collection)--
+        +BaseIterator<Value> matching(Matcher<Value>)
+        --(iteration)--
+        #Value findNext()
+        #Value onNext()
+        --(matching)--
+        +Matcher<Value> matcher()
+    }
+    
+    Iterable <|-- DeduplicatingIterable
+    class DeduplicatingIterable<Value>
+    {
+        --(constructors)--
+        +DeduplicatingIterable(Iterable<Value>)
+    }
+    
+    class Iterables
+    {
+        --
+        +boolean equalIterables(Iterable<T>, Iterable<T>)
+        --(collection)--
+        +Iterable<T> emptyIterable()
+        +boolean isEmpty(Iterable<?>)
+        +Iterable<T> iterable(Factory<NextIterator<T>>)
+        +Iterable<T> iterable(T[] values)
+        +int iterableHashCode(Iterable<T>)
+        +int iterableSize(Iterable<?>)
+        +Iterable<T> singletonIterable(T value)
+    }
+    
+    class Iterators
+    {
+        --
+        +boolean equalIterators(Iterator<T>, Iterator<T> b)
+        --(collection)--
+        +Iterator<T> emptyIterator()
+        +boolean isEmptyIterator(Iterator<?>)
+        +Iterator<T> iterator(Supplier<T>)
+        +int iteratorHashCode(Iterator<T>)
+        +int iteratorSize(Iterator<?>)
+        +Iterator<T> singletonIterator(T value)
+    }
+    
+@enduml
+

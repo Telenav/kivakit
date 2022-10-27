@@ -1,0 +1,39 @@
+
+@startuml
+
+    !include lexakai.theme
+    
+    title "diagram-module"
+    
+    class ModuleResource
+    {
+        --(constructors)--
+        #ModuleResource(PackageReference, URI)
+        --
+        +ModuleResource moduleResource(Listener, ModuleReference, URI)
+        +PackageReference packageReference()
+        --(network)--
+        +URI uri()
+        --(path)--
+        +Path fileNameAsJavaPath()
+        +Path javaPath()
+        --(primitive)--
+        +Bytes size()
+        --(time)--
+        +Time created()
+        +Time lastModified()
+    }
+    
+    class Modules
+    {
+        --
+        +ModuleResource moduleResource(Listener, StringPath)
+        --(collection)--
+        +List<ModuleResource> allNestedModuleResources(Listener, PackageReference)
+        +List<ModuleResource> moduleResources(Listener, PackageReference)
+        +List<ModuleResource> nestedModuleResources(Listener, PackageReference)
+        +List<ModuleResource> nestedModuleResources(Listener, PackageReference, Matcher<ModuleResource>)
+    }
+    
+@enduml
+

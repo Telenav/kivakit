@@ -1,0 +1,134 @@
+
+@startuml
+
+    !include lexakai.theme
+    
+    title "com.telenav.kivakit.core.language.reflection"
+    
+    interface Named
+    
+    Member <|-- Field
+    class Field
+    {
+        --(constructors)--
+        #Field(Object, java.lang.reflect.Field)
+        #Field(Type<?>, java.lang.reflect.Field)
+        --
+        +Object get(Object)
+        +Object get()
+        +void object(Object)
+        +Object set(Object value)
+        +Type<?> type()
+        --(checks)--
+        +boolean isPrimitive()
+        +boolean isTransient()
+        +boolean isVolatile()
+        --(messaging)--
+        +ReflectionProblem makeAccessible()
+        +ReflectionProblem set(Object, Object value)
+    }
+    
+    abstract class Member
+    {
+        --
+        +T annotation(Class<T> annotationClass)
+        +int modifiers()
+        +Type<?> parentType()
+        --(checks)--
+        +boolean hasAnnotation(Class<? extends Annotation> type)
+        +boolean isFinal()
+        +boolean isPrivate()
+        +boolean isProtected()
+        +boolean isPublic()
+        +boolean isStatic()
+        +boolean isSynthetic()
+        --(collection)--
+        +ObjectList<Type<T>> arrayElementType()
+        +ObjectList<Type<T>> genericTypeParameters()
+        --(naming)--
+        +String name()
+    }
+    
+    Member <|-- Method
+    class Method
+    {
+        --(constructors)--
+        #Method(Type<?>, String)
+        #Method(Type<?>, java.lang.reflect.Method)
+        --
+        +Object invoke(Object target, Object... parameters)
+        +Method method(StackTraceElement stackFrame)
+        +java.lang.reflect.Method method()
+        +Class<?>[] parameterTypes()
+        +Class<?> returnType()
+        --(checks)--
+        +boolean isNative()
+        +boolean isSynchronized()
+        --(messaging)--
+        +ReflectionProblem makeAccessible()
+    }
+    
+    Problem <|-- ReflectionProblem
+    class ReflectionProblem
+    {
+        --(constructors)--
+        +ReflectionProblem(Exception, String, Object)
+        +ReflectionProblem(String, Object)
+    }
+    
+    Named <|-- Type
+    class Type<T>
+    {
+        --
+        +A annotation(Class<A> annotationType)
+        +A[] annotations(Class<A> annotationType)
+        +Class<T> asJavaType()
+        +Constructor<T> constructor(Class<?>... parameters)
+        +boolean declaresToString()
+        +Property field(String name)
+        +boolean is(Class<?> type)
+        +Method method(String methodName)
+        +Property property(String name)
+        +Type<?> superClass()
+        +ObjectSet<Type<?>> superInterfaces()
+        +Type<T> type(Object)
+        +Type<T> typeForClass(Class<T> type)
+        --(checks)--
+        +boolean hasAnnotation(Class<A> annotationType)
+        +boolean isDescendantOf(Class<?> that)
+        +boolean isEnum()
+        +boolean isInOrUnder(PackageReference)
+        +boolean isInterface()
+        +boolean isPrimitive()
+        +boolean isSystem()
+        --(collection)--
+        +ObjectList<Field> allFields()
+        +ObjectList<Method> allMethods()
+        +Type<?> arrayElementType()
+        +Set<Enum<?>> enumValues()
+        +ObjectList<Field> fields(Matcher<Field>)
+        +ObjectList<Type<?>> interfaces()
+        +boolean isArray()
+        +VariableMap<Object> properties(Object, PropertyFilter matcher, Object nullValue)
+        +VariableMap<Object> properties(Object, PropertyFilter matcher)
+        +ObjectList<Property> properties(PropertyFilter)
+        +ObjectList<Field> reachableFields(Object root, Matcher<Field>)
+        +ObjectList<Object> reachableObjects(Object root)
+        +ObjectList<Object> reachableObjects(Object root, Matcher<Field>)
+        +ObjectList<Object> reachableObjectsImplementing(Object root, Class<?> _interface)
+        +ObjectList<Type<?>> superClasses()
+        +ObjectList<Type<?>> superTypes()
+        --(factory)--
+        +T newInstance(Object... parameters)
+        +T newInstance()
+        --(naming)--
+        +String fullyQualifiedName()
+        +String simpleName()
+        +String simpleNameWithoutSyntheticSuffix()
+        +Type<T> typeForName(String className)
+        --(path)--
+        +PackageReference packagePath()
+    }
+    
+@enduml
+

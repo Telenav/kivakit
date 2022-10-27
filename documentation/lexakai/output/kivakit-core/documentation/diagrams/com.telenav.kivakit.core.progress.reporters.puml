@@ -1,0 +1,73 @@
+
+@startuml
+
+    !include lexakai.theme
+    
+    title "com.telenav.kivakit.core.progress.reporters"
+    
+    abstract BaseIterable
+    
+    interface ProgressReporter
+    
+    Multicaster <|-- BroadcastingProgressReporter
+    ProgressReporter <|-- BroadcastingProgressReporter
+    class BroadcastingProgressReporter
+    {
+        --(constructors)--
+        #BroadcastingProgressReporter()
+        #BroadcastingProgressReporter(BroadcastingProgressReporter)
+        --
+        +void at(long at)
+        +long at()
+        +BroadcastingProgressReporter concurrentProgressReporter(Listener, String itemName, BaseCount<?> steps)
+        +BroadcastingProgressReporter concurrentProgressReporter(Listener, String itemName)
+        +BroadcastingProgressReporter concurrentProgressReporter(Listener)
+        +void feedback(String message)
+        +BroadcastingProgressReporter progressReporter(Listener)
+        +BroadcastingProgressReporter progressReporter(Listener, String itemName, BaseCount<?> steps)
+        +BroadcastingProgressReporter progressReporter()
+        +BroadcastingProgressReporter progressReporter(Listener, String itemName)
+        #long increase(long increase)
+        --(filesystem)--
+        #BroadcastingProgressReporter copy()
+        --(functional)--
+        +BroadcastingProgressReporter withPhase(String phase)
+        +BroadcastingProgressReporter withSteps(BaseCount<?> steps)
+        +BroadcastingProgressReporter withUnits(String unitName)
+        --(iteration)--
+        +void next(long increase)
+        --(math)--
+        #long increment()
+    }
+    
+    BroadcastingProgressReporter <|-- ConcurrentBroadcastingProgressReporter
+    class ConcurrentBroadcastingProgressReporter
+    {
+        --(constructors)--
+        #ConcurrentBroadcastingProgressReporter()
+        +ConcurrentBroadcastingProgressReporter(BroadcastingProgressReporter)
+    }
+    
+    InputStream <|-- ProgressiveInputStream
+    class ProgressiveInputStream
+    {
+        --(constructors)--
+        +ProgressiveInputStream(InputStream, ProgressReporter)
+    }
+    
+    BaseIterable <|-- ProgressiveIterable
+    class ProgressiveIterable<Value>
+    {
+        --(constructors)--
+        +ProgressiveIterable(Iterable<Value>, ProgressReporter)
+    }
+    
+    OutputStream <|-- ProgressiveOutputStream
+    class ProgressiveOutputStream
+    {
+        --(constructors)--
+        +ProgressiveOutputStream(OutputStream, ProgressReporter)
+    }
+    
+@enduml
+

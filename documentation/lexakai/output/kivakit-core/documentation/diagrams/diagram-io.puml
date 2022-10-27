@@ -1,0 +1,108 @@
+
+@startuml
+
+    !include lexakai.theme
+    
+    title "diagram-io"
+    
+    interface ByteSized
+    
+    OutputStream <|-- ByteSizedOutputStream
+    ByteSized <|-- ByteSizedOutputStream
+    class ByteSizedOutputStream
+    {
+        --(constructors)--
+        +ByteSizedOutputStream(OutputStream)
+    }
+    
+    class IO
+    {
+        --
+        +void skip(Listener, InputStream, long offset)
+        --(filesystem)--
+        +boolean copy(Listener, InputStream, OutputStream)
+        +boolean copy(Listener, InputStream, OutputStream, CopyStyle)
+        --(io)--
+        +void close(Listener, AutoCloseable)
+        +void close(Listener, Reader)
+        +void close(Listener, OutputStream)
+        +void close(Listener, InputStream)
+        +void close(Listener, Writer)
+        +void close(Listener, ZipFile)
+        +boolean copyAndClose(Listener, InputStream, OutputStream)
+        +void flush(Listener, Writer out)
+        +boolean flush(Listener, OutputStream)
+        --(read)--
+        +BufferedInputStream buffer(InputStream)
+        +int readByte(Listener, InputStream)
+        +byte[] readBytes(Listener, InputStream)
+        +String readString(Listener, Reader in)
+        +String readString(Listener, InputStream)
+        --(write)--
+        +BufferedOutputStream buffer(OutputStream)
+    }
+    
+    InputStream <|-- LimitedInputStream
+    class LimitedInputStream
+    {
+        --(constructors)--
+        +LimitedInputStream(Listener, InputStream, Bytes)
+    }
+    
+    Reader <|-- LookAheadReader
+    class LookAheadReader
+    {
+        --(constructors)--
+        +LookAheadReader(Reader)
+        --
+        +int current()
+        +int lineNumber()
+        +int lookAhead()
+        --(iteration)--
+        +boolean hasNext()
+        +void next()
+        --(lifecycle)--
+        +boolean atEndOfLine()
+    }
+    
+    InputStream <|-- ProgressiveInputStream
+    class ProgressiveInputStream
+    {
+        --(constructors)--
+        +ProgressiveInputStream(InputStream, ProgressReporter)
+    }
+    
+    OutputStream <|-- ProgressiveOutputStream
+    class ProgressiveOutputStream
+    {
+        --(constructors)--
+        +ProgressiveOutputStream(OutputStream, ProgressReporter)
+    }
+    
+    class ProgressiveStringReader
+    {
+        --(constructors)--
+        +ProgressiveStringReader(Listener, InputStream)
+        +ProgressiveStringReader(Listener, InputStream, Charset)
+        +ProgressiveStringReader(Listener, InputStream, String)
+        +ProgressiveStringReader(Listener, Reader)
+        --(io)--
+        +void close()
+        --(read)--
+        +String readString(ProgressReporter)
+    }
+    
+    InputStream <|-- StringInputStream
+    class StringInputStream
+    {
+        --(constructors)--
+        +StringInputStream(CharSequence)
+        +StringInputStream(CharSequence, Charset)
+        +StringInputStream(CharSequence, Charset, int)
+        +StringInputStream(CharSequence, Charset, int, EncodingErrorBehavior)
+        --(read)--
+        +StringInputStream rewind()
+    }
+    
+@enduml
+

@@ -1,0 +1,72 @@
+
+@startuml
+
+    !include lexakai.theme
+    
+    title "com.telenav.kivakit.serialization.kryo"
+    
+    abstract BaseRepeater
+    
+    interface Named
+    interface ObjectSerializer
+    interface TryTrait
+    interface SerializationSessionFactory
+    interface SerializationSession
+    
+    Serializer <|-- BaseSerializer
+    abstract class BaseSerializer<Value>
+    {
+        --(constructors)--
+        #BaseSerializer(Class<Value>)
+        --
+        +Class<?> type()
+        --(extension points)--
+        #Value onRead(KryoSerializationSession)
+        --(identity)--
+        +void version(Version)
+        #void unsupportedVersion()
+        #Version version()
+        --(write)--
+        #void onWrite(KryoSerializationSession, Value)
+    }
+    
+    Kryo <|-- DebugKryo
+    class DebugKryo
+    {
+        --(constructors)--
+        +DebugKryo(Listener)
+    }
+    
+    ObjectSerializer <|-- KryoObjectSerializer
+    TryTrait <|-- KryoObjectSerializer
+    class KryoObjectSerializer
+    {
+        --(constructors)--
+        +KryoObjectSerializer(KryoTypes)
+        +KryoObjectSerializer(KryoTypes, ProgressReporter)
+    }
+    
+    BaseRepeater <|-- KryoSerializationSession
+    Named <|-- KryoSerializationSession
+    SerializationSession <|-- KryoSerializationSession
+    class KryoSerializationSession
+    {
+        --(constructors)--
+        +KryoSerializationSession(KryoTypes)
+        --
+        +KryoTypes kryoTypes()
+        +Serializer<? extends T> serializer(Class<T> type)
+        --(serialization)--
+        +KryoSerializationSession kryoSerializationSession(Kryo)
+        +KryoSerializationSession trackReferences(boolean track)
+    }
+    
+    SerializationSessionFactory <|-- KryoSerializationSessionFactory
+    class KryoSerializationSessionFactory
+    {
+        --(constructors)--
+        +KryoSerializationSessionFactory(KryoTypes)
+    }
+    
+@enduml
+

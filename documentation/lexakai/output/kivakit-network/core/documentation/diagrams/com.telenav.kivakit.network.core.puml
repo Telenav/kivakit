@@ -1,0 +1,278 @@
+
+@startuml
+
+    !include lexakai.theme
+    
+    title "com.telenav.kivakit.network.core"
+    
+    abstract BaseReadableResource
+    abstract BaseRepeater
+    abstract BaseStringConverter
+    
+    interface NetworkResource
+    interface AsString
+    interface Named
+    interface Comparable
+    interface StringFormattable
+    interface Validatable
+    
+    BaseReadableResource <|-- BaseNetworkResource
+    NetworkResource <|-- BaseNetworkResource
+    abstract class BaseNetworkResource
+    {
+        --(constructors)--
+        #BaseNetworkResource(BaseReadableResource)
+        #BaseNetworkResource(NetworkLocation)
+        --(network)--
+        +URI asUri()
+        +URL asUrl()
+    }
+    
+    BaseStringConverter <|-- EmailAddress.Converter
+    class EmailAddress.Converter
+    {
+        --(constructors)--
+        #Converter(Listener)
+    }
+    
+    BaseStringConverter <|-- Port.Converter
+    class Port.Converter
+    {
+        --(constructors)--
+        +Converter(Listener)
+    }
+    
+    BaseStringConverter <|-- Host.Converter
+    class Host.Converter
+    {
+        --(constructors)--
+        +Converter(Listener)
+    }
+    
+    BaseStringConverter <|-- NetworkPath.Converter
+    class NetworkPath.Converter
+    {
+        --(constructors)--
+        +Converter(Listener)
+    }
+    
+    BaseStringConverter <|-- NetworkLocation.Converter
+    class NetworkLocation.Converter
+    {
+        --(constructors)--
+        +Converter(Listener)
+    }
+    
+    class EmailAddress
+    {
+        --(constructors)--
+        #EmailAddress()
+        #EmailAddress(String)
+        --(network)--
+        +String email()
+        +EmailAddress parseEmailAddress(Listener, String text)
+    }
+    
+    BaseRepeater <|-- Host
+    Named <|-- Host
+    StringFormattable <|-- Host
+    Comparable <|-- Host
+    class Host
+    {
+        --(constructors)--
+        #Host()
+        #Host(String)
+        #Host(String, String)
+        +Host(InetAddress, String)
+        +Host(InetAddress, String, String)
+        --
+        +InetAddress address()
+        +String description()
+        --(checks)--
+        +boolean isLocal()
+        +boolean isResolvable()
+        --(extension points)--
+        #InetAddress onResolveAddress()
+        --(naming)--
+        +String canonicalName()
+        +String dnsName()
+        --(network)--
+        +Port ftp(int port)
+        +Port ftp()
+        +Port hazelcast(int port)
+        +Port hazelcast()
+        +SwitchParser.Builder<Host> hostSwitchParser(Listener, String name, String description)
+        +Port http(int port)
+        +Port http()
+        +Port https()
+        +Port https(int port)
+        +Port memcache()
+        +Port memcachePort(int port)
+        +Port mongo(int port)
+        +Port mongo()
+        +Port mysql(int port)
+        +Port mysql()
+        +Host nullHost()
+        +Host parseHost(Listener, String name)
+        +Host parseHost(Listener, String name, String description)
+        +Port port(Protocol, int number)
+        +Port port(int number)
+        +Port sftp()
+        +Port sftp(int port)
+    }
+    
+    Host <|-- LocalHost
+    class LocalHost
+    {
+        --(constructors)--
+        #LocalHost()
+        --
+        +String hostname()
+        --(network)--
+        +LocalHost localhost()
+    }
+    
+    Host <|-- Loopback
+    class Loopback
+    {
+        --(constructors)--
+        #Loopback()
+        --
+        +Loopback loopback()
+    }
+    
+    Validatable <|-- NetworkAccessConstraints
+    NetworkAccessConstraints o-- Duration
+    NetworkAccessConstraints o-- UserName
+    NetworkAccessConstraints o-- Password
+    class NetworkAccessConstraints
+    {
+        --
+        +void password(Password)
+        +Password password()
+        --(naming)--
+        +void userName(UserName)
+        +UserName userName()
+        --(network)--
+        +NetworkAccessConstraints defaultNetworkAccessConstraints()
+        +Duration timeout()
+        +NetworkAccessConstraints timeout(Duration timeout)
+    }
+    
+    StringFormattable <|-- NetworkLocation
+    Comparable <|-- NetworkLocation
+    NetworkLocation o-- NetworkAccessConstraints
+    NetworkLocation o-- NetworkPath
+    NetworkLocation o-- Port
+    NetworkLocation o-- QueryParameters : "optional"
+    class NetworkLocation
+    {
+        --(constructors)--
+        +NetworkLocation(NetworkLocation)
+        +NetworkLocation(NetworkPath)
+        --
+        +void constraints(NetworkAccessConstraints)
+        +void reference(String fragment)
+        +String reference()
+        --(checks)--
+        +boolean isChildOf(NetworkLocation that)
+        --(network)--
+        +URI asUri()
+        +URL asUrl()
+        +NetworkAccessConstraints constraints()
+        +Host host()
+        +NetworkLocation networkLocation(Listener, URI)
+        +NetworkPath networkPath()
+        +NetworkLocation parseNetworkLocation(Listener, String text)
+        +Port port()
+        +Protocol protocol()
+        +NetworkLocation withPath(NetworkPath)
+        +NetworkLocation withQueryParameters(QueryParameters)
+        --(search)--
+        +QueryParameters queryParameters()
+        +void queryParameters(QueryParameters)
+    }
+    
+    FilePath <|-- NetworkPath
+    class NetworkPath
+    {
+        --(constructors)--
+        #NetworkPath(NetworkPath)
+        #NetworkPath(Port, String, List<String>)
+        #NetworkPath(Port, StringPath)
+        --(network)--
+        +NetworkPath networkPath(Listener, Port, String path)
+        +NetworkPath networkPath(Listener, URI)
+        +SwitchParser.Builder<NetworkPath> networkPathSwitchParser(Listener, String name, String description)
+        +NetworkPath parseNetworkPath(Listener, String text)
+        +Port port()
+    }
+    
+    interface Resource
+    Resource <|-- NetworkResource
+    NetworkResource --> NetworkLocation : "located at"
+    interface NetworkResource
+    {
+        --(network)--
+        +NetworkLocation location()
+    }
+    
+    AsString <|-- Port
+    Port o-- Host
+    Port o-- Protocol : "speaks"
+    class Port
+    {
+        --(constructors)--
+        #Port()
+        +Port(Host, int)
+        +Port(Host, int, Protocol)
+        +Port(InetSocketAddress, Protocol, String)
+        --
+        +Socket socket()
+        --(checks)--
+        +boolean isAvailable()
+        --(conversion)--
+        +InetSocketAddress asInetSocketAddress()
+        --(network)--
+        +URI asUri(Listener)
+        +Protocol defaultProtocol()
+        +Host host()
+        +boolean isHttp()
+        +Port parsePort(Listener, String port)
+        +NetworkPath path(Listener, String path)
+        +Port port(URI)
+        +int portNumber()
+        +SwitchParser.Builder<Port> portSwitchParser(Listener, String name, String description)
+        +Protocol protocol()
+        +Port protocol(Protocol)
+        +Port resolve()
+        --(read)--
+        +InputStream open(Listener)
+    }
+    
+    Name <|-- Protocol
+    class Protocol
+    {
+        --(constructors)--
+        #Protocol()
+        +Protocol(String, int)
+        --(network)--
+        +int defaultPort()
+        +Protocol defaultProtocolForPort(int port)
+        +Protocol parseProtocol(Listener, String name)
+    }
+    
+    class QueryParameters
+    {
+        --(constructors)--
+        #QueryParameters(String)
+        +QueryParameters(VariableMap<String>)
+        --(collection)--
+        +VariableMap<String> asVariableMap()
+        +boolean isEmpty()
+        --(search)--
+        +QueryParameters parseQueryParameters(Listener, String text)
+    }
+    
+@enduml
+

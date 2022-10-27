@@ -1,0 +1,406 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="273.9583px" preserveAspectRatio="none" style="width:562px;height:273px;background:#333333;" version="1.1" viewBox="0 0 562 273" width="562.5px" zoomAndPan="magnify"><defs/><g><rect fill="#48494B" height="41.2028" rx="8.3333" ry="8.3333" style="stroke:#545454;stroke-width:1.0416666666666667;" width="453.125" x="47.6563" y="2.0833"/><text fill="#C0C0C0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="20.8333" lengthAdjust="spacing" textLength="430.2083" x="59.1146" y="30.5583">com.telenav.kivakit.serialization.properties</text><!--MD5=[8c595983eb9c43054b99135b603648e6]
+class ObjectSerializer--><rect codeLine="7" fill="#282828" height="48.055" id="ObjectSerializer" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="138.5417" x="80.2083" y="53.7028"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="138.5417" x="80.2083" y="53.7028"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="138.5417" x="80.2083" y="76.7578"/><rect codeLine="7" fill="none" height="48.055" id="ObjectSerializer" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="138.5417" x="80.2083" y="53.7028"/><ellipse cx="94.7917" cy="69.397" fill="#008400" rx="10.4167" ry="10.4167" style="stroke:#239C23;stroke-width:1.0416666666666667;"/><path d="M92.1956,66.5588 L92.1956,64.9719 L97.6217,64.9719 L97.6217,66.5588 L95.8089,66.5588 L95.8089,72.4976 L97.6217,72.4976 L97.6217,74.0845 L92.1956,74.0845 L92.1956,72.4976 L94.0084,72.4976 L94.0084,66.5588 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-style="italic" font-weight="bold" lengthAdjust="spacing" textLength="101.0417" x="111.4583" y="74.1211">ObjectSerializer</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="81.25" x2="217.7083" y1="85.0911" y2="85.0911"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="81.25" x2="217.7083" y1="93.4245" y2="93.4245"/><!--MD5=[ffc528c039318d857ee1465344dbea6e]
+class PropertiesObjectSerializer--><rect codeLine="10" fill="#282828" height="103.123" id="PropertiesObjectSerializer" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="284.375" x="7.2917" y="164.1195"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="284.375" x="7.2917" y="164.1195"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="284.375" x="7.2917" y="187.1745"/><rect codeLine="10" fill="none" height="103.123" id="PropertiesObjectSerializer" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="284.375" x="7.2917" y="164.1195"/><ellipse cx="58.8542" cy="179.8136" fill="#0066CF" rx="10.4167" ry="10.4167" style="stroke:#0086EF;stroke-width:1.0416666666666667;"/><path d="M60.7646,184.2387 Q60.3373,184.4584 59.8674,184.5683 Q59.3974,184.6781 58.8786,184.6781 Q57.0353,184.6781 56.0649,183.4635 Q55.0944,182.2489 55.0944,179.954 Q55.0944,177.653 56.0649,176.4384 Q57.0353,175.2238 58.8786,175.2238 Q59.3974,175.2238 59.8735,175.3337 Q60.3495,175.4435 60.7646,175.6632 L60.7646,177.6652 Q60.3007,177.238 59.8643,177.0396 Q59.4279,176.8412 58.964,176.8412 Q57.9753,176.8412 57.4717,177.6255 Q56.9682,178.4098 56.9682,179.954 Q56.9682,181.4921 57.4717,182.2764 Q57.9753,183.0607 58.964,183.0607 Q59.4279,183.0607 59.8643,182.8623 Q60.3007,182.664 60.7646,182.2367 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="166.6667" x="81.7708" y="184.5378">PropertiesObjectSerializer</text><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="8.3333" x2="290.625" y1="195.5078" y2="195.5078"/><ellipse cx="18.75" cy="230.8777" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="153.125" x="30.2083" y="237.7889">PropertiesObjectSerializer()</text><ellipse cx="18.75" cy="250.6226" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="252.0833" x="30.2083" y="257.5338">PropertiesObjectSerializer(ProgressReporter)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="8.3333" x2="105.7292" y1="213.7136" y2="213.7136"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="81.25" x="108.8542" y="217.5232">(constructors)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="193.2292" x2="290.625" y1="213.7136" y2="213.7136"/><!--MD5=[79d378210367c0c6ec62ef762ddfbd1b]
+class Project--><rect fill="#282828" height="48.055" id="Project" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="81.25" x="401.5625" y="53.7028"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="81.25" x="401.5625" y="53.7028"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="81.25" x="401.5625" y="76.7578"/><rect fill="none" height="48.055" id="Project" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="81.25" x="401.5625" y="53.7028"/><ellipse cx="416.1458" cy="69.397" fill="#0066CF" rx="10.4167" ry="10.4167" style="stroke:#0086EF;stroke-width:1.0416666666666667;"/><path d="M418.0562,73.822 Q417.629,74.0417 417.159,74.1516 Q416.689,74.2615 416.1702,74.2615 Q414.327,74.2615 413.3565,73.0469 Q412.3861,71.8323 412.3861,69.5374 Q412.3861,67.2363 413.3565,66.0217 Q414.327,64.8071 416.1702,64.8071 Q416.689,64.8071 417.1651,64.917 Q417.6412,65.0269 418.0562,65.2466 L418.0562,67.2485 Q417.5924,66.8213 417.156,66.6229 Q416.7196,66.4246 416.2557,66.4246 Q415.2669,66.4246 414.7634,67.2089 Q414.2598,67.9932 414.2598,69.5374 Q414.2598,71.0754 414.7634,71.8597 Q415.2669,72.644 416.2557,72.644 Q416.7196,72.644 417.156,72.4457 Q417.5924,72.2473 418.0562,71.8201 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="43.75" x="432.8125" y="74.1211">Project</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="402.6042" x2="481.7708" y1="85.0911" y2="85.0911"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="402.6042" x2="481.7708" y1="93.4245" y2="93.4245"/><!--MD5=[2151e5b14f22ee016106c67f91e430d2]
+class PropertiesSerializationProject--><rect codeLine="18" fill="#282828" height="48.055" id="PropertiesSerializationProject" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="227.0833" x="328.6458" y="191.7236"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="227.0833" x="328.6458" y="191.7236"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="227.0833" x="328.6458" y="214.7786"/><rect codeLine="18" fill="none" height="48.055" id="PropertiesSerializationProject" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="227.0833" x="328.6458" y="191.7236"/><ellipse cx="343.2292" cy="207.4178" fill="#0066CF" rx="10.4167" ry="10.4167" style="stroke:#0086EF;stroke-width:1.0416666666666667;"/><path d="M345.1396,211.8429 Q344.7123,212.0626 344.2424,212.1724 Q343.7724,212.2823 343.2536,212.2823 Q341.4103,212.2823 340.4399,211.0677 Q339.4694,209.8531 339.4694,207.5582 Q339.4694,205.2572 340.4399,204.0426 Q341.4103,202.828 343.2536,202.828 Q343.7724,202.828 344.2485,202.9378 Q344.7245,203.0477 345.1396,203.2674 L345.1396,205.2694 Q344.6757,204.8421 344.2393,204.6438 Q343.8029,204.4454 343.339,204.4454 Q342.3503,204.4454 341.8467,205.2297 Q341.3432,206.014 341.3432,207.5582 Q341.3432,209.0963 341.8467,209.8806 Q342.3503,210.6649 343.339,210.6649 Q343.8029,210.6649 344.2393,210.4665 Q344.6757,210.2681 345.1396,209.8409 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="189.5833" x="359.8958" y="212.1419">PropertiesSerializationProject</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="329.6875" x2="554.6875" y1="223.112" y2="223.112"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="329.6875" x2="554.6875" y1="231.4453" y2="231.4453"/><!--MD5=[d7361d3f2a2609fb9611889f993b3b24]
+reverse link ObjectSerializer to PropertiesObjectSerializer--><path codeLine="9" d="M149.4792,122.8382 C149.4792,135.9945 149.4792,150.5257 149.4792,164.0674 " fill="none" id="ObjectSerializer-backto-PropertiesObjectSerializer" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="142.1875,122.5986,149.4792,101.7653,156.7708,122.5986,142.1875,122.5986" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[b7efeec1a2b21888e09e2ee9f453710e]
+reverse link Project to PropertiesSerializationProject--><path codeLine="17" d="M442.1875,122.807 C442.1875,145.682 442.1875,172.682 442.1875,191.4632 " fill="none" id="Project-backto-PropertiesSerializationProject" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="434.8958,122.5986,442.1875,101.7653,449.4792,122.5986,434.8958,122.5986" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[b6cc3dbff8a273f7a637b2a7d12e97b3]
+@startuml
+
+    !include lexakai.theme
+    
+    title "com.telenav.kivakit.serialization.properties"
+    
+    interface ObjectSerializer
+    
+    ObjectSerializer <|- - PropertiesObjectSerializer
+    class PropertiesObjectSerializer
+    {
+        - -(constructors)- -
+        +PropertiesObjectSerializer()
+        +PropertiesObjectSerializer(ProgressReporter)
+    }
+    
+    Project <|- - PropertiesSerializationProject
+    class PropertiesSerializationProject
+    {
+    }
+    
+@enduml
+
+@startuml
+
+
+
+
+
+
+
+
+
+skinparam backgroundColor #333333
+
+
+
+
+
+
+skinparam  {
+    defaultFontName   "Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif"
+    defaultFontSize   12
+    defaultTextAlignment left
+    shadowing false
+    RoundCorner 10
+    TitleFontSize 18
+}
+
+skinparam defaultFontName       "Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif"
+skinparam defaultFontSize       12
+skinparam dpi                   100
+skinparam shadowing             false
+skinparam roundcorner           16
+skinparam ParticipantPadding    40
+skinparam BoxPadding            40
+skinparam Padding               3
+skinparam ArrowColor            #545454
+skinparam stereotype {
+    CBackgroundColor #0066cf
+    CBorderColor #0086ef
+    ABackgroundColor #C8Ac00
+    ABorderColor #D8Bc00
+    IBackgroundColor #008400
+    IBorderColor #239c23
+    EBackgroundColor #cf6300
+    EBorderColor #ef8300
+    NBackgroundColor #3380b9
+    NBorderColor #004d86
+}
+skinparam title {
+	FontColor	                 #c0c0c0
+ 	BorderColor                  #545454
+	FontSize	    	         20
+	BorderRoundCorner            16
+	BorderThickness 	         1
+	BackgroundColor              #48494b
+}
+
+
+skinparam legend {
+	BackgroundColor #303030
+	BorderColor #404040
+	FontColor #a0a0a0
+}
+
+	skinparam swimlane {
+	BorderColor #5e5e5e
+	BorderThickness 2
+	TitleBackgroundColor  #6d6d6d-#484848
+	TitleFontColor #303030
+}
+
+skinparam activity {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BarColor #00FF00
+	StartColor #0060a8
+	EndColor #0060a8
+	DiamondBackgroundColor #6d6d6d-#3a3a3a
+  	DiamondBorderColor #3a3a3a
+  	DiamondFontColor #fefefe
+}
+
+
+skinparam participant {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	ParticipantBorderThickness 2
+}
+
+
+skinparam actor {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam arrow {
+	Thickness 1.5
+	Color #545454
+	FontColor #a0a0a0
+    FontStyle bold
+    MessageAlignment center
+}
+
+
+
+skinparam sequence {
+	BorderColor #303030
+	TitleFontColor #303030
+	BackgroundColor #333333
+	StartColor #303030
+	EndColor #303030
+	BoxBackgroundColor #333333
+	BoxBorderColor #484848
+	BoxFontColor #484848
+	LifeLineBorderColor #484848
+	LifeLineBorderThickness 2
+	LifeLineBackgroundColor #3a3a3a
+	GroupBorderColor #484848
+	GroupFontColor #484848
+	GroupHeaderFontColor #0060a8
+	GroupBackgroundColor #484848
+	GroupHeaderBackgroundColor #333333
+	DividerBackgroundColor #484848
+    DividerBorderColor #484848
+    DividerBorderThickness 2
+    DividerFontColor #D8Bc00
+	ReferenceBackgroundColor #333333
+	ReferenceBorderColor #484848
+	ReferenceFontColor #fefefe
+	ReferenceHeaderBackgroundColor #484848
+}
+
+
+skinparam partition {
+	BorderColor #303030
+	FontColor #333333
+	BackgroundColor #333333
+}
+
+
+skinparam collections {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam control {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam entity {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam boundary {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam agent {
+	BackgroundColor #ff8000
+	BorderColor #ff9933
+	FontColor #484848
+}
+
+
+skinparam note {
+	BorderThickness 1
+	BackgroundColor #1b1b1a
+	BorderColor #5e5e5e
+	FontSize 11
+	FontColor #a0a0a0
+}
+
+
+skinparam artifact {
+	BorderThickness 10
+	BorderColor #5e5e5e
+	BackgroundColor #1b1b1a
+	FontColor #D8Bc00
+}
+
+
+skinparam component {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam interface {
+	BackgroundColor  #008400
+	BorderColor  #007F00
+	FontColor #484848
+}
+
+
+skinparam storage {
+	BackgroundColor #ff8000
+  	BorderColor #cc6600
+	FontColor #222222
+}
+
+
+skinparam node {
+	BackgroundColor #333333
+	BorderColor #333333
+	FontColor #C8Ac00
+}
+
+
+skinparam cloud {
+	BackgroundColor #484848-black
+	BorderColor #484848
+	FontColor #D8Bc00
+}
+
+
+skinparam database {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BackgroundColor  #333333
+}
+
+
+skinparam class {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	HeaderBackgroundColor #1b1b1a
+    BackgroundColor #282828
+    BorderColor #5e5e5e
+ 	StereotypeFontColor #a0a0a0
+    StereotypeFontStyle bold
+	BorderThickness 1
+	AttributeFontColor #D8Bc00
+	AttributeFontSize 11
+    FontColor #D8Bc00
+    FontStyle bold
+}
+
+
+skinparam object {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	StereotypeFontColor #484848
+	BorderThickness 1
+	AttributeFontColor #fefefe
+	AttributeFontSize 11
+}
+
+
+skinparam usecase {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BorderThickness 2
+	StereotypeFontColor #303030
+}
+
+
+skinparam rectangle {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BackgroundColor #333333
+	BorderThickness 2
+	StereotypeFontColor #303030
+}
+
+
+skinparam package {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BackgroundColor #333333
+	BorderThickness 2
+}
+
+
+skinparam folder {
+	BackgroundColor #6d6d6d
+  	BorderColor #ff8000
+	FontColor #ff8000
+	BorderThickness 2
+}
+
+
+skinparam frame {
+	BackgroundColor #6d6d6d
+  	BorderColor #0060a8
+	FontColor #0060a8
+	BorderThickness 2
+}
+
+
+skinparam state {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	StartColor #0060a8
+	EndColor #0060a8
+	AttributeFontColor #fefefe
+	AttributeFontSize 11
+}
+
+
+skinparam queue {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam card {
+	BackgroundColor #0060a8
+	BorderColor #004d86
+	FontColor $INFO_TEXT
+}
+
+
+skinparam file {
+	BackgroundColor #6d6d6d-#484848
+	BorderColor #0060a8
+	FontColor #fefefe
+}
+
+
+skinparam stack {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+    
+    title "com.telenav.kivakit.serialization.properties"
+    
+    interface ObjectSerializer
+    
+    ObjectSerializer <|- - PropertiesObjectSerializer
+    class PropertiesObjectSerializer
+    {
+        - -(constructors)- -
+        +PropertiesObjectSerializer()
+        +PropertiesObjectSerializer(ProgressReporter)
+    }
+    
+    Project <|- - PropertiesSerializationProject
+    class PropertiesSerializationProject
+    {
+    }
+    
+@enduml
+
+PlantUML version 1.2021.01(Tue Feb 02 00:55:08 MST 2021)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Default Encoding: UTF-8
+Language: en
+Country: US
+--></g></svg>

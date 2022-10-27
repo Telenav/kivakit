@@ -1,0 +1,127 @@
+
+@startuml
+
+    !include lexakai.theme
+    
+    title "com.telenav.kivakit.interfaces.numeric"
+    
+    interface LongValued
+    interface Mapper<Long,Value>
+    interface NextIterator
+    LongValued <|-- Arithmetic
+    NextIterator <|-- Arithmetic
+    Mapper <|-- Arithmetic
+    interface Arithmetic<Value>
+    {
+        --
+        +Value modulo(long value)
+        +Value modulo(LongValued)
+        --(math)--
+        +Value decremented()
+        +Value dividedBy(long value)
+        +Value dividedBy(LongValued)
+        +boolean dividesEvenlyBy(LongValued)
+        +Value incremented()
+        +Value minus(LongValued)
+        +Value minus(long value)
+        +Value plus(LongValued)
+        +Value plus(long value)
+        +Value times(LongValued)
+        +Value times(long value)
+    }
+    
+    interface CastTrait
+    {
+        --
+        +T cast(long value, Class<T> type)
+        +T cast(LongValued number, Class<T> type)
+        --(math)--
+        +long maximum(Class<T> type)
+        +long minimum(Class<T> type)
+    }
+    
+    interface LongValued
+    interface Mapper<Long,Value>
+    LongValued <|-- Maximizable
+    Mapper <|-- Maximizable
+    interface Maximizable<Value>
+    {
+        --
+        +Value maximize(LongValued)
+        +Value maximize(long value)
+        --(math)--
+        +Value maximum()
+    }
+    
+    interface LongValued
+    interface Mapper<Long,Value>
+    LongValued <|-- Minimizable
+    Mapper <|-- Minimizable
+    interface Minimizable<Value>
+    {
+        --
+        +Value minimize(LongValued)
+        +Value minimize(long value)
+        --(math)--
+        +Value minimum()
+    }
+    
+    interface Arithmetic
+    interface Maximizable
+    interface Minimizable
+    Arithmetic <|-- Numeric
+    Maximizable <|-- Numeric
+    Minimizable <|-- Numeric
+    interface Numeric<Value>
+    {
+    }
+    
+    interface CastTrait
+    CastTrait <|-- RandomNumeric
+    interface RandomNumeric
+    {
+        --
+        +T random(Class<T> type)
+        +T random(Class<T> type, Matcher<T>)
+        +boolean randomBoolean()
+        +T randomExclusive(long minimum, long maximum, Class<T> type)
+        +T randomExclusive(long minimum, long maximum, Class<T> type, Matcher<T>)
+        +float randomFloat()
+        +T randomInclusive(long minimum, long maximum, Class<T> type)
+        +T randomInclusive(long minimum, long maximum, Class<T> type, Matcher<T>)
+        --(collection)--
+        +int randomIndex(int maximum)
+        --(primitive)--
+        +byte randomByte()
+        +byte randomByteExclusive(byte minimum, byte maximum)
+        +byte randomByteInclusive(byte minimum, byte maximum)
+        +char randomChar()
+        +char randomCharExclusive(char minimum, char maximum)
+        +char randomCharInclusive(char minimum, char maximum)
+        +double randomDouble()
+        +double randomDouble(double minimum, double maximum)
+        +double randomDoubleZeroToOne()
+        +int randomInt()
+        +int randomIntExclusive(int minimum, int maximum)
+        +int randomIntInclusive(int minimum, int maximum)
+        +long randomLong()
+        +long randomLongExclusive(long minimum, long maximum)
+        +long randomLongInclusive(long minimum, long maximum)
+        +short randomShort()
+        +short randomShortExclusive(short minimum, short maximum)
+        +short randomShortInclusive(short minimum, short maximum)
+        +double randomUnsignedDouble()
+        +double randomUnsignedDouble(double maximum)
+        +int randomUnsignedInt()
+        +long randomUnsignedLong()
+    }
+    
+    interface Zeroable
+    {
+        --(checks)--
+        +boolean isNonZero()
+        +boolean isZero()
+    }
+    
+@enduml
+

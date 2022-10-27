@@ -1,0 +1,86 @@
+
+@startuml
+
+    !include lexakai.theme
+    
+    title "Applications"
+    
+    abstract BaseComponent
+    
+    interface Named
+    interface ApplicationMetadata
+    interface ProjectTrait
+    interface PackageTrait
+    interface SettingsTrait
+    
+    BaseComponent <|-- Application
+    PackageTrait <|-- Application
+    ProjectTrait <|-- Application
+    SettingsTrait <|-- Application
+    Named <|-- Application
+    ApplicationMetadata <|-- Application
+    Application --> CommandLine : "parses arguments into"
+    Application --> Application.Identifier : "identified by"
+    Application o-- CommandLine
+    Application "1" o-- "*" Project : "initializes and uses"
+    abstract class Application
+    {
+        --(constructors)--
+        #Application()
+        --
+        +Application application()
+        +Set<Project> projects()
+        +void ready()
+        #boolean ignoreDeployments()
+        #ObjectSet<StartupOption> startupOptions()
+        --(building)--
+        +Build build()
+        --(collection)--
+        +Application addProject(Class<? extends Project>)
+        +PropertyMap localizedProperties(Locale, LocaleLanguage)
+        +PropertyMap localizedProperties(Locale)
+        +PropertyMap properties()
+        --(command line parsing)--
+        +T argument(int index, ArgumentParser<T>)
+        +T argument(ArgumentParser<T>)
+        +ArgumentValueList argumentList()
+        +ObjectList<T> arguments(ArgumentParser<T>)
+        +CommandLine commandLine()
+        +T get(SwitchParser<T>, T defaultValue)
+        +T get(SwitchParser<T>)
+        +boolean has(SwitchParser<T>)
+        #ObjectList<ArgumentParser<?>> argumentParsers()
+        #ObjectSet<SwitchParser<?>> switchParsers()
+        --(factory)--
+        #Project newProject()
+        --(identity)--
+        +Identifier identifier()
+        --(lifecycle)--
+        +void exit(String message, Object... arguments)
+        +Result<ApplicationExit> run(Class<T> applicationType, String[] arguments)
+        +Result<ApplicationExit> run(Listener, Class<T> applicationType, String[] arguments)
+        +Result<ApplicationExit> run(String[] arguments)
+        #void onRun()
+        #void onSerializationInitialize()
+        --(lookup)--
+        #void onRegisterObjectSerializers()
+        --(messaging)--
+        +String startupInformation(String title)
+        --(thread)--
+        +void waitForReady()
+    }
+    
+    class Application.Identifier
+    {
+        --(constructors)--
+        #Identifier()
+        +Identifier(String)
+    }
+    
+    Application <|-- Server
+    abstract class Server
+    {
+    }
+    
+@enduml
+

@@ -30,14 +30,14 @@ This project facilitates object-oriented parsing of command line arguments and s
 
 ### Dependencies <a name="dependencies"></a> &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/dependencies-32.png" srcset="https://telenav.github.io/telenav-assets/images/icons/dependencies-32-2x.png 2x"/>
 
-[*Dependency Diagram*](https://www.kivakit.org/1.7.1-SNAPSHOT/lexakai/kivakit/kivakit-commandline/documentation/diagrams/dependencies.svg)
+[*Dependency Diagram*](https://www.kivakit.org/1.8.2/lexakai/kivakit/kivakit-commandline/documentation/diagrams/dependencies.svg)
 
 #### Maven Dependency
 
     <dependency>
         <groupId>com.telenav.kivakit</groupId>
         <artifactId>kivakit-commandline</artifactId>
-        <version>1.7.1-SNAPSHOT</version>
+        <version>1.8.2</version>
     </dependency>
 
 <img src="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128.png" srcset="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128-2x.png 2x"/>
@@ -56,83 +56,79 @@ arguments and switches is available in the Javadoc for the [*Application*](https
 
 ### Code Quality <a name="code-quality"></a> &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/ruler-32.png" srcset="https://telenav.github.io/telenav-assets/images/icons/ruler-32-2x.png 2x"/>
 
-Code quality for this project is 60.6%.  
+Code quality for this project is 72.7%.  
   
-&nbsp; &nbsp; <img src="https://telenav.github.io/telenav-assets/images/meters/meter-60-96.png" srcset="https://telenav.github.io/telenav-assets/images/meters/meter-60-96-2x.png 2x"/>
-
+&nbsp; &nbsp; <img src="https://telenav.github.io/telenav-assets/images/meters/meter-70-96.png" srcset="https://telenav.github.io/telenav-assets/images/meters/meter-70-96-2x.png 2x"/>
 
 | Measurement   | Value                    |
 |---------------|--------------------------|
-| Stability     | 81.8%&nbsp; &nbsp; <img src="https://telenav.github.io/telenav-assets/images/meters/meter-80-96.png" srcset="https://telenav.github.io/telenav-assets/images/meters/meter-80-96-2x.png 2x"/>
-     |
-| Testing       | 18.2%&nbsp; &nbsp; <img src="https://telenav.github.io/telenav-assets/images/meters/meter-20-96.png" srcset="https://telenav.github.io/telenav-assets/images/meters/meter-20-96-2x.png 2x"/>
-       |
-| Documentation | 81.8%&nbsp; &nbsp; <img src="https://telenav.github.io/telenav-assets/images/meters/meter-80-96.png" srcset="https://telenav.github.io/telenav-assets/images/meters/meter-80-96-2x.png 2x"/>
- |
+| Stability     | 100.0%&nbsp; &nbsp; <img src="https://telenav.github.io/telenav-assets/images/meters/meter-100-96.png" srcset="https://telenav.github.io/telenav-assets/images/meters/meter-100-96-2x.png 2x"/>     |
+| Testing       | 18.2%&nbsp; &nbsp; <img src="https://telenav.github.io/telenav-assets/images/meters/meter-20-96.png" srcset="https://telenav.github.io/telenav-assets/images/meters/meter-20-96-2x.png 2x"/>       |
+| Documentation | 100.0%&nbsp; &nbsp; <img src="https://telenav.github.io/telenav-assets/images/meters/meter-100-96.png" srcset="https://telenav.github.io/telenav-assets/images/meters/meter-100-96-2x.png 2x"/> |
 
 <img src="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128.png" srcset="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128-2x.png 2x"/>
 
 ### Class Diagrams <a name="class-diagrams"></a> &nbsp; &nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/diagram-40.png" srcset="https://telenav.github.io/telenav-assets/images/icons/diagram-40-2x.png 2x"/>
 
-[*Argument Parsing*](https://www.kivakit.org/1.7.1-SNAPSHOT/lexakai/kivakit/kivakit-commandline/documentation/diagrams/diagram-argument.svg)  
-[*Command Line*](https://www.kivakit.org/1.7.1-SNAPSHOT/lexakai/kivakit/kivakit-commandline/documentation/diagrams/diagram-command-line.svg)  
-[*Command Line Validation*](https://www.kivakit.org/1.7.1-SNAPSHOT/lexakai/kivakit/kivakit-commandline/documentation/diagrams/diagram-validation.svg)  
-[*Switch Parsing*](https://www.kivakit.org/1.7.1-SNAPSHOT/lexakai/kivakit/kivakit-commandline/documentation/diagrams/diagram-switch.svg)
+[*Argument Parsing*](https://www.kivakit.org/1.8.2/lexakai/kivakit/kivakit-commandline/documentation/diagrams/diagram-argument.svg)  
+[*Command Line*](https://www.kivakit.org/1.8.2/lexakai/kivakit/kivakit-commandline/documentation/diagrams/diagram-command-line.svg)  
+[*Command Line Validation*](https://www.kivakit.org/1.8.2/lexakai/kivakit/kivakit-commandline/documentation/diagrams/diagram-validation.svg)  
+[*Switch Parsing*](https://www.kivakit.org/1.8.2/lexakai/kivakit/kivakit-commandline/documentation/diagrams/diagram-switch.svg)
 
 <img src="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128.png" srcset="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128-2x.png 2x"/>
 
 ### Package Diagrams <a name="package-diagrams"></a> &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/box-24.png" srcset="https://telenav.github.io/telenav-assets/images/icons/box-24-2x.png 2x"/>
 
-[*com.telenav.kivakit.commandline*](https://www.kivakit.org/1.7.1-SNAPSHOT/lexakai/kivakit/kivakit-commandline/documentation/diagrams/com.telenav.kivakit.commandline.svg)  
-[*com.telenav.kivakit.commandline.internal.lexakai*](https://www.kivakit.org/1.7.1-SNAPSHOT/lexakai/kivakit/kivakit-commandline/documentation/diagrams/com.telenav.kivakit.commandline.internal.lexakai.svg)  
-[*com.telenav.kivakit.commandline.parsing*](https://www.kivakit.org/1.7.1-SNAPSHOT/lexakai/kivakit/kivakit-commandline/documentation/diagrams/com.telenav.kivakit.commandline.parsing.svg)
+[*com.telenav.kivakit.commandline*](https://www.kivakit.org/1.8.2/lexakai/kivakit/kivakit-commandline/documentation/diagrams/com.telenav.kivakit.commandline.svg)  
+[*com.telenav.kivakit.commandline.internal.lexakai*](https://www.kivakit.org/1.8.2/lexakai/kivakit/kivakit-commandline/documentation/diagrams/com.telenav.kivakit.commandline.internal.lexakai.svg)  
+[*com.telenav.kivakit.commandline.parsing*](https://www.kivakit.org/1.8.2/lexakai/kivakit/kivakit-commandline/documentation/diagrams/com.telenav.kivakit.commandline.parsing.svg)
 
 ### Javadoc <a name="code-quality"></a> &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/books-24.png" srcset="https://telenav.github.io/telenav-assets/images/icons/books-24-2x.png 2x"/>
 
 | Class | Documentation Sections  |
 |-------|-------------------------|
-| [*ApplicationMetadata*](https://www.kivakit.org/1.7.1-SNAPSHOT/javadoc/kivakit/kivakit.commandline////////////////////////////////////////////////////.html) |  |  
-| [*ArgumentParser*](https://www.kivakit.org/1.7.1-SNAPSHOT/javadoc/kivakit/kivakit.commandline///////////////////////////////////////////////.html) | Example |  
-| | Parser Builders |  
+| [*ApplicationMetadata*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.commandline/com/telenav/kivakit/commandline/ApplicationMetadata.html) |  |  
+| [*ArgumentParser*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.commandline/com/telenav/kivakit/commandline/ArgumentParser.html) | Example |  
 | | Arguments |  
 | | Properties |  
-| [*ArgumentParser.Builder*](https://www.kivakit.org/1.7.1-SNAPSHOT/javadoc/kivakit/kivakit.commandline///////////////////////////////////////////////////////.html) |  |  
-| [*ArgumentParserList*](https://www.kivakit.org/1.7.1-SNAPSHOT/javadoc/kivakit/kivakit.commandline///////////////////////////////////////////////////////////.html) |  |  
-| [*ArgumentParsers*](https://www.kivakit.org/1.7.1-SNAPSHOT/javadoc/kivakit/kivakit.commandline////////////////////////////////////////////////.html) | Values |  
+| | Argument Parser Builders |  
+| [*ArgumentParser.Builder*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.commandline/com/telenav/kivakit/commandline/ArgumentParser.Builder.html) |  |  
+| [*ArgumentParserList*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.commandline/com/telenav/kivakit/commandline/parsing/ArgumentParserList.html) |  |  
+| [*ArgumentParsers*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.commandline/com/telenav/kivakit/commandline/ArgumentParsers.html) | Values |  
 | | Primitives |  
-| [*ArgumentValue*](https://www.kivakit.org/1.7.1-SNAPSHOT/javadoc/kivakit/kivakit.commandline//////////////////////////////////////////////.html) |  |  
-| [*ArgumentValueList*](https://www.kivakit.org/1.7.1-SNAPSHOT/javadoc/kivakit/kivakit.commandline//////////////////////////////////////////////////.html) | Arguments |  
+| [*ArgumentValue*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.commandline/com/telenav/kivakit/commandline/ArgumentValue.html) |  |  
+| [*ArgumentValueList*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.commandline/com/telenav/kivakit/commandline/ArgumentValueList.html) | Arguments |  
 | | Adding |  
-| [*ArgumentValueListValidator*](https://www.kivakit.org/1.7.1-SNAPSHOT/javadoc/kivakit/kivakit.commandline///////////////////////////////////////////////////////////////////.html) |  |  
-| [*CommandLine*](https://www.kivakit.org/1.7.1-SNAPSHOT/javadoc/kivakit/kivakit.commandline////////////////////////////////////////////.html) | Switches |  
+| [*ArgumentValueListValidator*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.commandline/com/telenav/kivakit/commandline/parsing/ArgumentValueListValidator.html) |  |  
+| [*CommandLine*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.commandline/com/telenav/kivakit/commandline/CommandLine.html) | Switches |  
 | | Arguments |  
 | | Retrieving Switches and Arguments |  
 | | Error Handling |  
 | | Operations |  
 | | Conversion |  
-| [*CommandLineParser*](https://www.kivakit.org/1.7.1-SNAPSHOT/javadoc/kivakit/kivakit.commandline//////////////////////////////////////////////////.html) | Example |  
+| [*CommandLineParser*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.commandline/com/telenav/kivakit/commandline/CommandLineParser.html) | Example |  
 | | Parsing a Command Line |  
 | | Switch Conventions |  
-| [*DiagramArgument*](https://www.kivakit.org/1.7.1-SNAPSHOT/javadoc/kivakit/kivakit.commandline/////////////////////////////////////////////////////////////////.html) |  |  
-| [*DiagramCommandLine*](https://www.kivakit.org/1.7.1-SNAPSHOT/javadoc/kivakit/kivakit.commandline////////////////////////////////////////////////////////////////////.html) |  |  
-| [*DiagramSwitch*](https://www.kivakit.org/1.7.1-SNAPSHOT/javadoc/kivakit/kivakit.commandline///////////////////////////////////////////////////////////////.html) |  |  
-| [*DiagramValidation*](https://www.kivakit.org/1.7.1-SNAPSHOT/javadoc/kivakit/kivakit.commandline///////////////////////////////////////////////////////////////////.html) |  |  
-| [*Quantifier*](https://www.kivakit.org/1.7.1-SNAPSHOT/javadoc/kivakit/kivakit.commandline///////////////////////////////////////////.html) |  |  
-| [*SwitchParser*](https://www.kivakit.org/1.7.1-SNAPSHOT/javadoc/kivakit/kivakit.commandline/////////////////////////////////////////////.html) | Validation |  
+| [*DiagramArgument*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.commandline/com/telenav/kivakit/commandline/internal/lexakai/DiagramArgument.html) |  |  
+| [*DiagramCommandLine*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.commandline/com/telenav/kivakit/commandline/internal/lexakai/DiagramCommandLine.html) |  |  
+| [*DiagramSwitch*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.commandline/com/telenav/kivakit/commandline/internal/lexakai/DiagramSwitch.html) |  |  
+| [*DiagramValidation*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.commandline/com/telenav/kivakit/commandline/internal/lexakai/DiagramValidation.html) |  |  
+| [*Quantifier*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.commandline/com/telenav/kivakit/commandline/Quantifier.html) |  |  
+| [*SwitchParser*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.commandline/com/telenav/kivakit/commandline/SwitchParser.html) | Validation |  
 | | Parser Builders |  
 | | Values |  
 | | Properties |  
 | | Built-In Parsers |  
-| [*SwitchParser.Builder*](https://www.kivakit.org/1.7.1-SNAPSHOT/javadoc/kivakit/kivakit.commandline/////////////////////////////////////////////////////.html) |  |  
-| [*SwitchParserList*](https://www.kivakit.org/1.7.1-SNAPSHOT/javadoc/kivakit/kivakit.commandline/////////////////////////////////////////////////////////.html) |  |  
-| [*SwitchParsers*](https://www.kivakit.org/1.7.1-SNAPSHOT/javadoc/kivakit/kivakit.commandline//////////////////////////////////////////////.html) | Values |  
+| [*SwitchParser.Builder*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.commandline/com/telenav/kivakit/commandline/SwitchParser.Builder.html) |  |  
+| [*SwitchParserList*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.commandline/com/telenav/kivakit/commandline/parsing/SwitchParserList.html) |  |  
+| [*SwitchParsers*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.commandline/com/telenav/kivakit/commandline/SwitchParsers.html) | Values |  
 | | Time |  
 | | Primitives |  
-| [*SwitchValue*](https://www.kivakit.org/1.7.1-SNAPSHOT/javadoc/kivakit/kivakit.commandline////////////////////////////////////////////.html) |  |  
-| [*SwitchValueList*](https://www.kivakit.org/1.7.1-SNAPSHOT/javadoc/kivakit/kivakit.commandline////////////////////////////////////////////////.html) | Retrieval |  
+| [*SwitchValue*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.commandline/com/telenav/kivakit/commandline/SwitchValue.html) |  |  
+| [*SwitchValueList*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.commandline/com/telenav/kivakit/commandline/SwitchValueList.html) | Retrieval |  
 | | Adding |  
 | | Conversion |  
-| [*SwitchValueListValidator*](https://www.kivakit.org/1.7.1-SNAPSHOT/javadoc/kivakit/kivakit.commandline/////////////////////////////////////////////////////////////////.html) |  |  
+| [*SwitchValueListValidator*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.commandline/com/telenav/kivakit/commandline/parsing/SwitchValueListValidator.html) |  |  
 
 [//]: # (start-user-text)
 

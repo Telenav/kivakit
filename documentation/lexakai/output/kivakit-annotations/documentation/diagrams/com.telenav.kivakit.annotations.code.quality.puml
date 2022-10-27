@@ -1,0 +1,44 @@
+
+@startuml
+
+    !include lexakai.theme
+    
+    title "com.telenav.kivakit.annotations.code.quality"
+    
+    enum Audience
+    {
+        AUDIENCE_INTERNAL
+        AUDIENCE_PUBLIC
+        AUDIENCE_SERVICE_PROVIDER
+        AUDIENCE_SERVICE_PROVIDER_INTERFACE
+    }
+    
+    annotation CodeQuality
+    
+    enum Documentation
+    {
+        DOCUMENTATION_COMPLETE
+        DOCUMENTATION_INSUFFICIENT
+        DOCUMENTATION_UNDETERMINED
+        UNDOCUMENTED
+    }
+    
+    enum Stability
+    {
+        STABILITY_UNDETERMINED
+        STABLE
+        STABLE_EXTENSIBLE
+        UNSTABLE
+    }
+    
+    enum Testing
+    {
+        TESTED
+        TESTING_INSUFFICIENT
+        TESTING_NOT_NEEDED
+        TESTING_UNDETERMINED
+        UNTESTED
+    }
+    
+@enduml
+

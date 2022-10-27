@@ -1,0 +1,78 @@
+
+@startuml
+
+    !include lexakai.theme
+    
+    title "com.telenav.kivakit.core.collections"
+    
+    interface Countable
+    interface Sized
+    interface Addable
+    interface Joinable
+    interface Collection
+    interface Sequence
+    interface StringFormattable
+    
+    Addable <|-- BaseCollection
+    Collection <|-- BaseCollection
+    Countable <|-- BaseCollection
+    Joinable <|-- BaseCollection
+    Sequence <|-- BaseCollection
+    Sized <|-- BaseCollection
+    StringFormattable <|-- BaseCollection
+    abstract class BaseCollection<Value>
+    {
+        --(constructors)--
+        #BaseCollection(Maximum)
+        --
+        +BaseCollection<Value> with(Collection<Value> that)
+        +BaseCollection<Value> with(Value)
+        #Collection<Value> backingCollection()
+        --(collection)--
+        +Value[] asArray(Class<Value> type)
+        +StringList asStringList()
+        +BaseCollection<To> map(Function<Value,To> mapper)
+        +Iterable<Value> matchingAsIterable(Matcher<Value>)
+        +Maximum maximumSize()
+        +boolean removeAllMatching(Matcher<Value>)
+        +BaseList<Value> sorted(Comparator<Value>)
+        +BaseList<Value> sorted()
+        --(factory)--
+        #BaseCollection<Value> newCollection()
+        #BaseCollection<Value> onNewCollection()
+    }
+    
+    class Collections
+    {
+        --
+        +T pickOne(Collection<T> values)
+    }
+    
+    class Lists
+    {
+        --(collection)--
+        +ArrayList<Value> newArrayList(Value... objects)
+    }
+    
+    class Maps
+    {
+        --(filesystem)--
+        +Map<Key,Value> deepCopy(Factory<Map<Key,Value>>, Map<Key,Value>, Function<Value,Value> clone)
+    }
+    
+    class Sets
+    {
+        --
+        +Value pickOne(Set<Value>)
+        +Set<T> unionOf(Set<T> a, Set<T> b)
+        --(collection)--
+        +HashSet<T> hashSet(Collection<T>)
+        +Set<T> hashSet(Iterable<T>)
+        +Set<T> hashSet(T... values)
+        --(filesystem)--
+        +Set<Value> deepCopy(Factory<Set<Value>>, Set<Value>, Function<Value,Value> clone)
+        +Set<Value> deepCopy(Factory<Set<Value>>, Set<Value>)
+    }
+    
+@enduml
+

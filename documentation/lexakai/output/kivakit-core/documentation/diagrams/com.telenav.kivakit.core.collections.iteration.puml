@@ -1,0 +1,101 @@
+
+@startuml
+
+    !include lexakai.theme
+    
+    title "com.telenav.kivakit.core.collections.iteration"
+    
+    abstract BaseIterator
+    abstract BaseIterable
+    
+    interface Iterable
+    interface Iterator
+    
+    Iterable <|-- BaseIterable
+    BaseIterable --> NextIterator : "creates"
+    abstract class BaseIterable<Value>
+    {
+        --(collection)--
+        +BaseIterable<Value> matching(Matcher<Value>)
+        #NextIterator<Value> newNextIterator()
+        --(matching)--
+        +Matcher<Value> matcher()
+    }
+    
+    Iterator <|-- BaseIterator
+    abstract class BaseIterator<Value>
+    {
+        --(collection)--
+        +BaseIterator<Value> matching(Matcher<Value>)
+        --(iteration)--
+        #Value findNext()
+        #Value onNext()
+        --(matching)--
+        +Matcher<Value> matcher()
+    }
+    
+    BaseIterator <|-- CompoundIterator
+    class CompoundIterator<Value>
+    {
+        --(collection)--
+        +CompoundIterator<Value> add(Iterator<Value>)
+        +CompoundIterator<Value> addAll(Collection<Iterator<Value>> iterators)
+    }
+    
+    Iterable <|-- DeduplicatingIterable
+    class DeduplicatingIterable<Value>
+    {
+        --(constructors)--
+        +DeduplicatingIterable(Iterable<Value>)
+    }
+    
+    BaseIterator <|-- DeduplicatingIterator
+    class DeduplicatingIterator<Value>
+    {
+        --(constructors)--
+        +DeduplicatingIterator(Iterator<Value>)
+    }
+    
+    BaseIterable <|-- FilteredIterable
+    class FilteredIterable<Value>
+    {
+        --(constructors)--
+        +FilteredIterable(Iterable<Value>, Matcher<Value>)
+    }
+    
+    BaseIterator <|-- FilteredIterator
+    class FilteredIterator<Value>
+    {
+        --(constructors)--
+        +FilteredIterator(Iterator<Value>, Matcher<Value>)
+    }
+    
+    class Iterables
+    {
+        --
+        +boolean equalIterables(Iterable<T>, Iterable<T>)
+        --(collection)--
+        +Iterable<T> emptyIterable()
+        +boolean isEmpty(Iterable<?>)
+        +Iterable<T> iterable(Factory<NextIterator<T>>)
+        +Iterable<T> iterable(T[] values)
+        +int iterableHashCode(Iterable<T>)
+        +int iterableSize(Iterable<?>)
+        +Iterable<T> singletonIterable(T value)
+    }
+    
+    class Iterators
+    {
+        --
+        +boolean equalIterators(Iterator<T>, Iterator<T> b)
+        --(collection)--
+        +Iterator<T> emptyIterator()
+        +boolean isEmptyIterator(Iterator<?>)
+        +Iterator<T> iterator(Supplier<T>)
+        +int iteratorHashCode(Iterator<T>)
+        +int iteratorSize(Iterator<?>)
+        +Iterator<T> singletonIterator(T value)
+    }
+    
+@enduml
+

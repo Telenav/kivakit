@@ -1,0 +1,91 @@
+
+@startuml
+
+    !include lexakai.theme
+    
+    title "com.telenav.kivakit.resource.reading"
+    
+    abstract BaseRepeater
+    
+    interface Resource
+    
+    BaseRepeater <|-- BaseReadableResource
+    Resource <|-- BaseReadableResource
+    abstract class BaseReadableResource
+    {
+        --(constructors)--
+        #BaseReadableResource()
+        #BaseReadableResource(BaseReadableResource)
+        #BaseReadableResource(ResourcePath)
+        --
+        +BaseReadableResource codec(Codec)
+        #void charset(Charset)
+    }
+    
+    BaseRepeater <|-- LineReader
+    class LineReader
+    {
+        --(constructors)--
+        +LineReader(ReadableResource)
+        +LineReader(ReadableResource, ProgressReporter)
+        --
+        +boolean lines(Consumer<String>)
+        +Stream<String> stream()
+        --(collection)--
+        +StringList lines()
+    }
+    
+    interface ByteSized
+    ByteSized <|-- Readable
+    interface Readable
+    {
+        --(checks)--
+        +boolean isReadable()
+        --(read)--
+        +InputStream onOpenForReading()
+        +InputStream openForReading()
+        +InputStream openForReading(ProgressReporter)
+    }
+    
+    interface Readable
+    interface Repeater
+    Readable <|-- ReadableResource
+    Repeater <|-- ReadableResource
+    ReadableResource --> ResourceReader : "provides"
+    interface ReadableResource
+    {
+        --
+        +Charset charset()
+        +Resource resource()
+        --(conversion)--
+        +StringResource asStringResource()
+        --(filesystem)--
+        +void copyTo(WritableResource destination, CopyMode, ProgressReporter)
+        --(read)--
+        +ResourceReader reader(ProgressReporter)
+        +ResourceReader reader(ProgressReporter, Charset)
+        +ResourceReader reader()
+    }
+    
+    class ResourceReader
+    {
+        --(constructors)--
+        +ResourceReader(ProgressReporter, Resource)
+        +ResourceReader(ProgressReporter, Resource, Charset)
+        --(read)--
+        +byte[] readBytes()
+        +StringList readLines()
+        +StringList readLines(ProgressReporter)
+        +void readLines(ProgressReporter, Consumer<String>)
+        +ObjectList<T> readList(ProgressReporter, Converter<String,T>)
+        +ObjectList<T> readList(ProgressReporter, Function<String,T> converter)
+        +void readObjects(ProgressReporter, Function<String,T> converter, Consumer<T>)
+        +void readObjects(ProgressReporter, Converter<String,T>, Consumer<T>)
+        +ObjectSet<T> readSet(ProgressReporter, Converter<String,T>)
+        +String readText(ProgressReporter)
+        +String readText()
+        +Reader textReader()
+    }
+    
+@enduml
+

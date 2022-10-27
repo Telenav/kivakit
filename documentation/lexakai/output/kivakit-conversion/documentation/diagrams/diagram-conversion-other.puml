@@ -1,0 +1,32 @@
+
+@startuml
+
+    !include lexakai.theme
+    
+    title "Converters - Other"
+    
+    abstract BaseStringConverter
+    
+    LongValuedConverter <|-- IdentifierConverter
+    class IdentifierConverter
+    {
+        --(constructors)--
+        +IdentifierConverter(Listener)
+    }
+    
+    LongValuedConverter <|-- IntegerIdentifierConverter
+    class IntegerIdentifierConverter
+    {
+        --(constructors)--
+        +IntegerIdentifierConverter(Listener)
+    }
+    
+    BaseStringConverter <|-- LocaleLanguageConverter
+    class LocaleLanguageConverter
+    {
+        --(constructors)--
+        +LocaleLanguageConverter(Listener)
+    }
+    
+@enduml
+

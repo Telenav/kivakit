@@ -1,0 +1,146 @@
+
+@startuml
+
+    !include lexakai.theme
+    
+    title "com.telenav.kivakit.core.collections.list"
+    
+    abstract BaseList
+    abstract BaseCollection
+    
+    interface Prependable
+    interface Appendable
+    interface Copyable
+    interface RandomAccess
+    interface Indexable
+    interface List
+    interface Sectionable
+    
+    BaseCollection <|-- BaseList
+    Appendable <|-- BaseList
+    Copyable <|-- BaseList
+    Indexable <|-- BaseList
+    List <|-- BaseList
+    Prependable <|-- BaseList
+    RandomAccess <|-- BaseList
+    Sectionable <|-- BaseList
+    abstract class BaseList<Value>
+    {
+        --(constructors)--
+        #BaseList()
+        #BaseList(Collection<Value>)
+        #BaseList(Maximum)
+        #BaseList(Maximum, Collection<Value>)
+        --
+        +String bracketed(int indent)
+        +String bracketed()
+        +String bulleted()
+        +String bulleted(int indent)
+        +boolean replaceAll(Value, Value replacement)
+        +void reverse()
+        +void shuffle(Random)
+        +void shuffle()
+        +String titledBox(String title)
+        +String titledBox(String title, Object... arguments)
+        --(collection)--
+        +BaseList<Value> first(Count)
+        +BaseList<Value> last(Count)
+        +BaseList<Value> maybeReversed(boolean reverse)
+        +Value pop()
+        +Value removeLast()
+        +BaseList<Value> reversed()
+        +BaseList<Value> uniqued()
+        #List<Value> backingList()
+        #BaseList<Value> newList()
+        #BaseList<Value> onNewList()
+    }
+    
+    ObjectList <|-- LinkedObjectList
+    class LinkedObjectList<Value>
+    {
+        --(constructors)--
+        +LinkedObjectList()
+        +LinkedObjectList(Collection<Value>)
+        +LinkedObjectList(Maximum)
+        --(collection)--
+        +void removeFirst()
+    }
+    
+    BaseList <|-- ObjectList
+    class ObjectList<Value>
+    {
+        --(constructors)--
+        +ObjectList()
+        +ObjectList(Collection<Value>)
+        +ObjectList(Maximum)
+        +ObjectList(Maximum, Collection<Value>)
+        --(collection)--
+        +ObjectList<T> emptyList()
+        +ObjectList<T> list(Maximum maximumSize, Collection<T> values)
+        +ObjectList<T> list(T... objects)
+        +ObjectList<T> list(Iterator<T> values)
+        +ObjectList<T> list(Maximum maximumSize, Iterator<T> values)
+        +ObjectList<T> list(Maximum maximumSize, T... objects)
+        +ObjectList<T> list(Maximum maximumSize, Iterable<T> values)
+        +ObjectList<T> list(Collection<T> values)
+        +ObjectList<T> list(Iterable<T> values)
+        +ObjectList<T> listFromArray(T[] objects)
+        +ObjectList<T> listFromInts(IntMapper<T> factory, int... values)
+        +ObjectList<Long> listFromLongs(long[] objects)
+        +ObjectList<T> listFromLongs(LongMapper<T> factory, Iterable<LongValued> values)
+        +ObjectList<T> listFromLongs(LongMapper<T> factory, long... values)
+        +ObjectList<ObjectList<Value>> partition(Count partitions)
+    }
+    
+    ObjectList <|-- Stack
+    class Stack<Value>
+    {
+        --(constructors)--
+        +Stack()
+        +Stack(Collection<Value>)
+        +Stack(Maximum)
+        +Stack(Maximum, Collection<Value>)
+    }
+    
+    ObjectList <|-- StringList
+    class StringList
+    {
+        --(constructors)--
+        +StringList()
+        +StringList(Collection<String>)
+        +StringList(Iterable<?>)
+        +StringList(Iterator<?>)
+        +StringList(Maximum)
+        +StringList(Maximum, Iterable<?>)
+        +StringList(Maximum, Iterator<?>)
+        +StringList(Maximum, String)
+        --
+        #String objectToString(Object)
+        --(collection)--
+        +StringList add(String message, Object... arguments)
+        +String[] asStringArray()
+        +VariableMap<String> asVariableMap()
+        +StringList doubleQuoted()
+        +StringList indented(int spaces)
+        +Count longest()
+        +StringList numbered()
+        +StringList prefixedWith(String prefix)
+        +StringList println()
+        +StringList repeat(String text, int times)
+        +StringList singleQuoted()
+        +StringList split(String, String delimiter)
+        +StringList split(Maximum maximumSize, String, char delimiter)
+        +StringList split(Maximum maximumSize, String text, String delimiter)
+        +StringList split(String, char delimiter)
+        +StringList splitOnPattern(String text, String pattern)
+        +StringList stringList(Collection<T> values)
+        +StringList stringList(Maximum maximumSize, Collection<T> values)
+        +StringList stringList(Iterable<T> values)
+        +StringList stringList(Maximum maximumSize, Iterable<T> values)
+        +StringList stringList(String... strings)
+        +StringList stringList(Maximum maximumSize, String... strings)
+        +StringList words(String text)
+    }
+    
+@enduml
+

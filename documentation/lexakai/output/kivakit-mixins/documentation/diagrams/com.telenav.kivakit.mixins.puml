@@ -1,0 +1,40 @@
+
+@startuml
+
+    !include lexakai.theme
+    
+    title "com.telenav.kivakit.mixins"
+    
+    interface Mixin
+    Mixin <|-- AttributesMixin
+    interface AttributesMixin<Key, Value>
+    {
+        --
+        +Value attribute(Key)
+        +Value attribute(Key, Value)
+        --(collection)--
+        +HashMap<Key,Value> attributes()
+    }
+    
+    interface Mixin
+    {
+        --
+        +MixinState mixin(Class<? extends Mixin> mixinType, Factory<MixinState> mixinStateFactory)
+        +Object owner(MixinState)
+    }
+    
+    class Mixins.MixinKey
+    {
+        --(constructors)--
+        +MixinKey(Object, Class<? extends Mixin>)
+    }
+    
+    class Mixins
+    {
+        --
+        +State mixin(Object, Class<? extends Mixin> mixinType, Factory<State> mixinStateFactory)
+        +Object owner(State)
+    }
+    
+@enduml
+

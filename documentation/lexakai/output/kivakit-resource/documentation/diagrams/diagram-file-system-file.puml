@@ -1,0 +1,234 @@
+
+@startuml
+
+    !include lexakai.theme
+    
+    title "File System - Files"
+    
+    abstract BaseRepeater
+    abstract BaseReadableResource
+    abstract BaseResourceList
+    abstract BaseWritableResource
+    
+    interface WritableResource
+    interface FileSystemObject
+    interface Iterable
+    interface Resource
+    
+    BaseRepeater <|-- BaseReadableResource
+    Resource <|-- BaseReadableResource
+    abstract class BaseReadableResource
+    {
+        --(constructors)--
+        #BaseReadableResource()
+        #BaseReadableResource(BaseReadableResource)
+        #BaseReadableResource(ResourcePath)
+        --
+        +BaseReadableResource codec(Codec)
+        #void charset(Charset)
+    }
+    
+    BaseReadableResource <|-- BaseWritableResource
+    WritableResource <|-- BaseWritableResource
+    abstract class BaseWritableResource
+    {
+        --(constructors)--
+        #BaseWritableResource()
+        #BaseWritableResource(BaseWritableResource)
+        #BaseWritableResource(ResourcePath)
+        --(filesystem)--
+        +void copyFrom(Resource, CopyMode, ProgressReporter)
+        --(write)--
+        +void save(Listener, InputStream, ProgressReporter)
+        +Resource saveText(String text)
+    }
+    
+    BaseWritableResource <|-- File
+    FileSystemObject <|-- File
+    File o-- FileService : "delegates to"
+    class File
+    {
+        --(checks)--
+        +boolean isNewerThan(File that)
+        +boolean isNewerThan(Duration)
+        +boolean isNonEmpty()
+        +boolean isOlderThan(Duration)
+        +boolean isOlderThan(File that)
+        --(filesystem)--
+        +File absolute()
+        +Folder asFolder()
+        +java.nio.file.Path asJavaPath()
+        +boolean chmod(PosixFilePermission... permissions)
+        +File ensureReadable()
+        +File ensureWritable()
+        +File file(Listener, FilePath)
+        +File file(Listener, java.io.File)
+        +File file(Listener, URI)
+        +boolean isFile()
+        +boolean isFolder()
+        +File normalized()
+        +File parseFile(Listener, String path, VariableMap<String> variables)
+        +File parseFile(Listener, String path)
+        +Folder root()
+        +void safeCopyFrom(Resource, CopyMode, ProgressReporter)
+        +File temporaryFile(Extension)
+        +File withBaseName(String name)
+        +File withCharset(Charset)
+        +File withCodec(Codec)
+        +File withExtension(Extension)
+        +File withoutExtension()
+        +File withoutOverwriting()
+    }
+    
+    BaseResourceList <|-- FileList
+    Iterable <|-- FileList
+    class FileList
+    {
+        --(constructors)--
+        #FileList(Iterable<File>)
+        +FileList()
+        --(filesystem)--
+        +FileList fileList(File... files)
+        +FileList fileList(Iterable<File> files)
+    }
+    
+    interface CreatedAt
+    interface ModifiedAt
+    ModifiedAt <|-- FileSystemObject
+    CreatedAt <|-- FileSystemObject
+    interface FileSystemObject
+    {
+    }
+    
+    interface Readable
+    interface Repeater
+    Readable <|-- ReadableResource
+    Repeater <|-- ReadableResource
+    ReadableResource --> ResourceReader : "provides"
+    interface ReadableResource
+    {
+        --
+        +Charset charset()
+        +Resource resource()
+        --(conversion)--
+        +StringResource asStringResource()
+        --(filesystem)--
+        +void copyTo(WritableResource destination, CopyMode, ProgressReporter)
+        --(read)--
+        +ResourceReader reader(ProgressReporter)
+        +ResourceReader reader(ProgressReporter, Charset)
+        +ResourceReader reader()
+    }
+    
+    interface AsString
+    interface ByteSized
+    interface CreatedAt
+    interface Deletable
+    interface Modifiable
+    interface ModifiedAt
+    interface ReadableResource
+    interface Repeater
+    interface ResourcePathed
+    interface Resourceful
+    interface UriIdentified
+    ResourcePathed <|-- Resource
+    Modifiable <|-- Resource
+    ModifiedAt <|-- Resource
+    CreatedAt <|-- Resource
+    Deletable <|-- Resource
+    ByteSized <|-- Resource
+    AsString <|-- Resource
+    ReadableResource <|-- Resource
+    Repeater <|-- Resource
+    Resourceful <|-- Resource
+    UriIdentified <|-- Resource
+    Resource --> Codec : "uses"
+    interface Resource
+    {
+        --
+        +boolean can(Action)
+        +ObjectSet<Action> can()
+        +Codec codec()
+        +void dematerialize()
+        +Resource relativeTo(ResourceFolder<?>)
+        +Resource resolveResource(Listener, String identifier)
+        +Resource resolveResource(Listener, ResourceIdentifier)
+        +Resource resolveResource(Listener, ResourcePath)
+        --(checks)--
+        +boolean endsWith(String end)
+        +boolean hasParent()
+        +boolean isEmpty()
+        +boolean isLocal()
+        +boolean isMaterializable()
+        +boolean isOlderThan(Resource that)
+        +boolean isPackaged()
+        +boolean isRemote()
+        +boolean isSame(Resource that)
+        --(command line parsing)--
+        +ArgumentParser.Builder<Resource> resourceArgumentParser(Listener, String description)
+        +SwitchParser.Builder<Resource> resourceSwitchParser(Listener, String name, String description)
+        --(conversion)--
+        +WritableResource asWritable()
+        --(filesystem)--
+        +void ensureExists()
+        +boolean exists()
+        +ResourceFolder<?> parent()
+        +boolean renameTo(Resource that)
+        +void safeCopyTo(ResourceFolder<?> destination, CopyMode)
+        +void safeCopyTo(WritableResource destination, CopyMode)
+        +void safeCopyTo(WritableResource destination, CopyMode, ProgressReporter)
+        +void safeCopyTo(ResourceFolder<?> destination, CopyMode, ProgressReporter)
+        --(functional)--
+        +Resource materialized(ProgressReporter)
+        --(identity)--
+        +ResourceIdentifier resourceIdentifier(String identifier)
+    }
+    
+    class ResourceReader
+    {
+        --(constructors)--
+        +ResourceReader(ProgressReporter, Resource)
+        +ResourceReader(ProgressReporter, Resource, Charset)
+        --(read)--
+        +byte[] readBytes()
+        +StringList readLines()
+        +StringList readLines(ProgressReporter)
+        +void readLines(ProgressReporter, Consumer<String>)
+        +ObjectList<T> readList(ProgressReporter, Converter<String,T>)
+        +ObjectList<T> readList(ProgressReporter, Function<String,T> converter)
+        +void readObjects(ProgressReporter, Function<String,T> converter, Consumer<T>)
+        +void readObjects(ProgressReporter, Converter<String,T>, Consumer<T>)
+        +ObjectSet<T> readSet(ProgressReporter, Converter<String,T>)
+        +String readText(ProgressReporter)
+        +String readText()
+        +Reader textReader()
+    }
+    
+    class ResourceWriter
+    {
+        --(constructors)--
+        +ResourceWriter(WritableResource)
+        +ResourceWriter(WritableResource, Charset)
+        --
+        +Charset charset()
+        --(write)--
+        +PrintWriter printWriter()
+        +void saveText(String text)
+        +Writer textWriter()
+    }
+    
+    interface Resource
+    interface Writable
+    Resource <|-- WritableResource
+    Writable <|-- WritableResource
+    WritableResource --> ResourceWriter : "provides"
+    interface WritableResource
+    {
+        --(write)--
+        +PrintWriter printWriter()
+        +ResourceWriter writer()
+        +ResourceWriter writer(Charset)
+    }
+    
+@enduml
+

@@ -1,0 +1,145 @@
+
+@startuml
+
+    !include lexakai.theme
+    
+    title "diagram-test"
+    
+    interface RepeaterMixin
+    interface FailureReporter
+    interface ProjectTrait
+    interface JavaTrait
+    interface NamedObject
+    interface LanguageTrait
+    interface Repeater
+    interface ResultTrait
+    interface RegistryTrait
+    interface EnsureTrait
+    interface RandomNumeric
+    
+    TestWatcher <|-- CoreUnitTest
+    RepeaterMixin <|-- CoreUnitTest
+    ResultTrait <|-- CoreUnitTest
+    JavaTrait <|-- CoreUnitTest
+    ProjectTrait <|-- CoreUnitTest
+    EnsureTrait <|-- CoreUnitTest
+    RegistryTrait <|-- CoreUnitTest
+    LanguageTrait <|-- CoreUnitTest
+    Repeater <|-- CoreUnitTest
+    NamedObject <|-- CoreUnitTest
+    CoreUnitTest --> JUnitFailureReporter : "reports validation failures with"
+    CoreUnitTest --> RandomValueFactory : "uses"
+    abstract class CoreUnitTest
+    {
+        --(constructors)--
+        #CoreUnitTest()
+        --
+        +void testBeforeUnitTest()
+        +void testSetup()
+        --(checks)--
+        #boolean isMac()
+        #boolean isQuickTest()
+        #boolean isRandomTest()
+        #boolean isUnix()
+        #boolean isWindows()
+        --(collection)--
+        #Count count(long value)
+        #Count count(Collection<?> value)
+        #Count randomIterations()
+        --(factory)--
+        #RandomValueFactory newRandomValueFactory()
+        #RandomValueFactory random()
+        --(lifecycle)--
+        #void initializeProject(Class<T> project)
+        --(math)--
+        #Maximum maximum(long maximum)
+        #Minimum minimum(long minimum)
+    }
+    
+    FailureReporter <|-- JUnitFailureReporter
+    class JUnitFailureReporter
+    {
+    }
+    
+    RandomNumeric <|-- RandomValueFactory
+    class RandomValueFactory
+    {
+        --(constructors)--
+        +RandomValueFactory()
+        +RandomValueFactory(long)
+        --
+        +Confidence confidence()
+        +T from(T[] values)
+        +T from(Collection<T> values)
+        +void indexes(Repeats, long maximum, Consumer<Integer>)
+        +void indexes(long maximum, Consumer<Integer>)
+        +char letter()
+        +String letters(int minLength, int maxLength)
+        +String letters()
+        +Random random()
+        +Range<Count> rangeExclusive(Count minimum, Count exclusiveMaximum)
+        +Range<Count> rangeExclusive(long minimum, long exclusiveMaximum)
+        +Range<Count> rangeExclusive(Count minimum, Count exclusiveMaximum, long minimumWidth)
+        +Range<Count> rangeExclusive(long minimum, long exclusiveMaximum, long minimumWidth)
+        +Range<Count> rangeInclusive(Count minimum, Count inclusiveMaximum, long minimumWidth)
+        +Range<Count> rangeInclusive(long minimum, long inclusiveMaximum)
+        +Range<Count> rangeInclusive(Count minimum, Count inclusiveMaximum)
+        +Range<Count> rangeInclusive(long minimum, long inclusiveMaximum, long minimumWidth)
+        +long seed()
+        +void seed(long seed)
+        +void sequence(Repeats, Class<T> type, Matcher<T> include, Consumer<T>)
+        +void sequence(Repeats, Count, Class<T> type, Consumer<T>)
+        +void sequence(Repeats, Count, long minimum, long maximum, Class<T> type, Consumer<T>)
+        +void sequence(Repeats, Count, long minimum, long exclusiveMaximum, Class<T> type, Matcher<T> include, Consumer<T>)
+        +void sequence(Class<T> type, Consumer<T>)
+        +void sequence(Repeats, long minimum, long maximum, Class<T> type, Consumer<T>)
+        +void sequence(Repeats, long maximum, Class<T> type, Consumer<T>)
+        +void sequence(Repeats, Count, Class<T> type, Matcher<T> include, Consumer<T>)
+        +void sequence(Repeats, Class<T> type, Consumer<T>)
+        +String string()
+        +String string(int maximum)
+        +String string(int minimum, int maximum)
+        --(collection)--
+        +Count iterations()
+        +List<T> list(Repeats, Count, long minimum, long maximum, Class<T> type, Matcher<T> include)
+        +List<T> list(Repeats, Count, long minimum, long maximum, Class<T> type)
+        +List<T> list(Repeats, Class<T> type)
+        +List<T> list(Class<T> type)
+        +List<T> list(Repeats, Class<T> type, Matcher<T> include)
+        +List<T> list(Repeats, Count, Class<T> type, Matcher<T> include)
+        +List<T> list(Repeats, Count, Class<T> type)
+        +Count randomCount(long maximum)
+        +Count randomCount(long minimum, long maximum)
+        --(identity)--
+        +Identifier identifierExclusive(long maximum)
+        --(iteration)--
+        +void loop(Runnable code)
+        --(primitive)--
+        +void byteSequence(Consumer<Byte>)
+        +void byteSequence(Matcher<Byte> include, Consumer<Byte>)
+        +void byteSequence(Repeats, Matcher<Byte> include, Consumer<Byte>)
+        +void byteSequence(Repeats, Consumer<Byte>)
+        +void intSequence(Consumer<Integer>)
+        +void intSequence(Repeats, Consumer<Integer>)
+        +void intSequence(Repeats, Matcher<Integer> include, Consumer<Integer>)
+        +void intSequence(Matcher<Integer> include, Consumer<Integer>)
+        +void longSequence(Consumer<Long>)
+        +void longSequence(Matcher<Long> include, Consumer<Long>)
+        +void longSequence(Repeats, Matcher<Long> include, Consumer<Long>)
+        +void longSequence(Repeats, Consumer<Long>)
+        +void shortSequence(Matcher<Short> include, Consumer<Short>)
+        +void shortSequence(Repeats, Matcher<Short> include, Consumer<Short>)
+        +void shortSequence(Consumer<Short>)
+        +void shortSequence(Repeats, Consumer<Short>)
+    }
+    
+    TestWatcher <|-- UnitTestWatcher
+    UnitTestWatcher o-- CoreUnitTest : "watches for failures in"
+    class UnitTestWatcher
+    {
+        --(constructors)--
+        +UnitTestWatcher(CoreUnitTest)
+    }
+    
+@enduml
+

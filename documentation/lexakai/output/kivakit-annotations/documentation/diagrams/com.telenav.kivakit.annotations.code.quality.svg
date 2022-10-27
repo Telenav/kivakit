@@ -1,0 +1,449 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="396.875px" preserveAspectRatio="none" style="width:677px;height:396px;background:#333333;" version="1.1" viewBox="0 0 677 396" width="677.0833px" zoomAndPan="magnify"><defs/><g><rect fill="#48494B" height="41.2028" rx="8.3333" ry="8.3333" style="stroke:#545454;stroke-width:1.0416666666666667;" width="466.6667" x="97.9167" y="2.0833"/><text fill="#C0C0C0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="20.8333" lengthAdjust="spacing" textLength="443.75" x="109.375" y="30.5583">com.telenav.kivakit.annotations.code.quality</text><!--MD5=[bec07c1bdb2f4b5ed9f4ff914d6eed84]
+class Audience--><rect codeLine="7" fill="#282828" height="127.0345" id="Audience" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="256.25" x="7.2917" y="53.7028"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="256.25" x="7.2917" y="53.7028"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="256.25" x="7.2917" y="76.7578"/><rect codeLine="7" fill="none" height="127.0345" id="Audience" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="256.25" x="7.2917" y="53.7028"/><ellipse cx="98.4375" cy="69.397" fill="#CF6300" rx="10.4167" ry="10.4167" style="stroke:#EF8300;stroke-width:1.0416666666666667;"/><path d="M101.4933,74.0845 L95.8171,74.0845 L95.8171,64.9719 L101.4933,64.9719 L101.4933,66.5588 L97.6176,66.5588 L97.6176,68.5242 L101.1271,68.5242 L101.1271,70.1111 L97.6176,70.1111 L97.6176,72.4976 L101.4933,72.4976 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="59.375" x="121.3542" y="74.1211">Audience</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="8.3333" x2="262.5" y1="85.0911" y2="85.0911"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="118.75" x="16.6667" y="103.4607">AUDIENCE_INTERNAL</text><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="102.0833" x="16.6667" y="123.2056">AUDIENCE_PUBLIC</text><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="169.7917" x="16.6667" y="142.9504">AUDIENCE_SERVICE_PROVIDER</text><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="237.5" x="16.6667" y="162.6953">AUDIENCE_SERVICE_PROVIDER_INTERFACE</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="8.3333" x2="262.5" y1="172.404" y2="172.404"/><!--MD5=[874b1d26e1eaaf0a7569cfa7dfc37552]
+class CodeQuality--><rect codeLine="15" fill="#282828" height="48.055" id="CodeQuality" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="117.7083" x="300.5208" y="93.2861"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="117.7083" x="300.5208" y="93.2861"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="117.7083" x="300.5208" y="116.3411"/><rect codeLine="15" fill="none" height="48.055" id="CodeQuality" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="117.7083" x="300.5208" y="93.2861"/><ellipse cx="315.1042" cy="108.9803" fill="#3380B9" rx="10.4167" ry="10.4167" style="stroke:#004D86;stroke-width:1.0416666666666667;"/><path d="M316.8762,109.0393 Q316.8762,108.3496 316.5649,107.959 Q316.2537,107.5684 315.7104,107.5684 Q315.1672,107.5684 314.859,107.959 Q314.5508,108.3496 314.5508,109.0393 Q314.5508,109.7351 314.859,110.1257 Q315.1672,110.5164 315.7104,110.5164 Q316.2537,110.5164 316.5649,110.1257 Q316.8762,109.7351 316.8762,109.0393 Z M318.0115,111.5417 L316.8152,111.5417 L316.8152,111.0413 Q316.5833,111.3647 316.2689,111.5143 Q315.9546,111.6638 315.5151,111.6638 Q314.5142,111.6638 313.9008,110.9436 Q313.2874,110.2234 313.2874,109.0393 Q313.2874,107.8613 313.8977,107.1442 Q314.5081,106.427 315.5151,106.427 Q315.9485,106.427 316.2781,106.5765 Q316.6077,106.7261 316.8152,107.0129 L316.8152,106.7627 Q316.8152,105.9326 316.3605,105.481 Q315.9058,105.0293 315.0635,105.0293 Q313.7939,105.0293 312.9913,106.1462 Q312.1887,107.2632 312.1887,109.0515 Q312.1887,110.9253 313.1165,112.0331 Q314.0442,113.1409 315.5884,113.1409 Q316.0767,113.1409 316.5344,112.9974 Q316.9922,112.854 317.4133,112.5671 L317.9749,113.6414 Q317.4805,113.9771 316.8976,114.1449 Q316.3147,114.3127 315.6494,114.3127 Q313.5132,114.3127 312.2437,112.8906 Q310.9741,111.4685 310.9741,109.0515 Q310.9741,106.6895 312.1155,105.2704 Q313.2568,103.8513 315.1367,103.8513 Q316.4673,103.8513 317.2394,104.6539 Q318.0115,105.4565 318.0115,106.842 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="80.2083" x="331.7708" y="113.7044">CodeQuality</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="301.5625" x2="417.1875" y1="124.6745" y2="124.6745"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="301.5625" x2="417.1875" y1="133.0078" y2="133.0078"/><!--MD5=[2470d439e336eeeed736cf589393d082]
+class Documentation--><rect codeLine="17" fill="#282828" height="127.0345" id="Documentation" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="214.5833" x="455.2083" y="53.7028"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="214.5833" x="455.2083" y="53.7028"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="214.5833" x="455.2083" y="76.7578"/><rect codeLine="17" fill="none" height="127.0345" id="Documentation" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="214.5833" x="455.2083" y="53.7028"/><ellipse cx="505.2083" cy="69.397" fill="#CF6300" rx="10.4167" ry="10.4167" style="stroke:#EF8300;stroke-width:1.0416666666666667;"/><path d="M508.2642,74.0845 L502.5879,74.0845 L502.5879,64.9719 L508.2642,64.9719 L508.2642,66.5588 L504.3884,66.5588 L504.3884,68.5242 L507.8979,68.5242 L507.8979,70.1111 L504.3884,70.1111 L504.3884,72.4976 L508.2642,72.4976 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="100" x="528.125" y="74.1211">Documentation</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="456.25" x2="668.75" y1="85.0911" y2="85.0911"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="167.7083" x="464.5833" y="103.4607">DOCUMENTATION_COMPLETE</text><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="183.3333" x="464.5833" y="123.2056">DOCUMENTATION_INSUFFICIENT</text><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="195.8333" x="464.5833" y="142.9504">DOCUMENTATION_UNDETERMINED</text><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="96.875" x="464.5833" y="162.6953">UNDOCUMENTED</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="456.25" x2="668.75" y1="172.404" y2="172.404"/><!--MD5=[9ac406c7416b14765acfa8d63d28b061]
+class Stability--><rect codeLine="25" fill="#282828" height="127.0345" id="Stability" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="167.7083" x="51.5625" y="253.182"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="167.7083" x="51.5625" y="253.182"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="167.7083" x="51.5625" y="276.237"/><rect codeLine="25" fill="none" height="127.0345" id="Stability" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="167.7083" x="51.5625" y="253.182"/><ellipse cx="101.5625" cy="268.8761" fill="#CF6300" rx="10.4167" ry="10.4167" style="stroke:#EF8300;stroke-width:1.0416666666666667;"/><path d="M104.6183,273.5636 L98.9421,273.5636 L98.9421,264.4511 L104.6183,264.4511 L104.6183,266.038 L100.7426,266.038 L100.7426,268.0033 L104.2521,268.0033 L104.2521,269.5903 L100.7426,269.5903 L100.7426,271.9767 L104.6183,271.9767 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="53.125" x="124.4792" y="273.6003">Stability</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="52.6042" x2="218.2292" y1="284.5703" y2="284.5703"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="148.9583" x="60.9375" y="302.9399">STABILITY_UNDETERMINED</text><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="40.625" x="60.9375" y="322.6847">STABLE</text><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="110.4167" x="60.9375" y="342.4296">STABLE_EXTENSIBLE</text><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="57.2917" x="60.9375" y="362.1745">UNSTABLE</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="52.6042" x2="218.2292" y1="371.8831" y2="371.8831"/><!--MD5=[403499de4acd52b80c09b153afa9db70]
+class Testing--><rect codeLine="33" fill="#282828" height="146.7794" id="Testing" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="159.375" x="255.7292" y="243.2861"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="159.375" x="255.7292" y="243.2861"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="159.375" x="255.7292" y="266.3411"/><rect codeLine="33" fill="none" height="146.7794" id="Testing" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="159.375" x="255.7292" y="243.2861"/><ellipse cx="303.6458" cy="258.9803" fill="#CF6300" rx="10.4167" ry="10.4167" style="stroke:#EF8300;stroke-width:1.0416666666666667;"/><path d="M306.7017,263.6678 L301.0254,263.6678 L301.0254,254.5553 L306.7017,254.5553 L306.7017,256.1422 L302.8259,256.1422 L302.8259,258.1075 L306.3354,258.1075 L306.3354,259.6944 L302.8259,259.6944 L302.8259,262.0809 L306.7017,262.0809 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="48.9583" x="326.5625" y="263.7044">Testing</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="256.7708" x2="414.0625" y1="274.6745" y2="274.6745"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="41.6667" x="265.1042" y="293.044">TESTED</text><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="128.125" x="265.1042" y="312.7889">TESTING_INSUFFICIENT</text><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="128.125" x="265.1042" y="332.5338">TESTING_NOT_NEEDED</text><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="140.625" x="265.1042" y="352.2786">TESTING_UNDETERMINED</text><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="58.3333" x="265.1042" y="372.0235">UNTESTED</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="256.7708" x2="414.0625" y1="381.7322" y2="381.7322"/><!--MD5=[6c4fd0481884a779424011fb4ab08732]
+link Audience to CodeQuality--><!--MD5=[6ff76493fb641f1999fdb04d4cf7fd6c]
+link CodeQuality to Documentation--><!--MD5=[d575a19bc3b0589961673b8ccadd652b]
+link Audience to Stability--><!--MD5=[f581079e567990c20605725bb930efe5]
+link Stability to Testing--><!--MD5=[eefabe4932ea7faa535858429abb65a3]
+@startuml
+
+    !include lexakai.theme
+    
+    title "com.telenav.kivakit.annotations.code.quality"
+    
+    enum Audience
+    {
+        AUDIENCE_INTERNAL
+        AUDIENCE_PUBLIC
+        AUDIENCE_SERVICE_PROVIDER
+        AUDIENCE_SERVICE_PROVIDER_INTERFACE
+    }
+    
+    annotation CodeQuality
+    
+    enum Documentation
+    {
+        DOCUMENTATION_COMPLETE
+        DOCUMENTATION_INSUFFICIENT
+        DOCUMENTATION_UNDETERMINED
+        UNDOCUMENTED
+    }
+    
+    enum Stability
+    {
+        STABILITY_UNDETERMINED
+        STABLE
+        STABLE_EXTENSIBLE
+        UNSTABLE
+    }
+    
+    enum Testing
+    {
+        TESTED
+        TESTING_INSUFFICIENT
+        TESTING_NOT_NEEDED
+        TESTING_UNDETERMINED
+        UNTESTED
+    }
+    
+@enduml
+
+@startuml
+
+
+
+
+
+
+
+
+
+skinparam backgroundColor #333333
+
+
+
+
+
+
+skinparam  {
+    defaultFontName   "Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif"
+    defaultFontSize   12
+    defaultTextAlignment left
+    shadowing false
+    RoundCorner 10
+    TitleFontSize 18
+}
+
+skinparam defaultFontName       "Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif"
+skinparam defaultFontSize       12
+skinparam dpi                   100
+skinparam shadowing             false
+skinparam roundcorner           16
+skinparam ParticipantPadding    40
+skinparam BoxPadding            40
+skinparam Padding               3
+skinparam ArrowColor            #545454
+skinparam stereotype {
+    CBackgroundColor #0066cf
+    CBorderColor #0086ef
+    ABackgroundColor #C8Ac00
+    ABorderColor #D8Bc00
+    IBackgroundColor #008400
+    IBorderColor #239c23
+    EBackgroundColor #cf6300
+    EBorderColor #ef8300
+    NBackgroundColor #3380b9
+    NBorderColor #004d86
+}
+skinparam title {
+	FontColor	                 #c0c0c0
+ 	BorderColor                  #545454
+	FontSize	    	         20
+	BorderRoundCorner            16
+	BorderThickness 	         1
+	BackgroundColor              #48494b
+}
+
+
+skinparam legend {
+	BackgroundColor #303030
+	BorderColor #404040
+	FontColor #a0a0a0
+}
+
+	skinparam swimlane {
+	BorderColor #5e5e5e
+	BorderThickness 2
+	TitleBackgroundColor  #6d6d6d-#484848
+	TitleFontColor #303030
+}
+
+skinparam activity {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BarColor #00FF00
+	StartColor #0060a8
+	EndColor #0060a8
+	DiamondBackgroundColor #6d6d6d-#3a3a3a
+  	DiamondBorderColor #3a3a3a
+  	DiamondFontColor #fefefe
+}
+
+
+skinparam participant {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	ParticipantBorderThickness 2
+}
+
+
+skinparam actor {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam arrow {
+	Thickness 1.5
+	Color #545454
+	FontColor #a0a0a0
+    FontStyle bold
+    MessageAlignment center
+}
+
+
+
+skinparam sequence {
+	BorderColor #303030
+	TitleFontColor #303030
+	BackgroundColor #333333
+	StartColor #303030
+	EndColor #303030
+	BoxBackgroundColor #333333
+	BoxBorderColor #484848
+	BoxFontColor #484848
+	LifeLineBorderColor #484848
+	LifeLineBorderThickness 2
+	LifeLineBackgroundColor #3a3a3a
+	GroupBorderColor #484848
+	GroupFontColor #484848
+	GroupHeaderFontColor #0060a8
+	GroupBackgroundColor #484848
+	GroupHeaderBackgroundColor #333333
+	DividerBackgroundColor #484848
+    DividerBorderColor #484848
+    DividerBorderThickness 2
+    DividerFontColor #D8Bc00
+	ReferenceBackgroundColor #333333
+	ReferenceBorderColor #484848
+	ReferenceFontColor #fefefe
+	ReferenceHeaderBackgroundColor #484848
+}
+
+
+skinparam partition {
+	BorderColor #303030
+	FontColor #333333
+	BackgroundColor #333333
+}
+
+
+skinparam collections {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam control {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam entity {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam boundary {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam agent {
+	BackgroundColor #ff8000
+	BorderColor #ff9933
+	FontColor #484848
+}
+
+
+skinparam note {
+	BorderThickness 1
+	BackgroundColor #1b1b1a
+	BorderColor #5e5e5e
+	FontSize 11
+	FontColor #a0a0a0
+}
+
+
+skinparam artifact {
+	BorderThickness 10
+	BorderColor #5e5e5e
+	BackgroundColor #1b1b1a
+	FontColor #D8Bc00
+}
+
+
+skinparam component {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam interface {
+	BackgroundColor  #008400
+	BorderColor  #007F00
+	FontColor #484848
+}
+
+
+skinparam storage {
+	BackgroundColor #ff8000
+  	BorderColor #cc6600
+	FontColor #222222
+}
+
+
+skinparam node {
+	BackgroundColor #333333
+	BorderColor #333333
+	FontColor #C8Ac00
+}
+
+
+skinparam cloud {
+	BackgroundColor #484848-black
+	BorderColor #484848
+	FontColor #D8Bc00
+}
+
+
+skinparam database {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BackgroundColor  #333333
+}
+
+
+skinparam class {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	HeaderBackgroundColor #1b1b1a
+    BackgroundColor #282828
+    BorderColor #5e5e5e
+ 	StereotypeFontColor #a0a0a0
+    StereotypeFontStyle bold
+	BorderThickness 1
+	AttributeFontColor #D8Bc00
+	AttributeFontSize 11
+    FontColor #D8Bc00
+    FontStyle bold
+}
+
+
+skinparam object {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	StereotypeFontColor #484848
+	BorderThickness 1
+	AttributeFontColor #fefefe
+	AttributeFontSize 11
+}
+
+
+skinparam usecase {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BorderThickness 2
+	StereotypeFontColor #303030
+}
+
+
+skinparam rectangle {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BackgroundColor #333333
+	BorderThickness 2
+	StereotypeFontColor #303030
+}
+
+
+skinparam package {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BackgroundColor #333333
+	BorderThickness 2
+}
+
+
+skinparam folder {
+	BackgroundColor #6d6d6d
+  	BorderColor #ff8000
+	FontColor #ff8000
+	BorderThickness 2
+}
+
+
+skinparam frame {
+	BackgroundColor #6d6d6d
+  	BorderColor #0060a8
+	FontColor #0060a8
+	BorderThickness 2
+}
+
+
+skinparam state {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	StartColor #0060a8
+	EndColor #0060a8
+	AttributeFontColor #fefefe
+	AttributeFontSize 11
+}
+
+
+skinparam queue {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam card {
+	BackgroundColor #0060a8
+	BorderColor #004d86
+	FontColor $INFO_TEXT
+}
+
+
+skinparam file {
+	BackgroundColor #6d6d6d-#484848
+	BorderColor #0060a8
+	FontColor #fefefe
+}
+
+
+skinparam stack {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+    
+    title "com.telenav.kivakit.annotations.code.quality"
+    
+    enum Audience
+    {
+        AUDIENCE_INTERNAL
+        AUDIENCE_PUBLIC
+        AUDIENCE_SERVICE_PROVIDER
+        AUDIENCE_SERVICE_PROVIDER_INTERFACE
+    }
+    
+    annotation CodeQuality
+    
+    enum Documentation
+    {
+        DOCUMENTATION_COMPLETE
+        DOCUMENTATION_INSUFFICIENT
+        DOCUMENTATION_UNDETERMINED
+        UNDOCUMENTED
+    }
+    
+    enum Stability
+    {
+        STABILITY_UNDETERMINED
+        STABLE
+        STABLE_EXTENSIBLE
+        UNSTABLE
+    }
+    
+    enum Testing
+    {
+        TESTED
+        TESTING_INSUFFICIENT
+        TESTING_NOT_NEEDED
+        TESTING_UNDETERMINED
+        UNTESTED
+    }
+    
+@enduml
+
+PlantUML version 1.2021.01(Tue Feb 02 00:55:08 MST 2021)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Default Encoding: UTF-8
+Language: en
+Country: US
+--></g></svg>

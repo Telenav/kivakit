@@ -1,0 +1,480 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="302.0833px" preserveAspectRatio="none" style="width:1558px;height:302px;background:#333333;" version="1.1" viewBox="0 0 1558 302" width="1558.3333px" zoomAndPan="magnify"><defs/><g><rect fill="#48494B" height="41.2028" rx="8.3333" ry="8.3333" style="stroke:#545454;stroke-width:1.0416666666666667;" width="409.375" x="567.4479" y="2.0833"/><text fill="#C0C0C0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="20.8333" lengthAdjust="spacing" textLength="386.4583" x="578.9063" y="30.5583">com.telenav.kivakit.resource.resources</text><!--MD5=[a895581b51b0debe0fc56e5f7d686e14]
+class BaseReadableResource--><rect codeLine="7" fill="#282828" height="48.055" id="BaseReadableResource" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="184.375" x="265.1042" y="53.7028"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="184.375" x="265.1042" y="53.7028"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="184.375" x="265.1042" y="76.7578"/><rect codeLine="7" fill="none" height="48.055" id="BaseReadableResource" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="184.375" x="265.1042" y="53.7028"/><ellipse cx="279.6875" cy="69.397" fill="#C8AC00" rx="10.4167" ry="10.4167" style="stroke:#D8BC00;stroke-width:1.0416666666666667;"/><path d="M279.2806,66.099 L278.4322,69.8283 L280.1351,69.8283 Z M278.182,64.4511 L280.3853,64.4511 L282.8451,73.5636 L281.0445,73.5636 L280.483,71.3114 L278.0721,71.3114 L277.5228,73.5636 L275.7222,73.5636 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-style="italic" font-weight="bold" lengthAdjust="spacing" textLength="146.875" x="296.3542" y="74.1211">BaseReadableResource</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="266.1458" x2="448.4375" y1="85.0911" y2="85.0911"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="266.1458" x2="448.4375" y1="93.4245" y2="93.4245"/><!--MD5=[8b5151cbe93a9a6942e91a66bba84fb0]
+class BaseWritableResource--><rect codeLine="8" fill="#282828" height="48.055" id="BaseWritableResource" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="179.1667" x="1139.5833" y="53.7028"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="179.1667" x="1139.5833" y="53.7028"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="179.1667" x="1139.5833" y="76.7578"/><rect codeLine="8" fill="none" height="48.055" id="BaseWritableResource" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="179.1667" x="1139.5833" y="53.7028"/><ellipse cx="1154.1667" cy="69.397" fill="#C8AC00" rx="10.4167" ry="10.4167" style="stroke:#D8BC00;stroke-width:1.0416666666666667;"/><path d="M1153.7598,66.099 L1152.9114,69.8283 L1154.6143,69.8283 Z M1152.6611,64.4511 L1154.8645,64.4511 L1157.3242,73.5636 L1155.5237,73.5636 L1154.9622,71.3114 L1152.5513,71.3114 L1152.002,73.5636 L1150.2014,73.5636 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-style="italic" font-weight="bold" lengthAdjust="spacing" textLength="141.6667" x="1170.8333" y="74.1211">BaseWritableResource</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="1140.625" x2="1317.7083" y1="85.0911" y2="85.0911"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="1140.625" x2="1317.7083" y1="93.4245" y2="93.4245"/><!--MD5=[8dcff639769147260222dc2b01cd9c47]
+class InputResource--><rect codeLine="11" fill="#282828" height="83.3781" id="InputResource" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="189.5833" x="7.2917" y="188.0778"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="189.5833" x="7.2917" y="188.0778"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="189.5833" x="7.2917" y="211.1328"/><rect codeLine="11" fill="none" height="83.3781" id="InputResource" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="189.5833" x="7.2917" y="188.0778"/><ellipse cx="48.5938" cy="203.772" fill="#0066CF" rx="10.4167" ry="10.4167" style="stroke:#0086EF;stroke-width:1.0416666666666667;"/><path d="M50.5042,208.197 Q50.0769,208.4167 49.6069,208.5266 Q49.137,208.6365 48.6182,208.6365 Q46.7749,208.6365 45.8044,207.4219 Q44.834,206.2073 44.834,203.9124 Q44.834,201.6113 45.8044,200.3967 Q46.7749,199.1821 48.6182,199.1821 Q49.137,199.1821 49.613,199.292 Q50.0891,199.4019 50.5042,199.6216 L50.5042,201.6235 Q50.0403,201.1963 49.6039,200.9979 Q49.1675,200.7996 48.7036,200.7996 Q47.7148,200.7996 47.2113,201.5839 Q46.7078,202.3682 46.7078,203.9124 Q46.7078,205.4504 47.2113,206.2347 Q47.7148,207.019 48.7036,207.019 Q49.1675,207.019 49.6039,206.8207 Q50.0403,206.6223 50.5042,206.1951 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="92.7083" x="71.1979" y="208.4961">InputResource</text><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="8.3333" x2="195.8333" y1="219.4661" y2="219.4661"/><ellipse cx="18.75" cy="254.836" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="157.2917" x="30.2083" y="261.7472">InputResource(InputStream)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="8.3333" x2="58.3333" y1="237.6719" y2="237.6719"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="81.25" x="61.4583" y="241.4815">(constructors)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="145.8333" x2="195.8333" y1="237.6719" y2="237.6719"/><!--MD5=[7fb115a82f660c0d8f26578b4bfa98e6]
+class NullResource--><rect codeLine="18" fill="#282828" height="83.3781" id="NullResource" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="121.875" x="965.1042" y="188.0778"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="121.875" x="965.1042" y="188.0778"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="121.875" x="965.1042" y="211.1328"/><rect codeLine="18" fill="none" height="83.3781" id="NullResource" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="121.875" x="965.1042" y="188.0778"/><ellipse cx="979.6875" cy="203.772" fill="#0066CF" rx="10.4167" ry="10.4167" style="stroke:#0086EF;stroke-width:1.0416666666666667;"/><path d="M981.5979,208.197 Q981.1707,208.4167 980.7007,208.5266 Q980.2307,208.6365 979.7119,208.6365 Q977.8687,208.6365 976.8982,207.4219 Q975.9277,206.2073 975.9277,203.9124 Q975.9277,201.6113 976.8982,200.3967 Q977.8687,199.1821 979.7119,199.1821 Q980.2307,199.1821 980.7068,199.292 Q981.1829,199.4019 981.5979,199.6216 L981.5979,201.6235 Q981.134,201.1963 980.6976,200.9979 Q980.2612,200.7996 979.7974,200.7996 Q978.8086,200.7996 978.3051,201.5839 Q977.8015,202.3682 977.8015,203.9124 Q977.8015,205.4504 978.3051,206.2347 Q978.8086,207.019 979.7974,207.019 Q980.2612,207.019 980.6976,206.8207 Q981.134,206.6223 981.5979,206.1951 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="84.375" x="996.3542" y="208.4961">NullResource</text><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="966.1458" x2="1085.9375" y1="219.4661" y2="219.4661"/><ellipse cx="976.5625" cy="254.836" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="82.2917" x="988.0208" y="261.7472">NullResource()</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="966.1458" x2="982.2917" y1="237.6719" y2="237.6719"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="81.25" x="985.4167" y="241.4815">(constructors)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="1069.7917" x2="1085.9375" y1="237.6719" y2="237.6719"/><!--MD5=[6f9de66e4a7e7c2b0f2439a298ede586]
+class OutputResource--><rect codeLine="25" fill="#282828" height="83.3781" id="OutputResource" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="210.4167" x="1123.9583" y="188.0778"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="210.4167" x="1123.9583" y="188.0778"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="210.4167" x="1123.9583" y="211.1328"/><rect codeLine="25" fill="none" height="83.3781" id="OutputResource" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="210.4167" x="1123.9583" y="188.0778"/><ellipse cx="1169.7917" cy="203.772" fill="#0066CF" rx="10.4167" ry="10.4167" style="stroke:#0086EF;stroke-width:1.0416666666666667;"/><path d="M1171.7021,208.197 Q1171.2748,208.4167 1170.8049,208.5266 Q1170.3349,208.6365 1169.8161,208.6365 Q1167.9728,208.6365 1167.0024,207.4219 Q1166.0319,206.2073 1166.0319,203.9124 Q1166.0319,201.6113 1167.0024,200.3967 Q1167.9728,199.1821 1169.8161,199.1821 Q1170.3349,199.1821 1170.811,199.292 Q1171.287,199.4019 1171.7021,199.6216 L1171.7021,201.6235 Q1171.2382,201.1963 1170.8018,200.9979 Q1170.3654,200.7996 1169.9015,200.7996 Q1168.9128,200.7996 1168.4092,201.5839 Q1167.9057,202.3682 1167.9057,203.9124 Q1167.9057,205.4504 1168.4092,206.2347 Q1168.9128,207.019 1169.9015,207.019 Q1170.3654,207.019 1170.8018,206.8207 Q1171.2382,206.6223 1171.7021,206.1951 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="104.1667" x="1192.7083" y="208.4961">OutputResource</text><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="1125" x2="1333.3333" y1="219.4661" y2="219.4661"/><ellipse cx="1135.4167" cy="254.836" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="178.125" x="1146.875" y="261.7472">OutputResource(OutputStream)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="1125" x2="1185.4167" y1="237.6719" y2="237.6719"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="81.25" x="1188.5417" y="241.4815">(constructors)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="1272.9167" x2="1333.3333" y1="237.6719" y2="237.6719"/><!--MD5=[d8b7091fc71207719cb1ba2b583610df]
+class ResourceSection--><rect codeLine="32" fill="#282828" height="83.3781" id="ResourceSection" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="247.9167" x="233.3333" y="188.0778"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="247.9167" x="233.3333" y="188.0778"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="247.9167" x="233.3333" y="211.1328"/><rect codeLine="32" fill="none" height="83.3781" id="ResourceSection" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="247.9167" x="233.3333" y="188.0778"/><ellipse cx="297.3958" cy="203.772" fill="#0066CF" rx="10.4167" ry="10.4167" style="stroke:#0086EF;stroke-width:1.0416666666666667;"/><path d="M299.3062,208.197 Q298.879,208.4167 298.409,208.5266 Q297.939,208.6365 297.4202,208.6365 Q295.577,208.6365 294.6065,207.4219 Q293.6361,206.2073 293.6361,203.9124 Q293.6361,201.6113 294.6065,200.3967 Q295.577,199.1821 297.4202,199.1821 Q297.939,199.1821 298.4151,199.292 Q298.8912,199.4019 299.3062,199.6216 L299.3062,201.6235 Q298.8424,201.1963 298.406,200.9979 Q297.9696,200.7996 297.5057,200.7996 Q296.5169,200.7996 296.0134,201.5839 Q295.5098,202.3682 295.5098,203.9124 Q295.5098,205.4504 296.0134,206.2347 Q296.5169,207.019 297.5057,207.019 Q297.9696,207.019 298.406,206.8207 Q298.8424,206.6223 299.3062,206.1951 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="105.2083" x="320.3125" y="208.4961">ResourceSection</text><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="234.375" x2="480.2083" y1="219.4661" y2="219.4661"/><ellipse cx="244.7917" cy="254.836" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="215.625" x="256.25" y="261.7472">ResourceSection(Resource, long, long)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="234.375" x2="313.5417" y1="237.6719" y2="237.6719"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="81.25" x="316.6667" y="241.4815">(constructors)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="401.0417" x2="480.2083" y1="237.6719" y2="237.6719"/><!--MD5=[d5db6400288394716ad122924341cf80]
+class StringOutputResource--><rect codeLine="39" fill="#282828" height="67.7999" id="StringOutputResource" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="180.2083" x="1371.3542" y="195.8903"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="180.2083" x="1371.3542" y="195.8903"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="180.2083" x="1371.3542" y="218.9453"/><rect codeLine="39" fill="none" height="67.7999" id="StringOutputResource" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="180.2083" x="1371.3542" y="195.8903"/><ellipse cx="1385.9375" cy="211.5845" fill="#0066CF" rx="10.4167" ry="10.4167" style="stroke:#0086EF;stroke-width:1.0416666666666667;"/><path d="M1387.8479,216.0095 Q1387.4207,216.2292 1386.9507,216.3391 Q1386.4807,216.449 1385.9619,216.449 Q1384.1187,216.449 1383.1482,215.2344 Q1382.1777,214.0198 1382.1777,211.7249 Q1382.1777,209.4238 1383.1482,208.2092 Q1384.1187,206.9946 1385.9619,206.9946 Q1386.4807,206.9946 1386.9568,207.1045 Q1387.4329,207.2144 1387.8479,207.4341 L1387.8479,209.436 Q1387.384,209.0088 1386.9476,208.8104 Q1386.5112,208.6121 1386.0474,208.6121 Q1385.0586,208.6121 1384.5551,209.3964 Q1384.0515,210.1807 1384.0515,211.7249 Q1384.0515,213.2629 1384.5551,214.0472 Q1385.0586,214.8315 1386.0474,214.8315 Q1386.5112,214.8315 1386.9476,214.6332 Q1387.384,214.4348 1387.8479,214.0076 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="142.7083" x="1402.6042" y="216.3086">StringOutputResource</text><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="1372.3958" x2="1550.5208" y1="227.2786" y2="227.2786"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="1372.3958" x2="1550.5208" y1="235.612" y2="235.612"/><ellipse cx="1382.8125" cy="247.0703" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="78.125" x="1394.2708" y="253.9815">String string()</text><!--MD5=[a89c72e9b3cafd4d10fa23b6172feae4]
+class StringResource--><rect codeLine="46" fill="#282828" height="131.2012" id="StringResource" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="410.4167" x="517.7083" y="164.1195"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="410.4167" x="517.7083" y="164.1195"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="410.4167" x="517.7083" y="187.1745"/><rect codeLine="46" fill="none" height="131.2012" id="StringResource" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="410.4167" x="517.7083" y="164.1195"/><ellipse cx="667.1875" cy="179.8136" fill="#0066CF" rx="10.4167" ry="10.4167" style="stroke:#0086EF;stroke-width:1.0416666666666667;"/><path d="M669.0979,184.2387 Q668.6707,184.4584 668.2007,184.5683 Q667.7307,184.6781 667.2119,184.6781 Q665.3687,184.6781 664.3982,183.4635 Q663.4277,182.2489 663.4277,179.954 Q663.4277,177.653 664.3982,176.4384 Q665.3687,175.2238 667.2119,175.2238 Q667.7307,175.2238 668.2068,175.3337 Q668.6829,175.4435 669.0979,175.6632 L669.0979,177.6652 Q668.634,177.238 668.1976,177.0396 Q667.7612,176.8412 667.2974,176.8412 Q666.3086,176.8412 665.8051,177.6255 Q665.3015,178.4098 665.3015,179.954 Q665.3015,181.4921 665.8051,182.2764 Q666.3086,183.0607 667.2974,183.0607 Q667.7612,183.0607 668.1976,182.8623 Q668.634,182.664 669.0979,182.2367 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="96.875" x="690.1042" y="184.5378">StringResource</text><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="518.75" x2="927.0833" y1="195.5078" y2="195.5078"/><ellipse cx="529.1667" cy="230.8777" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="209.375" x="540.625" y="237.7889">StringResource(ResourcePath, String)</text><ellipse cx="529.1667" cy="250.6226" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="127.0833" x="540.625" y="257.5338">StringResource(String)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="518.75" x2="679.1667" y1="213.7136" y2="213.7136"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="81.25" x="682.2917" y="217.5232">(constructors)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="766.6667" x2="927.0833" y1="213.7136" y2="213.7136"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="518.75" x2="927.0833" y1="267.2424" y2="267.2424"/><ellipse cx="529.1667" cy="278.7008" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="378.125" x="540.625" y="285.612">StringResource transform(Function&lt;String,String&gt; transformation)</text><!--MD5=[6dfb3884b423d33d58f7cc8c7abfb535]
+reverse link BaseReadableResource to InputResource--><path codeLine="10" d="M300.1042,112.3174 C262.0313,134.6924 211.7917,164.2236 171.4375,187.9424 " fill="none" id="BaseReadableResource-backto-InputResource" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="296.5938,105.9215,318.25,101.6507,303.9896,118.4945,296.5938,105.9215" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[9ccf6f1b29adfc037ddc2e002e327a40]
+reverse link BaseWritableResource to NullResource--><path codeLine="17" d="M1176.8229,113.3903 C1154.4688,128.557 1128.2708,146.8174 1105.2083,164.1195 C1095.2813,171.5674 1084.8542,179.7757 1074.9583,187.7653 " fill="none" id="BaseWritableResource-backto-NullResource" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="1172.8229,107.2965,1194.1771,101.7132,1180.9583,119.4007,1172.8229,107.2965" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[286fa2e5d444bd373d64663297438e73]
+reverse link BaseWritableResource to OutputResource--><path codeLine="24" d="M1229.1667,122.7132 C1229.1667,143.359 1229.1667,167.8174 1229.1667,188.0257 " fill="none" id="BaseWritableResource-backto-OutputResource" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="1221.875,122.6403,1229.1667,101.807,1236.4583,122.6403,1221.875,122.6403" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[7acbd6a81c9084c0aa01c5e4ab5d84a9]
+reverse link BaseReadableResource to ResourceSection--><path codeLine="31" d="M357.2917,122.7132 C357.2917,143.359 357.2917,167.8174 357.2917,188.0257 " fill="none" id="BaseReadableResource-backto-ResourceSection" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="350,122.6403,357.2917,101.807,364.5833,122.6403,350,122.6403" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[1792cbf084bff08c4397e271d05ce57c]
+reverse link BaseWritableResource to StringOutputResource--><path codeLine="38" d="M1282.6667,113.2549 C1321.1354,138.0882 1372.6771,171.3695 1410.5417,195.8174 " fill="none" id="BaseWritableResource-backto-StringOutputResource" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="1278.5,119.234,1264.9583,101.807,1286.4063,106.984,1278.5,119.234" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[0f559c1caee63c79bb1093a2a7d5d518]
+reverse link BaseReadableResource to StringResource--><path codeLine="45" d="M432.6458,109.6195 C471.0833,125.3903 519.3542,145.1924 565.4375,164.0986 " fill="none" id="BaseReadableResource-backto-StringResource" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="429.7292,116.2965,413.2188,101.6507,435.2604,102.807,429.7292,116.2965" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[f02f797bb2b5ad35350da0908e5751af]
+@startuml
+
+    !include lexakai.theme
+    
+    title "com.telenav.kivakit.resource.resources"
+    
+    abstract BaseReadableResource
+    abstract BaseWritableResource
+    
+    BaseReadableResource <|- - InputResource
+    class InputResource
+    {
+        - -(constructors)- -
+        +InputResource(InputStream)
+    }
+    
+    BaseWritableResource <|- - NullResource
+    class NullResource
+    {
+        - -(constructors)- -
+        +NullResource()
+    }
+    
+    BaseWritableResource <|- - OutputResource
+    class OutputResource
+    {
+        - -(constructors)- -
+        +OutputResource(OutputStream)
+    }
+    
+    BaseReadableResource <|- - ResourceSection
+    class ResourceSection
+    {
+        - -(constructors)- -
+        +ResourceSection(Resource, long, long)
+    }
+    
+    BaseWritableResource <|- - StringOutputResource
+    class StringOutputResource
+    {
+        - -
+        +String string()
+    }
+    
+    BaseReadableResource <|- - StringResource
+    class StringResource
+    {
+        - -(constructors)- -
+        +StringResource(ResourcePath, String)
+        +StringResource(String)
+        - -
+        +StringResource transform(Function<String,String> transformation)
+    }
+    
+@enduml
+
+@startuml
+
+
+
+
+
+
+
+
+
+skinparam backgroundColor #333333
+
+
+
+
+
+
+skinparam  {
+    defaultFontName   "Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif"
+    defaultFontSize   12
+    defaultTextAlignment left
+    shadowing false
+    RoundCorner 10
+    TitleFontSize 18
+}
+
+skinparam defaultFontName       "Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif"
+skinparam defaultFontSize       12
+skinparam dpi                   100
+skinparam shadowing             false
+skinparam roundcorner           16
+skinparam ParticipantPadding    40
+skinparam BoxPadding            40
+skinparam Padding               3
+skinparam ArrowColor            #545454
+skinparam stereotype {
+    CBackgroundColor #0066cf
+    CBorderColor #0086ef
+    ABackgroundColor #C8Ac00
+    ABorderColor #D8Bc00
+    IBackgroundColor #008400
+    IBorderColor #239c23
+    EBackgroundColor #cf6300
+    EBorderColor #ef8300
+    NBackgroundColor #3380b9
+    NBorderColor #004d86
+}
+skinparam title {
+	FontColor	                 #c0c0c0
+ 	BorderColor                  #545454
+	FontSize	    	         20
+	BorderRoundCorner            16
+	BorderThickness 	         1
+	BackgroundColor              #48494b
+}
+
+
+skinparam legend {
+	BackgroundColor #303030
+	BorderColor #404040
+	FontColor #a0a0a0
+}
+
+	skinparam swimlane {
+	BorderColor #5e5e5e
+	BorderThickness 2
+	TitleBackgroundColor  #6d6d6d-#484848
+	TitleFontColor #303030
+}
+
+skinparam activity {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BarColor #00FF00
+	StartColor #0060a8
+	EndColor #0060a8
+	DiamondBackgroundColor #6d6d6d-#3a3a3a
+  	DiamondBorderColor #3a3a3a
+  	DiamondFontColor #fefefe
+}
+
+
+skinparam participant {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	ParticipantBorderThickness 2
+}
+
+
+skinparam actor {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam arrow {
+	Thickness 1.5
+	Color #545454
+	FontColor #a0a0a0
+    FontStyle bold
+    MessageAlignment center
+}
+
+
+
+skinparam sequence {
+	BorderColor #303030
+	TitleFontColor #303030
+	BackgroundColor #333333
+	StartColor #303030
+	EndColor #303030
+	BoxBackgroundColor #333333
+	BoxBorderColor #484848
+	BoxFontColor #484848
+	LifeLineBorderColor #484848
+	LifeLineBorderThickness 2
+	LifeLineBackgroundColor #3a3a3a
+	GroupBorderColor #484848
+	GroupFontColor #484848
+	GroupHeaderFontColor #0060a8
+	GroupBackgroundColor #484848
+	GroupHeaderBackgroundColor #333333
+	DividerBackgroundColor #484848
+    DividerBorderColor #484848
+    DividerBorderThickness 2
+    DividerFontColor #D8Bc00
+	ReferenceBackgroundColor #333333
+	ReferenceBorderColor #484848
+	ReferenceFontColor #fefefe
+	ReferenceHeaderBackgroundColor #484848
+}
+
+
+skinparam partition {
+	BorderColor #303030
+	FontColor #333333
+	BackgroundColor #333333
+}
+
+
+skinparam collections {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam control {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam entity {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam boundary {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam agent {
+	BackgroundColor #ff8000
+	BorderColor #ff9933
+	FontColor #484848
+}
+
+
+skinparam note {
+	BorderThickness 1
+	BackgroundColor #1b1b1a
+	BorderColor #5e5e5e
+	FontSize 11
+	FontColor #a0a0a0
+}
+
+
+skinparam artifact {
+	BorderThickness 10
+	BorderColor #5e5e5e
+	BackgroundColor #1b1b1a
+	FontColor #D8Bc00
+}
+
+
+skinparam component {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam interface {
+	BackgroundColor  #008400
+	BorderColor  #007F00
+	FontColor #484848
+}
+
+
+skinparam storage {
+	BackgroundColor #ff8000
+  	BorderColor #cc6600
+	FontColor #222222
+}
+
+
+skinparam node {
+	BackgroundColor #333333
+	BorderColor #333333
+	FontColor #C8Ac00
+}
+
+
+skinparam cloud {
+	BackgroundColor #484848-black
+	BorderColor #484848
+	FontColor #D8Bc00
+}
+
+
+skinparam database {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BackgroundColor  #333333
+}
+
+
+skinparam class {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	HeaderBackgroundColor #1b1b1a
+    BackgroundColor #282828
+    BorderColor #5e5e5e
+ 	StereotypeFontColor #a0a0a0
+    StereotypeFontStyle bold
+	BorderThickness 1
+	AttributeFontColor #D8Bc00
+	AttributeFontSize 11
+    FontColor #D8Bc00
+    FontStyle bold
+}
+
+
+skinparam object {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	StereotypeFontColor #484848
+	BorderThickness 1
+	AttributeFontColor #fefefe
+	AttributeFontSize 11
+}
+
+
+skinparam usecase {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BorderThickness 2
+	StereotypeFontColor #303030
+}
+
+
+skinparam rectangle {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BackgroundColor #333333
+	BorderThickness 2
+	StereotypeFontColor #303030
+}
+
+
+skinparam package {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BackgroundColor #333333
+	BorderThickness 2
+}
+
+
+skinparam folder {
+	BackgroundColor #6d6d6d
+  	BorderColor #ff8000
+	FontColor #ff8000
+	BorderThickness 2
+}
+
+
+skinparam frame {
+	BackgroundColor #6d6d6d
+  	BorderColor #0060a8
+	FontColor #0060a8
+	BorderThickness 2
+}
+
+
+skinparam state {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	StartColor #0060a8
+	EndColor #0060a8
+	AttributeFontColor #fefefe
+	AttributeFontSize 11
+}
+
+
+skinparam queue {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam card {
+	BackgroundColor #0060a8
+	BorderColor #004d86
+	FontColor $INFO_TEXT
+}
+
+
+skinparam file {
+	BackgroundColor #6d6d6d-#484848
+	BorderColor #0060a8
+	FontColor #fefefe
+}
+
+
+skinparam stack {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+    
+    title "com.telenav.kivakit.resource.resources"
+    
+    abstract BaseReadableResource
+    abstract BaseWritableResource
+    
+    BaseReadableResource <|- - InputResource
+    class InputResource
+    {
+        - -(constructors)- -
+        +InputResource(InputStream)
+    }
+    
+    BaseWritableResource <|- - NullResource
+    class NullResource
+    {
+        - -(constructors)- -
+        +NullResource()
+    }
+    
+    BaseWritableResource <|- - OutputResource
+    class OutputResource
+    {
+        - -(constructors)- -
+        +OutputResource(OutputStream)
+    }
+    
+    BaseReadableResource <|- - ResourceSection
+    class ResourceSection
+    {
+        - -(constructors)- -
+        +ResourceSection(Resource, long, long)
+    }
+    
+    BaseWritableResource <|- - StringOutputResource
+    class StringOutputResource
+    {
+        - -
+        +String string()
+    }
+    
+    BaseReadableResource <|- - StringResource
+    class StringResource
+    {
+        - -(constructors)- -
+        +StringResource(ResourcePath, String)
+        +StringResource(String)
+        - -
+        +StringResource transform(Function<String,String> transformation)
+    }
+    
+@enduml
+
+PlantUML version 1.2021.01(Tue Feb 02 00:55:08 MST 2021)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Default Encoding: UTF-8
+Language: en
+Country: US
+--></g></svg>

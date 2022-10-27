@@ -1,0 +1,168 @@
+
+@startuml
+
+    !include lexakai.theme
+    
+    title "File System - File System Services"
+    
+    abstract BaseRepeater
+    abstract BaseWritableResource
+    
+    interface FileSystemService
+    interface FileService
+    interface DiskService
+    interface FolderService
+    
+    interface DiskService
+    {
+        --(filesystem)--
+        +FolderService root()
+        --(math)--
+        +Percent percentFree()
+        +Percent percentUsable()
+        --(primitive)--
+        +Bytes free()
+        +Bytes size()
+        +Bytes usable()
+    }
+    
+    interface FileSystemObjectService
+    interface WritableResource
+    FileSystemObjectService <|-- FileService
+    WritableResource <|-- FileService
+    interface FileService
+    {
+        --(filesystem)--
+        +boolean renameTo(FileService that)
+    }
+    
+    interface ByteSized
+    interface CreatedAt
+    interface Deletable
+    interface Modifiable
+    interface ModifiedAt
+    interface Repeater
+    Repeater <|-- FileSystemObjectService
+    ByteSized <|-- FileSystemObjectService
+    ModifiedAt <|-- FileSystemObjectService
+    CreatedAt <|-- FileSystemObjectService
+    Modifiable <|-- FileSystemObjectService
+    Deletable <|-- FileSystemObjectService
+    interface FileSystemObjectService
+    {
+        --(checks)--
+        +boolean isRemote()
+        --(filesystem)--
+        +boolean chmod(PosixFilePermission... permissions)
+        +DiskService diskService()
+        +boolean exists()
+        +FileSystemService fileSystemService(FilePath)
+        +FolderService folderService()
+        +boolean isFile()
+        +boolean isFolder()
+        +boolean isOnSameFileSystem(FileSystemObjectService that)
+        +FolderService parentService()
+        +FilePath relativePath(FolderService)
+        +FileSystemObjectService resolveService()
+        +FolderService root()
+    }
+    
+    FileSystemService --> DiskService : "provides"
+    FileSystemService --> FileService : "provides"
+    FileSystemService --> FolderService : "provides"
+    interface FileSystemService
+    {
+        --(filesystem)--
+        +DiskService diskService(FilePath)
+        +FileService fileService(FilePath)
+        +FolderService folderService(FilePath)
+        --(filtering)--
+        +boolean accepts(FilePath)
+    }
+    
+    BaseRepeater <|-- FileSystemServiceLoader
+    FileSystemServiceLoader "1" o-- "*" FileSystemService : "loads"
+    -class FileSystemServiceLoader
+    {
+        --(filesystem)--
+        +FileSystemService fileSystem(Listener, FilePath)
+    }
+    
+    interface FileSystemObjectService
+    FileSystemObjectService <|-- FolderService
+    interface FolderService
+    {
+        --(checks)--
+        +boolean isEmpty()
+        +Boolean isWritable()
+        --(filesystem)--
+        +FolderService clear()
+        +FileService file(FileName)
+        +List<FileService> files(Matcher<FilePath>)
+        +List<FileService> files()
+        +FolderService folder(Folder)
+        +FolderService folder(FileName folder)
+        +List<FolderService> folders()
+        +List<FolderService> folders(Matcher<FilePath>)
+        +boolean hasFiles()
+        +boolean hasSubFolders()
+        +FolderService mkdirs()
+        +List<FileService> nestedFiles(Matcher<FilePath>)
+        +List<FolderService> nestedFolders(Matcher<FilePath>)
+        +boolean renameTo(FolderService that)
+        +FileService temporaryFile(FileName baseName)
+        +FolderService temporaryFolder(FileName baseName)
+    }
+    
+    DiskService <|-- LocalDisk
+    -class LocalDisk
+    {
+        --(constructors)--
+        +LocalDisk(LocalFolder)
+    }
+    
+    BaseWritableResource <|-- LocalFile
+    FileService <|-- LocalFile
+    -class LocalFile
+    {
+        --(constructors)--
+        +LocalFile(FilePath)
+        +LocalFile(LocalFile)
+        +LocalFile(LocalFolder, String)
+        +LocalFile(String)
+        +LocalFile(java.io.File)
+    }
+    
+    FileSystemService <|-- LocalFileSystemService
+    LocalFileSystemService --> LocalDisk : "creates"
+    LocalFileSystemService --> LocalFile : "creates"
+    LocalFileSystemService --> LocalFolder : "creates"
+    -class LocalFileSystemService
+    {
+    }
+    
+    BaseRepeater <|-- LocalFolder
+    FolderService <|-- LocalFolder
+    -class LocalFolder
+    {
+        --(constructors)--
+        +LocalFolder(FilePath)
+        +LocalFolder(LocalFolder)
+        +LocalFolder(String)
+        +LocalFolder(URI)
+        +LocalFolder(URL)
+        +LocalFolder(java.io.File)
+        --(filesystem)--
+        +LocalFolder asAbsolute()
+        +LocalFolder ensureExists()
+        +LocalFile file(FilePath)
+        +LocalFile file(String name)
+        +LocalFolder folder(String child)
+        +LocalFolder folder(LocalFolder child)
+        --(network)--
+        +URI asUri()
+        +URL asUrl()
+    }
+    
+@enduml
+

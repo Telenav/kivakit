@@ -1,0 +1,45 @@
+
+@startuml
+
+    !include lexakai.theme
+    
+    title "com.telenav.kivakit.core.language.trait"
+    
+    interface Repeater
+    Repeater <|-- LanguageTrait
+    interface LanguageTrait
+    {
+        --
+        +Out ifNonNullApply(In value, Function<In,Out>)
+        +T ifNullDefault(T value, T defaultValue)
+        --(checks)--
+        +boolean isFalseOr(boolean value, String message, Object... arguments)
+        +boolean isNonNullOr(Object value, String message, Object... arguments)
+        +boolean isTrueOr(boolean value, String message, Object... arguments)
+    }
+    
+    interface TryCatchTrait
+    {
+        --
+        +void tryCatch(UncheckedVoidCode)
+        +T tryCatch(UncheckedCode<T>)
+        +T tryCatchDefault(UncheckedCode<T>, T defaultValue)
+    }
+    
+    interface Broadcaster
+    interface TryCatchTrait
+    Broadcaster <|-- TryTrait
+    TryCatchTrait <|-- TryTrait
+    interface TryTrait
+    {
+        --
+        +T tryCatch(UncheckedCode<T>, String message, Object... arguments)
+        +boolean tryCatch(UncheckedVoidCode, String message, Object... arguments)
+        +void tryCatchThrow(UncheckedVoidCode, String message, Object... arguments)
+        +T tryCatchThrow(UncheckedCode<T>, String message, Object... arguments)
+        +T tryFinally(UncheckedCode<T>, UncheckedVoidCode after)
+        +void tryFinally(UncheckedVoidCode, Runnable after)
+    }
+    
+@enduml
+

@@ -1,0 +1,476 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="669.7917px" preserveAspectRatio="none" style="width:828px;height:669px;background:#333333;" version="1.1" viewBox="0 0 828 669" width="828.125px" zoomAndPan="magnify"><defs/><g><rect fill="#48494B" height="41.2028" rx="8.3333" ry="8.3333" style="stroke:#545454;stroke-width:1.0416666666666667;" width="219.7917" x="297.1354" y="2.0833"/><text fill="#C0C0C0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="20.8333" lengthAdjust="spacing" textLength="196.875" x="308.5938" y="30.5583">Collection Watching</text><!--MD5=[2975b1bddfcdfc530bfd416c5f773129]
+class BaseCollectionChangeWatcher--><rect codeLine="15" fill="#282828" height="194.6025" id="BaseCollectionChangeWatcher" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="252.0833" x="139.0625" y="250.5778"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="252.0833" x="139.0625" y="250.5778"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="252.0833" x="139.0625" y="273.6328"/><rect codeLine="15" fill="none" height="194.6025" id="BaseCollectionChangeWatcher" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="252.0833" x="139.0625" y="250.5778"/><ellipse cx="153.6458" cy="266.272" fill="#C8AC00" rx="10.4167" ry="10.4167" style="stroke:#D8BC00;stroke-width:1.0416666666666667;"/><path d="M153.2389,262.974 L152.3905,266.7033 L154.0934,266.7033 Z M152.1403,261.3261 L154.3437,261.3261 L156.8034,270.4386 L155.0028,270.4386 L154.4413,268.1864 L152.0304,268.1864 L151.4811,270.4386 L149.6806,270.4386 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-style="italic" font-weight="bold" lengthAdjust="spacing" textLength="195.8333" x="170.3125" y="270.9961">BaseCollectionChangeWatcher</text><rect fill="#333333" height="23.055" style="stroke:#A0A0A0;stroke-width:1.0416666666666667;stroke-dasharray:2.0,2.0;" width="16.6667" x="377.6042" y="247.4528"/><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="8.3333" x="381.7708" y="263.7044">T</text><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="140.1042" x2="390.1042" y1="281.9661" y2="281.9661"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="140.1042" x2="390.1042" y1="290.2995" y2="290.2995"/><polygon fill="#FFFF44" points="150.5208,296.5495,154.6875,300.7161,150.5208,304.8828,146.3542,300.7161" style="stroke:#B38D22;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="83.3333" x="161.9792" y="308.669">void changed()</text><polygon fill="#FFFF44" points="150.5208,316.2944,154.6875,320.461,150.5208,324.6277,146.3542,320.461" style="stroke:#B38D22;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="126.0417" x="161.9792" y="328.4139">void onAdded(T value)</text><polygon fill="#FFFF44" points="150.5208,336.0392,154.6875,340.2059,150.5208,344.3726,146.3542,340.2059" style="stroke:#B38D22;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="140.625" x="161.9792" y="348.1588">void onRemoved(T value)</text><ellipse cx="150.5208" cy="384.904" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="118.75" x="161.9792" y="391.8152">void waitForChange()</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="140.1042" x2="239.5833" y1="367.7399" y2="367.7399"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="44.7917" x="242.7083" y="371.5495">(thread)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="290.625" x2="390.1042" y1="367.7399" y2="367.7399"/><polygon fill="#FFFF44" points="150.5208,423.3521,154.6875,427.5187,150.5208,431.6854,146.3542,427.5187" style="stroke:#B38D22;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="137.5" x="161.9792" y="435.4716">void onModified(T value)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="140.1042" x2="245.8333" y1="411.3963" y2="411.3963"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="32.2917" x="248.9583" y="415.2059">(time)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="284.375" x2="390.1042" y1="411.3963" y2="411.3963"/><!--MD5=[762aa3d0df6a9d47bd8e105afbd066b5]
+class BaseRepeater--><rect codeLine="8" fill="#282828" height="48.055" id="BaseRepeater" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="123.9583" x="72.9167" y="98.4945"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="123.9583" x="72.9167" y="98.4945"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="123.9583" x="72.9167" y="121.5495"/><rect codeLine="8" fill="none" height="48.055" id="BaseRepeater" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="123.9583" x="72.9167" y="98.4945"/><ellipse cx="87.5" cy="114.1886" fill="#C8AC00" rx="10.4167" ry="10.4167" style="stroke:#D8BC00;stroke-width:1.0416666666666667;"/><path d="M87.0931,110.8907 L86.2447,114.62 L87.9476,114.62 Z M85.9945,109.2428 L88.1978,109.2428 L90.6576,118.3553 L88.857,118.3553 L88.2955,116.1031 L85.8846,116.1031 L85.3353,118.3553 L83.5347,118.3553 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-style="italic" font-weight="bold" lengthAdjust="spacing" textLength="86.4583" x="104.1667" y="118.9128">BaseRepeater</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="73.9583" x2="195.8333" y1="129.8828" y2="129.8828"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="73.9583" x2="195.8333" y1="138.2161" y2="138.2161"/><!--MD5=[1c38f4b24c2a8cc40df1b1f481d76b9f]
+class Startable--><rect codeLine="10" fill="#282828" height="48.055" id="Startable" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="94.7917" x="7.2917" y="324.0153"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="94.7917" x="7.2917" y="324.0153"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="94.7917" x="7.2917" y="347.0703"/><rect codeLine="10" fill="none" height="48.055" id="Startable" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="94.7917" x="7.2917" y="324.0153"/><ellipse cx="21.875" cy="339.7095" fill="#008400" rx="10.4167" ry="10.4167" style="stroke:#239C23;stroke-width:1.0416666666666667;"/><path d="M19.279,336.8713 L19.279,335.2844 L24.705,335.2844 L24.705,336.8713 L22.8923,336.8713 L22.8923,342.8101 L24.705,342.8101 L24.705,344.397 L19.279,344.397 L19.279,342.8101 L21.0917,342.8101 L21.0917,336.8713 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-style="italic" font-weight="bold" lengthAdjust="spacing" textLength="57.2917" x="38.5417" y="344.4336">Startable</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="8.3333" x2="101.0417" y1="355.4036" y2="355.4036"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="8.3333" x2="101.0417" y1="363.737" y2="363.737"/><!--MD5=[cb367649259e724916a2f2e2b20c63e7]
+class CollectionChangeWatcher--><rect codeLine="36" fill="#282828" height="103.123" id="CollectionChangeWatcher" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="323.9583" x="233.3333" y="70.8903"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="323.9583" x="233.3333" y="70.8903"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="323.9583" x="233.3333" y="93.9453"/><rect codeLine="36" fill="none" height="103.123" id="CollectionChangeWatcher" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="323.9583" x="233.3333" y="70.8903"/><ellipse cx="295.8333" cy="86.5845" fill="#008400" rx="10.4167" ry="10.4167" style="stroke:#239C23;stroke-width:1.0416666666666667;"/><path d="M293.2373,83.7463 L293.2373,82.1594 L298.6633,82.1594 L298.6633,83.7463 L296.8506,83.7463 L296.8506,89.6851 L298.6633,89.6851 L298.6633,91.272 L293.2373,91.272 L293.2373,89.6851 L295.05,89.6851 L295.05,83.7463 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-style="italic" font-weight="bold" lengthAdjust="spacing" textLength="165.625" x="318.75" y="91.3086">CollectionChangeWatcher</text><rect fill="#333333" height="23.055" style="stroke:#A0A0A0;stroke-width:1.0416666666666667;stroke-dasharray:2.0,2.0;" width="16.6667" x="543.75" y="67.7653"/><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="8.3333" x="547.9167" y="84.0169">T</text><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="234.375" x2="556.25" y1="102.2786" y2="102.2786"/><ellipse cx="244.7917" cy="137.6485" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="270.8333" x="256.25" y="144.5597">void addListener(CollectionChangeListener&lt;T&gt;)</text><ellipse cx="244.7917" cy="157.3934" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="291.6667" x="256.25" y="164.3046">void removeListener(CollectionChangeListener&lt;T&gt;)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="234.375" x2="360.9375" y1="120.4844" y2="120.4844"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="62.5" x="364.0625" y="124.294">(collection)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="429.6875" x2="556.25" y1="120.4844" y2="120.4844"/><!--MD5=[a4e44a024ef7aaed341e386f3ed38272]
+class CollectionChangeListener--><rect codeLine="27" fill="#282828" height="131.2012" id="CollectionChangeListener" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="222.9167" x="594.2708" y="56.8278"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="222.9167" x="594.2708" y="56.8278"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="222.9167" x="594.2708" y="79.8828"/><rect codeLine="27" fill="none" height="131.2012" id="CollectionChangeListener" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="222.9167" x="594.2708" y="56.8278"/><ellipse cx="608.8542" cy="72.522" fill="#008400" rx="10.4167" ry="10.4167" style="stroke:#239C23;stroke-width:1.0416666666666667;"/><path d="M606.2581,69.6838 L606.2581,68.0969 L611.6842,68.0969 L611.6842,69.6838 L609.8714,69.6838 L609.8714,75.6226 L611.6842,75.6226 L611.6842,77.2095 L606.2581,77.2095 L606.2581,75.6226 L608.0709,75.6226 L608.0709,69.6838 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-style="italic" font-weight="bold" lengthAdjust="spacing" textLength="166.6667" x="625.5208" y="77.2461">CollectionChangeListener</text><rect fill="#333333" height="23.055" style="stroke:#A0A0A0;stroke-width:1.0416666666666667;stroke-dasharray:2.0,2.0;" width="16.6667" x="803.6458" y="53.7028"/><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="8.3333" x="807.8125" y="69.9544">T</text><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="595.3125" x2="816.1458" y1="88.2161" y2="88.2161"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="595.3125" x2="816.1458" y1="96.5495" y2="96.5495"/><ellipse cx="605.7292" cy="108.0078" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="126.0417" x="617.1875" y="114.919">void onAdded(T value)</text><ellipse cx="605.7292" cy="127.7527" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="140.625" x="617.1875" y="134.6639">void onRemoved(T value)</text><ellipse cx="605.7292" cy="171.4091" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="137.5" x="617.1875" y="178.3203">void onModified(T value)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="595.3125" x2="686.4583" y1="154.245" y2="154.245"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="32.2917" x="689.5833" y="158.0546">(time)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="725" x2="816.1458" y1="154.245" y2="154.245"/><!--MD5=[a2fd1484b0cd9a73f879b6d5857fe542]
+class PeriodicCollectionChangeWatcher--><rect codeLine="45" fill="#282828" height="155.1127" id="PeriodicCollectionChangeWatcher" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="287.5" x="16.1458" y="507.8695"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="287.5" x="16.1458" y="507.8695"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="287.5" x="16.1458" y="530.9245"/><rect codeLine="45" fill="none" height="155.1127" id="PeriodicCollectionChangeWatcher" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="287.5" x="16.1458" y="507.8695"/><ellipse cx="37.2917" cy="523.5636" fill="#C8AC00" rx="10.4167" ry="10.4167" style="stroke:#D8BC00;stroke-width:1.0416666666666667;"/><path d="M36.8848,520.2657 L36.0364,523.995 L37.7393,523.995 Z M35.7861,518.6178 L37.9895,518.6178 L40.4492,527.7303 L38.6487,527.7303 L38.0872,525.4781 L35.6763,525.4781 L35.127,527.7303 L33.3264,527.7303 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-style="italic" font-weight="bold" lengthAdjust="spacing" textLength="216.6667" x="55.4167" y="528.2878">PeriodicCollectionChangeWatcher</text><rect fill="#333333" height="23.055" style="stroke:#A0A0A0;stroke-width:1.0416666666666667;stroke-dasharray:2.0,2.0;" width="16.6667" x="290.1042" y="504.7445"/><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="8.3333" x="294.2708" y="520.9961">T</text><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="17.1875" x2="302.6042" y1="539.2578" y2="539.2578"/><polygon fill="#FFFF44" points="27.6042,569.4194,31.7708,573.586,27.6042,577.7527,23.4375,573.586" style="stroke:#B38D22;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="255.2083" x="39.0625" y="581.5389">PeriodicCollectionChangeWatcher(Frequency)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="17.1875" x2="116.1458" y1="557.4636" y2="557.4636"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="81.25" x="119.2708" y="561.2732">(constructors)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="203.6458" x2="302.6042" y1="557.4636" y2="557.4636"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="17.1875" x2="302.6042" y1="591.2476" y2="591.2476"/><polygon fill="#FFFF44" points="27.6042,597.4976,31.7708,601.6642,27.6042,605.8309,23.4375,601.6642" style="stroke:#B38D22;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="134.375" x="39.0625" y="609.6171">Collection&lt;T&gt; objects()</text><polygon fill="#FFFF44" points="27.6042,641.154,31.7708,645.3206,27.6042,649.4873,23.4375,645.3206" style="stroke:#B38D22;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="151.0417" x="39.0625" y="653.2735">Time lastModified(T object)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="17.1875" x2="140.625" y1="629.1982" y2="629.1982"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="32.2917" x="143.75" y="633.0078">(time)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="179.1667" x2="302.6042" y1="629.1982" y2="629.1982"/><!--MD5=[70c47b6d8c51fd6b203b470924d7cf29]
+reverse link BaseRepeater to BaseCollectionChangeWatcher--><path codeLine="13" d="M158.9896,164.8486 C173.0104,188.9007 191.3021,220.2861 208.7396,250.2132 " fill="none" id="BaseRepeater-backto-BaseCollectionChangeWatcher" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="152.5313,168.234,148.3438,146.5674,165.125,160.8903,152.5313,168.234" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[667e3b7f4c97862d008a290cf693aa66]
+reverse link CollectionChangeWatcher to BaseCollectionChangeWatcher--><path codeLine="14" d="M355.1146,192.4736 C344.4688,210.734 332.7813,230.7861 321.4583,250.2236 " fill="none" id="CollectionChangeWatcher-backto-BaseCollectionChangeWatcher" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="348.9792,188.5257,365.7708,174.1924,361.5729,195.8695,348.9792,188.5257" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[505543cdabd93a90d19651fa16d1392f]
+reverse link BaseCollectionChangeWatcher to PeriodicCollectionChangeWatcher--><path codeLine="43" d="M213.4792,464.5465 C206.9479,479.1507 200.4063,493.7965 194.2396,507.5882 " fill="none" id="BaseCollectionChangeWatcher-backto-PeriodicCollectionChangeWatcher" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="206.8542,461.4945,222.0104,445.4424,220.1667,467.4424,206.8542,461.4945" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[a0742d0ce9d1d9adb3064203075c76fc]
+reverse link Startable to PeriodicCollectionChangeWatcher--><path codeLine="44" d="M73.5313,391.1715 C87.9896,423.5465 108.3542,469.109 125.6771,507.859 " fill="none" id="Startable-backto-PeriodicCollectionChangeWatcher" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="66.8125,394.0153,64.9688,372.0153,80.125,388.057,66.8125,394.0153" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[6a013585d9f1c688a04befd86bb8c2fd]
+@startuml
+
+    !include lexakai.theme
+    
+    title "Collection Watching"
+    
+    abstract BaseCollectionChangeWatcher
+    abstract BaseRepeater
+    
+    interface Startable
+    interface CollectionChangeWatcher
+    
+    BaseRepeater <|- - BaseCollectionChangeWatcher
+    CollectionChangeWatcher <|- - BaseCollectionChangeWatcher
+    abstract class BaseCollectionChangeWatcher<T>
+    {
+        - -
+        #void changed()
+        #void onAdded(T value)
+        #void onRemoved(T value)
+        - -(thread)- -
+        +void waitForChange()
+        - -(time)- -
+        #void onModified(T value)
+    }
+    
+    interface CollectionChangeListener<T>
+    {
+        - -
+        +void onAdded(T value)
+        +void onRemoved(T value)
+        - -(time)- -
+        +void onModified(T value)
+    }
+    
+    interface CollectionChangeWatcher<T>
+    {
+        - -(collection)- -
+        +void addListener(CollectionChangeListener<T>)
+        +void removeListener(CollectionChangeListener<T>)
+    }
+    
+    BaseCollectionChangeWatcher <|- - PeriodicCollectionChangeWatcher
+    Startable <|- - PeriodicCollectionChangeWatcher
+    abstract class PeriodicCollectionChangeWatcher<T>
+    {
+        - -(constructors)- -
+        #PeriodicCollectionChangeWatcher(Frequency)
+        - -
+        #Collection<T> objects()
+        - -(time)- -
+        #Time lastModified(T object)
+    }
+    
+@enduml
+
+@startuml
+
+
+
+
+
+
+
+
+
+skinparam backgroundColor #333333
+
+
+
+
+
+
+skinparam  {
+    defaultFontName   "Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif"
+    defaultFontSize   12
+    defaultTextAlignment left
+    shadowing false
+    RoundCorner 10
+    TitleFontSize 18
+}
+
+skinparam defaultFontName       "Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif"
+skinparam defaultFontSize       12
+skinparam dpi                   100
+skinparam shadowing             false
+skinparam roundcorner           16
+skinparam ParticipantPadding    40
+skinparam BoxPadding            40
+skinparam Padding               3
+skinparam ArrowColor            #545454
+skinparam stereotype {
+    CBackgroundColor #0066cf
+    CBorderColor #0086ef
+    ABackgroundColor #C8Ac00
+    ABorderColor #D8Bc00
+    IBackgroundColor #008400
+    IBorderColor #239c23
+    EBackgroundColor #cf6300
+    EBorderColor #ef8300
+    NBackgroundColor #3380b9
+    NBorderColor #004d86
+}
+skinparam title {
+	FontColor	                 #c0c0c0
+ 	BorderColor                  #545454
+	FontSize	    	         20
+	BorderRoundCorner            16
+	BorderThickness 	         1
+	BackgroundColor              #48494b
+}
+
+
+skinparam legend {
+	BackgroundColor #303030
+	BorderColor #404040
+	FontColor #a0a0a0
+}
+
+	skinparam swimlane {
+	BorderColor #5e5e5e
+	BorderThickness 2
+	TitleBackgroundColor  #6d6d6d-#484848
+	TitleFontColor #303030
+}
+
+skinparam activity {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BarColor #00FF00
+	StartColor #0060a8
+	EndColor #0060a8
+	DiamondBackgroundColor #6d6d6d-#3a3a3a
+  	DiamondBorderColor #3a3a3a
+  	DiamondFontColor #fefefe
+}
+
+
+skinparam participant {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	ParticipantBorderThickness 2
+}
+
+
+skinparam actor {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam arrow {
+	Thickness 1.5
+	Color #545454
+	FontColor #a0a0a0
+    FontStyle bold
+    MessageAlignment center
+}
+
+
+
+skinparam sequence {
+	BorderColor #303030
+	TitleFontColor #303030
+	BackgroundColor #333333
+	StartColor #303030
+	EndColor #303030
+	BoxBackgroundColor #333333
+	BoxBorderColor #484848
+	BoxFontColor #484848
+	LifeLineBorderColor #484848
+	LifeLineBorderThickness 2
+	LifeLineBackgroundColor #3a3a3a
+	GroupBorderColor #484848
+	GroupFontColor #484848
+	GroupHeaderFontColor #0060a8
+	GroupBackgroundColor #484848
+	GroupHeaderBackgroundColor #333333
+	DividerBackgroundColor #484848
+    DividerBorderColor #484848
+    DividerBorderThickness 2
+    DividerFontColor #D8Bc00
+	ReferenceBackgroundColor #333333
+	ReferenceBorderColor #484848
+	ReferenceFontColor #fefefe
+	ReferenceHeaderBackgroundColor #484848
+}
+
+
+skinparam partition {
+	BorderColor #303030
+	FontColor #333333
+	BackgroundColor #333333
+}
+
+
+skinparam collections {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam control {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam entity {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam boundary {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam agent {
+	BackgroundColor #ff8000
+	BorderColor #ff9933
+	FontColor #484848
+}
+
+
+skinparam note {
+	BorderThickness 1
+	BackgroundColor #1b1b1a
+	BorderColor #5e5e5e
+	FontSize 11
+	FontColor #a0a0a0
+}
+
+
+skinparam artifact {
+	BorderThickness 10
+	BorderColor #5e5e5e
+	BackgroundColor #1b1b1a
+	FontColor #D8Bc00
+}
+
+
+skinparam component {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam interface {
+	BackgroundColor  #008400
+	BorderColor  #007F00
+	FontColor #484848
+}
+
+
+skinparam storage {
+	BackgroundColor #ff8000
+  	BorderColor #cc6600
+	FontColor #222222
+}
+
+
+skinparam node {
+	BackgroundColor #333333
+	BorderColor #333333
+	FontColor #C8Ac00
+}
+
+
+skinparam cloud {
+	BackgroundColor #484848-black
+	BorderColor #484848
+	FontColor #D8Bc00
+}
+
+
+skinparam database {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BackgroundColor  #333333
+}
+
+
+skinparam class {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	HeaderBackgroundColor #1b1b1a
+    BackgroundColor #282828
+    BorderColor #5e5e5e
+ 	StereotypeFontColor #a0a0a0
+    StereotypeFontStyle bold
+	BorderThickness 1
+	AttributeFontColor #D8Bc00
+	AttributeFontSize 11
+    FontColor #D8Bc00
+    FontStyle bold
+}
+
+
+skinparam object {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	StereotypeFontColor #484848
+	BorderThickness 1
+	AttributeFontColor #fefefe
+	AttributeFontSize 11
+}
+
+
+skinparam usecase {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BorderThickness 2
+	StereotypeFontColor #303030
+}
+
+
+skinparam rectangle {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BackgroundColor #333333
+	BorderThickness 2
+	StereotypeFontColor #303030
+}
+
+
+skinparam package {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BackgroundColor #333333
+	BorderThickness 2
+}
+
+
+skinparam folder {
+	BackgroundColor #6d6d6d
+  	BorderColor #ff8000
+	FontColor #ff8000
+	BorderThickness 2
+}
+
+
+skinparam frame {
+	BackgroundColor #6d6d6d
+  	BorderColor #0060a8
+	FontColor #0060a8
+	BorderThickness 2
+}
+
+
+skinparam state {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	StartColor #0060a8
+	EndColor #0060a8
+	AttributeFontColor #fefefe
+	AttributeFontSize 11
+}
+
+
+skinparam queue {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam card {
+	BackgroundColor #0060a8
+	BorderColor #004d86
+	FontColor $INFO_TEXT
+}
+
+
+skinparam file {
+	BackgroundColor #6d6d6d-#484848
+	BorderColor #0060a8
+	FontColor #fefefe
+}
+
+
+skinparam stack {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+    
+    title "Collection Watching"
+    
+    abstract BaseCollectionChangeWatcher
+    abstract BaseRepeater
+    
+    interface Startable
+    interface CollectionChangeWatcher
+    
+    BaseRepeater <|- - BaseCollectionChangeWatcher
+    CollectionChangeWatcher <|- - BaseCollectionChangeWatcher
+    abstract class BaseCollectionChangeWatcher<T>
+    {
+        - -
+        #void changed()
+        #void onAdded(T value)
+        #void onRemoved(T value)
+        - -(thread)- -
+        +void waitForChange()
+        - -(time)- -
+        #void onModified(T value)
+    }
+    
+    interface CollectionChangeListener<T>
+    {
+        - -
+        +void onAdded(T value)
+        +void onRemoved(T value)
+        - -(time)- -
+        +void onModified(T value)
+    }
+    
+    interface CollectionChangeWatcher<T>
+    {
+        - -(collection)- -
+        +void addListener(CollectionChangeListener<T>)
+        +void removeListener(CollectionChangeListener<T>)
+    }
+    
+    BaseCollectionChangeWatcher <|- - PeriodicCollectionChangeWatcher
+    Startable <|- - PeriodicCollectionChangeWatcher
+    abstract class PeriodicCollectionChangeWatcher<T>
+    {
+        - -(constructors)- -
+        #PeriodicCollectionChangeWatcher(Frequency)
+        - -
+        #Collection<T> objects()
+        - -(time)- -
+        #Time lastModified(T object)
+    }
+    
+@enduml
+
+PlantUML version 1.2021.01(Tue Feb 02 00:55:08 MST 2021)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Default Encoding: UTF-8
+Language: en
+Country: US
+--></g></svg>
