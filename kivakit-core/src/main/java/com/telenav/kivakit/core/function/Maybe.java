@@ -14,6 +14,7 @@ import com.telenav.kivakit.interfaces.value.Source;
 
 import java.util.Objects;
 import java.util.Optional;
+import java.util.concurrent.Future;
 import java.util.function.BiFunction;
 import java.util.function.Consumer;
 import java.util.function.Function;
@@ -74,6 +75,36 @@ import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
  *     <li>{@link #ifPresent(Consumer)} - Calls the given consumer if a value is present</li>
  *     <li>{@link #ifPresentOr(Consumer, UncheckedVoidCode)} - Calls the given consumer if a value is present, otherwise calls the given code</li>
  * </ul>
+ *
+ * <p><b>Example - Absent Value</b></p>
+ *
+ * <pre>
+ * ensureEqual(present("abc")  // "abc"
+ *     .map(Integer::parseInt)           // null
+ *     .map(Integer::sum, 123)           // null
+ *     .map(String::valueOf)             // null
+ *     .map(String::concat, "xyz")       // null
+ *     .map(String::substring, 2, 4)     // null
+ *     .get(), null);
+ * </pre>
+ *
+ * <p><b>Example - Present Value</b></p>
+ *
+ * <pre>
+ * ensureEqual(present("123")        // "123"
+ *     .map(Integer::parseInt)       // 123
+ *     .map(Integer::sum, 123)       // 246
+ *     .map(String::valueOf)         // "246"
+ *     .map(String::concat, "xyz")   // "246xyz"
+ *     .map(String::substring, 2, 4) // "6x"
+ *     .get(), "6x");
+ * </pre>
+ *
+ * <p><b>Example - Asynchronous Mapping</b></p>
+ *
+ * <pre>
+ * var sum = result(3).mapTask(value -&gt; new FutureTask&lt;&gt;(() &gt; value + 3)).get();
+ * </pre>
  *
  * @author jonathanl (shibo)
  * @author viniciusluisr
@@ -427,6 +458,24 @@ public class Maybe<Value> implements
         }
 
         return newAbsent();
+    }
+
+    /**
+     * If a value is present, uses the given function to map the value from Value to ResultType, where ResultType is a
+     * subclass of {@link Future}. The mapped value is then wrapped in a Maybe&lt;ResultType&gt; object and returned. If
+     * no value is present, returns {@link #absent()}. The effect is that of simply mapping this optional value to a new
+     * type.
+     *
+     * @param mapper A function mapping from Value to ResultType
+     * @param <ResultType> The type that Value is being mapped to
+     * @return The mapped value or {@link #absent()}
+     */
+    public <To, ResultType extends Future<To>> Maybe<ResultType> mapTask(
+            Function<? super Value, ? extends ResultType> mapper)
+    {
+        return tryCatchDefault(() -> isPresent()
+                ? newMaybe(ensureNotNull(mapper).apply(value))
+                : newAbsent(), newAbsent());
     }
 
     /**
