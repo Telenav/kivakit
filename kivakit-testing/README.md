@@ -68,9 +68,9 @@ None
 
 | Class | Documentation Sections  |
 |-------|-------------------------|
-| [*QuickTest*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.testing/com/telenav/kivakit/testing/QuickTest.html) |  |  
-| [*SlowTest*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.testing/com/telenav/kivakit/testing/SlowTest.html) |  |  
-| [*UnitTest*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.testing/com/telenav/kivakit/testing/UnitTest.html) | Ensure Behavior |  
+| [*QuickTest*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.testing//////////////////////////////////////.html) |  |  
+| [*SlowTest*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.testing/////////////////////////////////////.html) |  |  
+| [*UnitTest*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.testing/////////////////////////////////////.html) | Ensure Behavior |  
 | | Ensure Equality |  
 | | Test Methods |  
 | | Quick Tests |  

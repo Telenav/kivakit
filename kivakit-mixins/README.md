@@ -69,12 +69,12 @@ Code quality for this project is 100.0%.
 
 | Class | Documentation Sections  |
 |-------|-------------------------|
-| [*AttributesMixin*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.mixins/com/telenav/kivakit/mixins/AttributesMixin.html) | Example |  
+| [*AttributesMixin*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.mixins///////////////////////////////////////////.html) | Example |  
 | | Attributes |  
-| [*DiagramMixin*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.mixins/com/telenav/kivakit/mixins/internal/lexakai/DiagramMixin.html) |  |  
-| [*Mixin*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.mixins/com/telenav/kivakit/mixins/Mixin.html) | Performance Note |  
-| [*Mixins*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.mixins/com/telenav/kivakit/mixins/Mixins.html) | Mixins |  
-| [*Mixins.MixinKey*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.mixins/com/telenav/kivakit/mixins/Mixins.MixinKey.html) |  |  
+| [*DiagramMixin*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.mixins/////////////////////////////////////////////////////////.html) |  |  
+| [*Mixin*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.mixins/////////////////////////////////.html) | Performance Note |  
+| [*Mixins*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.mixins//////////////////////////////////.html) | Mixins |  
+| [*Mixins.MixinKey*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.mixins///////////////////////////////////////////.html) |  |  
 
 [//]: # (start-user-text)
 

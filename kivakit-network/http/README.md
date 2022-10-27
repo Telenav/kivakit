@@ -110,28 +110,28 @@ Code quality for this project is 70.4%.
 
 | Class | Documentation Sections  |
 |-------|-------------------------|
-| [*BaseHttpResource*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.network.http/com/telenav/kivakit/network/http/BaseHttpResource.html) | Conversions |  
+| [*BaseHttpResource*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.network.http//////////////////////////////////////////////////.html) | Conversions |  
 | | Content |  
 | | Headers |  
 | | Properties |  
-| [*DiagramHttp*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.network.http/com/telenav/kivakit/network/http/internal/lexakai/DiagramHttp.html) |  |  
-| [*DiagramHttps*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.network.http/com/telenav/kivakit/network/http/internal/lexakai/DiagramHttps.html) |  |  
-| [*HttpAccessConstraints*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.network.http/com/telenav/kivakit/network/http/HttpAccessConstraints.html) |  |  
-| [*HttpBasicCredentials*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.network.http/com/telenav/kivakit/network/http/HttpBasicCredentials.html) |  |  
-| [*HttpDateTimeConverter*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.network.http/com/telenav/kivakit/network/http/HttpDateTimeConverter.html) |  |  
-| [*HttpGetResource*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.network.http/com/telenav/kivakit/network/http/HttpGetResource.html) |  |  
-| [*HttpGetResourceResolver*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.network.http/com/telenav/kivakit/network/http/HttpGetResourceResolver.html) |  |  
-| [*HttpMethod*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.network.http/com/telenav/kivakit/network/http/HttpMethod.html) |  |  
-| [*HttpNetworkLocation*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.network.http/com/telenav/kivakit/network/http/HttpNetworkLocation.html) | Functional |  
+| [*DiagramHttp*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.network.http//////////////////////////////////////////////////////////////.html) |  |  
+| [*DiagramHttps*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.network.http///////////////////////////////////////////////////////////////.html) |  |  
+| [*HttpAccessConstraints*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.network.http///////////////////////////////////////////////////////.html) |  |  
+| [*HttpBasicCredentials*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.network.http//////////////////////////////////////////////////////.html) |  |  
+| [*HttpDateTimeConverter*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.network.http///////////////////////////////////////////////////////.html) |  |  
+| [*HttpGetResource*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.network.http/////////////////////////////////////////////////.html) |  |  
+| [*HttpGetResourceResolver*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.network.http/////////////////////////////////////////////////////////.html) |  |  
+| [*HttpMethod*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.network.http////////////////////////////////////////////.html) |  |  
+| [*HttpNetworkLocation*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.network.http/////////////////////////////////////////////////////.html) | Functional |  
 | | Access |  
-| [*HttpNetworkLocation.Converter*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.network.http/com/telenav/kivakit/network/http/HttpNetworkLocation.Converter.html) |  |  
-| [*HttpPostResource*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.network.http/com/telenav/kivakit/network/http/HttpPostResource.html) |  |  
-| [*HttpPutResource*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.network.http/com/telenav/kivakit/network/http/HttpPutResource.html) |  |  
-| [*HttpRequestFactory*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.network.http/com/telenav/kivakit/network/http/HttpRequestFactory.html) |  |  
-| [*HttpStatus*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.network.http/com/telenav/kivakit/network/http/HttpStatus.html) | Tests |  
-| [*SecureHttpGetResource*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.network.http/com/telenav/kivakit/network/http/secure/SecureHttpGetResource.html) |  |  
-| [*SecureHttpNetworkLocation*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.network.http/com/telenav/kivakit/network/http/secure/SecureHttpNetworkLocation.html) |  |  
-| [*SecureHttpPostResource*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.network.http/com/telenav/kivakit/network/http/secure/SecureHttpPostResource.html) |  |  
+| [*HttpNetworkLocation.Converter*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.network.http///////////////////////////////////////////////////////////////.html) |  |  
+| [*HttpPostResource*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.network.http//////////////////////////////////////////////////.html) |  |  
+| [*HttpPutResource*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.network.http/////////////////////////////////////////////////.html) |  |  
+| [*HttpRequestFactory*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.network.http////////////////////////////////////////////////////.html) |  |  
+| [*HttpStatus*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.network.http////////////////////////////////////////////.html) | Tests |  
+| [*SecureHttpGetResource*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.network.http//////////////////////////////////////////////////////////////.html) |  |  
+| [*SecureHttpNetworkLocation*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.network.http//////////////////////////////////////////////////////////////////.html) |  |  
+| [*SecureHttpPostResource*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.network.http///////////////////////////////////////////////////////////////.html) |  |  
 
 [//]: # (start-user-text)
 

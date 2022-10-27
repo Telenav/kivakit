@@ -84,31 +84,31 @@ Code quality for this project is 64.3%.
 
 | Class | Documentation Sections  |
 |-------|-------------------------|
-| [*BaseResourceSettingsStore*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.settings/com/telenav/kivakit/settings/stores/BaseResourceSettingsStore.html) | JSON File Format |  
+| [*BaseResourceSettingsStore*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.settings//////////////////////////////////////////////////////////////.html) | JSON File Format |  
 | | Properties File Format |  
-| [*BaseSettingsStore*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.settings/com/telenav/kivakit/settings/BaseSettingsStore.html) | Provided Stores |  
+| [*BaseSettingsStore*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.settings///////////////////////////////////////////////.html) | Provided Stores |  
 | | Providers |  
-| [*Deployment*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.settings/com/telenav/kivakit/settings/Deployment.html) | Deploying Applications |  
+| [*Deployment*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.settings////////////////////////////////////////.html) | Deploying Applications |  
 | | Example |  
-| [*Deployment.Converter*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.settings/com/telenav/kivakit/settings/Deployment.Converter.html) |  |  
-| [*DeploymentSet*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.settings/com/telenav/kivakit/settings/DeploymentSet.html) | Adding Deployments |  
+| [*Deployment.Converter*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.settings//////////////////////////////////////////////////.html) |  |  
+| [*DeploymentSet*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.settings///////////////////////////////////////////.html) | Adding Deployments |  
 | | Creation |  
 | | Loading |  
 | | Accessing Deployments |  
-| [*DiagramSettings*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.settings/com/telenav/kivakit/settings/internal/lexakai/DiagramSettings.html) |  |  
-| [*MemorySettingsStore*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.settings/com/telenav/kivakit/settings/stores/MemorySettingsStore.html) |  |  
-| [*ResourceFolderSettingsStore*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.settings/com/telenav/kivakit/settings/stores/ResourceFolderSettingsStore.html) |  |  
-| [*SettingsObject*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.settings/com/telenav/kivakit/settings/SettingsObject.html) |  |  
-| [*SettingsObject.SettingsObjectIdentifier*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.settings/com/telenav/kivakit/settings/SettingsObject.SettingsObjectIdentifier.html) |  |  
-| [*SettingsProject*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.settings/com/telenav/kivakit/settings/SettingsProject.html) |  |  
-| [*SettingsRegistry*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.settings/com/telenav/kivakit/settings/SettingsRegistry.html) | The Easiest Way to Register Settings |  
+| [*DiagramSettings*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.settings//////////////////////////////////////////////////////////////.html) |  |  
+| [*MemorySettingsStore*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.settings////////////////////////////////////////////////////////.html) |  |  
+| [*ResourceFolderSettingsStore*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.settings////////////////////////////////////////////////////////////////.html) |  |  
+| [*SettingsObject*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.settings////////////////////////////////////////////.html) |  |  
+| [*SettingsObject.SettingsObjectIdentifier*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.settings/////////////////////////////////////////////////////////////////////.html) |  |  
+| [*SettingsProject*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.settings/////////////////////////////////////////////.html) |  |  
+| [*SettingsRegistry*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.settings//////////////////////////////////////////////.html) | The Easiest Way to Register Settings |  
 | | How Settings are Registered |  
 | | How Settings are Looked Up |  
 | | Settings |  
-| [*SettingsStore*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.settings/com/telenav/kivakit/settings/SettingsStore.html) | Hash/Equals Contract |  
+| [*SettingsStore*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.settings///////////////////////////////////////////.html) | Hash/Equals Contract |  
 | | Loading and Saving |  
-| [*SettingsStore.AccessMode*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.settings/com/telenav/kivakit/settings/SettingsStore.AccessMode.html) |  |  
-| [*SettingsTrait*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.settings/com/telenav/kivakit/settings/SettingsTrait.html) | Loading |  
+| [*SettingsStore.AccessMode*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.settings//////////////////////////////////////////////////////.html) |  |  
+| [*SettingsTrait*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.settings///////////////////////////////////////////.html) | Loading |  
 | | Register methods |  
 | | Saving |  
 | | Registry Access |  

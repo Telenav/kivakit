@@ -165,31 +165,31 @@ Code quality for this project is 74.1%.
 
 | Class | Documentation Sections  |
 |-------|-------------------------|
-| [*BaseCollectionChangeWatcher*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.collections/com/telenav/kivakit/collections/watcher/BaseCollectionChangeWatcher.html) | Changes |  
+| [*BaseCollectionChangeWatcher*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.collections////////////////////////////////////////////////////////////////////.html) | Changes |  
 | | Listeners |  
-| [*BaseIndexedMap*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.collections/com/telenav/kivakit/collections/map/BaseIndexedMap.html) | Access |  
+| [*BaseIndexedMap*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.collections///////////////////////////////////////////////////.html) | Access |  
 | | Operations |  
-| [*CollectionChangeListener*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.collections/com/telenav/kivakit/collections/watcher/CollectionChangeListener.html) |  |  
-| [*CollectionChangeWatcher*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.collections/com/telenav/kivakit/collections/watcher/CollectionChangeWatcher.html) |  |  
-| [*CompoundSet*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.collections/com/telenav/kivakit/collections/set/CompoundSet.html) |  |  
-| [*DiagramMap*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.collections/com/telenav/kivakit/collections/internal/lexakai/DiagramMap.html) |  |  
-| [*DiagramSet*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.collections/com/telenav/kivakit/collections/internal/lexakai/DiagramSet.html) |  |  
-| [*DiagramWatcher*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.collections/com/telenav/kivakit/collections/internal/lexakai/DiagramWatcher.html) |  |  
-| [*IndexedNameMap*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.collections/com/telenav/kivakit/collections/map/IndexedNameMap.html) | Example |  
+| [*CollectionChangeListener*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.collections/////////////////////////////////////////////////////////////////.html) |  |  
+| [*CollectionChangeWatcher*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.collections////////////////////////////////////////////////////////////////.html) |  |  
+| [*CompoundSet*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.collections////////////////////////////////////////////////.html) |  |  
+| [*DiagramMap*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.collections////////////////////////////////////////////////////////////.html) |  |  
+| [*DiagramSet*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.collections////////////////////////////////////////////////////////////.html) |  |  
+| [*DiagramWatcher*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.collections////////////////////////////////////////////////////////////////.html) |  |  
+| [*IndexedNameMap*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.collections///////////////////////////////////////////////////.html) | Example |  
 | | Access |  
 | | Operations |  
-| [*Intersection*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.collections/com/telenav/kivakit/collections/set/operations/Intersection.html) |  |  
-| [*LogicalSet*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.collections/com/telenav/kivakit/collections/set/LogicalSet.html) |  |  
-| [*PeriodicCollectionChangeWatcher*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.collections/com/telenav/kivakit/collections/watcher/PeriodicCollectionChangeWatcher.html) | Lifecycle |  
+| [*Intersection*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.collections////////////////////////////////////////////////////////////.html) |  |  
+| [*LogicalSet*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.collections///////////////////////////////////////////////.html) |  |  
+| [*PeriodicCollectionChangeWatcher*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.collections////////////////////////////////////////////////////////////////////////.html) | Lifecycle |  
 | | Collection Access |  
-| [*ReferenceCountMap*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.collections/com/telenav/kivakit/collections/map/ReferenceCountMap.html) | Reference Counts |  
+| [*ReferenceCountMap*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.collections//////////////////////////////////////////////////////.html) | Reference Counts |  
 | | Referencing |  
-| [*SetDifferencer*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.collections/com/telenav/kivakit/collections/set/SetDifferencer.html) | Comparison |  
-| [*Subset*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.collections/com/telenav/kivakit/collections/set/operations/Subset.html) |  |  
-| [*TwoWayMap*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.collections/com/telenav/kivakit/collections/map/TwoWayMap.html) | Access |  
+| [*SetDifferencer*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.collections///////////////////////////////////////////////////.html) | Comparison |  
+| [*Subset*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.collections//////////////////////////////////////////////////////.html) |  |  
+| [*TwoWayMap*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.collections//////////////////////////////////////////////.html) | Access |  
 | | Operations |  
-| [*Union*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.collections/com/telenav/kivakit/collections/set/operations/Union.html) |  |  
-| [*Without*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.collections/com/telenav/kivakit/collections/set/operations/Without.html) |  |  
+| [*Union*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.collections/////////////////////////////////////////////////////.html) |  |  
+| [*Without*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.collections///////////////////////////////////////////////////////.html) |  |  
 
 [//]: # (start-user-text)
 

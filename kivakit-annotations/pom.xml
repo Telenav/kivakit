@@ -23,4 +23,5 @@
     </parent>
 
     <artifactId>kivakit-annotations</artifactId>
-    </project>
+
+</project>

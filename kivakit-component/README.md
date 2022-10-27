@@ -78,13 +78,13 @@ Code quality for this project is 58.3%.
 
 | Class | Documentation Sections  |
 |-------|-------------------------|
-| [*BaseComponent*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.component/com/telenav/kivakit/component/BaseComponent.html) |  |  
-| [*Component*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.component/com/telenav/kivakit/component/Component.html) | Repeater |  
+| [*BaseComponent*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.component////////////////////////////////////////////.html) |  |  
+| [*Component*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.component////////////////////////////////////////.html) | Repeater |  
 | | Registry |  
 | | Naming |  
 | | Sub-Interfaces |  
-| [*ComponentMixin*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.component/com/telenav/kivakit/component/ComponentMixin.html) |  |  
-| [*DiagramComponent*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.component/com/telenav/kivakit/component/internal/lexakai/DiagramComponent.html) |  |  
+| [*ComponentMixin*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.component/////////////////////////////////////////////.html) |  |  
+| [*DiagramComponent*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.component////////////////////////////////////////////////////////////////.html) |  |  
 
 [//]: # (start-user-text)
 

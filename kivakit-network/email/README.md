@@ -122,21 +122,21 @@ Code quality for this project is 64.1%.
 
 | Class | Documentation Sections  |
 |-------|-------------------------|
-| [*AttachmentConverter*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.network.email/com/telenav/kivakit/network/email/converters/AttachmentConverter.html) |  |  
-| [*BodyConverter*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.network.email/com/telenav/kivakit/network/email/converters/BodyConverter.html) |  |  
-| [*DiagramEmail*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.network.email/com/telenav/kivakit/network/email/internal/lexakai/DiagramEmail.html) |  |  
-| [*Email*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.network.email/com/telenav/kivakit/network/email/Email.html) | Validation |  
+| [*AttachmentConverter*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.network.email/////////////////////////////////////////////////////////////////.html) |  |  
+| [*BodyConverter*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.network.email///////////////////////////////////////////////////////////.html) |  |  
+| [*DiagramEmail*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.network.email////////////////////////////////////////////////////////////////.html) |  |  
+| [*Email*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.network.email////////////////////////////////////////.html) | Validation |  
 | | Properties |  
-| [*EmailAddressConverter*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.network.email/com/telenav/kivakit/network/email/converters/EmailAddressConverter.html) |  |  
-| [*EmailAttachment*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.network.email/com/telenav/kivakit/network/email/EmailAttachment.html) | Properties |  
-| [*EmailBody*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.network.email/com/telenav/kivakit/network/email/EmailBody.html) |  |  
-| [*EmailMessageAlarm*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.network.email/com/telenav/kivakit/network/email/EmailMessageAlarm.html) |  |  
-| [*EmailQueue*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.network.email/com/telenav/kivakit/network/email/EmailQueue.html) | Queueing |  
-| [*EmailSender*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.network.email/com/telenav/kivakit/network/email/EmailSender.html) |  |  
-| [*EmailSender.Configuration*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.network.email/com/telenav/kivakit/network/email/EmailSender.Configuration.html) |  |  
-| [*HtmlEmailBody*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.network.email/com/telenav/kivakit/network/email/HtmlEmailBody.html) |  |  
-| [*SmtpEmailSender*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.network.email/com/telenav/kivakit/network/email/senders/SmtpEmailSender.html) |  |  
-| [*SmtpEmailSender.Configuration*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.network.email/com/telenav/kivakit/network/email/senders/SmtpEmailSender.Configuration.html) |  |  
+| [*EmailAddressConverter*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.network.email///////////////////////////////////////////////////////////////////.html) |  |  
+| [*EmailAttachment*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.network.email//////////////////////////////////////////////////.html) | Properties |  
+| [*EmailBody*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.network.email////////////////////////////////////////////.html) |  |  
+| [*EmailMessageAlarm*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.network.email////////////////////////////////////////////////////.html) |  |  
+| [*EmailQueue*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.network.email/////////////////////////////////////////////.html) | Queueing |  
+| [*EmailSender*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.network.email//////////////////////////////////////////////.html) |  |  
+| [*EmailSender.Configuration*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.network.email////////////////////////////////////////////////////////////.html) |  |  
+| [*HtmlEmailBody*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.network.email////////////////////////////////////////////////.html) |  |  
+| [*SmtpEmailSender*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.network.email//////////////////////////////////////////////////////////.html) |  |  
+| [*SmtpEmailSender.Configuration*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.network.email////////////////////////////////////////////////////////////////////////.html) |  |  
 
 [//]: # (start-user-text)
 

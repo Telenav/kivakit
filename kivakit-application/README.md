@@ -96,19 +96,19 @@ Code quality for this project is 66.7%.
 
 | Class | Documentation Sections  |
 |-------|-------------------------|
-| [*Application*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.application/com/telenav/kivakit/application/Application.html) | Application Metadata |  
+| [*Application*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.application////////////////////////////////////////////.html) | Application Metadata |  
 | | Application Environment |  
 | | Project Initialization |  
 | | Execution |  
 | | Messaging and Logging |  
 | | Creating an Application |  
 | | Command Line Parsing |  
-| [*Application.ExecutionState*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.application/com/telenav/kivakit/application/Application.ExecutionState.html) |  |  
-| [*Application.Identifier*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.application/com/telenav/kivakit/application/Application.Identifier.html) |  |  
-| [*ApplicationExit*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.application/com/telenav/kivakit/application/ApplicationExit.html) |  |  
-| [*DiagramApplication*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.application/com/telenav/kivakit/application/internal/lexakai/DiagramApplication.html) |  |  
-| [*ExitCode*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.application/com/telenav/kivakit/application/ExitCode.html) |  |  
-| [*Server*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.application/com/telenav/kivakit/application/Server.html) |  |  
+| [*Application.ExecutionState*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.application///////////////////////////////////////////////////////////.html) |  |  
+| [*Application.Identifier*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.application///////////////////////////////////////////////////////.html) |  |  
+| [*ApplicationExit*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.application////////////////////////////////////////////////.html) |  |  
+| [*DiagramApplication*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.application////////////////////////////////////////////////////////////////////.html) |  |  
+| [*ExitCode*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.application/////////////////////////////////////////.html) |  |  
+| [*Server*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.application///////////////////////////////////////.html) |  |  
 
 [//]: # (start-user-text)
 

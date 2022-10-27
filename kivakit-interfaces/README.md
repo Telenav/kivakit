@@ -97,116 +97,116 @@ Code quality for this project is 90.2%.
 
 | Class | Documentation Sections  |
 |-------|-------------------------|
-| [*Addable*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.interfaces/com/telenav/kivakit/interfaces/collection/Addable.html) |  |  
-| [*Appendable*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.interfaces/com/telenav/kivakit/interfaces/collection/Appendable.html) |  |  
-| [*Arithmetic*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.interfaces/com/telenav/kivakit/interfaces/numeric/Arithmetic.html) |  |  
-| [*AsString*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.interfaces/com/telenav/kivakit/interfaces/string/AsString.html) |  |  
-| [*Awaitable*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.interfaces/com/telenav/kivakit/interfaces/time/Awaitable.html) |  |  
-| [*BooleanValued*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.interfaces/com/telenav/kivakit/interfaces/value/BooleanValued.html) |  |  
-| [*Callback*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.interfaces/com/telenav/kivakit/interfaces/code/Callback.html) |  |  
-| [*CastTrait*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.interfaces/com/telenav/kivakit/interfaces/numeric/CastTrait.html) |  |  
-| [*ChangeListener*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.interfaces/com/telenav/kivakit/interfaces/model/ChangeListener.html) |  |  
-| [*Clearable*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.interfaces/com/telenav/kivakit/interfaces/collection/Clearable.html) |  |  
-| [*Closeable*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.interfaces/com/telenav/kivakit/interfaces/io/Closeable.html) |  |  
-| [*Code*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.interfaces/com/telenav/kivakit/interfaces/code/Code.html) |  |  
-| [*Configurable*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.interfaces/com/telenav/kivakit/interfaces/lifecycle/Configurable.html) |  |  
-| [*Contains*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.interfaces/com/telenav/kivakit/interfaces/collection/Contains.html) |  |  
-| [*Copyable*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.interfaces/com/telenav/kivakit/interfaces/collection/Copyable.html) |  |  
-| [*DiagramCode*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.interfaces/com/telenav/kivakit/interfaces/internal/lexakai/DiagramCode.html) |  |  
-| [*DiagramCollection*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.interfaces/com/telenav/kivakit/interfaces/internal/lexakai/DiagramCollection.html) |  |  
-| [*DiagramComparison*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.interfaces/com/telenav/kivakit/interfaces/internal/lexakai/DiagramComparison.html) |  |  
-| [*DiagramFactory*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.interfaces/com/telenav/kivakit/interfaces/internal/lexakai/DiagramFactory.html) |  |  
-| [*DiagramFunction*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.interfaces/com/telenav/kivakit/interfaces/internal/lexakai/DiagramFunction.html) |  |  
-| [*DiagramIo*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.interfaces/com/telenav/kivakit/interfaces/internal/lexakai/DiagramIo.html) |  |  
-| [*DiagramLifeCycle*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.interfaces/com/telenav/kivakit/interfaces/internal/lexakai/DiagramLifeCycle.html) |  |  
-| [*DiagramLoading*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.interfaces/com/telenav/kivakit/interfaces/internal/lexakai/DiagramLoading.html) |  |  
-| [*DiagramMessaging*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.interfaces/com/telenav/kivakit/interfaces/internal/lexakai/DiagramMessaging.html) |  |  
-| [*DiagramModel*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.interfaces/com/telenav/kivakit/interfaces/internal/lexakai/DiagramModel.html) |  |  
-| [*DiagramNaming*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.interfaces/com/telenav/kivakit/interfaces/internal/lexakai/DiagramNaming.html) |  |  
-| [*DiagramNumeric*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.interfaces/com/telenav/kivakit/interfaces/internal/lexakai/DiagramNumeric.html) |  |  
-| [*DiagramString*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.interfaces/com/telenav/kivakit/interfaces/internal/lexakai/DiagramString.html) |  |  
-| [*DiagramTime*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.interfaces/com/telenav/kivakit/interfaces/internal/lexakai/DiagramTime.html) |  |  
-| [*DiagramValue*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.interfaces/com/telenav/kivakit/interfaces/internal/lexakai/DiagramValue.html) |  |  
-| [*DoubleValued*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.interfaces/com/telenav/kivakit/interfaces/value/DoubleValued.html) |  |  
-| [*Emptiness*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.interfaces/com/telenav/kivakit/interfaces/collection/Emptiness.html) |  |  
-| [*Equality*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.interfaces/com/telenav/kivakit/interfaces/comparison/Equality.html) |  |  
-| [*Factory*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.interfaces/com/telenav/kivakit/interfaces/factory/Factory.html) |  |  
-| [*Filter*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.interfaces/com/telenav/kivakit/interfaces/comparison/Filter.html) | Interface Methods |  
+| [*Addable*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.interfaces//////////////////////////////////////////////////.html) |  |  
+| [*Appendable*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.interfaces/////////////////////////////////////////////////////.html) |  |  
+| [*Arithmetic*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.interfaces//////////////////////////////////////////////////.html) |  |  
+| [*AsString*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.interfaces///////////////////////////////////////////////.html) |  |  
+| [*Awaitable*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.interfaces//////////////////////////////////////////////.html) |  |  
+| [*BooleanValued*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.interfaces///////////////////////////////////////////////////.html) |  |  
+| [*Callback*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.interfaces/////////////////////////////////////////////.html) |  |  
+| [*CastTrait*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.interfaces/////////////////////////////////////////////////.html) |  |  
+| [*ChangeListener*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.interfaces////////////////////////////////////////////////////.html) |  |  
+| [*Clearable*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.interfaces////////////////////////////////////////////////////.html) |  |  
+| [*Closeable*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.interfaces////////////////////////////////////////////.html) |  |  
+| [*Code*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.interfaces/////////////////////////////////////////.html) |  |  
+| [*Configurable*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.interfaces//////////////////////////////////////////////////////.html) |  |  
+| [*Contains*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.interfaces///////////////////////////////////////////////////.html) |  |  
+| [*Copyable*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.interfaces///////////////////////////////////////////////////.html) |  |  
+| [*DiagramCode*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.interfaces////////////////////////////////////////////////////////////.html) |  |  
+| [*DiagramCollection*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.interfaces//////////////////////////////////////////////////////////////////.html) |  |  
+| [*DiagramComparison*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.interfaces//////////////////////////////////////////////////////////////////.html) |  |  
+| [*DiagramFactory*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.interfaces///////////////////////////////////////////////////////////////.html) |  |  
+| [*DiagramFunction*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.interfaces////////////////////////////////////////////////////////////////.html) |  |  
+| [*DiagramIo*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.interfaces//////////////////////////////////////////////////////////.html) |  |  
+| [*DiagramLifeCycle*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.interfaces/////////////////////////////////////////////////////////////////.html) |  |  
+| [*DiagramLoading*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.interfaces///////////////////////////////////////////////////////////////.html) |  |  
+| [*DiagramMessaging*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.interfaces/////////////////////////////////////////////////////////////////.html) |  |  
+| [*DiagramModel*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.interfaces/////////////////////////////////////////////////////////////.html) |  |  
+| [*DiagramNaming*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.interfaces//////////////////////////////////////////////////////////////.html) |  |  
+| [*DiagramNumeric*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.interfaces///////////////////////////////////////////////////////////////.html) |  |  
+| [*DiagramString*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.interfaces//////////////////////////////////////////////////////////////.html) |  |  
+| [*DiagramTime*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.interfaces////////////////////////////////////////////////////////////.html) |  |  
+| [*DiagramValue*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.interfaces/////////////////////////////////////////////////////////////.html) |  |  
+| [*DoubleValued*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.interfaces//////////////////////////////////////////////////.html) |  |  
+| [*Emptiness*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.interfaces////////////////////////////////////////////////////.html) |  |  
+| [*Equality*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.interfaces///////////////////////////////////////////////////.html) |  |  
+| [*Factory*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.interfaces///////////////////////////////////////////////.html) |  |  
+| [*Filter*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.interfaces/////////////////////////////////////////////////.html) | Interface Methods |  
 | | Factory Methods |  
 | | Logical Operations |  
-| [*Filtered*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.interfaces/com/telenav/kivakit/interfaces/comparison/Filtered.html) |  |  
-| [*Flushable*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.interfaces/com/telenav/kivakit/interfaces/io/Flushable.html) |  |  
-| [*FormattedLongValued*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.interfaces/com/telenav/kivakit/interfaces/value/FormattedLongValued.html) |  |  
-| [*Identifiable*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.interfaces/com/telenav/kivakit/interfaces/model/Identifiable.html) |  |  
-| [*Indexable*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.interfaces/com/telenav/kivakit/interfaces/collection/Indexable.html) |  |  
-| [*Indexed*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.interfaces/com/telenav/kivakit/interfaces/collection/Indexed.html) |  |  
-| [*Initializable*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.interfaces/com/telenav/kivakit/interfaces/lifecycle/Initializable.html) |  |  
-| [*Initializer*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.interfaces/com/telenav/kivakit/interfaces/model/Initializer.html) |  |  
-| [*IntMapper*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.interfaces/com/telenav/kivakit/interfaces/function/IntMapper.html) |  |  
-| [*Joinable*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.interfaces/com/telenav/kivakit/interfaces/collection/Joinable.html) | Methods |  
-| [*Keyed*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.interfaces/com/telenav/kivakit/interfaces/collection/Keyed.html) |  |  
-| [*LengthOfTime*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.interfaces/com/telenav/kivakit/interfaces/time/LengthOfTime.html) | Measurement |  
+| [*Filtered*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.interfaces///////////////////////////////////////////////////.html) |  |  
+| [*Flushable*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.interfaces////////////////////////////////////////////.html) |  |  
+| [*FormattedLongValued*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.interfaces/////////////////////////////////////////////////////////.html) |  |  
+| [*Identifiable*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.interfaces//////////////////////////////////////////////////.html) |  |  
+| [*Indexable*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.interfaces////////////////////////////////////////////////////.html) |  |  
+| [*Indexed*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.interfaces//////////////////////////////////////////////////.html) |  |  
+| [*Initializable*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.interfaces///////////////////////////////////////////////////////.html) |  |  
+| [*Initializer*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.interfaces/////////////////////////////////////////////////.html) |  |  
+| [*IntMapper*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.interfaces//////////////////////////////////////////////////.html) |  |  
+| [*Joinable*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.interfaces///////////////////////////////////////////////////.html) | Methods |  
+| [*Keyed*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.interfaces////////////////////////////////////////////////.html) |  |  
+| [*LengthOfTime*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.interfaces/////////////////////////////////////////////////.html) | Measurement |  
 | | Comparison |  
 | | Conversion |  
 | | Operations |  
 | | Arithmetic |  
-| [*Loadable*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.interfaces/com/telenav/kivakit/interfaces/loading/Loadable.html) |  |  
-| [*Locator*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.interfaces/com/telenav/kivakit/interfaces/value/Locator.html) |  |  
-| [*LongMapper*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.interfaces/com/telenav/kivakit/interfaces/function/LongMapper.html) |  |  
-| [*LongValued*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.interfaces/com/telenav/kivakit/interfaces/value/LongValued.html) |  |  
-| [*Mapper*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.interfaces/com/telenav/kivakit/interfaces/function/Mapper.html) |  |  
-| [*Matchable*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.interfaces/com/telenav/kivakit/interfaces/comparison/Matchable.html) |  |  
-| [*Matcher*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.interfaces/com/telenav/kivakit/interfaces/comparison/Matcher.html) | Interface Methods |  
+| [*Loadable*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.interfaces////////////////////////////////////////////////.html) |  |  
+| [*Locator*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.interfaces/////////////////////////////////////////////.html) |  |  
+| [*LongMapper*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.interfaces///////////////////////////////////////////////////.html) |  |  
+| [*LongValued*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.interfaces////////////////////////////////////////////////.html) |  |  
+| [*Mapper*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.interfaces///////////////////////////////////////////////.html) |  |  
+| [*Matchable*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.interfaces////////////////////////////////////////////////////.html) |  |  
+| [*Matcher*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.interfaces//////////////////////////////////////////////////.html) | Interface Methods |  
 | | Factories |  
-| [*Maximizable*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.interfaces/com/telenav/kivakit/interfaces/numeric/Maximizable.html) |  |  
-| [*Minimizable*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.interfaces/com/telenav/kivakit/interfaces/numeric/Minimizable.html) |  |  
-| [*Nameable*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.interfaces/com/telenav/kivakit/interfaces/naming/Nameable.html) |  |  
-| [*Named*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.interfaces/com/telenav/kivakit/interfaces/naming/Named.html) |  |  
-| [*NamedObject*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.interfaces/com/telenav/kivakit/interfaces/naming/NamedObject.html) |  |  
-| [*NamedValue*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.interfaces/com/telenav/kivakit/interfaces/value/NamedValue.html) |  |  
-| [*Nanoseconds*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.interfaces/com/telenav/kivakit/interfaces/time/Nanoseconds.html) |  |  
-| [*NextIterator*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.interfaces/com/telenav/kivakit/interfaces/collection/NextIterator.html) |  |  
-| [*Numeric*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.interfaces/com/telenav/kivakit/interfaces/numeric/Numeric.html) |  |  
-| [*Openable*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.interfaces/com/telenav/kivakit/interfaces/io/Openable.html) |  |  
-| [*Operation*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.interfaces/com/telenav/kivakit/interfaces/lifecycle/Operation.html) |  |  
-| [*Parsable*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.interfaces/com/telenav/kivakit/interfaces/string/Parsable.html) |  |  
-| [*Pausable*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.interfaces/com/telenav/kivakit/interfaces/lifecycle/Pausable.html) |  |  
-| [*PointInTime*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.interfaces/com/telenav/kivakit/interfaces/time/PointInTime.html) | Measurement |  
+| [*Maximizable*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.interfaces///////////////////////////////////////////////////.html) |  |  
+| [*Minimizable*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.interfaces///////////////////////////////////////////////////.html) |  |  
+| [*Nameable*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.interfaces///////////////////////////////////////////////.html) |  |  
+| [*Named*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.interfaces////////////////////////////////////////////.html) |  |  
+| [*NamedObject*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.interfaces//////////////////////////////////////////////////.html) |  |  
+| [*NamedValue*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.interfaces////////////////////////////////////////////////.html) |  |  
+| [*Nanoseconds*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.interfaces////////////////////////////////////////////////.html) |  |  
+| [*NextIterator*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.interfaces///////////////////////////////////////////////////////.html) |  |  
+| [*Numeric*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.interfaces///////////////////////////////////////////////.html) |  |  
+| [*Openable*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.interfaces///////////////////////////////////////////.html) |  |  
+| [*Operation*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.interfaces///////////////////////////////////////////////////.html) |  |  
+| [*Parsable*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.interfaces///////////////////////////////////////////////.html) |  |  
+| [*Pausable*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.interfaces//////////////////////////////////////////////////.html) |  |  
+| [*PointInTime*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.interfaces////////////////////////////////////////////////.html) | Measurement |  
 | | Minima and Maxima |  
 | | Comparison |  
 | | Conversion |  
 | | Implementation |  
 | | Arithmetic |  
-| [*Prependable*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.interfaces/com/telenav/kivakit/interfaces/collection/Prependable.html) |  |  
-| [*Presence*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.interfaces/com/telenav/kivakit/interfaces/function/Presence.html) |  |  
-| [*RandomNumeric*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.interfaces/com/telenav/kivakit/interfaces/numeric/RandomNumeric.html) |  |  
-| [*Receiver*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.interfaces/com/telenav/kivakit/interfaces/messaging/Receiver.html) |  |  
-| [*Resettable*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.interfaces/com/telenav/kivakit/interfaces/lifecycle/Resettable.html) |  |  
-| [*Sectionable*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.interfaces/com/telenav/kivakit/interfaces/collection/Sectionable.html) |  |  
-| [*Sequence*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.interfaces/com/telenav/kivakit/interfaces/collection/Sequence.html) | Joining Sequences |  
+| [*Prependable*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.interfaces//////////////////////////////////////////////////////.html) |  |  
+| [*Presence*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.interfaces/////////////////////////////////////////////////.html) |  |  
+| [*RandomNumeric*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.interfaces/////////////////////////////////////////////////////.html) |  |  
+| [*Receiver*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.interfaces//////////////////////////////////////////////////.html) |  |  
+| [*Resettable*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.interfaces////////////////////////////////////////////////////.html) |  |  
+| [*Sectionable*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.interfaces//////////////////////////////////////////////////////.html) |  |  
+| [*Sequence*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.interfaces///////////////////////////////////////////////////.html) | Joining Sequences |  
 | | Checks |  
 | | Iteration |  
 | | Collections |  
 | | Finding Elements and Subsequences |  
-| [*SerializedObject*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.interfaces/com/telenav/kivakit/interfaces/serialization/SerializedObject.html) |  |  
-| [*Sized*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.interfaces/com/telenav/kivakit/interfaces/collection/Sized.html) |  |  
-| [*Source*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.interfaces/com/telenav/kivakit/interfaces/value/Source.html) |  |  
-| [*SpaceLimited*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.interfaces/com/telenav/kivakit/interfaces/collection/SpaceLimited.html) |  |  
-| [*Startable*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.interfaces/com/telenav/kivakit/interfaces/lifecycle/Startable.html) |  |  
-| [*Stoppable*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.interfaces/com/telenav/kivakit/interfaces/lifecycle/Stoppable.html) |  |  
-| [*StringFormattable*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.interfaces/com/telenav/kivakit/interfaces/string/StringFormattable.html) |  |  
-| [*StringFormattable.Format*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.interfaces/com/telenav/kivakit/interfaces/string/StringFormattable.Format.html) |  |  
-| [*TimeMeasurement*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.interfaces/com/telenav/kivakit/interfaces/time/TimeMeasurement.html) | Measurement |  
+| [*SerializedObject*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.interfaces//////////////////////////////////////////////////////////////.html) |  |  
+| [*Sized*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.interfaces////////////////////////////////////////////////.html) |  |  
+| [*Source*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.interfaces////////////////////////////////////////////.html) |  |  
+| [*SpaceLimited*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.interfaces///////////////////////////////////////////////////////.html) |  |  
+| [*Startable*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.interfaces///////////////////////////////////////////////////.html) |  |  
+| [*Stoppable*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.interfaces///////////////////////////////////////////////////.html) |  |  
+| [*StringFormattable*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.interfaces////////////////////////////////////////////////////////.html) |  |  
+| [*StringFormattable.Format*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.interfaces///////////////////////////////////////////////////////////////.html) |  |  
+| [*TimeMeasurement*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.interfaces////////////////////////////////////////////////////.html) | Measurement |  
 | | Conversion |  
-| [*Transmittable*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.interfaces/com/telenav/kivakit/interfaces/messaging/Transmittable.html) |  |  
-| [*Transmitter*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.interfaces/com/telenav/kivakit/interfaces/messaging/Transmitter.html) |  |  
-| [*TripwireTrait*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.interfaces/com/telenav/kivakit/interfaces/code/TripwireTrait.html) |  |  
-| [*Unloadable*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.interfaces/com/telenav/kivakit/interfaces/loading/Unloadable.html) |  |  
-| [*Valued*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.interfaces/com/telenav/kivakit/interfaces/value/Valued.html) |  |  
-| [*WakeState*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.interfaces/com/telenav/kivakit/interfaces/time/WakeState.html) |  |  
-| [*Watchable*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.interfaces/com/telenav/kivakit/interfaces/model/Watchable.html) |  |  
-| [*WriteIndexable*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.interfaces/com/telenav/kivakit/interfaces/collection/WriteIndexable.html) |  |  
-| [*Zeroable*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.interfaces/com/telenav/kivakit/interfaces/numeric/Zeroable.html) |  |  
+| [*Transmittable*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.interfaces///////////////////////////////////////////////////////.html) |  |  
+| [*Transmitter*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.interfaces/////////////////////////////////////////////////////.html) |  |  
+| [*TripwireTrait*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.interfaces//////////////////////////////////////////////////.html) |  |  
+| [*Unloadable*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.interfaces//////////////////////////////////////////////////.html) |  |  
+| [*Valued*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.interfaces////////////////////////////////////////////.html) |  |  
+| [*WakeState*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.interfaces//////////////////////////////////////////////.html) |  |  
+| [*Watchable*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.interfaces///////////////////////////////////////////////.html) |  |  
+| [*WriteIndexable*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.interfaces/////////////////////////////////////////////////////////.html) |  |  
+| [*Zeroable*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.interfaces////////////////////////////////////////////////.html) |  |  
 
 [//]: # (start-user-text)
 

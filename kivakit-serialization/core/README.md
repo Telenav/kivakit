@@ -80,14 +80,14 @@ None
 
 | Class | Documentation Sections  |
 |-------|-------------------------|
-| [*SerializationSession*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.serialization.core/com/telenav/kivakit/serialization/core/SerializationSession.html) | Creating a Session |  
+| [*SerializationSession*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.serialization.core////////////////////////////////////////////////////////////.html) | Creating a Session |  
 | | Reading and Writing |  
 | | Opening a Session |  
 | | Example |  
 | | Closing a Session |  
 | | Properties |  
-| [*SerializationSession.SessionType*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.serialization.core/com/telenav/kivakit/serialization/core/SerializationSession.SessionType.html) |  |  
-| [*SerializationSessionFactory*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.serialization.core/com/telenav/kivakit/serialization/core/SerializationSessionFactory.html) |  |  
+| [*SerializationSession.SessionType*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.serialization.core////////////////////////////////////////////////////////////////////////.html) |  |  
+| [*SerializationSessionFactory*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.serialization.core///////////////////////////////////////////////////////////////////.html) |  |  
 
 [//]: # (start-user-text)
 
