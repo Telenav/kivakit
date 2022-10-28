@@ -29,37 +29,37 @@
 
     <modules>
         <module>kivakit</module>
+        <module>kivakit-network/email</module>
         <module>kivakit-annotations</module>
-        <module>kivakit-application</module>
-        <module>kivakit-collections</module>
-        <module>kivakit-commandline</module>
-        <module>kivakit-component</module>
-        <module>kivakit-conversion</module>
-        <module>kivakit-core</module>
-        <module>kivakit-extraction</module>
         <module>kivakit-interfaces</module>
         <module>kivakit-mixins</module>
-        <module>kivakit-resource</module>
-        <module>kivakit-settings</module>
-        <module>kivakit-testing</module>
+        <module>kivakit-core</module>
+        <module>kivakit-collections</module>
+        <module>kivakit-extraction</module>
         <module>kivakit-validation</module>
-    
-        <module>kivakit-internal/testing</module>
-        <module>kivakit-internal/tests/core</module>
-        <module>kivakit-internal/tests/resource</module>
+        <module>kivakit-conversion</module>
+        <module>kivakit-commandline</module>
+        <module>kivakit-resource</module>
         <module>kivakit-network/core</module>
-        <module>kivakit-network/email</module>
-        <module>kivakit-network/ftp</module>
         <module>kivakit-network/http</module>
+        <module>kivakit-network/ftp</module>
+    
         <module>kivakit-network/socket</module>
         <module>kivakit-serialization/core</module>
-        <module>kivakit-serialization/gson</module>
+        <module>kivakit-serialization/properties</module>
         <module>kivakit-serialization/kryo</module>
-        <module>kivakit-serialization/kryo-testing</module>
-        <module>kivakit-serialization/properties</module></modules>
+        <module>kivakit-serialization/gson</module>
+        <module>kivakit-settings</module>
+        <module>kivakit-component</module>
+        <module>kivakit-application</module>
+        <module>kivakit-internal/testing</module>
+        <module>kivakit-testing</module>
+        <module>kivakit-internal/tests/resource</module>
+        <module>kivakit-internal/tests/core</module>
+        <module>kivakit-serialization/kryo-testing</module></modules>
 
     <properties>
-        <cactus.version>1.5.36</cactus.version>
+        <cactus.version>1.5.38</cactus.version>
         <commons-net.version>3.0.1</commons-net.version>
         <esotericsoftware.version>5.3.0</esotericsoftware.version>
         <gson.version>2.9.0</gson.version>
