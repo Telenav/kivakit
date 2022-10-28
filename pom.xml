@@ -38,15 +38,25 @@
         <module>kivakit-core</module>
         <module>kivakit-extraction</module>
         <module>kivakit-interfaces</module>
-        <module>kivakit-internal</module>
         <module>kivakit-mixins</module>
-        <module>kivakit-network</module>
         <module>kivakit-resource</module>
-        <module>kivakit-serialization</module>
         <module>kivakit-settings</module>
         <module>kivakit-testing</module>
         <module>kivakit-validation</module>
-    </modules>
+    
+        <module>kivakit-internal/testing</module>
+        <module>kivakit-internal/tests/core</module>
+        <module>kivakit-internal/tests/resource</module>
+        <module>kivakit-network/core</module>
+        <module>kivakit-network/email</module>
+        <module>kivakit-network/ftp</module>
+        <module>kivakit-network/http</module>
+        <module>kivakit-network/socket</module>
+        <module>kivakit-serialization/core</module>
+        <module>kivakit-serialization/gson</module>
+        <module>kivakit-serialization/kryo</module>
+        <module>kivakit-serialization/kryo-testing</module>
+        <module>kivakit-serialization/properties</module></modules>
 
     <properties>
         <cactus.version>1.5.36</cactus.version>
