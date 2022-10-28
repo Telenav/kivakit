@@ -68,7 +68,7 @@
         <junit.version>4.13.2</junit.version>
         <junit5.version>5.9.1</junit5.version>
         <kryo.version>0.45</kryo.version>
-        <lexakai-annotations.version>1.0.9</lexakai-annotations.version>
+        <lexakai-annotations.previous.version>1.0.9</lexakai-annotations.previous.version>
         <mail.version>1.6.2</mail.version>
         <sshtools.version>0.2.9</sshtools.version>
         <sun-activation.version>1.2.0</sun-activation.version>
@@ -99,7 +99,7 @@
             <dependency>
                 <groupId>com.telenav.lexakai.annotations</groupId>
                 <artifactId>lexakai-annotations</artifactId>
-                <version>${lexakai-annotations.version}</version>
+                <version>${lexakai-annotations.previous.version}</version>
             </dependency>
 
             <!-- Esotericsoftware -->
