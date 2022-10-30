@@ -62,7 +62,7 @@
 
     <properties>
         <cactus.previous.version>1.5.39</cactus.previous.version>
-        <metadata.previous.version>1.0.0</metadata.previous.version>
+        <metadata.previous.version>1.0.1</metadata.previous.version>
         <commons-net.version>3.0.1</commons-net.version>
         <esotericsoftware.version>5.3.0</esotericsoftware.version>
         <gson.version>2.9.0</gson.version>
