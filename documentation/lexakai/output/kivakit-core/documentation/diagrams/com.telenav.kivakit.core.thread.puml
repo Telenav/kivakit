@@ -1,0 +1,240 @@
+
+@startuml
+
+    !include lexakai.theme
+    
+    title "com.telenav.kivakit.core.thread"
+    
+    abstract AbstractMap
+    abstract BaseRepeater
+    
+    interface Startable
+    interface Named
+    interface Addable
+    interface Runnable
+    interface Stoppable
+    interface Pausable
+    interface Sequence
+    
+    ArrayList <|-- Batcher.Batch
+    class Batcher.Batch
+    {
+    }
+    
+    Addable <|-- Batcher.BatchAdder
+    Sequence <|-- Batcher.BatchAdder
+    class Batcher.BatchAdder
+    {
+    }
+    
+    BaseRepeater <|-- Batcher
+    class Batcher<Value>
+    {
+        --(constructors)--
+        #Batcher()
+        #Batcher(Batcher<Value>)
+        --
+        +BatchAdder adder()
+        +Batcher<Element> batcher()
+        #void onBatch(Batch)
+        --(filesystem)--
+        #Batcher<Value> copy()
+        --(functional)--
+        +Batcher<Value> withBatchFullPredicate(Predicate<Batch>)
+        +Batcher<Value> withBatchSize(Count size)
+        +Batcher<Value> withConsumer(Consumer<Batch>)
+        +Batcher<Value> withName(String name)
+        +Batcher<Value> withQueueSize(BaseCount<?> size)
+        --(lifecycle)--
+        +void start(Count workers)
+        +void stop()
+    }
+    
+    BaseRepeater <|-- KivaKitThread
+    Startable <|-- KivaKitThread
+    Runnable <|-- KivaKitThread
+    Stoppable <|-- KivaKitThread
+    Named <|-- KivaKitThread
+    class KivaKitThread
+    {
+        --(constructors)--
+        +KivaKitThread(String)
+        +KivaKitThread(String, Runnable)
+        --
+        +KivaKitThread daemon(boolean daemon)
+        +boolean is(State)
+        +KivaKitThread makeHighPriority()
+        +KivaKitThread makeLowPriority()
+        +KivaKitThread repeat(Listener, String name, Frequency every, UncheckedVoidCode)
+        +StateMachine<State> stateMachine()
+        +void whileLocked(Runnable code)
+        #void onExited()
+        #void onRan()
+        #void onWaiting()
+        #Thread thread()
+        #State transition(State to)
+        --(functional)--
+        +Time startedAt()
+        +T whileLocked(Code<T>)
+        --(lifecycle)--
+        +KivaKitThread initialDelay(Duration initialDelay)
+        +KivaKitThread interrupt()
+        +void join()
+        +KivaKitThread run(Listener, String name, Runnable code)
+        +KivaKitThread startSynchronously()
+        #void onRun()
+        #void onRunning()
+        #void waitForInitialDelayPeriod()
+        --(thread)--
+        +WakeState waitFor(State, Duration maximumWait)
+        +WakeState waitFor(State)
+    }
+    
+    class Monitor
+    {
+        --(lifecycle)--
+        +void done()
+        --(thread)--
+        +void await()
+        +void signal()
+    }
+    
+    enum ReentrancyTracker.Reentrancy
+    {
+        ENTERED
+        EXITED
+        EXITED_REENTRY
+        REENTERED
+    }
+    
+    class ReentrancyTracker
+    {
+        --
+        +Reentrancy enter()
+        --(checks)--
+        +boolean hasReentered()
+        --(lifecycle)--
+        +Reentrancy exit()
+    }
+    
+    KivaKitThread <|-- RepeatingThread
+    Pausable <|-- RepeatingThread
+    class RepeatingThread
+    {
+        --(constructors)--
+        +RepeatingThread(Listener, String)
+        +RepeatingThread(Listener, String, Frequency)
+        +RepeatingThread(Listener, String, Runnable)
+        --(lifecycle)--
+        +RepeatingThread run(Listener, String name, Runnable code)
+        +RepeatingThread run(Listener, String name, Frequency every, Runnable code)
+        --(time)--
+        +Frequency frequency()
+        +RepeatingThread frequency(Frequency)
+    }
+    
+    BaseRepeater <|-- Retry
+    class Retry
+    {
+        --(constructors)--
+        +Retry(Listener)
+        +Retry(Listener, int, Duration, Class<? extends Throwable>, String)
+        --
+        +UncheckedCode<T> retry(Listener, UncheckedCode<T>, int times, Duration delay, Runnable... beforeRetry)
+        --(lifecycle)--
+        +T run(UncheckedCode<T> runnable, Runnable... stepsBeforeRetry)
+    }
+    
+    enum Batcher.State
+    {
+        READY
+        RUNNING
+        STOPPED
+        STOPPING
+    }
+    
+    enum KivaKitThread.State
+    {
+        CREATED
+        EXITED
+        PAUSED
+        PAUSE_REQUESTED
+        RAN
+        RESUME_REQUESTED
+        RUNNING
+        STOP_REQUESTED
+        WAITING
+    }
+    
+    BaseRepeater <|-- StateMachine
+    class StateMachine<State>
+    {
+        --(constructors)--
+        +StateMachine(State)
+        +StateMachine(State, Consumer<State>)
+        --
+        +State at()
+        +boolean is(State)
+        +boolean is(Predicate<State>)
+        +Optional<State> toggle(State one, State two)
+        +boolean transition(State from, State to, State waitFor, Duration maximumWait, Runnable before)
+        +boolean transition(State from, State to, State waitFor, Runnable before)
+        +boolean transition(State from, State to)
+        +State transitionTo(State)
+        +void whileLocked(Runnable code)
+        --(checks)--
+        +boolean isNot(Predicate<State>)
+        +boolean isNot(State)
+        --(functional)--
+        +T whileLocked(Code<T>)
+        --(thread)--
+        +void transitionAndWaitForNot(State)
+        +WakeState waitFor(Predicate<State>, Duration maximumWait)
+        +WakeState waitFor(State, Duration maximumWait)
+        +WakeState waitFor(Predicate<State>)
+        +WakeState waitFor(Predicate<State>, Duration maximumWait, Runnable beforeWaiting)
+        +WakeState waitFor(State)
+        +WakeState waitForNot(State)
+        +WakeState waitForNot(State, Duration maximumWait)
+    }
+    
+    class StateWatcher<State>
+    {
+        --(constructors)--
+        +StateWatcher(State)
+        --
+        +void whileLocked(Runnable code)
+        --(functional)--
+        +T whileLocked(Code<T>)
+        --(thread)--
+        +void signal(State)
+        +WakeState waitFor(State desired, Duration maximumWaitTime)
+        +WakeState waitFor(Predicate<State>)
+        +WakeState waitFor(State desired)
+        +WakeState waitFor(Predicate<State>, Duration maximumWaitTime)
+    }
+    
+    AbstractMap <|-- ThreadLocalMap
+    class ThreadLocalMap<Key, Value>
+    {
+    }
+    
+    class Threads
+    {
+        --
+        +ThreadGroup rootThreadGroup()
+        --(collection)--
+        +ObjectList<Thread> allThreads()
+        --(thread)--
+        +void awaitTermination(ExecutorService)
+        +void shutdownAndAwaitTermination(ExecutorService)
+        +ExecutorService threadPool(String name)
+        +ExecutorService threadPool(String name, Count threads)
+    }
+    
+    class StateWatcher.Waiter
+    {
+    }
+    
+@enduml
+

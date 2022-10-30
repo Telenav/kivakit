@@ -124,20 +124,21 @@ public abstract class BaseColumnarFormatter implements LogFormatter
                         this.width = maximumWidth;
                         switch (layout)
                         {
-                            case CLIP_LEFT:
+                            case CLIP_LEFT ->
+                            {
                                 rows.add(trailing(value, this.width));
                                 value = "";
-                                break;
-
-                            case CLIP_RIGHT:
+                            }
+                            case CLIP_RIGHT ->
+                            {
                                 rows.add(value.substring(0, this.width));
                                 value = "";
-                                break;
-
-                            case WRAP:
+                            }
+                            case WRAP ->
+                            {
                                 rows.add(value.substring(0, this.width));
                                 value = value.substring(this.width);
-                                break;
+                            }
                         }
                     }
                 }

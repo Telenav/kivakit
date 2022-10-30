@@ -595,9 +595,8 @@ public class Duration implements
     @Override
     public boolean equals(Object object)
     {
-        if (object instanceof Duration)
+        if (object instanceof Duration that)
         {
-            var that = (Duration) object;
             return nanoseconds().equals(that.nanoseconds());
         }
         return false;

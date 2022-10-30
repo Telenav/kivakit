@@ -25,7 +25,6 @@ configuration management and object registration and lookup.
 
 [**Summary**](#summary)  
 [**How to Create an Application**](#how-to-create-an-application)  
-[**Application Lifecycle**](#application-lifecycle)
 
 [**Dependencies**](#dependencies) | [**Code Quality**](#code-quality) | [**Class Diagrams**](#class-diagrams) | [**Package Diagrams**](#package-diagrams)
 
@@ -33,14 +32,14 @@ configuration management and object registration and lookup.
 
 ### Dependencies <a name="dependencies"></a> &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/dependencies-32.png" srcset="https://telenav.github.io/telenav-assets/images/icons/dependencies-32-2x.png 2x"/>
 
-[*Dependency Diagram*](https://www.kivakit.org/1.7.1-SNAPSHOT/lexakai/kivakit/kivakit-application/documentation/diagrams/dependencies.svg)
+[*Dependency Diagram*](https://www.kivakit.org/1.8.2/lexakai/kivakit/kivakit-application/documentation/diagrams/dependencies.svg)
 
 #### Maven Dependency
 
     <dependency>
         <groupId>com.telenav.kivakit</groupId>
         <artifactId>kivakit-application</artifactId>
-        <version>1.7.1-SNAPSHOT</version>
+        <version>1.8.2</version>
     </dependency>
 
 <img src="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128.png" srcset="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128-2x.png 2x"/>
@@ -70,54 +69,53 @@ browse the [**Javadoc**](#javadoc).
 
 ### Code Quality <a name="code-quality"></a> &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/ruler-32.png" srcset="https://telenav.github.io/telenav-assets/images/icons/ruler-32-2x.png 2x"/>
 
-Code quality for this project is 61.9%.  
+Code quality for this project is 66.7%.  
   
-&nbsp; &nbsp; <img src="https://telenav.github.io/telenav-assets/images/meters/meter-60-96.png" srcset="https://telenav.github.io/telenav-assets/images/meters/meter-60-96-2x.png 2x"/>
+&nbsp; &nbsp; <img src="https://telenav.github.io/telenav-assets/images/meters/meter-70-96.png" srcset="https://telenav.github.io/telenav-assets/images/meters/meter-70-96-2x.png 2x"/>
 
-
-| Measurement   | Value                                                                                                                                                                                          |
-|---------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Stability     | 85.7%&nbsp; &nbsp; <img src="https://telenav.github.io/telenav-assets/images/meters/meter-90-96.png" srcset="https://telenav.github.io/telenav-assets/images/meters/meter-90-96-2x.png 2x"/>   |
-| Testing       | 14.3%&nbsp; &nbsp; <img src="https://telenav.github.io/telenav-assets/images/meters/meter-10-96.png" srcset="https://telenav.github.io/telenav-assets/images/meters/meter-10-96-2x.png 2x"/>   |
-| Documentation | 85.7%&nbsp; &nbsp; <img src="https://telenav.github.io/telenav-assets/images/meters/meter-90-96.png" srcset="https://telenav.github.io/telenav-assets/images/meters/meter-90-96-2x.png 2x"/>   |
+| Measurement   | Value                    |
+|---------------|--------------------------|
+| Stability     | 85.7%&nbsp; &nbsp; <img src="https://telenav.github.io/telenav-assets/images/meters/meter-90-96.png" srcset="https://telenav.github.io/telenav-assets/images/meters/meter-90-96-2x.png 2x"/>     |
+| Testing       | 28.6%&nbsp; &nbsp; <img src="https://telenav.github.io/telenav-assets/images/meters/meter-30-96.png" srcset="https://telenav.github.io/telenav-assets/images/meters/meter-30-96-2x.png 2x"/>       |
+| Documentation | 85.7%&nbsp; &nbsp; <img src="https://telenav.github.io/telenav-assets/images/meters/meter-90-96.png" srcset="https://telenav.github.io/telenav-assets/images/meters/meter-90-96-2x.png 2x"/> |
 
 <img src="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128.png" srcset="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128-2x.png 2x"/>
 
 ### Class Diagrams <a name="class-diagrams"></a> &nbsp; &nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/diagram-40.png" srcset="https://telenav.github.io/telenav-assets/images/icons/diagram-40-2x.png 2x"/>
 
-[*Applications*](https://www.kivakit.org/1.7.1-SNAPSHOT/lexakai/kivakit/kivakit-application/documentation/diagrams/diagram-application.svg)
+[*Applications*](https://www.kivakit.org/1.8.2/lexakai/kivakit/kivakit-application/documentation/diagrams/diagram-application.svg)
 
 <img src="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128.png" srcset="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128-2x.png 2x"/>
 
 ### Package Diagrams <a name="package-diagrams"></a> &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/box-24.png" srcset="https://telenav.github.io/telenav-assets/images/icons/box-24-2x.png 2x"/>
 
-[*com.telenav.kivakit.application*](https://www.kivakit.org/1.7.1-SNAPSHOT/lexakai/kivakit/kivakit-application/documentation/diagrams/com.telenav.kivakit.application.svg)  
-[*com.telenav.kivakit.application.internal.lexakai*](https://www.kivakit.org/1.7.1-SNAPSHOT/lexakai/kivakit/kivakit-application/documentation/diagrams/com.telenav.kivakit.application.internal.lexakai.svg)
+[*com.telenav.kivakit.application*](https://www.kivakit.org/1.8.2/lexakai/kivakit/kivakit-application/documentation/diagrams/com.telenav.kivakit.application.svg)  
+[*com.telenav.kivakit.application.internal.lexakai*](https://www.kivakit.org/1.8.2/lexakai/kivakit/kivakit-application/documentation/diagrams/com.telenav.kivakit.application.internal.lexakai.svg)
 
 ### Javadoc <a name="code-quality"></a> &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/books-24.png" srcset="https://telenav.github.io/telenav-assets/images/icons/books-24-2x.png 2x"/>
 
 | Class | Documentation Sections  |
 |-------|-------------------------|
-| [*Application*](https://www.kivakit.org/1.7.1-SNAPSHOT/javadoc/kivakit/kivakit.application////////////////////////////////////////////.html) | Application Metadata |  
+| [*Application*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.application////////////////////////////////////////////.html) | Application Metadata |  
 | | Application Environment |  
 | | Project Initialization |  
 | | Execution |  
 | | Messaging and Logging |  
 | | Creating an Application |  
 | | Command Line Parsing |  
-| [*Application.ExecutionState*](https://www.kivakit.org/1.7.1-SNAPSHOT/javadoc/kivakit/kivakit.application///////////////////////////////////////////////////////////.html) |  |  
-| [*Application.Identifier*](https://www.kivakit.org/1.7.1-SNAPSHOT/javadoc/kivakit/kivakit.application///////////////////////////////////////////////////////.html) |  |  
-| [*ApplicationExit*](https://www.kivakit.org/1.7.1-SNAPSHOT/javadoc/kivakit/kivakit.application////////////////////////////////////////////////.html) |  |  
-| [*DiagramApplication*](https://www.kivakit.org/1.7.1-SNAPSHOT/javadoc/kivakit/kivakit.application////////////////////////////////////////////////////////////////////.html) |  |  
-| [*ExitCode*](https://www.kivakit.org/1.7.1-SNAPSHOT/javadoc/kivakit/kivakit.application/////////////////////////////////////////.html) |  |  
-| [*Server*](https://www.kivakit.org/1.7.1-SNAPSHOT/javadoc/kivakit/kivakit.application///////////////////////////////////////.html) |  |  
+| [*Application.ExecutionState*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.application///////////////////////////////////////////////////////////.html) |  |  
+| [*Application.Identifier*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.application///////////////////////////////////////////////////////.html) |  |  
+| [*ApplicationExit*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.application////////////////////////////////////////////////.html) |  |  
+| [*DiagramApplication*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.application////////////////////////////////////////////////////////////////////.html) |  |  
+| [*ExitCode*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.application/////////////////////////////////////////.html) |  |  
+| [*Server*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.application///////////////////////////////////////.html) |  |  
 
 [//]: # (start-user-text)
 
 <img src="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128.png" srcset="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128-2x.png 2x"/>
 
 <a name="how-to-create-an-application"></a>
-### How to Create an Application
+### How to Create an Application <a name = "how-to-create-an-application"></a>
 
 This section shows how to build a basic KivaKit application that counts lines in a text file in three simple steps.
 

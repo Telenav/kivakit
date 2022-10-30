@@ -1,0 +1,34 @@
+
+@startuml
+
+    !include lexakai.theme
+    
+    title "diagram-factory"
+    
+    interface Factory<Value>
+    {
+        --(factory)--
+        +Value newInstance()
+        +Value onNewInstance()
+    }
+    
+    interface IntMapper<Value>
+    {
+        --(collection)--
+        +Value map(int parameter)
+    }
+    
+    interface LongMapper<Value>
+    {
+        --(collection)--
+        +Value map(long parameter)
+    }
+    
+    interface Mapper<Parameter, Value>
+    {
+        --(collection)--
+        +Value map(Parameter)
+    }
+    
+@enduml
+

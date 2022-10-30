@@ -1,0 +1,96 @@
+
+@startuml
+
+    !include lexakai.theme
+    
+    title "com.telenav.kivakit.core.language"
+    
+    class Arrays
+    {
+        --
+        +Value[] concatenateArrays(Value[], Value[] b)
+        --(collection)--
+        +boolean arrayContains(Value[] array, Value object)
+        +int[] reverseArray(int[] elements)
+        +void reverseArray(byte[] array, int fromIndex, int toIndex)
+        +void reverseArray(byte[] array)
+        +long[] reverseArray(long[] elements)
+        +void reverseArrayRange(long[] array, int fromIndex, int toIndex)
+        --(conversion)--
+        +String asHexadecimalString(byte[] bytes)
+    }
+    
+    class Classes
+    {
+        --
+        +Constructor<T> constructor(Class<T> type, Class<?>... arguments)
+        +String simpleTopLevelClass(Class<?> type)
+        --(checks)--
+        +boolean canAssign(Class<?> from, Class<?> to)
+        --(factory)--
+        +T newInstance(Class<T> type, Object... arguments)
+        --(naming)--
+        +Class<T> classForName(String name)
+        +String simpleName(Class<?> type)
+        --(network)--
+        +URI resourceUri(Class<?> base, String path)
+        +URL resourceUrl(Class<?> base, String path)
+        --(read)--
+        +Class<T> loadClass(ClassLoader, String name)
+        +InputStream openResource(Class<?> base, String path)
+    }
+    
+    class Hash
+    {
+        --(collection)--
+        +int hash(int[] a)
+        +int hash(long[] a, int start, int end)
+        +int hash(long[] a)
+        +int hash(char[], int start, int end)
+        +int hash(Iterator<Object> objects)
+        +int hash(byte[] a, int start, int end)
+        +int hash(int[] a, int start, int end)
+        +int hash(Object)
+        +int hash(long value)
+        +int hash(byte[] a)
+        +int hashMany(Object... objects)
+        +int identityHash(Object)
+        +int knuthHash(long value)
+        +int knuthHash(int value)
+    }
+    
+    class Objects
+    {
+        --
+        +boolean areEqualPairs(Object... values)
+        +Value nonNullOr(Value, Value defaultValue)
+        --(checks)--
+        +boolean isAnyNull(Object... objects)
+        +boolean isEqual(Object a, Object)
+        +boolean isNotNull(Object)
+        +boolean isNull(Object)
+    }
+    
+    class Patterns
+    {
+        --
+        +boolean patternMatches(Pattern, String text)
+        +Pattern simplifiedPattern(String pattern)
+    }
+    
+    enum Streams.Processing
+    {
+        PARALLEL
+        SEQUENTIAL
+    }
+    
+    class Streams
+    {
+        --
+        +Stream<T> parallelStream(Iterable<T>)
+        +Stream<T> stream(Processing, Iterable<T>)
+        +Stream<T> stream(Iterable<T>)
+    }
+    
+@enduml
+

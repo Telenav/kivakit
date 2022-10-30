@@ -1,0 +1,36 @@
+
+@startuml
+
+    !include lexakai.theme
+    
+    title "com.telenav.kivakit.settings.stores"
+    
+    abstract BaseResourceSettingsStore
+    abstract BaseSettingsStore
+    
+    interface RegistryTrait
+    interface SettingsStore
+    
+    BaseSettingsStore <|-- BaseResourceSettingsStore
+    SettingsStore <|-- BaseResourceSettingsStore
+    RegistryTrait <|-- BaseResourceSettingsStore
+    abstract class BaseResourceSettingsStore
+    {
+        --(read)--
+        #SettingsObject read(Resource)
+    }
+    
+    BaseSettingsStore <|-- MemorySettingsStore
+    class MemorySettingsStore
+    {
+    }
+    
+    BaseResourceSettingsStore <|-- ResourceFolderSettingsStore
+    class ResourceFolderSettingsStore
+    {
+        --(constructors)--
+        +ResourceFolderSettingsStore(Listener, ResourceFolder<?>)
+    }
+    
+@enduml
+

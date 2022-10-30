@@ -1,0 +1,18 @@
+
+@startuml
+
+    !include lexakai.theme
+    
+    title "com.telenav.kivakit.conversion.core.locale"
+    
+    abstract BaseStringConverter
+    
+    BaseStringConverter <|-- LocaleLanguageConverter
+    class LocaleLanguageConverter
+    {
+        --(constructors)--
+        +LocaleLanguageConverter(Listener)
+    }
+    
+@enduml
+

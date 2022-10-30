@@ -153,9 +153,8 @@ public class Field extends Member
     @Override
     public boolean equals(Object object)
     {
-        if (object instanceof Field)
+        if (object instanceof Field that)
         {
-            var that = (Field) object;
             return this.parentObject == that.parentObject && field.equals(that.field);
         }
         return false;
@@ -168,10 +167,9 @@ public class Field extends Member
     @SuppressWarnings("unchecked")
     public <T> ObjectList<Type<T>> genericTypeParameters()
     {
-        if (field.getGenericType() instanceof ParameterizedType)
+        if (field.getGenericType() instanceof ParameterizedType genericType)
         {
             var list = new ObjectList<Type<T>>();
-            var genericType = (ParameterizedType) field.getGenericType();
             for (var at : genericType.getActualTypeArguments())
             {
                 if (at instanceof Class)

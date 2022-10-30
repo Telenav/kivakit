@@ -1,0 +1,20 @@
+
+@startuml
+
+    !include lexakai.theme
+    
+    title "diagram-mutable"
+    
+    class MutableValue<T>
+    {
+        --(constructors)--
+        +MutableValue()
+        +MutableValue(T)
+        --
+        +T get()
+        +void set(T value)
+        +void update(Function<T,T> updater)
+    }
+    
+@enduml
+

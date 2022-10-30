@@ -140,9 +140,8 @@ public abstract class BaseHttpResource extends BaseNetworkResource implements Ht
     @Override
     public boolean equals(Object object)
     {
-        if (object instanceof BaseHttpResource)
+        if (object instanceof BaseHttpResource that)
         {
-            BaseHttpResource that = (BaseHttpResource) object;
             return networkLocation.equals(that.networkLocation);
         }
         return false;
@@ -271,9 +270,8 @@ public abstract class BaseHttpResource extends BaseNetworkResource implements Ht
                 .connectTimeout(constraints.timeout().asJavaDuration());
 
         // add any credentials
-        if (constraints instanceof HttpAccessConstraints)
+        if (constraints instanceof HttpAccessConstraints httpConstraints)
         {
-            var httpConstraints = (HttpAccessConstraints) constraints;
             var credentials = httpConstraints.httpBasicCredentials();
             if (credentials != null)
             {

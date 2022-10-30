@@ -1,0 +1,98 @@
+
+@startuml
+
+    !include lexakai.theme
+    
+    title "Argument Parsing"
+    
+    ArgumentParser --> T : "gets"
+    ArgumentParser o-- Quantifier
+    ArgumentParser o-- Converter : "converts values with"
+    class ArgumentParser<T>
+    {
+        --
+        +String description()
+        +String help()
+        +Quantifier quantifier()
+        --(checks)--
+        +boolean canParse(String argumentValue)
+        +boolean isAllowedMultipleTimes()
+        +boolean isOptional()
+        +boolean isRequired()
+        --(command line parsing)--
+        +Builder<T> argumentParser(Class<T> type)
+        --(conversion)--
+        +T asObject(ArgumentValue)
+    }
+    
+    ArgumentParserList "1" o-- "*" ArgumentParser
+    -class ArgumentParserList
+    {
+        --
+        +String help()
+        --(collection)--
+        +boolean add(ArgumentParser<?>)
+        +boolean isEmpty()
+    }
+    
+    ArgumentValue --> ArgumentParser : "gets value with"
+    class ArgumentValue
+    {
+        --(constructors)--
+        +ArgumentValue(String)
+        --(collection)--
+        +String value()
+        --(command line parsing)--
+        +T get(ArgumentParser<T>)
+    }
+    
+    ArgumentValueList "1" o-- "*" ArgumentValue
+    class ArgumentValueList
+    {
+        --(collection)--
+        +void add(ArgumentValue)
+        --(command line parsing)--
+        +ArgumentValue argumentValue(int index)
+        +ArgumentValue firstArgumentValue()
+    }
+    
+    ArgumentParser.Builder --> ArgumentParser : "creates"
+    class ArgumentParser.Builder<T>
+    {
+        --(command line parsing)--
+        +ArgumentParser<T> build()
+        +Builder<T> converter(Converter<String,T>)
+        +Builder<T> description(String description)
+        +Builder<T> oneOrMore()
+        +Builder<T> optional()
+        +Builder<T> required()
+        +Builder<T> type(Class<T> type)
+        +Builder<T> zeroOrMore()
+    }
+    
+    CommandLineParser --> ArgumentValueList : "validates"
+    CommandLineParser --> CommandLine : "creates"
+    CommandLineParser o-- ArgumentParserList
+    CommandLineParser o-- SwitchParserList
+    class CommandLineParser
+    {
+        --(constructors)--
+        +CommandLineParser(ApplicationMetadata)
+        --(command line parsing)--
+        +CommandLineParser add(ArgumentParser<T>)
+        +CommandLineParser add(SwitchParser<T>)
+        +CommandLine parse(String[] arguments)
+        --(lifecycle)--
+        #void exit(String message, Object... arguments)
+    }
+    
+    enum Quantifier
+    {
+        ONE_OR_MORE
+        OPTIONAL
+        REQUIRED
+        ZERO_OR_MORE
+    }
+    
+@enduml
+

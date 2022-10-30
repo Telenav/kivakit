@@ -1,0 +1,53 @@
+
+@startuml
+
+    !include lexakai.theme
+    
+    title "com.telenav.kivakit.serialization.gson.serializers"
+    
+    interface JsonSerializerDeserializer
+    
+    PrimitiveGsonSerializer <|-- CountGsonSerializer
+    class CountGsonSerializer
+    {
+        --(constructors)--
+        +CountGsonSerializer()
+    }
+    
+    PrimitiveGsonSerializer <|-- LocalTimeGsonSerializer
+    class LocalTimeGsonSerializer
+    {
+        --(constructors)--
+        +LocalTimeGsonSerializer()
+    }
+    
+    PrimitiveGsonSerializer <|-- ProblemGsonSerializer
+    class ProblemGsonSerializer
+    {
+        --(constructors)--
+        +ProblemGsonSerializer(MessageFormat)
+    }
+    
+    JsonSerializerDeserializer <|-- StringConverterGsonSerializer
+    class StringConverterGsonSerializer<Value>
+    {
+        --(constructors)--
+        +StringConverterGsonSerializer(StringConverter<Value>)
+    }
+    
+    PrimitiveGsonSerializer <|-- TimeInMillisecondsGsonSerializer
+    class TimeInMillisecondsGsonSerializer
+    {
+        --(constructors)--
+        +TimeInMillisecondsGsonSerializer()
+    }
+    
+    PrimitiveGsonSerializer <|-- UtcTimeInKivaKitFormatGsonSerializer
+    class UtcTimeInKivaKitFormatGsonSerializer
+    {
+        --(constructors)--
+        +UtcTimeInKivaKitFormatGsonSerializer()
+    }
+    
+@enduml
+

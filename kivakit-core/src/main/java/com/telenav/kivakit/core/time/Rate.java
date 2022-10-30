@@ -30,8 +30,6 @@ import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMEN
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.language.Hash.hash;
 import static com.telenav.kivakit.core.time.Duration.*;
-import static com.telenav.kivakit.core.time.Duration.ONE_SECOND;
-import static com.telenav.kivakit.core.time.Duration.seconds;
 import static java.lang.String.format;
 
 /**
@@ -148,9 +146,8 @@ public class Rate implements
     @Override
     public boolean equals(Object object)
     {
-        if (object instanceof Rate)
+        if (object instanceof Rate that)
         {
-            var that = (Rate) object;
             return perMinute().count() == that.perMinute().count();
         }
         return false;

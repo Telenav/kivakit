@@ -1,0 +1,32 @@
+
+@startuml
+
+    !include lexakai.theme
+    
+    title "com.telenav.kivakit.annotations.code.change"
+    
+    enum MethodChange.Change
+    {
+        METHOD_ADDED
+        METHOD_CHANGED_SIGNATURE
+        METHOD_RENAMED
+    }
+    
+    enum TypeChange.Change
+    {
+        METHOD_REMOVED
+        TYPE_ADDED
+        TYPE_MOVED
+        TYPE_RENAMED
+    }
+    
+    annotation MethodChange
+    
+    annotation MethodChangeRepeater
+    
+    annotation TypeChange
+    
+    annotation TypeChangeRepeater
+    
+@enduml
+

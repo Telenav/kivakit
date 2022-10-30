@@ -1,0 +1,27 @@
+
+@startuml
+
+    !include lexakai.theme
+    
+    title "com.telenav.kivakit.core.function.arities"
+    
+    interface PentaFunction<Argument1, Argument2, Argument3, Argument4, Argument5, Result>
+    {
+        --
+        +Result apply(Argument1, Argument2, Argument3, Argument4, Argument5)
+    }
+    
+    interface TetraFunction<Argument1, Argument2, Argument3, Argument4, Result>
+    {
+        --
+        +Result apply(Argument1, Argument2, Argument3, Argument4)
+    }
+    
+    interface TriFunction<Argument1, Argument2, Argument3, Result>
+    {
+        --
+        +Result apply(Argument1, Argument2, Argument3)
+    }
+    
+@enduml
+

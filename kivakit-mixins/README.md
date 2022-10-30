@@ -20,14 +20,14 @@ This module provides stateful traits for Java.
 
 ### Dependencies <a name="dependencies"></a> &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/dependencies-32.png" srcset="https://telenav.github.io/telenav-assets/images/icons/dependencies-32-2x.png 2x"/>
 
-[*Dependency Diagram*](https://www.kivakit.org/1.7.1-SNAPSHOT/lexakai/kivakit/kivakit-mixins/documentation/diagrams/dependencies.svg)
+[*Dependency Diagram*](https://www.kivakit.org/1.8.2/lexakai/kivakit/kivakit-mixins/documentation/diagrams/dependencies.svg)
 
 #### Maven Dependency
 
     <dependency>
         <groupId>com.telenav.kivakit</groupId>
         <artifactId>kivakit-mixins</artifactId>
-        <version>1.7.1-SNAPSHOT</version>
+        <version>1.8.2</version>
     </dependency>
 
 <img src="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128.png" srcset="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128-2x.png 2x"/>
@@ -42,42 +42,39 @@ This module provides stateful traits for Java.
 
 ### Code Quality <a name="code-quality"></a> &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/ruler-32.png" srcset="https://telenav.github.io/telenav-assets/images/icons/ruler-32-2x.png 2x"/>
 
-Code quality for this project is 75.0%.  
+Code quality for this project is 100.0%.  
   
-&nbsp; &nbsp; <img src="https://telenav.github.io/telenav-assets/images/meters/meter-80-96.png" srcset="https://telenav.github.io/telenav-assets/images/meters/meter-80-96-2x.png 2x"/>
-
+&nbsp; &nbsp; <img src="https://telenav.github.io/telenav-assets/images/meters/meter-100-96.png" srcset="https://telenav.github.io/telenav-assets/images/meters/meter-100-96-2x.png 2x"/>
 
 | Measurement   | Value                    |
 |---------------|--------------------------|
-| Stability     | 100.0%&nbsp; &nbsp; <img src="https://telenav.github.io/telenav-assets/images/meters/meter-100-96.png" srcset="https://telenav.github.io/telenav-assets/images/meters/meter-100-96-2x.png 2x"/>
-     |
-| Testing       | 25.0%&nbsp; &nbsp; <img src="https://telenav.github.io/telenav-assets/images/meters/meter-30-96.png" srcset="https://telenav.github.io/telenav-assets/images/meters/meter-30-96-2x.png 2x"/>
-       |
-| Documentation | 100.0%&nbsp; &nbsp; <img src="https://telenav.github.io/telenav-assets/images/meters/meter-100-96.png" srcset="https://telenav.github.io/telenav-assets/images/meters/meter-100-96-2x.png 2x"/>
- |
+| Stability     | 100.0%&nbsp; &nbsp; <img src="https://telenav.github.io/telenav-assets/images/meters/meter-100-96.png" srcset="https://telenav.github.io/telenav-assets/images/meters/meter-100-96-2x.png 2x"/>     |
+| Testing       | 100.0%&nbsp; &nbsp; <img src="https://telenav.github.io/telenav-assets/images/meters/meter-100-96.png" srcset="https://telenav.github.io/telenav-assets/images/meters/meter-100-96-2x.png 2x"/>       |
+| Documentation | 100.0%&nbsp; &nbsp; <img src="https://telenav.github.io/telenav-assets/images/meters/meter-100-96.png" srcset="https://telenav.github.io/telenav-assets/images/meters/meter-100-96-2x.png 2x"/> |
 
 <img src="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128.png" srcset="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128-2x.png 2x"/>
 
 ### Class Diagrams <a name="class-diagrams"></a> &nbsp; &nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/diagram-40.png" srcset="https://telenav.github.io/telenav-assets/images/icons/diagram-40-2x.png 2x"/>
 
-[*Mixins*](https://www.kivakit.org/1.7.1-SNAPSHOT/lexakai/kivakit/kivakit-mixins/documentation/diagrams/diagram-mixin.svg)
+[*Mixins*](https://www.kivakit.org/1.8.2/lexakai/kivakit/kivakit-mixins/documentation/diagrams/diagram-mixin.svg)
 
 <img src="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128.png" srcset="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128-2x.png 2x"/>
 
 ### Package Diagrams <a name="package-diagrams"></a> &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/box-24.png" srcset="https://telenav.github.io/telenav-assets/images/icons/box-24-2x.png 2x"/>
 
-[*com.telenav.kivakit.mixins*](https://www.kivakit.org/1.7.1-SNAPSHOT/lexakai/kivakit/kivakit-mixins/documentation/diagrams/com.telenav.kivakit.mixins.svg)  
-[*com.telenav.kivakit.mixins.internal.lexakai*](https://www.kivakit.org/1.7.1-SNAPSHOT/lexakai/kivakit/kivakit-mixins/documentation/diagrams/com.telenav.kivakit.mixins.internal.lexakai.svg)
+[*com.telenav.kivakit.mixins*](https://www.kivakit.org/1.8.2/lexakai/kivakit/kivakit-mixins/documentation/diagrams/com.telenav.kivakit.mixins.svg)  
+[*com.telenav.kivakit.mixins.internal.lexakai*](https://www.kivakit.org/1.8.2/lexakai/kivakit/kivakit-mixins/documentation/diagrams/com.telenav.kivakit.mixins.internal.lexakai.svg)
 
 ### Javadoc <a name="code-quality"></a> &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/books-24.png" srcset="https://telenav.github.io/telenav-assets/images/icons/books-24-2x.png 2x"/>
 
 | Class | Documentation Sections  |
 |-------|-------------------------|
-| [*AttributesMixin*](https://www.kivakit.org/1.7.1-SNAPSHOT/javadoc/kivakit/kivakit.mixins///////////////////////////////////////////.html) |  |  
-| [*DiagramMixin*](https://www.kivakit.org/1.7.1-SNAPSHOT/javadoc/kivakit/kivakit.mixins/////////////////////////////////////////////////////////.html) |  |  
-| [*Mixin*](https://www.kivakit.org/1.7.1-SNAPSHOT/javadoc/kivakit/kivakit.mixins/////////////////////////////////.html) | Performance Note |  
-| [*Mixins*](https://www.kivakit.org/1.7.1-SNAPSHOT/javadoc/kivakit/kivakit.mixins//////////////////////////////////.html) |  |  
-| [*Mixins.MixinKey*](https://www.kivakit.org/1.7.1-SNAPSHOT/javadoc/kivakit/kivakit.mixins///////////////////////////////////////////.html) |  |  
+| [*AttributesMixin*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.mixins///////////////////////////////////////////.html) | Example |  
+| | Attributes |  
+| [*DiagramMixin*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.mixins/////////////////////////////////////////////////////////.html) |  |  
+| [*Mixin*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.mixins/////////////////////////////////.html) | Performance Note |  
+| [*Mixins*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.mixins//////////////////////////////////.html) | Mixins |  
+| [*Mixins.MixinKey*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.mixins///////////////////////////////////////////.html) |  |  
 
 [//]: # (start-user-text)
 

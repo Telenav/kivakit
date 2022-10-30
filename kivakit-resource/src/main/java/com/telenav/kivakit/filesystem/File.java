@@ -377,7 +377,7 @@ public class File extends BaseWritableResource implements FileSystemObject
     @UmlExcludeMember
     File(@NotNull FileService file)
     {
-        service = file;
+        service = listenTo(file);
     }
 
     /**
@@ -387,7 +387,7 @@ public class File extends BaseWritableResource implements FileSystemObject
     private File(@NotNull File that)
     {
         super(that);
-        service = that.service;
+        service = listenTo(that.service);
     }
 
     /**
@@ -508,9 +508,8 @@ public class File extends BaseWritableResource implements FileSystemObject
     @Override
     public boolean equals(Object object)
     {
-        if (object instanceof File)
+        if (object instanceof File that)
         {
-            var that = (File) object;
             return path().equals(that.path());
         }
         return false;

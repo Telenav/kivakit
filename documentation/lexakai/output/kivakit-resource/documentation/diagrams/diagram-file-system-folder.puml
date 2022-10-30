@@ -1,0 +1,147 @@
+
+@startuml
+
+    !include lexakai.theme
+    
+    title "File System - Folders"
+    
+    abstract BaseRepeater
+    
+    interface Startable
+    interface FileSystemObject
+    interface Comparable
+    interface ResourceFolder
+    interface Stoppable
+    interface TryTrait
+    
+    class Disk
+    {
+        --(filesystem)--
+        +Folder root()
+        --(math)--
+        +Percent percentFree()
+        +Percent percentUsable()
+        --(primitive)--
+        +Bytes free()
+        +Bytes size()
+        +Bytes usable()
+    }
+    
+    interface CreatedAt
+    interface ModifiedAt
+    ModifiedAt <|-- FileSystemObject
+    CreatedAt <|-- FileSystemObject
+    interface FileSystemObject
+    {
+    }
+    
+    BaseRepeater <|-- Folder
+    FileSystemObject <|-- Folder
+    Comparable <|-- Folder
+    ResourceFolder <|-- Folder
+    TryTrait <|-- Folder
+    Folder --> Disk : "exists on"
+    Folder o-- FolderService : "delegates to"
+    class Folder
+    {
+        --(constructors)--
+        +Folder(FilePath)
+        --(checks)--
+        +boolean hasChanged()
+        +boolean isLocal()
+        +boolean isRemote()
+        --(filesystem)--
+        +boolean chmod(PosixFilePermission... permissions)
+        +void chmodNested(PosixFilePermission... permissions)
+        +Folder clearAll()
+        +Folder clearAllAndDelete()
+        +Disk disk()
+        +Folder ensureExists()
+        +File file(String path, Object... arguments)
+        +File file(File)
+        +File file(ResourcePathed)
+        +File file(FileName)
+        +FileList files(Extension)
+        +FileList files(Pattern)
+        +FileList files(Matcher<ResourcePathed>, Traversal)
+        +FileList files()
+        +FileList files(Matcher<ResourcePathed>)
+        +FileList files(String globPattern)
+        +Folder folder(java.io.File)
+        +Folder folder(Path)
+        +Folder folder(URL)
+        +Folder folder(FilePath)
+        +Folder folder(FileName child)
+        +Folder folder(Folder child)
+        +Folder folder(StringPath)
+        +Folder folder(URI)
+        +ObjectList<Folder> folders(Matcher<Folder>)
+        +boolean isFolder()
+        +Folder last()
+        +FileName name()
+        +FileList nestedFiles()
+        +FileList nestedFiles(Matcher<ResourcePathed>)
+        +File oldest()
+        +File oldest(Matcher<File>)
+        +Folder parseFolder(String path, Object... arguments)
+        +Folder parseFolder(Listener, String path, Object... arguments)
+        +FilePath relativePath(Folder)
+        +Folder relativeTo(Folder)
+        +Folder root()
+        +Folder scheduleCleanUpOnExit()
+        +Folder temporaryFolderForProcess(FolderType)
+        +Folder withoutTrailingSlash()
+        --(network)--
+        +URI asUri()
+        +URL asUrl()
+        --(primitive)--
+        +Bytes size()
+    }
+    
+    PeriodicCollectionChangeWatcher <|-- FolderChangeWatcher
+    FolderChangeWatcher --> Folder : "watches"
+    class FolderChangeWatcher
+    {
+        --(constructors)--
+        +FolderChangeWatcher(Folder, Frequency)
+    }
+    
+    ObjectList <|-- FolderList
+    class FolderList
+    {
+        --(constructors)--
+        +FolderList()
+        --(filesystem)--
+        +FolderList folderList(List<? extends FolderService> folderServices)
+    }
+    
+    BaseRepeater <|-- FolderPruner
+    Startable <|-- FolderPruner
+    Stoppable <|-- FolderPruner
+    FolderPruner --> Folder : "prunes old files from"
+    class FolderPruner
+    {
+        --(constructors)--
+        +FolderPruner(Folder, Frequency)
+        --
+        +void capacity(Bytes capacity)
+        --(collection)--
+        #boolean canRemove(File candidate, FileList files)
+        --(filesystem)--
+        #void onFileRemoved(File)
+        --(matching)--
+        +void matcher(Matcher<ResourcePathed>)
+        #Matcher<ResourcePathed> matcher()
+        --(math)--
+        +void maximumAge(Duration maximumAge)
+        +void minimumUsableDiskSpace(Percent minimumUsableDiskSpace)
+        #Duration maximumAge()
+        #Percent minimumUsableDiskSpace()
+        --(primitive)--
+        #Bytes capacity()
+        --(time)--
+        #Duration age(File)
+    }
+    
+@enduml
+

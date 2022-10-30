@@ -263,14 +263,11 @@ public class StringPath extends Path<String>
     @Override
     public String asString(@NotNull Format format)
     {
-        switch (format)
+        return switch (format)
         {
-            case FILESYSTEM:
-                return join(File.separator);
-
-            default:
-                return join();
-        }
+            case FILESYSTEM -> join(File.separator);
+            default -> join();
+        };
     }
 
     /**

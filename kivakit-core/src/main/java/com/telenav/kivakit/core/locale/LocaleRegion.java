@@ -597,9 +597,8 @@ public class LocaleRegion
     @Override
     public boolean equals(Object object)
     {
-        if (object instanceof LocaleRegion)
+        if (object instanceof LocaleRegion that)
         {
-            var that = (LocaleRegion) object;
             return alpha2CountryCode.equals(that.alpha2CountryCode);
         }
         return false;

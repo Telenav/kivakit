@@ -1,0 +1,16 @@
+
+@startuml
+
+    !include lexakai.theme
+    
+    title "diagram-resource-service"
+    
+    interface ResourceResolver
+    
+    ResourceResolver <|-- HttpGetResourceResolver
+    class HttpGetResourceResolver
+    {
+    }
+    
+@enduml
+

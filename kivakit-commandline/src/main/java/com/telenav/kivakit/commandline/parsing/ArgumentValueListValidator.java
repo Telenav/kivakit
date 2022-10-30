@@ -78,26 +78,23 @@ public class ArgumentValueListValidator extends BaseValidator
             // and check arguments based on the parser's quantifier.
             switch (parser.quantifier())
             {
-                case REQUIRED:
+                case REQUIRED ->
+                {
                     if (remaining == 0)
                     {
                         problem("Required ${debug} argument \"$\" is missing", parser, parser.description());
                     }
                     remaining--;
-                    break;
-
-                case ONE_OR_MORE:
+                }
+                case ONE_OR_MORE ->
+                {
                     if (remaining < 1)
                     {
                         problem("Must supply one or more ${debug} arguments for \"$\"", parser, parser.description());
                     }
                     remaining--;
-                    break;
-
-                case OPTIONAL:
-                case ZERO_OR_MORE:
-                    remaining--;
-                    break;
+                }
+                case OPTIONAL, ZERO_OR_MORE -> remaining--;
             }
         }
 

@@ -1,0 +1,41 @@
+
+@startuml
+
+    !include lexakai.theme
+    
+    title "Component, BaseComponent and ComponentMixin"
+    
+    abstract BaseRepeater
+    
+    interface Component
+    
+    BaseRepeater <|-- BaseComponent
+    Component <|-- BaseComponent
+    class BaseComponent
+    {
+    }
+    
+    interface NamedObject
+    interface RegistryTrait
+    interface Repeater
+    Repeater <|-- Component
+    RegistryTrait <|-- Component
+    NamedObject <|-- Component
+    interface Component
+    {
+    }
+    
+    interface Component
+    interface Mixin
+    interface RepeaterMixin
+    Component <|-- ComponentMixin
+    Mixin <|-- ComponentMixin
+    RepeaterMixin <|-- ComponentMixin
+    interface ComponentMixin
+    {
+        --
+        +BaseComponent component()
+    }
+    
+@enduml
+

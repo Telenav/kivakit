@@ -62,9 +62,8 @@ public class MutableValue<T>
     @Override
     public boolean equals(Object object)
     {
-        if (object instanceof MutableValue)
+        if (object instanceof MutableValue<?> that)
         {
-            var that = (MutableValue<?>) object;
             return value.get().equals(that.value.get());
         }
         return false;

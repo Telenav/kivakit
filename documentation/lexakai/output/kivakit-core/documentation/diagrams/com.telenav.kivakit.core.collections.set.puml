@@ -1,0 +1,87 @@
+
+@startuml
+
+    !include lexakai.theme
+    
+    title "com.telenav.kivakit.core.collections.set"
+    
+    abstract BaseSet
+    abstract BaseCollection
+    abstract BaseMap
+    
+    interface Set
+    interface Copyable
+    
+    BaseCollection <|-- BaseSet
+    Copyable <|-- BaseSet
+    Set <|-- BaseSet
+    abstract class BaseSet<Value>
+    {
+        --(constructors)--
+        #BaseSet()
+        #BaseSet(Maximum)
+        #BaseSet(Maximum, Collection<Value>)
+        --(factory)--
+        #Set<Value> newBackingSet()
+        #Set<Value> onNewBackingSet()
+    }
+    
+    BaseSet <|-- ConcurrentHashSet
+    class ConcurrentHashSet<Value>
+    {
+        --(constructors)--
+        +ConcurrentHashSet()
+        +ConcurrentHashSet(Maximum)
+        +ConcurrentHashSet(Maximum, Collection<Value>)
+        --
+        +Value get(Value prototype)
+        +Value take(Value prototype)
+    }
+    
+    BaseSet <|-- IdentitySet
+    class IdentitySet<Value>
+    {
+        --(constructors)--
+        +IdentitySet()
+        +IdentitySet(Maximum)
+        +IdentitySet(Maximum, Collection<Value>)
+        --
+        +Value get(Value prototype)
+        +Value take(Value prototype)
+    }
+    
+    BaseMap <|-- MultiSet
+    class MultiSet<Key, Value>
+    {
+        --(constructors)--
+        +MultiSet()
+        +MultiSet(Maximum, Maximum)
+        --
+        +void replaceValue(Key, Value)
+        +ObjectSet<Value> set(Key)
+        --(collection)--
+        +void add(Key, Value)
+        +Iterable<Value> flatValues()
+        +Set<Value> getOrEmptySet(Object key)
+        +Count maximumSetSize()
+        +void removeFromSet(Key, Value)
+        +int valueCount()
+    }
+    
+    BaseSet <|-- ObjectSet
+    class ObjectSet<Value>
+    {
+        --(constructors)--
+        +ObjectSet()
+        +ObjectSet(Collection<Value>)
+        +ObjectSet(Maximum)
+        +ObjectSet(Maximum, Collection<Value>)
+        --
+        +ObjectSet<T> set(Collection<T> values)
+        +ObjectSet<T> set(T... values)
+        --(collection)--
+        +ObjectSet<T> emptySet()
+    }
+    
+@enduml
+

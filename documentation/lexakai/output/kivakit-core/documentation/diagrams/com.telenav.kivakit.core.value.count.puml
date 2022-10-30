@@ -1,0 +1,318 @@
+
+@startuml
+
+    !include lexakai.theme
+    
+    title "com.telenav.kivakit.core.value.count"
+    
+    abstract BaseCount
+    
+    interface Countable
+    interface Clearable
+    interface Numeric
+    interface Mapper
+    interface Comparable
+    interface Iterable
+    interface FormattedLongValued
+    interface LongValued
+    interface Contains
+    interface ByteSized
+    interface Source
+    interface DoubleValued
+    
+    FormattedLongValued <|-- BaseCount
+    Numeric <|-- BaseCount
+    Countable <|-- BaseCount
+    Comparable <|-- BaseCount
+    Source <|-- BaseCount
+    DoubleValued <|-- BaseCount
+    abstract class BaseCount<SubClass>
+    {
+        --(constructors)--
+        #BaseCount()
+        #BaseCount(long)
+        --
+        +SubClass inRangeExclusive(long value)
+        +SubClass inRangeInclusive(long value)
+        +SubClass offset(long offset)
+        +SubClass powerOfTenCeiling(int digits)
+        +SubClass powerOfTenFloor(int digits)
+        +SubClass powerOfTwoCeiling()
+        --(checks)--
+        +boolean isBetweenExclusive(BaseCount<?> minimum, BaseCount<?> exclusiveMaximum)
+        +boolean isBetweenInclusive(BaseCount<?> minimum, BaseCount<?> inclusiveMaximum)
+        --(collection)--
+        +BitCount asBitCount()
+        +Count asCount()
+        +SubClass asPrimeAllocationSize()
+        +BitCount bitsToRepresent()
+        +byte[] newByteArray()
+        +char[] newCharArray()
+        +double[] newDoubleArray()
+        +float[] newFloatArray()
+        +int[] newIntArray()
+        +long[] newLongArray()
+        +Element[] newObjectArray()
+        +short[] newShortArray()
+        +String[] newStringArray()
+        --(conversion)--
+        +Estimate asEstimate()
+        --(extension points)--
+        +SubClass onNewInstance(long count)
+        --(iteration)--
+        +void loop(Runnable code)
+        +SubClass nextWrapping()
+        --(math)--
+        +Maximum asMaximum()
+        +Minimum asMinimum()
+        +boolean isMaximum()
+        +boolean isMinimum()
+        +SubClass percent(Percent percentage)
+        +Percent percentOf(long total)
+        +Percent percentOf(LongValued that)
+        +SubClass times(double multiplier)
+        +SubClass times(Percent percentage)
+        --(primitive)--
+        +void forEachByte(Consumer<Byte>)
+        +void forEachInteger(Consumer<Integer>)
+        +void forEachLong(Consumer<Long>)
+        +void forEachShort(Consumer<Short>)
+    }
+    
+    BaseCount <|-- BitCount
+    class BitCount
+    {
+        --(constructors)--
+        #BitCount()
+        #BitCount(long)
+        --
+        +long mask()
+        --(collection)--
+        +BitCount bits(long count)
+        +BitCount bitsPerByte()
+        +BitCount bitsPerChar()
+        +BitCount bitsPerInt()
+        +BitCount bitsPerLong()
+        +BitCount bitsPerShort()
+        +BitCount bitsToRepresent(int value)
+        +BitCount bitsToRepresent(long value)
+        +long values()
+        --(math)--
+        +long maximumSigned()
+        +long maximumUnsigned()
+        +long minimumSigned()
+    }
+    
+    interface ByteSized
+    {
+        --(checks)--
+        +boolean isLargerThan(ByteSized that)
+        +boolean isSameSizeAs(ByteSized that)
+        +boolean isSmallerThan(ByteSized that)
+        --(primitive)--
+        +Bytes sizeInBytes()
+    }
+    
+    BaseCount <|-- Bytes
+    ByteSized <|-- Bytes
+    DoubleValued <|-- Bytes
+    class Bytes
+    {
+        --(conversion)--
+        +double asGigabytes()
+        +double asKilobytes()
+        +double asMegabytes()
+        +double asTerabytes()
+        --(primitive)--
+        +long asBytes()
+        +Bytes bytes(int[] array)
+        +Bytes bytes(long[] array)
+        +Bytes bytes(byte[] array)
+        +Bytes bytes(long bytes)
+        +Bytes bytes(Count)
+        +Bytes bytes(double bytes)
+        +Bytes gigabytes(double gigabytes)
+        +Bytes gigabytes(long gigabytes)
+        +Bytes kilobytes(long kilobytes)
+        +Bytes kilobytes(double kilobytes)
+        +Bytes megabytes(double megabytes)
+        +Bytes megabytes(long megabytes)
+        +Bytes parseBytes(Listener, String text)
+        +Bytes primitiveSize(Object)
+        +Bytes terabytes(long terabytes)
+        +Bytes terabytes(double terabytes)
+    }
+    
+    Countable <|-- ConcurrentMutableCount
+    Clearable <|-- ConcurrentMutableCount
+    LongValued <|-- ConcurrentMutableCount
+    Comparable <|-- ConcurrentMutableCount
+    class ConcurrentMutableCount
+    {
+        --(constructors)--
+        +ConcurrentMutableCount()
+        +ConcurrentMutableCount(long)
+        --
+        +long get()
+        +void set(long count)
+        --(collection)--
+        +Count asCount()
+        --(math)--
+        +long add(BaseCount<?> that)
+        +long add(long that)
+        +long decrement()
+        +long increment()
+        +Percent percentOf(Count total)
+        +long plus(long that)
+        +long plus(LongValued that)
+    }
+    
+    BaseCount <|-- Count
+    class Count
+    {
+        --(constructors)--
+        #Count()
+        #Count(long)
+        --(collection)--
+        +Count count(Iterable<?>, Maximum)
+        +Count count(T[] values)
+        +Count count(double value)
+        +Count count(Collection<?>)
+        +Count count(Iterator<?>, Maximum)
+        +Count count(long value)
+        +Count count(Iterable<?>)
+        +Count count(Iterator<?>)
+        +Count countOfCharacters(String text)
+        +Count parseCount(Listener, String text)
+    }
+    
+    interface Zeroable
+    Zeroable <|-- Countable
+    interface Countable
+    {
+        --(collection)--
+        +Count count()
+    }
+    
+    BaseCount <|-- Estimate
+    class Estimate
+    {
+        --(constructors)--
+        #Estimate()
+        #Estimate(long)
+        --
+        +Estimate estimate(Collection<?>)
+        +Estimate estimate(long value)
+        +Estimate estimate(Iterator<?>)
+        +Estimate estimate(T[] values)
+        +Estimate estimate(Iterable<?>)
+        --(parsing)--
+        +Estimate parseEstimate(Listener, String text)
+    }
+    
+    Contains <|-- LongRange
+    class LongRange
+    {
+        --(constructors)--
+        #LongRange()
+        +LongRange(long, long)
+        --
+        +long constrainTo(long value)
+    }
+    
+    BaseCount <|-- Maximum
+    class Maximum
+    {
+        --(constructors)--
+        #Maximum()
+        #Maximum(long)
+        --(math)--
+        +Maximum maximum(Collection<?>)
+        +Maximum maximum(long value)
+        +Maximum maximum(Iterator<?>)
+        +Maximum maximum(Iterable<?>)
+        +Maximum maximum(T[] values)
+        +Maximum parseMaximum(Listener, String text)
+    }
+    
+    BaseCount <|-- Minimum
+    class Minimum
+    {
+        --(constructors)--
+        #Minimum()
+        #Minimum(long)
+        --(math)--
+        +Minimum minimum(long value)
+        +Minimum minimum(Collection<?>)
+        +Minimum minimum(Iterable<?>)
+        +Minimum minimum(T[] values)
+        +Minimum minimum(Iterator<?>)
+        +Minimum parseMinimum(Listener, String text)
+    }
+    
+    Countable <|-- MutableCount
+    Clearable <|-- MutableCount
+    LongValued <|-- MutableCount
+    Comparable <|-- MutableCount
+    class MutableCount
+    {
+        --(constructors)--
+        +MutableCount()
+        +MutableCount(long)
+        --
+        +long get()
+        +void set(long count)
+        --(collection)--
+        +Count asCount()
+        --(math)--
+        +long decrement()
+        +long increment()
+        +long minus(long that)
+        +Percent percentOf(Count total)
+        +long plus(long that)
+        +long plus(LongValued that)
+    }
+    
+    Contains <|-- Range
+    Comparable <|-- Range
+    Countable <|-- Range
+    Iterable <|-- Range
+    Mapper <|-- Range
+    class Range<Value>
+    {
+        --(constructors)--
+        #Range(Value, Value, UpperBound, Function<Long, Value>)
+        --
+        +Value randomValue(Random)
+        +Range<Count> rangeExclusive(Count minimum, Count inclusiveMaximum)
+        +Range<Value> rangeExclusive(Value minimum, Value exclusiveMaximum, Function<Long,Value> newInstance)
+        +Range<Count> rangeInclusive(Count minimum, Count inclusiveMaximum)
+        +Range<Value> rangeInclusive(Value minimum, Value inclusiveMaximum, Function<Long,Value> newInstance)
+        +UpperBound upperBound()
+        --(checks)--
+        +boolean isExclusive()
+        +boolean isInclusive()
+        --(collection)--
+        +boolean containsExclusive(Value)
+        +boolean containsInclusive(Value)
+        +int size()
+        --(functional)--
+        +Value constrained(Value)
+        --(iteration)--
+        +void loop(Runnable body)
+        --(math)--
+        +Value exclusiveMaximum()
+        +Value inclusiveMaximum()
+        +Value minimum()
+        --(primitive)--
+        +void forEachInt(Callback<Integer>)
+    }
+    
+    enum Range.UpperBound
+    {
+        EXCLUSIVE
+        INCLUSIVE
+    }
+    
+@enduml
+

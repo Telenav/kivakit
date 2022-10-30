@@ -1,0 +1,37 @@
+
+@startuml
+
+    !include lexakai.theme
+    
+    title "diagram-messaging"
+    
+    Receiver --> Transmittable : "receives"
+    interface Receiver
+    {
+        --(checks)--
+        +boolean isReceiving()
+        --(messaging)--
+        +void onReceive(Transmittable message)
+        +MessageType receive(MessageType)
+    }
+    
+    interface Transmittable
+    {
+    }
+    
+    Transmitter --> Transmittable : "transmits"
+    interface Transmitter
+    {
+        --
+        +void transmitting(boolean enable)
+        --(checks)--
+        +boolean isTransmitting()
+        --(functional)--
+        +T withoutTransmitting(Code<T>)
+        --(messaging)--
+        +void onTransmit(Transmittable message)
+        +MessageType transmit(MessageType)
+    }
+    
+@enduml
+

@@ -1,0 +1,15 @@
+
+@startuml
+
+    !include lexakai.theme
+    
+    title "com.telenav.kivakit.mixins.internal.lexakai"
+    
+    interface UmlDiagramIdentifier
+    UmlDiagramIdentifier <|-- DiagramMixin
+    interface DiagramMixin
+    {
+    }
+    
+@enduml
+

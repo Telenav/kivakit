@@ -1,0 +1,288 @@
+
+@startuml
+
+    !include lexakai.theme
+    
+    title "diagram-thread"
+    
+    abstract BaseRepeater
+    
+    interface Startable
+    interface Named
+    interface Runnable
+    interface Stoppable
+    interface Pausable
+    
+    BaseRepeater <|-- Batcher
+    class Batcher<Value>
+    {
+        --(constructors)--
+        #Batcher()
+        #Batcher(Batcher<Value>)
+        --
+        +BatchAdder adder()
+        +Batcher<Element> batcher()
+        #void onBatch(Batch)
+        --(filesystem)--
+        #Batcher<Value> copy()
+        --(functional)--
+        +Batcher<Value> withBatchFullPredicate(Predicate<Batch>)
+        +Batcher<Value> withBatchSize(Count size)
+        +Batcher<Value> withConsumer(Consumer<Batch>)
+        +Batcher<Value> withName(String name)
+        +Batcher<Value> withQueueSize(BaseCount<?> size)
+        --(lifecycle)--
+        +void start(Count workers)
+        +void stop()
+    }
+    
+    class CodeContext
+    {
+        --(constructors)--
+        #CodeContext()
+        +CodeContext(Class<?>)
+        +CodeContext(Method)
+        +CodeContext(String)
+        --
+        +Class<?> type()
+        --(naming)--
+        +String fullTypeName()
+        +String typeName()
+        --(network)--
+        +String host()
+        +void hostResolver(Source<String> resolver)
+        --(path)--
+        +PackageReference packagePath()
+    }
+    
+    CompletionLatch --> WakeState : "waits until"
+    class CompletionLatch
+    {
+        --(constructors)--
+        +CompletionLatch()
+        +CompletionLatch(Count)
+        --(lifecycle)--
+        +boolean allThreadsHaveCompleted()
+        +void reset()
+        +void threadCompleted()
+        --(thread)--
+        +WakeState waitForAllThreadsToComplete()
+        +WakeState waitForAllThreadsToComplete(Duration)
+    }
+    
+    class InitializationLatch
+    {
+        --
+        +void initializationComplete()
+        --(checks)--
+        +boolean isInitialized()
+        --(lifecycle)--
+        +void reset()
+        --(thread)--
+        +boolean awaitInitialization(Duration)
+        +boolean awaitInitialization()
+    }
+    
+    BaseRepeater <|-- KivaKitThread
+    Startable <|-- KivaKitThread
+    Runnable <|-- KivaKitThread
+    Stoppable <|-- KivaKitThread
+    Named <|-- KivaKitThread
+    class KivaKitThread
+    {
+        --(constructors)--
+        +KivaKitThread(String)
+        +KivaKitThread(String, Runnable)
+        --
+        +KivaKitThread daemon(boolean daemon)
+        +boolean is(State)
+        +KivaKitThread makeHighPriority()
+        +KivaKitThread makeLowPriority()
+        +KivaKitThread repeat(Listener, String name, Frequency every, UncheckedVoidCode)
+        +StateMachine<State> stateMachine()
+        +void whileLocked(Runnable code)
+        #void onExited()
+        #void onRan()
+        #void onWaiting()
+        #Thread thread()
+        #State transition(State to)
+        --(functional)--
+        +Time startedAt()
+        +T whileLocked(Code<T>)
+        --(lifecycle)--
+        +KivaKitThread initialDelay(Duration initialDelay)
+        +KivaKitThread interrupt()
+        +void join()
+        +KivaKitThread run(Listener, String name, Runnable code)
+        +KivaKitThread startSynchronously()
+        #void onRun()
+        #void onRunning()
+        #void waitForInitialDelayPeriod()
+        --(thread)--
+        +WakeState waitFor(State, Duration maximumWait)
+        +WakeState waitFor(State)
+    }
+    
+    ReentrantLock <|-- Lock
+    class Lock
+    {
+        --
+        +void whileLocked(Runnable code)
+        --(functional)--
+        +T whileLocked(Code<T>)
+    }
+    
+    class Monitor
+    {
+        --(lifecycle)--
+        +void done()
+        --(thread)--
+        +void await()
+        +void signal()
+    }
+    
+    ReentrantReadWriteLock <|-- ReadWriteLock
+    class ReadWriteLock
+    {
+        --(constructors)--
+        +ReadWriteLock()
+        --(read)--
+        +void read(Runnable code)
+        +T read(Source<T> code)
+        --(write)--
+        +void write(Runnable code)
+        +T write(Source<T> code)
+    }
+    
+    class ReentrancyTracker
+    {
+        --
+        +Reentrancy enter()
+        --(checks)--
+        +boolean hasReentered()
+        --(lifecycle)--
+        +Reentrancy exit()
+    }
+    
+    KivaKitThread <|-- RepeatingThread
+    Pausable <|-- RepeatingThread
+    class RepeatingThread
+    {
+        --(constructors)--
+        +RepeatingThread(Listener, String)
+        +RepeatingThread(Listener, String, Frequency)
+        +RepeatingThread(Listener, String, Runnable)
+        --(lifecycle)--
+        +RepeatingThread run(Listener, String name, Runnable code)
+        +RepeatingThread run(Listener, String name, Frequency every, Runnable code)
+        --(time)--
+        +Frequency frequency()
+        +RepeatingThread frequency(Frequency)
+    }
+    
+    BaseRepeater <|-- Retry
+    class Retry
+    {
+        --(constructors)--
+        +Retry(Listener)
+        +Retry(Listener, int, Duration, Class<? extends Throwable>, String)
+        --
+        +UncheckedCode<T> retry(Listener, UncheckedCode<T>, int times, Duration delay, Runnable... beforeRetry)
+        --(lifecycle)--
+        +T run(UncheckedCode<T> runnable, Runnable... stepsBeforeRetry)
+    }
+    
+    BaseRepeater <|-- StateMachine
+    class StateMachine<State>
+    {
+        --(constructors)--
+        +StateMachine(State)
+        +StateMachine(State, Consumer<State>)
+        --
+        +State at()
+        +boolean is(State)
+        +boolean is(Predicate<State>)
+        +Optional<State> toggle(State one, State two)
+        +boolean transition(State from, State to, State waitFor, Duration maximumWait, Runnable before)
+        +boolean transition(State from, State to, State waitFor, Runnable before)
+        +boolean transition(State from, State to)
+        +State transitionTo(State)
+        +void whileLocked(Runnable code)
+        --(checks)--
+        +boolean isNot(Predicate<State>)
+        +boolean isNot(State)
+        --(functional)--
+        +T whileLocked(Code<T>)
+        --(thread)--
+        +void transitionAndWaitForNot(State)
+        +WakeState waitFor(Predicate<State>, Duration maximumWait)
+        +WakeState waitFor(State, Duration maximumWait)
+        +WakeState waitFor(Predicate<State>)
+        +WakeState waitFor(Predicate<State>, Duration maximumWait, Runnable beforeWaiting)
+        +WakeState waitFor(State)
+        +WakeState waitForNot(State)
+        +WakeState waitForNot(State, Duration maximumWait)
+    }
+    
+    class StateWatcher<State>
+    {
+        --(constructors)--
+        +StateWatcher(State)
+        --
+        +void whileLocked(Runnable code)
+        --(functional)--
+        +T whileLocked(Code<T>)
+        --(thread)--
+        +void signal(State)
+        +WakeState waitFor(State desired, Duration maximumWaitTime)
+        +WakeState waitFor(Predicate<State>)
+        +WakeState waitFor(State desired)
+        +WakeState waitFor(Predicate<State>, Duration maximumWaitTime)
+    }
+    
+    ThreadSnapshot "1" o-- "*" ThreadStatus
+    class ThreadSnapshot
+    {
+        --(constructors)--
+        +ThreadSnapshot()
+        --
+        +ThreadSnapshot update()
+        --(collection)--
+        +List<ThreadStatus> snapshot()
+        --(time)--
+        +Time capturedAt()
+        +Duration cpuTime()
+        +Duration cpuTime(Thread)
+        +Duration totalCpuTime()
+    }
+    
+    class ThreadStatus
+    {
+        --
+        +Thread.State state()
+        --(checks)--
+        +boolean isDaemon()
+        +boolean isKivaKit()
+        --(identity)--
+        +long identifier()
+        --(naming)--
+        +String name()
+        --(time)--
+        +Duration cpuTime()
+    }
+    
+    class Threads
+    {
+        --
+        +ThreadGroup rootThreadGroup()
+        --(collection)--
+        +ObjectList<Thread> allThreads()
+        --(thread)--
+        +void awaitTermination(ExecutorService)
+        +void shutdownAndAwaitTermination(ExecutorService)
+        +ExecutorService threadPool(String name)
+        +ExecutorService threadPool(String name, Count threads)
+    }
+    
+@enduml
+

@@ -299,9 +299,8 @@ public class Host extends BaseRepeater implements
     @Override
     public boolean equals(Object object)
     {
-        if (object instanceof Host)
+        if (object instanceof Host that)
         {
-            Host that = (Host) object;
             if (name().equals(name()))
             {
                 return true;

@@ -54,9 +54,8 @@ public class NamedField extends AllFields
     @Override
     public boolean equals(Object object)
     {
-        if (object instanceof NamedField)
+        if (object instanceof NamedField that)
         {
-            var that = (NamedField) object;
             return name.equals(that.name);
         }
         return false;

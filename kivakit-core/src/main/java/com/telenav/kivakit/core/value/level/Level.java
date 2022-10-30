@@ -181,9 +181,8 @@ public class Level implements
     @Override
     public boolean equals(Object object)
     {
-        if (object instanceof Level)
+        if (object instanceof Level that)
         {
-            var that = (Level) object;
             return value == that.value;
         }
         return false;

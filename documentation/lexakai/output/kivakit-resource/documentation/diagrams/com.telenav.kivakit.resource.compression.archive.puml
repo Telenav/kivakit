@@ -1,0 +1,101 @@
+
+@startuml
+
+    !include lexakai.theme
+    
+    title "com.telenav.kivakit.resource.compression.archive"
+    
+    abstract BaseRepeater
+    abstract BaseWritableResource
+    
+    interface Closeable
+    interface ByteSized
+    
+    enum ZipArchive.AccessMode
+    {
+        READ
+        WRITE
+    }
+    
+    annotation ArchivedField
+    
+    AllFields <|-- ArchivedFields
+    class ArchivedFields
+    {
+    }
+    
+    BaseRepeater <|-- FieldArchive
+    Closeable <|-- FieldArchive
+    FieldArchive --> ArchivedField : "reads annotations"
+    FieldArchive --> NamedObject : "reads and writes"
+    FieldArchive o-- ZipArchive : "writes to"
+    class FieldArchive
+    {
+        --(constructors)--
+        +FieldArchive(File, ProgressReporter, ZipArchive.AccessMode)
+        +FieldArchive(File, ZipArchive.AccessMode)
+        --
+        +ZipArchive.AccessMode mode()
+        +ProgressReporter progressReporter()
+        +ZipArchive zip()
+        --(filesystem)--
+        +File file()
+        --(identity)--
+        +Version loadVersion(ObjectReader)
+        +void saveVersion(ObjectWriter, Version)
+        +Version version()
+        +void version(Version)
+        --(read)--
+        +VersionedObject<T> load(ObjectReader, NamedObject, String fieldName)
+        +T loadFieldOf(ObjectReader, NamedObject, String fieldName)
+        +boolean loadFieldsOf(ObjectReader, NamedObject... objects)
+        --(write)--
+        +void save(ObjectWriter, String fieldName, VersionedObject<T>)
+        +void saveFieldsOf(ObjectWriter, NamedObject, Version)
+    }
+    
+    class FieldArchive.ObjectField
+    {
+        --(constructors)--
+        +ObjectField(Object, Property)
+        --(naming)--
+        +String name()
+    }
+    
+    BaseRepeater <|-- ZipArchive
+    Closeable <|-- ZipArchive
+    ByteSized <|-- ZipArchive
+    ZipArchive --> ZipArchive.AccessMode : "opens for access"
+    ZipArchive --> ZipEntry : "stores"
+    class ZipArchive
+    {
+        --
+        +ZipEntry entry(String pathname)
+        +Resource resource()
+        +ZipArchive zipArchive(Listener, File, AccessMode)
+        --(checks)--
+        +boolean isZipArchive(Listener, File)
+        --(collection)--
+        +void add(Collection<File> files, ProgressReporter)
+        +void add(Collection<File> files)
+        +List<ZipEntry> entries(Pattern compile)
+        --(filesystem)--
+        +File file()
+        --(functional)--
+        +VersionedObject<T> loadVersionedObject(ObjectReader, String entryName)
+        --(write)--
+        +ZipArchive save(String entryName, Resource)
+        +void save(ObjectWriter, String entryName, VersionedObject<T>)
+        +void saveEntry(String entryName, Callback<OutputStream> onWrite)
+    }
+    
+    BaseWritableResource <|-- ZipEntry
+    Closeable <|-- ZipEntry
+    class ZipEntry
+    {
+        --(constructors)--
+        +ZipEntry(FileSystem, Path)
+    }
+    
+@enduml
+

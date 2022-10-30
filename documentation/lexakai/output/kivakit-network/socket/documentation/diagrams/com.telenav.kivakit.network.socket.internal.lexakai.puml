@@ -1,0 +1,15 @@
+
+@startuml
+
+    !include lexakai.theme
+    
+    title "com.telenav.kivakit.network.socket.internal.lexakai"
+    
+    interface UmlDiagramIdentifier
+    UmlDiagramIdentifier <|-- DiagramSocketServer
+    interface DiagramSocketServer
+    {
+    }
+    
+@enduml
+

@@ -1,0 +1,631 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="1515.625px" preserveAspectRatio="none" style="width:1494px;height:1515px;background:#333333;" version="1.1" viewBox="0 0 1494 1515" width="1494.7917px" zoomAndPan="magnify"><defs/><g><rect fill="#48494B" height="41.2028" rx="8.3333" ry="8.3333" style="stroke:#545454;stroke-width:1.0416666666666667;" width="461.4583" x="509.375" y="2.0833"/><text fill="#C0C0C0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="20.8333" lengthAdjust="spacing" textLength="438.5417" x="520.8333" y="30.5583">com.telenav.kivakit.core.language.reflection</text><!--MD5=[7c5c88a606935469d5f89b0b5794816c]
+class Named--><rect codeLine="7" fill="#282828" height="48.055" id="Named" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="82.2917" x="221.3542" y="217.7653"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="82.2917" x="221.3542" y="217.7653"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="82.2917" x="221.3542" y="240.8203"/><rect codeLine="7" fill="none" height="48.055" id="Named" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="82.2917" x="221.3542" y="217.7653"/><ellipse cx="235.9375" cy="233.4595" fill="#008400" rx="10.4167" ry="10.4167" style="stroke:#239C23;stroke-width:1.0416666666666667;"/><path d="M233.3415,230.6213 L233.3415,229.0344 L238.7675,229.0344 L238.7675,230.6213 L236.9548,230.6213 L236.9548,236.5601 L238.7675,236.5601 L238.7675,238.147 L233.3415,238.147 L233.3415,236.5601 L235.1542,236.5601 L235.1542,230.6213 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-style="italic" font-weight="bold" lengthAdjust="spacing" textLength="44.7917" x="252.6042" y="238.1836">Named</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="222.3958" x2="302.6042" y1="249.1536" y2="249.1536"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="222.3958" x2="302.6042" y1="257.487" y2="257.487"/><!--MD5=[f58fd777f29c17413488bea9e7cfcca3]
+class Member--><rect codeLine="30" fill="#282828" height="376.473" id="Member" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="365.625" x="671.3542" y="53.7028"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="365.625" x="671.3542" y="53.7028"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="365.625" x="671.3542" y="76.7578"/><rect codeLine="30" fill="none" height="376.473" id="Member" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="365.625" x="671.3542" y="53.7028"/><ellipse cx="820.8333" cy="69.397" fill="#C8AC00" rx="10.4167" ry="10.4167" style="stroke:#D8BC00;stroke-width:1.0416666666666667;"/><path d="M820.4264,66.099 L819.578,69.8283 L821.2809,69.8283 Z M819.3278,64.4511 L821.5312,64.4511 L823.9909,73.5636 L822.1903,73.5636 L821.6288,71.3114 L819.2179,71.3114 L818.6686,73.5636 L816.8681,73.5636 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-style="italic" font-weight="bold" lengthAdjust="spacing" textLength="52.0833" x="843.75" y="74.1211">Member</text><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="672.3958" x2="1035.9375" y1="85.0911" y2="85.0911"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="672.3958" x2="1035.9375" y1="93.4245" y2="93.4245"/><ellipse cx="682.8125" cy="104.8828" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="229.1667" x="694.2708" y="111.794">T annotation(Class&lt;T&gt; annotationClass)</text><ellipse cx="682.8125" cy="124.6277" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="79.1667" x="694.2708" y="131.5389">int modifiers()</text><ellipse cx="682.8125" cy="144.3726" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="126.0417" x="694.2708" y="151.2838">Type&lt;?&gt; parentType()</text><ellipse cx="682.8125" cy="188.029" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="333.3333" x="694.2708" y="194.9402">boolean hasAnnotation(Class&lt;? extends Annotation&gt; type)</text><ellipse cx="682.8125" cy="207.7738" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="91.6667" x="694.2708" y="214.6851">boolean isFinal()</text><ellipse cx="682.8125" cy="227.5187" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="103.125" x="694.2708" y="234.4299">boolean isPrivate()</text><ellipse cx="682.8125" cy="247.2636" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="118.75" x="694.2708" y="254.1748">boolean isProtected()</text><ellipse cx="682.8125" cy="267.0085" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="98.9583" x="694.2708" y="273.9197">boolean isPublic()</text><ellipse cx="682.8125" cy="286.7533" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="95.8333" x="694.2708" y="293.6646">boolean isStatic()</text><ellipse cx="682.8125" cy="306.4982" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="116.6667" x="694.2708" y="313.4094">boolean isSynthetic()</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="672.3958" x2="827.6042" y1="170.8649" y2="170.8649"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="46.875" x="830.7292" y="174.6745">(checks)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="880.7292" x2="1035.9375" y1="170.8649" y2="170.8649"/><ellipse cx="682.8125" cy="350.1546" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="239.5833" x="694.2708" y="357.0658">ObjectList&lt;Type&lt;T&gt;&gt; arrayElementType()</text><ellipse cx="682.8125" cy="369.8995" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="270.8333" x="694.2708" y="376.8107">ObjectList&lt;Type&lt;T&gt;&gt; genericTypeParameters()</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="672.3958" x2="819.7917" y1="332.9905" y2="332.9905"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="62.5" x="822.9167" y="336.8001">(collection)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="888.5417" x2="1035.9375" y1="332.9905" y2="332.9905"/><ellipse cx="682.8125" cy="413.5559" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="75" x="694.2708" y="420.4671">String name()</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="672.3958" x2="826.0417" y1="396.3918" y2="396.3918"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="50" x="829.1667" y="400.2014">(naming)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="882.2917" x2="1035.9375" y1="396.3918" y2="396.3918"/><!--MD5=[d9427b671d7d049aff2d6f2fe36a13b3]
+class Field--><rect codeLine="10" fill="#282828" height="356.7281" id="Field" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="272.9167" x="554.1667" y="822.4528"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="272.9167" x="554.1667" y="822.4528"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="272.9167" x="554.1667" y="845.5078"/><rect codeLine="10" fill="none" height="356.7281" id="Field" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="272.9167" x="554.1667" y="822.4528"/><ellipse cx="667.7083" cy="838.147" fill="#0066CF" rx="10.4167" ry="10.4167" style="stroke:#0086EF;stroke-width:1.0416666666666667;"/><path d="M669.6187,842.572 Q669.1915,842.7917 668.7215,842.9016 Q668.2515,843.0115 667.7327,843.0115 Q665.8895,843.0115 664.919,841.7969 Q663.9486,840.5823 663.9486,838.2874 Q663.9486,835.9863 664.919,834.7717 Q665.8895,833.5571 667.7327,833.5571 Q668.2515,833.5571 668.7276,833.667 Q669.2037,833.7769 669.6187,833.9966 L669.6187,835.9985 Q669.1549,835.5713 668.7185,835.3729 Q668.2821,835.1746 667.8182,835.1746 Q666.8294,835.1746 666.3259,835.9589 Q665.8223,836.7432 665.8223,838.2874 Q665.8223,839.8254 666.3259,840.6097 Q666.8294,841.394 667.8182,841.394 Q668.2821,841.394 668.7185,841.1957 Q669.1549,840.9973 669.6187,840.5701 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="31.25" x="690.625" y="842.8711">Field</text><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="555.2083" x2="826.0417" y1="853.8411" y2="853.8411"/><polygon fill="#FFFF44" points="565.625,884.0027,569.7917,888.1694,565.625,892.336,561.4583,888.1694" style="stroke:#B38D22;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="193.75" x="577.0833" y="896.1222">Field(Object, java.lang.reflect.Field)</text><polygon fill="#FFFF44" points="565.625,903.7476,569.7917,907.9142,565.625,912.0809,561.4583,907.9142" style="stroke:#B38D22;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="208.3333" x="577.0833" y="915.8671">Field(Type&lt;?&gt;, java.lang.reflect.Field)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="555.2083" x2="646.875" y1="872.0469" y2="872.0469"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="81.25" x="650" y="875.8565">(constructors)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="734.375" x2="826.0417" y1="872.0469" y2="872.0469"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="555.2083" x2="826.0417" y1="925.5758" y2="925.5758"/><ellipse cx="565.625" cy="937.0341" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="102.0833" x="577.0833" y="943.9453">Object get(Object)</text><ellipse cx="565.625" cy="956.779" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="65.625" x="577.0833" y="963.6902">Object get()</text><ellipse cx="565.625" cy="976.5238" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="106.25" x="577.0833" y="983.4351">void object(Object)</text><ellipse cx="565.625" cy="996.2687" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="133.3333" x="577.0833" y="1003.1799">Object set(Object value)</text><ellipse cx="565.625" cy="1016.0136" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="86.4583" x="577.0833" y="1022.9248">Type&lt;?&gt; type()</text><ellipse cx="565.625" cy="1059.67" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="113.5417" x="577.0833" y="1066.5812">boolean isPrimitive()</text><ellipse cx="565.625" cy="1079.4149" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="118.75" x="577.0833" y="1086.3261">boolean isTransient()</text><ellipse cx="565.625" cy="1099.1597" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="106.25" x="577.0833" y="1106.071">boolean isVolatile()</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="555.2083" x2="664.0625" y1="1042.5059" y2="1042.5059"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="46.875" x="667.1875" y="1046.3155">(checks)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="717.1875" x2="826.0417" y1="1042.5059" y2="1042.5059"/><ellipse cx="565.625" cy="1142.8162" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="201.0417" x="577.0833" y="1149.7274">ReflectionProblem makeAccessible()</text><ellipse cx="565.625" cy="1162.561" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="240.625" x="577.0833" y="1169.4722">ReflectionProblem set(Object, Object value)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="555.2083" x2="653.125" y1="1125.6521" y2="1125.6521"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="68.75" x="656.25" y="1129.4617">(messaging)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="728.125" x2="826.0417" y1="1125.6521" y2="1125.6521"/><!--MD5=[ed17eb27918d6d975aac91b8ab0bf633]
+class Method--><rect codeLine="52" fill="#282828" height="317.2384" id="Method" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="308.3333" x="863.5417" y="841.7236"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="308.3333" x="863.5417" y="841.7236"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="308.3333" x="863.5417" y="864.7786"/><rect codeLine="52" fill="none" height="317.2384" id="Method" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="308.3333" x="863.5417" y="841.7236"/><ellipse cx="985.9375" cy="857.4178" fill="#0066CF" rx="10.4167" ry="10.4167" style="stroke:#0086EF;stroke-width:1.0416666666666667;"/><path d="M987.8479,861.8429 Q987.4207,862.0626 986.9507,862.1724 Q986.4807,862.2823 985.9619,862.2823 Q984.1187,862.2823 983.1482,861.0677 Q982.1777,859.8531 982.1777,857.5582 Q982.1777,855.2572 983.1482,854.0426 Q984.1187,852.828 985.9619,852.828 Q986.4807,852.828 986.9568,852.9378 Q987.4329,853.0477 987.8479,853.2674 L987.8479,855.2694 Q987.384,854.8421 986.9476,854.6438 Q986.5112,854.4454 986.0474,854.4454 Q985.0586,854.4454 984.5551,855.2297 Q984.0515,856.014 984.0515,857.5582 Q984.0515,859.0963 984.5551,859.8806 Q985.0586,860.6649 986.0474,860.6649 Q986.5112,860.6649 986.9476,860.4665 Q987.384,860.2681 987.8479,859.8409 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="48.9583" x="1008.8542" y="862.1419">Method</text><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="864.5833" x2="1170.8333" y1="873.112" y2="873.112"/><polygon fill="#FFFF44" points="875,903.2735,879.1667,907.4402,875,911.6069,870.8333,907.4402" style="stroke:#B38D22;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="140.625" x="886.4583" y="915.3931">Method(Type&lt;?&gt;, String)</text><polygon fill="#FFFF44" points="875,923.0184,879.1667,927.1851,875,931.3517,870.8333,927.1851" style="stroke:#B38D22;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="239.5833" x="886.4583" y="935.1379">Method(Type&lt;?&gt;, java.lang.reflect.Method)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="864.5833" x2="973.9583" y1="891.3177" y2="891.3177"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="81.25" x="977.0833" y="895.1274">(constructors)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="1061.4583" x2="1170.8333" y1="891.3177" y2="891.3177"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="864.5833" x2="1170.8333" y1="944.8466" y2="944.8466"/><ellipse cx="875" cy="956.3049" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="276.0417" x="886.4583" y="963.2161">Object invoke(Object target, Object... parameters)</text><ellipse cx="875" cy="976.0498" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="266.6667" x="886.4583" y="982.961">Method method(StackTraceElement stackFrame)</text><ellipse cx="875" cy="995.7947" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="186.4583" x="886.4583" y="1002.7059">java.lang.reflect.Method method()</text><ellipse cx="875" cy="1015.5396" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="164.5833" x="886.4583" y="1022.4508">Class&lt;?&gt;[] parameterTypes()</text><ellipse cx="875" cy="1035.2844" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="128.125" x="886.4583" y="1042.1956">Class&lt;?&gt; returnType()</text><ellipse cx="875" cy="1078.9408" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="100" x="886.4583" y="1085.8521">boolean isNative()</text><ellipse cx="875" cy="1098.6857" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="141.6667" x="886.4583" y="1105.5969">boolean isSynchronized()</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="864.5833" x2="991.1458" y1="1061.7767" y2="1061.7767"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="46.875" x="994.2708" y="1065.5863">(checks)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="1044.2708" x2="1170.8333" y1="1061.7767" y2="1061.7767"/><ellipse cx="875" cy="1142.3421" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="201.0417" x="886.4583" y="1149.2533">ReflectionProblem makeAccessible()</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="864.5833" x2="980.2083" y1="1125.178" y2="1125.178"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="68.75" x="983.3333" y="1128.9876">(messaging)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="1055.2083" x2="1170.8333" y1="1125.178" y2="1125.178"/><!--MD5=[08770b5ff02271603200ffd0f930842d]
+class Problem--><rect fill="#282828" height="48.055" id="Problem" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="90.625" x="1302.6042" y="217.7653"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="90.625" x="1302.6042" y="217.7653"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="90.625" x="1302.6042" y="240.8203"/><rect fill="none" height="48.055" id="Problem" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="90.625" x="1302.6042" y="217.7653"/><ellipse cx="1317.1875" cy="233.4595" fill="#0066CF" rx="10.4167" ry="10.4167" style="stroke:#0086EF;stroke-width:1.0416666666666667;"/><path d="M1319.0979,237.8845 Q1318.6707,238.1042 1318.2007,238.2141 Q1317.7307,238.324 1317.2119,238.324 Q1315.3687,238.324 1314.3982,237.1094 Q1313.4277,235.8948 1313.4277,233.5999 Q1313.4277,231.2988 1314.3982,230.0842 Q1315.3687,228.8696 1317.2119,228.8696 Q1317.7307,228.8696 1318.2068,228.9795 Q1318.6829,229.0894 1319.0979,229.3091 L1319.0979,231.311 Q1318.634,230.8838 1318.1976,230.6854 Q1317.7612,230.4871 1317.2974,230.4871 Q1316.3086,230.4871 1315.8051,231.2714 Q1315.3015,232.0557 1315.3015,233.5999 Q1315.3015,235.1379 1315.8051,235.9222 Q1316.3086,236.7065 1317.2974,236.7065 Q1317.7612,236.7065 1318.1976,236.5082 Q1318.634,236.3098 1319.0979,235.8826 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="53.125" x="1333.8542" y="238.1836">Problem</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="1303.6458" x2="1392.1875" y1="249.1536" y2="249.1536"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="1303.6458" x2="1392.1875" y1="257.487" y2="257.487"/><!--MD5=[b6a6000e8099fd4d34ac2c8186ed6737]
+class ReflectionProblem--><rect codeLine="71" fill="#282828" height="103.123" id="ReflectionProblem" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="279.1667" x="1208.3333" y="949.0153"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="279.1667" x="1208.3333" y="949.0153"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="279.1667" x="1208.3333" y="972.0703"/><rect codeLine="71" fill="none" height="103.123" id="ReflectionProblem" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="279.1667" x="1208.3333" y="949.0153"/><ellipse cx="1281.7708" cy="964.7095" fill="#0066CF" rx="10.4167" ry="10.4167" style="stroke:#0086EF;stroke-width:1.0416666666666667;"/><path d="M1283.6812,969.1345 Q1283.254,969.3542 1282.784,969.4641 Q1282.314,969.574 1281.7952,969.574 Q1279.952,969.574 1278.9815,968.3594 Q1278.0111,967.1448 1278.0111,964.8499 Q1278.0111,962.5488 1278.9815,961.3342 Q1279.952,960.1196 1281.7952,960.1196 Q1282.314,960.1196 1282.7901,960.2295 Q1283.2662,960.3394 1283.6812,960.5591 L1283.6812,962.561 Q1283.2174,962.1338 1282.781,961.9354 Q1282.3446,961.7371 1281.8807,961.7371 Q1280.8919,961.7371 1280.3884,962.5214 Q1279.8848,963.3057 1279.8848,964.8499 Q1279.8848,966.3879 1280.3884,967.1722 Q1280.8919,967.9565 1281.8807,967.9565 Q1282.3446,967.9565 1282.781,967.7582 Q1283.2174,967.5598 1283.6812,967.1326 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="117.7083" x="1304.6875" y="969.4336">ReflectionProblem</text><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="1209.375" x2="1486.4583" y1="980.4036" y2="980.4036"/><ellipse cx="1219.7917" cy="1015.7735" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="246.875" x="1231.25" y="1022.6847">ReflectionProblem(Exception, String, Object)</text><ellipse cx="1219.7917" cy="1035.5184" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="185.4167" x="1231.25" y="1042.4296">ReflectionProblem(String, Object)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="1209.375" x2="1304.1667" y1="998.6094" y2="998.6094"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="81.25" x="1307.2917" y="1002.419">(constructors)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="1391.6667" x2="1486.4583" y1="998.6094" y2="998.6094"/><!--MD5=[4296a1ab0576a383a1a509d52c22ebf0]
+class Type--><rect codeLine="79" fill="#282828" height="1016.6423" id="Type" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="510.4167" x="7.2917" y="492.2445"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="510.4167" x="7.2917" y="492.2445"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="510.4167" x="7.2917" y="515.2995"/><rect codeLine="79" fill="none" height="1016.6423" id="Type" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="510.4167" x="7.2917" y="492.2445"/><ellipse cx="230.2083" cy="507.9386" fill="#0066CF" rx="10.4167" ry="10.4167" style="stroke:#0086EF;stroke-width:1.0416666666666667;"/><path d="M232.1187,512.3637 Q231.6915,512.5834 231.2215,512.6933 Q230.7515,512.8031 230.2327,512.8031 Q228.3895,512.8031 227.419,511.5885 Q226.4486,510.3739 226.4486,508.079 Q226.4486,505.778 227.419,504.5634 Q228.3895,503.3488 230.2327,503.3488 Q230.7515,503.3488 231.2276,503.4587 Q231.7037,503.5685 232.1187,503.7882 L232.1187,505.7902 Q231.6549,505.363 231.2185,505.1646 Q230.7821,504.9662 230.3182,504.9662 Q229.3294,504.9662 228.8259,505.7505 Q228.3223,506.5348 228.3223,508.079 Q228.3223,509.6171 228.8259,510.4014 Q229.3294,511.1857 230.3182,511.1857 Q230.7821,511.1857 231.2185,510.9873 Q231.6549,510.789 232.1187,510.3617 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="31.25" x="253.125" y="512.6628">Type</text><rect fill="#333333" height="23.055" style="stroke:#A0A0A0;stroke-width:1.0416666666666667;stroke-dasharray:2.0,2.0;" width="16.6667" x="504.1667" y="489.1195"/><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="8.3333" x="508.3333" y="505.3711">T</text><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="8.3333" x2="516.6667" y1="523.6328" y2="523.6328"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="8.3333" x2="516.6667" y1="531.9661" y2="531.9661"/><ellipse cx="18.75" cy="543.4245" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="228.125" x="30.2083" y="550.3357">A annotation(Class&lt;A&gt; annotationType)</text><ellipse cx="18.75" cy="563.1694" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="242.7083" x="30.2083" y="570.0806">A[] annotations(Class&lt;A&gt; annotationType)</text><ellipse cx="18.75" cy="582.9142" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="129.1667" x="30.2083" y="589.8254">Class&lt;T&gt; asJavaType()</text><ellipse cx="18.75" cy="602.6591" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="303.125" x="30.2083" y="609.5703">Constructor&lt;T&gt; constructor(Class&lt;?&gt;... parameters)</text><ellipse cx="18.75" cy="622.404" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="151.0417" x="30.2083" y="629.3152">boolean declaresToString()</text><ellipse cx="18.75" cy="642.1488" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="150" x="30.2083" y="649.0601">Property field(String name)</text><ellipse cx="18.75" cy="661.8937" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="146.875" x="30.2083" y="668.8049">boolean is(Class&lt;?&gt; type)</text><ellipse cx="18.75" cy="681.6386" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="206.25" x="30.2083" y="688.5498">Method method(String methodName)</text><ellipse cx="18.75" cy="701.3835" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="175" x="30.2083" y="708.2947">Property property(String name)</text><ellipse cx="18.75" cy="721.1283" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="125" x="30.2083" y="728.0396">Type&lt;?&gt; superClass()</text><ellipse cx="18.75" cy="740.8732" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="221.875" x="30.2083" y="747.7844">ObjectSet&lt;Type&lt;?&gt;&gt; superInterfaces()</text><ellipse cx="18.75" cy="760.6181" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="125" x="30.2083" y="767.5293">Type&lt;T&gt; type(Object)</text><ellipse cx="18.75" cy="780.363" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="220.8333" x="30.2083" y="787.2742">Type&lt;T&gt; typeForClass(Class&lt;T&gt; type)</text><ellipse cx="18.75" cy="824.0194" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="286.4583" x="30.2083" y="830.9306">boolean hasAnnotation(Class&lt;A&gt; annotationType)</text><ellipse cx="18.75" cy="843.7642" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="223.9583" x="30.2083" y="850.6755">boolean isDescendantOf(Class&lt;?&gt; that)</text><ellipse cx="18.75" cy="863.5091" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="96.875" x="30.2083" y="870.4203">boolean isEnum()</text><ellipse cx="18.75" cy="883.254" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="225" x="30.2083" y="890.1652">boolean isInOrUnder(PackageReference)</text><ellipse cx="18.75" cy="902.9989" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="114.5833" x="30.2083" y="909.9101">boolean isInterface()</text><ellipse cx="18.75" cy="922.7437" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="113.5417" x="30.2083" y="929.6549">boolean isPrimitive()</text><ellipse cx="18.75" cy="942.4886" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="105.2083" x="30.2083" y="949.3998">boolean isSystem()</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="8.3333" x2="235.9375" y1="806.8553" y2="806.8553"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="46.875" x="239.0625" y="810.6649">(checks)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="289.0625" x2="516.6667" y1="806.8553" y2="806.8553"/><ellipse cx="18.75" cy="986.145" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="157.2917" x="30.2083" y="993.0562">ObjectList&lt;Field&gt; allFields()</text><ellipse cx="18.75" cy="1005.8899" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="188.5417" x="30.2083" y="1012.8011">ObjectList&lt;Method&gt; allMethods()</text><ellipse cx="18.75" cy="1025.6348" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="162.5" x="30.2083" y="1032.546">Type&lt;?&gt; arrayElementType()</text><ellipse cx="18.75" cy="1045.3796" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="169.7917" x="30.2083" y="1052.2909">Set&lt;Enum&lt;?&gt;&gt; enumValues()</text><ellipse cx="18.75" cy="1065.1245" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="232.2917" x="30.2083" y="1072.0357">ObjectList&lt;Field&gt; fields(Matcher&lt;Field&gt;)</text><ellipse cx="18.75" cy="1084.8694" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="192.7083" x="30.2083" y="1091.7806">ObjectList&lt;Type&lt;?&gt;&gt; interfaces()</text><ellipse cx="18.75" cy="1104.6143" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="96.875" x="30.2083" y="1111.5255">boolean isArray()</text><ellipse cx="18.75" cy="1124.3591" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="457.2917" x="30.2083" y="1131.2703">VariableMap&lt;Object&gt; properties(Object, PropertyFilter matcher, Object nullValue)</text><ellipse cx="18.75" cy="1144.104" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="360.4167" x="30.2083" y="1151.0152">VariableMap&lt;Object&gt; properties(Object, PropertyFilter matcher)</text><ellipse cx="18.75" cy="1163.8489" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="268.75" x="30.2083" y="1170.7601">ObjectList&lt;Property&gt; properties(PropertyFilter)</text><ellipse cx="18.75" cy="1183.5938" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="358.3333" x="30.2083" y="1190.505">ObjectList&lt;Field&gt; reachableFields(Object root, Matcher&lt;Field&gt;)</text><ellipse cx="18.75" cy="1203.3386" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="283.3333" x="30.2083" y="1210.2498">ObjectList&lt;Object&gt; reachableObjects(Object root)</text><ellipse cx="18.75" cy="1223.0835" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="379.1667" x="30.2083" y="1229.9947">ObjectList&lt;Object&gt; reachableObjects(Object root, Matcher&lt;Field&gt;)</text><ellipse cx="18.75" cy="1242.8284" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="478.125" x="30.2083" y="1249.7396">ObjectList&lt;Object&gt; reachableObjectsImplementing(Object root, Class&lt;?&gt; _interface)</text><ellipse cx="18.75" cy="1262.5732" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="212.5" x="30.2083" y="1269.4845">ObjectList&lt;Type&lt;?&gt;&gt; superClasses()</text><ellipse cx="18.75" cy="1282.3181" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="203.125" x="30.2083" y="1289.2293">ObjectList&lt;Type&lt;?&gt;&gt; superTypes()</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="8.3333" x2="228.125" y1="968.9809" y2="968.9809"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="62.5" x="231.25" y="972.7905">(collection)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="296.875" x2="516.6667" y1="968.9809" y2="968.9809"/><ellipse cx="18.75" cy="1325.9745" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="200" x="30.2083" y="1332.8857">T newInstance(Object... parameters)</text><ellipse cx="18.75" cy="1345.7194" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="87.5" x="30.2083" y="1352.6306">T newInstance()</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="8.3333" x2="235.4167" y1="1308.8104" y2="1308.8104"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="47.9167" x="238.5417" y="1312.62">(factory)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="289.5833" x2="516.6667" y1="1308.8104" y2="1308.8104"/><ellipse cx="18.75" cy="1389.3758" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="150" x="30.2083" y="1396.287">String fullyQualifiedName()</text><ellipse cx="18.75" cy="1409.1207" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="112.5" x="30.2083" y="1416.0319">String simpleName()</text><ellipse cx="18.75" cy="1428.8656" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="238.5417" x="30.2083" y="1435.7768">String simpleNameWithoutSyntheticSuffix()</text><ellipse cx="18.75" cy="1448.6104" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="234.375" x="30.2083" y="1455.5216">Type&lt;T&gt; typeForName(String className)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="8.3333" x2="234.375" y1="1372.2117" y2="1372.2117"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="50" x="237.5" y="1376.0213">(naming)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="290.625" x2="516.6667" y1="1372.2117" y2="1372.2117"/><ellipse cx="18.75" cy="1492.2668" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="181.25" x="30.2083" y="1499.1781">PackageReference packagePath()</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="8.3333" x2="242.7083" y1="1475.1027" y2="1475.1027"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="33.3333" x="245.8333" y="1478.9124">(path)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="282.2917" x2="516.6667" y1="1475.1027" y2="1475.1027"/><!--MD5=[3b360e2afcfac097802208a176dffaa1]
+reverse link Member to Field--><path codeLine="9" d="M809.2708,450.5361 C784.0625,567.1715 752.9479,711.1715 728.8958,822.4215 " fill="none" id="Member-backto-Field" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="802.2083,448.6507,813.7396,429.8278,816.4688,451.734,802.2083,448.6507" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[7b40c2bc8cc29c5569eb0750ad9f8894]
+reverse link Member to Method--><path codeLine="51" d="M899.0625,450.5361 C925.7396,573.9424 959.0208,727.9736 983.5417,841.4424 " fill="none" id="Member-backto-Method" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="891.8646,451.734,894.5938,429.8278,906.125,448.6507,891.8646,451.734" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[927aebd7d9bd2f462ad6531e0f2a71a2]
+reverse link Problem to ReflectionProblem--><path codeLine="70" d="M1347.9167,287.0153 C1347.9167,418.9424 1347.9167,809.057 1347.9167,948.9215 " fill="none" id="Problem-backto-ReflectionProblem" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="1340.625,286.6611,1347.9167,265.8278,1355.2083,286.6611,1340.625,286.6611" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[40b737c24bdb085de906e6a5d624bcc7]
+reverse link Named to Type--><path codeLine="78" d="M262.5,286.7757 C262.5,331.7965 262.5,407.0465 262.5,492.2028 " fill="none" id="Named-backto-Type" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="255.2083,286.6611,262.5,265.8278,269.7917,286.6611,255.2083,286.6611" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[668c514c3dd109958f461d7f2c1fe7da]
+@startuml
+
+    !include lexakai.theme
+    
+    title "com.telenav.kivakit.core.language.reflection"
+    
+    interface Named
+    
+    Member <|- - Field
+    class Field
+    {
+        - -(constructors)- -
+        #Field(Object, java.lang.reflect.Field)
+        #Field(Type<?>, java.lang.reflect.Field)
+        - -
+        +Object get(Object)
+        +Object get()
+        +void object(Object)
+        +Object set(Object value)
+        +Type<?> type()
+        - -(checks)- -
+        +boolean isPrimitive()
+        +boolean isTransient()
+        +boolean isVolatile()
+        - -(messaging)- -
+        +ReflectionProblem makeAccessible()
+        +ReflectionProblem set(Object, Object value)
+    }
+    
+    abstract class Member
+    {
+        - -
+        +T annotation(Class<T> annotationClass)
+        +int modifiers()
+        +Type<?> parentType()
+        - -(checks)- -
+        +boolean hasAnnotation(Class<? extends Annotation> type)
+        +boolean isFinal()
+        +boolean isPrivate()
+        +boolean isProtected()
+        +boolean isPublic()
+        +boolean isStatic()
+        +boolean isSynthetic()
+        - -(collection)- -
+        +ObjectList<Type<T>> arrayElementType()
+        +ObjectList<Type<T>> genericTypeParameters()
+        - -(naming)- -
+        +String name()
+    }
+    
+    Member <|- - Method
+    class Method
+    {
+        - -(constructors)- -
+        #Method(Type<?>, String)
+        #Method(Type<?>, java.lang.reflect.Method)
+        - -
+        +Object invoke(Object target, Object... parameters)
+        +Method method(StackTraceElement stackFrame)
+        +java.lang.reflect.Method method()
+        +Class<?>[] parameterTypes()
+        +Class<?> returnType()
+        - -(checks)- -
+        +boolean isNative()
+        +boolean isSynchronized()
+        - -(messaging)- -
+        +ReflectionProblem makeAccessible()
+    }
+    
+    Problem <|- - ReflectionProblem
+    class ReflectionProblem
+    {
+        - -(constructors)- -
+        +ReflectionProblem(Exception, String, Object)
+        +ReflectionProblem(String, Object)
+    }
+    
+    Named <|- - Type
+    class Type<T>
+    {
+        - -
+        +A annotation(Class<A> annotationType)
+        +A[] annotations(Class<A> annotationType)
+        +Class<T> asJavaType()
+        +Constructor<T> constructor(Class<?>... parameters)
+        +boolean declaresToString()
+        +Property field(String name)
+        +boolean is(Class<?> type)
+        +Method method(String methodName)
+        +Property property(String name)
+        +Type<?> superClass()
+        +ObjectSet<Type<?>> superInterfaces()
+        +Type<T> type(Object)
+        +Type<T> typeForClass(Class<T> type)
+        - -(checks)- -
+        +boolean hasAnnotation(Class<A> annotationType)
+        +boolean isDescendantOf(Class<?> that)
+        +boolean isEnum()
+        +boolean isInOrUnder(PackageReference)
+        +boolean isInterface()
+        +boolean isPrimitive()
+        +boolean isSystem()
+        - -(collection)- -
+        +ObjectList<Field> allFields()
+        +ObjectList<Method> allMethods()
+        +Type<?> arrayElementType()
+        +Set<Enum<?>> enumValues()
+        +ObjectList<Field> fields(Matcher<Field>)
+        +ObjectList<Type<?>> interfaces()
+        +boolean isArray()
+        +VariableMap<Object> properties(Object, PropertyFilter matcher, Object nullValue)
+        +VariableMap<Object> properties(Object, PropertyFilter matcher)
+        +ObjectList<Property> properties(PropertyFilter)
+        +ObjectList<Field> reachableFields(Object root, Matcher<Field>)
+        +ObjectList<Object> reachableObjects(Object root)
+        +ObjectList<Object> reachableObjects(Object root, Matcher<Field>)
+        +ObjectList<Object> reachableObjectsImplementing(Object root, Class<?> _interface)
+        +ObjectList<Type<?>> superClasses()
+        +ObjectList<Type<?>> superTypes()
+        - -(factory)- -
+        +T newInstance(Object... parameters)
+        +T newInstance()
+        - -(naming)- -
+        +String fullyQualifiedName()
+        +String simpleName()
+        +String simpleNameWithoutSyntheticSuffix()
+        +Type<T> typeForName(String className)
+        - -(path)- -
+        +PackageReference packagePath()
+    }
+    
+@enduml
+
+@startuml
+
+
+
+
+
+
+
+
+
+skinparam backgroundColor #333333
+
+
+
+
+
+
+skinparam  {
+    defaultFontName   "Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif"
+    defaultFontSize   12
+    defaultTextAlignment left
+    shadowing false
+    RoundCorner 10
+    TitleFontSize 18
+}
+
+skinparam defaultFontName       "Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif"
+skinparam defaultFontSize       12
+skinparam dpi                   100
+skinparam shadowing             false
+skinparam roundcorner           16
+skinparam ParticipantPadding    40
+skinparam BoxPadding            40
+skinparam Padding               3
+skinparam ArrowColor            #545454
+skinparam stereotype {
+    CBackgroundColor #0066cf
+    CBorderColor #0086ef
+    ABackgroundColor #C8Ac00
+    ABorderColor #D8Bc00
+    IBackgroundColor #008400
+    IBorderColor #239c23
+    EBackgroundColor #cf6300
+    EBorderColor #ef8300
+    NBackgroundColor #3380b9
+    NBorderColor #004d86
+}
+skinparam title {
+	FontColor	                 #c0c0c0
+ 	BorderColor                  #545454
+	FontSize	    	         20
+	BorderRoundCorner            16
+	BorderThickness 	         1
+	BackgroundColor              #48494b
+}
+
+
+skinparam legend {
+	BackgroundColor #303030
+	BorderColor #404040
+	FontColor #a0a0a0
+}
+
+	skinparam swimlane {
+	BorderColor #5e5e5e
+	BorderThickness 2
+	TitleBackgroundColor  #6d6d6d-#484848
+	TitleFontColor #303030
+}
+
+skinparam activity {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BarColor #00FF00
+	StartColor #0060a8
+	EndColor #0060a8
+	DiamondBackgroundColor #6d6d6d-#3a3a3a
+  	DiamondBorderColor #3a3a3a
+  	DiamondFontColor #fefefe
+}
+
+
+skinparam participant {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	ParticipantBorderThickness 2
+}
+
+
+skinparam actor {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam arrow {
+	Thickness 1.5
+	Color #545454
+	FontColor #a0a0a0
+    FontStyle bold
+    MessageAlignment center
+}
+
+
+
+skinparam sequence {
+	BorderColor #303030
+	TitleFontColor #303030
+	BackgroundColor #333333
+	StartColor #303030
+	EndColor #303030
+	BoxBackgroundColor #333333
+	BoxBorderColor #484848
+	BoxFontColor #484848
+	LifeLineBorderColor #484848
+	LifeLineBorderThickness 2
+	LifeLineBackgroundColor #3a3a3a
+	GroupBorderColor #484848
+	GroupFontColor #484848
+	GroupHeaderFontColor #0060a8
+	GroupBackgroundColor #484848
+	GroupHeaderBackgroundColor #333333
+	DividerBackgroundColor #484848
+    DividerBorderColor #484848
+    DividerBorderThickness 2
+    DividerFontColor #D8Bc00
+	ReferenceBackgroundColor #333333
+	ReferenceBorderColor #484848
+	ReferenceFontColor #fefefe
+	ReferenceHeaderBackgroundColor #484848
+}
+
+
+skinparam partition {
+	BorderColor #303030
+	FontColor #333333
+	BackgroundColor #333333
+}
+
+
+skinparam collections {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam control {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam entity {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam boundary {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam agent {
+	BackgroundColor #ff8000
+	BorderColor #ff9933
+	FontColor #484848
+}
+
+
+skinparam note {
+	BorderThickness 1
+	BackgroundColor #1b1b1a
+	BorderColor #5e5e5e
+	FontSize 11
+	FontColor #a0a0a0
+}
+
+
+skinparam artifact {
+	BorderThickness 10
+	BorderColor #5e5e5e
+	BackgroundColor #1b1b1a
+	FontColor #D8Bc00
+}
+
+
+skinparam component {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam interface {
+	BackgroundColor  #008400
+	BorderColor  #007F00
+	FontColor #484848
+}
+
+
+skinparam storage {
+	BackgroundColor #ff8000
+  	BorderColor #cc6600
+	FontColor #222222
+}
+
+
+skinparam node {
+	BackgroundColor #333333
+	BorderColor #333333
+	FontColor #C8Ac00
+}
+
+
+skinparam cloud {
+	BackgroundColor #484848-black
+	BorderColor #484848
+	FontColor #D8Bc00
+}
+
+
+skinparam database {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BackgroundColor  #333333
+}
+
+
+skinparam class {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	HeaderBackgroundColor #1b1b1a
+    BackgroundColor #282828
+    BorderColor #5e5e5e
+ 	StereotypeFontColor #a0a0a0
+    StereotypeFontStyle bold
+	BorderThickness 1
+	AttributeFontColor #D8Bc00
+	AttributeFontSize 11
+    FontColor #D8Bc00
+    FontStyle bold
+}
+
+
+skinparam object {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	StereotypeFontColor #484848
+	BorderThickness 1
+	AttributeFontColor #fefefe
+	AttributeFontSize 11
+}
+
+
+skinparam usecase {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BorderThickness 2
+	StereotypeFontColor #303030
+}
+
+
+skinparam rectangle {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BackgroundColor #333333
+	BorderThickness 2
+	StereotypeFontColor #303030
+}
+
+
+skinparam package {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BackgroundColor #333333
+	BorderThickness 2
+}
+
+
+skinparam folder {
+	BackgroundColor #6d6d6d
+  	BorderColor #ff8000
+	FontColor #ff8000
+	BorderThickness 2
+}
+
+
+skinparam frame {
+	BackgroundColor #6d6d6d
+  	BorderColor #0060a8
+	FontColor #0060a8
+	BorderThickness 2
+}
+
+
+skinparam state {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	StartColor #0060a8
+	EndColor #0060a8
+	AttributeFontColor #fefefe
+	AttributeFontSize 11
+}
+
+
+skinparam queue {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam card {
+	BackgroundColor #0060a8
+	BorderColor #004d86
+	FontColor $INFO_TEXT
+}
+
+
+skinparam file {
+	BackgroundColor #6d6d6d-#484848
+	BorderColor #0060a8
+	FontColor #fefefe
+}
+
+
+skinparam stack {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+    
+    title "com.telenav.kivakit.core.language.reflection"
+    
+    interface Named
+    
+    Member <|- - Field
+    class Field
+    {
+        - -(constructors)- -
+        #Field(Object, java.lang.reflect.Field)
+        #Field(Type<?>, java.lang.reflect.Field)
+        - -
+        +Object get(Object)
+        +Object get()
+        +void object(Object)
+        +Object set(Object value)
+        +Type<?> type()
+        - -(checks)- -
+        +boolean isPrimitive()
+        +boolean isTransient()
+        +boolean isVolatile()
+        - -(messaging)- -
+        +ReflectionProblem makeAccessible()
+        +ReflectionProblem set(Object, Object value)
+    }
+    
+    abstract class Member
+    {
+        - -
+        +T annotation(Class<T> annotationClass)
+        +int modifiers()
+        +Type<?> parentType()
+        - -(checks)- -
+        +boolean hasAnnotation(Class<? extends Annotation> type)
+        +boolean isFinal()
+        +boolean isPrivate()
+        +boolean isProtected()
+        +boolean isPublic()
+        +boolean isStatic()
+        +boolean isSynthetic()
+        - -(collection)- -
+        +ObjectList<Type<T>> arrayElementType()
+        +ObjectList<Type<T>> genericTypeParameters()
+        - -(naming)- -
+        +String name()
+    }
+    
+    Member <|- - Method
+    class Method
+    {
+        - -(constructors)- -
+        #Method(Type<?>, String)
+        #Method(Type<?>, java.lang.reflect.Method)
+        - -
+        +Object invoke(Object target, Object... parameters)
+        +Method method(StackTraceElement stackFrame)
+        +java.lang.reflect.Method method()
+        +Class<?>[] parameterTypes()
+        +Class<?> returnType()
+        - -(checks)- -
+        +boolean isNative()
+        +boolean isSynchronized()
+        - -(messaging)- -
+        +ReflectionProblem makeAccessible()
+    }
+    
+    Problem <|- - ReflectionProblem
+    class ReflectionProblem
+    {
+        - -(constructors)- -
+        +ReflectionProblem(Exception, String, Object)
+        +ReflectionProblem(String, Object)
+    }
+    
+    Named <|- - Type
+    class Type<T>
+    {
+        - -
+        +A annotation(Class<A> annotationType)
+        +A[] annotations(Class<A> annotationType)
+        +Class<T> asJavaType()
+        +Constructor<T> constructor(Class<?>... parameters)
+        +boolean declaresToString()
+        +Property field(String name)
+        +boolean is(Class<?> type)
+        +Method method(String methodName)
+        +Property property(String name)
+        +Type<?> superClass()
+        +ObjectSet<Type<?>> superInterfaces()
+        +Type<T> type(Object)
+        +Type<T> typeForClass(Class<T> type)
+        - -(checks)- -
+        +boolean hasAnnotation(Class<A> annotationType)
+        +boolean isDescendantOf(Class<?> that)
+        +boolean isEnum()
+        +boolean isInOrUnder(PackageReference)
+        +boolean isInterface()
+        +boolean isPrimitive()
+        +boolean isSystem()
+        - -(collection)- -
+        +ObjectList<Field> allFields()
+        +ObjectList<Method> allMethods()
+        +Type<?> arrayElementType()
+        +Set<Enum<?>> enumValues()
+        +ObjectList<Field> fields(Matcher<Field>)
+        +ObjectList<Type<?>> interfaces()
+        +boolean isArray()
+        +VariableMap<Object> properties(Object, PropertyFilter matcher, Object nullValue)
+        +VariableMap<Object> properties(Object, PropertyFilter matcher)
+        +ObjectList<Property> properties(PropertyFilter)
+        +ObjectList<Field> reachableFields(Object root, Matcher<Field>)
+        +ObjectList<Object> reachableObjects(Object root)
+        +ObjectList<Object> reachableObjects(Object root, Matcher<Field>)
+        +ObjectList<Object> reachableObjectsImplementing(Object root, Class<?> _interface)
+        +ObjectList<Type<?>> superClasses()
+        +ObjectList<Type<?>> superTypes()
+        - -(factory)- -
+        +T newInstance(Object... parameters)
+        +T newInstance()
+        - -(naming)- -
+        +String fullyQualifiedName()
+        +String simpleName()
+        +String simpleNameWithoutSyntheticSuffix()
+        +Type<T> typeForName(String className)
+        - -(path)- -
+        +PackageReference packagePath()
+    }
+    
+@enduml
+
+PlantUML version 1.2021.01(Tue Feb 02 00:55:08 MST 2021)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Default Encoding: UTF-8
+Language: en
+Country: US
+--></g></svg>

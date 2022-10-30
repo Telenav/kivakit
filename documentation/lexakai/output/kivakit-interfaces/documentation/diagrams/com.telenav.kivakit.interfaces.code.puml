@@ -1,0 +1,32 @@
+
+@startuml
+
+    !include lexakai.theme
+    
+    title "com.telenav.kivakit.interfaces.code"
+    
+    interface Consumer<Value>
+    Consumer <|-- Callback
+    interface Callback<Value>
+    {
+        --
+        +void call(Value)
+    }
+    
+    interface Code<Value>
+    {
+        --(lifecycle)--
+        +Value run()
+    }
+    
+    interface TripwireTrait
+    {
+        --
+        +boolean tripwireTripEvery(int every)
+        +void tripwireTripped(int count)
+        --(lifecycle)--
+        +void tripwireReset()
+    }
+    
+@enduml
+

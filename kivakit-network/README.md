@@ -38,16 +38,11 @@ This project contains core networking projects including resources for common pr
 
 ### Code Quality <a name = "code-quality"></a> &nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/ruler-32.png" srcset="https://telenav.github.io/telenav-assets/images/icons/ruler-32-2x.png 2x"/>
 
-&nbsp; <img src="https://telenav.github.io/telenav-assets/images/meters/meter-80-96.png" srcset="https://telenav.github.io/telenav-assets/images/meters/meter-80-96-2x.png 2x"/>
- &nbsp; &nbsp; [**kivakit-network-core**](core/README.md)  
-&nbsp; <img src="https://telenav.github.io/telenav-assets/images/meters/meter-60-96.png" srcset="https://telenav.github.io/telenav-assets/images/meters/meter-60-96-2x.png 2x"/>
- &nbsp; &nbsp; [**kivakit-network-email**](email/README.md)  
-&nbsp; <img src="https://telenav.github.io/telenav-assets/images/meters/meter-70-96.png" srcset="https://telenav.github.io/telenav-assets/images/meters/meter-70-96-2x.png 2x"/>
- &nbsp; &nbsp; [**kivakit-network-ftp**](ftp/README.md)  
-&nbsp; <img src="https://telenav.github.io/telenav-assets/images/meters/meter-70-96.png" srcset="https://telenav.github.io/telenav-assets/images/meters/meter-70-96-2x.png 2x"/>
- &nbsp; &nbsp; [**kivakit-network-http**](http/README.md)  
-&nbsp; <img src="https://telenav.github.io/telenav-assets/images/meters/meter-80-96.png" srcset="https://telenav.github.io/telenav-assets/images/meters/meter-80-96-2x.png 2x"/>
- &nbsp; &nbsp; [**kivakit-network-socket**](socket/README.md)
+&nbsp; <img src="https://telenav.github.io/telenav-assets/images/meters/meter-80-96.png" srcset="https://telenav.github.io/telenav-assets/images/meters/meter-80-96-2x.png 2x"/> &nbsp; &nbsp; [**kivakit-network-core**](core/README.md)  
+&nbsp; <img src="https://telenav.github.io/telenav-assets/images/meters/meter-60-96.png" srcset="https://telenav.github.io/telenav-assets/images/meters/meter-60-96-2x.png 2x"/> &nbsp; &nbsp; [**kivakit-network-email**](email/README.md)  
+&nbsp; <img src="https://telenav.github.io/telenav-assets/images/meters/meter-70-96.png" srcset="https://telenav.github.io/telenav-assets/images/meters/meter-70-96-2x.png 2x"/> &nbsp; &nbsp; [**kivakit-network-ftp**](ftp/README.md)  
+&nbsp; <img src="https://telenav.github.io/telenav-assets/images/meters/meter-70-96.png" srcset="https://telenav.github.io/telenav-assets/images/meters/meter-70-96-2x.png 2x"/> &nbsp; &nbsp; [**kivakit-network-http**](http/README.md)  
+&nbsp; <img src="https://telenav.github.io/telenav-assets/images/meters/meter-80-96.png" srcset="https://telenav.github.io/telenav-assets/images/meters/meter-80-96-2x.png 2x"/> &nbsp; &nbsp; [**kivakit-network-socket**](socket/README.md)
 
 [//]: # (start-user-text)
 

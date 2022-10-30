@@ -1,0 +1,129 @@
+
+@startuml
+
+    !include lexakai.theme
+    
+    title "Hosts, Ports and Protocols"
+    
+    abstract BaseRepeater
+    
+    interface AsString
+    interface Named
+    interface Comparable
+    interface StringFormattable
+    
+    BaseRepeater <|-- Host
+    Named <|-- Host
+    StringFormattable <|-- Host
+    Comparable <|-- Host
+    class Host
+    {
+        --(constructors)--
+        #Host()
+        #Host(String)
+        #Host(String, String)
+        +Host(InetAddress, String)
+        +Host(InetAddress, String, String)
+        --
+        +InetAddress address()
+        +String description()
+        --(checks)--
+        +boolean isLocal()
+        +boolean isResolvable()
+        --(extension points)--
+        #InetAddress onResolveAddress()
+        --(naming)--
+        +String canonicalName()
+        +String dnsName()
+        --(network)--
+        +Port ftp(int port)
+        +Port ftp()
+        +Port hazelcast(int port)
+        +Port hazelcast()
+        +SwitchParser.Builder<Host> hostSwitchParser(Listener, String name, String description)
+        +Port http(int port)
+        +Port http()
+        +Port https()
+        +Port https(int port)
+        +Port memcache()
+        +Port memcachePort(int port)
+        +Port mongo(int port)
+        +Port mongo()
+        +Port mysql(int port)
+        +Port mysql()
+        +Host nullHost()
+        +Host parseHost(Listener, String name)
+        +Host parseHost(Listener, String name, String description)
+        +Port port(Protocol, int number)
+        +Port port(int number)
+        +Port sftp()
+        +Port sftp(int port)
+    }
+    
+    Host <|-- LocalHost
+    class LocalHost
+    {
+        --(constructors)--
+        #LocalHost()
+        --
+        +String hostname()
+        --(network)--
+        +LocalHost localhost()
+    }
+    
+    Host <|-- Loopback
+    class Loopback
+    {
+        --(constructors)--
+        #Loopback()
+        --
+        +Loopback loopback()
+    }
+    
+    AsString <|-- Port
+    Port o-- Host
+    Port o-- Protocol : "speaks"
+    class Port
+    {
+        --(constructors)--
+        #Port()
+        +Port(Host, int)
+        +Port(Host, int, Protocol)
+        +Port(InetSocketAddress, Protocol, String)
+        --
+        +Socket socket()
+        --(checks)--
+        +boolean isAvailable()
+        --(conversion)--
+        +InetSocketAddress asInetSocketAddress()
+        --(network)--
+        +URI asUri(Listener)
+        +Protocol defaultProtocol()
+        +Host host()
+        +boolean isHttp()
+        +Port parsePort(Listener, String port)
+        +NetworkPath path(Listener, String path)
+        +Port port(URI)
+        +int portNumber()
+        +SwitchParser.Builder<Port> portSwitchParser(Listener, String name, String description)
+        +Protocol protocol()
+        +Port protocol(Protocol)
+        +Port resolve()
+        --(read)--
+        +InputStream open(Listener)
+    }
+    
+    Name <|-- Protocol
+    class Protocol
+    {
+        --(constructors)--
+        #Protocol()
+        +Protocol(String, int)
+        --(network)--
+        +int defaultPort()
+        +Protocol defaultProtocolForPort(int port)
+        +Protocol parseProtocol(Listener, String name)
+    }
+    
+@enduml
+

@@ -1,0 +1,81 @@
+
+@startuml
+
+    !include lexakai.theme
+    
+    title "com.telenav.kivakit.serialization.gson.factory"
+    
+    abstract BaseGsonFactory
+    abstract BaseRepeater
+    
+    interface GsonFactory
+    
+    BaseRepeater <|-- BaseGsonFactory
+    GsonFactory <|-- BaseGsonFactory
+    abstract class BaseGsonFactory
+    {
+        --(constructors)--
+        #BaseGsonFactory(Listener)
+    }
+    
+    interface Repeater
+    Repeater <|-- GsonFactory
+    interface GsonFactory
+    {
+        --
+        +Gson gson()
+        --(factory)--
+        +GsonFactory addConvertingSerializer(Class<T> type, StringConverter<T>)
+        +GsonFactory addInstanceCreator(Class<T> type, InstanceCreator<T>)
+        +GsonFactory addJsonDeserializer(Class<T> type, JsonDeserializer<T>)
+        +GsonFactory addJsonSerializer(Class<T> type, JsonSerializer<T>)
+        +GsonFactory addJsonSerializerDeserializer(Class<T> type, JsonSerializerDeserializer<T>)
+        +GsonFactory addTypeAdapterFactory(TypeAdapterFactory)
+        +GsonFactory dateFormat(String dateFormat)
+        +GsonFactory exclusionStrategy(ExclusionStrategy)
+        +GsonFactory htmlEscaping(boolean escape)
+        +GsonFactory ignoreClass(Class<?> type)
+        +GsonFactory ignoreField(String fieldName)
+        +GsonFactory prettyPrinting(boolean prettyPrinting)
+        +GsonFactory requireExposeAnnotation(boolean require)
+        +GsonFactory serializeNulls(boolean serializeNulls)
+        +GsonFactory version(Version)
+    }
+    
+    interface GsonFactorySource
+    {
+        --(factory)--
+        +GsonFactory gsonFactory()
+    }
+    
+    BaseGsonFactory.GsonSettings --> GsonBuilder : "creates"
+    class BaseGsonFactory.GsonSettings
+    {
+        --(constructors)--
+        +GsonSettings()
+        --(building)--
+        +GsonBuilder builder()
+    }
+    
+    interface JsonDeserializer<T>
+    interface JsonSerializer<T>
+    JsonSerializer <|-- JsonSerializerDeserializer
+    JsonDeserializer <|-- JsonSerializerDeserializer
+    interface JsonSerializerDeserializer<T>
+    {
+        --
+        +PropertyType deserializeProperty(String propertyName, JsonObject, JsonDeserializationContext, Class<PropertyType>)
+        --(collection)--
+        +void addToJson(JsonObject, String propertyName, String propertyValue)
+        +void addToJson(JsonObject, String propertyName, Number propertyValue)
+    }
+    
+    BaseGsonFactory <|-- KivaKitCoreGsonFactory
+    class KivaKitCoreGsonFactory
+    {
+        --(constructors)--
+        +KivaKitCoreGsonFactory(Listener)
+    }
+    
+@enduml
+

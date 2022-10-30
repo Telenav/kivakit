@@ -210,9 +210,8 @@ public class Nanoseconds implements
     @Override
     public boolean equals(Object object)
     {
-        if (object instanceof Nanoseconds)
+        if (object instanceof Nanoseconds that)
         {
-            var that = (Nanoseconds) object;
             return this.seconds() == that.seconds() && this.nanoseconds() == that.nanoseconds();
         }
         return false;

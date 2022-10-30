@@ -183,9 +183,8 @@ public abstract class Project extends BaseRepeater implements
     @Override
     public final boolean equals(Object object)
     {
-        if (object instanceof Project)
+        if (object instanceof Project that)
         {
-            var that = (Project) object;
             return getClass().equals(that.getClass());
         }
         return false;

@@ -338,9 +338,8 @@ public class Type<T> implements Named
     @Override
     public boolean equals(Object object)
     {
-        if (object instanceof Type<?>)
+        if (object instanceof Type<?> that)
         {
-            Type<?> that = (Type<?>) object;
             return type.equals(that.type);
         }
         return false;

@@ -1,0 +1,29 @@
+
+@startuml
+
+    !include lexakai.theme
+    
+    title "diagram-naming"
+    
+    interface Nameable
+    Nameable <|-- NamedObject
+    interface NamedObject
+    {
+        --(naming)--
+        +boolean hasSyntheticName()
+        +boolean isSyntheticName(String name)
+        +String objectName()
+        +void objectName(String name)
+        +String syntheticName(Object)
+    }
+    
+    interface Named
+    interface Valued
+    Named <|-- NamedValue
+    Valued <|-- NamedValue
+    interface NamedValue<Value>
+    {
+    }
+    
+@enduml
+

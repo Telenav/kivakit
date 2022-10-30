@@ -10,8 +10,6 @@ import org.jetbrains.annotations.NotNull;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
-import static com.telenav.kivakit.core.collections.set.ObjectSet.set;
-
 @SuppressWarnings("unused")
 public abstract class BaseResourceList<T extends Resource> extends ObjectList<T>
 {

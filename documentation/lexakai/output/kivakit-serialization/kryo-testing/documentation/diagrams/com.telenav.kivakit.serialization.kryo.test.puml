@@ -1,0 +1,23 @@
+
+@startuml
+
+    !include lexakai.theme
+    
+    title "com.telenav.kivakit.serialization.kryo.test"
+    
+    UnitTest <|-- KryoUnitTest
+    abstract class KryoUnitTest
+    {
+        --
+        #KryoTypes kryoTypes()
+        --(serialization)--
+        #SerializationSession session()
+        #SerializationSessionFactory sessionFactory()
+        #void testSerialization(Object)
+        #void testSerialization(T object, Version)
+        #void testSessionSerialization(Object, Version)
+        #void testSessionSerialization(Object)
+    }
+    
+@enduml
+

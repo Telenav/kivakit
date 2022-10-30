@@ -1,0 +1,33 @@
+
+@startuml
+
+    !include lexakai.theme
+    
+    title "com.telenav.kivakit.interfaces.naming"
+    
+    interface Nameable
+    {
+        --(naming)--
+        +void assignName(String name)
+    }
+    
+    interface Named
+    {
+        --(naming)--
+        +String name()
+    }
+    
+    interface Nameable
+    Nameable <|-- NamedObject
+    interface NamedObject
+    {
+        --(naming)--
+        +boolean hasSyntheticName()
+        +boolean isSyntheticName(String name)
+        +String objectName()
+        +void objectName(String name)
+        +String syntheticName(Object)
+    }
+    
+@enduml
+

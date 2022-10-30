@@ -1,0 +1,45 @@
+
+@startuml
+
+    !include lexakai.theme
+    
+    title "com.telenav.kivakit.conversion.internal.lexakai"
+    
+    interface UmlDiagramIdentifier
+    UmlDiagramIdentifier <|-- DiagramConversion
+    interface DiagramConversion
+    {
+    }
+    
+    interface UmlDiagramIdentifier
+    UmlDiagramIdentifier <|-- DiagramConversionLanguage
+    interface DiagramConversionLanguage
+    {
+    }
+    
+    interface UmlDiagramIdentifier
+    UmlDiagramIdentifier <|-- DiagramConversionOther
+    interface DiagramConversionOther
+    {
+    }
+    
+    interface UmlDiagramIdentifier
+    UmlDiagramIdentifier <|-- DiagramConversionPrimitive
+    interface DiagramConversionPrimitive
+    {
+    }
+    
+    interface UmlDiagramIdentifier
+    UmlDiagramIdentifier <|-- DiagramConversionTime
+    interface DiagramConversionTime
+    {
+    }
+    
+    interface UmlDiagramIdentifier
+    UmlDiagramIdentifier <|-- DiagramConversionValue
+    interface DiagramConversionValue
+    {
+    }
+    
+@enduml
+

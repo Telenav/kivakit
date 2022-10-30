@@ -118,9 +118,8 @@ public class SettingsObject implements RegistryTrait
         @Override
         public boolean equals(Object object)
         {
-            if (object instanceof SettingsObjectIdentifier)
+            if (object instanceof SettingsObjectIdentifier that)
             {
-                var that = (SettingsObjectIdentifier) object;
                 return type.equals(that.type) && instance.equals(that.instance);
             }
             return false;
@@ -193,9 +192,8 @@ public class SettingsObject implements RegistryTrait
     @Override
     public boolean equals(Object object)
     {
-        if (object instanceof SettingsObject)
+        if (object instanceof SettingsObject that)
         {
-            SettingsObject that = (SettingsObject) object;
             return this.object == that.object;
         }
         return false;

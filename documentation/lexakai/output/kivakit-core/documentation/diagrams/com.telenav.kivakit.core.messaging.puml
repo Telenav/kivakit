@@ -1,0 +1,219 @@
+
+@startuml
+
+    !include lexakai.theme
+    
+    title "com.telenav.kivakit.core.messaging"
+    
+    interface MessageTransceiver
+    
+    interface MessageTransceiver
+    MessageTransceiver <|-- Broadcaster
+    Broadcaster "1" --> "*" Listener : "transmits"
+    interface Broadcaster
+    {
+        --
+        +void onTransmitted(Transmittable message)
+        +void onTransmitting(Transmittable message)
+        +void silence()
+        --(messaging)--
+        +void addListener(Listener)
+        +void addListener(Listener, Filter<Transmittable>)
+        +void clearListeners()
+        +void copyListenersFrom(Broadcaster that)
+        +boolean hasListeners()
+        +List<Listener> listeners()
+        +void messageSource(Broadcaster parent)
+        +Broadcaster messageSource()
+        +void removeListener(Listener)
+        +T transmit(T message)
+        +void transmitAll(Iterable<Transmittable> messages)
+    }
+    
+    interface Repeater
+    interface ResultTrait
+    Repeater <|-- CheckTrait
+    ResultTrait <|-- CheckTrait
+    interface CheckTrait
+    {
+        --
+        +Result<T> check(String message, Code<Result<T>>)
+        +Result<Boolean> check(Runnable code)
+        +Result<Boolean> check(String message, Runnable code)
+        +Result<T> check(String message, Matcher<T> postCondition, Code<Result<T>>)
+    }
+    
+    MessageTransceiver <|-- Debug
+    class Debug
+    {
+        --(constructors)--
+        +Debug(Transceiver)
+        --
+        +void debugOff()
+        +void debugOn()
+        +void unregisterDebug(Class<?> type)
+        --(lookup)--
+        +Debug registerDebug(Class<?> type, Transceiver)
+        --(messaging)--
+        +Listener listener()
+    }
+    
+    interface MessageTransceiver
+    MessageTransceiver <|-- Listener
+    interface Listener
+    {
+        --(messaging)--
+        +Listener consoleListener()
+        +T listenTo(T broadcaster, MessageFilter)
+        +T listenTo(T broadcaster)
+        +Listener nullListener()
+        +void onMessage(Message)
+        +Listener throwingListener()
+    }
+    
+    interface Named
+    interface Transmittable
+    interface Triaged
+    Transmittable <|-- Message
+    Triaged <|-- Message
+    Named <|-- Message
+    Message --> Importance : "message importance"
+    Message --> Message.OperationStatus : "operation status"
+    Message --> Severity : "message severity"
+    Message --> Message.Status : "message status"
+    interface Message
+    {
+        --
+        +Throwable cause()
+        +CodeContext context()
+        +String description()
+        +String formatted(MessageFormat...)
+        +String formatted()
+        +Importance importance()
+        +String text()
+        +^Severity severity()
+        --(command line parsing)--
+        +Object[] arguments()
+        --(conversion)--
+        +RuntimeException asException()
+        --(messaging)--
+        +Message cause(Throwable cause)
+        +String escapeMessageText(String text)
+        +OperationStatus operationStatus()
+        +Message parseMessageName(Listener, String name)
+        +StackTrace stackTrace()
+        +Status status()
+        --(status)--
+        +boolean isFailure()
+        --(time)--
+        +Time created()
+        +Frequency maximumFrequency()
+    }
+    
+    interface Filter
+    Filter <|-- MessageFilter
+    interface MessageFilter
+    {
+        --(filtering)--
+        +boolean accepts(Message)
+    }
+    
+    enum MessageFormat
+    {
+        FORMATTED
+        UNFORMATTED
+        WITHOUT_EXCEPTION
+        WITH_EXCEPTION
+    }
+    
+    interface Transceiver
+    Transceiver <|-- MessageTransceiver
+    interface MessageTransceiver
+    {
+        --
+        +Debug debug()
+        +T fatal(String text, Object... arguments)
+        +T fatal(Throwable cause, String text, Object... arguments)
+        +Glitch glitch(Throwable cause, String text, Object... arguments)
+        +Glitch glitch(String text, Object... arguments)
+        +void ifDebug(Runnable code)
+        --(checks)--
+        +boolean isDebugOn()
+        --(functional)--
+        +OperationHalted halted(String text, Object... arguments)
+        +OperationHalted halted(Throwable cause, String text, Object... arguments)
+        --(messaging)--
+        +Announcement announce(String text, Object... arguments)
+        +Information information(String text, Object... arguments)
+        +Narration narrate(String text, Object... arguments)
+        +Problem problem(Throwable cause, String text, Object... arguments)
+        +Problem problem(String text, Object... arguments)
+        +T problemIfNull(T value, String text, Object... arguments)
+        +Quibble quibble(String text, Object... arguments)
+        +Quibble quibble(Throwable cause, String text, Object... arguments)
+        +T quibbleIfNull(T value, String text, Object... arguments)
+        +Trace trace(Throwable cause, String text, Object... arguments)
+        +Trace trace(String text, Object... arguments)
+        +Warning warning(String text, Object... arguments)
+        +Warning warning(Throwable cause, String text, Object... arguments)
+        +T warningIfNull(T value, String text, Object... arguments)
+    }
+    
+    class Messages
+    {
+        --(messaging)--
+        +Message messageForType(Class<? extends Message> type)
+        +StringMap<Message> messages()
+        +MessageType newMessage(Listener, Class<MessageType>, String message, Object[] arguments)
+        +Message parseMessageType(Listener, String typeName)
+    }
+    
+    enum Message.OperationStatus
+    {
+        FAILED
+        HALTED
+        NOT_APPLICABLE
+        RUNNING
+        STARTED
+        SUCCEEDED
+    }
+    
+    interface Broadcaster
+    interface Listener
+    interface Receiver
+    Listener <|-- Repeater
+    Broadcaster <|-- Repeater
+    Receiver <|-- Repeater
+    interface Repeater
+    {
+        --
+        +boolean ok()
+        --(checks)--
+        +boolean isRepeating()
+    }
+    
+    enum Message.Status
+    {
+        COMPLETED
+        FAILED
+        NOT_APPLICABLE
+        PROBLEM
+        RESULT_COMPROMISED
+        RESULT_INCOMPLETE
+        SUCCEEDED
+    }
+    
+    interface Receiver
+    interface Transmitter
+    Receiver <|-- Transceiver
+    Transmitter <|-- Transceiver
+    Transceiver --> Debug : "delegates to"
+    note right of Transceiver
+        Functionality common to transmitters and receivers
+    endnote
+    interface Transceiver
+    {
+    }
+    
+@enduml
+

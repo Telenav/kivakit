@@ -23,8 +23,6 @@ import com.telenav.kivakit.internal.testing.CoreUnitTest;
 import com.telenav.kivakit.core.value.count.MutableCount;
 import org.junit.Test;
 
-import static com.telenav.kivakit.core.ensure.Ensure.ensureEqual;
-
 public class BroadcasterTest extends CoreUnitTest
 {
     @Test

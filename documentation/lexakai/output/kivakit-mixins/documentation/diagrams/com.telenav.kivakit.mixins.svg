@@ -1,0 +1,438 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="379.1667px" preserveAspectRatio="none" style="width:1479px;height:379px;background:#333333;" version="1.1" viewBox="0 0 1479 379" width="1479.1667px" zoomAndPan="magnify"><defs/><g><rect fill="#48494B" height="41.2028" rx="8.3333" ry="8.3333" style="stroke:#545454;stroke-width:1.0416666666666667;" width="289.5833" x="587.5" y="2.0833"/><text fill="#C0C0C0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="20.8333" lengthAdjust="spacing" textLength="266.6667" x="598.9583" y="30.5583">com.telenav.kivakit.mixins</text><!--MD5=[0f97767596f60935b41506657ed46bd3]
+cluster Mixins--><polygon fill="#333333" points="1159.375,52.6611,1214.5833,52.6611,1221.875,79.8828,1461.4583,79.8828,1461.4583,193.2861,1159.375,193.2861,1159.375,52.6611" style="stroke:#333333;stroke-width:2.0833333333333335;"/><line style="stroke:#333333;stroke-width:2.0833333333333335;" x1="1159.375" x2="1221.875" y1="79.8828" y2="79.8828"/><text fill="#C8AC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="42.7083" x="1166.6667" y="69.9544">Mixins</text><!--MD5=[16dd33acffc6328b85b6af308f4a2036]
+class Mixins.MixinKey--><rect codeLine="25" fill="#282828" height="83.3781" id="Mixins.MixinKey" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="268.75" x="1176.0417" y="93.2861"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="268.75" x="1176.0417" y="93.2861"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="268.75" x="1176.0417" y="116.3411"/><rect codeLine="25" fill="none" height="83.3781" id="Mixins.MixinKey" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="268.75" x="1176.0417" y="93.2861"/><ellipse cx="1273.4375" cy="108.9803" fill="#0066CF" rx="10.4167" ry="10.4167" style="stroke:#0086EF;stroke-width:1.0416666666666667;"/><path d="M1275.3479,113.4054 Q1274.9207,113.6251 1274.4507,113.7349 Q1273.9807,113.8448 1273.4619,113.8448 Q1271.6187,113.8448 1270.6482,112.6302 Q1269.6777,111.4156 1269.6777,109.1207 Q1269.6777,106.8197 1270.6482,105.6051 Q1271.6187,104.3905 1273.4619,104.3905 Q1273.9807,104.3905 1274.4568,104.5003 Q1274.9329,104.6102 1275.3479,104.8299 L1275.3479,106.8319 Q1274.884,106.4046 1274.4476,106.2063 Q1274.0112,106.0079 1273.5474,106.0079 Q1272.5586,106.0079 1272.0551,106.7922 Q1271.5515,107.5765 1271.5515,109.1207 Q1271.5515,110.6588 1272.0551,111.4431 Q1272.5586,112.2274 1273.5474,112.2274 Q1274.0112,112.2274 1274.4476,112.029 Q1274.884,111.8306 1275.3479,111.4034 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="59.375" x="1296.3542" y="113.7044">MixinKey</text><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="1177.0833" x2="1443.75" y1="124.6745" y2="124.6745"/><ellipse cx="1187.5" cy="160.0444" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="236.4583" x="1198.9583" y="166.9556">MixinKey(Object, Class&lt;? extends Mixin&gt;)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="1177.0833" x2="1266.6667" y1="142.8802" y2="142.8802"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="81.25" x="1269.7917" y="146.6899">(constructors)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="1354.1667" x2="1443.75" y1="142.8802" y2="142.8802"/><!--MD5=[c7fc90dea65bb0d50ca297923bfb51cf]
+class Mixin--><rect codeLine="18" fill="#282828" height="87.5448" id="Mixin" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="556.25" x="7.2917" y="91.2028"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="556.25" x="7.2917" y="91.2028"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="556.25" x="7.2917" y="114.2578"/><rect codeLine="18" fill="none" height="87.5448" id="Mixin" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="556.25" x="7.2917" y="91.2028"/><ellipse cx="260.4167" cy="106.897" fill="#008400" rx="10.4167" ry="10.4167" style="stroke:#239C23;stroke-width:1.0416666666666667;"/><path d="M257.8206,104.0588 L257.8206,102.4719 L263.2467,102.4719 L263.2467,104.0588 L261.4339,104.0588 L261.4339,109.9976 L263.2467,109.9976 L263.2467,111.5845 L257.8206,111.5845 L257.8206,109.9976 L259.6334,109.9976 L259.6334,104.0588 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-style="italic" font-weight="bold" lengthAdjust="spacing" textLength="35.4167" x="283.3333" y="111.6211">Mixin</text><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="8.3333" x2="562.5" y1="122.5911" y2="122.5911"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="8.3333" x2="562.5" y1="130.9245" y2="130.9245"/><ellipse cx="18.75" cy="142.3828" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="523.9583" x="30.2083" y="149.294">MixinState mixin(Class&lt;? extends Mixin&gt; mixinType, Factory&lt;MixinState&gt; mixinStateFactory)</text><ellipse cx="18.75" cy="162.1277" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="139.5833" x="30.2083" y="169.0389">Object owner(MixinState)</text><!--MD5=[a01e838766db99e84fea8710c1553f8b]
+class AttributesMixin--><rect codeLine="9" fill="#282828" height="131.2012" id="AttributesMixin" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="220.8333" x="175" y="241.2028"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="220.8333" x="175" y="241.2028"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="220.8333" x="175" y="264.2578"/><rect codeLine="9" fill="none" height="131.2012" id="AttributesMixin" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="220.8333" x="175" y="241.2028"/><ellipse cx="191.9271" cy="256.897" fill="#008400" rx="10.4167" ry="10.4167" style="stroke:#239C23;stroke-width:1.0416666666666667;"/><path d="M189.3311,254.0588 L189.3311,252.4719 L194.7571,252.4719 L194.7571,254.0588 L192.9443,254.0588 L192.9443,259.9976 L194.7571,259.9976 L194.7571,261.5845 L189.3311,261.5845 L189.3311,259.9976 L191.1438,259.9976 L191.1438,254.0588 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-style="italic" font-weight="bold" lengthAdjust="spacing" textLength="101.0417" x="209.1146" y="261.6211">AttributesMixin</text><rect fill="#333333" height="23.055" style="stroke:#A0A0A0;stroke-width:1.0416666666666667;stroke-dasharray:2.0,2.0;" width="75" x="323.9583" y="238.0778"/><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="66.6667" x="328.125" y="254.3294">Key, Value</text><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="176.0417" x2="394.7917" y1="272.5911" y2="272.5911"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="176.0417" x2="394.7917" y1="280.9245" y2="280.9245"/><ellipse cx="186.4583" cy="292.3828" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="109.375" x="197.9167" y="299.294">Value attribute(Key)</text><ellipse cx="186.4583" cy="312.1277" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="145.8333" x="197.9167" y="319.0389">Value attribute(Key, Value)</text><ellipse cx="186.4583" cy="355.7841" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="188.5417" x="197.9167" y="362.6953">HashMap&lt;Key,Value&gt; attributes()</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="176.0417" x2="251.0417" y1="338.62" y2="338.62"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="62.5" x="254.1667" y="342.4296">(collection)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="319.7917" x2="394.7917" y1="338.62" y2="338.62"/><!--MD5=[c385572056d4f77e0af93773eae04b64]
+class Mixins--><rect codeLine="31" fill="#282828" height="87.5448" id="Mixins" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="538.5417" x="600.5208" y="91.2028"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="538.5417" x="600.5208" y="91.2028"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="538.5417" x="600.5208" y="114.2578"/><rect codeLine="31" fill="none" height="87.5448" id="Mixins" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="538.5417" x="600.5208" y="91.2028"/><ellipse cx="841.1458" cy="106.897" fill="#0066CF" rx="10.4167" ry="10.4167" style="stroke:#0086EF;stroke-width:1.0416666666666667;"/><path d="M843.0562,111.322 Q842.629,111.5417 842.159,111.6516 Q841.689,111.7615 841.1702,111.7615 Q839.327,111.7615 838.3565,110.5469 Q837.3861,109.3323 837.3861,107.0374 Q837.3861,104.7363 838.3565,103.5217 Q839.327,102.3071 841.1702,102.3071 Q841.689,102.3071 842.1651,102.417 Q842.6412,102.5269 843.0562,102.7466 L843.0562,104.7485 Q842.5924,104.3213 842.156,104.1229 Q841.7196,103.9246 841.2557,103.9246 Q840.2669,103.9246 839.7634,104.7089 Q839.2598,105.4932 839.2598,107.0374 Q839.2598,108.5754 839.7634,109.3597 Q840.2669,110.144 841.2557,110.144 Q841.7196,110.144 842.156,109.9457 Q842.5924,109.7473 843.0562,109.3201 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="42.7083" x="864.0625" y="111.6211">Mixins</text><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="601.5625" x2="1138.0208" y1="122.5911" y2="122.5911"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="601.5625" x2="1138.0208" y1="130.9245" y2="130.9245"/><ellipse cx="611.9792" cy="142.3828" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="506.25" x="623.4375" y="149.294">State mixin(Object, Class&lt;? extends Mixin&gt; mixinType, Factory&lt;State&gt; mixinStateFactory)</text><ellipse cx="611.9792" cy="162.1277" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="109.375" x="623.4375" y="169.0389">Object owner(State)</text><!--MD5=[ed2a0a475ee2e8eae19408020efa98e4]
+reverse link Mixin to AttributesMixin--><path codeLine="8" d="M285.4167,199.8695 C285.4167,213.359 285.4167,227.5986 285.4167,241.109 " fill="none" id="Mixin-backto-AttributesMixin" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="278.125,199.6715,285.4167,178.8382,292.7083,199.6715,278.125,199.6715" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[a3bf56f5d90cd860425258ad1f2989f0]
+@startuml
+
+    !include lexakai.theme
+    
+    title "com.telenav.kivakit.mixins"
+    
+    interface Mixin
+    Mixin <|- - AttributesMixin
+    interface AttributesMixin<Key, Value>
+    {
+        - -
+        +Value attribute(Key)
+        +Value attribute(Key, Value)
+        - -(collection)- -
+        +HashMap<Key,Value> attributes()
+    }
+    
+    interface Mixin
+    {
+        - -
+        +MixinState mixin(Class<? extends Mixin> mixinType, Factory<MixinState> mixinStateFactory)
+        +Object owner(MixinState)
+    }
+    
+    class Mixins.MixinKey
+    {
+        - -(constructors)- -
+        +MixinKey(Object, Class<? extends Mixin>)
+    }
+    
+    class Mixins
+    {
+        - -
+        +State mixin(Object, Class<? extends Mixin> mixinType, Factory<State> mixinStateFactory)
+        +Object owner(State)
+    }
+    
+@enduml
+
+@startuml
+
+
+
+
+
+
+
+
+
+skinparam backgroundColor #333333
+
+
+
+
+
+
+skinparam  {
+    defaultFontName   "Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif"
+    defaultFontSize   12
+    defaultTextAlignment left
+    shadowing false
+    RoundCorner 10
+    TitleFontSize 18
+}
+
+skinparam defaultFontName       "Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif"
+skinparam defaultFontSize       12
+skinparam dpi                   100
+skinparam shadowing             false
+skinparam roundcorner           16
+skinparam ParticipantPadding    40
+skinparam BoxPadding            40
+skinparam Padding               3
+skinparam ArrowColor            #545454
+skinparam stereotype {
+    CBackgroundColor #0066cf
+    CBorderColor #0086ef
+    ABackgroundColor #C8Ac00
+    ABorderColor #D8Bc00
+    IBackgroundColor #008400
+    IBorderColor #239c23
+    EBackgroundColor #cf6300
+    EBorderColor #ef8300
+    NBackgroundColor #3380b9
+    NBorderColor #004d86
+}
+skinparam title {
+	FontColor	                 #c0c0c0
+ 	BorderColor                  #545454
+	FontSize	    	         20
+	BorderRoundCorner            16
+	BorderThickness 	         1
+	BackgroundColor              #48494b
+}
+
+
+skinparam legend {
+	BackgroundColor #303030
+	BorderColor #404040
+	FontColor #a0a0a0
+}
+
+	skinparam swimlane {
+	BorderColor #5e5e5e
+	BorderThickness 2
+	TitleBackgroundColor  #6d6d6d-#484848
+	TitleFontColor #303030
+}
+
+skinparam activity {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BarColor #00FF00
+	StartColor #0060a8
+	EndColor #0060a8
+	DiamondBackgroundColor #6d6d6d-#3a3a3a
+  	DiamondBorderColor #3a3a3a
+  	DiamondFontColor #fefefe
+}
+
+
+skinparam participant {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	ParticipantBorderThickness 2
+}
+
+
+skinparam actor {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam arrow {
+	Thickness 1.5
+	Color #545454
+	FontColor #a0a0a0
+    FontStyle bold
+    MessageAlignment center
+}
+
+
+
+skinparam sequence {
+	BorderColor #303030
+	TitleFontColor #303030
+	BackgroundColor #333333
+	StartColor #303030
+	EndColor #303030
+	BoxBackgroundColor #333333
+	BoxBorderColor #484848
+	BoxFontColor #484848
+	LifeLineBorderColor #484848
+	LifeLineBorderThickness 2
+	LifeLineBackgroundColor #3a3a3a
+	GroupBorderColor #484848
+	GroupFontColor #484848
+	GroupHeaderFontColor #0060a8
+	GroupBackgroundColor #484848
+	GroupHeaderBackgroundColor #333333
+	DividerBackgroundColor #484848
+    DividerBorderColor #484848
+    DividerBorderThickness 2
+    DividerFontColor #D8Bc00
+	ReferenceBackgroundColor #333333
+	ReferenceBorderColor #484848
+	ReferenceFontColor #fefefe
+	ReferenceHeaderBackgroundColor #484848
+}
+
+
+skinparam partition {
+	BorderColor #303030
+	FontColor #333333
+	BackgroundColor #333333
+}
+
+
+skinparam collections {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam control {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam entity {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam boundary {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam agent {
+	BackgroundColor #ff8000
+	BorderColor #ff9933
+	FontColor #484848
+}
+
+
+skinparam note {
+	BorderThickness 1
+	BackgroundColor #1b1b1a
+	BorderColor #5e5e5e
+	FontSize 11
+	FontColor #a0a0a0
+}
+
+
+skinparam artifact {
+	BorderThickness 10
+	BorderColor #5e5e5e
+	BackgroundColor #1b1b1a
+	FontColor #D8Bc00
+}
+
+
+skinparam component {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam interface {
+	BackgroundColor  #008400
+	BorderColor  #007F00
+	FontColor #484848
+}
+
+
+skinparam storage {
+	BackgroundColor #ff8000
+  	BorderColor #cc6600
+	FontColor #222222
+}
+
+
+skinparam node {
+	BackgroundColor #333333
+	BorderColor #333333
+	FontColor #C8Ac00
+}
+
+
+skinparam cloud {
+	BackgroundColor #484848-black
+	BorderColor #484848
+	FontColor #D8Bc00
+}
+
+
+skinparam database {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BackgroundColor  #333333
+}
+
+
+skinparam class {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	HeaderBackgroundColor #1b1b1a
+    BackgroundColor #282828
+    BorderColor #5e5e5e
+ 	StereotypeFontColor #a0a0a0
+    StereotypeFontStyle bold
+	BorderThickness 1
+	AttributeFontColor #D8Bc00
+	AttributeFontSize 11
+    FontColor #D8Bc00
+    FontStyle bold
+}
+
+
+skinparam object {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	StereotypeFontColor #484848
+	BorderThickness 1
+	AttributeFontColor #fefefe
+	AttributeFontSize 11
+}
+
+
+skinparam usecase {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BorderThickness 2
+	StereotypeFontColor #303030
+}
+
+
+skinparam rectangle {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BackgroundColor #333333
+	BorderThickness 2
+	StereotypeFontColor #303030
+}
+
+
+skinparam package {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BackgroundColor #333333
+	BorderThickness 2
+}
+
+
+skinparam folder {
+	BackgroundColor #6d6d6d
+  	BorderColor #ff8000
+	FontColor #ff8000
+	BorderThickness 2
+}
+
+
+skinparam frame {
+	BackgroundColor #6d6d6d
+  	BorderColor #0060a8
+	FontColor #0060a8
+	BorderThickness 2
+}
+
+
+skinparam state {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	StartColor #0060a8
+	EndColor #0060a8
+	AttributeFontColor #fefefe
+	AttributeFontSize 11
+}
+
+
+skinparam queue {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam card {
+	BackgroundColor #0060a8
+	BorderColor #004d86
+	FontColor $INFO_TEXT
+}
+
+
+skinparam file {
+	BackgroundColor #6d6d6d-#484848
+	BorderColor #0060a8
+	FontColor #fefefe
+}
+
+
+skinparam stack {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+    
+    title "com.telenav.kivakit.mixins"
+    
+    interface Mixin
+    Mixin <|- - AttributesMixin
+    interface AttributesMixin<Key, Value>
+    {
+        - -
+        +Value attribute(Key)
+        +Value attribute(Key, Value)
+        - -(collection)- -
+        +HashMap<Key,Value> attributes()
+    }
+    
+    interface Mixin
+    {
+        - -
+        +MixinState mixin(Class<? extends Mixin> mixinType, Factory<MixinState> mixinStateFactory)
+        +Object owner(MixinState)
+    }
+    
+    class Mixins.MixinKey
+    {
+        - -(constructors)- -
+        +MixinKey(Object, Class<? extends Mixin>)
+    }
+    
+    class Mixins
+    {
+        - -
+        +State mixin(Object, Class<? extends Mixin> mixinType, Factory<State> mixinStateFactory)
+        +Object owner(State)
+    }
+    
+@enduml
+
+PlantUML version 1.2021.01(Tue Feb 02 00:55:08 MST 2021)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Default Encoding: UTF-8
+Language: en
+Country: US
+--></g></svg>

@@ -1,0 +1,17 @@
+
+@startuml
+
+    !include lexakai.theme
+    
+    title "com.telenav.kivakit.core"
+    
+    Project <|-- KivaKit
+    class KivaKit
+    {
+        --(filesystem)--
+        +StringPath kivakitCacheFolderPath()
+        +StringPath kivakitHomeFolderPath()
+    }
+    
+@enduml
+

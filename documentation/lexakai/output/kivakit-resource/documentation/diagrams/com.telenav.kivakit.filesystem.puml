@@ -1,0 +1,335 @@
+
+@startuml
+
+    !include lexakai.theme
+    
+    title "com.telenav.kivakit.filesystem"
+    
+    abstract BaseRepeater
+    abstract BaseStringConverter
+    abstract BaseResourceList
+    abstract BaseWritableResource
+    
+    interface Startable
+    interface FileSystemObject
+    interface Comparable
+    interface Iterable
+    interface ResourceFolder
+    interface ResourceResolver
+    interface Stoppable
+    interface TryTrait
+    interface ResourceFolderResolver
+    
+    BaseStringConverter <|-- FileList.Converter
+    class FileList.Converter
+    {
+        --(constructors)--
+        +Converter(Listener, Extension)
+    }
+    
+    BaseStringConverter <|-- FolderList.Converter
+    class FolderList.Converter
+    {
+        --(constructors)--
+        +Converter(Listener)
+    }
+    
+    BaseStringConverter <|-- File.Converter
+    class File.Converter
+    {
+        --(constructors)--
+        +Converter(Listener)
+    }
+    
+    BaseStringConverter <|-- FilePath.Converter
+    class FilePath.Converter
+    {
+        --(constructors)--
+        +Converter(Listener)
+    }
+    
+    BaseStringConverter <|-- Folder.Converter
+    class Folder.Converter
+    {
+        --(constructors)--
+        +Converter(Listener)
+        +Converter(Listener, boolean)
+    }
+    
+    class Disk
+    {
+        --(filesystem)--
+        +Folder root()
+        --(math)--
+        +Percent percentFree()
+        +Percent percentUsable()
+        --(primitive)--
+        +Bytes free()
+        +Bytes size()
+        +Bytes usable()
+    }
+    
+    BaseWritableResource <|-- File
+    FileSystemObject <|-- File
+    File o-- FileService : "delegates to"
+    class File
+    {
+        --(checks)--
+        +boolean isNewerThan(File that)
+        +boolean isNewerThan(Duration)
+        +boolean isNonEmpty()
+        +boolean isOlderThan(Duration)
+        +boolean isOlderThan(File that)
+        --(filesystem)--
+        +File absolute()
+        +Folder asFolder()
+        +java.nio.file.Path asJavaPath()
+        +boolean chmod(PosixFilePermission... permissions)
+        +File ensureReadable()
+        +File ensureWritable()
+        +File file(Listener, FilePath)
+        +File file(Listener, java.io.File)
+        +File file(Listener, URI)
+        +boolean isFile()
+        +boolean isFolder()
+        +File normalized()
+        +File parseFile(Listener, String path, VariableMap<String> variables)
+        +File parseFile(Listener, String path)
+        +Folder root()
+        +void safeCopyFrom(Resource, CopyMode, ProgressReporter)
+        +File temporaryFile(Extension)
+        +File withBaseName(String name)
+        +File withCharset(Charset)
+        +File withCodec(Codec)
+        +File withExtension(Extension)
+        +File withoutExtension()
+        +File withoutOverwriting()
+    }
+    
+    BaseRepeater <|-- FileCache
+    class FileCache
+    {
+        --(constructors)--
+        +FileCache(Folder)
+        --(filesystem)--
+        +File add(Resource, CopyMode)
+        +File add(Resource, CopyMode, ProgressReporter)
+        +File addAs(Resource, FileName, CopyMode, ProgressReporter)
+        +File addAs(Resource, FileName, CopyMode)
+        +File file(FileName)
+        +Folder folder(String name)
+        +void minimumUsableDiskSpace(Percent minimum)
+        --(lifecycle)--
+        +void startPruner()
+        --(time)--
+        +void maximumAge(Duration maximumAge)
+    }
+    
+    BaseResourceList <|-- FileList
+    Iterable <|-- FileList
+    class FileList
+    {
+        --(constructors)--
+        #FileList(Iterable<File>)
+        +FileList()
+        --(filesystem)--
+        +FileList fileList(File... files)
+        +FileList fileList(Iterable<File> files)
+    }
+    
+    ResourcePath <|-- FilePath
+    class FilePath
+    {
+        --(constructors)--
+        #FilePath(FilePath)
+        #FilePath(List<String>)
+        #FilePath(StringList, StringPath)
+        #FilePath(StringList, String, List<String>)
+        --(conversion)--
+        +StringPath asStringPath()
+        +String asUnixString()
+        +URI asUri()
+        --(filesystem)--
+        +FilePath file(FileName child)
+        +FilePath filePath(FileName)
+        +FilePath filePath(java.nio.file.Path)
+        +FilePath filePath(URI)
+        +FilePath filePath(java.io.File)
+        +FilePath filePath(StringPath)
+        +boolean isCurrentFolder()
+        +FilePath parseFilePath(Listener, String path, Object... arguments)
+        +FilePath withPrefix(String prefix)
+        +FilePath withScheme(String scheme)
+        +FilePath withTrailingSlash()
+        +FilePath withoutFileScheme()
+        +FilePath withoutPrefix(String prefix)
+        +FilePath withoutTrailingSlash()
+    }
+    
+    interface CreatedAt
+    interface ModifiedAt
+    ModifiedAt <|-- FileSystemObject
+    CreatedAt <|-- FileSystemObject
+    interface FileSystemObject
+    {
+    }
+    
+    class Files
+    {
+        --(command line parsing)--
+        +ArgumentParser.Builder<File> fileArgumentParser(Listener, String description)
+        +ArgumentParser.Builder<FileList> fileListArgumentParser(Listener, String description, Extension)
+        +SwitchParser.Builder<FileList> fileListSwitchParser(Listener, String name, String description, Extension)
+        +SwitchParser.Builder<FilePath> filePathSwitchParser(Listener, String name, String description)
+        +SwitchParser.Builder<File> fileSwitchParser(Listener, String name, String description)
+    }
+    
+    BaseRepeater <|-- Folder
+    FileSystemObject <|-- Folder
+    Comparable <|-- Folder
+    ResourceFolder <|-- Folder
+    TryTrait <|-- Folder
+    Folder --> Disk : "exists on"
+    Folder o-- FolderService : "delegates to"
+    class Folder
+    {
+        --(constructors)--
+        +Folder(FilePath)
+        --(checks)--
+        +boolean hasChanged()
+        +boolean isLocal()
+        +boolean isRemote()
+        --(filesystem)--
+        +boolean chmod(PosixFilePermission... permissions)
+        +void chmodNested(PosixFilePermission... permissions)
+        +Folder clearAll()
+        +Folder clearAllAndDelete()
+        +Disk disk()
+        +Folder ensureExists()
+        +File file(String path, Object... arguments)
+        +File file(File)
+        +File file(ResourcePathed)
+        +File file(FileName)
+        +FileList files(Extension)
+        +FileList files(Pattern)
+        +FileList files(Matcher<ResourcePathed>, Traversal)
+        +FileList files()
+        +FileList files(Matcher<ResourcePathed>)
+        +FileList files(String globPattern)
+        +Folder folder(java.io.File)
+        +Folder folder(Path)
+        +Folder folder(URL)
+        +Folder folder(FilePath)
+        +Folder folder(FileName child)
+        +Folder folder(Folder child)
+        +Folder folder(StringPath)
+        +Folder folder(URI)
+        +ObjectList<Folder> folders(Matcher<Folder>)
+        +boolean isFolder()
+        +Folder last()
+        +FileName name()
+        +FileList nestedFiles()
+        +FileList nestedFiles(Matcher<ResourcePathed>)
+        +File oldest()
+        +File oldest(Matcher<File>)
+        +Folder parseFolder(String path, Object... arguments)
+        +Folder parseFolder(Listener, String path, Object... arguments)
+        +FilePath relativePath(Folder)
+        +Folder relativeTo(Folder)
+        +Folder root()
+        +Folder scheduleCleanUpOnExit()
+        +Folder temporaryFolderForProcess(FolderType)
+        +Folder withoutTrailingSlash()
+        --(network)--
+        +URI asUri()
+        +URL asUrl()
+        --(primitive)--
+        +Bytes size()
+    }
+    
+    PeriodicCollectionChangeWatcher <|-- FolderChangeWatcher
+    FolderChangeWatcher --> Folder : "watches"
+    class FolderChangeWatcher
+    {
+        --(constructors)--
+        +FolderChangeWatcher(Folder, Frequency)
+    }
+    
+    ObjectList <|-- FolderList
+    class FolderList
+    {
+        --(constructors)--
+        +FolderList()
+        --(filesystem)--
+        +FolderList folderList(List<? extends FolderService> folderServices)
+    }
+    
+    BaseRepeater <|-- FolderPruner
+    Startable <|-- FolderPruner
+    Stoppable <|-- FolderPruner
+    FolderPruner --> Folder : "prunes old files from"
+    class FolderPruner
+    {
+        --(constructors)--
+        +FolderPruner(Folder, Frequency)
+        --
+        +void capacity(Bytes capacity)
+        --(collection)--
+        #boolean canRemove(File candidate, FileList files)
+        --(filesystem)--
+        #void onFileRemoved(File)
+        --(matching)--
+        +void matcher(Matcher<ResourcePathed>)
+        #Matcher<ResourcePathed> matcher()
+        --(math)--
+        +void maximumAge(Duration maximumAge)
+        +void minimumUsableDiskSpace(Percent minimumUsableDiskSpace)
+        #Duration maximumAge()
+        #Percent minimumUsableDiskSpace()
+        --(primitive)--
+        #Bytes capacity()
+        --(time)--
+        #Duration age(File)
+    }
+    
+    enum Folder.FolderType
+    {
+        CLEAN_UP_ON_EXIT
+        NORMAL
+    }
+    
+    class Folders
+    {
+        --(filesystem)--
+        +Folder currentFolder()
+        +Folder desktopFolder()
+        +ArgumentParser.Builder<Folder> folderArgumentParser(Listener, String description)
+        +ArgumentParser.Builder<FolderList> folderListArgumentParser(Listener, String description)
+        +SwitchParser.Builder<FolderList> folderListSwitchParser(Listener, String name, String description)
+        +SwitchParser.Builder<Folder> folderSwitchParser(Listener, String name, String description)
+        +Folder kivakitCacheFolder()
+        +Folder kivakitExtensionsHome()
+        +Folder kivakitHome()
+        +Folder kivakitTemporaryFolder()
+        +Folder kivakitTestFolder(Class<?> type)
+        +Folder userHome()
+    }
+    
+    ResourceResolver <|-- File.Resolver
+    class File.Resolver
+    {
+    }
+    
+    ResourceFolderResolver <|-- Folder.Resolver
+    class Folder.Resolver
+    {
+    }
+    
+    enum Folder.Traversal
+    {
+        FLAT
+        RECURSE
+    }
+    
+@enduml
+

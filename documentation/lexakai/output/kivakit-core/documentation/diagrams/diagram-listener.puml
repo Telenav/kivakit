@@ -1,0 +1,73 @@
+
+@startuml
+
+    !include lexakai.theme
+    
+    title "diagram-listener"
+    
+    interface MessageTransceiver
+    MessageTransceiver <|-- Listener
+    interface Listener
+    {
+        --(messaging)--
+        +Listener consoleListener()
+        +T listenTo(T broadcaster, MessageFilter)
+        +T listenTo(T broadcaster)
+        +Listener nullListener()
+        +void onMessage(Message)
+        +Listener throwingListener()
+    }
+    
+    interface Named
+    interface Transmittable
+    interface Triaged
+    Transmittable <|-- Message
+    Triaged <|-- Message
+    Named <|-- Message
+    Message --> Importance : "message importance"
+    Message --> Message.OperationStatus : "operation status"
+    Message --> Severity : "message severity"
+    Message --> Message.Status : "message status"
+    interface Message
+    {
+        --
+        +Throwable cause()
+        +CodeContext context()
+        +String description()
+        +String formatted(MessageFormat...)
+        +String formatted()
+        +Importance importance()
+        +String text()
+        +^Severity severity()
+        --(command line parsing)--
+        +Object[] arguments()
+        --(conversion)--
+        +RuntimeException asException()
+        --(messaging)--
+        +Message cause(Throwable cause)
+        +String escapeMessageText(String text)
+        +OperationStatus operationStatus()
+        +Message parseMessageName(Listener, String name)
+        +StackTrace stackTrace()
+        +Status status()
+        --(status)--
+        +boolean isFailure()
+        --(time)--
+        +Time created()
+        +Frequency maximumFrequency()
+    }
+    
+    interface Receiver
+    interface Transmitter
+    Receiver <|-- Transceiver
+    Transmitter <|-- Transceiver
+    Transceiver --> Debug : "delegates to"
+    note right of Transceiver
+        Functionality common to transmitters and receivers
+    endnote
+    interface Transceiver
+    {
+    }
+    
+@enduml
+

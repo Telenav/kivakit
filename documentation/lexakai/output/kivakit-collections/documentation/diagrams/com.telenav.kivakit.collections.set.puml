@@ -1,0 +1,39 @@
+
+@startuml
+
+    !include lexakai.theme
+    
+    title "com.telenav.kivakit.collections.set"
+    
+    interface Set
+    
+    Set <|-- CompoundSet
+    class CompoundSet<Element>
+    {
+        --(constructors)--
+        +CompoundSet()
+        +CompoundSet(Set<Element>, Set<Element>)
+        --(collection)--
+        +void add(Set<Element>)
+        +Iterable<Element> matching(Matcher<Element>)
+    }
+    
+    Set <|-- LogicalSet
+    abstract class LogicalSet<Element>
+    {
+    }
+    
+    abstract class SetDifferencer<Element>
+    {
+        --(constructors)--
+        #SetDifferencer(Equality<Element>)
+        --
+        +void compare(Set<Element> beforeSet, Set<Element> afterSet)
+        #void onAdded(Element value)
+        #void onNotChanged(Element oldValue, Element newValue)
+        #void onRemoved(Element value)
+        #void onUpdated(Element value)
+    }
+    
+@enduml
+

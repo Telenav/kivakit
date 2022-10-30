@@ -1,0 +1,25 @@
+
+@startuml
+
+    !include lexakai.theme
+    
+    title "com.telenav.kivakit.serialization.kryo.serializers"
+    
+    abstract BaseSerializer
+    
+    BaseSerializer <|-- AtomicIntegerSerializer
+    class AtomicIntegerSerializer
+    {
+        --(constructors)--
+        +AtomicIntegerSerializer()
+    }
+    
+    BaseSerializer <|-- AtomicLongSerializer
+    class AtomicLongSerializer
+    {
+        --(constructors)--
+        +AtomicLongSerializer()
+    }
+    
+@enduml
+

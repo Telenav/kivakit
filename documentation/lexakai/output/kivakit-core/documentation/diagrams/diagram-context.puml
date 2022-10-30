@@ -1,0 +1,19 @@
+
+@startuml
+
+    !include lexakai.theme
+    
+    title "diagram-context"
+    
+    class CallStack
+    {
+        --
+        +Method callerOf(Proximity, Matching, Class<?> calleeType, Matching ignoreMatching, Class<?>... ignores)
+        +Method callerOf(Proximity, Matching, Class<?> calleeType)
+        --(collection)--
+        +List<Method> callstack()
+        +List<Method> callstack(Thread)
+    }
+    
+@enduml
+

@@ -1,0 +1,14 @@
+
+@startuml
+
+    !include lexakai.theme
+    
+    title "com.telenav.kivakit.validation.types"
+    
+    ValidationType <|-- ValidateAll
+    class ValidateAll
+    {
+    }
+    
+@enduml
+

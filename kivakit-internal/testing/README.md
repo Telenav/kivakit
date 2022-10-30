@@ -20,14 +20,14 @@ This module contains internal code for testing.
 
 ### Dependencies <a name="dependencies"></a> &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/dependencies-32.png" srcset="https://telenav.github.io/telenav-assets/images/icons/dependencies-32-2x.png 2x"/>
 
-[*Dependency Diagram*](https://www.kivakit.org/1.7.1-SNAPSHOT/lexakai/kivakit/kivakit-internal/testing/documentation/diagrams/dependencies.svg)
+[*Dependency Diagram*](https://www.kivakit.org/1.8.2/lexakai/kivakit/kivakit-internal/testing/documentation/diagrams/dependencies.svg)
 
 #### Maven Dependency
 
     <dependency>
         <groupId>com.telenav.kivakit</groupId>
         <artifactId>kivakit-internal-testing</artifactId>
-        <version>1.7.1-SNAPSHOT</version>
+        <version>1.8.2</version>
     </dependency>
 
 <img src="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128.png" srcset="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128-2x.png 2x"/>
@@ -46,34 +46,30 @@ Code quality for this project is 66.7%.
   
 &nbsp; &nbsp; <img src="https://telenav.github.io/telenav-assets/images/meters/meter-70-96.png" srcset="https://telenav.github.io/telenav-assets/images/meters/meter-70-96-2x.png 2x"/>
 
-
 | Measurement   | Value                    |
 |---------------|--------------------------|
-| Stability     | 75.0%&nbsp; &nbsp; <img src="https://telenav.github.io/telenav-assets/images/meters/meter-80-96.png" srcset="https://telenav.github.io/telenav-assets/images/meters/meter-80-96-2x.png 2x"/>
-     |
-| Testing       | 25.0%&nbsp; &nbsp; <img src="https://telenav.github.io/telenav-assets/images/meters/meter-30-96.png" srcset="https://telenav.github.io/telenav-assets/images/meters/meter-30-96-2x.png 2x"/>
-       |
-| Documentation | 100.0%&nbsp; &nbsp; <img src="https://telenav.github.io/telenav-assets/images/meters/meter-100-96.png" srcset="https://telenav.github.io/telenav-assets/images/meters/meter-100-96-2x.png 2x"/>
- |
+| Stability     | 75.0%&nbsp; &nbsp; <img src="https://telenav.github.io/telenav-assets/images/meters/meter-80-96.png" srcset="https://telenav.github.io/telenav-assets/images/meters/meter-80-96-2x.png 2x"/>     |
+| Testing       | 25.0%&nbsp; &nbsp; <img src="https://telenav.github.io/telenav-assets/images/meters/meter-30-96.png" srcset="https://telenav.github.io/telenav-assets/images/meters/meter-30-96-2x.png 2x"/>       |
+| Documentation | 100.0%&nbsp; &nbsp; <img src="https://telenav.github.io/telenav-assets/images/meters/meter-100-96.png" srcset="https://telenav.github.io/telenav-assets/images/meters/meter-100-96-2x.png 2x"/> |
 
 <img src="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128.png" srcset="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128-2x.png 2x"/>
 
 ### Class Diagrams <a name="class-diagrams"></a> &nbsp; &nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/diagram-40.png" srcset="https://telenav.github.io/telenav-assets/images/icons/diagram-40-2x.png 2x"/>
 
-[*diagram-test*](https://www.kivakit.org/1.7.1-SNAPSHOT/lexakai/kivakit/kivakit-internal/testing/documentation/diagrams/diagram-test.svg)
+[*diagram-test*](https://www.kivakit.org/1.8.2/lexakai/kivakit/kivakit-internal/testing/documentation/diagrams/diagram-test.svg)
 
 <img src="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128.png" srcset="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128-2x.png 2x"/>
 
 ### Package Diagrams <a name="package-diagrams"></a> &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/box-24.png" srcset="https://telenav.github.io/telenav-assets/images/icons/box-24-2x.png 2x"/>
 
-[*com.telenav.kivakit.internal.testing*](https://www.kivakit.org/1.7.1-SNAPSHOT/lexakai/kivakit/kivakit-internal/testing/documentation/diagrams/com.telenav.kivakit.internal.testing.svg)  
-[*com.telenav.kivakit.internal.testing.internal.lexakai*](https://www.kivakit.org/1.7.1-SNAPSHOT/lexakai/kivakit/kivakit-internal/testing/documentation/diagrams/com.telenav.kivakit.internal.testing.internal.lexakai.svg)
+[*com.telenav.kivakit.internal.testing*](https://www.kivakit.org/1.8.2/lexakai/kivakit/kivakit-internal/testing/documentation/diagrams/com.telenav.kivakit.internal.testing.svg)  
+[*com.telenav.kivakit.internal.testing.internal.lexakai*](https://www.kivakit.org/1.8.2/lexakai/kivakit/kivakit-internal/testing/documentation/diagrams/com.telenav.kivakit.internal.testing.internal.lexakai.svg)
 
 ### Javadoc <a name="code-quality"></a> &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/books-24.png" srcset="https://telenav.github.io/telenav-assets/images/icons/books-24-2x.png 2x"/>
 
 | Class | Documentation Sections  |
 |-------|-------------------------|
-| [*CoreUnitTest*](https://www.kivakit.org/1.7.1-SNAPSHOT/javadoc/kivakit/kivakit.internal.testing//////////////////////////////////////////////////.html) | Ensure Behavior |  
+| [*CoreUnitTest*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.internal.testing//////////////////////////////////////////////////.html) | Ensure Behavior |  
 | | Ensure Equality |  
 | | Test Methods |  
 | | Quick Tests |  
@@ -81,12 +77,12 @@ Code quality for this project is 66.7%.
 | | Ensure Math |  
 | | Ensure |  
 | | Random Value Testing |  
-| [*DiagramTest*](https://www.kivakit.org/1.7.1-SNAPSHOT/javadoc/kivakit/kivakit.internal.testing//////////////////////////////////////////////////////////////////.html) |  |  
-| [*JUnitFailureReporter*](https://www.kivakit.org/1.7.1-SNAPSHOT/javadoc/kivakit/kivakit.internal.testing//////////////////////////////////////////////////////////.html) |  |  
-| [*RandomValueFactory*](https://www.kivakit.org/1.7.1-SNAPSHOT/javadoc/kivakit/kivakit.internal.testing////////////////////////////////////////////////////////.html) | Values |  
+| [*DiagramTest*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.internal.testing//////////////////////////////////////////////////////////////////.html) |  |  
+| [*JUnitFailureReporter*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.internal.testing//////////////////////////////////////////////////////////.html) |  |  
+| [*RandomValueFactory*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.internal.testing////////////////////////////////////////////////////////.html) | Values |  
 | | Seeding |  
-| [*Repeats*](https://www.kivakit.org/1.7.1-SNAPSHOT/javadoc/kivakit/kivakit.internal.testing/////////////////////////////////////////////.html) |  |  
-| [*UnitTestWatcher*](https://www.kivakit.org/1.7.1-SNAPSHOT/javadoc/kivakit/kivakit.internal.testing/////////////////////////////////////////////////////.html) |  |  
+| [*Repeats*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.internal.testing/////////////////////////////////////////////.html) |  |  
+| [*UnitTestWatcher*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.internal.testing/////////////////////////////////////////////////////.html) |  |  
 
 [//]: # (start-user-text)
 

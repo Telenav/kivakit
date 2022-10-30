@@ -1,0 +1,59 @@
+
+@startuml
+
+    !include lexakai.theme
+    
+    title "com.telenav.kivakit.interfaces.comparison"
+    
+    interface Equality<Value>
+    {
+        --(checks)--
+        +boolean isEqual(Value, Value b)
+    }
+    
+    interface Matcher
+    Matcher <|-- Filter
+    interface Filter<Value>
+    {
+        --(filtering)--
+        +Filter<T> accept(Collection<T> values)
+        +Filter<T> accept(Predicate<T>)
+        +Filter<T> acceptAll()
+        +Filter<T> acceptNone()
+        +boolean accepts(Value)
+        +Filter<Value> exclude(Predicate<Value>)
+        +Filter<Value> include(Predicate<Value>)
+        +Filter<Value> not()
+    }
+    
+    Filtered "1" --> "*" Filter : "has"
+    interface Filtered<Value>
+    {
+        --(collection)--
+        +List<Filter<Value>> filters()
+    }
+    
+    interface Matchable<Value>
+    {
+        --
+        +boolean matches(Value)
+        --(matching)--
+        +Matcher<Value> matcher()
+    }
+    
+    interface Matchable
+    interface Predicate<Value>
+    Matchable <|-- Matcher
+    Predicate <|-- Matcher
+    interface Matcher<Value>
+    {
+        --(matching)--
+        +Matcher<T> matchAll()
+        +Matcher<T> matchNothing()
+        +Matcher<T> matchObjectNamed(String name)
+        +Matcher<String> matching(Pattern)
+        +Matcher<T> matching(Predicate<T>)
+    }
+    
+@enduml
+

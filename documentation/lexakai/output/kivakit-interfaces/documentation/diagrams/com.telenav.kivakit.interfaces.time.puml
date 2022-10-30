@@ -1,0 +1,149 @@
+
+@startuml
+
+    !include lexakai.theme
+    
+    title "com.telenav.kivakit.interfaces.time"
+    
+    interface Comparable
+    interface Zeroable
+    
+    interface Awaitable
+    {
+        --(thread)--
+        +boolean await(long wait, TimeUnit)
+    }
+    
+    interface Comparable<LengthOfTime<?>>
+    interface LongValued
+    interface StringFormattable
+    interface TimeMeasurement
+    LongValued <|-- LengthOfTime
+    Comparable <|-- LengthOfTime
+    StringFormattable <|-- LengthOfTime
+    TimeMeasurement <|-- LengthOfTime
+    interface LengthOfTime<Duration>
+    {
+        --
+        +void repeat(Callback<Timer> onTimer)
+        --(math)--
+        +double dividedBy(Duration that)
+        --(thread)--
+        +WakeState await(Awaitable)
+        +void sleep()
+        +boolean wait(Object monitor)
+        +void waitThen(Callback<Timer> onTimer)
+        --(time)--
+        +java.time.Duration asJavaDuration()
+        +Duration difference(Duration that)
+        +Duration dividedBy(long value)
+        +Duration dividedBy(double value)
+        +Duration minus(LengthOfTime<?> that)
+        +Duration modulo(Duration that)
+        +Duration nearest(Duration unit)
+        +Duration newDuration(Nanoseconds)
+        +Duration plus(LengthOfTime<?> that)
+        +Duration roundDown(Duration unit)
+        +Duration roundUp(Duration unit)
+        +Duration times(int factor)
+        +Duration times(double factor)
+    }
+    
+    Comparable <|-- Nanoseconds
+    Zeroable <|-- Nanoseconds
+    class Nanoseconds
+    {
+        --(constructors)--
+        #Nanoseconds()
+        --(checks)--
+        +boolean isGreaterThan(Nanoseconds that)
+        +boolean isGreaterThanOrEqualTo(Nanoseconds that)
+        +boolean isLessThan(Nanoseconds that)
+        +boolean isLessThanOrEqualTo(Nanoseconds that)
+        +boolean isNegative()
+        --(conversion)--
+        +BigDecimal asBigDecimal()
+        +double asDouble()
+        --(math)--
+        +double dividedBy(Nanoseconds divisor)
+        --(time)--
+        +Nanoseconds dividedBy(double divisor)
+        +Nanoseconds milliseconds(double milliseconds)
+        +Nanoseconds minus(Nanoseconds that)
+        +Nanoseconds modulo(Nanoseconds divisor)
+        +Nanoseconds nanoseconds(BigDecimal nanoseconds)
+        +Nanoseconds nanoseconds(double nanoseconds)
+        +Nanoseconds nanoseconds(long seconds, long nanoseconds)
+        +Nanoseconds nanoseconds(long nanoseconds)
+        +Nanoseconds plus(Nanoseconds that)
+        +Nanoseconds roundDown(Nanoseconds unit)
+        +Nanoseconds roundUp(Nanoseconds unit)
+        +Nanoseconds seconds(double seconds)
+        +Nanoseconds times(double factor)
+    }
+    
+    interface Comparable<PointInTime<?,?>>
+    interface TimeMeasurement
+    Comparable <|-- PointInTime
+    TimeMeasurement <|-- PointInTime
+    interface PointInTime<Time, Duration>
+    {
+        --(checks)--
+        +boolean isAfter(Time that)
+        +boolean isAtOrAfter(Time that)
+        +boolean isAtOrBefore(Time that)
+        +boolean isBefore(Time that)
+        +boolean isGreaterThan(Time that)
+        +boolean isGreaterThanOrEqualTo(Time that)
+        +boolean isLessThan(Time that)
+        +boolean isLessThanOrEqualTo(Time that)
+        +boolean isNegative()
+        --(conversion)--
+        +Instant asJavaInstant()
+        --(time)--
+        +Time maximum()
+        +Time maximum(Time that)
+        +Time minimum()
+        +Time minimum(Time that)
+        +Time minus(Duration)
+        +Duration minus(Time that)
+        +Time nearest(Duration unit)
+        +Duration newDuration(Nanoseconds)
+        +Time newTime(Nanoseconds)
+        +Time plus(Duration that)
+        +Time roundDown(Duration unit)
+        +Time roundUp(Duration unit)
+    }
+    
+    interface LongValued
+    LongValued <|-- TimeMeasurement
+    interface TimeMeasurement
+    {
+        --
+        +String unitString(double value, String units)
+        --(conversion)--
+        +double asDays()
+        +double asHours()
+        +String asHumanReadableString()
+        +double asMicroseconds()
+        +double asMilliseconds()
+        +double asMinutes()
+        +double asNanoseconds()
+        +double asSeconds()
+        +double asWeeks()
+        +double asYears()
+        --(time)--
+        +long milliseconds()
+        +Nanoseconds nanoseconds()
+    }
+    
+    enum WakeState
+    {
+        COMPLETED
+        INTERRUPTED
+        TERMINATED
+        TIMED_OUT
+    }
+    
+@enduml
+

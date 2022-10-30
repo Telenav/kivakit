@@ -1,0 +1,27 @@
+
+@startuml
+
+    !include lexakai.theme
+    
+    title "diagram-value"
+    
+    interface BooleanValued
+    {
+        --(checks)--
+        +boolean isTrue()
+    }
+    
+    interface Locator<Value>
+    {
+        --(search)--
+        +Value locate()
+    }
+    
+    interface Valued<Value>
+    {
+        --(collection)--
+        +Value value()
+    }
+    
+@enduml
+

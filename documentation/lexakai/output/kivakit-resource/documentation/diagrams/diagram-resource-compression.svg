@@ -1,0 +1,455 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="364.5833px" preserveAspectRatio="none" style="width:581px;height:364px;background:#333333;" version="1.1" viewBox="0 0 581 364" width="581.25px" zoomAndPan="magnify"><defs/><g><rect fill="#48494B" height="41.2028" rx="8.3333" ry="8.3333" style="stroke:#545454;stroke-width:1.0416666666666667;" width="281.25" x="142.9688" y="2.0833"/><text fill="#C0C0C0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="20.8333" lengthAdjust="spacing" textLength="258.3333" x="154.4271" y="30.5583">Resources - Compression</text><!--MD5=[19bab21d94a99911073f24de8dec88db]
+class Codec--><rect codeLine="13" fill="#282828" height="48.055" id="Codec" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="77.0833" x="254.1667" y="199.5361"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="77.0833" x="254.1667" y="199.5361"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="77.0833" x="254.1667" y="222.5911"/><rect codeLine="13" fill="none" height="48.055" id="Codec" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="77.0833" x="254.1667" y="199.5361"/><ellipse cx="268.75" cy="215.2303" fill="#008400" rx="10.4167" ry="10.4167" style="stroke:#239C23;stroke-width:1.0416666666666667;"/><path d="M266.154,212.3922 L266.154,210.8053 L271.58,210.8053 L271.58,212.3922 L269.7673,212.3922 L269.7673,218.3309 L271.58,218.3309 L271.58,219.9178 L266.154,219.9178 L266.154,218.3309 L267.9667,218.3309 L267.9667,212.3922 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-style="italic" font-weight="bold" lengthAdjust="spacing" textLength="39.5833" x="285.4167" y="219.9544">Codec</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="255.2083" x2="330.2083" y1="230.9245" y2="230.9245"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="255.2083" x2="330.2083" y1="239.2578" y2="239.2578"/><!--MD5=[db8554f2b1c91af4070e9585566a1b26]
+class Compressor--><rect codeLine="17" fill="#282828" height="83.3781" id="Compressor" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="268.75" x="7.2917" y="53.7028"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="268.75" x="7.2917" y="53.7028"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="268.75" x="7.2917" y="76.7578"/><rect codeLine="17" fill="none" height="83.3781" id="Compressor" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="268.75" x="7.2917" y="53.7028"/><ellipse cx="94.7917" cy="69.397" fill="#008400" rx="10.4167" ry="10.4167" style="stroke:#239C23;stroke-width:1.0416666666666667;"/><path d="M92.1956,66.5588 L92.1956,64.9719 L97.6217,64.9719 L97.6217,66.5588 L95.8089,66.5588 L95.8089,72.4976 L97.6217,72.4976 L97.6217,74.0845 L92.1956,74.0845 L92.1956,72.4976 L94.0084,72.4976 L94.0084,66.5588 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-style="italic" font-weight="bold" lengthAdjust="spacing" textLength="79.1667" x="117.7083" y="74.1211">Compressor</text><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="8.3333" x2="275" y1="85.0911" y2="85.0911"/><ellipse cx="18.75" cy="120.461" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="236.4583" x="30.2083" y="127.3722">OutputStream compressed(OutputStream)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="8.3333" x2="120.8333" y1="103.2969" y2="103.2969"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="35.4167" x="123.9583" y="107.1065">(write)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="162.5" x2="275" y1="103.2969" y2="103.2969"/><!--MD5=[e2c1cbe98f43e38176cfebafd8224d21]
+class Decompressor--><rect codeLine="23" fill="#282828" height="83.3781" id="Decompressor" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="261.4583" x="313.0208" y="53.7028"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="261.4583" x="313.0208" y="53.7028"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="261.4583" x="313.0208" y="76.7578"/><rect codeLine="23" fill="none" height="83.3781" id="Decompressor" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="261.4583" x="313.0208" y="53.7028"/><ellipse cx="389.5833" cy="69.397" fill="#008400" rx="10.4167" ry="10.4167" style="stroke:#239C23;stroke-width:1.0416666666666667;"/><path d="M386.9873,66.5588 L386.9873,64.9719 L392.4133,64.9719 L392.4133,66.5588 L390.6006,66.5588 L390.6006,72.4976 L392.4133,72.4976 L392.4133,74.0845 L386.9873,74.0845 L386.9873,72.4976 L388.8,72.4976 L388.8,66.5588 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-style="italic" font-weight="bold" lengthAdjust="spacing" textLength="93.75" x="412.5" y="74.1211">Decompressor</text><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="314.0625" x2="573.4375" y1="85.0911" y2="85.0911"/><ellipse cx="324.4792" cy="120.461" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="229.1667" x="335.9375" y="127.3722">InputStream decompressed(InputStream)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="314.0625" x2="408.3333" y1="103.2969" y2="103.2969"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="64.5833" x="411.4583" y="107.1065">(functional)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="479.1667" x2="573.4375" y1="103.2969" y2="103.2969"/><!--MD5=[e22532795bb54ffc4b7a424060469f9e]
+class GzipCodec--><rect codeLine="30" fill="#282828" height="48.055" id="GzipCodec" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="106.25" x="97.9167" y="309.9528"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="106.25" x="97.9167" y="309.9528"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="106.25" x="97.9167" y="333.0078"/><rect codeLine="30" fill="none" height="48.055" id="GzipCodec" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="106.25" x="97.9167" y="309.9528"/><ellipse cx="112.5" cy="325.647" fill="#0066CF" rx="10.4167" ry="10.4167" style="stroke:#0086EF;stroke-width:1.0416666666666667;"/><path d="M114.4104,330.072 Q113.9832,330.2917 113.5132,330.4016 Q113.0432,330.5115 112.5244,330.5115 Q110.6812,330.5115 109.7107,329.2969 Q108.7402,328.0823 108.7402,325.7874 Q108.7402,323.4863 109.7107,322.2717 Q110.6812,321.0571 112.5244,321.0571 Q113.0432,321.0571 113.5193,321.167 Q113.9954,321.2769 114.4104,321.4966 L114.4104,323.4985 Q113.9465,323.0713 113.5101,322.8729 Q113.0737,322.6746 112.6099,322.6746 Q111.6211,322.6746 111.1176,323.4589 Q110.614,324.2432 110.614,325.7874 Q110.614,327.3254 111.1176,328.1097 Q111.6211,328.894 112.6099,328.894 Q113.0737,328.894 113.5101,328.6957 Q113.9465,328.4973 114.4104,328.0701 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="68.75" x="129.1667" y="330.3711">GzipCodec</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="98.9583" x2="203.125" y1="341.3411" y2="341.3411"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="98.9583" x2="203.125" y1="349.6745" y2="349.6745"/><!--MD5=[8f39fec3cfcbd44d2aa5f5d3bc08488e]
+class NullCodec--><rect codeLine="35" fill="#282828" height="48.055" id="NullCodec" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="103.125" x="241.1458" y="309.9528"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="103.125" x="241.1458" y="309.9528"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="103.125" x="241.1458" y="333.0078"/><rect codeLine="35" fill="none" height="48.055" id="NullCodec" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="103.125" x="241.1458" y="309.9528"/><ellipse cx="255.7292" cy="325.647" fill="#0066CF" rx="10.4167" ry="10.4167" style="stroke:#0086EF;stroke-width:1.0416666666666667;"/><path d="M257.6396,330.072 Q257.2123,330.2917 256.7424,330.4016 Q256.2724,330.5115 255.7536,330.5115 Q253.9103,330.5115 252.9399,329.2969 Q251.9694,328.0823 251.9694,325.7874 Q251.9694,323.4863 252.9399,322.2717 Q253.9103,321.0571 255.7536,321.0571 Q256.2724,321.0571 256.7485,321.167 Q257.2245,321.2769 257.6396,321.4966 L257.6396,323.4985 Q257.1757,323.0713 256.7393,322.8729 Q256.3029,322.6746 255.839,322.6746 Q254.8503,322.6746 254.3467,323.4589 Q253.8432,324.2432 253.8432,325.7874 Q253.8432,327.3254 254.3467,328.1097 Q254.8503,328.894 255.839,328.894 Q256.3029,328.894 256.7393,328.6957 Q257.1757,328.4973 257.6396,328.0701 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="65.625" x="272.3958" y="330.3711">NullCodec</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="242.1875" x2="343.2292" y1="341.3411" y2="341.3411"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="242.1875" x2="343.2292" y1="349.6745" y2="349.6745"/><!--MD5=[29b7a572b934c4957c3597831e844306]
+class ZipCodec--><rect codeLine="40" fill="#282828" height="48.055" id="ZipCodec" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="97.9167" x="381.25" y="309.9528"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="97.9167" x="381.25" y="309.9528"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="97.9167" x="381.25" y="333.0078"/><rect codeLine="40" fill="none" height="48.055" id="ZipCodec" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="97.9167" x="381.25" y="309.9528"/><ellipse cx="395.8333" cy="325.647" fill="#0066CF" rx="10.4167" ry="10.4167" style="stroke:#0086EF;stroke-width:1.0416666666666667;"/><path d="M397.7437,330.072 Q397.3165,330.2917 396.8465,330.4016 Q396.3765,330.5115 395.8577,330.5115 Q394.0145,330.5115 393.044,329.2969 Q392.0736,328.0823 392.0736,325.7874 Q392.0736,323.4863 393.044,322.2717 Q394.0145,321.0571 395.8577,321.0571 Q396.3765,321.0571 396.8526,321.167 Q397.3287,321.2769 397.7437,321.4966 L397.7437,323.4985 Q397.2799,323.0713 396.8435,322.8729 Q396.4071,322.6746 395.9432,322.6746 Q394.9544,322.6746 394.4509,323.4589 Q393.9473,324.2432 393.9473,325.7874 Q393.9473,327.3254 394.4509,328.1097 Q394.9544,328.894 395.9432,328.894 Q396.4071,328.894 396.8435,328.6957 Q397.2799,328.4973 397.7437,328.0701 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="60.4167" x="412.5" y="330.3711">ZipCodec</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="382.2917" x2="478.125" y1="341.3411" y2="341.3411"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="382.2917" x2="478.125" y1="349.6745" y2="349.6745"/><!--MD5=[8edd703f7df0ac3b9589574de3343ae4]
+reverse link Compressor to Codec--><path codeLine="11" d="M206.75,150.7236 C227.1875,167.7757 248.6563,185.6924 265.0313,199.359 " fill="none" id="Compressor-backto-Codec" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="202.0313,156.2757,190.7083,137.3382,211.375,145.0778,202.0313,156.2757" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[38636ea4745e53a8de5ead710c738df7]
+reverse link Decompressor to Codec--><path codeLine="12" d="M378.6667,150.7236 C358.2292,167.7757 336.7604,185.6924 320.3854,199.359 " fill="none" id="Decompressor-backto-Codec" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="374.0417,145.0778,394.7083,137.3382,383.3854,156.2757,374.0417,145.0778" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[cc84cb78af583ffa280c05e8804daab6]
+reverse link Codec to GzipCodec--><path codeLine="29" d="M246.0417,260.2236 C224.6458,276.5882 199.9063,295.5049 181.0417,309.932 " fill="none" id="Codec-backto-GzipCodec" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="241.6875,254.3695,262.6667,247.5153,250.5417,265.9632,241.6875,254.3695" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[cb5852545e8914b0a5fce6df7a366668]
+reverse link Codec to NullCodec--><path codeLine="34" d="M292.7083,268.4528 C292.7083,282.6715 292.7083,297.8695 292.7083,309.932 " fill="none" id="Codec-backto-NullCodec" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="285.4167,268.3486,292.7083,247.5153,300,268.3486,285.4167,268.3486" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[500b1a5895727ffe363a08015ae5b716]
+reverse link Codec to ZipCodec--><path codeLine="39" d="M338.3125,260.4632 C359.0104,276.7757 382.8646,295.5674 401.0938,309.932 " fill="none" id="Codec-backto-ZipCodec" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="333.7188,266.1299,321.8646,247.5153,342.75,254.6715,333.7188,266.1299" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[d5a0b19169a2e1638291378cd4bd03d4]
+@startuml
+
+    !include lexakai.theme
+    
+    title "Resources - Compression"
+    
+    interface Codec
+    
+    interface Compressor
+    interface Decompressor
+    Compressor <|- - Codec
+    Decompressor <|- - Codec
+    interface Codec
+    {
+    }
+    
+    interface Compressor
+    {
+        - -(write)- -
+        +OutputStream compressed(OutputStream)
+    }
+    
+    interface Decompressor
+    {
+        - -(functional)- -
+        +InputStream decompressed(InputStream)
+    }
+    
+    Codec <|- - GzipCodec
+    class GzipCodec
+    {
+    }
+    
+    Codec <|- - NullCodec
+    class NullCodec
+    {
+    }
+    
+    Codec <|- - ZipCodec
+    class ZipCodec
+    {
+    }
+    
+@enduml
+
+@startuml
+
+
+
+
+
+
+
+
+
+skinparam backgroundColor #333333
+
+
+
+
+
+
+skinparam  {
+    defaultFontName   "Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif"
+    defaultFontSize   12
+    defaultTextAlignment left
+    shadowing false
+    RoundCorner 10
+    TitleFontSize 18
+}
+
+skinparam defaultFontName       "Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif"
+skinparam defaultFontSize       12
+skinparam dpi                   100
+skinparam shadowing             false
+skinparam roundcorner           16
+skinparam ParticipantPadding    40
+skinparam BoxPadding            40
+skinparam Padding               3
+skinparam ArrowColor            #545454
+skinparam stereotype {
+    CBackgroundColor #0066cf
+    CBorderColor #0086ef
+    ABackgroundColor #C8Ac00
+    ABorderColor #D8Bc00
+    IBackgroundColor #008400
+    IBorderColor #239c23
+    EBackgroundColor #cf6300
+    EBorderColor #ef8300
+    NBackgroundColor #3380b9
+    NBorderColor #004d86
+}
+skinparam title {
+	FontColor	                 #c0c0c0
+ 	BorderColor                  #545454
+	FontSize	    	         20
+	BorderRoundCorner            16
+	BorderThickness 	         1
+	BackgroundColor              #48494b
+}
+
+
+skinparam legend {
+	BackgroundColor #303030
+	BorderColor #404040
+	FontColor #a0a0a0
+}
+
+	skinparam swimlane {
+	BorderColor #5e5e5e
+	BorderThickness 2
+	TitleBackgroundColor  #6d6d6d-#484848
+	TitleFontColor #303030
+}
+
+skinparam activity {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BarColor #00FF00
+	StartColor #0060a8
+	EndColor #0060a8
+	DiamondBackgroundColor #6d6d6d-#3a3a3a
+  	DiamondBorderColor #3a3a3a
+  	DiamondFontColor #fefefe
+}
+
+
+skinparam participant {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	ParticipantBorderThickness 2
+}
+
+
+skinparam actor {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam arrow {
+	Thickness 1.5
+	Color #545454
+	FontColor #a0a0a0
+    FontStyle bold
+    MessageAlignment center
+}
+
+
+
+skinparam sequence {
+	BorderColor #303030
+	TitleFontColor #303030
+	BackgroundColor #333333
+	StartColor #303030
+	EndColor #303030
+	BoxBackgroundColor #333333
+	BoxBorderColor #484848
+	BoxFontColor #484848
+	LifeLineBorderColor #484848
+	LifeLineBorderThickness 2
+	LifeLineBackgroundColor #3a3a3a
+	GroupBorderColor #484848
+	GroupFontColor #484848
+	GroupHeaderFontColor #0060a8
+	GroupBackgroundColor #484848
+	GroupHeaderBackgroundColor #333333
+	DividerBackgroundColor #484848
+    DividerBorderColor #484848
+    DividerBorderThickness 2
+    DividerFontColor #D8Bc00
+	ReferenceBackgroundColor #333333
+	ReferenceBorderColor #484848
+	ReferenceFontColor #fefefe
+	ReferenceHeaderBackgroundColor #484848
+}
+
+
+skinparam partition {
+	BorderColor #303030
+	FontColor #333333
+	BackgroundColor #333333
+}
+
+
+skinparam collections {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam control {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam entity {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam boundary {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam agent {
+	BackgroundColor #ff8000
+	BorderColor #ff9933
+	FontColor #484848
+}
+
+
+skinparam note {
+	BorderThickness 1
+	BackgroundColor #1b1b1a
+	BorderColor #5e5e5e
+	FontSize 11
+	FontColor #a0a0a0
+}
+
+
+skinparam artifact {
+	BorderThickness 10
+	BorderColor #5e5e5e
+	BackgroundColor #1b1b1a
+	FontColor #D8Bc00
+}
+
+
+skinparam component {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam interface {
+	BackgroundColor  #008400
+	BorderColor  #007F00
+	FontColor #484848
+}
+
+
+skinparam storage {
+	BackgroundColor #ff8000
+  	BorderColor #cc6600
+	FontColor #222222
+}
+
+
+skinparam node {
+	BackgroundColor #333333
+	BorderColor #333333
+	FontColor #C8Ac00
+}
+
+
+skinparam cloud {
+	BackgroundColor #484848-black
+	BorderColor #484848
+	FontColor #D8Bc00
+}
+
+
+skinparam database {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BackgroundColor  #333333
+}
+
+
+skinparam class {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	HeaderBackgroundColor #1b1b1a
+    BackgroundColor #282828
+    BorderColor #5e5e5e
+ 	StereotypeFontColor #a0a0a0
+    StereotypeFontStyle bold
+	BorderThickness 1
+	AttributeFontColor #D8Bc00
+	AttributeFontSize 11
+    FontColor #D8Bc00
+    FontStyle bold
+}
+
+
+skinparam object {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	StereotypeFontColor #484848
+	BorderThickness 1
+	AttributeFontColor #fefefe
+	AttributeFontSize 11
+}
+
+
+skinparam usecase {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BorderThickness 2
+	StereotypeFontColor #303030
+}
+
+
+skinparam rectangle {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BackgroundColor #333333
+	BorderThickness 2
+	StereotypeFontColor #303030
+}
+
+
+skinparam package {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BackgroundColor #333333
+	BorderThickness 2
+}
+
+
+skinparam folder {
+	BackgroundColor #6d6d6d
+  	BorderColor #ff8000
+	FontColor #ff8000
+	BorderThickness 2
+}
+
+
+skinparam frame {
+	BackgroundColor #6d6d6d
+  	BorderColor #0060a8
+	FontColor #0060a8
+	BorderThickness 2
+}
+
+
+skinparam state {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	StartColor #0060a8
+	EndColor #0060a8
+	AttributeFontColor #fefefe
+	AttributeFontSize 11
+}
+
+
+skinparam queue {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam card {
+	BackgroundColor #0060a8
+	BorderColor #004d86
+	FontColor $INFO_TEXT
+}
+
+
+skinparam file {
+	BackgroundColor #6d6d6d-#484848
+	BorderColor #0060a8
+	FontColor #fefefe
+}
+
+
+skinparam stack {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+    
+    title "Resources - Compression"
+    
+    interface Codec
+    
+    interface Compressor
+    interface Decompressor
+    Compressor <|- - Codec
+    Decompressor <|- - Codec
+    interface Codec
+    {
+    }
+    
+    interface Compressor
+    {
+        - -(write)- -
+        +OutputStream compressed(OutputStream)
+    }
+    
+    interface Decompressor
+    {
+        - -(functional)- -
+        +InputStream decompressed(InputStream)
+    }
+    
+    Codec <|- - GzipCodec
+    class GzipCodec
+    {
+    }
+    
+    Codec <|- - NullCodec
+    class NullCodec
+    {
+    }
+    
+    Codec <|- - ZipCodec
+    class ZipCodec
+    {
+    }
+    
+@enduml
+
+PlantUML version 1.2021.01(Tue Feb 02 00:55:08 MST 2021)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Default Encoding: UTF-8
+Language: en
+Country: US
+--></g></svg>

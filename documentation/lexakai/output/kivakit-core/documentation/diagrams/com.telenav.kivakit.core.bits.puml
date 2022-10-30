@@ -1,0 +1,46 @@
+
+@startuml
+
+    !include lexakai.theme
+    
+    title "com.telenav.kivakit.core.bits"
+    
+    class BitDiagram
+    {
+        --(constructors)--
+        +BitDiagram(String)
+        --
+        +BitField field(char fieldCharacter)
+    }
+    
+    class BitDiagram.BitField
+    {
+        --(constructors)--
+        +BitField(char)
+        --
+        +int bits()
+        +boolean getBoolean(long value)
+        +long mask()
+        +int set(int value, int source)
+        +short set(short value, short source)
+        +long set(long value, boolean source)
+        +int set(int value, boolean source)
+        +short set(short value, boolean source)
+        +long set(long value, long source)
+        --(math)--
+        +int maximumValue()
+        --(primitive)--
+        +byte getByte(long value)
+        +int getInt(long value)
+        +long getLong(long value)
+        +short getShort(long value)
+    }
+    
+    class Bits
+    {
+        --
+        +long oneBits(Countable)
+    }
+    
+@enduml
+

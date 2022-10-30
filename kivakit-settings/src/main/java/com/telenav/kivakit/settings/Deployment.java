@@ -246,9 +246,8 @@ public class Deployment extends MemorySettingsStore implements Serializable
     @Override
     public boolean equals(Object object)
     {
-        if (object instanceof Deployment)
+        if (object instanceof Deployment that)
         {
-            var that = (Deployment) object;
             return name.equals(that.name);
         }
         return false;

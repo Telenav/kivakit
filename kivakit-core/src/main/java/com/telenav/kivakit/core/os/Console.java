@@ -104,18 +104,20 @@ public class Console implements
     {
         switch (message.operationStatus())
         {
-            case FAILED:
-            case HALTED:
+            case FAILED, HALTED ->
+            {
                 print(ERROR, message.asString());
                 return;
+            }
         }
 
         switch (message.status())
         {
-            case FAILED:
-            case PROBLEM:
+            case FAILED, PROBLEM ->
+            {
                 print(ERROR, message.asString());
                 return;
+            }
         }
 
         print(NORMAL, message.asString());

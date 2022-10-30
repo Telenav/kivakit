@@ -1,0 +1,46 @@
+
+@startuml
+
+    !include lexakai.theme
+    
+    title "com.telenav.kivakit.conversion.core.language"
+    
+    abstract BaseStringConverter
+    
+    BaseStringConverter <|-- ClassConverter
+    class ClassConverter
+    {
+        --(constructors)--
+        +ClassConverter(Listener)
+    }
+    
+    BaseStringConverter <|-- EnumConverter
+    class EnumConverter<T>
+    {
+        --(constructors)--
+        +EnumConverter(Listener, Class<T>)
+    }
+    
+    BaseStringConverter <|-- IdentityConverter
+    class IdentityConverter
+    {
+        --(constructors)--
+        +IdentityConverter(Listener)
+    }
+    
+    BaseStringConverter <|-- PatternConverter
+    class PatternConverter
+    {
+        --(constructors)--
+        +PatternConverter(Listener)
+    }
+    
+    BaseStringConverter <|-- ThrowableConverter
+    class ThrowableConverter
+    {
+        --(constructors)--
+        +ThrowableConverter(Listener)
+    }
+    
+@enduml
+

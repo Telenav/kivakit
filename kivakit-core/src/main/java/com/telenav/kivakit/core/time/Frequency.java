@@ -26,13 +26,8 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
-import static com.telenav.kivakit.core.collections.list.ObjectList.list;
 import static com.telenav.kivakit.core.string.Strip.stripLeading;
 import static com.telenav.kivakit.core.time.Duration.*;
-import static com.telenav.kivakit.core.time.Duration.FOREVER;
-import static com.telenav.kivakit.core.time.Duration.ZERO_DURATION;
-import static com.telenav.kivakit.core.time.Duration.parseDuration;
-import static com.telenav.kivakit.core.time.Duration.seconds;
 import static com.telenav.kivakit.core.time.Time.now;
 import static java.lang.Character.isDigit;
 import static java.util.Objects.hash;
@@ -221,9 +216,8 @@ public class Frequency
     @Override
     public boolean equals(Object object)
     {
-        if (object instanceof Frequency)
+        if (object instanceof Frequency that)
         {
-            Frequency that = (Frequency) object;
             return this.cycleLength.equals(that.cycleLength);
         }
         return false;

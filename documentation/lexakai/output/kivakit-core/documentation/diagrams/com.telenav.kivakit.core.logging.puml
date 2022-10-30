@@ -1,0 +1,78 @@
+
+@startuml
+
+    !include lexakai.theme
+    
+    title "com.telenav.kivakit.core.logging"
+    
+    interface Triaged
+    
+    interface Closeable
+    interface Filtered
+    Filtered <|-- Log
+    Closeable <|-- Log
+    Log --> LogEntry : "logs"
+    interface Log
+    {
+        --
+        +void configure(VariableMap<String> properties)
+        +void level(Class<T> message)
+        +void level(Severity)
+        +void log(LogEntry)
+    }
+    
+    Triaged <|-- LogEntry
+    LogEntry o-- CodeContext
+    LogEntry o-- StackTrace
+    class LogEntry
+    {
+        --
+        +CodeContext context()
+        +String format(LogFormatter, MessageFormat... formats)
+        +int sequenceNumber()
+        --(checks)--
+        +boolean isSevere()
+        --(messaging)--
+        +String formattedMessage(MessageFormat... formats)
+        +Message message()
+        +String messageType()
+        +StackTrace stackTrace()
+        --(naming)--
+        +String threadName()
+        --(time)--
+        +Time created()
+    }
+    
+    interface Filtered
+    interface Listener
+    Listener <|-- Logger
+    Filtered <|-- Logger
+    interface Logger
+    {
+        --
+        +LoggerCodeContext codeContext()
+        +void log(Message)
+        +Logger logger()
+        --(collection)--
+        +void addFilter(Filter<LogEntry>)
+    }
+    
+    CodeContext <|-- LoggerCodeContext
+    class LoggerCodeContext
+    {
+        --(constructors)--
+        +LoggerCodeContext()
+        +LoggerCodeContext(Method)
+        +LoggerCodeContext(String)
+    }
+    
+    LoggerFactory --> Logger : "creates"
+    class LoggerFactory
+    {
+        --(factory)--
+        +void globalLoggerFactory(Factory<Logger>)
+        +Logger newLogger()
+    }
+    
+@enduml
+

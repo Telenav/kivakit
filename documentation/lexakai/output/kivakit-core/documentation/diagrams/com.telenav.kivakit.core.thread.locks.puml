@@ -1,0 +1,31 @@
+
+@startuml
+
+    !include lexakai.theme
+    
+    title "com.telenav.kivakit.core.thread.locks"
+    
+    ReentrantLock <|-- Lock
+    class Lock
+    {
+        --
+        +void whileLocked(Runnable code)
+        --(functional)--
+        +T whileLocked(Code<T>)
+    }
+    
+    ReentrantReadWriteLock <|-- ReadWriteLock
+    class ReadWriteLock
+    {
+        --(constructors)--
+        +ReadWriteLock()
+        --(read)--
+        +void read(Runnable code)
+        +T read(Source<T> code)
+        --(write)--
+        +void write(Runnable code)
+        +T write(Source<T> code)
+    }
+    
+@enduml
+

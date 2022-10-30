@@ -151,9 +151,8 @@ public class InstanceIdentifier
     @Override
     public boolean equals(Object object)
     {
-        if (object instanceof InstanceIdentifier)
+        if (object instanceof InstanceIdentifier that)
         {
-            InstanceIdentifier that = (InstanceIdentifier) object;
             return areEqualPairs(
                     this.enumIdentifier, that.enumIdentifier,
                     this.stringIdentifier, that.stringIdentifier);

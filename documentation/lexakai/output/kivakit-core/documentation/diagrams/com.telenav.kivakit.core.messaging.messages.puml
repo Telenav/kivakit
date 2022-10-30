@@ -1,0 +1,86 @@
+
+@startuml
+
+    !include lexakai.theme
+    
+    title "com.telenav.kivakit.core.messaging.messages"
+    
+    interface Named
+    interface Message
+    
+    Level <|-- Importance
+    class Importance
+    {
+        --
+        +Importance importance(double level)
+        --(lookup)--
+        +Importance registerImportance(Class<? extends Message> low, Class<? extends Message> high)
+        --(messaging)--
+        +Importance importanceOfMessage(Class<? extends Message> type)
+    }
+    
+    RuntimeException <|-- MessageException
+    class MessageException
+    {
+        --(constructors)--
+        +MessageException(Message)
+        --(messaging)--
+        +Message message()
+    }
+    
+    OperationMessage <|-- OperationLifecycleMessage
+    abstract class OperationLifecycleMessage
+    {
+        --(constructors)--
+        #OperationLifecycleMessage()
+        #OperationLifecycleMessage(String, Object)
+    }
+    
+    Message <|-- OperationMessage
+    abstract class OperationMessage
+    {
+        --(constructors)--
+        #OperationMessage()
+        #OperationMessage(String)
+        --
+        +void context(CodeContext)
+        +void created(Time created)
+        --(command line parsing)--
+        +void arguments(Object[] arguments)
+        --(messaging)--
+        +OperationMessage maximumFrequency(Frequency maximumFrequency)
+        +void messageForType(String message)
+        +OperationMessage stackTrace(StackTrace)
+    }
+    
+    OperationMessage <|-- OperationStatusMessage
+    abstract class OperationStatusMessage
+    {
+        --(constructors)--
+        #OperationStatusMessage()
+        #OperationStatusMessage(String, Object)
+        --
+        +String code()
+        --(status)--
+        +OperationStatusMessage code(String code)
+    }
+    
+    Level <|-- Severity
+    Named <|-- Severity
+    class Severity
+    {
+        --(constructors)--
+        +Severity(String, double)
+        --(parsing)--
+        +Severity parseSeverity(Listener, String name)
+    }
+    
+    Triaged --> Severity : "has"
+    interface Triaged
+    {
+        --
+        +Severity severity()
+    }
+    
+@enduml
+

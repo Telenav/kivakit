@@ -128,9 +128,8 @@ public class MutableCount implements
     @Override
     public boolean equals(Object object)
     {
-        if (object instanceof MutableCount)
+        if (object instanceof MutableCount that)
         {
-            var that = (MutableCount) object;
             return asLong() == that.asLong();
         }
         return false;

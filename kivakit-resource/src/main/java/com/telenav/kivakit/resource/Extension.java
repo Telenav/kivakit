@@ -314,9 +314,8 @@ public class Extension implements
     @Override
     public boolean equals(Object object)
     {
-        if (object instanceof Extension)
+        if (object instanceof Extension that)
         {
-            var that = (Extension) object;
             return extension.equals(that.extension);
         }
         return false;

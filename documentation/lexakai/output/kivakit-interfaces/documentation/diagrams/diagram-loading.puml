@@ -1,0 +1,21 @@
+
+@startuml
+
+    !include lexakai.theme
+    
+    title "diagram-loading"
+    
+    interface Loadable
+    {
+        --(read)--
+        +void load()
+    }
+    
+    interface Unloadable
+    {
+        --
+        +void unload()
+    }
+    
+@enduml
+

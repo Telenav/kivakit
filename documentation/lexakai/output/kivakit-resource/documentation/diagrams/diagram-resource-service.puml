@@ -1,0 +1,97 @@
+
+@startuml
+
+    !include lexakai.theme
+    
+    title "Resources - Services"
+    
+    abstract BaseRepeater
+    
+    interface ResourceResolver
+    interface ResourceFolderResolver
+    
+    ResourceResolver <|-- PackageResource.PackageResolver
+    class PackageResource.PackageResolver
+    {
+    }
+    
+    ResourceResolver <|-- File.Resolver
+    class File.Resolver
+    {
+    }
+    
+    ResourceFolderResolver <|-- Folder.Resolver
+    class Folder.Resolver
+    {
+    }
+    
+    ResourceFolderResolver <|-- Package.Resolver
+    class Package.Resolver
+    {
+    }
+    
+    class ResourceFolderIdentifier
+    {
+        --(constructors)--
+        +ResourceFolderIdentifier(String)
+        --(filesystem)--
+        +ResourceFolder<?> resolve(Listener)
+        --(identity)--
+        +String identifier()
+    }
+    
+    interface RepeaterMixin
+    RepeaterMixin <|-- ResourceFolderResolver
+    ResourceFolderResolver --> ResourceIdentifier : "parses"
+    ResourceFolderResolver --> ResourceFolder : "creates"
+    interface ResourceFolderResolver
+    {
+        --(filesystem)--
+        +ResourceFolder<?> resolve(ResourceFolderIdentifier)
+        --(filtering)--
+        +boolean accepts(ResourceFolderIdentifier)
+    }
+    
+    BaseRepeater <|-- ResourceFolderResolverService
+    ResourceFolderResolverService "1" o-- "*" ResourceFolderResolver
+    class ResourceFolderResolverService
+    {
+        --(filesystem)--
+        +ResourceFolder<?> resolveResourceFolder(ResourceFolderIdentifier)
+        +ResourceFolderResolverService resourceFolderResolverService()
+    }
+    
+    class ResourceIdentifier
+    {
+        --(constructors)--
+        +ResourceIdentifier(String)
+        --
+        +Resource resolve(Listener)
+        --(identity)--
+        +String identifier()
+    }
+    
+    interface RepeaterMixin
+    RepeaterMixin <|-- ResourceResolver
+    ResourceResolver --> ResourceFolderIdentifier : "parses"
+    ResourceResolver --> Resource : "creates"
+    interface ResourceResolver
+    {
+        --
+        +Resource resolve(ResourceIdentifier)
+        --(filtering)--
+        +boolean accepts(ResourceIdentifier)
+    }
+    
+    BaseRepeater <|-- ResourceResolverService
+    ResourceResolverService "1" o-- "*" ResourceResolver
+    class ResourceResolverService
+    {
+        --
+        +Resource resolveResource(ResourceIdentifier)
+        --(service)--
+        +ResourceResolverService resourceResolverService()
+    }
+    
+@enduml
+

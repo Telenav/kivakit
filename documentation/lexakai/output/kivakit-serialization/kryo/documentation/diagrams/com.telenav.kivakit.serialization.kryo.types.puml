@@ -1,0 +1,52 @@
+
+@startuml
+
+    !include lexakai.theme
+    
+    title "com.telenav.kivakit.serialization.kryo.types"
+    
+    interface Named
+    
+    KryoTypes <|-- KivaKitCoreKryoTypes
+    class KivaKitCoreKryoTypes
+    {
+        --(constructors)--
+        +KivaKitCoreKryoTypes()
+    }
+    
+    KryoTypes <|-- KivaKitResourceKryoTypes
+    class KivaKitResourceKryoTypes
+    {
+        --(constructors)--
+        +KivaKitResourceKryoTypes()
+    }
+    
+    class KryoTypeEntry
+    {
+        --(filesystem)--
+        +KryoTypeEntry copy()
+    }
+    
+    Named <|-- KryoTypes
+    class KryoTypes
+    {
+        --(constructors)--
+        +KryoTypes()
+        --
+        +void group(String name, Runnable code)
+        +Set<Class<?>> registeredTypes()
+        --(filesystem)--
+        +KryoTypes deepCopy()
+        --(functional)--
+        +KryoTypes mergedWith(KryoTypes that)
+        --(identity)--
+        +int identifier(Class<?> type)
+        --(lookup)--
+        +KryoTypes register(Class<?> type)
+        +KryoTypes register(Class<?> type, Serializer<?>)
+        +KryoTypes registerDynamic(Class<?> type, Serializer<?>, int identifier)
+        +void registerWith(Kryo)
+    }
+    
+@enduml
+

@@ -1,0 +1,223 @@
+
+@startuml
+
+    !include lexakai.theme
+    
+    title "Messaging - Message Types"
+    
+    interface Message
+    
+    OperationStatusMessage <|-- Alert
+    class Alert
+    {
+        --(constructors)--
+        +Alert()
+        +Alert(String, Object)
+        --
+        +String solution()
+        +Alert solution(String solution)
+    }
+    
+    OperationStatusMessage <|-- Announcement
+    class Announcement
+    {
+        --(constructors)--
+        +Announcement()
+        +Announcement(String, Object)
+    }
+    
+    Alert <|-- CriticalAlert
+    class CriticalAlert
+    {
+        --(constructors)--
+        +CriticalAlert()
+        +CriticalAlert(String, String, Object)
+        +CriticalAlert(String, Throwable, String, Object)
+    }
+    
+    Problem <|-- FatalProblem
+    class FatalProblem
+    {
+        --(constructors)--
+        +FatalProblem()
+        +FatalProblem(String, Object)
+        +FatalProblem(Throwable, String, Object)
+    }
+    
+    OperationStatusMessage <|-- Glitch
+    class Glitch
+    {
+        --(constructors)--
+        +Glitch()
+        +Glitch(String, Object)
+        +Glitch(Throwable, String, Object)
+    }
+    
+    OperationStatusMessage <|-- Information
+    class Information
+    {
+        --(constructors)--
+        +Information()
+        +Information(String, Object)
+    }
+    
+    OperationStatusMessage <|-- Narration
+    class Narration
+    {
+        --(constructors)--
+        +Narration()
+        +Narration(String, Object)
+    }
+    
+    OperationLifecycleMessage <|-- OperationFailed
+    class OperationFailed
+    {
+        --(constructors)--
+        #OperationFailed(String, Object)
+        +OperationFailed()
+    }
+    
+    OperationLifecycleMessage <|-- OperationHalted
+    class OperationHalted
+    {
+        --(constructors)--
+        +OperationHalted()
+        +OperationHalted(String, Object)
+        +OperationHalted(Throwable, String, Object)
+    }
+    
+    OperationMessage <|-- OperationLifecycleMessage
+    abstract class OperationLifecycleMessage
+    {
+        --(constructors)--
+        #OperationLifecycleMessage()
+        #OperationLifecycleMessage(String, Object)
+    }
+    
+    Message <|-- OperationMessage
+    abstract class OperationMessage
+    {
+        --(constructors)--
+        #OperationMessage()
+        #OperationMessage(String)
+        --
+        +void context(CodeContext)
+        +void created(Time created)
+        --(command line parsing)--
+        +void arguments(Object[] arguments)
+        --(messaging)--
+        +OperationMessage maximumFrequency(Frequency maximumFrequency)
+        +void messageForType(String message)
+        +OperationMessage stackTrace(StackTrace)
+    }
+    
+    OperationLifecycleMessage <|-- OperationStarted
+    class OperationStarted
+    {
+        --(constructors)--
+        #OperationStarted(String, Object)
+        +OperationStarted()
+    }
+    
+    OperationMessage <|-- OperationStatusMessage
+    abstract class OperationStatusMessage
+    {
+        --(constructors)--
+        #OperationStatusMessage()
+        #OperationStatusMessage(String, Object)
+        --
+        +String code()
+        --(status)--
+        +OperationStatusMessage code(String code)
+    }
+    
+    OperationLifecycleMessage <|-- OperationSucceeded
+    class OperationSucceeded
+    {
+        --(constructors)--
+        #OperationSucceeded(String, Object)
+        +OperationSucceeded()
+    }
+    
+    OperationStatusMessage <|-- Problem
+    class Problem
+    {
+        --(constructors)--
+        +Problem()
+        +Problem(String, Object)
+        +Problem(Throwable, String, Object)
+    }
+    
+    OperationStatusMessage <|-- Quibble
+    class Quibble
+    {
+        --(constructors)--
+        +Quibble()
+        +Quibble(String, Object)
+        +Quibble(Throwable, String, Object)
+    }
+    
+    OperationStatusMessage <|-- Step
+    class Step
+    {
+        --(constructors)--
+        +Step()
+        +Step(String, Object)
+        +Step(Throwable, String, Object)
+    }
+    
+    OperationStatusMessage <|-- StepFailure
+    class StepFailure
+    {
+        --(constructors)--
+        +StepFailure()
+        +StepFailure(String, Object)
+        +StepFailure(Throwable, String, Object)
+    }
+    
+    OperationStatusMessage <|-- StepIncomplete
+    class StepIncomplete
+    {
+        --(constructors)--
+        +StepIncomplete()
+        +StepIncomplete(String, Object)
+        +StepIncomplete(Throwable, String, Object)
+    }
+    
+    OperationStatusMessage <|-- StepSuccess
+    class StepSuccess
+    {
+        --(constructors)--
+        +StepSuccess()
+        +StepSuccess(String, Object)
+    }
+    
+    OperationStatusMessage <|-- Trace
+    class Trace
+    {
+        --(constructors)--
+        +Trace()
+        +Trace(String, Object)
+        +Trace(Throwable, String, Object)
+    }
+    
+    FatalProblem <|-- Unsupported
+    class Unsupported
+    {
+        --(constructors)--
+        +Unsupported()
+        +Unsupported(String, Object)
+        +Unsupported(Throwable, String, Object)
+    }
+    
+    OperationStatusMessage <|-- Warning
+    class Warning
+    {
+        --(constructors)--
+        +Warning()
+        +Warning(String, Object)
+        +Warning(Throwable, String, Object)
+    }
+    
+@enduml
+

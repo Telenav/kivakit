@@ -202,9 +202,8 @@ public abstract class BaseReadableResource extends BaseRepeater implements Resou
     @Override
     public boolean equals(Object object)
     {
-        if (object instanceof BaseReadableResource)
+        if (object instanceof BaseReadableResource that)
         {
-            BaseReadableResource that = (BaseReadableResource) object;
             return this.path.equals(that.path);
         }
         return false;
@@ -321,9 +320,8 @@ public abstract class BaseReadableResource extends BaseRepeater implements Resou
     private String uniqueIdentifier()
     {
         var path = path();
-        if (path instanceof FilePath)
+        if (path instanceof FilePath filepath)
         {
-            var filepath = (FilePath) path;
             return filepath.asAbsolute().toString();
         }
         return path().toString();

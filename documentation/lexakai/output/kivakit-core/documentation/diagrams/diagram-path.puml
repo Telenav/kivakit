@@ -1,0 +1,122 @@
+
+@startuml
+
+    !include lexakai.theme
+    
+    title "diagram-path"
+    
+    interface Sized
+    interface Comparable
+    interface Iterable
+    interface StringFormattable
+    
+    StringPath <|-- PackageReference
+    class PackageReference
+    {
+        --
+        +Set<PackageReference> filesystemSubPackages(Listener)
+        +Set<PackageReference> jarSubPackages(Listener)
+        +ModuleResource moduleResource(Listener, String relativePath)
+        +PackageReference packageReference(Class<?> type, StringPath)
+        +PackageReference packageReference(StringPath)
+        +PackageReference packageReference(Class<?> type)
+        +Class<?> packageType()
+        +Set<PackageReference> subPackages(Listener)
+        --(checks)--
+        +boolean hasPackageType()
+        +boolean isPackageReference(String path)
+        --(collection)--
+        +boolean contains(ModuleResource)
+        +boolean containsNested(ModuleResource)
+        +List<ModuleResource> moduleResources(Listener)
+        +List<ModuleResource> nestedModuleResources(Listener)
+        +List<ModuleResource> nestedModuleResources(Listener, Matcher<ModuleResource>)
+        --(functional)--
+        +PackageReference withPackageType(Class<?> type)
+        --(parsing)--
+        +PackageReference parsePackageReference(Listener, Class<?> type, String relativePath)
+        +PackageReference parsePackageReference(Listener, String path)
+        --(read)--
+        +InputStream moduleResourceStream(String path)
+    }
+    
+    Iterable <|-- Path
+    Comparable <|-- Path
+    Sized <|-- Path
+    StringFormattable <|-- Path
+    abstract class Path<Element>
+    {
+        --(constructors)--
+        #Path(Element, List<Element>)
+        #Path(Path<Element>)
+        --
+        +Element get(int index)
+        +Element rootElement()
+        +Stream<Element> stream()
+        --(checks)--
+        +boolean endsWith(Path<Element> suffix)
+        +boolean isAbsolute()
+        +boolean isRelative()
+        +boolean isRoot()
+        +boolean startsWith(Path<Element> prefix)
+        --(collection)--
+        +List<Element> elements()
+        +Element first()
+        +Element last()
+        +Element pop()
+        +void push(Element)
+        --(path)--
+        +Path<Element> copy()
+        +Path<Element> emptyPath()
+        +Path<Element> first(int)
+        +Path<Element> last(int)
+        +Path<Element> parent()
+        +Path<Element> root()
+        +Path<Element> subpath(int start, int end)
+        +Path<Element> transformed(Function<Element,Element>)
+        +Path<Element> withChild(Path<Element> that)
+        +Path<Element> withChild(Element)
+        +Path<Element> withParent(Path<Element> that)
+        +Path<Element> withParent(Element)
+        +Path<Element> withRoot(Element root)
+        +Path<Element> withoutFirst()
+        +Path<Element> withoutLast()
+        +Path<Element> withoutOptionalPrefix(Path<Element> prefix)
+        +Path<Element> withoutOptionalSuffix(Path<Element> suffix)
+        +Path<Element> withoutPrefix(Path<Element> prefix)
+        +Path<Element> withoutRoot()
+        +Path<Element> withoutSuffix(Path<Element> suffix)
+        #Path<Element> onCopy(Element root, List<Element> elements)
+    }
+    
+    Path <|-- StringPath
+    class StringPath
+    {
+        --(constructors)--
+        #StringPath(List<String>)
+        #StringPath(StringPath)
+        #StringPath(String, List<String>)
+        --
+        +String separator()
+        --(checks)--
+        +boolean endsWith(String suffix)
+        +boolean startsWith(String prefix)
+        --(conversion)--
+        +String asContraction(int maximumLength)
+        --(lifecycle)--
+        +String join(String separator)
+        +String join()
+        --(path)--
+        +java.nio.file.Path asJavaPath()
+        +StringPath parseStringPath(Listener, String path, String rootPattern, String separatorPattern)
+        +StringPath parseStringPath(Listener, String path, String separatorPattern)
+        +StringPath stringPath(java.nio.file.Path)
+        +StringPath stringPath(URI)
+        +StringPath stringPath(String first, String... rest)
+        +StringPath stringPath(String root, List<String> elements)
+        +StringPath stringPath(List<String> elements)
+        +StringPath withSeparator(String separator)
+    }
+    
+@enduml
+

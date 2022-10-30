@@ -1,0 +1,219 @@
+
+@startuml
+
+    !include lexakai.theme
+    
+    title "com.telenav.kivakit.commandline"
+    
+    interface Named
+    interface Iterable
+    
+    interface Versioned
+    Versioned <|-- ApplicationMetadata
+    interface ApplicationMetadata
+    {
+        --
+        +String description()
+        --(command line parsing)--
+        +boolean callSystemExitOnCommandLineError()
+    }
+    
+    ArgumentParser --> T : "gets"
+    ArgumentParser o-- Quantifier
+    ArgumentParser o-- Converter : "converts values with"
+    class ArgumentParser<T>
+    {
+        --
+        +String description()
+        +String help()
+        +Quantifier quantifier()
+        --(checks)--
+        +boolean canParse(String argumentValue)
+        +boolean isAllowedMultipleTimes()
+        +boolean isOptional()
+        +boolean isRequired()
+        --(command line parsing)--
+        +Builder<T> argumentParser(Class<T> type)
+        --(conversion)--
+        +T asObject(ArgumentValue)
+    }
+    
+    class ArgumentParsers
+    {
+        --(command line parsing)--
+        +ArgumentParser.Builder<Boolean> booleanArgumentParser(Listener, String description)
+        +ArgumentParser.Builder<Integer> integerArgumentParser(Listener, String description)
+        +ArgumentParser.Builder<Long> longArgumentParser(Listener, String description)
+        +ArgumentParser.Builder<String> stringArgumentParser(Listener, String description)
+        +ArgumentParser.Builder<Version> versionArgumentParser(Listener, String description)
+    }
+    
+    ArgumentValue --> ArgumentParser : "gets value with"
+    class ArgumentValue
+    {
+        --(constructors)--
+        +ArgumentValue(String)
+        --(collection)--
+        +String value()
+        --(command line parsing)--
+        +T get(ArgumentParser<T>)
+    }
+    
+    ArgumentValueList "1" o-- "*" ArgumentValue
+    class ArgumentValueList
+    {
+        --(collection)--
+        +void add(ArgumentValue)
+        --(command line parsing)--
+        +ArgumentValue argumentValue(int index)
+        +ArgumentValue firstArgumentValue()
+    }
+    
+    ArgumentParser.Builder --> ArgumentParser : "creates"
+    class ArgumentParser.Builder<T>
+    {
+        --(command line parsing)--
+        +ArgumentParser<T> build()
+        +Builder<T> converter(Converter<String,T>)
+        +Builder<T> description(String description)
+        +Builder<T> oneOrMore()
+        +Builder<T> optional()
+        +Builder<T> required()
+        +Builder<T> type(Class<T> type)
+        +Builder<T> zeroOrMore()
+    }
+    
+    SwitchParser.Builder --> SwitchParser : "creates"
+    class SwitchParser.Builder<T>
+    {
+        --(command line parsing)--
+        +SwitchParser<T> build()
+        +Builder<T> converter(StringConverter<T>)
+        +Builder<T> defaultValue(T defaultValue)
+        +Builder<T> description(String description)
+        +Builder<T> listConverter(StringConverter<T>, String delimiter)
+        +Builder<T> name(String name)
+        +Builder<T> optional()
+        +Builder<T> quantifier(Quantifier)
+        +Builder<T> required()
+        +Builder<T> type(Class<T> type)
+        +Builder<T> validValues(Set<T> validValues)
+    }
+    
+    Iterable <|-- CommandLine
+    CommandLine --> T : "gets arguments"
+    CommandLine --> T : "gets switches"
+    CommandLine o-- ArgumentValueList
+    CommandLine --> CommandLineParser : "parses with"
+    CommandLine o-- SwitchValueList
+    note top of CommandLine
+        See Application for easy access to switches and arguments
+    endnote
+    class CommandLine
+    {
+        --(constructors)--
+        +CommandLine(CommandLineParser, String[])
+        --(command line parsing)--
+        +T argument(int index, ArgumentParser<T>)
+        +T argument(ArgumentParser<T>)
+        +ArgumentValueList argumentValues()
+        +ObjectList<T> arguments(ArgumentParser<T>)
+        +T get(SwitchParser<T>, T defaultValue)
+        +T get(SwitchParser<T>)
+        +boolean has(SwitchParser<T>)
+        --(lifecycle)--
+        +void exit(String error, Object... arguments)
+    }
+    
+    CommandLineParser --> ArgumentValueList : "validates"
+    CommandLineParser --> CommandLine : "creates"
+    CommandLineParser o-- ArgumentParserList
+    CommandLineParser o-- SwitchParserList
+    class CommandLineParser
+    {
+        --(constructors)--
+        +CommandLineParser(ApplicationMetadata)
+        --(command line parsing)--
+        +CommandLineParser add(ArgumentParser<T>)
+        +CommandLineParser add(SwitchParser<T>)
+        +CommandLine parse(String[] arguments)
+        --(lifecycle)--
+        #void exit(String message, Object... arguments)
+    }
+    
+    enum Quantifier
+    {
+        ONE_OR_MORE
+        OPTIONAL
+        REQUIRED
+        ZERO_OR_MORE
+    }
+    
+    SwitchParser --> T : "gets"
+    SwitchParser "1" --> "*" T : "gets"
+    SwitchParser "1" --> "*" T : "gets"
+    SwitchParser o-- StringConverter : "converts values with"
+    SwitchParser o-- T : "default value"
+    SwitchParser o-- Quantifier
+    class SwitchParser<T>
+    {
+        --
+        +ObjectSet<T> assignValue(SwitchValue, String delimiter)
+        +T defaultValue()
+        +String help()
+        --(checks)--
+        +boolean isRequired()
+        --(collection)--
+        +ObjectList<T> asList(SwitchValue)
+        +ObjectSet<T> validValues()
+        --(command line parsing)--
+        +Builder<T> switchParser(Class<T> type)
+        --(conversion)--
+        +T asObject(SwitchValue)
+    }
+    
+    class SwitchParsers
+    {
+        --(command line parsing)--
+        +SwitchParser.Builder<Boolean> booleanSwitchParser(Listener, String name, String description)
+        +SwitchParser.Builder<Bytes> bytesSwitchParser(Listener, String name, String description)
+        +SwitchParser.Builder<Count> countSwitchParser(Listener, String name, String description)
+        +SwitchParser.Builder<Double> doubleSwitchParser(Listener, String name, String description)
+        +SwitchParser.Builder<Duration> durationSwitchParser(Listener, String name, String description)
+        +SwitchParser.Builder<E> enumSwitchParser(Listener, String name, String description, Class<E> type)
+        +SwitchParser.Builder<Integer> integerSwitchParser(Listener, String name, String description)
+        +SwitchParser.Builder<LocalTime> localDateSwitchParser(Listener, String name, String description)
+        +SwitchParser.Builder<LocalTime> localDateTimeSwitchParser(Listener, String name, String description)
+        +SwitchParser.Builder<Long> longSwitchParser(Listener, String name, String description)
+        +SwitchParser.Builder<Maximum> maximumSwitchParser(Listener, String name, String description)
+        +SwitchParser.Builder<Minimum> minimumSwitchParser(Listener, String name, String description)
+        +SwitchParser.Builder<Pattern> patternSwitchParser(Listener, String name, String description)
+        +SwitchParser.Builder<Percent> percentSwitchParser(Listener, String name, String description)
+        +SwitchParser.Builder<String> stringSwitchParser(Listener, String name, String description)
+        +SwitchParser<Count> threadCountSwitchParser(Listener, Count maximum)
+        +SwitchParser.Builder<Version> versionSwitchParser(Listener, String name, String description)
+    }
+    
+    ArgumentValue <|-- SwitchValue
+    Named <|-- SwitchValue
+    SwitchValue --> SwitchParser : "gets value with"
+    class SwitchValue
+    {
+        --(constructors)--
+        +SwitchValue(String, String)
+        --(command line parsing)--
+        +T get(SwitchParser<T>)
+    }
+    
+    SwitchValueList "1" o-- "*" SwitchValue
+    class SwitchValueList
+    {
+        --(collection)--
+        +void add(SwitchValue that)
+        --(command line parsing)--
+        +T get(SwitchParser<T>)
+        +boolean has(SwitchParser<?>)
+    }
+    
+@enduml
+

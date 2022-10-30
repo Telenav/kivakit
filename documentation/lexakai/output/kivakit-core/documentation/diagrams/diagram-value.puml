@@ -1,0 +1,56 @@
+
+@startuml
+
+    !include lexakai.theme
+    
+    title "diagram-value"
+    
+    interface Nameable
+    interface AsString
+    interface Named
+    
+    MutableLong <|-- MutableIndex
+    class MutableIndex
+    {
+        --(constructors)--
+        +MutableIndex()
+        +MutableIndex(int)
+        --
+        +int offset(int that)
+        --(collection)--
+        +void index(int index)
+        +int index()
+    }
+    
+    class MutableLong
+    {
+        --(constructors)--
+        +MutableLong()
+        +MutableLong(int)
+        --
+        +long get()
+        +void set(long index)
+        --(math)--
+        +long decrement()
+        +long increment()
+        +long minus(long that)
+        +long plus(long that)
+        --(primitive)--
+        +int asInt()
+    }
+    
+    Named <|-- Name
+    Nameable <|-- Name
+    AsString <|-- Name
+    class Name
+    {
+        --(constructors)--
+        +Name()
+        +Name(String)
+        --(naming)--
+        +Name asLowerCaseName()
+        +String nameOf(Object)
+    }
+    
+@enduml
+

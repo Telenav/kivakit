@@ -1,0 +1,76 @@
+
+@startuml
+
+    !include lexakai.theme
+    
+    title "Converters - Value"
+    
+    abstract BaseStringConverter
+    
+    BaseStringConverter <|-- BytesConverter
+    class BytesConverter
+    {
+        --(constructors)--
+        +BytesConverter(Listener)
+    }
+    
+    BaseStringConverter <|-- ConfidenceConverter
+    class ConfidenceConverter
+    {
+        --(constructors)--
+        +ConfidenceConverter(Listener)
+    }
+    
+    BaseStringConverter <|-- CountConverter
+    class CountConverter
+    {
+        --(constructors)--
+        +CountConverter(Listener)
+    }
+    
+    BaseStringConverter <|-- EstimateConverter
+    class EstimateConverter
+    {
+        --(constructors)--
+        +EstimateConverter(Listener)
+    }
+    
+    BaseStringConverter <|-- LevelConverter
+    class LevelConverter
+    {
+        --(constructors)--
+        +LevelConverter(Listener)
+        --
+        +void lenient(boolean lenient)
+    }
+    
+    BaseStringConverter <|-- MaximumConverter
+    class MaximumConverter
+    {
+        --(constructors)--
+        +MaximumConverter(Listener)
+    }
+    
+    BaseStringConverter <|-- MinimumConverter
+    class MinimumConverter
+    {
+        --(constructors)--
+        +MinimumConverter(Listener)
+    }
+    
+    BaseStringConverter <|-- PercentConverter
+    class PercentConverter
+    {
+        --(constructors)--
+        +PercentConverter(Listener)
+    }
+    
+    BaseStringConverter <|-- VersionConverter
+    class VersionConverter
+    {
+        --(constructors)--
+        +VersionConverter(Listener)
+    }
+    
+@enduml
+

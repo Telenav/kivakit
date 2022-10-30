@@ -83,9 +83,8 @@ public class Identifier implements
     @Override
     public boolean equals(Object object)
     {
-        if (object instanceof Identifier)
+        if (object instanceof Identifier that)
         {
-            var that = (Identifier) object;
             return identifier == that.identifier;
         }
         return false;

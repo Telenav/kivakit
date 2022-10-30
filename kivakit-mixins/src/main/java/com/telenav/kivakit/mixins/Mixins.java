@@ -121,9 +121,8 @@ public class Mixins
         @Override
         public boolean equals(Object uncast)
         {
-            if (uncast instanceof MixinKey)
+            if (uncast instanceof MixinKey that)
             {
-                MixinKey that = (MixinKey) uncast;
                 return attachTo == that.attachTo && mixinType == that.mixinType;
             }
             return false;

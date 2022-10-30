@@ -69,9 +69,8 @@ public class IntegerIdentifier implements
     @Override
     public boolean equals(Object object)
     {
-        if (object instanceof IntegerIdentifier)
+        if (object instanceof IntegerIdentifier that)
         {
-            var that = (IntegerIdentifier) object;
             return identifier == that.identifier;
         }
         return false;

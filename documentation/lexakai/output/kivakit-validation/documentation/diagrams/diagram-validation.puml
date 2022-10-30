@@ -1,0 +1,92 @@
+
+@startuml
+
+    !include lexakai.theme
+    
+    title "Validation"
+    
+    interface Validator
+    
+    Validator <|-- BaseValidator
+    abstract class BaseValidator
+    {
+        --(constructors)--
+        #BaseValidator()
+        #BaseValidator(Validator)
+        --
+        +ValidationIssues issues()
+        #Glitch glitch(String message, Object... parameters)
+        #Glitch glitchIf(boolean invalid, String message, Object... parameters)
+        #OperationHalted halt(String message, Object... parameters)
+        #void onValidate()
+        #boolean validate(Validator)
+        #boolean validate(Validatable, ValidationType)
+        #String validationTarget()
+        --(checks)--
+        +boolean isInvalid()
+        +boolean isValid()
+        #boolean isEmpty(String value)
+        #boolean isEmpty(Collection<?>)
+        #boolean isZero(Count)
+        #boolean shouldShowValidationReport()
+        --(collection)--
+        #Glitch addGlitch(String message, Object... parameters)
+        --(messaging)--
+        #Problem addProblem(String message, Object... parameters)
+        #Quibble addQuibble(String message, Object... parameters)
+        #Warning addWarning(String message, Object... parameters)
+        #Problem problem(String message, Object... parameters)
+        #Problem problemIf(boolean invalid, String message, Object... parameters)
+        #void problemIfNotInRangeExclusive(int value, String name, int minimum, int maximum)
+        #void problemIfNotInRangeInclusive(int value, String name, int minimum, int maximum)
+        #Problem problemIfNull(Object, String message, Object... parameters)
+        #Quibble quibble(String message, Object... parameters)
+        #Quibble quibbleIf(boolean invalid, String message, Object... parameters)
+        #Warning warning(String message, Object... parameters)
+        #Warning warningIf(boolean invalid, String message, Object... parameters)
+    }
+    
+    Validatable --> ValidationType : "how to validate"
+    Validatable --> Validator : "provides"
+    interface Validatable
+    {
+        --
+        +Validator validator()
+        +Validator validator(ValidationType)
+        --(checks)--
+        +boolean isValid(Listener)
+    }
+    
+    MessageList <|-- ValidationIssues
+    class ValidationIssues
+    {
+        --(constructors)--
+        +ValidationIssues()
+        --(checks)--
+        +boolean isValid()
+    }
+    
+    Name <|-- ValidationType
+    class ValidationType
+    {
+        --(constructors)--
+        +ValidationType()
+        --
+        +ValidationType validateAll()
+        --(checks)--
+        +boolean shouldValidate(Class<T> type)
+        --(filtering)--
+        +ValidationType exclude(Class<T> type)
+        +ValidationType include(Class<T> type)
+    }
+    
+    Validator --> Listener : "reports to"
+    interface Validator
+    {
+        --
+        +Validator nullValidator()
+        +boolean validate(Listener)
+    }
+    
+@enduml
+

@@ -1,0 +1,96 @@
+
+@startuml
+
+    !include lexakai.theme
+    
+    title "com.telenav.kivakit.interfaces.value"
+    
+    interface BooleanValued
+    {
+        --(checks)--
+        +boolean isTrue()
+    }
+    
+    interface LongValued
+    LongValued <|-- DoubleValued
+    interface DoubleValued
+    {
+        --
+        +double absoluteDifference(DoubleValued that)
+        --(checks)--
+        +boolean isCloseTo(DoubleValued that, DoubleValued within)
+        +boolean isCloseTo(DoubleValued that, double tolerance)
+        +boolean isGreaterThan(DoubleValued that)
+        +boolean isGreaterThanOrEqualTo(DoubleValued that)
+        +boolean isLessThan(DoubleValued that)
+        +boolean isLessThanOrEqualTo(DoubleValued that)
+        --(primitive)--
+        +Comparable<DoubleValued> doubleComparable()
+        +double doubleValue()
+    }
+    
+    interface LongValued
+    interface StringFormattable
+    LongValued <|-- FormattedLongValued
+    StringFormattable <|-- FormattedLongValued
+    interface FormattedLongValued
+    {
+        --(conversion)--
+        +String asCommaSeparatedString()
+        +String asSimpleString()
+        +String asString(StringFormattable.Format)
+    }
+    
+    interface Locator<Value>
+    {
+        --(search)--
+        +Value locate()
+    }
+    
+    interface Zeroable
+    Zeroable <|-- LongValued
+    interface LongValued
+    {
+        --
+        +long absoluteDifference(LongValued that)
+        --(checks)--
+        +boolean isApproximately(LongValued that, LongValued within)
+        +boolean isGreaterThan(LongValued that)
+        +boolean isGreaterThanOrEqualTo(LongValued that)
+        +boolean isLessThan(LongValued that)
+        +boolean isLessThanOrEqualTo(LongValued that)
+        --(conversion)--
+        +float asFloat()
+        --(primitive)--
+        +byte asByte()
+        +char asChar()
+        +double asDouble()
+        +int asInt()
+        +long asLong()
+        +short asShort()
+        +Comparable<LongValued> longComparable()
+        +long longValue()
+    }
+    
+    interface Named
+    interface Valued
+    Named <|-- NamedValue
+    Valued <|-- NamedValue
+    interface NamedValue<Value>
+    {
+    }
+    
+    interface Supplier<Value>
+    Supplier <|-- Source
+    interface Source<Value>
+    {
+    }
+    
+    interface Valued<Value>
+    {
+        --(collection)--
+        +Value value()
+    }
+    
+@enduml
+

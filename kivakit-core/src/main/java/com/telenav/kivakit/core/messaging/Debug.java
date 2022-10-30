@@ -44,7 +44,6 @@ import static com.telenav.kivakit.core.project.StartUpOptions.StartupOption.QUIE
 import static com.telenav.kivakit.core.project.StartUpOptions.isStartupOptionEnabled;
 import static com.telenav.kivakit.core.string.AsciiArt.textBox;
 import static java.lang.Boolean.*;
-import static java.lang.Boolean.TRUE;
 
 /**
  * <b>Note</b>: For a detailed discussion, see <a href="https://tinyurl.com/2xycuvph">KivaKit Debugging

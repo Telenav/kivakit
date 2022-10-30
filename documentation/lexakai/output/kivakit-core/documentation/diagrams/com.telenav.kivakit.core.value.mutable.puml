@@ -1,0 +1,50 @@
+
+@startuml
+
+    !include lexakai.theme
+    
+    title "com.telenav.kivakit.core.value.mutable"
+    
+    MutableLong <|-- MutableIndex
+    class MutableIndex
+    {
+        --(constructors)--
+        +MutableIndex()
+        +MutableIndex(int)
+        --
+        +int offset(int that)
+        --(collection)--
+        +void index(int index)
+        +int index()
+    }
+    
+    class MutableLong
+    {
+        --(constructors)--
+        +MutableLong()
+        +MutableLong(int)
+        --
+        +long get()
+        +void set(long index)
+        --(math)--
+        +long decrement()
+        +long increment()
+        +long minus(long that)
+        +long plus(long that)
+        --(primitive)--
+        +int asInt()
+    }
+    
+    class MutableValue<T>
+    {
+        --(constructors)--
+        +MutableValue()
+        +MutableValue(T)
+        --
+        +T get()
+        +void set(T value)
+        +void update(Function<T,T> updater)
+    }
+    
+@enduml
+

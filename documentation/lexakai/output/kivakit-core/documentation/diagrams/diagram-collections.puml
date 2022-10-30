@@ -1,0 +1,299 @@
+
+@startuml
+
+    !include lexakai.theme
+    
+    title "diagram-collections"
+    
+    abstract BaseSet
+    abstract BaseList
+    abstract BaseIterator
+    abstract BaseIterable
+    abstract BaseStringMap
+    abstract BaseMap
+    
+    interface RepeaterMixin
+    interface SpaceLimited
+    interface ConcurrentMap
+    interface PropertyValue
+    interface TryTrait
+    interface Map
+    
+    abstract class BaseList<Value>
+    {
+        --(constructors)--
+        #BaseList()
+        #BaseList(Collection<Value>)
+        #BaseList(Maximum)
+        #BaseList(Maximum, Collection<Value>)
+        --
+        +String bracketed(int indent)
+        +String bracketed()
+        +String bulleted()
+        +String bulleted(int indent)
+        +boolean replaceAll(Value, Value replacement)
+        +void reverse()
+        +void shuffle(Random)
+        +void shuffle()
+        +String titledBox(String title)
+        +String titledBox(String title, Object... arguments)
+        --(collection)--
+        +BaseList<Value> first(Count)
+        +BaseList<Value> last(Count)
+        +BaseList<Value> maybeReversed(boolean reverse)
+        +Value pop()
+        +Value removeLast()
+        +BaseList<Value> reversed()
+        +BaseList<Value> uniqued()
+        #List<Value> backingList()
+        #BaseList<Value> newList()
+        #BaseList<Value> onNewList()
+    }
+    
+    Map <|-- BaseMap
+    SpaceLimited <|-- BaseMap
+    class BaseMap<Key, Value>
+    {
+        --(constructors)--
+        +BaseMap()
+        +BaseMap(Map<Key, Value>)
+        +BaseMap(Maximum)
+        +BaseMap(Maximum, Map<Key, Value>)
+        --
+        +Value get(Key, Value defaultValue)
+        +Value getOrCreate(Key)
+        --(collection)--
+        +int maximumSize()
+        +Value put(Key, Value, Value defaultValue)
+        +boolean putIfNotNull(Key, Value)
+        #Map<Key,Value> map()
+        --(extension points)--
+        #Value onCreateValue(Key)
+    }
+    
+    BaseMap <|-- BaseStringMap
+    RepeaterMixin <|-- BaseStringMap
+    TryTrait <|-- BaseStringMap
+    abstract class BaseStringMap<Value>
+    {
+        --(constructors)--
+        #BaseStringMap(Maximum)
+        #BaseStringMap(Maximum, Map<String, Value>)
+        --
+        +T convert(String key, Function<String,T> converter, Class<T> type)
+        +T convert(Listener, String key, BiFunction<Listener,String,T> converter, Class<T> type)
+        --(conversion)--
+        +Boolean asBoolean(String key, boolean defaultValue)
+        +Boolean asBoolean(String key)
+        +Bytes asBytes(String key)
+        +Count asCount(String key)
+        +Double asDouble(String key)
+        +Estimate asEstimate(String key)
+        +Identifier asIdentifier(String key)
+        +IntegerIdentifier asIntegerIdentifier(String key)
+        +Integer asIntegerObject(String key)
+        +Long asLong(String key)
+        +Maximum asMaximum(String key)
+        +Minimum asMinimum(String key)
+        +String asPathString(String key)
+        +Percent asPercent(String key)
+        +String asString(String key)
+        +StringIdentifier asStringIdentifier(String key)
+        +StringList asStringList()
+        +URI asUri(String key)
+        +Version asVersion(String key)
+        --(lifecycle)--
+        +String join(String separator)
+    }
+    
+    BaseMap <|-- CacheMap
+    class CacheMap<Key, Value>
+    {
+        --(constructors)--
+        +CacheMap(Maximum)
+        +CacheMap(Maximum, Duration)
+    }
+    
+    StringMap <|-- CaseFoldingStringMap
+    class CaseFoldingStringMap<Value>
+    {
+        --(constructors)--
+        +CaseFoldingStringMap()
+        +CaseFoldingStringMap(Maximum)
+    }
+    
+    BaseIterator <|-- CompoundIterator
+    class CompoundIterator<Value>
+    {
+        --(collection)--
+        +CompoundIterator<Value> add(Iterator<Value>)
+        +CompoundIterator<Value> addAll(Collection<Iterator<Value>> iterators)
+    }
+    
+    BaseSet <|-- ConcurrentHashSet
+    class ConcurrentHashSet<Value>
+    {
+        --(constructors)--
+        +ConcurrentHashSet()
+        +ConcurrentHashSet(Maximum)
+        +ConcurrentHashSet(Maximum, Collection<Value>)
+        --
+        +Value get(Value prototype)
+        +Value take(Value prototype)
+    }
+    
+    ObjectMap <|-- ConcurrentObjectMap
+    ConcurrentMap <|-- ConcurrentObjectMap
+    class ConcurrentObjectMap<Key, Value>
+    {
+        --(constructors)--
+        #ConcurrentObjectMap(java.util.concurrent.ConcurrentMap<Key, Value>)
+        +ConcurrentObjectMap()
+        +ConcurrentObjectMap(Maximum)
+        +ConcurrentObjectMap(Maximum, java.util.concurrent.ConcurrentMap<Key, Value>)
+    }
+    
+    ObjectMap <|-- CountMap
+    class CountMap<Key>
+    {
+        --(constructors)--
+        +CountMap()
+        +CountMap(CountMap<Key>)
+        +CountMap(Maximum)
+        --
+        +void mergeIn(CountMap<Key> that)
+        +long total()
+        --(collection)--
+        +ObjectList<Map.Entry<Key,ConcurrentMutableCount>> ascendingEntries(Maximum, Comparator<? super Map.Entry<Key,ConcurrentMutableCount>>)
+        +CountMap<Key> bottom(Maximum)
+        +CountMap<Key> bottom(Maximum, Comparator<? super Map.Entry<Key,ConcurrentMutableCount>>)
+        +Count count(Key)
+        +CountMap<Key> decrement(Key)
+        +ObjectList<Map.Entry<Key,ConcurrentMutableCount>> descendingEntries(Maximum, Comparator<? super Map.Entry<Key,ConcurrentMutableCount>>)
+        +CountMap<Key> increment(Key)
+        +Key maximum()
+        +Key minimum()
+        +Count plus(Key, long value)
+        +CountMap<Key> plus(Key, Countable value)
+        +CountMap<Key> pruneCountsLessThan(Count minimum)
+        +void removeAll(CountMap<Key>)
+        +ObjectList<Key> sortedByAscendingCount()
+        +ObjectList<Key> sortedByDescendingCount()
+        +ObjectList<Key> sortedKeys()
+        +ObjectList<Key> sortedKeys(Comparator<Key>)
+        +CountMap<Key> top(Maximum)
+        +CountMap<Key> top(Maximum, Comparator<Map.Entry<Key,ConcurrentMutableCount>>)
+        --(lifecycle)--
+        +String join(String separator)
+    }
+    
+    BaseIterator <|-- DeduplicatingIterator
+    class DeduplicatingIterator<Value>
+    {
+        --(constructors)--
+        +DeduplicatingIterator(Iterator<Value>)
+    }
+    
+    BaseIterable <|-- FilteredIterable
+    class FilteredIterable<Value>
+    {
+        --(constructors)--
+        +FilteredIterable(Iterable<Value>, Matcher<Value>)
+    }
+    
+    BaseIterator <|-- FilteredIterator
+    class FilteredIterator<Value>
+    {
+        --(constructors)--
+        +FilteredIterator(Iterator<Value>, Matcher<Value>)
+    }
+    
+    BaseSet <|-- IdentitySet
+    class IdentitySet<Value>
+    {
+        --(constructors)--
+        +IdentitySet()
+        +IdentitySet(Maximum)
+        +IdentitySet(Maximum, Collection<Value>)
+        --
+        +Value get(Value prototype)
+        +Value take(Value prototype)
+    }
+    
+    ObjectMap <|-- LinkedMap
+    class LinkedMap<Key, Value>
+    {
+        --(constructors)--
+        +LinkedMap()
+        +LinkedMap(Maximum)
+    }
+    
+    BaseList <|-- ObjectList
+    class ObjectList<Value>
+    {
+        --(constructors)--
+        +ObjectList()
+        +ObjectList(Collection<Value>)
+        +ObjectList(Maximum)
+        +ObjectList(Maximum, Collection<Value>)
+        --(collection)--
+        +ObjectList<T> emptyList()
+        +ObjectList<T> list(Maximum maximumSize, Collection<T> values)
+        +ObjectList<T> list(T... objects)
+        +ObjectList<T> list(Iterator<T> values)
+        +ObjectList<T> list(Maximum maximumSize, Iterator<T> values)
+        +ObjectList<T> list(Maximum maximumSize, T... objects)
+        +ObjectList<T> list(Maximum maximumSize, Iterable<T> values)
+        +ObjectList<T> list(Collection<T> values)
+        +ObjectList<T> list(Iterable<T> values)
+        +ObjectList<T> listFromArray(T[] objects)
+        +ObjectList<T> listFromInts(IntMapper<T> factory, int... values)
+        +ObjectList<Long> listFromLongs(long[] objects)
+        +ObjectList<T> listFromLongs(LongMapper<T> factory, Iterable<LongValued> values)
+        +ObjectList<T> listFromLongs(LongMapper<T> factory, long... values)
+        +ObjectList<ObjectList<Value>> partition(Count partitions)
+    }
+    
+    ObjectList <|-- Stack
+    class Stack<Value>
+    {
+        --(constructors)--
+        +Stack()
+        +Stack(Collection<Value>)
+        +Stack(Maximum)
+        +Stack(Maximum, Collection<Value>)
+    }
+    
+    BaseStringMap <|-- StringMap
+    class StringMap<Value>
+    {
+        --(constructors)--
+        +StringMap()
+        +StringMap(Maximum)
+        --(filesystem)--
+        +StringMap<Value> copy()
+    }
+    
+    StringMap <|-- VariableMap
+    PropertyValue <|-- VariableMap
+    class VariableMap<Value>
+    {
+        --(constructors)--
+        +VariableMap()
+        +VariableMap(Maximum)
+        --
+        +String expand(String text, String defaultValue)
+        +String expand(String text)
+        --(collection)--
+        +VariableMap<Value> add(String name, Value)
+        +VariableMap<Value> addAll(VariableMap<Value> variables)
+        +VariableMap<String> doubleQuoted()
+        +VariableMap<String> expanded()
+        +VariableMap<String> variableMap(StringList)
+        +VariableMap<String> variableMap(Map<String,String> that)
+        +VariableMap<String> withQuotedValues()
+        #VariableMap<String> newStringMap()
+    }
+    
+@enduml
+

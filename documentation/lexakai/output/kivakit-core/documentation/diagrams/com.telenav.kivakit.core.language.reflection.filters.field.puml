@@ -1,0 +1,23 @@
+
+@startuml
+
+    !include lexakai.theme
+    
+    title "com.telenav.kivakit.core.language.reflection.filters.field"
+    
+    PropertySet <|-- AllFields
+    class AllFields
+    {
+        --(constructors)--
+        +AllFields()
+    }
+    
+    AllFields <|-- NamedField
+    class NamedField
+    {
+        --(constructors)--
+        +NamedField(String)
+    }
+    
+@enduml
+

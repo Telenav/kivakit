@@ -28,7 +28,7 @@
         <!-- Cactus -->
 
         <dependency>
-            <groupId>com.telenav.cactus</groupId>
+            <groupId>com.telenav.cactus.metadata</groupId>
             <artifactId>cactus-metadata</artifactId>
         </dependency>
 

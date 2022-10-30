@@ -1,0 +1,207 @@
+
+@startuml
+
+    !include lexakai.theme
+    
+    title "com.telenav.kivakit.core.collections.map"
+    
+    abstract BaseStringMap
+    abstract BaseMap
+    
+    interface RepeaterMixin
+    interface SpaceLimited
+    interface ConcurrentMap
+    interface PropertyValue
+    interface TryTrait
+    interface Map
+    
+    Map <|-- BaseMap
+    SpaceLimited <|-- BaseMap
+    class BaseMap<Key, Value>
+    {
+        --(constructors)--
+        +BaseMap()
+        +BaseMap(Map<Key, Value>)
+        +BaseMap(Maximum)
+        +BaseMap(Maximum, Map<Key, Value>)
+        --
+        +Value get(Key, Value defaultValue)
+        +Value getOrCreate(Key)
+        --(collection)--
+        +int maximumSize()
+        +Value put(Key, Value, Value defaultValue)
+        +boolean putIfNotNull(Key, Value)
+        #Map<Key,Value> map()
+        --(extension points)--
+        #Value onCreateValue(Key)
+    }
+    
+    BaseMap <|-- BaseStringMap
+    RepeaterMixin <|-- BaseStringMap
+    TryTrait <|-- BaseStringMap
+    abstract class BaseStringMap<Value>
+    {
+        --(constructors)--
+        #BaseStringMap(Maximum)
+        #BaseStringMap(Maximum, Map<String, Value>)
+        --
+        +T convert(String key, Function<String,T> converter, Class<T> type)
+        +T convert(Listener, String key, BiFunction<Listener,String,T> converter, Class<T> type)
+        --(conversion)--
+        +Boolean asBoolean(String key, boolean defaultValue)
+        +Boolean asBoolean(String key)
+        +Bytes asBytes(String key)
+        +Count asCount(String key)
+        +Double asDouble(String key)
+        +Estimate asEstimate(String key)
+        +Identifier asIdentifier(String key)
+        +IntegerIdentifier asIntegerIdentifier(String key)
+        +Integer asIntegerObject(String key)
+        +Long asLong(String key)
+        +Maximum asMaximum(String key)
+        +Minimum asMinimum(String key)
+        +String asPathString(String key)
+        +Percent asPercent(String key)
+        +String asString(String key)
+        +StringIdentifier asStringIdentifier(String key)
+        +StringList asStringList()
+        +URI asUri(String key)
+        +Version asVersion(String key)
+        --(lifecycle)--
+        +String join(String separator)
+    }
+    
+    BaseMap <|-- CacheMap
+    class CacheMap<Key, Value>
+    {
+        --(constructors)--
+        +CacheMap(Maximum)
+        +CacheMap(Maximum, Duration)
+    }
+    
+    StringMap <|-- CaseFoldingStringMap
+    class CaseFoldingStringMap<Value>
+    {
+        --(constructors)--
+        +CaseFoldingStringMap()
+        +CaseFoldingStringMap(Maximum)
+    }
+    
+    ObjectMap <|-- ConcurrentObjectMap
+    ConcurrentMap <|-- ConcurrentObjectMap
+    class ConcurrentObjectMap<Key, Value>
+    {
+        --(constructors)--
+        #ConcurrentObjectMap(java.util.concurrent.ConcurrentMap<Key, Value>)
+        +ConcurrentObjectMap()
+        +ConcurrentObjectMap(Maximum)
+        +ConcurrentObjectMap(Maximum, java.util.concurrent.ConcurrentMap<Key, Value>)
+    }
+    
+    ObjectMap <|-- CountMap
+    class CountMap<Key>
+    {
+        --(constructors)--
+        +CountMap()
+        +CountMap(CountMap<Key>)
+        +CountMap(Maximum)
+        --
+        +void mergeIn(CountMap<Key> that)
+        +long total()
+        --(collection)--
+        +ObjectList<Map.Entry<Key,ConcurrentMutableCount>> ascendingEntries(Maximum, Comparator<? super Map.Entry<Key,ConcurrentMutableCount>>)
+        +CountMap<Key> bottom(Maximum)
+        +CountMap<Key> bottom(Maximum, Comparator<? super Map.Entry<Key,ConcurrentMutableCount>>)
+        +Count count(Key)
+        +CountMap<Key> decrement(Key)
+        +ObjectList<Map.Entry<Key,ConcurrentMutableCount>> descendingEntries(Maximum, Comparator<? super Map.Entry<Key,ConcurrentMutableCount>>)
+        +CountMap<Key> increment(Key)
+        +Key maximum()
+        +Key minimum()
+        +Count plus(Key, long value)
+        +CountMap<Key> plus(Key, Countable value)
+        +CountMap<Key> pruneCountsLessThan(Count minimum)
+        +void removeAll(CountMap<Key>)
+        +ObjectList<Key> sortedByAscendingCount()
+        +ObjectList<Key> sortedByDescendingCount()
+        +ObjectList<Key> sortedKeys()
+        +ObjectList<Key> sortedKeys(Comparator<Key>)
+        +CountMap<Key> top(Maximum)
+        +CountMap<Key> top(Maximum, Comparator<Map.Entry<Key,ConcurrentMutableCount>>)
+        --(lifecycle)--
+        +String join(String separator)
+    }
+    
+    ObjectMap <|-- LinkedMap
+    class LinkedMap<Key, Value>
+    {
+        --(constructors)--
+        +LinkedMap()
+        +LinkedMap(Maximum)
+    }
+    
+    BaseMap <|-- MultiMap
+    class MultiMap<Key, Value>
+    {
+        --(constructors)--
+        +MultiMap()
+        +MultiMap(Map<Key, ObjectList<Value>>)
+        +MultiMap(Maximum, Maximum)
+        +MultiMap(Maximum, Maximum, Map<Key, ObjectList<Value>>)
+        --(collection)--
+        +void add(Key, Value)
+        +void addAll(Key, Collection<? extends Value> values)
+        +void addAll(Collection<? extends Key> keys, Value)
+        +boolean addIfNotNull(Key, Value)
+        +ObjectList<Value> flatValues()
+        +ObjectList<Value> list(Key)
+        +Count maximumListSize()
+        +void sort(Comparator<? super Value>)
+        +int valueCount()
+    }
+    
+    BaseMap <|-- ObjectMap
+    class ObjectMap<Key, Value>
+    {
+        --(constructors)--
+        +ObjectMap()
+        +ObjectMap(Map<Key, Value>)
+        +ObjectMap(Maximum)
+        +ObjectMap(Maximum, Map<Key, Value>)
+        --(filesystem)--
+        +ObjectMap<Key,Value> copy()
+    }
+    
+    BaseStringMap <|-- StringMap
+    class StringMap<Value>
+    {
+        --(constructors)--
+        +StringMap()
+        +StringMap(Maximum)
+        --(filesystem)--
+        +StringMap<Value> copy()
+    }
+    
+    StringMap <|-- VariableMap
+    PropertyValue <|-- VariableMap
+    class VariableMap<Value>
+    {
+        --(constructors)--
+        +VariableMap()
+        +VariableMap(Maximum)
+        --
+        +String expand(String text, String defaultValue)
+        +String expand(String text)
+        --(collection)--
+        +VariableMap<Value> add(String name, Value)
+        +VariableMap<Value> addAll(VariableMap<Value> variables)
+        +VariableMap<String> doubleQuoted()
+        +VariableMap<String> expanded()
+        +VariableMap<String> variableMap(StringList)
+        +VariableMap<String> variableMap(Map<String,String> that)
+        +VariableMap<String> withQuotedValues()
+        #VariableMap<String> newStringMap()
+    }
+    
+@enduml
+

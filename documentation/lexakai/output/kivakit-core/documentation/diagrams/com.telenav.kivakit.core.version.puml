@@ -1,0 +1,84 @@
+
+@startuml
+
+    !include lexakai.theme
+    
+    title "com.telenav.kivakit.core.version"
+    
+    interface Versioned
+    interface NamedObject
+    
+    enum ReleaseType
+    {
+        ALPHA
+        BETA
+        FINAL
+        M1
+        M2
+        M3
+        M4
+        M5
+        M6
+        M7
+        M8
+        M9
+        RC
+        RELEASE
+    }
+    
+    class Version
+    {
+        --(constructors)--
+        #Version()
+        #Version(int, int, int, ReleaseType, boolean)
+        --
+        +int major()
+        +int minor()
+        +int patch()
+        +ReleaseType releaseType()
+        --(checks)--
+        +boolean hasPatch()
+        +boolean hasRelease()
+        +boolean isNewerThan(Version that)
+        +boolean isNewerThanOrEqualTo(Version that)
+        +boolean isOlderThan(Version that)
+        +boolean isOlderThanOrEqualTo(Version that)
+        +boolean isSnapshot()
+        --(identity)--
+        +boolean hasMinorVersion()
+        +Version newer(Version that)
+        +Version older(Version that)
+        +Version parseVersion(String text)
+        +Version parseVersion(Listener, String text)
+        +Version version(int major, int minor, int patch, ReleaseType, boolean snapshot)
+        +Version version(int major, int minor, int patch)
+        +Version version(int major, int minor)
+        +Version version(int major)
+        +Version version(String text)
+        +Version withoutPatch()
+        +Version withoutRelease()
+        +Version withoutSnapshot()
+        --(primitive)--
+        +double asDouble()
+    }
+    
+    interface Versioned
+    {
+        --(identity)--
+        +boolean hasVersion()
+        +Version version()
+    }
+    
+    NamedObject <|-- VersionedObject
+    Versioned <|-- VersionedObject
+    class VersionedObject<T>
+    {
+        --(constructors)--
+        +VersionedObject()
+        +VersionedObject(T, Version)
+        --
+        +T object()
+    }
+    
+@enduml
+

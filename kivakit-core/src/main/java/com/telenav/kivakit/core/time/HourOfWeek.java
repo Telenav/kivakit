@@ -127,9 +127,8 @@ public class HourOfWeek extends BaseTime<HourOfWeek>
     @Override
     public boolean equals(Object object)
     {
-        if (object instanceof HourOfWeek)
+        if (object instanceof HourOfWeek that)
         {
-            HourOfWeek that = (HourOfWeek) object;
             return this.dayOfWeek().equals(that.dayOfWeek())
                     && this.hourOfDay().equals(that.hourOfDay());
         }

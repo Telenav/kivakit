@@ -1,0 +1,35 @@
+
+@startuml
+
+    !include lexakai.theme
+    
+    title "com.telenav.kivakit.interfaces.model"
+    
+    interface ChangeListener<Model>
+    {
+        --
+        +void onChanged(Model)
+    }
+    
+    interface LongValued
+    LongValued <|-- Identifiable
+    interface Identifiable
+    {
+        --(identity)--
+        +long identifier()
+    }
+    
+    interface Initializer<Model>
+    {
+        --(lifecycle)--
+        +void initialize(Model)
+    }
+    
+    interface Watchable<Value>
+    {
+        --
+        +Value observe()
+    }
+    
+@enduml
+

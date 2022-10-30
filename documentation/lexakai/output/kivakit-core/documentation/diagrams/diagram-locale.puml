@@ -1,0 +1,44 @@
+
+@startuml
+
+    !include lexakai.theme
+    
+    title "diagram-locale"
+    
+    interface Comparable
+    
+    Locale o-- LocaleRegion
+    Locale "1" o-- "*" LocaleLanguage
+    class Locale
+    {
+        --(constructors)--
+        +Locale(LocaleRegion, Collection<LocaleLanguage>)
+        --
+        +java.util.Locale asJavaLocale(String name)
+        +LocaleLanguage language(String name)
+        +LocaleLanguage primaryLanguage()
+        +LocaleRegion region()
+        --(checks)--
+        +boolean isWorld()
+        --(collection)--
+        +ObjectList<LocaleLanguage> languages()
+        --(path)--
+        +StringPath path(LocaleLanguage)
+    }
+    
+    Name <|-- LocaleLanguage
+    Comparable <|-- LocaleLanguage
+    class LocaleLanguage
+    {
+        --
+        +String iso2Code()
+        +String iso3Code()
+        +LocaleLanguage languageForIso2Code(String code)
+        +LocaleLanguage languageForIso3Code(String code)
+        +Locale world()
+        --(collection)--
+        +ObjectList<LocaleLanguage> allLanguages()
+    }
+    
+@enduml
+

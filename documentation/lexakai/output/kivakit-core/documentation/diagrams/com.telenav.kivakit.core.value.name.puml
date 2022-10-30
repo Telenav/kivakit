@@ -1,0 +1,36 @@
+
+@startuml
+
+    !include lexakai.theme
+    
+    title "com.telenav.kivakit.core.value.name"
+    
+    interface Nameable
+    interface AsString
+    interface Named
+    
+    Named <|-- Name
+    Nameable <|-- Name
+    AsString <|-- Name
+    class Name
+    {
+        --(constructors)--
+        +Name()
+        +Name(String)
+        --(naming)--
+        +Name asLowerCaseName()
+        +String nameOf(Object)
+    }
+    
+    interface Mixin
+    interface Named
+    Named <|-- NameMixin
+    Mixin <|-- NameMixin
+    interface NameMixin
+    {
+        --(functional)--
+        +Named named()
+    }
+    
+@enduml
+

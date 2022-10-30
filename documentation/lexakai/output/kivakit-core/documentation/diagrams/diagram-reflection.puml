@@ -1,0 +1,287 @@
+
+@startuml
+
+    !include lexakai.theme
+    
+    title "diagram-reflection"
+    
+    interface Named
+    interface Comparable
+    interface Getter
+    interface Setter
+    interface PropertyFilter
+    
+    PropertySet <|-- AllFields
+    class AllFields
+    {
+        --(constructors)--
+        +AllFields()
+    }
+    
+    PropertySet <|-- AllMethods
+    class AllMethods
+    {
+        --(constructors)--
+        +AllMethods(PropertyNamingConvention)
+    }
+    
+    annotation ExcludeProperty
+    
+    Member <|-- Field
+    class Field
+    {
+        --(constructors)--
+        #Field(Object, java.lang.reflect.Field)
+        #Field(Type<?>, java.lang.reflect.Field)
+        --
+        +Object get(Object)
+        +Object get()
+        +void object(Object)
+        +Object set(Object value)
+        +Type<?> type()
+        --(checks)--
+        +boolean isPrimitive()
+        +boolean isTransient()
+        +boolean isVolatile()
+        --(messaging)--
+        +ReflectionProblem makeAccessible()
+        +ReflectionProblem set(Object, Object value)
+    }
+    
+    Getter <|-- FieldGetter
+    class FieldGetter
+    {
+        --(constructors)--
+        +FieldGetter(Field)
+        --
+        +Field field()
+    }
+    
+    Setter <|-- FieldSetter
+    class FieldSetter
+    {
+        --(constructors)--
+        +FieldSetter(Field)
+    }
+    
+    interface Named
+    Named <|-- Getter
+    interface Getter
+    {
+        --
+        +T annotation(Class<T> annotationType)
+        +Object get(Object)
+        +Type<?> type()
+        --(checks)--
+        +boolean hasAnnotation(Class<? extends Annotation>)
+    }
+    
+    annotation IncludeProperty
+    
+    Member <|-- Method
+    class Method
+    {
+        --(constructors)--
+        #Method(Type<?>, String)
+        #Method(Type<?>, java.lang.reflect.Method)
+        --
+        +Object invoke(Object target, Object... parameters)
+        +Method method(StackTraceElement stackFrame)
+        +java.lang.reflect.Method method()
+        +Class<?>[] parameterTypes()
+        +Class<?> returnType()
+        --(checks)--
+        +boolean isNative()
+        +boolean isSynchronized()
+        --(messaging)--
+        +ReflectionProblem makeAccessible()
+    }
+    
+    Getter <|-- MethodGetter
+    class MethodGetter
+    {
+        --(constructors)--
+        +MethodGetter(Method)
+        --
+        +Method method()
+    }
+    
+    Setter <|-- MethodSetter
+    class MethodSetter
+    {
+        --(constructors)--
+        +MethodSetter(Method)
+    }
+    
+    AllFields <|-- NamedField
+    class NamedField
+    {
+        --(constructors)--
+        +NamedField(String)
+    }
+    
+    AllMethods <|-- NamedMethod
+    class NamedMethod
+    {
+        --(constructors)--
+        +NamedMethod(PropertyNamingConvention, String)
+    }
+    
+    class ObjectFormatter
+    {
+        --(constructors)--
+        +ObjectFormatter(Object)
+        --(conversion)--
+        +String asString(ObjectFormat)
+    }
+    
+    annotation OptionalProperty
+    
+    Named <|-- Property
+    Comparable <|-- Property
+    class Property
+    {
+        --(constructors)--
+        +Property(String, Getter, Setter)
+        --
+        +Field field()
+        +Object get(Object)
+        +void getter(Getter)
+        +Getter getter()
+        +Member member()
+        +Method method()
+        +Type<?> parentType()
+        +void setter(Setter)
+        +Setter setter()
+        --(checks)--
+        +boolean isOptional()
+        --(messaging)--
+        +ReflectionProblem set(Object, Supplier<T> source)
+    }
+    
+    interface PropertyFilter
+    {
+        --(filtering)--
+        +PropertyFilter allProperties(PropertyMemberSelector... included)
+        +PropertyFilter beansProperties(PropertyMemberSelector... included)
+        +boolean includeAsGetter(Method)
+        +boolean includeAsSetter(Method)
+        +boolean includeField(Field)
+        +PropertyFilter kivakitProperties(PropertyMemberSelector... included)
+        --(naming)--
+        +String nameForField(Field)
+        +String nameForMethod(Method)
+    }
+    
+    enum PropertyMemberSelector
+    {
+        ALL_FIELDS_AND_METHODS
+        KIVAKIT_CONVERTED_MEMBERS
+        KIVAKIT_INCLUDED_FIELDS
+        KIVAKIT_INCLUDED_FIELDS_AND_METHODS
+        NON_PUBLIC_METHODS
+        PUBLIC_METHODS
+    }
+    
+    enum PropertyNamingConvention
+    {
+        ANY_NAMING_CONVENTION
+        JAVA_BEANS_NAMING
+        KIVAKIT_PROPERTY_NAMING
+    }
+    
+    PropertyFilter <|-- PropertySet
+    PropertySet o-- PropertyNamingConvention
+    PropertySet "1" o-- "*" PropertyMemberSelector
+    class PropertySet
+    {
+        --(constructors)--
+        +PropertySet(PropertyNamingConvention, PropertyMemberSelector)
+        --(checks)--
+        #boolean isExcludedByAnnotation(Method)
+        #boolean isExcludedByAnnotation(Field)
+        #boolean isGetter(Method)
+        #boolean isIncluded(Field)
+        #boolean isIncluded(Method)
+        #boolean isIncludedByAnnotation(Method)
+        #boolean isIncludedByAnnotation(Field)
+        #boolean isSetter(Method)
+        --(filtering)--
+        +Set<PropertyMemberSelector> included()
+    }
+    
+    interface PropertyValue
+    {
+        --
+        +Object propertyValue(Property)
+    }
+    
+    interface Named
+    Named <|-- Setter
+    interface Setter
+    {
+        --
+        +T annotation(Class<T> annotationType)
+        +Type<?> type()
+        --(checks)--
+        +boolean hasAnnotation(Class<? extends Annotation>)
+        --(messaging)--
+        +ReflectionProblem set(Object, Object value)
+    }
+    
+    Named <|-- Type
+    class Type<T>
+    {
+        --
+        +A annotation(Class<A> annotationType)
+        +A[] annotations(Class<A> annotationType)
+        +Class<T> asJavaType()
+        +Constructor<T> constructor(Class<?>... parameters)
+        +boolean declaresToString()
+        +Property field(String name)
+        +boolean is(Class<?> type)
+        +Method method(String methodName)
+        +Property property(String name)
+        +Type<?> superClass()
+        +ObjectSet<Type<?>> superInterfaces()
+        +Type<T> type(Object)
+        +Type<T> typeForClass(Class<T> type)
+        --(checks)--
+        +boolean hasAnnotation(Class<A> annotationType)
+        +boolean isDescendantOf(Class<?> that)
+        +boolean isEnum()
+        +boolean isInOrUnder(PackageReference)
+        +boolean isInterface()
+        +boolean isPrimitive()
+        +boolean isSystem()
+        --(collection)--
+        +ObjectList<Field> allFields()
+        +ObjectList<Method> allMethods()
+        +Type<?> arrayElementType()
+        +Set<Enum<?>> enumValues()
+        +ObjectList<Field> fields(Matcher<Field>)
+        +ObjectList<Type<?>> interfaces()
+        +boolean isArray()
+        +VariableMap<Object> properties(Object, PropertyFilter matcher, Object nullValue)
+        +VariableMap<Object> properties(Object, PropertyFilter matcher)
+        +ObjectList<Property> properties(PropertyFilter)
+        +ObjectList<Field> reachableFields(Object root, Matcher<Field>)
+        +ObjectList<Object> reachableObjects(Object root)
+        +ObjectList<Object> reachableObjects(Object root, Matcher<Field>)
+        +ObjectList<Object> reachableObjectsImplementing(Object root, Class<?> _interface)
+        +ObjectList<Type<?>> superClasses()
+        +ObjectList<Type<?>> superTypes()
+        --(factory)--
+        +T newInstance(Object... parameters)
+        +T newInstance()
+        --(naming)--
+        +String fullyQualifiedName()
+        +String simpleName()
+        +String simpleNameWithoutSyntheticSuffix()
+        +Type<T> typeForName(String className)
+        --(path)--
+        +PackageReference packagePath()
+    }
+    
+@enduml
+

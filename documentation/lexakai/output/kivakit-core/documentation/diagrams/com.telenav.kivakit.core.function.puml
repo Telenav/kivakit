@@ -1,0 +1,120 @@
+
+@startuml
+
+    !include lexakai.theme
+    
+    title "com.telenav.kivakit.core.function"
+    
+    interface RepeaterMixin
+    interface Presence
+    interface TryCatchTrait
+    interface Source
+    
+    class Functions
+    {
+        --(write)--
+        +Output apply(Input value, Function<Input,Output>)
+    }
+    
+    Presence <|-- Maybe
+    TryCatchTrait <|-- Maybe
+    Source <|-- Maybe
+    class Maybe<Value>
+    {
+        --(constructors)--
+        #Maybe()
+        #Maybe(Maybe<Value>)
+        #Maybe(Value)
+        --
+        +Maybe<Value> absent()
+        +Maybe<Value> absentIf(Function<Value,Boolean> predicate)
+        +Maybe<Output> apply(Function<? super Value,? extends Maybe<? extends Output>>)
+        +Stream<Value> asStream()
+        +boolean has()
+        +Maybe<Value> ifPresent(Consumer<Value>)
+        +Maybe<Value> ifPresentOr(Consumer<Value>, UncheckedVoidCode runnable)
+        +Maybe<Value> maybe(Value)
+        +Value orDefaultTo(Value defaultValue)
+        +Value orDefaultTo(Source<Value> defaultValue)
+        +Maybe<Value> orMaybe(Source<Value>)
+        +Maybe<Value> orMaybe(Value)
+        +Value orThrow()
+        +Value orThrow(String message, Object... arguments)
+        +Maybe<Value> present(Value)
+        +Maybe<Value> presentIf(Function<Value,Boolean> predicate)
+        +Maybe<Value> set(Value)
+        +Maybe<Value> then(TetraFunction<Value,Argument2,Argument3,Argument4,Value>, Argument2, Argument3, Argument4)
+        +Maybe<Value> then(BiFunction<Value,Argument2,Value>, Argument2)
+        +Maybe<Value> then(Function<Value,Value>)
+        +Maybe<Value> then(TriFunction<Value,Argument2,Argument3,Value>, Argument2, Argument3)
+        +Maybe<Value> then(PentaFunction<Value,Argument2,Argument3,Argument4,Argument5,Value>, Argument2, Argument3, Argument4, Argument5)
+        --(checks)--
+        +boolean isValid()
+        --(collection)--
+        +Maybe<ResultType> map(TriFunction<Value,Argument2,Argument3,ResultType>, Argument2, Argument3)
+        +Maybe<ResultType> map(TetraFunction<Value,Argument2,Argument3,Argument4,ResultType>, Argument2, Argument3, Argument4)
+        +Maybe<ResultType> map(BiFunction<Value,Argument2,ResultType>, Argument2)
+        +Maybe<ResultType> map(Function<? super Value,? extends ResultType> mapper)
+        +Maybe<ResultType> map(PentaFunction<Value,Argument2,Argument3,Argument4,Argument5,ResultType>, Argument2, Argument3, Argument4, Argument5)
+        +Maybe<ResultType> mapTask(Function<? super Value,? extends ResultType> mapper)
+        +Maybe<ResultType> mapWithRetries(Count retries, Function<? super Value,? extends ResultType> mapper)
+        --(factory)--
+        #Maybe<T> newAbsent()
+        #Maybe<T> newMaybe(T value)
+    }
+    
+    Maybe <|-- Result
+    RepeaterMixin <|-- Result
+    Result --> Message : "failure reason"
+    class Result<Value>
+    {
+        --(constructors)--
+        #Result()
+        #Result(Broadcaster)
+        #Result(Maybe<Value>)
+        #Result(Value)
+        --
+        +Result<Value> absent()
+        +Result<T> capture(Broadcaster value)
+        +Maybe<Output> convert(Class<Mapper> mapperType)
+        +boolean failed()
+        +Result<T> present(T value)
+        --(lifecycle)--
+        +Result<T> run(Broadcaster, Code<T>)
+        --(logical)--
+        +Result<Value> or(Code<Value>)
+        --(messaging)--
+        +MessageList messages()
+        +Value orProblem(String message, Object... arguments)
+        --(status)--
+        +Result<T> failure(Result<T>, String message, Object... arguments)
+        +Result<T> failure(T value, String message, Object... arguments)
+        +Result<T> failure(Throwable cause, String message, Object... arguments)
+        +Result<T> failure(String message, Object... arguments)
+        +Result<T> failure(Message)
+        +boolean succeeded()
+        +Result<T> success(T value)
+        +Result<Value> success(Maybe<Value>)
+    }
+    
+    interface Repeater
+    Repeater <|-- ResultTrait
+    interface ResultTrait
+    {
+        --
+        +Result<T> absent()
+        +Result<T> result(T value)
+        +Result<T> result(T value, Predicate<T> valid)
+        +Result<T> result(T value, Predicate<T> valid, String text, Object... arguments)
+        --(lifecycle)--
+        +Result<T> run(Code<T>)
+        --(status)--
+        +Result<T> failure(String text, Object... arguments)
+        +Result<T> failure(Message)
+        +Result<T> failure(Throwable, String text, Object... arguments)
+        +Result<T> success(T value)
+        +Result<T> success(Maybe<T> value)
+    }
+    
+@enduml
+

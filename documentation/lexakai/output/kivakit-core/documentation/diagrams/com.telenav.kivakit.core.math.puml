@@ -1,0 +1,25 @@
+
+@startuml
+
+    !include lexakai.theme
+    
+    title "com.telenav.kivakit.core.math"
+    
+    interface Resettable
+    
+    Resettable <|-- Average
+    class Average
+    {
+        --
+        +double average()
+        +int samples()
+        +double total()
+        --(math)--
+        +void add(double value)
+        +void add(Average that)
+        +double maximum()
+        +double minimum()
+    }
+    
+@enduml
+

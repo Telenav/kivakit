@@ -1,0 +1,37 @@
+
+@startuml
+
+    !include lexakai.theme
+    
+    title "com.telenav.kivakit.collections.set.operations"
+    
+    LogicalSet <|-- Intersection
+    class Intersection<T>
+    {
+        --(constructors)--
+        +Intersection(Set<T>, Set<T>)
+    }
+    
+    LogicalSet <|-- Subset
+    class Subset<T>
+    {
+        --(constructors)--
+        +Subset(Set<T>, Matcher<T>)
+    }
+    
+    LogicalSet <|-- Union
+    class Union<T>
+    {
+        --(constructors)--
+        +Union(Set<T>, Set<T>)
+    }
+    
+    LogicalSet <|-- Without
+    class Without<T>
+    {
+        --(constructors)--
+        +Without(Set<T>, Set<T>)
+    }
+    
+@enduml
+

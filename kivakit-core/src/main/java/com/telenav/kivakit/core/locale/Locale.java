@@ -88,9 +88,8 @@ public class Locale
     @Override
     public boolean equals(Object object)
     {
-        if (object instanceof Locale)
+        if (object instanceof Locale that)
         {
-            var that = (Locale) object;
             return isEqual(languages, that.languages);
         }
         return false;

@@ -361,9 +361,8 @@ public abstract class BaseCount<SubClass extends BaseCount<SubClass>> implements
     @Override
     public boolean equals(Object object)
     {
-        if (object instanceof BaseCount)
+        if (object instanceof BaseCount<?> that)
         {
-            var that = (BaseCount<?>) object;
             return asLong() == that.asLong();
         }
         return false;

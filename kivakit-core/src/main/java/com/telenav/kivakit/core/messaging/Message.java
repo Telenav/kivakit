@@ -60,7 +60,6 @@ import static com.telenav.kivakit.core.language.Classes.newInstance;
 import static com.telenav.kivakit.core.language.Classes.simpleName;
 import static com.telenav.kivakit.core.messaging.MessageFormat.FORMATTED;
 import static com.telenav.kivakit.core.messaging.MessageFormat.WITHOUT_EXCEPTION;
-import static com.telenav.kivakit.core.messaging.MessageFormat.WITH_EXCEPTION;
 import static com.telenav.kivakit.core.messaging.Messages.parseMessageType;
 import static com.telenav.kivakit.core.string.Strings.replaceAll;
 

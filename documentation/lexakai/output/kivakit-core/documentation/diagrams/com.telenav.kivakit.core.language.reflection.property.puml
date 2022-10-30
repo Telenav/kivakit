@@ -1,0 +1,98 @@
+
+@startuml
+
+    !include lexakai.theme
+    
+    title "com.telenav.kivakit.core.language.reflection.property"
+    
+    interface Named
+    interface Comparable
+    interface PropertyFilter
+    
+    annotation ExcludeProperty
+    
+    annotation IncludeProperty
+    
+    annotation OptionalProperty
+    
+    Named <|-- Property
+    Comparable <|-- Property
+    class Property
+    {
+        --(constructors)--
+        +Property(String, Getter, Setter)
+        --
+        +Field field()
+        +Object get(Object)
+        +void getter(Getter)
+        +Getter getter()
+        +Member member()
+        +Method method()
+        +Type<?> parentType()
+        +void setter(Setter)
+        +Setter setter()
+        --(checks)--
+        +boolean isOptional()
+        --(messaging)--
+        +ReflectionProblem set(Object, Supplier<T> source)
+    }
+    
+    interface PropertyFilter
+    {
+        --(filtering)--
+        +PropertyFilter allProperties(PropertyMemberSelector... included)
+        +PropertyFilter beansProperties(PropertyMemberSelector... included)
+        +boolean includeAsGetter(Method)
+        +boolean includeAsSetter(Method)
+        +boolean includeField(Field)
+        +PropertyFilter kivakitProperties(PropertyMemberSelector... included)
+        --(naming)--
+        +String nameForField(Field)
+        +String nameForMethod(Method)
+    }
+    
+    enum PropertyMemberSelector
+    {
+        ALL_FIELDS_AND_METHODS
+        KIVAKIT_CONVERTED_MEMBERS
+        KIVAKIT_INCLUDED_FIELDS
+        KIVAKIT_INCLUDED_FIELDS_AND_METHODS
+        NON_PUBLIC_METHODS
+        PUBLIC_METHODS
+    }
+    
+    enum PropertyNamingConvention
+    {
+        ANY_NAMING_CONVENTION
+        JAVA_BEANS_NAMING
+        KIVAKIT_PROPERTY_NAMING
+    }
+    
+    PropertyFilter <|-- PropertySet
+    PropertySet o-- PropertyNamingConvention
+    PropertySet "1" o-- "*" PropertyMemberSelector
+    class PropertySet
+    {
+        --(constructors)--
+        +PropertySet(PropertyNamingConvention, PropertyMemberSelector)
+        --(checks)--
+        #boolean isExcludedByAnnotation(Method)
+        #boolean isExcludedByAnnotation(Field)
+        #boolean isGetter(Method)
+        #boolean isIncluded(Field)
+        #boolean isIncluded(Method)
+        #boolean isIncludedByAnnotation(Method)
+        #boolean isIncludedByAnnotation(Field)
+        #boolean isSetter(Method)
+        --(filtering)--
+        +Set<PropertyMemberSelector> included()
+    }
+    
+    interface PropertyValue
+    {
+        --
+        +Object propertyValue(Property)
+    }
+    
+@enduml
+

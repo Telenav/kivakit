@@ -21,8 +21,9 @@ package com.telenav.kivakit.core.language.module;
 import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramModule;
 import com.telenav.kivakit.core.io.Nio;
-import com.telenav.kivakit.core.language.reflection.property.IncludeProperty;
 import com.telenav.kivakit.core.messaging.Listener;
+import com.telenav.kivakit.core.os.Console;
+import com.telenav.kivakit.core.string.FormatProperty;
 import com.telenav.kivakit.core.string.ObjectFormatter;
 import com.telenav.kivakit.core.time.Time;
 import com.telenav.kivakit.core.value.count.Bytes;
@@ -116,7 +117,7 @@ public class ModuleResource
                 {
                     //noinspection resource
                     Nio.filesystem(listener, uri);
-                    var _package = PackageReference.packageReference(stringPath(uri));
+                    var _package = PackageReference.packageReference(stringPath(uri).parent());
                     return new ModuleResource(_package, uri);
                 }
 
@@ -148,6 +149,10 @@ public class ModuleResource
 
     protected ModuleResource(PackageReference packageReference, URI uri)
     {
+        if (packageReference.endsWith(".osm.pbf"))
+        {
+            Console.console().println("hi");
+        }
         this.packageReference = packageReference;
         this.uri = uri;
         try
@@ -173,7 +178,7 @@ public class ModuleResource
     /**
      * Returns the resource filename as a Java {@link Path}
      */
-    @IncludeProperty
+    @FormatProperty
     public Path fileNameAsJavaPath()
     {
         return Path.of(fileName());
@@ -190,7 +195,7 @@ public class ModuleResource
     /**
      * Returns the time at which the resource was last modified
      */
-    @IncludeProperty
+    @FormatProperty
     public Time lastModified()
     {
         return lastModified;
@@ -199,7 +204,7 @@ public class ModuleResource
     /**
      * Returns a reference to the package where the resource resides
      */
-    @IncludeProperty
+    @FormatProperty
     public PackageReference packageReference()
     {
         return packageReference;
@@ -208,7 +213,7 @@ public class ModuleResource
     /**
      * Returns the size of the resource in bytes
      */
-    @IncludeProperty
+    @FormatProperty
     public Bytes size()
     {
         return size;

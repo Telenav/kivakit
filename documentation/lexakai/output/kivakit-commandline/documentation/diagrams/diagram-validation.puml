@@ -1,0 +1,69 @@
+
+@startuml
+
+    !include lexakai.theme
+    
+    title "Command Line Validation"
+    
+    abstract BaseValidator
+    
+    ArgumentParserList "1" o-- "*" ArgumentParser
+    -class ArgumentParserList
+    {
+        --
+        +String help()
+        --(collection)--
+        +boolean add(ArgumentParser<?>)
+        +boolean isEmpty()
+    }
+    
+    ArgumentValueList "1" o-- "*" ArgumentValue
+    class ArgumentValueList
+    {
+        --(collection)--
+        +void add(ArgumentValue)
+        --(command line parsing)--
+        +ArgumentValue argumentValue(int index)
+        +ArgumentValue firstArgumentValue()
+    }
+    
+    BaseValidator <|-- ArgumentValueListValidator
+    ArgumentValueListValidator o-- ArgumentValueList
+    ArgumentValueListValidator o-- ArgumentParserList
+    -class ArgumentValueListValidator
+    {
+        --(constructors)--
+        +ArgumentValueListValidator(ArgumentParserList, ArgumentValueList)
+    }
+    
+    SwitchParserList "1" o-- "*" SwitchParser
+    -class SwitchParserList
+    {
+        --
+        +String help()
+        --(command line parsing)--
+        +void add(SwitchParser<?>)
+        +SwitchParser<?> forName(String name)
+    }
+    
+    SwitchValueList "1" o-- "*" SwitchValue
+    class SwitchValueList
+    {
+        --(collection)--
+        +void add(SwitchValue that)
+        --(command line parsing)--
+        +T get(SwitchParser<T>)
+        +boolean has(SwitchParser<?>)
+    }
+    
+    BaseValidator <|-- SwitchValueListValidator
+    SwitchValueListValidator o-- SwitchValueList
+    SwitchValueListValidator o-- SwitchParserList
+    -class SwitchValueListValidator
+    {
+        --(constructors)--
+        +SwitchValueListValidator(SwitchParserList, SwitchValueList)
+    }
+    
+@enduml
+

@@ -282,6 +282,15 @@ public class ObjectList<Value> extends BaseList<Value>
      * {@inheritDoc}
      */
     @Override
+    public ObjectList<Value> appendIfNotNullThen(Value value)
+    {
+        return (ObjectList<Value>) super.appendIfNotNullThen(value);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public ObjectList<Value> appendThen(Value value)
     {
         return (ObjectList<Value>) super.appendThen(value);

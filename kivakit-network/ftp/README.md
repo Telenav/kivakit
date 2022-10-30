@@ -30,14 +30,14 @@ This module provides FTP resources.
 
 ### Dependencies <a name="dependencies"></a> &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/dependencies-32.png" srcset="https://telenav.github.io/telenav-assets/images/icons/dependencies-32-2x.png 2x"/>
 
-[*Dependency Diagram*](https://www.kivakit.org/1.7.1-SNAPSHOT/lexakai/kivakit/kivakit-network/ftp/documentation/diagrams/dependencies.svg)
+[*Dependency Diagram*](https://www.kivakit.org/1.8.2/lexakai/kivakit/kivakit-network/ftp/documentation/diagrams/dependencies.svg)
 
 #### Maven Dependency
 
     <dependency>
         <groupId>com.telenav.kivakit</groupId>
         <artifactId>kivakit-network-ftp</artifactId>
-        <version>1.7.1-SNAPSHOT</version>
+        <version>1.8.2</version>
     </dependency>
 
 <img src="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128.png" srcset="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128-2x.png 2x"/>
@@ -58,47 +58,43 @@ Code quality for this project is 74.1%.
   
 &nbsp; &nbsp; <img src="https://telenav.github.io/telenav-assets/images/meters/meter-70-96.png" srcset="https://telenav.github.io/telenav-assets/images/meters/meter-70-96-2x.png 2x"/>
 
-
 | Measurement   | Value                    |
 |---------------|--------------------------|
-| Stability     | 100.0%&nbsp; &nbsp; <img src="https://telenav.github.io/telenav-assets/images/meters/meter-100-96.png" srcset="https://telenav.github.io/telenav-assets/images/meters/meter-100-96-2x.png 2x"/>
-     |
-| Testing       | 22.2%&nbsp; &nbsp; <img src="https://telenav.github.io/telenav-assets/images/meters/meter-20-96.png" srcset="https://telenav.github.io/telenav-assets/images/meters/meter-20-96-2x.png 2x"/>
-       |
-| Documentation | 100.0%&nbsp; &nbsp; <img src="https://telenav.github.io/telenav-assets/images/meters/meter-100-96.png" srcset="https://telenav.github.io/telenav-assets/images/meters/meter-100-96-2x.png 2x"/>
- |
+| Stability     | 100.0%&nbsp; &nbsp; <img src="https://telenav.github.io/telenav-assets/images/meters/meter-100-96.png" srcset="https://telenav.github.io/telenav-assets/images/meters/meter-100-96-2x.png 2x"/>     |
+| Testing       | 22.2%&nbsp; &nbsp; <img src="https://telenav.github.io/telenav-assets/images/meters/meter-20-96.png" srcset="https://telenav.github.io/telenav-assets/images/meters/meter-20-96-2x.png 2x"/>       |
+| Documentation | 100.0%&nbsp; &nbsp; <img src="https://telenav.github.io/telenav-assets/images/meters/meter-100-96.png" srcset="https://telenav.github.io/telenav-assets/images/meters/meter-100-96-2x.png 2x"/> |
 
 <img src="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128.png" srcset="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128-2x.png 2x"/>
 
 ### Class Diagrams <a name="class-diagrams"></a> &nbsp; &nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/diagram-40.png" srcset="https://telenav.github.io/telenav-assets/images/icons/diagram-40-2x.png 2x"/>
 
-[*FTP*](https://www.kivakit.org/1.7.1-SNAPSHOT/lexakai/kivakit/kivakit-network/ftp/documentation/diagrams/diagram-ftp.svg)  
-[*Secure FTP*](https://www.kivakit.org/1.7.1-SNAPSHOT/lexakai/kivakit/kivakit-network/ftp/documentation/diagrams/diagram-secure-ftp.svg)
+[*FTP*](https://www.kivakit.org/1.8.2/lexakai/kivakit/kivakit-network/ftp/documentation/diagrams/diagram-ftp.svg)  
+[*Secure FTP*](https://www.kivakit.org/1.8.2/lexakai/kivakit/kivakit-network/ftp/documentation/diagrams/diagram-secure-ftp.svg)
 
 <img src="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128.png" srcset="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128-2x.png 2x"/>
 
 ### Package Diagrams <a name="package-diagrams"></a> &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/box-24.png" srcset="https://telenav.github.io/telenav-assets/images/icons/box-24-2x.png 2x"/>
 
-[*com.telenav.kivakit.network.ftp*](https://www.kivakit.org/1.7.1-SNAPSHOT/lexakai/kivakit/kivakit-network/ftp/documentation/diagrams/com.telenav.kivakit.network.ftp.svg)  
-[*com.telenav.kivakit.network.ftp.internal.lexakai*](https://www.kivakit.org/1.7.1-SNAPSHOT/lexakai/kivakit/kivakit-network/ftp/documentation/diagrams/com.telenav.kivakit.network.ftp.internal.lexakai.svg)  
-[*com.telenav.kivakit.network.ftp.secure*](https://www.kivakit.org/1.7.1-SNAPSHOT/lexakai/kivakit/kivakit-network/ftp/documentation/diagrams/com.telenav.kivakit.network.ftp.secure.svg)
+[*com.telenav.kivakit.network.ftp*](https://www.kivakit.org/1.8.2/lexakai/kivakit/kivakit-network/ftp/documentation/diagrams/com.telenav.kivakit.network.ftp.svg)  
+[*com.telenav.kivakit.network.ftp.internal.lexakai*](https://www.kivakit.org/1.8.2/lexakai/kivakit/kivakit-network/ftp/documentation/diagrams/com.telenav.kivakit.network.ftp.internal.lexakai.svg)  
+[*com.telenav.kivakit.network.ftp.secure*](https://www.kivakit.org/1.8.2/lexakai/kivakit/kivakit-network/ftp/documentation/diagrams/com.telenav.kivakit.network.ftp.secure.svg)
 
 ### Javadoc <a name="code-quality"></a> &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/books-24.png" srcset="https://telenav.github.io/telenav-assets/images/icons/books-24-2x.png 2x"/>
 
 | Class | Documentation Sections  |
 |-------|-------------------------|
-| [*DiagramFtp*](https://www.kivakit.org/1.7.1-SNAPSHOT/javadoc/kivakit/kivakit.network.ftp////////////////////////////////////////////////////////////.html) |  |  
-| [*DiagramSecureFtp*](https://www.kivakit.org/1.7.1-SNAPSHOT/javadoc/kivakit/kivakit.network.ftp//////////////////////////////////////////////////////////////////.html) |  |  
-| [*FtpNetworkLocation*](https://www.kivakit.org/1.7.1-SNAPSHOT/javadoc/kivakit/kivakit.network.ftp///////////////////////////////////////////////////.html) |  |  
-| [*FtpNetworkLocation.Mode*](https://www.kivakit.org/1.7.1-SNAPSHOT/javadoc/kivakit/kivakit.network.ftp////////////////////////////////////////////////////////.html) |  |  
-| [*FtpResource*](https://www.kivakit.org/1.7.1-SNAPSHOT/javadoc/kivakit/kivakit.network.ftp////////////////////////////////////////////.html) |  |  
-| [*FtpResource.FtpInput*](https://www.kivakit.org/1.7.1-SNAPSHOT/javadoc/kivakit/kivakit.network.ftp/////////////////////////////////////////////////////.html) |  |  
-| [*SecureFtpConnector*](https://www.kivakit.org/1.7.1-SNAPSHOT/javadoc/kivakit/kivakit.network.ftp//////////////////////////////////////////////////////////.html) |  |  
-| [*SecureFtpInput*](https://www.kivakit.org/1.7.1-SNAPSHOT/javadoc/kivakit/kivakit.network.ftp//////////////////////////////////////////////////////.html) |  |  
-| [*SecureFtpNetworkLocation*](https://www.kivakit.org/1.7.1-SNAPSHOT/javadoc/kivakit/kivakit.network.ftp////////////////////////////////////////////////////////////////.html) |  |  
-| [*SecureFtpResource*](https://www.kivakit.org/1.7.1-SNAPSHOT/javadoc/kivakit/kivakit.network.ftp/////////////////////////////////////////////////////////.html) |  |  
-| [*SecureFtpSettings*](https://www.kivakit.org/1.7.1-SNAPSHOT/javadoc/kivakit/kivakit.network.ftp/////////////////////////////////////////////////////////.html) |  |  
-| [*SftpFolderWatcher*](https://www.kivakit.org/1.7.1-SNAPSHOT/javadoc/kivakit/kivakit.network.ftp/////////////////////////////////////////////////////////.html) |  |  
+| [*DiagramFtp*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.network.ftp////////////////////////////////////////////////////////////.html) |  |  
+| [*DiagramSecureFtp*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.network.ftp//////////////////////////////////////////////////////////////////.html) |  |  
+| [*FtpNetworkLocation*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.network.ftp///////////////////////////////////////////////////.html) |  |  
+| [*FtpNetworkLocation.Mode*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.network.ftp////////////////////////////////////////////////////////.html) |  |  
+| [*FtpResource*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.network.ftp////////////////////////////////////////////.html) |  |  
+| [*FtpResource.FtpInput*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.network.ftp/////////////////////////////////////////////////////.html) |  |  
+| [*SecureFtpConnector*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.network.ftp//////////////////////////////////////////////////////////.html) |  |  
+| [*SecureFtpInput*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.network.ftp//////////////////////////////////////////////////////.html) |  |  
+| [*SecureFtpNetworkLocation*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.network.ftp////////////////////////////////////////////////////////////////.html) |  |  
+| [*SecureFtpResource*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.network.ftp/////////////////////////////////////////////////////////.html) |  |  
+| [*SecureFtpSettings*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.network.ftp/////////////////////////////////////////////////////////.html) |  |  
+| [*SftpFolderWatcher*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.network.ftp/////////////////////////////////////////////////////////.html) |  |  
 
 [//]: # (start-user-text)
 

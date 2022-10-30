@@ -1,0 +1,17 @@
+
+@startuml
+
+    !include lexakai.theme
+    
+    title "diagram-code"
+    
+    interface Consumer<Value>
+    Consumer <|-- Callback
+    interface Callback<Value>
+    {
+        --
+        +void call(Value)
+    }
+    
+@enduml
+

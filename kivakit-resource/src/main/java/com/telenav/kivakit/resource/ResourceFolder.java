@@ -43,6 +43,7 @@ import static com.telenav.kivakit.filesystem.Folder.temporaryFolderForProcess;
 import static com.telenav.kivakit.interfaces.comparison.Matcher.matchAll;
 import static com.telenav.kivakit.resource.CopyMode.OVERWRITE;
 import static com.telenav.kivakit.resource.Extension.TEMPORARY;
+import static com.telenav.kivakit.resource.FolderCopyMode.PRESERVE_HIERARCHY;
 import static com.telenav.kivakit.resource.ResourcePath.parseResourcePath;
 import static com.telenav.kivakit.resource.spi.ResourceFolderResolverService.resourceFolderResolverService;
 
@@ -79,6 +80,9 @@ import static com.telenav.kivakit.resource.spi.ResourceFolderResolverService.res
  * <p><b>Operations</b></p>
  *
  * <ul>
+ *     <li>{@link #copyTo(Folder, CopyMode, ProgressReporter)}</li>
+ *     <li>{@link #copyTo(Folder, CopyMode, Matcher, ProgressReporter)}</li>
+ *     <li>{@link #copyTo(Folder, CopyMode, FolderCopyMode, Matcher, ProgressReporter)}</li>
  *     <li>{@link #delete()} - Deletes this folder if it is empty</li>
  *     <li>{@link #mkdirs()} - Creates this folder and any required parent folders</li>
  *     <li>{@link #renameTo(ResourceFolder)} - Renames this folder to the given folder</li>
@@ -172,6 +176,18 @@ public interface ResourceFolder<T extends ResourceFolder<T>> extends
                         @NotNull Matcher<ResourcePathed> matcher,
                         @NotNull ProgressReporter reporter)
     {
+        copyTo(destination, mode, PRESERVE_HIERARCHY, matcher, reporter);
+    }
+
+    /**
+     * Copies all nested resources matching the given matcher from this folder to the destination folder.
+     */
+    default void copyTo(@NotNull Folder destination,
+                        @NotNull CopyMode mode,
+                        @NotNull FolderCopyMode folderMode,
+                        @NotNull Matcher<ResourcePathed> matcher,
+                        @NotNull ProgressReporter reporter)
+    {
         var start = now();
 
         // Ensure the destination folder exists,
@@ -182,7 +198,12 @@ public interface ResourceFolder<T extends ResourceFolder<T>> extends
         for (var resource : nestedResources(matcher))
         {
             // make relative target resource,
-            var target = destination.file(resource.relativeTo(this));
+            var path = switch (folderMode)
+                    {
+                        case PRESERVE_HIERARCHY -> resource.relativeTo(this).path();
+                        case FLATTEN -> resource.fileName().path();
+                    };
+            var target = listenTo(destination.file(path));
 
             // and if we can copy to it,
             if (mode.canCopy(resource, target))

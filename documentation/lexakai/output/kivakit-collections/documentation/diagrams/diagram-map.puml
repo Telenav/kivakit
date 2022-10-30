@@ -1,0 +1,57 @@
+
+@startuml
+
+    !include lexakai.theme
+    
+    title "Maps"
+    
+    abstract BaseMap
+    abstract BaseIndexedMap
+    
+    interface Addable
+    interface Indexable
+    
+    BaseMap <|-- BaseIndexedMap
+    Indexable <|-- BaseIndexedMap
+    Addable <|-- BaseIndexedMap
+    abstract class BaseIndexedMap<Key, Value>
+    {
+        --(constructors)--
+        #BaseIndexedMap(Maximum)
+        --(collection)--
+        +int indexOf(Value)
+        +void sort(Comparator<Value>)
+    }
+    
+    BaseIndexedMap <|-- IndexedNameMap
+    class IndexedNameMap<T>
+    {
+        --(constructors)--
+        +IndexedNameMap()
+        +IndexedNameMap(Maximum)
+    }
+    
+    class ReferenceCountMap<Key>
+    {
+        --
+        +void dereference(Key object)
+        +void reference(Key)
+        --(checks)--
+        +boolean isReferenced(Key object)
+        --(collection)--
+        +void count(Key object, Count)
+        +Count count(Key object)
+    }
+    
+    BaseMap <|-- TwoWayMap
+    class TwoWayMap<Key, Value>
+    {
+        --(constructors)--
+        +TwoWayMap()
+        +TwoWayMap(Maximum)
+        --(collection)--
+        +Key key(Value)
+    }
+    
+@enduml
+

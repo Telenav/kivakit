@@ -296,9 +296,8 @@ public class NetworkLocation implements StringFormattable, Comparable<NetworkLoc
     @Override
     public boolean equals(Object object)
     {
-        if (object instanceof NetworkLocation)
+        if (object instanceof NetworkLocation that)
         {
-            var that = (NetworkLocation) object;
             return port.equals(that.port) && networkPath.equals(that.networkPath)
                     && isEqual(queryParameters, that.queryParameters)
                     && isEqual(reference, that.reference);

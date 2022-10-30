@@ -1,0 +1,44 @@
+
+@startuml
+
+    !include lexakai.theme
+    
+    title "com.telenav.kivakit.core.messaging.messages.status.activity"
+    
+    OperationStatusMessage <|-- Step
+    class Step
+    {
+        --(constructors)--
+        +Step()
+        +Step(String, Object)
+        +Step(Throwable, String, Object)
+    }
+    
+    OperationStatusMessage <|-- StepFailure
+    class StepFailure
+    {
+        --(constructors)--
+        +StepFailure()
+        +StepFailure(String, Object)
+        +StepFailure(Throwable, String, Object)
+    }
+    
+    OperationStatusMessage <|-- StepIncomplete
+    class StepIncomplete
+    {
+        --(constructors)--
+        +StepIncomplete()
+        +StepIncomplete(String, Object)
+        +StepIncomplete(Throwable, String, Object)
+    }
+    
+    OperationStatusMessage <|-- StepSuccess
+    class StepSuccess
+    {
+        --(constructors)--
+        +StepSuccess()
+        +StepSuccess(String, Object)
+    }
+    
+@enduml
+
