@@ -13,7 +13,7 @@
     <parent>
         <groupId>com.telenav</groupId>
         <artifactId>telenav-root-superpom</artifactId>
-        <version>1.0.6</version>
+        <version>1.0.7</version>
         <relativePath/>
     </parent>
 
@@ -56,11 +56,13 @@
         <module>kivakit-testing</module>
         <module>kivakit-internal/tests/resource</module>
         <module>kivakit-internal/tests/core</module>
-        <module>kivakit-serialization/kryo-testing</module></modules>
+        <module>kivakit-serialization/kryo-testing</module>
+    </modules>
 
 
     <properties>
         <cactus.previous.version>1.5.39</cactus.previous.version>
+        <metadata.previous.version>1.0.0</metadata.previous.version>
         <commons-net.version>3.0.1</commons-net.version>
         <esotericsoftware.version>5.3.0</esotericsoftware.version>
         <gson.version>2.9.0</gson.version>
@@ -83,6 +85,15 @@
                 <groupId>com.telenav.cactus</groupId>
                 <artifactId>cactus</artifactId>
                 <version>${cactus.previous.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <!-- Pull in libraries defined in Cactus -->
+            <dependency>
+                <groupId>com.telenav.cactus.metadata</groupId>
+                <artifactId>cactus-metadata-parent</artifactId>
+                <version>${metadata.previous.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
