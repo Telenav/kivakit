@@ -23,7 +23,6 @@
 
     <packaging>pom</packaging>
 
-    <name>Kivakit Parent</name>
     <description>KivaKit is a collection of easy-to-use, integrated mini-frameworks for
         developing Java software.</description>
 

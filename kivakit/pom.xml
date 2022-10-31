@@ -16,7 +16,6 @@
 
     <packaging>pom</packaging>
 
-    <name>Kivakit</name>
     <description>Bill Of Materials for Kivakit.
         Import this pom as a pom-type, import scope dependency in your dependencyManagement
          section to depend on a consistent set of versions of kivakit.</description>
