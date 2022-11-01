@@ -49,8 +49,8 @@ public class SimpleLogFormatter implements LogFormatter
     {
         return entry.message().created().asUtc()
                 + " " + entry.context()
-                + " " + simpleName(entry.message().getClass())
-                + " " + entry.threadName() + ": " + entry.formattedMessage(formats);
+                + " " + simpleName(entry.message().getClass()).substring(4)
+                + ": " + entry.formattedMessage(formats);
     }
 
     @Override
