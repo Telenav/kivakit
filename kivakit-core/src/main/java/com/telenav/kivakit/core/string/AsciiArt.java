@@ -327,18 +327,17 @@ public class AsciiArt
         {
             // add the line, wrapping if necessary
             var wrapped = new StringBuilder();
-            var next = "";
             do
             {
-                next = line.substring(0, min(width - 4, line.length()));
+                var next = line.substring(0, min(width - 4, line.length()));
                 appendTextBoxLine(builder, next, width - 4);
                 line = line.substring(next.length());
             }
             while (line.length() > width);
 
-            if (!next.isEmpty())
+            if (!line.isEmpty())
             {
-                appendTextBoxLine(builder, next, width - 4);
+                appendTextBoxLine(builder, line, width - 4);
             }
         }
 
@@ -348,14 +347,6 @@ public class AsciiArt
                 .append(BOTTOM_RIGHT_LINE_CHARACTER);
 
         return builder.toString();
-    }
-
-    private static void appendTextBoxLine(StringBuilder builder, String text, int width)
-    {
-        builder.append(VERTICAL_LINE_CHARACTER).append(" ");
-        builder.append(leftAlign(text, width, ' '));
-        builder.append(" ").append(VERTICAL_LINE_CHARACTER);
-        builder.append('\n');
     }
 
     /**
@@ -390,6 +381,14 @@ public class AsciiArt
             width = max(width, line.length());
         }
         return width;
+    }
+
+    private static void appendTextBoxLine(StringBuilder builder, String text, int width)
+    {
+        builder.append(VERTICAL_LINE_CHARACTER).append(" ");
+        builder.append(leftAlign(text, width, ' '));
+        builder.append(" ").append(VERTICAL_LINE_CHARACTER);
+        builder.append('\n');
     }
 
     @NotNull
