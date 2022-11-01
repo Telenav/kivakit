@@ -13,7 +13,7 @@
     <parent>
         <groupId>com.telenav</groupId>
         <artifactId>telenav-root-superpom</artifactId>
-        <version>1.0.10</version>
+        <version>1.0.11</version>
         <relativePath/>
     </parent>
 
@@ -42,7 +42,7 @@
         <module>kivakit-network/core</module>
         <module>kivakit-network/http</module>
         <module>kivakit-network/ftp</module>
-        
+
         <module>kivakit-network/socket</module>
         <module>kivakit-serialization/core</module>
         <module>kivakit-serialization/properties</module>
@@ -75,6 +75,26 @@
         <sshtools.version>0.2.9</sshtools.version>
         <sun-activation.version>1.2.0</sun-activation.version>
     </properties>
+
+    <!-- Publishing -->
+
+    <!-- Should not be needed, and is inherited from the superpom, but
+         trying adding it explicitly to see if it fixes
+            repository element was not specified in the POM inside
+            distributionManagement element or in -DaltDeploymentRepository=id::layout::url parameter
+    -->
+    <distributionManagement>
+        <snapshotRepository>
+            <id>ossrh</id>
+            <url>https://s01.oss.sonatype.org/content/repositories/snapshots</url>
+        </snapshotRepository>
+
+        <repository>
+            <id>ossrh</id>
+            <url>https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+        </repository>
+    </distributionManagement>
+
 
     <dependencyManagement>
         <dependencies>
