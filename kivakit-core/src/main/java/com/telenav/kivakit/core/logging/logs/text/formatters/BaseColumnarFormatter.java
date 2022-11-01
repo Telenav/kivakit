@@ -194,7 +194,7 @@ public abstract class BaseColumnarFormatter implements LogFormatter
             var builder = new StringBuilder();
             for (var row = 0; row < maximumRows; row++)
             {
-                builder.append("| ");
+                builder.append("┋ ");
                 for (var column = 0; column < columns.size(); column++)
                 {
                     if (row < output.get(column).size())
@@ -205,7 +205,7 @@ public abstract class BaseColumnarFormatter implements LogFormatter
                     {
                         builder.append(repeat(columns.get(column).width, ' '));
                     }
-                    builder.append(" |");
+                    builder.append(" ┋");
                     if (column < columns.size() - 1)
                     {
                         builder.append(' ');
