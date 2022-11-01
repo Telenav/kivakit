@@ -4,6 +4,7 @@ import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.messaging.Message;
 import com.telenav.kivakit.core.time.Duration;
+import com.telenav.kivakit.core.value.count.Count;
 import com.telenav.kivakit.interfaces.io.Flushable;
 
 import java.io.PrintStream;
@@ -15,6 +16,7 @@ import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_N
 import static com.telenav.kivakit.core.os.Console.OutputType.ERROR;
 import static com.telenav.kivakit.core.os.Console.OutputType.NORMAL;
 import static com.telenav.kivakit.core.string.Formatter.format;
+import static com.telenav.kivakit.core.value.count.Count.count;
 
 /**
  * Simple console access.
@@ -146,5 +148,15 @@ public class Console implements
     public void println(String text, Object... arguments)
     {
         println(NORMAL, text, arguments);
+    }
+
+    /**
+     * Returns the width of this console
+     *
+     * @return The console width
+     */
+    public Count width()
+    {
+        return count(150);
     }
 }

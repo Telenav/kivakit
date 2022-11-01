@@ -191,7 +191,7 @@ public interface ResourceFolder<T extends ResourceFolder<T>> extends
         var start = now();
 
         // Ensure the destination folder exists,
-        information("Copying $ to $", this, destination);
+        information("Copying resources\n    FROM: $\n      TO: $", this, destination);
         destination.ensureExists();
 
         // then for each nested file,
@@ -209,7 +209,7 @@ public interface ResourceFolder<T extends ResourceFolder<T>> extends
             if (mode.canCopy(resource, target))
             {
                 // then copy the resource and update its last modified timestamp to the source timestamp
-                information("Copying $ to $", resource, target);
+                information("Copying resource\n    FROM: $\n      TO: $", resource, target);
                 listenTo(resource).copyTo(target.ensureWritable(), mode, reporter);
                 target.lastModified(resource.lastModified());
             }
@@ -315,7 +315,6 @@ public interface ResourceFolder<T extends ResourceFolder<T>> extends
     /**
      * Creates all folders above and including this folder
      */
-    @SuppressWarnings("SpellCheckingInspection")
     default ResourceFolder<?> mkdirs()
     {
         unsupported();

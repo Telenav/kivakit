@@ -334,7 +334,10 @@ public class Formatter
             // We must consume all arguments if the format is positional
             if (map == null && argumentIndex != arguments.length)
             {
-                return "Extraneous arguments. " + arguments.length + " arguments provided to: " + message;
+                return "Extraneous arguments: " + arguments.length
+                        + " arguments provided, but only consumed "
+                        + argumentIndex + " arguments:\n"
+                        + message;
             }
 
             // Add the tail end

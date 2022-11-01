@@ -109,6 +109,7 @@ import static com.telenav.kivakit.core.logging.LoggerFactory.newLogger;
 import static com.telenav.kivakit.core.project.Project.resolveProject;
 import static com.telenav.kivakit.core.project.StartUpOptions.isStartupOptionEnabled;
 import static com.telenav.kivakit.core.string.Align.rightAlign;
+import static com.telenav.kivakit.core.string.AsciiArt.*;
 import static com.telenav.kivakit.core.string.Strip.stripLeading;
 import static com.telenav.kivakit.core.vm.Properties.allProperties;
 import static com.telenav.kivakit.properties.PropertyMap.loadLocalizedPropertyMap;
@@ -683,7 +684,7 @@ public abstract class Application extends BaseComponent implements
             {
                 if (log.messageCounts().size() > 0)
                 {
-                    information(AsciiArt.textBox(log.name() + " Log MessageTransceiver", "$", log.messageCounts().join("\n")));
+                    information(textBox(log.name() + " Log MessageTransceiver", "$", log.messageCounts().join("\n")));
                 }
             }
 
@@ -734,7 +735,7 @@ public abstract class Application extends BaseComponent implements
             box.add("");
             for (var argument : argumentList())
             {
-                box.add(AsciiArt.repeat(4, ' ') + "$. $", number++, argument.value());
+                box.add(repeat(4, ' ') + "$. $", number++, argument.value());
             }
         }
         if (!internalSwitchParsers().isEmpty())

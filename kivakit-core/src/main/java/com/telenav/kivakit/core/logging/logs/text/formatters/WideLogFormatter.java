@@ -26,10 +26,12 @@ import com.telenav.kivakit.core.time.Time;
 import com.telenav.kivakit.interfaces.string.StringFormattable;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
-import static com.telenav.kivakit.core.logging.logs.text.formatters.BaseColumnarFormatter.ColumnLayout.*;
+import static com.telenav.kivakit.core.logging.logs.text.formatters.BaseColumnarFormatter.ColumnLayout.CLIP_LEFT;
+import static com.telenav.kivakit.core.logging.logs.text.formatters.BaseColumnarFormatter.ColumnLayout.CLIP_RIGHT;
+import static com.telenav.kivakit.core.logging.logs.text.formatters.BaseColumnarFormatter.ColumnLayout.WRAP;
 import static com.telenav.kivakit.core.logging.logs.text.formatters.WideLogFormatter.TimeType.ELAPSED;
 import static com.telenav.kivakit.core.time.Time.now;
 
@@ -67,7 +69,7 @@ public class WideLogFormatter extends BaseColumnarFormatter
     private final Column elapsedColumn = new Column(6, 10, CLIP_RIGHT);
 
     /** The message text column */
-    private final Column messageTextColumn = new Column(150, 150, WRAP);
+    private final Column messageTextColumn = new Column(maximumColumnWidth(), maximumColumnWidth(), WRAP);
 
     /** The sequence number column */
     private final Column sequenceNumberColumn = new Column(6, 10, CLIP_RIGHT);
@@ -111,6 +113,12 @@ public class WideLogFormatter extends BaseColumnarFormatter
 
         // Return the formatted line
         return line.format();
+    }
+
+    @Override
+    public int maximumColumnWidth()
+    {
+        return 120;
     }
 
     /**

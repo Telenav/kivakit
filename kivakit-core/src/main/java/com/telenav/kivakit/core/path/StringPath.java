@@ -24,6 +24,7 @@ import com.telenav.kivakit.core.collections.list.StringList;
 import com.telenav.kivakit.core.internal.lexakai.DiagramPath;
 import com.telenav.kivakit.core.language.reflection.property.IncludeProperty;
 import com.telenav.kivakit.core.messaging.Listener;
+import com.telenav.kivakit.core.value.count.Count;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import org.jetbrains.annotations.NotNull;
 
@@ -81,7 +82,7 @@ import static com.telenav.kivakit.core.string.Strings.notNull;
  * @author jonathanl (shibo)
  * @see Path
  */
-@SuppressWarnings({ "SpellCheckingInspection", "SwitchStatementWithTooFewBranches" })
+@SuppressWarnings({ "SpellCheckingInspection", "SwitchStatementWithTooFewBranches", "unused" })
 @UmlClassDiagram(diagram = DiagramPath.class)
 @CodeQuality(stability = STABLE_EXTENSIBLE,
              testing = TESTING_INSUFFICIENT,
@@ -206,19 +207,44 @@ public class StringPath extends Path<String>
      * @return A contraction of this path as a string. Middle elements are removed until the length is less than the
      * given maximum length.
      */
+    public String asContraction(Count maximumLength)
+    {
+        return asContraction(maximumLength.asInt());
+    }
+
+    /**
+     * Returns this path with middle elements removed to ensure the path is shorter than the given maximum length
+     *
+     * @param maximumLength The maximum length of the contracted path in characters
+     * @return A contraction of this path as a string. Middle elements are removed until the length is less than the
+     * given maximum length.
+     */
     public String asContraction(int maximumLength)
     {
+        // Get the path length in elements,
         int size = size();
+
+        // and if we have at least 3 elements, we can create a contraction.
         if (size >= 3)
         {
+            // Copy this string path,
             var copy = new StringPath(this);
+
+            // find the middle element,
             int middle = size / 2;
+
+            // then break the path into before and after the ellipsis.
             var before = copy.subpath(0, middle);
             var after = copy.subpath(middle + 1, size);
             var ellipsis = "...";
-            while (before.join().length() + after.join().length() + ellipsis.length() + 2 > maximumLength)
+
+            // While the contracted length is too long,
+            while (before.join().length()
+                    + after.join().length()
+                    + ellipsis.length() + 2 > maximumLength)
             {
-                if (before.size() >= after.size())
+                // remove the shortest path element.
+                if (before.size() < after.size())
                 {
                     before = before.withoutLast();
                 }
@@ -227,7 +253,10 @@ public class StringPath extends Path<String>
                     after = after.withoutFirst();
                 }
             }
-            return before.withChild(ellipsis).withChild(after).join();
+            return before
+                    .withChild(ellipsis)
+                    .withChild(after)
+                    .join();
         }
         else
         {
@@ -264,10 +293,10 @@ public class StringPath extends Path<String>
     public String asString(@NotNull Format format)
     {
         return switch (format)
-        {
-            case FILESYSTEM -> join(File.separator);
-            default -> join();
-        };
+                {
+                    case FILESYSTEM -> join(File.separator);
+                    default -> join();
+                };
     }
 
     /**

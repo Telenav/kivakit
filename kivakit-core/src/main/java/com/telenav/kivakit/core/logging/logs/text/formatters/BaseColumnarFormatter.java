@@ -24,6 +24,7 @@ import static com.telenav.kivakit.core.string.Strings.trailing;
  *
  * @author jonathanl (shibo)
  */
+@SuppressWarnings("unused")
 @CodeQuality(stability = STABLE_EXTENSIBLE,
              testing = UNTESTED,
              documentation = DOCUMENTATION_COMPLETE)

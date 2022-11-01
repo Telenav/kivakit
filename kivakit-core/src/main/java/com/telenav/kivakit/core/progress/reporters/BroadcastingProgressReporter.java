@@ -235,7 +235,7 @@ public class BroadcastingProgressReporter extends Multicaster implements Progres
             ended = true;
             report(at());
             var formatted = format(message, arguments);
-            feedback(bottomLine("$ $ in $", formatted, unitName, epochMilliseconds(start).elapsedSince()));
+            feedback(bottomLine( 70, "$ $ in $", formatted, unitName, epochMilliseconds(start).elapsedSince()));
         }
     }
 
@@ -339,7 +339,7 @@ public class BroadcastingProgressReporter extends Multicaster implements Progres
         {
             started = true;
             at(0);
-            feedback(topLine(label + " " + unitName));
+            feedback(topLine(70, label + " " + unitName));
             start = now().milliseconds();
             if (listener != null)
             {

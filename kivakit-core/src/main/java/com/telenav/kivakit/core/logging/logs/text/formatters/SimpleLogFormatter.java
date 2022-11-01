@@ -52,4 +52,10 @@ public class SimpleLogFormatter implements LogFormatter
                 + " " + simpleName(entry.message().getClass())
                 + " " + entry.threadName() + ": " + entry.formattedMessage(formats);
     }
+
+    @Override
+    public int maximumColumnWidth()
+    {
+        return 128;
+    }
 }

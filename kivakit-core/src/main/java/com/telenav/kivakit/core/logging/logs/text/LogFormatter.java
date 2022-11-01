@@ -24,12 +24,12 @@ import com.telenav.kivakit.core.logging.LogEntry;
 import com.telenav.kivakit.core.logging.logs.text.formatters.NarrowLogFormatter;
 import com.telenav.kivakit.core.logging.logs.text.formatters.WideLogFormatter;
 import com.telenav.kivakit.core.messaging.MessageFormat;
-import com.telenav.kivakit.core.vm.JavaVirtualMachine;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
+import static com.telenav.kivakit.core.vm.JavaVirtualMachine.javaVirtualMachine;
 
 /**
  * Something that formats log entries in a text log
@@ -45,9 +45,10 @@ public interface LogFormatter
     /**
      * Returns the log formatter specified by the KIVAKIT_LOG_FORMATTER property or environment variable
      */
-    static LogFormatter formatter()
+    static LogFormatter logFormatter()
     {
-        var formatter = JavaVirtualMachine.javaVirtualMachine().systemPropertiesAndEnvironmentVariables().get("KIVAKIT_LOG_FORMATTER");
+        var formatter = javaVirtualMachine().systemPropertiesAndEnvironmentVariables()
+                .get("KIVAKIT_LOG_FORMATTER");
         return "Wide".equalsIgnoreCase(formatter)
                 ? new WideLogFormatter()
                 : new NarrowLogFormatter();
@@ -61,4 +62,11 @@ public interface LogFormatter
      * @return The formatted text
      */
     String format(LogEntry entry, MessageFormat... formats);
+
+    /**
+     * Returns the maximum column width for this log formatter
+     *
+     * @return The maximum column width in characters
+     */
+    int maximumColumnWidth();
 }

@@ -24,10 +24,11 @@ import com.telenav.kivakit.core.logging.LogEntry;
 import com.telenav.kivakit.core.messaging.MessageFormat;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
-import static com.telenav.kivakit.core.logging.logs.text.formatters.BaseColumnarFormatter.ColumnLayout.*;
+import static com.telenav.kivakit.core.logging.logs.text.formatters.BaseColumnarFormatter.ColumnLayout.CLIP_RIGHT;
+import static com.telenav.kivakit.core.logging.logs.text.formatters.BaseColumnarFormatter.ColumnLayout.WRAP;
 
 /**
  * Formats log entries into flexible delimited columns.
@@ -45,7 +46,7 @@ public class NarrowLogFormatter extends BaseColumnarFormatter
     private final Column contextColumn = new Column(12, 12, CLIP_RIGHT);
 
     /** The message column */
-    private final Column messageColumn = new Column(128, 128, WRAP);
+    private final Column messageColumn = new Column(maximumColumnWidth(), maximumColumnWidth(), WRAP);
 
     /** The message type column */
     private final Column typeColumn = new Column(4, 4, CLIP_RIGHT);
@@ -66,5 +67,11 @@ public class NarrowLogFormatter extends BaseColumnarFormatter
 
         // and return the formatted line
         return line.format();
+    }
+
+    @Override
+    public int maximumColumnWidth()
+    {
+        return 100;
     }
 }

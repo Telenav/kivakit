@@ -22,7 +22,6 @@ import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.collections.BaseCollection;
 import com.telenav.kivakit.core.internal.lexakai.DiagramCollections;
 import com.telenav.kivakit.core.string.AsciiArt;
-import com.telenav.kivakit.core.string.Formatter;
 import com.telenav.kivakit.core.value.count.Count;
 import com.telenav.kivakit.core.value.count.Maximum;
 import com.telenav.kivakit.interfaces.collection.Appendable;
@@ -52,6 +51,8 @@ import java.util.stream.Stream;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_INSUFFICIENT;
+import static com.telenav.kivakit.core.string.AsciiArt.textBox;
+import static com.telenav.kivakit.core.string.Formatter.format;
 import static com.telenav.kivakit.core.value.count.Maximum.MAXIMUM;
 
 /**
@@ -703,7 +704,7 @@ public abstract class BaseList<Value> extends BaseCollection<Value> implements
      */
     public String titledBox(String title)
     {
-        return AsciiArt.textBox(title, join("\n"));
+        return textBox(title, join("\n"));
     }
 
     /**
@@ -711,7 +712,7 @@ public abstract class BaseList<Value> extends BaseCollection<Value> implements
      */
     public String titledBox(String title, Object... arguments)
     {
-        return titledBox(Formatter.format(title, arguments));
+        return titledBox(format(title, arguments));
     }
 
     /**

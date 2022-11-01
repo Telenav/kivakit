@@ -30,14 +30,16 @@ import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMEN
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.ensure.Ensure.ensure;
+import static com.telenav.kivakit.core.logging.logs.text.LogFormatter.logFormatter;
 import static com.telenav.kivakit.core.os.OperatingSystem.operatingSystem;
-import static com.telenav.kivakit.core.string.Align.leftAlign;
 import static com.telenav.kivakit.core.string.Align.center;
+import static com.telenav.kivakit.core.string.Align.leftAlign;
 import static com.telenav.kivakit.core.string.Formatter.format;
 import static com.telenav.kivakit.core.string.Join.join;
 import static com.telenav.kivakit.core.string.Strings.leading;
 import static com.telenav.kivakit.core.string.Strings.occurrences;
 import static java.lang.Math.max;
+import static java.lang.Math.min;
 
 /**
  * Provides methods to create "ASCII art", including:
@@ -75,14 +77,14 @@ public class AsciiArt
 
     public static final char TITLE_RIGHT_CHARACTER = isMac ? '\u2523' : '|';
 
-    public static final int LINE_LENGTH = 100;
+    private static int maximumWidth = 90;
 
     /**
      * Returns the given message centered on a line as a banner
      */
     public static String bannerLine(String message)
     {
-        return center(" " + message + " ", LINE_LENGTH, HORIZONTAL_LINE_CHARACTER);
+        return center(" " + message + " ", maximumWidth, HORIZONTAL_LINE_CHARACTER);
     }
 
     /**
@@ -96,11 +98,11 @@ public class AsciiArt
     /**
      * Returns a bottom line with the given message
      */
-    public static String bottomLine(int extraWidth, String message, Object... arguments)
+    public static String bottomLine(int width, String message, Object... arguments)
     {
         message = " " + format(message, arguments) + " ";
         return BOTTOM_LEFT_LINE_CHARACTER + line(4) + message
-                + line(max(4, LINE_LENGTH + extraWidth - 6 - message.length()))
+                + line(max(4, width - 6 - message.length()))
                 + BOTTOM_RIGHT_LINE_CHARACTER;
     }
 
@@ -109,7 +111,7 @@ public class AsciiArt
      */
     public static String bottomLine(String message, Object... arguments)
     {
-        return bottomLine(0, message, arguments);
+        return bottomLine(logFormatter().maximumColumnWidth(), message, arguments);
     }
 
     /**
@@ -117,7 +119,7 @@ public class AsciiArt
      */
     public static String bottomLine()
     {
-        return bottomLine(LINE_LENGTH);
+        return bottomLine(maximumWidth);
     }
 
     /**
@@ -186,7 +188,7 @@ public class AsciiArt
      */
     public static String line()
     {
-        return line(LINE_LENGTH);
+        return line(maximumWidth);
     }
 
     /**
@@ -202,7 +204,11 @@ public class AsciiArt
      */
     public static String line(String message)
     {
-        return line(4) + " " + message + " " + line(max(4, LINE_LENGTH - 6 - message.length()));
+        return line(4)
+                + " "
+                + message
+                + " "
+                + line(max(4, maximumWidth - 6 - message.length()));
     }
 
     /**
@@ -211,6 +217,21 @@ public class AsciiArt
     public static int lineCount(String string)
     {
         return occurrences(string, '\n') + 1;
+    }
+
+    public static int maximumWidth()
+    {
+        return maximumWidth;
+    }
+
+    /**
+     * Sets the maximum width for ascii art
+     *
+     * @param maximumWidth The maximum width
+     */
+    public static void maximumWidth(int maximumWidth)
+    {
+        AsciiArt.maximumWidth = maximumWidth;
     }
 
     /**
@@ -251,7 +272,7 @@ public class AsciiArt
     public static String textBox(String message, char horizontal, char vertical)
     {
         var builder = new StringBuilder();
-        var width = widestLine(message);
+        var width = min(maximumWidth, widestLine(message));
         builder.append(repeat(width + 6, horizontal));
         builder.append('\n');
         var lines = message.split("\n");
@@ -281,19 +302,48 @@ public class AsciiArt
      */
     public static String textBox(String title, String message, Object... arguments)
     {
+        return textBox(maximumWidth(), title, message, arguments);
+    }
+
+    /**
+     * Returns an ASCII art box with the given title and message
+     */
+    public static String textBox(int width, String title, String message, Object... arguments)
+    {
         title = title(title);
         message = format(message, arguments);
-        var width = widestLine(title + "\n" + message) + 4;
+        width = min(width, widestLine(title + "\n" + message) + 4);
+
         var builder = new StringBuilder();
-        builder.append(TOP_LEFT_LINE_CHARACTER).append(center(title, width - 2, HORIZONTAL_LINE_CHARACTER)).append(TOP_RIGHT_LINE_CHARACTER).append("\n");
+
+        // Add the top of the box
+        builder.append(TOP_LEFT_LINE_CHARACTER)
+                .append(center(title, width - 2, HORIZONTAL_LINE_CHARACTER))
+                .append(TOP_RIGHT_LINE_CHARACTER)
+                .append("\n");
+
+        // For each line in the message,
         for (var line : message.split("\n"))
         {
-            builder.append(VERTICAL_LINE_CHARACTER).append(" ");
-            builder.append(leftAlign(line, width - 4, ' '));
-            builder.append(" ").append(VERTICAL_LINE_CHARACTER);
-            builder.append('\n');
+            // add the line, wrapping if necessary
+            var wrapped = new StringBuilder();
+            do
+            {
+                var next = line.substring(0, min(width - 4, line.length()));
+                builder.append(VERTICAL_LINE_CHARACTER).append(" ");
+                builder.append(leftAlign(next, width - 4, ' '));
+                builder.append(" ").append(VERTICAL_LINE_CHARACTER);
+                builder.append('\n');
+                line = line.substring(next.length());
+            }
+            while (line.length() > width);
         }
-        builder.append(BOTTOM_LEFT_LINE_CHARACTER).append(line(width - 2)).append(BOTTOM_RIGHT_LINE_CHARACTER);
+
+        // Add the bottom of the box
+        builder.append(BOTTOM_LEFT_LINE_CHARACTER)
+                .append(line(width - 2))
+                .append(BOTTOM_RIGHT_LINE_CHARACTER);
+
         return builder.toString();
     }
 
@@ -302,18 +352,18 @@ public class AsciiArt
      */
     public static String topLine(String title, Object... arguments)
     {
-        return topLine(0, title, arguments);
+        return topLine(logFormatter().maximumColumnWidth(), title, arguments);
     }
 
     /**
      * Returns a top line with the given title
      */
-    public static String topLine(int extraWidth, String title, Object... arguments)
+    public static String topLine(int width, String title, Object... arguments)
     {
         title = title(title, arguments);
-        return (extraWidth > 0 ? " \n" : "")
+        return (width > 0 ? " \n" : "")
                 + TOP_LEFT_LINE_CHARACTER + line(4) + title
-                + line(max(4, LINE_LENGTH + extraWidth - 6 - title.length()))
+                + line(max(4, width - 6 - title.length()))
                 + TOP_RIGHT_LINE_CHARACTER;
     }
 

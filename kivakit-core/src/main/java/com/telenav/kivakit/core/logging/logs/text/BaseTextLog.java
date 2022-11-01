@@ -65,7 +65,7 @@ public abstract class BaseTextLog extends BaseLog
     private MessageFormat[] formats = { FORMATTED };
 
     /** The formatter to use */
-    private LogFormatter formatter = LogFormatter.formatter();
+    private LogFormatter formatter = LogFormatter.logFormatter();
 
     /** Simple formatter to use when not providing formatting */
     private final LogFormatter simpleFormatter = new SimpleLogFormatter();
