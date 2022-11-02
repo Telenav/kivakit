@@ -76,26 +76,6 @@
         <sun-activation.version>1.2.0</sun-activation.version>
     </properties>
 
-    <!-- Publishing -->
-
-    <!-- Should not be needed, and is inherited from the superpom, but
-         trying adding it explicitly to see if it fixes
-            repository element was not specified in the POM inside
-            distributionManagement element or in -DaltDeploymentRepository=id::layout::url parameter
-    -->
-    <distributionManagement>
-        <snapshotRepository>
-            <id>ossrh</id>
-            <url>https://s01.oss.sonatype.org/content/repositories/snapshots</url>
-        </snapshotRepository>
-
-        <repository>
-            <id>ossrh</id>
-            <url>https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/</url>
-        </repository>
-    </distributionManagement>
-
-
     <dependencyManagement>
         <dependencies>
 
@@ -247,4 +227,46 @@
         <system>GitHub</system>
         <url>https://github.com/Telenav/kivakit/issues</url>
     </issueManagement>
+
+    <!-- Publishing -->
+
+    <!-- Should not be needed, and is inherited from the superpom, but
+         trying adding it explicitly to see if it fixes
+            repository element was not specified in the POM inside
+            distributionManagement element or in -DaltDeploymentRepository=id::layout::url parameter
+    -->
+    <distributionManagement>
+        <snapshotRepository>
+            <id>ossrh</id>
+            <url>https://s01.oss.sonatype.org/content/repositories/snapshots</url>
+        </snapshotRepository>
+
+        <repository>
+            <id>ossrh</id>
+            <url>https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+        </repository>
+    </distributionManagement>
+    <repositories>
+
+        <repository>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+            <id>central</id>
+            <name>Maven Central</name>
+            <url>https://repo.maven.apache.org/maven2/</url>
+        </repository>
+
+        <repository>
+            <id>ossrh</id>
+            <url>https://s01.oss.sonatype.org/content/repositories/snapshots</url>
+            <releases>
+                <enabled>false</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
+
 </project>
