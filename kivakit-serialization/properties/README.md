@@ -68,8 +68,8 @@ None
 
 | Class | Documentation Sections  |
 |-------|-------------------------|
-| [*PropertiesObjectSerializer*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.serialization.properties////////////////////////////////////////////////////////////////////////.html) |  |  
-| [*PropertiesSerializationProject*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.serialization.properties////////////////////////////////////////////////////////////////////////////.html) |  |  
+| [*PropertiesObjectSerializer*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.serialization.properties/com/telenav/kivakit/serialization/properties/PropertiesObjectSerializer.html) |  |  
+| [*PropertiesSerializationProject*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.serialization.properties/com/telenav/kivakit/serialization/properties/PropertiesSerializationProject.html) |  |  
 
 [//]: # (start-user-text)
 

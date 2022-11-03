@@ -82,78 +82,78 @@ Code quality for this project is 70.0%.
 
 | Class | Documentation Sections  |
 |-------|-------------------------|
-| [*BaseConverter*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.conversion/////////////////////////////////////////////.html) | Missing Values |  
+| [*BaseConverter*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.conversion/com/telenav/kivakit/conversion/BaseConverter.html) | Missing Values |  
 | | Conversion |  
 | | Implementing Converters |  
-| [*BaseFormattedConverter*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.conversion////////////////////////////////////////////////////////////////.html) |  |  
-| [*BaseFormattedLocalTimeConverter*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.conversion/////////////////////////////////////////////////////////////////////////.html) |  |  
-| [*BaseStringConverter*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.conversion///////////////////////////////////////////////////.html) | Missing Values |  
+| [*BaseFormattedConverter*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.conversion/com/telenav/kivakit/conversion/core/time/BaseFormattedConverter.html) |  |  
+| [*BaseFormattedLocalTimeConverter*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.conversion/com/telenav/kivakit/conversion/core/time/BaseFormattedLocalTimeConverter.html) |  |  
+| [*BaseStringConverter*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.conversion/com/telenav/kivakit/conversion/BaseStringConverter.html) | Missing Values |  
 | | Conversions |  
 | | Thread Safety |  
 | | Empty Strings |  
 | | Implementing Converters |  
-| [*BaseTwoWayConverter*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.conversion///////////////////////////////////////////////////.html) | Missing Values |  
+| [*BaseTwoWayConverter*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.conversion/com/telenav/kivakit/conversion/BaseTwoWayConverter.html) | Missing Values |  
 | | Conversions |  
 | | Implementing Converters |  
-| [*BooleanConverter*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.conversion////////////////////////////////////////////////////////////////////////.html) |  |  
-| [*BytesConverter*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.conversion/////////////////////////////////////////////////////////.html) |  |  
-| [*ClassConverter*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.conversion////////////////////////////////////////////////////////////.html) |  |  
-| [*ConfidenceConverter*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.conversion//////////////////////////////////////////////////////////////.html) |  |  
-| [*ConvertedProperty*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.conversion//////////////////////////////////////////////////////////////////////.html) |  |  
-| [*ConvertedPropertySet*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.conversion/////////////////////////////////////////////////////////////////////////.html) |  |  
-| [*Converter*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.conversion/////////////////////////////////////////.html) | Conversions |  
+| [*BooleanConverter*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.conversion/com/telenav/kivakit/conversion/core/language/primitive/BooleanConverter.html) |  |  
+| [*BytesConverter*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.conversion/com/telenav/kivakit/conversion/core/value/BytesConverter.html) |  |  
+| [*ClassConverter*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.conversion/com/telenav/kivakit/conversion/core/language/ClassConverter.html) |  |  
+| [*ConfidenceConverter*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.conversion/com/telenav/kivakit/conversion/core/value/ConfidenceConverter.html) |  |  
+| [*ConvertedProperty*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.conversion/com/telenav/kivakit/conversion/core/language/object/ConvertedProperty.html) |  |  
+| [*ConvertedPropertySet*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.conversion/com/telenav/kivakit/conversion/core/language/object/ConvertedPropertySet.html) |  |  
+| [*Converter*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.conversion/com/telenav/kivakit/conversion/Converter.html) | Conversions |  
 | | Collections |  
-| [*ConvertingVariableMap*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.conversion//////////////////////////////////////////////////////////////////////.html) | Access |  
-| [*CountConverter*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.conversion/////////////////////////////////////////////////////////.html) |  |  
-| [*DiagramConversion*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.conversion//////////////////////////////////////////////////////////////////.html) |  |  
-| [*DiagramConversionLanguage*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.conversion//////////////////////////////////////////////////////////////////////////.html) |  |  
-| [*DiagramConversionOther*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.conversion///////////////////////////////////////////////////////////////////////.html) |  |  
-| [*DiagramConversionPrimitive*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.conversion///////////////////////////////////////////////////////////////////////////.html) |  |  
-| [*DiagramConversionTime*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.conversion//////////////////////////////////////////////////////////////////////.html) |  |  
-| [*DiagramConversionValue*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.conversion///////////////////////////////////////////////////////////////////////.html) |  |  
-| [*DoubleConverter*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.conversion///////////////////////////////////////////////////////////////////////.html) |  |  
-| [*DurationConverter*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.conversion///////////////////////////////////////////////////////////.html) |  |  
-| [*EnumConverter*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.conversion///////////////////////////////////////////////////////////.html) |  |  
-| [*EstimateConverter*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.conversion////////////////////////////////////////////////////////////.html) |  |  
-| [*FloatConverter*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.conversion//////////////////////////////////////////////////////////////////////.html) |  |  
-| [*FormattedDoubleConverter*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.conversion////////////////////////////////////////////////////////////////////////////////.html) |  |  
-| [*FormattedIntegerConverter*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.conversion/////////////////////////////////////////////////////////////////////////////////.html) |  |  
-| [*FormattedLongConverter*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.conversion//////////////////////////////////////////////////////////////////////////////.html) |  |  
-| [*FrequencyConverter*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.conversion////////////////////////////////////////////////////////////.html) |  |  
-| [*HexadecimalLongConverter*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.conversion////////////////////////////////////////////////////////////////////////////////.html) |  |  
-| [*HexadecimalLongConverter.Style*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.conversion//////////////////////////////////////////////////////////////////////////////////////.html) |  |  
-| [*HumanizedLocalDateTimeConverter*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.conversion/////////////////////////////////////////////////////////////////////////.html) |  |  
-| [*IdentifierConverter*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.conversion///////////////////////////////////////////////////////////////////.html) |  |  
-| [*IdentityConverter*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.conversion///////////////////////////////////////////////////////////////.html) |  |  
-| [*IntegerConverter*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.conversion////////////////////////////////////////////////////////////////////////.html) |  |  
-| [*IntegerIdentifierConverter*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.conversion//////////////////////////////////////////////////////////////////////////.html) |  |  
-| [*IsoLocalDateTimeConverter*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.conversion///////////////////////////////////////////////////////////////////.html) |  |  
-| [*LevelConverter*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.conversion/////////////////////////////////////////////////////////.html) |  |  
-| [*LocalDateConverter*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.conversion////////////////////////////////////////////////////////////.html) |  |  
-| [*LocalDateTimeConverter*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.conversion////////////////////////////////////////////////////////////////.html) |  |  
-| [*LocalDateTimeWithMillisecondsConverter*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.conversion////////////////////////////////////////////////////////////////////////////////.html) |  |  
-| [*LocalDateTimeWithSecondsConverter*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.conversion///////////////////////////////////////////////////////////////////////////.html) |  |  
-| [*LocalTimeConverter*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.conversion////////////////////////////////////////////////////////////.html) |  |  
-| [*LocaleLanguageConverter*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.conversion///////////////////////////////////////////////////////////////////.html) |  |  
-| [*LongConverter*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.conversion/////////////////////////////////////////////////////////////////////.html) |  |  
-| [*LongValuedConverter*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.conversion//////////////////////////////////////////////////////////////.html) |  |  
-| [*MaximumConverter*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.conversion///////////////////////////////////////////////////////////.html) |  |  
-| [*MillisecondsConverter*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.conversion///////////////////////////////////////////////////////////////.html) |  |  
-| [*MinimumConverter*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.conversion///////////////////////////////////////////////////////////.html) |  |  
-| [*ObjectConverter*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.conversion////////////////////////////////////////////////////////////////////.html) |  |  
-| [*ObjectPopulator*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.conversion////////////////////////////////////////////////////////////////////.html) |  |  
-| [*PatternConverter*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.conversion//////////////////////////////////////////////////////////////.html) |  |  
-| [*PercentConverter*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.conversion///////////////////////////////////////////////////////////.html) |  |  
-| [*SecondsConverter*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.conversion//////////////////////////////////////////////////////////.html) |  |  
-| [*StringConverter*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.conversion///////////////////////////////////////////////.html) | Parsing |  
+| [*ConvertingVariableMap*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.conversion/com/telenav/kivakit/conversion/core/collections/ConvertingVariableMap.html) | Access |  
+| [*CountConverter*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.conversion/com/telenav/kivakit/conversion/core/value/CountConverter.html) |  |  
+| [*DiagramConversion*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.conversion/com/telenav/kivakit/conversion/internal/lexakai/DiagramConversion.html) |  |  
+| [*DiagramConversionLanguage*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.conversion/com/telenav/kivakit/conversion/internal/lexakai/DiagramConversionLanguage.html) |  |  
+| [*DiagramConversionOther*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.conversion/com/telenav/kivakit/conversion/internal/lexakai/DiagramConversionOther.html) |  |  
+| [*DiagramConversionPrimitive*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.conversion/com/telenav/kivakit/conversion/internal/lexakai/DiagramConversionPrimitive.html) |  |  
+| [*DiagramConversionTime*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.conversion/com/telenav/kivakit/conversion/internal/lexakai/DiagramConversionTime.html) |  |  
+| [*DiagramConversionValue*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.conversion/com/telenav/kivakit/conversion/internal/lexakai/DiagramConversionValue.html) |  |  
+| [*DoubleConverter*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.conversion/com/telenav/kivakit/conversion/core/language/primitive/DoubleConverter.html) |  |  
+| [*DurationConverter*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.conversion/com/telenav/kivakit/conversion/core/time/DurationConverter.html) |  |  
+| [*EnumConverter*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.conversion/com/telenav/kivakit/conversion/core/language/EnumConverter.html) |  |  
+| [*EstimateConverter*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.conversion/com/telenav/kivakit/conversion/core/value/EstimateConverter.html) |  |  
+| [*FloatConverter*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.conversion/com/telenav/kivakit/conversion/core/language/primitive/FloatConverter.html) |  |  
+| [*FormattedDoubleConverter*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.conversion/com/telenav/kivakit/conversion/core/language/primitive/FormattedDoubleConverter.html) |  |  
+| [*FormattedIntegerConverter*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.conversion/com/telenav/kivakit/conversion/core/language/primitive/FormattedIntegerConverter.html) |  |  
+| [*FormattedLongConverter*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.conversion/com/telenav/kivakit/conversion/core/language/primitive/FormattedLongConverter.html) |  |  
+| [*FrequencyConverter*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.conversion/com/telenav/kivakit/conversion/core/time/FrequencyConverter.html) |  |  
+| [*HexadecimalLongConverter*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.conversion/com/telenav/kivakit/conversion/core/language/primitive/HexadecimalLongConverter.html) |  |  
+| [*HexadecimalLongConverter.Style*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.conversion/com/telenav/kivakit/conversion/core/language/primitive/HexadecimalLongConverter.Style.html) |  |  
+| [*HumanizedLocalDateTimeConverter*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.conversion/com/telenav/kivakit/conversion/core/time/HumanizedLocalDateTimeConverter.html) |  |  
+| [*IdentifierConverter*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.conversion/com/telenav/kivakit/conversion/core/identifier/IdentifierConverter.html) |  |  
+| [*IdentityConverter*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.conversion/com/telenav/kivakit/conversion/core/language/IdentityConverter.html) |  |  
+| [*IntegerConverter*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.conversion/com/telenav/kivakit/conversion/core/language/primitive/IntegerConverter.html) |  |  
+| [*IntegerIdentifierConverter*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.conversion/com/telenav/kivakit/conversion/core/identifier/IntegerIdentifierConverter.html) |  |  
+| [*IsoLocalDateTimeConverter*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.conversion/com/telenav/kivakit/conversion/core/time/IsoLocalDateTimeConverter.html) |  |  
+| [*LevelConverter*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.conversion/com/telenav/kivakit/conversion/core/value/LevelConverter.html) |  |  
+| [*LocalDateConverter*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.conversion/com/telenav/kivakit/conversion/core/time/LocalDateConverter.html) |  |  
+| [*LocalDateTimeConverter*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.conversion/com/telenav/kivakit/conversion/core/time/LocalDateTimeConverter.html) |  |  
+| [*LocalDateTimeWithMillisecondsConverter*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.conversion/com/telenav/kivakit/conversion/core/time/LocalDateTimeWithMillisecondsConverter.html) |  |  
+| [*LocalDateTimeWithSecondsConverter*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.conversion/com/telenav/kivakit/conversion/core/time/LocalDateTimeWithSecondsConverter.html) |  |  
+| [*LocalTimeConverter*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.conversion/com/telenav/kivakit/conversion/core/time/LocalTimeConverter.html) |  |  
+| [*LocaleLanguageConverter*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.conversion/com/telenav/kivakit/conversion/core/locale/LocaleLanguageConverter.html) |  |  
+| [*LongConverter*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.conversion/com/telenav/kivakit/conversion/core/language/primitive/LongConverter.html) |  |  
+| [*LongValuedConverter*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.conversion/com/telenav/kivakit/conversion/core/value/LongValuedConverter.html) |  |  
+| [*MaximumConverter*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.conversion/com/telenav/kivakit/conversion/core/value/MaximumConverter.html) |  |  
+| [*MillisecondsConverter*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.conversion/com/telenav/kivakit/conversion/core/time/MillisecondsConverter.html) |  |  
+| [*MinimumConverter*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.conversion/com/telenav/kivakit/conversion/core/value/MinimumConverter.html) |  |  
+| [*ObjectConverter*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.conversion/com/telenav/kivakit/conversion/core/language/object/ObjectConverter.html) |  |  
+| [*ObjectPopulator*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.conversion/com/telenav/kivakit/conversion/core/language/object/ObjectPopulator.html) |  |  
+| [*PatternConverter*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.conversion/com/telenav/kivakit/conversion/core/language/PatternConverter.html) |  |  
+| [*PercentConverter*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.conversion/com/telenav/kivakit/conversion/core/value/PercentConverter.html) |  |  
+| [*SecondsConverter*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.conversion/com/telenav/kivakit/conversion/core/time/SecondsConverter.html) |  |  
+| [*StringConverter*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.conversion/com/telenav/kivakit/conversion/StringConverter.html) | Parsing |  
 | | Reverse Conversion |  
 | | Collections |  
-| [*ThrowableConverter*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.conversion////////////////////////////////////////////////////////////////.html) |  |  
-| [*TimeConverter*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.conversion///////////////////////////////////////////////////////.html) |  |  
-| [*TwoWayConverter*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.conversion///////////////////////////////////////////////.html) | Reverse Conversions |  
-| [*UtcDateTimeConverter*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.conversion//////////////////////////////////////////////////////////////.html) |  |  
-| [*VersionConverter*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.conversion///////////////////////////////////////////////////////////.html) |  |  
-| [*ZoneIdConverter*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.conversion/////////////////////////////////////////////////////////.html) |  |  
+| [*ThrowableConverter*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.conversion/com/telenav/kivakit/conversion/core/language/ThrowableConverter.html) |  |  
+| [*TimeConverter*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.conversion/com/telenav/kivakit/conversion/core/time/TimeConverter.html) |  |  
+| [*TwoWayConverter*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.conversion/com/telenav/kivakit/conversion/TwoWayConverter.html) | Reverse Conversions |  
+| [*UtcDateTimeConverter*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.conversion/com/telenav/kivakit/conversion/core/time/UtcDateTimeConverter.html) |  |  
+| [*VersionConverter*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.conversion/com/telenav/kivakit/conversion/core/value/VersionConverter.html) |  |  
+| [*ZoneIdConverter*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.conversion/com/telenav/kivakit/conversion/core/time/ZoneIdConverter.html) |  |  
 
 [//]: # (start-user-text)
 

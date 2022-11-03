@@ -69,7 +69,7 @@ Code quality for this project is 66.7%.
 
 | Class | Documentation Sections  |
 |-------|-------------------------|
-| [*CoreUnitTest*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.internal.testing//////////////////////////////////////////////////.html) | Ensure Behavior |  
+| [*CoreUnitTest*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.internal.testing/com/telenav/kivakit/internal/testing/CoreUnitTest.html) | Ensure Behavior |  
 | | Ensure Equality |  
 | | Test Methods |  
 | | Quick Tests |  
@@ -77,12 +77,12 @@ Code quality for this project is 66.7%.
 | | Ensure Math |  
 | | Ensure |  
 | | Random Value Testing |  
-| [*DiagramTest*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.internal.testing//////////////////////////////////////////////////////////////////.html) |  |  
-| [*JUnitFailureReporter*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.internal.testing//////////////////////////////////////////////////////////.html) |  |  
-| [*RandomValueFactory*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.internal.testing////////////////////////////////////////////////////////.html) | Values |  
+| [*DiagramTest*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.internal.testing/com/telenav/kivakit/internal/testing/internal/lexakai/DiagramTest.html) |  |  
+| [*JUnitFailureReporter*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.internal.testing/com/telenav/kivakit/internal/testing/JUnitFailureReporter.html) |  |  
+| [*RandomValueFactory*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.internal.testing/com/telenav/kivakit/internal/testing/RandomValueFactory.html) | Values |  
 | | Seeding |  
-| [*Repeats*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.internal.testing/////////////////////////////////////////////.html) |  |  
-| [*UnitTestWatcher*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.internal.testing/////////////////////////////////////////////////////.html) |  |  
+| [*Repeats*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.internal.testing/com/telenav/kivakit/internal/testing/Repeats.html) |  |  
+| [*UnitTestWatcher*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.internal.testing/com/telenav/kivakit/internal/testing/UnitTestWatcher.html) |  |  
 
 [//]: # (start-user-text)
 

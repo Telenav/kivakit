@@ -97,8 +97,8 @@ None
 
 | Class | Documentation Sections  |
 |-------|-------------------------|
-| [*ConnectionListener*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.network.socket/////////////////////////////////////////////////////////////.html) |  |  
-| [*DiagramSocketServer*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.network.socket////////////////////////////////////////////////////////////////////////.html) |  |  
+| [*ConnectionListener*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.network.socket/com/telenav/kivakit/network/socket/server/ConnectionListener.html) |  |  
+| [*DiagramSocketServer*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.network.socket/com/telenav/kivakit/network/socket/internal/lexakai/DiagramSocketServer.html) |  |  
 
 [//]: # (start-user-text)
 

@@ -83,18 +83,18 @@ Code quality for this project is 56.7%.
 
 | Class | Documentation Sections  |
 |-------|-------------------------|
-| [*AtomicIntegerSerializer*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.serialization.kryo///////////////////////////////////////////////////////////////////////////.html) |  |  
-| [*AtomicLongSerializer*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.serialization.kryo////////////////////////////////////////////////////////////////////////.html) |  |  
-| [*BaseSerializer*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.serialization.kryo//////////////////////////////////////////////////////.html) |  |  
-| [*DebugKryo*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.serialization.kryo/////////////////////////////////////////////////.html) |  |  
-| [*DiagramKryo*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.serialization.kryo////////////////////////////////////////////////////////////////////.html) |  |  
-| [*KivaKitCoreKryoTypes*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.serialization.kryo//////////////////////////////////////////////////////////////////.html) |  |  
-| [*KivaKitResourceKryoTypes*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.serialization.kryo//////////////////////////////////////////////////////////////////////.html) |  |  
-| [*KryoObjectSerializer*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.serialization.kryo////////////////////////////////////////////////////////////.html) |  |  
-| [*KryoSerializationSession*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.serialization.kryo////////////////////////////////////////////////////////////////.html) |  |  
-| [*KryoSerializationSessionFactory*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.serialization.kryo///////////////////////////////////////////////////////////////////////.html) |  |  
-| [*KryoTypeEntry*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.serialization.kryo///////////////////////////////////////////////////////////.html) |  |  
-| [*KryoTypes*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.serialization.kryo///////////////////////////////////////////////////////.html) | Kryo Serialization Identifiers |  
+| [*AtomicIntegerSerializer*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.serialization.kryo/com/telenav/kivakit/serialization/kryo/serializers/AtomicIntegerSerializer.html) |  |  
+| [*AtomicLongSerializer*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.serialization.kryo/com/telenav/kivakit/serialization/kryo/serializers/AtomicLongSerializer.html) |  |  
+| [*BaseSerializer*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.serialization.kryo/com/telenav/kivakit/serialization/kryo/BaseSerializer.html) |  |  
+| [*DebugKryo*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.serialization.kryo/com/telenav/kivakit/serialization/kryo/DebugKryo.html) |  |  
+| [*DiagramKryo*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.serialization.kryo/com/telenav/kivakit/serialization/kryo/internal/lexakai/DiagramKryo.html) |  |  
+| [*KivaKitCoreKryoTypes*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.serialization.kryo/com/telenav/kivakit/serialization/kryo/types/KivaKitCoreKryoTypes.html) |  |  
+| [*KivaKitResourceKryoTypes*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.serialization.kryo/com/telenav/kivakit/serialization/kryo/types/KivaKitResourceKryoTypes.html) |  |  
+| [*KryoObjectSerializer*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.serialization.kryo/com/telenav/kivakit/serialization/kryo/KryoObjectSerializer.html) |  |  
+| [*KryoSerializationSession*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.serialization.kryo/com/telenav/kivakit/serialization/kryo/KryoSerializationSession.html) |  |  
+| [*KryoSerializationSessionFactory*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.serialization.kryo/com/telenav/kivakit/serialization/kryo/KryoSerializationSessionFactory.html) |  |  
+| [*KryoTypeEntry*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.serialization.kryo/com/telenav/kivakit/serialization/kryo/types/KryoTypeEntry.html) |  |  
+| [*KryoTypes*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.serialization.kryo/com/telenav/kivakit/serialization/kryo/types/KryoTypes.html) | Kryo Serialization Identifiers |  
 | | Serialization |  
 | | Backwards Compatibility |  
 | | Important Note |  

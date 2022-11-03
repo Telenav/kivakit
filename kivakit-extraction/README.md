@@ -69,10 +69,10 @@ Code quality for this project is 88.9%.
 
 | Class | Documentation Sections  |
 |-------|-------------------------|
-| [*BaseExtractor*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.extraction/////////////////////////////////////////////.html) | Extractor Implementation |  
+| [*BaseExtractor*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.extraction/com/telenav/kivakit/extraction/BaseExtractor.html) | Extractor Implementation |  
 | | Extraction |  
-| [*DiagramExtraction*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.extraction//////////////////////////////////////////////////////////////////.html) |  |  
-| [*Extractor*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.extraction/////////////////////////////////////////.html) | Object Extraction |  
+| [*DiagramExtraction*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.extraction/com/telenav/kivakit/extraction/internal/lexakai/DiagramExtraction.html) |  |  
+| [*Extractor*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.extraction/com/telenav/kivakit/extraction/Extractor.html) | Object Extraction |  
 
 [//]: # (start-user-text)
 
