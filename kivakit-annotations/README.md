@@ -69,17 +69,17 @@ None
 
 | Class | Documentation Sections  |
 |-------|-------------------------|
-| [*Audience*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.annotations//////////////////////////////////////////////////////.html) |  |  
-| [*CodeQuality*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.annotations/////////////////////////////////////////////////////////.html) | Example |  
-| [*Documentation*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.annotations///////////////////////////////////////////////////////////.html) |  |  
-| [*MethodChange*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.annotations/////////////////////////////////////////////////////////.html) | Example |  
-| [*MethodChange.Change*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.annotations////////////////////////////////////////////////////////////////.html) |  |  
-| [*MethodChangeRepeater*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.annotations/////////////////////////////////////////////////////////////////.html) |  |  
-| [*Stability*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.annotations///////////////////////////////////////////////////////.html) |  |  
-| [*Testing*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.annotations/////////////////////////////////////////////////////.html) |  |  
-| [*TypeChange*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.annotations///////////////////////////////////////////////////////.html) | Example |  
-| [*TypeChange.Change*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.annotations//////////////////////////////////////////////////////////////.html) |  |  
-| [*TypeChangeRepeater*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.annotations///////////////////////////////////////////////////////////////.html) |  |  
+| [*Audience*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.annotations/com/telenav/kivakit/annotations/code/quality/Audience.html) |  |  
+| [*CodeQuality*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.annotations/com/telenav/kivakit/annotations/code/quality/CodeQuality.html) | Example |  
+| [*Documentation*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.annotations/com/telenav/kivakit/annotations/code/quality/Documentation.html) |  |  
+| [*MethodChange*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.annotations/com/telenav/kivakit/annotations/code/change/MethodChange.html) | Example |  
+| [*MethodChange.Change*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.annotations/com/telenav/kivakit/annotations/code/change/MethodChange.Change.html) |  |  
+| [*MethodChangeRepeater*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.annotations/com/telenav/kivakit/annotations/code/change/MethodChangeRepeater.html) |  |  
+| [*Stability*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.annotations/com/telenav/kivakit/annotations/code/quality/Stability.html) |  |  
+| [*Testing*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.annotations/com/telenav/kivakit/annotations/code/quality/Testing.html) |  |  
+| [*TypeChange*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.annotations/com/telenav/kivakit/annotations/code/change/TypeChange.html) | Example |  
+| [*TypeChange.Change*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.annotations/com/telenav/kivakit/annotations/code/change/TypeChange.Change.html) |  |  
+| [*TypeChangeRepeater*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.annotations/com/telenav/kivakit/annotations/code/change/TypeChangeRepeater.html) |  |  
 
 [//]: # (start-user-text)
 

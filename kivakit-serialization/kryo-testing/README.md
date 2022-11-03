@@ -68,7 +68,7 @@ None
 
 | Class | Documentation Sections  |
 |-------|-------------------------|
-| [*KryoUnitTest*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.serialization.kryo.testing/////////////////////////////////////////////////////////.html) |  |  
+| [*KryoUnitTest*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.serialization.kryo.testing/com/telenav/kivakit/serialization/kryo/test/KryoUnitTest.html) |  |  
 
 [//]: # (start-user-text)
 
