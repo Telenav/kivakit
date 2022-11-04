@@ -54,7 +54,6 @@ import com.telenav.kivakit.core.project.StartUpOptions;
 import com.telenav.kivakit.core.project.StartUpOptions.StartupOption;
 import com.telenav.kivakit.core.registry.Registry;
 import com.telenav.kivakit.core.registry.RegistryTrait;
-import com.telenav.kivakit.core.string.AsciiArt;
 import com.telenav.kivakit.core.string.Formatter;
 import com.telenav.kivakit.core.thread.StateMachine;
 import com.telenav.kivakit.core.value.identifier.StringIdentifier;
@@ -86,12 +85,12 @@ import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMEN
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
-import static com.telenav.kivakit.application.Application.ExecutionState.CONSTRUCTING;
-import static com.telenav.kivakit.application.Application.ExecutionState.INITIALIZING;
-import static com.telenav.kivakit.application.Application.ExecutionState.READY;
-import static com.telenav.kivakit.application.Application.ExecutionState.RUNNING;
-import static com.telenav.kivakit.application.Application.ExecutionState.STOPPED;
-import static com.telenav.kivakit.application.Application.ExecutionState.STOPPING;
+import static com.telenav.kivakit.application.Application.LifecyclePhase.CONSTRUCTING;
+import static com.telenav.kivakit.application.Application.LifecyclePhase.INITIALIZING;
+import static com.telenav.kivakit.application.Application.LifecyclePhase.READY;
+import static com.telenav.kivakit.application.Application.LifecyclePhase.RUNNING;
+import static com.telenav.kivakit.application.Application.LifecyclePhase.STOPPED;
+import static com.telenav.kivakit.application.Application.LifecyclePhase.STOPPING;
 import static com.telenav.kivakit.application.ExitCode.FAILED;
 import static com.telenav.kivakit.application.ExitCode.SUCCEEDED;
 import static com.telenav.kivakit.commandline.Quantifier.OPTIONAL;
@@ -109,7 +108,8 @@ import static com.telenav.kivakit.core.logging.LoggerFactory.newLogger;
 import static com.telenav.kivakit.core.project.Project.resolveProject;
 import static com.telenav.kivakit.core.project.StartUpOptions.isStartupOptionEnabled;
 import static com.telenav.kivakit.core.string.Align.rightAlign;
-import static com.telenav.kivakit.core.string.AsciiArt.*;
+import static com.telenav.kivakit.core.string.AsciiArt.repeat;
+import static com.telenav.kivakit.core.string.AsciiArt.textBox;
 import static com.telenav.kivakit.core.string.Strip.stripLeading;
 import static com.telenav.kivakit.core.vm.Properties.allProperties;
 import static com.telenav.kivakit.properties.PropertyMap.loadLocalizedPropertyMap;
@@ -336,9 +336,9 @@ public abstract class Application extends BaseComponent implements
     }
 
     /**
-     * The application execution state
+     * The phase of the application's lifecycle
      */
-    public enum ExecutionState
+    public enum LifecyclePhase
     {
         CONSTRUCTING,
         INITIALIZING,
@@ -385,7 +385,7 @@ public abstract class Application extends BaseComponent implements
     private final Set<Project> projects = new IdentitySet<>();
 
     /** State machine for application lifecycle */
-    private final StateMachine<ExecutionState> state = new StateMachine<>(CONSTRUCTING);
+    private final StateMachine<LifecyclePhase> phase = new StateMachine<>(CONSTRUCTING);
 
     @UmlExcludeMember
     protected final SwitchParser<Boolean> QUIET =
@@ -411,7 +411,7 @@ public abstract class Application extends BaseComponent implements
     public Application addProject(Class<? extends Project> project)
     {
         // We can only add projects during application construction.
-        ensure(state.is(CONSTRUCTING));
+        ensure(phase.is(CONSTRUCTING));
 
         projects.add(resolveProject(project));
         return this;
@@ -540,6 +540,16 @@ public abstract class Application extends BaseComponent implements
     }
 
     /**
+     * Returns the state
+     *
+     * @return The application lifecycle state
+     */
+    public LifecyclePhase phase()
+    {
+        return phase.at();
+    }
+
+    /**
      * Returns the set of projects on which this application depends
      */
     public Set<Project> projects()
@@ -556,11 +566,11 @@ public abstract class Application extends BaseComponent implements
     }
 
     /**
-     * Transitions this application to the {@link ExecutionState#READY} state
+     * Transitions this application to the {@link LifecyclePhase#READY} state
      */
     public void ready()
     {
-        state.transitionTo(READY);
+        phase.transitionTo(READY);
     }
 
     /**
@@ -594,22 +604,34 @@ public abstract class Application extends BaseComponent implements
                 LOGGER.listenTo(this);
             }
 
-            // Enable start-up options,
-            startupOptions().forEach(StartUpOptions::enableStartupOption);
+            // transition to initializing phase,
+            phase.transitionTo(INITIALIZING);
 
-            // signal that we are initializing,
-            state.transitionTo(INITIALIZING);
+            // notify that we are initializing,
+            onInitializing();
+
+            // enable start-up options,
+            startupOptions().forEach(StartUpOptions::enableStartupOption);
 
             // register any object serializers,
             onSerializationInitialize();
 
-            // and we're running,
-            onRunning();
+            // initialize the application,
+            onInitialize();
 
             // initialize this application's project
             onProjectsInitializing();
             initializeProjects();
             onProjectsInitialized();
+
+            // notify that we are done initializing
+            onInitialized();
+
+            // transition to running phase,
+            phase.transitionTo(RUNNING);
+
+            // notify that we are starting to run
+            onRunning();
 
             // load deployments,
             deployments = loadDeploymentSet(this, getClass());
@@ -662,10 +684,11 @@ public abstract class Application extends BaseComponent implements
                 showStartupInformation();
             }
 
+            ready();
+
             try
             {
                 // Run the application's code
-                state.transitionTo(RUNNING);
                 onRun();
             }
             catch (Exception e)
@@ -675,7 +698,7 @@ public abstract class Application extends BaseComponent implements
             }
             finally
             {
-                state.transitionTo(STOPPING);
+                phase.transitionTo(STOPPING);
             }
 
             BaseLog.logs().forEach(BaseLog::flush);
@@ -689,7 +712,7 @@ public abstract class Application extends BaseComponent implements
             }
 
             onRan();
-            state.transitionTo(STOPPED);
+            phase.transitionTo(STOPPED);
             exitCode = SUCCEEDED;
         }
         catch (Exception e)
@@ -776,7 +799,7 @@ public abstract class Application extends BaseComponent implements
      */
     public void waitForReady()
     {
-        state.waitFor(READY);
+        phase.waitFor(READY);
     }
 
     /**
@@ -810,6 +833,27 @@ public abstract class Application extends BaseComponent implements
     protected void onConfigureListeners()
     {
         configureLogging();
+    }
+
+    /**
+     * Called to initialize the application before running
+     */
+    protected void onInitialize()
+    {
+    }
+
+    /**
+     * Called when the application is initialized
+     */
+    protected void onInitialized()
+    {
+    }
+
+    /**
+     * Called before initializing the application
+     */
+    protected void onInitializing()
+    {
     }
 
     /**
@@ -903,8 +947,8 @@ public abstract class Application extends BaseComponent implements
 
     private void ensureNotInitializing()
     {
-        ensure(!state.is(CONSTRUCTING), "Not valid during application construction");
-        ensure(!state.is(INITIALIZING), "Not valid during application initialization");
+        ensure(!phase.is(CONSTRUCTING), "Not valid during application construction");
+        ensure(!phase.is(INITIALIZING), "Not valid during application initialization");
     }
 
     private void initializeProject(IdentitySet<Project> uninitialized, Project project)

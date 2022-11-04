@@ -20,20 +20,24 @@ import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_N
              documentation = DOCUMENTATION_COMPLETE)
 public class StartUpOptions
 {
-    /** The options */
-    private static final Set<StartupOption> options = new ConcurrentHashSet<>();
+    /** Enabled startup options */
+    private static final Set<StartupOption> enabled = new ConcurrentHashSet<>();
+
+    /** Disabled startup options */
+    private static final Set<StartupOption> disabled = new ConcurrentHashSet<>();
 
     /** Disables the given option */
     public static void disableStartupOption(StartupOption option)
     {
-        options.remove(option);
+        enabled.remove(option);
+        disabled.add(option);
     }
 
     /** Enables the given option */
     public static void enableStartupOption(StartupOption option)
     {
-        disableStartupOption(option);
-        options.add(option);
+        disabled.remove(option);
+        enabled.add(option);
     }
 
     /**
@@ -41,7 +45,7 @@ public class StartUpOptions
      */
     public static boolean isStartupOptionEnabled(StartupOption option)
     {
-        return options.contains(option);
+        return enabled.contains(option) && !disabled.contains(option);
     }
 
     public enum StartupOption
