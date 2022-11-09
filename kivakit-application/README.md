@@ -210,12 +210,23 @@ used. This is because `Application` is a `BaseRepeater` and so it inherits all t
 
 A application lifecycle follows this sequence.
 
-<img src="https://telenav.github.io/telenav-assets/images/diagrams/application-lifecycle.svg"/>
+<img src="https://telenav.github.io/telenav-assets/images/diagrams/application-lifecycle@2x.png"/>
 
-1. The method `main(String[] arguments)` creates the `Application` subclass with `new MyApplication().run(arguments)`
-2. The method `startupOptions()` is called and the set of `StartupOptions` returned is enabled
-3. The application transitions to the `INITIALIZING` state
-4. The method `onSerializationInitialize()` is called to allow registration of serializers
+#### CONSTRUCTION
+
+1. The method `main(String[] arguments)` creates the `Application` subclass
+2. The application enters the `CONSTRUCTING` phase. After construction, the `run(String[])` method is called to execute the application
+
+#### INITIALIZATION
+
+1. The application enters the INITIALIZING phase
+2. `onInitializing()` is called 
+3. `startupOptions()` is called and the set of `StartupOptions` returned is enabled
+4. `onSerializationInitialize()` is called to allow registration of serializers
+3. `onInitialize()` is called to initialize the application
+4. Projects are initialized by calling `onProjectsInitializing()` 
+4. 
+5. 
 5. `onRunning()` is called to indicate that running is about to start
 6. `onProjectsInitializing()` is called before the `Project` before the application is initialized
 7. `Project.initialize()` is called. Projects form a dependency tree, and are initialized to allow required projects to do things like registering serializers, loading resources, or initializing other projects before the application runs.
