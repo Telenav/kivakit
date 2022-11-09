@@ -621,7 +621,7 @@ public abstract class Application extends BaseComponent implements
 
             // initialize this application's project
             onProjectsInitializing();
-            initializeProjects();
+            onProjectsInitialize();
             onProjectsInitialized();
 
             // notify that we are done initializing
@@ -854,6 +854,14 @@ public abstract class Application extends BaseComponent implements
      */
     protected void onInitializing()
     {
+    }
+
+    /**
+     * Initializes project dependencies
+     */
+    protected void onProjectsInitialize()
+    {
+        initializeProjects();
     }
 
     /**
