@@ -105,7 +105,7 @@ public class ResourceResolverService extends BaseRepeater
     {
         for (var resolver : resourceResolvers())
         {
-            information("Checking $ against $", identifier, resolver.objectName());
+            trace("Checking $ against $", identifier, resolver.objectName());
             if (resolver.accepts(identifier))
             {
                 return resolver.resolve(identifier);
