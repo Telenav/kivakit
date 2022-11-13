@@ -91,7 +91,7 @@ public class Alert extends OperationStatusMessage
     }
 
     /**
-     * {@inheritDoc}
+     * Sets the proposed solution for this alert
      */
     public Alert solution(String solution)
     {
@@ -100,7 +100,7 @@ public class Alert extends OperationStatusMessage
     }
 
     /**
-     * {@inheritDoc}
+     * Gets the proposed solution for this alert
      */
     public String solution()
     {

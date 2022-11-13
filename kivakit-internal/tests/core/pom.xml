@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//
-// © 2011-2022 Telenav, Inc.
-// Licensed under Apache License, Version 2.0
-//
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
--->
 
-<project
-     xmlns="http://maven.apache.org/POM/4.0.0"
-     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<!--
+ /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+ //
+ // © 2011-2022 Telenav, Inc.
+ // Licensed under Apache License, Version 2.0
+ //
+ /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+ -->
+
+<project xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance"
+         xmlns = "http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation = "http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
     <modelVersion>4.0.0</modelVersion>
 
@@ -23,11 +23,19 @@
     </parent>
 
     <artifactId>kivakit-internal-tests-core</artifactId>
+
     <properties>
+
+        <!-- Documentation -->
+
         <maven.javadoc.skip>true</maven.javadoc.skip>
-        <do.not.publish>true</do.not.publish>
         <cactus.lexakai.skip>true</cactus.lexakai.skip>
-        <skipNexusStagingDeployMojo>true</skipNexusStagingDeployMojo>
+
+        <!-- Nexus publishing -->
+
+        <nexus.deploy.skip>true</nexus.deploy.skip>
+        <nexus.release>false</nexus.release>
+
     </properties>
 
     <dependencies>
@@ -37,15 +45,14 @@
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>kivakit-extraction</artifactId>
+            <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>kivakit-internal-testing</artifactId>
-            <scope>compile</scope>
+            <version>${project.version}</version>
         </dependency>
 
-        <!-- Annotations -->
-
-        </dependencies>
+    </dependencies>
 
 </project>
