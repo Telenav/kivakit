@@ -31,7 +31,7 @@
         <dependency>
             <groupId>com.telenav.cactus.metadata</groupId>
             <artifactId>cactus-metadata</artifactId>
-            <version>${cactus.metadata.version}</version>
+            <version>${utilities.cactus.metadata.version}</version>
         </dependency>
 
         <!-- KivaKit -->
@@ -47,19 +47,19 @@
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-api</artifactId>
-            <version>${junit5.version}</version>
+            <version>${testing.junit5.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-params</artifactId>
-            <version>${junit5.version}</version>
+            <version>${testing.junit5.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-engine</artifactId>
-            <version>${junit5.version}</version>
+            <version>${testing.junit5.version}</version>
             <scope>test</scope>
         </dependency>
 

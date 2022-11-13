@@ -39,7 +39,7 @@
         <dependency>
             <groupId>com.google.code.gson</groupId>
             <artifactId>gson</artifactId>
-            <version>${gson.version}</version>
+            <version>${serialization.gson.version}</version>
         </dependency>
 
     </dependencies>

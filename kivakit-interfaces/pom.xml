@@ -36,12 +36,12 @@
         <dependency>
             <groupId>com.telenav.lexakai.annotations</groupId>
             <artifactId>lexakai-annotations</artifactId>
-            <version>${lexakai.annotations.version}</version>
+            <version>${annotations.lexakai.annotations.version}</version>
         </dependency>
         <dependency>
             <groupId>org.jetbrains</groupId>
             <artifactId>annotations</artifactId>
-            <version>${jetbrains.annotations.version}</version>
+            <version>${annotations.jetbrains.annotations.version}</version>
         </dependency>
 
     </dependencies>
