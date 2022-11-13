@@ -90,7 +90,6 @@
         <java.version>17</java.version>
         <maven.version>3.8.5</maven.version>
         <lexakai.version>1.0.20</lexakai.version>
-        <cactus.version>1.5.48</cactus.version>
 
         <!-- Plugins -->
 
