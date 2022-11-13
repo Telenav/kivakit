@@ -168,7 +168,7 @@ for the final 2.0 release, but will likely involve significant changes.
 
 ### Build
 
- - Removed kivakit-merged from build and published to Maven Central
+ - Removed telenav.third.party from build and published to Maven Central
  - Code inspection and clean up
  - Fix warnings
  

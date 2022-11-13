@@ -180,7 +180,7 @@ public class PackageResource extends BaseReadableResource
     @CodeQuality(stability = STABLE_EXTENSIBLE,
                  testing = UNTESTED,
                  documentation = DOCUMENTATION_COMPLETE)
-    public static class PackageResolver implements ResourceResolver
+    public static class PackageResourceResolver implements ResourceResolver
     {
         public static final String SCHEME = "classpath:";
 
@@ -200,6 +200,7 @@ public class PackageResource extends BaseReadableResource
                 var packagePath = packagePath(parent);
                 return packageResource(throwingListener(), packagePath, filepath.fileName());
             }
+            problem("Could not resolve resource: $", identifier);
             return null;
         }
     }

@@ -1,28 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//
-// © 2011-2022 Telenav, Inc.
-// Licensed under Apache License, Version 2.0
-//
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
--->
 
-<project
-     xmlns="http://maven.apache.org/POM/4.0.0"
-     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<!--
+ /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+ //
+ // © 2011-2022 Telenav, Inc.
+ // Licensed under Apache License, Version 2.0
+ //
+ /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+ -->
+
+<project xmlns = "http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation = "http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
         <groupId>com.telenav.kivakit</groupId>
         <artifactId>kivakit-parent</artifactId>
-        <version>1.8.4</version>
+        <version>1.8.5</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
 
     <artifactId>kivakit-core</artifactId>
+
     <dependencies>
 
         <!-- Cactus -->
@@ -30,6 +31,7 @@
         <dependency>
             <groupId>com.telenav.cactus.metadata</groupId>
             <artifactId>cactus-metadata</artifactId>
+            <version>${cactus.metadata.version}</version>
         </dependency>
 
         <!-- KivaKit -->
@@ -37,22 +39,30 @@
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>kivakit-mixins</artifactId>
+            <version>${project.version}</version>
         </dependency>
+
+        <!-- Test -->
+
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-api</artifactId>
+            <version>${junit5.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-params</artifactId>
+            <version>${junit5.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-engine</artifactId>
+            <version>${junit5.version}</version>
             <scope>test</scope>
         </dependency>
+
     </dependencies>
 
 </project>

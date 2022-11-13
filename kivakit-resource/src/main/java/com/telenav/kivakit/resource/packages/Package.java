@@ -187,7 +187,7 @@ public class Package extends BaseRepeater implements ResourceFolder<Package>
     @CodeQuality(stability = STABLE_EXTENSIBLE,
                  documentation = DOCUMENTATION_COMPLETE,
                  testing = UNTESTED)
-    public static class Resolver implements ResourceFolderResolver
+    public static class PackageResourceFolderResolver implements ResourceFolderResolver
     {
         public static final String SCHEME = "classpath:";
 

@@ -121,7 +121,7 @@ public abstract class MessageAlarm implements Listener
     }
 
     /**
-     * {@inheritDoc}
+     * Sets the trigger for this alarm to the given rate
      */
     public final void trigger(Rate rate)
     {

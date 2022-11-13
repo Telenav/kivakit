@@ -185,6 +185,12 @@ public class InstanceIdentifier
         return stringIdentifier;
     }
 
+    @Override
+    public String toString()
+    {
+        return name();
+    }
+
     RegistryKey key(Class<?> at)
     {
         return new RegistryKey(at.getName() + ":" + identifier());

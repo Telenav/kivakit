@@ -422,7 +422,7 @@ public class Folder extends BaseRepeater implements
     @CodeQuality(stability = STABLE,
                  testing = UNTESTED,
                  documentation = DOCUMENTATION_COMPLETE)
-    public static class Resolver implements ResourceFolderResolver
+    public static class FolderResourceFolderResolver implements ResourceFolderResolver
     {
         @Override
         public boolean accepts(@NotNull ResourceFolderIdentifier identifier)
@@ -1004,7 +1004,6 @@ public class Folder extends BaseRepeater implements
      * {@inheritDoc}
      */
     @Override
-    @SuppressWarnings("SpellCheckingInspection")
     public Folder mkdirs()
     {
         if (!exists())
@@ -1348,7 +1347,7 @@ public class Folder extends BaseRepeater implements
     }
 
     /**
-     * {@inheritDoc}
+     * Returns this folder without any trailing slash (empty element at the end)
      */
     public Folder withoutTrailingSlash()
     {

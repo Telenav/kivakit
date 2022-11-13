@@ -96,7 +96,7 @@ public interface LongValued extends Zeroable
     }
 
     /**
-     * Returns true if this > that
+     * Returns true if this &gt; that
      */
     default boolean isGreaterThan(LongValued that)
     {
@@ -104,7 +104,7 @@ public interface LongValued extends Zeroable
     }
 
     /**
-     * Returns true if this >= that
+     * Returns true if this &gt;= that
      */
     default boolean isGreaterThanOrEqualTo(LongValued that)
     {
@@ -112,16 +112,15 @@ public interface LongValued extends Zeroable
     }
 
     /**
-     * Returns true if this < that
+     * Returns true if this &lt; that
      */
-
     default boolean isLessThan(LongValued that)
     {
         return longValue() < that.longValue();
     }
 
     /**
-     * Returns true if this <= that
+     * Returns true if this &lt;= that
      */
     default boolean isLessThanOrEqualTo(LongValued that)
     {

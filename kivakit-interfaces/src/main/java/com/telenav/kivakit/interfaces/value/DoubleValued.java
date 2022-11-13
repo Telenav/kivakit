@@ -65,7 +65,7 @@ public interface DoubleValued extends LongValued
     }
 
     /**
-     * Returns true if this > that
+     * Returns true if this &gt; that
      */
     default boolean isGreaterThan(DoubleValued that)
     {
@@ -73,7 +73,7 @@ public interface DoubleValued extends LongValued
     }
 
     /**
-     * Returns true if this >= that
+     * Returns true if this &gt;= that
      */
     default boolean isGreaterThanOrEqualTo(DoubleValued that)
     {
@@ -81,16 +81,15 @@ public interface DoubleValued extends LongValued
     }
 
     /**
-     * Returns true if this < that
+     * Returns true if this &lt; that
      */
-
     default boolean isLessThan(DoubleValued that)
     {
         return doubleValue() < that.doubleValue();
     }
 
     /**
-     * Returns true if this <= that
+     * Returns true if this &lt;= that
      */
     default boolean isLessThanOrEqualTo(DoubleValued that)
     {

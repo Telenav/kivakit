@@ -30,8 +30,13 @@ open module kivakit.resource
     uses ResourceResolver;
     uses ResourceFolderResolver;
 
-    provides ResourceResolver with File.Resolver, PackageResource.PackageResolver;
-    provides ResourceFolderResolver with Folder.Resolver, Package.Resolver;
+    provides ResourceResolver with
+            File.FileResourceResolver,
+            PackageResource.PackageResourceResolver;
+
+    provides ResourceFolderResolver with
+            Folder.FolderResourceFolderResolver,
+            Package.PackageResourceFolderResolver;
 
     // KivaKit
     requires transitive kivakit.commandline;
@@ -60,5 +65,5 @@ open module kivakit.resource
     exports com.telenav.kivakit.resource;
 
     // Lexakai
-    exports com.telenav.kivakit.resource.internal.lexakai; // to kivakit.network.http;
+    exports com.telenav.kivakit.resource.internal.lexakai;
 }

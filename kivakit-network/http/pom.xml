@@ -1,28 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//
-// © 2011-2022 Telenav, Inc.
-// Licensed under Apache License, Version 2.0
-//
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
--->
 
-<project
-     xmlns="http://maven.apache.org/POM/4.0.0"
-     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<!--
+ /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+ //
+ // © 2011-2022 Telenav, Inc.
+ // Licensed under Apache License, Version 2.0
+ //
+ /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+ -->
+
+<project xmlns = "http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation = "http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
         <groupId>com.telenav.kivakit</groupId>
         <artifactId>kivakit-parent</artifactId>
-        <version>1.8.4</version>
+        <version>1.8.5</version>
         <relativePath>../../pom.xml</relativePath>
     </parent>
 
     <artifactId>kivakit-network-http</artifactId>
+
     <dependencies>
 
         <!-- KivaKit -->
@@ -30,29 +31,26 @@
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>kivakit-network-core</artifactId>
+            <version>${project.version}</version>
         </dependency>
-
-        <!-- Testing -->
-
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>kivakit-testing</artifactId>
+            <version>${project.version}</version>
             <scope>test</scope>
         </dependency>
+
     </dependencies>
 
     <build>
         <plugins>
 
             <plugin>
-
                 <groupId>org.moditect</groupId>
                 <artifactId>moditect-maven-plugin</artifactId>
-                <version>${moditect-maven-plugin.version}</version>
+                <version>${maven.moditect.plugin.version}</version>
                 <executions>
-
                     <execution>
-
                         <id>add-module-info</id>
                         <phase>package</phase>
                         <goals>
@@ -64,11 +62,8 @@
                                 <moduleInfoFile>src/main/java/module-info.java</moduleInfoFile>
                             </module>
                         </configuration>
-
                     </execution>
-
                 </executions>
-
             </plugin>
 
         </plugins>

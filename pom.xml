@@ -1,34 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- ///////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
-<!--  -->
-<!-- © 2011-2022 Telenav, Inc. -->
-<!-- Licensed under Apache License, Version 2.0 -->
-<!--  -->
-<!-- ///////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+
+<!--
+ /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+ //
+ // © 2011-2022 Telenav, Inc.
+ // Licensed under Apache License, Version 2.0
+ //
+ /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+ -->
+
 <project xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance" xmlns = "http://maven.apache.org/POM/4.0.0"
          xsi:schemaLocation = "http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
     <modelVersion>4.0.0</modelVersion>
 
-    <parent>
-        <groupId>com.telenav</groupId>
-        <artifactId>telenav-root-superpom</artifactId>
-        <version>1.0.16</version>
-        <relativePath/>
-    </parent>
-
     <groupId>com.telenav.kivakit</groupId>
     <artifactId>kivakit-parent</artifactId>
-    <version>1.8.4</version>
+    <version>1.8.5</version>
 
     <packaging>pom</packaging>
 
-    <description>KivaKit is a collection of easy-to-use, integrated mini-frameworks for
-        developing Java software.</description>
+    <!-- Project -->
+
+    <name>kivakit-parent</name>
+    <description>KivaKit is a collection of easy-to-use, integrated mini-frameworks for developing Java software.</description>
+    <url>https://www.kivakit.org</url>
+    <inceptionYear>2011</inceptionYear>
+    <organization>
+        <name>Telenav</name>
+        <url>https://www.telenav.com</url>
+    </organization>
+
+    <!-- Licensing -->
+
+    <licenses>
+        <license>
+            <name>Apache License, Version 2.0</name>
+            <url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
+    <!-- Modules -->
 
     <modules>
+
         <module>kivakit</module>
-        <module>kivakit-network/email</module>
         <module>kivakit-annotations</module>
         <module>kivakit-interfaces</module>
         <module>kivakit-mixins</module>
@@ -42,7 +59,7 @@
         <module>kivakit-network/core</module>
         <module>kivakit-network/http</module>
         <module>kivakit-network/ftp</module>
-
+        <module>kivakit-network/email</module>
         <module>kivakit-network/socket</module>
         <module>kivakit-serialization/core</module>
         <module>kivakit-serialization/properties</module>
@@ -56,196 +73,134 @@
         <module>kivakit-internal/tests/resource</module>
         <module>kivakit-internal/tests/core</module>
         <module>kivakit-serialization/kryo-testing</module>
+
     </modules>
 
+    <!-- Versioning -->
 
     <properties>
-        <cactus.previous.version>1.5.48</cactus.previous.version>
-        <metadata.previous.version>1.0.2</metadata.previous.version>
-        <commons-net.version>3.0.1</commons-net.version>
-        <esotericsoftware.version>5.3.0</esotericsoftware.version>
-        <gson.version>2.9.0</gson.version>
-        <jcraft.version>0.1.55</jcraft.version>
-        <jetbrains-annotations.version>23.0.0</jetbrains-annotations.version>
+
+        <!-- Project -->
+
+        <repository.group.name>kivakit</repository.group.name>
+        <repository.name>kivakit</repository.name>
+
+        <!-- Tools -->
+
+        <java.version>17</java.version>
+        <maven.version>3.8.5</maven.version>
+        <lexakai.version>1.0.20</lexakai.version>
+
+        <!-- Plugins -->
+
+        <maven.compiler.plugin.version>3.10.1</maven.compiler.plugin.version>
+        <maven.enforcer.plugin.version>3.1.0</maven.enforcer.plugin.version>
+        <maven.jar.plugin.version>3.3.0</maven.jar.plugin.version>
+        <maven.shade.plugin.version>3.3.0</maven.shade.plugin.version>
+        <maven.resources.plugin.version>3.3.0</maven.resources.plugin.version>
+        <maven.source.plugin.version>3.2.1</maven.source.plugin.version>
+        <maven.cactus.plugin.version>1.5.49</maven.cactus.plugin.version>
+        <maven.cactus.metadata.plugin.version>1.0.2</maven.cactus.metadata.plugin.version>
+        <maven.moditect.plugin.version>1.0.0.RC1</maven.moditect.plugin.version>
+        <maven.plugin.plugin.version>3.7.0</maven.plugin.plugin.version>
+        <maven.surefire.plugin.version>3.0.0-M7</maven.surefire.plugin.version>
+        <maven.javadoc.plugin.version>3.4.1</maven.javadoc.plugin.version>
+        <maven.nexus.staging.plugin.version>1.6.13</maven.nexus.staging.plugin.version>
+        <maven.deploy.plugin.version>3.0.0</maven.deploy.plugin.version>
+        <maven.gpg.plugin.version>1.6</maven.gpg.plugin.version>
+
+        <!-- Documentation -->
+
+        <!--suppress UnresolvedMavenProperty -->
+        <assets.documentation.folder>${env.TELENAV_WORKSPACE}/${repository.group.name}-assets/docs/${project.version}</assets.documentation.folder>
+        <lexakai.documentation.folder>${assets.documentation.folder}/lexakai</lexakai.documentation.folder>
+        <javadoc.documentation.folder>${assets.documentation.folder}/javadoc/${repository.name}</javadoc.documentation.folder>
+        <javadoc.source.version>17</javadoc.source.version>
+
+        <!-- Publishing -->
+
+        <nexus.deploy.skip>false</nexus.deploy.skip>
+        <nexus.release>true</nexus.release>
+
+        <!-- Annotations -->
+
+        <lexakai.annotations.version>1.0.9</lexakai.annotations.version>
+        <jetbrains.annotations.version>23.0.0</jetbrains.annotations.version>
+
+        <!-- Metadata -->
+
+        <cactus.metadata.version>1.0.2</cactus.metadata.version>
+
+        <!-- Serialization -->
+
+        <kryo.version>5.3.0</kryo.version>
+        <kryo.serializers.version>0.45</kryo.serializers.version>
+        <gson.version>2.10</gson.version>
+
+        <!-- Testing -->
+
         <junit.version>4.13.2</junit.version>
         <junit5.version>5.9.1</junit5.version>
-        <kryo.version>0.45</kryo.version>
-        <lexakai-annotations.previous.version>1.0.9</lexakai-annotations.previous.version>
-        <mail.version>1.6.2</mail.version>
-        <sshtools.version>0.2.9</sshtools.version>
-        <sun-activation.version>1.2.0</sun-activation.version>
+
     </properties>
 
-    <dependencyManagement>
-        <dependencies>
+    <!-- Contributors -->
 
-            <!-- Pull in libraries defined in Cactus -->
-            <dependency>
-                <groupId>com.telenav.cactus</groupId>
-                <artifactId>cactus</artifactId>
-                <version>${cactus.previous.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
+    <developers>
 
-            <!-- Pull in libraries defined in Cactus -->
-            <dependency>
-                <groupId>com.telenav.cactus.metadata</groupId>
-                <artifactId>cactus-metadata-parent</artifactId>
-                <version>${metadata.previous.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
+        <developer>
+            <id>jonathanl</id>
+            <name>Jonathan Locke (Luo Shibo)</name>
+            <email>jonathanl@telenav.com</email>
+            <organization>Telenav</organization>
+            <organizationUrl>https://www.telenav.com/</organizationUrl>
+            <roles>
+                <role>lead</role>
+                <role>administrator</role>
+            </roles>
+        </developer>
 
-            <!-- Dependencies on modules defined in this aggregator project, Kivakit -->
-            <dependency>
-                <groupId>${project.groupId}</groupId>
-                <artifactId>kivakit</artifactId>
-                <version>${project.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
+        <developer>
 
-            <!-- Pull in libraries defined in Lexakai Annotations -->
-            <dependency>
-                <groupId>com.telenav.lexakai.annotations</groupId>
-                <artifactId>lexakai-annotations</artifactId>
-                <version>${lexakai-annotations.previous.version}</version>
-            </dependency>
+            <id>haifeng</id>
+            <name>Haifeng Zhu</name>
+            <email>hfzhu@telenav.com</email>
+            <organization>Telenav</organization>
+            <organizationUrl>https://www.telenav.com/</organizationUrl>
+            <roles>
+                <role>developer</role>
+                <role>administrator</role>
+            </roles>
 
-            <!-- Esotericsoftware -->
-            <dependency>
-                <groupId>com.esotericsoftware</groupId>
-                <artifactId>kryo</artifactId>
-                <version>${esotericsoftware.version}</version>
-            </dependency>
+        </developer>
 
-            <!-- Gson -->
-            <dependency>
-                <groupId>com.google.code.gson</groupId>
-                <artifactId>gson</artifactId>
-                <version>${gson.version}</version>
-            </dependency>
+        <developer>
+            <id>timboudreau</id>
+            <name>Tim Boudreau (Luo Shibo)</name>
+            <email>tim@timboudreau.com</email>
+            <organization>Telenav</organization>
+            <organizationUrl>https://www.telenav.com/</organizationUrl>
+            <roles>
+                <role>lead</role>
+                <role>administrator</role>
+            </roles>
+        </developer>
 
-            <!-- Jcraft -->
-            <dependency>
-                <groupId>com.jcraft</groupId>
-                <artifactId>jsch</artifactId>
-                <version>${jcraft.version}</version>
-            </dependency>
+    </developers>
 
-            <!-- Sun Activation -->
-            <dependency>
-                <groupId>com.sun.activation</groupId>
-                <artifactId>javax.activation</artifactId>
-                <version>${sun-activation.version}</version>
-            </dependency>
+    <!-- Maven central staging-->
 
-            <!-- Mail -->
-            <dependency>
-                <groupId>com.sun.mail</groupId>
-                <artifactId>javax.mail</artifactId>
-                <version>${mail.version}</version>
-            </dependency>
-
-            <!-- Commons Net -->
-            <dependency>
-                <groupId>commons-net</groupId>
-                <artifactId>commons-net</artifactId>
-                <version>${commons-net.version}</version>
-            </dependency>
-
-            <!-- Kryo -->
-            <dependency>
-                <groupId>de.javakaffee</groupId>
-                <artifactId>kryo-serializers</artifactId>
-                <version>${kryo.version}</version>
-            </dependency>
-
-            <!-- Junit -->
-            <dependency>
-                <groupId>junit</groupId>
-                <artifactId>junit</artifactId>
-                <version>${junit.version}</version>
-            </dependency>
-
-            <!-- Jetbrains Annotations -->
-            <dependency>
-                <groupId>org.jetbrains</groupId>
-                <artifactId>annotations</artifactId>
-                <version>${jetbrains-annotations.version}</version>
-            </dependency>
-
-            <!-- Sshtools -->
-            <dependency>
-                <groupId>sshtools</groupId>
-                <artifactId>j2ssh-core</artifactId>
-                <version>${sshtools.version}</version>
-            </dependency>
-
-            <!-- Junit5 -->
-            <dependency>
-                <groupId>org.junit.jupiter</groupId>
-                <artifactId>junit-jupiter-api</artifactId>
-                <version>${junit5.version}</version>
-                <scope>test</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.junit.jupiter</groupId>
-                <artifactId>junit-jupiter-engine</artifactId>
-                <version>${junit5.version}</version>
-                <scope>test</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.junit.jupiter</groupId>
-                <artifactId>junit-jupiter-params</artifactId>
-                <version>${junit5.version}</version>
-                <scope>test</scope>
-            </dependency>
-
-        </dependencies>
-    </dependencyManagement>
-
-    <licenses>
-        <license>
-            <name>Apache License, Version 2.0</name>
-            <url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
-            <distribution>repo</distribution>
-        </license>
-    </licenses>
-
-
-    <url>https://kivakit.org</url>
-
-    <scm>
-        <connection>scm:git:https://github.com/Telenav/kivakit.git</connection>
-        <developerConnection>scm:git:https://github.com/Telenav/kivakit.git</developerConnection>
-        <url>https://github.com/Telenav/kivakit</url>
-    </scm>
-
-    <issueManagement>
-        <system>GitHub</system>
-        <url>https://github.com/Telenav/kivakit/issues</url>
-    </issueManagement>
-
-    <!-- Publishing -->
-
-    <!-- Should not be needed, and is inherited from the superpom, but
-         trying adding it explicitly to see if it fixes
-            repository element was not specified in the POM inside
-            distributionManagement element or in -DaltDeploymentRepository=id::layout::url parameter
-    -->
     <distributionManagement>
-        <snapshotRepository>
-            <id>ossrh</id>
-            <url>https://s01.oss.sonatype.org/content/repositories/snapshots</url>
-        </snapshotRepository>
 
         <repository>
             <id>ossrh</id>
             <url>https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/</url>
         </repository>
+
     </distributionManagement>
+
+    <!-- Repositories -->
+
     <repositories>
 
         <repository>
@@ -257,16 +212,336 @@
             <url>https://repo.maven.apache.org/maven2/</url>
         </repository>
 
-        <repository>
-            <id>ossrh</id>
-            <url>https://s01.oss.sonatype.org/content/repositories/snapshots</url>
-            <releases>
-                <enabled>false</enabled>
-            </releases>
-            <snapshots>
-                <enabled>true</enabled>
-            </snapshots>
-        </repository>
     </repositories>
+
+    <!-- Source Code -->
+
+    <scm>
+
+        <connection>scm:git:https://github.com/Telenav/${repository.name}.git</connection>
+        <developerConnection>scm:git:https://github.com/Telenav/${repository.name}.git</developerConnection>
+        <url>https://github.com/Telenav/${repository.name}.git</url>
+
+    </scm>
+
+    <!-- Issue Tracking -->
+
+    <issueManagement>
+
+        <system>GitHub</system>
+        <url>https://github.com/Telenav/${repository.group.name}/issues</url>
+
+    </issueManagement>
+
+    <build>
+
+        <!-- Resource Copying -->
+
+        <resources>
+            <resource>
+                <directory>${project.basedir}/src/main/java</directory>
+                <excludes>
+                    <exclude>**/*.java</exclude>
+                </excludes>
+            </resource>
+        </resources>
+
+        <testResources>
+            <testResource>
+                <directory>${project.basedir}/src/test/java</directory>
+                <excludes>
+                    <exclude>**/*.java</exclude>
+                </excludes>
+            </testResource>
+        </testResources>
+
+        <!-- Plugins -->
+
+        <plugins>
+
+            <!-- Building -->
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${maven.compiler.plugin.version}</version>
+                <configuration>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                    <release>${java.version}</release>
+                    <compilerArgs>
+                        <compilerArg>-Xlint:unchecked</compilerArg>
+                        <compilerArg>-Xlint:-requires-transitive-automatic</compilerArg>
+                        <compilerArg>-Xlint:deprecation</compilerArg>
+                    </compilerArgs>
+                </configuration>
+            </plugin>
+
+            <!-- Enforce Maven version -->
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-enforcer-plugin</artifactId>
+                <version>${maven.enforcer.plugin.version}</version>
+                <executions>
+                    <execution>
+                        <id>enforce</id>
+                        <phase>verify</phase>
+                        <configuration>
+                            <rules>
+                                <dependencyConvergence/>
+                                <requireMavenVersion>
+                                    <version>[${maven.version},)</version>
+                                    <message>Build requires Maven version ${maven.version}.</message>
+                                </requireMavenVersion>
+                            </rules>
+                        </configuration>
+                        <goals>
+                            <goal>enforce</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <!-- Generate build.properties and project.properties files -->
+
+            <plugin>
+                <groupId>com.telenav.cactus.metadata</groupId>
+                <artifactId>cactus-metadata-maven-plugin</artifactId>
+                <version>${maven.cactus.metadata.plugin.version}</version>
+                <executions>
+                    <execution>
+                        <id>project-metadata</id>
+                        <phase>generate-resources</phase>
+                        <configuration>
+                            <verb>Updating project and build metadata</verb>
+                        </configuration>
+                        <goals>
+                            <goal>project-information</goal>
+                            <goal>build-metadata</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+        </plugins>
+
+        <pluginManagement>
+
+            <plugins>
+
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-plugin-plugin</artifactId>
+                    <version>${maven.plugin.plugin.version}</version>
+                </plugin>
+
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-resources-plugin</artifactId>
+                    <version>${maven.resources.plugin.version}</version>
+                    <configuration>
+                        <encoding>UTF-8</encoding>
+                    </configuration>
+                </plugin>
+
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-surefire-plugin</artifactId>
+                    <version>${maven.surefire.plugin.version}</version>
+                    <configuration>
+                        <systemPropertyVariables>
+                            <unit.test>true</unit.test>
+                        </systemPropertyVariables>
+                        <argLine>-Xmx2g</argLine>
+                    </configuration>
+                </plugin>
+
+            </plugins>
+
+        </pluginManagement>
+
+    </build>
+
+    <!-- Build Profiles -->
+
+    <profiles>
+
+        <profile>
+
+            <id>release</id>
+
+            <build>
+                <plugins>
+
+                    <!-- Create source JAR -->
+
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-source-plugin</artifactId>
+                        <version>${maven.source.plugin.version}</version>
+                        <executions>
+                            <execution>
+                                <id>attach-source-jar</id>
+                                <phase>prepare-package</phase>
+                                <goals>
+                                    <goal>jar</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+
+                    <!-- Documentation -->
+
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-javadoc-plugin</artifactId>
+                        <version>${maven.javadoc.plugin.version}</version>
+                        <configuration>
+                            <show>protected</show>
+                            <quiet>true</quiet>
+                            <source>${javadoc.source.version}</source>
+                            <encoding>utf-8</encoding>
+                            <sourcepath>src/main/java</sourcepath>
+                            <failOnError>true</failOnError>
+                            <detectJavaApiLink>false</detectJavaApiLink>
+                            <doclint>none</doclint>
+                            <nohelp>true</nohelp>
+                            <additionalOptions>-notimestamp</additionalOptions>
+                            <destDir>target/javadoc</destDir>
+                            <sourceFileIncludes>
+                                <sourceFileInclude>**/*.java</sourceFileInclude>
+                            </sourceFileIncludes>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <id>generate-javadoc</id>
+                                <phase>prepare-package</phase>
+                                <goals>
+                                    <goal>javadoc-no-fork</goal>
+                                </goals>
+                            </execution>
+                            <execution>
+                                <id>generate-aggregate-javadoc</id>
+                                <phase>prepare-package</phase>
+                                <goals>
+                                    <goal>aggregate-no-fork</goal>
+                                </goals>
+                            </execution>
+                            <execution>
+                                <id>attach-javadoc-jar</id>
+                                <phase>prepare-package</phase>
+                                <goals>
+                                    <goal>jar</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+
+                    <plugin>
+                        <artifactId>maven-resources-plugin</artifactId>
+                        <version>${maven.resources.plugin.version}</version>
+                        <executions>
+                            <execution>
+                                <id>copy-javadoc</id>
+                                <phase>prepare-package</phase>
+                                <goals>
+                                    <goal>copy-resources</goal>
+                                </goals>
+                                <configuration>
+                                    <outputDirectory>${javadoc.documentation.folder}</outputDirectory>
+                                    <resources>
+                                        <resource>
+                                            <directory>target/javadoc</directory>
+                                        </resource>
+                                    </resources>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+
+                    <plugin>
+                        <groupId>com.telenav.cactus</groupId>
+                        <artifactId>cactus-maven-plugin</artifactId>
+                        <version>${maven.cactus.plugin.version}</version>
+                        <executions>
+                            <execution>
+                                <id>build-lexakai-documentation</id>
+                                <phase>prepare-package</phase>
+                                <goals>
+                                    <goal>lexakai</goal>
+                                </goals>
+                                <configuration>
+                                    <lexakaiVersion>${lexakai.version}</lexakaiVersion>
+                                    <updateReadme>true</updateReadme>
+                                    <outputFolder>${lexakai.documentation.folder}</outputFolder>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+
+                    <!-- Signing -->
+
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-gpg-plugin</artifactId>
+                        <version>${maven.gpg.plugin.version}</version>
+                        <executions>
+                            <execution>
+                                <id>sign-artifacts</id>
+                                <phase>verify</phase>
+                                <configuration>
+                                    <gpgArguments>
+                                        <arg>--pinentry-mode</arg>
+                                        <arg>loopback</arg>
+                                    </gpgArguments>
+                                </configuration>
+                                <goals>
+                                    <goal>sign</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+
+                    <!-- Publishing -->
+
+                    <plugin>
+                        <groupId>org.sonatype.plugins</groupId>
+                        <artifactId>nexus-staging-maven-plugin</artifactId>
+                        <version>${maven.nexus.staging.plugin.version}</version>
+                        <extensions>true</extensions>
+                        <configuration>
+                            <serverId>ossrh</serverId>
+                            <nexusUrl>https://s01.oss.sonatype.org/</nexusUrl>
+                            <skipLocalStaging>true</skipLocalStaging>
+                            <skipNexusStagingDeployMojo>${nexus.deploy.skip}</skipNexusStagingDeployMojo>
+                            <autoReleaseAfterClose>${nexus.release}</autoReleaseAfterClose>
+                            <keepStagingRepositoryOnCloseRuleFailure>true</keepStagingRepositoryOnCloseRuleFailure>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <id>default-deploy</id>
+                                <phase>deploy</phase>
+                                <goals>
+                                    <goal>deploy</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-deploy-plugin</artifactId>
+                        <version>${maven.deploy.plugin.version}</version>
+                        <configuration>
+                            <skip>true</skip>
+                        </configuration>
+                    </plugin>
+
+                </plugins>
+            </build>
+        </profile>
+
+    </profiles>
 
 </project>

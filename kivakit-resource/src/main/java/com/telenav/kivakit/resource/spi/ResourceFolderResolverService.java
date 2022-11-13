@@ -93,7 +93,7 @@ public class ResourceFolderResolverService extends BaseRepeater
             }
         }
 
-        problem("Invalid resource identifier '$'", identifier);
+        problem("Invalid resource folder identifier '$'", identifier);
         return null;
     }
 
