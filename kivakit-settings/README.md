@@ -30,14 +30,14 @@ This module contains the KivaKit settings mini-framework
 
 ### Dependencies <a name="dependencies"></a> &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/dependencies-32.png" srcset="https://telenav.github.io/telenav-assets/images/icons/dependencies-32-2x.png 2x"/>
 
-[*Dependency Diagram*](https://www.kivakit.org/1.8.4/lexakai/kivakit/kivakit-settings/documentation/diagrams/dependencies.svg)
+[*Dependency Diagram*](https://www.kivakit.org/1.8.5/lexakai/kivakit/kivakit-settings/documentation/diagrams/dependencies.svg)
 
 #### Maven Dependency
 
     <dependency>
         <groupId>com.telenav.kivakit</groupId>
         <artifactId>kivakit-settings</artifactId>
-        <version>1.8.4</version>
+        <version>1.8.5</version>
     </dependency>
 
 <img src="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128.png" srcset="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128-2x.png 2x"/>
@@ -70,45 +70,45 @@ Code quality for this project is 61.5%.
 
 ### Class Diagrams <a name="class-diagrams"></a> &nbsp; &nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/diagram-40.png" srcset="https://telenav.github.io/telenav-assets/images/icons/diagram-40-2x.png 2x"/>
 
-[*Settings*](https://www.kivakit.org/1.8.4/lexakai/kivakit/kivakit-settings/documentation/diagrams/diagram-settings.svg)
+[*Settings*](https://www.kivakit.org/1.8.5/lexakai/kivakit/kivakit-settings/documentation/diagrams/diagram-settings.svg)
 
 <img src="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128.png" srcset="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128-2x.png 2x"/>
 
 ### Package Diagrams <a name="package-diagrams"></a> &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/box-24.png" srcset="https://telenav.github.io/telenav-assets/images/icons/box-24-2x.png 2x"/>
 
-[*com.telenav.kivakit.settings*](https://www.kivakit.org/1.8.4/lexakai/kivakit/kivakit-settings/documentation/diagrams/com.telenav.kivakit.settings.svg)  
-[*com.telenav.kivakit.settings.internal.lexakai*](https://www.kivakit.org/1.8.4/lexakai/kivakit/kivakit-settings/documentation/diagrams/com.telenav.kivakit.settings.internal.lexakai.svg)  
-[*com.telenav.kivakit.settings.stores*](https://www.kivakit.org/1.8.4/lexakai/kivakit/kivakit-settings/documentation/diagrams/com.telenav.kivakit.settings.stores.svg)
+[*com.telenav.kivakit.settings*](https://www.kivakit.org/1.8.5/lexakai/kivakit/kivakit-settings/documentation/diagrams/com.telenav.kivakit.settings.svg)  
+[*com.telenav.kivakit.settings.internal.lexakai*](https://www.kivakit.org/1.8.5/lexakai/kivakit/kivakit-settings/documentation/diagrams/com.telenav.kivakit.settings.internal.lexakai.svg)  
+[*com.telenav.kivakit.settings.stores*](https://www.kivakit.org/1.8.5/lexakai/kivakit/kivakit-settings/documentation/diagrams/com.telenav.kivakit.settings.stores.svg)
 
 ### Javadoc <a name="code-quality"></a> &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/books-24.png" srcset="https://telenav.github.io/telenav-assets/images/icons/books-24-2x.png 2x"/>
 
 | Class | Documentation Sections  |
 |-------|-------------------------|
-| [*BaseResourceSettingsStore*](https://www.kivakit.org/1.8.4/javadoc/kivakit/kivakit-settings/com/telenav/kivakit/settings/stores/BaseResourceSettingsStore.html) | JSON File Format |  
+| [*BaseResourceSettingsStore*](https://www.kivakit.org/1.8.5/javadoc/kivakit/kivakit-settings/com/telenav/kivakit/settings/stores/BaseResourceSettingsStore.html) | JSON File Format |  
 | | Properties File Format |  
-| [*BaseSettingsStore*](https://www.kivakit.org/1.8.4/javadoc/kivakit/kivakit-settings/com/telenav/kivakit/settings/BaseSettingsStore.html) | Provided Stores |  
+| [*BaseSettingsStore*](https://www.kivakit.org/1.8.5/javadoc/kivakit/kivakit-settings/com/telenav/kivakit/settings/BaseSettingsStore.html) | Provided Stores |  
 | | Providers |  
-| [*Deployment*](https://www.kivakit.org/1.8.4/javadoc/kivakit/kivakit-settings/com/telenav/kivakit/settings/Deployment.html) | Deploying Applications |  
+| [*Deployment*](https://www.kivakit.org/1.8.5/javadoc/kivakit/kivakit-settings/com/telenav/kivakit/settings/Deployment.html) | Deploying Applications |  
 | | Example |  
-| [*Deployment.Converter*](https://www.kivakit.org/1.8.4/javadoc/kivakit/kivakit-settings/com/telenav/kivakit/settings/Deployment.Converter.html) |  |  
-| [*DeploymentSet*](https://www.kivakit.org/1.8.4/javadoc/kivakit/kivakit-settings/com/telenav/kivakit/settings/DeploymentSet.html) | Adding Deployments |  
+| [*Deployment.Converter*](https://www.kivakit.org/1.8.5/javadoc/kivakit/kivakit-settings/com/telenav/kivakit/settings/Deployment.Converter.html) |  |  
+| [*DeploymentSet*](https://www.kivakit.org/1.8.5/javadoc/kivakit/kivakit-settings/com/telenav/kivakit/settings/DeploymentSet.html) | Adding Deployments |  
 | | Creation |  
 | | Loading |  
 | | Accessing Deployments |  
-| [*DiagramSettings*](https://www.kivakit.org/1.8.4/javadoc/kivakit/kivakit-settings/com/telenav/kivakit/settings/internal/lexakai/DiagramSettings.html) |  |  
-| [*MemorySettingsStore*](https://www.kivakit.org/1.8.4/javadoc/kivakit/kivakit-settings/com/telenav/kivakit/settings/stores/MemorySettingsStore.html) |  |  
-| [*ResourceFolderSettingsStore*](https://www.kivakit.org/1.8.4/javadoc/kivakit/kivakit-settings/com/telenav/kivakit/settings/stores/ResourceFolderSettingsStore.html) |  |  
-| [*SettingsObject*](https://www.kivakit.org/1.8.4/javadoc/kivakit/kivakit-settings/com/telenav/kivakit/settings/SettingsObject.html) |  |  
-| [*SettingsObject.SettingsObjectIdentifier*](https://www.kivakit.org/1.8.4/javadoc/kivakit/kivakit-settings/com/telenav/kivakit/settings/SettingsObject.SettingsObjectIdentifier.html) |  |  
-| [*SettingsProject*](https://www.kivakit.org/1.8.4/javadoc/kivakit/kivakit-settings/com/telenav/kivakit/settings/SettingsProject.html) |  |  
-| [*SettingsRegistry*](https://www.kivakit.org/1.8.4/javadoc/kivakit/kivakit-settings/com/telenav/kivakit/settings/SettingsRegistry.html) | The Easiest Way to Register Settings |  
+| [*DiagramSettings*](https://www.kivakit.org/1.8.5/javadoc/kivakit/kivakit-settings/com/telenav/kivakit/settings/internal/lexakai/DiagramSettings.html) |  |  
+| [*MemorySettingsStore*](https://www.kivakit.org/1.8.5/javadoc/kivakit/kivakit-settings/com/telenav/kivakit/settings/stores/MemorySettingsStore.html) |  |  
+| [*ResourceFolderSettingsStore*](https://www.kivakit.org/1.8.5/javadoc/kivakit/kivakit-settings/com/telenav/kivakit/settings/stores/ResourceFolderSettingsStore.html) |  |  
+| [*SettingsObject*](https://www.kivakit.org/1.8.5/javadoc/kivakit/kivakit-settings/com/telenav/kivakit/settings/SettingsObject.html) |  |  
+| [*SettingsObject.SettingsObjectIdentifier*](https://www.kivakit.org/1.8.5/javadoc/kivakit/kivakit-settings/com/telenav/kivakit/settings/SettingsObject.SettingsObjectIdentifier.html) |  |  
+| [*SettingsProject*](https://www.kivakit.org/1.8.5/javadoc/kivakit/kivakit-settings/com/telenav/kivakit/settings/SettingsProject.html) |  |  
+| [*SettingsRegistry*](https://www.kivakit.org/1.8.5/javadoc/kivakit/kivakit-settings/com/telenav/kivakit/settings/SettingsRegistry.html) | The Easiest Way to Register Settings |  
 | | How Settings are Registered |  
 | | How Settings are Looked Up |  
 | | Settings |  
-| [*SettingsStore*](https://www.kivakit.org/1.8.4/javadoc/kivakit/kivakit-settings/com/telenav/kivakit/settings/SettingsStore.html) | Hash/Equals Contract |  
+| [*SettingsStore*](https://www.kivakit.org/1.8.5/javadoc/kivakit/kivakit-settings/com/telenav/kivakit/settings/SettingsStore.html) | Hash/Equals Contract |  
 | | Loading and Saving |  
-| [*SettingsStore.AccessMode*](https://www.kivakit.org/1.8.4/javadoc/kivakit/kivakit-settings/com/telenav/kivakit/settings/SettingsStore.AccessMode.html) |  |  
-| [*SettingsTrait*](https://www.kivakit.org/1.8.4/javadoc/kivakit/kivakit-settings/com/telenav/kivakit/settings/SettingsTrait.html) | Loading |  
+| [*SettingsStore.AccessMode*](https://www.kivakit.org/1.8.5/javadoc/kivakit/kivakit-settings/com/telenav/kivakit/settings/SettingsStore.AccessMode.html) |  |  
+| [*SettingsTrait*](https://www.kivakit.org/1.8.5/javadoc/kivakit/kivakit-settings/com/telenav/kivakit/settings/SettingsTrait.html) | Loading |  
 | | Register methods |  
 | | Saving |  
 | | Registry Access |  
