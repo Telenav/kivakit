@@ -111,8 +111,8 @@ The resources below will help you to get started.
 
 ### Setup and Build <a name = "setup-and-build"></a> &nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/box-24.png" srcset="https://telenav.github.io/telenav-assets/images/icons/box-24-2x.png 2x"/>
 
-[**Initial Setup**](https://github.com/Telenav/telenav-build/blob/release/1.5.39/documentation/initial-setup-instructions.md)  <!-- [cactus.replacement-branch-name] -->  
-[**Building**](https://github.com/Telenav/telenav-build/blob/release/1.5.39/documentation/building.md)  <!-- [cactus.replacement-branch-name] -->  
+[**Initial Setup**](https://github.com/Telenav/telenav-build/blob/releases/1.5.39/documentation/initial-setup-instructions.md)  <!-- [cactus.replacement-branch-name] -->  
+[**Building**](https://github.com/Telenav/telenav-build/blob/releases/1.5.39/documentation/building.md)  <!-- [cactus.replacement-branch-name] -->  
 
 ### Development <a name = "development"></a> &nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/gears-32.png" srcset="https://telenav.github.io/telenav-assets/images/icons/gears-32-2x.png 2x"/>
 
