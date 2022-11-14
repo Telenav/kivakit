@@ -488,7 +488,7 @@
                         </executions>
                     </plugin>
 
-                    <!-- Documentation - CodeFlowers -->
+                    <!-- Documentation - CodeFlowers, Replace Versions -->
 
                     <plugin>
                         <groupId>com.telenav.cactus</groupId>
@@ -501,6 +501,16 @@
                             <tolerateVersionInconsistenciesIn>lexakai</tolerateVersionInconsistenciesIn>
                         </configuration>
                         <executions>
+                            <execution>
+                                <id>replace-versions</id>
+                                <goals>
+                                    <goal>replace</goal>
+                                </goals>
+                                <configuration>
+                                    <newVersion>${project.version}</newVersion>
+                                    <newBranchName>${project.version}</newBranchName>
+                                </configuration>
+                            </execution>
                             <execution>
                                 <id>generate-codeflowers</id>
                                 <goals>
