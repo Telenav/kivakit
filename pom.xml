@@ -112,6 +112,7 @@
         <maven.resources.plugin.version>3.3.0</maven.resources.plugin.version>
         <maven.os.plugin.version>1.6.1</maven.os.plugin.version>
         <maven.protobuf.plugin.version>0.6.1</maven.protobuf.plugin.version>
+        <maven.cactus.plugin.version>1.5.49</maven.cactus.plugin.version>
 
         <!-- Documentation -->
 
@@ -483,6 +484,29 @@
                                 <goals>
                                     <goal>jar</goal>
                                 </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+
+                    <!-- Documentation - CodeFlowers -->
+
+                    <plugin>
+                        <groupId>com.telenav.cactus</groupId>
+                        <artifactId>cactus-maven-plugin</artifactId>
+                        <version>${maven.cactus.plugin.version}</version>
+                        <configuration>
+                            <scope>family</scope>
+                            <verbose>true</verbose>
+                            <includeRoot>true</includeRoot>
+                            <tolerateVersionInconsistenciesIn>lexakai</tolerateVersionInconsistenciesIn>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <id>generate-codeflowers</id>
+                                <goals>
+                                    <goal>codeflowers</goal>
+                                </goals>
+                                <phase>install</phase>
                             </execution>
                         </executions>
                     </plugin>
