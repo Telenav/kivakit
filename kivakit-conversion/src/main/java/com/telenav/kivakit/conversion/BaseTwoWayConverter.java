@@ -131,7 +131,7 @@ public abstract class BaseTwoWayConverter<From, To> extends BaseConverter<From, 
     }
 
     /**
-     * {@inheritDoc}
+     * Called to "un-convert" from 'to' to 'from'
      */
     protected abstract From onUnconvert(To to);
 }

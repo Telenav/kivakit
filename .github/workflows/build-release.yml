@@ -21,13 +21,13 @@ on:
       - 'documentation/**'
       - '**/*.md'
     branches:
-      - 'release/**'
+      - 'releases'
   pull_request:
     paths-ignore:
       - 'documentation/**'
       - '**/*.md'
     branches:
-      - 'release/**'
+      - 'releases'
 
 jobs:
   build:

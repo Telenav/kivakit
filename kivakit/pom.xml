@@ -1,36 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- ///////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
-<!--  -->
-<!-- © 2011-2022 Telenav, Inc. -->
-<!-- Licensed under Apache License, Version 2.0 -->
-<!--  -->
-<!-- ///////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+
+<!--
+ /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+ //
+ // © 2011-2022 Telenav, Inc.
+ // Licensed under Apache License, Version 2.0
+ //
+ /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+ -->
+
 <project xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance" xmlns = "http://maven.apache.org/POM/4.0.0"
          xsi:schemaLocation = "http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>com.telenav</groupId>
-        <artifactId>telenav-root-superpom</artifactId>
-        <version>1.0.15</version>
-        <relativePath/>
+        <groupId>com.telenav.kivakit</groupId>
+        <artifactId>kivakit-parent</artifactId>
+        <version>1.8.5</version>
+        <relativePath>../pom.xml</relativePath>
     </parent>
 
-    <groupId>com.telenav.kivakit</groupId>
     <artifactId>kivakit</artifactId>
-    <version>1.8.3</version>
 
     <packaging>pom</packaging>
 
-    <name>kivakit</name>
-
-    <description>Bill Of Materials for Kivakit.
-        Import this pom as a pom-type, import scope dependency in your dependencyManagement
-         section to depend on a consistent set of versions of kivakit.</description>
+    <name>kivakit-bill-of-materials</name>
 
     <dependencyManagement>
+
         <dependencies>
+
             <dependency>
                 <groupId>${project.groupId}</groupId>
                 <artifactId>kivakit-annotations</artifactId>
@@ -168,28 +168,9 @@
                 <version>${project.version}</version>
                 <scope>test</scope>
             </dependency>
+
         </dependencies>
+
     </dependencyManagement>
 
-    <licenses>
-        <license>
-            <name>Apache License, Version 2.0</name>
-            <url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
-            <distribution>repo</distribution>
-        </license>
-    </licenses>
-
-
-    <url>https://kivakit.org</url>
-
-    <scm>
-        <connection>scm:git:https://github.com/Telenav/kivakit.git</connection>
-        <developerConnection>scm:git:https://github.com/Telenav/kivakit.git</developerConnection>
-        <url>https://github.com/Telenav/kivakit</url>
-    </scm>
-
-    <issueManagement>
-        <system>GitHub</system>
-        <url>https://github.com/Telenav/kivakit/issues</url>
-    </issueManagement>
 </project>

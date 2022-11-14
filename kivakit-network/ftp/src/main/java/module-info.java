@@ -4,7 +4,7 @@ open module kivakit.network.ftp
     requires transitive kivakit.network.core;
 
     // Networking
-    requires commons.net;
+    requires org.apache.commons.net;
     requires jsch;
 
     // Module exports

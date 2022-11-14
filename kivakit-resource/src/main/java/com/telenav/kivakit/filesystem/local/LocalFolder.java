@@ -383,7 +383,7 @@ public class LocalFolder extends BaseRepeater implements FolderService
     }
 
     /**
-     * {@inheritDoc}
+     * Returns the given child folder
      */
     public LocalFolder folder(@NotNull LocalFolder child)
     {
@@ -391,7 +391,7 @@ public class LocalFolder extends BaseRepeater implements FolderService
     }
 
     /**
-     * {@inheritDoc}
+     * Returns the given child folder
      */
     public LocalFolder folder(@NotNull String child)
     {
@@ -487,7 +487,7 @@ public class LocalFolder extends BaseRepeater implements FolderService
     /**
      * {@inheritDoc}
      */
-    @SuppressWarnings({ "ResultOfMethodCallIgnored", "SpellCheckingInspection" })
+    @SuppressWarnings({ "ResultOfMethodCallIgnored" })
     @Override
     public LocalFolder mkdirs()
     {

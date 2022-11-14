@@ -1,28 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <!--
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//
-// © 2011-2022 Telenav, Inc.
-// Licensed under Apache License, Version 2.0
-//
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
--->
+ /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+ //
+ // © 2011-2022 Telenav, Inc.
+ // Licensed under Apache License, Version 2.0
+ //
+ /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+ -->
 
 <project
-     xmlns="http://maven.apache.org/POM/4.0.0"
-     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+        xmlns = "http://maven.apache.org/POM/4.0.0"
+        xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation = "http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
         <groupId>com.telenav.kivakit</groupId>
         <artifactId>kivakit-parent</artifactId>
-        <version>1.8.3</version>
+        <version>1.8.5</version>
         <relativePath>../../pom.xml</relativePath>
     </parent>
 
     <artifactId>kivakit-network-ftp</artifactId>
+
+    <properties>
+
+        <commons.net.version>3.8.0</commons.net.version>
+        <jcraft.version>0.1.55</jcraft.version>
+        <sshtools.version>0.2.9</sshtools.version>
+
+    </properties>
+
     <dependencies>
 
         <!-- KivaKit -->
@@ -30,6 +40,7 @@
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>kivakit-network-core</artifactId>
+            <version>${project.version}</version>
         </dependency>
 
         <!-- FTP -->
@@ -37,15 +48,19 @@
         <dependency>
             <groupId>commons-net</groupId>
             <artifactId>commons-net</artifactId>
+            <version>${commons.net.version}</version>
         </dependency>
         <dependency>
             <groupId>com.jcraft</groupId>
             <artifactId>jsch</artifactId>
+            <version>${jcraft.version}</version>
         </dependency>
         <dependency>
             <groupId>sshtools</groupId>
             <artifactId>j2ssh-core</artifactId>
+            <version>${sshtools.version}</version>
         </dependency>
+
     </dependencies>
 
 </project>

@@ -475,7 +475,7 @@ public abstract class BaseLog implements
     }
 
     /**
-     * {@inheritDoc}
+     * Logs the given entry
      */
     protected abstract void onLog(LogEntry entry);
 

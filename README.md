@@ -24,7 +24,7 @@
 
 [//]: # (end-user-text)
 
-# kivakit 1.8.2 &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/logos/kivakit/kivakit-64.png" srcset="https://telenav.github.io/telenav-assets/images/logos/kivakit/kivakit-64-2x.png 2x"/>
+# kivakit 1.8.5 &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/logos/kivakit/kivakit-64.png" srcset="https://telenav.github.io/telenav-assets/images/logos/kivakit/kivakit-64-2x.png 2x"/>
 
 KivaKit is a new vision for Java coding that makes development faster and easier.
 
@@ -38,7 +38,7 @@ KivaKit is a new vision for Java coding that makes development faster and easier
 [**KivaKit Articles**](#kivakit-reading-list)  
 [**Tutorial Articles**](https://state-of-the-art.org/)  
 [**Example Code**](https://github.com/Telenav/kivakit-examples)  
-[**How to Build This Project**](https://github.com/Telenav/telenav-build/blob/release/1.5.39/documentation/building.md) <!-- [cactus.replacement-branch-name] --> 
+[**How to Build This Project**](https://github.com/Telenav/telenav-build/blob/releases/1.5.39/documentation/building.md) <!-- [cactus.replacement-branch-name] --> 
 
 ### Index <a name = "index"></a>
 
@@ -111,13 +111,13 @@ The resources below will help you to get started.
 
 ### Setup and Build <a name = "setup-and-build"></a> &nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/box-24.png" srcset="https://telenav.github.io/telenav-assets/images/icons/box-24-2x.png 2x"/>
 
-[**Initial Setup**](https://github.com/Telenav/telenav-build/blob/release/1.5.39/documentation/initial-setup-instructions.md)  <!-- [cactus.replacement-branch-name] -->  
-[**Building**](https://github.com/Telenav/telenav-build/blob/release/1.5.39/documentation/building.md)  <!-- [cactus.replacement-branch-name] -->  
+[**Initial Setup**](https://github.com/Telenav/telenav-build/blob/releases/1.5.39/documentation/initial-setup-instructions.md)  <!-- [cactus.replacement-branch-name] -->  
+[**Building**](https://github.com/Telenav/telenav-build/blob/releases/1.5.39/documentation/building.md)  <!-- [cactus.replacement-branch-name] -->  
 
 ### Development <a name = "development"></a> &nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/gears-32.png" srcset="https://telenav.github.io/telenav-assets/images/icons/gears-32-2x.png 2x"/>
 
-[**Developing**](https://github.com/Telenav/telenav-build/blob/release/1.5.39/documentation/developing.md) <!-- [cactus.replacement-branch-name] -->  
-[**Releasing**](https://github.com/Telenav/telenav-build/blob/release/1.5.39/documentation/releasing.md) <!-- [cactus.replacement-branch-name] -->
+[**Developing**](https://github.com/Telenav/telenav-build/blob/releases/1.5.39/documentation/developing.md) <!-- [cactus.replacement-branch-name] -->  
+[**Releasing**](https://github.com/Telenav/telenav-build/blob/releases/1.5.39/documentation/releasing.md) <!-- [cactus.replacement-branch-name] -->
 
 ### Downloads <a name = "downloads"></a>&nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/down-arrow-24.png" srcset="https://telenav.github.io/telenav-assets/images/icons/down-arrow-24-2x.png 2x"/>
 
@@ -138,22 +138,22 @@ The resources below will help you to get started.
 
 ### Project Resources <a name = "project-resources"></a> &nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/water-24.png" srcset="https://telenav.github.io/telenav-assets/images/icons/water-24-2x.png 2x"/>
 
-| Resource            | Description                                                                                                                                                                                                                                                 |
-|---------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| *Project Name*      | KivaKit                                                                                                                                                                                                                                                     |
-| *Summary*           | A collection of mini-frameworks that extend and simplify the JDK and other common APIs                                                                                                                                                                      |
-| *License*           | [Apache License, Version 2.0](LICENSE)                                                                                                                                                                                                                      |
-| *Related Projects*  | [kivakit-examples](https://github.com/Telenav/kivakit-examples), [kivakit-extensions](https://github.com/Telenav/kivakit), [kivakit-filesystems](https://github.com/Telenav/kivakit-filesystems), [kivakit-stuff](https://github.com/Telenav/kivakit-stuff) |
-| *Code Quality*      | <img src="https://telenav.github.io/telenav-assets/images/meters/meter-90-96.png" srcset="https://telenav.github.io/telenav-assets/images/meters/meter-90-96-2x.png 2x"/>                                                                                   |
-| *Setup*             | [Step-by-step setup instructions](https://github.com/Telenav/telenav-build/blob/release/1.5.39/documentation/initial-setup-instructions.md) <!-- [cactus.replacement-branch-name] -->                                                               |
-| *GitHub*            | [GitHub project home page](https://github.com/Telenav/kivakit)                                                                                                                                                                                              |
-| *Code*              | `git clone https://github.com/Telenav/kivakit.git`                                                                                                                                                                                                          |
-| *Project Lead*      | Jonathan Locke (Luo, Shibo) <br/> [jonathanl@telenav.com](mailto:jonathanl@telenav.com)                                                                                                                                                                     |
-| *Administrator*     | Jonathan Locke (Luo, Shibo) <br/> [jonathanl@telenav.com](mailto:jonathanl@telenav.com)                                                                                                                                                                     |
-| *Email*             | [kivakit@telenav.com](mailto:kivakit@telenav.com)                                                                                                                                                                                                           |
-| *Chat*              | [Zulip](https://kivakit.zulip.com)                                                                                                                                                                                                                          |
-| *Twitter*           | [@OpenKivaKit](https://twitter.com/openkivakit)                                                                                                                                                                                                             |
-| *Issues*            | [GitHub Issues](https://github.com/Telenav/kivakit/issues)                                                                                                                                                                                                  |
+| Resource             | Description                                                                                                                                                                                                                                                 |
+|----------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| *Project Name*       | KivaKit                                                                                                                                                                                                                                                     |
+| *Summary*            | A collection of mini-frameworks that extend and simplify the JDK and other common APIs                                                                                                                                                                      |
+| *License*            | [Apache License, Version 2.0](LICENSE)                                                                                                                                                                                                                      |
+| *Related Projects*   | [kivakit-examples](https://github.com/Telenav/kivakit-examples), [kivakit-extensions](https://github.com/Telenav/kivakit), [kivakit-filesystems](https://github.com/Telenav/kivakit-filesystems), [kivakit-stuff](https://github.com/Telenav/kivakit-stuff) |
+| *Code Quality*       | <img src="https://telenav.github.io/telenav-assets/images/meters/meter-90-96.png" srcset="https://telenav.github.io/telenav-assets/images/meters/meter-90-96-2x.png 2x"/>                                                                                   |
+| *Setup*              | [Step-by-step setup instructions](https://github.com/Telenav/telenav-build/blob/releases/1.5.39/documentation/initial-setup-instructions.md) <!-- [cactus.replacement-branch-name] -->                                                                      |
+| *GitHub*             | [GitHub project home page](https://github.com/Telenav/kivakit)                                                                                                                                                                                              |
+| *Code*               | `git clone https://github.com/Telenav/kivakit.git`                                                                                                                                                                                                          |
+| *Project Lead*       | Jonathan Locke (Luo, Shibo) <br/> [jonathanl@telenav.com](mailto:jonathanl@telenav.com)                                                                                                                                                                     |
+| *Administrator*      | Jonathan Locke (Luo, Shibo) <br/> [jonathanl@telenav.com](mailto:jonathanl@telenav.com)                                                                                                                                                                     |
+| *Email*              | [kivakit@telenav.com](mailto:kivakit@telenav.com)                                                                                                                                                                                                           |
+| *Chat*               | [Zulip](https://kivakit.zulip.com)                                                                                                                                                                                                                          |
+| *Twitter*            | [@OpenKivaKit](https://twitter.com/openkivakit)                                                                                                                                                                                                             |
+| *Issues*             | [GitHub Issues](https://github.com/Telenav/kivakit/issues)                                                                                                                                                                                                  |
 
 [//]: # (end-user-text)
 
@@ -180,19 +180,19 @@ The resources below will help you to get started.
 ### Code Quality <a name = "code-quality"></a> &nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/ruler-32.png" srcset="https://telenav.github.io/telenav-assets/images/icons/ruler-32-2x.png 2x"/>
 
 &nbsp; <img src="https://telenav.github.io/telenav-assets/images/meters/meter-80-96.png" srcset="https://telenav.github.io/telenav-assets/images/meters/meter-80-96-2x.png 2x"/> &nbsp; &nbsp; [**kivakit-annotations**](kivakit-annotations/README.md)  
-&nbsp; <img src="https://telenav.github.io/telenav-assets/images/meters/meter-70-96.png" srcset="https://telenav.github.io/telenav-assets/images/meters/meter-70-96-2x.png 2x"/> &nbsp; &nbsp; [**kivakit-application**](kivakit-application/README.md)  
+&nbsp; <img src="https://telenav.github.io/telenav-assets/images/meters/meter-60-96.png" srcset="https://telenav.github.io/telenav-assets/images/meters/meter-60-96-2x.png 2x"/> &nbsp; &nbsp; [**kivakit-application**](kivakit-application/README.md)  
 &nbsp; <img src="https://telenav.github.io/telenav-assets/images/meters/meter-70-96.png" srcset="https://telenav.github.io/telenav-assets/images/meters/meter-70-96-2x.png 2x"/> &nbsp; &nbsp; [**kivakit-collections**](kivakit-collections/README.md)  
 &nbsp; <img src="https://telenav.github.io/telenav-assets/images/meters/meter-70-96.png" srcset="https://telenav.github.io/telenav-assets/images/meters/meter-70-96-2x.png 2x"/> &nbsp; &nbsp; [**kivakit-commandline**](kivakit-commandline/README.md)  
-&nbsp; <img src="https://telenav.github.io/telenav-assets/images/meters/meter-60-96.png" srcset="https://telenav.github.io/telenav-assets/images/meters/meter-60-96-2x.png 2x"/> &nbsp; &nbsp; [**kivakit-component**](kivakit-component/README.md)  
+&nbsp; <img src="https://telenav.github.io/telenav-assets/images/meters/meter-40-96.png" srcset="https://telenav.github.io/telenav-assets/images/meters/meter-40-96-2x.png 2x"/> &nbsp; &nbsp; [**kivakit-component**](kivakit-component/README.md)  
 &nbsp; <img src="https://telenav.github.io/telenav-assets/images/meters/meter-70-96.png" srcset="https://telenav.github.io/telenav-assets/images/meters/meter-70-96-2x.png 2x"/> &nbsp; &nbsp; [**kivakit-conversion**](kivakit-conversion/README.md)  
 &nbsp; <img src="https://telenav.github.io/telenav-assets/images/meters/meter-70-96.png" srcset="https://telenav.github.io/telenav-assets/images/meters/meter-70-96-2x.png 2x"/> &nbsp; &nbsp; [**kivakit-core**](kivakit-core/README.md)  
-&nbsp; <img src="https://telenav.github.io/telenav-assets/images/meters/meter-90-96.png" srcset="https://telenav.github.io/telenav-assets/images/meters/meter-90-96-2x.png 2x"/> &nbsp; &nbsp; [**kivakit-extraction**](kivakit-extraction/README.md)  
+&nbsp; <img src="https://telenav.github.io/telenav-assets/images/meters/meter-80-96.png" srcset="https://telenav.github.io/telenav-assets/images/meters/meter-80-96-2x.png 2x"/> &nbsp; &nbsp; [**kivakit-extraction**](kivakit-extraction/README.md)  
 &nbsp; <img src="https://telenav.github.io/telenav-assets/images/meters/meter-90-96.png" srcset="https://telenav.github.io/telenav-assets/images/meters/meter-90-96-2x.png 2x"/> &nbsp; &nbsp; [**kivakit-interfaces**](kivakit-interfaces/README.md)  
 &nbsp; <img src="https://telenav.github.io/telenav-assets/images/meters/meter-100-96.png" srcset="https://telenav.github.io/telenav-assets/images/meters/meter-100-96-2x.png 2x"/> &nbsp; &nbsp; [**kivakit-mixins**](kivakit-mixins/README.md)  
 &nbsp; <img src="https://telenav.github.io/telenav-assets/images/meters/meter-80-96.png" srcset="https://telenav.github.io/telenav-assets/images/meters/meter-80-96-2x.png 2x"/> &nbsp; &nbsp; [**kivakit-resource**](kivakit-resource/README.md)  
 &nbsp; <img src="https://telenav.github.io/telenav-assets/images/meters/meter-60-96.png" srcset="https://telenav.github.io/telenav-assets/images/meters/meter-60-96-2x.png 2x"/> &nbsp; &nbsp; [**kivakit-settings**](kivakit-settings/README.md)  
 &nbsp; <img src="https://telenav.github.io/telenav-assets/images/meters/meter-0-96.png" srcset="https://telenav.github.io/telenav-assets/images/meters/meter-0-96-2x.png 2x"/> &nbsp; &nbsp; [**kivakit-testing**](kivakit-testing/README.md)  
-&nbsp; <img src="https://telenav.github.io/telenav-assets/images/meters/meter-80-96.png" srcset="https://telenav.github.io/telenav-assets/images/meters/meter-80-96-2x.png 2x"/> &nbsp; &nbsp; [**kivakit-validation**](kivakit-validation/README.md)
+&nbsp; <img src="https://telenav.github.io/telenav-assets/images/meters/meter-70-96.png" srcset="https://telenav.github.io/telenav-assets/images/meters/meter-70-96-2x.png 2x"/> &nbsp; &nbsp; [**kivakit-validation**](kivakit-validation/README.md)
 
 [//]: # (start-user-text)
 
@@ -202,7 +202,7 @@ The resources below will help you to get started.
 [**Change Log**](change-log.md) | 
 [**Published Releases**](https://repo1.maven.org/maven2/com/telenav/kivakit/) | 
 [**Code Quality**](#code-quality) | 
-[**Java 17+ Migration Notes**](https://github.com/Telenav/telenav-build/blob/release/1.5.39/documentation/java-migration-notes.md)  <!-- [cactus.replacement-branch-name] --> | 
+[**Java 17+ Migration Notes**](https://github.com/Telenav/telenav-build/blob/releases/1.5.39/documentation/java-migration-notes.md)  <!-- [cactus.replacement-branch-name] --> | 
 [**Downloads**](#downloads)
 
 [//]: # (end-user-text)

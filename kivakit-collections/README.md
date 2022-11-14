@@ -35,14 +35,14 @@ This module provides collections, iteration support, stacks, collection observat
 
 ### Dependencies <a name="dependencies"></a> &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/dependencies-32.png" srcset="https://telenav.github.io/telenav-assets/images/icons/dependencies-32-2x.png 2x"/>
 
-[*Dependency Diagram*](https://www.kivakit.org/1.8.2/lexakai/kivakit/kivakit-collections/documentation/diagrams/dependencies.svg)
+[*Dependency Diagram*](https://www.kivakit.org/1.8.5/lexakai/kivakit/kivakit-collections/documentation/diagrams/dependencies.svg)
 
 #### Maven Dependency
 
     <dependency>
         <groupId>com.telenav.kivakit</groupId>
         <artifactId>kivakit-collections</artifactId>
-        <version>1.8.2</version>
+        <version>1.8.5</version>
     </dependency>
 
 <img src="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128.png" srcset="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128-2x.png 2x"/>
@@ -133,63 +133,63 @@ more methods in *CollectionChangeListener* is called with information about what
 
 ### Code Quality <a name="code-quality"></a> &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/ruler-32.png" srcset="https://telenav.github.io/telenav-assets/images/icons/ruler-32-2x.png 2x"/>
 
-Code quality for this project is 74.1%.  
+Code quality for this project is 68.9%.  
   
 &nbsp; &nbsp; <img src="https://telenav.github.io/telenav-assets/images/meters/meter-70-96.png" srcset="https://telenav.github.io/telenav-assets/images/meters/meter-70-96-2x.png 2x"/>
 
 | Measurement   | Value                    |
 |---------------|--------------------------|
 | Stability     | 100.0%&nbsp; &nbsp; <img src="https://telenav.github.io/telenav-assets/images/meters/meter-100-96.png" srcset="https://telenav.github.io/telenav-assets/images/meters/meter-100-96-2x.png 2x"/>     |
-| Testing       | 22.2%&nbsp; &nbsp; <img src="https://telenav.github.io/telenav-assets/images/meters/meter-20-96.png" srcset="https://telenav.github.io/telenav-assets/images/meters/meter-20-96-2x.png 2x"/>       |
+| Testing       | 6.7%&nbsp; &nbsp; <img src="https://telenav.github.io/telenav-assets/images/meters/meter-10-96.png" srcset="https://telenav.github.io/telenav-assets/images/meters/meter-10-96-2x.png 2x"/>       |
 | Documentation | 100.0%&nbsp; &nbsp; <img src="https://telenav.github.io/telenav-assets/images/meters/meter-100-96.png" srcset="https://telenav.github.io/telenav-assets/images/meters/meter-100-96-2x.png 2x"/> |
 
 <img src="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128.png" srcset="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128-2x.png 2x"/>
 
 ### Class Diagrams <a name="class-diagrams"></a> &nbsp; &nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/diagram-40.png" srcset="https://telenav.github.io/telenav-assets/images/icons/diagram-40-2x.png 2x"/>
 
-[*Collection Watching*](https://www.kivakit.org/1.8.2/lexakai/kivakit/kivakit-collections/documentation/diagrams/diagram-watcher.svg)  
-[*Maps*](https://www.kivakit.org/1.8.2/lexakai/kivakit/kivakit-collections/documentation/diagrams/diagram-map.svg)  
-[*Sets*](https://www.kivakit.org/1.8.2/lexakai/kivakit/kivakit-collections/documentation/diagrams/diagram-set.svg)
+[*Collection Watching*](https://www.kivakit.org/1.8.5/lexakai/kivakit/kivakit-collections/documentation/diagrams/diagram-watcher.svg)  
+[*Maps*](https://www.kivakit.org/1.8.5/lexakai/kivakit/kivakit-collections/documentation/diagrams/diagram-map.svg)  
+[*Sets*](https://www.kivakit.org/1.8.5/lexakai/kivakit/kivakit-collections/documentation/diagrams/diagram-set.svg)
 
 <img src="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128.png" srcset="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128-2x.png 2x"/>
 
 ### Package Diagrams <a name="package-diagrams"></a> &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/box-24.png" srcset="https://telenav.github.io/telenav-assets/images/icons/box-24-2x.png 2x"/>
 
-[*com.telenav.kivakit.collections.internal.lexakai*](https://www.kivakit.org/1.8.2/lexakai/kivakit/kivakit-collections/documentation/diagrams/com.telenav.kivakit.collections.internal.lexakai.svg)  
-[*com.telenav.kivakit.collections.map*](https://www.kivakit.org/1.8.2/lexakai/kivakit/kivakit-collections/documentation/diagrams/com.telenav.kivakit.collections.map.svg)  
-[*com.telenav.kivakit.collections.set*](https://www.kivakit.org/1.8.2/lexakai/kivakit/kivakit-collections/documentation/diagrams/com.telenav.kivakit.collections.set.svg)  
-[*com.telenav.kivakit.collections.set.operations*](https://www.kivakit.org/1.8.2/lexakai/kivakit/kivakit-collections/documentation/diagrams/com.telenav.kivakit.collections.set.operations.svg)  
-[*com.telenav.kivakit.collections.watcher*](https://www.kivakit.org/1.8.2/lexakai/kivakit/kivakit-collections/documentation/diagrams/com.telenav.kivakit.collections.watcher.svg)
+[*com.telenav.kivakit.collections.internal.lexakai*](https://www.kivakit.org/1.8.5/lexakai/kivakit/kivakit-collections/documentation/diagrams/com.telenav.kivakit.collections.internal.lexakai.svg)  
+[*com.telenav.kivakit.collections.map*](https://www.kivakit.org/1.8.5/lexakai/kivakit/kivakit-collections/documentation/diagrams/com.telenav.kivakit.collections.map.svg)  
+[*com.telenav.kivakit.collections.set*](https://www.kivakit.org/1.8.5/lexakai/kivakit/kivakit-collections/documentation/diagrams/com.telenav.kivakit.collections.set.svg)  
+[*com.telenav.kivakit.collections.set.operations*](https://www.kivakit.org/1.8.5/lexakai/kivakit/kivakit-collections/documentation/diagrams/com.telenav.kivakit.collections.set.operations.svg)  
+[*com.telenav.kivakit.collections.watcher*](https://www.kivakit.org/1.8.5/lexakai/kivakit/kivakit-collections/documentation/diagrams/com.telenav.kivakit.collections.watcher.svg)
 
 ### Javadoc <a name="code-quality"></a> &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/books-24.png" srcset="https://telenav.github.io/telenav-assets/images/icons/books-24-2x.png 2x"/>
 
 | Class | Documentation Sections  |
 |-------|-------------------------|
-| [*BaseCollectionChangeWatcher*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.collections/com/telenav/kivakit/collections/watcher/BaseCollectionChangeWatcher.html) | Changes |  
+| [*BaseCollectionChangeWatcher*](https://www.kivakit.org/1.8.5/javadoc/kivakit/kivakit-collections/com/telenav/kivakit/collections/watcher/BaseCollectionChangeWatcher.html) | Changes |  
 | | Listeners |  
-| [*BaseIndexedMap*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.collections/com/telenav/kivakit/collections/map/BaseIndexedMap.html) | Access |  
+| [*BaseIndexedMap*](https://www.kivakit.org/1.8.5/javadoc/kivakit/kivakit-collections/com/telenav/kivakit/collections/map/BaseIndexedMap.html) | Access |  
 | | Operations |  
-| [*CollectionChangeListener*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.collections/com/telenav/kivakit/collections/watcher/CollectionChangeListener.html) |  |  
-| [*CollectionChangeWatcher*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.collections/com/telenav/kivakit/collections/watcher/CollectionChangeWatcher.html) |  |  
-| [*CompoundSet*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.collections/com/telenav/kivakit/collections/set/CompoundSet.html) |  |  
-| [*DiagramMap*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.collections/com/telenav/kivakit/collections/internal/lexakai/DiagramMap.html) |  |  
-| [*DiagramSet*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.collections/com/telenav/kivakit/collections/internal/lexakai/DiagramSet.html) |  |  
-| [*DiagramWatcher*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.collections/com/telenav/kivakit/collections/internal/lexakai/DiagramWatcher.html) |  |  
-| [*IndexedNameMap*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.collections/com/telenav/kivakit/collections/map/IndexedNameMap.html) | Example |  
+| [*CollectionChangeListener*](https://www.kivakit.org/1.8.5/javadoc/kivakit/kivakit-collections/com/telenav/kivakit/collections/watcher/CollectionChangeListener.html) |  |  
+| [*CollectionChangeWatcher*](https://www.kivakit.org/1.8.5/javadoc/kivakit/kivakit-collections/com/telenav/kivakit/collections/watcher/CollectionChangeWatcher.html) |  |  
+| [*CompoundSet*](https://www.kivakit.org/1.8.5/javadoc/kivakit/kivakit-collections/com/telenav/kivakit/collections/set/CompoundSet.html) |  |  
+| [*DiagramMap*](https://www.kivakit.org/1.8.5/javadoc/kivakit/kivakit-collections/com/telenav/kivakit/collections/internal/lexakai/DiagramMap.html) |  |  
+| [*DiagramSet*](https://www.kivakit.org/1.8.5/javadoc/kivakit/kivakit-collections/com/telenav/kivakit/collections/internal/lexakai/DiagramSet.html) |  |  
+| [*DiagramWatcher*](https://www.kivakit.org/1.8.5/javadoc/kivakit/kivakit-collections/com/telenav/kivakit/collections/internal/lexakai/DiagramWatcher.html) |  |  
+| [*IndexedNameMap*](https://www.kivakit.org/1.8.5/javadoc/kivakit/kivakit-collections/com/telenav/kivakit/collections/map/IndexedNameMap.html) | Example |  
 | | Access |  
 | | Operations |  
-| [*Intersection*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.collections/com/telenav/kivakit/collections/set/operations/Intersection.html) |  |  
-| [*LogicalSet*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.collections/com/telenav/kivakit/collections/set/LogicalSet.html) |  |  
-| [*PeriodicCollectionChangeWatcher*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.collections/com/telenav/kivakit/collections/watcher/PeriodicCollectionChangeWatcher.html) | Lifecycle |  
+| [*Intersection*](https://www.kivakit.org/1.8.5/javadoc/kivakit/kivakit-collections/com/telenav/kivakit/collections/set/operations/Intersection.html) |  |  
+| [*LogicalSet*](https://www.kivakit.org/1.8.5/javadoc/kivakit/kivakit-collections/com/telenav/kivakit/collections/set/LogicalSet.html) |  |  
+| [*PeriodicCollectionChangeWatcher*](https://www.kivakit.org/1.8.5/javadoc/kivakit/kivakit-collections/com/telenav/kivakit/collections/watcher/PeriodicCollectionChangeWatcher.html) | Lifecycle |  
 | | Collection Access |  
-| [*ReferenceCountMap*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.collections/com/telenav/kivakit/collections/map/ReferenceCountMap.html) | Reference Counts |  
+| [*ReferenceCountMap*](https://www.kivakit.org/1.8.5/javadoc/kivakit/kivakit-collections/com/telenav/kivakit/collections/map/ReferenceCountMap.html) | Reference Counts |  
 | | Referencing |  
-| [*SetDifferencer*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.collections/com/telenav/kivakit/collections/set/SetDifferencer.html) | Comparison |  
-| [*Subset*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.collections/com/telenav/kivakit/collections/set/operations/Subset.html) |  |  
-| [*TwoWayMap*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.collections/com/telenav/kivakit/collections/map/TwoWayMap.html) | Access |  
+| [*SetDifferencer*](https://www.kivakit.org/1.8.5/javadoc/kivakit/kivakit-collections/com/telenav/kivakit/collections/set/SetDifferencer.html) | Comparison |  
+| [*Subset*](https://www.kivakit.org/1.8.5/javadoc/kivakit/kivakit-collections/com/telenav/kivakit/collections/set/operations/Subset.html) |  |  
+| [*TwoWayMap*](https://www.kivakit.org/1.8.5/javadoc/kivakit/kivakit-collections/com/telenav/kivakit/collections/map/TwoWayMap.html) | Access |  
 | | Operations |  
-| [*Union*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.collections/com/telenav/kivakit/collections/set/operations/Union.html) |  |  
-| [*Without*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.collections/com/telenav/kivakit/collections/set/operations/Without.html) |  |  
+| [*Union*](https://www.kivakit.org/1.8.5/javadoc/kivakit/kivakit-collections/com/telenav/kivakit/collections/set/operations/Union.html) |  |  
+| [*Without*](https://www.kivakit.org/1.8.5/javadoc/kivakit/kivakit-collections/com/telenav/kivakit/collections/set/operations/Without.html) |  |  
 
 [//]: # (start-user-text)
 

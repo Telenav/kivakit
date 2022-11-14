@@ -41,7 +41,7 @@ public class LocalDateConverter extends BaseFormattedLocalTimeConverter
 {
     /**
      * @param listener The listener to report problems to
-     * @param zone The timezone
+     * @param zoneId The timezone
      */
     public LocalDateConverter(Listener listener, ZoneId zoneId)
     {

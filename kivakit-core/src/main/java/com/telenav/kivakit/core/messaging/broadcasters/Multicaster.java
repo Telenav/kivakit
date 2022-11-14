@@ -49,6 +49,8 @@ import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.collections.list.StringList.stringList;
 import static com.telenav.kivakit.core.ensure.Ensure.ensure;
 import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
+import static com.telenav.kivakit.core.language.Classes.simpleName;
+import static com.telenav.kivakit.core.string.IndentingStringBuilder.Indentation.indentation;
 import static com.telenav.kivakit.core.string.IndentingStringBuilder.Style.TEXT;
 import static com.telenav.kivakit.interfaces.naming.NamedObject.syntheticName;
 
@@ -280,7 +282,7 @@ public class Multicaster implements Broadcaster
             {
                 at = (Broadcaster) owner;
             }
-            var name = Classes.simpleName(at.getClass());
+            var name = simpleName(at.getClass());
             if (at.listeners().isEmpty())
             {
                 name += " (No Listener)" ;
@@ -295,7 +297,7 @@ public class Multicaster implements Broadcaster
      */
     public String listenerTree()
     {
-        var builder = new IndentingStringBuilder(TEXT, Indentation.indentation(4));
+        var builder = new IndentingStringBuilder(TEXT, indentation(4));
         listenerTree(builder);
         return builder.toString();
     }

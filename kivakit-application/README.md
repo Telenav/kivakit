@@ -32,14 +32,14 @@ configuration management and object registration and lookup.
 
 ### Dependencies <a name="dependencies"></a> &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/dependencies-32.png" srcset="https://telenav.github.io/telenav-assets/images/icons/dependencies-32-2x.png 2x"/>
 
-[*Dependency Diagram*](https://www.kivakit.org/1.8.2/lexakai/kivakit/kivakit-application/documentation/diagrams/dependencies.svg)
+[*Dependency Diagram*](https://www.kivakit.org/1.8.5/lexakai/kivakit/kivakit-application/documentation/diagrams/dependencies.svg)
 
 #### Maven Dependency
 
     <dependency>
         <groupId>com.telenav.kivakit</groupId>
         <artifactId>kivakit-application</artifactId>
-        <version>1.8.2</version>
+        <version>1.8.5</version>
     </dependency>
 
 <img src="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128.png" srcset="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128-2x.png 2x"/>
@@ -69,46 +69,46 @@ browse the [**Javadoc**](#javadoc).
 
 ### Code Quality <a name="code-quality"></a> &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/ruler-32.png" srcset="https://telenav.github.io/telenav-assets/images/icons/ruler-32-2x.png 2x"/>
 
-Code quality for this project is 66.7%.  
+Code quality for this project is 61.1%.  
   
-&nbsp; &nbsp; <img src="https://telenav.github.io/telenav-assets/images/meters/meter-70-96.png" srcset="https://telenav.github.io/telenav-assets/images/meters/meter-70-96-2x.png 2x"/>
+&nbsp; &nbsp; <img src="https://telenav.github.io/telenav-assets/images/meters/meter-60-96.png" srcset="https://telenav.github.io/telenav-assets/images/meters/meter-60-96-2x.png 2x"/>
 
 | Measurement   | Value                    |
 |---------------|--------------------------|
-| Stability     | 85.7%&nbsp; &nbsp; <img src="https://telenav.github.io/telenav-assets/images/meters/meter-90-96.png" srcset="https://telenav.github.io/telenav-assets/images/meters/meter-90-96-2x.png 2x"/>     |
-| Testing       | 28.6%&nbsp; &nbsp; <img src="https://telenav.github.io/telenav-assets/images/meters/meter-30-96.png" srcset="https://telenav.github.io/telenav-assets/images/meters/meter-30-96-2x.png 2x"/>       |
-| Documentation | 85.7%&nbsp; &nbsp; <img src="https://telenav.github.io/telenav-assets/images/meters/meter-90-96.png" srcset="https://telenav.github.io/telenav-assets/images/meters/meter-90-96-2x.png 2x"/> |
+| Stability     | 83.3%&nbsp; &nbsp; <img src="https://telenav.github.io/telenav-assets/images/meters/meter-80-96.png" srcset="https://telenav.github.io/telenav-assets/images/meters/meter-80-96-2x.png 2x"/>     |
+| Testing       | 16.7%&nbsp; &nbsp; <img src="https://telenav.github.io/telenav-assets/images/meters/meter-20-96.png" srcset="https://telenav.github.io/telenav-assets/images/meters/meter-20-96-2x.png 2x"/>       |
+| Documentation | 83.3%&nbsp; &nbsp; <img src="https://telenav.github.io/telenav-assets/images/meters/meter-80-96.png" srcset="https://telenav.github.io/telenav-assets/images/meters/meter-80-96-2x.png 2x"/> |
 
 <img src="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128.png" srcset="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128-2x.png 2x"/>
 
 ### Class Diagrams <a name="class-diagrams"></a> &nbsp; &nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/diagram-40.png" srcset="https://telenav.github.io/telenav-assets/images/icons/diagram-40-2x.png 2x"/>
 
-[*Applications*](https://www.kivakit.org/1.8.2/lexakai/kivakit/kivakit-application/documentation/diagrams/diagram-application.svg)
+[*Applications*](https://www.kivakit.org/1.8.5/lexakai/kivakit/kivakit-application/documentation/diagrams/diagram-application.svg)
 
 <img src="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128.png" srcset="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128-2x.png 2x"/>
 
 ### Package Diagrams <a name="package-diagrams"></a> &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/box-24.png" srcset="https://telenav.github.io/telenav-assets/images/icons/box-24-2x.png 2x"/>
 
-[*com.telenav.kivakit.application*](https://www.kivakit.org/1.8.2/lexakai/kivakit/kivakit-application/documentation/diagrams/com.telenav.kivakit.application.svg)  
-[*com.telenav.kivakit.application.internal.lexakai*](https://www.kivakit.org/1.8.2/lexakai/kivakit/kivakit-application/documentation/diagrams/com.telenav.kivakit.application.internal.lexakai.svg)
+[*com.telenav.kivakit.application*](https://www.kivakit.org/1.8.5/lexakai/kivakit/kivakit-application/documentation/diagrams/com.telenav.kivakit.application.svg)  
+[*com.telenav.kivakit.application.internal.lexakai*](https://www.kivakit.org/1.8.5/lexakai/kivakit/kivakit-application/documentation/diagrams/com.telenav.kivakit.application.internal.lexakai.svg)
 
 ### Javadoc <a name="code-quality"></a> &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/books-24.png" srcset="https://telenav.github.io/telenav-assets/images/icons/books-24-2x.png 2x"/>
 
 | Class | Documentation Sections  |
 |-------|-------------------------|
-| [*Application*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.application/com/telenav/kivakit/application/Application.html) | Application Metadata |  
+| [*Application*](https://www.kivakit.org/1.8.5/javadoc/kivakit/kivakit-application/com/telenav/kivakit/application/Application.html) | Application Metadata |  
 | | Application Environment |  
 | | Project Initialization |  
 | | Execution |  
 | | Messaging and Logging |  
 | | Creating an Application |  
 | | Command Line Parsing |  
-| [*Application.ExecutionState*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.application/com/telenav/kivakit/application/Application.ExecutionState.html) |  |  
-| [*Application.Identifier*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.application/com/telenav/kivakit/application/Application.Identifier.html) |  |  
-| [*ApplicationExit*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.application/com/telenav/kivakit/application/ApplicationExit.html) |  |  
-| [*DiagramApplication*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.application/com/telenav/kivakit/application/internal/lexakai/DiagramApplication.html) |  |  
-| [*ExitCode*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.application/com/telenav/kivakit/application/ExitCode.html) |  |  
-| [*Server*](https://www.kivakit.org/1.8.2/javadoc/kivakit/kivakit.application/com/telenav/kivakit/application/Server.html) |  |  
+| [*Application.Identifier*](https://www.kivakit.org/1.8.5/javadoc/kivakit/kivakit-application/com/telenav/kivakit/application/Application.Identifier.html) |  |  
+| [*Application.LifecyclePhase*](https://www.kivakit.org/1.8.5/javadoc/kivakit/kivakit-application/com/telenav/kivakit/application/Application.LifecyclePhase.html) |  |  
+| [*ApplicationExit*](https://www.kivakit.org/1.8.5/javadoc/kivakit/kivakit-application/com/telenav/kivakit/application/ApplicationExit.html) |  |  
+| [*DiagramApplication*](https://www.kivakit.org/1.8.5/javadoc/kivakit/kivakit-application/com/telenav/kivakit/application/internal/lexakai/DiagramApplication.html) |  |  
+| [*ExitCode*](https://www.kivakit.org/1.8.5/javadoc/kivakit/kivakit-application/com/telenav/kivakit/application/ExitCode.html) |  |  
+| [*Server*](https://www.kivakit.org/1.8.5/javadoc/kivakit/kivakit-application/com/telenav/kivakit/application/Server.html) |  |  
 
 [//]: # (start-user-text)
 
@@ -210,12 +210,23 @@ used. This is because `Application` is a `BaseRepeater` and so it inherits all t
 
 A application lifecycle follows this sequence.
 
-<img src="https://telenav.github.io/telenav-assets/images/diagrams/application-lifecycle.svg"/>
+<img src="https://telenav.github.io/telenav-assets/images/diagrams/application-lifecycle@2x.png"/>
 
-1. The method `main(String[] arguments)` creates the `Application` subclass with `new MyApplication().run(arguments)`
-2. The method `startupOptions()` is called and the set of `StartupOptions` returned is enabled
-3. The application transitions to the `INITIALIZING` state
-4. The method `onSerializationInitialize()` is called to allow registration of serializers
+#### CONSTRUCTION
+
+1. The method `main(String[] arguments)` creates the `Application` subclass
+2. The application enters the `CONSTRUCTING` phase. After construction, the `run(String[])` method is called to execute the application
+
+#### INITIALIZATION
+
+1. The application enters the INITIALIZING phase
+2. `onInitializing()` is called 
+3. `startupOptions()` is called and the set of `StartupOptions` returned is enabled
+4. `onSerializationInitialize()` is called to allow registration of serializers
+3. `onInitialize()` is called to initialize the application
+4. Projects are initialized by calling `onProjectsInitializing()` 
+4. 
+5. 
 5. `onRunning()` is called to indicate that running is about to start
 6. `onProjectsInitializing()` is called before the `Project` before the application is initialized
 7. `Project.initialize()` is called. Projects form a dependency tree, and are initialized to allow required projects to do things like registering serializers, loading resources, or initializing other projects before the application runs.

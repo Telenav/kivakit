@@ -2,6 +2,20 @@
 
 -----------------------------------------------------------------------------------------------------------------------
 
+## Version 1.8.5 (2022.11.13) "happy rabbit"
+
+### Build
+
+ - Rewrote all pom files
+ - Updated build and release documentation
+ - Added and updated scripts
+ - Removed use of `cactus` in the build and release process
+ - Removed `cactus` repositories from the workspace
+ - Removed use of super-poms and removed `telenav-superpom` from the workspace
+ - Removed `kivakit-filesystem` from the workspace
+
+-----------------------------------------------------------------------------------------------------------------------
+
 ## Version 1.8.0 (2022.10.05) "yellow sneakers"
 
 ### Major Review
@@ -168,7 +182,7 @@ for the final 2.0 release, but will likely involve significant changes.
 
 ### Build
 
- - Removed kivakit-merged from build and published to Maven Central
+ - Removed telenav.third.party from build and published to Maven Central
  - Code inspection and clean up
  - Fix warnings
  

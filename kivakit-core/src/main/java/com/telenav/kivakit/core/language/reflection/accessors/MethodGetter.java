@@ -27,8 +27,8 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.lang.annotation.Annotation;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 
 /**
@@ -36,6 +36,7 @@ import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
  *
  * @author jonathanl (shibo)
  */
+@SuppressWarnings("ClassCanBeRecord")
 @UmlClassDiagram(diagram = DiagramReflection.class)
 @CodeQuality(stability = STABLE,
              testing = UNTESTED,
@@ -85,7 +86,7 @@ public class MethodGetter implements Getter
     }
 
     /**
-     * {@inheritDoc}
+     * Returns the underlying method for this getter
      */
     public Method method()
     {

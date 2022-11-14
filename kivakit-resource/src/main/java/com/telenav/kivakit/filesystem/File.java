@@ -54,21 +54,28 @@ import java.net.URI;
 import java.nio.charset.Charset;
 import java.nio.file.attribute.PosixFilePermission;
 
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_INSUFFICIENT;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
 import static com.telenav.kivakit.core.collections.set.ObjectSet.set;
 import static com.telenav.kivakit.core.ensure.Ensure.ensure;
 import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
-import static com.telenav.kivakit.core.messaging.Listener.nullListener;
 import static com.telenav.kivakit.core.string.Paths.pathHead;
 import static com.telenav.kivakit.filesystem.FilePath.parseFilePath;
 import static com.telenav.kivakit.filesystem.Folders.kivakitTemporaryFolder;
 import static com.telenav.kivakit.filesystem.loader.FileSystemServiceLoader.fileSystem;
 import static java.lang.System.currentTimeMillis;
-import static java.nio.file.attribute.PosixFilePermission.*;
+import static java.nio.file.attribute.PosixFilePermission.GROUP_EXECUTE;
+import static java.nio.file.attribute.PosixFilePermission.GROUP_READ;
+import static java.nio.file.attribute.PosixFilePermission.GROUP_WRITE;
+import static java.nio.file.attribute.PosixFilePermission.OTHERS_EXECUTE;
+import static java.nio.file.attribute.PosixFilePermission.OTHERS_READ;
+import static java.nio.file.attribute.PosixFilePermission.OTHERS_WRITE;
+import static java.nio.file.attribute.PosixFilePermission.OWNER_EXECUTE;
+import static java.nio.file.attribute.PosixFilePermission.OWNER_READ;
+import static java.nio.file.attribute.PosixFilePermission.OWNER_WRITE;
 
 /**
  * File abstraction that adds integrates files with the KivaKit resource mini-framework and adds a variety of useful
@@ -349,7 +356,7 @@ public class File extends BaseWritableResource implements FileSystemObject
     @CodeQuality(stability = STABLE,
                  testing = TESTING_NOT_NEEDED,
                  documentation = DOCUMENTATION_COMPLETE)
-    public static class Resolver implements ResourceResolver
+    public static class FileResourceResolver implements ResourceResolver
     {
         @Override
         public boolean accepts(@NotNull ResourceIdentifier identifier)
@@ -358,7 +365,7 @@ public class File extends BaseWritableResource implements FileSystemObject
             {
                 return false;
             }
-            return fileSystem(nullListener(), parseFilePath(this, identifier.identifier())) != null;
+            return fileSystem(this, parseFilePath(this, identifier.identifier())) != null;
         }
 
         @Override
@@ -702,15 +709,6 @@ public class File extends BaseWritableResource implements FileSystemObject
      * {@inheritDoc}
      */
     @Override
-    public File saveText(@NotNull String text)
-    {
-        return (File) super.saveText(text);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
     public File relativeTo(@NotNull ResourceFolder<?> folder)
     {
         var service = ((Folder) folder).service();
@@ -749,6 +747,15 @@ public class File extends BaseWritableResource implements FileSystemObject
                              @NotNull ProgressReporter reporter)
     {
         resource.safeCopyTo(this, mode, reporter);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public File saveText(@NotNull String text)
+    {
+        return (File) super.saveText(text);
     }
 
     /**
