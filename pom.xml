@@ -367,9 +367,6 @@
                     <encoding>utf-8</encoding>
                     <sourcepath>src/main/java</sourcepath>
                     <failOnError>true</failOnError>
-                    <outputDirectory>${documentation.javadoc.folder}</outputDirectory>
-                    <javadocDirectory>${documentation.javadoc.folder}</javadocDirectory>
-                    <reportOutputDirectory>${documentation.javadoc.folder}</reportOutputDirectory>
                     <detectJavaApiLink>false</detectJavaApiLink>
                     <doclint>none</doclint>
                     <nohelp>true</nohelp>
@@ -386,6 +383,17 @@
                         <phase>site</phase>
                         <goals>
                             <goal>aggregate</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${documentation.javadoc.folder}</outputDirectory>
+                            <reportOutputDirectory>${documentation.javadoc.folder}</reportOutputDirectory>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>attach-javadoc-jar</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>jar</goal>
                         </goals>
                     </execution>
                 </executions>
@@ -458,39 +466,6 @@
                         </executions>
                     </plugin>
 
-                    <!-- Create and attach Javadoc JAR -->
-
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-javadoc-plugin</artifactId>
-                        <version>${maven.javadoc.plugin.version}</version>
-                        <configuration>
-                            <show>protected</show>
-                            <quiet>true</quiet>
-                            <source>${documentation.javadoc.source.version}</source>
-                            <encoding>utf-8</encoding>
-                            <sourcepath>src/main/java</sourcepath>
-                            <failOnError>true</failOnError>
-                            <detectJavaApiLink>false</detectJavaApiLink>
-                            <doclint>none</doclint>
-                            <nohelp>true</nohelp>
-                            <additionalOptions>-notimestamp</additionalOptions>
-                            <destDir>target/javadoc</destDir>
-                            <sourceFileIncludes>
-                                <sourceFileInclude>**/*.java</sourceFileInclude>
-                            </sourceFileIncludes>
-                        </configuration>
-                        <executions>
-                            <execution>
-                                <id>attach-javadoc-jar</id>
-                                <phase>prepare-package</phase>
-                                <goals>
-                                    <goal>jar</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                    </plugin>
-
                     <!-- Documentation - CodeFlowers, Replace Versions -->
 
                     <plugin>
@@ -504,6 +479,7 @@
                             <tolerateVersionInconsistenciesIn>lexakai</tolerateVersionInconsistenciesIn>
                         </configuration>
                         <executions>
+                            <!--
                             <execution>
                                 <id>replace-versions</id>
                                 <goals>
@@ -514,6 +490,7 @@
                                     <newBranchName>${project.version}</newBranchName>
                                 </configuration>
                             </execution>
+                            -->
                             <execution>
                                 <id>generate-codeflowers</id>
                                 <goals>
