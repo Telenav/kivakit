@@ -16,7 +16,7 @@
 
     <groupId>com.telenav.kivakit</groupId>
     <artifactId>kivakit-parent</artifactId>
-    <version>1.8.5</version>
+    <version>1.8.6</version>
 
     <packaging>pom</packaging>
 
@@ -372,7 +372,7 @@
                     <nohelp>true</nohelp>
                     <additionalOptions>-notimestamp</additionalOptions>
                     <!--suppress CheckTagEmptyBody -->
-                    <destDir></destDir>
+                    <destDir/>
                     <sourceFileIncludes>
                         <sourceFileInclude>**/*.java</sourceFileInclude>
                     </sourceFileIncludes>
