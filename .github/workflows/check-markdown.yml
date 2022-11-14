@@ -6,10 +6,10 @@ on:
     paths-ignore:
       - '!**/*.md'
     branches:
-      - 'release/**'
+      - 'releases'
   pull_request:
     branches:
-      - 'release/**'
+      - 'releases'
 
 jobs:
   markdown-link-check:
