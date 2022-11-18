@@ -19,7 +19,7 @@
 package com.telenav.kivakit.core.logging.filters;
 
 import com.telenav.kivakit.annotations.code.quality.CodeQuality;
-import com.telenav.kivakit.core.language.module.PackageReference;
+import com.telenav.kivakit.core.language.packaging.PackageReference;
 import com.telenav.kivakit.core.logging.LogEntry;
 import com.telenav.kivakit.interfaces.comparison.Filter;
 

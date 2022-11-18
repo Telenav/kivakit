@@ -95,7 +95,7 @@ public class StringPath extends Path<String>
      * @param path The path to parse
      * @param rootPattern A Java regular expression matching the path root (such as "/" or "C:\")
      * @param separatorPattern The Java regular expression used to split path elements
-     * @return A string path for the given string, root pattern and separator pattern
+     * @return A string path for the given string, root pattern and separator pattern, or null on failure.
      */
     @SuppressWarnings("unused")
     public static StringPath parseStringPath(Listener listener,
@@ -112,7 +112,8 @@ public class StringPath extends Path<String>
                 return new StringPath(matcher.group("root"), splitOnPattern(tail, separatorPattern));
             }
         }
-        return new StringPath(null, splitOnPattern(path, separatorPattern));
+        var elements = splitOnPattern(path, separatorPattern);
+        return elements.isEmpty() ? null : new StringPath(elements);
     }
 
     /**

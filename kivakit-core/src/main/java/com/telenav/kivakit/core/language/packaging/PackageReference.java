@@ -16,33 +16,28 @@
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-package com.telenav.kivakit.core.language.module;
+package com.telenav.kivakit.core.language.packaging;
 
 import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramPath;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.path.Path;
 import com.telenav.kivakit.core.path.StringPath;
-import com.telenav.kivakit.interfaces.comparison.Matcher;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import org.jetbrains.annotations.NotNull;
 
-import java.io.InputStream;
 import java.net.URL;
 import java.nio.file.Files;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.function.Function;
-import java.util.stream.Collectors;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
-import static com.telenav.kivakit.core.collections.list.ObjectList.list;
-import static com.telenav.kivakit.core.ensure.Ensure.ensure;
 import static com.telenav.kivakit.core.messaging.Listener.nullListener;
 import static com.telenav.kivakit.core.messaging.Listener.throwingListener;
 import static com.telenav.kivakit.core.string.Strip.stripEnding;
@@ -55,16 +50,9 @@ import static com.telenav.kivakit.core.string.Strip.stripLeading;
  * This class contains numerous methods which down-cast the return value of the superclass to make use easier for
  * clients. Methods that are unique to this class mainly have to do with resources and modules:
  * </p>
- * <ul>
- *     <li>{@link #moduleResources(Listener)} - A list of {@link ModuleResource}s in the package with this path</li>
- *     <li>{@link #moduleResource(Listener, String)} - Any {@link ModuleResource} at the given relative path</li>
- *     <li>{@link #moduleResourceStream(String)} - A stream for the resource at the given path relative to this package</li>
- *     <li>{@link #contains(ModuleResource)} - True if this package contains the given resource</li>
- *     <li>{@link #containsNested(ModuleResource)} - True if this package contains the given resource at any depth</li>
- *     <li>{@link #nestedModuleResources(Listener)} - A list of nested module resources in and under this package</li>
- *     <li>{@link #nestedModuleResources(Listener, Matcher)} - A list of nested module resources in and under this package that match the given matcher</li>
- *     <li>{@link #subPackages(Listener)} - The set of all package paths under this one</li>
- *     <li>#</li>
+ * <li>{@link #contains(PackageReference)} - True if this package contains the given resource</li>
+ * <li>{@link #containsNested(PackageReference)} - True if this package contains the given resource at any depth</li>
+ * <li>#</li>
  * </ul>
  *
  * <p><b>Parsing</b></p>
@@ -177,17 +165,17 @@ public final class PackageReference extends StringPath
     /**
      * Returns true if the given resource is in this package
      */
-    public boolean contains(ModuleResource resource)
+    public boolean contains(PackageReference that)
     {
-        return resource.packageReference().equals(this);
+        return that.equals(this);
     }
 
     /**
      * Returns true if the given resource is in this package or any sub-package
      */
-    public boolean containsNested(ModuleResource resource)
+    public boolean containsNested(PackageReference that)
     {
-        return resource.packageReference().startsWith(this);
+        return that.startsWith(this);
     }
 
     /**
@@ -315,54 +303,6 @@ public final class PackageReference extends StringPath
     }
 
     /**
-     * Returns the named resource in this package for the given path or null if it cannot be found. The relative path
-     * must be separated by slashes, not dots because the filename may contain dots (like "a.txt").
-     */
-    public ModuleResource moduleResource(Listener listener, String relativePath)
-    {
-        var path = parseStringPath(listener, relativePath, "/", "/");
-        ensure(path.isRelative());
-        return Modules.moduleResource(listener, withChild(path));
-    }
-
-    /**
-     * Returns an input stream to access the given resource
-     */
-    public InputStream moduleResourceStream(String path)
-    {
-        return packageType().getResourceAsStream(path);
-    }
-
-    /**
-     * Returns a list of the resources directly in the package specified by this path
-     */
-    public List<ModuleResource> moduleResources(Listener listener)
-    {
-        return Modules.moduleResources(listener, this);
-    }
-
-    /**
-     * Returns a list of resources in and under this package
-     */
-    public List<ModuleResource> nestedModuleResources(Listener listener)
-    {
-        var resources = Modules.moduleResources(listener, this)
-                .stream()
-                .filter(resource -> parsePackageReference(listener, resource.javaPath().toString()).startsWith(this))
-                .collect(Collectors.toList());
-        listener.trace("Found nested resources:\n$", list(resources).join("\n"));
-        return resources;
-    }
-
-    /**
-     * The named resource in this package or null if it cannot be found
-     */
-    public List<ModuleResource> nestedModuleResources(Listener listener, Matcher<ModuleResource> matcher)
-    {
-        return Modules.nestedModuleResources(listener, this, matcher);
-    }
-
-    /**
      * Returns a type within the package
      */
     public Class<?> packageType()
@@ -394,21 +334,6 @@ public final class PackageReference extends StringPath
     public String separator()
     {
         return ".";
-    }
-
-    /**
-     * Returns a list of resources in and under this package
-     */
-    public Set<PackageReference> subPackages(Listener listener)
-    {
-        var packages = Modules.allNestedModuleResources(listener, this)
-                .stream()
-                .map(resource -> resource.packageReference().withPackageType(packageType))
-                .collect(Collectors.toSet());
-        listener.trace("Found sub-packages:\n$", list(packages).join("\n"));
-        packages.addAll(jarSubPackages(listener));
-        packages.addAll(filesystemSubPackages(listener));
-        return packages;
     }
 
     /**

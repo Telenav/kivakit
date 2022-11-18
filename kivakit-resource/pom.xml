@@ -34,6 +34,22 @@
             <version>${project.version}</version>
         </dependency>
 
+        <!-- Resource Scanning -->
+
+        <dependency>
+            <groupId>io.github.classgraph</groupId>
+            <artifactId>classgraph</artifactId>
+            <version>${utilities.classgraph.version}</version>
+        </dependency>
+
+        <!-- Guava -->
+
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>${utilities.guava.version}</version>
+        </dependency>
+
     </dependencies>
 
     <build>

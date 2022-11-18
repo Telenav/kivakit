@@ -347,34 +347,6 @@ public class File extends BaseWritableResource implements FileSystemObject
         }
     }
 
-    /**
-     * Resolves {@link ResourceIdentifier}s that are file paths into file {@link Resource}s.
-     *
-     * @author jonathanl (shibo)
-     */
-    @UmlClassDiagram(diagram = DiagramResourceService.class)
-    @CodeQuality(stability = STABLE,
-                 testing = TESTING_NOT_NEEDED,
-                 documentation = DOCUMENTATION_COMPLETE)
-    public static class FileResourceResolver implements ResourceResolver
-    {
-        @Override
-        public boolean accepts(@NotNull ResourceIdentifier identifier)
-        {
-            if (identifier.identifier().matches("^(http|https|classpath):.*"))
-            {
-                return false;
-            }
-            return fileSystem(this, parseFilePath(this, identifier.identifier())) != null;
-        }
-
-        @Override
-        public Resource resolve(@NotNull ResourceIdentifier identifier)
-        {
-            return parseFile(this, identifier.identifier());
-        }
-    }
-
     @UmlAggregation(label = "delegates to")
     private final FileService service;
 

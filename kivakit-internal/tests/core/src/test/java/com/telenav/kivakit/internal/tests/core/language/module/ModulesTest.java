@@ -29,8 +29,8 @@ import static com.telenav.kivakit.core.language.module.Modules.allNestedModuleRe
 import static com.telenav.kivakit.core.language.module.Modules.moduleResource;
 import static com.telenav.kivakit.core.language.module.Modules.moduleResources;
 import static com.telenav.kivakit.core.language.module.Modules.nestedModuleResources;
-import static com.telenav.kivakit.core.language.module.PackageReference.packageReference;
-import static com.telenav.kivakit.core.language.module.PackageReference.parsePackageReference;
+import static com.telenav.kivakit.core.language.packaging.PackageReference.packageReference;
+import static com.telenav.kivakit.core.language.packaging.PackageReference.parsePackageReference;
 
 /**
  * @author jonathanl (shibo)

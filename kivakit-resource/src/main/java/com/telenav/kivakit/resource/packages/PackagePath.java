@@ -19,7 +19,7 @@
 package com.telenav.kivakit.resource.packages;
 
 import com.telenav.kivakit.annotations.code.quality.CodeQuality;
-import com.telenav.kivakit.core.language.module.PackageReference;
+import com.telenav.kivakit.core.language.packaging.PackageReference;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.path.Path;
 import com.telenav.kivakit.core.path.StringPath;
@@ -29,25 +29,16 @@ import com.telenav.kivakit.resource.internal.lexakai.DiagramResourcePath;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import org.jetbrains.annotations.NotNull;
 
-import java.net.URL;
-import java.nio.file.Files;
-import java.security.CodeSource;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import java.util.function.Function;
-import java.util.zip.ZipEntry;
-import java.util.zip.ZipInputStream;
 
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.UNSTABLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.collections.list.StringList.stringList;
-import static com.telenav.kivakit.core.language.module.PackageReference.packageReference;
+import static com.telenav.kivakit.core.language.packaging.PackageReference.packageReference;
 import static com.telenav.kivakit.core.messaging.Listener.nullListener;
 import static com.telenav.kivakit.core.messaging.Listener.throwingListener;
-import static com.telenav.kivakit.core.string.Strip.stripEnding;
-import static com.telenav.kivakit.core.string.Strip.stripLeading;
 import static com.telenav.kivakit.resource.packages.Package.packageForPath;
 
 /**
@@ -58,24 +49,19 @@ import static com.telenav.kivakit.resource.packages.Package.packageForPath;
  * <ul>
  *     <li>{@link #isPackagePath(String)} - True if the given string can be parsed as a package path</li>
  *     <li>{@link #parsePackagePath(Listener listener, String)} - The specified package path, separated by either '/' or '.'</li>
- *     <li>{@link #parsePackagePath(Listener listener, Class, String)} - The specified package path, relative to the given class and separated by either '/' or '.'</li>
  * </ul>
  *
  * <p><b>Factories</b></p>
  *
  * <ul>
  *     <li>{@link #packagePath(StringPath)} - The specified package path</li>
- *     <li>{@link #packagePath(Class)} - The package where the given class resides</li>
  *     <li>{@link #packagePath(PackageReference)}</li>
- *     <li>{@link #packagePath(Class, StringPath)} - The specified path relative to the given class</li>
  * </ul>
  *
  * <p><b>Properties</b></p>
  *
  * <ul>
  *     <li>{@link #parent()}</li>
- *     <li>{@link #hasPackageType()}</li>
- *     <li>{@link #packageType()}</li>
  *     <li>{@link #separator()}</li>
  * </ul>
  *
@@ -91,7 +77,6 @@ import static com.telenav.kivakit.resource.packages.Package.packageForPath;
  * <ul>
  *     <li>{@link #withChild(Path)}</li>
  *     <li>{@link #withChild(String)}</li>
- *     <li>{@link #withPackageType(Class)}</li>
  *     <li>{@link #withParent(Path)}</li>
  *     <li>{@link #withParent(String)}</li>
  *     <li>{@link #withSeparator(String)}</li>
@@ -120,13 +105,13 @@ import static com.telenav.kivakit.resource.packages.Package.packageForPath;
 @SuppressWarnings({ "unused", "DuplicatedCode", "SpellCheckingInspection" })
 @UmlClassDiagram(diagram = DiagramResource.class)
 @UmlClassDiagram(diagram = DiagramResourcePath.class)
-@CodeQuality(stability = STABLE_EXTENSIBLE,
-             documentation = DOCUMENTATION_COMPLETE,
-             testing = UNTESTED)
+@CodeQuality(stability = UNSTABLE,
+             testing = UNTESTED,
+             documentation = DOCUMENTATION_COMPLETE)
 public final class PackagePath extends ResourcePath
 {
     /** The com.telenav package */
-    public static final PackagePath TELENAV = parsePackagePath(nullListener(), "com.telenav");
+    public static final PackagePath TELENAV = parsePackagePath(throwingListener(), "com.telenav");
 
     /**
      * Returns true if the given path is a valid dot-separated package path
@@ -140,67 +125,28 @@ public final class PackagePath extends ResourcePath
     }
 
     /**
-     * Returns a package path for the package that contains the given class
-     */
-    public static PackagePath packagePath(@NotNull Class<?> type,
-                                          @NotNull StringPath path)
-    {
-        return new PackagePath(type, path);
-    }
-
-    /**
-     * Returns a package path for the package that contains the given class
-     */
-    public static PackagePath packagePath(@NotNull PackageReference reference)
-    {
-        return new PackagePath(reference.packageType(), reference);
-    }
-
-    /**
      * Returns package path for the given Java path object
+     *
+     * @param path A path of strings. Note that {@link PackageReference} is a {@link StringPath}, so it can be passed
+     * for this parameter.
+     * @return The path as a {@link PackagePath}
      */
     public static PackagePath packagePath(@NotNull StringPath path)
     {
-        return new PackagePath(null, path);
-    }
-
-    /**
-     * Returns a package path for the package that contains the given class
-     */
-    public static PackagePath packagePath(@NotNull Class<?> type)
-    {
-        return packagePath(type, parseStringPath(nullListener(), type.getName(), null, "\\.").withoutLast());
+        return new PackagePath(path);
     }
 
     /**
      * Returns the package path specified by the given path. The path may be separated by either '.' or '/'.
      */
-    public static PackagePath parsePackagePath(@NotNull Listener listener,
-                                               @NotNull String path)
+    public static PackagePath parsePackagePath(@NotNull Listener listener, @NotNull String path)
     {
         return packagePath(path(path));
     }
 
-    /**
-     * Returns a package path relative to the package containing the given class
-     */
-    public static PackagePath parsePackagePath(@NotNull Listener listener,
-                                               @NotNull Class<?> type,
-                                               @NotNull String relativePath)
-    {
-        var parent = parseStringPath(listener, type.getPackageName(), "\\.");
-        var child = parsePackagePath(listener, relativePath);
-        return new PackagePath(type, parent.withChild(child));
-    }
-
-    /** A class where the package is defined */
-    private Class<?> packageType;
-
-    private PackagePath(Class<?> packageType,
-                        @NotNull Path<String> path)
+    private PackagePath(@NotNull Path<String> path)
     {
         super(stringList(), path.elements());
-        this.packageType = packageType;
     }
 
     /**
@@ -209,7 +155,6 @@ public final class PackagePath extends ResourcePath
     private PackagePath(@NotNull PackagePath that)
     {
         super(that);
-        packageType = that.packageType;
     }
 
     /**
@@ -227,44 +172,7 @@ public final class PackagePath extends ResourcePath
      */
     public PackageReference asPackageReference()
     {
-        return packageReference(packageType, this);
-    }
-
-    /**
-     * Returns a list of sub packages under this package from the directories in classpath
-     */
-    public Set<PackagePath> directorySubPackages(@NotNull Listener listener)
-    {
-        // Get the code source for the package type class,
-        var packages = new HashSet<PackagePath>();
-        CodeSource source = packageType().getProtectionDomain().getCodeSource();
-        if (source != null)
-        {
-            try
-            {
-                // and if the location URL ends in "/",
-                URL location = source.getLocation();
-                if (location != null && location.toString().endsWith("/"))
-                {
-                    var filepath = join("/") + "/";
-
-                    var directory = StringPath.stringPath(location.toURI()).withChild(filepath).asJavaPath();
-
-                    if (Files.exists(directory))
-                    {
-                        //noinspection resource
-                        Files.list(directory)
-                                .filter(Files::isDirectory)
-                                .forEach(path -> packages.add(withChild(path.getFileName().toString())));
-                    }
-                }
-            }
-            catch (Exception ignored)
-            {
-                listener.warning("Exception thrown while searching directory sub packages from $", this);
-            }
-        }
-        return packages;
+        return packageReference(this);
     }
 
     /**
@@ -277,91 +185,12 @@ public final class PackagePath extends ResourcePath
     }
 
     /**
-     * Returns returns true if this path has an associated type
-     */
-    public boolean hasPackageType()
-    {
-        return packageType != null;
-    }
-
-    /**
-     * Returns a list of sub packages under this package from the jars in classpath
-     */
-    public Set<PackagePath> jarSubPackages(@NotNull Listener listener)
-    {
-        // Get the code source for the package type class,
-        var packages = new HashSet<PackagePath>();
-        CodeSource source = packageType().getProtectionDomain().getCodeSource();
-        if (source != null)
-        {
-            try
-            {
-                // and if the location URL ends in ".jar",
-                URL location = source.getLocation();
-                if (location != null && location.toString().endsWith(".jar"))
-                {
-                    // then open the jar as a zip input stream,
-                    var urlConnection = location.openConnection();
-                    ZipInputStream zip = new ZipInputStream(urlConnection.getInputStream());
-
-                    // form a file path from the package path,
-                    var filepath = join("/") + "/";
-
-                    // and loop,
-                    while (true)
-                    {
-                        // reading the next entry,
-                        ZipEntry e = zip.getNextEntry();
-
-                        // until we are out.
-                        if (e == null)
-                        {
-                            break;
-                        }
-
-                        // Get the entry's name
-                        String name = e.getName();
-
-                        // and if it is a folder, and it starts with the file path for the package,
-                        if (name.endsWith("/") && name.startsWith(filepath))
-                        {
-                            // then strip off the leading filepath,
-                            var suffix = stripLeading(name, filepath);
-                            suffix = stripEnding(suffix, "/");
-
-                            // and if we have only a folder name left,
-                            if (!suffix.contains("/") && !suffix.isEmpty())
-                            {
-                                // then the entry is in the package, so add it to the list
-                                packages.add(withChild(suffix));
-                            }
-                        }
-                    }
-                }
-            }
-            catch (Exception ignored)
-            {
-                listener.warning("Exception thrown while searching jar sub packages from $", this);
-            }
-        }
-        return packages;
-    }
-
-    /**
      * {@inheritDoc}
      */
     @Override
     public PackagePath last(int n)
     {
         return (PackagePath) super.last(n);
-    }
-
-    /**
-     * Returns a type within the package
-     */
-    public Class<?> packageType()
-    {
-        return packageType;
     }
 
     /**
@@ -425,13 +254,6 @@ public final class PackagePath extends ResourcePath
     public PackagePath withChild(@NotNull String path)
     {
         return (PackagePath) super.withChild(path(path));
-    }
-
-    public PackagePath withPackageType(@NotNull Class<?> type)
-    {
-        var copy = (PackagePath) copy();
-        copy.packageType = type;
-        return copy;
     }
 
     /**
@@ -537,10 +359,9 @@ public final class PackagePath extends ResourcePath
      * {@inheritDoc}
      */
     @Override
-    protected PackagePath onCopy(String root,
-                                 @NotNull List<String> elements)
+    protected PackagePath onCopy(String root, @NotNull List<String> elements)
     {
-        return new PackagePath(packageType, stringPath(root, elements));
+        return new PackagePath(stringPath(root, elements));
     }
 
     @NotNull
