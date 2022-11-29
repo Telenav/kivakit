@@ -523,7 +523,7 @@
                         </executions>
                         <configuration>
                             <url>https://repo.maven.apache.org/maven2/com/telenav/lexakai/lexakai-application/${lexakai.version}/lexakai-application-${lexakai.version}.jar</url>
-                            <outputDirectory>${lexakai.downloads.folder}</outputDirectory>
+                            <outputDirectory>${documentation.lexakai.downloads.folder}</outputDirectory>
                             <overwrite>true</overwrite>
                         </configuration>
                     </plugin>
