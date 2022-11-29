@@ -119,7 +119,7 @@ public class PackageResource extends BaseReadableResource
                                                   @NotNull StringPath resourcePath)
     {
         // Search the classpath for the given package and filename
-        var found = classpath().resources(listener).findFirst(resource ->
+        var found = classpath().allResources(listener).findFirst(resource ->
                 resource.packageReference().equals(resourcePath.withoutLast())
                         && resource.fileName().name().equals(resourcePath.last()));
 

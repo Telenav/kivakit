@@ -134,7 +134,6 @@ public class Package extends BaseRepeater implements ResourceFolder<Package>
         return new Package(listener, packagePath);
     }
 
-
     /**
      * Returns the package for the given type and relative path
      *
@@ -215,9 +214,9 @@ public class Package extends BaseRepeater implements ResourceFolder<Package>
     public ObjectList<Package> folders()
     {
         var children = new ObjectList<Package>();
-        for (var folder : classpath().resourceFolders(this))
+        for (var folder : classpath().resourceFoldersIn(this, reference()))
         {
-            children.add(packageForPath(this, packagePath(folder.path())));
+            children.add(packageForPath(this, folder.packagePath()));
         }
         return children;
     }
@@ -337,7 +336,7 @@ public class Package extends BaseRepeater implements ResourceFolder<Package>
     public ResourceList resources(@NotNull Matcher<ResourcePathed> matcher)
     {
         var list = resourceList();
-        for (var resource : classpath().resources(this, packagePath.asPackageReference()).matching(matcher::matches))
+        for (var resource : classpath().resourcesIn(this, packagePath.asPackageReference()).matching(matcher::matches))
         {
             list.add(packageResource(this, packagePath(resource.packageReference()), resource.fileName()));
         }

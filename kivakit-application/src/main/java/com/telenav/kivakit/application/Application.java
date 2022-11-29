@@ -613,29 +613,6 @@ public abstract class Application extends BaseComponent implements
             // enable start-up options,
             startupOptions().forEach(StartUpOptions::enableStartupOption);
 
-            // register any object serializers,
-            onSerializationInitialize();
-
-            // initialize the application,
-            onInitialize();
-
-            // initialize this application's project
-            onProjectsInitializing();
-            onProjectsInitialize();
-            onProjectsInitialized();
-
-            // notify that we are done initializing
-            onInitialized();
-
-            // transition to running phase,
-            phase.transitionTo(RUNNING);
-
-            // notify that we are starting to run
-            onRunning();
-
-            // load deployments,
-            deployments = loadDeploymentSet(this, getClass());
-
             // then through arguments
             var argumentList = new StringList();
             for (var argument : arguments)
@@ -662,15 +639,17 @@ public abstract class Application extends BaseComponent implements
                 }
             }
 
-            // then parse the command line arguments.
+            // register any object serializers,
+            onSerializationInitialize();
+
+            // load deployments,
+            deployments = loadDeploymentSet(this, getClass());
+
+            // then parse the command line arguments,
             commandLine = new CommandLineParser(this)
                     .addSwitchParsers(internalSwitchParsers())
                     .addArgumentParsers(argumentParsers())
                     .parse(argumentList.asStringArray());
-
-            // Remove temporary logger and allow subclass to configure output streams,
-            clearListeners();
-            onConfigureListeners();
 
             // and if a deployment was specified,
             if (deploymentSpecified())
@@ -678,6 +657,27 @@ public abstract class Application extends BaseComponent implements
                 // install it in the global settings registry.
                 registerSettingsIn(get(DEPLOYMENT));
             }
+
+            // initialize the application,
+            onInitialize();
+
+            // initialize this application's project
+            onProjectsInitializing();
+            onProjectsInitialize();
+            onProjectsInitialized();
+
+            // notify that we are done initializing
+            onInitialized();
+
+            // transition to running phase,
+            phase.transitionTo(RUNNING);
+
+            // notify that we are starting to run
+            onRunning();
+
+            // Remove temporary logger and allow subclass to configure output streams,
+            clearListeners();
+            onConfigureListeners();
 
             if (!isStartupOptionEnabled(StartupOption.QUIET))
             {
@@ -891,8 +891,8 @@ public abstract class Application extends BaseComponent implements
     protected void onRegisterObjectSerializers()
     {
         var serializers = new ObjectSerializerRegistry();
-        tryCatch(() -> serializers.add(Extension.JSON, new GsonObjectSerializer()));
-        tryCatch(() -> serializers.add(Extension.PROPERTIES, new PropertiesObjectSerializer()));
+        tryCatch(() -> serializers.add(Extension.JSON, listenTo(new GsonObjectSerializer())));
+        tryCatch(() -> serializers.add(Extension.PROPERTIES, listenTo(new PropertiesObjectSerializer())));
         register(serializers);
     }
 

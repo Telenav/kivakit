@@ -4,7 +4,6 @@ import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramModule;
 import com.telenav.kivakit.core.language.packaging.PackageReference;
 import com.telenav.kivakit.core.messaging.Listener;
-import com.telenav.kivakit.core.os.Console;
 import com.telenav.kivakit.core.string.FormatProperty;
 import com.telenav.kivakit.core.string.ObjectFormatter;
 import com.telenav.kivakit.core.time.Time;
@@ -26,8 +25,6 @@ import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.language.Try.tryCatch;
 import static com.telenav.kivakit.core.language.packaging.PackageReference.parsePackageReference;
 import static com.telenav.kivakit.core.messaging.Listener.throwingListener;
-import static com.telenav.kivakit.core.string.Paths.pathHead;
-import static com.telenav.kivakit.core.string.Paths.pathOptionalHead;
 import static com.telenav.kivakit.core.string.Paths.pathWithoutOptionalSuffix;
 import static com.telenav.kivakit.core.time.Time.epochMilliseconds;
 import static com.telenav.kivakit.core.value.count.Bytes.bytes;
@@ -51,7 +48,8 @@ import static java.nio.file.Files.readAttributes;
  * @see Classpath
  * @see ClasspathResourceFolder
  */
-@SuppressWarnings("unused") @UmlClassDiagram(diagram = DiagramModule.class)
+@SuppressWarnings({ "unused", "UnusedReturnValue" })
+@UmlClassDiagram(diagram = DiagramModule.class)
 @CodeQuality(stability = UNSTABLE,
              testing = UNTESTED,
              documentation = DOCUMENTATION_COMPLETE)

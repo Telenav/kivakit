@@ -3,6 +3,7 @@ package com.telenav.kivakit.resource.packages;
 import com.google.common.reflect.ClassPath;
 import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.collections.list.ObjectList;
+import com.telenav.kivakit.core.collections.set.ObjectSet;
 import com.telenav.kivakit.core.language.packaging.PackageReference;
 import com.telenav.kivakit.core.logging.Logger;
 import com.telenav.kivakit.core.messaging.Listener;
@@ -14,6 +15,7 @@ import static com.telenav.kivakit.annotations.code.quality.Stability.UNSTABLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.logging.LoggerFactory.newLogger;
 import static com.telenav.kivakit.core.object.Lazy.lazy;
+import static com.telenav.kivakit.core.os.Console.console;
 import static com.telenav.kivakit.core.vm.JavaVirtualMachine.javaVirtualMachine;
 import static com.telenav.kivakit.resource.packages.ClasspathResource.classpathResource;
 import static com.telenav.kivakit.resource.packages.ClasspathResourceFolder.classpathResourceFolder;
@@ -26,14 +28,14 @@ import static java.util.regex.Pattern.compile;
  * <p><b>Resource Folders</b></p>
  *
  * <ul>
- *     <li>{@link #resourceFolders(Listener)} - All resource folders on the classpath</li>
+ *     <li>{@link #allResourceFolders(Listener)} - All resource folders on the classpath</li>
  * </ul>
  *
  * <p><b>Resources</b></p>
  *
  * <ul>
- *     <li>{@link #resources(Listener)} - All resources on the classpath</li>
- *     <li>{@link #resources(Listener, PackageReference)} - All resources in the given package</li>
+ *     <li>{@link #allResources(Listener)} - All resources on the classpath</li>
+ *     <li>{@link #resourcesIn(Listener, PackageReference)} - All resources in the given package</li>
  *     <li>{@link #nestedResources(Listener, PackageReference)} - All resources under the given package</li>
  * </ul>
  *
@@ -61,12 +63,39 @@ public class Classpath
     }
 
     /** All resource folders on the classpath */
-    private final ObjectList<ClasspathResourceFolder> resourceFolders = new ObjectList<>();
+    private final ObjectSet<ClasspathResourceFolder> resourceFolders = new ObjectSet<>();
 
     /** All resources on the classpath */
     private final ObjectList<ClasspathResource> resources = new ObjectList<>();
 
     private boolean scanned;
+
+    /**
+     * Returns all resource folders on the classpath
+     */
+    public ObjectList<ClasspathResourceFolder> allResourceFolders(Listener listener)
+    {
+        scan(listener);
+        return resourceFolders.asList();
+    }
+
+    /**
+     * Returns the set of all non-class resources on the class path, as supplied by Guava's {@link ClassPath} facility.
+     */
+    public ObjectList<ClasspathResource> allResources(Listener listener)
+    {
+        scan(listener);
+        return resources;
+    }
+
+    /**
+     * Returns all resource folders on the classpath
+     */
+    public ObjectList<ClasspathResourceFolder> nestedResourceFolders(Listener listener, PackageReference under)
+    {
+        scan(listener);
+        return resourceFolders.asList().matching(folder -> folder.packageReference().startsWith(under));
+    }
 
     /**
      * Returns the resources under the given package reference
@@ -76,16 +105,7 @@ public class Classpath
      */
     public ObjectList<ClasspathResource> nestedResources(Listener listener, PackageReference under)
     {
-        return resources(listener).matching(resource -> resource.packageReference().startsWith(under));
-    }
-
-    /**
-     * Returns all resource folders on the classpath
-     */
-    public ObjectList<ClasspathResourceFolder> resourceFolders(Listener listener)
-    {
-        scan(listener);
-        return resourceFolders;
+        return allResources(listener).matching(resource -> resource.packageReference().startsWith(under));
     }
 
     /**
@@ -94,18 +114,21 @@ public class Classpath
      * @param in The package
      * @return The list of resources
      */
-    public ObjectList<ClasspathResource> resources(Listener listener, PackageReference in)
+    public ObjectList<ClasspathResourceFolder> resourceFoldersIn(Listener listener, PackageReference in)
     {
-        return resources(listener).matching(resource -> resource.packageReference().equals(in));
+        return allResourceFolders(listener).matching(resource -> resource.packageReference().startsWith(in)
+                && resource.packageReference().size() == in.size() + 1);
     }
 
     /**
-     * Returns the set of all non-class resources on the class path, as supplied by Guava's {@link ClassPath} facility.
+     * Returns a list of all resources in the given package
+     *
+     * @param in The package
+     * @return The list of resources
      */
-    public ObjectList<ClasspathResource> resources(Listener listener)
+    public ObjectList<ClasspathResource> resourcesIn(Listener listener, PackageReference in)
     {
-        scan(listener);
-        return resources;
+        return allResources(listener).matching(resource -> resource.packageReference().equals(in));
     }
 
     private synchronized void scan(Listener listener)

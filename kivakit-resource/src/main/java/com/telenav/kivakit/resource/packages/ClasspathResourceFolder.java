@@ -2,8 +2,8 @@ package com.telenav.kivakit.resource.packages;
 
 import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.collections.list.ObjectList;
+import com.telenav.kivakit.core.language.packaging.PackageReference;
 import com.telenav.kivakit.core.messaging.Listener;
-import com.telenav.kivakit.core.path.StringPath;
 import com.telenav.kivakit.filesystem.Folder;
 import io.github.classgraph.Resource;
 
@@ -18,6 +18,7 @@ import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMEN
 import static com.telenav.kivakit.annotations.code.quality.Stability.UNSTABLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.collections.list.ObjectList.list;
+import static com.telenav.kivakit.core.language.Hash.hashMany;
 import static com.telenav.kivakit.core.path.StringPath.parseStringPath;
 
 /**
@@ -32,13 +33,7 @@ import static com.telenav.kivakit.core.path.StringPath.parseStringPath;
 public class ClasspathResourceFolder
 {
     /** Map from classpath element URI to {@link ClasspathResourceFolder} */
-    private static final Map<URI, ClasspathResourceFolder> folders = new HashMap<>();
-
-    /** A list of the resources in this folder */
-    private final ObjectList<ClasspathResource> resources = list();
-
-    /** The filesystem where the folder exists */
-    private FileSystem filesystem;
+    private static final Map<String, ClasspathResourceFolder> folders = new HashMap<>();
 
     /**
      * Returns a {@link ClasspathResourceFolder} for the given URI, or null if the URI does not represent a JAR or
@@ -59,12 +54,14 @@ public class ClasspathResourceFolder
             var path = parseStringPath(listener, resource.getPath(), "/");
 
             // and return the corresponding folder.
-            var folder = folders.get(uri);
+            var packagePath = PackagePath.packagePath(path.withoutLast());
+            var key = uri + "::" + packagePath;
+            var folder = folders.get(key);
             if (folder == null)
             {
                 folder = new ClasspathResourceFolder();
-                folder.uri = uri;
-                folder.path = path;
+                folder.classpathRoot = uri;
+                folder.packagePath = packagePath;
                 if (uri.getPath().endsWith(".jar"))
                 {
                     uri = URI.create("jar:" + uri);
@@ -77,7 +74,7 @@ public class ClasspathResourceFolder
                         folder.filesystem = FileSystems.getFileSystem(uri);
                     }
                 }
-                folders.put(uri, folder);
+                folders.put(key, folder);
             }
             return folder;
         }
@@ -88,18 +85,57 @@ public class ClasspathResourceFolder
         return null;
     }
 
-    private URI uri;
+    /** A list of the resources in this folder */
+    private final ObjectList<ClasspathResource> resources = list();
 
-    private StringPath path;
+    /** The filesystem where the folder exists */
+    private FileSystem filesystem;
 
-    public StringPath path()
+    /** The URI to the classpath root */
+    private URI classpathRoot;
+
+    /** The package path within the classpath root */
+    private PackagePath packagePath;
+
+    /**
+     * Returns the URI of the classpath root containing the given package
+     */
+    public URI classpathRoot()
     {
-        return path;
+        return classpathRoot;
     }
 
-    public URI uri()
+    @Override
+    public boolean equals(final Object object)
     {
-        return uri;
+        if (object instanceof ClasspathResourceFolder that)
+        {
+            return classpathRoot.equals(that.classpathRoot)
+                    && packagePath.equals(that.packagePath);
+        }
+        return false;
+    }
+
+    @Override
+    public int hashCode()
+    {
+        return hashMany(classpathRoot, packagePath);
+    }
+
+    /**
+     * Returns the package path to this folder within the classpath root
+     */
+    public PackagePath packagePath()
+    {
+        return packagePath;
+    }
+
+    /**
+     * Returns this classpath folder as a package reference
+     */
+    public PackageReference packageReference()
+    {
+        return PackageReference.packageReference(packagePath());
     }
 
     /**

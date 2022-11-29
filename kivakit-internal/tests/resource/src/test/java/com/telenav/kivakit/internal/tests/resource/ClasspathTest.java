@@ -21,7 +21,7 @@ public class ClasspathTest extends UnitTest implements
     public void test()
     {
         var expected = set("ResourceTest.properties", "a.txt", "b.txt");
-        var resources = classpath().resources(this, packageForThis().reference());
+        var resources = classpath().resourcesIn(this, packageForThis().reference());
         ensureEqual(expected.size(), resources.size());
         for (var at : expected)
         {
