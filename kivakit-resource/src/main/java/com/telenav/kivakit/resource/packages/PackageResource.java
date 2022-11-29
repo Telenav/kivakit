@@ -129,7 +129,7 @@ public class PackageResource extends BaseReadableResource
             return new PackageResource(listener, found);
         }
 
-        listener.problem("Could not find: $.$", resourcePath);
+        listener.problem("Could not find: $", resourcePath);
         return null;
     }
 

@@ -57,13 +57,19 @@ public interface PackageTrait extends Repeater
     }
 
     /**
-     * Returns the resource at the given path relative to the given type
+     * Returns the resource at the given path relative to this class' package.
      *
-     * @param relativePath The relative path
+     * @param relativePath The slash-separated resource path
      */
     default PackageResource packageResource(@NotNull String relativePath)
     {
-        var path = parseStringPath(this, relativePath, "\\.");
-        return path == null ? null : PackageResource.packageResource(this, path);
+        // Get absolute pathname to the given resource,
+        var absolutePath = getClass().getPackageName().replaceAll("\\.", "/") + "/" + relativePath;
+
+        // parse it into a string path,
+        var parsed = parseStringPath(this, absolutePath, "\\/");
+
+        // and return any PackageResource for the path, or null if none is found.
+        return parsed == null ? null : PackageResource.packageResource(this, parsed);
     }
 }
