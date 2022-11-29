@@ -112,8 +112,6 @@ public class ResourcePath extends StringPath implements
             schemes.add("file");
         }
 
-        path = path.replaceFirst("/+", "/");
-
         var root = (String) null;
         if (path.startsWith("/"))
         {
@@ -121,7 +119,12 @@ public class ResourcePath extends StringPath implements
             path = path.substring(1);
         }
 
-        return new ResourcePath(schemes, root, split(path, "/"));
+        var elements = split(path, "/");
+        if (elements.isBlank())
+        {
+            elements = stringList();
+        }
+        return new ResourcePath(schemes, root, elements);
     }
 
     /**

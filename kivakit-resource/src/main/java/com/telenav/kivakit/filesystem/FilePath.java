@@ -48,6 +48,7 @@ import static com.telenav.kivakit.core.messaging.Listener.nullListener;
 import static com.telenav.kivakit.core.messaging.Listener.throwingListener;
 import static com.telenav.kivakit.core.os.OperatingSystem.operatingSystem;
 import static com.telenav.kivakit.core.string.Formatter.format;
+import static com.telenav.kivakit.core.string.Paths.pathTail;
 import static com.telenav.kivakit.core.string.Strings.isNullOrBlank;
 import static com.telenav.kivakit.core.string.Strip.stripLeading;
 import static com.telenav.kivakit.core.string.Strip.stripTrailing;
@@ -158,6 +159,8 @@ import static com.telenav.kivakit.filesystem.Folders.currentFolder;
              documentation = DOCUMENTATION_COMPLETE)
 public class FilePath extends ResourcePath
 {
+    private static final Pattern SCHEME_PATTERN = Pattern.compile("([A-Za-z]+):");
+
     /**
      * Returns file path for the given URI
      */
@@ -254,14 +257,29 @@ public class FilePath extends ResourcePath
 
         path = format(path, arguments);
 
+        var schemes = stringList();
+
+        var matcher = SCHEME_PATTERN.matcher(path);
+        while (matcher.find())
+        {
+            schemes.add(matcher.group(1));
+            path = pathTail(path, ":");
+        }
+
         String root = null;
         if (path.startsWith("/"))
         {
             root = "/";
             path = path.substring(1);
         }
+
         var elements = split(path, "/");
+        if (elements.isBlank())
+        {
+            elements = stringList();
+        }
         return filePath(stringPath(elements))
+                .withSchemes(schemes)
                 .withRoot(root)
                 .withoutFileScheme();
     }

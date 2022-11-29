@@ -1069,7 +1069,7 @@ public class Folder extends BaseRepeater implements
     @Override
     public Folder parent()
     {
-        return new Folder(path().asAbsolute().parent());
+        return new Folder(path().withoutLast());
     }
 
     /**

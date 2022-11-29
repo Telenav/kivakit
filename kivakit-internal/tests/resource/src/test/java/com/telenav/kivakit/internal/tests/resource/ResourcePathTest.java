@@ -25,6 +25,8 @@ import org.junit.Test;
 
 import java.io.File;
 
+import static com.telenav.kivakit.resource.ResourcePath.parseResourcePath;
+
 public class ResourcePathTest extends UnitTest
 {
     @Test
@@ -105,12 +107,12 @@ public class ResourcePathTest extends UnitTest
     {
         if (isWindows())
         {
-            var path = ResourcePath.parseResourcePath(this, "c:\\");
+            var path = parseResourcePath(this, "c:\\");
             ensure(path.isRoot());
         }
         else
         {
-            var path = ResourcePath.parseResourcePath(this, "/");
+            var path = parseResourcePath(this, "/");
             ensure(path.isRoot());
         }
     }
@@ -167,6 +169,6 @@ public class ResourcePathTest extends UnitTest
     @NotNull
     private ResourcePath path(String path)
     {
-        return ResourcePath.parseResourcePath(this, path);
+        return parseResourcePath(this, path);
     }
 }

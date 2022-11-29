@@ -44,6 +44,7 @@ import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMEN
 import static com.telenav.kivakit.annotations.code.quality.Stability.UNSTABLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.time.Time.now;
+import static com.telenav.kivakit.resource.ResourcePath.parseResourcePath;
 import static com.telenav.kivakit.resource.packages.Classpath.classpath;
 
 /**
@@ -231,6 +232,24 @@ public class PackageResource extends BaseReadableResource
     public PackagePath packagePath()
     {
         return PackagePath.packagePath(resource.packageReference());
+    }
+
+    /**
+     * Returns the path to this resource from the classpath root (not including a parent JAR file or
+     * filesystem folder).
+     */
+    public ResourcePath classpathPath()
+    {
+        return parseResourcePath(this, resource.packageReference().asSlashSeparated()
+                + "/" + resource.fileName());
+    }
+
+    /**
+     * Returns the package reference to the package containing this resource
+     */
+    public PackageReference packageReference()
+    {
+        return resource.packageReference();
     }
 
     /**

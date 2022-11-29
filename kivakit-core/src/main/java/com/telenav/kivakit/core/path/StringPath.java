@@ -336,6 +336,21 @@ public class StringPath extends Path<String>
     }
 
     /**
+     * Returns true if all elements in this string path are blank
+     */
+    public boolean isBlank()
+    {
+        for (var at : this)
+        {
+            if (!at.isBlank())
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    /**
      * Returns this path joined by the given separator
      */
     public final String join(String separator)

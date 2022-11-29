@@ -165,6 +165,14 @@ public final class PackageReference extends StringPath
     }
 
     /**
+     * Returns this package reference, slash-separated
+     */
+    public String asSlashSeparated()
+    {
+        return join("/");
+    }
+
+    /**
      * Returns true if the given resource is in this package
      */
     public boolean contains(PackageReference that)

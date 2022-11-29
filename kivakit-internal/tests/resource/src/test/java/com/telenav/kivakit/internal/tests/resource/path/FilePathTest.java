@@ -18,17 +18,19 @@
 
 package com.telenav.kivakit.internal.tests.resource.path;
 
-import com.telenav.kivakit.core.collections.list.StringList;
 import com.telenav.kivakit.core.os.OperatingSystem;
-import com.telenav.kivakit.testing.UnitTest;
 import com.telenav.kivakit.filesystem.FilePath;
 import com.telenav.kivakit.filesystem.Folder;
 import com.telenav.kivakit.resource.ResourcePath;
+import com.telenav.kivakit.testing.UnitTest;
 import org.jetbrains.annotations.NotNull;
 import org.junit.Test;
 
 import java.io.File;
 import java.util.Objects;
+
+import static com.telenav.kivakit.core.collections.list.StringList.stringList;
+import static com.telenav.kivakit.filesystem.FilePath.parseFilePath;
 
 public class FilePathTest extends UnitTest
 {
@@ -48,11 +50,11 @@ public class FilePathTest extends UnitTest
     @SuppressWarnings("SpellCheckingInspection")
     public void testFilePath()
     {
-        ensureEqual(FilePath.parseFilePath(this, "TestFile1.txt").asAbsolute(), FilePath.parseFilePath(this, "TestFile1.txt").asAbsolute());
+        ensureEqual(parseFilePath(this, "TestFile1.txt").asAbsolute(), parseFilePath(this, "TestFile1.txt").asAbsolute());
 
-        var filePath1 = FilePath.parseFilePath(this, "TestFile1.txt");
-        var filePath1a = FilePath.parseFilePath(this, "TestFile1.txt");
-        var filePath2 = FilePath.parseFilePath(this, "TestFile2.txt");
+        var filePath1 = parseFilePath(this, "TestFile1.txt");
+        var filePath1a = parseFilePath(this, "TestFile1.txt");
+        var filePath2 = parseFilePath(this, "TestFile2.txt");
         var directoryName = "newdirectory";
         var fileName = "TestFile3.txt";
 
@@ -60,10 +62,10 @@ public class FilePathTest extends UnitTest
         ensure(filePath1.equals(filePath1a));
         ensureFalse(filePath1.equals(filePath2));
 
-        var filePath3 = FilePath.parseFilePath(this, directoryName).withChild(fileName);
+        var filePath3 = parseFilePath(this, directoryName).withChild(fileName);
         ensureEqual(filePath3.toString(), directoryName + filePath1.separator() + fileName);
 
-        ensure(FilePath.parseFilePath(this, fileName).asAbsolute().toString().endsWith(FilePath.parseFilePath(this, fileName).separator() + fileName));
+        ensure(parseFilePath(this, fileName).asAbsolute().toString().endsWith(parseFilePath(this, fileName).separator() + fileName));
     }
 
     @Test
@@ -98,29 +100,29 @@ public class FilePathTest extends UnitTest
         if (OperatingSystem.operatingSystem().isWindows())
         {
             var rawPath = "C:\\this\\is\\a\\test\\path";
-            var path = FilePath.parseFilePath(this, rawPath);
+            var path = parseFilePath(this, rawPath);
             ensureEqual(rawPath, path.join());
 
             var rawPathWithTrailingBackslash = "C:\\this\\is\\a\\test\\path\\";
-            path = FilePath.parseFilePath(this, rawPathWithTrailingBackslash);
+            path = parseFilePath(this, rawPathWithTrailingBackslash);
             ensureEqual(rawPath, path.join());
 
             rawPath = "C:";
-            path = FilePath.parseFilePath(this, rawPath);
+            path = parseFilePath(this, rawPath);
             ensureEqual(rawPath, path.join());
         }
         else
         {
             var rawPath = "/this/is/a/test/path";
-            var path = FilePath.parseFilePath(this, rawPath);
+            var path = parseFilePath(this, rawPath);
             ensureEqual(path.join(), rawPath);
 
             var rawPathWithTrailingBackslash = "/this/is/a/test/path/";
-            path = FilePath.parseFilePath(this, rawPathWithTrailingBackslash);
-            ensureEqual(rawPath, path.join());
+            path = parseFilePath(this, rawPathWithTrailingBackslash);
+            ensureEqual(rawPathWithTrailingBackslash, path.join());
 
             rawPath = "/";
-            path = FilePath.parseFilePath(this, rawPath);
+            path = parseFilePath(this, rawPath);
             ensureEqual(rawPath, path.join());
         }
     }
@@ -174,7 +176,7 @@ public class FilePathTest extends UnitTest
         if (OperatingSystem.operatingSystem().isWindows())
         {
             var rawPath = "C:\\this\\is\\a\\test\\path";
-            var path = FilePath.parseFilePath(this, rawPath);
+            var path = parseFilePath(this, rawPath);
             var root = Objects.requireNonNull(Folder.parseFolder(this, "C:\\")).path().asAbsolute();
             var root2 = path.root().asAbsolute();
             ensureEqual(root, root2);
@@ -182,7 +184,7 @@ public class FilePathTest extends UnitTest
         else
         {
             var rawPath = "/this/is/a/test/path";
-            var path = FilePath.parseFilePath(this, rawPath);
+            var path = parseFilePath(this, rawPath);
             ensureEqual("/", path.root().toString());
         }
     }
@@ -190,8 +192,8 @@ public class FilePathTest extends UnitTest
     @Test
     public void testScheme()
     {
-        var path = FilePath.parseFilePath(this, "hdfs://192.168.0.1/user/jonathanl/test.txt");
-        ensureEqual(path.schemes(), StringList.stringList("hdfs"));
+        var path = parseFilePath(this, "hdfs://192.168.0.1/user/jonathanl/test.txt");
+        ensureEqual(path.schemes(), stringList("hdfs"));
     }
 
     @Test
@@ -246,6 +248,6 @@ public class FilePathTest extends UnitTest
     @NotNull
     private FilePath path(String path)
     {
-        return FilePath.parseFilePath(this, path);
+        return parseFilePath(this, path);
     }
 }

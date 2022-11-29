@@ -40,7 +40,7 @@ public class PackageResourceTest extends UnitTest implements PackageTrait
     @Test
     public void testPath()
     {
-        var fullPath = a().path();
+        var fullPath = a().classpathPath();
         ensureEqual(fullPath.join("/"), "com/telenav/kivakit/internal/tests/resource/a.txt");
     }
 
