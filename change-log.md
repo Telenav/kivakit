@@ -2,6 +2,17 @@
 
 -----------------------------------------------------------------------------------------------------------------------
 
+## Version 1.8.6 (2022.11.29) "happy duckling"
+
+### Build
+
+ - Removed modularity
+ - Replaced module resource handling with ClassGraph
+ - Fix javadoc output
+ - Add CodeFlowers generation
+
+-----------------------------------------------------------------------------------------------------------------------
+
 ## Version 1.8.5 (2022.11.13) "happy rabbit"
 
 ### Build
