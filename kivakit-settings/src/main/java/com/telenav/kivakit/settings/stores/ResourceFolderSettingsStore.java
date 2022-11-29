@@ -121,7 +121,7 @@ public class ResourceFolderSettingsStore extends BaseResourceSettingsStore
             return emptySet();
         }
 
-        // Go through files in the folder
+        // Go through resources in the folder
         for (var resource : folder.resources())
         {
             // get any serializer for the file extension,

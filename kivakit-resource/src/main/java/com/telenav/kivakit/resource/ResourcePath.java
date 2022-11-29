@@ -41,6 +41,7 @@ import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTE
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.commandline.SwitchParser.switchParser;
 import static com.telenav.kivakit.core.collections.list.StringList.split;
+import static com.telenav.kivakit.core.collections.list.StringList.stringList;
 import static com.telenav.kivakit.core.messaging.Listener.consoleListener;
 import static com.telenav.kivakit.core.string.Strip.stripLeading;
 import static com.telenav.kivakit.filesystem.File.parseFile;
@@ -94,6 +95,36 @@ public class ResourcePath extends StringPath implements
                                                  @NotNull String path)
     {
         return parseFilePath(listener, path);
+    }
+
+    /**
+     * Returns a resource path for the given URI
+     */
+    public static ResourcePath parseResourcePath(@NotNull Listener listener,
+                                                 @NotNull URI uri)
+    {
+        var schemes = stringList();
+        schemes.add(uri.getScheme());
+        var path = uri.getSchemeSpecificPart();
+        if (path.startsWith("file:"))
+        {
+            path = stripLeading(path, "file:");
+            schemes.add("file");
+        }
+
+        var root = (String) null;
+        if (path.startsWith("/"))
+        {
+            root = "/";
+            path = path.substring(1);
+        }
+
+        var elements = split(path, "/");
+        if (elements.isBlank())
+        {
+            elements = stringList();
+        }
+        return new ResourcePath(schemes, root, elements);
     }
 
     /**
@@ -404,7 +435,7 @@ public class ResourcePath extends StringPath implements
      * {@inheritDoc}
      */
     @Override
-    public ResourcePath withRoot(@NotNull String root)
+    public ResourcePath withRoot(String root)
     {
         return (ResourcePath) super.withRoot(root);
     }

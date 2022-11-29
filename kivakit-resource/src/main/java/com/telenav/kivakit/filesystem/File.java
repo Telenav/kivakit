@@ -25,6 +25,7 @@ import com.telenav.kivakit.core.collections.set.ObjectSet;
 import com.telenav.kivakit.core.ensure.Ensure;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.progress.ProgressReporter;
+import com.telenav.kivakit.core.string.Escape;
 import com.telenav.kivakit.core.string.Paths;
 import com.telenav.kivakit.core.string.Strip;
 import com.telenav.kivakit.core.time.Duration;
@@ -62,6 +63,7 @@ import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_N
 import static com.telenav.kivakit.core.collections.set.ObjectSet.set;
 import static com.telenav.kivakit.core.ensure.Ensure.ensure;
 import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
+import static com.telenav.kivakit.core.string.Escape.escapeUri;
 import static com.telenav.kivakit.core.string.Paths.pathHead;
 import static com.telenav.kivakit.filesystem.FilePath.parseFilePath;
 import static com.telenav.kivakit.filesystem.Folders.kivakitTemporaryFolder;
@@ -246,12 +248,10 @@ public class File extends BaseWritableResource implements FileSystemObject
             listener.problem("URI path component is empty");
             return null;
         }
-        path = path.replaceFirst("^/", "");
 
-        var filesystem = fileSystem(listener, parseFilePath(listener, path));
-
-        var service = ensureNotNull(filesystem)
-                .fileService(parseFilePath(listener, path));
+        var filepath = parseFilePath(listener, path);
+        var filesystem = fileSystem(listener, filepath);
+        var service = ensureNotNull(filesystem).fileService(filepath);
 
         return new File(service);
     }
@@ -344,34 +344,6 @@ public class File extends BaseWritableResource implements FileSystemObject
         public Converter(@NotNull Listener listener)
         {
             super(listener, File::parseFile);
-        }
-    }
-
-    /**
-     * Resolves {@link ResourceIdentifier}s that are file paths into file {@link Resource}s.
-     *
-     * @author jonathanl (shibo)
-     */
-    @UmlClassDiagram(diagram = DiagramResourceService.class)
-    @CodeQuality(stability = STABLE,
-                 testing = TESTING_NOT_NEEDED,
-                 documentation = DOCUMENTATION_COMPLETE)
-    public static class FileResourceResolver implements ResourceResolver
-    {
-        @Override
-        public boolean accepts(@NotNull ResourceIdentifier identifier)
-        {
-            if (identifier.identifier().matches("^(http|https|classpath):.*"))
-            {
-                return false;
-            }
-            return fileSystem(this, parseFilePath(this, identifier.identifier())) != null;
-        }
-
-        @Override
-        public Resource resolve(@NotNull ResourceIdentifier identifier)
-        {
-            return parseFile(this, identifier.identifier());
         }
     }
 

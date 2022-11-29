@@ -170,10 +170,10 @@ public class DeploymentSet extends BaseRepeater implements RegistryTrait
             String description = description(child.resource("Deployment.metadata"));
 
             // create a deployment,
-            var deployment = new Deployment(this, child.path().last(), description);
+            var deployment = listenTo(new Deployment(this, child.path().last(), description));
 
             // and add the configuration information from the sub-folder,
-            deployment.indexAll(new ResourceFolderSettingsStore(this, child));
+            deployment.indexAll(listenTo(new ResourceFolderSettingsStore(this, child)));
 
             // add it to this set of deployments.
             deployments.add(deployment);

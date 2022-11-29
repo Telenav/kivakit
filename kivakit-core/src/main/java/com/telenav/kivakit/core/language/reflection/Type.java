@@ -25,7 +25,7 @@ import com.telenav.kivakit.core.collections.map.VariableMap;
 import com.telenav.kivakit.core.collections.set.ObjectSet;
 import com.telenav.kivakit.core.internal.lexakai.DiagramReflection;
 import com.telenav.kivakit.core.language.Classes;
-import com.telenav.kivakit.core.language.module.PackageReference;
+import com.telenav.kivakit.core.language.packaging.PackageReference;
 import com.telenav.kivakit.core.language.reflection.accessors.FieldGetter;
 import com.telenav.kivakit.core.language.reflection.accessors.FieldSetter;
 import com.telenav.kivakit.core.language.reflection.accessors.MethodGetter;

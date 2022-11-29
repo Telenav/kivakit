@@ -84,7 +84,7 @@ public class GsonObjectSerializer implements
     @Override
     public <T> SerializableObject<T> readObject(@NotNull InputStream input,
                                                 @NotNull StringPath path,
-                                                @NotNull Class<T> typeToRead,
+                                                Class<T> typeToRead,
                                                 ObjectMetadata @NotNull ... metadata)
     {
         return tryCatchThrow(() ->

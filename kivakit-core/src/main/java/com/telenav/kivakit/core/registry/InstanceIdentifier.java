@@ -87,6 +87,10 @@ public class InstanceIdentifier
      */
     public static InstanceIdentifier instanceIdentifierForEnumName(Listener listener, String enumValueName)
     {
+        if (enumValueName.equals(singletonInstanceIdentifier().name()))
+        {
+            return singletonInstanceIdentifier();
+        }
         var identifier = instanceIdentifierForEnumName.get(enumValueName);
         if (identifier == null)
         {

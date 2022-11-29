@@ -212,40 +212,51 @@ A application lifecycle follows this sequence.
 
 <img src="https://telenav.github.io/telenav-assets/images/diagrams/application-lifecycle@2x.png"/>
 
-#### CONSTRUCTION
+#### CONSTRUCTING
 
-1. The method `main(String[] arguments)` creates the `Application` subclass
-2. The application enters the `CONSTRUCTING` phase. After construction, the `run(String[])` method is called to execute the application
+1. The method `main(String[] arguments)` is called
+2. The application enters the `CONSTRUCTING` phase
+3. The application is constructed
+4. The `run(String[])` method is called to execute the application
 
-#### INITIALIZATION
+#### INITIALIZING
 
-1. The application enters the INITIALIZING phase
+1. The application enters the `INITIALIZING` phase
 2. `onInitializing()` is called 
 3. `startupOptions()` is called and the set of `StartupOptions` returned is enabled
 4. `onSerializationInitialize()` is called to allow registration of serializers
-3. `onInitialize()` is called to initialize the application
-4. Projects are initialized by calling `onProjectsInitializing()` 
-4. 
-5. 
-5. `onRunning()` is called to indicate that running is about to start
-6. `onProjectsInitializing()` is called before the `Project` before the application is initialized
-7. `Project.initialize()` is called. Projects form a dependency tree, and are initialized to allow required projects to do things like registering serializers, loading resources, or initializing other projects before the application runs.
-8. `onProjectsInitialized()` is called
-9. Any `Deployment` configurations are loaded
-10. The `argumentParsers()` and `switchParsers` methods are called to retrieve argument and switch parsers
-11. The command line arguments passed to `main()` are parsed into a `CommandLine`
-12. Switches are validated, including the built-in `-deployment` and `-quiet` switches
-13. The method `onConfigureListeners()` is called. If this method is not overridden, and the `-quiet` switch was set to true, a filter is installed on the logger which accepts only messages with the severity of `Glitch` or higher.
-14. If a `-deployment` was specified, it is loaded and registered with the global settings registry
-15. If `-quiet` is not enabled, startup information is displayed
-16. The application transitions to the `RUNNING` state
-17. `onRun()` is called to execute the application
-18. The application transitions to the `STOPPING` state
-19. All logs are flushed
-20. Failure message counts for each logger are displayed (how many glitches, warnings, problems, etc.)
-21. `onRan()` is called
-22. The application transitions to the `STOPPED` state
-23. The application exits. If no exception was thrown and exit wasn't called, it exits with status code 0 (no error), otherwise it exits with a non-zero status code.
+5. Any `Deployment` configurations are loaded from the `deployments` package
+6. The command line arguments passed to `main()` are parsed into a `CommandLine` using
+   switch and argument parsers returned by `switchParsers()` and `argumentParsers()`
+7. If a `-deployment` was specified, it is loaded and registered with the global settings registry
+8. `onInitialize()` is called to initialize the application
+9. `onProjectsInitializing()` is called to notify that projects will be initializing
+10. `onProjectsInitialize` is called
+11. The default implementation of `onProjectsInitialize()` initializes projects
+12. `onProjectsInitialized()` is called
+13. `onInitialized()` is called to notify that initialization is complete
+
+#### RUNNING
+
+1. The application enters the `RUNNING` phase
+2. `onRunning()` is called to notify that the application is about to run
+
+#### READY
+
+1. The application enters the `READY` phase
+2. `onRun()` is called to run the application
+
+#### STOPPING
+
+1. The application enters the `STOPPING` phase
+2. All logs are flushed
+3. Message statistics are displayed (how many glitches, warnings, problems, etc.)
+4. `onRan()` is called
+
+#### STOPPED
+
+1. The application transitions to the `STOPPED` state
+2. The application exits. If no exception was thrown and exit wasn't called, it exits with status code 0 (no error), otherwise it exits with a non-zero status code.
 
 [//]: # (end-user-text)
 

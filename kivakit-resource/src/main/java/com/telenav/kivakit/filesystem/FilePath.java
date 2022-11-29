@@ -48,6 +48,7 @@ import static com.telenav.kivakit.core.messaging.Listener.nullListener;
 import static com.telenav.kivakit.core.messaging.Listener.throwingListener;
 import static com.telenav.kivakit.core.os.OperatingSystem.operatingSystem;
 import static com.telenav.kivakit.core.string.Formatter.format;
+import static com.telenav.kivakit.core.string.Paths.pathTail;
 import static com.telenav.kivakit.core.string.Strings.isNullOrBlank;
 import static com.telenav.kivakit.core.string.Strip.stripLeading;
 import static com.telenav.kivakit.core.string.Strip.stripTrailing;
@@ -158,6 +159,8 @@ import static com.telenav.kivakit.filesystem.Folders.currentFolder;
              documentation = DOCUMENTATION_COMPLETE)
 public class FilePath extends ResourcePath
 {
+    private static final Pattern SCHEME_PATTERN = Pattern.compile("([A-Za-z]+):");
+
     /**
      * Returns file path for the given URI
      */
@@ -185,7 +188,7 @@ public class FilePath extends ResourcePath
             List<String> elements;
             if (isNullOrBlank(path))
             {
-                var subPath = filePath(URI.create(subPart));
+                var subPath = parseFilePath(throwingListener(), subPart);
                 schemes.addAll(subPath.schemes());
                 var subPathRoot = subPath.rootElement();
                 if (subPathRoot != null)
@@ -237,7 +240,7 @@ public class FilePath extends ResourcePath
      */
     public static FilePath filePath(@NotNull StringPath path)
     {
-        return new FilePath(stringList(), path);
+        return new FilePath(path.elements());
     }
 
     /**
@@ -254,20 +257,31 @@ public class FilePath extends ResourcePath
 
         path = format(path, arguments);
 
-        if (path.contains("${"))
+        var schemes = stringList();
+
+        var matcher = SCHEME_PATTERN.matcher(path);
+        while (matcher.find())
         {
-            var elements = split(path, "/");
-            return filePath(stringPath(elements)).withoutFileScheme();
+            schemes.add(matcher.group(1));
+            path = pathTail(path, ":");
         }
 
-        try
+        String root = null;
+        if (path.startsWith("/"))
         {
-            return filePath(URI.create(path)).withoutFileScheme();
+            root = "/";
+            path = path.substring(1);
         }
-        catch (Exception ignored)
+
+        var elements = split(path, "/");
+        if (elements.isBlank())
         {
-            throw listener.problem("Unable to parse file path: " + path).asException();
+            elements = stringList();
         }
+        return filePath(stringPath(elements))
+                .withSchemes(schemes)
+                .withRoot(root)
+                .withoutFileScheme();
     }
 
     /**
@@ -584,7 +598,7 @@ public class FilePath extends ResourcePath
      * {@inheritDoc}
      */
     @Override
-    public FilePath withRoot(@NotNull String root)
+    public FilePath withRoot(String root)
     {
         return (FilePath) super.withRoot(root);
     }

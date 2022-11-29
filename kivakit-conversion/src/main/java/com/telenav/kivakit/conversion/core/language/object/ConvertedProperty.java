@@ -52,6 +52,11 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 public @interface ConvertedProperty
 {
     /**
+     * Returns the converter class to apply to this field or method
+     */
+    Class<? extends Converter<?, ?>> converter() default IdentityConverter.class;
+
+    /**
      * Returns true when a property is optional
      */
     boolean optional() default false;

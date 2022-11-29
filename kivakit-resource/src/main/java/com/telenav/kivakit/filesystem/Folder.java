@@ -46,8 +46,6 @@ import com.telenav.kivakit.resource.ResourceList;
 import com.telenav.kivakit.resource.ResourcePath;
 import com.telenav.kivakit.resource.ResourcePathed;
 import com.telenav.kivakit.resource.internal.lexakai.DiagramFileSystemFolder;
-import com.telenav.kivakit.resource.internal.lexakai.DiagramResourceService;
-import com.telenav.kivakit.resource.spi.ResourceFolderResolver;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlAggregation;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
@@ -410,30 +408,6 @@ public class Folder extends BaseRepeater implements
                 folder.ensureExists();
             }
             return folder;
-        }
-    }
-
-    /**
-     * Resolves valid folder paths into {@link ResourceFolder}s.
-     *
-     * @author jonathanl (shibo)
-     */
-    @UmlClassDiagram(diagram = DiagramResourceService.class)
-    @CodeQuality(stability = STABLE,
-                 testing = UNTESTED,
-                 documentation = DOCUMENTATION_COMPLETE)
-    public static class FolderResourceFolderResolver implements ResourceFolderResolver
-    {
-        @Override
-        public boolean accepts(@NotNull ResourceFolderIdentifier identifier)
-        {
-            return parseFolder(this, identifier.identifier()) != null;
-        }
-
-        @Override
-        public Folder resolve(@NotNull ResourceFolderIdentifier identifier)
-        {
-            return parseFolder(this, identifier.identifier());
         }
     }
 
@@ -1095,7 +1069,7 @@ public class Folder extends BaseRepeater implements
     @Override
     public Folder parent()
     {
-        return new Folder(path().asAbsolute().parent());
+        return new Folder(path().withoutLast());
     }
 
     /**

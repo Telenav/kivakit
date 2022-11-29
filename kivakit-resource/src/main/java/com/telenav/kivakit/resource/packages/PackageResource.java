@@ -19,55 +19,41 @@
 package com.telenav.kivakit.resource.packages;
 
 import com.telenav.kivakit.annotations.code.quality.CodeQuality;
-import com.telenav.kivakit.core.language.module.ModuleResource;
-import com.telenav.kivakit.core.language.module.PackageReference;
+import com.telenav.kivakit.core.language.packaging.PackageReference;
 import com.telenav.kivakit.core.messaging.Listener;
+import com.telenav.kivakit.core.path.StringPath;
+import com.telenav.kivakit.core.string.FormatProperty;
+import com.telenav.kivakit.core.string.ObjectFormatter;
 import com.telenav.kivakit.core.time.Time;
 import com.telenav.kivakit.core.value.count.Bytes;
+import com.telenav.kivakit.filesystem.FilePath;
 import com.telenav.kivakit.interfaces.comparison.Matcher;
 import com.telenav.kivakit.resource.FileName;
 import com.telenav.kivakit.resource.Resource;
 import com.telenav.kivakit.resource.ResourceFolder;
-import com.telenav.kivakit.resource.ResourceIdentifier;
 import com.telenav.kivakit.resource.ResourcePath;
 import com.telenav.kivakit.resource.ResourcePathed;
-import com.telenav.kivakit.resource.internal.lexakai.DiagramResourceService;
 import com.telenav.kivakit.resource.internal.lexakai.DiagramResourceType;
 import com.telenav.kivakit.resource.reading.BaseReadableResource;
-import com.telenav.kivakit.resource.spi.ResourceResolver;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import org.jetbrains.annotations.NotNull;
 
-import java.io.IOException;
 import java.io.InputStream;
-import java.lang.module.ModuleReference;
-import java.net.URI;
 
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.UNSTABLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
-import static com.telenav.kivakit.core.language.Hash.hashMany;
-import static com.telenav.kivakit.core.language.Objects.areEqualPairs;
-import static com.telenav.kivakit.core.language.module.Modules.moduleResource;
-import static com.telenav.kivakit.core.messaging.Listener.throwingListener;
-import static com.telenav.kivakit.core.string.Strip.stripLeading;
 import static com.telenav.kivakit.core.time.Time.now;
-import static com.telenav.kivakit.filesystem.FilePath.parseFilePath;
-import static com.telenav.kivakit.resource.FileName.parseFileName;
-import static com.telenav.kivakit.resource.ResourcePath.resourcePath;
-import static com.telenav.kivakit.resource.packages.PackagePath.packagePath;
+import static com.telenav.kivakit.resource.ResourcePath.parseResourcePath;
+import static com.telenav.kivakit.resource.packages.Classpath.classpath;
 
 /**
- * A readable {@link Resource} in a package, as specified by {@link PackageReference} or {@link ModuleResource} (which
- * has a {@link ModuleReference} and {@link URI}), and a name. Package resources can be constructed by several factory
- * methods:
+ * A readable {@link Resource} in a package, as specified by {@link PackageReference}. Package resources can be
+ * constructed by several factory methods:
  *
  * <ul>
- *     <li>{@link #packageResource(Listener, ModuleResource)}</li>
- *     <li>{@link #packageResource(Listener listener, Class, String)}</li>
- *     <li>{@link #packageResource(Listener listener, PackagePath, String)}</li>
- *     <li>{@link #packageResource(Listener, PackagePath, FileName)}</li>
- *     <li>{@link #packageResource(Listener, PackagePath, ResourcePathed)}</li>
+ *     <li>{@link #packageResource(Listener, StringPath, StringPath)}</li>
+ *     <li>{@link #packageResource(Listener, StringPath)}</li>
  * </ul>
  * <p>
  * They can also be retrieved from a (KivaKit) {@link Package} with these methods:
@@ -100,137 +86,84 @@ import static com.telenav.kivakit.resource.packages.PackagePath.packagePath;
  * @see Package
  * @see BaseReadableResource
  */
+@SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramResourceType.class)
-@CodeQuality(stability = STABLE_EXTENSIBLE,
+@CodeQuality(stability = UNSTABLE,
              testing = UNTESTED,
              documentation = DOCUMENTATION_COMPLETE)
 public class PackageResource extends BaseReadableResource
 {
     /**
-     * <b>Not public API</b>
+     * Returns a package resource for the resource at the given path relative to the given package. Note that
+     * {@link StringPath} is the superclass of many other path objects, so most can be passed to this factory method.
      *
-     * <p>
-     * Returns a package resource for the given module resource
-     * </p>
+     * @param packagePath The path to a package
+     * @param child A path of strings relative to the package path
+     * @return The package resource
      */
     public static PackageResource packageResource(@NotNull Listener listener,
-                                                  @NotNull ModuleResource resource)
+                                                  @NotNull StringPath packagePath,
+                                                  @NotNull StringPath child)
     {
-        var fileName = parseFileName(listener, resource.fileNameAsJavaPath().toString());
-        return new PackageResource(listener, packagePath(resource.packageReference()), resource, fileName);
+        return packageResource(listener, packagePath.withChild(child));
+    }
+
+    /**
+     * Returns a package resource for the given string path. Note that {@link StringPath} is the superclass of many
+     * other path objects, so most can be passed to this factory method.
+     *
+     * @param resourcePath The resource's path
+     * @return The package resource
+     */
+    public static PackageResource packageResource(@NotNull Listener listener,
+                                                  @NotNull StringPath resourcePath)
+    {
+        // Search the classpath for the given package and filename
+        var found = classpath().allResources(listener).findFirst(resource ->
+                resource.packageReference().equals(resourcePath.withoutLast())
+                        && resource.fileName().name().equals(resourcePath.last()));
+
+        // and if the resource was found,
+        if (found != null)
+        {
+            // return it
+            return new PackageResource(listener, found);
+        }
+
+        listener.problem("Could not find: $", resourcePath);
+        return null;
     }
 
     /**
      * Returns a package resource for the resource at the given path relative to the given package
-     */
-    public static PackageResource packageResource(@NotNull Listener listener,
-                                                  @NotNull PackagePath packagePath,
-                                                  @NotNull String path)
-    {
-        return packageResource(listener, packagePath, parseFilePath(listener, path.replaceAll("\\$", ".")));
-    }
-
-    /**
-     * Returns a package resource for the resource at the given path relative to the given class
-     */
-    public static PackageResource packageResource(@NotNull Listener listener,
-                                                  @NotNull Class<?> type,
-                                                  @NotNull String path)
-    {
-        return packageResource(listener, packagePath(type), path);
-    }
-
-    /**
-     * Returns a package resource for the resource at the given path relative to the given package
-     */
-    public static PackageResource packageResource(@NotNull Listener listener,
-                                                  @NotNull PackagePath packagePath,
-                                                  @NotNull ResourcePathed relative)
-    {
-        var path = relative.path();
-        var resource = moduleResource(listener, packagePath.withChild(path));
-        if (path.size() == 1)
-        {
-            return new PackageResource(listener, packagePath, resource, path.fileName());
-        }
-        else
-        {
-            return new PackageResource(listener, packagePath.withChild(path.parent()), resource, path.fileName());
-        }
-    }
-
-    /**
-     * Returns a package resource for the resource with the given filename in the given package
-     */
-    public static PackageResource packageResource(@NotNull Listener listener,
-                                                  @NotNull PackagePath packagePath,
-                                                  @NotNull FileName name)
-    {
-        var resource = moduleResource(listener, packagePath.withChild(name.name()));
-        return new PackageResource(listener, packagePath, resource, name);
-    }
-
-    /**
-     * Resolves {@link ResourceIdentifier}s of the form "classpath:/a/b/resource.txt" into {@link Resource}s by creating
-     * a {@link PackageResource} for the identifier.
      *
-     * @author jonathanl (shibo)
+     * @param packagePath The package's path
+     * @param child A path relative to the package path. Note that a number of classes implement {@link ResourcePathed},
+     * including {@link FileName}, {@link ResourcePath}, {@link FilePath}, and {@link PackagePath}.
+     * @return The package resource
      */
-    @UmlClassDiagram(diagram = DiagramResourceService.class)
-    @CodeQuality(stability = STABLE_EXTENSIBLE,
-                 testing = UNTESTED,
-                 documentation = DOCUMENTATION_COMPLETE)
-    public static class PackageResourceResolver implements ResourceResolver
+    @SuppressWarnings("SpellCheckingInspection")
+    public static PackageResource packageResource(@NotNull Listener listener,
+                                                  @NotNull PackagePath packagePath,
+                                                  @NotNull ResourcePathed child)
     {
-        public static final String SCHEME = "classpath:";
-
-        @Override
-        public boolean accepts(@NotNull ResourceIdentifier identifier)
-        {
-            return identifier.identifier().startsWith(SCHEME);
-        }
-
-        @Override
-        public Resource resolve(@NotNull ResourceIdentifier identifier)
-        {
-            var filepath = parseFilePath(this, stripLeading(identifier.identifier(), SCHEME));
-            var parent = filepath.parent();
-            if (parent != null)
-            {
-                var packagePath = packagePath(parent);
-                return packageResource(throwingListener(), packagePath, filepath.fileName());
-            }
-            problem("Could not resolve resource: $", identifier);
-            return null;
-        }
+        return packageResource(listener, packagePath, (StringPath) child.path());
     }
 
-    /** The name of this resource */
-    private final FileName name;
+    /** The underlying classpath resource */
+    private final ClasspathResource resource;
 
-    /** The package path to this resource */
-    private final PackagePath packagePath;
-
-    /** Information about the resource */
-    private final ModuleResource resource;
-
-    protected PackageResource(@NotNull Listener listener,
-                              @NotNull PackagePath packagePath,
-                              ModuleResource resource,
-                              @NotNull FileName name)
+    protected PackageResource(@NotNull Listener listener, @NotNull ClasspathResource resource)
     {
         listener.listenTo(this);
-        this.packagePath = packagePath;
-        this.name = name;
-        this.resource = resource != null
-                ? resource
-                : packagePath.asPackageReference().moduleResource(this, this.name.name());
+        this.resource = resource;
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
+    @FormatProperty
     public Time createdAt()
     {
         return resource.created();
@@ -244,9 +177,7 @@ public class PackageResource extends BaseReadableResource
     {
         if (object instanceof PackageResource that)
         {
-            return areEqualPairs(
-                    packagePath, that.packagePath,
-                    name, that.name);
+            return resource.equals(that.resource);
         }
         return false;
     }
@@ -257,7 +188,7 @@ public class PackageResource extends BaseReadableResource
     @Override
     public int hashCode()
     {
-        return hashMany(packagePath, name);
+        return resource.hashCode();
     }
 
     /**
@@ -273,6 +204,7 @@ public class PackageResource extends BaseReadableResource
      * {@inheritDoc}
      */
     @Override
+    @FormatProperty
     public Time lastModified()
     {
         return resource == null ? now() : resource.lastModified();
@@ -286,33 +218,48 @@ public class PackageResource extends BaseReadableResource
     {
         try
         {
-            if (resource != null)
-            {
-                return resource.uri().toURL().openStream();
-            }
-            else
-            {
-                var path = packagePath.withRoot("/").join("/") + "/" + name;
-                return packagePath.asPackageReference().moduleResourceStream(path);
-            }
+            return resource.uri().toURL().openStream();
         }
-        catch (IOException e)
+        catch (Exception e)
         {
-            return fatal(e, "Unable to open package resource $", this);
+            return fatal(e, "Cannot open: $", resource);
         }
+    }
+
+    /**
+     * Returns the package path for this resource
+     */
+    public PackagePath packagePath()
+    {
+        return PackagePath.packagePath(resource.packageReference());
+    }
+
+    /**
+     * Returns the path to this resource from the classpath root (not including a parent JAR file or
+     * filesystem folder).
+     */
+    public ResourcePath classpathPath()
+    {
+        return parseResourcePath(this, resource.packageReference().asSlashSeparated()
+                + "/" + resource.fileName());
+    }
+
+    /**
+     * Returns the package reference to the package containing this resource
+     */
+    public PackageReference packageReference()
+    {
+        return resource.packageReference();
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
+    @FormatProperty
     public ResourcePath path()
     {
-        var path = resource != null
-                ? resource.packageReference()
-                : this.packagePath;
-
-        return resourcePath(path).withChild(name.name());
+        return resource.resourcePath();
     }
 
     /**
@@ -321,29 +268,27 @@ public class PackageResource extends BaseReadableResource
     @Override
     public Resource relativeTo(@NotNull ResourceFolder<?> folder)
     {
-        var relativePath = packagePath.relativeTo(folder.path());
+        var relativePath = packagePath().relativeTo(folder.path());
         if (relativePath.isEmpty())
         {
-            return packageResource(this, packagePath, fileName());
+            return packageResource(this, packagePath(), fileName());
         }
-        return packageResource(this, packagePath.withChild(relativePath), fileName());
+        return packageResource(this, packagePath().withChild(relativePath), fileName());
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
+    @FormatProperty
     public Bytes sizeInBytes()
     {
         return resource == null ? Bytes._0 : resource.size();
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public String toString()
     {
-        return resource != null ? resource.toString() : packagePath + "/" + name;
+        return new ObjectFormatter(this).toString();
     }
 }

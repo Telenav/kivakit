@@ -115,8 +115,7 @@ public class PropertiesObjectSerializer implements ObjectSerializer
             var instance = singletonInstanceIdentifier();
             if (arrayContains(metadata, METADATA_OBJECT_INSTANCE))
             {
-                var enumName = properties.getOrDefault("instance",
-                        singletonInstanceIdentifier().name());
+                var enumName = properties.getOrDefault("instance", singletonInstanceIdentifier().name());
                 instance = instanceIdentifierForEnumName(this, enumName);
             }
 

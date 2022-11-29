@@ -21,14 +21,15 @@ package com.telenav.kivakit.conversion.core.language.object;
 import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.conversion.internal.lexakai.DiagramConversionLanguage;
 import com.telenav.kivakit.core.language.reflection.Type;
+import com.telenav.kivakit.core.language.reflection.property.Property;
 import com.telenav.kivakit.core.language.reflection.property.PropertyFilter;
 import com.telenav.kivakit.core.language.reflection.property.PropertyValue;
 import com.telenav.kivakit.core.messaging.repeaters.BaseRepeater;
 import com.telenav.kivakit.interfaces.value.Source;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 
 /**
@@ -36,7 +37,7 @@ import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
  *
  * @author jonathanl (shibo)
  */
-@SuppressWarnings("SpellCheckingInspection")
+@SuppressWarnings({ "SpellCheckingInspection", "BooleanMethodIsAlwaysInverted" })
 @UmlClassDiagram(diagram = DiagramConversionLanguage.class)
 @CodeQuality(stability = STABLE,
              testing = UNTESTED,
@@ -57,6 +58,14 @@ public class ObjectPopulator extends BaseRepeater
     {
         this.filter = filter;
         this.source = source;
+    }
+
+    /**
+     * Returns true if the given property is optional (normally this is based on annotations)
+     */
+    public boolean isOptional(Property property)
+    {
+        return property.isOptional();
     }
 
     /**
@@ -88,7 +97,7 @@ public class ObjectPopulator extends BaseRepeater
             }
             else
             {
-                if (!property.isOptional())
+                if (!isOptional(property))
                 {
                     warning("No value found for property: " + property.name());
                 }

@@ -39,6 +39,7 @@ import java.util.regex.Pattern;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_INSUFFICIENT;
+import static com.telenav.kivakit.core.collections.list.ObjectList.list;
 import static com.telenav.kivakit.core.collections.list.StringList.splitOnPattern;
 import static com.telenav.kivakit.core.collections.list.StringList.stringList;
 import static com.telenav.kivakit.core.project.Project.resolveProject;
@@ -92,10 +93,26 @@ public class StringPath extends Path<String>
     private static final Map<String, Pattern> patterns = new HashMap<>();
 
     /**
+     * Returns a string path with no elements
+     */
+    public static StringPath emptyStringPath()
+    {
+        return new StringPath(list());
+    }
+
+    /**
+     * Returns a string path for the given string and separator pattern
+     */
+    public static StringPath parseStringPath(Listener listener, String path, String separatorPattern)
+    {
+        return parseStringPath(listener, path, null, separatorPattern);
+    }
+
+    /**
      * @param path The path to parse
      * @param rootPattern A Java regular expression matching the path root (such as "/" or "C:\")
      * @param separatorPattern The Java regular expression used to split path elements
-     * @return A string path for the given string, root pattern and separator pattern
+     * @return A string path for the given string, root pattern and separator pattern, or null on failure.
      */
     @SuppressWarnings("unused")
     public static StringPath parseStringPath(Listener listener,
@@ -112,23 +129,8 @@ public class StringPath extends Path<String>
                 return new StringPath(matcher.group("root"), splitOnPattern(tail, separatorPattern));
             }
         }
-        return new StringPath(null, splitOnPattern(path, separatorPattern));
-    }
-
-    /**
-     * Returns a string path for the given string and separator pattern
-     */
-    public static StringPath parseStringPath(Listener listener, String path, String separatorPattern)
-    {
-        return parseStringPath(listener, path, null, separatorPattern);
-    }
-
-    /**
-     * Returns a path (sans scheme) for the given URI
-     */
-    public static StringPath stringPath(List<String> elements)
-    {
-        return new StringPath(elements);
+        var elements = splitOnPattern(path, separatorPattern);
+        return elements.isEmpty() ? null : new StringPath(elements);
     }
 
     /**
@@ -137,6 +139,14 @@ public class StringPath extends Path<String>
     public static StringPath stringPath(String root, List<String> elements)
     {
         return new StringPath(root, elements);
+    }
+
+    /**
+     * Returns a path (sans scheme) for the given URI
+     */
+    public static StringPath stringPath(List<String> elements)
+    {
+        return new StringPath(elements);
     }
 
     /**
@@ -323,6 +333,21 @@ public class StringPath extends Path<String>
     public StringPath first(int n)
     {
         return (StringPath) super.first(n);
+    }
+
+    /**
+     * Returns true if all elements in this string path are blank
+     */
+    public boolean isBlank()
+    {
+        for (var at : this)
+        {
+            if (!at.isBlank())
+            {
+                return false;
+            }
+        }
+        return true;
     }
 
     /**

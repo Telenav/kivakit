@@ -429,7 +429,9 @@ public class Multicaster implements Broadcaster
                 }
 
                 // Throw an error, because this is a serious problem. We don't want to lose messages.
-                throw new NoListenerError("No listener found:\n\n$", listenerChain().numbered().indented(4));
+                throw new NoListenerError("No listener found:\n\n$", listenerChain()
+                        .numbered()
+                        .indented(4));
             }
         });
 

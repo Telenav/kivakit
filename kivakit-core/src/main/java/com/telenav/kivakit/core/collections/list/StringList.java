@@ -445,6 +445,21 @@ public class StringList extends ObjectList<String>
     }
 
     /**
+     * Returns true if all elements of this string list are blank
+     */
+    public boolean isBlank()
+    {
+        for (var at : this)
+        {
+            if (!at.isBlank())
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    /**
      * {@inheritDoc}
      */
     @Override

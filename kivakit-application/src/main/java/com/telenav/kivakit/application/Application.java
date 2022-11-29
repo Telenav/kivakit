@@ -200,25 +200,70 @@ import static java.util.Comparator.comparing;
  * <p><i>Lifecycle</i></p>
  *
  * <p>
- * The {@link #run(String[])} method performs the following steps:
+ * The KivaKit application lifecycle is described in this diagram and the text below:
  * </p>
  *
- * <ol start=1>
- *     <li>Call {@link #onProjectsInitializing()}</li>
- *     <li>Initialize and install the {@link Project} passed to the constructor</li>
- *     <li>Call {@link #onProjectsInitialized()}</li>
- *     <li>Parse command line arguments using:
- *     <ul>
- *         <li>The {@link ArgumentParser}s returned by {@link #argumentParsers()}</li>
- *         <li>The {@link SwitchParser}s returned by {@link #switchParsers()}</li>
- *     </ul>
- *     <li>Call {@link #onRunning()}</li>
- *     <li>Call {@link #onRun()}, executing the application</li>
- *     <li>Call {@link #onRan()}</li>
- *     <li>Exit</li>
+ * <img src="https://telenav.github.io/telenav-assets/images/diagrams/application-lifecycle@2x.png"/>
+ *
+ * <p><b>CONSTRUCTING</p></b>
+ *
+ * <ol>
+ *     <li>The method <b>main(String[] arguments)</b> is called</li>
+ *     <li>The application enters the <b>CONSTRUCTING</b> phase</li>
+ *     <li>The application is constructed</li>
+ *     <li>The <b>run(String[])</b> method is called to execute the application</li>
  * </ol>
  *
- * <p><i>Abnormal Termination</i></p>
+ * <p><b>INITIALIZING</p></b>
+ *
+ * <ol>
+ *     <li>The application enters the <b>INITIALIZING</b> phase</li>
+ *     <li><b>onInitializing()</b> is called</li>
+ *     <li><b>startupOptions()</b> is called and the set of <b>StartupOptions</b> returned is enabled</li>
+ *     <li><b>onSerializationInitialize()</b> is called to allow registration of serializers</li>
+ *     <li>Any <b>Deployment</b> configurations are loaded from the <b>deployments</b> package</li>
+ *     <li>The command line arguments passed to <b>main()</b> are parsed into a <b>CommandLine</b> using
+ * switch and argument parsers returned by <b>switchParsers()</b> and <b>argumentParsers()</b></li>
+ *     <li>If a <b>-deployment</b> was specified, it is loaded and registered with the global settings registry</li>
+ *     <li><b>onInitialize()</b> is called to initialize the application</li>
+ *     <li><b>onProjectsInitializing()</b> is called to notify that projects will be initializing</li>
+ *     <li><b>onProjectsInitialize</b> is called</li>
+ *     <li>The default implementation of <b>onProjectsInitialize()</b> initializes projects</li>
+ *     <li><b>onProjectsInitialized()</b> is called</li>
+ *     <li><b>onInitialized()</b> is called to notify that initialization is complete</li>
+ * </ol>
+ *
+ * <p><b>RUNNING</p></b>
+ *
+ * <ol>
+ *     <li>The application enters the <b>RUNNING</b> phase</li>
+ *     <li><b>onRunning()</b> is called to notify that the application is about to run</li>
+ * </ol>
+ *
+ * <p><b>READY</p></b>
+ *
+ * <ol>
+ *     <li>The application enters the <b>READY</b> phase</li>
+ *     <li><b>onRun()</b> is called to run the application</li>
+ * </ol>
+ *
+ * <p><b>STOPPING</p></b>
+ *
+ * <ol>
+ *     <li>The application enters the <b>STOPPING</b> phase</li>
+ *     <li>All logs are flushed</li>
+ *     <li>Message statistics are displayed (how many glitches, warnings, problems, etc.)</li>
+ *     <li><b>onRan()</b> is called</li>
+ * </ol>
+ *
+ * <p><b>STOPPED</p></b>
+ *
+ * <ol>
+ *     <li>The application transitions to the <b>STOPPED</b> state</li>
+ *     <li>The application exits. If no exception was thrown and exit wasn't called, it exits with status code 0 (no error), otherwise it exits with a non-zero status code.</li>
+ * </ol>
+ *
+ * <p><b>Abnormal Termination</b></p>
  *
  * <p>
  * If an application wishes to terminate its execution abnormally, it can call {@link #exit(String, Object...)}. This will
@@ -384,7 +429,7 @@ public abstract class Application extends BaseComponent implements
     @UmlAggregation(label = "initializes and uses")
     private final Set<Project> projects = new IdentitySet<>();
 
-    /** State machine for application lifecycle */
+    /** CONSTRUCTING - 2. State machine for application lifecycle */
     private final StateMachine<LifecyclePhase> phase = new StateMachine<>(CONSTRUCTING);
 
     @UmlExcludeMember
@@ -396,6 +441,7 @@ public abstract class Application extends BaseComponent implements
 
     protected Application()
     {
+        // CONSTRUCTING - 3. Create application
         register(this);
         register(LOGGER);
 
@@ -575,23 +621,14 @@ public abstract class Application extends BaseComponent implements
 
     /**
      * Runs the application by calling {@link #onRun()} given the arguments from the Java main(String[]) application
-     * entrypoint. Operations occur in this order:
-     * <ol>
-     *     <li>{@link #onRunning()} is called to indicate that running is about to start</li>
-     *     <li>Command line arguments are validated and parsed into a {@link CommandLine}</li>
-     *     <li>{@link #onConfigureListeners()} is called to allow redirection of output</li>
-     *     <li>{@link #onProjectsInitializing()} is called before the {@link Project} for this application is initialized</li>
-     *     <li>{@link Project#initialize()} is called</li>
-     *     <li>{@link #onProjectsInitialized()} is called</li>
-     *     <li>{@link #onRun()} is called</li>
-     *     <li>{@link #onRan()} is called</li>
-     *     <li>The application exits</li>
-     * </ol>
+     * entrypoint.
      *
      * @param arguments Command line arguments to parse
      */
     public final Result<ApplicationExit> run(String[] arguments)
     {
+        // CONSTRUCTING - 4. Run
+
         var exitCode = FAILED;
         Exception exception = null;
 
@@ -604,39 +641,22 @@ public abstract class Application extends BaseComponent implements
                 LOGGER.listenTo(this);
             }
 
-            // transition to initializing phase,
+            // INITIALIZING - 1. Begin initializing
             phase.transitionTo(INITIALIZING);
 
-            // notify that we are initializing,
+            // INITIALIZING - 2. Notify that we are initializing
             onInitializing();
 
-            // enable start-up options,
+            // INITIALIZING - 3. Enable start-up options
             startupOptions().forEach(StartUpOptions::enableStartupOption);
 
-            // register any object serializers,
+            // INITIALIZING - 4. Register any object serializers,
             onSerializationInitialize();
 
-            // initialize the application,
-            onInitialize();
-
-            // initialize this application's project
-            onProjectsInitializing();
-            onProjectsInitialize();
-            onProjectsInitialized();
-
-            // notify that we are done initializing
-            onInitialized();
-
-            // transition to running phase,
-            phase.transitionTo(RUNNING);
-
-            // notify that we are starting to run
-            onRunning();
-
-            // load deployments,
+            // INITIALIZING - 5. Load deployments,
             deployments = loadDeploymentSet(this, getClass());
 
-            // then through arguments
+            // INITIALIZING - 6. Parse command line
             var argumentList = new StringList();
             for (var argument : arguments)
             {
@@ -662,33 +682,55 @@ public abstract class Application extends BaseComponent implements
                 }
             }
 
-            // then parse the command line arguments.
+            // then parse the command line arguments,
             commandLine = new CommandLineParser(this)
                     .addSwitchParsers(internalSwitchParsers())
                     .addArgumentParsers(argumentParsers())
                     .parse(argumentList.asStringArray());
 
-            // Remove temporary logger and allow subclass to configure output streams,
-            clearListeners();
-            onConfigureListeners();
-
-            // and if a deployment was specified,
+            // INITIALIZING - 7. If a deployment was specified, register its settings
             if (deploymentSpecified())
             {
-                // install it in the global settings registry.
                 registerSettingsIn(get(DEPLOYMENT));
             }
 
+            // INITIALIZING - 8. Initialize the application,
+            onInitialize();
+
+            // INITIALIZING - 9. Projects will be initialized
+            onProjectsInitializing();
+
+            // INITIALIZING - 10. Initialize projects
+            onProjectsInitialize();
+
+            // INITIALIZING - 12. Projects have been initialized
+            onProjectsInitialized();
+
+            // INITIALIZING - 13. Notify that we are done initializing
+            onInitialized();
+
+            // RUNNING - 1. Transition to running phase
+            phase.transitionTo(RUNNING);
+
+            // RUNNING - 2. Notify that we are starting to run
+            onRunning();
+
+            // RUNNING - 3. Remove temporary logger and allow subclass to configure output streams
+            clearListeners();
+            onConfigureListeners();
+
+            // RUNNING - 4. Show startup information
             if (!isStartupOptionEnabled(StartupOption.QUIET))
             {
                 showStartupInformation();
             }
 
+            // READY - 1. Transition to READY phase
             ready();
 
             try
             {
-                // Run the application's code
+                // READY - 2. Run the application's code
                 onRun();
             }
             catch (Exception e)
@@ -698,11 +740,14 @@ public abstract class Application extends BaseComponent implements
             }
             finally
             {
+                // STOPPING - 1. Transition to stopping phase
                 phase.transitionTo(STOPPING);
             }
 
+            // STOPPING - 2. Flush logs
             BaseLog.logs().forEach(BaseLog::flush);
 
+            // STOPPING - 3. Show message statistics
             for (var log : BaseLog.logs())
             {
                 if (log.messageCounts().size() > 0)
@@ -711,7 +756,10 @@ public abstract class Application extends BaseComponent implements
                 }
             }
 
+            // STOPPING - 4. Notify that the application has run
             onRan();
+
+            // STOPPED - 1. Transition to stopped phase
             phase.transitionTo(STOPPED);
             exitCode = SUCCEEDED;
         }
@@ -721,7 +769,7 @@ public abstract class Application extends BaseComponent implements
             exception = e;
         }
 
-        // Return the application result.
+        // STOPPED - 2. Return the application exit code
         return exitCode == SUCCEEDED
                 ? success(ApplicationExit.SUCCESS)
                 : failure(new ApplicationExit(exitCode, exception), "Application failed");
@@ -861,6 +909,7 @@ public abstract class Application extends BaseComponent implements
      */
     protected void onProjectsInitialize()
     {
+        // INITIALIZING - 11. Initialize projects
         initializeProjects();
     }
 
@@ -891,8 +940,8 @@ public abstract class Application extends BaseComponent implements
     protected void onRegisterObjectSerializers()
     {
         var serializers = new ObjectSerializerRegistry();
-        tryCatch(() -> serializers.add(Extension.JSON, new GsonObjectSerializer()));
-        tryCatch(() -> serializers.add(Extension.PROPERTIES, new PropertiesObjectSerializer()));
+        tryCatch(() -> serializers.add(Extension.JSON, listenTo(new GsonObjectSerializer())));
+        tryCatch(() -> serializers.add(Extension.PROPERTIES, listenTo(new PropertiesObjectSerializer())));
         register(serializers);
     }
 

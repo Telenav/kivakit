@@ -394,7 +394,7 @@ public interface ResourceFolder<T extends ResourceFolder<T>> extends
      */
     default Resource resource(@NotNull String name)
     {
-        return resource(parseResourcePath(throwingListener(), name));
+        return resource(parseResourcePath(this, name));
     }
 
     /**
