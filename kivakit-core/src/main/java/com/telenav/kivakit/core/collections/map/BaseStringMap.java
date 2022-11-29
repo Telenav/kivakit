@@ -46,8 +46,8 @@ import java.util.Map;
 import java.util.function.BiFunction;
 import java.util.function.Function;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_INSUFFICIENT;
 
 /**
@@ -89,8 +89,7 @@ public abstract class BaseStringMap<Value> extends BaseMap<String, Value> implem
      */
     public Boolean asBoolean(String key, boolean defaultValue)
     {
-        var value = asBoolean(key);
-        return value != null ? value : defaultValue;
+        return keyMissing(key) ? defaultValue : asBoolean(key);
     }
 
     /**
@@ -350,5 +349,10 @@ public abstract class BaseStringMap<Value> extends BaseMap<String, Value> implem
     public String toString()
     {
         return join("\n");
+    }
+
+    private boolean keyMissing(String key)
+    {
+        return get(key) == null;
     }
 }
