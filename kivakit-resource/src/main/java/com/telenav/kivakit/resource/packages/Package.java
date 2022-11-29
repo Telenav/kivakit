@@ -55,6 +55,7 @@ import static com.telenav.kivakit.properties.PropertyMap.loadLocalizedPropertyMa
 import static com.telenav.kivakit.resource.ResourceList.resourceList;
 import static com.telenav.kivakit.resource.packages.Classpath.classpath;
 import static com.telenav.kivakit.resource.packages.PackagePath.packagePath;
+import static com.telenav.kivakit.resource.packages.PackagePath.parsePackagePath;
 import static com.telenav.kivakit.resource.packages.PackageResource.packageResource;
 import static java.util.Objects.hash;
 
@@ -131,6 +132,22 @@ public class Package extends BaseRepeater implements ResourceFolder<Package>
                                          @NotNull PackagePath packagePath)
     {
         return new Package(listener, packagePath);
+    }
+
+
+    /**
+     * Returns the package for the given type and relative path
+     *
+     * @param listener The listener to call with any problems
+     * @param packageType The type
+     * @param path The path relative to the package of the type
+     * @return The package
+     */
+    public static Package parsePackage(@NotNull Listener listener,
+                                       @NotNull Class<?> packageType,
+                                       @NotNull String path)
+    {
+        return packageForPath(listener, parsePackagePath(listener, packageType.getPackageName() + "." + path));
     }
 
     /** The path to this package */

@@ -118,8 +118,9 @@ public class PackageResource extends BaseReadableResource
                                                   @NotNull StringPath resourcePath)
     {
         // Search the classpath for the given package and filename
-        var found = classpath().resources(listener).findFirst(
-                resource -> resource.resourcePath().equals(resourcePath));
+        var found = classpath().resources(listener).findFirst(resource ->
+                resource.packageReference().equals(resourcePath.withoutLast())
+                        && resource.fileName().name().equals(resourcePath.last()));
 
         // and if the resource was found,
         if (found != null)
@@ -225,6 +226,14 @@ public class PackageResource extends BaseReadableResource
     }
 
     /**
+     * Returns the package path for this resource
+     */
+    public PackagePath packagePath()
+    {
+        return PackagePath.packagePath(resource.packageReference());
+    }
+
+    /**
      * {@inheritDoc}
      */
     @Override
@@ -246,14 +255,6 @@ public class PackageResource extends BaseReadableResource
             return packageResource(this, packagePath(), fileName());
         }
         return packageResource(this, packagePath().withChild(relativePath), fileName());
-    }
-
-    /**
-     * Returns the package path for this resource
-     */
-    public PackagePath packagePath()
-    {
-        return PackagePath.packagePath(resource.packageReference());
     }
 
     /**

@@ -112,6 +112,8 @@ public class ResourcePath extends StringPath implements
             schemes.add("file");
         }
 
+        path = path.replaceFirst("/+", "/");
+
         var root = (String) null;
         if (path.startsWith("/"))
         {

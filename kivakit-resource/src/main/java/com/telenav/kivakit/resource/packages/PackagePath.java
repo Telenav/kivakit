@@ -37,7 +37,6 @@ import static com.telenav.kivakit.annotations.code.quality.Stability.UNSTABLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.collections.list.StringList.stringList;
 import static com.telenav.kivakit.core.language.packaging.PackageReference.packageReference;
-import static com.telenav.kivakit.core.messaging.Listener.nullListener;
 import static com.telenav.kivakit.core.messaging.Listener.throwingListener;
 import static com.telenav.kivakit.resource.packages.Package.packageForPath;
 
@@ -55,7 +54,6 @@ import static com.telenav.kivakit.resource.packages.Package.packageForPath;
  *
  * <ul>
  *     <li>{@link #packagePath(StringPath)} - The specified package path</li>
- *     <li>{@link #packagePath(PackageReference)}</li>
  * </ul>
  *
  * <p><b>Properties</b></p>
@@ -68,7 +66,7 @@ import static com.telenav.kivakit.resource.packages.Package.packageForPath;
  * <p><b>Conversions</b></p>
  *
  * <ul>
- *     <li>{@link #asPackage(Listener)}</li>
+ *     <li>{@link #asPackage(Listener)}</li>A
  *     <li>{@link #asPackageReference()}</li>
  * </ul>
  *
@@ -141,7 +139,7 @@ public final class PackagePath extends ResourcePath
      */
     public static PackagePath parsePackagePath(@NotNull Listener listener, @NotNull String path)
     {
-        return packagePath(path(path));
+        return packagePath(path(listener, path));
     }
 
     private PackagePath(@NotNull Path<String> path)
@@ -253,7 +251,7 @@ public final class PackagePath extends ResourcePath
     @Override
     public PackagePath withChild(@NotNull String path)
     {
-        return (PackagePath) super.withChild(path(path));
+        return (PackagePath) super.withChild(path(throwingListener(), path));
     }
 
     /**
@@ -365,12 +363,12 @@ public final class PackagePath extends ResourcePath
     }
 
     @NotNull
-    private static StringPath path(@NotNull String path)
+    private static StringPath path(Listener listener, @NotNull String path)
     {
-        if (path.contains("/") || !isPackagePath(path))
+        if (path.contains("/"))
         {
-            return parseStringPath(throwingListener(), path, "/");
+            path = path.replaceAll("/", ".");
         }
-        return parseStringPath(throwingListener(), path, "\\.");
+        return parseStringPath(listener, path, "\\.");
     }
 }
