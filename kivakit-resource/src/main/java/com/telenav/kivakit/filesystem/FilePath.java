@@ -185,7 +185,7 @@ public class FilePath extends ResourcePath
             List<String> elements;
             if (isNullOrBlank(path))
             {
-                var subPath = filePath(URI.create(subPart));
+                var subPath = parseFilePath(throwingListener(), subPart);
                 schemes.addAll(subPath.schemes());
                 var subPathRoot = subPath.rootElement();
                 if (subPathRoot != null)
@@ -237,7 +237,7 @@ public class FilePath extends ResourcePath
      */
     public static FilePath filePath(@NotNull StringPath path)
     {
-        return new FilePath(stringList(), path);
+        return new FilePath(path.elements());
     }
 
     /**
@@ -254,20 +254,16 @@ public class FilePath extends ResourcePath
 
         path = format(path, arguments);
 
-        if (path.contains("${"))
+        String root = null;
+        if (path.startsWith("/"))
         {
-            var elements = split(path, "/");
-            return filePath(stringPath(elements)).withoutFileScheme();
+            root = "/";
+            path = path.substring(1);
         }
-
-        try
-        {
-            return filePath(URI.create(path)).withoutFileScheme();
-        }
-        catch (Exception ignored)
-        {
-            throw listener.problem("Unable to parse file path: " + path).asException();
-        }
+        var elements = split(path, "/");
+        return filePath(stringPath(elements))
+                .withRoot(root)
+                .withoutFileScheme();
     }
 
     /**
@@ -584,7 +580,7 @@ public class FilePath extends ResourcePath
      * {@inheritDoc}
      */
     @Override
-    public FilePath withRoot(@NotNull String root)
+    public FilePath withRoot(String root)
     {
         return (FilePath) super.withRoot(root);
     }

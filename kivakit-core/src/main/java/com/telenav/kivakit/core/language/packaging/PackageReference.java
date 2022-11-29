@@ -123,7 +123,9 @@ public final class PackageReference extends StringPath
      */
     public static PackageReference packageReference(Class<?> type)
     {
-        return packageReference(type, parseStringPath(nullListener(), type.getName(), null, "\\.").withoutLast());
+        //noinspection ConstantConditions
+        return packageReference(type, parseStringPath(throwingListener(), type.getName(), null, "\\.")
+                .withoutLast());
     }
 
     /**
@@ -131,7 +133,7 @@ public final class PackageReference extends StringPath
      */
     public static PackageReference parsePackageReference(Listener listener, String path)
     {
-        return packageReference(path(path));
+        return packageReference(path(listener, path));
     }
 
     /**
@@ -369,7 +371,7 @@ public final class PackageReference extends StringPath
     @Override
     public PackageReference withChild(String path)
     {
-        return (PackageReference) super.withChild(path(path));
+        return (PackageReference) super.withChild(path(throwingListener(), path));
     }
 
     public PackageReference withPackageType(Class<?> type)
@@ -488,12 +490,16 @@ public final class PackageReference extends StringPath
     }
 
     @NotNull
-    private static StringPath path(String path)
+    private static StringPath path(Listener listener, String path)
     {
+        if (path == null)
+        {
+            return emptyStringPath();
+        }
         if (path.contains("/"))
         {
-            return parseStringPath(throwingListener(), path, "/");
+            return parseStringPath(listener, path, "/");
         }
-        return parseStringPath(throwingListener(), path, "\\.");
+        return parseStringPath(listener, path, "\\.");
     }
 }

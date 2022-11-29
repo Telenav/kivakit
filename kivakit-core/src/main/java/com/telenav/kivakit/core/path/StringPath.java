@@ -39,6 +39,7 @@ import java.util.regex.Pattern;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_INSUFFICIENT;
+import static com.telenav.kivakit.core.collections.list.ObjectList.list;
 import static com.telenav.kivakit.core.collections.list.StringList.splitOnPattern;
 import static com.telenav.kivakit.core.collections.list.StringList.stringList;
 import static com.telenav.kivakit.core.project.Project.resolveProject;
@@ -92,6 +93,22 @@ public class StringPath extends Path<String>
     private static final Map<String, Pattern> patterns = new HashMap<>();
 
     /**
+     * Returns a string path with no elements
+     */
+    public static StringPath emptyStringPath()
+    {
+        return new StringPath(list());
+    }
+
+    /**
+     * Returns a string path for the given string and separator pattern
+     */
+    public static StringPath parseStringPath(Listener listener, String path, String separatorPattern)
+    {
+        return parseStringPath(listener, path, null, separatorPattern);
+    }
+
+    /**
      * @param path The path to parse
      * @param rootPattern A Java regular expression matching the path root (such as "/" or "C:\")
      * @param separatorPattern The Java regular expression used to split path elements
@@ -117,11 +134,11 @@ public class StringPath extends Path<String>
     }
 
     /**
-     * Returns a string path for the given string and separator pattern
+     * Returns a path (sans scheme) for the given URI
      */
-    public static StringPath parseStringPath(Listener listener, String path, String separatorPattern)
+    public static StringPath stringPath(String root, List<String> elements)
     {
-        return parseStringPath(listener, path, null, separatorPattern);
+        return new StringPath(root, elements);
     }
 
     /**
@@ -130,14 +147,6 @@ public class StringPath extends Path<String>
     public static StringPath stringPath(List<String> elements)
     {
         return new StringPath(elements);
-    }
-
-    /**
-     * Returns a path (sans scheme) for the given URI
-     */
-    public static StringPath stringPath(String root, List<String> elements)
-    {
-        return new StringPath(root, elements);
     }
 
     /**

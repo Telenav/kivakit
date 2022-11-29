@@ -145,7 +145,7 @@ public class PropertyMap extends VariableMap<String>
                                                        @NotNull Locale locale,
                                                        @NotNull LocaleLanguage languageName)
     {
-        return loadPropertyMap(listener, packageResource(listener, path, locale.path(languageName).join("/")));
+        return loadPropertyMap(listener, packageResource(listener, path, locale.path(languageName)));
     }
 
     /**

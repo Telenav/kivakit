@@ -22,8 +22,8 @@ import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramString;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.string.Strings.replaceAll;
 
@@ -53,6 +53,17 @@ public class Escape
     public static String escapeSql(String text)
     {
         return replaceAll(text, "'", "''");
+    }
+
+    /**
+     * Returns the given URI with spaces escaped
+     *
+     * @param uri The URI
+     * @return The escaped URI
+     */
+    public static String escapeUri(String uri)
+    {
+        return uri.replaceAll(" ", "%20");
     }
 
     /**

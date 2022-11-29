@@ -198,7 +198,7 @@ public class Package extends BaseRepeater implements ResourceFolder<Package>
     public ObjectList<Package> folders()
     {
         var children = new ObjectList<Package>();
-        for (var folder : classpath().resourceFolders())
+        for (var folder : classpath().resourceFolders(this))
         {
             children.add(packageForPath(this, packagePath(folder.path())));
         }
@@ -320,7 +320,7 @@ public class Package extends BaseRepeater implements ResourceFolder<Package>
     public ResourceList resources(@NotNull Matcher<ResourcePathed> matcher)
     {
         var list = resourceList();
-        for (var resource : classpath().resources(packagePath.asPackageReference()).matching(matcher::matches))
+        for (var resource : classpath().resources(this, packagePath.asPackageReference()).matching(matcher::matches))
         {
             list.add(packageResource(this, packagePath(resource.packageReference()), resource.fileName()));
         }
