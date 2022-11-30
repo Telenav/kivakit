@@ -29,7 +29,7 @@ import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
 import static com.telenav.kivakit.core.messaging.Message.Status.RESULT_COMPROMISED;
 import static com.telenav.kivakit.core.messaging.Message.escapeMessageText;
-import static com.telenav.kivakit.core.messaging.messages.Severity.LOW;
+import static com.telenav.kivakit.core.messaging.messages.Severity.NONE;
 
 /**
  * A glitch is an issue that represents a temporary problem where recovery will happen. Unlike a {@link Warning},
@@ -87,7 +87,7 @@ public class Glitch extends OperationStatusMessage
     @Override
     public Severity severity()
     {
-        return LOW;
+        return NONE;
     }
 
     /**
