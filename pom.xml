@@ -16,7 +16,7 @@
 
     <groupId>com.telenav.kivakit</groupId>
     <artifactId>kivakit-parent</artifactId>
-    <version>1.8.6</version>
+    <version>1.8.7</version>
 
     <packaging>pom</packaging>
 
