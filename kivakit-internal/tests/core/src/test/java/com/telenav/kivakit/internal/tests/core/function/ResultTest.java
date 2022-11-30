@@ -3,12 +3,14 @@ package com.telenav.kivakit.internal.tests.core.function;
 import com.telenav.kivakit.core.ensure.EnsureTrait;
 import com.telenav.kivakit.core.function.Result;
 import com.telenav.kivakit.core.messaging.CheckTrait;
+import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.messaging.repeaters.BaseRepeater;
 import com.telenav.kivakit.core.time.Time;
 import com.telenav.kivakit.interfaces.code.Code;
 import com.telenav.kivakit.internal.testing.CoreUnitTest;
 import org.junit.Test;
 
+import static com.telenav.kivakit.core.messaging.Listener.nullListener;
 import static com.telenav.kivakit.internal.tests.core.function.ResultTest.OperationResult.FAIL;
 import static com.telenav.kivakit.internal.tests.core.function.ResultTest.OperationResult.SUCCEED;
 import static com.telenav.kivakit.internal.tests.core.function.ResultTest.OperationResult.THROW;
@@ -125,7 +127,9 @@ public class ResultTest extends CoreUnitTest implements
      */
     Result<String> read(Operation operation)
     {
-        return check("Could not read string", s -> !s.isBlank(), () ->
+        clearListeners();
+        nullListener().listenTo(this);
+        return check("Could not read string", s -> s != null && !s.isBlank(), () ->
         {
             return success(listenTo(operation).run());
         });

@@ -2,8 +2,8 @@ package com.telenav.kivakit.interfaces.collection;
 
 import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
 import static java.lang.Math.max;
 
@@ -51,7 +51,7 @@ public interface SpaceLimited extends Sized
      */
     default void onOutOfRoom(int values)
     {
-        throw new IllegalStateException("Ignoring operation: Adding " + values + " would exceed maximum size of " + totalRoom());
+        System.out.println("Ignoring operation: Adding " + values + " would exceed maximum size of " + totalRoom());
     }
 
     /**

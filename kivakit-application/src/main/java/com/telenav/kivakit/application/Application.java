@@ -38,6 +38,7 @@ import com.telenav.kivakit.core.language.trait.LanguageTrait;
 import com.telenav.kivakit.core.locale.Locale;
 import com.telenav.kivakit.core.locale.LocaleLanguage;
 import com.telenav.kivakit.core.logging.Logger;
+import com.telenav.kivakit.core.logging.LoggerFactory;
 import com.telenav.kivakit.core.logging.logs.BaseLog;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.messaging.Message;
@@ -105,6 +106,7 @@ import static com.telenav.kivakit.core.function.Result.success;
 import static com.telenav.kivakit.core.language.Classes.newInstance;
 import static com.telenav.kivakit.core.language.Classes.simpleName;
 import static com.telenav.kivakit.core.logging.LoggerFactory.newLogger;
+import static com.telenav.kivakit.core.logging.LoggerFactory.globalLogger;
 import static com.telenav.kivakit.core.project.Project.resolveProject;
 import static com.telenav.kivakit.core.project.StartUpOptions.isStartupOptionEnabled;
 import static com.telenav.kivakit.core.string.Align.rightAlign;
@@ -326,9 +328,6 @@ public abstract class Application extends BaseComponent implements
     /** The one and only application running in this process */
     private static Application application;
 
-    /** The default final destination for messages that bubble up to the application level */
-    private static final Logger LOGGER = newLogger();
-
     /**
      * Returns the currently running application
      */
@@ -347,7 +346,8 @@ public abstract class Application extends BaseComponent implements
      */
     public static <T extends Application> Result<ApplicationExit> run(Class<T> applicationType, String[] arguments)
     {
-        return run(LOGGER, applicationType, arguments);
+        globalLogger(newLogger());
+        return run(LoggerFactory.globalLogger(), applicationType, arguments);
     }
 
     /**
@@ -443,7 +443,7 @@ public abstract class Application extends BaseComponent implements
     {
         // CONSTRUCTING - 3. Create application
         register(this);
-        register(LOGGER);
+        register(globalLogger());
 
         application = this;
     }
@@ -638,7 +638,7 @@ public abstract class Application extends BaseComponent implements
             if (listeners().isEmpty())
             {
                 // add a default listener
-                LOGGER.listenTo(this);
+                globalLogger().listenTo(this);
             }
 
             // INITIALIZING - 1. Begin initializing
@@ -994,7 +994,7 @@ public abstract class Application extends BaseComponent implements
                 ? new MessagesWithSeverityOf(new Glitch().severity())
                 : new AllMessages();
 
-        LOGGER.listenTo(this, filter);
+        globalLogger().listenTo(this, filter);
     }
 
     private boolean deploymentSpecified()

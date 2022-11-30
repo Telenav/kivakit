@@ -24,12 +24,11 @@ import com.telenav.kivakit.core.ensure.EnsureTrait;
 import com.telenav.kivakit.core.ensure.Failure;
 import com.telenav.kivakit.core.function.ResultTrait;
 import com.telenav.kivakit.core.language.trait.LanguageTrait;
-import com.telenav.kivakit.core.logging.Logger;
+import com.telenav.kivakit.core.logging.LoggerFactory;
 import com.telenav.kivakit.core.messaging.Broadcaster;
 import com.telenav.kivakit.core.messaging.Message;
 import com.telenav.kivakit.core.messaging.Repeater;
 import com.telenav.kivakit.core.messaging.repeaters.RepeaterMixin;
-import com.telenav.kivakit.core.os.OperatingSystem;
 import com.telenav.kivakit.core.project.Project;
 import com.telenav.kivakit.core.project.ProjectTrait;
 import com.telenav.kivakit.core.registry.RegistryTrait;
@@ -56,8 +55,10 @@ import static com.telenav.kivakit.annotations.code.quality.Stability.UNSTABLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
 import static com.telenav.kivakit.core.language.primitive.Booleans.isTrue;
 import static com.telenav.kivakit.core.logging.LoggerFactory.newLogger;
+import static com.telenav.kivakit.core.logging.LoggerFactory.globalLogger;
 import static com.telenav.kivakit.core.messaging.Listener.nullListener;
 import static com.telenav.kivakit.core.os.Console.console;
+import static com.telenav.kivakit.core.os.OperatingSystem.operatingSystem;
 import static com.telenav.kivakit.core.project.Project.resolveProject;
 
 /**
@@ -178,12 +179,10 @@ public abstract class CoreUnitTest extends TestWatcher implements
     /** True if this is a quick test */
     private static boolean quickTest;
 
-    /** Logger for test output */
-    private static final Logger LOGGER = newLogger();
-
     @BeforeClass
     public static void testSetup()
     {
+        globalLogger(newLogger());
         quickTest = isTrue(System.getProperty("testQuick"));
         ClassLoader.getSystemClassLoader().setDefaultAssertionStatus(true);
         Failure.reporterFactory(messageType -> new JUnitFailureReporter());
@@ -200,7 +199,7 @@ public abstract class CoreUnitTest extends TestWatcher implements
 
     protected CoreUnitTest()
     {
-        LOGGER.listenTo(this);
+        LoggerFactory.globalLogger().listenTo(this);
     }
 
     @Override
@@ -239,11 +238,11 @@ public abstract class CoreUnitTest extends TestWatcher implements
     }
 
     /**
-     * Returns true if this is running on a mac
+     * Returns true if this is running on a Mac
      */
     protected boolean isMac()
     {
-        return OperatingSystem.operatingSystem().isMac();
+        return operatingSystem().isMac();
     }
 
     /**
@@ -263,11 +262,11 @@ public abstract class CoreUnitTest extends TestWatcher implements
     }
 
     /**
-     * Returns true if this is running on UNIX (other than MacOS)
+     * Returns true if this is running on UNIX (other than macOS)
      */
     protected boolean isUnix()
     {
-        return OperatingSystem.operatingSystem().isUnix();
+        return operatingSystem().isUnix();
     }
 
     /**
@@ -275,7 +274,7 @@ public abstract class CoreUnitTest extends TestWatcher implements
      */
     protected boolean isWindows()
     {
-        return OperatingSystem.operatingSystem().isWindows();
+        return operatingSystem().isWindows();
     }
 
     protected Maximum maximum(long maximum)

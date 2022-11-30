@@ -1,7 +1,7 @@
 package com.telenav.kivakit.core.ensure;
 
 import com.telenav.kivakit.annotations.code.quality.CodeQuality;
-import com.telenav.kivakit.core.logging.Logger;
+import com.telenav.kivakit.core.logging.LoggerFactory;
 import com.telenav.kivakit.core.messaging.Message;
 import com.telenav.kivakit.core.messaging.messages.OperationMessage;
 import com.telenav.kivakit.interfaces.function.Mapper;
@@ -14,7 +14,6 @@ import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTE
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.ensure.FailureReporter.throwingFailureReporter;
 import static com.telenav.kivakit.core.language.Classes.newInstance;
-import static com.telenav.kivakit.core.logging.LoggerFactory.newLogger;
 
 /**
  * Used by {@link Ensure} to report failures in a flexible way.
@@ -45,9 +44,6 @@ import static com.telenav.kivakit.core.logging.LoggerFactory.newLogger;
              documentation = DOCUMENTATION_COMPLETE)
 public class Failure
 {
-    /** Logger to receive announcements */
-    private static final Logger LOGGER = newLogger();
-
     /** Creates a {@link FailureReporter} given a message type. The default failure reporter throws an exception */
     public static Mapper<Class<? extends Message>, FailureReporter> reporterFactory =
             ignored -> throwingFailureReporter();
@@ -102,7 +98,7 @@ public class Failure
      */
     public static void reporter(Class<? extends Message> type, FailureReporter reporter)
     {
-        LOGGER.announce("Validation will report ${class} messages with ${class}", type, reporter.getClass());
+        LoggerFactory.globalLogger().announce("Validation will report ${class} messages with ${class}", type, reporter.getClass());
         reporterMap.get().put(type, reporter);
     }
 

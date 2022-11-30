@@ -17,20 +17,26 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.telenav.kivakit.internal.tests.core.collections.list;
+
 import com.telenav.kivakit.core.collections.list.BaseList;
 import com.telenav.kivakit.core.collections.list.ObjectList;
-import com.telenav.kivakit.internal.testing.CoreUnitTest;
+import com.telenav.kivakit.core.logging.loggers.NullLogger;
 import com.telenav.kivakit.core.value.count.Maximum;
+import com.telenav.kivakit.internal.testing.CoreUnitTest;
 import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.List;
+
+import static com.telenav.kivakit.core.logging.LoggerFactory.globalLogger;
 
 public class BoundedListTest extends CoreUnitTest
 {
     @Test
     public void testAdd()
     {
+        globalLogger(new NullLogger());
+
         // First make sure that we can add an element to a list with room.
         BaseList<Integer> list = populatedList(100, 99);
         list.add(11);

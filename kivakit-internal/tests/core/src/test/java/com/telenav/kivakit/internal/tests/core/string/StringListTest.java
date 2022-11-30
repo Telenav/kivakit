@@ -18,11 +18,15 @@
 
 package com.telenav.kivakit.internal.tests.core.string;
 
-import com.telenav.kivakit.core.collections.list.StringList;import com.telenav.kivakit.internal.testing.CoreUnitTest;
+import com.telenav.kivakit.core.collections.list.StringList;
+import com.telenav.kivakit.core.logging.loggers.NullLogger;
 import com.telenav.kivakit.core.value.count.Maximum;
+import com.telenav.kivakit.internal.testing.CoreUnitTest;
 import org.junit.Test;
 
 import java.util.Arrays;
+
+import static com.telenav.kivakit.core.logging.LoggerFactory.globalLogger;
 
 @SuppressWarnings({ "ConstantConditions", "SameParameterValue" })
 public class StringListTest extends CoreUnitTest
@@ -58,6 +62,7 @@ public class StringListTest extends CoreUnitTest
     @Test
     public void testMaximum()
     {
+        globalLogger(new NullLogger());
         StringList list = new StringList(Maximum._1);
         list.add("a");
         list.add("b");

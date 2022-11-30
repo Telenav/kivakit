@@ -346,9 +346,6 @@
                     <execution>
                         <id>project-metadata</id>
                         <phase>generate-resources</phase>
-                        <configuration>
-                            <verb>Updating project and build metadata</verb>
-                        </configuration>
                         <goals>
                             <goal>project-information</goal>
                             <goal>build-metadata</goal>

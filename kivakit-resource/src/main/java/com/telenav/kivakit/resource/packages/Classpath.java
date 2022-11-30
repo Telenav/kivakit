@@ -5,7 +5,6 @@ import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.collections.list.ObjectList;
 import com.telenav.kivakit.core.collections.set.ObjectSet;
 import com.telenav.kivakit.core.language.packaging.PackageReference;
-import com.telenav.kivakit.core.logging.Logger;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.object.Lazy;
 import io.github.classgraph.ClassGraph;
@@ -13,9 +12,7 @@ import io.github.classgraph.ClassGraph;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Stability.UNSTABLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
-import static com.telenav.kivakit.core.logging.LoggerFactory.newLogger;
 import static com.telenav.kivakit.core.object.Lazy.lazy;
-import static com.telenav.kivakit.core.os.Console.console;
 import static com.telenav.kivakit.core.vm.JavaVirtualMachine.javaVirtualMachine;
 import static com.telenav.kivakit.resource.packages.ClasspathResource.classpathResource;
 import static com.telenav.kivakit.resource.packages.ClasspathResourceFolder.classpathResourceFolder;
@@ -51,8 +48,6 @@ public class Classpath
 {
     /** The single instance of this class */
     private static final Lazy<Classpath> classpath = lazy(Classpath::new);
-
-    private static final Logger LOGGER = newLogger();
 
     /**
      * Get the singleton instance of this class

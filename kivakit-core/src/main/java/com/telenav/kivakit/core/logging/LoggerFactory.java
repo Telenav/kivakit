@@ -21,6 +21,7 @@ package com.telenav.kivakit.core.logging;
 import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramLogging;
 import com.telenav.kivakit.core.logging.loggers.LogServiceLogger;
+import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.interfaces.factory.Factory;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
@@ -47,6 +48,33 @@ public class LoggerFactory
 {
     /** The current logger factory */
     private static Factory<Logger> factory = LogServiceLogger::new;
+
+    /** The global logger, for cases like collections where it's too cumbersome to require listeners */
+    private static Logger global;
+
+    /**
+     * Returns a logger instance for use in contexts where it is too awkward to implement or pass in a {@link Listener}.
+     * For example, some trivial classes and static methods may need to report problems, but are not important enough to
+     * justify the complexity of reporting those problems an external listener.
+     */
+    public static Logger globalLogger()
+    {
+        if (global == null)
+        {
+            global = newLogger();
+        }
+        return global;
+    }
+
+    /**
+     * Sets the global logger
+     *
+     * @param logger The logger
+     */
+    public static void globalLogger(Logger logger)
+    {
+        global = logger;
+    }
 
     /**
      * Installs a custom logger factory. This overrides logger creation for the entire system

@@ -21,7 +21,6 @@ package com.telenav.kivakit.core.messaging;
 import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.KivaKit;
 import com.telenav.kivakit.core.internal.lexakai.DiagramBroadcaster;
-import com.telenav.kivakit.core.logging.Logger;
 import com.telenav.kivakit.core.messaging.context.CallStack;
 import com.telenav.kivakit.core.messaging.context.CallStack.Matching;
 import com.telenav.kivakit.core.messaging.context.CallStack.Proximity;
@@ -37,13 +36,14 @@ import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
 import static com.telenav.kivakit.core.language.Patterns.patternMatches;
 import static com.telenav.kivakit.core.language.Patterns.simplifiedPattern;
-import static com.telenav.kivakit.core.logging.LoggerFactory.newLogger;
+import static com.telenav.kivakit.core.logging.LoggerFactory.globalLogger;
 import static com.telenav.kivakit.core.messaging.Listener.nullListener;
 import static com.telenav.kivakit.core.project.Project.resolveProject;
 import static com.telenav.kivakit.core.project.StartUpOptions.StartupOption.QUIET;
 import static com.telenav.kivakit.core.project.StartUpOptions.isStartupOptionEnabled;
 import static com.telenav.kivakit.core.string.AsciiArt.textBox;
-import static java.lang.Boolean.*;
+import static java.lang.Boolean.FALSE;
+import static java.lang.Boolean.TRUE;
 
 /**
  * <b>Note</b>: For a detailed discussion, see <a href="https://tinyurl.com/2xycuvph">KivaKit Debugging
@@ -86,14 +86,13 @@ import static java.lang.Boolean.*;
  * @author jonathanl (shibo)
  * @see <a href="https://tinyurl.com/2xycuvph">KivaKit Debugging Documentation</a>
  */
+@SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramBroadcaster.class)
 @CodeQuality(stability = STABLE_EXTENSIBLE,
              testing = UNTESTED,
              documentation = DOCUMENTATION_COMPLETE)
 public final class Debug implements MessageTransceiver
 {
-    private static final Logger LOGGER = newLogger();
-
     /** True if debugging in general is enabled */
     private static final Boolean debugging;
 
@@ -275,10 +274,11 @@ public final class Debug implements MessageTransceiver
                 var title = "KivaKit " + kivakitVersion + " (" + resolveProject(KivaKit.class).build() + ")";
                 if (!isStartupOptionEnabled(QUIET))
                 {
-                    LOGGER.information(textBox(title, "      Logging: https://tinyurl.com/mhc3ss5s\n"
-                                    + "    Debugging: https://tinyurl.com/2xycuvph\n"
-                                    + "  KIVAKIT_LOG: $\n"
-                                    + "KIVAKIT_DEBUG: $",
+                    globalLogger().information(textBox(title, """
+                                          Logging: https://tinyurl.com/mhc3ss5s
+                                        Debugging: https://tinyurl.com/2xycuvph
+                                      KIVAKIT_LOG: $
+                                    KIVAKIT_DEBUG: $""",
                             log == null ? "Console" : log,
                             debug == null ? "Disabled" : debug));
                 }
@@ -305,7 +305,7 @@ public final class Debug implements MessageTransceiver
             // then show enable state to the user
             if (debugging == TRUE)
             {
-                LOGGER.information("Debug output is $ for $ ($)", state, type.getSimpleName(), type.getPackage().getName());
+                globalLogger().information("Debug output is $ for $ ($)", state, type.getSimpleName(), type.getPackage().getName());
             }
             return enabled == TRUE;
         }

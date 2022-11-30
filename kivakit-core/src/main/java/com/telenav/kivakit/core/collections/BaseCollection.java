@@ -6,7 +6,6 @@ import com.telenav.kivakit.core.collections.iteration.FilteredIterable;
 import com.telenav.kivakit.core.collections.list.BaseList;
 import com.telenav.kivakit.core.collections.list.ObjectList;
 import com.telenav.kivakit.core.collections.list.StringList;
-import com.telenav.kivakit.core.logging.Logger;
 import com.telenav.kivakit.core.string.StringConversions;
 import com.telenav.kivakit.core.value.count.Count;
 import com.telenav.kivakit.core.value.count.Countable;
@@ -33,7 +32,7 @@ import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMEN
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_INSUFFICIENT;
 import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
-import static com.telenav.kivakit.core.logging.LoggerFactory.newLogger;
+import static com.telenav.kivakit.core.logging.LoggerFactory.globalLogger;
 import static com.telenav.kivakit.core.value.count.Maximum.maximum;
 import static com.telenav.kivakit.interfaces.string.StringFormattable.Format.TO_STRING;
 
@@ -170,8 +169,6 @@ public abstract class BaseCollection<Value> implements
         Sized,
         StringFormattable
 {
-    private static final Logger LOGGER = newLogger();
-
     /** The maximum number of values that can be stored in this list */
     private int maximumSize;
 
@@ -249,10 +246,10 @@ public abstract class BaseCollection<Value> implements
     public String asString(StringFormattable.@NotNull Format format)
     {
         return switch (format)
-        {
-            case DEBUG -> join(separator(), StringConversions::toDebugString);
-            default -> join();
-        };
+                {
+                    case DEBUG -> join(separator(), StringConversions::toDebugString);
+                    default -> join();
+                };
     }
 
     /**
@@ -384,7 +381,7 @@ public abstract class BaseCollection<Value> implements
         if (!warnedAboutOutOfRoom)
         {
             warnedAboutOutOfRoom = true;
-            LOGGER.warning(new Throwable(), "Adding $ values, would exceed maximum size of $. Ignoring operation.", values, totalRoom());
+            globalLogger().warning(new Throwable(), "Adding $ values, would exceed maximum size of $. Ignoring operation.", values, totalRoom());
         }
     }
 

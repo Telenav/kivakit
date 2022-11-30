@@ -22,11 +22,13 @@ import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.collections.set.ObjectSet;
 import com.telenav.kivakit.core.internal.lexakai.DiagramLogging;
 import com.telenav.kivakit.core.logging.Log;
+import com.telenav.kivakit.core.logging.LoggerCodeContext;
+import com.telenav.kivakit.core.messaging.Message;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeMember;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.collections.set.ObjectSet.set;
 
@@ -53,6 +55,11 @@ import static com.telenav.kivakit.core.collections.set.ObjectSet.set;
              documentation = DOCUMENTATION_COMPLETE)
 public class NullLogger extends BaseLogger
 {
+    @Override
+    public void log(final LoggerCodeContext context, final Thread thread, final Message message)
+    {
+    }
+
     /**
      * Returns an empty set of logs
      * <p>

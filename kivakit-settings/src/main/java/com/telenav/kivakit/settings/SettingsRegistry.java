@@ -19,7 +19,7 @@
 package com.telenav.kivakit.settings;
 
 import com.telenav.kivakit.annotations.code.quality.CodeQuality;
-import com.telenav.kivakit.core.logging.Logger;
+import com.telenav.kivakit.core.logging.LoggerFactory;
 import com.telenav.kivakit.core.object.Lazy;
 import com.telenav.kivakit.core.registry.InstanceIdentifier;
 import com.telenav.kivakit.core.registry.Registry;
@@ -34,7 +34,6 @@ import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMEN
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.ensure.Ensure.fail;
-import static com.telenav.kivakit.core.logging.LoggerFactory.newLogger;
 import static com.telenav.kivakit.core.object.Lazy.lazy;
 import static com.telenav.kivakit.core.registry.Registry.registryFor;
 import static com.telenav.kivakit.filesystem.Folder.parseFolder;
@@ -135,11 +134,9 @@ public class SettingsRegistry extends MemorySettingsStore implements
         SettingsTrait,
         JavaTrait
 {
-    private static final Logger LOGGER = newLogger();
-
     /** The global settings registry */
     private static final Lazy<SettingsRegistry> global = lazy(() ->
-            LOGGER.listenTo(new SettingsRegistry()
+            LoggerFactory.globalLogger().listenTo(new SettingsRegistry()
             {
                 @Override
                 public String name()

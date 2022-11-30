@@ -34,8 +34,6 @@ import com.telenav.lexakai.annotations.associations.UmlRelation;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeMember;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeSuperTypes;
 
-import static com.telenav.kivakit.core.logging.LoggerFactory.newLogger;
-
 /**
  * A {@link Logger} accepts {@link Message}s via {@link #log(Message)} and writes them to one or more {@link Log}s.
  * Filters can be added to the logger to restrict which messages are logged with {@link #addFilter(Filter)}.
@@ -71,10 +69,6 @@ import static com.telenav.kivakit.core.logging.LoggerFactory.newLogger;
  * system property KIVAKIT_LOG.
  *
  * <p><b>Factory Methods</b></p>
- *
- * <ul>
- *     <li>{@link #logger()} - Returns a new logger instance</li>
- * </ul>
  *
  * <p><b>Logging</b></p>
  *
@@ -115,25 +109,6 @@ public interface Logger extends
         Filtered<LogEntry>,
         Flushable<Duration>
 {
-    /**
-     * <b>Not public API</b>
-     *
-     * <p>
-     * Generic logger instance returned by {@link #logger()}.
-     * </p>
-     */
-    Logger LOGGER = newLogger();
-
-    /**
-     * Returns a logger instance for use in contexts where it is too awkward to implement or pass in a {@link Listener}.
-     * For example, some trivial classes and static methods may need to report problems, but are not important enough to
-     * justify the complexity of reporting those problems an external listener.
-     */
-    static Logger logger()
-    {
-        return LOGGER;
-    }
-
     /**
      * Set a new filter
      *
