@@ -48,7 +48,7 @@ import static com.telenav.kivakit.core.collections.list.StringList.stringList;
 import static com.telenav.kivakit.core.ensure.Ensure.ensure;
 import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
 import static com.telenav.kivakit.core.language.Classes.simpleName;
-import static com.telenav.kivakit.core.language.primitive.Booleans.isFalse;
+import static com.telenav.kivakit.core.language.primitive.Booleans.isTrue;
 import static com.telenav.kivakit.core.logging.LoggerFactory.globalLogger;
 import static com.telenav.kivakit.core.os.OperatingSystem.operatingSystem;
 import static com.telenav.kivakit.core.string.IndentingStringBuilder.Indentation.indentation;
@@ -94,7 +94,7 @@ import static com.telenav.kivakit.interfaces.naming.NamedObject.syntheticName;
  * @see Broadcaster
  * @see Listener
  */
-@SuppressWarnings({ "unused", "GrazieInspection" })
+@SuppressWarnings({ "unused", "GrazieInspection", "SpellCheckingInspection" })
 @UmlClassDiagram(diagram = DiagramRepeater.class)
 @CodeQuality(stability = STABLE,
              testing = UNTESTED,
@@ -429,11 +429,11 @@ public class Multicaster implements Broadcaster
                     globalLogger().log((Message) message);
                 }
 
-                // If the KIVAKIT_NO_LISTENER_ERROR system property is not set to "false",
-                if (!isFalse(operatingSystem().systemPropertyOrEnvironmentVariable("KIVAKIT_NO_LISTENER_ERROR")))
+                // If the KIVAKIT_NO_LISTENER_ERROR system property is set to true,
+                if (isTrue(operatingSystem().systemPropertyOrEnvironmentVariable("KIVAKIT_NO_LISTENER_ERROR", "false")))
                 {
                     // throw an error to flag lost messages.
-                    throw new NoListenerError("No listener found:\n\n$", listenerChain()
+                    throw new NoListenerError("No listener found (-DKIVAKIT_NO_LISTENER_ERROR=false will suppress this error):\n\n$", listenerChain()
                             .numbered()
                             .indented(4));
                 }

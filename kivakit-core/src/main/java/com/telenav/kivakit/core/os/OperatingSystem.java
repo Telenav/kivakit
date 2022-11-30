@@ -28,8 +28,8 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 import java.io.File;
 import java.io.IOException;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
 import static com.telenav.kivakit.core.os.OperatingSystem.OperatingSystemType.MACOS;
@@ -254,17 +254,26 @@ public class OperatingSystem implements Named
     @SuppressWarnings("SpellCheckingInspection")
     public ProcessorArchitecture processorArchitecture()
     {
-        switch (System.getProperty("os.arch"))
-        {
-            case "x86":
-                return INTEL;
+        return switch (System.getProperty("os.arch"))
+                {
+                    case "x86" -> INTEL;
+                    case "aarch64" -> APPLE;
+                    default -> OTHER_PROCESSOR;
+                };
+    }
 
-            case "aarch64":
-                return APPLE;
-
-            default:
-                return OTHER_PROCESSOR;
-        }
+    /**
+     * Returns the value of the given property, or if that doesn't exist the value of the given environment variable. If
+     * that also does not exist, returns the given default value.
+     *
+     * @param variable The name of the property or environment variable to get.
+     * @param defaultValue A default value to use if there is no system property or environment variable defined for the
+     * given key
+     */
+    public String systemPropertyOrEnvironmentVariable(String variable, String defaultValue)
+    {
+        var value = systemPropertyOrEnvironmentVariable(variable);
+        return value == null ? defaultValue : value;
     }
 
     /**

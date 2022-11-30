@@ -1,5 +1,14 @@
 # KivaKit Change Log
 
+
+-----------------------------------------------------------------------------------------------------------------------
+
+## Version 1.8.7 (2022.11.30) "happy hippo"
+
+### Messaging
+
+ - Added `KIVAKIT_NO_LISTENER_ERROR` flag (default is `false`) to throw `NoListenerError` for broken listener chains
+
 -----------------------------------------------------------------------------------------------------------------------
 
 ## Version 1.8.6 (2022.11.29) "happy duckling"
