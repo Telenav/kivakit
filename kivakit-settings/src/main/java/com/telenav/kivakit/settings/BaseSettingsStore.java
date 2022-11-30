@@ -17,12 +17,13 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.collections.set.ObjectSet.set;
 import static com.telenav.kivakit.core.ensure.Ensure.ensure;
 import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
+import static com.telenav.kivakit.core.registry.Registry.globalRegistry;
 import static com.telenav.kivakit.settings.SettingsStore.AccessMode.DELETE;
 import static com.telenav.kivakit.settings.SettingsStore.AccessMode.INDEX;
 import static com.telenav.kivakit.settings.SettingsStore.AccessMode.LOAD;
@@ -129,6 +130,8 @@ public abstract class BaseSettingsStore extends BaseRepeater implements
     {
         ensure(supports(INDEX));
         ensureNotNull(settings);
+
+        globalRegistry().register(settings.object(), settings.identifier().instance());
 
         // Lock for writing,
         return lock.write(() ->
