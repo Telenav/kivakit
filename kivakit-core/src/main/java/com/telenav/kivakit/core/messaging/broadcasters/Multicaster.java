@@ -21,7 +21,6 @@ package com.telenav.kivakit.core.messaging.broadcasters;
 import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.collections.list.StringList;
 import com.telenav.kivakit.core.internal.lexakai.DiagramRepeater;
-import com.telenav.kivakit.core.language.Classes;
 import com.telenav.kivakit.core.logging.Logger;
 import com.telenav.kivakit.core.logging.loggers.ConsoleLogger;
 import com.telenav.kivakit.core.messaging.Broadcaster;
@@ -31,7 +30,6 @@ import com.telenav.kivakit.core.messaging.context.CodeContext;
 import com.telenav.kivakit.core.messaging.listeners.AbortTransmissionException;
 import com.telenav.kivakit.core.messaging.messages.OperationMessage;
 import com.telenav.kivakit.core.string.IndentingStringBuilder;
-import com.telenav.kivakit.core.string.IndentingStringBuilder.Indentation;
 import com.telenav.kivakit.core.thread.locks.ReadWriteLock;
 import com.telenav.kivakit.interfaces.comparison.Filter;
 import com.telenav.kivakit.interfaces.messaging.Transmittable;
@@ -50,6 +48,8 @@ import static com.telenav.kivakit.core.collections.list.StringList.stringList;
 import static com.telenav.kivakit.core.ensure.Ensure.ensure;
 import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
 import static com.telenav.kivakit.core.language.Classes.simpleName;
+import static com.telenav.kivakit.core.language.primitive.Booleans.isFalse;
+import static com.telenav.kivakit.core.os.OperatingSystem.operatingSystem;
 import static com.telenav.kivakit.core.string.IndentingStringBuilder.Indentation.indentation;
 import static com.telenav.kivakit.core.string.IndentingStringBuilder.Style.TEXT;
 import static com.telenav.kivakit.interfaces.naming.NamedObject.syntheticName;
@@ -93,7 +93,7 @@ import static com.telenav.kivakit.interfaces.naming.NamedObject.syntheticName;
  * @see Broadcaster
  * @see Listener
  */
-@SuppressWarnings("unused")
+@SuppressWarnings({ "unused", "GrazieInspection" })
 @UmlClassDiagram(diagram = DiagramRepeater.class)
 @CodeQuality(stability = STABLE,
              testing = UNTESTED,
@@ -268,8 +268,8 @@ public class Multicaster implements Broadcaster
     }
 
     /**
-     * Returns the chain of broadcasters that leads to this {@link Multicaster} in reversed order
-     * so this broadcaster is at the top of the stack.
+     * Returns the chain of broadcasters that leads to this {@link Multicaster} in reversed order so this broadcaster is
+     * at the top of the stack.
      */
     @NotNull
     public StringList listenerChain()
@@ -285,7 +285,7 @@ public class Multicaster implements Broadcaster
             var name = simpleName(at.getClass());
             if (at.listeners().isEmpty())
             {
-                name += " (No Listener)" ;
+                name += " (No Listener)";
             }
             chain.add(name);
         }
@@ -428,10 +428,14 @@ public class Multicaster implements Broadcaster
                     LOGGER.log((Message) message);
                 }
 
-                // Throw an error, because this is a serious problem. We don't want to lose messages.
-                throw new NoListenerError("No listener found:\n\n$", listenerChain()
-                        .numbered()
-                        .indented(4));
+                // If the KIVAKIT_NO_LISTENER_ERROR system property is not set to "false",
+                if (!isFalse(operatingSystem().systemPropertyOrEnvironmentVariable("KIVAKIT_NO_LISTENER_ERROR")))
+                {
+                    // throw an error to flag lost messages.
+                    throw new NoListenerError("No listener found:\n\n$", listenerChain()
+                            .numbered()
+                            .indented(4));
+                }
             }
         });
 
