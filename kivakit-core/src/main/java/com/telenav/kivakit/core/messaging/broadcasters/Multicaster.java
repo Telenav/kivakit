@@ -49,6 +49,7 @@ import static com.telenav.kivakit.core.ensure.Ensure.ensure;
 import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
 import static com.telenav.kivakit.core.language.Classes.simpleName;
 import static com.telenav.kivakit.core.language.primitive.Booleans.isFalse;
+import static com.telenav.kivakit.core.logging.LoggerFactory.globalLogger;
 import static com.telenav.kivakit.core.os.OperatingSystem.operatingSystem;
 import static com.telenav.kivakit.core.string.IndentingStringBuilder.Indentation.indentation;
 import static com.telenav.kivakit.core.string.IndentingStringBuilder.Style.TEXT;
@@ -424,8 +425,8 @@ public class Multicaster implements Broadcaster
                 // If there is no receiver for this message, and it can be logged,
                 if (message instanceof Message)
                 {
-                    // then log it (to the console).
-                    LOGGER.log((Message) message);
+                    // then log it (to the global logger).
+                    globalLogger().log((Message) message);
                 }
 
                 // If the KIVAKIT_NO_LISTENER_ERROR system property is not set to "false",
