@@ -1,0 +1,17 @@
+#
+# Global Lexakai Settings
+#
+# See https://lexakai.org for details
+#
+
+#
+# Locations of resources linked to from README.md files
+#
+lexakai-documentation-location = https://www.kivakit.org/${project-version}/lexakai
+lexakai-javadoc-location       = https://www.kivakit.org/${project-version}/javadoc
+lexakai-images-location        = https://telenav.github.io/telenav-assets/images
+
+#
+# Default project settings
+#
+project-footer                 = <sub>Copyright &#169; 2011-2021 [Telenav](https://telenav.com), Inc. Distributed under [Apache License, Version 2.0](LICENSE)</sub>

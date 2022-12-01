@@ -1,0 +1,431 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="769.7917px" preserveAspectRatio="none" style="width:879px;height:769px;background:#333333;" version="1.1" viewBox="0 0 879 769" width="879.1667px" zoomAndPan="magnify"><defs/><g><rect fill="#48494B" height="41.2028" rx="8.3333" ry="8.3333" style="stroke:#545454;stroke-width:1.0416666666666667;" width="439.5833" x="220.8333" y="14.5833"/><text fill="#C0C0C0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="20.8333" lengthAdjust="spacing" textLength="416.6667" x="232.2917" y="43.0583">Checked Method with Exception Handling</text><rect fill="#3A3A3A" height="78.772" style="stroke:#484848;stroke-width:1.0416666666666667;" width="10.4167" x="180.2083" y="259.5337"/><rect fill="#3A3A3A" height="285.1583" style="stroke:#484848;stroke-width:1.0416666666666667;" width="10.4167" x="454.6875" y="373.8607"/><rect fill="#3A3A3A" height="26.0417" style="stroke:#484848;stroke-width:1.0416666666666667;" width="10.4167" x="459.8958" y="542.2607"/><rect fill="#3A3A3A" height="35.555" style="stroke:#484848;stroke-width:1.0416666666666667;" width="10.4167" x="712.5" y="439.7624"/><rect fill="#333333" height="235.0199" rx="8.3333" ry="8.3333" style="stroke:#484848;stroke-width:2.0833333333333335;" width="526.0417" x="345.8333" y="389.4857"/><rect fill="#333333" height="140.8549" style="stroke:none;stroke-width:1.0416666666666667;" width="526.0417" x="345.8333" y="483.6507"/><line style="stroke:#484848;stroke-width:2.0833333333333335;stroke-dasharray:5.0,5.0;" x1="32.2917" x2="32.2917" y1="155.2531" y2="677.769"/><line style="stroke:#484848;stroke-width:2.0833333333333335;stroke-dasharray:5.0,5.0;" x1="184.8958" x2="184.8958" y1="155.2531" y2="677.769"/><line style="stroke:#484848;stroke-width:2.0833333333333335;stroke-dasharray:5.0,5.0;" x1="459.375" x2="459.375" y1="310.378" y2="677.769"/><line style="stroke:#484848;stroke-width:2.0833333333333335;stroke-dasharray:5.0,5.0;" x1="717.7083" x2="717.7083" y1="209.4076" y2="677.769"/><text fill="#C8AC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="14.5833" lengthAdjust="spacing" text-decoration="underline" textLength="41.6667" x="8.3333" y="149.0519">Client</text><ellipse cx="32.2917" cy="76.6195" fill="#484848" rx="8.3333" ry="8.3333" style="stroke:#484848;stroke-width:2.0833333333333335;"/><path d="M32.2917,84.9528 L32.2917,113.0778 M18.75,93.2861 L45.8333,93.2861 M32.2917,113.0778 L18.75,128.7028 M32.2917,113.0778 L45.8333,128.7028 " fill="none" style="stroke:#484848;stroke-width:2.0833333333333335;"/><text fill="#C8AC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="14.5833" lengthAdjust="spacing" text-decoration="underline" textLength="41.6667" x="8.3333" y="693.9514">Client</text><ellipse cx="32.2917" cy="710.5693" fill="#484848" rx="8.3333" ry="8.3333" style="stroke:#484848;stroke-width:2.0833333333333335;"/><path d="M32.2917,718.9026 L32.2917,747.0276 M18.75,727.2359 L45.8333,727.2359 M32.2917,747.0276 L18.75,762.6526 M32.2917,747.0276 L45.8333,762.6526 " fill="none" style="stroke:#484848;stroke-width:2.0833333333333335;"/><rect fill="#484848" height="52.7303" rx="8.3333" ry="8.3333" style="stroke:#484848;stroke-width:1.5625;" width="119.7917" x="125.5208" y="101.4811"/><text fill="#000000" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-style="italic" lengthAdjust="spacing" textLength="51.0417" x="159.8958" y="123.9827">«kivakit»</text><text fill="#C8AC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="14.5833" lengthAdjust="spacing" text-decoration="underline" textLength="98.9583" x="135.9375" y="140.7186">CheckedCode</text><rect fill="#484848" height="52.7303" rx="8.3333" ry="8.3333" style="stroke:#484848;stroke-width:1.5625;" width="119.7917" x="125.5208" y="676.7273"/><text fill="#000000" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-style="italic" lengthAdjust="spacing" textLength="51.0417" x="159.8958" y="699.2289">«kivakit»</text><text fill="#C8AC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="14.5833" lengthAdjust="spacing" text-decoration="underline" textLength="98.9583" x="135.9375" y="715.9648">CheckedCode</text><rect fill="#484848" height="52.7303" rx="8.3333" ry="8.3333" style="stroke:#484848;stroke-width:1.5625;" width="123.9583" x="397.9167" y="676.7273"/><text fill="#000000" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-style="italic" lengthAdjust="spacing" textLength="51.0417" x="434.375" y="699.2289">«kivakit»</text><text fill="#C8AC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="14.5833" lengthAdjust="spacing" text-decoration="underline" textLength="103.125" x="408.3333" y="715.9648">:CheckedCode</text><rect fill="#484848" height="55.1839" rx="8.3333" ry="8.3333" style="stroke:#484848;stroke-width:1.5625;" width="204.1667" x="615.625" y="676.7273"/><text fill="#C8AC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="14.5833" lengthAdjust="spacing" text-decoration="underline" textLength="112.5" x="661.4583" y="701.2431">returnableCode</text><text fill="#C8AC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="14.5833" lengthAdjust="spacing" text-decoration="underline" textLength="183.3333" x="626.0417" y="718.4184">:Returnable&lt;ResultType&gt;</text><rect fill="#3A3A3A" height="78.772" style="stroke:#484848;stroke-width:1.0416666666666667;" width="10.4167" x="180.2083" y="259.5337"/><rect fill="#3A3A3A" height="285.1583" style="stroke:#484848;stroke-width:1.0416666666666667;" width="10.4167" x="454.6875" y="373.8607"/><rect fill="#3A3A3A" height="26.0417" style="stroke:#484848;stroke-width:1.0416666666666667;" width="10.4167" x="459.8958" y="542.2607"/><rect fill="#3A3A3A" height="35.555" style="stroke:#484848;stroke-width:1.0416666666666667;" width="10.4167" x="712.5" y="439.7624"/><polygon fill="#545454" points="603.125,188.7248,613.5417,192.8914,603.125,197.0581,607.2917,192.8914" style="stroke:#545454;stroke-width:1.0416666666666667;"/><line style="stroke:#545454;stroke-width:1.5625;" x1="32.2917" x2="609.375" y1="192.8914" y2="192.8914"/><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="48.9583" x="42.7083" y="185.0464">define()</text><rect fill="#484848" height="55.1839" rx="8.3333" ry="8.3333" style="stroke:#484848;stroke-width:1.5625;" width="204.1667" x="615.625" y="165.6698"/><text fill="#C8AC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="14.5833" lengthAdjust="spacing" text-decoration="underline" textLength="112.5" x="661.4583" y="190.1855">returnableCode</text><text fill="#C8AC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="14.5833" lengthAdjust="spacing" text-decoration="underline" textLength="183.3333" x="626.0417" y="207.3608">:Returnable&lt;ResultType&gt;</text><polygon fill="#545454" points="167.7083,255.367,178.125,259.5337,167.7083,263.7004,171.875,259.5337" style="stroke:#545454;stroke-width:1.0416666666666667;"/><line style="stroke:#545454;stroke-width:1.5625;" x1="32.2917" x2="173.9583" y1="259.5337" y2="259.5337"/><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="121.875" x="42.7083" y="251.6886">of(returnableCode)</text><polygon fill="#545454" points="385.4167,290.922,395.8333,295.0887,385.4167,299.2554,389.5833,295.0887" style="stroke:#545454;stroke-width:1.0416666666666667;"/><line style="stroke:#545454;stroke-width:1.5625;" x1="190.625" x2="391.6667" y1="295.0887" y2="295.0887"/><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="134.375" x="201.0417" y="287.2437">new(returnableCode)</text><rect fill="#484848" height="52.7303" rx="8.3333" ry="8.3333" style="stroke:#484848;stroke-width:1.5625;" width="123.9583" x="397.9167" y="267.867"/><text fill="#000000" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-style="italic" lengthAdjust="spacing" textLength="51.0417" x="434.375" y="290.3687">«kivakit»</text><text fill="#C8AC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="14.5833" lengthAdjust="spacing" text-decoration="underline" textLength="103.125" x="408.3333" y="307.1045">:CheckedCode</text><polygon fill="#545454" points="43.75,334.139,33.3333,338.3057,43.75,342.4723,39.5833,338.3057" style="stroke:#545454;stroke-width:1.0416666666666667;"/><line style="stroke:#545454;stroke-width:1.5625;stroke-dasharray:2.0,2.0;" x1="37.5" x2="184.375" y1="338.3057" y2="338.3057"/><polygon fill="#545454" points="442.1875,369.694,452.6042,373.8607,442.1875,378.0273,446.3542,373.8607" style="stroke:#545454;stroke-width:1.0416666666666667;"/><line style="stroke:#545454;stroke-width:1.5625;" x1="32.2917" x2="448.4375" y1="373.8607" y2="373.8607"/><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="172.9167" x="42.7083" y="366.0156">or(defaultResult, message)</text><path d="M354.1667,389.4857 L415.625,389.4857 L415.625,401.9857 L405.2083,412.4023 L345.8333,412.4023 L345.8333,397.819 " fill="#484848" style="stroke:#484848;stroke-width:1.0416666666666667;"/><rect fill="none" height="235.0199" rx="8.3333" ry="8.3333" style="stroke:#484848;stroke-width:2.0833333333333335;" width="526.0417" x="345.8333" y="389.4857"/><text fill="#0060A8" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="16.6667" x="364.5833" y="405.7373">alt</text><polygon fill="#545454" points="700,435.5957,710.4167,439.7624,700,443.929,704.1667,439.7624" style="stroke:#545454;stroke-width:1.0416666666666667;"/><line style="stroke:#545454;stroke-width:1.5625;" x1="465.1042" x2="706.25" y1="439.7624" y2="439.7624"/><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="21.875" x="475.5208" y="431.9173">run</text><polygon fill="#545454" points="476.5625,471.1507,466.1458,475.3174,476.5625,479.484,472.3958,475.3174" style="stroke:#545454;stroke-width:1.0416666666666667;"/><line style="stroke:#545454;stroke-width:1.5625;stroke-dasharray:2.0,2.0;" x1="470.3125" x2="716.6667" y1="475.3174" y2="475.3174"/><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="37.5" x="485.9375" y="467.4723">result</text><line style="stroke:#484848;stroke-width:1.0416666666666667;stroke-dasharray:2.0,2.0;" x1="345.8333" x2="871.875" y1="484.6924" y2="484.6924"/><text fill="#3380B9" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="108.3333" x="354.1667" y="499.9023">[catch exception]</text><line style="stroke:#545454;stroke-width:1.5625;" x1="465.1042" x2="514.0625" y1="528.7191" y2="528.7191"/><line style="stroke:#545454;stroke-width:1.5625;" x1="514.0625" x2="514.0625" y1="528.7191" y2="542.2607"/><line style="stroke:#545454;stroke-width:1.5625;" x1="471.3542" x2="514.0625" y1="542.2607" y2="542.2607"/><polygon fill="#545454" points="481.7708,538.0941,471.3542,542.2607,481.7708,546.4274,477.6042,542.2607" style="stroke:#545454;stroke-width:1.0416666666666667;"/><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="82.2917" x="480.7292" y="520.874">log message</text><line style="stroke:#545454;stroke-width:1.5625;stroke-dasharray:2.0,2.0;" x1="470.3125" x2="514.0625" y1="567.2607" y2="567.2607"/><line style="stroke:#545454;stroke-width:1.5625;stroke-dasharray:2.0,2.0;" x1="514.0625" x2="514.0625" y1="567.2607" y2="580.8024"/><line style="stroke:#545454;stroke-width:1.5625;stroke-dasharray:2.0,2.0;" x1="465.1042" x2="514.0625" y1="580.8024" y2="580.8024"/><polygon fill="#545454" points="475.5208,576.6357,465.1042,580.8024,475.5208,584.9691,471.3542,580.8024" style="stroke:#545454;stroke-width:1.0416666666666667;"/><path d="M469.7917,597.4691 L469.7917,609.9691 A8.3333,8.3333 0 0 0 478.125,618.3024 L610.4167,618.3024 A8.3333,8.3333 0 0 0 618.75,609.9691 L618.75,599.5524 L608.3333,589.1357 L478.125,589.1357 A8.3333,8.3333 0 0 0 469.7917,597.4691 " fill="#1B1B1A" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;"/><path d="M608.3333,589.1357 L608.3333,595.3857 A4.1667,4.1667 0 0 0 612.5,599.5524 L618.75,599.5524 L608.3333,589.1357 " fill="#1B1B1A" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;"/><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="120.8333" x="479.1667" y="608.547">result = defaultResult</text><polygon fill="#545454" points="43.75,654.8523,33.3333,659.019,43.75,663.1856,39.5833,659.019" style="stroke:#545454;stroke-width:1.0416666666666667;"/><line style="stroke:#545454;stroke-width:1.5625;stroke-dasharray:2.0,2.0;" x1="37.5" x2="458.8542" y1="659.019" y2="659.019"/><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="37.5" x="53.125" y="651.1739">result</text><!--MD5=[1ecc30a9c7e36e75fb267b86349418f5]
+@startuml
+
+    !include ../lexakai.theme
+
+    title "Checked Method with Exception Handling"
+
+    autoactivate on
+
+    actor Client
+    participant CheckedCode <<kivakit>>
+    participant ":CheckedCode" as checkedCode <<kivakit>>
+    participant "returnableCode\n:Returnable<ResultType>" as returnableCode
+
+    Client -> returnableCode ** : define()
+
+    Client -> CheckedCode : of(returnableCode)
+    CheckedCode -> checkedCode ** : new(returnableCode)
+    return
+
+    Client -> checkedCode : or(defaultResult, message)
+    alt
+        checkedCode -> returnableCode : run
+        return result
+    else catch exception
+        checkedCode -> checkedCode : log message
+        return
+        note right checkedCode
+            result = defaultResult
+        end note
+    end alt
+    return result
+
+@enduml
+
+@startuml
+
+
+
+
+
+
+
+
+
+skinparam backgroundColor #333333
+
+
+
+
+
+
+skinparam  {
+    defaultFontName   "Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif"
+    defaultFontSize   12
+    defaultTextAlignment left
+    shadowing false
+    RoundCorner 10
+    TitleFontSize 18
+}
+
+skinparam defaultFontName       "Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif"
+skinparam defaultFontSize       12
+skinparam dpi                   100
+skinparam shadowing             false
+skinparam roundcorner           16
+skinparam ParticipantPadding    40
+skinparam BoxPadding            40
+skinparam Padding               3
+skinparam ArrowColor            #545454
+skinparam stereotype {
+    CBackgroundColor #0066cf
+    CBorderColor #0086ef
+    ABackgroundColor #C8Ac00
+    ABorderColor #D8Bc00
+    IBackgroundColor #008400
+    IBorderColor #239c23
+    EBackgroundColor #cf6300
+    EBorderColor #ef8300
+    NBackgroundColor #3380b9
+    NBorderColor #004d86
+}
+skinparam title {
+	FontColor	                 #c0c0c0
+ 	BorderColor                  #545454
+	FontSize	    	         20
+	BorderRoundCorner            16
+	BorderThickness 	         1
+	BackgroundColor              #48494b
+}
+
+
+skinparam legend {
+	BackgroundColor #303030
+	BorderColor #404040
+	FontColor #a0a0a0
+}
+
+	skinparam swimlane {
+	BorderColor #5e5e5e
+	BorderThickness 2
+	TitleBackgroundColor  #6d6d6d-#484848
+	TitleFontColor #303030
+}
+
+skinparam activity {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BarColor #00FF00
+	StartColor #0060a8
+	EndColor #0060a8
+	DiamondBackgroundColor #6d6d6d-#3a3a3a
+  	DiamondBorderColor #3a3a3a
+  	DiamondFontColor #fefefe
+}
+
+
+skinparam participant {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	ParticipantBorderThickness 2
+}
+
+
+skinparam actor {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam arrow {
+	Thickness 1.5
+	Color #545454
+	FontColor #a0a0a0
+    FontStyle bold
+    MessageAlignment center
+}
+
+
+
+skinparam sequence {
+	BorderColor #303030
+	TitleFontColor #303030
+	BackgroundColor #333333
+	StartColor #303030
+	EndColor #303030
+	BoxBackgroundColor #333333
+	BoxBorderColor #484848
+	BoxFontColor #484848
+	LifeLineBorderColor #484848
+	LifeLineBorderThickness 2
+	LifeLineBackgroundColor #3a3a3a
+	GroupBorderColor #484848
+	GroupFontColor #3380b9
+	GroupHeaderFontColor #0060a8
+	GroupBackgroundColor #484848
+	GroupHeaderBackgroundColor #333333
+	DividerBackgroundColor #484848
+    DividerBorderColor #484848
+    DividerBorderThickness 2
+    DividerFontColor #D8Bc00
+	ReferenceBackgroundColor #333333
+	ReferenceBorderColor #484848
+	ReferenceFontColor #fefefe
+	ReferenceHeaderBackgroundColor #484848
+    Participant underline
+    ParticipantBackgroundColor #484848
+    ParticipantBorderColor #484848
+    ParticipantFontSize 14
+    ActorBorderColor #484848
+    ActorBackgroundColor #484848
+    ActorFontSize 14
+}
+
+
+skinparam partition {
+	BorderColor #303030
+	FontColor #333333
+	BackgroundColor #333333
+}
+
+
+skinparam collections {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam control {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam entity {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam boundary {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam agent {
+	BackgroundColor #ff8000
+	BorderColor #ff9933
+	FontColor #484848
+}
+
+
+skinparam note {
+	BorderThickness 1
+	BackgroundColor #1b1b1a
+	BorderColor #5e5e5e
+	FontSize 11
+	FontColor #a0a0a0
+}
+
+
+skinparam artifact {
+	BorderThickness 10
+	BorderColor #5e5e5e
+	BackgroundColor #1b1b1a
+	FontColor #D8Bc00
+}
+
+
+skinparam component {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam interface {
+	BackgroundColor  #008400
+	BorderColor  #007F00
+	FontColor #484848
+}
+
+
+skinparam storage {
+	BackgroundColor #ff8000
+  	BorderColor #cc6600
+	FontColor #222222
+}
+
+
+skinparam node {
+	BackgroundColor #333333
+	BorderColor #333333
+	FontColor #C8Ac00
+}
+
+
+skinparam cloud {
+	BackgroundColor #484848-black
+	BorderColor #484848
+	FontColor #D8Bc00
+}
+
+
+skinparam database {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BackgroundColor  #333333
+}
+
+
+skinparam class {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	HeaderBackgroundColor #1b1b1a
+    BackgroundColor #282828
+    BorderColor #5e5e5e
+ 	StereotypeFontColor #a0a0a0
+    StereotypeFontStyle bold
+	BorderThickness 1
+	AttributeFontColor #D8Bc00
+	AttributeFontSize 11
+    FontColor #D8Bc00
+    FontStyle bold
+}
+
+
+skinparam object {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	StereotypeFontColor #484848
+	BorderThickness 1
+	AttributeFontColor #fefefe
+	AttributeFontSize 11
+}
+
+
+skinparam usecase {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BorderThickness 2
+	StereotypeFontColor #303030
+}
+
+
+skinparam rectangle {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BackgroundColor #333333
+	BorderThickness 2
+	StereotypeFontColor #303030
+}
+
+
+skinparam package {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BackgroundColor #333333
+	BorderColor #5e5e5e
+	BorderStyle dashed
+	Style rectangle
+}
+
+
+skinparam folder {
+	BackgroundColor #6d6d6d
+  	BorderColor #ff8000
+	FontColor #ff8000
+	BorderThickness 2
+}
+
+
+skinparam frame {
+	BackgroundColor #6d6d6d
+  	BorderColor #0060a8
+	FontColor #0060a8
+	BorderThickness 2
+}
+
+
+skinparam state {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	StartColor #0060a8
+	EndColor #0060a8
+	AttributeFontColor #fefefe
+	AttributeFontSize 11
+}
+
+
+skinparam queue {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam card {
+	BackgroundColor #0060a8
+	BorderColor #004d86
+	FontColor $INFO_TEXT
+}
+
+
+skinparam file {
+	BackgroundColor #6d6d6d-#484848
+	BorderColor #0060a8
+	FontColor #fefefe
+}
+
+
+skinparam stack {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+    title "Checked Method with Exception Handling"
+
+    autoactivate on
+
+    actor Client
+    participant CheckedCode <<kivakit>>
+    participant ":CheckedCode" as checkedCode <<kivakit>>
+    participant "returnableCode\n:Returnable<ResultType>" as returnableCode
+
+    Client -> returnableCode ** : define()
+
+    Client -> CheckedCode : of(returnableCode)
+    CheckedCode -> checkedCode ** : new(returnableCode)
+    return
+
+    Client -> checkedCode : or(defaultResult, message)
+    alt
+        checkedCode -> returnableCode : run
+        return result
+    else catch exception
+        checkedCode -> checkedCode : log message
+        return
+        note right checkedCode
+            result = defaultResult
+        end note
+    end alt
+    return result
+
+@enduml
+
+PlantUML version 1.2021.7(Sun May 23 05:40:07 PDT 2021)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: Dynamic Code Evolution 64-Bit Server VM
+Default Encoding: UTF-8
+Language: en
+Country: US
+--></g></svg>
