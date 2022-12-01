@@ -36,14 +36,14 @@ This module contains abstractions for accessing the filesystem and arbitrary res
 
 ### Dependencies <a name="dependencies"></a> &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/dependencies-32.png" srcset="https://telenav.github.io/telenav-assets/images/icons/dependencies-32-2x.png 2x"/>
 
-[*Dependency Diagram*](https://www.kivakit.org/1.8.7/lexakai/kivakit/kivakit-resource/documentation/diagrams/dependencies.svg)
+[*Dependency Diagram*](https://www.kivakit.org/1.8.8/lexakai/kivakit/kivakit-resource/documentation/diagrams/dependencies.svg)
 
 #### Maven Dependency
 
     <dependency>
         <groupId>com.telenav.kivakit</groupId>
         <artifactId>kivakit-resource</artifactId>
-        <version>1.8.7</version>
+        <version>1.8.8</version>
     </dependency>
 
 <img src="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128.png" srcset="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128-2x.png 2x"/>
@@ -242,83 +242,83 @@ Code quality for this project is 71.7%.
 
 ### Class Diagrams <a name="class-diagrams"></a> &nbsp; &nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/diagram-40.png" srcset="https://telenav.github.io/telenav-assets/images/icons/diagram-40-2x.png 2x"/>
 
-[*File System - File System Services*](https://www.kivakit.org/1.8.7/lexakai/kivakit/kivakit-resource/documentation/diagrams/diagram-file-system-service.svg)  
-[*File System - Files*](https://www.kivakit.org/1.8.7/lexakai/kivakit/kivakit-resource/documentation/diagrams/diagram-file-system-file.svg)  
-[*File System - Folders*](https://www.kivakit.org/1.8.7/lexakai/kivakit/kivakit-resource/documentation/diagrams/diagram-file-system-folder.svg)  
-[*Resources*](https://www.kivakit.org/1.8.7/lexakai/kivakit/kivakit-resource/documentation/diagrams/diagram-resource.svg)  
-[*Resources - Archives*](https://www.kivakit.org/1.8.7/lexakai/kivakit/kivakit-resource/documentation/diagrams/diagram-resource-archive.svg)  
-[*Resources - Built-In Resource Types*](https://www.kivakit.org/1.8.7/lexakai/kivakit/kivakit-resource/documentation/diagrams/diagram-resource-type.svg)  
-[*Resources - Compression*](https://www.kivakit.org/1.8.7/lexakai/kivakit/kivakit-resource/documentation/diagrams/diagram-resource-compression.svg)  
-[*Resources - Jar Launcher*](https://www.kivakit.org/1.8.7/lexakai/kivakit/kivakit-resource/documentation/diagrams/diagram-jar-launcher.svg)  
-[*Resources - Paths*](https://www.kivakit.org/1.8.7/lexakai/kivakit/kivakit-resource/documentation/diagrams/diagram-resource-path.svg)  
-[*Resources - Services*](https://www.kivakit.org/1.8.7/lexakai/kivakit/kivakit-resource/documentation/diagrams/diagram-resource-service.svg)  
-[*diagram-module*](https://www.kivakit.org/1.8.7/lexakai/kivakit/kivakit-resource/documentation/diagrams/diagram-module.svg)
+[*File System - File System Services*](https://www.kivakit.org/1.8.8/lexakai/kivakit/kivakit-resource/documentation/diagrams/diagram-file-system-service.svg)  
+[*File System - Files*](https://www.kivakit.org/1.8.8/lexakai/kivakit/kivakit-resource/documentation/diagrams/diagram-file-system-file.svg)  
+[*File System - Folders*](https://www.kivakit.org/1.8.8/lexakai/kivakit/kivakit-resource/documentation/diagrams/diagram-file-system-folder.svg)  
+[*Resources*](https://www.kivakit.org/1.8.8/lexakai/kivakit/kivakit-resource/documentation/diagrams/diagram-resource.svg)  
+[*Resources - Archives*](https://www.kivakit.org/1.8.8/lexakai/kivakit/kivakit-resource/documentation/diagrams/diagram-resource-archive.svg)  
+[*Resources - Built-In Resource Types*](https://www.kivakit.org/1.8.8/lexakai/kivakit/kivakit-resource/documentation/diagrams/diagram-resource-type.svg)  
+[*Resources - Compression*](https://www.kivakit.org/1.8.8/lexakai/kivakit/kivakit-resource/documentation/diagrams/diagram-resource-compression.svg)  
+[*Resources - Jar Launcher*](https://www.kivakit.org/1.8.8/lexakai/kivakit/kivakit-resource/documentation/diagrams/diagram-jar-launcher.svg)  
+[*Resources - Paths*](https://www.kivakit.org/1.8.8/lexakai/kivakit/kivakit-resource/documentation/diagrams/diagram-resource-path.svg)  
+[*Resources - Services*](https://www.kivakit.org/1.8.8/lexakai/kivakit/kivakit-resource/documentation/diagrams/diagram-resource-service.svg)  
+[*diagram-module*](https://www.kivakit.org/1.8.8/lexakai/kivakit/kivakit-resource/documentation/diagrams/diagram-module.svg)
 
 <img src="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128.png" srcset="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128-2x.png 2x"/>
 
 ### Package Diagrams <a name="package-diagrams"></a> &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/box-24.png" srcset="https://telenav.github.io/telenav-assets/images/icons/box-24-2x.png 2x"/>
 
-[*com.telenav.kivakit.filesystem*](https://www.kivakit.org/1.8.7/lexakai/kivakit/kivakit-resource/documentation/diagrams/com.telenav.kivakit.filesystem.svg)  
-[*com.telenav.kivakit.filesystem.loader*](https://www.kivakit.org/1.8.7/lexakai/kivakit/kivakit-resource/documentation/diagrams/com.telenav.kivakit.filesystem.loader.svg)  
-[*com.telenav.kivakit.filesystem.local*](https://www.kivakit.org/1.8.7/lexakai/kivakit/kivakit-resource/documentation/diagrams/com.telenav.kivakit.filesystem.local.svg)  
-[*com.telenav.kivakit.filesystem.spi*](https://www.kivakit.org/1.8.7/lexakai/kivakit/kivakit-resource/documentation/diagrams/com.telenav.kivakit.filesystem.spi.svg)  
-[*com.telenav.kivakit.launcher*](https://www.kivakit.org/1.8.7/lexakai/kivakit/kivakit-resource/documentation/diagrams/com.telenav.kivakit.launcher.svg)  
-[*com.telenav.kivakit.properties*](https://www.kivakit.org/1.8.7/lexakai/kivakit/kivakit-resource/documentation/diagrams/com.telenav.kivakit.properties.svg)  
-[*com.telenav.kivakit.resource*](https://www.kivakit.org/1.8.7/lexakai/kivakit/kivakit-resource/documentation/diagrams/com.telenav.kivakit.resource.svg)  
-[*com.telenav.kivakit.resource.compression*](https://www.kivakit.org/1.8.7/lexakai/kivakit/kivakit-resource/documentation/diagrams/com.telenav.kivakit.resource.compression.svg)  
-[*com.telenav.kivakit.resource.compression.archive*](https://www.kivakit.org/1.8.7/lexakai/kivakit/kivakit-resource/documentation/diagrams/com.telenav.kivakit.resource.compression.archive.svg)  
-[*com.telenav.kivakit.resource.compression.codecs*](https://www.kivakit.org/1.8.7/lexakai/kivakit/kivakit-resource/documentation/diagrams/com.telenav.kivakit.resource.compression.codecs.svg)  
-[*com.telenav.kivakit.resource.internal.lexakai*](https://www.kivakit.org/1.8.7/lexakai/kivakit/kivakit-resource/documentation/diagrams/com.telenav.kivakit.resource.internal.lexakai.svg)  
-[*com.telenav.kivakit.resource.packages*](https://www.kivakit.org/1.8.7/lexakai/kivakit/kivakit-resource/documentation/diagrams/com.telenav.kivakit.resource.packages.svg)  
-[*com.telenav.kivakit.resource.reading*](https://www.kivakit.org/1.8.7/lexakai/kivakit/kivakit-resource/documentation/diagrams/com.telenav.kivakit.resource.reading.svg)  
-[*com.telenav.kivakit.resource.resources*](https://www.kivakit.org/1.8.7/lexakai/kivakit/kivakit-resource/documentation/diagrams/com.telenav.kivakit.resource.resources.svg)  
-[*com.telenav.kivakit.resource.serialization*](https://www.kivakit.org/1.8.7/lexakai/kivakit/kivakit-resource/documentation/diagrams/com.telenav.kivakit.resource.serialization.svg)  
-[*com.telenav.kivakit.resource.spi*](https://www.kivakit.org/1.8.7/lexakai/kivakit/kivakit-resource/documentation/diagrams/com.telenav.kivakit.resource.spi.svg)  
-[*com.telenav.kivakit.resource.writing*](https://www.kivakit.org/1.8.7/lexakai/kivakit/kivakit-resource/documentation/diagrams/com.telenav.kivakit.resource.writing.svg)
+[*com.telenav.kivakit.filesystem*](https://www.kivakit.org/1.8.8/lexakai/kivakit/kivakit-resource/documentation/diagrams/com.telenav.kivakit.filesystem.svg)  
+[*com.telenav.kivakit.filesystem.loader*](https://www.kivakit.org/1.8.8/lexakai/kivakit/kivakit-resource/documentation/diagrams/com.telenav.kivakit.filesystem.loader.svg)  
+[*com.telenav.kivakit.filesystem.local*](https://www.kivakit.org/1.8.8/lexakai/kivakit/kivakit-resource/documentation/diagrams/com.telenav.kivakit.filesystem.local.svg)  
+[*com.telenav.kivakit.filesystem.spi*](https://www.kivakit.org/1.8.8/lexakai/kivakit/kivakit-resource/documentation/diagrams/com.telenav.kivakit.filesystem.spi.svg)  
+[*com.telenav.kivakit.launcher*](https://www.kivakit.org/1.8.8/lexakai/kivakit/kivakit-resource/documentation/diagrams/com.telenav.kivakit.launcher.svg)  
+[*com.telenav.kivakit.properties*](https://www.kivakit.org/1.8.8/lexakai/kivakit/kivakit-resource/documentation/diagrams/com.telenav.kivakit.properties.svg)  
+[*com.telenav.kivakit.resource*](https://www.kivakit.org/1.8.8/lexakai/kivakit/kivakit-resource/documentation/diagrams/com.telenav.kivakit.resource.svg)  
+[*com.telenav.kivakit.resource.compression*](https://www.kivakit.org/1.8.8/lexakai/kivakit/kivakit-resource/documentation/diagrams/com.telenav.kivakit.resource.compression.svg)  
+[*com.telenav.kivakit.resource.compression.archive*](https://www.kivakit.org/1.8.8/lexakai/kivakit/kivakit-resource/documentation/diagrams/com.telenav.kivakit.resource.compression.archive.svg)  
+[*com.telenav.kivakit.resource.compression.codecs*](https://www.kivakit.org/1.8.8/lexakai/kivakit/kivakit-resource/documentation/diagrams/com.telenav.kivakit.resource.compression.codecs.svg)  
+[*com.telenav.kivakit.resource.internal.lexakai*](https://www.kivakit.org/1.8.8/lexakai/kivakit/kivakit-resource/documentation/diagrams/com.telenav.kivakit.resource.internal.lexakai.svg)  
+[*com.telenav.kivakit.resource.packages*](https://www.kivakit.org/1.8.8/lexakai/kivakit/kivakit-resource/documentation/diagrams/com.telenav.kivakit.resource.packages.svg)  
+[*com.telenav.kivakit.resource.reading*](https://www.kivakit.org/1.8.8/lexakai/kivakit/kivakit-resource/documentation/diagrams/com.telenav.kivakit.resource.reading.svg)  
+[*com.telenav.kivakit.resource.resources*](https://www.kivakit.org/1.8.8/lexakai/kivakit/kivakit-resource/documentation/diagrams/com.telenav.kivakit.resource.resources.svg)  
+[*com.telenav.kivakit.resource.serialization*](https://www.kivakit.org/1.8.8/lexakai/kivakit/kivakit-resource/documentation/diagrams/com.telenav.kivakit.resource.serialization.svg)  
+[*com.telenav.kivakit.resource.spi*](https://www.kivakit.org/1.8.8/lexakai/kivakit/kivakit-resource/documentation/diagrams/com.telenav.kivakit.resource.spi.svg)  
+[*com.telenav.kivakit.resource.writing*](https://www.kivakit.org/1.8.8/lexakai/kivakit/kivakit-resource/documentation/diagrams/com.telenav.kivakit.resource.writing.svg)
 
 ### Javadoc <a name="code-quality"></a> &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/books-24.png" srcset="https://telenav.github.io/telenav-assets/images/icons/books-24-2x.png 2x"/>
 
 | Class | Documentation Sections  |
 |-------|-------------------------|
-| [*ArchivedField*](https://www.kivakit.org/1.8.7/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/resource/compression/archive/ArchivedField.html) |  |  
-| [*ArchivedFields*](https://www.kivakit.org/1.8.7/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/resource/compression/archive/ArchivedFields.html) |  |  
-| [*BaseReadableResource*](https://www.kivakit.org/1.8.7/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/resource/reading/BaseReadableResource.html) |  |  
-| [*BaseResourceList*](https://www.kivakit.org/1.8.7/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/resource/BaseResourceList.html) |  |  
-| [*BaseWritableResource*](https://www.kivakit.org/1.8.7/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/resource/writing/BaseWritableResource.html) | Writing |  
-| [*Classpath*](https://www.kivakit.org/1.8.7/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/resource/packages/Classpath.html) | Resources |  
+| [*ArchivedField*](https://www.kivakit.org/1.8.8/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/resource/compression/archive/ArchivedField.html) |  |  
+| [*ArchivedFields*](https://www.kivakit.org/1.8.8/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/resource/compression/archive/ArchivedFields.html) |  |  
+| [*BaseReadableResource*](https://www.kivakit.org/1.8.8/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/resource/reading/BaseReadableResource.html) |  |  
+| [*BaseResourceList*](https://www.kivakit.org/1.8.8/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/resource/BaseResourceList.html) |  |  
+| [*BaseWritableResource*](https://www.kivakit.org/1.8.8/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/resource/writing/BaseWritableResource.html) | Writing |  
+| [*Classpath*](https://www.kivakit.org/1.8.8/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/resource/packages/Classpath.html) | Resources |  
 | | Resource Folders |  
-| [*ClasspathResource*](https://www.kivakit.org/1.8.7/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/resource/packages/ClasspathResource.html) | Attributes |  
-| [*ClasspathResourceFolder*](https://www.kivakit.org/1.8.7/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/resource/packages/ClasspathResourceFolder.html) |  |  
-| [*Codec*](https://www.kivakit.org/1.8.7/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/resource/compression/Codec.html) |  |  
-| [*Compressor*](https://www.kivakit.org/1.8.7/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/resource/compression/Compressor.html) |  |  
-| [*CopyMode*](https://www.kivakit.org/1.8.7/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/resource/CopyMode.html) | Copying |  
+| [*ClasspathResource*](https://www.kivakit.org/1.8.8/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/resource/packages/ClasspathResource.html) | Attributes |  
+| [*ClasspathResourceFolder*](https://www.kivakit.org/1.8.8/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/resource/packages/ClasspathResourceFolder.html) |  |  
+| [*Codec*](https://www.kivakit.org/1.8.8/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/resource/compression/Codec.html) |  |  
+| [*Compressor*](https://www.kivakit.org/1.8.8/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/resource/compression/Compressor.html) |  |  
+| [*CopyMode*](https://www.kivakit.org/1.8.8/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/resource/CopyMode.html) | Copying |  
 | | Values |  
-| [*Decompressor*](https://www.kivakit.org/1.8.7/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/resource/compression/Decompressor.html) |  |  
-| [*Deletable*](https://www.kivakit.org/1.8.7/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/resource/Deletable.html) |  |  
-| [*DiagramFileSystem*](https://www.kivakit.org/1.8.7/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/resource/internal/lexakai/DiagramFileSystem.html) |  |  
-| [*DiagramFileSystemFile*](https://www.kivakit.org/1.8.7/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/resource/internal/lexakai/DiagramFileSystemFile.html) |  |  
-| [*DiagramFileSystemFolder*](https://www.kivakit.org/1.8.7/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/resource/internal/lexakai/DiagramFileSystemFolder.html) |  |  
-| [*DiagramFileSystemService*](https://www.kivakit.org/1.8.7/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/resource/internal/lexakai/DiagramFileSystemService.html) |  |  
-| [*DiagramJarLauncher*](https://www.kivakit.org/1.8.7/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/resource/internal/lexakai/DiagramJarLauncher.html) |  |  
-| [*DiagramResource*](https://www.kivakit.org/1.8.7/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/resource/internal/lexakai/DiagramResource.html) |  |  
-| [*DiagramResourceArchive*](https://www.kivakit.org/1.8.7/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/resource/internal/lexakai/DiagramResourceArchive.html) |  |  
-| [*DiagramResourceCompression*](https://www.kivakit.org/1.8.7/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/resource/internal/lexakai/DiagramResourceCompression.html) |  |  
-| [*DiagramResourcePath*](https://www.kivakit.org/1.8.7/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/resource/internal/lexakai/DiagramResourcePath.html) |  |  
-| [*DiagramResourceService*](https://www.kivakit.org/1.8.7/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/resource/internal/lexakai/DiagramResourceService.html) |  |  
-| [*DiagramResourceType*](https://www.kivakit.org/1.8.7/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/resource/internal/lexakai/DiagramResourceType.html) |  |  
-| [*Disk*](https://www.kivakit.org/1.8.7/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/filesystem/Disk.html) | Disk Space |  
+| [*Decompressor*](https://www.kivakit.org/1.8.8/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/resource/compression/Decompressor.html) |  |  
+| [*Deletable*](https://www.kivakit.org/1.8.8/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/resource/Deletable.html) |  |  
+| [*DiagramFileSystem*](https://www.kivakit.org/1.8.8/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/resource/internal/lexakai/DiagramFileSystem.html) |  |  
+| [*DiagramFileSystemFile*](https://www.kivakit.org/1.8.8/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/resource/internal/lexakai/DiagramFileSystemFile.html) |  |  
+| [*DiagramFileSystemFolder*](https://www.kivakit.org/1.8.8/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/resource/internal/lexakai/DiagramFileSystemFolder.html) |  |  
+| [*DiagramFileSystemService*](https://www.kivakit.org/1.8.8/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/resource/internal/lexakai/DiagramFileSystemService.html) |  |  
+| [*DiagramJarLauncher*](https://www.kivakit.org/1.8.8/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/resource/internal/lexakai/DiagramJarLauncher.html) |  |  
+| [*DiagramResource*](https://www.kivakit.org/1.8.8/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/resource/internal/lexakai/DiagramResource.html) |  |  
+| [*DiagramResourceArchive*](https://www.kivakit.org/1.8.8/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/resource/internal/lexakai/DiagramResourceArchive.html) |  |  
+| [*DiagramResourceCompression*](https://www.kivakit.org/1.8.8/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/resource/internal/lexakai/DiagramResourceCompression.html) |  |  
+| [*DiagramResourcePath*](https://www.kivakit.org/1.8.8/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/resource/internal/lexakai/DiagramResourcePath.html) |  |  
+| [*DiagramResourceService*](https://www.kivakit.org/1.8.8/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/resource/internal/lexakai/DiagramResourceService.html) |  |  
+| [*DiagramResourceType*](https://www.kivakit.org/1.8.8/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/resource/internal/lexakai/DiagramResourceType.html) |  |  
+| [*Disk*](https://www.kivakit.org/1.8.8/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/filesystem/Disk.html) | Disk Space |  
 | | Folders |  
-| [*DiskService*](https://www.kivakit.org/1.8.7/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/filesystem/spi/DiskService.html) |  |  
-| [*Extension*](https://www.kivakit.org/1.8.7/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/resource/Extension.html) | Matching |  
+| [*DiskService*](https://www.kivakit.org/1.8.8/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/filesystem/spi/DiskService.html) |  |  
+| [*Extension*](https://www.kivakit.org/1.8.8/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/resource/Extension.html) | Matching |  
 | | Extension Constants |  
 | | Properties |  
 | | Tests |  
 | | Functional Methods |  
-| [*FieldArchive*](https://www.kivakit.org/1.8.7/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/resource/compression/archive/FieldArchive.html) | Loading |  
+| [*FieldArchive*](https://www.kivakit.org/1.8.8/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/resource/compression/archive/FieldArchive.html) | Loading |  
 | | Saving |  
 | | Properties |  
-| [*FieldArchive.ObjectField*](https://www.kivakit.org/1.8.7/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/resource/compression/archive/FieldArchive.ObjectField.html) |  |  
-| [*File*](https://www.kivakit.org/1.8.7/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/filesystem/File.html) | Materialization |  
+| [*FieldArchive.ObjectField*](https://www.kivakit.org/1.8.8/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/resource/compression/archive/FieldArchive.ObjectField.html) |  |  
+| [*File*](https://www.kivakit.org/1.8.8/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/filesystem/File.html) | Materialization |  
 | | Creation |  
 | | Conversion Methods |  
 | | Checks |  
@@ -326,21 +326,21 @@ Code quality for this project is 71.7%.
 | | Operations |  
 | | Functional Methods |  
 | | Path-Related Methods |  
-| [*File.Converter*](https://www.kivakit.org/1.8.7/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/filesystem/File.Converter.html) |  |  
-| [*FileCache*](https://www.kivakit.org/1.8.7/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/filesystem/FileCache.html) | Retrieving |  
+| [*File.Converter*](https://www.kivakit.org/1.8.8/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/filesystem/File.Converter.html) |  |  
+| [*FileCache*](https://www.kivakit.org/1.8.8/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/filesystem/FileCache.html) | Retrieving |  
 | | Pruning |  
 | | Adding |  
-| [*FileList*](https://www.kivakit.org/1.8.7/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/filesystem/FileList.html) | Retrieval |  
+| [*FileList*](https://www.kivakit.org/1.8.8/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/filesystem/FileList.html) | Retrieval |  
 | | Creation |  
 | | Adding |  
 | | Conversion |  
-| [*FileList.Converter*](https://www.kivakit.org/1.8.7/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/filesystem/FileList.Converter.html) |  |  
-| [*FileName*](https://www.kivakit.org/1.8.7/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/resource/FileName.html) | Matching |  
+| [*FileList.Converter*](https://www.kivakit.org/1.8.8/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/filesystem/FileList.Converter.html) |  |  
+| [*FileName*](https://www.kivakit.org/1.8.8/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/resource/FileName.html) | Matching |  
 | | Functional |  
 | | Checks |  
 | | Factory Methods |  
 | | Properties |  
-| [*FilePath*](https://www.kivakit.org/1.8.7/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/filesystem/FilePath.html) | Functional |  
+| [*FilePath*](https://www.kivakit.org/1.8.8/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/filesystem/FilePath.html) | Functional |  
 | | Parsing |  
 | | Conversions |  
 | | Checks |  
@@ -348,15 +348,15 @@ Code quality for this project is 71.7%.
 | | Properties |  
 | | Files |  
 | | Operations |  
-| [*FilePath.Converter*](https://www.kivakit.org/1.8.7/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/filesystem/FilePath.Converter.html) |  |  
-| [*FileResourceResolver*](https://www.kivakit.org/1.8.7/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/filesystem/FileResourceResolver.html) |  |  
-| [*FileService*](https://www.kivakit.org/1.8.7/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/filesystem/spi/FileService.html) |  |  
-| [*FileSystemObject*](https://www.kivakit.org/1.8.7/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/filesystem/FileSystemObject.html) |  |  
-| [*FileSystemObjectService*](https://www.kivakit.org/1.8.7/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/filesystem/spi/FileSystemObjectService.html) |  |  
-| [*FileSystemService*](https://www.kivakit.org/1.8.7/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/filesystem/spi/FileSystemService.html) |  |  
-| [*FileSystemServiceLoader*](https://www.kivakit.org/1.8.7/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/filesystem/loader/FileSystemServiceLoader.html) |  |  
-| [*Files*](https://www.kivakit.org/1.8.7/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/filesystem/Files.html) | Command Line Parsing |  
-| [*Folder*](https://www.kivakit.org/1.8.7/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/filesystem/Folder.html) | Hierarchy |  
+| [*FilePath.Converter*](https://www.kivakit.org/1.8.8/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/filesystem/FilePath.Converter.html) |  |  
+| [*FileResourceResolver*](https://www.kivakit.org/1.8.8/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/filesystem/FileResourceResolver.html) |  |  
+| [*FileService*](https://www.kivakit.org/1.8.8/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/filesystem/spi/FileService.html) |  |  
+| [*FileSystemObject*](https://www.kivakit.org/1.8.8/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/filesystem/FileSystemObject.html) |  |  
+| [*FileSystemObjectService*](https://www.kivakit.org/1.8.8/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/filesystem/spi/FileSystemObjectService.html) |  |  
+| [*FileSystemService*](https://www.kivakit.org/1.8.8/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/filesystem/spi/FileSystemService.html) |  |  
+| [*FileSystemServiceLoader*](https://www.kivakit.org/1.8.8/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/filesystem/loader/FileSystemServiceLoader.html) |  |  
+| [*Files*](https://www.kivakit.org/1.8.8/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/filesystem/Files.html) | Command Line Parsing |  
+| [*Folder*](https://www.kivakit.org/1.8.8/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/filesystem/Folder.html) | Hierarchy |  
 | | Command Line |  
 | | Contents |  
 | | Conversions |  
@@ -364,122 +364,122 @@ Code quality for this project is 71.7%.
 | | Factory Methods |  
 | | Properties |  
 | | Operations |  
-| [*Folder.Converter*](https://www.kivakit.org/1.8.7/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/filesystem/Folder.Converter.html) |  |  
-| [*Folder.FolderType*](https://www.kivakit.org/1.8.7/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/filesystem/Folder.FolderType.html) |  |  
-| [*Folder.Traversal*](https://www.kivakit.org/1.8.7/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/filesystem/Folder.Traversal.html) |  |  
-| [*FolderChangeWatcher*](https://www.kivakit.org/1.8.7/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/filesystem/FolderChangeWatcher.html) | Protected Callbacks |  
+| [*Folder.Converter*](https://www.kivakit.org/1.8.8/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/filesystem/Folder.Converter.html) |  |  
+| [*Folder.FolderType*](https://www.kivakit.org/1.8.8/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/filesystem/Folder.FolderType.html) |  |  
+| [*Folder.Traversal*](https://www.kivakit.org/1.8.8/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/filesystem/Folder.Traversal.html) |  |  
+| [*FolderChangeWatcher*](https://www.kivakit.org/1.8.8/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/filesystem/FolderChangeWatcher.html) | Protected Callbacks |  
 | | Collection Change Listeners |  
-| [*FolderCopyMode*](https://www.kivakit.org/1.8.7/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/resource/FolderCopyMode.html) | Values |  
-| [*FolderList*](https://www.kivakit.org/1.8.7/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/filesystem/FolderList.html) |  |  
-| [*FolderList.Converter*](https://www.kivakit.org/1.8.7/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/filesystem/FolderList.Converter.html) |  |  
-| [*FolderPruner*](https://www.kivakit.org/1.8.7/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/filesystem/FolderPruner.html) | Lifecycle |  
+| [*FolderCopyMode*](https://www.kivakit.org/1.8.8/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/resource/FolderCopyMode.html) | Values |  
+| [*FolderList*](https://www.kivakit.org/1.8.8/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/filesystem/FolderList.html) |  |  
+| [*FolderList.Converter*](https://www.kivakit.org/1.8.8/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/filesystem/FolderList.Converter.html) |  |  
+| [*FolderPruner*](https://www.kivakit.org/1.8.8/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/filesystem/FolderPruner.html) | Lifecycle |  
 | | Expiration Criteria |  
 | | Pruning Criteria |  
-| [*FolderResourceFolderResolver*](https://www.kivakit.org/1.8.7/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/filesystem/FolderResourceFolderResolver.html) |  |  
-| [*FolderService*](https://www.kivakit.org/1.8.7/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/filesystem/spi/FolderService.html) |  |  
-| [*Folders*](https://www.kivakit.org/1.8.7/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/filesystem/Folders.html) | Command Line Parsing |  
+| [*FolderResourceFolderResolver*](https://www.kivakit.org/1.8.8/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/filesystem/FolderResourceFolderResolver.html) |  |  
+| [*FolderService*](https://www.kivakit.org/1.8.8/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/filesystem/spi/FolderService.html) |  |  
+| [*Folders*](https://www.kivakit.org/1.8.8/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/filesystem/Folders.html) | Command Line Parsing |  
 | | Well-Known Folders |  
-| [*GzipCodec*](https://www.kivakit.org/1.8.7/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/resource/compression/codecs/GzipCodec.html) |  |  
-| [*InputResource*](https://www.kivakit.org/1.8.7/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/resource/resources/InputResource.html) |  |  
-| [*JarLauncher*](https://www.kivakit.org/1.8.7/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/launcher/JarLauncher.html) | Options |  
+| [*GzipCodec*](https://www.kivakit.org/1.8.8/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/resource/compression/codecs/GzipCodec.html) |  |  
+| [*InputResource*](https://www.kivakit.org/1.8.8/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/resource/resources/InputResource.html) |  |  
+| [*JarLauncher*](https://www.kivakit.org/1.8.8/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/launcher/JarLauncher.html) | Options |  
 | | Example |  
-| [*JarLauncher.ProcessType*](https://www.kivakit.org/1.8.7/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/launcher/JarLauncher.ProcessType.html) |  |  
-| [*JarLauncher.RedirectTo*](https://www.kivakit.org/1.8.7/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/launcher/JarLauncher.RedirectTo.html) |  |  
-| [*LineReader*](https://www.kivakit.org/1.8.7/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/resource/reading/LineReader.html) | NOTE |  
+| [*JarLauncher.ProcessType*](https://www.kivakit.org/1.8.8/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/launcher/JarLauncher.ProcessType.html) |  |  
+| [*JarLauncher.RedirectTo*](https://www.kivakit.org/1.8.8/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/launcher/JarLauncher.RedirectTo.html) |  |  
+| [*LineReader*](https://www.kivakit.org/1.8.8/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/resource/reading/LineReader.html) | NOTE |  
 | | Reading Lines |  
-| [*LocalDisk*](https://www.kivakit.org/1.8.7/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/filesystem/local/LocalDisk.html) |  |  
-| [*LocalFile*](https://www.kivakit.org/1.8.7/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/filesystem/local/LocalFile.html) |  |  
-| [*LocalFileSystemService*](https://www.kivakit.org/1.8.7/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/filesystem/local/LocalFileSystemService.html) |  |  
-| [*LocalFolder*](https://www.kivakit.org/1.8.7/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/filesystem/local/LocalFolder.html) |  |  
-| [*NullCodec*](https://www.kivakit.org/1.8.7/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/resource/compression/codecs/NullCodec.html) |  |  
-| [*NullResource*](https://www.kivakit.org/1.8.7/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/resource/resources/NullResource.html) |  |  
-| [*ObjectMetadata*](https://www.kivakit.org/1.8.7/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/resource/serialization/ObjectMetadata.html) |  |  
-| [*ObjectReader*](https://www.kivakit.org/1.8.7/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/resource/serialization/ObjectReader.html) |  |  
-| [*ObjectSerializer*](https://www.kivakit.org/1.8.7/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/resource/serialization/ObjectSerializer.html) |  |  
-| [*ObjectSerializerRegistry*](https://www.kivakit.org/1.8.7/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/resource/serialization/ObjectSerializerRegistry.html) |  |  
-| [*ObjectWriter*](https://www.kivakit.org/1.8.7/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/resource/serialization/ObjectWriter.html) |  |  
-| [*OutputResource*](https://www.kivakit.org/1.8.7/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/resource/resources/OutputResource.html) |  |  
-| [*Package*](https://www.kivakit.org/1.8.7/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/resource/packages/Package.html) | Hierarchy |  
+| [*LocalDisk*](https://www.kivakit.org/1.8.8/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/filesystem/local/LocalDisk.html) |  |  
+| [*LocalFile*](https://www.kivakit.org/1.8.8/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/filesystem/local/LocalFile.html) |  |  
+| [*LocalFileSystemService*](https://www.kivakit.org/1.8.8/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/filesystem/local/LocalFileSystemService.html) |  |  
+| [*LocalFolder*](https://www.kivakit.org/1.8.8/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/filesystem/local/LocalFolder.html) |  |  
+| [*NullCodec*](https://www.kivakit.org/1.8.8/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/resource/compression/codecs/NullCodec.html) |  |  
+| [*NullResource*](https://www.kivakit.org/1.8.8/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/resource/resources/NullResource.html) |  |  
+| [*ObjectMetadata*](https://www.kivakit.org/1.8.8/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/resource/serialization/ObjectMetadata.html) |  |  
+| [*ObjectReader*](https://www.kivakit.org/1.8.8/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/resource/serialization/ObjectReader.html) |  |  
+| [*ObjectSerializer*](https://www.kivakit.org/1.8.8/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/resource/serialization/ObjectSerializer.html) |  |  
+| [*ObjectSerializerRegistry*](https://www.kivakit.org/1.8.8/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/resource/serialization/ObjectSerializerRegistry.html) |  |  
+| [*ObjectWriter*](https://www.kivakit.org/1.8.8/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/resource/serialization/ObjectWriter.html) |  |  
+| [*OutputResource*](https://www.kivakit.org/1.8.8/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/resource/resources/OutputResource.html) |  |  
+| [*Package*](https://www.kivakit.org/1.8.8/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/resource/packages/Package.html) | Hierarchy |  
 | | Access |  
 | | Resources |  
 | | Properties |  
-| [*PackagePath*](https://www.kivakit.org/1.8.7/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/resource/packages/PackagePath.html) | Functional |  
+| [*PackagePath*](https://www.kivakit.org/1.8.8/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/resource/packages/PackagePath.html) | Functional |  
 | | Parsing |  
 | | Conversions |  
 | | Properties |  
 | | Factories |  
 | | Examples |  
-| [*PackageResource*](https://www.kivakit.org/1.8.7/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/resource/packages/PackageResource.html) | NOTE |  
+| [*PackageResource*](https://www.kivakit.org/1.8.8/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/resource/packages/PackageResource.html) | NOTE |  
 | | Properties |  
-| [*PackageResourceFolderResolver*](https://www.kivakit.org/1.8.7/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/resource/packages/PackageResourceFolderResolver.html) |  |  
-| [*PackageResourceResolver*](https://www.kivakit.org/1.8.7/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/resource/packages/PackageResourceResolver.html) |  |  
-| [*PackageTrait*](https://www.kivakit.org/1.8.7/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/resource/packages/PackageTrait.html) | Package Resources |  
+| [*PackageResourceFolderResolver*](https://www.kivakit.org/1.8.8/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/resource/packages/PackageResourceFolderResolver.html) |  |  
+| [*PackageResourceResolver*](https://www.kivakit.org/1.8.8/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/resource/packages/PackageResourceResolver.html) |  |  
+| [*PackageTrait*](https://www.kivakit.org/1.8.8/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/resource/packages/PackageTrait.html) | Package Resources |  
 | | Packages |  
-| [*PropertyMap*](https://www.kivakit.org/1.8.7/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/properties/PropertyMap.html) | Conversions |  
+| [*PropertyMap*](https://www.kivakit.org/1.8.8/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/properties/PropertyMap.html) | Conversions |  
 | | Creating and Loading Property Maps |  
 | | Access |  
 | | Saving |  
 | | Adding to Property Maps |  
 | | Expansion |  
-| [*Readable*](https://www.kivakit.org/1.8.7/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/resource/reading/Readable.html) | Opening to Read |  
+| [*Readable*](https://www.kivakit.org/1.8.8/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/resource/reading/Readable.html) | Opening to Read |  
 | | Properties |  
-| [*ReadableResource*](https://www.kivakit.org/1.8.7/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/resource/reading/ReadableResource.html) | Reading |  
+| [*ReadableResource*](https://www.kivakit.org/1.8.8/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/resource/reading/ReadableResource.html) | Reading |  
 | | Copying |  
 | | Implementation |  
-| [*Renamable*](https://www.kivakit.org/1.8.7/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/resource/Renamable.html) |  |  
-| [*Resource*](https://www.kivakit.org/1.8.7/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/resource/Resource.html) | Materialization |  
+| [*Renamable*](https://www.kivakit.org/1.8.8/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/resource/Renamable.html) |  |  
+| [*Resource*](https://www.kivakit.org/1.8.8/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/resource/Resource.html) | Materialization |  
 | | Resource Resolution |  
 | | Properties |  
 | | Operations |  
 | | Examples |  
 | | Tests |  
-| [*Resource.Action*](https://www.kivakit.org/1.8.7/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/resource/Resource.Action.html) |  |  
-| [*Resource.Converter*](https://www.kivakit.org/1.8.7/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/resource/Resource.Converter.html) |  |  
-| [*ResourceFolder*](https://www.kivakit.org/1.8.7/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/resource/ResourceFolder.html) | Hierarchy |  
+| [*Resource.Action*](https://www.kivakit.org/1.8.8/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/resource/Resource.Action.html) |  |  
+| [*Resource.Converter*](https://www.kivakit.org/1.8.8/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/resource/Resource.Converter.html) |  |  
+| [*ResourceFolder*](https://www.kivakit.org/1.8.8/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/resource/ResourceFolder.html) | Hierarchy |  
 | | Contents |  
 | | Conversions |  
 | | Checks |  
 | | Operations |  
-| [*ResourceFolder.Converter*](https://www.kivakit.org/1.8.7/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/resource/ResourceFolder.Converter.html) |  |  
-| [*ResourceFolderIdentifier*](https://www.kivakit.org/1.8.7/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/resource/ResourceFolderIdentifier.html) |  |  
-| [*ResourceFolderResolver*](https://www.kivakit.org/1.8.7/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/resource/spi/ResourceFolderResolver.html) |  |  
-| [*ResourceFolderResolverService*](https://www.kivakit.org/1.8.7/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/resource/spi/ResourceFolderResolverService.html) | Access |  
+| [*ResourceFolder.Converter*](https://www.kivakit.org/1.8.8/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/resource/ResourceFolder.Converter.html) |  |  
+| [*ResourceFolderIdentifier*](https://www.kivakit.org/1.8.8/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/resource/ResourceFolderIdentifier.html) |  |  
+| [*ResourceFolderResolver*](https://www.kivakit.org/1.8.8/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/resource/spi/ResourceFolderResolver.html) |  |  
+| [*ResourceFolderResolverService*](https://www.kivakit.org/1.8.8/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/resource/spi/ResourceFolderResolverService.html) | Access |  
 | | Resolution |  
-| [*ResourceGlob*](https://www.kivakit.org/1.8.7/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/resource/ResourceGlob.html) | Creating Globs |  
+| [*ResourceGlob*](https://www.kivakit.org/1.8.8/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/resource/ResourceGlob.html) | Creating Globs |  
 | | Logical Operations |  
 | | Patterns |  
 | | Examples |  
-| [*ResourceIdentifier*](https://www.kivakit.org/1.8.7/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/resource/ResourceIdentifier.html) | Resource Resolvers |  
-| [*ResourceList*](https://www.kivakit.org/1.8.7/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/resource/ResourceList.html) |  |  
-| [*ResourcePath*](https://www.kivakit.org/1.8.7/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/resource/ResourcePath.html) | Parsing |  
+| [*ResourceIdentifier*](https://www.kivakit.org/1.8.8/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/resource/ResourceIdentifier.html) | Resource Resolvers |  
+| [*ResourceList*](https://www.kivakit.org/1.8.8/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/resource/ResourceList.html) |  |  
+| [*ResourcePath*](https://www.kivakit.org/1.8.8/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/resource/ResourcePath.html) | Parsing |  
 | | Factories |  
-| [*ResourcePath.Converter*](https://www.kivakit.org/1.8.7/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/resource/ResourcePath.Converter.html) |  |  
-| [*ResourcePathed*](https://www.kivakit.org/1.8.7/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/resource/ResourcePathed.html) | Matching |  
+| [*ResourcePath.Converter*](https://www.kivakit.org/1.8.8/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/resource/ResourcePath.Converter.html) |  |  
+| [*ResourcePathed*](https://www.kivakit.org/1.8.8/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/resource/ResourcePathed.html) | Matching |  
 | | Conversions |  
 | | File Names |  
 | | Properties |  
-| [*ResourceReader*](https://www.kivakit.org/1.8.7/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/resource/reading/ResourceReader.html) | Reading |  
-| [*ResourceResolver*](https://www.kivakit.org/1.8.7/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/resource/spi/ResourceResolver.html) |  |  
-| [*ResourceResolverService*](https://www.kivakit.org/1.8.7/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/resource/spi/ResourceResolverService.html) | Access |  
+| [*ResourceReader*](https://www.kivakit.org/1.8.8/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/resource/reading/ResourceReader.html) | Reading |  
+| [*ResourceResolver*](https://www.kivakit.org/1.8.8/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/resource/spi/ResourceResolver.html) |  |  
+| [*ResourceResolverService*](https://www.kivakit.org/1.8.8/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/resource/spi/ResourceResolverService.html) | Access |  
 | | Resolution |  
-| [*ResourceSection*](https://www.kivakit.org/1.8.7/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/resource/resources/ResourceSection.html) |  |  
-| [*ResourceWriter*](https://www.kivakit.org/1.8.7/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/resource/writing/ResourceWriter.html) | Writing |  
-| [*Resourceful*](https://www.kivakit.org/1.8.7/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/resource/Resourceful.html) |  |  
-| [*SerializableObject*](https://www.kivakit.org/1.8.7/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/resource/serialization/SerializableObject.html) |  |  
-| [*StringOutputResource*](https://www.kivakit.org/1.8.7/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/resource/resources/StringOutputResource.html) |  |  
-| [*StringResource*](https://www.kivakit.org/1.8.7/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/resource/resources/StringResource.html) |  |  
-| [*UriIdentified*](https://www.kivakit.org/1.8.7/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/resource/UriIdentified.html) |  |  
-| [*Uris*](https://www.kivakit.org/1.8.7/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/resource/Uris.html) |  |  
-| [*Writable*](https://www.kivakit.org/1.8.7/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/resource/writing/Writable.html) | Writing |  
-| [*WritableResource*](https://www.kivakit.org/1.8.7/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/resource/writing/WritableResource.html) |  |  
-| [*ZipArchive*](https://www.kivakit.org/1.8.7/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/resource/compression/archive/ZipArchive.html) | Adding Files |  
+| [*ResourceSection*](https://www.kivakit.org/1.8.8/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/resource/resources/ResourceSection.html) |  |  
+| [*ResourceWriter*](https://www.kivakit.org/1.8.8/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/resource/writing/ResourceWriter.html) | Writing |  
+| [*Resourceful*](https://www.kivakit.org/1.8.8/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/resource/Resourceful.html) |  |  
+| [*SerializableObject*](https://www.kivakit.org/1.8.8/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/resource/serialization/SerializableObject.html) |  |  
+| [*StringOutputResource*](https://www.kivakit.org/1.8.8/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/resource/resources/StringOutputResource.html) |  |  
+| [*StringResource*](https://www.kivakit.org/1.8.8/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/resource/resources/StringResource.html) |  |  
+| [*UriIdentified*](https://www.kivakit.org/1.8.8/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/resource/UriIdentified.html) |  |  
+| [*Uris*](https://www.kivakit.org/1.8.8/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/resource/Uris.html) |  |  
+| [*Writable*](https://www.kivakit.org/1.8.8/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/resource/writing/Writable.html) | Writing |  
+| [*WritableResource*](https://www.kivakit.org/1.8.8/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/resource/writing/WritableResource.html) |  |  
+| [*ZipArchive*](https://www.kivakit.org/1.8.8/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/resource/compression/archive/ZipArchive.html) | Adding Files |  
 | | Opening Zip Files |  
 | | Reading Entries |  
 | | Properties |  
 | | Saving Entries |  
-| [*ZipArchive.AccessMode*](https://www.kivakit.org/1.8.7/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/resource/compression/archive/ZipArchive.AccessMode.html) |  |  
-| [*ZipCodec*](https://www.kivakit.org/1.8.7/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/resource/compression/codecs/ZipCodec.html) |  |  
-| [*ZipEntry*](https://www.kivakit.org/1.8.7/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/resource/compression/archive/ZipEntry.html) | Properties |  
+| [*ZipArchive.AccessMode*](https://www.kivakit.org/1.8.8/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/resource/compression/archive/ZipArchive.AccessMode.html) |  |  
+| [*ZipCodec*](https://www.kivakit.org/1.8.8/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/resource/compression/codecs/ZipCodec.html) |  |  
+| [*ZipEntry*](https://www.kivakit.org/1.8.8/javadoc/kivakit/kivakit-resource/com/telenav/kivakit/resource/compression/archive/ZipEntry.html) | Properties |  
 
 [//]: # (start-user-text)
 
