@@ -20,16 +20,19 @@ package com.telenav.kivakit.core;
 
 import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramProject;
+import com.telenav.kivakit.core.logging.Logger;
+import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.path.StringPath;
 import com.telenav.kivakit.core.project.Project;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.nio.file.Path;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.ensure.Ensure.fail;
+import static com.telenav.kivakit.core.logging.LoggerFactory.newLogger;
 import static com.telenav.kivakit.core.path.StringPath.parseStringPath;
 
 /**
@@ -42,16 +45,84 @@ import static com.telenav.kivakit.core.path.StringPath.parseStringPath;
  * {@link KivaKit} is a {@link Project} it inherits that functionality as well.
  * </p>
  *
+ * <p><b>Global Listener</b></p>
+ *
+ * <p>
+ * The global listener is accessible via {@link #globalListener()}, and can be replaced with
+ * {@link #globalListener(Listener)}. Messages can be sent to the global listener when there is no other option in the
+ * current code context. By default, the global listener is the global logger, but the Application class replaces that
+ * so that it gets all messages and routes them to its own logger.
+ * </p>
+ *
+ * <p><b>Global Logger</b></p>
+ *
+ * <p>
+ * The global logger is accessible with {@link #globalLogger()}. It can be replaced with {@link #globalLogger(Logger)}.
+ * </p>
+ *
  * @author jonathanl (shibo)
  * @see Project
  * @see Path
  */
+@SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramProject.class)
 @CodeQuality(stability = STABLE_EXTENSIBLE,
              testing = UNTESTED,
              documentation = DOCUMENTATION_COMPLETE)
 public class KivaKit extends Project
 {
+    /** The global logger, for cases like collections where it's too cumbersome to require listeners */
+    private static Logger globalLogger;
+
+    /** The global listener */
+    private static Listener globalListener;
+
+    /**
+     * Sets the global listener
+     *
+     * @param listener The new global listener
+     */
+    public static synchronized void globalListener(Listener listener)
+    {
+        KivaKit.globalListener = listener;
+    }
+
+    /**
+     * Returns the global listener
+     */
+    public static synchronized Listener globalListener()
+    {
+        if (globalListener == null)
+        {
+            globalListener = globalLogger();
+        }
+        return globalListener;
+    }
+
+    /**
+     * Returns a logger instance for use in contexts where it is too awkward to implement or pass in a {@link Listener}.
+     * For example, some trivial classes and static methods may need to report problems, but are not important enough to
+     * justify the complexity of reporting those problems an external listener.
+     */
+    public static synchronized Logger globalLogger()
+    {
+        if (globalLogger == null)
+        {
+            globalLogger = newLogger();
+        }
+        return globalLogger;
+    }
+
+    /**
+     * Sets the global logger
+     *
+     * @param logger The logger
+     */
+    public static synchronized void globalLogger(Logger logger)
+    {
+        globalLogger = logger;
+    }
+
     /**
      * Returns the cache folder for KivaKit
      */

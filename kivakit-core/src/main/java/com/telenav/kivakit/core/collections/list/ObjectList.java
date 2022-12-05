@@ -187,7 +187,6 @@ public class ObjectList<Value> extends BaseList<Value>
     /**
      * Returns a list of elements from the given integers created using the given map factory
      */
-    @SuppressWarnings("SpellCheckingInspection")
     public static <T> ObjectList<T> listFromInts(IntMapper<T> factory, int... values)
     {
         var objects = new ObjectList<T>();

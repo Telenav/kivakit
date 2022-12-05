@@ -44,12 +44,12 @@ import java.util.List;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static com.telenav.kivakit.core.KivaKit.globalListener;
 import static com.telenav.kivakit.core.collections.list.StringList.stringList;
 import static com.telenav.kivakit.core.ensure.Ensure.ensure;
 import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
 import static com.telenav.kivakit.core.language.Classes.simpleName;
 import static com.telenav.kivakit.core.language.primitive.Booleans.isTrue;
-import static com.telenav.kivakit.core.logging.LoggerFactory.globalLogger;
 import static com.telenav.kivakit.core.os.OperatingSystem.operatingSystem;
 import static com.telenav.kivakit.core.string.IndentingStringBuilder.Indentation.indentation;
 import static com.telenav.kivakit.core.string.IndentingStringBuilder.Style.TEXT;
@@ -426,7 +426,7 @@ public class Multicaster implements Broadcaster
                 if (message instanceof Message)
                 {
                     // then log it (to the global logger).
-                    globalLogger().log((Message) message);
+                    globalListener().receive((Message) message);
                 }
 
                 // If the KIVAKIT_NO_LISTENER_ERROR system property is set to true,

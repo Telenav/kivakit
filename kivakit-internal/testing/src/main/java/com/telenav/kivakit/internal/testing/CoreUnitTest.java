@@ -24,7 +24,6 @@ import com.telenav.kivakit.core.ensure.EnsureTrait;
 import com.telenav.kivakit.core.ensure.Failure;
 import com.telenav.kivakit.core.function.ResultTrait;
 import com.telenav.kivakit.core.language.trait.LanguageTrait;
-import com.telenav.kivakit.core.logging.LoggerFactory;
 import com.telenav.kivakit.core.messaging.Broadcaster;
 import com.telenav.kivakit.core.messaging.Message;
 import com.telenav.kivakit.core.messaging.Repeater;
@@ -53,9 +52,9 @@ import java.util.function.Supplier;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Stability.UNSTABLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
+import static com.telenav.kivakit.core.KivaKit.globalLogger;
 import static com.telenav.kivakit.core.language.primitive.Booleans.isTrue;
 import static com.telenav.kivakit.core.logging.LoggerFactory.newLogger;
-import static com.telenav.kivakit.core.logging.LoggerFactory.globalLogger;
 import static com.telenav.kivakit.core.messaging.Listener.nullListener;
 import static com.telenav.kivakit.core.os.Console.console;
 import static com.telenav.kivakit.core.os.OperatingSystem.operatingSystem;
@@ -199,7 +198,7 @@ public abstract class CoreUnitTest extends TestWatcher implements
 
     protected CoreUnitTest()
     {
-        LoggerFactory.globalLogger().listenTo(this);
+        globalLogger().listenTo(this);
     }
 
     @Override
