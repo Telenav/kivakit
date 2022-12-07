@@ -33,10 +33,11 @@ import java.util.Map;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static com.telenav.kivakit.core.KivaKit.globalListener;
+import static com.telenav.kivakit.core.KivaKit.globalLogger;
 import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
 import static com.telenav.kivakit.core.language.Patterns.patternMatches;
 import static com.telenav.kivakit.core.language.Patterns.simplifiedPattern;
-import static com.telenav.kivakit.core.logging.LoggerFactory.globalLogger;
 import static com.telenav.kivakit.core.messaging.Listener.nullListener;
 import static com.telenav.kivakit.core.project.Project.resolveProject;
 import static com.telenav.kivakit.core.project.StartUpOptions.StartupOption.QUIET;
@@ -274,7 +275,7 @@ public final class Debug implements MessageTransceiver
                 var title = "KivaKit " + kivakitVersion + " (" + resolveProject(KivaKit.class).build() + ")";
                 if (!isStartupOptionEnabled(QUIET))
                 {
-                    globalLogger().information(textBox(title, """
+                    globalListener().information(textBox(title, """
                                           Logging: https://tinyurl.com/mhc3ss5s
                                         Debugging: https://tinyurl.com/2xycuvph
                                       KIVAKIT_LOG: $

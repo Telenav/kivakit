@@ -24,6 +24,7 @@ import com.telenav.kivakit.core.internal.lexakai.DiagramCollections;
 import com.telenav.kivakit.core.language.primitive.Booleans;
 import com.telenav.kivakit.core.language.trait.TryTrait;
 import com.telenav.kivakit.core.messaging.Listener;
+import com.telenav.kivakit.core.messaging.broadcasters.GlobalRepeater;
 import com.telenav.kivakit.core.messaging.messages.status.Problem;
 import com.telenav.kivakit.core.messaging.repeaters.RepeaterMixin;
 import com.telenav.kivakit.core.string.Strip;
@@ -62,7 +63,7 @@ import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_INSUF
              testing = TESTING_INSUFFICIENT,
              documentation = DOCUMENTATION_COMPLETE)
 public abstract class BaseStringMap<Value> extends BaseMap<String, Value> implements
-        RepeaterMixin,
+        GlobalRepeater,
         TryTrait
 {
     /**

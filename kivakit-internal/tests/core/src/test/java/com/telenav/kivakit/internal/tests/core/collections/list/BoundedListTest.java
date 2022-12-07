@@ -28,7 +28,7 @@ import org.junit.Test;
 
 import java.util.List;
 
-import static com.telenav.kivakit.core.logging.LoggerFactory.globalLogger;
+import static com.telenav.kivakit.core.KivaKit.globalLogger;
 
 public class BoundedListTest extends CoreUnitTest
 {

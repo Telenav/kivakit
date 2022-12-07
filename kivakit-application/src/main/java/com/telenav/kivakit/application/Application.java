@@ -38,7 +38,6 @@ import com.telenav.kivakit.core.language.trait.LanguageTrait;
 import com.telenav.kivakit.core.locale.Locale;
 import com.telenav.kivakit.core.locale.LocaleLanguage;
 import com.telenav.kivakit.core.logging.Logger;
-import com.telenav.kivakit.core.logging.LoggerFactory;
 import com.telenav.kivakit.core.logging.logs.BaseLog;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.messaging.Message;
@@ -97,6 +96,8 @@ import static com.telenav.kivakit.application.ExitCode.SUCCEEDED;
 import static com.telenav.kivakit.commandline.Quantifier.OPTIONAL;
 import static com.telenav.kivakit.commandline.Quantifier.REQUIRED;
 import static com.telenav.kivakit.commandline.SwitchParsers.booleanSwitchParser;
+import static com.telenav.kivakit.core.KivaKit.globalListener;
+import static com.telenav.kivakit.core.KivaKit.globalLogger;
 import static com.telenav.kivakit.core.collections.list.ObjectList.list;
 import static com.telenav.kivakit.core.collections.set.ObjectSet.set;
 import static com.telenav.kivakit.core.ensure.Ensure.ensure;
@@ -106,7 +107,6 @@ import static com.telenav.kivakit.core.function.Result.success;
 import static com.telenav.kivakit.core.language.Classes.newInstance;
 import static com.telenav.kivakit.core.language.Classes.simpleName;
 import static com.telenav.kivakit.core.logging.LoggerFactory.newLogger;
-import static com.telenav.kivakit.core.logging.LoggerFactory.globalLogger;
 import static com.telenav.kivakit.core.project.Project.resolveProject;
 import static com.telenav.kivakit.core.project.StartUpOptions.isStartupOptionEnabled;
 import static com.telenav.kivakit.core.string.Align.rightAlign;
@@ -347,7 +347,7 @@ public abstract class Application extends BaseComponent implements
     public static <T extends Application> Result<ApplicationExit> run(Class<T> applicationType, String[] arguments)
     {
         globalLogger(newLogger());
-        return run(LoggerFactory.globalLogger(), applicationType, arguments);
+        return run(globalListener(), applicationType, arguments);
     }
 
     /**
@@ -967,7 +967,7 @@ public abstract class Application extends BaseComponent implements
     }
 
     /**
-     * Returns true if this application should not show startup information
+     * Returns the set of startup options for this application
      */
     protected ObjectSet<StartupOption> startupOptions()
     {

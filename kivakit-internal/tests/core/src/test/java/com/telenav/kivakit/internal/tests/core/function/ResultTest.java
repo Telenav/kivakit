@@ -3,7 +3,6 @@ package com.telenav.kivakit.internal.tests.core.function;
 import com.telenav.kivakit.core.ensure.EnsureTrait;
 import com.telenav.kivakit.core.function.Result;
 import com.telenav.kivakit.core.messaging.CheckTrait;
-import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.messaging.repeaters.BaseRepeater;
 import com.telenav.kivakit.core.time.Time;
 import com.telenav.kivakit.interfaces.code.Code;
