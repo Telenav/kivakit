@@ -19,7 +19,6 @@
 package com.telenav.kivakit.settings;
 
 import com.telenav.kivakit.annotations.code.quality.CodeQuality;
-import com.telenav.kivakit.core.logging.LoggerFactory;
 import com.telenav.kivakit.core.object.Lazy;
 import com.telenav.kivakit.core.registry.InstanceIdentifier;
 import com.telenav.kivakit.core.registry.Registry;
@@ -33,6 +32,7 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static com.telenav.kivakit.core.KivaKit.globalListener;
 import static com.telenav.kivakit.core.ensure.Ensure.fail;
 import static com.telenav.kivakit.core.object.Lazy.lazy;
 import static com.telenav.kivakit.core.registry.Registry.registryFor;
@@ -53,15 +53,15 @@ import static com.telenav.kivakit.settings.SettingsStore.AccessMode.LOAD;
  * anywhere. Convenient access to the global settings registry is provided by {@link SettingsTrait}, and by the
  * <i>Component</i> class in
  * <i>kivakit-component</i>, which implements {@link SettingsTrait}. A component can have its own settings
- * registry (not a common use case) by overriding the {@link SettingsTrait#settingsForThis()} method (which
- * returns the global settings registry by default).
+ * registry (not a common use case) by overriding the {@link SettingsTrait#settingsForThis()} method (which returns the
+ * global settings registry by default).
  * </p>
  *
  * <p><b>How Settings are Registered</b></p>
  *
  * <p>
- * A component can easily register settings objects with the {@link SettingsTrait} <i>registerSettings*()</i>
- * methods. In particular, they can be registered from a {@link SettingsStore} with the method
+ * A component can easily register settings objects with the {@link SettingsTrait} <i>registerSettings*()</i> methods.
+ * In particular, they can be registered from a {@link SettingsStore} with the method
  * {@link #registerSettingsIn(SettingsStore)}. A typical way for a component to register the settings objects in a
  * {@link SettingsStore} is something like:
  * </p>
@@ -136,7 +136,7 @@ public class SettingsRegistry extends MemorySettingsStore implements
 {
     /** The global settings registry */
     private static final Lazy<SettingsRegistry> global = lazy(() ->
-            LoggerFactory.globalLogger().listenTo(new SettingsRegistry()
+            globalListener().listenTo(new SettingsRegistry()
             {
                 @Override
                 public String name()

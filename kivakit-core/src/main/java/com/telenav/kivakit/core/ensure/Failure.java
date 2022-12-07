@@ -1,7 +1,6 @@
 package com.telenav.kivakit.core.ensure;
 
 import com.telenav.kivakit.annotations.code.quality.CodeQuality;
-import com.telenav.kivakit.core.logging.LoggerFactory;
 import com.telenav.kivakit.core.messaging.Message;
 import com.telenav.kivakit.core.messaging.messages.OperationMessage;
 import com.telenav.kivakit.interfaces.function.Mapper;
@@ -12,6 +11,7 @@ import java.util.Map;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static com.telenav.kivakit.core.KivaKit.globalListener;
 import static com.telenav.kivakit.core.ensure.FailureReporter.throwingFailureReporter;
 import static com.telenav.kivakit.core.language.Classes.newInstance;
 
@@ -98,7 +98,7 @@ public class Failure
      */
     public static void reporter(Class<? extends Message> type, FailureReporter reporter)
     {
-        LoggerFactory.globalLogger().announce("Validation will report ${class} messages with ${class}", type, reporter.getClass());
+        globalListener().announce("Validation will report ${class} messages with ${class}", type, reporter.getClass());
         reporterMap.get().put(type, reporter);
     }
 

@@ -27,7 +27,7 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
-import static com.telenav.kivakit.core.logging.LoggerFactory.globalLogger;
+import static com.telenav.kivakit.core.KivaKit.globalListener;
 import static com.telenav.kivakit.core.messaging.MessageFormat.WITH_EXCEPTION;
 
 /**
@@ -75,7 +75,7 @@ public interface FailureReporter extends Listener
      */
     static FailureReporter loggingFailureReporter()
     {
-        return message -> globalLogger().log(message);
+        return message -> globalListener().receive(message);
     }
 
     /**

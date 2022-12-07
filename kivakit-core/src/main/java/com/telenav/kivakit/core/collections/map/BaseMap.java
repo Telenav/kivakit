@@ -21,7 +21,7 @@ package com.telenav.kivakit.core.collections.map;
 import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.collections.list.StringList;
 import com.telenav.kivakit.core.internal.lexakai.DiagramCollections;
-import com.telenav.kivakit.core.logging.LoggerFactory;
+import com.telenav.kivakit.core.messaging.broadcasters.GlobalRepeater;
 import com.telenav.kivakit.core.value.count.Maximum;
 import com.telenav.kivakit.interfaces.collection.SpaceLimited;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
@@ -40,7 +40,6 @@ import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMEN
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_INSUFFICIENT;
 import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
-import static com.telenav.kivakit.core.logging.LoggerFactory.globalLogger;
 import static com.telenav.kivakit.core.value.count.Maximum.MAXIMUM;
 
 /**
@@ -62,7 +61,8 @@ import static com.telenav.kivakit.core.value.count.Maximum.MAXIMUM;
              documentation = DOCUMENTATION_COMPLETE)
 public class BaseMap<Key, Value> implements
         Map<Key, Value>,
-        SpaceLimited
+        SpaceLimited,
+        GlobalRepeater
 {
     /** The map to wrap */
     private final Map<Key, Value> map;
@@ -296,7 +296,7 @@ public class BaseMap<Key, Value> implements
         if (!warnedAboutOutOfRoom)
         {
             warnedAboutOutOfRoom = true;
-            globalLogger().warning(new Throwable(), "Adding $ values, would exceed maximum size of $. Ignoring operation.", values, totalRoom());
+            warning(new Throwable(), "Adding $ values, would exceed maximum size of $. Ignoring operation.", values, totalRoom());
         }
     }
 
