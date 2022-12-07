@@ -22,8 +22,8 @@ import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.conversion.BaseStringConverter;
 import com.telenav.kivakit.core.collections.map.VariableMap;
 import com.telenav.kivakit.core.language.reflection.property.IncludeProperty;
-import com.telenav.kivakit.core.logging.LoggerFactory;
 import com.telenav.kivakit.core.messaging.Listener;
+import com.telenav.kivakit.core.messaging.broadcasters.GlobalRepeater;
 import com.telenav.kivakit.core.string.ObjectFormatter;
 import com.telenav.kivakit.interfaces.string.StringFormattable;
 import com.telenav.kivakit.network.core.internal.lexakai.DiagramNetworkLocation;
@@ -106,7 +106,10 @@ import static java.nio.charset.StandardCharsets.UTF_8;
 @CodeQuality(stability = STABLE_EXTENSIBLE,
              testing = UNTESTED,
              documentation = DOCUMENTATION_COMPLETE)
-public class NetworkLocation implements StringFormattable, Comparable<NetworkLocation>
+public class NetworkLocation implements
+        StringFormattable,
+        Comparable<NetworkLocation>,
+        GlobalRepeater
 {
     /**
      * Returns a network location for a {@link URI}
@@ -430,7 +433,7 @@ public class NetworkLocation implements StringFormattable, Comparable<NetworkLoc
         var interpolatedPath = format(networkPath().toString(), variables);
 
         // Create location with the given path
-        var location = withPath(parseNetworkPath(LoggerFactory.globalLogger(), interpolatedPath));
+        var location = withPath(parseNetworkPath(this, interpolatedPath));
 
         // If there are any query parameters,
         if (queryParameters() != null)

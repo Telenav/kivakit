@@ -30,9 +30,10 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.PriorityQueue;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static com.telenav.kivakit.core.os.Console.console;
 import static com.telenav.kivakit.core.thread.KivaKitThread.State.EXITED;
 import static com.telenav.kivakit.core.time.Duration.minutes;
 import static com.telenav.kivakit.core.vm.ShutdownHook.Order.MIDDLE;
@@ -138,7 +139,7 @@ public class ShutdownHook implements Comparable<ShutdownHook>
             // Do not allow registration of further hooks during shutdown
             if (shuttingDown)
             {
-                throw new IllegalStateException("Cannot register ShutdownHook once shutdown has begun");
+                console().warning("Cannot register ShutdownHook once shutdown has begun");
             }
 
             // Add a shutdown hook for the given code that will execute in the given order.
@@ -150,7 +151,7 @@ public class ShutdownHook implements Comparable<ShutdownHook>
      * The order that a hook should be run in, either among the set of first hooks, or among the set of last hooks. The
      * only guarantee is that a hook that is FIRST will run before any hook that is LAST
      */
-        public enum Order
+    public enum Order
     {
         /** The hook should be run before hooks that are marked as LAST */
         FIRST,

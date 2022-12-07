@@ -26,7 +26,7 @@ import org.junit.Test;
 
 import java.util.Arrays;
 
-import static com.telenav.kivakit.core.logging.LoggerFactory.globalLogger;
+import static com.telenav.kivakit.core.KivaKit.globalLogger;
 
 @SuppressWarnings({ "ConstantConditions", "SameParameterValue" })
 public class StringListTest extends CoreUnitTest

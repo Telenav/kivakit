@@ -2,6 +2,23 @@
 
 -----------------------------------------------------------------------------------------------------------------------
 
+## Version 1.8.9 (2022.12.07) "happy sneakers"
+
+### Security
+
+ - Update version of commons-net to 3.8.0 
+
+### Features
+
+ - Added global listener facility
+
+### Bug Fixes
+
+ - Fix name of java filesystem provider, resolving test failure
+ - Warn instead of throwing exception when adding shutdown hook during shutdown
+
+-----------------------------------------------------------------------------------------------------------------------
+
 ## Version 1.8.8 (2022.12.01) "happy dolphin"
 
 ### Bug Fixes

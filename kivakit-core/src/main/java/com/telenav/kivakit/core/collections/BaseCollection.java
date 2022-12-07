@@ -31,8 +31,8 @@ import java.util.function.Predicate;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_INSUFFICIENT;
+import static com.telenav.kivakit.core.KivaKit.globalListener;
 import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
-import static com.telenav.kivakit.core.logging.LoggerFactory.globalLogger;
 import static com.telenav.kivakit.core.value.count.Maximum.maximum;
 import static com.telenav.kivakit.interfaces.string.StringFormattable.Format.TO_STRING;
 
@@ -381,7 +381,7 @@ public abstract class BaseCollection<Value> implements
         if (!warnedAboutOutOfRoom)
         {
             warnedAboutOutOfRoom = true;
-            globalLogger().warning(new Throwable(), "Adding $ values, would exceed maximum size of $. Ignoring operation.", values, totalRoom());
+            globalListener().warning(new Throwable(), "Adding $ values, would exceed maximum size of $. Ignoring operation.", values, totalRoom());
         }
     }
 
@@ -477,7 +477,6 @@ public abstract class BaseCollection<Value> implements
     /**
      * {@inheritDoc}
      */
-    @SuppressWarnings({ "SuspiciousToArrayCall" })
     @Override
     public <E> E[] toArray(E @NotNull [] array)
     {
