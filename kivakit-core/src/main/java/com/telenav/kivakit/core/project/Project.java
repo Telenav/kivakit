@@ -163,7 +163,7 @@ public abstract class Project extends BaseRepeater implements
      */
     public Build build()
     {
-        return Build.build(getClass());
+        return Build.build(metadataType());
     }
 
     /**
@@ -226,7 +226,8 @@ public abstract class Project extends BaseRepeater implements
             {
                 announce("Loading$ $ build $",
                         rightAlign(getClass().getSimpleName(), 40, '.'),
-                        leftAlign(projectVersion().toString(), 20, '.'), build());
+                        leftAlign(projectVersion().toString(), 20, '.'),
+                        build());
             }
             onInitialize();
 
@@ -288,7 +289,7 @@ public abstract class Project extends BaseRepeater implements
      */
     public VariableMap<String> properties()
     {
-        return allProperties(getClass());
+        return allProperties(metadataType());
     }
 
     /**
@@ -318,6 +319,15 @@ public abstract class Project extends BaseRepeater implements
     public void visitDependencies(Visitor visitor)
     {
         visitDependencies(this, new HashSet<>(), visitor, 0);
+    }
+
+    /**
+     * Returns the type to use for getting metadata for this project. In the case of KivaKit projects, always returns
+     * KivaKit.class.
+     */
+    protected Class<?> metadataType()
+    {
+        return getClass();
     }
 
     /**

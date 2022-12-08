@@ -10,8 +10,8 @@
  -->
 
 <project
-        xmlns = "http://maven.apache.org/POM/4.0.0"
         xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance"
+        xmlns = "http://maven.apache.org/POM/4.0.0"
         xsi:schemaLocation = "http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
     <modelVersion>4.0.0</modelVersion>
@@ -19,7 +19,7 @@
     <parent>
         <groupId>com.telenav.kivakit</groupId>
         <artifactId>kivakit-parent</artifactId>
-        <version>1.8.9</version>
+        <version>1.9.0</version>
         <relativePath>../../pom.xml</relativePath>
     </parent>
 
@@ -27,7 +27,7 @@
 
     <properties>
 
-        <commons.net.version>3.8.0</commons.net.version>
+        <commons.net.version>3.9.0</commons.net.version>
         <jcraft.version>0.1.55</jcraft.version>
         <sshtools.version>0.2.9</sshtools.version>
 

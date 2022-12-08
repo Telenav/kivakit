@@ -69,7 +69,7 @@ import static com.telenav.kivakit.core.path.StringPath.parseStringPath;
 @CodeQuality(stability = STABLE_EXTENSIBLE,
              testing = UNTESTED,
              documentation = DOCUMENTATION_COMPLETE)
-public class KivaKit extends Project
+public class KivaKit extends BaseKivaKitProject
 {
     /** The global logger, for cases like collections where it's too cumbersome to require listeners */
     private static Logger globalLogger;
@@ -82,9 +82,10 @@ public class KivaKit extends Project
      *
      * @param listener The new global listener
      */
-    public static synchronized void globalListener(Listener listener)
+    public static synchronized Listener globalListener(Listener listener)
     {
         KivaKit.globalListener = listener;
+        return listener;
     }
 
     /**
@@ -118,9 +119,10 @@ public class KivaKit extends Project
      *
      * @param logger The logger
      */
-    public static synchronized void globalLogger(Logger logger)
+    public static synchronized Logger globalLogger(Logger logger)
     {
         globalLogger = logger;
+        return logger;
     }
 
     /**

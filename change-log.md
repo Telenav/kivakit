@@ -2,6 +2,18 @@
 
 -----------------------------------------------------------------------------------------------------------------------
 
+## Version 1.9.0 (2022.12.08) "happy dracula"
+
+### Security
+
+ - Update version of commons-net to 3.9.0 
+
+### Features
+
+ - Added support for per-project and per-application build and project metadata 
+
+-----------------------------------------------------------------------------------------------------------------------
+
 ## Version 1.8.9 (2022.12.07) "happy sneakers"
 
 ### Security

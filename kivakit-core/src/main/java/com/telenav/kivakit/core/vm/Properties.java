@@ -31,7 +31,7 @@ import static com.telenav.kivakit.core.vm.JavaVirtualMachine.javaVirtualMachine;
 public class Properties
 {
     /** A map from root package name to project properties */
-    private static final Map<String, VariableMap<String>> projectProperties = new HashMap<>();
+    private static final Map<Class<?>, VariableMap<String>> projectProperties = new HashMap<>();
 
     /**
      * Returns a set of properties, including:
@@ -45,16 +45,15 @@ public class Properties
      * @return All relevant properties for the given project root class (normally a {@link Project} or Application
      * class).
      */
-    public static VariableMap<String> allProperties(Class<?> projectRoot)
+    public static synchronized VariableMap<String> allProperties(Class<?> type)
     {
-        var packageName = projectRoot.getPackageName();
-        var properties = projectProperties.get(packageName);
+        var properties = projectProperties.get(type);
         if (properties == null)
         {
-            var build = build(projectRoot);
+            var build = build(type);
 
             properties = javaVirtualMachine().systemPropertiesAndEnvironmentVariables();
-            properties.addAll(variableMap(buildMetaData(projectRoot).projectProperties()));
+            properties.addAll(variableMap(buildMetaData(type).projectProperties()));
             properties.put("version", properties.get("project-version"));
             properties.putIfNotNull("build-name", build.name());
             properties.putIfNotNull("build-date", build.buildFormattedDate());
@@ -63,7 +62,7 @@ public class Properties
 
             properties = properties.expanded();
 
-            projectProperties.put(packageName, properties);
+            projectProperties.put(type, properties);
         }
 
         return properties;
