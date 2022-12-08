@@ -16,7 +16,7 @@
 
     <groupId>com.telenav.kivakit</groupId>
     <artifactId>kivakit-parent</artifactId>
-    <version>1.8.10</version>
+    <version>1.9.0</version>
 
     <packaging>pom</packaging>
 
@@ -162,7 +162,7 @@
         <utilities.guava.version>31.1-jre</utilities.guava.version>
         <utilities.classgraph.version>4.8.151</utilities.classgraph.version>
         <utilities.log4j.version>2.19.0</utilities.log4j.version>
-        <utilities.cactus.metadata.version>1.0.2</utilities.cactus.metadata.version>
+        <utilities.cactus.metadata.version>1.0.3</utilities.cactus.metadata.version>
         <utilities.classgraph.version>4.8.149</utilities.classgraph.version>
 
         <!-- Testing -->
@@ -350,6 +350,10 @@
                             <goal>project-information</goal>
                             <goal>build-metadata</goal>
                         </goals>
+                        <configuration>
+                            <buildPropertiesDestination>target/classes/KivaKit-build.properties</buildPropertiesDestination>
+                            <projectPropertiesDestination>target/classes/KivaKit-project.properties</projectPropertiesDestination>
+                        </configuration>
                     </execution>
                 </executions>
             </plugin>

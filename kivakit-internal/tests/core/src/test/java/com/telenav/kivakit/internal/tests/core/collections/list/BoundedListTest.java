@@ -28,6 +28,7 @@ import org.junit.Test;
 
 import java.util.List;
 
+import static com.telenav.kivakit.core.KivaKit.globalListener;
 import static com.telenav.kivakit.core.KivaKit.globalLogger;
 
 public class BoundedListTest extends CoreUnitTest
@@ -36,6 +37,7 @@ public class BoundedListTest extends CoreUnitTest
     public void testAdd()
     {
         globalLogger(new NullLogger());
+        globalListener(globalLogger());
 
         // First make sure that we can add an element to a list with room.
         BaseList<Integer> list = populatedList(100, 99);
@@ -54,6 +56,9 @@ public class BoundedListTest extends CoreUnitTest
     @Test
     public void testAddAll()
     {
+        globalLogger(new NullLogger());
+        globalListener(globalLogger());
+
         BaseList<Integer> list = populatedList(100, 75);
         List<Integer> listToAdd = populatedList(25, 25);
 
@@ -69,6 +74,9 @@ public class BoundedListTest extends CoreUnitTest
     @Test
     public void testAddIndex()
     {
+        globalLogger(new NullLogger());
+        globalListener(globalLogger());
+
         // First make sure that we can add an element to a list with room and
         // then verify that the value was set.
         BaseList<Integer> list = populatedList(100, 99);

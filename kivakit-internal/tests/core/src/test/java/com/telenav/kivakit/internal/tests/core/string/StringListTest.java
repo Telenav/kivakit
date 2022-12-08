@@ -26,6 +26,7 @@ import org.junit.Test;
 
 import java.util.Arrays;
 
+import static com.telenav.kivakit.core.KivaKit.globalListener;
 import static com.telenav.kivakit.core.KivaKit.globalLogger;
 
 @SuppressWarnings({ "ConstantConditions", "SameParameterValue" })
@@ -62,7 +63,7 @@ public class StringListTest extends CoreUnitTest
     @Test
     public void testMaximum()
     {
-        globalLogger(new NullLogger());
+        globalListener(globalLogger(new NullLogger()));
         StringList list = new StringList(Maximum._1);
         list.add("a");
         list.add("b");

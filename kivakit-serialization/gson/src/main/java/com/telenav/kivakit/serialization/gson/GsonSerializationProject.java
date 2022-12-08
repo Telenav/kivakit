@@ -1,5 +1,6 @@
 package com.telenav.kivakit.serialization.gson;
 
+import com.telenav.kivakit.core.BaseKivaKitProject;
 import com.telenav.kivakit.core.project.Project;
 import com.telenav.kivakit.core.registry.Registry;
 import com.telenav.kivakit.resource.serialization.ObjectSerializerRegistry;
@@ -25,7 +26,7 @@ import static com.telenav.kivakit.resource.Extension.JSON;
  * @see GsonFactory
  * @see Registry
  */
-public class GsonSerializationProject extends Project
+public class GsonSerializationProject extends BaseKivaKitProject
 {
     /**
      * {@inheritDoc}
