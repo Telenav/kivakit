@@ -23,9 +23,10 @@ import com.telenav.kivakit.core.value.count.Maximum;
 
 import java.util.Map;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_INSUFFICIENT;
+import static com.telenav.kivakit.core.value.count.Maximum.MAXIMUM;
 
 /**
  * A trivial extension of {@link BaseMap} for storing objects
@@ -37,6 +38,22 @@ import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_INSUF
              documentation = DOCUMENTATION_COMPLETE)
 public class ObjectMap<Key, Value> extends BaseMap<Key, Value>
 {
+    /**
+     * Returns an {@link ObjectMap} with the given maximum size
+     */
+    public static <Key, Value> ObjectMap<Key, Value> map(Maximum maximumSize)
+    {
+        return new ObjectMap<>(maximumSize);
+    }
+
+    /**
+     * Returns a new {@link ObjectMap}
+     */
+    public static <Key, Value> ObjectMap<Key, Value> map()
+    {
+        return map(MAXIMUM);
+    }
+
     public ObjectMap()
     {
     }

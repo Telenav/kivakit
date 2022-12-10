@@ -54,7 +54,7 @@ import static com.telenav.kivakit.core.value.count.Maximum.MAXIMUM;
  *
  * @author jonathanl (shibo)
  */
-@SuppressWarnings({ "UnusedReturnValue", "EqualsWhichDoesntCheckParameterClass" })
+@SuppressWarnings({ "UnusedReturnValue", "EqualsWhichDoesntCheckParameterClass", "unused" })
 @UmlClassDiagram(diagram = DiagramCollections.class)
 @CodeQuality(stability = STABLE_EXTENSIBLE,
              testing = TESTING_INSUFFICIENT,
@@ -104,6 +104,14 @@ public class BaseMap<Key, Value> implements
     public BaseMap(Map<Key, Value> map)
     {
         this(MAXIMUM, map);
+    }
+
+    /**
+     * Returns the underlying map data structure
+     */
+    public Map<Key, Value> backingMap()
+    {
+        return map;
     }
 
     /**
@@ -444,11 +452,6 @@ public class BaseMap<Key, Value> implements
     public Collection<Value> values()
     {
         return map.values();
-    }
-
-    protected Map<Key, Value> map()
-    {
-        return map;
     }
 
     protected Value onCreateValue(Key key)

@@ -27,7 +27,7 @@
 
     <properties>
 
-        <commons.net.version>3.8.0</commons.net.version>
+        <commons.net.version>3.9.0</commons.net.version>
         <jcraft.version>0.1.55</jcraft.version>
         <sshtools.version>0.2.9</sshtools.version>
 
