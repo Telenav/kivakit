@@ -32,14 +32,14 @@ configuration management and object registration and lookup.
 
 ### Dependencies <a name="dependencies"></a> &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/dependencies-32.png" srcset="https://telenav.github.io/telenav-assets/images/icons/dependencies-32-2x.png 2x"/>
 
-[*Dependency Diagram*](https://www.kivakit.org/1.8.8/lexakai/kivakit/kivakit-application/documentation/diagrams/dependencies.svg)
+[*Dependency Diagram*](https://www.kivakit.org/1.9.0/lexakai/kivakit/kivakit-application/documentation/diagrams/dependencies.svg)
 
 #### Maven Dependency
 
     <dependency>
         <groupId>com.telenav.kivakit</groupId>
         <artifactId>kivakit-application</artifactId>
-        <version>1.8.8</version>
+        <version>1.9.0</version>
     </dependency>
 
 <img src="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128.png" srcset="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128-2x.png 2x"/>
@@ -83,20 +83,20 @@ Code quality for this project is 61.1%.
 
 ### Class Diagrams <a name="class-diagrams"></a> &nbsp; &nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/diagram-40.png" srcset="https://telenav.github.io/telenav-assets/images/icons/diagram-40-2x.png 2x"/>
 
-[*Applications*](https://www.kivakit.org/1.8.8/lexakai/kivakit/kivakit-application/documentation/diagrams/diagram-application.svg)
+[*Applications*](https://www.kivakit.org/1.9.0/lexakai/kivakit/kivakit-application/documentation/diagrams/diagram-application.svg)
 
 <img src="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128.png" srcset="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128-2x.png 2x"/>
 
 ### Package Diagrams <a name="package-diagrams"></a> &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/box-24.png" srcset="https://telenav.github.io/telenav-assets/images/icons/box-24-2x.png 2x"/>
 
-[*com.telenav.kivakit.application*](https://www.kivakit.org/1.8.8/lexakai/kivakit/kivakit-application/documentation/diagrams/com.telenav.kivakit.application.svg)  
-[*com.telenav.kivakit.application.internal.lexakai*](https://www.kivakit.org/1.8.8/lexakai/kivakit/kivakit-application/documentation/diagrams/com.telenav.kivakit.application.internal.lexakai.svg)
+[*com.telenav.kivakit.application*](https://www.kivakit.org/1.9.0/lexakai/kivakit/kivakit-application/documentation/diagrams/com.telenav.kivakit.application.svg)  
+[*com.telenav.kivakit.application.internal.lexakai*](https://www.kivakit.org/1.9.0/lexakai/kivakit/kivakit-application/documentation/diagrams/com.telenav.kivakit.application.internal.lexakai.svg)
 
 ### Javadoc <a name="code-quality"></a> &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/books-24.png" srcset="https://telenav.github.io/telenav-assets/images/icons/books-24-2x.png 2x"/>
 
 | Class | Documentation Sections  |
 |-------|-------------------------|
-| [*Application*](https://www.kivakit.org/1.8.8/javadoc/kivakit/kivakit-application/com/telenav/kivakit/application/Application.html) | Application Metadata |  
+| [*Application*](https://www.kivakit.org/1.9.0/javadoc/kivakit/kivakit-application/com/telenav/kivakit/application/Application.html) | Application Metadata |  
 | | Application Environment |  
 | | Project Initialization |  
 | | Execution |  
@@ -104,12 +104,12 @@ Code quality for this project is 61.1%.
 | | Creating an Application |  
 | | Command Line Parsing |  
 | | Abnormal Termination |  
-| [*Application.Identifier*](https://www.kivakit.org/1.8.8/javadoc/kivakit/kivakit-application/com/telenav/kivakit/application/Application.Identifier.html) |  |  
-| [*Application.LifecyclePhase*](https://www.kivakit.org/1.8.8/javadoc/kivakit/kivakit-application/com/telenav/kivakit/application/Application.LifecyclePhase.html) |  |  
-| [*ApplicationExit*](https://www.kivakit.org/1.8.8/javadoc/kivakit/kivakit-application/com/telenav/kivakit/application/ApplicationExit.html) |  |  
-| [*DiagramApplication*](https://www.kivakit.org/1.8.8/javadoc/kivakit/kivakit-application/com/telenav/kivakit/application/internal/lexakai/DiagramApplication.html) |  |  
-| [*ExitCode*](https://www.kivakit.org/1.8.8/javadoc/kivakit/kivakit-application/com/telenav/kivakit/application/ExitCode.html) |  |  
-| [*Server*](https://www.kivakit.org/1.8.8/javadoc/kivakit/kivakit-application/com/telenav/kivakit/application/Server.html) |  |  
+| [*Application.Identifier*](https://www.kivakit.org/1.9.0/javadoc/kivakit/kivakit-application/com/telenav/kivakit/application/Application.Identifier.html) |  |  
+| [*Application.LifecyclePhase*](https://www.kivakit.org/1.9.0/javadoc/kivakit/kivakit-application/com/telenav/kivakit/application/Application.LifecyclePhase.html) |  |  
+| [*ApplicationExit*](https://www.kivakit.org/1.9.0/javadoc/kivakit/kivakit-application/com/telenav/kivakit/application/ApplicationExit.html) |  |  
+| [*DiagramApplication*](https://www.kivakit.org/1.9.0/javadoc/kivakit/kivakit-application/com/telenav/kivakit/application/internal/lexakai/DiagramApplication.html) |  |  
+| [*ExitCode*](https://www.kivakit.org/1.9.0/javadoc/kivakit/kivakit-application/com/telenav/kivakit/application/ExitCode.html) |  |  
+| [*Server*](https://www.kivakit.org/1.9.0/javadoc/kivakit/kivakit-application/com/telenav/kivakit/application/Server.html) |  |  
 
 [//]: # (start-user-text)
 
