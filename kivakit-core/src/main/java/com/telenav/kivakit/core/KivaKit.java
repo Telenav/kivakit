@@ -118,9 +118,10 @@ public class KivaKit extends BaseKivaKitProject
      *
      * @param logger The logger
      */
-    public static synchronized void globalLogger(Logger logger)
+    public static synchronized Logger globalLogger(Logger logger)
     {
         globalLogger = logger;
+        return logger;
     }
 
     /**
