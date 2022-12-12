@@ -29,15 +29,15 @@ import com.telenav.kivakit.core.collections.list.ObjectList;
 import com.telenav.kivakit.network.core.NetworkAccessConstraints;
 import com.telenav.kivakit.network.core.NetworkLocation;
 import com.telenav.kivakit.network.ftp.internal.lexakai.DiagramSecureFtp;
-import com.telenav.kivakit.resource.Resource;
 import com.telenav.kivakit.resource.writing.WritableResource;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.io.InputStream;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static com.telenav.kivakit.core.ensure.Ensure.illegalState;
 
 /**
  * <b>Not public API</b>
@@ -62,7 +62,13 @@ class SecureFtpConnector
     {
     }
 
-    public void connect(NetworkLocation location)
+    /**
+     * Connects to the given network location
+     *
+     * @param location The location to connect to
+     * @throws IllegalStateException Thrown if connecting fails
+     */
+    public void connect(NetworkLocation location) throws IllegalStateException
     {
         if (!isConnected())
         {
@@ -80,12 +86,15 @@ class SecureFtpConnector
             }
             catch (JSchException e)
             {
-                safeDisconnect();
-                throw new IllegalStateException("Unable to connect", e);
+                disconnect();
+                illegalState(e, "Could not connect to: $", location);
             }
         }
     }
 
+    /**
+     * Disconnects from any connected remote FTP server
+     */
     public void disconnect()
     {
         if (channel != null)
@@ -102,6 +111,13 @@ class SecureFtpConnector
         session = null;
     }
 
+    /**
+     * Returns an input stream to the FTP resource at the given location
+     *
+     * @param location The location
+     * @return The input stream
+     * @throws IllegalStateException Thrown if the resource cannot be accessed
+     */
     public InputStream get(NetworkLocation location)
     {
         // Make sure we are connected.
@@ -113,14 +129,18 @@ class SecureFtpConnector
         }
         catch (SftpException e)
         {
-            throw new IllegalStateException("Unable to retrieve file: " + location.networkPath().join(), e);
+            return illegalState(e, "Unable to retrieve file: $", location.networkPath().join());
         }
     }
 
     /**
      * Copy directly a file from SFTP to some destination
+     *
+     * @param location The location
+     * @param destination The destination resource to write to
+     * @throws IllegalStateException Thrown if the resource cannot be accessed
      */
-    public void get(NetworkLocation location, Resource destination)
+    public void get(NetworkLocation location, WritableResource destination)
     {
         // Make sure we are connected.
         connect(location);
@@ -128,19 +148,28 @@ class SecureFtpConnector
         var sourcePath = location.networkPath().join();
         try
         {
-            channel.get(sourcePath, ((WritableResource) destination).openForWriting());
+            channel.get(sourcePath, destination.openForWriting());
         }
         catch (SftpException e)
         {
-            throw new IllegalStateException("Unable to retrieve file: " + sourcePath, e);
+            illegalState("Unable to retrieve file: " + sourcePath, e);
         }
     }
 
+    /**
+     * Returns true if this connector is connected
+     */
     public boolean isConnected()
     {
         return !(session == null && channel == null);
     }
 
+    /**
+     * Returns a list of entries at the given location
+     *
+     * @param location The location
+     * @throws IllegalStateException Thrown if the resource cannot be accessed
+     */
     @SuppressWarnings({ "unchecked" })
     public ObjectList<LsEntry> listFiles(NetworkLocation location)
     {
@@ -153,13 +182,7 @@ class SecureFtpConnector
         }
         catch (SftpException e)
         {
-            throw new IllegalStateException("Unable to list directory contents: " + location.networkPath().join(),
-                    e);
+            return illegalState(e, "Unable to list directory contents: " + location.networkPath().join());
         }
-    }
-
-    public void safeDisconnect()
-    {
-        disconnect();
     }
 }

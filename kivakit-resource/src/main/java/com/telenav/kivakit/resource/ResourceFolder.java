@@ -171,18 +171,18 @@ public interface ResourceFolder<T extends ResourceFolder<T>> extends
     /**
      * Copies all nested resources matching the given matcher from this folder to the destination folder.
      */
-    default void copyTo(@NotNull Folder destination,
+    default boolean copyTo(@NotNull Folder destination,
                         @NotNull CopyMode mode,
                         @NotNull Matcher<ResourcePathed> matcher,
                         @NotNull ProgressReporter reporter)
     {
-        copyTo(destination, mode, PRESERVE_HIERARCHY, matcher, reporter);
+        return copyTo(destination, mode, PRESERVE_HIERARCHY, matcher, reporter);
     }
 
     /**
      * Copies all nested resources matching the given matcher from this folder to the destination folder.
      */
-    default void copyTo(@NotNull Folder destination,
+    default boolean copyTo(@NotNull Folder destination,
                         @NotNull CopyMode mode,
                         @NotNull FolderCopyMode folderMode,
                         @NotNull Matcher<ResourcePathed> matcher,
@@ -210,19 +210,22 @@ public interface ResourceFolder<T extends ResourceFolder<T>> extends
             {
                 // then copy the resource and update its last modified timestamp to the source timestamp
                 information("Copying resource\n    FROM: $\n      TO: $", resource, target);
-                listenTo(resource).copyTo(target.ensureWritable(), mode, reporter);
+                var success = listenTo(resource).copyTo(target.ensureWritable(), mode, reporter);
                 target.lastModified(resource.lastModified());
+                return success;
             }
+            return false;
         }
         information("Copy completed in $", start.elapsedSince());
+        return true;
     }
 
     /**
      * Copies all nested files from this folder to the destination folder
      */
-    default void copyTo(Folder destination, CopyMode mode, ProgressReporter reporter)
+    default boolean copyTo(Folder destination, CopyMode mode, ProgressReporter reporter)
     {
-        copyTo(destination, mode, matchAll(), reporter);
+        return copyTo(destination, mode, matchAll(), reporter);
     }
 
     boolean delete();

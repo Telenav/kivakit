@@ -118,12 +118,12 @@ public abstract class BaseWritableResource extends BaseReadableResource implemen
      *
      * @param text The text to print
      */
-    public Resource saveText(@NotNull String text)
+    public boolean saveText(@NotNull String text)
     {
         try (var out = printWriter())
         {
             out.print(text);
+            return out.checkError();
         }
-        return this;
     }
 }

@@ -515,7 +515,7 @@
                         <inherited>false</inherited>
                         <executions>
                             <execution>
-                                <id>install-jbpm</id>
+                                <id>install-lexakai</id>
                                 <phase>prepare-package</phase>
                                 <goals>
                                     <goal>wget</goal>

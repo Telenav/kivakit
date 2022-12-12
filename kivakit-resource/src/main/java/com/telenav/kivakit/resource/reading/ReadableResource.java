@@ -98,9 +98,9 @@ public interface ReadableResource extends
      *
      * @param destination The destination to write to
      */
-    void copyTo(@NotNull WritableResource destination,
-                @NotNull CopyMode mode,
-                @NotNull ProgressReporter reporter);
+    boolean copyTo(@NotNull WritableResource destination,
+                   @NotNull CopyMode mode,
+                   @NotNull ProgressReporter reporter);
 
     /**
      * Returns a reader with convenient methods for reading from the resource
