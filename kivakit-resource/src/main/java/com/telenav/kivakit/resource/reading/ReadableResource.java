@@ -103,6 +103,16 @@ public interface ReadableResource extends
                    @NotNull ProgressReporter reporter);
 
     /**
+     * Returns the content of this resource as a string
+     *
+     * @return The text
+     */
+    default String readText()
+    {
+        return reader().readText();
+    }
+
+    /**
      * Returns a reader with convenient methods for reading from the resource
      */
     default ResourceReader reader(@NotNull ProgressReporter reporter)
