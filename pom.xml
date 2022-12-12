@@ -169,7 +169,7 @@
 
         <testing.junit.version>4.13.2</testing.junit.version>
         <testing.junit5.version>5.9.1</testing.junit5.version>
-        <testing.junit.platform.version>1.10.0</testing.junit.platform.version>
+        <testing.junit.platform.version>1.9.1</testing.junit.platform.version>
         <testing.surefire.excluded/>
         <testing.surefire.quick>false</testing.surefire.quick>
 

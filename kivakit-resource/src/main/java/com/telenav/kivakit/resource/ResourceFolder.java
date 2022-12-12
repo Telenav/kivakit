@@ -172,9 +172,9 @@ public interface ResourceFolder<T extends ResourceFolder<T>> extends
      * Copies all nested resources matching the given matcher from this folder to the destination folder.
      */
     default boolean copyTo(@NotNull Folder destination,
-                        @NotNull CopyMode mode,
-                        @NotNull Matcher<ResourcePathed> matcher,
-                        @NotNull ProgressReporter reporter)
+                           @NotNull CopyMode mode,
+                           @NotNull Matcher<ResourcePathed> matcher,
+                           @NotNull ProgressReporter reporter)
     {
         return copyTo(destination, mode, PRESERVE_HIERARCHY, matcher, reporter);
     }
@@ -183,15 +183,15 @@ public interface ResourceFolder<T extends ResourceFolder<T>> extends
      * Copies all nested resources matching the given matcher from this folder to the destination folder.
      */
     default boolean copyTo(@NotNull Folder destination,
-                        @NotNull CopyMode mode,
-                        @NotNull FolderCopyMode folderMode,
-                        @NotNull Matcher<ResourcePathed> matcher,
-                        @NotNull ProgressReporter reporter)
+                           @NotNull CopyMode mode,
+                           @NotNull FolderCopyMode folderMode,
+                           @NotNull Matcher<ResourcePathed> matcher,
+                           @NotNull ProgressReporter reporter)
     {
         var start = now();
 
         // Ensure the destination folder exists,
-        information("Copying resources\n    FROM: $\n      TO: $", this, destination);
+        information("Copying resources\n  from: $\n    to: $", this, destination);
         destination.ensureExists();
 
         // then for each nested file,
@@ -209,12 +209,17 @@ public interface ResourceFolder<T extends ResourceFolder<T>> extends
             if (mode.canCopy(resource, target))
             {
                 // then copy the resource and update its last modified timestamp to the source timestamp
-                information("Copying resource\n    FROM: $\n      TO: $", resource, target);
-                var success = listenTo(resource).copyTo(target.ensureWritable(), mode, reporter);
+                information("Copying resource\n  from: $\n    to: $", resource, target);
+                if (!listenTo(resource).copyTo(target.ensureWritable(), mode, reporter))
+                {
+                    return false;
+                }
                 target.lastModified(resource.lastModified());
-                return success;
             }
-            return false;
+            else
+            {
+                return false;
+            }
         }
         information("Copy completed in $", start.elapsedSince());
         return true;
