@@ -4,6 +4,7 @@ import com.telenav.kivakit.core.collections.list.ObjectList;
 import com.telenav.kivakit.core.collections.set.ObjectSet;
 import com.telenav.kivakit.core.value.count.Bytes;
 import com.telenav.kivakit.core.value.count.Count;
+import com.telenav.kivakit.interfaces.comparison.Filter;
 import com.telenav.kivakit.interfaces.comparison.Matcher;
 import org.jetbrains.annotations.NotNull;
 
@@ -88,6 +89,30 @@ public abstract class BaseResourceList<T extends Resource> extends ObjectList<T>
             // Not possible
         }
         return null;
+    }
+
+    public BaseResourceList<T> without(Filter<ResourcePathed> filter)
+    {
+        var list = newResourceList();
+        for (var at : this)
+        {
+            if (filter.accepts(at))
+            {
+                list.add(at);
+            }
+        }
+        return list;
+    }
+
+    @SuppressWarnings("unchecked")
+    public BaseResourceList<T> with(ResourceFolder<?> folder, Filter<ResourcePathed> filter)
+    {
+        var list = newResourceList();
+        for (var at : folder.nestedResources(filter))
+        {
+            list.add((T) at);
+        }
+        return list;
     }
 
     /**

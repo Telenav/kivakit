@@ -78,7 +78,7 @@ public class SecureFtpResource extends BaseNetworkResource
      * Copy this resource to the disk
      */
     @Override
-    public void copyTo(@NotNull WritableResource destination, @NotNull CopyMode mode, @NotNull ProgressReporter reporter)
+    public boolean copyTo(@NotNull WritableResource destination, @NotNull CopyMode mode, @NotNull ProgressReporter reporter)
     {
         try
         {
@@ -86,6 +86,12 @@ public class SecureFtpResource extends BaseNetworkResource
             reporter.start();
             connector.get(location, destination);
             reporter.end();
+            return true;
+        }
+        catch (Exception e)
+        {
+            problem(e, "Could not copy $ to $", this, destination);
+            return false;
         }
         finally
         {
@@ -95,7 +101,7 @@ public class SecureFtpResource extends BaseNetworkResource
 
     public void disconnect()
     {
-        connector.safeDisconnect();
+        connector.disconnect();
     }
 
     /**

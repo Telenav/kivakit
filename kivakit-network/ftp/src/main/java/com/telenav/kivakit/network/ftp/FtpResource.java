@@ -137,7 +137,7 @@ public class FtpResource extends BaseNetworkResource
      * {@inheritDoc}
      */
     @Override
-    public void copyTo(@NotNull WritableResource destination, @NotNull CopyMode mode,
+    public boolean copyTo(@NotNull WritableResource destination, @NotNull CopyMode mode,
                        @NotNull ProgressReporter reporter)
     {
         try
@@ -156,10 +156,12 @@ public class FtpResource extends BaseNetworkResource
             out.flush();
             out.close();
             in.close();
+            return true;
         }
         catch (IOException e)
         {
             problem(e, "Unable to download file to " + destination, e);
+            return false;
         }
     }
 

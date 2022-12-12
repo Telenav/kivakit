@@ -36,7 +36,6 @@ import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
 import static com.telenav.kivakit.core.ensure.Ensure.unsupported;
-import static com.telenav.kivakit.core.messaging.Listener.throwingListener;
 import static com.telenav.kivakit.core.time.Time.now;
 import static com.telenav.kivakit.filesystem.Folder.FolderType.NORMAL;
 import static com.telenav.kivakit.filesystem.Folder.temporaryFolderForProcess;
@@ -44,6 +43,7 @@ import static com.telenav.kivakit.interfaces.comparison.Matcher.matchAll;
 import static com.telenav.kivakit.resource.CopyMode.OVERWRITE;
 import static com.telenav.kivakit.resource.Extension.TEMPORARY;
 import static com.telenav.kivakit.resource.FolderCopyMode.PRESERVE_HIERARCHY;
+import static com.telenav.kivakit.resource.ResourceGlob.glob;
 import static com.telenav.kivakit.resource.ResourcePath.parseResourcePath;
 import static com.telenav.kivakit.resource.spi.ResourceFolderResolverService.resourceFolderResolverService;
 
@@ -171,27 +171,27 @@ public interface ResourceFolder<T extends ResourceFolder<T>> extends
     /**
      * Copies all nested resources matching the given matcher from this folder to the destination folder.
      */
-    default void copyTo(@NotNull Folder destination,
-                        @NotNull CopyMode mode,
-                        @NotNull Matcher<ResourcePathed> matcher,
-                        @NotNull ProgressReporter reporter)
+    default boolean copyTo(@NotNull Folder destination,
+                           @NotNull CopyMode mode,
+                           @NotNull Matcher<ResourcePathed> matcher,
+                           @NotNull ProgressReporter reporter)
     {
-        copyTo(destination, mode, PRESERVE_HIERARCHY, matcher, reporter);
+        return copyTo(destination, mode, PRESERVE_HIERARCHY, matcher, reporter);
     }
 
     /**
      * Copies all nested resources matching the given matcher from this folder to the destination folder.
      */
-    default void copyTo(@NotNull Folder destination,
-                        @NotNull CopyMode mode,
-                        @NotNull FolderCopyMode folderMode,
-                        @NotNull Matcher<ResourcePathed> matcher,
-                        @NotNull ProgressReporter reporter)
+    default boolean copyTo(@NotNull Folder destination,
+                           @NotNull CopyMode mode,
+                           @NotNull FolderCopyMode folderMode,
+                           @NotNull Matcher<ResourcePathed> matcher,
+                           @NotNull ProgressReporter reporter)
     {
         var start = now();
 
         // Ensure the destination folder exists,
-        information("Copying resources\n    FROM: $\n      TO: $", this, destination);
+        information("Copying resources\n  from: $\n    to: $", this, destination);
         destination.ensureExists();
 
         // then for each nested file,
@@ -209,20 +209,28 @@ public interface ResourceFolder<T extends ResourceFolder<T>> extends
             if (mode.canCopy(resource, target))
             {
                 // then copy the resource and update its last modified timestamp to the source timestamp
-                information("Copying resource\n    FROM: $\n      TO: $", resource, target);
-                listenTo(resource).copyTo(target.ensureWritable(), mode, reporter);
+                information("Copying resource\n  from: $\n    to: $", resource, target);
+                if (!listenTo(resource).copyTo(target.ensureWritable(), mode, reporter))
+                {
+                    return false;
+                }
                 target.lastModified(resource.lastModified());
+            }
+            else
+            {
+                return false;
             }
         }
         information("Copy completed in $", start.elapsedSince());
+        return true;
     }
 
     /**
      * Copies all nested files from this folder to the destination folder
      */
-    default void copyTo(Folder destination, CopyMode mode, ProgressReporter reporter)
+    default boolean copyTo(Folder destination, CopyMode mode, ProgressReporter reporter)
     {
-        copyTo(destination, mode, matchAll(), reporter);
+        return copyTo(destination, mode, matchAll(), reporter);
     }
 
     boolean delete();
@@ -344,6 +352,17 @@ public interface ResourceFolder<T extends ResourceFolder<T>> extends
     default ResourceList nestedResources()
     {
         return nestedResources(value -> true);
+    }
+
+    /**
+     * Returns all nested resources matching the given glob pattern
+     *
+     * @param glob The pattern to match
+     * @return The list of matching resources
+     */
+    default ResourceList nestedResources(String glob)
+    {
+        return nestedResources(glob(glob));
     }
 
     /**

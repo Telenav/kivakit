@@ -156,7 +156,7 @@ public class SftpFolderWatcher extends PeriodicCollectionChangeWatcher<NetworkPa
             }
             finally
             {
-                sftp.safeDisconnect();
+                sftp.disconnect();
                 narrate("Found ${debug} objects in the folder ${debug}.", result.size(), path.join());
             }
         }

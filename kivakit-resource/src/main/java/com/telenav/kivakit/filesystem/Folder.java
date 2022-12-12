@@ -83,6 +83,7 @@ import static com.telenav.kivakit.filesystem.Folders.kivakitTemporaryFolder;
 import static com.telenav.kivakit.filesystem.loader.FileSystemServiceLoader.fileSystem;
 import static com.telenav.kivakit.interfaces.comparison.Filter.acceptAll;
 import static com.telenav.kivakit.resource.Extension.TEMPORARY;
+import static com.telenav.kivakit.resource.ResourceGlob.glob;
 import static com.telenav.kivakit.resource.ResourceList.resourceList;
 import static java.util.Objects.requireNonNull;
 
@@ -739,7 +740,7 @@ public class Folder extends BaseRepeater implements
      */
     public FileList files(@NotNull String globPattern)
     {
-        return files(file -> ResourceGlob.glob(globPattern).matches(file));
+        return files(file -> glob(globPattern).matches(file));
     }
 
     /**

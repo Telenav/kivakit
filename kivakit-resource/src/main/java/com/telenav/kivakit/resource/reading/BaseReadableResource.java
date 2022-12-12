@@ -152,9 +152,9 @@ public abstract class BaseReadableResource extends BaseRepeater implements Resou
      * Copies the data in this resource to the destination.
      */
     @Override
-    public void copyTo(@NotNull WritableResource destination,
-                       @NotNull CopyMode mode,
-                       @NotNull ProgressReporter reporter)
+    public boolean copyTo(@NotNull WritableResource destination,
+                          @NotNull CopyMode mode,
+                          @NotNull ProgressReporter reporter)
     {
         // If we can copy from this resource to the given resource in this mode,
         if (mode.canCopy(this, destination))
@@ -162,11 +162,10 @@ public abstract class BaseReadableResource extends BaseRepeater implements Resou
             // copy the resource stream (which might involve compression or decompression or both).
             var input = openForReading(reporter);
             var output = destination.openForWriting();
-            if (!copyAndClose(this, input, output))
-            {
-                throw new IllegalStateException("Unable to copy " + this + " to " + destination);
-            }
+            return copyAndClose(this, input, output);
         }
+
+        return false;
     }
 
     @Override

@@ -49,9 +49,9 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.ServiceLoader;
 
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
 import static com.telenav.kivakit.commandline.ArgumentParser.argumentParser;
 import static com.telenav.kivakit.commandline.SwitchParser.switchParser;
@@ -487,11 +487,11 @@ public interface Resource extends
      * @param destination The file to copy to
      * @param mode Copying semantics
      */
-    default void safeCopyTo(@NotNull ResourceFolder<?> destination,
-                            @NotNull CopyMode mode,
-                            @NotNull ProgressReporter reporter)
+    default boolean safeCopyTo(@NotNull ResourceFolder<?> destination,
+                               @NotNull CopyMode mode,
+                               @NotNull ProgressReporter reporter)
     {
-        safeCopyTo(destination.resource(fileName()).asWritable(), mode, reporter);
+        return safeCopyTo(destination.resource(fileName()).asWritable(), mode, reporter);
     }
 
     /**
@@ -502,10 +502,10 @@ public interface Resource extends
      * @param destination The file to copy to
      * @param mode Copying semantics
      */
-    default void safeCopyTo(@NotNull WritableResource destination,
-                            @NotNull CopyMode mode)
+    default boolean safeCopyTo(@NotNull WritableResource destination,
+                               @NotNull CopyMode mode)
     {
-        safeCopyTo(destination, mode, nullProgressReporter());
+        return safeCopyTo(destination, mode, nullProgressReporter());
     }
 
     /**
@@ -517,9 +517,9 @@ public interface Resource extends
      * @param mode Copying semantics
      * @param reporter Progress reporter to call as copy proceeds
      */
-    default void safeCopyTo(@NotNull WritableResource destination,
-                            @NotNull CopyMode mode,
-                            @NotNull ProgressReporter reporter)
+    default boolean safeCopyTo(@NotNull WritableResource destination,
+                               @NotNull CopyMode mode,
+                               @NotNull ProgressReporter reporter)
     {
         // If there is no destination file or we can overwrite,
         if (mode.canCopy(this, destination))
@@ -537,7 +537,8 @@ public interface Resource extends
             }
 
             // and rename the temporary file to the destination file.
-            temporary.renameTo(destination);
+            return temporary.renameTo(destination);
         }
+        return false;
     }
 }

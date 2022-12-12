@@ -22,6 +22,7 @@ import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.io.IO;
 import com.telenav.kivakit.core.time.Time;
 import com.telenav.kivakit.core.value.count.Bytes;
+import com.telenav.kivakit.filesystem.File;
 import com.telenav.kivakit.resource.Resource;
 import com.telenav.kivakit.resource.internal.lexakai.DiagramResourceType;
 import com.telenav.kivakit.resource.reading.BaseReadableResource;
@@ -30,9 +31,11 @@ import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.RandomAccessFile;
+import java.nio.channels.Channels;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
 import static com.telenav.kivakit.core.io.IO.skip;
@@ -89,11 +92,30 @@ public class ResourceSection extends BaseReadableResource
     /**
      * {@inheritDoc}
      */
+    @SuppressWarnings("resource")
     @Override
     public InputStream onOpenForReading()
     {
-        InputStream in = resource.openForReading();
-        skip(this, in, startOffset);
+        InputStream in;
+        if (resource instanceof File)
+        {
+            try
+            {
+                var randomAccessFile = new RandomAccessFile(resource.asJavaFile(), "r");
+                in = Channels.newInputStream(randomAccessFile.getChannel());
+                randomAccessFile.seek(startOffset);
+            }
+            catch (Exception e)
+            {
+                throw new RuntimeException(e);
+            }
+        }
+        else
+        {
+            in = resource.openForReading();
+            skip(this, in, startOffset);
+        }
+
         return new InputStream()
         {
             private long offset = startOffset;

@@ -26,8 +26,8 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.concurrent.ConcurrentHashMap;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_INSUFFICIENT;
 import static com.telenav.kivakit.core.value.count.Maximum.MAXIMUM;
 
@@ -85,6 +85,6 @@ public class ConcurrentObjectMap<Key, Value> extends ObjectMap<Key, Value> imple
 
     private ConcurrentHashMap<Key, Value> concurrentMap()
     {
-        return (ConcurrentHashMap<Key, Value>) map();
+        return (ConcurrentHashMap<Key, Value>) backingMap();
     }
 }

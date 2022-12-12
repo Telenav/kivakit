@@ -31,8 +31,8 @@ import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.value.count.Bytes.kilobytes;
 
@@ -87,7 +87,7 @@ class SecureFtpInput extends InputStream
     {
         // Close the wrapped input stream, and disconnect.
         IO.close((Listener) this, in);
-        connector.safeDisconnect();
+        connector.disconnect();
     }
 
     @Override

@@ -249,7 +249,7 @@ public class StringList extends ObjectList<String>
      */
     public static StringList stringList(String... strings)
     {
-        return stringList(Maximum._1024, strings);
+        return stringList(MAXIMUM, strings);
     }
 
     /**
