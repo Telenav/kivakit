@@ -43,6 +43,7 @@ import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTE
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.collections.list.ObjectList.list;
 import static com.telenav.kivakit.core.ensure.Ensure.ensure;
+import static com.telenav.kivakit.core.messaging.Listener.throwingListener;
 import static com.telenav.kivakit.network.core.NetworkAccessConstraints.defaultNetworkAccessConstraints;
 
 /**
@@ -137,6 +138,11 @@ public class HttpNetworkLocation extends NetworkLocation implements Resourceful
     {
         super(that);
         ensure(that.port().isHttp());
+    }
+
+    public HttpNetworkLocation(URI uri)
+    {
+        this(parseHttpNetworkLocation(throwingListener(), uri.toString()));
     }
 
     public HttpNetworkLocation(NetworkPath path)

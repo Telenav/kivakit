@@ -229,6 +229,7 @@ public class Folder extends BaseRepeater implements
     /** Monitor for serializing the creation of temporary files */
     private static final Monitor temporaryLock = new Monitor();
 
+    /** Lock for atomic access to folders */
     private static final Monitor lock = new Monitor();
 
     /**
