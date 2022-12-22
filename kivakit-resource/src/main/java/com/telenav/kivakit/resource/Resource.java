@@ -474,6 +474,7 @@ public interface Resource extends
      *
      * @param destination The file to copy to
      * @param mode Copying semantics
+     * @throws IllegalStateException Thrown if the copy operation fails
      */
     default void safeCopyTo(@NotNull ResourceFolder<?> destination,
                             @NotNull CopyMode mode)
@@ -486,12 +487,13 @@ public interface Resource extends
      *
      * @param destination The file to copy to
      * @param mode Copying semantics
+     * @throws IllegalStateException Thrown if the copy operation fails
      */
-    default boolean safeCopyTo(@NotNull ResourceFolder<?> destination,
-                               @NotNull CopyMode mode,
-                               @NotNull ProgressReporter reporter)
+    default void safeCopyTo(@NotNull ResourceFolder<?> destination,
+                            @NotNull CopyMode mode,
+                            @NotNull ProgressReporter reporter)
     {
-        return safeCopyTo(destination.resource(fileName()).asWritable(), mode, reporter);
+        safeCopyTo(destination.resource(fileName()).asWritable(), mode, reporter);
     }
 
     /**
@@ -501,11 +503,12 @@ public interface Resource extends
      *
      * @param destination The file to copy to
      * @param mode Copying semantics
+     * @throws IllegalStateException Thrown if the copy operation fails
      */
-    default boolean safeCopyTo(@NotNull WritableResource destination,
-                               @NotNull CopyMode mode)
+    default void safeCopyTo(@NotNull WritableResource destination,
+                            @NotNull CopyMode mode)
     {
-        return safeCopyTo(destination, mode, nullProgressReporter());
+        safeCopyTo(destination, mode, nullProgressReporter());
     }
 
     /**
@@ -516,29 +519,28 @@ public interface Resource extends
      * @param destination The file to copy to
      * @param mode Copying semantics
      * @param reporter Progress reporter to call as copy proceeds
+     * @throws IllegalStateException Thrown if the copy operation fails
      */
-    default boolean safeCopyTo(@NotNull WritableResource destination,
-                               @NotNull CopyMode mode,
-                               @NotNull ProgressReporter reporter)
+    default void safeCopyTo(@NotNull WritableResource destination,
+                            @NotNull CopyMode mode,
+                            @NotNull ProgressReporter reporter)
     {
-        // If there is no destination file or we can overwrite,
-        if (mode.canCopy(this, destination))
+        // If that we can do the copy operation,
+        mode.ensureAllowed(this, destination);
+
+        // copy this resource to a temporary file,
+        var temporary = listenTo(destination.parent().temporaryFile(destination.fileName()));
+        ensure(destination.can(DELETE));
+        ensure(temporary.can(RENAME));
+        copyTo(temporary, mode, reporter);
+
+        // remove the destination file if it exists,
+        if (destination.exists())
         {
-            // then copy to a temporary file
-            var temporary = listenTo(destination.parent().temporaryFile(destination.fileName()));
-            ensure(destination.can(DELETE));
-            ensure(temporary.can(RENAME));
-            copyTo(temporary, mode, reporter);
-
-            // remove the destination file
-            if (destination.exists())
-            {
-                destination.delete();
-            }
-
-            // and rename the temporary file to the destination file.
-            return temporary.renameTo(destination);
+            ensure(destination.delete(), "Could not delete $", destination);
         }
-        return false;
+
+        // and rename the temporary file to the destination file.
+        ensure(temporary.renameTo(destination), "Could not rename $ => $", temporary, destination);
     }
 }

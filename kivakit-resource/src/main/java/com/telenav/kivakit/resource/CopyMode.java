@@ -24,6 +24,7 @@ import org.jetbrains.annotations.NotNull;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static com.telenav.kivakit.core.ensure.Ensure.ensure;
 import static com.telenav.kivakit.core.ensure.Ensure.unsupported;
 
 /**
@@ -41,7 +42,7 @@ import static com.telenav.kivakit.core.ensure.Ensure.unsupported;
  * <p><b>Copying</b></p>
  *
  * <ul>
- *     <li>{@link #canCopy(Resource, Resource)} - Returns true if this copy mode allows the given copy operation</li>
+ *     <li>{@link #ensureAllowed(Resource, Resource)} - Returns true if this copy mode allows the given copy operation</li>
  * </ul>
  *
  * @author jonathanl (shibo)
@@ -64,33 +65,21 @@ public enum CopyMode
     DO_NOT_OVERWRITE;
 
     /**
-     * Returns true if the given source can be copied to the given destination
+     * Ensures that the given source can be copied to the given destination  under this copy mode
+     *
+     * @throws IllegalStateException Thrown if copying isn't allowed
      */
-    public boolean canCopy(@NotNull Resource source,
-                           @NotNull Resource destination)
+    public void ensureAllowed(@NotNull Resource source,
+                              @NotNull Resource destination)
     {
         switch (this)
         {
             case STREAM, OVERWRITE ->
             {
-                return true;
             }
-
-            case DO_NOT_OVERWRITE ->
-            {
-                return !destination.exists() || destination.isEmpty();
-            }
-
-            case UPDATE ->
-            {
-                return !destination.exists() || destination.isEmpty() || !source.isSame(destination);
-            }
-
-            default ->
-            {
-                unsupported("Unsupported copy mode: ", this);
-                return false;
-            }
+            case DO_NOT_OVERWRITE -> ensure(!destination.exists() || destination.isEmpty());
+            case UPDATE -> ensure(!destination.exists() || !source.isSame(destination));
+            default -> unsupported("Unsupported copy mode: ", this);
         }
     }
 }

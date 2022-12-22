@@ -117,13 +117,10 @@ public abstract class BaseWritableResource extends BaseReadableResource implemen
      * Prints the given text to this resource
      *
      * @param text The text to print
+     * @throws IllegalStateException Thrown if the text cannot be saved
      */
-    public boolean saveText(@NotNull String text)
+    public void saveText(@NotNull String text)
     {
-        try (var out = printWriter())
-        {
-            out.print(text);
-            return out.checkError();
-        }
+        writer().saveText(text);
     }
 }

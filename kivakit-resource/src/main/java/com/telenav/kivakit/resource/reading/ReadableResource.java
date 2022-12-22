@@ -99,20 +99,23 @@ public interface ReadableResource extends
      * Copies this resource to the given destination
      *
      * @param destination The destination to write to
+     * @throws IllegalStateException Thrown if the copy operation fails
      */
-    boolean copyTo(@NotNull WritableResource destination,
-                   @NotNull CopyMode copyMode,
-                   @NotNull CloseMode closeMode,
-                   @NotNull ProgressReporter reporter);
+    void copyTo(@NotNull WritableResource destination,
+                @NotNull CopyMode copyMode,
+                @NotNull CloseMode closeMode,
+                @NotNull ProgressReporter reporter);
 
     /**
      * Copies the data in this resource to the destination.
+     *
+     * @throws IllegalStateException Thrown if the copy operation fails
      */
-    default boolean copyTo(@NotNull WritableResource destination,
-                           @NotNull CopyMode copyMode,
-                           @NotNull ProgressReporter reporter)
+    default void copyTo(@NotNull WritableResource destination,
+                        @NotNull CopyMode copyMode,
+                        @NotNull ProgressReporter reporter)
     {
-        return copyTo(destination, copyMode, CLOSE, reporter);
+        copyTo(destination, copyMode, CLOSE, reporter);
     }
 
     /**

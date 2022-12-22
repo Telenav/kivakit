@@ -45,6 +45,7 @@ import java.nio.charset.Charset;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static com.telenav.kivakit.core.ensure.Ensure.ensure;
 import static com.telenav.kivakit.core.ensure.Ensure.unsupported;
 import static com.telenav.kivakit.core.io.IO.copy;
 import static com.telenav.kivakit.core.io.IO.copyAndClose;
@@ -158,29 +159,28 @@ public abstract class BaseReadableResource extends BaseRepeater implements Resou
      * @param copyMode The copying mode
      * @param closeMode True if the streams should be closed when copying is complete
      * @param reporter The progress reporter to call as copying proceeds
+     * @throws IllegalStateException Thrown if the copy operation fails
      */
-    public boolean copyTo(@NotNull WritableResource destination,
-                          @NotNull CopyMode copyMode,
-                          @NotNull CloseMode closeMode,
-                          @NotNull ProgressReporter reporter)
+    @Override
+    public void copyTo(@NotNull WritableResource destination,
+                       @NotNull CopyMode copyMode,
+                       @NotNull CloseMode closeMode,
+                       @NotNull ProgressReporter reporter)
     {
         // If we can copy from this resource to the given resource in this mode,
-        if (copyMode.canCopy(this, destination))
-        {
-            // copy the resource stream (which might involve compression or decompression or both).
-            var input = openForReading(reporter);
-            var output = destination.openForWriting();
-            if (closeMode == CLOSE)
-            {
-                return copyAndClose(this, input, output);
-            }
-            else
-            {
-                return copy(this, input, output);
-            }
-        }
+        copyMode.ensureAllowed(this, destination);
 
-        return false;
+        // copy the resource stream (which might involve compression or decompression or both).
+        var input = openForReading(reporter);
+        var output = destination.openForWriting();
+        if (closeMode == CLOSE)
+        {
+            ensure(copyAndClose(this, input, output), "Unable to copy ($) $ => $", copyMode, this, destination);
+        }
+        else
+        {
+            ensure(copy(this, input, output), "Unable to copy ($) $ => $", copyMode, this, destination);
+        }
     }
 
     @Override

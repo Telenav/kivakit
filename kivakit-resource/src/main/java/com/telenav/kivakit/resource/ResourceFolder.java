@@ -35,6 +35,7 @@ import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMEN
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
+import static com.telenav.kivakit.core.ensure.Ensure.ensure;
 import static com.telenav.kivakit.core.ensure.Ensure.unsupported;
 import static com.telenav.kivakit.core.time.Time.now;
 import static com.telenav.kivakit.filesystem.Folder.FolderType.NORMAL;
@@ -171,28 +172,28 @@ public interface ResourceFolder<T extends ResourceFolder<T>> extends
     /**
      * Copies all nested resources matching the given matcher from this folder to the destination folder.
      */
-    default boolean copyTo(@NotNull Folder destination,
-                           @NotNull CopyMode mode,
-                           @NotNull Matcher<ResourcePathed> matcher,
-                           @NotNull ProgressReporter reporter)
+    default void copyTo(@NotNull Folder destination,
+                        @NotNull CopyMode mode,
+                        @NotNull Matcher<ResourcePathed> matcher,
+                        @NotNull ProgressReporter reporter)
     {
-        return copyTo(destination, mode, PRESERVE_HIERARCHY, matcher, reporter);
+        copyTo(destination, mode, PRESERVE_HIERARCHY, matcher, reporter);
     }
 
     /**
      * Copies all nested resources matching the given matcher from this folder to the destination folder.
      */
-    default boolean copyTo(@NotNull Folder destination,
-                           @NotNull CopyMode mode,
-                           @NotNull FolderCopyMode folderMode,
-                           @NotNull Matcher<ResourcePathed> matcher,
-                           @NotNull ProgressReporter reporter)
+    default void copyTo(@NotNull Folder destination,
+                        @NotNull CopyMode mode,
+                        @NotNull FolderCopyMode folderMode,
+                        @NotNull Matcher<ResourcePathed> matcher,
+                        @NotNull ProgressReporter reporter)
     {
         var start = now();
 
         // Ensure the destination folder exists,
         information("Copying resources\n  from: $\n    to: $", this, destination);
-        destination.ensureExists();
+        ensure(destination.exists());
 
         // then for each nested file,
         for (var resource : nestedResources(matcher))
@@ -206,31 +207,22 @@ public interface ResourceFolder<T extends ResourceFolder<T>> extends
             var target = listenTo(destination.file(path));
 
             // and if we can copy to it,
-            if (mode.canCopy(resource, target))
-            {
-                // then copy the resource and update its last modified timestamp to the source timestamp
-                information("Copying resource\n  from: $\n    to: $", resource, target);
-                if (!listenTo(resource).copyTo(target.ensureWritable(), mode, reporter))
-                {
-                    return false;
-                }
-                target.lastModified(resource.lastModified());
-            }
-            else
-            {
-                return false;
-            }
+            mode.ensureAllowed(resource, target);
+
+            // then copy the resource and update its last modified timestamp to the source timestamp
+            information("Copying resource\n  from: $\n    to: $", resource, target);
+            listenTo(resource).copyTo(target.ensureWritable(), mode, reporter);
+            target.lastModified(resource.lastModified());
         }
         information("Copy completed in $", start.elapsedSince());
-        return true;
     }
 
     /**
      * Copies all nested files from this folder to the destination folder
      */
-    default boolean copyTo(Folder destination, CopyMode mode, ProgressReporter reporter)
+    default void copyTo(Folder destination, CopyMode mode, ProgressReporter reporter)
     {
-        return copyTo(destination, mode, matchAll(), reporter);
+        copyTo(destination, mode, matchAll(), reporter);
     }
 
     boolean delete();
@@ -460,10 +452,8 @@ public interface ResourceFolder<T extends ResourceFolder<T>> extends
         for (var at : resources(matcher))
         {
             var destination = folder.mkdirs().resource(at.fileName());
-            if (mode.canCopy(at, destination))
-            {
-                at.safeCopyTo(destination.asWritable(), mode, reporter);
-            }
+            mode.ensureAllowed(at, destination);
+            at.safeCopyTo(destination.asWritable(), mode, reporter);
         }
     }
 

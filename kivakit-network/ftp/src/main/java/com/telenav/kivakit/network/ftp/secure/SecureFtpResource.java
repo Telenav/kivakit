@@ -37,9 +37,10 @@ import org.jetbrains.annotations.NotNull;
 
 import java.io.InputStream;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static com.telenav.kivakit.core.ensure.Ensure.fail;
 
 /**
  * A resource accessed by SFTP. A list of files can be retrieved with {@link #listFiles()}.
@@ -78,9 +79,9 @@ public class SecureFtpResource extends BaseNetworkResource
      * Copy this resource to the disk
      */
     @Override
-    public boolean copyTo(@NotNull WritableResource destination,
-                          @NotNull CopyMode copyMode,
-                          @NotNull ProgressReporter reporter)
+    public void copyTo(@NotNull WritableResource destination,
+                       @NotNull CopyMode copyMode,
+                       @NotNull ProgressReporter reporter)
     {
         try
         {
@@ -88,12 +89,10 @@ public class SecureFtpResource extends BaseNetworkResource
             reporter.start();
             connector.get(location, destination);
             reporter.end();
-            return true;
         }
         catch (Exception e)
         {
-            problem(e, "Could not copy $ to $", this, destination);
-            return false;
+            fail(e, "Could not copy $ to $", this, destination);
         }
         finally
         {

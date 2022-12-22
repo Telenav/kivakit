@@ -46,6 +46,7 @@ import java.io.InputStream;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static com.telenav.kivakit.core.ensure.Ensure.fail;
 import static com.telenav.kivakit.core.value.count.Count.count;
 import static com.telenav.kivakit.network.core.NetworkAccessConstraints.defaultNetworkAccessConstraints;
 import static com.telenav.kivakit.network.ftp.FtpNetworkLocation.Mode.PASSIVE;
@@ -137,9 +138,9 @@ public class FtpResource extends BaseNetworkResource
      * {@inheritDoc}
      */
     @Override
-    public boolean copyTo(@NotNull WritableResource destination,
-                          @NotNull CopyMode copyMode,
-                          @NotNull ProgressReporter reporter)
+    public void copyTo(@NotNull WritableResource destination,
+                       @NotNull CopyMode copyMode,
+                       @NotNull ProgressReporter reporter)
     {
         try
         {
@@ -157,12 +158,10 @@ public class FtpResource extends BaseNetworkResource
             out.flush();
             out.close();
             in.close();
-            return true;
         }
         catch (IOException e)
         {
-            problem(e, "Unable to download file to " + destination, e);
-            return false;
+            fail(e, "Unable to download file to " + destination, e);
         }
     }
 
