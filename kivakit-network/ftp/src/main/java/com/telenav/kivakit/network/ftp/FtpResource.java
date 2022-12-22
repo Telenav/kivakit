@@ -137,8 +137,9 @@ public class FtpResource extends BaseNetworkResource
      * {@inheritDoc}
      */
     @Override
-    public boolean copyTo(@NotNull WritableResource destination, @NotNull CopyMode mode,
-                       @NotNull ProgressReporter reporter)
+    public boolean copyTo(@NotNull WritableResource destination,
+                          @NotNull CopyMode copyMode,
+                          @NotNull ProgressReporter reporter)
     {
         try
         {

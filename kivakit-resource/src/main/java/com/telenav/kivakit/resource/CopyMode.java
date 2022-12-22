@@ -51,6 +51,9 @@ import static com.telenav.kivakit.core.ensure.Ensure.unsupported;
              documentation = DOCUMENTATION_COMPLETE)
 public enum CopyMode
 {
+    /** Copy to a stream */
+    STREAM,
+
     /** Copy to the destination even if it already exists */
     OVERWRITE,
 
@@ -68,18 +71,26 @@ public enum CopyMode
     {
         switch (this)
         {
-            case OVERWRITE:
+            case STREAM, OVERWRITE ->
+            {
                 return true;
+            }
 
-            case DO_NOT_OVERWRITE:
+            case DO_NOT_OVERWRITE ->
+            {
                 return !destination.exists() || destination.isEmpty();
+            }
 
-            case UPDATE:
+            case UPDATE ->
+            {
                 return !destination.exists() || destination.isEmpty() || !source.isSame(destination);
+            }
 
-            default:
+            default ->
+            {
                 unsupported("Unsupported copy mode: ", this);
                 return false;
+            }
         }
     }
 }

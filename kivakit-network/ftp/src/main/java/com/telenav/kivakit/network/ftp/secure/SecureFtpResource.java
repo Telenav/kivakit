@@ -78,7 +78,9 @@ public class SecureFtpResource extends BaseNetworkResource
      * Copy this resource to the disk
      */
     @Override
-    public boolean copyTo(@NotNull WritableResource destination, @NotNull CopyMode mode, @NotNull ProgressReporter reporter)
+    public boolean copyTo(@NotNull WritableResource destination,
+                          @NotNull CopyMode copyMode,
+                          @NotNull ProgressReporter reporter)
     {
         try
         {

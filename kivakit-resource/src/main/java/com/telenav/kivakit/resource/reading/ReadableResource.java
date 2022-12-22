@@ -21,6 +21,7 @@ package com.telenav.kivakit.resource.reading;
 import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.messaging.Repeater;
 import com.telenav.kivakit.core.progress.ProgressReporter;
+import com.telenav.kivakit.resource.CloseMode;
 import com.telenav.kivakit.resource.CopyMode;
 import com.telenav.kivakit.resource.Resource;
 import com.telenav.kivakit.resource.internal.lexakai.DiagramFileSystemFile;
@@ -37,6 +38,7 @@ import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMEN
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
 import static com.telenav.kivakit.core.progress.ProgressReporter.nullProgressReporter;
+import static com.telenav.kivakit.resource.CloseMode.CLOSE;
 import static java.nio.charset.StandardCharsets.UTF_8;
 
 /**
@@ -99,8 +101,19 @@ public interface ReadableResource extends
      * @param destination The destination to write to
      */
     boolean copyTo(@NotNull WritableResource destination,
-                   @NotNull CopyMode mode,
+                   @NotNull CopyMode copyMode,
+                   @NotNull CloseMode closeMode,
                    @NotNull ProgressReporter reporter);
+
+    /**
+     * Copies the data in this resource to the destination.
+     */
+    default boolean copyTo(@NotNull WritableResource destination,
+                           @NotNull CopyMode copyMode,
+                           @NotNull ProgressReporter reporter)
+    {
+        return copyTo(destination, copyMode, CLOSE, reporter);
+    }
 
     /**
      * Returns the content of this resource as a string

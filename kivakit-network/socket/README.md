@@ -57,7 +57,7 @@ The *ConnectionListener* class listens on a port and calls a Consumer&lt;Socket&
 a connection is made. Usage looks like this:
 
     listenTo(new ConnectionListener(8086)).listen(socket ->
-            KivaThread.run(this, "Handler", () ->
+            KivaKitThread.run(this, "Handler", () ->
             {
 
                 [...]
