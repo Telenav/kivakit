@@ -19,6 +19,7 @@
 package com.telenav.kivakit.resource.resources;
 
 import com.telenav.kivakit.annotations.code.quality.CodeQuality;
+import com.telenav.kivakit.resource.WriteMode;
 import com.telenav.kivakit.resource.internal.lexakai.DiagramResourceType;
 import com.telenav.kivakit.resource.writing.BaseWritableResource;
 import com.telenav.kivakit.resource.writing.WritableResource;
@@ -32,6 +33,8 @@ import java.io.OutputStream;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static com.telenav.kivakit.core.ensure.Ensure.ensure;
+import static com.telenav.kivakit.resource.WriteMode.OVERWRITE;
 
 /**
  * A {@link WritableResource} that writes to a byte array, and can be converted to a string with {@link #string()}.
@@ -69,8 +72,9 @@ public class StringOutputResource extends BaseWritableResource
      * {@inheritDoc}
      */
     @Override
-    public OutputStream onOpenForWriting()
+    public OutputStream onOpenForWriting(WriteMode mode)
     {
+        ensure(mode == OVERWRITE);
         return out;
     }
 

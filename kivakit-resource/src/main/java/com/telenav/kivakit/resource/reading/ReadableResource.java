@@ -22,7 +22,7 @@ import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.messaging.Repeater;
 import com.telenav.kivakit.core.progress.ProgressReporter;
 import com.telenav.kivakit.resource.CloseMode;
-import com.telenav.kivakit.resource.CopyMode;
+import com.telenav.kivakit.resource.WriteMode;
 import com.telenav.kivakit.resource.Resource;
 import com.telenav.kivakit.resource.internal.lexakai.DiagramFileSystemFile;
 import com.telenav.kivakit.resource.internal.lexakai.DiagramResource;
@@ -56,14 +56,14 @@ import static java.nio.charset.StandardCharsets.UTF_8;
  * <p><b>Copying</b></p>
  *
  * <ul>
- *     <li>{@link #copyTo(WritableResource, CopyMode, ProgressReporter)}</li>
+ *     <li>{@link #copyTo(WritableResource, WriteMode, ProgressReporter)}</li>
  * </ul>
  *
  * <p><b>Implementation</b></p>
  *
  * <p>
  * The {@link #resource()} method must be defined by the implementer, as well as the method
- * {@link #copyTo(WritableResource, CopyMode, ProgressReporter)}.
+ * {@link #copyTo(WritableResource, WriteMode, ProgressReporter)}.
  * </p>
  *
  * @author jonathanl (shibo)
@@ -98,11 +98,11 @@ public interface ReadableResource extends
     /**
      * Copies this resource to the given destination
      *
-     * @param destination The destination to write to
+     * @param target The destination to write to
      * @throws IllegalStateException Thrown if the copy operation fails
      */
-    void copyTo(@NotNull WritableResource destination,
-                @NotNull CopyMode copyMode,
+    void copyTo(@NotNull WritableResource target,
+                @NotNull WriteMode writeMode,
                 @NotNull CloseMode closeMode,
                 @NotNull ProgressReporter reporter);
 
@@ -111,11 +111,11 @@ public interface ReadableResource extends
      *
      * @throws IllegalStateException Thrown if the copy operation fails
      */
-    default void copyTo(@NotNull WritableResource destination,
-                        @NotNull CopyMode copyMode,
+    default void copyTo(@NotNull WritableResource target,
+                        @NotNull WriteMode writeMode,
                         @NotNull ProgressReporter reporter)
     {
-        copyTo(destination, copyMode, CLOSE, reporter);
+        copyTo(target, writeMode, CLOSE, reporter);
     }
 
     /**

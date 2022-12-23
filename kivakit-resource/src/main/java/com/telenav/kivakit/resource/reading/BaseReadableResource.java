@@ -28,7 +28,7 @@ import com.telenav.kivakit.filesystem.File;
 import com.telenav.kivakit.filesystem.FilePath;
 import com.telenav.kivakit.filesystem.Folder;
 import com.telenav.kivakit.resource.CloseMode;
-import com.telenav.kivakit.resource.CopyMode;
+import com.telenav.kivakit.resource.WriteMode;
 import com.telenav.kivakit.resource.Resource;
 import com.telenav.kivakit.resource.ResourcePath;
 import com.telenav.kivakit.resource.compression.Codec;
@@ -55,7 +55,7 @@ import static com.telenav.kivakit.filesystem.File.parseFile;
 import static com.telenav.kivakit.filesystem.Folder.FolderType.CLEAN_UP_ON_EXIT;
 import static com.telenav.kivakit.filesystem.Folder.temporaryFolderForProcess;
 import static com.telenav.kivakit.resource.CloseMode.CLOSE;
-import static com.telenav.kivakit.resource.CopyMode.OVERWRITE;
+import static com.telenav.kivakit.resource.WriteMode.OVERWRITE;
 import static java.nio.charset.StandardCharsets.UTF_8;
 import static java.util.Objects.hash;
 
@@ -155,31 +155,31 @@ public abstract class BaseReadableResource extends BaseRepeater implements Resou
     /**
      * Copies the data in this resource to the destination.
      *
-     * @param destination The destination resource
-     * @param copyMode The copying mode
+     * @param target The destination resource
+     * @param writeMode The copying mode
      * @param closeMode True if the streams should be closed when copying is complete
      * @param reporter The progress reporter to call as copying proceeds
      * @throws IllegalStateException Thrown if the copy operation fails
      */
     @Override
-    public void copyTo(@NotNull WritableResource destination,
-                       @NotNull CopyMode copyMode,
+    public void copyTo(@NotNull WritableResource target,
+                       @NotNull WriteMode writeMode,
                        @NotNull CloseMode closeMode,
                        @NotNull ProgressReporter reporter)
     {
         // If we can copy from this resource to the given resource in this mode,
-        copyMode.ensureAllowed(this, destination);
+        writeMode.ensureAllowed(this, target);
 
         // copy the resource stream (which might involve compression or decompression or both).
         var input = openForReading(reporter);
-        var output = destination.openForWriting();
+        var output = target.openForWriting();
         if (closeMode == CLOSE)
         {
-            ensure(copyAndClose(this, input, output), "Unable to copy ($) $ => $", copyMode, this, destination);
+            ensure(copyAndClose(this, input, output), "Unable to copy ($) $ => $", writeMode, this, target);
         }
         else
         {
-            ensure(copy(this, input, output), "Unable to copy ($) $ => $", copyMode, this, destination);
+            ensure(copy(this, input, output), "Unable to copy ($) $ => $", writeMode, this, target);
         }
     }
 

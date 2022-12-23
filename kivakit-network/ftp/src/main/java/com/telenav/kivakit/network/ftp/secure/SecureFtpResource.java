@@ -27,7 +27,7 @@ import com.telenav.kivakit.network.core.BaseNetworkResource;
 import com.telenav.kivakit.network.core.NetworkAccessConstraints;
 import com.telenav.kivakit.network.core.NetworkLocation;
 import com.telenav.kivakit.network.ftp.internal.lexakai.DiagramSecureFtp;
-import com.telenav.kivakit.resource.CopyMode;
+import com.telenav.kivakit.resource.WriteMode;
 import com.telenav.kivakit.resource.compression.codecs.GzipCodec;
 import com.telenav.kivakit.resource.writing.WritableResource;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
@@ -79,20 +79,20 @@ public class SecureFtpResource extends BaseNetworkResource
      * Copy this resource to the disk
      */
     @Override
-    public void copyTo(@NotNull WritableResource destination,
-                       @NotNull CopyMode copyMode,
+    public void copyTo(@NotNull WritableResource target,
+                       @NotNull WriteMode writeMode,
                        @NotNull ProgressReporter reporter)
     {
         try
         {
             connector.connect(location);
             reporter.start();
-            connector.get(location, destination);
+            connector.get(location, target);
             reporter.end();
         }
         catch (Exception e)
         {
-            fail(e, "Could not copy $ to $", this, destination);
+            fail(e, "Could not copy $ to $", this, target);
         }
         finally
         {

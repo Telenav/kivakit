@@ -32,7 +32,7 @@ import com.telenav.kivakit.core.time.Time;
 import com.telenav.kivakit.core.value.count.Bytes;
 import com.telenav.kivakit.filesystem.local.LocalFile;
 import com.telenav.kivakit.filesystem.spi.FileService;
-import com.telenav.kivakit.resource.CopyMode;
+import com.telenav.kivakit.resource.WriteMode;
 import com.telenav.kivakit.resource.Extension;
 import com.telenav.kivakit.resource.Resource;
 import com.telenav.kivakit.resource.ResourceFolder;
@@ -131,7 +131,7 @@ import static java.nio.file.attribute.PosixFilePermission.OWNER_WRITE;
  *     <li>{@link #delete()}</li>
  *     <li>{@link #saveText(String)}</li>
  *     <li>{@link #renameTo(Resource)}</li>
- *     <li>{@link #safeCopyFrom(Resource, CopyMode, ProgressReporter)}</li>
+ *     <li>{@link #safeCopyFrom(Resource, WriteMode, ProgressReporter)}</li>
  * </ul>
  *
  * <p><b>Checks</b></p>
@@ -649,9 +649,9 @@ public class File extends BaseWritableResource implements FileSystemObject
     }
 
     @Override
-    public OutputStream onOpenForWriting()
+    public OutputStream onOpenForWriting(WriteMode mode)
     {
-        return service.onOpenForWriting();
+        return service.onOpenForWriting(mode);
     }
 
     /**
@@ -712,7 +712,7 @@ public class File extends BaseWritableResource implements FileSystemObject
      * @throws IllegalStateException Thrown if the copy operation fails
      */
     public void safeCopyFrom(@NotNull Resource resource,
-                             @NotNull CopyMode mode,
+                             @NotNull WriteMode mode,
                              @NotNull ProgressReporter reporter)
     {
         resource.safeCopyTo(this, mode, reporter);

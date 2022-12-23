@@ -29,7 +29,7 @@ import com.telenav.kivakit.network.core.NetworkLocation;
 import com.telenav.kivakit.network.core.NetworkPath;
 import com.telenav.kivakit.network.core.Protocol;
 import com.telenav.kivakit.network.ftp.internal.lexakai.DiagramFtp;
-import com.telenav.kivakit.resource.CopyMode;
+import com.telenav.kivakit.resource.WriteMode;
 import com.telenav.kivakit.resource.Resource;
 import com.telenav.kivakit.resource.writing.WritableResource;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
@@ -138,14 +138,14 @@ public class FtpResource extends BaseNetworkResource
      * {@inheritDoc}
      */
     @Override
-    public void copyTo(@NotNull WritableResource destination,
-                       @NotNull CopyMode copyMode,
+    public void copyTo(@NotNull WritableResource target,
+                       @NotNull WriteMode writeMode,
                        @NotNull ProgressReporter reporter)
     {
         try
         {
             var in = new BufferedInputStream(openBinaryFileForReading());
-            var out = new BufferedOutputStream(destination.openForWriting());
+            var out = new BufferedOutputStream(target.openForWriting());
             var buffer = new byte[1024];
             int readCount;
             reporter.start("Copying " + resource());
@@ -161,7 +161,7 @@ public class FtpResource extends BaseNetworkResource
         }
         catch (IOException e)
         {
-            fail(e, "Unable to download file to " + destination, e);
+            fail(e, "Unable to download file to " + target, e);
         }
     }
 

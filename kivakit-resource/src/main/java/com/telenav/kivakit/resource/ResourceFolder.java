@@ -41,7 +41,7 @@ import static com.telenav.kivakit.core.time.Time.now;
 import static com.telenav.kivakit.filesystem.Folder.FolderType.NORMAL;
 import static com.telenav.kivakit.filesystem.Folder.temporaryFolderForProcess;
 import static com.telenav.kivakit.interfaces.comparison.Matcher.matchAll;
-import static com.telenav.kivakit.resource.CopyMode.OVERWRITE;
+import static com.telenav.kivakit.resource.WriteMode.OVERWRITE;
 import static com.telenav.kivakit.resource.Extension.TEMPORARY;
 import static com.telenav.kivakit.resource.FolderCopyMode.PRESERVE_HIERARCHY;
 import static com.telenav.kivakit.resource.ResourceGlob.glob;
@@ -81,9 +81,9 @@ import static com.telenav.kivakit.resource.spi.ResourceFolderResolverService.res
  * <p><b>Operations</b></p>
  *
  * <ul>
- *     <li>{@link #copyTo(Folder, CopyMode, ProgressReporter)}</li>
- *     <li>{@link #copyTo(Folder, CopyMode, Matcher, ProgressReporter)}</li>
- *     <li>{@link #copyTo(Folder, CopyMode, FolderCopyMode, Matcher, ProgressReporter)}</li>
+ *     <li>{@link #copyTo(Folder, WriteMode, ProgressReporter)}</li>
+ *     <li>{@link #copyTo(Folder, WriteMode, Matcher, ProgressReporter)}</li>
+ *     <li>{@link #copyTo(Folder, WriteMode, FolderCopyMode, Matcher, ProgressReporter)}</li>
  *     <li>{@link #delete()} - Deletes this folder if it is empty</li>
  *     <li>{@link #mkdirs()} - Creates this folder and any required parent folders</li>
  *     <li>{@link #renameTo(ResourceFolder)} - Renames this folder to the given folder</li>
@@ -173,7 +173,7 @@ public interface ResourceFolder<T extends ResourceFolder<T>> extends
      * Copies all nested resources matching the given matcher from this folder to the destination folder.
      */
     default void copyTo(@NotNull Folder destination,
-                        @NotNull CopyMode mode,
+                        @NotNull WriteMode mode,
                         @NotNull Matcher<ResourcePathed> matcher,
                         @NotNull ProgressReporter reporter)
     {
@@ -184,7 +184,7 @@ public interface ResourceFolder<T extends ResourceFolder<T>> extends
      * Copies all nested resources matching the given matcher from this folder to the destination folder.
      */
     default void copyTo(@NotNull Folder destination,
-                        @NotNull CopyMode mode,
+                        @NotNull WriteMode mode,
                         @NotNull FolderCopyMode folderMode,
                         @NotNull Matcher<ResourcePathed> matcher,
                         @NotNull ProgressReporter reporter)
@@ -220,7 +220,7 @@ public interface ResourceFolder<T extends ResourceFolder<T>> extends
     /**
      * Copies all nested files from this folder to the destination folder
      */
-    default void copyTo(Folder destination, CopyMode mode, ProgressReporter reporter)
+    default void copyTo(Folder destination, WriteMode mode, ProgressReporter reporter)
     {
         copyTo(destination, mode, matchAll(), reporter);
     }
@@ -435,7 +435,7 @@ public interface ResourceFolder<T extends ResourceFolder<T>> extends
      * Copies the resources in this package to the given folder
      */
     default void safeCopyTo(@NotNull ResourceFolder<?> folder,
-                            @NotNull CopyMode mode,
+                            @NotNull WriteMode mode,
                             @NotNull ProgressReporter reporter)
     {
         safeCopyTo(folder, mode, matchAll(), reporter);
@@ -445,15 +445,15 @@ public interface ResourceFolder<T extends ResourceFolder<T>> extends
      * Copies the resources in this package to the given folder
      */
     default void safeCopyTo(@NotNull ResourceFolder<?> folder,
-                            @NotNull CopyMode mode,
+                            @NotNull WriteMode mode,
                             @NotNull Matcher<ResourcePathed> matcher,
                             @NotNull ProgressReporter reporter)
     {
         for (var at : resources(matcher))
         {
-            var destination = folder.mkdirs().resource(at.fileName());
-            mode.ensureAllowed(at, destination);
-            at.safeCopyTo(destination.asWritable(), mode, reporter);
+            var target = folder.mkdirs().resource(at.fileName());
+            mode.ensureAllowed(at, target.asWritable());
+            at.safeCopyTo(target.asWritable(), mode, reporter);
         }
     }
 
