@@ -119,6 +119,17 @@ public interface ReadableResource extends
     }
 
     /**
+     * Copies the data in this resource to the destination.
+     *
+     * @throws IllegalStateException Thrown if the copy operation fails
+     */
+    default void copyTo(@NotNull WritableResource target,
+                        @NotNull WriteMode writeMode)
+    {
+        copyTo(target, writeMode, CLOSE, nullProgressReporter());
+    }
+
+    /**
      * Returns the content of this resource as a string
      *
      * @return The text

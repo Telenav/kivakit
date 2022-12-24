@@ -800,8 +800,7 @@ public class Folder extends BaseRepeater implements
         {
             return this;
         }
-        var childFolder = parseFolder(this, child);
-        return childFolder == null ? null : folder(childFolder);
+        return folder(ensureNotNull(parseFolder(this, child)));
     }
 
     /**
@@ -816,7 +815,7 @@ public class Folder extends BaseRepeater implements
         {
             return this;
         }
-        return new Folder(folderService().folder(child));
+        return new Folder(ensureNotNull(folderService().folder(child)));
     }
 
     /**
