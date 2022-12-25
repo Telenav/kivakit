@@ -36,6 +36,7 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeMember;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.Collection;
 import java.util.List;
 
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
@@ -195,6 +196,12 @@ public class FileList extends BaseResourceList<File> implements Iterable<File>
         return files;
     }
 
+    @Override
+    public FileList copy()
+    {
+        return (FileList) super.copy();
+    }
+
     /**
      * Returns the largest file in this list
      */
@@ -245,6 +252,18 @@ public class FileList extends BaseResourceList<File> implements Iterable<File>
     public FileList with(final ResourceFolder<?> folder, final Filter<ResourcePathed> filter)
     {
         return (FileList) super.with(folder, filter);
+    }
+
+    @Override
+    public FileList with(final Collection<File> that)
+    {
+        return (FileList) super.with(that);
+    }
+
+    @Override
+    public FileList with(final File file)
+    {
+        return (FileList) super.with(file);
     }
 
     @Override
