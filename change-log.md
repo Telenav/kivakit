@@ -2,6 +2,46 @@
 
 -----------------------------------------------------------------------------------------------------------------------
 
+## Version 1.10.0 (2022.12.30) "happy water-wings"
+
+### Resources
+
+ - CopyMode -> WriteMode
+ - Added WriteMode.APPEND, WriteMode.STREAM, WriteMode.ensureAllowed()
+ - Added CloseMode
+ - All copy and text read/write operations fail() with an exception
+   - copyTo(), safeCopyTo(), safeCopyFrom()
+   - saveText
+   - LineReader
+   - readString(), readText()
+ - Added HttpResourceFolder
+ - Added Rooted interface
+ - Fix error in resource globbing
+ - Added seek() support to ResourceSection
+
+### Core
+
+ - Optionally loosened version parsing with Strictness parameter
+ - Added JRE to ReleaseType
+ - Added Rate.asBytesPerSecond()
+ - Added Described interface
+ - Added global listener and logger facilities
+
+### Network
+
+ - Added Urls and Uri.uri(String)
+ - SecureFtpConnector.safeDisconnect() -> disconnect()
+
+### Build and Release
+
+ - Updated Docker Java runtime to JRE 17
+
+### Documentation
+
+ - Document thrown IllegalStateExceptions
+
+-----------------------------------------------------------------------------------------------------------------------
+
 ## Version 1.9.0 (2022.12.08) "happy dracula"
 
 ### Security
