@@ -20,6 +20,7 @@ package com.telenav.kivakit.resource.resources;
 
 import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.value.count.Bytes;
+import com.telenav.kivakit.resource.WriteMode;
 import com.telenav.kivakit.resource.internal.lexakai.DiagramResourceType;
 import com.telenav.kivakit.resource.writing.BaseWritableResource;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
@@ -81,7 +82,7 @@ public class NullResource extends BaseWritableResource
      * {@inheritDoc}
      */
     @Override
-    public OutputStream onOpenForWriting()
+    public OutputStream onOpenForWriting(WriteMode mode)
     {
         return new OutputStream()
         {

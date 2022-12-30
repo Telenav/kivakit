@@ -21,7 +21,8 @@ package com.telenav.kivakit.resource.reading;
 import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.messaging.Repeater;
 import com.telenav.kivakit.core.progress.ProgressReporter;
-import com.telenav.kivakit.resource.CopyMode;
+import com.telenav.kivakit.resource.CloseMode;
+import com.telenav.kivakit.resource.WriteMode;
 import com.telenav.kivakit.resource.Resource;
 import com.telenav.kivakit.resource.internal.lexakai.DiagramFileSystemFile;
 import com.telenav.kivakit.resource.internal.lexakai.DiagramResource;
@@ -37,6 +38,7 @@ import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMEN
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
 import static com.telenav.kivakit.core.progress.ProgressReporter.nullProgressReporter;
+import static com.telenav.kivakit.resource.CloseMode.CLOSE;
 import static java.nio.charset.StandardCharsets.UTF_8;
 
 /**
@@ -54,14 +56,14 @@ import static java.nio.charset.StandardCharsets.UTF_8;
  * <p><b>Copying</b></p>
  *
  * <ul>
- *     <li>{@link #copyTo(WritableResource, CopyMode, ProgressReporter)}</li>
+ *     <li>{@link #copyTo(WritableResource, WriteMode, ProgressReporter)}</li>
  * </ul>
  *
  * <p><b>Implementation</b></p>
  *
  * <p>
  * The {@link #resource()} method must be defined by the implementer, as well as the method
- * {@link #copyTo(WritableResource, CopyMode, ProgressReporter)}.
+ * {@link #copyTo(WritableResource, WriteMode, ProgressReporter)}.
  * </p>
  *
  * @author jonathanl (shibo)
@@ -96,11 +98,36 @@ public interface ReadableResource extends
     /**
      * Copies this resource to the given destination
      *
-     * @param destination The destination to write to
+     * @param target The destination to write to
+     * @throws IllegalStateException Thrown if the copy operation fails
      */
-    boolean copyTo(@NotNull WritableResource destination,
-                   @NotNull CopyMode mode,
-                   @NotNull ProgressReporter reporter);
+    void copyTo(@NotNull WritableResource target,
+                @NotNull WriteMode writeMode,
+                @NotNull CloseMode closeMode,
+                @NotNull ProgressReporter reporter);
+
+    /**
+     * Copies the data in this resource to the destination.
+     *
+     * @throws IllegalStateException Thrown if the copy operation fails
+     */
+    default void copyTo(@NotNull WritableResource target,
+                        @NotNull WriteMode writeMode,
+                        @NotNull ProgressReporter reporter)
+    {
+        copyTo(target, writeMode, CLOSE, reporter);
+    }
+
+    /**
+     * Copies the data in this resource to the destination.
+     *
+     * @throws IllegalStateException Thrown if the copy operation fails
+     */
+    default void copyTo(@NotNull WritableResource target,
+                        @NotNull WriteMode writeMode)
+    {
+        copyTo(target, writeMode, CLOSE, nullProgressReporter());
+    }
 
     /**
      * Returns the content of this resource as a string

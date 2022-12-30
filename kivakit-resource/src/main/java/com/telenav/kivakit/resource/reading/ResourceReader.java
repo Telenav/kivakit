@@ -47,6 +47,7 @@ import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTE
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
 import static com.telenav.kivakit.core.ensure.Ensure.fail;
+import static com.telenav.kivakit.core.ensure.Ensure.illegalState;
 import static com.telenav.kivakit.core.progress.ProgressReporter.nullProgressReporter;
 import static java.nio.charset.StandardCharsets.UTF_8;
 
@@ -124,6 +125,8 @@ public class ResourceReader extends BaseRepeater implements AsString
 
     /**
      * {@inheritDoc}
+     *
+     * @throws IllegalStateException Thrown if operation fails
      */
     @Override
     public String asString()
@@ -135,6 +138,7 @@ public class ResourceReader extends BaseRepeater implements AsString
      * Returns the bytes in the resource being read
      *
      * @return The bytes in this resource or null if the bytes could not be read
+     * @throws IllegalStateException Thrown if operation fails
      */
     public byte[] readBytes()
     {
@@ -145,8 +149,7 @@ public class ResourceReader extends BaseRepeater implements AsString
         }
         else
         {
-            problem("Unable to open: $", resource);
-            return null;
+            return fail("Unable to open: $", resource);
         }
     }
 
@@ -154,6 +157,7 @@ public class ResourceReader extends BaseRepeater implements AsString
      * Returns the lines in this text file
      *
      * @param reporter The progress reporter to call as lines are read
+     * @throws IllegalStateException Thrown if operation fails
      */
     public StringList readLines(@NotNull ProgressReporter reporter)
     {
@@ -162,6 +166,8 @@ public class ResourceReader extends BaseRepeater implements AsString
 
     /**
      * Returns the lines in this text file
+     *
+     * @throws IllegalStateException Thrown if operation fails
      */
     public StringList readLines()
     {
@@ -173,6 +179,7 @@ public class ResourceReader extends BaseRepeater implements AsString
      *
      * @param reporter The progress reporter to call as lines are read
      * @param consumer The consumer to call with each line
+     * @throws IllegalStateException Thrown if operation fails
      */
     public void readLines(@NotNull ProgressReporter reporter,
                           @NotNull Consumer<String> consumer)
@@ -183,6 +190,8 @@ public class ResourceReader extends BaseRepeater implements AsString
     /**
      * Returns the lines in the resource being read as a list of objects created by converting each line to an object
      * using the given converter.
+     *
+     * @throws IllegalStateException Thrown if operation fails
      */
     public <T> ObjectList<T> readList(@NotNull ProgressReporter reporter, @NotNull Converter<String, T> converter)
     {
@@ -239,6 +248,7 @@ public class ResourceReader extends BaseRepeater implements AsString
      * Returns the text in this resource
      *
      * @return The string
+     * @throws IllegalStateException Thrown if operation fails
      */
     public String readText()
     {
@@ -250,6 +260,7 @@ public class ResourceReader extends BaseRepeater implements AsString
      *
      * @param reporter The reporter to call as data is read
      * @return The string
+     * @throws IllegalStateException Thrown if operation fails
      */
     public String readText(@NotNull ProgressReporter reporter)
     {

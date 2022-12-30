@@ -25,7 +25,7 @@ import com.telenav.kivakit.core.messaging.Listener;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
-import static com.telenav.kivakit.core.io.IO.CopyStyle.UNBUFFERED;
+import static com.telenav.kivakit.core.io.IO.Buffering.UNBUFFERED;
 import static com.telenav.kivakit.core.io.IO.close;
 import static com.telenav.kivakit.core.io.IO.copy;
 import static com.telenav.kivakit.core.io.IO.flush;

@@ -46,7 +46,7 @@ import static java.lang.Integer.toHexString;
 @CodeQuality(stability = STABLE_EXTENSIBLE,
              documentation = DOCUMENTATION_COMPLETE,
              testing = UNTESTED)
-public class InputResource extends BaseReadableResource
+public class InputResource extends BaseReadableResource implements AutoCloseable
 {
     /** The input stream to read */
     private final InputStream in;
@@ -61,6 +61,12 @@ public class InputResource extends BaseReadableResource
     {
         super(parseUnixResourcePath(throwingListener(), "/objects/InputResource/" + toHexString(in.hashCode())));
         this.in = in;
+    }
+
+    @Override
+    public void close() throws Exception
+    {
+        in.close();
     }
 
     /**

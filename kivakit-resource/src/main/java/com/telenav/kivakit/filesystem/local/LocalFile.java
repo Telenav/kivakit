@@ -25,6 +25,7 @@ import com.telenav.kivakit.filesystem.FilePath;
 import com.telenav.kivakit.filesystem.spi.DiskService;
 import com.telenav.kivakit.filesystem.spi.FileService;
 import com.telenav.kivakit.filesystem.spi.FolderService;
+import com.telenav.kivakit.resource.WriteMode;
 import com.telenav.kivakit.resource.internal.lexakai.DiagramFileSystemService;
 import com.telenav.kivakit.resource.writing.BaseWritableResource;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
@@ -52,6 +53,7 @@ import static com.telenav.kivakit.core.time.Time.epochMilliseconds;
 import static com.telenav.kivakit.core.value.count.Bytes.bytes;
 import static com.telenav.kivakit.filesystem.FilePath.filePath;
 import static com.telenav.kivakit.filesystem.FilePath.parseFilePath;
+import static com.telenav.kivakit.resource.WriteMode.APPEND;
 
 /**
  * Implementation of {@link FileService} provider interface for the local filesystem.
@@ -269,11 +271,12 @@ public class LocalFile extends BaseWritableResource implements FileService
      * {@inheritDoc}
      */
     @Override
-    public OutputStream onOpenForWriting()
+    public OutputStream onOpenForWriting(WriteMode mode)
     {
+        mode.ensureAllowed(file);
         try
         {
-            return new FileOutputStream(file);
+            return new FileOutputStream(file, mode == APPEND);
         }
         catch (FileNotFoundException e)
         {

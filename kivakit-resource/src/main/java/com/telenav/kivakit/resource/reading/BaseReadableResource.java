@@ -27,7 +27,8 @@ import com.telenav.kivakit.core.progress.reporters.ProgressiveInputStream;
 import com.telenav.kivakit.filesystem.File;
 import com.telenav.kivakit.filesystem.FilePath;
 import com.telenav.kivakit.filesystem.Folder;
-import com.telenav.kivakit.resource.CopyMode;
+import com.telenav.kivakit.resource.CloseMode;
+import com.telenav.kivakit.resource.WriteMode;
 import com.telenav.kivakit.resource.Resource;
 import com.telenav.kivakit.resource.ResourcePath;
 import com.telenav.kivakit.resource.compression.Codec;
@@ -44,14 +45,17 @@ import java.nio.charset.Charset;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static com.telenav.kivakit.core.ensure.Ensure.ensure;
 import static com.telenav.kivakit.core.ensure.Ensure.unsupported;
+import static com.telenav.kivakit.core.io.IO.copy;
 import static com.telenav.kivakit.core.io.IO.copyAndClose;
 import static com.telenav.kivakit.core.object.Lazy.lazy;
 import static com.telenav.kivakit.core.time.Time.now;
 import static com.telenav.kivakit.filesystem.File.parseFile;
 import static com.telenav.kivakit.filesystem.Folder.FolderType.CLEAN_UP_ON_EXIT;
 import static com.telenav.kivakit.filesystem.Folder.temporaryFolderForProcess;
-import static com.telenav.kivakit.resource.CopyMode.OVERWRITE;
+import static com.telenav.kivakit.resource.CloseMode.CLOSE;
+import static com.telenav.kivakit.resource.WriteMode.OVERWRITE;
 import static java.nio.charset.StandardCharsets.UTF_8;
 import static java.util.Objects.hash;
 
@@ -150,22 +154,33 @@ public abstract class BaseReadableResource extends BaseRepeater implements Resou
 
     /**
      * Copies the data in this resource to the destination.
+     *
+     * @param target The destination resource
+     * @param writeMode The copying mode
+     * @param closeMode True if the streams should be closed when copying is complete
+     * @param reporter The progress reporter to call as copying proceeds
+     * @throws IllegalStateException Thrown if the copy operation fails
      */
     @Override
-    public boolean copyTo(@NotNull WritableResource destination,
-                          @NotNull CopyMode mode,
-                          @NotNull ProgressReporter reporter)
+    public void copyTo(@NotNull WritableResource target,
+                       @NotNull WriteMode writeMode,
+                       @NotNull CloseMode closeMode,
+                       @NotNull ProgressReporter reporter)
     {
         // If we can copy from this resource to the given resource in this mode,
-        if (mode.canCopy(this, destination))
-        {
-            // copy the resource stream (which might involve compression or decompression or both).
-            var input = openForReading(reporter);
-            var output = destination.openForWriting();
-            return copyAndClose(this, input, output);
-        }
+        writeMode.ensureAllowed(this, target);
 
-        return false;
+        // copy the resource stream (which might involve compression or decompression or both).
+        var input = openForReading(reporter);
+        var output = target.openForWriting();
+        if (closeMode == CLOSE)
+        {
+            ensure(copyAndClose(this, input, output), "Unable to copy ($) $ => $", writeMode, this, target);
+        }
+        else
+        {
+            ensure(copy(this, input, output), "Unable to copy ($) $ => $", writeMode, this, target);
+        }
     }
 
     @Override

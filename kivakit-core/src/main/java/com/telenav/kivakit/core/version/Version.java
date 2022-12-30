@@ -32,6 +32,8 @@ import static com.telenav.kivakit.core.language.Hash.hashMany;
 import static com.telenav.kivakit.core.language.primitive.Ints.parseInt;
 import static com.telenav.kivakit.core.messaging.Listener.throwingListener;
 import static com.telenav.kivakit.core.version.ReleaseType.parseRelease;
+import static com.telenav.kivakit.core.version.Version.Strictness.LENIENT;
+import static com.telenav.kivakit.core.version.Version.Strictness.STRICT;
 import static java.util.regex.Pattern.CASE_INSENSITIVE;
 
 /**
@@ -52,7 +54,7 @@ import static java.util.regex.Pattern.CASE_INSENSITIVE;
  *     <li>{@link #minor()} - The minor version</li>
  *     <li>{@link #patch()} - The optional 'dot' revision, or NO_REVISION if there is none</li>
  *     <li>{@link #releaseType()} - The release name, or null if there is none</li>
- *     <li>{@link #hasPatch()} - True if this version has a revision value</li>
+ *     <li>{@link #hasPatchVersion()} - True if this version has a revision value</li>
  *     <li>{@link #hasRelease()} - True if this version has a release name</li>
  *     <li>{@link #isSnapshot()} - True if this version is a snapshot release</li>
  * </ul>
@@ -89,11 +91,8 @@ import static java.util.regex.Pattern.CASE_INSENSITIVE;
              documentation = DOCUMENTATION_COMPLETE)
 public class Version
 {
-    /** Value for no patch revision */
-    public static final int NO_PATCH = -1;
-
-    /** Value for no minor revision */
-    public static final int NO_MINOR = -1;
+    /** Value for no version */
+    private static final int NO_VERSION = -1;
 
     /** Pattern to match versions of the form [major](.[minor])?(.[revision])?(-release)?(-SNAPSHOT)? */
     private static final Pattern PATTERN;
@@ -113,7 +112,7 @@ public class Version
      */
     public static Version parseVersion(String text)
     {
-        return parseVersion(throwingListener(), text);
+        return version(text, STRICT);
     }
 
     /**
@@ -124,6 +123,17 @@ public class Version
      */
     public static Version parseVersion(Listener listener, @NotNull String text)
     {
+        return parseVersion(listener, text, STRICT);
+    }
+
+    /**
+     * Parses the given text into a version, reporting any problems to the given listener
+     *
+     * @return The given text, of the form [major].[minor](.[revision])?(-release)?, parsed as a {@link Version} object,
+     * or null if the text is not of that form.
+     */
+    public static Version parseVersion(Listener listener, @NotNull String text, @NotNull Strictness strictness)
+    {
         // If the text matches the version pattern,
         var matcher = PATTERN.matcher(text);
         if (matcher.matches())
@@ -131,11 +141,15 @@ public class Version
             // Extract the required major and minor versions
             var major = parseInt(listener, matcher.group("major"));
             var minor = matcher.group("minor");
-            var minorVersion = minor == null ? NO_MINOR : parseInt(listener, minor);
+            var minorVersion = (minor == null
+                    ? NO_VERSION
+                    : parseInt(listener, minor));
 
             // then get the patch group and convert it to a number or NO_PATCH if there is none
             var patch = matcher.group("patch");
-            var patchNumber = patch == null ? NO_PATCH : parseInt(listener, patch);
+            var patchNumber = (patch == null
+                    ? NO_VERSION
+                    : parseInt(listener, patch));
 
             // and the release name or null if there is none
             var releaseName = matcher.group("release");
@@ -143,11 +157,26 @@ public class Version
             var snapshot = "SNAPSHOT".equalsIgnoreCase(matcher.group("snapshot"));
 
             // and finally, construct the version object
-            return version(major, minorVersion, patchNumber, release, snapshot);
+            var version = version(major, minorVersion, patchNumber, release, snapshot);
+            version.text = text;
+            return version;
+        }
+
+        if (strictness == LENIENT)
+        {
+            return new Version(text);
         }
 
         listener.problem("Could not parse version: $", text);
         return null;
+    }
+
+    /**
+     * Returns a version for the given text, throwing an exception if it is invalid
+     */
+    public static Version version(String text, Strictness strictness)
+    {
+        return parseVersion(throwingListener(), text, strictness);
     }
 
     /**
@@ -167,7 +196,7 @@ public class Version
                                   ReleaseType release,
                                   boolean snapshot)
     {
-        return new Version(major, minor, patch, release, snapshot);
+        return new Version(null, major, minor, patch, release, snapshot);
     }
 
     /**
@@ -175,7 +204,7 @@ public class Version
      */
     public static Version version(int major, int minor)
     {
-        return version(major, minor, NO_PATCH);
+        return version(major, minor, NO_VERSION);
     }
 
     /**
@@ -183,7 +212,7 @@ public class Version
      */
     public static Version version(int major)
     {
-        return version(major, NO_MINOR);
+        return version(major, NO_VERSION);
     }
 
     /**
@@ -194,17 +223,26 @@ public class Version
      */
     public static Version version(String text)
     {
-        return parseVersion(throwingListener(), text);
+        return parseVersion(text);
+    }
+
+    public enum Strictness
+    {
+        STRICT,
+        LENIENT
     }
 
     /** The major version */
-    private int major;
+    private int major = NO_VERSION;
 
     /** The minor version */
-    private int minor;
+    private int minor = NO_VERSION;
 
     /** The patch version, also known as the "dot" version */
-    private int patch;
+    private int patch = NO_VERSION;
+
+    /** A version if it does not fit the expected form */
+    private String text;
 
     /** The release type */
     private ReleaseType releaseType;
@@ -212,8 +250,19 @@ public class Version
     /** True if this is a development snapshot */
     private boolean snapshot;
 
-    protected Version(int major, int minor, int patch, ReleaseType release, boolean snapshot)
+    /**
+     * Creates a version that doesn't fit the normal pattern. In this case the text is available with {@link #text()}
+     *
+     * @param text The (unparseable) version text
+     */
+    public Version(String text)
     {
+        this(text, NO_VERSION, NO_VERSION, NO_VERSION, null, false);
+    }
+
+    protected Version(String text, int major, int minor, int patch, ReleaseType release, boolean snapshot)
+    {
+        this.text = text;
         this.minor = (byte) minor;
         this.major = (byte) major;
         this.patch = (byte) patch;
@@ -263,15 +312,15 @@ public class Version
      */
     public boolean hasMinorVersion()
     {
-        return patch != NO_MINOR;
+        return patch != NO_VERSION;
     }
 
     /**
      * Returns true if this has a patch version
      */
-    public boolean hasPatch()
+    public boolean hasPatchVersion()
     {
-        return patch != NO_PATCH;
+        return patch != NO_VERSION;
     }
 
     /**
@@ -286,6 +335,11 @@ public class Version
     public int hashCode()
     {
         return hashMany(major, minor, patch, releaseType);
+    }
+
+    public boolean isIrregular()
+    {
+        return major == -1;
     }
 
     /**
@@ -366,7 +420,7 @@ public class Version
     }
 
     /**
-     * Returns the newer of this version or the given version
+     * Returns the newest of this version or the given version
      */
     public Version newer(Version that)
     {
@@ -374,7 +428,7 @@ public class Version
     }
 
     /**
-     * Returns the older of this version or the given version
+     * Returns the oldest of this version or the given version
      */
     public Version older(Version that)
     {
@@ -397,14 +451,28 @@ public class Version
         return releaseType;
     }
 
+    public String text()
+    {
+        if (text == null)
+        {
+            return toString();
+        }
+        return text;
+    }
+
     @Override
     public String toString()
     {
+        if (isIrregular())
+        {
+            return text();
+        }
+
         return major
-                + (minor == NO_MINOR ? "" : "." + minor)
-                + (patch == NO_PATCH ? "" : "." + patch)
-                + (releaseType == null ? "" : "-" + releaseType.name().toLowerCase())
-                + (snapshot ? "-SNAPSHOT" : "");
+                + (hasMinorVersion() ? "." + minor : "")
+                + (hasPatchVersion() ? "." + patch : "")
+                + (hasRelease() ? "-" + releaseType.name().toLowerCase() : "")
+                + (isSnapshot() ? "-SNAPSHOT" : "");
     }
 
     /**

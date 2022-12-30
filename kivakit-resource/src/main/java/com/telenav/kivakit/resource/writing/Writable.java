@@ -22,15 +22,17 @@ import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.progress.ProgressReporter;
 import com.telenav.kivakit.core.progress.reporters.ProgressiveOutputStream;
 import com.telenav.kivakit.core.value.count.BaseCount;
+import com.telenav.kivakit.resource.WriteMode;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.OutputStream;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.io.IO.buffer;
 import static com.telenav.kivakit.core.progress.ProgressReporter.nullProgressReporter;
+import static com.telenav.kivakit.resource.WriteMode.OVERWRITE;
 
 /**
  * Interface to something that can potentially be opened for writing. An output stream can be obtained with
@@ -61,7 +63,7 @@ public interface Writable
     /**
      * Opens the output stream to this writable
      */
-    OutputStream onOpenForWriting();
+    OutputStream onOpenForWriting(WriteMode mode);
 
     /**
      * Opens something that can be written to, returning an output stream.
@@ -74,6 +76,28 @@ public interface Writable
     }
 
     /**
+     * Opens something that can be written to, returning an output stream.
+     *
+     * @return The output stream to write to
+     */
+    default OutputStream openForWriting(WriteMode mode)
+    {
+        return openForWriting(nullProgressReporter(), mode);
+    }
+
+    /**
+     * Opens an output stream for overwriting the content of this writable
+     *
+     * @param reporter A progress reporter that is called for each byte that is written
+     * @return The output stream
+     * @throws IllegalStateException Thrown if the output stream cannot be opened
+     */
+    default OutputStream openForWriting(@NotNull ProgressReporter reporter)
+    {
+        return openForWriting(reporter, OVERWRITE);
+    }
+
+    /**
      * Opens something that can be written to, returning an output stream. The given progress reporter is called for
      * each byte that is written to the output stream. The caller may wish to initialize the progress reporter with the
      * number of bytes it plans to write via {@link ProgressReporter#steps(BaseCount)} to allow the reporter to report
@@ -81,9 +105,10 @@ public interface Writable
      *
      * @param reporter A progress reporter that is called for each byte that is written
      * @return The output stream to write to
+     * @throws IllegalStateException Thrown if the output stream cannot be opened
      */
-    default OutputStream openForWriting(@NotNull ProgressReporter reporter)
+    default OutputStream openForWriting(@NotNull ProgressReporter reporter, WriteMode mode)
     {
-        return new ProgressiveOutputStream(buffer(onOpenForWriting()), reporter);
+        return new ProgressiveOutputStream(buffer(onOpenForWriting(mode)), reporter);
     }
 }

@@ -42,7 +42,7 @@ import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMEN
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
 import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
-import static com.telenav.kivakit.core.io.IO.CopyStyle.BUFFERED;
+import static com.telenav.kivakit.core.io.IO.Buffering.BUFFERED;
 
 /**
  * Utility methods for buffering, closing, copying and flushing streams. All methods take a listener (except for the
@@ -69,7 +69,7 @@ import static com.telenav.kivakit.core.io.IO.CopyStyle.BUFFERED;
  *
  * <ul>
  *     <li>{@link #copy(Listener, InputStream, OutputStream)}</li>
- *     <li>{@link #copy(Listener, InputStream, OutputStream, CopyStyle)}</li>
+ *     <li>{@link #copy(Listener, InputStream, OutputStream, Buffering)}</li>
  *     <li>{@link #copyAndClose(Listener, InputStream, OutputStream)}</li>
  * </ul>
  *
@@ -249,14 +249,14 @@ public class IO
 
     /**
      * Copy an input stream to an output stream. The streams will be automatically buffered for efficiency if they are
-     * not already buffered when {@link CopyStyle} is {@link CopyStyle#BUFFERED}. Note that there is no
+     * not already buffered when {@link Buffering} is {@link Buffering#BUFFERED}. Note that there is no
      * {@link ProgressReporter} argument to this method even though it could take a long time. The reason is that
      * resources are opened using a progress reporter as {@link ProgressiveInputStream} stream, which does progress
      * reporting.
      *
      * @return True if the copy succeeded.
      */
-    public static boolean copy(Listener listener, InputStream input, OutputStream output, CopyStyle style)
+    public static boolean copy(Listener listener, InputStream input, OutputStream output, Buffering style)
     {
         var in = style == BUFFERED ? buffer(input) : input;
         var out = style == BUFFERED ? buffer(output) : output;
@@ -409,7 +409,7 @@ public class IO
     /**
      * The style to copy in, either buffered or unbuffered
      */
-    public enum CopyStyle
+    public enum Buffering
     {
         BUFFERED,
         UNBUFFERED

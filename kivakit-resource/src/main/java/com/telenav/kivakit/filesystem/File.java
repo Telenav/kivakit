@@ -32,7 +32,7 @@ import com.telenav.kivakit.core.time.Time;
 import com.telenav.kivakit.core.value.count.Bytes;
 import com.telenav.kivakit.filesystem.local.LocalFile;
 import com.telenav.kivakit.filesystem.spi.FileService;
-import com.telenav.kivakit.resource.CopyMode;
+import com.telenav.kivakit.resource.WriteMode;
 import com.telenav.kivakit.resource.Extension;
 import com.telenav.kivakit.resource.Resource;
 import com.telenav.kivakit.resource.ResourceFolder;
@@ -131,7 +131,7 @@ import static java.nio.file.attribute.PosixFilePermission.OWNER_WRITE;
  *     <li>{@link #delete()}</li>
  *     <li>{@link #saveText(String)}</li>
  *     <li>{@link #renameTo(Resource)}</li>
- *     <li>{@link #safeCopyFrom(Resource, CopyMode, ProgressReporter)}</li>
+ *     <li>{@link #safeCopyFrom(Resource, WriteMode, ProgressReporter)}</li>
  * </ul>
  *
  * <p><b>Checks</b></p>
@@ -649,9 +649,9 @@ public class File extends BaseWritableResource implements FileSystemObject
     }
 
     @Override
-    public OutputStream onOpenForWriting()
+    public OutputStream onOpenForWriting(WriteMode mode)
     {
-        return service.onOpenForWriting();
+        return service.onOpenForWriting(mode);
     }
 
     /**
@@ -708,12 +708,14 @@ public class File extends BaseWritableResource implements FileSystemObject
      * safely (ensuring that a corrupted copy of the file never exists). This is done by first copying to a temporary
      * file in the same folder. If the copy operation is successful, the destination file is then removed and the
      * temporary file is renamed to the destination file's name.
+     *
+     * @throws IllegalStateException Thrown if the copy operation fails
      */
-    public boolean safeCopyFrom(@NotNull Resource resource,
-                                @NotNull CopyMode mode,
-                                @NotNull ProgressReporter reporter)
+    public void safeCopyFrom(@NotNull Resource resource,
+                             @NotNull WriteMode mode,
+                             @NotNull ProgressReporter reporter)
     {
-        return resource.safeCopyTo(this, mode, reporter);
+        resource.safeCopyTo(this, mode, reporter);
     }
 
     /**
