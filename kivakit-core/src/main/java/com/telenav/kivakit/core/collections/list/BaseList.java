@@ -251,13 +251,13 @@ import static com.telenav.kivakit.core.value.count.Maximum.MAXIMUM;
              testing = TESTING_INSUFFICIENT,
              documentation = DOCUMENTATION_COMPLETE)
 public abstract class BaseList<Value> extends BaseCollection<Value> implements
-        Appendable<Value>,
-        Copyable<Value, BaseList<Value>>,
-        Indexable<Value>,
-        List<Value>,
-        Prependable<Value>,
-        RandomAccess,
-        Sectionable<Value, BaseList<Value>>
+    Appendable<Value>,
+    Copyable<Value, BaseList<Value>>,
+    Indexable<Value>,
+    List<Value>,
+    Prependable<Value>,
+    RandomAccess,
+    Sectionable<Value, BaseList<Value>>
 {
     /** Initial list implementation while mutable */
     private final List<Value> list;
@@ -521,6 +521,16 @@ public abstract class BaseList<Value> extends BaseCollection<Value> implements
     public BaseList<Value> maybeReversed(boolean reverse)
     {
         return reverse ? reversed() : this;
+    }
+
+    /**
+     * Returns this list as a numbered string list
+     *
+     * @return The string list
+     */
+    public StringList numbered()
+    {
+        return asStringList().numbered();
     }
 
     /**
