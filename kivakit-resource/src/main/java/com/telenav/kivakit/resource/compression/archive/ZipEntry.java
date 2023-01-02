@@ -26,6 +26,7 @@ import com.telenav.kivakit.core.time.Time;
 import com.telenav.kivakit.core.value.count.Bytes;
 import com.telenav.kivakit.filesystem.FilePath;
 import com.telenav.kivakit.interfaces.io.Closeable;
+import com.telenav.kivakit.resource.FileName;
 import com.telenav.kivakit.resource.WriteMode;
 import com.telenav.kivakit.resource.internal.lexakai.DiagramResourceArchive;
 import com.telenav.kivakit.resource.writing.BaseWritableResource;
@@ -115,7 +116,14 @@ public class ZipEntry extends BaseWritableResource implements Closeable
     public Time createdAt()
     {
         return unchecked(() -> epochMilliseconds(readAttributes(path, BasicFileAttributes.class)
-                .creationTime().toMillis())).orNull();
+            .creationTime().toMillis())).orNull();
+    }
+
+    @Override
+    @FormatProperty
+    public FileName fileName()
+    {
+        return super.fileName();
     }
 
     /**

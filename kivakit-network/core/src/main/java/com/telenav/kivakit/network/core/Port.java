@@ -46,6 +46,7 @@ import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.commandline.SwitchParser.switchParser;
 import static com.telenav.kivakit.core.language.Hash.hashMany;
 import static com.telenav.kivakit.core.messaging.Listener.consoleListener;
+import static com.telenav.kivakit.network.core.NetworkPath.networkPath;
 import static com.telenav.kivakit.network.core.Protocol.HTTP;
 import static com.telenav.kivakit.network.core.Protocol.HTTPS;
 import static com.telenav.kivakit.network.core.Protocol.UNKNOWN_PROTOCOL;
@@ -57,11 +58,11 @@ import static com.telenav.kivakit.network.core.Protocol.parseProtocol;
  * and it speaks a given {@link #protocol()}.
  *
  * <p><b>Creation</b></p>
- * 
+ *
  * <ul>
  *     <li>{@link #port(URI)}</li>
  * </ul>
- * 
+ *
  * <p><b>Parsing</b></p>
  *
  * <ul>
@@ -86,9 +87,9 @@ import static com.telenav.kivakit.network.core.Protocol.parseProtocol;
  * <ul>
  *     <li>{@link #path(Listener, String)}</li>
  * </ul>
- * 
+ *
  * <p><b>Conversions</b></p>
- * 
+ *
  * <ul>
  *     <li>{@link #asUri(Listener)}</li>
  *     <li>{@link #asString(Format)}</li>
@@ -144,9 +145,9 @@ public class Port implements AsString
     public static SwitchParser.Builder<Port> portSwitchParser(Listener listener, String name, String description)
     {
         return switchParser(Port.class)
-                .name(name)
-                .converter(new Port.Converter(listener))
-                .description(description);
+            .name(name)
+            .converter(new Port.Converter(listener))
+            .description(description);
     }
 
     /**
@@ -250,14 +251,11 @@ public class Port implements AsString
     @SuppressWarnings("SwitchStatementWithTooFewBranches")
     public String asString(@NotNull Format format)
     {
-        switch (format)
-        {
-            case PROGRAMMATIC:
-                return protocol() + "://" + host().name() + ":" + portNumber();
-
-            default:
-                return toString();
-        }
+        return switch (format)
+            {
+                case PROGRAMMATIC -> protocol() + "://" + host().name() + ":" + portNumber();
+                default -> toString();
+            };
     }
 
     /**
@@ -341,7 +339,6 @@ public class Port implements AsString
     {
         try
         {
-            //noinspection resource
             return socket().getInputStream();
         }
         catch (IOException e)
@@ -356,7 +353,15 @@ public class Port implements AsString
      */
     public NetworkPath path(Listener listener, String path)
     {
-        return NetworkPath.networkPath(listener, this, path);
+        return networkPath(listener, this, path);
+    }
+
+    /**
+     * Returns the {@link NetworkPath} at the given path on this host and port
+     */
+    public NetworkPath path(String path)
+    {
+        return networkPath(this, path);
     }
 
     /**

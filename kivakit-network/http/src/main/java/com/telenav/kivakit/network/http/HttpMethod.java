@@ -20,10 +20,12 @@ package com.telenav.kivakit.network.http;
 
 import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.messaging.Listener;
+import com.telenav.kivakit.core.messaging.messages.MessageException;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static com.telenav.kivakit.core.messaging.Listener.throwingListener;
 
 /**
  * @author jonathanl (shibo)
@@ -43,6 +45,18 @@ public enum HttpMethod
     TRACE,
     PATCH,
     NULL_HTTP_METHOD;
+
+    /**
+     * Returns the {@link HttpMethod} for the given text
+     *
+     * @param text The text to parse
+     * @return The HTTP method
+     * @throws MessageException Thrown if the method cannot be parsed
+     */
+    public static HttpMethod httpMethod(String text)
+    {
+        return parseHttpMethod(throwingListener(), text);
+    }
 
     /**
      * Returns the {@link HttpMethod} for the given text
