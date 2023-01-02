@@ -19,7 +19,10 @@
 package com.telenav.kivakit.network.http.secure;
 
 import com.telenav.kivakit.annotations.code.quality.CodeQuality;
+import com.telenav.kivakit.conversion.BaseStringConverter;
+import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.network.core.NetworkPath;
+import com.telenav.kivakit.network.core.QueryParameters;
 import com.telenav.kivakit.network.http.HttpGetResource;
 import com.telenav.kivakit.network.http.HttpNetworkLocation;
 import com.telenav.kivakit.network.http.HttpPostResource;
@@ -27,9 +30,12 @@ import com.telenav.kivakit.network.http.internal.lexakai.DiagramHttps;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
 
+import java.net.MalformedURLException;
 import java.net.URI;
+import java.net.URISyntaxException;
 
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.ensure.Ensure.ensure;
@@ -49,6 +55,61 @@ import static com.telenav.kivakit.network.core.Protocol.HTTPS;
              documentation = DOCUMENTATION_COMPLETE)
 public class SecureHttpNetworkLocation extends HttpNetworkLocation
 {
+    public static SecureHttpNetworkLocation parseSecureHttpNetworkLocation(Listener listener, String path)
+    {
+        return new Converter(listener).convert(path);
+    }
+
+    public static SecureHttpNetworkLocation secureHttpNetworkLocation(String path)
+    {
+        return parseSecureHttpNetworkLocation(throwingListener(), path);
+    }
+
+    public static SecureHttpNetworkLocation secureHttpNetworkLocation(NetworkPath path)
+    {
+        return secureHttpNetworkLocation(path.toString());
+    }
+
+    /**
+     * Converts to and from {@link SecureHttpNetworkLocation}
+     *
+     * @author jonathanl (shibo)
+     */
+    @CodeQuality(stability = STABLE,
+                 testing = UNTESTED,
+                 documentation = DOCUMENTATION_COMPLETE)
+    public static class Converter extends BaseStringConverter<SecureHttpNetworkLocation>
+    {
+        public Converter(Listener listener)
+        {
+            super(listener);
+        }
+
+        @Override
+        protected SecureHttpNetworkLocation onToValue(String value)
+        {
+            try
+            {
+                // NOTE: This code is very similar to the code in HttpNetworkLocationConverter
+                var uri = new URI(value);
+                var url = uri.toURL();
+                var location = new SecureHttpNetworkLocation(NetworkPath.networkPath(this, uri));
+                var query = url.getQuery();
+                if (query != null)
+                {
+                    location.queryParameters(QueryParameters.parseQueryParameters(this, query));
+                }
+                location.reference(url.getRef());
+                return location;
+            }
+            catch (URISyntaxException | MalformedURLException e)
+            {
+                problem(e, "Bad network location ${debug}", value);
+                return null;
+            }
+        }
+    }
+
     public SecureHttpNetworkLocation(NetworkPath path)
     {
         super(path);
