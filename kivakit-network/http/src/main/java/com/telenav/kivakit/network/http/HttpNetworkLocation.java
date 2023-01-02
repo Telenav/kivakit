@@ -89,6 +89,16 @@ import static com.telenav.kivakit.network.core.NetworkAccessConstraints.defaultN
              documentation = DOCUMENTATION_COMPLETE)
 public class HttpNetworkLocation extends NetworkLocation implements Resourceful
 {
+    public static HttpNetworkLocation httpNetworkLocation(String path)
+    {
+        return parseHttpNetworkLocation(throwingListener(), path);
+    }
+
+    public static HttpNetworkLocation httpNetworkLocation(NetworkPath path)
+    {
+        return httpNetworkLocation(path.toString());
+    }
+
     public static HttpNetworkLocation parseHttpNetworkLocation(Listener listener, String path)
     {
         return new Converter(listener).convert(path);

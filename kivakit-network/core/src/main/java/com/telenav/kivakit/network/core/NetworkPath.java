@@ -43,6 +43,7 @@ import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTE
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
 import static com.telenav.kivakit.commandline.SwitchParser.switchParser;
 import static com.telenav.kivakit.core.collections.list.StringList.stringList;
+import static com.telenav.kivakit.core.messaging.Listener.throwingListener;
 
 /**
  * An abstraction for network paths.
@@ -128,12 +129,23 @@ public class NetworkPath extends FilePath
     /**
      * Returns a network path for the given port and path
      *
+     * @param port The port for the network path
+     * @return The given path relative to the given port as a network path
+     */
+    public static NetworkPath networkPath(Port port, String path)
+    {
+        return networkPath(throwingListener(), port, path);
+    }
+
+    /**
+     * Returns a network path for the given port and path
+     *
      * @param listener The listener to call with any problems
      * @return The given path relative to the given port as a network path
      */
     public static NetworkPath networkPath(Listener listener, Port port, String path)
     {
-        var root = "/" + port + "/";
+        var root = "//" + port + "/";
         return new NetworkPath(port, parseStringPath(listener, path, "/", "/").withRoot(root));
     }
 
@@ -150,9 +162,9 @@ public class NetworkPath extends FilePath
                                                                             String description)
     {
         return switchParser(NetworkPath.class)
-                .name(name)
-                .converter(new NetworkPath.Converter(listener))
-                .description(description);
+            .name(name)
+            .converter(new NetworkPath.Converter(listener))
+            .description(description);
     }
 
     /**

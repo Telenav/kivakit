@@ -24,6 +24,7 @@ import com.telenav.kivakit.conversion.BaseStringConverter;
 import com.telenav.kivakit.core.collections.map.CacheMap;
 import com.telenav.kivakit.core.language.reflection.property.IncludeProperty;
 import com.telenav.kivakit.core.messaging.Listener;
+import com.telenav.kivakit.core.messaging.messages.MessageException;
 import com.telenav.kivakit.core.messaging.repeaters.BaseRepeater;
 import com.telenav.kivakit.core.string.FormatProperty;
 import com.telenav.kivakit.core.string.ObjectFormatter;
@@ -141,13 +142,25 @@ import static java.util.Objects.hash;
              testing = UNTESTED,
              documentation = DOCUMENTATION_COMPLETE)
 public class Host extends BaseRepeater implements
-        Named,
-        StringFormattable,
-        Comparable<Host>
+    Named,
+    StringFormattable,
+    Comparable<Host>
 {
     /** A cache of resolved host names with an expiration time of 5 minutes */
     private static final CacheMap<String, InetAddress> resolvedHostNames =
-            new CacheMap<>(maximum(2048), minutes(5));
+        new CacheMap<>(maximum(2048), minutes(5));
+
+    /**
+     * Parses the given host name into a {@link Host}
+     *
+     * @param name The name of the host
+     * @return The host
+     * @throws MessageException Thrown if the given host cannot be parsed
+     */
+    public static Host host(String name)
+    {
+        return parseHost(Listener.throwingListener(), name);
+    }
 
     /**
      * Returns a switch parser builder for the given host
@@ -160,9 +173,9 @@ public class Host extends BaseRepeater implements
     public static SwitchParser.Builder<Host> hostSwitchParser(Listener listener, String name, String description)
     {
         return switchParser(Host.class)
-                .name(name)
-                .converter(new Host.Converter(listener))
-                .description(description);
+            .name(name)
+            .converter(new Host.Converter(listener))
+            .description(description);
     }
 
     /**
@@ -467,8 +480,8 @@ public class Host extends BaseRepeater implements
         if (description != null)
         {
             builder.append("(")
-                    .append(description())
-                    .append(")");
+                .append(description())
+                .append(")");
         }
         return builder.toString();
     }
@@ -535,8 +548,8 @@ public class Host extends BaseRepeater implements
         try
         {
             if ("127.0.0.1".equals(name)
-                    || "localhost".equals(name)
-                    || "localhost.localdomain".equals(name))
+                || "localhost".equals(name)
+                || "localhost.localdomain".equals(name))
             {
                 return loopback().address();
             }
