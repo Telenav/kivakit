@@ -29,7 +29,7 @@ import com.telenav.kivakit.core.progress.ProgressReporter;
 import com.telenav.kivakit.filesystem.Folder;
 import com.telenav.kivakit.interfaces.comparison.Matcher;
 import com.telenav.kivakit.properties.PropertyMap;
-import com.telenav.kivakit.resource.CopyMode;
+import com.telenav.kivakit.resource.WriteMode;
 import com.telenav.kivakit.resource.Extension;
 import com.telenav.kivakit.resource.FileName;
 import com.telenav.kivakit.resource.Resource;
@@ -81,7 +81,7 @@ import static java.util.Objects.hash;
  * Resources in a package can be obtained with {@link ResourceFolder#resources()} and
  * {@link ResourceFolder#resources(Matcher)}. A specific resource can be located with
  * {@link ResourceFolder#resource(String)}. The resources in a package can be copied to a {@link Folder} with
- * {@link ResourceFolder#safeCopyTo(ResourceFolder, CopyMode, ProgressReporter)}.
+ * {@link ResourceFolder#safeCopyTo(ResourceFolder, WriteMode, ProgressReporter)}.
  * </p>
  *
  * <p><b>Properties</b></p>

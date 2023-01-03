@@ -249,7 +249,7 @@ public class StringList extends ObjectList<String>
      */
     public static StringList stringList(String... strings)
     {
-        return stringList(Maximum._1024, strings);
+        return stringList(MAXIMUM, strings);
     }
 
     /**
@@ -266,22 +266,22 @@ public class StringList extends ObjectList<String>
         {
             switch (text.charAt(at))
             {
-                case ' ':
-                case '\t':
-                case '\n':
+                case ' ', '\t', '\n' ->
+                {
                     if (startOfWord >= 0)
                     {
                         list.add(text.substring(startOfWord, at));
                         startOfWord = -1;
                     }
-                    break;
+                }
 
-                default:
+                default ->
+                {
                     if (startOfWord < 0)
                     {
                         startOfWord = at;
                     }
-                    break;
+                }
             }
         }
 
@@ -435,11 +435,19 @@ public class StringList extends ObjectList<String>
      */
     public StringList indented(int spaces)
     {
+        return indented(spaces, " ");
+    }
+
+    /**
+     * Returns this string list indented the given number of indent strings
+     */
+    public StringList indented(int spaces, String indent)
+    {
         var copy = new StringList();
         var i = 0;
         for (var string : this)
         {
-            copy.add((i++ > 0 ? "\n" : "") + AsciiArt.repeat(spaces, ' ') + string);
+            copy.add(AsciiArt.repeat(spaces, indent) + string);
         }
         return copy;
     }
@@ -520,6 +528,7 @@ public class StringList extends ObjectList<String>
     /**
      * Returns this list with all elements numbered starting at 1
      */
+    @Override
     public StringList numbered()
     {
         var numbered = newInstance();

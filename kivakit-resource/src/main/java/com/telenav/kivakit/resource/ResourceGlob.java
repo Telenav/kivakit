@@ -7,8 +7,8 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.regex.Pattern;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 
 /**
@@ -138,11 +138,13 @@ public class ResourceGlob implements Matcher<ResourcePathed>
      */
     public static ResourceGlob glob(@NotNull String glob)
     {
-
-        return glob(Pattern.compile(glob
-                .replaceAll("\\*\\*", ".*")
+        var pattern = glob
+                .replaceAll("\\*\\*", "\u0001")
                 .replaceAll("\\*", "[^/]*")
-                .replaceAll("\\.", "\\.")));
+                .replaceAll("\\.", ".")
+                .replaceAll("\u0001", ".*");
+
+        return glob(Pattern.compile(pattern));
     }
 
     /**
@@ -244,6 +246,12 @@ public class ResourceGlob implements Matcher<ResourcePathed>
     public ResourceGlob select(@NotNull Matchable<ResourcePathed> that)
     {
         return glob(it -> this.matches(it) && that.matches(it));
+    }
+
+    @Override
+    public String toString()
+    {
+        return matcher.toString();
     }
 
     /**

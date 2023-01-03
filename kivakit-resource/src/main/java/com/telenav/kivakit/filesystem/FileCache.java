@@ -23,7 +23,7 @@ import com.telenav.kivakit.core.messaging.repeaters.BaseRepeater;
 import com.telenav.kivakit.core.progress.ProgressReporter;
 import com.telenav.kivakit.core.time.Duration;
 import com.telenav.kivakit.core.value.level.Percent;
-import com.telenav.kivakit.resource.CopyMode;
+import com.telenav.kivakit.resource.WriteMode;
 import com.telenav.kivakit.resource.FileName;
 import com.telenav.kivakit.resource.Resource;
 import org.jetbrains.annotations.NotNull;
@@ -38,16 +38,16 @@ import static com.telenav.kivakit.core.value.level.Percent.percent;
 
 /**
  * A file cache with the given root. Resources can be copied into the cache with
- * {@link #add(Resource, CopyMode, ProgressReporter)}. Files can be retrieved with {@link #file(FileName)}. The cache
+ * {@link #add(Resource, WriteMode, ProgressReporter)}. Files can be retrieved with {@link #file(FileName)}. The cache
  * can be pruned of old files by calling {@link #startPruner()}.
  *
  * <p><b>Adding</b></p>
  *
  * <ul>
- *     <li>{@link #add(Resource, CopyMode)}</li>
- *     <li>{@link #add(Resource, CopyMode, ProgressReporter)}</li>
- *     <li>{@link #addAs(Resource, FileName, CopyMode)}</li>
- *     <li>{@link #addAs(Resource, FileName, CopyMode, ProgressReporter)}</li>
+ *     <li>{@link #add(Resource, WriteMode)}</li>
+ *     <li>{@link #add(Resource, WriteMode, ProgressReporter)}</li>
+ *     <li>{@link #addAs(Resource, FileName, WriteMode)}</li>
+ *     <li>{@link #addAs(Resource, FileName, WriteMode, ProgressReporter)}</li>
  * </ul>
  *
  * <p><b>Retrieving</b></p>
@@ -98,7 +98,7 @@ public class FileCache extends BaseRepeater
      * @param resource The resource to add to the cache
      * @param mode How the resource should be copied
      */
-    public File add(@NotNull Resource resource, @NotNull CopyMode mode)
+    public File add(@NotNull Resource resource, @NotNull WriteMode mode)
     {
         return add(resource, mode, nullProgressReporter());
     }
@@ -111,7 +111,7 @@ public class FileCache extends BaseRepeater
      * @param reporter The progress reporter to call as the file is being copied into the cache
      */
     public File add(@NotNull Resource resource,
-                    @NotNull CopyMode mode,
+                    @NotNull WriteMode mode,
                     @NotNull ProgressReporter reporter)
     {
         return addAs(resource, resource.fileName(), mode, reporter);
@@ -126,7 +126,7 @@ public class FileCache extends BaseRepeater
      */
     public File addAs(@NotNull Resource resource,
                       @NotNull FileName filename,
-                      @NotNull CopyMode mode)
+                      @NotNull WriteMode mode)
     {
         return addAs(resource, filename, mode, nullProgressReporter());
     }
@@ -141,7 +141,7 @@ public class FileCache extends BaseRepeater
      */
     public synchronized File addAs(@NotNull Resource resource,
                                    @NotNull FileName filename,
-                                   @NotNull CopyMode mode,
+                                   @NotNull WriteMode mode,
                                    @NotNull ProgressReporter reporter)
     {
         var file = file(filename);

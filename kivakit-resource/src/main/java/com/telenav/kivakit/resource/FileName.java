@@ -23,6 +23,7 @@ import com.telenav.kivakit.conversion.core.time.LocalDateConverter;
 import com.telenav.kivakit.conversion.core.time.LocalDateTimeConverter;
 import com.telenav.kivakit.conversion.core.time.LocalTimeConverter;
 import com.telenav.kivakit.core.messaging.Listener;
+import com.telenav.kivakit.core.messaging.messages.MessageException;
 import com.telenav.kivakit.core.time.LocalTime;
 import com.telenav.kivakit.filesystem.FilePath;
 import com.telenav.kivakit.interfaces.comparison.Matcher;
@@ -122,10 +123,22 @@ import static com.telenav.kivakit.resource.ResourcePath.parseResourcePath;
              testing = UNTESTED,
              documentation = DOCUMENTATION_COMPLETE)
 public class FileName implements
-        Named,
-        Comparable<FileName>,
-        ResourcePathed
+    Named,
+    Comparable<FileName>,
+    ResourcePathed
 {
+    /**
+     * Returns a {@link FileName} for the given text
+     *
+     * @param text The text to parse
+     * @return The filename
+     * @throws MessageException Thrown if the text cannot be parsed into a filename
+     */
+    public static FileName fileName(String text)
+    {
+        return parseFileName(throwingListener(), text);
+    }
+
     /**
      * Returns a filename for the current date
      */

@@ -35,7 +35,7 @@ import com.telenav.kivakit.filesystem.spi.FileService;
 import com.telenav.kivakit.filesystem.spi.FileSystemService;
 import com.telenav.kivakit.filesystem.spi.FolderService;
 import com.telenav.kivakit.interfaces.comparison.Matcher;
-import com.telenav.kivakit.resource.CopyMode;
+import com.telenav.kivakit.resource.WriteMode;
 import com.telenav.kivakit.resource.Extension;
 import com.telenav.kivakit.resource.FileName;
 import com.telenav.kivakit.resource.Resource;
@@ -83,6 +83,7 @@ import static com.telenav.kivakit.filesystem.Folders.kivakitTemporaryFolder;
 import static com.telenav.kivakit.filesystem.loader.FileSystemServiceLoader.fileSystem;
 import static com.telenav.kivakit.interfaces.comparison.Filter.acceptAll;
 import static com.telenav.kivakit.resource.Extension.TEMPORARY;
+import static com.telenav.kivakit.resource.ResourceGlob.glob;
 import static com.telenav.kivakit.resource.ResourceList.resourceList;
 import static java.util.Objects.requireNonNull;
 
@@ -179,8 +180,8 @@ import static java.util.Objects.requireNonNull;
  *     <li>{@link #chmodNested(PosixFilePermission...)} - Recursively changes the access permissions of this folder</li>
  *     <li>{@link #clearAll()} - Removes everything in this folder</li>
  *     <li>{@link #clearAllAndDelete()} - Removes everything in this folder and then deletes it</li>
- *     <li>{@link #copyTo(Folder, CopyMode, ProgressReporter)} - Copies this folder to the given folder</li>
- *     <li>{@link #copyTo(Folder, CopyMode, Matcher, ProgressReporter)} - Copies the matching files in this folder to the given folder</li>
+ *     <li>{@link #copyTo(Folder, WriteMode, ProgressReporter)} - Copies this folder to the given folder</li>
+ *     <li>{@link #copyTo(Folder, WriteMode, Matcher, ProgressReporter)} - Copies the matching files in this folder to the given folder</li>
  *     <li>{@link #delete()} - Deletes this folder if it is empty</li>
  *     <li>{@link #mkdirs()} - Creates this folder and any required parent folders</li>
  *     <li>{@link #renameTo(ResourceFolder)} - Renames this folder to the given folder</li>
@@ -228,6 +229,7 @@ public class Folder extends BaseRepeater implements
     /** Monitor for serializing the creation of temporary files */
     private static final Monitor temporaryLock = new Monitor();
 
+    /** Lock for atomic access to folders */
     private static final Monitor lock = new Monitor();
 
     /**
@@ -739,7 +741,7 @@ public class Folder extends BaseRepeater implements
      */
     public FileList files(@NotNull String globPattern)
     {
-        return files(file -> ResourceGlob.glob(globPattern).matches(file));
+        return files(file -> glob(globPattern).matches(file));
     }
 
     /**
@@ -798,8 +800,7 @@ public class Folder extends BaseRepeater implements
         {
             return this;
         }
-        var childFolder = parseFolder(this, child);
-        return childFolder == null ? null : folder(childFolder);
+        return folder(ensureNotNull(parseFolder(this, child)));
     }
 
     /**
@@ -814,7 +815,7 @@ public class Folder extends BaseRepeater implements
         {
             return this;
         }
-        return new Folder(folderService().folder(child));
+        return new Folder(ensureNotNull(folderService().folder(child)));
     }
 
     /**
@@ -1157,11 +1158,11 @@ public class Folder extends BaseRepeater implements
      */
     @Override
     public void safeCopyTo(@NotNull ResourceFolder<?> destination,
-                           @NotNull CopyMode mode,
+                           @NotNull WriteMode mode,
                            @NotNull Matcher<ResourcePathed> matcher,
                            @NotNull ProgressReporter reporter)
     {
-        if (mode == CopyMode.DO_NOT_OVERWRITE && destination.exists() && !destination.isEmpty())
+        if (mode == WriteMode.DO_NOT_OVERWRITE && destination.exists() && !destination.isEmpty())
         {
             fail("Can't overwrite non-empty destination folder: $ ", destination);
         }
@@ -1188,7 +1189,7 @@ public class Folder extends BaseRepeater implements
      */
     @Override
     public void safeCopyTo(@NotNull ResourceFolder<?> destination,
-                           @NotNull CopyMode mode,
+                           @NotNull WriteMode mode,
                            @NotNull ProgressReporter reporter)
     {
         safeCopyTo(destination, mode, acceptAll(), reporter);

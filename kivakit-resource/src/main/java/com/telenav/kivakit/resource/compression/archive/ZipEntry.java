@@ -26,6 +26,8 @@ import com.telenav.kivakit.core.time.Time;
 import com.telenav.kivakit.core.value.count.Bytes;
 import com.telenav.kivakit.filesystem.FilePath;
 import com.telenav.kivakit.interfaces.io.Closeable;
+import com.telenav.kivakit.resource.FileName;
+import com.telenav.kivakit.resource.WriteMode;
 import com.telenav.kivakit.resource.internal.lexakai.DiagramResourceArchive;
 import com.telenav.kivakit.resource.writing.BaseWritableResource;
 import com.telenav.kivakit.resource.writing.WritableResource;
@@ -43,10 +45,12 @@ import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMEN
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.code.UncheckedCode.unchecked;
+import static com.telenav.kivakit.core.ensure.Ensure.ensure;
 import static com.telenav.kivakit.core.io.IO.buffer;
 import static com.telenav.kivakit.core.time.Time.epochMilliseconds;
 import static com.telenav.kivakit.core.value.count.Bytes.bytes;
 import static com.telenav.kivakit.filesystem.FilePath.filePath;
+import static com.telenav.kivakit.resource.WriteMode.OVERWRITE;
 import static java.nio.file.Files.createDirectories;
 import static java.nio.file.Files.getLastModifiedTime;
 import static java.nio.file.Files.newInputStream;
@@ -112,7 +116,14 @@ public class ZipEntry extends BaseWritableResource implements Closeable
     public Time createdAt()
     {
         return unchecked(() -> epochMilliseconds(readAttributes(path, BasicFileAttributes.class)
-                .creationTime().toMillis())).orNull();
+            .creationTime().toMillis())).orNull();
+    }
+
+    @Override
+    @FormatProperty
+    public FileName fileName()
+    {
+        return super.fileName();
     }
 
     /**
@@ -159,8 +170,9 @@ public class ZipEntry extends BaseWritableResource implements Closeable
      * {@inheritDoc}
      */
     @Override
-    public OutputStream onOpenForWriting()
+    public OutputStream onOpenForWriting(WriteMode mode)
     {
+        ensure(mode == OVERWRITE);
         if (out == null)
         {
             OutputStream out;

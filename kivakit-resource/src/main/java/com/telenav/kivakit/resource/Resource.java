@@ -49,9 +49,9 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.ServiceLoader;
 
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
 import static com.telenav.kivakit.commandline.ArgumentParser.argumentParser;
 import static com.telenav.kivakit.commandline.SwitchParser.switchParser;
@@ -119,10 +119,10 @@ import static com.telenav.kivakit.resource.spi.ResourceResolverService.resourceR
  *     <li>{@link #can(Action)}</li>
  *     <li>{@link #delete()}</li>
  *     <li>{@link #renameTo(Resource)}</li>
- *     <li>{@link #safeCopyTo(WritableResource, CopyMode, ProgressReporter)}</li>
- *     <li>{@link #safeCopyTo(WritableResource, CopyMode)}</li>
- *     <li>{@link #safeCopyTo(ResourceFolder, CopyMode, ProgressReporter)}</li>
- *     <li>{@link #safeCopyTo(ResourceFolder, CopyMode)}</li>
+ *     <li>{@link #safeCopyTo(WritableResource, WriteMode, ProgressReporter)}</li>
+ *     <li>{@link #safeCopyTo(WritableResource, WriteMode)}</li>
+ *     <li>{@link #safeCopyTo(ResourceFolder, WriteMode, ProgressReporter)}</li>
+ *     <li>{@link #safeCopyTo(ResourceFolder, WriteMode)}</li>
  * </ul>
  *
  * <p><b>Tests</b></p>
@@ -474,9 +474,10 @@ public interface Resource extends
      *
      * @param destination The file to copy to
      * @param mode Copying semantics
+     * @throws IllegalStateException Thrown if the copy operation fails
      */
     default void safeCopyTo(@NotNull ResourceFolder<?> destination,
-                            @NotNull CopyMode mode)
+                            @NotNull WriteMode mode)
     {
         safeCopyTo(destination.resource(fileName()).asWritable(), mode, nullProgressReporter());
     }
@@ -486,9 +487,10 @@ public interface Resource extends
      *
      * @param destination The file to copy to
      * @param mode Copying semantics
+     * @throws IllegalStateException Thrown if the copy operation fails
      */
     default void safeCopyTo(@NotNull ResourceFolder<?> destination,
-                            @NotNull CopyMode mode,
+                            @NotNull WriteMode mode,
                             @NotNull ProgressReporter reporter)
     {
         safeCopyTo(destination.resource(fileName()).asWritable(), mode, reporter);
@@ -501,9 +503,10 @@ public interface Resource extends
      *
      * @param destination The file to copy to
      * @param mode Copying semantics
+     * @throws IllegalStateException Thrown if the copy operation fails
      */
     default void safeCopyTo(@NotNull WritableResource destination,
-                            @NotNull CopyMode mode)
+                            @NotNull WriteMode mode)
     {
         safeCopyTo(destination, mode, nullProgressReporter());
     }
@@ -513,31 +516,31 @@ public interface Resource extends
      * done by first copying to a temporary file in the same folder. If the copy operation is successful, the
      * destination file is then removed and the temporary file is renamed to the destination file's name.
      *
-     * @param destination The file to copy to
+     * @param target The file to copy to
      * @param mode Copying semantics
      * @param reporter Progress reporter to call as copy proceeds
+     * @throws IllegalStateException Thrown if the copy operation fails
      */
-    default void safeCopyTo(@NotNull WritableResource destination,
-                            @NotNull CopyMode mode,
+    default void safeCopyTo(@NotNull WritableResource target,
+                            @NotNull WriteMode mode,
                             @NotNull ProgressReporter reporter)
     {
-        // If there is no destination file or we can overwrite,
-        if (mode.canCopy(this, destination))
+        // If that we can do the copy operation,
+        mode.ensureAllowed(this, target);
+
+        // copy this resource to a temporary file,
+        var temporary = listenTo(target.parent().temporaryFile(target.fileName()));
+        ensure(target.can(DELETE));
+        ensure(temporary.can(RENAME));
+        copyTo(temporary, mode, reporter);
+
+        // remove the destination file if it exists,
+        if (target.exists())
         {
-            // then copy to a temporary file
-            var temporary = listenTo(destination.parent().temporaryFile(destination.fileName()));
-            ensure(destination.can(DELETE));
-            ensure(temporary.can(RENAME));
-            copyTo(temporary, mode, reporter);
-
-            // remove the destination file
-            if (destination.exists())
-            {
-                destination.delete();
-            }
-
-            // and rename the temporary file to the destination file.
-            temporary.renameTo(destination);
+            ensure(target.delete(), "Could not delete $", target);
         }
+
+        // and rename the temporary file to the destination file.
+        ensure(temporary.renameTo(target), "Could not rename $ => $", temporary, target);
     }
 }

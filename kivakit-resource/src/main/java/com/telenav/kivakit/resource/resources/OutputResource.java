@@ -20,6 +20,7 @@ package com.telenav.kivakit.resource.resources;
 
 import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.value.count.Bytes;
+import com.telenav.kivakit.resource.WriteMode;
 import com.telenav.kivakit.resource.internal.lexakai.DiagramResourceType;
 import com.telenav.kivakit.resource.writing.BaseWritableResource;
 import com.telenav.kivakit.resource.writing.WritableResource;
@@ -29,9 +30,10 @@ import org.jetbrains.annotations.NotNull;
 import java.io.InputStream;
 import java.io.OutputStream;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static com.telenav.kivakit.core.ensure.Ensure.ensure;
 import static com.telenav.kivakit.core.ensure.Ensure.unsupported;
 
 /**
@@ -43,7 +45,7 @@ import static com.telenav.kivakit.core.ensure.Ensure.unsupported;
 @CodeQuality(stability = STABLE_EXTENSIBLE,
              documentation = DOCUMENTATION_COMPLETE,
              testing = UNTESTED)
-public class OutputResource extends BaseWritableResource
+public class OutputResource extends BaseWritableResource implements AutoCloseable
 {
     /** The output stream to write to */
     private final OutputStream out;
@@ -57,6 +59,12 @@ public class OutputResource extends BaseWritableResource
     public OutputResource(@NotNull OutputStream out)
     {
         this.out = out;
+    }
+
+    @Override
+    public void close() throws Exception
+    {
+        out.close();
     }
 
     /**
@@ -81,8 +89,9 @@ public class OutputResource extends BaseWritableResource
      * {@inheritDoc}
      */
     @Override
-    public OutputStream onOpenForWriting()
+    public OutputStream onOpenForWriting(WriteMode mode)
     {
+        mode.ensureAllowed(out);
         if (opened)
         {
             return fatal("OutputResource can only be written to once.");

@@ -25,14 +25,14 @@ and for determining their status.
 
 ### Threads <a name="threads"></a>
 
-The *KivaThread* class integrates threads with the [*messaging*](messaging.md) mini-framework, allowing them  
+The *KivaKitThread* class integrates threads with the [*messaging*](messaging.md) mini-framework, allowing them  
 to broadcast information about their status to interested listeners. It also provides useful methods to:
 
 * Execute an operation repeatedly
 * Start threads synchronously
 * Query the time that the thread started, and get the elapsed time
 
-In addition, all *KivaThread*s are *Named*, and the constructor prefixes the name with "KivaKit-", to ensure  
+In addition, all *KivaKitThread*s are *Named*, and the constructor prefixes the name with "KivaKit-", to ensure  
 that its clear which threads were created by the framework.
 
 The *RepeatingThread* class repeats an operation, but adds the ability to *pause()* and *resume()* it.
@@ -96,7 +96,7 @@ For example:
     
          [...]
     
-     KivaThread.run("Life", () ->
+     KivaKitThread.run("Life", () ->
      {
          // Get born
          person.transitionTo(LIVING);
@@ -110,7 +110,7 @@ For example:
          // then exit.
      });
     
-     KivaThread.run("GrimReaper", () ->
+     KivaKitThread.run("GrimReaper", () ->
      {
          // Wait a while
          Duration.years(random(101)).sleep();
@@ -119,7 +119,7 @@ For example:
          person.transitionTo(DEAD);
      });
     
-     KivaThread.run("FuneralHome", () ->
+     KivaKitThread.run("FuneralHome", () ->
      {
          // Wait for some business
          person.waitFor(DEAD);

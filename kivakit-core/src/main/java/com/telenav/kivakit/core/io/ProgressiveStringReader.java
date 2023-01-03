@@ -31,9 +31,10 @@ import java.io.Reader;
 import java.io.UnsupportedEncodingException;
 import java.nio.charset.Charset;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static com.telenav.kivakit.core.ensure.Ensure.fail;
 
 /**
  * Reads string values from an {@link InputStream} (in a given encoding, if desired) or from a {@link Reader}. Since
@@ -95,6 +96,7 @@ public class ProgressiveStringReader
      *
      * @param reporter The reporter to call for each byte read
      * @return The string read from input
+     * @throws IllegalStateException Thrown if operation fails
      */
     public String readString(ProgressReporter reporter)
     {
@@ -113,7 +115,7 @@ public class ProgressiveStringReader
         }
         catch (IOException e)
         {
-            throw new IllegalStateException("Couldn't read string", e);
+            return fail("Couldn't read string", e);
         }
     }
 }

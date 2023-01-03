@@ -4,6 +4,8 @@ import com.telenav.kivakit.core.messaging.Listener;
 
 import java.net.URI;
 
+import static com.telenav.kivakit.core.messaging.Listener.throwingListener;
+
 /**
  * Utility methods for working with {@link URI}s
  *
@@ -13,13 +15,25 @@ import java.net.URI;
 public class Uris
 {
     /**
-     * Returns a {@link URI} for the given path
+     * Returns a URI for the given text
+     * @param text The text
+     * @return The URI
+     * @throws RuntimeException Thrown if the URI is invalid
+     */
+    public static URI uri(String text)
+    {
+        return parseUri(throwingListener(), text);
+    }
+
+    /**
+     * Returns a {@link URI} for the given text
      *
-     * @param path The path
+     * @param listener The listener to call with any problems
+     * @param text The path
      * @return The {@link URI}
      */
-    public static URI parseUri(Listener listener, String path)
+    public static URI parseUri(Listener listener, String text)
     {
-        return new java.io.File(path).toURI();
+        return new java.io.File(text).toURI();
     }
 }

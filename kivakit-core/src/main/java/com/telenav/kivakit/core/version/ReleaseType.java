@@ -21,8 +21,8 @@ package com.telenav.kivakit.core.version;
 import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.messaging.Listener;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 
 /**
@@ -48,6 +48,7 @@ public enum ReleaseType
     M8,
     M9,
     RC,
+    JRE,
     FINAL,
     RELEASE;
 
@@ -72,37 +73,23 @@ public enum ReleaseType
 
     public static ReleaseType releaseForIdentifier(int identifier)
     {
-        switch (identifier)
-        {
-            case 1:
-                return ALPHA;
-            case 2:
-                return BETA;
-            case 3:
-                return RC;
-            case 4:
-                return FINAL;
-            case 5:
-                return M1;
-            case 6:
-                return M2;
-            case 7:
-                return M3;
-            case 8:
-                return M4;
-            case 9:
-                return M5;
-            case 10:
-                return M6;
-            case 11:
-                return M7;
-            case 12:
-                return M8;
-            case 13:
-                return M9;
-            default:
-                throw new IllegalArgumentException();
-        }
+        return switch (identifier)
+                {
+                    case 1 -> ALPHA;
+                    case 2 -> BETA;
+                    case 3 -> RC;
+                    case 4 -> FINAL;
+                    case 5 -> M1;
+                    case 6 -> M2;
+                    case 7 -> M3;
+                    case 8 -> M4;
+                    case 9 -> M5;
+                    case 10 -> M6;
+                    case 11 -> M7;
+                    case 12 -> M8;
+                    case 13 -> M9;
+                    default -> throw new IllegalArgumentException();
+                };
     }
 
     /**

@@ -20,16 +20,24 @@ package com.telenav.kivakit.core.time;
 
 import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramTime;
+import com.telenav.kivakit.core.string.AsString;
 import com.telenav.kivakit.interfaces.numeric.Maximizable;
 import com.telenav.kivakit.interfaces.numeric.Minimizable;
 import com.telenav.kivakit.interfaces.value.DoubleValued;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.language.Hash.hash;
-import static com.telenav.kivakit.core.time.Duration.*;
+import static com.telenav.kivakit.core.time.Duration.ONE_DAY;
+import static com.telenav.kivakit.core.time.Duration.ONE_HOUR;
+import static com.telenav.kivakit.core.time.Duration.ONE_MINUTE;
+import static com.telenav.kivakit.core.time.Duration.ONE_SECOND;
+import static com.telenav.kivakit.core.time.Duration.ONE_YEAR;
+import static com.telenav.kivakit.core.time.Duration.milliseconds;
+import static com.telenav.kivakit.core.time.Duration.seconds;
+import static com.telenav.kivakit.core.value.count.Bytes.bytes;
 import static java.lang.String.format;
 
 /**
@@ -63,7 +71,8 @@ public class Rate implements
         Comparable<Rate>,
         Maximizable<Rate>,
         Minimizable<Rate>,
-        DoubleValued
+        DoubleValued,
+        AsString
 {
     public static final Rate MAXIMUM_RATE = new Rate(Integer.MAX_VALUE, milliseconds(1));
 
@@ -115,6 +124,11 @@ public class Rate implements
     {
         this.count = count;
         this.duration = duration;
+    }
+
+    public String asBytesPerSecond()
+    {
+        return bytes(perSecond().count) + " / sec";
     }
 
     @SuppressWarnings("NullableProblems")
@@ -182,6 +196,12 @@ public class Rate implements
     }
 
     @Override
+    public Rate map(Long value)
+    {
+        return perDay(value);
+    }
+
+    @Override
     public Rate maximum()
     {
         return MAXIMUM_RATE;
@@ -191,12 +211,6 @@ public class Rate implements
     public Rate minimum()
     {
         return perYear(0);
-    }
-
-    @Override
-    public Rate map(Long value)
-    {
-        return perDay(value);
     }
 
     /**
@@ -265,15 +279,15 @@ public class Rate implements
         var formatted = format(count < 100 ? "%,.1f" : "%,.0f", count);
         if (duration.equals(ONE_SECOND))
         {
-            return formatted + " per second";
+            return formatted + " / sec";
         }
         if (duration.equals(ONE_MINUTE))
         {
-            return formatted + " per minute";
+            return formatted + " / min";
         }
         if (duration.equals(ONE_HOUR))
         {
-            return formatted + " per hour";
+            return formatted + " / hour";
         }
         return formatted + " per " + duration;
     }

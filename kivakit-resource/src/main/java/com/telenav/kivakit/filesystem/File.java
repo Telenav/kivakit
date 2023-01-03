@@ -24,8 +24,8 @@ import com.telenav.kivakit.core.collections.map.VariableMap;
 import com.telenav.kivakit.core.collections.set.ObjectSet;
 import com.telenav.kivakit.core.ensure.Ensure;
 import com.telenav.kivakit.core.messaging.Listener;
+import com.telenav.kivakit.core.messaging.messages.MessageException;
 import com.telenav.kivakit.core.progress.ProgressReporter;
-import com.telenav.kivakit.core.string.Escape;
 import com.telenav.kivakit.core.string.Paths;
 import com.telenav.kivakit.core.string.Strip;
 import com.telenav.kivakit.core.time.Duration;
@@ -33,16 +33,13 @@ import com.telenav.kivakit.core.time.Time;
 import com.telenav.kivakit.core.value.count.Bytes;
 import com.telenav.kivakit.filesystem.local.LocalFile;
 import com.telenav.kivakit.filesystem.spi.FileService;
-import com.telenav.kivakit.resource.CopyMode;
 import com.telenav.kivakit.resource.Extension;
 import com.telenav.kivakit.resource.Resource;
 import com.telenav.kivakit.resource.ResourceFolder;
-import com.telenav.kivakit.resource.ResourceIdentifier;
 import com.telenav.kivakit.resource.ResourcePath;
+import com.telenav.kivakit.resource.WriteMode;
 import com.telenav.kivakit.resource.compression.Codec;
 import com.telenav.kivakit.resource.internal.lexakai.DiagramFileSystemFile;
-import com.telenav.kivakit.resource.internal.lexakai.DiagramResourceService;
-import com.telenav.kivakit.resource.spi.ResourceResolver;
 import com.telenav.kivakit.resource.writing.BaseWritableResource;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlAggregation;
@@ -63,7 +60,7 @@ import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_N
 import static com.telenav.kivakit.core.collections.set.ObjectSet.set;
 import static com.telenav.kivakit.core.ensure.Ensure.ensure;
 import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
-import static com.telenav.kivakit.core.string.Escape.escapeUri;
+import static com.telenav.kivakit.core.messaging.Listener.throwingListener;
 import static com.telenav.kivakit.core.string.Paths.pathHead;
 import static com.telenav.kivakit.filesystem.FilePath.parseFilePath;
 import static com.telenav.kivakit.filesystem.Folders.kivakitTemporaryFolder;
@@ -136,7 +133,7 @@ import static java.nio.file.attribute.PosixFilePermission.OWNER_WRITE;
  *     <li>{@link #delete()}</li>
  *     <li>{@link #saveText(String)}</li>
  *     <li>{@link #renameTo(Resource)}</li>
- *     <li>{@link #safeCopyFrom(Resource, CopyMode, ProgressReporter)}</li>
+ *     <li>{@link #safeCopyFrom(Resource, WriteMode, ProgressReporter)}</li>
  * </ul>
  *
  * <p><b>Checks</b></p>
@@ -192,14 +189,14 @@ import static java.nio.file.attribute.PosixFilePermission.OWNER_WRITE;
 public class File extends BaseWritableResource implements FileSystemObject
 {
     public static PosixFilePermission[] ACCESS_ALL = { OWNER_READ,
-            OWNER_WRITE, OWNER_EXECUTE, GROUP_READ,
-            GROUP_WRITE, GROUP_EXECUTE, OTHERS_READ,
-            OTHERS_WRITE, OTHERS_EXECUTE };
+        OWNER_WRITE, OWNER_EXECUTE, GROUP_READ,
+        GROUP_WRITE, GROUP_EXECUTE, OTHERS_READ,
+        OTHERS_WRITE, OTHERS_EXECUTE };
 
     public static final PosixFilePermission[] ACCESS_775 = { OWNER_READ,
-            OWNER_WRITE, OWNER_EXECUTE, GROUP_READ,
-            GROUP_WRITE, GROUP_EXECUTE, OTHERS_READ,
-            OTHERS_EXECUTE };
+        OWNER_WRITE, OWNER_EXECUTE, GROUP_READ,
+        GROUP_WRITE, GROUP_EXECUTE, OTHERS_READ,
+        OTHERS_EXECUTE };
 
     private static long temporaryFileNumber = currentTimeMillis();
 
@@ -276,6 +273,18 @@ public class File extends BaseWritableResource implements FileSystemObject
     {
         var filesystem = fileSystem(listener, path);
         return new File(ensureNotNull(filesystem).fileService(path));
+    }
+
+    /**
+     * Returns a file for the given path
+     *
+     * @param path The path
+     * @return The file
+     * @throws MessageException Thrown if the given path cannot be parsed
+     */
+    public static File file(String path)
+    {
+        return parseFile(throwingListener(), path);
     }
 
     /**
@@ -654,9 +663,9 @@ public class File extends BaseWritableResource implements FileSystemObject
     }
 
     @Override
-    public OutputStream onOpenForWriting()
+    public OutputStream onOpenForWriting(WriteMode mode)
     {
-        return service.onOpenForWriting();
+        return service.onOpenForWriting(mode);
     }
 
     /**
@@ -713,21 +722,14 @@ public class File extends BaseWritableResource implements FileSystemObject
      * safely (ensuring that a corrupted copy of the file never exists). This is done by first copying to a temporary
      * file in the same folder. If the copy operation is successful, the destination file is then removed and the
      * temporary file is renamed to the destination file's name.
+     *
+     * @throws IllegalStateException Thrown if the copy operation fails
      */
     public void safeCopyFrom(@NotNull Resource resource,
-                             @NotNull CopyMode mode,
+                             @NotNull WriteMode mode,
                              @NotNull ProgressReporter reporter)
     {
         resource.safeCopyTo(this, mode, reporter);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public File saveText(@NotNull String text)
-    {
-        return (File) super.saveText(text);
     }
 
     /**

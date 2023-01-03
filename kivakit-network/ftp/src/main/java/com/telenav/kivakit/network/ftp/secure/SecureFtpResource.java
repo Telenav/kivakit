@@ -27,7 +27,7 @@ import com.telenav.kivakit.network.core.BaseNetworkResource;
 import com.telenav.kivakit.network.core.NetworkAccessConstraints;
 import com.telenav.kivakit.network.core.NetworkLocation;
 import com.telenav.kivakit.network.ftp.internal.lexakai.DiagramSecureFtp;
-import com.telenav.kivakit.resource.CopyMode;
+import com.telenav.kivakit.resource.WriteMode;
 import com.telenav.kivakit.resource.compression.codecs.GzipCodec;
 import com.telenav.kivakit.resource.writing.WritableResource;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
@@ -37,9 +37,10 @@ import org.jetbrains.annotations.NotNull;
 
 import java.io.InputStream;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static com.telenav.kivakit.core.ensure.Ensure.fail;
 
 /**
  * A resource accessed by SFTP. A list of files can be retrieved with {@link #listFiles()}.
@@ -78,14 +79,20 @@ public class SecureFtpResource extends BaseNetworkResource
      * Copy this resource to the disk
      */
     @Override
-    public void copyTo(@NotNull WritableResource destination, @NotNull CopyMode mode, @NotNull ProgressReporter reporter)
+    public void copyTo(@NotNull WritableResource target,
+                       @NotNull WriteMode writeMode,
+                       @NotNull ProgressReporter reporter)
     {
         try
         {
             connector.connect(location);
             reporter.start();
-            connector.get(location, destination);
+            connector.get(location, target);
             reporter.end();
+        }
+        catch (Exception e)
+        {
+            fail(e, "Could not copy $ to $", this, target);
         }
         finally
         {
@@ -95,7 +102,7 @@ public class SecureFtpResource extends BaseNetworkResource
 
     public void disconnect()
     {
-        connector.safeDisconnect();
+        connector.disconnect();
     }
 
     /**

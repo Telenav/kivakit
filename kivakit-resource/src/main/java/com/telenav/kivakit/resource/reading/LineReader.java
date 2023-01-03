@@ -32,6 +32,7 @@ import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMEN
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.collections.list.StringList.stringList;
+import static com.telenav.kivakit.core.ensure.Ensure.fail;
 import static com.telenav.kivakit.core.io.IO.close;
 import static com.telenav.kivakit.core.progress.ProgressReporter.nullProgressReporter;
 
@@ -92,6 +93,8 @@ public class LineReader extends BaseRepeater
 
     /**
      * Returns the lines in this resource as a list of strings. If a failure occurs, throws an exception.
+     *
+     * @throws IllegalStateException Thrown if operation fails
      */
     public StringList lines()
     {
@@ -102,16 +105,17 @@ public class LineReader extends BaseRepeater
         }
         catch (Exception e)
         {
-            problem(e, "Unable to read lines").throwMessage();
+            fail(e, "Unable to read lines");
         }
         return lines;
     }
 
     /**
      * Calls the given consumer with each line. This method ensures that the resource stream is closed.
-     * @return True if all lines were read successfully
+     *
+     * @throws IllegalStateException Thrown if operation fails
      */
-    public boolean lines(@NotNull Consumer<String> consumer)
+    public void lines(@NotNull Consumer<String> consumer)
     {
         try (var reader = new LineNumberReader(listenTo(resource.reader(reporter)).textReader()))
         {
@@ -122,7 +126,7 @@ public class LineReader extends BaseRepeater
                 if (next == null)
                 {
                     reporter.end();
-                    return true;
+                    return;
                 }
                 reporter.next();
                 consumer.accept(next);
@@ -130,10 +134,8 @@ public class LineReader extends BaseRepeater
         }
         catch (Exception e)
         {
-            problem(e, "Error reading lines from: $", resource);
+            fail(e, "Error reading lines from: $", resource);
         }
-
-        return false;
     }
 
     /**

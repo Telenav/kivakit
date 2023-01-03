@@ -16,7 +16,7 @@
 
     <groupId>com.telenav.kivakit</groupId>
     <artifactId>kivakit-parent</artifactId>
-    <version>1.9.0</version>
+    <version>1.10.0</version>
 
     <packaging>pom</packaging>
 
@@ -515,7 +515,7 @@
                         <inherited>false</inherited>
                         <executions>
                             <execution>
-                                <id>install-jbpm</id>
+                                <id>install-lexakai</id>
                                 <phase>prepare-package</phase>
                                 <goals>
                                     <goal>wget</goal>

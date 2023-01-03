@@ -29,9 +29,11 @@ import java.io.PrintWriter;
 import java.io.Writer;
 import java.nio.charset.Charset;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static com.telenav.kivakit.core.ensure.Ensure.fail;
+import static com.telenav.kivakit.core.ensure.Ensure.illegalState;
 import static java.nio.charset.StandardCharsets.UTF_8;
 
 /**
@@ -96,15 +98,20 @@ public class ResourceWriter
     }
 
     /**
-     * Saves the given text to this resource
+     * Prints the given text to this resource
      *
-     * @param text The text
+     * @param text The text to print
+     * @throws IllegalStateException Thrown if the text cannot be saved
      */
     public void saveText(@NotNull String text)
     {
         try (var out = printWriter())
         {
             out.print(text);
+            if (out.checkError())
+            {
+                fail("Unable to write text to: $", this);
+            }
         }
     }
 

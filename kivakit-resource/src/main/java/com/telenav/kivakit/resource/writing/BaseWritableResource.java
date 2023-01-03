@@ -21,7 +21,7 @@ package com.telenav.kivakit.resource.writing;
 import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.progress.ProgressReporter;
-import com.telenav.kivakit.resource.CopyMode;
+import com.telenav.kivakit.resource.WriteMode;
 import com.telenav.kivakit.resource.Resource;
 import com.telenav.kivakit.resource.ResourcePath;
 import com.telenav.kivakit.resource.internal.lexakai.DiagramFileSystemFile;
@@ -47,7 +47,7 @@ import static com.telenav.kivakit.core.io.IO.copyAndClose;
  * <p><b>Writing</b></p>
  *
  * <ul>
- *     <li>{@link #copyFrom(Resource, CopyMode, ProgressReporter)} - Copies to this resource from the given resource</li>
+ *     <li>{@link #copyFrom(Resource, WriteMode, ProgressReporter)} - Copies to this resource from the given resource</li>
  *     <li>{@link #save(Listener, InputStream, ProgressReporter)} - Copies the given input to this resource</li>
  *     <li>{@link #saveText(String)}</li>
  * </ul>
@@ -86,7 +86,7 @@ public abstract class BaseWritableResource extends BaseReadableResource implemen
      * @param source The resource to copy from
      */
     public void copyFrom(@NotNull Resource source,
-                         @NotNull CopyMode mode,
+                         @NotNull WriteMode mode,
                          @NotNull ProgressReporter reporter)
     {
         source.copyTo(this, mode, reporter);
@@ -96,9 +96,9 @@ public abstract class BaseWritableResource extends BaseReadableResource implemen
      * Returns an {@link OutputStream} for this resource, or an exception is thrown
      */
     @Override
-    public OutputStream openForWriting()
+    public OutputStream openForWriting(WriteMode mode)
     {
-        return codec().compressed(new BufferedOutputStream(onOpenForWriting()));
+        return codec().compressed(new BufferedOutputStream(onOpenForWriting(mode)));
     }
 
     /**
@@ -117,13 +117,10 @@ public abstract class BaseWritableResource extends BaseReadableResource implemen
      * Prints the given text to this resource
      *
      * @param text The text to print
+     * @throws IllegalStateException Thrown if the text cannot be saved
      */
-    public Resource saveText(@NotNull String text)
+    public void saveText(@NotNull String text)
     {
-        try (var out = printWriter())
-        {
-            out.print(text);
-        }
-        return this;
+        writer().saveText(text);
     }
 }

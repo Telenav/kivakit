@@ -82,10 +82,9 @@ public class KivaKit extends BaseKivaKitProject
      *
      * @param listener The new global listener
      */
-    public static synchronized Listener globalListener(Listener listener)
+    public static synchronized void globalListener(Listener listener)
     {
         KivaKit.globalListener = listener;
-        return listener;
     }
 
     /**
