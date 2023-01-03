@@ -80,15 +80,15 @@ The *SecureHttpNetworkLocation*, *SecureHttpGetResource* and *SecureHttpPostReso
 
 ### Code Quality <a name="code-quality"></a> &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/ruler-32.png" srcset="https://telenav.github.io/telenav-assets/images/icons/ruler-32-2x.png 2x"/>
 
-Code quality for this project is 62.7%.  
+Code quality for this project is 63.0%.  
   
 &nbsp; &nbsp; <img src="https://telenav.github.io/telenav-assets/images/meters/meter-60-96.png" srcset="https://telenav.github.io/telenav-assets/images/meters/meter-60-96-2x.png 2x"/>
 
 | Measurement   | Value                    |
 |---------------|--------------------------|
-| Stability     | 94.1%&nbsp; &nbsp; <img src="https://telenav.github.io/telenav-assets/images/meters/meter-90-96.png" srcset="https://telenav.github.io/telenav-assets/images/meters/meter-90-96-2x.png 2x"/>     |
+| Stability     | 94.4%&nbsp; &nbsp; <img src="https://telenav.github.io/telenav-assets/images/meters/meter-90-96.png" srcset="https://telenav.github.io/telenav-assets/images/meters/meter-90-96-2x.png 2x"/>     |
 | Testing       | 0.0%&nbsp; &nbsp; <img src="https://telenav.github.io/telenav-assets/images/meters/meter-0-96.png" srcset="https://telenav.github.io/telenav-assets/images/meters/meter-0-96-2x.png 2x"/>       |
-| Documentation | 94.1%&nbsp; &nbsp; <img src="https://telenav.github.io/telenav-assets/images/meters/meter-90-96.png" srcset="https://telenav.github.io/telenav-assets/images/meters/meter-90-96-2x.png 2x"/> |
+| Documentation | 94.4%&nbsp; &nbsp; <img src="https://telenav.github.io/telenav-assets/images/meters/meter-90-96.png" srcset="https://telenav.github.io/telenav-assets/images/meters/meter-90-96-2x.png 2x"/> |
 
 <img src="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128.png" srcset="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128-2x.png 2x"/>
 
@@ -132,6 +132,7 @@ Code quality for this project is 62.7%.
 | [*HttpStatus*](https://www.kivakit.org/1.10.0/javadoc/kivakit/kivakit-network-http/com/telenav/kivakit/network/http/HttpStatus.html) | Tests |  
 | [*SecureHttpGetResource*](https://www.kivakit.org/1.10.0/javadoc/kivakit/kivakit-network-http/com/telenav/kivakit/network/http/secure/SecureHttpGetResource.html) |  |  
 | [*SecureHttpNetworkLocation*](https://www.kivakit.org/1.10.0/javadoc/kivakit/kivakit-network-http/com/telenav/kivakit/network/http/secure/SecureHttpNetworkLocation.html) |  |  
+| [*SecureHttpNetworkLocation.Converter*](https://www.kivakit.org/1.10.0/javadoc/kivakit/kivakit-network-http/com/telenav/kivakit/network/http/secure/SecureHttpNetworkLocation.Converter.html) |  |  
 | [*SecureHttpPostResource*](https://www.kivakit.org/1.10.0/javadoc/kivakit/kivakit-network-http/com/telenav/kivakit/network/http/secure/SecureHttpPostResource.html) |  |  
 
 [//]: # (start-user-text)
