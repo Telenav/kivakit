@@ -29,8 +29,11 @@ import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMEN
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
 import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
+import static com.telenav.kivakit.core.language.Classes.classForName;
 import static com.telenav.kivakit.core.language.Hash.hashMany;
 import static com.telenav.kivakit.core.language.Objects.areEqualPairs;
+import static com.telenav.kivakit.core.string.Paths.pathOptionalSuffix;
+import static com.telenav.kivakit.core.string.Paths.pathWithoutSuffix;
 
 /**
  * An identifier for a particular instance of a class. Used by {@link Registry} when locating an object by class which
@@ -85,7 +88,8 @@ public class InstanceIdentifier
     /**
      * Returns the {@link InstanceIdentifier} for the given enum value name
      */
-    public static InstanceIdentifier instanceIdentifierForEnumName(Listener listener, String enumValueName)
+    public static <T extends Enum<T>> InstanceIdentifier instanceIdentifierForEnumName(Listener listener,
+                                                                                       String enumValueName)
     {
         if (enumValueName.equals(singletonInstanceIdentifier().name()))
         {
@@ -94,6 +98,13 @@ public class InstanceIdentifier
         var identifier = instanceIdentifierForEnumName.get(enumValueName);
         if (identifier == null)
         {
+            Class<T> enumClass = classForName(pathWithoutSuffix(enumValueName, '.'));
+            var enumValue = pathOptionalSuffix(enumValueName, '.');
+            Enum<T> enumInstance = Enum.valueOf(enumClass, enumValue);
+            if (enumInstance != null)
+            {
+                return instanceIdentifier(enumInstance);
+            }
             listener.problem("Invalid instance identifier: $", enumValueName);
         }
         return identifier;
@@ -158,8 +169,8 @@ public class InstanceIdentifier
         if (object instanceof InstanceIdentifier that)
         {
             return areEqualPairs(
-                    this.enumIdentifier, that.enumIdentifier,
-                    this.stringIdentifier, that.stringIdentifier);
+                this.enumIdentifier, that.enumIdentifier,
+                this.stringIdentifier, that.stringIdentifier);
         }
         return false;
     }

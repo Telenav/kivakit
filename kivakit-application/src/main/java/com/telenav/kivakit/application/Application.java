@@ -28,13 +28,13 @@ import com.telenav.kivakit.commandline.CommandLineParser;
 import com.telenav.kivakit.commandline.SwitchParser;
 import com.telenav.kivakit.component.BaseComponent;
 import com.telenav.kivakit.component.Component;
-import com.telenav.kivakit.core.code.UncheckedVoidCode;
 import com.telenav.kivakit.core.collections.list.ObjectList;
 import com.telenav.kivakit.core.collections.list.StringList;
 import com.telenav.kivakit.core.collections.set.IdentitySet;
 import com.telenav.kivakit.core.collections.set.ObjectSet;
 import com.telenav.kivakit.core.function.Result;
 import com.telenav.kivakit.core.language.trait.LanguageTrait;
+import com.telenav.kivakit.core.language.trait.TryTrait;
 import com.telenav.kivakit.core.locale.Locale;
 import com.telenav.kivakit.core.locale.LocaleLanguage;
 import com.telenav.kivakit.core.logging.Logger;
@@ -63,7 +63,6 @@ import com.telenav.kivakit.filesystem.Folder;
 import com.telenav.kivakit.interfaces.naming.Named;
 import com.telenav.kivakit.interfaces.naming.NamedObject;
 import com.telenav.kivakit.properties.PropertyMap;
-import com.telenav.kivakit.resource.Extension;
 import com.telenav.kivakit.resource.packages.PackageTrait;
 import com.telenav.kivakit.resource.serialization.ObjectSerializerRegistry;
 import com.telenav.kivakit.serialization.gson.GsonObjectSerializer;
@@ -117,6 +116,8 @@ import static com.telenav.kivakit.core.vm.Properties.allProperties;
 import static com.telenav.kivakit.properties.PropertyMap.loadLocalizedPropertyMap;
 import static com.telenav.kivakit.properties.PropertyMap.loadPropertyMap;
 import static com.telenav.kivakit.properties.PropertyMap.propertyMap;
+import static com.telenav.kivakit.resource.Extension.JSON;
+import static com.telenav.kivakit.resource.Extension.PROPERTIES;
 import static com.telenav.kivakit.resource.Resource.resolveResource;
 import static com.telenav.kivakit.settings.DeploymentSet.loadDeploymentSet;
 import static java.util.Comparator.comparing;
@@ -319,11 +320,12 @@ import static java.util.Comparator.comparing;
              testing = UNTESTED,
              documentation = DOCUMENTATION_COMPLETE)
 public abstract class Application extends BaseComponent implements
-        PackageTrait,
-        ProjectTrait,
-        SettingsTrait,
-        Named,
-        ApplicationMetadata
+    PackageTrait,
+    ProjectTrait,
+    SettingsTrait,
+    Named,
+    ApplicationMetadata,
+    TryTrait
 {
     /** The one and only application running in this process */
     private static Application application;
@@ -434,10 +436,10 @@ public abstract class Application extends BaseComponent implements
 
     @UmlExcludeMember
     protected final SwitchParser<Boolean> QUIET =
-            booleanSwitchParser(this, "quiet", "Minimize output")
-                    .optional()
-                    .defaultValue(false)
-                    .build();
+        booleanSwitchParser(this, "quiet", "Minimize output")
+            .optional()
+            .defaultValue(false)
+            .build();
 
     protected Application()
     {
@@ -684,9 +686,9 @@ public abstract class Application extends BaseComponent implements
 
             // then parse the command line arguments,
             commandLine = new CommandLineParser(this)
-                    .addSwitchParsers(internalSwitchParsers())
-                    .addArgumentParsers(argumentParsers())
-                    .parse(argumentList.asStringArray());
+                .addSwitchParsers(internalSwitchParsers())
+                .addArgumentParsers(argumentParsers())
+                .parse(argumentList.asStringArray());
 
             // INITIALIZING - 7. If a deployment was specified, register its settings
             if (deploymentSpecified())
@@ -771,8 +773,8 @@ public abstract class Application extends BaseComponent implements
 
         // STOPPED - 2. Return the application exit code
         return exitCode == SUCCEEDED
-                ? success(ApplicationExit.SUCCESS)
-                : failure(new ApplicationExit(exitCode, exception), "Application failed");
+            ? success(ApplicationExit.SUCCESS)
+            : failure(new ApplicationExit(exitCode, exception), "Application failed");
     }
 
     @UmlExcludeMember
@@ -825,7 +827,7 @@ public abstract class Application extends BaseComponent implements
                     value = ((Folder) value).path().asContraction(80);
                 }
                 box.add("   $ = $", rightAlign(switchParser.name(), width, ' '),
-                        value == null ? "N/A" : value);
+                    value == null ? "N/A" : value);
             }
         }
         box.add(" ");
@@ -940,8 +942,8 @@ public abstract class Application extends BaseComponent implements
     protected void onRegisterObjectSerializers()
     {
         var serializers = new ObjectSerializerRegistry();
-        tryCatch(() -> serializers.add(Extension.JSON, listenTo(new GsonObjectSerializer())));
-        tryCatch(() -> serializers.add(Extension.PROPERTIES, listenTo(new PropertiesObjectSerializer())));
+        tryCatch(() -> serializers.add(JSON, listenTo(new GsonObjectSerializer())), "Unable to register JSON serializer");
+        tryCatch(() -> serializers.add(PROPERTIES, listenTo(new PropertiesObjectSerializer())), "Unable to register .properties file serializer");
         register(serializers);
     }
 
@@ -991,8 +993,8 @@ public abstract class Application extends BaseComponent implements
     private void configureLogging()
     {
         var filter = get(QUIET)
-                ? new MessagesWithSeverityOf(new Glitch().severity())
-                : new AllMessages();
+            ? new MessagesWithSeverityOf(new Glitch().severity())
+            : new AllMessages();
 
         globalLogger().listenTo(this, filter);
     }
@@ -1052,9 +1054,9 @@ public abstract class Application extends BaseComponent implements
         if (!ignoreDeployments() && DEPLOYMENT == null)
         {
             DEPLOYMENT = deployments
-                    .switchParser("deployment")
-                    .quantifier(deployments.isEmpty() ? OPTIONAL : REQUIRED)
-                    .build();
+                .switchParser("deployment")
+                .quantifier(deployments.isEmpty() ? OPTIONAL : REQUIRED)
+                .build();
 
             parsers.add(DEPLOYMENT);
         }
@@ -1063,21 +1065,5 @@ public abstract class Application extends BaseComponent implements
         parsers.addAll(switchParsers());
 
         return parsers;
-    }
-
-    /**
-     * Runs the given code catching all exceptions, including checked exceptions.
-     *
-     * @param code The code to run
-     */
-    private void tryCatch(UncheckedVoidCode code)
-    {
-        try
-        {
-            code.run();
-        }
-        catch (Exception ignored)
-        {
-        }
     }
 }
