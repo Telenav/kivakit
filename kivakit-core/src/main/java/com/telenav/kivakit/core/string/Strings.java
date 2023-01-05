@@ -86,6 +86,20 @@ import static java.lang.Math.min;
 public class Strings
 {
     /**
+     * Chops the given text to the maximum length if it exceeds that length
+     *
+     * @param text The text to chop
+     * @param maximumLength The maximum length
+     * @return The text, but no longer than the given maximum length
+     */
+    public static String chop(String text, int maximumLength)
+    {
+        return text.length() > maximumLength
+            ? text.substring(0, maximumLength)
+            : text;
+    }
+
+    /**
      * Returns true if the given text contains any character in the given set of characters
      */
     public static boolean containsAnyOf(String text, String characters)

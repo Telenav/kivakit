@@ -1033,10 +1033,11 @@ public abstract class Application extends BaseComponent implements
     {
         // Start with all projects uninitialized,
         var uninitialized = new IdentitySet<Project>();
-        uninitialized.addAll(projects());
+        var projects = projects();
+        uninitialized.addAll(projects);
 
         // then for each project,
-        for (var project : projects())
+        for (var project : projects)
         {
             // if it is uninitialized,
             if (uninitialized.contains(project))
