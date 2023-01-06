@@ -36,6 +36,7 @@ import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTE
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.ensure.Ensure.unsupported;
 import static com.telenav.kivakit.core.messaging.MessageFormat.WITH_EXCEPTION;
+import static com.telenav.kivakit.core.string.AsciiArt.bullet;
 import static com.telenav.kivakit.core.value.count.Maximum.MAXIMUM;
 import static com.telenav.kivakit.interfaces.comparison.Filter.acceptAll;
 
@@ -276,5 +277,13 @@ public class MessageList extends ObjectList<Message> implements MessageCounter
     public MessageList onNewInstance()
     {
         return new MessageList(filter);
+    }
+
+    @Override
+    public String toString()
+    {
+        return isEmpty()
+            ? "[No issues]"
+            : formatted().prefixedWith(bullet()).titledBox("Issues");
     }
 }

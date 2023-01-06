@@ -22,7 +22,6 @@ import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.commandline.SwitchParser;
 import com.telenav.kivakit.conversion.BaseStringConverter;
 import com.telenav.kivakit.core.collections.map.CacheMap;
-import com.telenav.kivakit.core.language.reflection.property.IncludeProperty;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.messaging.messages.MessageException;
 import com.telenav.kivakit.core.messaging.repeaters.BaseRepeater;
@@ -46,6 +45,7 @@ import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.commandline.SwitchParser.switchParser;
 import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
 import static com.telenav.kivakit.core.language.Arrays.asHexadecimalString;
+import static com.telenav.kivakit.core.messaging.Listener.throwingListener;
 import static com.telenav.kivakit.core.time.Duration.minutes;
 import static com.telenav.kivakit.core.value.count.Maximum.maximum;
 import static com.telenav.kivakit.network.core.Loopback.loopback;
@@ -159,7 +159,20 @@ public class Host extends BaseRepeater implements
      */
     public static Host host(String name)
     {
-        return parseHost(Listener.throwingListener(), name);
+        return parseHost(throwingListener(), name);
+    }
+
+    /**
+     * Parses the given host name into a {@link Host}
+     *
+     * @param name The name of the host
+     * @param description A description of the host
+     * @return The host
+     * @throws MessageException Thrown if the given host cannot be parsed
+     */
+    public static Host host(String name, String description)
+    {
+        return parseHost(throwingListener(), name, description);
     }
 
     /**
@@ -231,12 +244,14 @@ public class Host extends BaseRepeater implements
     private transient InetAddress address;
 
     /** A description of this host */
+    @FormatProperty
     private String description;
 
     /** True if this is the local host */
     private Boolean local;
 
     /** The name of this host */
+    @FormatProperty
     private String name;
 
     /** The raw internet address of this host */
@@ -270,7 +285,7 @@ public class Host extends BaseRepeater implements
     {
     }
 
-    @IncludeProperty
+    @FormatProperty
     public InetAddress address()
     {
         if (address == null)
@@ -298,12 +313,12 @@ public class Host extends BaseRepeater implements
         return canonicalName().compareTo(that.canonicalName());
     }
 
-    @FormatProperty
     public String description()
     {
         return description;
     }
 
+    @FormatProperty
     public String dnsName()
     {
         return address().getHostName();
