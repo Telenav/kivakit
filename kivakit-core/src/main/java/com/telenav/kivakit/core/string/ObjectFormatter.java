@@ -27,10 +27,12 @@ import com.telenav.kivakit.interfaces.string.StringFormattable.Format;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.Collection;
+import java.util.Set;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_INSUFFICIENT;
+import static com.telenav.kivakit.core.collections.set.ObjectSet.set;
 import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
 import static com.telenav.kivakit.core.ensure.Ensure.fail;
 import static com.telenav.kivakit.core.language.reflection.Type.type;
@@ -90,32 +92,38 @@ public class ObjectFormatter
 
         Type<?> type = type(object);
         var strings = new StringList();
+        Set<String> addedProperties = set();
         for (var property : type.properties(allProperties(ALL_FIELDS_AND_METHODS)))
         {
-            if (!"class".equals(property.name()))
+            var propertyName = property.name();
+            if (!addedProperties.contains(propertyName))
             {
-                var getter = property.getter();
-                if (getter != null)
+                addedProperties.add(propertyName);
+                if (!"class".equals(propertyName))
                 {
-                    var annotation = getter.annotation(FormatProperty.class);
-                    if (annotation != null)
+                    var getter = property.getter();
+                    if (getter != null)
                     {
-                        var value = getter.get(object);
-                        if (value == null)
+                        var annotation = getter.annotation(FormatProperty.class);
+                        if (annotation != null)
                         {
-                            strings.add(property.name() + " = null");
-                        }
-                        else
-                        {
-                            value = asString(objectFormat, annotation.format(), 0, value);
-                            strings.add(property.name() + " = " + value);
+                            var value = getter.get(object);
+                            if (value == null)
+                            {
+                                strings.add(propertyName + " = null");
+                            }
+                            else
+                            {
+                                value = asString(objectFormat, annotation.format(), 0, value);
+                                strings.add(propertyName + " = " + value);
+                            }
                         }
                     }
                 }
             }
         }
 
-        // If there were no properties added
+        // If there were no properties addedProperties
         if (strings.isEmpty())
         {
             // that is a problem
@@ -151,17 +159,11 @@ public class ObjectFormatter
     {
         ensureNotNull(propertyFormat, "@FormatProperty(\"$\") is not a known format", propertyFormat);
 
-        switch (propertyFormat)
-        {
-            case TO_STRING:
-                return propertyValue.toString();
-
-            case TEXT:
-            default:
+        return switch (propertyFormat)
             {
-                return format(objectFormat, propertyFormat, recursionLevel, propertyValue);
-            }
-        }
+                case TO_STRING -> propertyValue.toString();
+                default -> format(objectFormat, propertyFormat, recursionLevel, propertyValue);
+            };
     }
 
     /**
@@ -194,8 +196,8 @@ public class ObjectFormatter
 
             // then, return the properties as a single line or a bracketed multi-line string.
             return objectFormat == SINGLE_LINE
-                    ? formatted.join(", ")
-                    : formatted.bracketed(recursionLevel * 4);
+                ? formatted.join(", ")
+                : formatted.bracketed(recursionLevel * 4);
         }
         else
         {
