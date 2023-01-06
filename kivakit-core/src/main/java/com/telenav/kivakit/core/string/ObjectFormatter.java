@@ -98,7 +98,6 @@ public class ObjectFormatter
             var propertyName = property.name();
             if (!addedProperties.contains(propertyName))
             {
-                addedProperties.add(propertyName);
                 if (!"class".equals(propertyName))
                 {
                     var getter = property.getter();
@@ -107,6 +106,7 @@ public class ObjectFormatter
                         var annotation = getter.annotation(FormatProperty.class);
                         if (annotation != null)
                         {
+                            addedProperties.add(propertyName);
                             var value = getter.get(object);
                             if (value == null)
                             {
