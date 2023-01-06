@@ -89,8 +89,8 @@ import static com.telenav.kivakit.core.value.count.Maximum.MAXIMUM;
  *     <li>{@link #appendAll(Iterable)}</li>
  *     <li>{@link #appendAll(Iterator)}</li>
  *     <li>{@link #appendAll(Object[])}</li>
- *     <li>{@link #appendThen(Object)}</li>
- *     <li>{@link #appendAllThen(Iterable)}</li>
+ *     <li>{@link #appending(Object)}</li>
+ *     <li>{@link #appending(Iterable)}</li>
  *     <li>{@link #prepend(Object)}</li>
  *     <li>{@link #prependIfNotNull(Object)}</li>
  *     <li>{@link #prependAll(Collection)}</li>
@@ -343,24 +343,24 @@ public abstract class BaseList<Value> extends BaseCollection<Value> implements
     }
 
     @Override
-    public BaseList<Value> appendAllThen(Iterable<? extends Value> values)
+    public BaseList<Value> appending(Iterable<? extends Value> values)
     {
-        return (BaseList<Value>) Appendable.super.appendAllThen(values);
+        return (BaseList<Value>) Appendable.super.appending(values);
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public BaseList<Value> appendIfNotNullThen(Value value)
+    public BaseList<Value> appendingIfNotNull(Value value)
     {
-        return (BaseList<Value>) Appendable.super.appendIfNotNullThen(value);
+        return (BaseList<Value>) Appendable.super.appendingIfNotNull(value);
     }
 
     @Override
-    public BaseList<Value> appendThen(Value value)
+    public BaseList<Value> appending(Value value)
     {
-        return (BaseList<Value>) Appendable.super.appendThen(value);
+        return (BaseList<Value>) Appendable.super.appending(value);
     }
 
     /**

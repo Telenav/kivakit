@@ -145,7 +145,7 @@ public interface CheckTrait extends
             if (!ok())
             {
                 var formatted = stringList("Code broadcast failure")
-                        .appendIfNotNullThen(message)
+                        .appendingIfNotNull(message)
                         .join(": ");
 
                 problem(formatted);
@@ -156,7 +156,7 @@ public interface CheckTrait extends
         catch (Exception e)
         {
             var formatted = stringList("Code threw exception")
-                    .appendIfNotNullThen(message)
+                    .appendingIfNotNull(message)
                     .join(": ");
 
             problem(e, formatted);
