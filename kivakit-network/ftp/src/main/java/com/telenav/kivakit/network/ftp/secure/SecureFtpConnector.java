@@ -178,7 +178,7 @@ class SecureFtpConnector
 
         try
         {
-            return new ObjectList<LsEntry>().appendAllThen(channel.ls(location.networkPath().join()));
+            return new ObjectList<LsEntry>().appending(channel.ls(location.networkPath().join()));
         }
         catch (SftpException e)
         {

@@ -123,7 +123,7 @@ public interface Appendable<Value> extends SpaceLimited
      * @param values The values to append
      * @return This object, for chaining
      */
-    default Appendable<Value> appendAllThen(Iterable<? extends Value> values)
+    default Appendable<Value> appending(Iterable<? extends Value> values)
     {
         appendAll(values);
         return this;
@@ -150,7 +150,7 @@ public interface Appendable<Value> extends SpaceLimited
      * @param value The value to append
      * @return This object, for chaining
      */
-    default Appendable<Value> appendIfNotNullThen(Value value)
+    default Appendable<Value> appendingIfNotNull(Value value)
     {
         if (value != null)
         {
@@ -165,7 +165,7 @@ public interface Appendable<Value> extends SpaceLimited
      * @param value The value to append
      * @return This object, for chaining
      */
-    default Appendable<Value> appendThen(Value value)
+    default Appendable<Value> appending(Value value)
     {
         append(value);
         return this;
