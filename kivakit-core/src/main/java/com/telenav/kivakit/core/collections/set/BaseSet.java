@@ -261,15 +261,6 @@ public abstract class BaseSet<Value> extends BaseCollection<Value> implements
      * {@inheritDoc}
      */
     @Override
-    public BaseSet<Value> with(Collection<Value> that)
-    {
-        return (BaseSet<Value>) super.with(that);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
     protected final Set<Value> backingCollection()
     {
         return backingSet;

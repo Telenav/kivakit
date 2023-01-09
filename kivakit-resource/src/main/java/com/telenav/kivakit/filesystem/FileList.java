@@ -249,25 +249,37 @@ public class FileList extends BaseResourceList<File> implements Iterable<File>
     }
 
     @Override
-    public FileList with(final ResourceFolder<?> folder, final Filter<ResourcePathed> filter)
+    public FileList with(ResourceFolder<?> folder, Filter<ResourcePathed> filter)
     {
         return (FileList) super.with(folder, filter);
     }
 
     @Override
-    public FileList with(final Collection<File> that)
+    public FileList with(Iterable<File> that)
     {
         return (FileList) super.with(that);
     }
 
     @Override
-    public FileList with(final File file)
+    public FileList with(Collection<File> that)
+    {
+        return (FileList) super.with(that);
+    }
+
+    @Override
+    public FileList with(File file)
     {
         return (FileList) super.with(file);
     }
 
     @Override
-    public FileList without(final Filter<ResourcePathed> filter)
+    public FileList with(File... value)
+    {
+        return (FileList) super.with(value);
+    }
+
+    @Override
+    public FileList without(Filter<ResourcePathed> filter)
     {
         return (FileList) super.without(filter);
     }

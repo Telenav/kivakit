@@ -281,18 +281,18 @@ public class ObjectList<Value> extends BaseList<Value>
      * {@inheritDoc}
      */
     @Override
-    public ObjectList<Value> appendingIfNotNull(Value value)
+    public ObjectList<Value> appending(Value value)
     {
-        return (ObjectList<Value>) super.appendingIfNotNull(value);
+        return (ObjectList<Value>) super.appending(value);
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public ObjectList<Value> appending(Value value)
+    public ObjectList<Value> appendingIfNotNull(Value value)
     {
-        return (ObjectList<Value>) super.appending(value);
+        return (ObjectList<Value>) super.appendingIfNotNull(value);
     }
 
     /**
@@ -445,7 +445,34 @@ public class ObjectList<Value> extends BaseList<Value>
      * {@inheritDoc}
      */
     @Override
+    public ObjectList<Value> with(Iterable<Value> value)
+    {
+        return (ObjectList<Value>) super.with(value);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public ObjectList<Value> with(Value value)
+    {
+        return (ObjectList<Value>) super.with(value);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public ObjectList<Value> with(Collection<Value> value)
+    {
+        return (ObjectList<Value>) super.with(value);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public ObjectList<Value> with(Value... value)
     {
         return (ObjectList<Value>) super.with(value);
     }
