@@ -43,6 +43,7 @@ import static com.telenav.kivakit.commandline.SwitchParser.switchParser;
 import static com.telenav.kivakit.core.collections.list.StringList.split;
 import static com.telenav.kivakit.core.collections.list.StringList.stringList;
 import static com.telenav.kivakit.core.messaging.Listener.consoleListener;
+import static com.telenav.kivakit.core.messaging.Listener.throwingListener;
 import static com.telenav.kivakit.core.string.Strip.stripLeading;
 import static com.telenav.kivakit.filesystem.File.parseFile;
 import static com.telenav.kivakit.filesystem.FilePath.parseFilePath;
@@ -85,8 +86,8 @@ import static com.telenav.kivakit.resource.FileName.parseFileName;
              documentation = DOCUMENTATION_COMPLETE,
              testing = UNTESTED)
 public class ResourcePath extends StringPath implements
-        UriIdentified,
-        ResourcePathed
+    UriIdentified,
+    ResourcePathed
 {
     /**
      * Returns a resource path for the given string
@@ -155,9 +156,17 @@ public class ResourcePath extends StringPath implements
                                                                               @NotNull String description)
     {
         return switchParser(ResourcePath.class)
-                .name(name)
-                .converter(new ResourcePath.Converter(listener))
-                .description(description);
+            .name(name)
+            .converter(new ResourcePath.Converter(listener))
+            .description(description);
+    }
+
+    /**
+     * Returns a UNIX-style resource path for the given string
+     */
+    public static ResourcePath unixResourcePath(@NotNull String path)
+    {
+        return parseUnixResourcePath(throwingListener(), path);
     }
 
     /**
@@ -292,8 +301,8 @@ public class ResourcePath extends StringPath implements
     {
         // NOTE: We call super.join(String) here because it is not overridden
         return schemes.join(":")
-                + (hasScheme() ? ":" : "")
-                + join(separator());
+            + (hasScheme() ? ":" : "")
+            + join(separator());
     }
 
     /**
@@ -311,10 +320,10 @@ public class ResourcePath extends StringPath implements
     public ResourcePath normalized()
     {
         return transformed(element -> element
-                .replace(',', '_')
-                .replace(';', '_')
-                .replace(' ', '_')
-                .replace('\'', '_'));
+            .replace(',', '_')
+            .replace(';', '_')
+            .replace(' ', '_')
+            .replace('\'', '_'));
     }
 
     /**

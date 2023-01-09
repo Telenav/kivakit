@@ -56,7 +56,7 @@ public class ObjectListTest extends CoreUnitTest
     {
         ensureEqual(list(1, 2, 3, 4, 5).with(7).with(8),
                 list(1, 2, 3, 4, 5, 7, 8));
-        ensureEqual(list(1, 2, 3, 4, 5).appendAllThen(List.of(7, 8)), list(1, 2, 3, 4, 5, 7, 8));
+        ensureEqual(list(1, 2, 3, 4, 5).appending(List.of(7, 8)), list(1, 2, 3, 4, 5, 7, 8));
     }
 
     @Test

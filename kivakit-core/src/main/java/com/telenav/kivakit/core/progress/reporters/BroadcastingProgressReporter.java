@@ -68,7 +68,7 @@ import static com.telenav.kivakit.core.value.count.Count.count;
  * <pre>
  * progress.listener(percent -&gt; System.out.println("$ complete", percent);
  * </pre>
- * {@link BroadcastingProgressReporter} is not thread-safe. To report progress in a multi-threaded operations, use
+ * {@link BroadcastingProgressReporter} is not thread-safe. To report progress in a multithreaded operations, use
  * {@link ConcurrentBroadcastingProgressReporter}.
  *
  * <p><b>Progress</b></p>
@@ -122,8 +122,8 @@ public class BroadcastingProgressReporter extends Multicaster implements Progres
                                                                           BaseCount<?> steps)
     {
         return listener.listenTo(new ConcurrentBroadcastingProgressReporter()
-                .withUnits(itemName)
-                .withSteps(steps));
+            .withUnits(itemName)
+            .withSteps(steps));
     }
 
     /**
@@ -135,8 +135,8 @@ public class BroadcastingProgressReporter extends Multicaster implements Progres
                                                                 BaseCount<?> steps)
     {
         return listener.listenTo(new BroadcastingProgressReporter()
-                .withUnits(itemName)
-                .withSteps(steps));
+            .withUnits(itemName)
+            .withSteps(steps));
     }
 
     public static BroadcastingProgressReporter progressReporter()
@@ -163,6 +163,9 @@ public class BroadcastingProgressReporter extends Multicaster implements Progres
     /** The number of steps before reporting */
     private long every = 10;
 
+    /** True if the user wants every to be fixed */
+    private boolean fixedEvery = false;
+
     /** The name of each step as a unit */
     private String unitName;
 
@@ -185,7 +188,7 @@ public class BroadcastingProgressReporter extends Multicaster implements Progres
     private boolean started;
 
     /** The number of steps in this operation */
-    private long steps = -1;
+    private long steps;
 
     protected BroadcastingProgressReporter(BroadcastingProgressReporter that)
     {
@@ -193,6 +196,7 @@ public class BroadcastingProgressReporter extends Multicaster implements Progres
 
         at = that.at;
         every = that.every;
+        fixedEvery = that.fixedEvery;
         phase = that.phase;
         steps = that.steps;
         unitName = that.unitName;
@@ -235,7 +239,7 @@ public class BroadcastingProgressReporter extends Multicaster implements Progres
             ended = true;
             report(at());
             var formatted = format(message, arguments);
-            feedback(bottomLine( 70, "$ $ in $", formatted, unitName, epochMilliseconds(start).elapsedSince()));
+            feedback(bottomLine(70, "$ $ in $", formatted, unitName, epochMilliseconds(start).elapsedSince()));
         }
     }
 
@@ -325,7 +329,10 @@ public class BroadcastingProgressReporter extends Multicaster implements Progres
         started = false;
         ended = false;
         start = now().milliseconds();
-        every = 10;
+        if (!fixedEvery)
+        {
+            every = 10;
+        }
         at(0);
     }
 
@@ -368,7 +375,7 @@ public class BroadcastingProgressReporter extends Multicaster implements Progres
     @Override
     public Count steps()
     {
-        return steps < 0 ? null : count(steps);
+        return steps <= 0 ? null : count(steps);
     }
 
     /**
@@ -380,14 +387,22 @@ public class BroadcastingProgressReporter extends Multicaster implements Progres
         return toString(count(at()));
     }
 
+    public BroadcastingProgressReporter withEvery(Count every)
+    {
+        var copy = copy();
+        copy.every = every.asInt();
+        copy.fixedEvery = true;
+        return copy;
+    }
+
     /**
      * Returns a copy of this reporter with the given phase
      */
     public BroadcastingProgressReporter withPhase(String phase)
     {
-        var progress = copy();
-        progress.phase = phase;
-        return progress;
+        var copy = copy();
+        copy.phase = phase;
+        return copy;
     }
 
     /**
@@ -397,9 +412,9 @@ public class BroadcastingProgressReporter extends Multicaster implements Progres
     {
         if (steps != null)
         {
-            var progress = copy();
-            progress.steps = steps.get();
-            return progress;
+            var copy = copy();
+            copy.steps = steps.asInt();
+            return copy;
         }
         else
         {
@@ -412,9 +427,9 @@ public class BroadcastingProgressReporter extends Multicaster implements Progres
      */
     public BroadcastingProgressReporter withUnits(String unitName)
     {
-        var progress = copy();
-        progress.unitName = unitName;
-        return progress;
+        var copy = copy();
+        copy.unitName = unitName;
+        return copy;
     }
 
     @NotNull
@@ -436,7 +451,7 @@ public class BroadcastingProgressReporter extends Multicaster implements Progres
 
     private Percent percentComplete()
     {
-        if (steps().isNonZero())
+        if (steps() != null && steps().isNonZero())
         {
             return Percent.percent(100.0 * at() / steps().asLong());
         }
@@ -458,7 +473,7 @@ public class BroadcastingProgressReporter extends Multicaster implements Progres
             }
         }
 
-        if (steps < 0)
+        if (steps <= 0)
         {
             feedback(toString(count(at)) + " ");
         }
@@ -469,25 +484,28 @@ public class BroadcastingProgressReporter extends Multicaster implements Progres
 
         var elapsed = lastReportedAt.elapsedSince().maximum(Duration.milliseconds(1));
 
-        // While we're going too fast
-        while (elapsed.isLessThan(REPORT_FASTEST))
+        if (!fixedEvery)
         {
-            // we increase the reporting interval (slowing down reporting)
-            // and the estimated elapsed time by 10
-            every *= 10;
-            elapsed = elapsed.times(10);
-        }
+            // While we're going too fast
+            while (elapsed.isLessThan(REPORT_FASTEST))
+            {
+                // we increase the reporting interval (slowing down reporting)
+                // and the estimated elapsed time by 10
+                every *= 10;
+                elapsed = elapsed.times(10);
+            }
 
-        // While we're going too slow (and we prefer not to!),
-        while (elapsed.isGreaterThan(REPORT_SLOWEST))
-        {
-            // we decrease the reporting interval (speeding up reporting)
-            // and the elapsed time by 10
-            every = Math.max(10, every / 10);
-            elapsed = elapsed.dividedBy(10);
-        }
+            // While we're going too slow (and we prefer not to!),
+            while (elapsed.isGreaterThan(REPORT_SLOWEST))
+            {
+                // we decrease the reporting interval (speeding up reporting)
+                // and the elapsed time by 10
+                every = Math.max(10, every / 10);
+                elapsed = elapsed.dividedBy(10);
+            }
 
-        every = Math.min(every, 1_000_000);
+            every = Math.min(every, 1_000_000);
+        }
 
         lastReportedAt = now();
     }

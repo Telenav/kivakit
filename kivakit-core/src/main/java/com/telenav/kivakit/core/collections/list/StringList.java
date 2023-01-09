@@ -351,22 +351,28 @@ public class StringList extends ObjectList<String>
         return this;
     }
 
-    @Override
-    public StringList appendAllThen(Iterable<? extends String> values)
+    public StringList addObject(Object object)
     {
-        return (StringList) super.appendAllThen(values);
+        add(object.toString());
+        return this;
     }
 
     @Override
-    public StringList appendIfNotNullThen(String value)
+    public StringList appending(Iterable<? extends String> values)
     {
-        return (StringList) super.appendIfNotNullThen(value);
+        return (StringList) super.appending(values);
     }
 
     @Override
-    public StringList appendThen(String value)
+    public StringList appending(String value)
     {
-        return (StringList) super.appendThen(value);
+        return (StringList) super.appending(value);
+    }
+
+    @Override
+    public StringList appendingIfNotNull(String value)
+    {
+        return (StringList) super.appendingIfNotNull(value);
     }
 
     public String[] asStringArray()
@@ -644,12 +650,36 @@ public class StringList extends ObjectList<String>
      * {@inheritDoc}
      */
     @Override
+    public StringList with(Iterable<String> value)
+    {
+        return (StringList) super.with(value);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public StringList with(String value)
     {
-        var copy = new StringList();
-        copy.addAll(this);
-        copy.add(value);
-        return copy;
+        return (StringList) super.with(value);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public StringList with(Collection<String> value)
+    {
+        return (StringList) super.with(value);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public StringList with(String... value)
+    {
+        return (StringList) super.with(value);
     }
 
     /**

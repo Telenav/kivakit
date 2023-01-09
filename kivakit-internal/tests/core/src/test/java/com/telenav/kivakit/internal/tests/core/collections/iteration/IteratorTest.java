@@ -52,8 +52,8 @@ public class IteratorTest extends CoreUnitTest
                         return null;
                     }
                 });
-        ensureEqual(values(2, 4, 8, 16, 32, 64, 128, 256, 512, 1024), new ObjectList<>().appendAllThen(iterable));
-        ensureEqual(values(2, 4, 8, 16, 32, 64, 128, 256, 512, 1024), new ObjectList<>().appendAllThen(iterable));
+        ensureEqual(values(2, 4, 8, 16, 32, 64, 128, 256, 512, 1024), new ObjectList<>().appending(iterable));
+        ensureEqual(values(2, 4, 8, 16, 32, 64, 128, 256, 512, 1024), new ObjectList<>().appending(iterable));
     }
 
     @Test

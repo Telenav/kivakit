@@ -20,14 +20,14 @@ This module contains functionality for unit testing.
 
 ### Dependencies <a name="dependencies"></a> &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/dependencies-32.png" srcset="https://telenav.github.io/telenav-assets/images/icons/dependencies-32-2x.png 2x"/>
 
-[*Dependency Diagram*](https://www.kivakit.org/1.10.0/lexakai/kivakit/kivakit-testing/documentation/diagrams/dependencies.svg)
+[*Dependency Diagram*](https://www.kivakit.org/1.11.0/lexakai/kivakit/kivakit-testing/documentation/diagrams/dependencies.svg)
 
 #### Maven Dependency
 
     <dependency>
         <groupId>com.telenav.kivakit</groupId>
         <artifactId>kivakit-testing</artifactId>
-        <version>1.10.0</version>
+        <version>1.11.0</version>
     </dependency>
 
 <img src="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128.png" srcset="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128-2x.png 2x"/>
@@ -62,15 +62,15 @@ None
 
 ### Package Diagrams <a name="package-diagrams"></a> &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/box-24.png" srcset="https://telenav.github.io/telenav-assets/images/icons/box-24-2x.png 2x"/>
 
-[*com.telenav.kivakit.testing*](https://www.kivakit.org/1.10.0/lexakai/kivakit/kivakit-testing/documentation/diagrams/com.telenav.kivakit.testing.svg)
+[*com.telenav.kivakit.testing*](https://www.kivakit.org/1.11.0/lexakai/kivakit/kivakit-testing/documentation/diagrams/com.telenav.kivakit.testing.svg)
 
 ### Javadoc <a name="code-quality"></a> &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/books-24.png" srcset="https://telenav.github.io/telenav-assets/images/icons/books-24-2x.png 2x"/>
 
 | Class | Documentation Sections  |
 |-------|-------------------------|
-| [*QuickTest*](https://www.kivakit.org/1.10.0/javadoc/kivakit/kivakit-testing/com/telenav/kivakit/testing/QuickTest.html) |  |  
-| [*SlowTest*](https://www.kivakit.org/1.10.0/javadoc/kivakit/kivakit-testing/com/telenav/kivakit/testing/SlowTest.html) |  |  
-| [*UnitTest*](https://www.kivakit.org/1.10.0/javadoc/kivakit/kivakit-testing/com/telenav/kivakit/testing/UnitTest.html) | Ensure Behavior |  
+| [*QuickTest*](https://www.kivakit.org/1.11.0/javadoc/kivakit/kivakit-testing/com/telenav/kivakit/testing/QuickTest.html) |  |  
+| [*SlowTest*](https://www.kivakit.org/1.11.0/javadoc/kivakit/kivakit-testing/com/telenav/kivakit/testing/SlowTest.html) |  |  
+| [*UnitTest*](https://www.kivakit.org/1.11.0/javadoc/kivakit/kivakit-testing/com/telenav/kivakit/testing/UnitTest.html) | Ensure Behavior |  
 | | Ensure Equality |  
 | | Test Methods |  
 | | Quick Tests |  

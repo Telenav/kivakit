@@ -140,6 +140,11 @@ public interface MessageCounter extends Listener
         return failed(Problem.class);
     }
 
+    default boolean hasProblems()
+    {
+        return problems().isNonZero();
+    }
+
     /**
      * If the counted message represent failure, as determined by {@link #failed()}, throws an
      * {@link IllegalStateException} with the statistics for messages.
@@ -151,6 +156,11 @@ public interface MessageCounter extends Listener
         {
             throw new IllegalStateException("Failed:\n\n" + statistics(Problem.class, Quibble.class, Warning.class).bulleted(2));
         }
+    }
+
+    default Count problems()
+    {
+        return countWorseThanOrEqualTo(Problem.class);
     }
 
     /**
@@ -186,7 +196,7 @@ public interface MessageCounter extends Listener
             if (count != null)
             {
                 statistics.append(rightAlign(pluralizeEnglish(simpleName(type)), 24, ' ')
-                        + ": " + count.asCommaSeparatedString());
+                    + ": " + count.asCommaSeparatedString());
             }
         }
         return statistics;
