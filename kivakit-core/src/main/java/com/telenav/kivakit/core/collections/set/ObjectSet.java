@@ -269,6 +269,16 @@ public class ObjectSet<Value> extends BaseSet<Value>
     /**
      * {@inheritDoc}
      */
+    @SafeVarargs
+    @Override
+    public final ObjectSet<Value> with(Value... value)
+    {
+        return (ObjectSet<Value>) super.with(value);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ObjectSet<Value> with(Collection<Value> that)
     {

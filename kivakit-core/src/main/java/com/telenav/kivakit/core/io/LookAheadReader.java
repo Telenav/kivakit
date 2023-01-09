@@ -46,7 +46,7 @@ public class LookAheadReader extends Reader
     public static final int END_OF_STREAM = -1;
 
     /** The current line number */
-    private int lineNumber;
+    private int lineNumber = 1;
 
     /** The input */
     private final Reader in;
