@@ -279,6 +279,15 @@ public class ObjectSet<Value> extends BaseSet<Value>
      * {@inheritDoc}
      */
     @Override
+    public ObjectSet<Value> with(Iterable<Value> that)
+    {
+        return (ObjectSet<Value>) super.with(that);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     protected Set<Value> onNewBackingSet()
     {
         return new HashSet<>();

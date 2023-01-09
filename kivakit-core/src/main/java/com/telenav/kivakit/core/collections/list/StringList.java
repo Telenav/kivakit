@@ -650,12 +650,36 @@ public class StringList extends ObjectList<String>
      * {@inheritDoc}
      */
     @Override
+    public StringList with(Iterable<String> value)
+    {
+        return (StringList) super.with(value);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public StringList with(String value)
     {
-        var copy = new StringList();
-        copy.addAll(this);
-        copy.add(value);
-        return copy;
+        return (StringList) super.with(value);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public StringList with(Collection<String> value)
+    {
+        return (StringList) super.with(value);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public StringList with(String... value)
+    {
+        return (StringList) super.with(value);
     }
 
     /**

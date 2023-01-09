@@ -19,6 +19,7 @@
 package com.telenav.kivakit.core.messaging.listeners;
 
 import com.telenav.kivakit.annotations.code.quality.CodeQuality;
+import com.telenav.kivakit.core.code.UncheckedCode;
 import com.telenav.kivakit.core.collections.list.ObjectList;
 import com.telenav.kivakit.core.collections.list.StringList;
 import com.telenav.kivakit.core.internal.lexakai.DiagramListenerType;
@@ -133,6 +134,27 @@ public class MessageList extends ObjectList<Message> implements MessageCounter
     public void broadcastTo(Listener listener)
     {
         forEach(listener::receive);
+    }
+
+    /**
+     * Runs the given code. If it throws an exception, it is captured in this message list as a problem.
+     *
+     * @param code The code to execute
+     * @param message The problem message to use if something goes wrong
+     * @param arguments The arguments to the problem message
+     * @return The value if the code executed without throwing and exception, otherwise null
+     */
+    public <T> T capture(UncheckedCode<T> code, String message, Object... arguments)
+    {
+        try
+        {
+            return code.run();
+        }
+        catch (Exception e)
+        {
+            problem(message, arguments);
+            return null;
+        }
     }
 
     /**

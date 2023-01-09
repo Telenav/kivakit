@@ -161,13 +161,13 @@ import static com.telenav.kivakit.interfaces.string.StringFormattable.Format.TO_
              testing = TESTING_INSUFFICIENT,
              documentation = DOCUMENTATION_COMPLETE)
 public abstract class BaseCollection<Value> implements
-        Addable<Value>,
-        Collection<Value>,
-        Countable,
-        Joinable<Value>,
-        Sequence<Value>,
-        Sized,
-        StringFormattable
+    Addable<Value>,
+    Collection<Value>,
+    Countable,
+    Joinable<Value>,
+    Sequence<Value>,
+    Sized,
+    StringFormattable
 {
     /** The maximum number of values that can be stored in this list */
     private int maximumSize;
@@ -246,10 +246,10 @@ public abstract class BaseCollection<Value> implements
     public String asString(StringFormattable.@NotNull Format format)
     {
         return switch (format)
-                {
-                    case DEBUG -> join(separator(), StringConversions::toDebugString);
-                    default -> join();
-                };
+            {
+                case DEBUG -> join(separator(), StringConversions::toDebugString);
+                default -> join();
+            };
     }
 
     /**
@@ -504,7 +504,29 @@ public abstract class BaseCollection<Value> implements
     /**
      * Returns this list with the given values
      */
+    public BaseCollection<Value> with(Iterable<Value> that)
+    {
+        var copy = newCollection();
+        copy.addAll(this);
+        copy.addAll(that);
+        return copy;
+    }
+
+    /**
+     * Returns this list with the given values
+     */
     public BaseCollection<Value> with(Collection<Value> that)
+    {
+        var copy = newCollection();
+        copy.addAll(this);
+        copy.addAll(that);
+        return copy;
+    }
+
+    /**
+     * Returns this list with the given values
+     */
+    public BaseCollection<Value> with(Value[] that)
     {
         var copy = newCollection();
         copy.addAll(this);
