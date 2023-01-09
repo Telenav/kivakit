@@ -1,5 +1,49 @@
 # KivaKit Change Log
 
+## Version 1.11.0 (2023.01.09) "happy beanbag"
+
+### Bug Fixes
+
+ - PR-168
+   - Fix `ObjectSet.with(Value[])` overrides
+   - Correct `LookAheadReader` line number to use 1-based rather than 0-based line numbers
+   - `CsvReader` performance bug regarding `CsvLine` mixin
+ - Fixed bug in `ObjectFormatter` causing equivalent fields and getter methods to be formatted twice
+
+### Examples
+
+ - Added example snippets to `kivakit-examples` (see [Medium.com](https://medium.com/towardsdev/kivakit-snippet-1-ed76c812420e))
+ - Added Apache Wicket Example (non-functional for now due to servlet API conflict)
+
+### Collections
+
+ - `appendAllThen()` -> `appending()`
+ - Added `StringList.addObject()`
+
+### Networking
+
+ - Added `Host.host(String name, String description)`
+
+### Messaging
+
+ - Added `MessageList.capture(UncheckedCode<T> code, String message, Object... arguments)`
+ - Added `MessageCounter.hasProblems()` and `problems()`
+ - Added support to `BroadcastingProgressReporter` for fixed reporting intervals
+
+### Text
+
+ - Added `Strings.chop(String text, int maximumLength)`
+
+
+### Registry
+
+ - Changed return value of `instanceIdentifierForEnumName()` to `Enum`
+
+### Data
+
+ - Added `unquoted()` option to `CsvReader` for reading CSV files that don't support quoting
+ - Added `DataResource` for working with `byte[]` resources
+
 -----------------------------------------------------------------------------------------------------------------------
 
 ## Version 1.10.0 (2022.12.30) "happy water-wings"
