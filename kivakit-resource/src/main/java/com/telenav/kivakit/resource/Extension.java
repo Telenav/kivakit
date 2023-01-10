@@ -123,10 +123,12 @@ import static com.telenav.kivakit.core.value.count.Count.count;
              testing = UNTESTED,
              documentation = DOCUMENTATION_COMPLETE)
 public class Extension implements
-        Named,
-        Matchable<ResourcePathed>,
-        Comparable<Extension>
+    Named,
+    Matchable<ResourcePathed>,
+    Comparable<Extension>
 {
+    public static final Extension ASC   = parseExtension(".asc");
+
     public static final Extension CLASS = parseExtension(".class");
 
     public static final Extension CSV = parseExtension(".csv");
@@ -160,6 +162,8 @@ public class Extension implements
     public static final Extension OSM_PBF = parseExtension(".osm.pbf");
 
     public static final Extension PBF = parseExtension(".pbf");
+
+    public static final Extension PGP = parseExtension(".pgp");
 
     public static final Extension PNG = parseExtension(".png");
 
@@ -196,9 +200,9 @@ public class Extension implements
     public static ObjectList<Extension> allExtensions()
     {
         return list(CLASS, CSV, GEOJSON, GRAPH, GRAPH_GZIP,
-                GZIP, JAR, JAVA, JSON, KRYO, MARKDOWN, MD5, OSM, OSMPP,
-                OSM_PBF, PBF, PNG, POLY, POM, PROPERTIES, PYTHON, SHA1,
-                SHELL, TEMPORARY, TXT, TXT_GZIP, XML, YAML, YML, ZIP).sorted();
+            GZIP, JAR, JAVA, JSON, KRYO, MARKDOWN, MD5, OSM, OSMPP,
+            OSM_PBF, PBF, PNG, POLY, POM, PROPERTIES, PYTHON, SHA1,
+            SHELL, TEMPORARY, TXT, TXT_GZIP, XML, YAML, YML, ZIP).sorted();
     }
 
     /**
