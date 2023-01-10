@@ -376,7 +376,7 @@ public abstract class BaseList<Value> extends BaseCollection<Value> implements
      */
     public String bracketed(int indent)
     {
-        return "\n{\n" + bulleted(indent) + "\n}";
+        return "\n{\n" + join("\n") + "\n}";
     }
 
     /**
