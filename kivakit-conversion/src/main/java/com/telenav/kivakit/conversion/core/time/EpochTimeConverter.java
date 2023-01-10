@@ -8,7 +8,7 @@ import com.telenav.kivakit.core.time.Time;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
-import static com.telenav.kivakit.core.time.Time.milliseconds;
+import static com.telenav.kivakit.core.time.Time.epochMilliseconds;
 
 /**
  * Converts to and from {@link Time} using the given Java date time formatter
@@ -19,19 +19,25 @@ import static com.telenav.kivakit.core.time.Time.milliseconds;
 @CodeQuality(stability = STABLE,
              testing = UNTESTED,
              documentation = DOCUMENTATION_COMPLETE)
-public class TimeInMillisecondsConverter extends BaseStringConverter<Time>
+public class EpochTimeConverter extends BaseStringConverter<Time>
 {
     /**
      * @param listener The listener to report problems to
      */
-    public TimeInMillisecondsConverter(Listener listener)
+    public EpochTimeConverter(Listener listener)
     {
         super(listener, Time.class);
     }
 
     @Override
+    protected String onToString(Time time)
+    {
+        return Long.toString(time.epochMilliseconds());
+    }
+
+    @Override
     protected Time onToValue(String value)
     {
-        return milliseconds(value);
+        return epochMilliseconds(value);
     }
 }

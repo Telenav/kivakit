@@ -140,6 +140,11 @@ public class Time extends BaseTime<Time>
         return new Time(Nanoseconds.milliseconds(milliseconds));
     }
 
+    public static Time epochMilliseconds(String milliseconds)
+    {
+        return milliseconds(milliseconds);
+    }
+
     /**
      * Retrieves a <code>Time</code> instance based on the given nanoseconds.
      *
