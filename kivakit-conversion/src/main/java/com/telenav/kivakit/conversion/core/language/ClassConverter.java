@@ -24,8 +24,8 @@ import com.telenav.kivakit.conversion.internal.lexakai.DiagramConversionLanguage
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 
 /**
@@ -33,18 +33,19 @@ import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
  *
  * @author jonathanl (shibo)
  */
+@SuppressWarnings("rawtypes")
 @UmlClassDiagram(diagram = DiagramConversionLanguage.class)
 @CodeQuality(stability = STABLE,
              testing = UNTESTED,
              documentation = DOCUMENTATION_COMPLETE)
-public class ClassConverter extends BaseStringConverter<Class<?>>
+public class ClassConverter extends BaseStringConverter<Class>
 {
     /**
      * @param listener The listener to hear any conversion issues
      */
     public ClassConverter(Listener listener)
     {
-        super(listener);
+        super(listener, Class.class);
     }
 
     /**

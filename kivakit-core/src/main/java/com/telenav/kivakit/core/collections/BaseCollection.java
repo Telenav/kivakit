@@ -175,6 +175,8 @@ public abstract class BaseCollection<Value> implements
     /** True if this set ran out of room, and we've already warned about it */
     private boolean warnedAboutOutOfRoom;
 
+    private String separator = ", ";
+
     /**
      * @param maximumSize The maximum size of this list
      */
@@ -420,13 +422,19 @@ public abstract class BaseCollection<Value> implements
         return backingCollection().retainAll(collection);
     }
 
+    public BaseCollection<Value> separator(String separator)
+    {
+        this.separator = separator;
+        return this;
+    }
+
     /**
      * Returns the separator to use when joining this list
      */
     @Override
     public String separator()
     {
-        return ", ";
+        return separator;
     }
 
     /**

@@ -116,7 +116,7 @@ public class HttpNetworkLocation extends NetworkLocation implements Resourceful
     {
         public Converter(Listener listener)
         {
-            super(listener);
+            super(listener, HttpNetworkLocation.class);
         }
 
         @Override

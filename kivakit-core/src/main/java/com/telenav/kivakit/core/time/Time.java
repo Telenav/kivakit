@@ -20,15 +20,18 @@ package com.telenav.kivakit.core.time;
 
 import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramTime;
+import com.telenav.kivakit.core.language.Try;
+import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.interfaces.time.Nanoseconds;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.time.ZoneId;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
+import static com.telenav.kivakit.core.messaging.Listener.throwingListener;
 import static com.telenav.kivakit.core.time.BaseTime.Topology.LINEAR;
 import static com.telenav.kivakit.core.time.Day.dayOfMonth;
 import static com.telenav.kivakit.core.time.Duration.ZERO_DURATION;
@@ -38,6 +41,7 @@ import static com.telenav.kivakit.core.time.LocalTime.utcTimeZone;
 import static com.telenav.kivakit.core.time.Minute.minute;
 import static com.telenav.kivakit.core.time.Second.second;
 import static com.telenav.kivakit.interfaces.time.Nanoseconds.ONE_NANOSECOND;
+import static java.lang.Long.parseLong;
 import static java.lang.System.currentTimeMillis;
 
 /**
@@ -147,6 +151,11 @@ public class Time extends BaseTime<Time>
         return new Time(nanoseconds);
     }
 
+    public static Time milliseconds(String milliseconds)
+    {
+        return parseMilliseconds(throwingListener(), milliseconds);
+    }
+
     /**
      * Retrieves a <code>Time</code> instance based on the current time.
      *
@@ -155,6 +164,11 @@ public class Time extends BaseTime<Time>
     public static Time now()
     {
         return epochMilliseconds(currentTimeMillis());
+    }
+
+    public static Time parseMilliseconds(Listener listener, String milliseconds)
+    {
+        return Try.tryCatch(listener, () -> epochMilliseconds(parseLong(milliseconds)), "Unable to parse $: ", milliseconds);
     }
 
     public static Time utcTime(Year year, Month month, Day dayOfMonth, Hour hour)

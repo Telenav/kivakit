@@ -46,7 +46,7 @@ public class IntegerConverter extends BaseStringConverter<Integer>
      */
     public IntegerConverter(Listener listener)
     {
-        super(listener);
+        super(listener, Integer.class);
     }
 
     /**

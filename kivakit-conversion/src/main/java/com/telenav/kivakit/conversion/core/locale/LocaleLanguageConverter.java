@@ -26,7 +26,7 @@ public class LocaleLanguageConverter extends BaseStringConverter<LocaleLanguage>
 {
     public LocaleLanguageConverter(Listener listener)
     {
-        super(listener);
+        super(listener, LocaleLanguage.class);
     }
 
     @Override

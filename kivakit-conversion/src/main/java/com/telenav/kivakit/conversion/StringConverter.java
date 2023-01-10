@@ -23,6 +23,7 @@ import com.telenav.kivakit.conversion.internal.lexakai.DiagramConversion;
 import com.telenav.kivakit.core.collections.list.ObjectList;
 import com.telenav.kivakit.core.collections.list.StringList;
 import com.telenav.kivakit.core.collections.set.ObjectSet;
+import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.interfaces.string.Parsable;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
@@ -49,10 +50,10 @@ import static com.telenav.kivakit.core.collections.list.StringList.split;
  *     <li>{@link #convertToList(Iterable)} - Converts the given sequence of objects to an {@link ObjectList} using this converter</li>
  *     <li>{@link #convertToSet(String, String)} - Converts the given text and separator to an {@link ObjectSet} using this converter</li>
  *     <li>{@link #convertToSet(Iterable)} - Converts the given sequence of objects to an {@link ObjectSet} using this converter</li>
- *     <li>{@link #listConverter()} - Returns a StringConverter&lt;ObjectList&gt; that converts text to an object list using this converter</li>
- *     <li>{@link #listConverter(String)} - Returns a StringConverter&lt;ObjectList&gt; that converts text and a separator to an object list using this converter</li>
- *     <li>{@link #setConverter()} - Returns a StringConverter&lt;ObjectSet&gt; that converts text to an object set using this converter</li>
- *     <li>{@link #setConverter(String)} - Returns a StringConverter&lt;ObjectSet&gt; that converts text and a separator to an object set using this converter</li>
+ *     <li>{@link #listConverter(Class)} - Returns a StringConverter&lt;ObjectList&gt; that converts text to an object list using this converter</li>
+ *     <li>{@link #listConverter(Class, String)} - Returns a StringConverter&lt;ObjectList&gt; that converts text and a separator to an object list using this converter</li>
+ *     <li>{@link #setConverter(Class)} - Returns a StringConverter&lt;ObjectSet&gt; that converts text to an object set using this converter</li>
+ *     <li>{@link #setConverter(Class, String)} - Returns a StringConverter&lt;ObjectSet&gt; that converts text and a separator to an object set using this converter</li>
  * </ul>
  *
  * <p><b>Reverse Conversion</b></p>
@@ -71,9 +72,45 @@ import static com.telenav.kivakit.core.collections.list.StringList.split;
              testing = UNTESTED,
              documentation = DOCUMENTATION_COMPLETE)
 public interface StringConverter<Value> extends
-        TwoWayConverter<String, Value>,
-        Parsable<Value>
+    TwoWayConverter<String, Value>,
+    Parsable<Value>
 {
+    class ObjectListConverter<Value> extends BaseStringConverter<ObjectList<Value>>
+    {
+        private final String delimiter;
+
+        protected ObjectListConverter(Listener listener, Class<ObjectList<Value>> toType, String delimiter)
+        {
+            super(listener, toType);
+            this.delimiter = delimiter;
+        }
+
+        @Override
+        protected ObjectList<Value> onToValue(String value)
+        {
+            // noinspection unchecked
+            return (ObjectList<Value>) convertToList(value, delimiter);
+        }
+    }
+
+    class ObjectSetConverter<Value> extends BaseStringConverter<ObjectSet<Value>>
+    {
+        private final String delimiter;
+
+        protected ObjectSetConverter(Listener listener, Class<ObjectSet<Value>> toType, String delimiter)
+        {
+            super(listener, toType);
+            this.delimiter = delimiter;
+        }
+
+        @Override
+        protected ObjectSet<Value> onToValue(String value)
+        {
+            // noinspection unchecked
+            return (ObjectSet<Value>) convertToSet(value, delimiter);
+        }
+    }
+
     /**
      * Converts the given delimited string to a list of objects using this converter
      *
@@ -133,25 +170,18 @@ public interface StringConverter<Value> extends
      *
      * @param delimiter The delimiter
      */
-    default StringConverter<ObjectList<Value>> listConverter(String delimiter)
+    default StringConverter<ObjectList<Value>> listConverter(Class<ObjectList<Value>> type, String delimiter)
     {
         var outer = this;
-        return new BaseStringConverter<>(this)
-        {
-            @Override
-            protected ObjectList<Value> onToValue(String value)
-            {
-                return outer.convertToList(value, delimiter);
-            }
-        };
+        return new ObjectListConverter<>(this, type, delimiter);
     }
 
     /**
      * Returns a list converter that separates items with commas
      */
-    default StringConverter<ObjectList<Value>> listConverter()
+    default StringConverter<ObjectList<Value>> listConverter(Class<ObjectList<Value>> type)
     {
-        return listConverter(",");
+        return listConverter(type, ",");
     }
 
     /**
@@ -170,25 +200,17 @@ public interface StringConverter<Value> extends
      *
      * @param delimiter The delimiter
      */
-    default StringConverter<ObjectSet<Value>> setConverter(String delimiter)
+    default StringConverter<ObjectSet<Value>> setConverter(Class<ObjectSet<Value>> type, String delimiter)
     {
-        var outer = this;
-        return new BaseStringConverter<>(this)
-        {
-            @Override
-            protected ObjectSet<Value> onToValue(String value)
-            {
-                return outer.convertToSet(value, delimiter);
-            }
-        };
+        return new ObjectSetConverter<>(this, type, delimiter);
     }
 
     /**
      * Returns a list converter that separates items with commas
      */
-    default StringConverter<ObjectSet<Value>> setConverter()
+    default StringConverter<ObjectSet<Value>> setConverter(Class<ObjectSet<Value>> type)
     {
-        return setConverter(",");
+        return setConverter(type, ",");
     }
 
     /**

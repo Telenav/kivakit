@@ -391,12 +391,12 @@ public class Folder extends BaseRepeater implements
 
         public Converter(@NotNull Listener listener)
         {
-            super(listener);
+            super(listener, Folder.class);
         }
 
         public Converter(@NotNull Listener listener, boolean ensureExists)
         {
-            super(listener);
+            super(listener, Folder.class);
             this.ensureExists = ensureExists;
         }
 

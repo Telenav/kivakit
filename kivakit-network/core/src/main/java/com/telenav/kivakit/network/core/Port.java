@@ -168,7 +168,7 @@ public class Port implements AsString
 
         public Converter(Listener listener)
         {
-            super(listener);
+            super(listener, Port.class);
             integerConverter = new IntegerConverter(listener);
             hostConverter = new Host.Converter(listener);
         }

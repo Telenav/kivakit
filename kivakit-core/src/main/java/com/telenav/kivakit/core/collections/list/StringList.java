@@ -596,6 +596,12 @@ public class StringList extends ObjectList<String>
         return (StringList) super.rightOf(index);
     }
 
+    @Override
+    public StringList separator(String separator)
+    {
+        return (StringList) super.separator(separator);
+    }
+
     /**
      * Returns this string list with each element in single quotes
      */

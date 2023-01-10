@@ -176,10 +176,10 @@ public class Deployment extends MemorySettingsStore implements Serializable
                                                                           String switchName)
     {
         return switchParser(Deployment.class)
-                .name("deployment")
-                .validValues(deployments.deployments())
-                .converter(new Deployment.Converter(listener, deployments))
-                .description("The deployment configuration to run");
+            .name("deployment")
+            .validValues(deployments.deployments())
+            .converter(new Deployment.Converter(listener, deployments))
+            .description("The deployment configuration to run");
     }
 
     /**
@@ -197,7 +197,7 @@ public class Deployment extends MemorySettingsStore implements Serializable
 
         public Converter(Listener listener, DeploymentSet deployments)
         {
-            super(listener);
+            super(listener, Deployment.class);
             this.deployments = deployments;
         }
 

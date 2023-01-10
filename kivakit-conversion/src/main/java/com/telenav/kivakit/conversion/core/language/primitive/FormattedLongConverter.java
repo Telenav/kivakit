@@ -73,7 +73,7 @@ public class FormattedLongConverter extends BaseStringConverter<Long>
      */
     public FormattedLongConverter(Listener listener, DecimalFormat format)
     {
-        super(listener);
+        super(listener, Long.class);
         this.format = format;
     }
 

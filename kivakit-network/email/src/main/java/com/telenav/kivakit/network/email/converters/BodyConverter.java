@@ -43,7 +43,7 @@ public class BodyConverter extends BaseTwoWayConverter<StringList, EmailBody>
 {
     public BodyConverter(Listener listener)
     {
-        super(listener);
+        super(listener, StringList.class, EmailBody.class);
     }
 
     @Override

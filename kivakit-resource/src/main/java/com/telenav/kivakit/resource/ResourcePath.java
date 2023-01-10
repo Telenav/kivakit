@@ -181,7 +181,7 @@ public class ResourcePath extends StringPath implements
     {
         public Converter(@NotNull Listener listener)
         {
-            super(listener);
+            super(listener, ResourcePath.class);
         }
 
         @Override

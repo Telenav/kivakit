@@ -46,7 +46,7 @@ public class LongConverter extends BaseStringConverter<Long>
      */
     public LongConverter(Listener listener)
     {
-        super(listener);
+        super(listener, Long.class);
     }
 
     /**

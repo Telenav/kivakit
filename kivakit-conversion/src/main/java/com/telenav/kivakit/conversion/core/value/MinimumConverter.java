@@ -24,6 +24,6 @@ public class MinimumConverter extends BaseStringConverter<Minimum>
 {
     public MinimumConverter(Listener listener)
     {
-        super(listener, Minimum::parseMinimum);
+        super(listener, Minimum.class,Minimum::parseMinimum);
     }
 }

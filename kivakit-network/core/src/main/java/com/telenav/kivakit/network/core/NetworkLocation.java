@@ -167,7 +167,7 @@ public class NetworkLocation implements
     {
         public Converter(Listener listener)
         {
-            super(listener, NetworkLocation::parseNetworkLocation);
+            super(listener, NetworkLocation.class, NetworkLocation::parseNetworkLocation);
         }
     }
 

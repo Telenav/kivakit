@@ -26,7 +26,7 @@ public class SecondsConverter extends BaseStringConverter<Duration>
      */
     public SecondsConverter(Listener listener)
     {
-        super(listener);
+        super(listener, Duration.class);
     }
 
     /**

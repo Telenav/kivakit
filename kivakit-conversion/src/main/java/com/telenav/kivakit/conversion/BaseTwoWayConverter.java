@@ -81,9 +81,9 @@ public abstract class BaseTwoWayConverter<From, To> extends BaseConverter<From, 
     /**
      * @param listener Listener to report problems to
      */
-    protected BaseTwoWayConverter(Listener listener)
+    protected BaseTwoWayConverter(Listener listener, Class<From> from, Class<To> to)
     {
-        super(listener);
+        super(listener, from, to);
     }
 
     /**

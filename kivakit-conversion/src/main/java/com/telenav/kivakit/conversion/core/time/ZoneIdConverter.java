@@ -17,7 +17,7 @@ public class ZoneIdConverter extends BaseStringConverter<ZoneId>
      */
     public ZoneIdConverter(Listener listener)
     {
-        super(listener);
+        super(listener, ZoneId.class);
     }
 
     /**

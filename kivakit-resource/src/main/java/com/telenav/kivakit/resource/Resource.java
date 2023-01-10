@@ -276,7 +276,7 @@ public interface Resource extends
     {
         public Converter(@NotNull Listener listener)
         {
-            super(listener);
+            super(listener, Resource.class);
         }
 
         @Override

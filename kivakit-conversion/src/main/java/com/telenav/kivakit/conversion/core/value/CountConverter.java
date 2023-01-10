@@ -24,6 +24,6 @@ public class CountConverter extends BaseStringConverter<Count>
 {
     public CountConverter(Listener listener)
     {
-        super(listener, Count::parseCount);
+        super(listener, Count.class, Count::parseCount);
     }
 }
