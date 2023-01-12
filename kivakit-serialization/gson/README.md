@@ -30,14 +30,14 @@ This project contains support for serializing objects with Gson.
 
 ### Dependencies <a name="dependencies"></a> &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/dependencies-32.png" srcset="https://telenav.github.io/telenav-assets/images/icons/dependencies-32-2x.png 2x"/>
 
-[*Dependency Diagram*](https://www.kivakit.org/1.11.0/lexakai/kivakit/kivakit-serialization/gson/documentation/diagrams/dependencies.svg)
+[*Dependency Diagram*](https://www.kivakit.org/1.12.0/lexakai/kivakit/kivakit-serialization/gson/documentation/diagrams/dependencies.svg)
 
 #### Maven Dependency
 
     <dependency>
         <groupId>com.telenav.kivakit</groupId>
         <artifactId>kivakit-serialization-gson</artifactId>
-        <version>1.11.0</version>
+        <version>1.12.0</version>
     </dependency>
 
 <img src="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128.png" srcset="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128-2x.png 2x"/>
@@ -74,31 +74,31 @@ None
 
 ### Package Diagrams <a name="package-diagrams"></a> &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/box-24.png" srcset="https://telenav.github.io/telenav-assets/images/icons/box-24-2x.png 2x"/>
 
-[*com.telenav.kivakit.serialization.gson*](https://www.kivakit.org/1.11.0/lexakai/kivakit/kivakit-serialization/gson/documentation/diagrams/com.telenav.kivakit.serialization.gson.svg)  
-[*com.telenav.kivakit.serialization.gson.factory*](https://www.kivakit.org/1.11.0/lexakai/kivakit/kivakit-serialization/gson/documentation/diagrams/com.telenav.kivakit.serialization.gson.factory.svg)  
-[*com.telenav.kivakit.serialization.gson.serializers*](https://www.kivakit.org/1.11.0/lexakai/kivakit/kivakit-serialization/gson/documentation/diagrams/com.telenav.kivakit.serialization.gson.serializers.svg)
+[*com.telenav.kivakit.serialization.gson*](https://www.kivakit.org/1.12.0/lexakai/kivakit/kivakit-serialization/gson/documentation/diagrams/com.telenav.kivakit.serialization.gson.svg)  
+[*com.telenav.kivakit.serialization.gson.factory*](https://www.kivakit.org/1.12.0/lexakai/kivakit/kivakit-serialization/gson/documentation/diagrams/com.telenav.kivakit.serialization.gson.factory.svg)  
+[*com.telenav.kivakit.serialization.gson.serializers*](https://www.kivakit.org/1.12.0/lexakai/kivakit/kivakit-serialization/gson/documentation/diagrams/com.telenav.kivakit.serialization.gson.serializers.svg)
 
 ### Javadoc <a name="code-quality"></a> &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/books-24.png" srcset="https://telenav.github.io/telenav-assets/images/icons/books-24-2x.png 2x"/>
 
 | Class | Documentation Sections  |
 |-------|-------------------------|
-| [*BaseGsonFactory*](https://www.kivakit.org/1.11.0/javadoc/kivakit/kivakit-serialization-gson/com/telenav/kivakit/serialization/gson/factory/BaseGsonFactory.html) | Creation |  
+| [*BaseGsonFactory*](https://www.kivakit.org/1.12.0/javadoc/kivakit/kivakit-serialization-gson/com/telenav/kivakit/serialization/gson/factory/BaseGsonFactory.html) | Creation |  
 | | Configuration |  
 | | Properties |  
-| [*BaseGsonFactory.GsonSettings*](https://www.kivakit.org/1.11.0/javadoc/kivakit/kivakit-serialization-gson/com/telenav/kivakit/serialization/gson/factory/BaseGsonFactory.GsonSettings.html) |  |  
-| [*CountGsonSerializer*](https://www.kivakit.org/1.11.0/javadoc/kivakit/kivakit-serialization-gson/com/telenav/kivakit/serialization/gson/serializers/CountGsonSerializer.html) |  |  
-| [*GsonFactory*](https://www.kivakit.org/1.11.0/javadoc/kivakit/kivakit-serialization-gson/com/telenav/kivakit/serialization/gson/factory/GsonFactory.html) |  |  
-| [*GsonFactorySource*](https://www.kivakit.org/1.11.0/javadoc/kivakit/kivakit-serialization-gson/com/telenav/kivakit/serialization/gson/factory/GsonFactorySource.html) |  |  
-| [*GsonObjectSerializer*](https://www.kivakit.org/1.11.0/javadoc/kivakit/kivakit-serialization-gson/com/telenav/kivakit/serialization/gson/GsonObjectSerializer.html) |  |  
-| [*GsonSerializationProject*](https://www.kivakit.org/1.11.0/javadoc/kivakit/kivakit-serialization-gson/com/telenav/kivakit/serialization/gson/GsonSerializationProject.html) |  |  
-| [*JsonSerializerDeserializer*](https://www.kivakit.org/1.11.0/javadoc/kivakit/kivakit-serialization-gson/com/telenav/kivakit/serialization/gson/factory/JsonSerializerDeserializer.html) |  |  
-| [*KivaKitCoreGsonFactory*](https://www.kivakit.org/1.11.0/javadoc/kivakit/kivakit-serialization-gson/com/telenav/kivakit/serialization/gson/factory/KivaKitCoreGsonFactory.html) |  |  
-| [*LocalTimeGsonSerializer*](https://www.kivakit.org/1.11.0/javadoc/kivakit/kivakit-serialization-gson/com/telenav/kivakit/serialization/gson/serializers/LocalTimeGsonSerializer.html) |  |  
-| [*PrimitiveGsonSerializer*](https://www.kivakit.org/1.11.0/javadoc/kivakit/kivakit-serialization-gson/com/telenav/kivakit/serialization/gson/PrimitiveGsonSerializer.html) |  |  
-| [*ProblemGsonSerializer*](https://www.kivakit.org/1.11.0/javadoc/kivakit/kivakit-serialization-gson/com/telenav/kivakit/serialization/gson/serializers/ProblemGsonSerializer.html) |  |  
-| [*StringConverterGsonSerializer*](https://www.kivakit.org/1.11.0/javadoc/kivakit/kivakit-serialization-gson/com/telenav/kivakit/serialization/gson/serializers/StringConverterGsonSerializer.html) |  |  
-| [*TimeInMillisecondsGsonSerializer*](https://www.kivakit.org/1.11.0/javadoc/kivakit/kivakit-serialization-gson/com/telenav/kivakit/serialization/gson/serializers/TimeInMillisecondsGsonSerializer.html) |  |  
-| [*UtcTimeInKivaKitFormatGsonSerializer*](https://www.kivakit.org/1.11.0/javadoc/kivakit/kivakit-serialization-gson/com/telenav/kivakit/serialization/gson/serializers/UtcTimeInKivaKitFormatGsonSerializer.html) |  |  
+| [*BaseGsonFactory.GsonSettings*](https://www.kivakit.org/1.12.0/javadoc/kivakit/kivakit-serialization-gson/com/telenav/kivakit/serialization/gson/factory/BaseGsonFactory.GsonSettings.html) |  |  
+| [*CountGsonSerializer*](https://www.kivakit.org/1.12.0/javadoc/kivakit/kivakit-serialization-gson/com/telenav/kivakit/serialization/gson/serializers/CountGsonSerializer.html) |  |  
+| [*GsonFactory*](https://www.kivakit.org/1.12.0/javadoc/kivakit/kivakit-serialization-gson/com/telenav/kivakit/serialization/gson/factory/GsonFactory.html) |  |  
+| [*GsonFactorySource*](https://www.kivakit.org/1.12.0/javadoc/kivakit/kivakit-serialization-gson/com/telenav/kivakit/serialization/gson/factory/GsonFactorySource.html) |  |  
+| [*GsonObjectSerializer*](https://www.kivakit.org/1.12.0/javadoc/kivakit/kivakit-serialization-gson/com/telenav/kivakit/serialization/gson/GsonObjectSerializer.html) |  |  
+| [*GsonSerializationProject*](https://www.kivakit.org/1.12.0/javadoc/kivakit/kivakit-serialization-gson/com/telenav/kivakit/serialization/gson/GsonSerializationProject.html) |  |  
+| [*JsonSerializerDeserializer*](https://www.kivakit.org/1.12.0/javadoc/kivakit/kivakit-serialization-gson/com/telenav/kivakit/serialization/gson/factory/JsonSerializerDeserializer.html) |  |  
+| [*KivaKitCoreGsonFactory*](https://www.kivakit.org/1.12.0/javadoc/kivakit/kivakit-serialization-gson/com/telenav/kivakit/serialization/gson/factory/KivaKitCoreGsonFactory.html) |  |  
+| [*LocalTimeGsonSerializer*](https://www.kivakit.org/1.12.0/javadoc/kivakit/kivakit-serialization-gson/com/telenav/kivakit/serialization/gson/serializers/LocalTimeGsonSerializer.html) |  |  
+| [*PrimitiveGsonSerializer*](https://www.kivakit.org/1.12.0/javadoc/kivakit/kivakit-serialization-gson/com/telenav/kivakit/serialization/gson/PrimitiveGsonSerializer.html) |  |  
+| [*ProblemGsonSerializer*](https://www.kivakit.org/1.12.0/javadoc/kivakit/kivakit-serialization-gson/com/telenav/kivakit/serialization/gson/serializers/ProblemGsonSerializer.html) |  |  
+| [*StringConverterGsonSerializer*](https://www.kivakit.org/1.12.0/javadoc/kivakit/kivakit-serialization-gson/com/telenav/kivakit/serialization/gson/serializers/StringConverterGsonSerializer.html) |  |  
+| [*TimeInMillisecondsGsonSerializer*](https://www.kivakit.org/1.12.0/javadoc/kivakit/kivakit-serialization-gson/com/telenav/kivakit/serialization/gson/serializers/TimeInMillisecondsGsonSerializer.html) |  |  
+| [*UtcTimeInKivaKitFormatGsonSerializer*](https://www.kivakit.org/1.12.0/javadoc/kivakit/kivakit-serialization-gson/com/telenav/kivakit/serialization/gson/serializers/UtcTimeInKivaKitFormatGsonSerializer.html) |  |  
 
 [//]: # (start-user-text)
 
