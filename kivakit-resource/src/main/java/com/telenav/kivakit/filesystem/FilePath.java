@@ -296,7 +296,7 @@ public class FilePath extends ResourcePath
     {
         public Converter(@NotNull Listener listener)
         {
-            super(listener, FilePath::parseFilePath);
+            super(listener, FilePath.class, FilePath::parseFilePath);
         }
     }
 

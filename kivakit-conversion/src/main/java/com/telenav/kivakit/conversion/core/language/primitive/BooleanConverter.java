@@ -48,7 +48,7 @@ public class BooleanConverter extends BaseStringConverter<Boolean>
      */
     public BooleanConverter(Listener listener)
     {
-        super(listener);
+        super(listener, Boolean.class);
     }
 
     /**

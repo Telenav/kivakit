@@ -47,7 +47,7 @@ public class FloatConverter extends BaseStringConverter<Float>
      */
     public FloatConverter(Listener listener)
     {
-        super(listener);
+        super(listener, Float.class);
     }
 
     /**

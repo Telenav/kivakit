@@ -236,7 +236,7 @@ public class Host extends BaseRepeater implements
     {
         public Converter(Listener listener)
         {
-            super(listener, Host::parseHost);
+            super(listener, Host.class, Host::parseHost);
         }
     }
 

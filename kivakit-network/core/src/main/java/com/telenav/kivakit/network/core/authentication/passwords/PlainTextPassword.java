@@ -69,7 +69,7 @@ public class PlainTextPassword implements Password, StringFormattable
     {
         public Converter(Listener listener)
         {
-            super(listener);
+            super(listener, Password.class);
         }
 
         @Override

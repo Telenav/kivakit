@@ -64,7 +64,7 @@ public class UserName extends Name
     {
         public Converter(Listener listener)
         {
-            super(listener);
+            super(listener, UserName.class);
         }
 
         @Override

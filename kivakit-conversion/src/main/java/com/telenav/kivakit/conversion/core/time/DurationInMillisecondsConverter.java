@@ -19,7 +19,7 @@ import static com.telenav.kivakit.core.time.Duration.milliseconds;
 @CodeQuality(stability = STABLE,
              testing = UNTESTED,
              documentation = DOCUMENTATION_COMPLETE)
-public class MillisecondsConverter extends BaseStringConverter<Duration>
+public class DurationInMillisecondsConverter extends BaseStringConverter<Duration>
 {
     /** The underlying long value converter */
     private final LongConverter longConverter;
@@ -27,9 +27,9 @@ public class MillisecondsConverter extends BaseStringConverter<Duration>
     /**
      * @param listener The listener to report problems to
      */
-    public MillisecondsConverter(Listener listener)
+    public DurationInMillisecondsConverter(Listener listener)
     {
-        super(listener);
+        super(listener, Duration.class);
         longConverter = new LongConverter(listener);
     }
 

@@ -51,7 +51,7 @@ public class EnumConverter<T extends Enum<T>> extends BaseStringConverter<T>
      */
     public EnumConverter(Listener listener, Class<T> enumType)
     {
-        super(listener);
+        super(listener, enumType);
         this.enumType = ensureNotNull(enumType);
     }
 

@@ -24,6 +24,6 @@ public class MaximumConverter extends BaseStringConverter<Maximum>
 {
     public MaximumConverter(Listener listener)
     {
-        super(listener, Maximum::parseMaximum);
+        super(listener, Maximum.class, Maximum::parseMaximum);
     }
 }

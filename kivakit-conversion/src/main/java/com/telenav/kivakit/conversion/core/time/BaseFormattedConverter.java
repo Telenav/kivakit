@@ -58,7 +58,7 @@ public class BaseFormattedConverter extends BaseStringConverter<LocalTime>
                                   DateTimeFormatter formatter,
                                   ZoneId zone)
     {
-        super(listener);
+        super(listener, LocalTime.class);
         this.zone = zone;
         this.formatter = formatter;
     }

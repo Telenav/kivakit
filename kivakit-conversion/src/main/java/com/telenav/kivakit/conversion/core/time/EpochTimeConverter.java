@@ -3,38 +3,41 @@ package com.telenav.kivakit.conversion.core.time;
 import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.conversion.BaseStringConverter;
 import com.telenav.kivakit.core.messaging.Listener;
-import com.telenav.kivakit.core.time.Duration;
+import com.telenav.kivakit.core.time.Time;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
-import static com.telenav.kivakit.core.time.Duration.seconds;
-import static java.lang.Double.parseDouble;
+import static com.telenav.kivakit.core.time.Time.epochMilliseconds;
 
 /**
- * Converts seconds to and from {@link Duration}.
+ * Converts to and from {@link Time} using the given Java date time formatter
  *
  * @author jonathanl (shibo)
  */
+@SuppressWarnings("unused")
 @CodeQuality(stability = STABLE,
              testing = UNTESTED,
              documentation = DOCUMENTATION_COMPLETE)
-public class SecondsConverter extends BaseStringConverter<Duration>
+public class EpochTimeConverter extends BaseStringConverter<Time>
 {
     /**
      * @param listener The listener to report problems to
      */
-    public SecondsConverter(Listener listener)
+    public EpochTimeConverter(Listener listener)
     {
-        super(listener, Duration.class);
+        super(listener, Time.class);
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
-    protected Duration onToValue(String value)
+    protected String onToString(Time time)
     {
-        return seconds(parseDouble(value));
+        return Long.toString(time.epochMilliseconds());
+    }
+
+    @Override
+    protected Time onToValue(String value)
+    {
+        return epochMilliseconds(value);
     }
 }

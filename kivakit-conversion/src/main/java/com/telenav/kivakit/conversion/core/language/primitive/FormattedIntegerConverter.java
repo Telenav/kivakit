@@ -73,7 +73,7 @@ public class FormattedIntegerConverter extends BaseStringConverter<Integer>
      */
     public FormattedIntegerConverter(Listener listener, DecimalFormat format)
     {
-        super(listener);
+        super(listener, Integer.class);
         this.format = format;
     }
 

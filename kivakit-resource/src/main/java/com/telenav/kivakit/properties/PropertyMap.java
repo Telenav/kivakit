@@ -293,7 +293,8 @@ public class PropertyMap extends VariableMap<String>
         return doubleQuoted()
             .asStringList()
             .indented(4)
-            .bracketed();
+            .bracketed()
+            .asString();
     }
 
     /**

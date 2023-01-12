@@ -397,6 +397,16 @@ public class StringList extends ObjectList<String>
     }
 
     /**
+     * Returns this list with braces around it indented by 4 spaces
+     */
+    public StringList bracketed()
+    {
+        return newInstance()
+            .prepending("{")
+            .appending("}");
+    }
+
+    /**
      * {@inheritDoc}
      */
     @Override
@@ -569,6 +579,24 @@ public class StringList extends ObjectList<String>
         return prefixed;
     }
 
+    @Override
+    public StringList prepending(String value)
+    {
+        return (StringList) super.prepending(value);
+    }
+
+    @Override
+    public StringList prepending(Iterable<? extends String> values)
+    {
+        return (StringList) super.prepending(values);
+    }
+
+    @Override
+    public StringList prependingIfNotNull(String value)
+    {
+        return (StringList) super.prependingIfNotNull(value);
+    }
+
     /**
      * Prints the values in this string list to the console, separated by newlines
      */
@@ -594,6 +622,12 @@ public class StringList extends ObjectList<String>
     public StringList rightOf(int index)
     {
         return (StringList) super.rightOf(index);
+    }
+
+    @Override
+    public StringList separator(String separator)
+    {
+        return (StringList) super.separator(separator);
     }
 
     /**

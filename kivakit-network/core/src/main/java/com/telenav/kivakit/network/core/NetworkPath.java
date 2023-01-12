@@ -198,7 +198,7 @@ public class NetworkPath extends FilePath
     {
         public Converter(Listener listener)
         {
-            super(listener, NetworkPath::parseNetworkPath);
+            super(listener, NetworkPath.class, NetworkPath::parseNetworkPath);
         }
     }
 

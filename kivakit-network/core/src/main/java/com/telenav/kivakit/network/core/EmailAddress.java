@@ -83,7 +83,7 @@ public class EmailAddress
     {
         protected Converter(Listener listener)
         {
-            super(listener, EmailAddress::parseEmailAddress);
+            super(listener, EmailAddress.class, EmailAddress::parseEmailAddress);
         }
     }
 

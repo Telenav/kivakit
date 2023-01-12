@@ -93,13 +93,21 @@ public abstract class BaseConverter<From, To> extends BaseRepeater implements Co
     /** True if this converter allows null values */
     private boolean allowNull;
 
+    /** The class that this converter converts from */
+    private final Class<From> fromType;
+
+    /** The class that this converter converts to */
+    private final Class<To> toType;
+
     /**
      * Constructs a converter that broadcasts to the given listener
      *
      * @param listener The listener to send problems to
      */
-    protected BaseConverter(Listener listener)
+    protected BaseConverter(Listener listener, Class<From> fromType, Class<To> toType)
     {
+        this.fromType = fromType;
+        this.toType = toType;
         listener.listenTo(this);
     }
 
@@ -156,6 +164,18 @@ public abstract class BaseConverter<From, To> extends BaseRepeater implements Co
             // and return null.
             return null;
         }
+    }
+
+    @Override
+    public Class<From> fromType()
+    {
+        return fromType;
+    }
+
+    @Override
+    public Class<To> toType()
+    {
+        return toType;
     }
 
     /**

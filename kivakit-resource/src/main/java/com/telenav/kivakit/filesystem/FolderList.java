@@ -32,9 +32,9 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.filesystem.Folder.parseFolder;
 
@@ -80,7 +80,7 @@ public class FolderList extends ObjectList<Folder>
     {
         public Converter(@NotNull Listener listener)
         {
-            super(listener);
+            super(listener, FolderList.class);
         }
 
         @Override

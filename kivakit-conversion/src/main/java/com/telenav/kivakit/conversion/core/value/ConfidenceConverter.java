@@ -7,8 +7,8 @@ import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.value.level.Confidence;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 
 /**
@@ -24,6 +24,6 @@ public class ConfidenceConverter extends BaseStringConverter<Confidence>
 {
     public ConfidenceConverter(Listener listener)
     {
-        super(listener, Confidence::parseConfidence);
+        super(listener, Confidence.class, Confidence::parseConfidence);
     }
 }

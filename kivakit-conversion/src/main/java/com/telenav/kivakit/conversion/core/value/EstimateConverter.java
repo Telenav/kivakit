@@ -24,6 +24,6 @@ public class EstimateConverter extends BaseStringConverter<Estimate>
 {
     public EstimateConverter(Listener listener)
     {
-        super(listener, Estimate::parseEstimate);
+        super(listener, Estimate.class, Estimate::parseEstimate);
     }
 }

@@ -25,6 +25,8 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static com.telenav.kivakit.core.os.Console.console;
+import static com.telenav.kivakit.core.string.Strings.chop;
 import static com.telenav.kivakit.core.string.Strings.replaceAll;
 
 /**
@@ -50,9 +52,11 @@ public class Escape
     /**
      * Returns the given string with single quotes escaped
      */
-    public static String escapeSql(String text)
+    public static String escapeSql(String text, int maximumLength)
     {
-        return replaceAll(text, "'", "''");
+        text = replaceAll(text, "'", "''");
+        text = text.replaceAll("([\"%_])", "\\\\$1");
+        return chop(text.trim(), maximumLength - 1);
     }
 
     /**

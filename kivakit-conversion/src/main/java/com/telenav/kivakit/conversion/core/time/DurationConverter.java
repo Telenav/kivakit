@@ -27,6 +27,6 @@ public class DurationConverter extends BaseStringConverter<Duration>
      */
     public DurationConverter(Listener listener)
     {
-        super(listener, value -> parseDuration(listener, value));
+        super(listener, Duration.class, value -> parseDuration(listener, value));
     }
 }

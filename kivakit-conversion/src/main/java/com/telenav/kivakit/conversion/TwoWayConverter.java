@@ -2,7 +2,6 @@ package com.telenav.kivakit.conversion;
 
 import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.conversion.internal.lexakai.DiagramConversion;
-import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
@@ -17,7 +16,6 @@ import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
  *
  * <ul>
  *     <li>{@link #unconvert(Object)}</li>
- *     <li>{@link #unconverter(Listener)}</li>
  * </ul>
  *
  * @param <From> The original type
@@ -36,19 +34,4 @@ public interface TwoWayConverter<From, To> extends Converter<From, To>
      * Converts from the destination type back to the original type
      */
     From unconvert(To to);
-
-    /**
-     * Returns a converter that converts from type &lt;To&gt; back to type &lt;From&gt;.
-     */
-    default Converter<To, From> unconverter(Listener listener)
-    {
-        return new BaseConverter<>(listener)
-        {
-            @Override
-            protected From onConvert(To to)
-            {
-                return unconvert(to);
-            }
-        };
-    }
 }

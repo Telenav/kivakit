@@ -352,7 +352,7 @@ public class File extends BaseWritableResource implements FileSystemObject
     {
         public Converter(@NotNull Listener listener)
         {
-            super(listener, File::parseFile);
+            super(listener, File.class, File::parseFile);
         }
     }
 

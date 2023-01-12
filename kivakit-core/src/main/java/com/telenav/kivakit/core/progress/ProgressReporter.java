@@ -27,9 +27,10 @@ import com.telenav.kivakit.interfaces.lifecycle.Resettable;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
+import static com.telenav.kivakit.core.value.count.Count._1;
 
 /**
  * Reports the progress of some operation to an end-user in some manner. The operation begins when {@link #start()} is
@@ -53,10 +54,13 @@ public interface ProgressReporter extends Resettable
      */
     static ProgressReporter nullProgressReporter()
     {
-        return () ->
-        {
-        };
+        return new NullProgressReporter();
     }
+
+    /**
+     * Returns the step this reporter is at
+     */
+    Count at();
 
     /**
      * Report that the operation has ended
@@ -108,12 +112,46 @@ public interface ProgressReporter extends Resettable
     }
 
     /**
+     * Returns the number of steps that were okay
+     */
+    default Count okay()
+    {
+        return at().minus(problems());
+    }
+
+    /**
      * @param phase The phase of processing the same items multiple times, like "reading", "sorting", "saving"
      */
     default ProgressReporter phase(String phase)
     {
         return this;
     }
+
+    /**
+     * Report a problem
+     */
+    default void problem()
+    {
+        problems(_1);
+    }
+
+    /**
+     * Report several problems
+     */
+    void problems(long problems);
+
+    /**
+     * Report several problems
+     */
+    default void problems(Count problems)
+    {
+        problems(problems.asLong());
+    }
+
+    /**
+     * Returns The number of problems encountered
+     */
+    Count problems();
 
     /**
      * Calls a listener with the percent of progress each time it changes. This method is only called if
