@@ -85,10 +85,10 @@ public interface StringConverter<Value> extends
             this.delimiter = delimiter;
         }
 
+        @SuppressWarnings("unchecked")
         @Override
         protected ObjectList<Value> onToValue(String value)
         {
-            // noinspection unchecked
             return (ObjectList<Value>) convertToList(value, delimiter);
         }
     }
@@ -103,10 +103,10 @@ public interface StringConverter<Value> extends
             this.delimiter = delimiter;
         }
 
+        @SuppressWarnings("unchecked")
         @Override
         protected ObjectSet<Value> onToValue(String value)
         {
-            // noinspection unchecked
             return (ObjectSet<Value>) convertToSet(value, delimiter);
         }
     }
