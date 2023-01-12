@@ -402,6 +402,24 @@ public class ObjectList<Value> extends BaseList<Value>
         return lists;
     }
 
+    @Override
+    public ObjectList<Value> prepending(Value value)
+    {
+        return (ObjectList<Value>) super.prepending(value);
+    }
+
+    @Override
+    public ObjectList<Value> prepending(Iterable<? extends Value> values)
+    {
+        return (ObjectList<Value>) super.prepending(values);
+    }
+
+    @Override
+    public ObjectList<Value> prependingIfNotNull(Value value)
+    {
+        return (ObjectList<Value>) super.prependingIfNotNull(value);
+    }
+
     /**
      * {@inheritDoc}
      */

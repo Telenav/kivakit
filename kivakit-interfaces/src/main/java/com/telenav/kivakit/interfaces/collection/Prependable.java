@@ -27,8 +27,8 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.LinkedList;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABILITY_UNDETERMINED;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABILITY_UNDETERMINED;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 
 /**
@@ -128,4 +128,45 @@ public interface Prependable<Value> extends SpaceLimited
         }
         return true;
     }
+
+    /**
+     * Variant of appendAll that can be chained
+     *
+     * @param values The values to prepend
+     * @return This object, for chaining
+     */
+    default Prependable<Value> prepending(Iterable<? extends Value> values)
+    {
+        prependAll(values);
+        return this;
+    }
+
+    /**
+     * Variant of append that can be chained
+     *
+     * @param value The value to prepend
+     * @return This object, for chaining
+     */
+    default Prependable<Value> prepending(Value value)
+    {
+        prepend(value);
+        return this;
+    }
+
+    /**
+     * Appends the given value if it is not null
+     *
+     * @param value The value to prepend
+     * @return This object, for chaining
+     */
+    default Prependable<Value> prependingIfNotNull(Value value)
+    {
+        if (value != null)
+        {
+            prepend(value);
+        }
+        return this;
+    }
 }
+
+

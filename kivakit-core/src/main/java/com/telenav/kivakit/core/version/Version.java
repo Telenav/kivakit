@@ -312,7 +312,7 @@ public class Version
      */
     public boolean hasMinorVersion()
     {
-        return patch != NO_VERSION;
+        return minor != NO_VERSION;
     }
 
     /**
