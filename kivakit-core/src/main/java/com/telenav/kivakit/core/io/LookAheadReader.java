@@ -26,8 +26,8 @@ import org.jetbrains.annotations.NotNull;
 import java.io.IOException;
 import java.io.Reader;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_INSUFFICIENT;
 
 /**
@@ -148,7 +148,7 @@ public class LookAheadReader extends Reader
     /**
      * Moves the stream to the next value
      */
-    public final void next()
+    public final int next()
     {
         current = lookAhead;
         if (current == '\n')
@@ -163,6 +163,7 @@ public class LookAheadReader extends Reader
         {
             throw new IllegalStateException("Cannot read from input", e);
         }
+        return current;
     }
 
     /**

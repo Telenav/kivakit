@@ -32,6 +32,8 @@ import com.telenav.kivakit.interfaces.comparison.Filter;
 import com.telenav.kivakit.interfaces.comparison.Matcher;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
+import java.util.Collection;
+
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
@@ -104,6 +106,21 @@ public class MessageList extends ObjectList<Message> implements MessageCounter
         }
     };
 
+    public static MessageList captureMessages(Broadcaster broadcaster, Runnable code)
+    {
+        var issues = new MessageList();
+        issues.listenTo(broadcaster);
+        try
+        {
+            code.run();
+        }
+        finally
+        {
+            broadcaster.removeListener(issues);
+        }
+        return issues;
+    }
+
     public static MessageList emptyMessageList()
     {
         return EMPTY;
@@ -144,7 +161,7 @@ public class MessageList extends ObjectList<Message> implements MessageCounter
      * @param arguments The arguments to the problem message
      * @return The value if the code executed without throwing and exception, otherwise null
      */
-    public <T> T capture(UncheckedCode<T> code, String message, Object... arguments)
+    public <T> T captureMessages(UncheckedCode<T> code, String message, Object... arguments)
     {
         try
         {
@@ -256,18 +273,18 @@ public class MessageList extends ObjectList<Message> implements MessageCounter
      * {@inheritDoc}
      */
     @Override
-    public ObjectList<Message> matching(Matcher<Message> filter)
+    public MessageList matching(Matcher<Message> filter)
     {
-        return super.matching(filter);
+        return (MessageList) super.matching(filter);
     }
 
     /**
      * @param type The message type
      * @return The messages of the given type
      */
-    public ObjectList<Message> messagesOfType(Class<? extends Message> type)
+    public MessageList messagesOfType(Class<? extends Message> type)
     {
-        var messages = new ObjectList<Message>(maximumSize());
+        var messages = new MessageList();
         for (var object : this)
         {
             if (type.isAssignableFrom(object.getClass()))
@@ -307,5 +324,29 @@ public class MessageList extends ObjectList<Message> implements MessageCounter
         return isEmpty()
             ? "[No issues]"
             : formatted().prefixedWith(bullet()).titledBox("Issues");
+    }
+
+    @Override
+    public MessageList with(Message... value)
+    {
+        return (MessageList) super.with(value);
+    }
+
+    @Override
+    public MessageList with(Iterable<Message> value)
+    {
+        return (MessageList) super.with(value);
+    }
+
+    @Override
+    public MessageList with(Collection<Message> value)
+    {
+        return (MessageList) super.with(value);
+    }
+
+    @Override
+    public MessageList without(Matcher<Message> matcher)
+    {
+        return (MessageList) super.without(matcher);
     }
 }
