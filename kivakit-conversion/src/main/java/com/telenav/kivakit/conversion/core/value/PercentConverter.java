@@ -7,8 +7,8 @@ import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.value.level.Percent;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 
 /**
@@ -24,6 +24,6 @@ public class PercentConverter extends BaseStringConverter<Percent>
 {
     public PercentConverter(Listener listener)
     {
-        super(listener, Percent::parsePercent);
+        super(listener, Percent.class, Percent::parsePercent);
     }
 }

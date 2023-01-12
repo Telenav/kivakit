@@ -81,7 +81,7 @@ public class HexadecimalLongConverter extends BaseStringConverter<Long>
      */
     public HexadecimalLongConverter(Listener listener, Style style)
     {
-        super(listener);
+        super(listener, Long.class);
         this.style = style;
     }
 

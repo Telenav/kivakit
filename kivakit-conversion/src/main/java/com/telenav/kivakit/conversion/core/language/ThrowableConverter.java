@@ -47,7 +47,7 @@ public class ThrowableConverter extends BaseStringConverter<Throwable>
      */
     public ThrowableConverter(Listener listener)
     {
-        super(listener);
+        super(listener, Throwable.class);
     }
 
     /**

@@ -138,7 +138,10 @@ public class ObjectFormatter
             }
             else
             {
-                return strings.bracketed(4);
+                return strings
+                    .indented(4)
+                    .bracketed()
+                    .asString();
             }
         }
     }
@@ -197,7 +200,7 @@ public class ObjectFormatter
             // then, return the properties as a single line or a bracketed multi-line string.
             return objectFormat == SINGLE_LINE
                 ? formatted.join(", ")
-                : formatted.bracketed(recursionLevel * 4);
+                : formatted.indented(recursionLevel * 4).bracketed().asString();
         }
         else
         {

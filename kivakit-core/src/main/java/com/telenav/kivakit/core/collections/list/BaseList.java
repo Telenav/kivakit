@@ -188,8 +188,6 @@ import static com.telenav.kivakit.core.value.count.Maximum.MAXIMUM;
  * <p><b>String Conversions</b></p>
  *
  * <ul>
- *     <li>{@link #bracketed()}</li>
- *     <li>{@link #bracketed(int)}</li>
  *     <li>{@link #bulleted()} - The elements in this list as a bulleted string, with on element to a line</li>
  *     <li>{@link #bulleted(int)} - An indented bullet list of the elements in this list</li>
  *     <li>{@link #join()} - This list joined by the list {@link #separator()}</li>
@@ -348,15 +346,6 @@ public abstract class BaseList<Value> extends BaseCollection<Value> implements
         return (BaseList<Value>) Appendable.super.appending(values);
     }
 
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public BaseList<Value> appendingIfNotNull(Value value)
-    {
-        return (BaseList<Value>) Appendable.super.appendingIfNotNull(value);
-    }
-
     @Override
     public BaseList<Value> appending(Value value)
     {
@@ -364,19 +353,12 @@ public abstract class BaseList<Value> extends BaseCollection<Value> implements
     }
 
     /**
-     * Returns this list with braces around it indented by 4 spaces
+     * {@inheritDoc}
      */
-    public String bracketed()
+    @Override
+    public BaseList<Value> appendingIfNotNull(Value value)
     {
-        return bracketed(4);
-    }
-
-    /**
-     * Returns this list with braces around it indented by the given number of spaces
-     */
-    public String bracketed(int indent)
-    {
-        return "\n{\n" + bulleted(indent) + "\n}";
+        return (BaseList<Value>) Appendable.super.appendingIfNotNull(value);
     }
 
     /**
@@ -576,6 +558,18 @@ public abstract class BaseList<Value> extends BaseCollection<Value> implements
     public Value pop()
     {
         return isEmpty() ? null : removeLast();
+    }
+
+    @Override
+    public BaseList<Value> prepending(Iterable<? extends Value> values)
+    {
+        return (BaseList<Value>) Appendable.super.appending(values);
+    }
+
+    @Override
+    public BaseList<Value> prepending(Value value)
+    {
+        return (BaseList<Value>) Appendable.super.appending(value);
     }
 
     /**

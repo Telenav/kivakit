@@ -47,7 +47,7 @@ public class DoubleConverter extends BaseStringConverter<Double>
      */
     public DoubleConverter(Listener listener)
     {
-        super(listener);
+        super(listener, Double.class);
     }
 
     /**

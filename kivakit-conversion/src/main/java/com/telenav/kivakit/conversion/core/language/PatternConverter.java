@@ -47,7 +47,7 @@ public class PatternConverter extends BaseStringConverter<Pattern>
      */
     public PatternConverter(Listener listener)
     {
-        super(listener);
+        super(listener, Pattern.class);
     }
 
     /**

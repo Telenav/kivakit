@@ -290,7 +290,11 @@ public class PropertyMap extends VariableMap<String>
      */
     public String asJson()
     {
-        return "{ " + doubleQuoted().join(", ") + " }";
+        return doubleQuoted()
+            .asStringList()
+            .indented(4)
+            .bracketed()
+            .asString();
     }
 
     /**

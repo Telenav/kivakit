@@ -100,11 +100,11 @@ public class Version
     static
     {
         PATTERN = Pattern.compile("(?x) "
-                + "(?<major> \\d+)"
-                + "(\\. (?<minor> \\d+))?"
-                + "(\\. (?<patch> \\d+))?"
-                + "(- (?<release> \\w+))??"
-                + "(- (?<snapshot> SNAPSHOT))?", CASE_INSENSITIVE);
+            + "(?<major> \\d+)"
+            + "(\\. (?<minor> \\d+))?"
+            + "(\\. (?<patch> \\d+))?"
+            + "(- (?<release> \\w+))??"
+            + "(- (?<snapshot> SNAPSHOT))?", CASE_INSENSITIVE);
     }
 
     /**
@@ -142,14 +142,14 @@ public class Version
             var major = parseInt(listener, matcher.group("major"));
             var minor = matcher.group("minor");
             var minorVersion = (minor == null
-                    ? NO_VERSION
-                    : parseInt(listener, minor));
+                ? NO_VERSION
+                : parseInt(listener, minor));
 
             // then get the patch group and convert it to a number or NO_PATCH if there is none
             var patch = matcher.group("patch");
             var patchNumber = (patch == null
-                    ? NO_VERSION
-                    : parseInt(listener, patch));
+                ? NO_VERSION
+                : parseInt(listener, patch));
 
             // and the release name or null if there is none
             var releaseName = matcher.group("release");
@@ -300,9 +300,9 @@ public class Version
         if (object instanceof Version that)
         {
             return major == that.major
-                    && minor == that.minor
-                    && patch == that.patch
-                    && releaseType == that.releaseType;
+                && minor == that.minor
+                && patch == that.patch
+                && releaseType == that.releaseType;
         }
         return false;
     }
@@ -312,7 +312,7 @@ public class Version
      */
     public boolean hasMinorVersion()
     {
-        return patch != NO_VERSION;
+        return minor != NO_VERSION;
     }
 
     /**
@@ -412,6 +412,20 @@ public class Version
     }
 
     /**
+     * Returns true if this version matches the given version. If either version is missing the minor version, the minor
+     * versions are considered to match like a wildcard. The same goes for patch versions.
+     *
+     * @param that The version to match against
+     * @return True if this version matches the given version
+     */
+    public boolean matches(Version that)
+    {
+        return major == that.major
+            && (minor == NO_VERSION || that.minor == NO_VERSION || minor == that.minor)
+            && (patch == NO_VERSION || that.patch == NO_VERSION || patch == that.patch);
+    }
+
+    /**
      * Returns the minor version
      */
     public int minor()
@@ -469,10 +483,10 @@ public class Version
         }
 
         return major
-                + (hasMinorVersion() ? "." + minor : "")
-                + (hasPatchVersion() ? "." + patch : "")
-                + (hasRelease() ? "-" + releaseType.name().toLowerCase() : "")
-                + (isSnapshot() ? "-SNAPSHOT" : "");
+            + (hasMinorVersion() ? "." + minor : "")
+            + (hasPatchVersion() ? "." + patch : "")
+            + (hasRelease() ? "-" + releaseType.name().toLowerCase() : "")
+            + (isSnapshot() ? "-SNAPSHOT" : "");
     }
 
     /**

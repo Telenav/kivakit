@@ -145,7 +145,7 @@ public class FileList extends BaseResourceList<File> implements Iterable<File>
 
         public Converter(@NotNull Listener listener, @NotNull Extension extension)
         {
-            super(listener);
+            super(listener, FileList.class);
             this.extension = extension;
         }
 

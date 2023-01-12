@@ -73,7 +73,7 @@ public class FormattedDoubleConverter extends BaseStringConverter<Double>
      */
     public FormattedDoubleConverter(Listener listener, DecimalFormat format)
     {
-        super(listener);
+        super(listener, Double.class);
         this.format = format;
     }
 

@@ -359,6 +359,16 @@ public class Type<T> implements Named
     }
 
     /**
+     * Returns the matching named fields
+     *
+     * @param name The name of the field
+     */
+    public ObjectList<Field> fields(String name)
+    {
+        return allFields().matching(field -> field.name().equals(name));
+    }
+
+    /**
      * Returns the list of all fields in this type that match the given matcher
      *
      * @param matcher The matcher to match against
@@ -687,7 +697,7 @@ public class Type<T> implements Named
     public ObjectList<Object> reachableObjects(Object root)
     {
         return reachableObjects(root, field ->
-                !field.isStatic() && !field.isTransient() && !field.isPrimitive());
+            !field.isStatic() && !field.isTransient() && !field.isPrimitive());
     }
 
     /**

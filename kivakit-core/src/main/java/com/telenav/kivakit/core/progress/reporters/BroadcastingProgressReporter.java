@@ -75,7 +75,7 @@ import static com.telenav.kivakit.core.value.count.Count.count;
  *
  * <ul>
  *     <li>{@link #at()} - The current point in the operation</li>
- *     <li>{@link #at(long)} - Sets the current point in the operation</li>
+ *     <li>{@link #at(Count)} - Sets the current point in the operation</li>
  *     <li>{@link #end(String, Object...)} - Ends the operation</li>
  *     <li>{@link #next()} - Moves to the next step</li>
  *     <li>{@link #next(Count)} - Moves ahead by the given number of steps</li>
@@ -190,6 +190,9 @@ public class BroadcastingProgressReporter extends Multicaster implements Progres
     /** The number of steps in this operation */
     private long steps;
 
+    /** The number of problems that have been flagged */
+    private long problems;
+
     protected BroadcastingProgressReporter(BroadcastingProgressReporter that)
     {
         super(that);
@@ -206,6 +209,7 @@ public class BroadcastingProgressReporter extends Multicaster implements Progres
         lastPercent = that.lastPercent;
         ended = that.ended;
         started = that.started;
+        problems = that.problems;
     }
 
     protected BroadcastingProgressReporter()
@@ -215,17 +219,18 @@ public class BroadcastingProgressReporter extends Multicaster implements Progres
     /**
      * Returns the step we are at in the operation
      */
-    public long at()
+    @Override
+    public Count at()
     {
-        return at;
+        return count(at);
     }
 
     /**
      * Sets the step we are at
      */
-    public void at(long at)
+    public void at(Count at)
     {
-        this.at = at;
+        this.at = at.asLong();
     }
 
     /**
@@ -237,9 +242,10 @@ public class BroadcastingProgressReporter extends Multicaster implements Progres
         if (!ended)
         {
             ended = true;
-            report(at());
+            report(at);
             var formatted = format(message, arguments);
-            feedback(bottomLine(70, "$ $ in $", formatted, unitName, epochMilliseconds(start).elapsedSince()));
+            feedback(bottomLine(70, "$ $ in $ ($ problems)", formatted, unitName,
+                epochMilliseconds(start).elapsedSince(), problems()));
         }
     }
 
@@ -294,7 +300,7 @@ public class BroadcastingProgressReporter extends Multicaster implements Progres
             for (var at = next; at <= count; at += every)
             {
                 report(at);
-                at(at);
+                this.at = at;
             }
         }
     }
@@ -308,6 +314,21 @@ public class BroadcastingProgressReporter extends Multicaster implements Progres
         this.phase = phase;
         reset();
         return this;
+    }
+
+    @Override
+    public void problems(long problems)
+    {
+        this.problems += problems;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Count problems()
+    {
+        return count(problems);
     }
 
     /**
@@ -333,7 +354,7 @@ public class BroadcastingProgressReporter extends Multicaster implements Progres
         {
             every = 10;
         }
-        at(0);
+        this.at = 0;
     }
 
     /**
@@ -345,7 +366,7 @@ public class BroadcastingProgressReporter extends Multicaster implements Progres
         if (!started)
         {
             started = true;
-            at(0);
+            this.at = 0;
             feedback(topLine(70, label + " " + unitName));
             start = now().milliseconds();
             if (listener != null)
@@ -384,7 +405,7 @@ public class BroadcastingProgressReporter extends Multicaster implements Progres
     @Override
     public String toString()
     {
-        return toString(count(at()));
+        return progressMessage(at());
     }
 
     public BroadcastingProgressReporter withEvery(Count every)
@@ -453,9 +474,43 @@ public class BroadcastingProgressReporter extends Multicaster implements Progres
     {
         if (steps() != null && steps().isNonZero())
         {
-            return Percent.percent(100.0 * at() / steps().asLong());
+            return Percent.percent(100.0 * at / steps().asLong());
         }
         return null;
+    }
+
+    private String progressMessage(Count count)
+    {
+        var builder = new StringBuilder();
+        var commaSeparatedCount = count.asCommaSeparatedString();
+        builder.append("  ").append(commaSeparatedCount);
+        builder.append(" of ");
+        if (steps > 0)
+        {
+            builder.append(count(steps));
+            builder.append(" (");
+            builder.append(Percent.percent(100.0 * count.get() / steps).asInt());
+            builder.append("%)");
+        }
+        else
+        {
+            builder.append("?");
+        }
+        var elapsed = epochMilliseconds(start).elapsedSince();
+        if (unitName != null)
+        {
+            builder.append(" ");
+            builder.append(unitName);
+        }
+        builder.append(" in ");
+        builder.append(elapsed);
+        var rate = Rate.perSecond(count.get() / elapsed.asSeconds());
+        builder.append(" (");
+        builder.append(rate);
+        builder.append(", ");
+        builder.append(problems);
+        builder.append(" problems)");
+        return builder.toString();
     }
 
     private synchronized void report(long at)
@@ -475,11 +530,11 @@ public class BroadcastingProgressReporter extends Multicaster implements Progres
 
         if (steps <= 0)
         {
-            feedback(toString(count(at)) + " ");
+            feedback(progressMessage(count(at)) + " ");
         }
         else
         {
-            feedback(toString(count(at)));
+            feedback(progressMessage(count(at)));
         }
 
         var elapsed = lastReportedAt.elapsedSince().maximum(Duration.milliseconds(1));
@@ -508,37 +563,5 @@ public class BroadcastingProgressReporter extends Multicaster implements Progres
         }
 
         lastReportedAt = now();
-    }
-
-    private String toString(Count count)
-    {
-        var builder = new StringBuilder();
-        var commaSeparatedCount = count.asCommaSeparatedString();
-        builder.append("  ").append(commaSeparatedCount);
-        builder.append(" of ");
-        if (steps > 0)
-        {
-            builder.append(count(steps));
-            builder.append(" (");
-            builder.append(Percent.percent(100.0 * count.get() / steps).asInt());
-            builder.append("%)");
-        }
-        else
-        {
-            builder.append("?");
-        }
-        var elapsed = epochMilliseconds(start).elapsedSince();
-        if (unitName != null)
-        {
-            builder.append(" ");
-            builder.append(unitName);
-        }
-        builder.append(" in ");
-        builder.append(elapsed);
-        var rate = Rate.perSecond(count.get() / elapsed.asSeconds());
-        builder.append(" (");
-        builder.append(rate);
-        builder.append(")");
-        return builder.toString();
     }
 }

@@ -28,7 +28,7 @@ public class LevelConverter extends BaseStringConverter<Level>
 
     public LevelConverter(Listener listener)
     {
-        super(listener);
+        super(listener, Level.class);
     }
 
     public void lenient(boolean lenient)

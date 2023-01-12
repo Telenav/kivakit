@@ -82,7 +82,7 @@ public class SecureHttpNetworkLocation extends HttpNetworkLocation
     {
         public Converter(Listener listener)
         {
-            super(listener);
+            super(listener, SecureHttpNetworkLocation.class);
         }
 
         @Override

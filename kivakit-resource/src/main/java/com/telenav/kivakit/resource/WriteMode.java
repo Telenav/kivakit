@@ -22,6 +22,7 @@ import com.telenav.kivakit.annotations.code.quality.CodeQuality;
 import com.telenav.kivakit.resource.writing.WritableResource;
 import org.jetbrains.annotations.NotNull;
 
+import java.io.File;
 import java.io.OutputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -51,7 +52,10 @@ import static com.telenav.kivakit.core.ensure.Ensure.unsupported;
  * <p><b>Copying</b></p>
  *
  * <ul>
- *     <li>{@link #ensureAllowed(Resource, Resource)} - Returns true if this copy mode allows the given copy operation</li>
+ *     <li>{@link #ensureAllowed(Resource, WritableResource)} - Returns true if this copy mode allows the given copy operation</li>
+ *     <li>{@link #ensureAllowed(File)}</li>
+ *     <li>{@link #ensureAllowed(Path)}</li>
+ *     <li>{@link #ensureAllowed(OutputStream)}</li>
  * </ul>
  *
  * @author jonathanl (shibo)
@@ -79,9 +83,9 @@ public enum WriteMode
 
     /**
      * Ensures that the given source can be copied to the given destination  under this copy mode
+     *
      * @param source The source resource
      * @param target The writable target resource
-     *
      * @throws IllegalStateException Thrown if copying isn't allowed
      */
     public void ensureAllowed(@NotNull Resource source,
@@ -89,7 +93,9 @@ public enum WriteMode
     {
         switch (this)
         {
-            case APPEND, STREAM, OVERWRITE -> {}
+            case APPEND, STREAM, OVERWRITE ->
+            {
+            }
             case DO_NOT_OVERWRITE -> ensure(!target.exists() || target.isEmpty());
             case UPDATE -> ensure(!target.exists() || !source.isSame(target));
             default -> unsupported("Unsupported copy mode: ", this);
@@ -106,27 +112,33 @@ public enum WriteMode
     {
         switch (this)
         {
-            case APPEND, STREAM, OVERWRITE -> {}
+            case APPEND, STREAM, OVERWRITE ->
+            {
+            }
             case DO_NOT_OVERWRITE -> ensure(!target.exists());
             default -> unsupported("Unsupported copy mode: ", this);
         }
     }
 
-    public void ensureAllowed( Path javaPath)
+    public void ensureAllowed(Path javaPath)
     {
         switch (this)
         {
-            case APPEND, STREAM, OVERWRITE -> {}
+            case APPEND, STREAM, OVERWRITE ->
+            {
+            }
             case DO_NOT_OVERWRITE -> ensure(!Files.exists(javaPath));
             default -> unsupported("Unsupported copy mode: ", this);
         }
     }
 
-    public void ensureAllowed(final OutputStream out)
+    public void ensureAllowed(OutputStream out)
     {
         switch (this)
         {
-            case STREAM, OVERWRITE -> {}
+            case STREAM, OVERWRITE ->
+            {
+            }
             case APPEND, DO_NOT_OVERWRITE -> fail("Unsupported copy mode: ", this);
             default -> unsupported("Unsupported copy mode: ", this);
         }

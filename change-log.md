@@ -1,5 +1,44 @@
 # KivaKit Change Log
 
+## Version 1.12.0 (2023.01.12) "transparent monkey"
+
+### Core
+
+ - added runtime type information to converters
+ - improved format of PropertyMap.asJson()
+ - added some extensions to Extension
+ - register KivaKitCoreGsonFactory as the default for JSON serialization
+ - added problem counting to ProgressReporter
+ - improved Escape.escapeSql()
+ - added MessageList.captureMessages()
+ - added Prependable/BaseList/ObjectList/StringList.prepending() methods
+ - added StringList.bracketed() method that prepends and appends brackets
+ - improved PropertyMap.asJson() to used bracketed() method
+ - improved multiline formatting of ObjectFormatter
+
+### Data
+
+ - add quoting support for csv columns with type string
+
+### Examples
+
+ - added snippets project
+
+### Fixes
+   
+ - bug fixes to CsvReader, CsvWriter, and CsvLine
+   - improved null handling
+   - escape character handling
+   - bug fixes to parsing
+   - Fix CsvReader quoted column reading code
+   - Fixed CsvReaderTest
+   - Dropped support for line breaks in csv columns
+ - Version.hasMinorVersion() was checking the wrong field
+    
+### Resources
+
+ - Provided implementation of last modified time for StringResource
+ 
 ## Version 1.11.0 (2023.01.09) "happy beanbag"
 
 ### Bug Fixes

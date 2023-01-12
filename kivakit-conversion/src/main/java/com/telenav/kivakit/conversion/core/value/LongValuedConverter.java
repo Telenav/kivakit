@@ -6,8 +6,8 @@ import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.interfaces.function.Mapper;
 import com.telenav.kivakit.interfaces.value.LongValued;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static java.lang.Long.parseLong;
 
@@ -28,9 +28,9 @@ public class LongValuedConverter<Value extends LongValued> extends BaseStringCon
      * @param listener The listener to call with problems
      * @param factory The factory to use to construct new values
      */
-    public LongValuedConverter(Listener listener, Mapper<Long, Value> factory)
+    public LongValuedConverter(Listener listener, Class<Value> type, Mapper<Long, Value> factory)
     {
-        super(listener);
+        super(listener, type);
         this.factory = factory;
     }
 

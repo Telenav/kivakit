@@ -27,6 +27,6 @@ public class FrequencyConverter extends BaseStringConverter<Frequency>
      */
     public FrequencyConverter(Listener listener)
     {
-        super(listener, Frequency::parseFrequency);
+        super(listener, Frequency.class, Frequency::parseFrequency);
     }
 }

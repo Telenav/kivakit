@@ -60,7 +60,7 @@ public class TimeConverter extends BaseStringConverter<Time>
      */
     public TimeConverter(Listener listener, DateTimeFormatter formatter)
     {
-        super(listener);
+        super(listener, Time.class);
         this.formatter = formatter;
     }
 

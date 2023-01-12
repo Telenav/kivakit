@@ -74,7 +74,7 @@ public class HumanizedLocalDateTimeConverter extends BaseStringConverter<LocalTi
      */
     public HumanizedLocalDateTimeConverter(Listener listener)
     {
-        super(listener);
+        super(listener, LocalTime.class);
     }
 
     /**

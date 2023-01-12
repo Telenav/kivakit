@@ -26,8 +26,8 @@ import com.telenav.kivakit.network.email.EmailAttachment;
 
 import java.util.Base64;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 
 /**
@@ -42,7 +42,7 @@ public class AttachmentConverter extends BaseTwoWayConverter<StringList, EmailAt
 {
     public AttachmentConverter(Listener listener)
     {
-        super(listener);
+        super(listener, StringList.class, EmailAttachment.class);
     }
 
     @Override

@@ -46,7 +46,7 @@ public class VersionConverter extends BaseStringConverter<Version>
      */
     public VersionConverter(Listener listener)
     {
-        super(listener);
+        super(listener, Version.class);
     }
 
     /**

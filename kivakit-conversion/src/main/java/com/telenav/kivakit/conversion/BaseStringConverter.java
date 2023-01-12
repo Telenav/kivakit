@@ -107,26 +107,26 @@ public abstract class BaseStringConverter<Value> extends BaseConverter<String, V
     /**
      * @param listener The conversion listener
      */
-    protected BaseStringConverter(Listener listener)
+    protected BaseStringConverter(Listener listener, Class<Value> toType)
     {
-        super(listener);
+        super(listener, String.class, toType);
     }
 
     /**
      * @param listener The conversion listener
      */
-    protected BaseStringConverter(Listener listener, Function<String, Value> lambda)
+    protected BaseStringConverter(Listener listener, Class<Value> toType, Function<String, Value> lambda)
     {
-        super(listener);
+        super(listener, String.class, toType);
         this.lambda = lambda;
     }
 
     /**
      * @param listener The conversion listener
      */
-    protected BaseStringConverter(Listener listener, BiFunction<Listener, String, Value> biLambda)
+    protected BaseStringConverter(Listener listener, Class<Value> toType, BiFunction<Listener, String, Value> biLambda)
     {
-        super(listener);
+        super(listener, String.class, toType);
         this.biLambda = biLambda;
     }
 

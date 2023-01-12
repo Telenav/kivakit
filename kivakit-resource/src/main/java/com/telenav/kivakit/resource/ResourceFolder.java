@@ -41,11 +41,11 @@ import static com.telenav.kivakit.core.time.Time.now;
 import static com.telenav.kivakit.filesystem.Folder.FolderType.NORMAL;
 import static com.telenav.kivakit.filesystem.Folder.temporaryFolderForProcess;
 import static com.telenav.kivakit.interfaces.comparison.Matcher.matchAll;
-import static com.telenav.kivakit.resource.WriteMode.OVERWRITE;
 import static com.telenav.kivakit.resource.Extension.TEMPORARY;
 import static com.telenav.kivakit.resource.FolderCopyMode.PRESERVE_HIERARCHY;
 import static com.telenav.kivakit.resource.ResourceGlob.glob;
 import static com.telenav.kivakit.resource.ResourcePath.parseResourcePath;
+import static com.telenav.kivakit.resource.WriteMode.OVERWRITE;
 import static com.telenav.kivakit.resource.spi.ResourceFolderResolverService.resourceFolderResolverService;
 
 /**
@@ -112,10 +112,10 @@ import static com.telenav.kivakit.resource.spi.ResourceFolderResolverService.res
              testing = TESTING_NOT_NEEDED,
              documentation = DOCUMENTATION_COMPLETE)
 public interface ResourceFolder<T extends ResourceFolder<T>> extends
-        Repeater,
-        UriIdentified,
-        ResourcePathed,
-        Matchable<ResourcePathed>
+    Repeater,
+    UriIdentified,
+    ResourcePathed,
+    Matchable<ResourcePathed>
 {
     static ResourceFolder<?> resolveResourceFolder(@NotNull Listener listener,
                                                    @NotNull String identifier)
@@ -139,14 +139,15 @@ public interface ResourceFolder<T extends ResourceFolder<T>> extends
      *
      * @author jonathanl (shibo)
      */
+    @SuppressWarnings("rawtypes")
     @CodeQuality(stability = STABLE,
                  testing = TESTING_NOT_NEEDED,
                  documentation = DOCUMENTATION_COMPLETE)
-    class Converter extends BaseStringConverter<ResourceFolder<?>>
+    class Converter extends BaseStringConverter<ResourceFolder>
     {
         public Converter(Listener listener)
         {
-            super(listener);
+            super(listener, ResourceFolder.class);
         }
 
         @Override
@@ -200,10 +201,10 @@ public interface ResourceFolder<T extends ResourceFolder<T>> extends
         {
             // make relative target resource,
             var path = switch (folderMode)
-                    {
-                        case PRESERVE_HIERARCHY -> resource.relativeTo(this).path();
-                        case FLATTEN -> resource.fileName().path();
-                    };
+                {
+                    case PRESERVE_HIERARCHY -> resource.relativeTo(this).path();
+                    case FLATTEN -> resource.fileName().path();
+                };
             var target = listenTo(destination.file(path));
 
             // and if we can copy to it,

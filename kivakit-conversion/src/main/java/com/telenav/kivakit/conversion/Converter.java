@@ -82,6 +82,11 @@ public interface Converter<From, To> extends Repeater
     }
 
     /**
+     * Returns the type that this converter converts from
+     */
+    Class<From> fromType();
+
+    /**
      * Joins a collection of values, each converted by this converter, with the given separator
      *
      * @return The given collection of values converted using the given converter and separated by the given separator
@@ -111,4 +116,9 @@ public interface Converter<From, To> extends Repeater
     {
         return join(values, ", ");
     }
+
+    /**
+     * Returns the type that this converter converts to
+     */
+    Class<To> toType();
 }

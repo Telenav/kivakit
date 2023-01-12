@@ -33,7 +33,7 @@ public class BytesConverter extends BaseStringConverter<Bytes>
 {
     public BytesConverter(Listener listener)
     {
-        super(listener);
+        super(listener, Bytes.class);
     }
 
     @Override

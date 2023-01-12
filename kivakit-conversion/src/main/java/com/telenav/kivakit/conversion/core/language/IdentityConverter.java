@@ -24,8 +24,8 @@ import com.telenav.kivakit.conversion.internal.lexakai.DiagramConversionLanguage
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 
 /**
@@ -44,7 +44,7 @@ public class IdentityConverter extends BaseStringConverter<String>
      */
     public IdentityConverter(Listener listener)
     {
-        super(listener);
+        super(listener, String.class);
     }
 
     /**
