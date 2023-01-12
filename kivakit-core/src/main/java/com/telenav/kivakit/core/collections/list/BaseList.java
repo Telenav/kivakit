@@ -352,18 +352,6 @@ public abstract class BaseList<Value> extends BaseCollection<Value> implements
         return (BaseList<Value>) Appendable.super.appending(value);
     }
 
-    @Override
-    public BaseList<Value> prepending(Iterable<? extends Value> values)
-    {
-        return (BaseList<Value>) Appendable.super.appending(values);
-    }
-
-    @Override
-    public BaseList<Value> prepending(Value value)
-    {
-        return (BaseList<Value>) Appendable.super.appending(value);
-    }
-
     /**
      * {@inheritDoc}
      */
@@ -371,28 +359,6 @@ public abstract class BaseList<Value> extends BaseCollection<Value> implements
     public BaseList<Value> appendingIfNotNull(Value value)
     {
         return (BaseList<Value>) Appendable.super.appendingIfNotNull(value);
-    }
-
-    @Override
-    public BaseList<Value> appending(Value value)
-    {
-        return (BaseList<Value>) Appendable.super.appending(value);
-    }
-
-    /**
-     * Returns this list with braces around it indented by 4 spaces
-     */
-    public String bracketed()
-    {
-        return bracketed(4);
-    }
-
-    /**
-     * Returns this list with braces around it indented by the given number of spaces
-     */
-    public String bracketed(int indent)
-    {
-        return "\n{\n" + join("\n") + "\n}";
     }
 
     /**
@@ -592,6 +558,18 @@ public abstract class BaseList<Value> extends BaseCollection<Value> implements
     public Value pop()
     {
         return isEmpty() ? null : removeLast();
+    }
+
+    @Override
+    public BaseList<Value> prepending(Iterable<? extends Value> values)
+    {
+        return (BaseList<Value>) Appendable.super.appending(values);
+    }
+
+    @Override
+    public BaseList<Value> prepending(Value value)
+    {
+        return (BaseList<Value>) Appendable.super.appending(value);
     }
 
     /**
