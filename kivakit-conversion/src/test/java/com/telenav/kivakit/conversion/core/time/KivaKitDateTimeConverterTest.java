@@ -21,17 +21,16 @@ package com.telenav.kivakit.conversion.core.time;
 import com.telenav.kivakit.internal.testing.CoreUnitTest;
 import org.junit.Test;
 
-import java.time.ZoneId;
-
 import static com.telenav.kivakit.conversion.core.time.LocalDateTimeConverter.kivakitDateTimeConverter;
+import static com.telenav.kivakit.core.time.TimeZones.utc;
 
-public class KivaKitTimeConverterTest extends CoreUnitTest
+public class KivaKitDateTimeConverterTest extends CoreUnitTest
 {
     @Test
     public void testKivakitDateTimeConverter()
     {
-        var converter = kivakitDateTimeConverter(this, ZoneId.systemDefault());
-        var timeString = "2023.01.11_11.00PM_MT";
+        var converter = kivakitDateTimeConverter(this, utc());
+        var timeString = "2023.01.11_11.00PM_UTC";
         var time = converter.convert(timeString);
         var text = converter.unconvert(time);
         ensureEqual(text, timeString);
