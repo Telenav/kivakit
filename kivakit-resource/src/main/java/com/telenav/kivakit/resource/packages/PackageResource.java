@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.resource.packages;
 
-import com.telenav.kivakit.annotations.code.quality.CodeQuality;
+import com.telenav.kivakit.annotations.code.quality.TypeQuality;
 import com.telenav.kivakit.core.language.packaging.PackageReference;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.path.StringPath;
@@ -31,6 +31,7 @@ import com.telenav.kivakit.interfaces.comparison.Matcher;
 import com.telenav.kivakit.resource.FileName;
 import com.telenav.kivakit.resource.Resource;
 import com.telenav.kivakit.resource.ResourceFolder;
+import com.telenav.kivakit.resource.ResourceIdentifier;
 import com.telenav.kivakit.resource.ResourcePath;
 import com.telenav.kivakit.resource.ResourcePathed;
 import com.telenav.kivakit.resource.internal.lexakai.DiagramResourceType;
@@ -40,7 +41,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.io.InputStream;
 
-import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.quality.Stability.UNSTABLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.time.Time.now;
@@ -88,9 +89,9 @@ import static com.telenav.kivakit.resource.packages.Classpath.classpath;
  */
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramResourceType.class)
-@CodeQuality(stability = UNSTABLE,
+@TypeQuality(stability = UNSTABLE,
              testing = UNTESTED,
-             documentation = DOCUMENTATION_COMPLETE)
+             documentation = DOCUMENTED)
 public class PackageResource extends BaseReadableResource
 {
     /**
@@ -120,8 +121,8 @@ public class PackageResource extends BaseReadableResource
     {
         // Search the classpath for the given package and filename
         var found = classpath().allResources(listener).findFirst(resource ->
-                resource.packageReference().equals(resourcePath.withoutLast())
-                        && resource.fileName().name().equals(resourcePath.last()));
+            resource.packageReference().equals(PackageReference.packageReference(resourcePath.withoutLast()))
+                && resource.fileName().name().equals(resourcePath.last()));
 
         // and if the resource was found,
         if (found != null)
@@ -160,6 +161,16 @@ public class PackageResource extends BaseReadableResource
     }
 
     /**
+     * Returns the path to this resource from the classpath root (not including a parent JAR file or filesystem
+     * folder).
+     */
+    public ResourcePath classpathPath()
+    {
+        return parseResourcePath(this, resource.packageReference().asSlashSeparated()
+            + "/" + resource.fileName());
+    }
+
+    /**
      * {@inheritDoc}
      */
     @Override
@@ -189,6 +200,12 @@ public class PackageResource extends BaseReadableResource
     public int hashCode()
     {
         return resource.hashCode();
+    }
+
+    @Override
+    public ResourceIdentifier identifier()
+    {
+        return new ResourceIdentifier("classpath:" + packagePath() + "/" + fileName());
     }
 
     /**
@@ -232,16 +249,6 @@ public class PackageResource extends BaseReadableResource
     public PackagePath packagePath()
     {
         return PackagePath.packagePath(resource.packageReference());
-    }
-
-    /**
-     * Returns the path to this resource from the classpath root (not including a parent JAR file or
-     * filesystem folder).
-     */
-    public ResourcePath classpathPath()
-    {
-        return parseResourcePath(this, resource.packageReference().asSlashSeparated()
-                + "/" + resource.fileName());
     }
 
     /**

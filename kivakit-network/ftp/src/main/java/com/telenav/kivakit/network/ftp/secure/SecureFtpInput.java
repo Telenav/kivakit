@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.network.ftp.secure;
 
-import com.telenav.kivakit.annotations.code.quality.CodeQuality;
+import com.telenav.kivakit.annotations.code.quality.TypeQuality;
 import com.telenav.kivakit.core.io.IO;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.value.count.Bytes;
@@ -31,7 +31,7 @@ import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
-import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.value.count.Bytes.kilobytes;
@@ -45,9 +45,9 @@ import static com.telenav.kivakit.core.value.count.Bytes.kilobytes;
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramSecureFtp.class)
-@CodeQuality(stability = STABLE_EXTENSIBLE,
+@TypeQuality(stability = STABLE_EXTENSIBLE,
              testing = UNTESTED,
-             documentation = DOCUMENTATION_COMPLETE)
+             documentation = DOCUMENTED)
 class SecureFtpInput extends InputStream
 {
     /**

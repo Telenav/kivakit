@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.filesystem;
 
-import com.telenav.kivakit.annotations.code.quality.CodeQuality;
+import com.telenav.kivakit.annotations.code.quality.TypeQuality;
 import com.telenav.kivakit.conversion.BaseStringConverter;
 import com.telenav.kivakit.core.collections.map.VariableMap;
 import com.telenav.kivakit.core.collections.set.ObjectSet;
@@ -36,6 +36,7 @@ import com.telenav.kivakit.filesystem.spi.FileService;
 import com.telenav.kivakit.resource.Extension;
 import com.telenav.kivakit.resource.Resource;
 import com.telenav.kivakit.resource.ResourceFolder;
+import com.telenav.kivakit.resource.ResourceIdentifier;
 import com.telenav.kivakit.resource.ResourcePath;
 import com.telenav.kivakit.resource.WriteMode;
 import com.telenav.kivakit.resource.compression.Codec;
@@ -52,7 +53,7 @@ import java.net.URI;
 import java.nio.charset.Charset;
 import java.nio.file.attribute.PosixFilePermission;
 
-import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_INSUFFICIENT;
@@ -183,9 +184,9 @@ import static java.nio.file.attribute.PosixFilePermission.OWNER_WRITE;
  */
 @SuppressWarnings({ "SameParameterValue", "unused" })
 @UmlClassDiagram(diagram = DiagramFileSystemFile.class)
-@CodeQuality(stability = STABLE_EXTENSIBLE,
+@TypeQuality(stability = STABLE_EXTENSIBLE,
              testing = TESTING_INSUFFICIENT,
-             documentation = DOCUMENTATION_COMPLETE)
+             documentation = DOCUMENTED)
 public class File extends BaseWritableResource implements FileSystemObject
 {
     public static PosixFilePermission[] ACCESS_ALL = { OWNER_READ,
@@ -345,9 +346,9 @@ public class File extends BaseWritableResource implements FileSystemObject
      *
      * @author jonathanl (shibo)
      */
-    @CodeQuality(stability = STABLE,
+    @TypeQuality(stability = STABLE,
                  testing = TESTING_NOT_NEEDED,
-                 documentation = DOCUMENTATION_COMPLETE)
+                 documentation = DOCUMENTED)
     public static class Converter extends BaseStringConverter<File>
     {
         public Converter(@NotNull Listener listener)
@@ -516,6 +517,12 @@ public class File extends BaseWritableResource implements FileSystemObject
     public int hashCode()
     {
         return path().hashCode();
+    }
+
+    @Override
+    public ResourceIdentifier identifier()
+    {
+        return new ResourceIdentifier(path().toString());
     }
 
     /**

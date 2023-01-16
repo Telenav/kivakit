@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.filesystem.spi;
 
-import com.telenav.kivakit.annotations.code.quality.CodeQuality;
+import com.telenav.kivakit.annotations.code.quality.TypeQuality;
 import com.telenav.kivakit.core.value.count.Bytes;
 import com.telenav.kivakit.core.value.level.Percent;
 import com.telenav.kivakit.resource.internal.lexakai.DiagramFileSystemService;
@@ -26,7 +26,7 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Audience.AUDIENCE_SERVICE_PROVIDER_INTERFACE;
-import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
 
 /**
@@ -43,9 +43,9 @@ import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_N
  * @see FileSystemService
  */
 @UmlClassDiagram(diagram = DiagramFileSystemService.class)
-@CodeQuality(stability = STABLE_EXTENSIBLE,
+@TypeQuality(stability = STABLE_EXTENSIBLE,
              testing = TESTING_NOT_NEEDED,
-             documentation = DOCUMENTATION_COMPLETE,
+             documentation = DOCUMENTED,
              audience = AUDIENCE_SERVICE_PROVIDER_INTERFACE)
 public interface DiskService
 {

@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.collections.set;
 
-import com.telenav.kivakit.annotations.code.quality.CodeQuality;
+import com.telenav.kivakit.annotations.code.quality.TypeQuality;
 import com.telenav.kivakit.collections.internal.lexakai.DiagramSet;
 import com.telenav.kivakit.core.collections.set.ConcurrentHashSet;
 import com.telenav.kivakit.interfaces.comparison.Equality;
@@ -27,7 +27,7 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 import java.util.Set;
 
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 
 /**
@@ -45,9 +45,9 @@ import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
  */
 @SuppressWarnings({ "SpellCheckingInspection", "unused" })
 @UmlClassDiagram(diagram = DiagramSet.class)
-@CodeQuality(stability = STABLE_EXTENSIBLE,
+@TypeQuality(stability = STABLE_EXTENSIBLE,
              testing = UNTESTED,
-             documentation = DOCUMENTATION_COMPLETE)
+             documentation = DOCUMENTED)
 public abstract class SetDifferencer<Element>
 {
     private final Equality<Element> updateComparator;

@@ -18,7 +18,8 @@
 
 package com.telenav.kivakit.core.function;
 
-import com.telenav.kivakit.annotations.code.quality.CodeQuality;
+import com.telenav.kivakit.annotations.code.quality.TypeQuality;
+import com.telenav.kivakit.core.code.UncheckedCode;
 import com.telenav.kivakit.core.code.UncheckedVoidCode;
 import com.telenav.kivakit.core.function.arities.PentaFunction;
 import com.telenav.kivakit.core.function.arities.TetraFunction;
@@ -40,7 +41,7 @@ import java.util.function.BiFunction;
 import java.util.function.Consumer;
 import java.util.function.Function;
 
-import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_INSUFFICIENT;
 import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
@@ -61,8 +62,8 @@ import static java.util.Objects.hash;
  *
  * <ol>
  *     <li>{@link #absent()} - A successful {@link Result} with no value</li>
- *     <li>{@link #success(Maybe)} - Creates a {@link Result} with the given value</li>
- *     <li>{@link #success(Object)} - Creates a {@link Result} with the given value</li>
+ *     <li>{@link #result(Maybe)} - Creates a {@link Result} with the given value</li>
+ *     <li>{@link #result(Object)} - Creates a {@link Result} with the given value</li>
  *     <li>{@link #failure(String, Object...)} - Creates a {@link Result} with the given failure message</li>
  *     <li>{@link #failure(Throwable, String, Object...)} - Creates a {@link Result} with the given failure message</li>
  * </ol>
@@ -124,9 +125,9 @@ import static java.util.Objects.hash;
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramMessaging.class)
 @UmlRelation(label = "failure reason", referent = Message.class)
-@CodeQuality(stability = STABLE_EXTENSIBLE,
+@TypeQuality(stability = STABLE_EXTENSIBLE,
              testing = TESTING_INSUFFICIENT,
-             documentation = DOCUMENTATION_COMPLETE)
+             documentation = DOCUMENTED)
 public class Result<Value> extends Maybe<Value> implements RepeaterMixin
 {
     /**
@@ -141,14 +142,6 @@ public class Result<Value> extends Maybe<Value> implements RepeaterMixin
     public static <Value> Result<Value> absent()
     {
         return (Result<Value>) RESULT_ABSENT;
-    }
-
-    /**
-     * Returns a result that captures messages from the given broadcaster
-     */
-    public static <T> Result<T> capture(Broadcaster value)
-    {
-        return new Result<>(value);
     }
 
     /**
@@ -196,12 +189,23 @@ public class Result<Value> extends Maybe<Value> implements RepeaterMixin
     }
 
     /**
-     * Returns a result with the given value
+     * Returns the result of executing the given {@link UncheckedCode}. Captures any value, or any failure messages
+     * broadcast by the code during the call, and returns a {@link Result}.
+     *
+     * @return The {@link Result} of the call
      */
-    @SuppressWarnings("unused")
-    public static <T> Result<T> present(T value)
+    public static <T> Result<T> result(UncheckedCode<T> code)
     {
-        return unsupported("Call Result.success(), not Result.present()");
+        var result = new Result<T>(code);
+        try
+        {
+            result.set(code.run());
+        }
+        catch (Exception e)
+        {
+            result.problem(e, "Operation failed with exception");
+        }
+        return result;
     }
 
     /**
@@ -210,10 +214,10 @@ public class Result<Value> extends Maybe<Value> implements RepeaterMixin
      *
      * @return The {@link Result} of the call
      */
-    public static <T> Result<T> run(Broadcaster broadcaster, Code<T> code)
+    public static <T> Result<T> result(Broadcaster broadcaster, Code<T> code)
     {
         // Create an empty result that captures messages from this object,
-        var result = Result.<T>capture(broadcaster);
+        var result = new Result<T>(broadcaster);
 
         try
         {
@@ -233,7 +237,7 @@ public class Result<Value> extends Maybe<Value> implements RepeaterMixin
     /**
      * Returns a {@link Result} for a value that may or may not be present
      */
-    public static <Value> Result<Value> success(Maybe<Value> value)
+    public static <Value> Result<Value> result(Maybe<Value> value)
     {
         return new Result<>(value);
     }
@@ -241,7 +245,7 @@ public class Result<Value> extends Maybe<Value> implements RepeaterMixin
     /**
      * Returns a result with the given value
      */
-    public static <T> Result<T> success(T value)
+    public static <T> Result<T> result(T value)
     {
         return new Result<>(value);
     }
@@ -406,8 +410,8 @@ public class Result<Value> extends Maybe<Value> implements RepeaterMixin
      */
     @Override
     public <Argument2, Argument3, ResultType> Result<ResultType> map(
-            TriFunction<Value, Argument2, Argument3, ResultType> function, Argument2 argument2,
-            Argument3 argument3)
+        TriFunction<Value, Argument2, Argument3, ResultType> function, Argument2 argument2,
+        Argument3 argument3)
     {
         return (Result<ResultType>) super.map(function, argument2, argument3);
     }
@@ -419,8 +423,8 @@ public class Result<Value> extends Maybe<Value> implements RepeaterMixin
      */
     @Override
     public <Argument2, Argument3, Argument4, ResultType> Result<ResultType> map(
-            TetraFunction<Value, Argument2, Argument3, Argument4, ResultType> function, Argument2 argument2,
-            Argument3 argument3, Argument4 argument4)
+        TetraFunction<Value, Argument2, Argument3, Argument4, ResultType> function, Argument2 argument2,
+        Argument3 argument3, Argument4 argument4)
     {
         return (Result<ResultType>) super.map(function, argument2, argument3, argument4);
     }
@@ -432,9 +436,9 @@ public class Result<Value> extends Maybe<Value> implements RepeaterMixin
      */
     @Override
     public <Argument2, Argument3, Argument4, Argument5, ResultType> Result<ResultType> map(
-            PentaFunction<Value, Argument2, Argument3, Argument4, Argument5, ResultType> function,
-            Argument2 argument2,
-            Argument3 argument3, Argument4 argument4, Argument5 argument5)
+        PentaFunction<Value, Argument2, Argument3, Argument4, Argument5, ResultType> function,
+        Argument2 argument2,
+        Argument3 argument3, Argument4 argument4, Argument5 argument5)
     {
         return (Result<ResultType>) super.map(function, argument2, argument3, argument4, argument5);
     }

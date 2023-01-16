@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.core.logging;
 
-import com.telenav.kivakit.annotations.code.quality.CodeQuality;
+import com.telenav.kivakit.annotations.code.quality.TypeQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramLogging;
 import com.telenav.kivakit.core.messaging.context.CallStack;
 import com.telenav.kivakit.core.messaging.context.CodeContext;
@@ -26,7 +26,7 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.lang.reflect.Method;
 
-import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.messaging.context.CallStack.Matching.EXACT;
@@ -40,9 +40,9 @@ import static java.util.Objects.requireNonNull;
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramLogging.class)
-@CodeQuality(stability = STABLE,
+@TypeQuality(stability = STABLE,
              testing = UNTESTED,
-             documentation = DOCUMENTATION_COMPLETE)
+             documentation = DOCUMENTED)
 public class LoggerCodeContext extends CodeContext
 {
     public LoggerCodeContext()

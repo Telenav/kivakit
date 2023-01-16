@@ -55,12 +55,12 @@ public class ResultTest extends CoreUnitTest implements
     public void testCapture()
     {
         var operation = new Operation(SUCCEED);
-        var result = Result.run(operation, operation);
+        var result = Result.result(operation, operation);
         ensure(result.succeeded());
         ensureEqual(result.get(), "Hello, World!");
 
         operation = new Operation(FAIL);
-        result = Result.run(operation, operation);
+        result = Result.result(operation, operation);
         ensureEqual(result.get(), null);
         ensure(result.failed());
         ensure(result.messages().isNonEmpty());
@@ -118,7 +118,7 @@ public class ResultTest extends CoreUnitTest implements
     public void testOrProblem()
     {
         ensureBroadcastsProblem(Result.absent(), result -> result.orProblem("missing"));
-        ensureBroadcastsNoProblem(Result.success(3), result -> result.orProblem("missing"));
+        ensureBroadcastsNoProblem(Result.result(3), result -> result.orProblem("missing"));
     }
 
     /**

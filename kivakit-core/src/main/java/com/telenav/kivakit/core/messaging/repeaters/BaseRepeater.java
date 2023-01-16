@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.core.messaging.repeaters;
 
-import com.telenav.kivakit.annotations.code.quality.CodeQuality;
+import com.telenav.kivakit.annotations.code.quality.TypeQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramRepeater;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.messaging.Message;
@@ -30,7 +30,7 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.concurrent.atomic.AtomicInteger;
 
-import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.ensure.Ensure.ensure;
@@ -57,9 +57,9 @@ import static com.telenav.kivakit.core.ensure.Ensure.ensure;
  * @see Mixin
  */
 @UmlClassDiagram(diagram = DiagramRepeater.class)
-@CodeQuality(stability = STABLE_EXTENSIBLE,
+@TypeQuality(stability = STABLE_EXTENSIBLE,
              testing = UNTESTED,
-             documentation = DOCUMENTATION_COMPLETE)
+             documentation = DOCUMENTED)
 public class BaseRepeater extends Multicaster implements Repeater
 {
     /** The number of failures that this repeater has seen */

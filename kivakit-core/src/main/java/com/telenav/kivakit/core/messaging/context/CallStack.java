@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.core.messaging.context;
 
-import com.telenav.kivakit.annotations.code.quality.CodeQuality;
+import com.telenav.kivakit.annotations.code.quality.TypeQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramContext;
 import com.telenav.kivakit.core.language.reflection.Method;
 import com.telenav.kivakit.core.messaging.Debug;
@@ -28,7 +28,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.language.reflection.Method.method;
 import static com.telenav.kivakit.core.messaging.context.CallStack.Matching.EXACT;
@@ -52,9 +52,9 @@ import static java.lang.Thread.currentThread;
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramContext.class)
-@CodeQuality(stability = STABLE_EXTENSIBLE,
+@TypeQuality(stability = STABLE_EXTENSIBLE,
              testing = UNTESTED,
-             documentation = DOCUMENTATION_COMPLETE)
+             documentation = DOCUMENTED)
 public class CallStack
 {
     public static Method callerOf(Proximity proximity, Matching matching, Class<?> calleeType)

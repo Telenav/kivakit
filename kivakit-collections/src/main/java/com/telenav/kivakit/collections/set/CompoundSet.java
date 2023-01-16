@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.collections.set;
 
-import com.telenav.kivakit.annotations.code.quality.CodeQuality;
+import com.telenav.kivakit.annotations.code.quality.TypeQuality;
 import com.telenav.kivakit.collections.internal.lexakai.DiagramSet;
 import com.telenav.kivakit.core.collections.iteration.CompoundIterator;
 import com.telenav.kivakit.core.collections.iteration.FilteredIterable;
@@ -34,7 +34,7 @@ import java.util.List;
 import java.util.Set;
 
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.ensure.Ensure.unsupported;
 import static java.util.Collections.unmodifiableSet;
@@ -46,9 +46,9 @@ import static java.util.Collections.unmodifiableSet;
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramSet.class)
-@CodeQuality(stability = STABLE_EXTENSIBLE,
+@TypeQuality(stability = STABLE_EXTENSIBLE,
              testing = UNTESTED,
-             documentation = DOCUMENTATION_COMPLETE)
+             documentation = DOCUMENTED)
 public class CompoundSet<Element> implements Set<Element>
 {
     private final List<Set<Element>> sets = new ArrayList<>();

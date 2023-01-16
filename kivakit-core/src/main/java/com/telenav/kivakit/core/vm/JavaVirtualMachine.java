@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.core.vm;
 
-import com.telenav.kivakit.annotations.code.quality.CodeQuality;
+import com.telenav.kivakit.annotations.code.quality.TypeQuality;
 import com.telenav.kivakit.core.collections.map.VariableMap;
 import com.telenav.kivakit.core.internal.lexakai.DiagramLanguage;
 import com.telenav.kivakit.core.messaging.repeaters.BaseRepeater;
@@ -30,7 +30,7 @@ import com.telenav.lexakai.annotations.associations.UmlAggregation;
 import java.nio.file.Path;
 
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.os.OperatingSystem.operatingSystem;
 import static com.telenav.kivakit.core.value.count.Bytes.bytes;
@@ -81,9 +81,9 @@ import static com.telenav.kivakit.core.value.count.Count.count;
  */
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramLanguage.class)
-@CodeQuality(stability = STABLE_EXTENSIBLE,
+@TypeQuality(stability = STABLE_EXTENSIBLE,
              testing = UNTESTED,
-             documentation = DOCUMENTATION_COMPLETE)
+             documentation = DOCUMENTED)
 public class JavaVirtualMachine extends BaseRepeater
 {
     private static final boolean DETAILED_DEBUG = true;

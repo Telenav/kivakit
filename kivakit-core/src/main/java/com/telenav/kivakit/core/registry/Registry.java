@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.core.registry;
 
-import com.telenav.kivakit.annotations.code.quality.CodeQuality;
+import com.telenav.kivakit.annotations.code.quality.TypeQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramRegistry;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
@@ -27,7 +27,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
 import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
 
@@ -77,9 +77,9 @@ import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
  */
 @UmlClassDiagram(diagram = DiagramRegistry.class)
 @UmlRelation(label = "locates instances with", referent = InstanceIdentifier.class)
-@CodeQuality(stability = STABLE_EXTENSIBLE,
+@TypeQuality(stability = STABLE_EXTENSIBLE,
              testing = TESTING_NOT_NEEDED,
-             documentation = DOCUMENTATION_COMPLETE)
+             documentation = DOCUMENTED)
 public class Registry implements RegistryTrait
 {
     /** The global lookup */

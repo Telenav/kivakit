@@ -1,11 +1,11 @@
 package com.telenav.kivakit.interfaces.code;
 
-import com.telenav.kivakit.annotations.code.quality.CodeQuality;
+import com.telenav.kivakit.annotations.code.quality.TypeQuality;
 
 import java.util.IdentityHashMap;
 import java.util.Map;
 
-import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABILITY_UNDETERMINED;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 
@@ -17,9 +17,9 @@ import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
  * @author jonathanl (shibo)
  */
 @SuppressWarnings("unused")
-@CodeQuality(stability = STABILITY_UNDETERMINED,
+@TypeQuality(stability = STABILITY_UNDETERMINED,
              testing = UNTESTED,
-             documentation = DOCUMENTATION_COMPLETE,
+             documentation = DOCUMENTED,
              reviews = 1,
              reviewers = "shibo")
 public interface TripwireTrait

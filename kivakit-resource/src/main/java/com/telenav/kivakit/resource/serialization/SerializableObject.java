@@ -1,12 +1,12 @@
 package com.telenav.kivakit.resource.serialization;
 
-import com.telenav.kivakit.annotations.code.quality.CodeQuality;
+import com.telenav.kivakit.annotations.code.quality.TypeQuality;
 import com.telenav.kivakit.core.registry.InstanceIdentifier;
 import com.telenav.kivakit.core.version.Version;
 import com.telenav.kivakit.core.version.VersionedObject;
 import org.jetbrains.annotations.NotNull;
 
-import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.quality.Stability.UNSTABLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.language.Hash.hashMany;
@@ -18,8 +18,8 @@ import static com.telenav.kivakit.core.registry.InstanceIdentifier.singletonInst
  *
  * @author jonathanl (shibo)
  */
-@CodeQuality(stability = UNSTABLE,
-             documentation = DOCUMENTATION_COMPLETE,
+@TypeQuality(stability = UNSTABLE,
+             documentation = DOCUMENTED,
              testing = UNTESTED)
 public class SerializableObject<T> extends VersionedObject<T>
 {

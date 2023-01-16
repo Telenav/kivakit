@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.core.language;
 
-import com.telenav.kivakit.annotations.code.quality.CodeQuality;
+import com.telenav.kivakit.annotations.code.quality.TypeQuality;
 
 import java.io.InputStream;
 import java.lang.reflect.Constructor;
@@ -26,7 +26,7 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
 
-import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.ensure.Ensure.ensure;
@@ -57,9 +57,9 @@ import static com.telenav.kivakit.core.string.Paths.pathOptionalSuffix;
  * @author jonathanl (shibo)
  */
 @SuppressWarnings({ "unchecked", "unused" })
-@CodeQuality(stability = STABLE_EXTENSIBLE,
+@TypeQuality(stability = STABLE_EXTENSIBLE,
              testing = UNTESTED,
-             documentation = DOCUMENTATION_COMPLETE)
+             documentation = DOCUMENTED)
 public class Classes
 {
     /**

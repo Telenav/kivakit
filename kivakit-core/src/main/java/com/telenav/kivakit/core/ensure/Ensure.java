@@ -1,6 +1,6 @@
 package com.telenav.kivakit.core.ensure;
 
-import com.telenav.kivakit.annotations.code.quality.CodeQuality;
+import com.telenav.kivakit.annotations.code.quality.TypeQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramEnsure;
 import com.telenav.kivakit.core.logging.Logger;
 import com.telenav.kivakit.core.messaging.Broadcaster;
@@ -171,7 +171,7 @@ import static java.lang.System.arraycopy;
  */
 @SuppressWarnings("unused") @UmlClassDiagram(diagram = DiagramEnsure.class)
 @UmlRelation(label = "reports", referent = EnsureProblem.class)
-@CodeQuality(stability = STABLE_EXTENSIBLE,
+@TypeQuality(stability = STABLE_EXTENSIBLE,
              testing = TESTING_INSUFFICIENT,
              documentation = DOCUMENTATION_INSUFFICIENT)
 public class Ensure

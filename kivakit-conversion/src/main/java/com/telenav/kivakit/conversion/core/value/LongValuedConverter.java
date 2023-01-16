@@ -1,12 +1,12 @@
 package com.telenav.kivakit.conversion.core.value;
 
-import com.telenav.kivakit.annotations.code.quality.CodeQuality;
+import com.telenav.kivakit.annotations.code.quality.TypeQuality;
 import com.telenav.kivakit.conversion.BaseStringConverter;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.interfaces.function.Mapper;
 import com.telenav.kivakit.interfaces.value.LongValued;
 
-import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static java.lang.Long.parseLong;
@@ -16,9 +16,9 @@ import static java.lang.Long.parseLong;
  *
  * @param <Value> The type to convert to
  */
-@CodeQuality(stability = STABLE_EXTENSIBLE,
+@TypeQuality(stability = STABLE_EXTENSIBLE,
              testing = UNTESTED,
-             documentation = DOCUMENTATION_COMPLETE)
+             documentation = DOCUMENTED)
 public class LongValuedConverter<Value extends LongValued> extends BaseStringConverter<Value>
 {
     /** The factory to create new values */

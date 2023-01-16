@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.core.messaging.broadcasters;
 
-import com.telenav.kivakit.annotations.code.quality.CodeQuality;
+import com.telenav.kivakit.annotations.code.quality.TypeQuality;
 import com.telenav.kivakit.core.collections.list.StringList;
 import com.telenav.kivakit.core.internal.lexakai.DiagramRepeater;
 import com.telenav.kivakit.core.logging.Logger;
@@ -41,7 +41,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.KivaKit.globalListener;
@@ -96,9 +96,9 @@ import static com.telenav.kivakit.interfaces.naming.NamedObject.syntheticName;
  */
 @SuppressWarnings({ "unused", "GrazieInspection", "SpellCheckingInspection" })
 @UmlClassDiagram(diagram = DiagramRepeater.class)
-@CodeQuality(stability = STABLE,
+@TypeQuality(stability = STABLE,
              testing = UNTESTED,
-             documentation = DOCUMENTATION_COMPLETE)
+             documentation = DOCUMENTED)
 public class Multicaster implements Broadcaster
 {
     /** Console logger for serious messaging problems */

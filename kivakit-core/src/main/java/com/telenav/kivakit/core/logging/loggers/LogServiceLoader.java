@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.core.logging.loggers;
 
-import com.telenav.kivakit.annotations.code.quality.CodeQuality;
+import com.telenav.kivakit.annotations.code.quality.TypeQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramLogging;
 import com.telenav.kivakit.core.logging.Log;
 import com.telenav.kivakit.core.logging.logs.text.ConsoleLog;
@@ -31,7 +31,7 @@ import java.util.List;
 import java.util.ServiceLoader;
 
 import static com.telenav.kivakit.annotations.code.quality.Audience.AUDIENCE_INTERNAL;
-import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.string.AsciiArt.textBox;
@@ -53,10 +53,10 @@ import static com.telenav.kivakit.core.string.AsciiArt.textBox;
  * @see LogServiceLogger
  */
 @UmlClassDiagram(diagram = DiagramLogging.class)
-@CodeQuality(audience = AUDIENCE_INTERNAL,
+@TypeQuality(audience = AUDIENCE_INTERNAL,
              stability = STABLE_EXTENSIBLE,
              testing = UNTESTED,
-             documentation = DOCUMENTATION_COMPLETE)
+             documentation = DOCUMENTED)
 class LogServiceLoader
 {
     @UmlAggregation(label = "loads")

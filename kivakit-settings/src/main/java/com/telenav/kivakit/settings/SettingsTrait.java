@@ -1,6 +1,6 @@
 package com.telenav.kivakit.settings;
 
-import com.telenav.kivakit.annotations.code.quality.CodeQuality;
+import com.telenav.kivakit.annotations.code.quality.TypeQuality;
 import com.telenav.kivakit.core.collections.set.ObjectSet;
 import com.telenav.kivakit.core.ensure.Ensure;
 import com.telenav.kivakit.core.messaging.Repeater;
@@ -10,7 +10,7 @@ import com.telenav.kivakit.resource.packages.Package;
 import com.telenav.kivakit.settings.stores.ResourceFolderSettingsStore;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
 
-import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
@@ -83,9 +83,9 @@ import static com.telenav.kivakit.settings.SettingsRegistry.settingsFor;
  * @see SettingsRegistry
  */
 @SuppressWarnings({ "unused", "UnusedReturnValue" })
-@CodeQuality(stability = STABLE_EXTENSIBLE,
+@TypeQuality(stability = STABLE_EXTENSIBLE,
              testing = UNTESTED,
-             documentation = DOCUMENTATION_COMPLETE)
+             documentation = DOCUMENTED)
 public interface SettingsTrait extends Repeater
 {
     /**

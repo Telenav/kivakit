@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.filesystem.spi;
 
-import com.telenav.kivakit.annotations.code.quality.CodeQuality;
+import com.telenav.kivakit.annotations.code.quality.TypeQuality;
 import com.telenav.kivakit.core.messaging.Repeater;
 import com.telenav.kivakit.core.time.CreatedAt;
 import com.telenav.kivakit.core.time.Modifiable;
@@ -35,7 +35,7 @@ import org.jetbrains.annotations.NotNull;
 import java.nio.file.attribute.PosixFilePermission;
 
 import static com.telenav.kivakit.annotations.code.quality.Audience.AUDIENCE_SERVICE_PROVIDER_INTERFACE;
-import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
 import static com.telenav.kivakit.core.ensure.Ensure.unsupported;
@@ -63,9 +63,9 @@ import static com.telenav.kivakit.filesystem.loader.FileSystemServiceLoader.file
  */
 @UmlClassDiagram(diagram = DiagramFileSystemService.class)
 @UmlExcludeSuperTypes(ResourcePathed.class)
-@CodeQuality(stability = STABLE_EXTENSIBLE,
+@TypeQuality(stability = STABLE_EXTENSIBLE,
              testing = TESTING_NOT_NEEDED,
-             documentation = DOCUMENTATION_COMPLETE,
+             documentation = DOCUMENTED,
              audience = AUDIENCE_SERVICE_PROVIDER_INTERFACE)
 public interface FileSystemObjectService extends
         Repeater,

@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.network.email;
 
-import com.telenav.kivakit.annotations.code.quality.CodeQuality;
+import com.telenav.kivakit.annotations.code.quality.TypeQuality;
 import com.telenav.kivakit.core.messaging.repeaters.BaseRepeater;
 import com.telenav.kivakit.core.thread.RepeatingThread;
 import com.telenav.kivakit.core.thread.latches.CompletionLatch;
@@ -41,7 +41,7 @@ import javax.mail.Session;
 import javax.mail.internet.MimeMessage;
 import java.util.Properties;
 
-import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.language.Classes.simpleName;
@@ -68,9 +68,9 @@ import static javax.mail.Message.RecipientType.TO;
 @SuppressWarnings("unused") @UmlClassDiagram(diagram = DiagramEmail.class)
 @UmlRelation(label = "sends", referent = Email.class)
 @UmlRelation(label = "configured by", referent = EmailSender.Configuration.class)
-@CodeQuality(stability = STABLE_EXTENSIBLE,
+@TypeQuality(stability = STABLE_EXTENSIBLE,
              testing = UNTESTED,
-             documentation = DOCUMENTATION_COMPLETE)
+             documentation = DOCUMENTED)
 public abstract class EmailSender extends BaseRepeater implements
         Startable,
         Stoppable<Duration>,
@@ -83,9 +83,9 @@ public abstract class EmailSender extends BaseRepeater implements
      * @author jonathanl (shibo)
      */
     @UmlClassDiagram(diagram = DiagramEmail.class)
-    @CodeQuality(stability = STABLE_EXTENSIBLE,
+    @TypeQuality(stability = STABLE_EXTENSIBLE,
                  testing = UNTESTED,
-                 documentation = DOCUMENTATION_COMPLETE)
+                 documentation = DOCUMENTED)
     public static class Configuration
     {
         private Rate maximumSendRate;

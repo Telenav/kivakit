@@ -1,6 +1,6 @@
 package com.telenav.kivakit.filesystem;
 
-import com.telenav.kivakit.annotations.code.quality.CodeQuality;
+import com.telenav.kivakit.annotations.code.quality.TypeQuality;
 import com.telenav.kivakit.resource.Resource;
 import com.telenav.kivakit.resource.ResourceIdentifier;
 import com.telenav.kivakit.resource.internal.lexakai.DiagramResourceService;
@@ -8,10 +8,11 @@ import com.telenav.kivakit.resource.spi.ResourceResolver;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import org.jetbrains.annotations.NotNull;
 
-import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
-import static com.telenav.kivakit.filesystem.FilePath.parseFilePath;
+import static com.telenav.kivakit.filesystem.File.file;
+import static com.telenav.kivakit.filesystem.FilePath.filePath;
 import static com.telenav.kivakit.filesystem.loader.FileSystemServiceLoader.fileSystem;
 
 /**
@@ -20,9 +21,9 @@ import static com.telenav.kivakit.filesystem.loader.FileSystemServiceLoader.file
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramResourceService.class)
-@CodeQuality(stability = STABLE,
+@TypeQuality(stability = STABLE,
              testing = TESTING_NOT_NEEDED,
-             documentation = DOCUMENTATION_COMPLETE)
+             documentation = DOCUMENTED)
 public class FileResourceResolver implements ResourceResolver
 {
     @Override
@@ -32,12 +33,12 @@ public class FileResourceResolver implements ResourceResolver
         {
             return false;
         }
-        return fileSystem(this, parseFilePath(this, identifier.identifier())) != null;
+        return fileSystem(this, filePath(identifier.identifier())) != null;
     }
 
     @Override
     public Resource resolve(@NotNull ResourceIdentifier identifier)
     {
-        return File.parseFile(this, identifier.identifier());
+        return file(identifier.identifier());
     }
 }

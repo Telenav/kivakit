@@ -1,6 +1,6 @@
 package com.telenav.kivakit.core.messaging;
 
-import com.telenav.kivakit.annotations.code.quality.CodeQuality;
+import com.telenav.kivakit.annotations.code.quality.TypeQuality;
 import com.telenav.kivakit.core.messaging.context.CodeContext;
 import com.telenav.kivakit.core.messaging.messages.lifecycle.OperationHalted;
 import com.telenav.kivakit.core.messaging.messages.status.Announcement;
@@ -15,7 +15,7 @@ import com.telenav.kivakit.core.messaging.messages.status.Warning;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeMember;
 
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
 import static com.telenav.kivakit.core.messaging.Debug.registerDebug;
 
@@ -25,9 +25,9 @@ import static com.telenav.kivakit.core.messaging.Debug.registerDebug;
  * @author jonathanl (shibo)
  */
 @SuppressWarnings({ "unused", "UnusedReturnValue" })
-@CodeQuality(stability = STABLE_EXTENSIBLE,
+@TypeQuality(stability = STABLE_EXTENSIBLE,
              testing = TESTING_NOT_NEEDED,
-             documentation = DOCUMENTATION_COMPLETE)
+             documentation = DOCUMENTED)
 public interface MessageTransceiver extends Transceiver
 {
     /**

@@ -1,6 +1,6 @@
 package com.telenav.kivakit.core.function;
 
-import com.telenav.kivakit.annotations.code.quality.CodeQuality;
+import com.telenav.kivakit.annotations.code.quality.TypeQuality;
 import com.telenav.kivakit.core.code.UncheckedVoidCode;
 import com.telenav.kivakit.core.function.arities.PentaFunction;
 import com.telenav.kivakit.core.function.arities.TetraFunction;
@@ -20,7 +20,7 @@ import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.stream.Stream;
 
-import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_INSUFFICIENT;
 import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
@@ -110,9 +110,9 @@ import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
  * @author viniciusluisr
  * @see <a href="https://github.com/viniciusluisr/improved-optional">improved-optional</a>
  */
-@SuppressWarnings("unused") @CodeQuality(stability = STABLE_EXTENSIBLE,
+@SuppressWarnings("unused") @TypeQuality(stability = STABLE_EXTENSIBLE,
                                          testing = TESTING_INSUFFICIENT,
-                                         documentation = DOCUMENTATION_COMPLETE)
+                                         documentation = DOCUMENTED)
 public class Maybe<Value> implements
         Presence,
         TryCatchTrait,

@@ -1,6 +1,6 @@
 package com.telenav.kivakit.resource.packages;
 
-import com.telenav.kivakit.annotations.code.quality.CodeQuality;
+import com.telenav.kivakit.annotations.code.quality.TypeQuality;
 import com.telenav.kivakit.core.collections.list.ObjectList;
 import com.telenav.kivakit.core.language.packaging.PackageReference;
 import com.telenav.kivakit.core.messaging.Listener;
@@ -14,7 +14,7 @@ import java.nio.file.FileSystems;
 import java.util.HashMap;
 import java.util.Map;
 
-import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.quality.Stability.UNSTABLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.collections.list.ObjectList.list;
@@ -27,9 +27,9 @@ import static com.telenav.kivakit.core.path.StringPath.parseStringPath;
  * @author jonathanl (shibo)
  */
 @SuppressWarnings("unused")
-@CodeQuality(stability = UNSTABLE,
+@TypeQuality(stability = UNSTABLE,
              testing = UNTESTED,
-             documentation = DOCUMENTATION_COMPLETE)
+             documentation = DOCUMENTED)
 public class ClasspathResourceFolder
 {
     /** Map from classpath element URI to {@link ClasspathResourceFolder} */

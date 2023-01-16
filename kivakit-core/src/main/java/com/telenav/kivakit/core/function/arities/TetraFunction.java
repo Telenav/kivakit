@@ -1,12 +1,12 @@
 package com.telenav.kivakit.core.function.arities;
 
-import com.telenav.kivakit.annotations.code.quality.CodeQuality;
+import com.telenav.kivakit.annotations.code.quality.TypeQuality;
 
 import java.util.function.BiFunction;
 import java.util.function.Function;
 
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
-import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
 
 /**
@@ -24,9 +24,9 @@ import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_N
  * @see BiFunction
  */
 @FunctionalInterface
-@CodeQuality(stability = STABLE,
+@TypeQuality(stability = STABLE,
              testing = TESTING_NOT_NEEDED,
-             documentation = DOCUMENTATION_COMPLETE)
+             documentation = DOCUMENTED)
 public interface TetraFunction<Argument1, Argument2, Argument3, Argument4, Result>
 {
     /**

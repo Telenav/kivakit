@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.network.http.secure;
 
-import com.telenav.kivakit.annotations.code.quality.CodeQuality;
+import com.telenav.kivakit.annotations.code.quality.TypeQuality;
 import com.telenav.kivakit.conversion.BaseStringConverter;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.network.core.NetworkPath;
@@ -34,7 +34,7 @@ import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URISyntaxException;
 
-import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
@@ -50,9 +50,9 @@ import static com.telenav.kivakit.network.core.Protocol.HTTPS;
 @UmlClassDiagram(diagram = DiagramHttps.class)
 @UmlRelation(label = "creates", referent = SecureHttpGetResource.class)
 @UmlRelation(label = "creates", referent = SecureHttpPostResource.class)
-@CodeQuality(stability = STABLE_EXTENSIBLE,
+@TypeQuality(stability = STABLE_EXTENSIBLE,
              testing = UNTESTED,
-             documentation = DOCUMENTATION_COMPLETE)
+             documentation = DOCUMENTED)
 public class SecureHttpNetworkLocation extends HttpNetworkLocation
 {
     public static SecureHttpNetworkLocation parseSecureHttpNetworkLocation(Listener listener, String path)
@@ -75,9 +75,9 @@ public class SecureHttpNetworkLocation extends HttpNetworkLocation
      *
      * @author jonathanl (shibo)
      */
-    @CodeQuality(stability = STABLE,
+    @TypeQuality(stability = STABLE,
                  testing = UNTESTED,
-                 documentation = DOCUMENTATION_COMPLETE)
+                 documentation = DOCUMENTED)
     public static class Converter extends BaseStringConverter<SecureHttpNetworkLocation>
     {
         public Converter(Listener listener)

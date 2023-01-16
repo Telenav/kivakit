@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.settings;
 
-import com.telenav.kivakit.annotations.code.quality.CodeQuality;
+import com.telenav.kivakit.annotations.code.quality.TypeQuality;
 import com.telenav.kivakit.core.object.Lazy;
 import com.telenav.kivakit.core.registry.InstanceIdentifier;
 import com.telenav.kivakit.core.registry.Registry;
@@ -29,7 +29,7 @@ import com.telenav.kivakit.settings.stores.MemorySettingsStore;
 import com.telenav.kivakit.settings.stores.ResourceFolderSettingsStore;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
-import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.KivaKit.globalListener;
@@ -127,9 +127,9 @@ import static com.telenav.kivakit.settings.SettingsStore.AccessMode.LOAD;
  * @see ResourceFolderSettingsStore
  */
 @UmlClassDiagram(diagram = DiagramSettings.class)
-@CodeQuality(stability = STABLE_EXTENSIBLE,
+@TypeQuality(stability = STABLE_EXTENSIBLE,
              testing = UNTESTED,
-             documentation = DOCUMENTATION_COMPLETE)
+             documentation = DOCUMENTED)
 public class SettingsRegistry extends MemorySettingsStore implements
         SettingsTrait,
         JavaTrait

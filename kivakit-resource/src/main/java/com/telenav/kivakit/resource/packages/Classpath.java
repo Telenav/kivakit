@@ -1,7 +1,7 @@
 package com.telenav.kivakit.resource.packages;
 
 import com.google.common.reflect.ClassPath;
-import com.telenav.kivakit.annotations.code.quality.CodeQuality;
+import com.telenav.kivakit.annotations.code.quality.TypeQuality;
 import com.telenav.kivakit.core.collections.list.ObjectList;
 import com.telenav.kivakit.core.collections.set.ObjectSet;
 import com.telenav.kivakit.core.language.packaging.PackageReference;
@@ -9,7 +9,7 @@ import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.object.Lazy;
 import io.github.classgraph.ClassGraph;
 
-import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.quality.Stability.UNSTABLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.object.Lazy.lazy;
@@ -41,9 +41,9 @@ import static java.util.regex.Pattern.compile;
  * @see ClasspathResource
  */
 @SuppressWarnings("unused")
-@CodeQuality(stability = UNSTABLE,
+@TypeQuality(stability = UNSTABLE,
              testing = UNTESTED,
-             documentation = DOCUMENTATION_COMPLETE)
+             documentation = DOCUMENTED)
 public class Classpath
 {
     /** The single instance of this class */

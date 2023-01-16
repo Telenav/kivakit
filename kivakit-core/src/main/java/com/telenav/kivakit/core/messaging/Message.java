@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.core.messaging;
 
-import com.telenav.kivakit.annotations.code.quality.CodeQuality;
+import com.telenav.kivakit.annotations.code.quality.TypeQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramBroadcaster;
 import com.telenav.kivakit.core.internal.lexakai.DiagramListener;
 import com.telenav.kivakit.core.internal.lexakai.DiagramMessaging;
@@ -53,7 +53,7 @@ import com.telenav.lexakai.annotations.associations.UmlRelation;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeMember;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeSuperTypes;
 
-import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.language.Classes.newInstance;
@@ -128,9 +128,9 @@ import static com.telenav.kivakit.core.string.Strings.replaceAll;
 @UmlClassDiagram(diagram = DiagramListener.class)
 @UmlExcludeSuperTypes({ StringFormattable.class })
 @UmlRelation(label = "formats with", diagram = DiagramMessaging.class, referent = Formatter.class)
-@CodeQuality(stability = STABLE,
+@TypeQuality(stability = STABLE,
              testing = UNTESTED,
-             documentation = DOCUMENTATION_COMPLETE)
+             documentation = DOCUMENTED)
 public interface Message extends
         Transmittable,
         Triaged,

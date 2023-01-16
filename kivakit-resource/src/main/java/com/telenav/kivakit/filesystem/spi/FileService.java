@@ -18,16 +18,18 @@
 
 package com.telenav.kivakit.filesystem.spi;
 
-import com.telenav.kivakit.annotations.code.quality.CodeQuality;
+import com.telenav.kivakit.annotations.code.quality.TypeQuality;
+import com.telenav.kivakit.resource.ResourceIdentifier;
 import com.telenav.kivakit.resource.internal.lexakai.DiagramFileSystemService;
 import com.telenav.kivakit.resource.writing.WritableResource;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import org.jetbrains.annotations.NotNull;
 
 import static com.telenav.kivakit.annotations.code.quality.Audience.AUDIENCE_SERVICE_PROVIDER_INTERFACE;
-import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
+import static com.telenav.kivakit.core.ensure.Ensure.unsupported;
 
 /**
  * A service provider interface (SPI) for filesystem files. Adds {@link #renameTo(FileService)} to the methods required
@@ -38,13 +40,13 @@ import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_N
  * @see FileSystemService
  */
 @UmlClassDiagram(diagram = DiagramFileSystemService.class)
-@CodeQuality(stability = STABLE_EXTENSIBLE,
+@TypeQuality(stability = STABLE_EXTENSIBLE,
              testing = TESTING_NOT_NEEDED,
-             documentation = DOCUMENTATION_COMPLETE,
+             documentation = DOCUMENTED,
              audience = AUDIENCE_SERVICE_PROVIDER_INTERFACE)
 public interface FileService extends
-        FileSystemObjectService,
-        WritableResource
+    FileSystemObjectService,
+    WritableResource
 {
     /**
      * {@inheritDoc}
@@ -53,6 +55,12 @@ public interface FileService extends
     default java.io.File asJavaFile()
     {
         return null;
+    }
+
+    @Override
+    default ResourceIdentifier identifier()
+    {
+        return unsupported();
     }
 
     /**
