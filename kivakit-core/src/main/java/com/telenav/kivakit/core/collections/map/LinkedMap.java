@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.core.collections.map;
 
-import com.telenav.kivakit.annotations.code.quality.CodeQuality;
+import com.telenav.kivakit.annotations.code.quality.TypeQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramCollections;
 import com.telenav.kivakit.core.value.count.Maximum;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
@@ -26,7 +26,7 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 import java.util.LinkedHashMap;
 
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_INSUFFICIENT;
 import static com.telenav.kivakit.core.value.count.Maximum.MAXIMUM;
 
@@ -36,9 +36,9 @@ import static com.telenav.kivakit.core.value.count.Maximum.MAXIMUM;
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramCollections.class)
-@CodeQuality(stability = STABLE_EXTENSIBLE,
+@TypeQuality(stability = STABLE_EXTENSIBLE,
              testing = TESTING_INSUFFICIENT,
-             documentation = DOCUMENTATION_COMPLETE)
+             documentation = DOCUMENTED)
 public class LinkedMap<Key, Value> extends ObjectMap<Key, Value>
 {
     public LinkedMap()

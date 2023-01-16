@@ -1,6 +1,6 @@
 package com.telenav.kivakit.filesystem;
 
-import com.telenav.kivakit.annotations.code.quality.CodeQuality;
+import com.telenav.kivakit.annotations.code.quality.TypeQuality;
 import com.telenav.kivakit.resource.ResourceFolder;
 import com.telenav.kivakit.resource.ResourceFolderIdentifier;
 import com.telenav.kivakit.resource.internal.lexakai.DiagramResourceService;
@@ -8,7 +8,7 @@ import com.telenav.kivakit.resource.spi.ResourceFolderResolver;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import org.jetbrains.annotations.NotNull;
 
-import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.filesystem.Folder.parseFolder;
@@ -19,9 +19,9 @@ import static com.telenav.kivakit.filesystem.Folder.parseFolder;
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramResourceService.class)
-@CodeQuality(stability = STABLE,
+@TypeQuality(stability = STABLE,
              testing = UNTESTED,
-             documentation = DOCUMENTATION_COMPLETE)
+             documentation = DOCUMENTED)
 public class FolderResourceFolderResolver implements ResourceFolderResolver
 {
     @Override

@@ -18,14 +18,14 @@
 
 package com.telenav.kivakit.network.http;
 
-import com.telenav.kivakit.annotations.code.quality.CodeQuality;
+import com.telenav.kivakit.annotations.code.quality.TypeQuality;
 import com.telenav.kivakit.network.core.NetworkAccessConstraints;
 import com.telenav.kivakit.network.http.internal.lexakai.DiagramHttp;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlAggregation;
 
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 
 /**
@@ -35,9 +35,9 @@ import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
  */
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramHttp.class)
-@CodeQuality(stability = STABLE_EXTENSIBLE,
+@TypeQuality(stability = STABLE_EXTENSIBLE,
              testing = UNTESTED,
-             documentation = DOCUMENTATION_COMPLETE)
+             documentation = DOCUMENTED)
 public class HttpAccessConstraints extends NetworkAccessConstraints
 {
     @UmlAggregation

@@ -18,10 +18,10 @@
 
 package com.telenav.kivakit.core.version;
 
-import com.telenav.kivakit.annotations.code.quality.CodeQuality;
+import com.telenav.kivakit.annotations.code.quality.TypeQuality;
 import com.telenav.kivakit.interfaces.naming.NamedObject;
 
-import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.language.Hash.hashMany;
@@ -35,9 +35,9 @@ import static com.telenav.kivakit.interfaces.naming.NamedObject.syntheticName;
  *
  * @author jonathanl (shibo)
  */
-@CodeQuality(stability = STABLE,
+@TypeQuality(stability = STABLE,
              testing = UNTESTED,
-             documentation = DOCUMENTATION_COMPLETE)
+             documentation = DOCUMENTED)
 public class VersionedObject<T> implements
         NamedObject,
         Versioned

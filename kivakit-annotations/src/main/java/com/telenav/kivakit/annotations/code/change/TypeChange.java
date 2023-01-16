@@ -1,11 +1,11 @@
 package com.telenav.kivakit.annotations.code.change;
 
-import com.telenav.kivakit.annotations.code.quality.CodeQuality;
+import com.telenav.kivakit.annotations.code.quality.TypeQuality;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
 
-import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABILITY_UNDETERMINED;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
@@ -30,9 +30,9 @@ import static java.lang.annotation.RetentionPolicy.SOURCE;
 @SuppressWarnings("unused")
 @Retention(SOURCE)
 @Target(TYPE)
-@CodeQuality(stability = STABILITY_UNDETERMINED,
+@TypeQuality(stability = STABILITY_UNDETERMINED,
              testing = TESTING_NOT_NEEDED,
-             documentation = DOCUMENTATION_COMPLETE,
+             documentation = DOCUMENTED,
              reviews = 1,
              reviewers = "shibo")
 public @interface TypeChange
@@ -40,9 +40,9 @@ public @interface TypeChange
     /**
      * The type of change that occurred
      */
-    @CodeQuality(stability = STABLE_EXTENSIBLE,
+    @TypeQuality(stability = STABLE_EXTENSIBLE,
                  testing = TESTING_NOT_NEEDED,
-                 documentation = DOCUMENTATION_COMPLETE)
+                 documentation = DOCUMENTED)
     enum Change
     {
         /** The annotated type was added */

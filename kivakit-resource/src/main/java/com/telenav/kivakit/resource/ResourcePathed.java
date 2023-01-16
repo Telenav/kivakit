@@ -18,9 +18,8 @@
 
 package com.telenav.kivakit.resource;
 
-import com.telenav.kivakit.annotations.code.quality.CodeQuality;
+import com.telenav.kivakit.annotations.code.quality.TypeQuality;
 import com.telenav.kivakit.core.messaging.messages.status.Problem;
-import com.telenav.kivakit.core.string.FormatProperty;
 import com.telenav.kivakit.interfaces.comparison.Matcher;
 import com.telenav.kivakit.resource.internal.lexakai.DiagramResource;
 import com.telenav.kivakit.resource.internal.lexakai.DiagramResourcePath;
@@ -33,7 +32,7 @@ import java.net.URI;
 import java.net.URL;
 
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 
 /**
@@ -75,9 +74,9 @@ import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 @SuppressWarnings("SpellCheckingInspection")
 @UmlClassDiagram(diagram = DiagramResourcePath.class)
 @UmlClassDiagram(diagram = DiagramResource.class)
-@CodeQuality(stability = STABLE_EXTENSIBLE,
+@TypeQuality(stability = STABLE_EXTENSIBLE,
              testing = UNTESTED,
-             documentation = DOCUMENTATION_COMPLETE)
+             documentation = DOCUMENTED)
 public interface ResourcePathed extends UriIdentified
 {
     /**

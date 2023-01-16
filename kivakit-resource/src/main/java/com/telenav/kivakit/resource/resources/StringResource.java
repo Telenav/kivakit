@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.resource.resources;
 
-import com.telenav.kivakit.annotations.code.quality.CodeQuality;
+import com.telenav.kivakit.annotations.code.quality.TypeQuality;
 import com.telenav.kivakit.core.io.StringInputStream;
 import com.telenav.kivakit.core.string.FormatProperty;
 import com.telenav.kivakit.core.string.ObjectFormatter;
@@ -34,10 +34,10 @@ import org.jetbrains.annotations.NotNull;
 import java.io.InputStream;
 import java.util.function.Function;
 
-import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
-import static com.telenav.kivakit.core.messaging.Listener.nullListener;
+import static com.telenav.kivakit.core.messaging.Listener.throwingListener;
 import static com.telenav.kivakit.core.time.Time.now;
 import static com.telenav.kivakit.core.value.count.Bytes.bytes;
 import static com.telenav.kivakit.resource.ResourcePath.parseUnixResourcePath;
@@ -49,8 +49,8 @@ import static java.lang.Integer.toHexString;
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramResourceType.class)
-@CodeQuality(stability = STABLE_EXTENSIBLE,
-             documentation = DOCUMENTATION_COMPLETE,
+@TypeQuality(stability = STABLE_EXTENSIBLE,
+             documentation = DOCUMENTED,
              testing = UNTESTED)
 public class StringResource extends BaseReadableResource
 {
@@ -71,8 +71,8 @@ public class StringResource extends BaseReadableResource
      */
     public StringResource(@NotNull String text)
     {
-        this(parseUnixResourcePath(nullListener(),
-            "/objects/String@" + toHexString(text.hashCode())), text);
+        this(parseUnixResourcePath(throwingListener(),
+            "/objects/string/" + toHexString(text.hashCode())), text);
     }
 
     /**

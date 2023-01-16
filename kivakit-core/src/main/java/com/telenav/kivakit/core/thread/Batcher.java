@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.core.thread;
 
-import com.telenav.kivakit.annotations.code.quality.CodeQuality;
+import com.telenav.kivakit.annotations.code.quality.TypeQuality;
 import com.telenav.kivakit.core.collections.iteration.BaseIterator;
 import com.telenav.kivakit.core.internal.lexakai.DiagramThread;
 import com.telenav.kivakit.core.messaging.repeaters.BaseRepeater;
@@ -39,7 +39,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
 
-import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
@@ -104,9 +104,9 @@ import static com.telenav.kivakit.core.time.Time.now;
  */
 @SuppressWarnings({ "SpellCheckingInspection", "unused" })
 @UmlClassDiagram(diagram = DiagramThread.class)
-@CodeQuality(stability = STABLE_EXTENSIBLE,
+@TypeQuality(stability = STABLE_EXTENSIBLE,
              testing = UNTESTED,
-             documentation = DOCUMENTATION_COMPLETE)
+             documentation = DOCUMENTED)
 public class Batcher<Value> extends BaseRepeater
 {
     /**
@@ -129,9 +129,9 @@ public class Batcher<Value> extends BaseRepeater
     /**
      * A batch of elements for processing
      */
-    @CodeQuality(stability = STABLE,
+    @TypeQuality(stability = STABLE,
                  testing = UNTESTED,
-                 documentation = DOCUMENTATION_COMPLETE)
+                 documentation = DOCUMENTED)
     public class Batch extends ArrayList<Value>
     {
         boolean isFull()
@@ -168,9 +168,9 @@ public class Batcher<Value> extends BaseRepeater
      * shared among threads, and therefore it would have to be synchronized. Having each thread add elements to its own
      * thread-local batch adder reduces lock contention.
      */
-    @CodeQuality(stability = STABLE,
+    @TypeQuality(stability = STABLE,
                  testing = UNTESTED,
-                 documentation = DOCUMENTATION_COMPLETE)
+                 documentation = DOCUMENTED)
     public class BatchAdder implements Addable<Value>, Sequence<Value>
     {
         /** The batch to fill with elements */

@@ -1,6 +1,6 @@
 package com.telenav.kivakit.settings.stores;
 
-import com.telenav.kivakit.annotations.code.quality.CodeQuality;
+import com.telenav.kivakit.annotations.code.quality.TypeQuality;
 import com.telenav.kivakit.core.collections.set.ObjectSet;
 import com.telenav.kivakit.settings.BaseSettingsStore;
 import com.telenav.kivakit.settings.SettingsObject;
@@ -8,7 +8,7 @@ import com.telenav.kivakit.settings.SettingsStore;
 
 import java.util.Set;
 
-import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.collections.set.ObjectSet.set;
@@ -24,9 +24,9 @@ import static com.telenav.kivakit.settings.SettingsStore.AccessMode.UNLOAD;
  * @see SettingsStore
  * @see SettingsObject
  */
-@CodeQuality(stability = STABLE,
+@TypeQuality(stability = STABLE,
              testing = UNTESTED,
-             documentation = DOCUMENTATION_COMPLETE)
+             documentation = DOCUMENTED)
 public class MemorySettingsStore extends BaseSettingsStore
 {
     /**

@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.resource.resources;
 
-import com.telenav.kivakit.annotations.code.quality.CodeQuality;
+import com.telenav.kivakit.annotations.code.quality.TypeQuality;
 import com.telenav.kivakit.core.value.count.Bytes;
 import com.telenav.kivakit.resource.WriteMode;
 import com.telenav.kivakit.resource.internal.lexakai.DiagramResourceType;
@@ -29,7 +29,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.messaging.Listener.nullListener;
 import static com.telenav.kivakit.resource.ResourcePath.parseUnixResourcePath;
@@ -42,8 +42,8 @@ import static com.telenav.kivakit.resource.ResourcePath.parseUnixResourcePath;
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramResourceType.class)
-@CodeQuality(stability = STABLE_EXTENSIBLE,
-             documentation = DOCUMENTATION_COMPLETE,
+@TypeQuality(stability = STABLE_EXTENSIBLE,
+             documentation = DOCUMENTED,
              testing = UNTESTED)
 public class NullResource extends BaseWritableResource
 {

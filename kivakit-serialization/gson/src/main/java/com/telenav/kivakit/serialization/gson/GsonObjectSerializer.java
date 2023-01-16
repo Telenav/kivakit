@@ -35,9 +35,9 @@ import static com.telenav.kivakit.resource.serialization.ObjectMetadata.METADATA
  * @see ObjectSerializer
  */
 public class GsonObjectSerializer implements
-        ObjectSerializer,
-        RegistryTrait,
-        TryTrait
+    ObjectSerializer,
+    RegistryTrait,
+    TryTrait
 {
     private static final Pattern TYPE_PATTERN = Pattern.compile("\"(class|type)\"\\s*:\\s*\"(?<type>.+)\"");
 
@@ -94,13 +94,13 @@ public class GsonObjectSerializer implements
 
             // get the type to read,
             var type = arrayContains(metadata, METADATA_OBJECT_TYPE)
-                    ? ensureNotNull(type(json, metadata, typeToRead))
-                    : typeToRead;
+                ? ensureNotNull(type(json, metadata, typeToRead))
+                : typeToRead;
 
             // and return the deserialized object.
             return new SerializableObject<>(factory.gson().fromJson(json, type),
-                    version(json), instance(json, metadata));
-        }, "Unable to read from $", path);
+                version(json), instance(json, metadata));
+        }, "Unable to read from " + path.join("/"));
     }
 
     /**
@@ -114,28 +114,28 @@ public class GsonObjectSerializer implements
     {
         tryCatchThrow(() ->
         {
-            var json = factory.gson().toJson(object);
+            var json = factory.gson().toJson(object.object());
 
             if (METADATA_OBJECT_TYPE.containedIn(metadata))
             {
-                json = json.replaceAll("\\s*\\{", "{\n\"type\": \"" + object.object().getClass().getName() + "\"");
+                json = json.replaceFirst("\\s*\\{", "{\n  \"type\": \"" + object.object().getClass().getName() + "\",");
             }
 
             if (METADATA_OBJECT_VERSION.containedIn(metadata))
             {
-                json = json.replaceAll("\\s*\\{", "{\n\"version\": \"" + object.version() + "\"");
+                json = json.replaceFirst("\\s*\\{", "{\n  \"version\": \"" + object.version() + "\", ");
             }
 
             if (METADATA_OBJECT_INSTANCE.containedIn(metadata) && object.instance() != null)
             {
-                json = json.replaceAll("\\s*\\{", "{\n\"instance\": \"" + object.instance() + "\"");
+                json = json.replaceFirst("\\s*\\{", "{\n  \"instance\": \"" + object.instance() + "\", ");
             }
 
             try (var out = new OutputResource(output).printWriter())
             {
                 out.println(json);
             }
-        }, "Unable to write to: $", path);
+        }, "Unable to write to $: $", path, object.object().getClass().getSimpleName());
     }
 
     @NotNull

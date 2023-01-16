@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.core.thread;
 
-import com.telenav.kivakit.annotations.code.quality.CodeQuality;
+import com.telenav.kivakit.annotations.code.quality.TypeQuality;
 import com.telenav.kivakit.core.code.UncheckedVoidCode;
 import com.telenav.kivakit.core.internal.lexakai.DiagramThread;
 import com.telenav.kivakit.core.messaging.Listener;
@@ -39,7 +39,7 @@ import org.jetbrains.annotations.MustBeInvokedByOverriders;
 import java.util.HashSet;
 import java.util.Set;
 
-import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
@@ -131,9 +131,9 @@ import static com.telenav.kivakit.core.time.Time.now;
  */
 @SuppressWarnings({ "UnusedReturnValue", "unused" })
 @UmlClassDiagram(diagram = DiagramThread.class)
-@CodeQuality(stability = STABLE_EXTENSIBLE,
+@TypeQuality(stability = STABLE_EXTENSIBLE,
              testing = UNTESTED,
-             documentation = DOCUMENTATION_COMPLETE)
+             documentation = DOCUMENTED)
 public class KivaKitThread extends BaseRepeater implements
         Startable,
         Runnable,

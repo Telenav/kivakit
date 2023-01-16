@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.core.vm;
 
-import com.telenav.kivakit.annotations.code.quality.CodeQuality;
+import com.telenav.kivakit.annotations.code.quality.TypeQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramLanguage;
 import com.telenav.kivakit.core.language.reflection.property.IncludeProperty;
 import com.telenav.kivakit.core.logging.LogEntry;
@@ -34,7 +34,7 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.string.ObjectFormatter.ObjectFormat.MULTILINE;
 import static com.telenav.kivakit.core.time.Duration.ZERO_DURATION;
@@ -49,9 +49,9 @@ import static com.telenav.kivakit.core.vm.JavaVirtualMachine.javaVirtualMachine;
  */
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramLanguage.class)
-@CodeQuality(stability = STABLE_EXTENSIBLE,
+@TypeQuality(stability = STABLE_EXTENSIBLE,
              testing = UNTESTED,
-             documentation = DOCUMENTATION_COMPLETE)
+             documentation = DOCUMENTED)
 public class JavaVirtualMachineHealth
 {
     /** The amount of free memory */

@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.core.collections.iteration;
 
-import com.telenav.kivakit.annotations.code.quality.CodeQuality;
+import com.telenav.kivakit.annotations.code.quality.TypeQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramIteration;
 import com.telenav.kivakit.interfaces.collection.NextIterator;
 import com.telenav.kivakit.interfaces.factory.Factory;
@@ -28,7 +28,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Arrays;
 import java.util.Collection;
 
-import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.collections.iteration.Iterators.iteratorHashCode;
@@ -80,9 +80,9 @@ import static com.telenav.kivakit.core.collections.iteration.Iterators.singleton
  */
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramIteration.class)
-@CodeQuality(stability = STABLE_EXTENSIBLE,
+@TypeQuality(stability = STABLE_EXTENSIBLE,
              testing = UNTESTED,
-             documentation = DOCUMENTATION_COMPLETE)
+             documentation = DOCUMENTED)
 public class Iterables
 {
     /**

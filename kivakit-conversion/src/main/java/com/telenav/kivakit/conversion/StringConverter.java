@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.conversion;
 
-import com.telenav.kivakit.annotations.code.quality.CodeQuality;
+import com.telenav.kivakit.annotations.code.quality.TypeQuality;
 import com.telenav.kivakit.conversion.internal.lexakai.DiagramConversion;
 import com.telenav.kivakit.core.collections.list.ObjectList;
 import com.telenav.kivakit.core.collections.list.StringList;
@@ -27,7 +27,7 @@ import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.interfaces.string.Parsable;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
-import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.collections.list.StringList.split;
@@ -68,9 +68,9 @@ import static com.telenav.kivakit.core.collections.list.StringList.split;
  */
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramConversion.class)
-@CodeQuality(stability = STABLE_EXTENSIBLE,
+@TypeQuality(stability = STABLE_EXTENSIBLE,
              testing = UNTESTED,
-             documentation = DOCUMENTATION_COMPLETE)
+             documentation = DOCUMENTED)
 public interface StringConverter<Value> extends
     TwoWayConverter<String, Value>,
     Parsable<Value>

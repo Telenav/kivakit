@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.filesystem.local;
 
-import com.telenav.kivakit.annotations.code.quality.CodeQuality;
+import com.telenav.kivakit.annotations.code.quality.TypeQuality;
 import com.telenav.kivakit.core.collections.list.StringList;
 import com.telenav.kivakit.filesystem.FilePath;
 import com.telenav.kivakit.filesystem.spi.DiskService;
@@ -35,7 +35,7 @@ import java.nio.file.InvalidPathException;
 import java.nio.file.Paths;
 
 import static com.telenav.kivakit.annotations.code.quality.Audience.AUDIENCE_INTERNAL;
-import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.messaging.Listener.consoleListener;
@@ -53,9 +53,9 @@ import static com.telenav.kivakit.filesystem.Folders.userHome;
 @UmlRelation(label = "creates", referent = LocalFile.class)
 @UmlRelation(label = "creates", referent = LocalFolder.class)
 @UmlNotPublicApi
-@CodeQuality(stability = STABLE_EXTENSIBLE,
+@TypeQuality(stability = STABLE_EXTENSIBLE,
              testing = UNTESTED,
-             documentation = DOCUMENTATION_COMPLETE,
+             documentation = DOCUMENTED,
              audience = AUDIENCE_INTERNAL)
 public class LocalFileSystemService implements FileSystemService
 {

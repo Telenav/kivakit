@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.filesystem;
 
-import com.telenav.kivakit.annotations.code.quality.CodeQuality;
+import com.telenav.kivakit.annotations.code.quality.TypeQuality;
 import com.telenav.kivakit.conversion.BaseStringConverter;
 import com.telenav.kivakit.core.code.UncheckedVoidCode;
 import com.telenav.kivakit.core.collections.list.ObjectList;
@@ -63,7 +63,7 @@ import java.util.prefs.Preferences;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
-import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_INSUFFICIENT;
@@ -214,9 +214,9 @@ import static java.util.Objects.requireNonNull;
  */
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramFileSystemFolder.class)
-@CodeQuality(stability = STABLE_EXTENSIBLE,
+@TypeQuality(stability = STABLE_EXTENSIBLE,
              testing = TESTING_INSUFFICIENT,
-             documentation = DOCUMENTATION_COMPLETE)
+             documentation = DOCUMENTED)
 public class Folder extends BaseRepeater implements
         FileSystemObject,
         Comparable<Folder>,
@@ -356,9 +356,9 @@ public class Folder extends BaseRepeater implements
     /**
      * Type of folder
      */
-    @CodeQuality(stability = STABLE_EXTENSIBLE,
+    @TypeQuality(stability = STABLE_EXTENSIBLE,
                  testing = TESTING_NOT_NEEDED,
-                 documentation = DOCUMENTATION_COMPLETE)
+                 documentation = DOCUMENTED)
     public enum FolderType
     {
         NORMAL,
@@ -368,9 +368,9 @@ public class Folder extends BaseRepeater implements
     /**
      * Type of traversal to perform
      */
-    @CodeQuality(stability = STABLE_EXTENSIBLE,
+    @TypeQuality(stability = STABLE_EXTENSIBLE,
                  testing = TESTING_NOT_NEEDED,
-                 documentation = DOCUMENTATION_COMPLETE)
+                 documentation = DOCUMENTED)
     public enum Traversal
     {
         RECURSE,
@@ -382,9 +382,9 @@ public class Folder extends BaseRepeater implements
      *
      * @author jonathanl (shibo)
      */
-    @CodeQuality(stability = STABLE,
+    @TypeQuality(stability = STABLE,
                  testing = UNTESTED,
-                 documentation = DOCUMENTATION_COMPLETE)
+                 documentation = DOCUMENTED)
     public static class Converter extends BaseStringConverter<Folder>
     {
         private boolean ensureExists;

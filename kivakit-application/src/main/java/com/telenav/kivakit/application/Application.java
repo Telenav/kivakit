@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.application;
 
-import com.telenav.kivakit.annotations.code.quality.CodeQuality;
+import com.telenav.kivakit.annotations.code.quality.TypeQuality;
 import com.telenav.kivakit.application.internal.lexakai.DiagramApplication;
 import com.telenav.kivakit.commandline.ApplicationMetadata;
 import com.telenav.kivakit.commandline.ArgumentParser;
@@ -81,7 +81,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
-import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
@@ -103,7 +103,7 @@ import static com.telenav.kivakit.core.collections.set.ObjectSet.set;
 import static com.telenav.kivakit.core.ensure.Ensure.ensure;
 import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
 import static com.telenav.kivakit.core.function.Result.failure;
-import static com.telenav.kivakit.core.function.Result.success;
+import static com.telenav.kivakit.core.function.Result.result;
 import static com.telenav.kivakit.core.language.Classes.newInstance;
 import static com.telenav.kivakit.core.language.Classes.simpleName;
 import static com.telenav.kivakit.core.logging.LoggerFactory.newLogger;
@@ -317,9 +317,9 @@ import static java.util.Comparator.comparing;
  */
 @SuppressWarnings({ "unused", "BooleanMethodIsAlwaysInverted" })
 @UmlClassDiagram(diagram = DiagramApplication.class)
-@CodeQuality(stability = STABLE_EXTENSIBLE,
+@TypeQuality(stability = STABLE_EXTENSIBLE,
              testing = UNTESTED,
-             documentation = DOCUMENTATION_COMPLETE)
+             documentation = DOCUMENTED)
 public abstract class Application extends BaseComponent implements
     PackageTrait,
     ProjectTrait,
@@ -403,9 +403,9 @@ public abstract class Application extends BaseComponent implements
      */
     @UmlClassDiagram(diagram = DiagramApplication.class)
     @UmlExcludeSuperTypes
-    @CodeQuality(stability = STABLE,
+    @TypeQuality(stability = STABLE,
                  testing = UNTESTED,
-                 documentation = DOCUMENTATION_COMPLETE)
+                 documentation = DOCUMENTED)
     public static class Identifier extends StringIdentifier
     {
         public Identifier(String identifier)
@@ -774,7 +774,7 @@ public abstract class Application extends BaseComponent implements
 
         // STOPPED - 2. Return the application exit code
         return exitCode == SUCCEEDED
-            ? success(ApplicationExit.SUCCESS)
+            ? result(ApplicationExit.SUCCESS)
             : failure(new ApplicationExit(exitCode, exception), "Application failed");
     }
 

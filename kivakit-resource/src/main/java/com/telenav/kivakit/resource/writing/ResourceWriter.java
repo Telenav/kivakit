@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.resource.writing;
 
-import com.telenav.kivakit.annotations.code.quality.CodeQuality;
+import com.telenav.kivakit.annotations.code.quality.TypeQuality;
 import com.telenav.kivakit.resource.internal.lexakai.DiagramFileSystemFile;
 import com.telenav.kivakit.resource.internal.lexakai.DiagramResource;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
@@ -29,7 +29,7 @@ import java.io.PrintWriter;
 import java.io.Writer;
 import java.nio.charset.Charset;
 
-import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.ensure.Ensure.fail;
@@ -55,8 +55,8 @@ import static java.nio.charset.StandardCharsets.UTF_8;
  */
 @UmlClassDiagram(diagram = DiagramFileSystemFile.class)
 @UmlClassDiagram(diagram = DiagramResource.class)
-@CodeQuality(stability = STABLE_EXTENSIBLE,
-             documentation = DOCUMENTATION_COMPLETE,
+@TypeQuality(stability = STABLE_EXTENSIBLE,
+             documentation = DOCUMENTED,
              testing = UNTESTED)
 public class ResourceWriter
 {

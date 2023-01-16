@@ -1,30 +1,33 @@
 package com.telenav.kivakit.annotations.code.quality;
 
-import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 import static com.telenav.kivakit.annotations.code.quality.Audience.AUDIENCE_PUBLIC;
-import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_UNDETERMINED;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABILITY_UNDETERMINED;
-import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_UNDETERMINED;
+import static java.lang.annotation.ElementType.TYPE;
+import static java.lang.annotation.RetentionPolicy.SOURCE;
 
 /**
- * Indicates the code stability, documentation completeness, code review process, and testing sufficiency of a class or
- * interface. The <a href="https://www.lexkai.org/">Lexakai</a> documentation tool uses this annotation to add code
- * quality metrics to automatically updated <i>README.md</i> markup files.
+ * Indicates the intended audience, subjective stability, documentation completeness, testing sufficiency and code
+ * review process of a type (class, record or interface). The <a href="https://www.lexkai.org/">Lexakai</a>
+ * documentation tool uses this annotation to add code quality metrics to automatically updated <i>README.md</i> markup
+ * files.
  *
  * <p><b>Example</b></p>
  *
- * <pre>{@literal @}CodeQuality(audience = AUDIENCE_INTERNAL,
- *             documentation = DOCUMENTATION_COMPLETE,
- *             stability = STABLE,
- *             testing = TESTED,
- *             reviews = 1,
- *             reviewers = "shibo")
+ * <pre>{@literal @}TypeQuality
+ * (
+ *     audience = AUDIENCE_INTERNAL,
+ *     documentation = DOCUMENTATION_COMPLETE,
+ *     stability = STABLE,
+ *     reviews = 1,
+ *     reviewers = "shibo"
+ * )
  * class MyClass
  * {
  *     [...]
@@ -33,15 +36,15 @@ import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_UNDET
  * @author jonathanl (shibo)
  */
 @SuppressWarnings({ "unused", "JavadocDeclaration" })
-@Retention(RetentionPolicy.SOURCE)
-@Target(ElementType.TYPE)
-@CodeQuality(audience = AUDIENCE_PUBLIC,
-             stability = STABILITY_UNDETERMINED,
-             documentation = DOCUMENTATION_COMPLETE,
-             testing = TESTING_NOT_NEEDED,
-             reviews = 2,
-             reviewers = { "shibo", "tim" })
-public @interface CodeQuality
+@Retention(SOURCE)
+@Target(TYPE)
+@TypeQuality
+    (
+        audience = AUDIENCE_PUBLIC,
+        stability = STABLE,
+        documentation = DOCUMENTED
+    )
+public @interface TypeQuality
 {
     /**
      * Returns the audience for the annotated code. By default, all types are AUDIENCE_PUBLIC.
@@ -55,7 +58,7 @@ public @interface CodeQuality
     Documentation documentation() default DOCUMENTATION_UNDETERMINED;
 
     /**
-     * Returns an array of reviewers, normally denoted by email or username.
+     * Returns an array of reviewers, denoted by name, email or username.
      */
     String[] reviewers() default {};
 

@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.filesystem.local;
 
-import com.telenav.kivakit.annotations.code.quality.CodeQuality;
+import com.telenav.kivakit.annotations.code.quality.TypeQuality;
 import com.telenav.kivakit.core.time.Time;
 import com.telenav.kivakit.core.value.count.Bytes;
 import com.telenav.kivakit.filesystem.FilePath;
@@ -45,7 +45,7 @@ import java.util.Arrays;
 import java.util.HashSet;
 
 import static com.telenav.kivakit.annotations.code.quality.Audience.AUDIENCE_INTERNAL;
-import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.messaging.Listener.consoleListener;
@@ -61,9 +61,9 @@ import static com.telenav.kivakit.resource.WriteMode.APPEND;
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramFileSystemService.class)
 @UmlNotPublicApi
-@CodeQuality(stability = STABLE_EXTENSIBLE,
+@TypeQuality(stability = STABLE_EXTENSIBLE,
              testing = UNTESTED,
-             documentation = DOCUMENTATION_COMPLETE,
+             documentation = DOCUMENTED,
              audience = AUDIENCE_INTERNAL)
 public class LocalFile extends BaseWritableResource implements FileService
 {

@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.network.http;
 
-import com.telenav.kivakit.annotations.code.quality.CodeQuality;
+import com.telenav.kivakit.annotations.code.quality.TypeQuality;
 import com.telenav.kivakit.conversion.BaseStringConverter;
 import com.telenav.kivakit.core.collections.map.VariableMap;
 import com.telenav.kivakit.core.messaging.Listener;
@@ -37,7 +37,7 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.http.HttpRequest;
 
-import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
@@ -84,9 +84,9 @@ import static com.telenav.kivakit.network.core.NetworkAccessConstraints.defaultN
  */
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramHttp.class)
-@CodeQuality(stability = STABLE_EXTENSIBLE,
+@TypeQuality(stability = STABLE_EXTENSIBLE,
              testing = UNTESTED,
-             documentation = DOCUMENTATION_COMPLETE)
+             documentation = DOCUMENTED)
 public class HttpNetworkLocation extends NetworkLocation implements Resourceful
 {
     public static HttpNetworkLocation httpNetworkLocation(String path)
@@ -109,9 +109,9 @@ public class HttpNetworkLocation extends NetworkLocation implements Resourceful
      *
      * @author jonathanl (shibo)
      */
-    @CodeQuality(stability = STABLE,
+    @TypeQuality(stability = STABLE,
                  testing = UNTESTED,
-                 documentation = DOCUMENTATION_COMPLETE)
+                 documentation = DOCUMENTED)
     public static class Converter extends BaseStringConverter<HttpNetworkLocation>
     {
         public Converter(Listener listener)

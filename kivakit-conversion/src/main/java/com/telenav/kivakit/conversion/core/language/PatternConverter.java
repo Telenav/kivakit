@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.conversion.core.language;
 
-import com.telenav.kivakit.annotations.code.quality.CodeQuality;
+import com.telenav.kivakit.annotations.code.quality.TypeQuality;
 import com.telenav.kivakit.conversion.BaseStringConverter;
 import com.telenav.kivakit.conversion.internal.lexakai.DiagramConversionLanguage;
 import com.telenav.kivakit.core.messaging.Listener;
@@ -27,7 +27,7 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 import java.util.regex.Pattern;
 
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
-import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 
 /**
@@ -37,9 +37,9 @@ import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
  * @see Pattern
  */
 @UmlClassDiagram(diagram = DiagramConversionLanguage.class)
-@CodeQuality(stability = STABLE,
+@TypeQuality(stability = STABLE,
              testing = UNTESTED,
-             documentation = DOCUMENTATION_COMPLETE)
+             documentation = DOCUMENTED)
 public class PatternConverter extends BaseStringConverter<Pattern>
 {
     /**

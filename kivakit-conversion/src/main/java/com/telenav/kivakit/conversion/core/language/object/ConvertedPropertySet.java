@@ -1,6 +1,6 @@
 package com.telenav.kivakit.conversion.core.language.object;
 
-import com.telenav.kivakit.annotations.code.quality.CodeQuality;
+import com.telenav.kivakit.annotations.code.quality.TypeQuality;
 import com.telenav.kivakit.core.language.reflection.Field;
 import com.telenav.kivakit.core.language.reflection.Method;
 import com.telenav.kivakit.core.language.reflection.property.IncludeProperty;
@@ -9,7 +9,7 @@ import com.telenav.kivakit.core.language.reflection.property.PropertyNamingConve
 import com.telenav.kivakit.core.language.reflection.property.PropertySet;
 
 import static com.telenav.kivakit.annotations.code.quality.Audience.AUDIENCE_INTERNAL;
-import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
 import static com.telenav.kivakit.core.language.reflection.property.PropertyMemberSelector.KIVAKIT_CONVERTED_MEMBERS;
@@ -29,10 +29,10 @@ import static com.telenav.kivakit.core.language.reflection.property.PropertyMemb
  * @author jonathanl (shibo)
  */
 @SuppressWarnings("unused")
-@CodeQuality(audience = AUDIENCE_INTERNAL,
+@TypeQuality(audience = AUDIENCE_INTERNAL,
              stability = STABLE,
              testing = TESTING_NOT_NEEDED,
-             documentation = DOCUMENTATION_COMPLETE)
+             documentation = DOCUMENTED)
 class ConvertedPropertySet extends PropertySet
 {
     /**

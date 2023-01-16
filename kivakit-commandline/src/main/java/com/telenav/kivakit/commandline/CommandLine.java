@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.commandline;
 
-import com.telenav.kivakit.annotations.code.quality.CodeQuality;
+import com.telenav.kivakit.annotations.code.quality.TypeQuality;
 import com.telenav.kivakit.commandline.internal.lexakai.DiagramCommandLine;
 import com.telenav.kivakit.core.collections.list.ObjectList;
 import com.telenav.kivakit.core.collections.list.StringList;
@@ -36,7 +36,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Iterator;
 import java.util.regex.Pattern;
 
-import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
@@ -103,9 +103,9 @@ import static com.telenav.lexakai.annotations.UmlNote.Align.TOP;
 @UmlClassDiagram(diagram = DiagramCommandLine.class)
 @UmlExcludeSuperTypes({ StringFormattable.class })
 @UmlNote(text = "See Application for easy access to switches and arguments", align = TOP)
-@CodeQuality(stability = STABLE_EXTENSIBLE,
+@TypeQuality(stability = STABLE_EXTENSIBLE,
              testing = UNTESTED,
-             documentation = DOCUMENTATION_COMPLETE)
+             documentation = DOCUMENTED)
 public class CommandLine implements StringFormattable, Iterable<ArgumentValue>
 {
     /**

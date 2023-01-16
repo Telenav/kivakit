@@ -1,6 +1,6 @@
 package com.telenav.kivakit.core.ensure;
 
-import com.telenav.kivakit.annotations.code.quality.CodeQuality;
+import com.telenav.kivakit.annotations.code.quality.TypeQuality;
 import com.telenav.kivakit.core.messaging.Broadcaster;
 import com.telenav.kivakit.core.time.Duration;
 
@@ -8,7 +8,7 @@ import java.util.function.Consumer;
 import java.util.function.Supplier;
 
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
 
 /**
@@ -18,9 +18,9 @@ import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_N
  * @see Ensure
  */
 @SuppressWarnings("unused")
-@CodeQuality(stability = STABLE_EXTENSIBLE,
+@TypeQuality(stability = STABLE_EXTENSIBLE,
              testing = TESTING_NOT_NEEDED,
-             documentation = DOCUMENTATION_COMPLETE)
+             documentation = DOCUMENTED)
 public interface EnsureTrait
 {
     default <T> T ensure(Supplier<Boolean> valid, String message, Object... arguments)

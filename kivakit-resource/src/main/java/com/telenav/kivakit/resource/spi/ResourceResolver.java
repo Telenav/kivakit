@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.resource.spi;
 
-import com.telenav.kivakit.annotations.code.quality.CodeQuality;
+import com.telenav.kivakit.annotations.code.quality.TypeQuality;
 import com.telenav.kivakit.core.messaging.repeaters.RepeaterMixin;
 import com.telenav.kivakit.resource.Resource;
 import com.telenav.kivakit.resource.ResourceFolderIdentifier;
@@ -30,7 +30,7 @@ import org.jetbrains.annotations.NotNull;
 
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Audience.AUDIENCE_SERVICE_PROVIDER_INTERFACE;
-import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
 
 /**
@@ -44,9 +44,9 @@ import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_N
  */
 @UmlClassDiagram(diagram = DiagramResourceService.class)
 @UmlRelation(label = "parses", referent = ResourceFolderIdentifier.class)
-@CodeQuality(stability = STABLE,
+@TypeQuality(stability = STABLE,
              testing = TESTING_NOT_NEEDED,
-             documentation = DOCUMENTATION_COMPLETE,
+             documentation = DOCUMENTED,
              audience = AUDIENCE_SERVICE_PROVIDER_INTERFACE)
 public interface ResourceResolver extends RepeaterMixin
 {

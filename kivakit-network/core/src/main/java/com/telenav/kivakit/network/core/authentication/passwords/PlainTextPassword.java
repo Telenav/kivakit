@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.network.core.authentication.passwords;
 
-import com.telenav.kivakit.annotations.code.quality.CodeQuality;
+import com.telenav.kivakit.annotations.code.quality.TypeQuality;
 import com.telenav.kivakit.conversion.BaseStringConverter;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.interfaces.string.StringFormattable;
@@ -28,7 +28,7 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeSuperTypes;
 import org.jetbrains.annotations.NotNull;
 
-import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.string.AsciiArt.repeat;
@@ -41,9 +41,9 @@ import static com.telenav.kivakit.core.string.AsciiArt.repeat;
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramAuthentication.class)
 @UmlExcludeSuperTypes({ StringFormattable.class })
-@CodeQuality(stability = STABLE_EXTENSIBLE,
+@TypeQuality(stability = STABLE_EXTENSIBLE,
              testing = UNTESTED,
-             documentation = DOCUMENTATION_COMPLETE)
+             documentation = DOCUMENTED)
 public class PlainTextPassword implements Password, StringFormattable
 {
     /**
@@ -62,9 +62,9 @@ public class PlainTextPassword implements Password, StringFormattable
      *
      * @author jonathanl (shibo)
      */
-    @CodeQuality(stability = STABLE_EXTENSIBLE,
+    @TypeQuality(stability = STABLE_EXTENSIBLE,
                  testing = UNTESTED,
-                 documentation = DOCUMENTATION_COMPLETE)
+                 documentation = DOCUMENTED)
     public static class Converter extends BaseStringConverter<Password>
     {
         public Converter(Listener listener)

@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.filesystem;
 
-import com.telenav.kivakit.annotations.code.quality.CodeQuality;
+import com.telenav.kivakit.annotations.code.quality.TypeQuality;
 import com.telenav.kivakit.core.messaging.repeaters.BaseRepeater;
 import com.telenav.kivakit.core.thread.RepeatingThread;
 import com.telenav.kivakit.core.time.Duration;
@@ -35,7 +35,7 @@ import com.telenav.lexakai.annotations.associations.UmlRelation;
 import org.jetbrains.annotations.NotNull;
 
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
 import static com.telenav.kivakit.core.time.Duration.seconds;
 import static com.telenav.kivakit.core.time.Duration.weeks;
@@ -78,9 +78,9 @@ import static com.telenav.kivakit.interfaces.comparison.Matcher.matchAll;
  */
 @UmlClassDiagram(diagram = DiagramFileSystemFolder.class)
 @UmlRelation(label = "prunes old files from", referent = Folder.class)
-@CodeQuality(stability = STABLE_EXTENSIBLE,
+@TypeQuality(stability = STABLE_EXTENSIBLE,
              testing = TESTING_NOT_NEEDED,
-             documentation = DOCUMENTATION_COMPLETE)
+             documentation = DOCUMENTED)
 public class FolderPruner extends BaseRepeater implements
         Startable,
         Stoppable<Duration>

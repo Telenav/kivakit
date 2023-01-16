@@ -1,6 +1,6 @@
 package com.telenav.kivakit.commandline;
 
-import com.telenav.kivakit.annotations.code.quality.CodeQuality;
+import com.telenav.kivakit.annotations.code.quality.TypeQuality;
 import com.telenav.kivakit.conversion.core.language.EnumConverter;
 import com.telenav.kivakit.conversion.core.language.IdentityConverter;
 import com.telenav.kivakit.conversion.core.language.PatternConverter;
@@ -31,7 +31,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.regex.Pattern;
 
-import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.commandline.SwitchParser.switchParser;
@@ -77,9 +77,9 @@ import static com.telenav.kivakit.core.vm.JavaVirtualMachine.javaVirtualMachine;
  * @author jonathanl (shibo)
  */
 @SuppressWarnings("unused")
-@CodeQuality(stability = STABLE_EXTENSIBLE,
+@TypeQuality(stability = STABLE_EXTENSIBLE,
              testing = UNTESTED,
-             documentation = DOCUMENTATION_COMPLETE)
+             documentation = DOCUMENTED)
 public class SwitchParsers
 {
     public static SwitchParser.Builder<Boolean> booleanSwitchParser(@NotNull Listener listener,

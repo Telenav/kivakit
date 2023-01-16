@@ -18,12 +18,12 @@
 
 package com.telenav.kivakit.collections.watcher;
 
-import com.telenav.kivakit.annotations.code.quality.CodeQuality;
+import com.telenav.kivakit.annotations.code.quality.TypeQuality;
 import com.telenav.kivakit.collections.internal.lexakai.DiagramWatcher;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
-import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 
 /**
@@ -32,9 +32,9 @@ import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramWatcher.class)
-@CodeQuality(stability = STABLE,
+@TypeQuality(stability = STABLE,
              testing = UNTESTED,
-             documentation = DOCUMENTATION_COMPLETE)
+             documentation = DOCUMENTED)
 public interface CollectionChangeListener<T>
 {
     /**

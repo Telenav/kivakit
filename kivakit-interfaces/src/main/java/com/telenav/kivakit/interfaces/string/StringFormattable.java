@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.interfaces.string;
 
-import com.telenav.kivakit.annotations.code.quality.CodeQuality;
+import com.telenav.kivakit.annotations.code.quality.TypeQuality;
 import com.telenav.kivakit.interfaces.internal.lexakai.DiagramString;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
@@ -26,7 +26,7 @@ import com.telenav.lexakai.annotations.visibility.UmlExcludeSuperTypes;
 import org.jetbrains.annotations.NotNull;
 
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
 import static com.telenav.kivakit.interfaces.string.StringFormattable.Format.TEXT;
 
@@ -40,18 +40,18 @@ import static com.telenav.kivakit.interfaces.string.StringFormattable.Format.TEX
 @SuppressWarnings("SpellCheckingInspection")
 @UmlRelation(label = "formats with", referent = StringFormattable.Format.class)
 @UmlClassDiagram(diagram = DiagramString.class)
-@CodeQuality(stability = STABLE_EXTENSIBLE,
+@TypeQuality(stability = STABLE_EXTENSIBLE,
              testing = TESTING_NOT_NEEDED,
-             documentation = DOCUMENTATION_COMPLETE)
+             documentation = DOCUMENTED)
 public interface StringFormattable extends AsString
 {
     /**
      * The type of format for a string returned by {@link StringFormattable#asString(Format)}
      */
     @UmlClassDiagram(diagram = DiagramString.class)
-    @CodeQuality(stability = STABLE_EXTENSIBLE,
+    @TypeQuality(stability = STABLE_EXTENSIBLE,
                  testing = TESTING_NOT_NEEDED,
-                 documentation = DOCUMENTATION_COMPLETE)
+                 documentation = DOCUMENTED)
     @UmlExcludeSuperTypes enum Format
     {
         /** A format suitable for debug tracing */

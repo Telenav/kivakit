@@ -1,11 +1,11 @@
 package com.telenav.kivakit.resource.packages;
 
-import com.telenav.kivakit.annotations.code.quality.CodeQuality;
+import com.telenav.kivakit.annotations.code.quality.TypeQuality;
 import com.telenav.kivakit.core.messaging.Repeater;
 import com.telenav.kivakit.resource.Resource;
 import org.jetbrains.annotations.NotNull;
 
-import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.path.StringPath.parseStringPath;
@@ -33,8 +33,8 @@ import static com.telenav.kivakit.resource.packages.PackagePath.parsePackagePath
  * @author jonathanl (shibo)
  */
 @SuppressWarnings("unused")
-@CodeQuality(stability = STABLE_EXTENSIBLE,
-             documentation = DOCUMENTATION_COMPLETE,
+@TypeQuality(stability = STABLE_EXTENSIBLE,
+             documentation = DOCUMENTED,
              testing = UNTESTED)
 public interface PackageTrait extends Repeater
 {

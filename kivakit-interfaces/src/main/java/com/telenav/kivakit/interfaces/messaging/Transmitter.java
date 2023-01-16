@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.interfaces.messaging;
 
-import com.telenav.kivakit.annotations.code.quality.CodeQuality;
+import com.telenav.kivakit.annotations.code.quality.TypeQuality;
 import com.telenav.kivakit.interfaces.code.Code;
 import com.telenav.kivakit.interfaces.internal.lexakai.DiagramMessaging;
 import com.telenav.kivakit.interfaces.value.Source;
@@ -28,7 +28,7 @@ import com.telenav.lexakai.annotations.associations.UmlRelation;
 import java.util.function.Supplier;
 
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
-import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
 
 /**
@@ -45,9 +45,9 @@ import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_N
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramMessaging.class)
 @UmlRelation(label = "transmits", referent = Transmittable.class)
-@CodeQuality(stability = STABLE,
+@TypeQuality(stability = STABLE,
              testing = TESTING_NOT_NEEDED,
-             documentation = DOCUMENTATION_COMPLETE)
+             documentation = DOCUMENTED)
 public interface Transmitter
 {
     /**

@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.network.ftp;
 
-import com.telenav.kivakit.annotations.code.quality.CodeQuality;
+import com.telenav.kivakit.annotations.code.quality.TypeQuality;
 import com.telenav.kivakit.core.collections.list.ObjectList;
 import com.telenav.kivakit.core.io.IO;
 import com.telenav.kivakit.core.progress.ProgressReporter;
@@ -43,7 +43,7 @@ import java.io.BufferedOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
-import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.ensure.Ensure.fail;
@@ -61,9 +61,9 @@ import static org.apache.commons.net.ftp.FTP.BINARY_FILE_TYPE;
  */
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramFtp.class)
-@CodeQuality(stability = STABLE_EXTENSIBLE,
+@TypeQuality(stability = STABLE_EXTENSIBLE,
              testing = UNTESTED,
-             documentation = DOCUMENTATION_COMPLETE)
+             documentation = DOCUMENTED)
 public class FtpResource extends BaseNetworkResource
 {
     /**
@@ -71,9 +71,9 @@ public class FtpResource extends BaseNetworkResource
      *
      * @author ericg
      */
-    @CodeQuality(stability = STABLE_EXTENSIBLE,
+    @TypeQuality(stability = STABLE_EXTENSIBLE,
                  testing = UNTESTED,
-                 documentation = DOCUMENTATION_COMPLETE)
+                 documentation = DOCUMENTED)
     private static class FtpInput extends InputStream
     {
         private final FTPClient client;

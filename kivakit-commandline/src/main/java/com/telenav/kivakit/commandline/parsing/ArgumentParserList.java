@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.commandline.parsing;
 
-import com.telenav.kivakit.annotations.code.quality.CodeQuality;
+import com.telenav.kivakit.annotations.code.quality.TypeQuality;
 import com.telenav.kivakit.commandline.ArgumentParser;
 import com.telenav.kivakit.commandline.internal.lexakai.DiagramArgument;
 import com.telenav.kivakit.commandline.internal.lexakai.DiagramCommandLine;
@@ -35,7 +35,7 @@ import java.util.Iterator;
 
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Audience.AUDIENCE_INTERNAL;
-import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 
 /**
@@ -52,9 +52,9 @@ import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 @UmlClassDiagram(diagram = DiagramCommandLine.class)
 @UmlNotPublicApi
 @UmlExcludeSuperTypes({ Iterable.class })
-@CodeQuality(stability = STABLE_EXTENSIBLE,
+@TypeQuality(stability = STABLE_EXTENSIBLE,
              testing = UNTESTED,
-             documentation = DOCUMENTATION_COMPLETE,
+             documentation = DOCUMENTED,
              audience = AUDIENCE_INTERNAL)
 public class ArgumentParserList implements Iterable<ArgumentParser<?>>
 {

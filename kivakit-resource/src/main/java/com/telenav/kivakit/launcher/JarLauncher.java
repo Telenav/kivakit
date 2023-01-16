@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.launcher;
 
-import com.telenav.kivakit.annotations.code.quality.CodeQuality;
+import com.telenav.kivakit.annotations.code.quality.TypeQuality;
 import com.telenav.kivakit.core.collections.list.StringList;
 import com.telenav.kivakit.core.messaging.repeaters.BaseRepeater;
 import com.telenav.kivakit.core.thread.KivaKitThread;
@@ -35,7 +35,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
@@ -86,9 +86,9 @@ import static com.telenav.kivakit.properties.PropertyMap.propertyMap;
  */
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramJarLauncher.class)
-@CodeQuality(stability = STABLE_EXTENSIBLE,
+@TypeQuality(stability = STABLE_EXTENSIBLE,
              testing = UNTESTED,
-             documentation = DOCUMENTATION_COMPLETE)
+             documentation = DOCUMENTED)
 public class JarLauncher extends BaseRepeater
 {
     /**
@@ -97,9 +97,9 @@ public class JarLauncher extends BaseRepeater
      * @author jonathanl (shibo)
      */
     @UmlClassDiagram(diagram = DiagramJarLauncher.class)
-    @CodeQuality(stability = STABLE_EXTENSIBLE,
+    @TypeQuality(stability = STABLE_EXTENSIBLE,
                  testing = TESTING_NOT_NEEDED,
-                 documentation = DOCUMENTATION_COMPLETE)
+                 documentation = DOCUMENTED)
     public enum ProcessType
     {
         DETACHED,
@@ -111,9 +111,9 @@ public class JarLauncher extends BaseRepeater
      *
      * @author jonathanl (shibo)
      */
-    @CodeQuality(stability = STABLE_EXTENSIBLE,
+    @TypeQuality(stability = STABLE_EXTENSIBLE,
                  testing = TESTING_NOT_NEEDED,
-                 documentation = DOCUMENTATION_COMPLETE)
+                 documentation = DOCUMENTED)
     public enum RedirectTo
     {
         FILE,

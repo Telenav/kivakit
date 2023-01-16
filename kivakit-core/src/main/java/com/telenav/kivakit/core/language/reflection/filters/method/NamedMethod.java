@@ -18,13 +18,13 @@
 
 package com.telenav.kivakit.core.language.reflection.filters.method;
 
-import com.telenav.kivakit.annotations.code.quality.CodeQuality;
+import com.telenav.kivakit.annotations.code.quality.TypeQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramReflection;
 import com.telenav.kivakit.core.language.reflection.Method;
 import com.telenav.kivakit.core.language.reflection.property.PropertyNamingConvention;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
-import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.language.Hash.hashMany;
@@ -33,9 +33,9 @@ import static com.telenav.kivakit.core.language.Hash.hashMany;
  * This filter matches a field with a particular name
  */
 @UmlClassDiagram(diagram = DiagramReflection.class)
-@CodeQuality(stability = STABLE,
+@TypeQuality(stability = STABLE,
              testing = UNTESTED,
-             documentation = DOCUMENTATION_COMPLETE)
+             documentation = DOCUMENTED)
 public class NamedMethod extends AllMethods
 {
     /** The method name */

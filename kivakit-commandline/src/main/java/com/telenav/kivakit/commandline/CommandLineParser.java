@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.commandline;
 
-import com.telenav.kivakit.annotations.code.quality.CodeQuality;
+import com.telenav.kivakit.annotations.code.quality.TypeQuality;
 import com.telenav.kivakit.commandline.internal.lexakai.DiagramArgument;
 import com.telenav.kivakit.commandline.internal.lexakai.DiagramCommandLine;
 import com.telenav.kivakit.commandline.parsing.ArgumentParserList;
@@ -37,7 +37,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.Collection;
 
-import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.project.Project.resolveProject;
@@ -121,9 +121,9 @@ import static com.telenav.kivakit.core.time.Duration.seconds;
 @UmlClassDiagram(diagram = DiagramCommandLine.class)
 @UmlRelation(label = "validates", referent = ArgumentValueList.class)
 @UmlRelation(diagram = DiagramCommandLine.class, label = "validates", referent = SwitchValueList.class)
-@CodeQuality(stability = STABLE_EXTENSIBLE,
+@TypeQuality(stability = STABLE_EXTENSIBLE,
              testing = UNTESTED,
-             documentation = DOCUMENTATION_COMPLETE)
+             documentation = DOCUMENTED)
 public class CommandLineParser
 {
     /** Parsers for arguments */

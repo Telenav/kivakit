@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.filesystem;
 
-import com.telenav.kivakit.annotations.code.quality.CodeQuality;
+import com.telenav.kivakit.annotations.code.quality.TypeQuality;
 import com.telenav.kivakit.collections.watcher.CollectionChangeListener;
 import com.telenav.kivakit.collections.watcher.PeriodicCollectionChangeWatcher;
 import com.telenav.kivakit.core.time.Frequency;
@@ -32,7 +32,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
 
 /**
@@ -60,9 +60,9 @@ import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_N
  */
 @UmlClassDiagram(diagram = DiagramFileSystemFolder.class)
 @UmlRelation(label = "watches", referent = Folder.class)
-@CodeQuality(stability = STABLE_EXTENSIBLE,
+@TypeQuality(stability = STABLE_EXTENSIBLE,
              testing = TESTING_NOT_NEEDED,
-             documentation = DOCUMENTATION_COMPLETE)
+             documentation = DOCUMENTED)
 public class FolderChangeWatcher extends PeriodicCollectionChangeWatcher<FileSystemObject>
 {
     /** The folder to watch */

@@ -1,6 +1,6 @@
 package com.telenav.kivakit.resource.serialization;
 
-import com.telenav.kivakit.annotations.code.quality.CodeQuality;
+import com.telenav.kivakit.annotations.code.quality.TypeQuality;
 import com.telenav.kivakit.core.language.trait.TryTrait;
 import com.telenav.kivakit.core.messaging.repeaters.RepeaterMixin;
 import com.telenav.kivakit.core.path.StringPath;
@@ -11,8 +11,8 @@ import org.jetbrains.annotations.NotNull;
 
 import java.io.OutputStream;
 
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 
 /**
@@ -22,12 +22,12 @@ import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
  * @see WritableResource
  * @see SerializableObject
  */
-@CodeQuality(stability = STABLE_EXTENSIBLE,
-             documentation = DOCUMENTATION_COMPLETE,
+@TypeQuality(stability = STABLE_EXTENSIBLE,
+             documentation = DOCUMENTED,
              testing = UNTESTED)
 public interface ObjectWriter extends
-        RepeaterMixin,
-        TryTrait
+    RepeaterMixin,
+    TryTrait
 {
     /**
      * Gets the {@link ProgressReporter} to use while writing
@@ -52,7 +52,7 @@ public interface ObjectWriter extends
         {
             var output = new ProgressiveOutputStream(resource.openForWriting(), progressReporter());
             writeObject(output, resource.path(), object, metadata);
-        }, "Unable to write to $", resource);
+        }, "Unable to write to $: $", resource, object.object().getClass().getSimpleName());
     }
 
     /**

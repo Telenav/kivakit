@@ -1,6 +1,6 @@
 package com.telenav.kivakit.mixins;
 
-import com.telenav.kivakit.annotations.code.quality.CodeQuality;
+import com.telenav.kivakit.annotations.code.quality.TypeQuality;
 import com.telenav.kivakit.interfaces.factory.Factory;
 import com.telenav.kivakit.interfaces.naming.NamedObject;
 import com.telenav.kivakit.mixins.internal.lexakai.DiagramMixin;
@@ -11,7 +11,7 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 import static com.telenav.kivakit.annotations.code.quality.Audience.AUDIENCE_INTERNAL;
-import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTED;
 import static java.util.Objects.hash;
@@ -30,9 +30,9 @@ import static java.util.Objects.hash;
  * @see Mixin
  */
 @UmlClassDiagram(diagram = DiagramMixin.class)
-@CodeQuality(stability = STABLE,
+@TypeQuality(stability = STABLE,
              testing = TESTED,
-             documentation = DOCUMENTATION_COMPLETE)
+             documentation = DOCUMENTED)
 public class Mixins
 {
     /** Map from an object and mixin type to the attached mixin state */
@@ -102,10 +102,10 @@ public class Mixins
      * @author jonathanl (shibo)
      */
     @SuppressWarnings("SpellCheckingInspection")
-    @CodeQuality(audience = AUDIENCE_INTERNAL,
+    @TypeQuality(audience = AUDIENCE_INTERNAL,
                  stability = STABLE,
                  testing = TESTED,
-                 documentation = DOCUMENTATION_COMPLETE)
+                 documentation = DOCUMENTED)
     private static class MixinKey
     {
         private final Object attachTo;

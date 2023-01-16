@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.core.progress;
 
-import com.telenav.kivakit.annotations.code.quality.CodeQuality;
+import com.telenav.kivakit.annotations.code.quality.TypeQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramProgress;
 import com.telenav.kivakit.core.progress.reporters.BroadcastingProgressReporter;
 import com.telenav.kivakit.core.value.count.BaseCount;
@@ -27,7 +27,7 @@ import com.telenav.kivakit.interfaces.lifecycle.Resettable;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
 
-import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
 import static com.telenav.kivakit.core.value.count.Count._1;
@@ -44,9 +44,9 @@ import static com.telenav.kivakit.core.value.count.Count._1;
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramProgress.class)
 @UmlRelation(label = "reports progress to", referent = ProgressListener.class)
-@CodeQuality(stability = STABLE_EXTENSIBLE,
+@TypeQuality(stability = STABLE_EXTENSIBLE,
              testing = TESTING_NOT_NEEDED,
-             documentation = DOCUMENTATION_COMPLETE)
+             documentation = DOCUMENTED)
 public interface ProgressReporter extends Resettable
 {
     /**
@@ -174,7 +174,7 @@ public interface ProgressReporter extends Resettable
     /**
      * Report that the operation has begun
      */
-    default ProgressReporter start(String label)
+    default ProgressReporter start(String label, Object... arguments)
     {
         return this;
     }

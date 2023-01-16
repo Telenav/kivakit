@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.core.thread;
 
-import com.telenav.kivakit.annotations.code.quality.CodeQuality;
+import com.telenav.kivakit.annotations.code.quality.TypeQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramThread;
 import com.telenav.kivakit.core.thread.locks.Lock;
 import com.telenav.kivakit.core.time.Duration;
@@ -31,7 +31,7 @@ import java.util.List;
 import java.util.concurrent.locks.Condition;
 import java.util.function.Predicate;
 
-import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.time.Duration.FOREVER;
@@ -68,9 +68,9 @@ import static java.util.Collections.synchronizedList;
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramThread.class)
-@CodeQuality(stability = STABLE_EXTENSIBLE,
+@TypeQuality(stability = STABLE_EXTENSIBLE,
              testing = UNTESTED,
-             documentation = DOCUMENTATION_COMPLETE)
+             documentation = DOCUMENTED)
 public final class StateWatcher<State>
 {
     /**

@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.collections.map;
 
-import com.telenav.kivakit.annotations.code.quality.CodeQuality;
+import com.telenav.kivakit.annotations.code.quality.TypeQuality;
 import com.telenav.kivakit.collections.internal.lexakai.DiagramMap;
 import com.telenav.kivakit.core.collections.list.ObjectList;
 import com.telenav.kivakit.core.collections.map.BaseMap;
@@ -38,7 +38,7 @@ import java.util.Map;
 import java.util.function.BiFunction;
 import java.util.function.Function;
 
-import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 
@@ -81,9 +81,9 @@ import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
  */
 @UmlClassDiagram(diagram = DiagramMap.class)
 @UmlExcludeSuperTypes(Iterable.class)
-@CodeQuality(stability = STABLE_EXTENSIBLE,
+@TypeQuality(stability = STABLE_EXTENSIBLE,
              testing = UNTESTED,
-             documentation = DOCUMENTATION_COMPLETE)
+             documentation = DOCUMENTED)
 public abstract class BaseIndexedMap<Key, Value> extends BaseMap<Key, Value> implements
         Iterable<Value>,
         Indexable<Value>,

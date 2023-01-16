@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.network.socket.server;
 
-import com.telenav.kivakit.annotations.code.quality.CodeQuality;
+import com.telenav.kivakit.annotations.code.quality.TypeQuality;
 import com.telenav.kivakit.core.messaging.repeaters.BaseRepeater;
 import com.telenav.kivakit.core.value.count.Maximum;
 
@@ -28,7 +28,7 @@ import java.net.Socket;
 import java.util.concurrent.ExecutorService;
 import java.util.function.Consumer;
 
-import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.thread.KivaKitThread.run;
@@ -42,9 +42,9 @@ import static com.telenav.kivakit.core.value.count.Maximum.MAXIMUM;
  *
  * @author jonathanl (shibo)
  */
-@CodeQuality(stability = STABLE_EXTENSIBLE,
+@TypeQuality(stability = STABLE_EXTENSIBLE,
              testing = UNTESTED,
-             documentation = DOCUMENTATION_COMPLETE)
+             documentation = DOCUMENTED)
 public class ConnectionListener extends BaseRepeater
 {
     /** The port to listen on */

@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.core.progress.reporters;
 
-import com.telenav.kivakit.annotations.code.quality.CodeQuality;
+import com.telenav.kivakit.annotations.code.quality.TypeQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramProgress;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.messaging.broadcasters.Multicaster;
@@ -33,7 +33,7 @@ import com.telenav.kivakit.core.value.level.Percent;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import org.jetbrains.annotations.NotNull;
 
-import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.messaging.Listener.nullListener;
@@ -47,8 +47,8 @@ import static com.telenav.kivakit.core.value.count.Count.count;
 
 /**
  * A progress reporter that sends progress messages to a {@link Listener} as an operation proceeds.
- * BroadcastingProgressReporter reporting on an operation is started with {@link #start(String)}. At each step,
- * {@link #next()} or {@link #next(long)} should be called to report progress. When the operation is over
+ * BroadcastingProgressReporter reporting on an operation is started with {@link #start(String, Object...)}. At each
+ * step, {@link #next()} or {@link #next(long)} should be called to report progress. When the operation is over
  * {@link #end(String, Object...)} should be called.
  * <p>
  * <b>Example - Broadcasting Progress of an Operation</b>
@@ -84,7 +84,7 @@ import static com.telenav.kivakit.core.value.count.Count.count;
  *     <li>{@link #phase(String)} - Sets the phase of the operation</li>
  *     <li>{@link #reset()} - Resets progress to step 0</li>
  *     <li>{@link #start()} - Starts the operation</li>
- *     <li>{@link #start(String)} - Starts the operation, transmitting the given label</li>
+ *     <li>{@link #start(String, Object...)} - Starts the operation, transmitting the given label</li>
  *     <li>{@link #steps()} - Returns the number of steps in the operation</li>
  *     <li>{@link #steps(BaseCount)} - Sets the number of steps in the operation</li>
  *     <li>{@link #withPhase(String)} - This reporter with the given phase</li>
@@ -96,9 +96,9 @@ import static com.telenav.kivakit.core.value.count.Count.count;
  */
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramProgress.class)
-@CodeQuality(stability = STABLE_EXTENSIBLE,
+@TypeQuality(stability = STABLE_EXTENSIBLE,
              testing = UNTESTED,
-             documentation = DOCUMENTATION_COMPLETE)
+             documentation = DOCUMENTED)
 public class BroadcastingProgressReporter extends Multicaster implements ProgressReporter
 {
     /** The slowest we should report progress */
@@ -361,13 +361,14 @@ public class BroadcastingProgressReporter extends Multicaster implements Progres
      * {@inheritDoc}
      */
     @Override
-    public BroadcastingProgressReporter start(String label)
+    public BroadcastingProgressReporter start(String message, Object... arguments)
     {
         if (!started)
         {
             started = true;
             this.at = 0;
-            feedback(topLine(70, label + " " + unitName));
+            var formatter = format(message, arguments);
+            feedback(topLine(70, message + " " + unitName));
             start = now().milliseconds();
             if (listener != null)
             {

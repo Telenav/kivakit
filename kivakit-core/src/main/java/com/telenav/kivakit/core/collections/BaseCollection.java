@@ -1,6 +1,6 @@
 package com.telenav.kivakit.core.collections;
 
-import com.telenav.kivakit.annotations.code.quality.CodeQuality;
+import com.telenav.kivakit.annotations.code.quality.TypeQuality;
 import com.telenav.kivakit.core.collections.iteration.BaseIterator;
 import com.telenav.kivakit.core.collections.iteration.FilteredIterable;
 import com.telenav.kivakit.core.collections.list.BaseList;
@@ -28,7 +28,7 @@ import java.util.Set;
 import java.util.function.Function;
 import java.util.function.Predicate;
 
-import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_INSUFFICIENT;
 import static com.telenav.kivakit.core.KivaKit.globalListener;
@@ -157,9 +157,9 @@ import static com.telenav.kivakit.interfaces.string.StringFormattable.Format.TO_
  * @see StringFormattable
  */
 @SuppressWarnings("unused")
-@CodeQuality(stability = STABLE_EXTENSIBLE,
+@TypeQuality(stability = STABLE_EXTENSIBLE,
              testing = TESTING_INSUFFICIENT,
-             documentation = DOCUMENTATION_COMPLETE)
+             documentation = DOCUMENTED)
 public abstract class BaseCollection<Value> implements
     Addable<Value>,
     Collection<Value>,

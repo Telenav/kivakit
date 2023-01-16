@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.resource;
 
-import com.telenav.kivakit.annotations.code.quality.CodeQuality;
+import com.telenav.kivakit.annotations.code.quality.TypeQuality;
 import com.telenav.kivakit.commandline.ArgumentParser;
 import com.telenav.kivakit.commandline.SwitchParser;
 import com.telenav.kivakit.conversion.BaseStringConverter;
@@ -49,7 +49,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.ServiceLoader;
 
-import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
@@ -143,21 +143,21 @@ import static com.telenav.kivakit.resource.spi.ResourceResolverService.resourceR
 @SuppressWarnings({ "unused", "SpellCheckingInspection" })
 @UmlClassDiagram(diagram = DiagramFileSystemFile.class)
 @UmlClassDiagram(diagram = DiagramResource.class)
-@CodeQuality(stability = STABLE_EXTENSIBLE,
+@TypeQuality(stability = STABLE_EXTENSIBLE,
              testing = TESTING_NOT_NEEDED,
-             documentation = DOCUMENTATION_COMPLETE)
+             documentation = DOCUMENTED)
 public interface Resource extends
-        ResourcePathed,
-        Modifiable,
-        ModifiedAt,
-        CreatedAt,
-        Deletable,
-        ByteSized,
-        AsString,
-        ReadableResource,
-        Repeater,
-        Resourceful,
-        UriIdentified
+    ResourcePathed,
+    Modifiable,
+    ModifiedAt,
+    CreatedAt,
+    Deletable,
+    ByteSized,
+    AsString,
+    ReadableResource,
+    Repeater,
+    Resourceful,
+    UriIdentified
 {
     /**
      * Resolves the given {@link ResourceIdentifier} to a {@link Resource}. This is done by using
@@ -215,8 +215,8 @@ public interface Resource extends
                                                                    @NotNull String description)
     {
         return argumentParser(Resource.class)
-                .converter(new Resource.Converter(listener))
-                .description(description);
+            .converter(new Resource.Converter(listener))
+            .description(description);
     }
 
     /**
@@ -239,22 +239,22 @@ public interface Resource extends
      * @return The builder
      */
     static SwitchParser.Builder<Resource> resourceSwitchParser(
-            @NotNull Listener listener,
-            @NotNull String name,
-            @NotNull String description)
+        @NotNull Listener listener,
+        @NotNull String name,
+        @NotNull String description)
     {
         return switchParser(Resource.class)
-                .name(name)
-                .converter(new Resource.Converter(listener))
-                .description(description);
+            .name(name)
+            .converter(new Resource.Converter(listener))
+            .description(description);
     }
 
     /**
      * Represents the ability to do something with this resource (or not)
      */
-    @CodeQuality(stability = STABLE_EXTENSIBLE,
+    @TypeQuality(stability = STABLE_EXTENSIBLE,
                  testing = TESTING_NOT_NEEDED,
-                 documentation = DOCUMENTATION_COMPLETE)
+                 documentation = DOCUMENTED)
     enum Action
     {
         /** The resource can be renamed */
@@ -269,9 +269,9 @@ public interface Resource extends
      *
      * @author jonathanl (shibo)
      */
-    @CodeQuality(stability = STABLE,
+    @TypeQuality(stability = STABLE,
                  testing = TESTING_NOT_NEEDED,
-                 documentation = DOCUMENTATION_COMPLETE)
+                 documentation = DOCUMENTED)
     class Converter extends BaseStringConverter<Resource>
     {
         public Converter(@NotNull Listener listener)
@@ -359,6 +359,17 @@ public interface Resource extends
     default boolean hasParent()
     {
         return parent() != null;
+    }
+
+    /**
+     * Returns a {@link ResourceIdentifier} for this resource that can be resolved with
+     * {@link ResourceIdentifier#resolve(Listener)}. Not all resources support this scheme.
+     *
+     * @return The resource identifier
+     */
+    default ResourceIdentifier identifier()
+    {
+        return unsupported();
     }
 
     /**

@@ -1,20 +1,18 @@
 package com.telenav.kivakit.conversion.core.time;
 
-import com.telenav.kivakit.annotations.code.quality.CodeQuality;
+import com.telenav.kivakit.annotations.code.quality.TypeQuality;
 import com.telenav.kivakit.conversion.BaseStringConverter;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.time.Time;
 
-import java.time.Instant;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
-import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.time.Time.epochMilliseconds;
-import static com.telenav.kivakit.core.time.TimeFormats.KIVAKIT_DATE;
-import static com.telenav.kivakit.core.time.TimeFormats.KIVAKIT_DATE_TIME;
-import static com.telenav.kivakit.core.time.TimeFormats.KIVAKIT_TIME;
+import static com.telenav.kivakit.core.time.TimeZones.utc;
 
 /**
  * Converts to and from {@link Time} using the given Java date time formatter
@@ -22,35 +20,11 @@ import static com.telenav.kivakit.core.time.TimeFormats.KIVAKIT_TIME;
  * @author jonathanl (shibo)
  */
 @SuppressWarnings("unused")
-@CodeQuality(stability = STABLE,
+@TypeQuality(stability = STABLE,
              testing = UNTESTED,
-             documentation = DOCUMENTATION_COMPLETE)
+             documentation = DOCUMENTED)
 public class TimeConverter extends BaseStringConverter<Time>
 {
-    /**
-     * Returns a converter that converts to/from kivakit date format: "yyyy.MM.dd"
-     */
-    public static TimeConverter kivakitDateConverter(Listener listener)
-    {
-        return new TimeConverter(listener, KIVAKIT_DATE);
-    }
-
-    /**
-     * Returns a converter that converts to/from kivakit date/time format: yyyy.MM.dd_h.mma
-     */
-    public static TimeConverter kivakitDateTimeConverter(Listener listener)
-    {
-        return new TimeConverter(listener, KIVAKIT_DATE_TIME);
-    }
-
-    /**
-     * Returns a converter that converts to/from kivakit time format: "h.mma"
-     */
-    public static TimeConverter kivakitTimeConverter(Listener listener)
-    {
-        return new TimeConverter(listener, KIVAKIT_TIME);
-    }
-
     /** Java date/time formatter */
     private final DateTimeFormatter formatter;
 
@@ -64,14 +38,22 @@ public class TimeConverter extends BaseStringConverter<Time>
         this.formatter = formatter;
     }
 
+    @Override
+    public String onToString(Time time)
+    {
+        return formatter.format(time.asJavaInstant());
+    }
+
     /**
      * {@inheritDoc}
+     *
      * @param dateTimeString The (guaranteed non-null, non-empty) value to convert
-     * @return
      */
     @Override
     protected Time onToValue(String dateTimeString)
     {
-        return epochMilliseconds(Instant.from(formatter.parse(dateTimeString)).toEpochMilli());
+        var parsed = formatter.parse(dateTimeString, LocalDateTime::from);
+        var utc = parsed.atZone(utc());
+        return epochMilliseconds(utc.toInstant().toEpochMilli());
     }
 }

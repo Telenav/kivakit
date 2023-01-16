@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.settings;
 
-import com.telenav.kivakit.annotations.code.quality.CodeQuality;
+import com.telenav.kivakit.annotations.code.quality.TypeQuality;
 import com.telenav.kivakit.core.registry.InstanceIdentifier;
 import com.telenav.kivakit.core.registry.RegistryTrait;
 import com.telenav.kivakit.resource.serialization.SerializableObject;
@@ -28,7 +28,7 @@ import com.telenav.lexakai.annotations.visibility.UmlNotPublicApi;
 
 import java.security.Key;
 
-import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.ensure.Ensure.ensureFalse;
@@ -53,9 +53,9 @@ import static com.telenav.kivakit.core.registry.InstanceIdentifier.singletonInst
 @UmlNotPublicApi
 @UmlExcludeType(Comparable.class)
 @UmlExcludeType
-@CodeQuality(stability = STABLE,
+@TypeQuality(stability = STABLE,
              testing = UNTESTED,
-             documentation = DOCUMENTATION_COMPLETE)
+             documentation = DOCUMENTED)
 public class SettingsObject implements RegistryTrait
 {
     /**

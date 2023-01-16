@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.core.value.count;
 
-import com.telenav.kivakit.annotations.code.quality.CodeQuality;
+import com.telenav.kivakit.annotations.code.quality.TypeQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramCount;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.interfaces.value.DoubleValued;
@@ -28,7 +28,7 @@ import org.jetbrains.annotations.NotNull;
 import java.lang.reflect.Array;
 import java.util.regex.Pattern;
 
-import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.language.primitive.Doubles.formatDouble;
@@ -89,15 +89,15 @@ import static java.util.regex.Pattern.CASE_INSENSITIVE;
  */
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramCount.class)
-@CodeQuality(stability = STABLE_EXTENSIBLE,
+@TypeQuality(stability = STABLE_EXTENSIBLE,
              testing = UNTESTED,
-             documentation = DOCUMENTATION_COMPLETE)
+             documentation = DOCUMENTED)
 public final class Bytes extends BaseCount<Bytes> implements
-        ByteSized,
-        DoubleValued
+    ByteSized,
+    DoubleValued
 {
     /** Pattern for string parsing. */
-    private static final Pattern PATTERN = Pattern.compile("([0-9]+([.,][0-9]+)?)\\s*(|K|M|G|T)B?", CASE_INSENSITIVE);
+    private static final Pattern PATTERN = Pattern.compile("([0-9]+([.,][0-9]+)?)\\s*(|K|KB|M|MB|G|GB|T|TB|P|PB|bytes)", CASE_INSENSITIVE);
 
     /** No bytes */
     public static final Bytes _0 = bytes(0);
@@ -221,7 +221,7 @@ public final class Bytes extends BaseCount<Bytes> implements
             // Get units specified
             var units = matcher.group(3);
 
-            if ("".equalsIgnoreCase(units))
+            if ("".equalsIgnoreCase(units) || "bytes".equalsIgnoreCase(units))
             {
                 return bytes(scalar);
             }
@@ -377,13 +377,8 @@ public final class Bytes extends BaseCount<Bytes> implements
     {
         switch (format)
         {
-            case USER_LABEL:
-            case USER_SINGLE_LINE:
-            case USER_MULTILINE:
-            case TO_STRING:
-            case TEXT:
-            case HTML:
-            case DEBUG:
+            case USER_LABEL, USER_SINGLE_LINE, USER_MULTILINE, TO_STRING, TEXT, HTML, DEBUG ->
+            {
                 if (asGigabytes() >= 1000)
                 {
                     return unitString(asTerabytes(), "T");
@@ -401,9 +396,11 @@ public final class Bytes extends BaseCount<Bytes> implements
                     return unitString(asKilobytes(), "K");
                 }
                 return asBytes() + " bytes";
-
-            default:
+            }
+            default ->
+            {
                 return super.asString(format);
+            }
         }
     }
 

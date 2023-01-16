@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.network.email.senders;
 
-import com.telenav.kivakit.annotations.code.quality.CodeQuality;
+import com.telenav.kivakit.annotations.code.quality.TypeQuality;
 import com.telenav.kivakit.conversion.core.language.object.ConvertedProperty;
 import com.telenav.kivakit.network.core.Host;
 import com.telenav.kivakit.network.core.authentication.Password;
@@ -31,7 +31,7 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 import java.util.Properties;
 
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 
 /**
@@ -40,9 +40,9 @@ import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramEmail.class)
-@CodeQuality(stability = STABLE_EXTENSIBLE,
+@TypeQuality(stability = STABLE_EXTENSIBLE,
              testing = UNTESTED,
-             documentation = DOCUMENTATION_COMPLETE)
+             documentation = DOCUMENTED)
 public class SmtpEmailSender extends EmailSender
 {
     /**
@@ -50,9 +50,9 @@ public class SmtpEmailSender extends EmailSender
      *
      * @author jonathanl (shibo)
      */
-    @CodeQuality(stability = STABLE_EXTENSIBLE,
+    @TypeQuality(stability = STABLE_EXTENSIBLE,
                  testing = UNTESTED,
-                 documentation = DOCUMENTATION_COMPLETE)
+                 documentation = DOCUMENTED)
     public static class Configuration extends EmailSender.Configuration
     {
         private Host host;

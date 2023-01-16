@@ -24,14 +24,14 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonParseException;
 import com.google.gson.JsonSerializationContext;
 import com.google.gson.JsonSerializer;
-import com.telenav.kivakit.annotations.code.quality.CodeQuality;
+import com.telenav.kivakit.annotations.code.quality.TypeQuality;
 import com.telenav.kivakit.conversion.StringConverter;
 import com.telenav.kivakit.serialization.gson.factory.JsonSerializerDeserializer;
 
 import java.lang.reflect.Type;
 
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 
 /**
@@ -41,9 +41,9 @@ import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
  *
  * @author jonathanl (shibo)
  */
-@CodeQuality(stability = STABLE_EXTENSIBLE,
+@TypeQuality(stability = STABLE_EXTENSIBLE,
              testing = UNTESTED,
-             documentation = DOCUMENTATION_COMPLETE)
+             documentation = DOCUMENTED)
 public class StringConverterGsonSerializer<Value> implements JsonSerializerDeserializer<Value>
 {
     private final StringConverter<Value> converter;

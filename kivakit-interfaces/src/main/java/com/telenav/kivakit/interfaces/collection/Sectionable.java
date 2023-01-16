@@ -1,10 +1,10 @@
 package com.telenav.kivakit.interfaces.collection;
 
-import com.telenav.kivakit.annotations.code.quality.CodeQuality;
+import com.telenav.kivakit.annotations.code.quality.TypeQuality;
 import com.telenav.kivakit.interfaces.factory.Factory;
 
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABILITY_UNDETERMINED;
-import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static java.lang.Math.max;
 import static java.lang.Math.min;
@@ -17,9 +17,9 @@ import static java.lang.Math.min;
  * @author jonathanl (shibo)
  */
 @SuppressWarnings({ "SpellCheckingInspection", "unused" })
-@CodeQuality(stability = STABILITY_UNDETERMINED,
+@TypeQuality(stability = STABILITY_UNDETERMINED,
              testing = UNTESTED,
-             documentation = DOCUMENTATION_COMPLETE,
+             documentation = DOCUMENTED,
              reviews = 1,
              reviewers = "shibo")
 public interface Sectionable<Value, Section extends Addable<Value> & Indexable<Value>> extends

@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.core.project;
 
-import com.telenav.kivakit.annotations.code.quality.CodeQuality;
+import com.telenav.kivakit.annotations.code.quality.TypeQuality;
 import com.telenav.kivakit.core.collections.map.VariableMap;
 import com.telenav.kivakit.core.collections.set.ObjectSet;
 import com.telenav.kivakit.core.internal.lexakai.DiagramProject;
@@ -38,7 +38,7 @@ import com.telenav.lexakai.annotations.visibility.UmlExcludeSuperTypes;
 import java.util.HashSet;
 import java.util.Set;
 
-import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
 import static com.telenav.kivakit.core.collections.set.ObjectSet.emptySet;
@@ -108,9 +108,9 @@ import static com.telenav.kivakit.core.vm.Properties.allProperties;
  */
 @UmlClassDiagram(diagram = DiagramProject.class)
 @UmlExcludeSuperTypes({ Named.class })
-@CodeQuality(stability = STABLE_EXTENSIBLE,
+@TypeQuality(stability = STABLE_EXTENSIBLE,
              testing = TESTING_NOT_NEEDED,
-             documentation = DOCUMENTATION_COMPLETE)
+             documentation = DOCUMENTED)
 public abstract class Project extends BaseRepeater implements
         Initializable,
         Named,
