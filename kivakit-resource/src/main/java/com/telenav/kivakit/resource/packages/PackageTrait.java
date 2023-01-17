@@ -15,7 +15,6 @@ import static com.telenav.kivakit.resource.packages.PackagePath.parsePackagePath
 /**
  * A trait containing methods for working with packages. Classes implementing this interface are provided with easy
  * access to packages and resources relative to the class' package:
- * </p>
  *
  * <p><b>Package Resources</b></p>
  *

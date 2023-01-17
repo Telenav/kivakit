@@ -67,7 +67,7 @@ public abstract class KryoUnitTest extends UnitTest
     private SerializationSessionFactory factory;
 
     /**
-     * Returns the kryo types for this unit test. By default this is the kivakit-core types and the kivakit-resource
+     * Returns the kryo types for this unit test. By default, this is the kivakit-core types and the kivakit-resource
      * types.
      */
     protected KryoTypes kryoTypes()

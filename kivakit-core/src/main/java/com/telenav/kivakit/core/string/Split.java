@@ -37,7 +37,7 @@ import static com.telenav.kivakit.core.collections.list.StringList.stringList;
  *
  * @author jonathanl (shibo)
  */
-@SuppressWarnings("DuplicatedCode") @UmlClassDiagram(diagram = DiagramString.class)
+@UmlClassDiagram(diagram = DiagramString.class)
 @TypeQuality(stability = STABLE_EXTENSIBLE,
              testing = UNTESTED,
              documentation = DOCUMENTED)
@@ -61,39 +61,7 @@ public class Split
      */
     public static StringList splitIntoWords(String text)
     {
-        var list = new ArrayList<String>();
-
-        var startOfWord = -1;
-        var length = text.length();
-        for (int at = 0; at < length; at++)
-        {
-            switch (text.charAt(at))
-            {
-                case ' ':
-                case '\t':
-                case '\n':
-                    if (startOfWord >= 0)
-                    {
-                        list.add(text.substring(startOfWord, at));
-                        startOfWord = -1;
-                    }
-                    break;
-
-                default:
-                    if (startOfWord < 0)
-                    {
-                        startOfWord = at;
-                    }
-                    break;
-            }
-        }
-
-        if (startOfWord >= 0)
-        {
-            list.add(text.substring(startOfWord));
-        }
-
-        return stringList(list);
+        return StringList.words(text);
     }
 
     /**

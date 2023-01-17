@@ -176,15 +176,11 @@ public class StackTrace implements
     @Override
     public String asString(@NotNull Format format)
     {
-        switch (format)
-        {
-            case HTML:
-                return toHtmlString();
-
-            case TEXT:
-            default:
-                return toString();
-        }
+        return switch (format)
+            {
+                case HTML -> toHtmlString();
+                default -> toString();
+            };
     }
 
     /**

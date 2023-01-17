@@ -357,7 +357,6 @@ public class ResourcePath extends StringPath implements
     /**
      * {@inheritDoc}
      */
-    @SuppressWarnings("SpellCheckingInspection")
     @Override
     public ResourcePath subpath(int start, int end)
     {

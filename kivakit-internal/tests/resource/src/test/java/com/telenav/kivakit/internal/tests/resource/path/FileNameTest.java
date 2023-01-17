@@ -28,11 +28,9 @@ import org.junit.Test;
 
 import java.time.ZoneId;
 
-import static com.telenav.kivakit.core.messaging.Listener.throwingListener;
 import static com.telenav.kivakit.core.time.DayOfWeek.FRIDAY;
 import static com.telenav.kivakit.core.time.Time.now;
 
-@SuppressWarnings("ConstantConditions")
 public class FileNameTest extends UnitTest
 {
     @Test
@@ -92,9 +90,9 @@ public class FileNameTest extends UnitTest
           Converters
          */
         var millisecondsConverter =
-            new KivaKitLocalDateTimeWithMillisecondsConverter( timeZone);
+            new KivaKitLocalDateTimeWithMillisecondsConverter(timeZone);
         var secondsConverter =
-            new KivaKitLocalDateTimeWithSecondsConverter( timeZone);
+            new KivaKitLocalDateTimeWithSecondsConverter(timeZone);
 
         String timeRepresentation;
 

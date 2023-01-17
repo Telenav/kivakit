@@ -96,7 +96,7 @@ public class Registry implements RegistryTrait
     }
 
     /**
-     * Returns the registry to use for the given object. Currently this simply returns the global registry. In the
+     * Returns the registry to use for the given object. Currently, this simply returns the global registry. In the
      * future, it may return registries specific to different objects.
      *
      * @return The lookup for the given object

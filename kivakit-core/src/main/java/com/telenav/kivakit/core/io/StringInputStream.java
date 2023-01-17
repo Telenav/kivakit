@@ -114,7 +114,7 @@ public class StringInputStream extends InputStream
      *
      * @param toRead A string
      * @param encoding An encoding
-     * @param outBufferSize A buffer size - if &lt;= 0, the buffer size will based on the character set's average bytes
+     * @param outBufferSize A buffer size - if &lt;= 0, the buffer size will be based on the character set's average bytes
      * per character to accommodate the entire string
      */
     public StringInputStream(CharSequence toRead, Charset encoding, int outBufferSize)
@@ -129,7 +129,7 @@ public class StringInputStream extends InputStream
      *
      * @param toRead A string
      * @param encoding An encoding
-     * @param outBufferSize A buffer size - if &lt;= 0, the buffer size will based on the character set's average bytes
+     * @param outBufferSize A buffer size - if &lt;= 0, the buffer size will be based on the character set's average bytes
      * per character to accommodate the entire string
      * @param errorBehavior What to do if unmappable characters are encountered - omit them, use a substitute character,
      * or throw an IllegalStateException to wrap the original CoderResult's exception
@@ -162,7 +162,7 @@ public class StringInputStream extends InputStream
     }
 
     @Override
-    public synchronized int available() throws IOException
+    public synchronized int available()
     {
         // available() is documented to return an estimate(), so... estimate.
         int charsRemaining = chars.remaining();
@@ -170,10 +170,10 @@ public class StringInputStream extends InputStream
     }
 
     @Override
-    public synchronized void close() throws IOException
+    public synchronized void close()
     {
         // Move to the end of the character buffer and
-        // position the output buffer so it shows no remaining characters
+        // position the output buffer, so it shows no remaining characters
         chars.position(chars.capacity());
         outBuffer.clear();
         outBuffer.limit(0);

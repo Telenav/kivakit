@@ -25,7 +25,7 @@ This package contains helpful classes for working with Java objects.
 The *Objects* and *Hash* classes provide some useful utility methods that are generic to all  
 Java objects. *Hash* provides hash codes for objects, including [*Knuth*](https://en.wikipedia.org/wiki/Donald_Knuth) hash codes. The  
 *Objects* class provides a few simple methods that make basic object operations like equality  
-more concise or less error prone.
+more concise or less error-prone.
 
 ### Lazy Initialization <a name="summary"></a>
 

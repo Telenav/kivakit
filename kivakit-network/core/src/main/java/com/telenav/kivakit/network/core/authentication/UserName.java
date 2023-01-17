@@ -19,7 +19,6 @@
 package com.telenav.kivakit.network.core.authentication;
 
 import com.telenav.kivakit.annotations.code.quality.TypeQuality;
-import com.telenav.kivakit.conversion.BaseStringConverter;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.value.name.Name;
 import com.telenav.kivakit.network.core.internal.lexakai.DiagramAuthentication;

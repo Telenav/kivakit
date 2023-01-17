@@ -44,7 +44,7 @@ use this context information when creating log entries.
 
 Most loggers in KivaKit are _asynchronous_. This is _very important_ to performance because the  
 thread logging the message does not block. Since the log entry is logged in the background, things  
-can occasionally become a little confusing when debugging a multi-threaded application. This  
+can occasionally become a little confusing when debugging a multithreaded application. This  
 system property will cause logging to happen synchronously, blocking the logging thread until  
 the log has been written to:
 
@@ -88,7 +88,7 @@ efficiencies regarding debug tracing to be found in the next section [Debugging]
 
 ### Logging Broadcast Messages <a name="logging-broadcast-messages"></a>
 
-Note that a _Logger_ is a _Listener_ (see [Messaging](messaging.md) and can will log any message it hears (if it  
+Note that a _Logger_ is a _Listener_ (see [Messaging](messaging.md)) and can will log any message it hears (if it  
 isn't filtered out). So you can log all the messages broadcast by an object with code like:
 
     LOGGER.listenTo(computeServer);
@@ -190,7 +190,7 @@ It also explains what logs are available.
     * formatter=columnar|unformatted (default is columnar)
 * **File** - File log. Parameters:
     * file=/var/logs/myapp.txt - path to file
-    * rollover=none|hourly|daily - when to rollover to a new file (none is default)
+    * rollover=none|hourly|daily - when to roll over to a new file (none is default)
     * maximum-size=<size> - maximum size of log before it rolls over (default is "50M")
 * **Viewer** - Shows the log viewer, as in the screenshot below. Since your application can cause  
   the viewer to fail, it may be better to run it in another process. See the _Log Viewer_ section below.

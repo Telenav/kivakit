@@ -58,14 +58,9 @@ import static com.telenav.kivakit.resource.ResourcePath.parseResourcePath;
  * </p>
  *
  * <ul>
- *     <li>{@link #fileNameForNow()}</li>
- *     <li>{@link #kivakitFileNameForLocalTime(LocalTime)}</li>
- *     <li>{@link #kivakitFileNameForLocalTime(LocalTime, ZoneId)}</li>
  *     <li>{@link #kivakitFileNameForNow()}</li>
  *     <li>{@link #kivakitFileName(LocalTime)}</li>
  *     <li>{@link #kivakitFileName(LocalTime, ZoneId)}</li>
- *     <li>{@link #kivakitFileNameForLocalTime(LocalTime)}</li>
- *     <li>{@link #kivakitFileNameForLocalTime(LocalTime, ZoneId)}</li>
  *     <li>{@link #parseKivaKitFileName(Listener, String)}</li>
  *     <li>{@link #parseKivaKitFileName(Listener, String, ZoneId)}</li>
  *     <li>{@link #parseFileName(Listener, String)}</li>
@@ -140,7 +135,6 @@ public class FileName implements
     /**
      * Returns a filename for the current date and time
      */
-    @SuppressWarnings("ConstantConditions")
     public static FileName kivakitFileName(@NotNull LocalTime time)
     {
         return parseFileName(throwingListener(), new KivaKitLocalDateTimeConverter().unconvert(time));
@@ -149,7 +143,6 @@ public class FileName implements
     /**
      * Returns a filename for the given local time in the given timezone
      */
-    @SuppressWarnings("ConstantConditions")
     public static FileName kivakitFileName(@NotNull LocalTime time,
                                            @NotNull ZoneId zone)
     {

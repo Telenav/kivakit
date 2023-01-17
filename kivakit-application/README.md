@@ -209,7 +209,7 @@ used. This is because `Application` is a `BaseRepeater` and so it inherits all t
 <a name="application-lifecycle"></a>
 <img src="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128.png" srcset="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128-2x.png 2x"/>
 
-A application lifecycle follows this sequence.
+An application lifecycle follows this sequence.
 
 <img src="https://telenav.github.io/telenav-assets/images/diagrams/application-lifecycle@2x.png"/>
 

@@ -178,7 +178,7 @@ public class LogEntry implements Triaged
     {
         ensureNotNull(context);
 
-        // If the formatted entry exists and we're re-formatting with the same formatter,
+        // If the formatted entry exists, and we're re-formatting with the same formatter,
         if (formattedEntry != null && isEqual(formatter, lastFormatter))
         {
             // then reuse the formatted text we made last time

@@ -286,7 +286,6 @@ public class NetworkPath extends FilePath
     /**
      * {@inheritDoc}
      */
-    @SuppressWarnings("SpellCheckingInspection")
     @Override
     public NetworkPath subpath(int start, int end)
     {

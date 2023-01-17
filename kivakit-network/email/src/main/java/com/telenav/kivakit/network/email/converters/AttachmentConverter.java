@@ -59,7 +59,6 @@ public class AttachmentConverter extends BaseTwoWayConverter<StringList, EmailAt
         return null;
     }
 
-    @SuppressWarnings("SpellCheckingInspection")
     @Override
     protected StringList onUnconvert(EmailAttachment emailAttachment)
     {

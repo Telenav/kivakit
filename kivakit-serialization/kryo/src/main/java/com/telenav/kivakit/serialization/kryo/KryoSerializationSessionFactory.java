@@ -6,8 +6,8 @@ import com.telenav.kivakit.serialization.core.SerializationSessionFactory;
 import com.telenav.kivakit.serialization.kryo.types.KryoTypes;
 import org.jetbrains.annotations.NotNull;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 
 /**
@@ -20,16 +20,12 @@ import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
              documentation = DOCUMENTED)
 public class KryoSerializationSessionFactory implements SerializationSessionFactory
 {
-    /** Kryo type registration information */
-    private KryoTypes types;
-
     /** Thread-local sessions */
-    private final ThreadLocal<KryoSerializationSession> threadSession =
-            ThreadLocal.withInitial(() -> new KryoSerializationSession(types));
+    private final ThreadLocal<KryoSerializationSession> threadSession;
 
     public KryoSerializationSessionFactory(KryoTypes types)
     {
-        this.types = types;
+        threadSession = ThreadLocal.withInitial(() -> new KryoSerializationSession(types));
     }
 
     @Override

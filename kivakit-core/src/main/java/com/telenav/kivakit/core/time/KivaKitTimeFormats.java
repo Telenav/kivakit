@@ -39,7 +39,6 @@ import static java.time.temporal.ChronoField.YEAR;
 /**
  * @author jonathanl (shibo)
  */
-@SuppressWarnings("SpellCheckingInspection")
 @UmlClassDiagram(diagram = DiagramTime.class)
 @TypeQuality(stability = STABLE_EXTENSIBLE,
              testing = UNTESTED,
@@ -74,7 +73,7 @@ public class KivaKitTimeFormats
         .toFormatter();
 
     /**
-     * Returns a case sensitive {@link DateTimeFormatterBuilder} for the given pattern
+     * Returns a case-sensitive {@link DateTimeFormatterBuilder} for the given pattern
      */
     private static DateTimeFormatterBuilder builder(String pattern)
     {

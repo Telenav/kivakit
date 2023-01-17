@@ -14,7 +14,6 @@ import static com.telenav.kivakit.annotations.code.quality.Audience.AUDIENCE_INT
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTED;
-import static java.util.Objects.hash;
 
 /**
  * Stores the state objects for {@link Mixin}s, allowing {@link Mixin} interfaces to be stateful by having associated
@@ -97,47 +96,32 @@ public class Mixins
     }
 
     /**
-     * <b>Not public API</b>
-     *
-     * @author jonathanl (shibo)
-     */
-    @SuppressWarnings("SpellCheckingInspection")
-    @TypeQuality(audience = AUDIENCE_INTERNAL,
-                 stability = STABLE,
-                 testing = TESTED,
-                 documentation = DOCUMENTED)
-    private static class MixinKey
-    {
-        private final Object attachTo;
-
-        private final Class<? extends Mixin> mixinType;
-
-        public MixinKey(Object attachTo, Class<? extends Mixin> mixinType)
+         * <b>Not public API</b>
+         *
+         * @author jonathanl (shibo)
+         */
+        @SuppressWarnings("SpellCheckingInspection")
+        @TypeQuality(audience = AUDIENCE_INTERNAL,
+                     stability = STABLE,
+                     testing = TESTED,
+                     documentation = DOCUMENTED)
+        private record MixinKey(Object attachTo, Class<? extends Mixin> mixinType)
         {
-            this.attachTo = attachTo;
-            this.mixinType = mixinType;
-        }
 
-        @Override
-        public boolean equals(Object uncast)
-        {
-            if (uncast instanceof MixinKey that)
+            @Override
+            public boolean equals(Object uncast)
             {
-                return attachTo == that.attachTo && mixinType == that.mixinType;
+                if (uncast instanceof MixinKey that)
+                {
+                    return attachTo == that.attachTo && mixinType == that.mixinType;
+                }
+                return false;
             }
-            return false;
-        }
 
-        @Override
-        public int hashCode()
-        {
-            return hash(attachTo, mixinType);
+            @Override
+            public String toString()
+            {
+                return "[Mixin object = " + attachTo.getClass() + ", mixin = " + mixinType + "]";
+            }
         }
-
-        @Override
-        public String toString()
-        {
-            return "[Mixin object = " + attachTo.getClass() + ", mixin = " + mixinType + "]";
-        }
-    }
 }

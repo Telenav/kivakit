@@ -57,13 +57,13 @@ This code produces the output:
 
 ### Initialization <a name="initialization"></a> &nbsp; &nbsp; ![](https://telenav.github.io/telenav-assets/images/icons/wand-40.png)
 
-The *onInitialize()* method gives a project a chance to initialize when you call the *initialize()*  
+The *onInitialize()* method gives a project a chance to initialize when you call the '*initialize()*'  
 method to begin using the *Project*.
 
 You don't need to initialize a project's dependencies to use it, only the project itself.  
 KivaKit will initialize all the dependencies for you.
 
-_Before using a KivaKit project, you must call the *initialize()* method on the project._
+_Before using a KivaKit project, you must call the '*initialize()*' method on the project._
 
     // Initializes everything you need to initialize to use the Graph API, including
     // KivaMapRegion, KivaMapGeography, KivaMapUtilities, KivaGraphTraffic, KivaCore, ...

@@ -34,7 +34,7 @@ import static java.lang.Integer.parseInt;
 import static java.lang.Long.numberOfTrailingZeros;
 
 /**
- * A count value that is an maximum. This class mainly exists to clarify APIs by giving a meaning to the count value.
+ * A count value that is a maximum. This class mainly exists to clarify APIs by giving a meaning to the count value.
  *
  * @author jonathanl (shibo)
  */

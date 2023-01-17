@@ -66,7 +66,7 @@ divided, etc...
     sleepTime.longer(Percentage.of(50));
     if (sleepTime.isLessThan(Duration.seconds(1))) { ... }
 
-The _Duration.toString()_ method returns the duration in a human readable form:
+The _Duration.toString()_ method returns the duration in a human-readable form:
 
     5 seconds 100 milliseconds 1.5 days 37.5 minutes
 
@@ -82,7 +82,7 @@ easily get a _LocalTime_ from a _Time_ object in a few different ways:
     LocalTime local = file.lastModified().localTime("America/Los Angeles");
     LocalTime local = Time.now().utc();
 
-One you have a _LocalTime_ object, you can do a lot.
+Once you have a _LocalTime_ object, you can do a lot.
 
 You can get various time zone relative values:
 

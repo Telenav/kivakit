@@ -67,7 +67,7 @@ import static com.telenav.kivakit.core.language.Hash.hashMany;
  *
  * @author jonathanl (shibo)
  */
-@SuppressWarnings({ "DuplicatedCode", "unused" })
+@SuppressWarnings({ "unused" })
 @UmlClassDiagram(diagram = DiagramReflection.class)
 @TypeQuality(stability = STABLE_EXTENSIBLE,
              testing = UNTESTED,

@@ -412,7 +412,6 @@ public class Host extends BaseRepeater implements
         return memcachePort(MEMCACHE.defaultPort());
     }
 
-    @SuppressWarnings("SpellCheckingInspection")
     public Port memcachePort(int port)
     {
         return port(MEMCACHE, port);

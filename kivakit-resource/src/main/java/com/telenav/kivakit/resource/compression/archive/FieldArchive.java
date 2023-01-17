@@ -112,7 +112,7 @@ import static com.telenav.kivakit.resource.compression.archive.ZipArchive.zipArc
  * @see ZipArchive
  * @see Repeater
  */
-@SuppressWarnings({ "unused", "resource" })
+@SuppressWarnings({ "unused" })
 @UmlClassDiagram(diagram = DiagramResourceArchive.class)
 @UmlRelation(label = "reads annotations", referent = ArchivedField.class)
 @UmlRelation(label = "reads and writes", referent = NamedObject.class)
@@ -124,7 +124,6 @@ public class FieldArchive extends BaseRepeater implements Closeable
     /**
      * A particular field of an object
      */
-    @SuppressWarnings("resource")
     @TypeQuality(stability = STABLE_EXTENSIBLE,
                  testing = UNTESTED,
                  documentation = DOCUMENTED)
@@ -237,7 +236,7 @@ public class FieldArchive extends BaseRepeater implements Closeable
      * @param fieldName The field to load
      * @return The value of the field after attempting to load
      */
-    @SuppressWarnings({ "ConstantConditions", "unchecked" })
+    @SuppressWarnings({ "unchecked" })
     public synchronized <T> T loadFieldOf(@NotNull ObjectReader reader,
                                           @NotNull NamedObject object,
                                           @NotNull String fieldName)
@@ -285,7 +284,7 @@ public class FieldArchive extends BaseRepeater implements Closeable
      * @param objects The object whose fields should be loaded
      * @return True if all fields were loaded
      */
-    @SuppressWarnings({ "UnusedReturnValue", "ConstantConditions" })
+    @SuppressWarnings({ "UnusedReturnValue" })
     public synchronized boolean loadFieldsOf(@NotNull ObjectReader reader,
                                              @NotNull NamedObject... objects)
     {

@@ -76,7 +76,7 @@ in the object to implement the _Repeater_ interface.
 
 ### Messages <a name="messages"></a> &nbsp; ![](https://telenav.github.io/telenav-assets/images/icons/envelope-32.png)
 
-A _Message_ is the most important kind of _Broadcastable_ and it is used in logging and for other purposes:
+A _Message_ is the most important kind of _Broadcastable_, and it is used in logging and for other purposes:
 
     public interface Message implements Broadcastable 
     { 

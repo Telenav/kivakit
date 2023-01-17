@@ -89,7 +89,6 @@ public class CaseFormat
     /**
      * "WebServer" -&gt; "webServer"
      */
-    @SuppressWarnings("SpellCheckingInspection")
     public static String decapitalize(String text)
     {
         if (text.length() >= 1)

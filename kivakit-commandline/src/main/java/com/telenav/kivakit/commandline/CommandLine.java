@@ -251,14 +251,11 @@ public class CommandLine implements StringFormattable, Iterable<ArgumentValue>
     @UmlExcludeMember
     public String asString(@NotNull Format format)
     {
-        switch (format)
-        {
-            case DEBUG:
-                return new ObjectFormatter(this).toString();
-
-            default:
-                return toString();
-        }
+        return switch (format)
+            {
+                case DEBUG -> new ObjectFormatter(this).toString();
+                default -> toString();
+            };
     }
 
     /**

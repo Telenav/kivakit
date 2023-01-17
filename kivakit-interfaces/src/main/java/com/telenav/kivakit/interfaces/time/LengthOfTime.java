@@ -94,10 +94,10 @@ import static java.util.concurrent.TimeUnit.MILLISECONDS;
              testing = UNTESTED,
              documentation = DOCUMENTED)
 public interface LengthOfTime<Duration extends LongValued & LengthOfTime<Duration>> extends
-        LongValued,
-        Comparable<LengthOfTime<?>>,
-        StringFormattable,
-        TimeMeasurement
+    LongValued,
+    Comparable<LengthOfTime<?>>,
+    StringFormattable,
+    TimeMeasurement
 {
 
     /**
@@ -112,54 +112,15 @@ public interface LengthOfTime<Duration extends LongValued & LengthOfTime<Duratio
      * {@inheritDoc}
      */
     @Override
-    @SuppressWarnings({ "SpellCheckingInspection", "DuplicatedCode" })
     default String asString(@NotNull Format format)
     {
-        switch (format)
-        {
-            case FILESYSTEM:
-                return asHumanReadableString().replace(' ', '_');
-
-            case PROGRAMMATIC:
-                return String.valueOf(milliseconds());
-
-            case COMPACT:
+        return switch (format)
             {
-
-                String dateFormatPattern;
-                if (asHours() > 1.0)
-                {
-                    dateFormatPattern = "H:mm:ss";
-                }
-                else if (asMinutes() > 1.0)
-                {
-                    dateFormatPattern = "m:ss'm'";
-                }
-                else if (asSeconds() > 1.0)
-                {
-                    dateFormatPattern = "s's'";
-                }
-                else
-                {
-                    dateFormatPattern = "S'ms'";
-                }
-                SimpleDateFormat dateFormat = new SimpleDateFormat(dateFormatPattern);
-                dateFormat.setTimeZone(TimeZone.getTimeZone("GMT"));
-                Date date = new Date(milliseconds());
-                return dateFormat.format(date);
-            }
-
-            case DEBUG:
-            case USER_SINGLE_LINE:
-            case USER_LABEL:
-            case HTML:
-            case TO_STRING:
-            case LOG:
-            case USER_MULTILINE:
-            case TEXT:
-            default:
-                return asHumanReadableString();
-        }
+                case FILESYSTEM -> asHumanReadableString().replace(' ', '_');
+                case PROGRAMMATIC -> String.valueOf(milliseconds());
+                case COMPACT -> asCompactString();
+                default -> asHumanReadableString();
+            };
     }
 
     /**
@@ -385,5 +346,31 @@ public interface LengthOfTime<Duration extends LongValued & LengthOfTime<Duratio
                 onTimer.call(timer);
             }
         }, milliseconds());
+    }
+
+    @NotNull
+    private String asCompactString()
+    {
+        String dateFormatPattern;
+        if (asHours() > 1.0)
+        {
+            dateFormatPattern = "H:mm:ss";
+        }
+        else if (asMinutes() > 1.0)
+        {
+            dateFormatPattern = "m:ss'm'";
+        }
+        else if (asSeconds() > 1.0)
+        {
+            dateFormatPattern = "s's'";
+        }
+        else
+        {
+            dateFormatPattern = "S'ms'";
+        }
+        SimpleDateFormat dateFormat = new SimpleDateFormat(dateFormatPattern);
+        dateFormat.setTimeZone(TimeZone.getTimeZone("GMT"));
+        Date date = new Date(milliseconds());
+        return dateFormat.format(date);
     }
 }

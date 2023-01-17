@@ -100,17 +100,12 @@ public abstract class BaseTextLog extends BaseLog
      */
     protected String formatted(LogEntry entry)
     {
-        switch (formattedOrNot())
-        {
-            case FORMATTED:
-                return entry.format(formatter, formattedOrNot(), withExceptionOrWithout());
-
-            case UNFORMATTED:
-                return entry.format(simpleFormatter, formattedOrNot(), withExceptionOrWithout());
-
-            default:
-                return unsupported();
-        }
+        return switch (formattedOrNot())
+            {
+                case FORMATTED -> entry.format(formatter, formattedOrNot(), withExceptionOrWithout());
+                case UNFORMATTED -> entry.format(simpleFormatter, formattedOrNot(), withExceptionOrWithout());
+                default -> unsupported();
+            };
     }
 
     /**

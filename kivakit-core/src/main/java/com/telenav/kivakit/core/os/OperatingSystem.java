@@ -169,7 +169,7 @@ public class OperatingSystem implements Named
     }
 
     /**
-     * Returns true if this is UNIX (but not MacOs)
+     * Returns true if this is UNIX (but not macOS)
      */
     public boolean isUnix()
     {

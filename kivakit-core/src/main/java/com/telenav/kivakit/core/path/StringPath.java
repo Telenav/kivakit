@@ -83,7 +83,7 @@ import static com.telenav.kivakit.core.string.Strings.notNull;
  * @author jonathanl (shibo)
  * @see Path
  */
-@SuppressWarnings({ "SpellCheckingInspection", "SwitchStatementWithTooFewBranches", "unused" })
+@SuppressWarnings({ "SwitchStatementWithTooFewBranches", "unused" })
 @UmlClassDiagram(diagram = DiagramPath.class)
 @TypeQuality(stability = STABLE_EXTENSIBLE,
              testing = TESTING_INSUFFICIENT,

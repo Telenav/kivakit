@@ -45,7 +45,7 @@ import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 public class Bits
 {
     /**
-     * Returns a long value containing the given number of 1 bits, starting from the least-significant bit. For
+     * Returns a long value containing the given number of '1' bits, starting from the least-significant bit. For
      * example, if count is 5, the return value would be 0b11111.
      */
     public static long oneBits(Countable count)

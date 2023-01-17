@@ -162,14 +162,15 @@ public class CallStack
 
             switch (proximity)
             {
-                case DISTANT:
+                case DISTANT ->
+                {
                     if (matches)
                     {
                         return index;
                     }
-                    break;
-
-                case IMMEDIATE:
+                }
+                case IMMEDIATE ->
+                {
                     if (matches)
                     {
                         callee = index;
@@ -181,7 +182,7 @@ public class CallStack
                             return callee;
                         }
                     }
-                    break;
+                }
             }
 
             index++;

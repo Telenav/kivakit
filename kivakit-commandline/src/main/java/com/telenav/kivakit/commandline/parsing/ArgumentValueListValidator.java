@@ -38,7 +38,7 @@ import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
  *
  * @author jonathanl (shibo)
  */
-@SuppressWarnings("DuplicatedCode") @UmlClassDiagram(diagram = DiagramValidation.class)
+@UmlClassDiagram(diagram = DiagramValidation.class)
 @UmlNotPublicApi
 @TypeQuality(stability = STABLE_EXTENSIBLE,
              testing = UNTESTED,

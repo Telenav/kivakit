@@ -58,7 +58,7 @@ public class Threads
         // Get the root thread group
         var rootGroup = rootThreadGroup();
 
-        // Initially expect the larger of 8 or the number of active threads
+        // Initially expect the largest of 8 or the number of active threads
         var expected = max(8, rootGroup.activeCount());
 
         // Allocate initial array for threads
@@ -98,7 +98,7 @@ public class Threads
     }
 
     /**
-     * Tells the given executor to shutdown, then waits for it to do so
+     * Tells the given executor to shut down, then waits for it to do so
      */
     public static void shutdownAndAwaitTermination(ExecutorService executor)
     {

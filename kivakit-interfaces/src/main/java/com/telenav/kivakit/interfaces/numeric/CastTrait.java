@@ -23,29 +23,16 @@ public interface CastTrait
     @SuppressWarnings("unchecked")
     default <T extends Number> T cast(long value, Class<T> type)
     {
-        switch (type.getSimpleName())
-        {
-            case "Long":
-                return (T) Long.valueOf(value);
-
-            case "Integer":
-                return (T) Integer.valueOf((int) value);
-
-            case "Short":
-                return (T) Short.valueOf((short) value);
-
-            case "Byte":
-                return (T) Byte.valueOf((byte) value);
-
-            case "Double":
-                return (T) Double.valueOf((double) value);
-
-            case "Float":
-                return (T) Float.valueOf((float) value);
-
-            default:
-                throw new IllegalStateException("Unsupported numeric type: " + type);
-        }
+        return switch (type.getSimpleName())
+            {
+                case "Long" -> (T) Long.valueOf(value);
+                case "Integer" -> (T) Integer.valueOf((int) value);
+                case "Short" -> (T) Short.valueOf((short) value);
+                case "Byte" -> (T) Byte.valueOf((byte) value);
+                case "Double" -> (T) Double.valueOf((double) value);
+                case "Float" -> (T) Float.valueOf((float) value);
+                default -> throw new IllegalStateException("Unsupported numeric type: " + type);
+            };
     }
 
     /**
@@ -61,25 +48,14 @@ public interface CastTrait
      */
     default <T extends Number> long maximum(Class<T> type)
     {
-        switch (type.getSimpleName())
-        {
-            case "Double":
-            case "Float":
-            case "Long":
-                return Long.MAX_VALUE;
-
-            case "Integer":
-                return Integer.MAX_VALUE;
-
-            case "Short":
-                return Short.MAX_VALUE;
-
-            case "Byte":
-                return Byte.MAX_VALUE;
-
-            default:
-                throw new IllegalStateException("Unsupported numeric type: " + type);
-        }
+        return switch (type.getSimpleName())
+            {
+                case "Double", "Float", "Long" -> Long.MAX_VALUE;
+                case "Integer" -> Integer.MAX_VALUE;
+                case "Short" -> Short.MAX_VALUE;
+                case "Byte" -> Byte.MAX_VALUE;
+                default -> throw new IllegalStateException("Unsupported numeric type: " + type);
+            };
     }
 
     /**
@@ -87,24 +63,13 @@ public interface CastTrait
      */
     default <T extends Number> long minimum(Class<T> type)
     {
-        switch (type.getSimpleName())
-        {
-            case "Double":
-            case "Float":
-            case "Long":
-                return Long.MIN_VALUE;
-
-            case "Integer":
-                return Integer.MIN_VALUE;
-
-            case "Short":
-                return Short.MIN_VALUE;
-
-            case "Byte":
-                return Byte.MIN_VALUE;
-
-            default:
-                throw new IllegalStateException("Unsupported numeric type: " + type);
-        }
+        return switch (type.getSimpleName())
+            {
+                case "Double", "Float", "Long" -> Long.MIN_VALUE;
+                case "Integer" -> Integer.MIN_VALUE;
+                case "Short" -> Short.MIN_VALUE;
+                case "Byte" -> Byte.MIN_VALUE;
+                default -> throw new IllegalStateException("Unsupported numeric type: " + type);
+            };
     }
 }

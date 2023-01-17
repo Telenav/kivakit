@@ -86,25 +86,30 @@ public enum Meridiem
 
         switch (this)
         {
-            case PM:
+            case PM ->
+            {
                 if (meridiemHour == 12)
                 {
                     return 12;
                 }
                 return meridiemHour + 12;
-
-            case AM:
+            }
+            case AM ->
+            {
                 if (meridiemHour == 12)
                 {
                     return 0;
                 }
                 return meridiemHour;
-
-            case NO_MERIDIEM:
+            }
+            case NO_MERIDIEM ->
+            {
                 return meridiemHour;
-
-            default:
+            }
+            default ->
+            {
                 return unsupported();
+            }
         }
     }
 }

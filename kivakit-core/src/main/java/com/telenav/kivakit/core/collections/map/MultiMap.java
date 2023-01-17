@@ -140,7 +140,7 @@ public class MultiMap<Key, Value> extends BaseMap<Key, ObjectList<Value>>
     }
 
     /**
-     * Returns a list with all values in this multi-map
+     * Returns a list with all values in this multimap
      */
     public ObjectList<Value> flatValues()
     {

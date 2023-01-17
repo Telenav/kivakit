@@ -26,14 +26,14 @@ of objects.
 
 ### Validators <a name="validators"></a>
 
-As is clear from the UML diagram, the central interface of the *data.validation* package is *Validator*:
+As is clear from the UML diagram, the central interface of the '*data.validation*' package is *Validator*:
 
     public interface Validator
     {
         boolean validate(Listener listener);
     }
 
-The *validate()* method performs any necessary checks, reporting *Warning*s and *Problem*s to the   
+The '*validate()*' method performs any necessary checks, reporting *Warning*s and *Problem*s to the   
 listener, and returns true if no issues were encountered. Validation issues can easily be captured  
 and analyzed with the *ValidationIssues* listener.
 

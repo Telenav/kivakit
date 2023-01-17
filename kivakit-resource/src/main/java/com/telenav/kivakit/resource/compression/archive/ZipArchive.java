@@ -252,7 +252,6 @@ public final class ZipArchive extends BaseRepeater implements
      * @param files The files to add
      * @param reporter The progress reporter to call as each file is added
      */
-    @SuppressWarnings("resource")
     public void add(@NotNull Collection<File> files,
                     @NotNull ProgressReporter reporter)
     {
@@ -457,14 +456,13 @@ public final class ZipArchive extends BaseRepeater implements
         var uri = URI.create("jar:" + fileUri);
         switch (mode)
         {
-            case WRITE:
+            case WRITE ->
             {
                 var environment = new VariableMap<String>();
                 environment.put("create", "true");
                 return unchecked(() -> Nio.filesystem(listener, uri, environment)).orNull();
             }
-
-            case READ:
+            case READ ->
             {
                 if (file.exists())
                 {
@@ -484,9 +482,10 @@ public final class ZipArchive extends BaseRepeater implements
                 }
                 return null;
             }
-
-            default:
+            default ->
+            {
                 return null;
+            }
         }
     }
 }

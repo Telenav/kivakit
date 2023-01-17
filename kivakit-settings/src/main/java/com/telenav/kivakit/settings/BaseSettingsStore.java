@@ -277,7 +277,6 @@ public abstract class BaseSettingsStore extends BaseRepeater implements
      * under all superclasses and superinterfaces.
      */
     @Override
-    @SuppressWarnings("SpellCheckingInspection")
     public boolean unindex(SettingsObject settings)
     {
         ensure(supports(INDEX));

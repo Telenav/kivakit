@@ -50,7 +50,7 @@ import static com.telenav.kivakit.core.messaging.messages.Severity.HIGH;
  *     <li>Information - Commonly useful information that doesn't represent any problem</li>
  *     <li>Trace - Diagnostic information for use when debugging</li>
  * </ul>
- * <p>
+ *
  *  @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramMessageType.class)
