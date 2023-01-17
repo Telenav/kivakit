@@ -19,9 +19,9 @@
 package com.telenav.kivakit.resource;
 
 import com.telenav.kivakit.annotations.code.quality.TypeQuality;
-import com.telenav.kivakit.conversion.core.time.LocalDateConverter;
-import com.telenav.kivakit.conversion.core.time.LocalDateTimeConverter;
-import com.telenav.kivakit.conversion.core.time.LocalTimeConverter;
+import com.telenav.kivakit.conversion.core.time.kivakit.KivaKitLocalDateConverter;
+import com.telenav.kivakit.conversion.core.time.kivakit.KivaKitLocalDateTimeConverter;
+import com.telenav.kivakit.conversion.core.time.kivakit.KivaKitLocalTimeConverter;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.messaging.messages.MessageException;
 import com.telenav.kivakit.core.time.LocalTime;
@@ -153,7 +153,7 @@ public class FileName implements
     @SuppressWarnings("ConstantConditions")
     public static FileName fileNameForDate(@NotNull LocalTime time)
     {
-        return parseFileName(throwingListener(), new LocalDateConverter(throwingListener()).unconvert(time));
+        return parseFileName(throwingListener(), new KivaKitLocalDateConverter(throwingListener()).unconvert(time));
     }
 
     /**
@@ -163,7 +163,7 @@ public class FileName implements
     public static FileName fileNameForDate(@NotNull LocalTime time,
                                            @NotNull ZoneId zone)
     {
-        return parseFileName(throwingListener(), new LocalDateConverter(throwingListener(), zone).unconvert(time));
+        return parseFileName(throwingListener(), new KivaKitLocalDateConverter(throwingListener(), zone).unconvert(time));
     }
 
     /**
@@ -180,7 +180,7 @@ public class FileName implements
     @SuppressWarnings("ConstantConditions")
     public static FileName fileNameForDateTime(@NotNull LocalTime time)
     {
-        return parseFileName(throwingListener(), new LocalDateTimeConverter(throwingListener()).unconvert(time));
+        return parseFileName(throwingListener(), new KivaKitLocalDateTimeConverter(throwingListener()).unconvert(time));
     }
 
     /**
@@ -190,7 +190,7 @@ public class FileName implements
     public static FileName fileNameForDateTime(@NotNull LocalTime time,
                                                @NotNull ZoneId zone)
     {
-        return parseFileName(throwingListener(), new LocalDateTimeConverter(throwingListener(), zone).unconvert(time));
+        return parseFileName(throwingListener(), new KivaKitLocalDateTimeConverter(throwingListener(), zone).unconvert(time));
     }
 
     /**
@@ -201,7 +201,7 @@ public class FileName implements
     @SuppressWarnings("ConstantConditions")
     public static FileName fileNameForTime(@NotNull LocalTime time)
     {
-        return parseFileName(throwingListener(), new LocalTimeConverter(throwingListener(), time.timeZone()).unconvert(time));
+        return parseFileName(throwingListener(), new KivaKitLocalTimeConverter(throwingListener(), time.timeZone()).unconvert(time));
     }
 
     /**
@@ -214,7 +214,7 @@ public class FileName implements
     public static FileName fileNameForTime(@NotNull LocalTime time,
                                            @NotNull ZoneId zone)
     {
-        return parseFileName(throwingListener(), new LocalTimeConverter(throwingListener(), zone).unconvert(time));
+        return parseFileName(throwingListener(), new KivaKitLocalTimeConverter(throwingListener(), zone).unconvert(time));
     }
 
     /**
@@ -226,7 +226,7 @@ public class FileName implements
     public static LocalTime parseDateTimeFileName(@NotNull Listener listener,
                                                   @NotNull String text)
     {
-        return new LocalDateTimeConverter(listener).convert(text);
+        return new KivaKitLocalDateTimeConverter(listener).convert(text);
     }
 
     /**
@@ -240,7 +240,7 @@ public class FileName implements
                                                   @NotNull String text,
                                                   @NotNull ZoneId zone)
     {
-        return new LocalDateTimeConverter(listener, zone).convert(text);
+        return new KivaKitLocalDateTimeConverter(listener, zone).convert(text);
     }
 
     /**
@@ -379,11 +379,11 @@ public class FileName implements
     public LocalTime localDateTime(@NotNull Listener listener)
     {
         LocalTime time;
-        if ((time = new LocalDateTimeConverter(listener).convert(name())) != null)
+        if ((time = new KivaKitLocalDateTimeConverter(listener).convert(name())) != null)
         {
             return time;
         }
-        return new LocalDateConverter(listener).convert(name());
+        return new KivaKitLocalDateTimeConverter(listener).convert(name());
     }
 
     /**

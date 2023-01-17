@@ -138,7 +138,7 @@
 
         <serialization.kryo.version>5.3.0</serialization.kryo.version>
         <serialization.kryo.serializers.version>0.45</serialization.kryo.serializers.version>
-        <serialization.gson.version>2.10</serialization.gson.version>
+        <serialization.gson.version>2.10.1</serialization.gson.version>
         <serialization.protobuf.version>3.21.9</serialization.protobuf.version>
         <serialization.jackson.version>2.14.0</serialization.jackson.version>
         <serialization.snake.yaml.version>1.33</serialization.snake.yaml.version>

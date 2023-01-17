@@ -19,7 +19,7 @@
 package com.telenav.kivakit.serialization.gson.serializers;
 
 import com.telenav.kivakit.annotations.code.quality.TypeQuality;
-import com.telenav.kivakit.conversion.core.time.LocalDateTimeConverter;
+import com.telenav.kivakit.conversion.core.time.kivakit.KivaKitLocalDateTimeConverter;
 import com.telenav.kivakit.core.time.Time;
 import com.telenav.kivakit.serialization.gson.PrimitiveGsonSerializer;
 
@@ -47,7 +47,7 @@ public class UtcTimeInKivaKitFormatGsonSerializer extends PrimitiveGsonSerialize
     @Override
     protected Time toObject(String identifier)
     {
-        return new LocalDateTimeConverter(throwingListener(), utcTimeZone()).convert(identifier);
+        return new KivaKitLocalDateTimeConverter(throwingListener(), utcTimeZone()).convert(identifier);
     }
 
     @Override

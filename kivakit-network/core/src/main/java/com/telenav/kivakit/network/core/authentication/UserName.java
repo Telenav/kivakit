@@ -52,28 +52,6 @@ public class UserName extends Name
         return new UserName(text);
     }
 
-    /**
-     * Converts {@link UserName} objects to and from strings.
-     *
-     * @author jonathanl (shibo)
-     */
-    @TypeQuality(stability = STABLE_EXTENSIBLE,
-                 testing = UNTESTED,
-                 documentation = DOCUMENTED)
-    public static class Converter extends BaseStringConverter<UserName>
-    {
-        public Converter(Listener listener)
-        {
-            super(listener, UserName.class);
-        }
-
-        @Override
-        protected UserName onToValue(String value)
-        {
-            return parseUserName(this, value);
-        }
-    }
-
     protected UserName(String name)
     {
         super(name);

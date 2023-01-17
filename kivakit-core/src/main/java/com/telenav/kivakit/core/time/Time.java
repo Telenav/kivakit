@@ -25,6 +25,7 @@ import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.interfaces.time.Nanoseconds;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
+import java.time.Instant;
 import java.time.ZoneId;
 
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
@@ -36,6 +37,7 @@ import static com.telenav.kivakit.core.time.BaseTime.Topology.LINEAR;
 import static com.telenav.kivakit.core.time.Day.dayOfMonth;
 import static com.telenav.kivakit.core.time.Duration.ZERO_DURATION;
 import static com.telenav.kivakit.core.time.Hour.militaryHour;
+import static com.telenav.kivakit.core.time.KivaKitTimeFormats.KIVAKIT_DATE_TIME;
 import static com.telenav.kivakit.core.time.LocalTime.localTimeZone;
 import static com.telenav.kivakit.core.time.LocalTime.utcTimeZone;
 import static com.telenav.kivakit.core.time.Minute.minute;
@@ -174,6 +176,17 @@ public class Time extends BaseTime<Time>
     public static Time parseMilliseconds(Listener listener, String milliseconds)
     {
         return Try.tryCatch(listener, () -> epochMilliseconds(parseLong(milliseconds)), "Unable to parse $: ", milliseconds);
+    }
+
+    public static Time parseTime(Listener listener, String text)
+    {
+        var time = KIVAKIT_DATE_TIME.parse(text, Instant::from);
+        return epochMilliseconds(time.toEpochMilli());
+    }
+
+    public static Time time(String text)
+    {
+        return parseTime(throwingListener(), text);
     }
 
     public static Time utcTime(Year year, Month month, Day dayOfMonth, Hour hour)

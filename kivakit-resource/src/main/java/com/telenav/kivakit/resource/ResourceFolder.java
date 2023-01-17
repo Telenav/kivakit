@@ -135,29 +135,6 @@ public interface ResourceFolder<T extends ResourceFolder<T>> extends
     }
 
     /**
-     * Converts to and from {@link ResourceFolder}s by resolving strings via {@link ResourceFolderIdentifier}s.
-     *
-     * @author jonathanl (shibo)
-     */
-    @SuppressWarnings("rawtypes")
-    @TypeQuality(stability = STABLE,
-                 testing = TESTING_NOT_NEEDED,
-                 documentation = DOCUMENTED)
-    class Converter extends BaseStringConverter<ResourceFolder>
-    {
-        public Converter(Listener listener)
-        {
-            super(listener, ResourceFolder.class);
-        }
-
-        @Override
-        protected ResourceFolder<?> onToValue(String value)
-        {
-            return new ResourceFolderIdentifier(value).resolve(this);
-        }
-    }
-
-    /**
      * This folder as an absolute path with a trailing slash on it
      */
     default ResourceFolder<?> absolute()

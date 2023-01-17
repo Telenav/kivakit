@@ -156,22 +156,6 @@ public class NetworkLocation implements
         }
     }
 
-    /**
-     * Converts to and from a {@link NetworkLocation}
-     *
-     * @author jonathanl (shibo)
-     */
-    @TypeQuality(stability = STABLE,
-                 testing = UNTESTED,
-                 documentation = DOCUMENTED)
-    public static class Converter extends BaseStringConverter<NetworkLocation>
-    {
-        public Converter(Listener listener)
-        {
-            super(listener, NetworkLocation.class, NetworkLocation::parseNetworkLocation);
-        }
-    }
-
     /** The constraints for accessing this network location */
     @UmlAggregation
     private NetworkAccessConstraints constraints;

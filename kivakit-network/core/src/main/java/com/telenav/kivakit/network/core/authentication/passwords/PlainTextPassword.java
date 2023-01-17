@@ -57,28 +57,6 @@ public class PlainTextPassword implements Password, StringFormattable
         return new PlainTextPassword(text);
     }
 
-    /**
-     * Converts passwords to and from {@link Password} objects.
-     *
-     * @author jonathanl (shibo)
-     */
-    @TypeQuality(stability = STABLE_EXTENSIBLE,
-                 testing = UNTESTED,
-                 documentation = DOCUMENTED)
-    public static class Converter extends BaseStringConverter<Password>
-    {
-        public Converter(Listener listener)
-        {
-            super(listener, Password.class);
-        }
-
-        @Override
-        protected Password onToValue(String value)
-        {
-            return parsePlainTextPassword(this, value);
-        }
-    }
-
     private final String password;
 
     protected PlainTextPassword(String password)

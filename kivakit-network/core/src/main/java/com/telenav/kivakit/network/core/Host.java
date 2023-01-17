@@ -20,7 +20,6 @@ package com.telenav.kivakit.network.core;
 
 import com.telenav.kivakit.annotations.code.quality.TypeQuality;
 import com.telenav.kivakit.commandline.SwitchParser;
-import com.telenav.kivakit.conversion.BaseStringConverter;
 import com.telenav.kivakit.core.collections.map.CacheMap;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.messaging.messages.MessageException;
@@ -38,9 +37,7 @@ import java.net.InetAddress;
 import java.net.UnknownHostException;
 
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.commandline.SwitchParser.switchParser;
 import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
@@ -187,7 +184,7 @@ public class Host extends BaseRepeater implements
     {
         return switchParser(Host.class)
             .name(name)
-            .converter(new Host.Converter(listener))
+            .converter(new HostConverter(listener))
             .description(description);
     }
 
@@ -222,22 +219,6 @@ public class Host extends BaseRepeater implements
     public static Host parseHost(Listener listener, String name, String description)
     {
         return listener.listenTo(new Host(name, description));
-    }
-
-    /**
-     * Converts to and from {@link Host}s
-     *
-     * @author jonathanl (shibo)
-     */
-    @TypeQuality(stability = STABLE,
-                 testing = TESTING_NOT_NEEDED,
-                 documentation = DOCUMENTED)
-    public static class Converter extends BaseStringConverter<Host>
-    {
-        public Converter(Listener listener)
-        {
-            super(listener, Host.class, Host::parseHost);
-        }
     }
 
     /** The internet address of this host */

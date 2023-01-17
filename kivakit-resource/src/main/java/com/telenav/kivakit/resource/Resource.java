@@ -21,7 +21,6 @@ package com.telenav.kivakit.resource;
 import com.telenav.kivakit.annotations.code.quality.TypeQuality;
 import com.telenav.kivakit.commandline.ArgumentParser;
 import com.telenav.kivakit.commandline.SwitchParser;
-import com.telenav.kivakit.conversion.BaseStringConverter;
 import com.telenav.kivakit.core.collections.set.ObjectSet;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.messaging.Repeater;
@@ -50,7 +49,6 @@ import org.jetbrains.annotations.NotNull;
 import java.util.ServiceLoader;
 
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
 import static com.telenav.kivakit.commandline.ArgumentParser.argumentParser;
@@ -215,7 +213,7 @@ public interface Resource extends
                                                                    @NotNull String description)
     {
         return argumentParser(Resource.class)
-            .converter(new Resource.Converter(listener))
+            .converter(new ResourceConverter(listener))
             .description(description);
     }
 
@@ -245,7 +243,7 @@ public interface Resource extends
     {
         return switchParser(Resource.class)
             .name(name)
-            .converter(new Resource.Converter(listener))
+            .converter(new ResourceConverter(listener))
             .description(description);
     }
 
@@ -262,28 +260,6 @@ public interface Resource extends
 
         /** The resource can be deleted */
         DELETE
-    }
-
-    /**
-     * Converts to and from {@link Resource}s by resolving {@link ResourceIdentifier}s.
-     *
-     * @author jonathanl (shibo)
-     */
-    @TypeQuality(stability = STABLE,
-                 testing = TESTING_NOT_NEEDED,
-                 documentation = DOCUMENTED)
-    class Converter extends BaseStringConverter<Resource>
-    {
-        public Converter(@NotNull Listener listener)
-        {
-            super(listener, Resource.class);
-        }
-
-        @Override
-        protected Resource onToValue(String value)
-        {
-            return new ResourceIdentifier(value).resolve(this);
-        }
     }
 
     @Override

@@ -18,10 +18,10 @@
 
 package com.telenav.kivakit.conversion.core.time;
 
+import com.telenav.kivakit.conversion.core.time.kivakit.KivaKitLocalDateTimeConverter;
 import com.telenav.kivakit.internal.testing.CoreUnitTest;
 import org.junit.Test;
 
-import static com.telenav.kivakit.conversion.core.time.LocalDateTimeConverter.kivakitDateTimeConverter;
 import static com.telenav.kivakit.core.time.TimeZones.utc;
 
 public class KivaKitDateTimeConverterTest extends CoreUnitTest
@@ -29,8 +29,18 @@ public class KivaKitDateTimeConverterTest extends CoreUnitTest
     @Test
     public void testKivakitDateTimeConverter()
     {
-        var converter = kivakitDateTimeConverter(this, utc());
+        var converter = new KivaKitLocalDateTimeConverter(this, utc());
         var timeString = "2023.01.11_11.00PM_UTC";
+        var time = converter.convert(timeString);
+        var text = converter.unconvert(time);
+        ensureEqual(text, timeString);
+    }
+
+    @Test
+    public void testKivakitDateTimeConverterZoned()
+    {
+        var converter = new KivaKitLocalDateTimeConverter(this);
+        var timeString = "2023.01.11_11.00PM_MST";
         var time = converter.convert(timeString);
         var text = converter.unconvert(time);
         ensureEqual(text, timeString);

@@ -18,6 +18,7 @@
 
 package com.telenav.kivakit.conversion.core.time;
 
+import com.telenav.kivakit.conversion.core.time.kivakit.HumanizedKivaKitLocalDateTimeConverter;
 import com.telenav.kivakit.internal.testing.CoreUnitTest;
 import org.junit.Test;
 
@@ -31,7 +32,7 @@ public class HumanizedLocalDateTimeConverterTest extends CoreUnitTest
     @Test
     public void convert()
     {
-        var converter = new HumanizedLocalDateTimeConverter(this);
+        var converter = new HumanizedKivaKitLocalDateTimeConverter(this);
 
         var now = now();
 

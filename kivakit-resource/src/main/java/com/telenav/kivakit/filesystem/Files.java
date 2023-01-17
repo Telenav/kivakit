@@ -44,7 +44,7 @@ public class Files
                                                                   @NotNull String description)
     {
         return argumentParser(File.class)
-                .converter(new File.Converter(listener))
+                .converter(new FileConverter(listener))
                 .description(description);
     }
 
@@ -61,7 +61,7 @@ public class Files
                                                                           @NotNull Extension extension)
     {
         return argumentParser(FileList.class)
-                .converter(new FileList.Converter(listener, extension))
+                .converter(new FileListConverter(listener, extension))
                 .description(description);
     }
 
@@ -81,7 +81,7 @@ public class Files
     {
         return switchParser(FileList.class)
                 .name(name)
-                .converter(new FileList.Converter(listener, extension))
+                .converter(new FileListConverter(listener, extension))
                 .description(description);
     }
 
@@ -99,7 +99,7 @@ public class Files
     {
         return switchParser(FilePath.class)
                 .name(name)
-                .converter(new FilePath.Converter(listener))
+                .converter(new FilePathConverter(listener))
                 .description(description);
     }
 
@@ -117,7 +117,7 @@ public class Files
     {
         return switchParser(File.class)
                 .name(name)
-                .converter(new File.Converter(listener))
+                .converter(new FileConverter(listener))
                 .description(description);
     }
 }

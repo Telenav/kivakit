@@ -341,22 +341,6 @@ public class File extends BaseWritableResource implements FileSystemObject
         return kivakitTemporaryFolder().file("temp-" + temporaryFileNumber++ + extension);
     }
 
-    /**
-     * Converts to and from {@link File} objects
-     *
-     * @author jonathanl (shibo)
-     */
-    @TypeQuality(stability = STABLE,
-                 testing = TESTING_NOT_NEEDED,
-                 documentation = DOCUMENTED)
-    public static class Converter extends BaseStringConverter<File>
-    {
-        public Converter(@NotNull Listener listener)
-        {
-            super(listener, File.class, File::parseFile);
-        }
-    }
-
     @UmlAggregation(label = "delegates to")
     private final FileService service;
 

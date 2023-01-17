@@ -35,7 +35,6 @@ import com.telenav.kivakit.filesystem.spi.FileService;
 import com.telenav.kivakit.filesystem.spi.FileSystemService;
 import com.telenav.kivakit.filesystem.spi.FolderService;
 import com.telenav.kivakit.interfaces.comparison.Matcher;
-import com.telenav.kivakit.resource.WriteMode;
 import com.telenav.kivakit.resource.Extension;
 import com.telenav.kivakit.resource.FileName;
 import com.telenav.kivakit.resource.Resource;
@@ -45,6 +44,7 @@ import com.telenav.kivakit.resource.ResourceGlob;
 import com.telenav.kivakit.resource.ResourceList;
 import com.telenav.kivakit.resource.ResourcePath;
 import com.telenav.kivakit.resource.ResourcePathed;
+import com.telenav.kivakit.resource.WriteMode;
 import com.telenav.kivakit.resource.internal.lexakai.DiagramFileSystemFolder;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlAggregation;
@@ -74,7 +74,6 @@ import static com.telenav.kivakit.core.ensure.Ensure.fail;
 import static com.telenav.kivakit.core.messaging.Listener.throwingListener;
 import static com.telenav.kivakit.core.os.OperatingSystem.operatingSystem;
 import static com.telenav.kivakit.core.string.Formatter.format;
-import static com.telenav.kivakit.core.string.Strings.ensureEndsWith;
 import static com.telenav.kivakit.core.string.Strings.isNullOrBlank;
 import static com.telenav.kivakit.filesystem.FilePath.parseFilePath;
 import static com.telenav.kivakit.filesystem.Folder.FolderType.CLEAN_UP_ON_EXIT;
@@ -218,10 +217,10 @@ import static java.util.Objects.requireNonNull;
              testing = TESTING_INSUFFICIENT,
              documentation = DOCUMENTED)
 public class Folder extends BaseRepeater implements
-        FileSystemObject,
-        Comparable<Folder>,
-        ResourceFolder<Folder>,
-        TryTrait
+    FileSystemObject,
+    Comparable<Folder>,
+    ResourceFolder<Folder>,
+    TryTrait
 {
     /** A flag to make sure the temporary folder will be created only once per process */
     private static boolean temporaryForProcessInitialized;
@@ -333,9 +332,9 @@ public class Folder extends BaseRepeater implements
         {
             var name = "kivakit-process-" + operatingSystem().processIdentifier();
             var temporary = kivakitTemporaryFolder()
-                    .folder("processes")
-                    .folder(name)
-                    .mkdirs();
+                .folder("processes")
+                .folder(name)
+                .mkdirs();
             temporary.type = type;
             if (type == CLEAN_UP_ON_EXIT)
             {
@@ -375,42 +374,6 @@ public class Folder extends BaseRepeater implements
     {
         RECURSE,
         FLAT
-    }
-
-    /**
-     * Converts to and from {@link Folder}s
-     *
-     * @author jonathanl (shibo)
-     */
-    @TypeQuality(stability = STABLE,
-                 testing = UNTESTED,
-                 documentation = DOCUMENTED)
-    public static class Converter extends BaseStringConverter<Folder>
-    {
-        private boolean ensureExists;
-
-        public Converter(@NotNull Listener listener)
-        {
-            super(listener, Folder.class);
-        }
-
-        public Converter(@NotNull Listener listener, boolean ensureExists)
-        {
-            super(listener, Folder.class);
-            this.ensureExists = ensureExists;
-        }
-
-        @Override
-        protected Folder onToValue(String value)
-        {
-            var path = parseFilePath(this, value);
-            var folder = new Folder(path);
-            if (ensureExists)
-            {
-                folder.ensureExists();
-            }
-            return folder;
-        }
     }
 
     /** The underlying path to the folder */
@@ -462,23 +425,12 @@ public class Folder extends BaseRepeater implements
     }
 
     /**
-     * Returns this folder as a {@link URI}
+     * {@inheritDoc}
      */
+    @Override
     public URI asUri()
     {
-        try
-        {
-            var path = path();
-            if (!path.hasScheme())
-            {
-                path = path.withScheme("file");
-            }
-            return new URI(ensureEndsWith(path.toString(), "/"));
-        }
-        catch (Exception e)
-        {
-            throw problem(e, "Cannot convert to URI: $", this).asException();
-        }
+        return path().asUri();
     }
 
     /**
@@ -728,8 +680,8 @@ public class Folder extends BaseRepeater implements
     public FileList files(@NotNull Matcher<ResourcePathed> matcher, @NotNull Traversal traversal)
     {
         return traversal == RECURSE
-                ? nestedFiles(matcher)
-                : files(matcher);
+            ? nestedFiles(matcher)
+            : files(matcher);
     }
 
     /**
@@ -912,8 +864,8 @@ public class Folder extends BaseRepeater implements
     public boolean isEmpty()
     {
         return exists()
-                && files().isEmpty()
-                && folders().isEmpty();
+            && files().isEmpty()
+            && folders().isEmpty();
     }
 
     /**
@@ -1140,9 +1092,9 @@ public class Folder extends BaseRepeater implements
     public ResourceList resources(@NotNull Matcher<ResourcePathed> matcher)
     {
         return resourceList(files()
-                .stream()
-                .filter(matcher)
-                .collect(Collectors.toList()));
+            .stream()
+            .filter(matcher)
+            .collect(Collectors.toList()));
     }
 
     /**
@@ -1297,15 +1249,6 @@ public class Folder extends BaseRepeater implements
     public FolderType type()
     {
         return type;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public URI uri()
-    {
-        return path().uri();
     }
 
     /**

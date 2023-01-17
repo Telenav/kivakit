@@ -173,7 +173,7 @@ public abstract class BaseReadableResource extends BaseRepeater implements Resou
 
         // copy the resource stream (which might involve compression or decompression or both).
         var input = openForReading(reporter);
-        var output = target.openForWriting();
+        var output = target.openForWriting(writeMode);
         if (closeMode == CLOSE)
         {
             ensure(copyAndClose(this, input, output), "Unable to copy ($) $ => $", writeMode, this, target);

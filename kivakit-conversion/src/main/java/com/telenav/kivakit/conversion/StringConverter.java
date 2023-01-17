@@ -23,7 +23,6 @@ import com.telenav.kivakit.conversion.internal.lexakai.DiagramConversion;
 import com.telenav.kivakit.core.collections.list.ObjectList;
 import com.telenav.kivakit.core.collections.list.StringList;
 import com.telenav.kivakit.core.collections.set.ObjectSet;
-import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.interfaces.string.Parsable;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
@@ -75,42 +74,6 @@ public interface StringConverter<Value> extends
     TwoWayConverter<String, Value>,
     Parsable<Value>
 {
-    class ObjectListConverter<Value> extends BaseStringConverter<ObjectList<Value>>
-    {
-        private final String delimiter;
-
-        protected ObjectListConverter(Listener listener, Class<ObjectList<Value>> toType, String delimiter)
-        {
-            super(listener, toType);
-            this.delimiter = delimiter;
-        }
-
-        @SuppressWarnings("unchecked")
-        @Override
-        protected ObjectList<Value> onToValue(String value)
-        {
-            return (ObjectList<Value>) convertToList(value, delimiter);
-        }
-    }
-
-    class ObjectSetConverter<Value> extends BaseStringConverter<ObjectSet<Value>>
-    {
-        private final String delimiter;
-
-        protected ObjectSetConverter(Listener listener, Class<ObjectSet<Value>> toType, String delimiter)
-        {
-            super(listener, toType);
-            this.delimiter = delimiter;
-        }
-
-        @SuppressWarnings("unchecked")
-        @Override
-        protected ObjectSet<Value> onToValue(String value)
-        {
-            return (ObjectSet<Value>) convertToSet(value, delimiter);
-        }
-    }
-
     /**
      * Converts the given delimited string to a list of objects using this converter
      *

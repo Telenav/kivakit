@@ -235,7 +235,7 @@ public class PackageResource extends BaseReadableResource
     {
         try
         {
-            return resource.uri().toURL().openStream();
+            return resource.asUri().toURL().openStream();
         }
         catch (Exception e)
         {

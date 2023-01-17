@@ -79,7 +79,7 @@ public class Folders
                                                                       @NotNull String description)
     {
         return argumentParser(Folder.class)
-                .converter(new Folder.Converter(listener))
+                .converter(new FolderConverter(listener))
                 .description(description);
     }
 
@@ -94,7 +94,7 @@ public class Folders
                                                                               @NotNull String description)
     {
         return argumentParser(FolderList.class)
-                .converter(new FolderList.Converter(listener))
+                .converter(new FolderListConverter(listener))
                 .description(description);
     }
 
@@ -112,7 +112,7 @@ public class Folders
     {
         return switchParser(FolderList.class)
                 .name(name)
-                .converter(new FolderList.Converter(listener))
+                .converter(new FolderListConverter(listener))
                 .description(description);
     }
 
@@ -129,7 +129,7 @@ public class Folders
     {
         return switchParser(Folder.class)
                 .name(name)
-                .converter(new Folder.Converter(listener))
+                .converter(new FolderConverter(listener))
                 .description(description);
     }
 

@@ -36,6 +36,6 @@ public class HostTest extends UnitTest
     public void testConverter()
     {
         ensureEqual(new Host("google.com"),
-                new Host.Converter(nullListener()).convert("google.com"));
+                new HostConverter(nullListener()).convert("google.com"));
     }
 }

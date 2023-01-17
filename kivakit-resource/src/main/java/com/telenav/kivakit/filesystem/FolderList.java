@@ -68,33 +68,6 @@ public class FolderList extends ObjectList<Folder>
         return folders;
     }
 
-    /**
-     * Converts to and from folder lists separated by commas
-     *
-     * @author jonathanl (shibo)
-     */
-    @TypeQuality(stability = STABLE,
-                 testing = UNTESTED,
-                 documentation = DOCUMENTED)
-    public static class Converter extends BaseStringConverter<FolderList>
-    {
-        public Converter(@NotNull Listener listener)
-        {
-            super(listener, FolderList.class);
-        }
-
-        @Override
-        protected FolderList onToValue(String value)
-        {
-            var folders = new FolderList();
-            for (var path : value.split(","))
-            {
-                folders.add(parseFolder(this, path));
-            }
-            return folders;
-        }
-    }
-
     public FolderList()
     {
     }

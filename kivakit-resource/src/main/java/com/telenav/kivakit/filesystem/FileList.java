@@ -131,51 +131,6 @@ public class FileList extends BaseResourceList<File> implements Iterable<File>
         return files;
     }
 
-    /**
-     * Converts to and from {@link FileList}s
-     *
-     * @author jonathanl (shibo)
-     */
-    @TypeQuality(stability = STABLE_EXTENSIBLE,
-                 testing = UNTESTED,
-                 documentation = DOCUMENTED)
-    public static class Converter extends BaseStringConverter<FileList>
-    {
-        private final Extension extension;
-
-        public Converter(@NotNull Listener listener, @NotNull Extension extension)
-        {
-            super(listener, FileList.class);
-            this.extension = extension;
-        }
-
-        @Override
-        protected FileList onToValue(String value)
-        {
-            var files = new FileList();
-            for (var path : value.split(","))
-            {
-                var file = parseFile(this, path.trim());
-                if (file.isFolder())
-                {
-                    files.addAll(file.asFolder().nestedFiles(extension::matches));
-                }
-                else
-                {
-                    if (file.fileName().endsWith(extension))
-                    {
-                        files.add(file);
-                    }
-                    else
-                    {
-                        warning("$ is not a $ file", file, extension);
-                    }
-                }
-            }
-            return files;
-        }
-    }
-
     public FileList()
     {
     }

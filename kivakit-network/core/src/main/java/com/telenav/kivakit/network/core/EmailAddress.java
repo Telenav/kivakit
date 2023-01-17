@@ -71,22 +71,6 @@ public class EmailAddress
         return null;
     }
 
-    /**
-     * Converts to and from an {@link EmailAddress}
-     *
-     * @author jonathanl (shibo)
-     */
-    @TypeQuality(stability = STABLE,
-                 testing = TESTING_NOT_NEEDED,
-                 documentation = DOCUMENTED)
-    public static class Converter extends BaseStringConverter<EmailAddress>
-    {
-        protected Converter(Listener listener)
-        {
-            super(listener, EmailAddress.class, EmailAddress::parseEmailAddress);
-        }
-    }
-
     /** The email address */
     private String email;
 
