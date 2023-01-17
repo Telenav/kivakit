@@ -163,7 +163,6 @@
         <utilities.classgraph.version>4.8.154</utilities.classgraph.version>
         <utilities.log4j.version>2.19.0</utilities.log4j.version>
         <utilities.cactus.metadata.version>1.0.3</utilities.cactus.metadata.version>
-        <utilities.classgraph.version>4.8.149</utilities.classgraph.version>
 
         <!-- Testing -->
 
