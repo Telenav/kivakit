@@ -30,6 +30,7 @@ import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.conversion.core.language.primitive.HexadecimalLongConverter.Style.JAVA;
+import static com.telenav.kivakit.core.messaging.Listener.throwingListener;
 
 /**
  * Converts between hexadecimal strings and long values. The constructor parameter {@link Style} allows conversion of
@@ -74,6 +75,11 @@ public class HexadecimalLongConverter extends BaseStringConverter<Long>
     public HexadecimalLongConverter(Listener listener)
     {
         this(listener, JAVA);
+    }
+
+    public HexadecimalLongConverter()
+    {
+        this(throwingListener());
     }
 
     /**

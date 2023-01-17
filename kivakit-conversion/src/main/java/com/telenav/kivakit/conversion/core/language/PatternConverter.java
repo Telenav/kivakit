@@ -26,9 +26,10 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.regex.Pattern;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static com.telenav.kivakit.core.messaging.Listener.throwingListener;
 
 /**
  * Converts to and from a Java regular expression {@link Pattern}
@@ -48,6 +49,11 @@ public class PatternConverter extends BaseStringConverter<Pattern>
     public PatternConverter(Listener listener)
     {
         super(listener, Pattern.class);
+    }
+
+    public PatternConverter()
+    {
+        this(throwingListener());
     }
 
     /**

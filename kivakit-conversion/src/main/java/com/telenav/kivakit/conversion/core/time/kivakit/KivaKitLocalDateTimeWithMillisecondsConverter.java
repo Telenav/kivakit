@@ -49,6 +49,11 @@ public class KivaKitLocalDateTimeWithMillisecondsConverter extends BaseLocalTime
         super(listener, KIVAKIT_DATE_TIME_MILLISECONDS, zoneId);
     }
 
+    public KivaKitLocalDateTimeWithMillisecondsConverter(ZoneId zone)
+    {
+        this(throwingListener(), zone);
+    }
+
     public KivaKitLocalDateTimeWithMillisecondsConverter()
     {
         this(throwingListener());

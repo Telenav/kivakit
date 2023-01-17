@@ -44,9 +44,9 @@ import static com.telenav.kivakit.core.time.KivaKitTimeFormats.KIVAKIT_DATE;
              documentation = DOCUMENTED)
 public class KivaKitLocalDateConverter extends BaseLocalTimeConverter
 {
-    public KivaKitLocalDateConverter(Listener listener, ZoneId zoneId)
+    public KivaKitLocalDateConverter(Listener listener, ZoneId zone)
     {
-        super(listener, KIVAKIT_DATE, zoneId);
+        super(listener, KIVAKIT_DATE, zone);
     }
 
     /**
@@ -60,5 +60,10 @@ public class KivaKitLocalDateConverter extends BaseLocalTimeConverter
     public KivaKitLocalDateConverter()
     {
         this(throwingListener());
+    }
+
+    public KivaKitLocalDateConverter(ZoneId zone)
+    {
+        this(throwingListener(), zone);
     }
 }

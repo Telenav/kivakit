@@ -29,9 +29,10 @@ import com.telenav.lexakai.annotations.visibility.UmlExcludeMember;
 import java.text.DecimalFormat;
 import java.text.ParseException;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static com.telenav.kivakit.core.messaging.Listener.throwingListener;
 
 /**
  * Converts a double to and from a formatted string, with or without commas and with a given number of decimal places.
@@ -53,6 +54,11 @@ public class FormattedDoubleConverter extends BaseStringConverter<Double>
     public FormattedDoubleConverter(Listener listener)
     {
         this(listener, true, 2);
+    }
+
+    public FormattedDoubleConverter()
+    {
+        this(throwingListener());
     }
 
     /**

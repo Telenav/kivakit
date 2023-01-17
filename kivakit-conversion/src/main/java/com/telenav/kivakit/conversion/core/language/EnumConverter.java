@@ -28,6 +28,7 @@ import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMEN
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
+import static com.telenav.kivakit.core.messaging.Listener.throwingListener;
 import static com.telenav.kivakit.core.string.CaseFormat.lowerHyphenToUpperUnderscore;
 
 /**
@@ -53,6 +54,11 @@ public class EnumConverter<T extends Enum<T>> extends BaseStringConverter<T>
     {
         super(listener, enumType);
         this.enumType = ensureNotNull(enumType);
+    }
+
+    public EnumConverter(Class<T> enumType)
+    {
+        this(throwingListener(), enumType);
     }
 
     /**

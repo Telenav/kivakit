@@ -44,14 +44,20 @@ import static com.telenav.kivakit.core.time.KivaKitTimeFormats.KIVAKIT_DATE_TIME
              documentation = DOCUMENTED)
 public class KivaKitLocalDateTimeWithSecondsConverter extends BaseLocalTimeConverter
 {
-    public KivaKitLocalDateTimeWithSecondsConverter(Listener listener, ZoneId zoneId)
+    public KivaKitLocalDateTimeWithSecondsConverter(Listener listener, ZoneId zone)
     {
-        super(listener, KIVAKIT_DATE_TIME_SECONDS, zoneId);
+        super(listener, KIVAKIT_DATE_TIME_SECONDS, zone);
     }
 
     public KivaKitLocalDateTimeWithSecondsConverter()
     {
         this(throwingListener());
+    }
+
+    public KivaKitLocalDateTimeWithSecondsConverter(ZoneId zone)
+    {
+        this(throwingListener(), zone
+        );
     }
 
     public KivaKitLocalDateTimeWithSecondsConverter(Listener listener)

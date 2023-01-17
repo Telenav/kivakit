@@ -7,9 +7,10 @@ import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.value.count.Maximum;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static com.telenav.kivakit.core.messaging.Listener.throwingListener;
 
 /**
  * Converts to and from {@link Maximum}
@@ -25,5 +26,10 @@ public class MaximumConverter extends BaseStringConverter<Maximum>
     public MaximumConverter(Listener listener)
     {
         super(listener, Maximum.class, Maximum::parseMaximum);
+    }
+
+    public MaximumConverter()
+    {
+        this(throwingListener());
     }
 }

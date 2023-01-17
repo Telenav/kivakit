@@ -26,7 +26,6 @@ import com.telenav.kivakit.serialization.gson.PrimitiveGsonSerializer;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
-import static com.telenav.kivakit.core.messaging.Listener.throwingListener;
 import static com.telenav.kivakit.core.time.LocalTime.localTimeZone;
 
 /**
@@ -47,7 +46,7 @@ public class LocalTimeGsonSerializer extends PrimitiveGsonSerializer<LocalTime, 
     @Override
     protected LocalTime toObject(String text)
     {
-        return new KivaKitLocalDateTimeConverter(throwingListener(), localTimeZone()).convert(text);
+        return new KivaKitLocalDateTimeConverter(localTimeZone()).convert(text);
     }
 
     @Override

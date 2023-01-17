@@ -26,4 +26,9 @@ public class ConfidenceConverter extends BaseStringConverter<Confidence>
     {
         super(listener, Confidence.class, Confidence::parseConfidence);
     }
+
+    public ConfidenceConverter()
+    {
+        this(Listener.throwingListener());
+    }
 }

@@ -92,9 +92,9 @@ public class FileNameTest extends UnitTest
           Converters
          */
         var millisecondsConverter =
-            new KivaKitLocalDateTimeWithMillisecondsConverter(throwingListener(), timeZone);
+            new KivaKitLocalDateTimeWithMillisecondsConverter( timeZone);
         var secondsConverter =
-            new KivaKitLocalDateTimeWithSecondsConverter(throwingListener(), timeZone);
+            new KivaKitLocalDateTimeWithSecondsConverter( timeZone);
 
         String timeRepresentation;
 
