@@ -723,6 +723,24 @@ public class StringList extends ObjectList<String>
         return (StringList) super.without(matcher);
     }
 
+    @Override
+    public StringList without(Collection<String> that)
+    {
+        return (StringList) super.without(that);
+    }
+
+    @Override
+    public StringList without(String s)
+    {
+        return (StringList) super.without(s);
+    }
+
+    @Override
+    public StringList without(String[] that)
+    {
+        return (StringList) super.without(that);
+    }
+
     protected String objectToString(Object object)
     {
         return StringConversions.toHumanizedString(object);

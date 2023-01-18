@@ -503,6 +503,24 @@ public class ObjectList<Value> extends BaseList<Value>
         return (ObjectList<Value>) super.without(matcher);
     }
 
+    @Override
+    public ObjectList<Value> without(Value value)
+    {
+        return (ObjectList<Value>) super.without(value);
+    }
+
+    @Override
+    public ObjectList<Value> without(Collection<Value> that)
+    {
+        return (ObjectList<Value>) super.without(that);
+    }
+
+    @Override
+    public ObjectList<Value> without(Value[] that)
+    {
+        return (ObjectList<Value>) super.without(that);
+    }
+
     /**
      * {@inheritDoc}
      */

@@ -234,6 +234,30 @@ public class FileList extends BaseResourceList<File> implements Iterable<File>
         return (FileList) super.without(filter);
     }
 
+    @Override
+    public FileList without(File file)
+    {
+        return (FileList) super.without(file);
+    }
+
+    @Override
+    public FileList without(Collection<File> that)
+    {
+        return (FileList) super.without(that);
+    }
+
+    @Override
+    public FileList without(File[] that)
+    {
+        return (FileList) super.without(that);
+    }
+
+    @Override
+    public FileList without(Matcher<File> matcher)
+    {
+        return (FileList) super.without(matcher);
+    }
+
     /**
      * {@inheritDoc}
      */

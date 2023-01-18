@@ -19,7 +19,7 @@
 package com.telenav.kivakit.network.http;
 
 import com.telenav.kivakit.annotations.code.quality.TypeQuality;
-import com.telenav.kivakit.conversion.core.time.utc.IsoDateTimeConverter;
+import com.telenav.kivakit.conversion.core.time.utc.HttpDateTimeConverter;
 import com.telenav.kivakit.core.collections.map.VariableMap;
 import com.telenav.kivakit.core.time.Time;
 import com.telenav.kivakit.network.core.BaseNetworkResource;
@@ -206,7 +206,7 @@ public abstract class BaseHttpResource extends BaseNetworkResource implements Ht
     {
         // Wed, 21 Oct 2015 07:28:00 GMT
         var lastModified = httpHeadRequestHeaderField("Last-Modified");
-        return new IsoDateTimeConverter(this).convert(lastModified);
+        return new HttpDateTimeConverter(this).convert(lastModified);
     }
 
     /**

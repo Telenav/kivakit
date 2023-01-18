@@ -32,6 +32,7 @@ import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMEN
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_INSUFFICIENT;
 import static com.telenav.kivakit.core.KivaKit.globalListener;
+import static com.telenav.kivakit.core.collections.list.ObjectList.list;
 import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
 import static com.telenav.kivakit.core.value.count.Maximum.maximum;
 import static com.telenav.kivakit.interfaces.string.StringFormattable.Format.TO_STRING;
@@ -553,6 +554,42 @@ public abstract class BaseCollection<Value> implements
         var copy = newCollection();
         copy.addAll(this);
         copy.add(value);
+        return copy;
+    }
+
+    /**
+     * Returns this list with the given values
+     */
+    public BaseCollection<Value> without(Collection<Value> that)
+    {
+        var copy = newCollection();
+        copy.addAll(this);
+        copy.removeAll(that);
+        return copy;
+    }
+
+    /**
+     * Returns this list with the given values
+     */
+    public BaseCollection<Value> without(Value[] that)
+    {
+        var copy = newCollection();
+        copy.addAll(this);
+        copy.removeAll(list(that));
+        return copy;
+    }
+
+    /**
+     * Makes a copy of this object but with the given value appended
+     *
+     * @param value The value to add
+     * @return This object
+     */
+    public BaseCollection<Value> without(Value value)
+    {
+        var copy = newCollection();
+        copy.addAll(this);
+        copy.remove(value);
         return copy;
     }
 

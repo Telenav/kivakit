@@ -53,8 +53,19 @@ public class Escape
      */
     public static String escapeSql(String text, int maximumLength)
     {
+        // Escape ' as '',
         text = replaceAll(text, "'", "''");
+
+        // replace whitespace and newlines with one space,
+        text = text.replaceAll("[\\s\n]+", " ");
+
+        // escape " and % and _ with \,
         text = text.replaceAll("([\"%_])", "\\\\$1");
+
+        // remove all control characters,
+        text = text.replaceAll("\\p{Cntrl}", "");
+
+        // and chop off any characters that won't fit.
         return chop(text.trim(), maximumLength - 1);
     }
 
