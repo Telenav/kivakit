@@ -30,9 +30,9 @@ import org.jetbrains.annotations.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Audience.AUDIENCE_SERVICE_PROVIDER_INTERFACE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
 import static com.telenav.kivakit.core.ensure.Ensure.unsupported;
 
@@ -159,7 +159,7 @@ public interface FolderService extends FileSystemObjectService
     Boolean isWritable();
 
     /**
-     * Returns true if the folder was created, along with all necessary parent folders.
+     * Unsupported
      */
     @SuppressWarnings("SpellCheckingInspection")
     default FolderService mkdirs()

@@ -127,7 +127,7 @@ public class ThreadSnapshot
                 if (information != null)
                 {
                     var status = new ThreadStatus();
-                    status.cpuTime = milliseconds(management.getThreadCpuTime(identifier) / 1_000_000L);
+                    status.cpuTime = milliseconds(management.getThreadCpuTime(identifier) / 1_000_000.0);
                     status.isDaemon = information.isDaemon();
                     status.name = information.getThreadName();
                     status.identifier = information.getThreadId();

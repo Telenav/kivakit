@@ -33,7 +33,7 @@ performing the following categories of operations:
 * *Indent* - String indentation
 * *Join* - Joining of string lists into strings with a separator
 * *Normalize* - String normalization
-* *PathStrings* - Parsing of paths represented as strings (prefer the *language.path* objects when possible)
+* *PathStrings* - Parsing of paths represented as strings (prefer the '*language.path*' objects when possible)
 * *Plural* - Simple pluralization rules (English only)
 * *Split* - Splitting of strings on a separator
 * *Strings* - Low-level string utility methods

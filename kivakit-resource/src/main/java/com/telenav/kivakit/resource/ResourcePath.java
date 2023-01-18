@@ -20,7 +20,6 @@ package com.telenav.kivakit.resource;
 
 import com.telenav.kivakit.annotations.code.quality.TypeQuality;
 import com.telenav.kivakit.commandline.SwitchParser;
-import com.telenav.kivakit.conversion.BaseStringConverter;
 import com.telenav.kivakit.core.collections.list.StringList;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.path.Path;
@@ -166,7 +165,7 @@ public class ResourcePath extends StringPath implements
     {
         return switchParser(ResourcePath.class)
             .name(name)
-            .converter(new ResourcePath.Converter(listener))
+            .converter(new ResourcePathConverter(listener))
             .description(description);
     }
 
@@ -176,28 +175,6 @@ public class ResourcePath extends StringPath implements
     public static ResourcePath unixResourcePath(@NotNull String path)
     {
         return parseUnixResourcePath(throwingListener(), path);
-    }
-
-    /**
-     * Converts to and from {@link ResourcePath}s
-     *
-     * @author jonathanl (shibo)
-     */
-    @TypeQuality(stability = STABLE_EXTENSIBLE,
-                 testing = UNTESTED,
-                 documentation = DOCUMENTED)
-    public static class Converter extends BaseStringConverter<ResourcePath>
-    {
-        public Converter(@NotNull Listener listener)
-        {
-            super(listener, ResourcePath.class);
-        }
-
-        @Override
-        protected ResourcePath onToValue(String value)
-        {
-            return parseResourcePath(this, value);
-        }
     }
 
     /** The {@link URI} schemes for this resource path */
@@ -380,7 +357,6 @@ public class ResourcePath extends StringPath implements
     /**
      * {@inheritDoc}
      */
-    @SuppressWarnings("SpellCheckingInspection")
     @Override
     public ResourcePath subpath(int start, int end)
     {
@@ -400,7 +376,7 @@ public class ResourcePath extends StringPath implements
      * {@inheritDoc}
      */
     @Override
-    public URI uri()
+    public URI asUri()
     {
         return URI.create(join());
     }

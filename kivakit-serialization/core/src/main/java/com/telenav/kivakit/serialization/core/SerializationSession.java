@@ -116,12 +116,12 @@ import static com.telenav.kivakit.serialization.core.SerializationSession.Sessio
  *
  * <p><b>Properties</b></p>
  *
- * <u>
+ * <ul>
  *     <li>{@link #isActive()}</li>
  *     <li>{@link #isReading()}</li>
  *     <li>{@link #isWriting()}</li>
  *     <li>{@link #maximumFlushTime()}</li>
- * </u>
+ * </ul>
  *
  * <p><b>Example</b></p>
  *

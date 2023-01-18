@@ -61,21 +61,21 @@ public class AsciiArt
 {
     private static final boolean isMac = operatingSystem().isMac();
 
-    private static final char HORIZONTAL_LINE_CHARACTER = isMac ? '\u2501' : '-';
+    private static final char HORIZONTAL_LINE_CHARACTER = isMac ? '━' : '-';
 
-    private static final char VERTICAL_LINE_CHARACTER = isMac ? '\u250b' : '|';
+    private static final char VERTICAL_LINE_CHARACTER = isMac ? '┋' : '|';
 
-    private static final char TOP_LEFT_LINE_CHARACTER = isMac ? '\u250f' : '/';
+    private static final char TOP_LEFT_LINE_CHARACTER = isMac ? '┏' : '/';
 
-    private static final char TOP_RIGHT_LINE_CHARACTER = isMac ? '\u2513' : '\\';
+    private static final char TOP_RIGHT_LINE_CHARACTER = isMac ? '┓' : '\\';
 
-    private static final char BOTTOM_LEFT_LINE_CHARACTER = isMac ? '\u2517' : '\\';
+    private static final char BOTTOM_LEFT_LINE_CHARACTER = isMac ? '┗' : '\\';
 
-    private static final char BOTTOM_RIGHT_LINE_CHARACTER = isMac ? '\u251b' : '/';
+    private static final char BOTTOM_RIGHT_LINE_CHARACTER = isMac ? '┛' : '/';
 
-    public static final char TITLE_LEFT_CHARACTER = isMac ? '\u252b' : '|';
+    public static final char TITLE_LEFT_CHARACTER = isMac ? '┫' : '|';
 
-    public static final char TITLE_RIGHT_CHARACTER = isMac ? '\u2523' : '|';
+    public static final char TITLE_RIGHT_CHARACTER = isMac ? '┣' : '|';
 
     private static int maximumWidth = 90;
 

@@ -17,7 +17,7 @@
 
 ### Summary <a name="summary"></a>
 
-The *kivakit-core-kernel* package *language.collections* contains implementations of three data structure types:   
+The *kivakit-core-kernel* package '*language.collections*' contains implementations of three data structure types:   
 *List*, *Set* and *Map*. An abstract base class is provided for each data structure (*BaseList*, *BaseSet* and *BaseMap*)  
 and each of these base classes supports several interfaces from the [*interfaces*](interfaces.md) package in *kivakit-core-kernel*.  
 In addition to the basic collection types provided by *kivakit-core-kernel*, the project *kivakit-core-collections* provides  

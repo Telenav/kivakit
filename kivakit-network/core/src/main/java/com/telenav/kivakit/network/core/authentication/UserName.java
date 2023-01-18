@@ -19,7 +19,6 @@
 package com.telenav.kivakit.network.core.authentication;
 
 import com.telenav.kivakit.annotations.code.quality.TypeQuality;
-import com.telenav.kivakit.conversion.BaseStringConverter;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.value.name.Name;
 import com.telenav.kivakit.network.core.internal.lexakai.DiagramAuthentication;
@@ -50,28 +49,6 @@ public class UserName extends Name
     public static UserName parseUserName(Listener listener, String text)
     {
         return new UserName(text);
-    }
-
-    /**
-     * Converts {@link UserName} objects to and from strings.
-     *
-     * @author jonathanl (shibo)
-     */
-    @TypeQuality(stability = STABLE_EXTENSIBLE,
-                 testing = UNTESTED,
-                 documentation = DOCUMENTED)
-    public static class Converter extends BaseStringConverter<UserName>
-    {
-        public Converter(Listener listener)
-        {
-            super(listener, UserName.class);
-        }
-
-        @Override
-        protected UserName onToValue(String value)
-        {
-            return parseUserName(this, value);
-        }
     }
 
     protected UserName(String name)

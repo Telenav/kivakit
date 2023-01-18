@@ -34,21 +34,15 @@ import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 /**
  * Gets the value of a field
  *
+ * @param field The field to access
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramReflection.class)
 @TypeQuality(stability = STABLE,
              testing = UNTESTED,
              documentation = DOCUMENTED)
-public class FieldGetter implements Getter
+public record FieldGetter(Field field) implements Getter
 {
-    /** The field to access */
-    private final Field field;
-
-    public FieldGetter(Field field)
-    {
-        this.field = field;
-    }
 
     /**
      * {@inheritDoc}
@@ -62,6 +56,7 @@ public class FieldGetter implements Getter
     /**
      * Returns the field to access
      */
+    @Override
     public Field field()
     {
         return field;

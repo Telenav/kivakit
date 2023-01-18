@@ -18,12 +18,14 @@
 
 package com.telenav.kivakit.internal.tests.core.time;
 
+import com.telenav.kivakit.core.time.Time;
 import com.telenav.kivakit.internal.testing.CoreUnitTest;
 import org.junit.Test;
 
 import static com.telenav.kivakit.core.time.Duration.ONE_DAY;
 import static com.telenav.kivakit.core.time.Duration.ONE_SECOND;
 import static com.telenav.kivakit.core.time.Time.now;
+import static com.telenav.kivakit.core.time.TimeZones.utc;
 
 /**
  * Time test
@@ -60,6 +62,15 @@ public class TimeTest extends CoreUnitTest
         var now = now().roundDown(ONE_SECOND);
         var later = now.plus(ONE_SECOND);
         ensureEqual(ONE_SECOND, later.minus(now));
+    }
+
+    @Test
+    public void testParse()
+    {
+        var text = "2023.01.16_07.56PM_UTC";
+        var time = Time.time(text);
+        var localTime = time.inTimeZone(utc());
+        ensureEqual(localTime.toString(), text);
     }
 
     @Test

@@ -93,7 +93,7 @@ way through *reader().string()*.
     String contents = entry.reader().string();
 
 This method can accept a *ZipEntry*, a *StringResource*, a *File,* an *HttpGetResource* or any
-other resource and it works the same:
+other resource, and it works the same:
 
     public String contents(Resource resource)
     { 

@@ -353,4 +353,22 @@ public class MessageList extends ObjectList<Message> implements MessageCounter
     {
         return (MessageList) super.without(matcher);
     }
+
+    @Override
+    public MessageList without(Message message)
+    {
+        return (MessageList) super.without(message);
+    }
+
+    @Override
+    public MessageList without(Collection<Message> that)
+    {
+        return (MessageList) super.without(that);
+    }
+
+    @Override
+    public MessageList without(Message[] that)
+    {
+        return (MessageList) super.without(that);
+    }
 }

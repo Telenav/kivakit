@@ -18,6 +18,7 @@
 
 package com.telenav.kivakit.conversion.core.time;
 
+import com.telenav.kivakit.conversion.core.time.kivakit.KivaKitLocalDateConverter;
 import com.telenav.kivakit.internal.testing.CoreUnitTest;
 import org.junit.Test;
 
@@ -31,7 +32,7 @@ public class LocalDateConverterTest extends CoreUnitTest
     @Test
     public void convert()
     {
-        var converter = new LocalDateConverter(this, utcTimeZone());
+        var converter = new KivaKitLocalDateConverter(this, utcTimeZone());
 
         var time = converter.convert("2011.07.06");
 

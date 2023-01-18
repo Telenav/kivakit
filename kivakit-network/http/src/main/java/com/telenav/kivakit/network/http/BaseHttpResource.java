@@ -19,11 +19,14 @@
 package com.telenav.kivakit.network.http;
 
 import com.telenav.kivakit.annotations.code.quality.TypeQuality;
+import com.telenav.kivakit.conversion.core.time.utc.HttpDateTimeConverter;
 import com.telenav.kivakit.core.collections.map.VariableMap;
+import com.telenav.kivakit.core.time.Time;
 import com.telenav.kivakit.network.core.BaseNetworkResource;
 import com.telenav.kivakit.network.core.NetworkAccessConstraints;
 import com.telenav.kivakit.network.core.NetworkLocation;
 import com.telenav.kivakit.network.http.internal.lexakai.DiagramHttp;
+import com.telenav.kivakit.resource.ResourceIdentifier;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlAggregation;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
@@ -168,9 +171,9 @@ public abstract class BaseHttpResource extends BaseNetworkResource implements Ht
     {
         var client = newClient();
         var head = HttpRequest.newBuilder()
-                .uri(asUri())
-                .method("HEAD", noBody())
-                .build();
+            .uri(asUri())
+            .method("HEAD", noBody())
+            .build();
         try
         {
             var response = client.send(head, ofString());
@@ -183,6 +186,12 @@ public abstract class BaseHttpResource extends BaseNetworkResource implements Ht
         }
     }
 
+    @Override
+    public ResourceIdentifier identifier()
+    {
+        return new ResourceIdentifier(asUri().toString());
+    }
+
     /**
      * Returns always true
      */
@@ -190,6 +199,14 @@ public abstract class BaseHttpResource extends BaseNetworkResource implements Ht
     public boolean isRemote()
     {
         return true;
+    }
+
+    @Override
+    public Time lastModified()
+    {
+        // Wed, 21 Oct 2015 07:28:00 GMT
+        var lastModified = httpHeadRequestHeaderField("Last-Modified");
+        return new HttpDateTimeConverter(this).convert(lastModified);
     }
 
     /**
@@ -267,7 +284,7 @@ public abstract class BaseHttpResource extends BaseNetworkResource implements Ht
     protected HttpClient newClient()
     {
         var builder = HttpClient.newBuilder()
-                .connectTimeout(constraints.timeout().asJavaDuration());
+            .connectTimeout(constraints.timeout().asJavaDuration());
 
         // add any credentials
         if (constraints instanceof HttpAccessConstraints httpConstraints)

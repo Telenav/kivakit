@@ -83,7 +83,7 @@ public class HourOfWeekSpanTest extends CoreUnitTest
     @Test
     public void testIncludes()
     {
-        // Right included: Monday at 3am to Saturday at 11pm in UTC should include Saturday April 9, 2022 at 11pm
+        // Right included: Monday at 3am to Saturday at 11pm in UTC should include Saturday, April 9, 2022 at 11pm
         ensure(utcSpan().includes(LocalTime.localTime(utc(),
                 year(2022),
                 APRIL,

@@ -58,10 +58,10 @@ Code quality for this project is 51.9%.
   
 &nbsp; &nbsp; <img src="https://telenav.github.io/telenav-assets/images/meters/meter-50-96.png" srcset="https://telenav.github.io/telenav-assets/images/meters/meter-50-96-2x.png 2x"/>
 
-| Measurement   | Value                    |
-|---------------|--------------------------|
-| Stability     | 77.8%&nbsp; &nbsp; <img src="https://telenav.github.io/telenav-assets/images/meters/meter-80-96.png" srcset="https://telenav.github.io/telenav-assets/images/meters/meter-80-96-2x.png 2x"/>     |
-| Testing       | 0.0%&nbsp; &nbsp; <img src="https://telenav.github.io/telenav-assets/images/meters/meter-0-96.png" srcset="https://telenav.github.io/telenav-assets/images/meters/meter-0-96-2x.png 2x"/>       |
+| Measurement   | Value                                                                                                                                                                                        |
+|---------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Stability     | 77.8%&nbsp; &nbsp; <img src="https://telenav.github.io/telenav-assets/images/meters/meter-80-96.png" srcset="https://telenav.github.io/telenav-assets/images/meters/meter-80-96-2x.png 2x"/> |
+| Testing       | 0.0%&nbsp; &nbsp; <img src="https://telenav.github.io/telenav-assets/images/meters/meter-0-96.png" srcset="https://telenav.github.io/telenav-assets/images/meters/meter-0-96-2x.png 2x"/>    |
 | Documentation | 77.8%&nbsp; &nbsp; <img src="https://telenav.github.io/telenav-assets/images/meters/meter-80-96.png" srcset="https://telenav.github.io/telenav-assets/images/meters/meter-80-96-2x.png 2x"/> |
 
 <img src="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128.png" srcset="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128-2x.png 2x"/>
@@ -81,23 +81,23 @@ Code quality for this project is 51.9%.
 
 ### Javadoc <a name="code-quality"></a> &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/books-24.png" srcset="https://telenav.github.io/telenav-assets/images/icons/books-24-2x.png 2x"/>
 
-| Class | Documentation Sections  |
-|-------|-------------------------|
-| [*AtomicIntegerSerializer*](https://www.kivakit.org/1.12.0/javadoc/kivakit/kivakit-serialization-kryo/com/telenav/kivakit/serialization/kryo/serializers/AtomicIntegerSerializer.html) |  |  
-| [*AtomicLongSerializer*](https://www.kivakit.org/1.12.0/javadoc/kivakit/kivakit-serialization-kryo/com/telenav/kivakit/serialization/kryo/serializers/AtomicLongSerializer.html) |  |  
-| [*BaseSerializer*](https://www.kivakit.org/1.12.0/javadoc/kivakit/kivakit-serialization-kryo/com/telenav/kivakit/serialization/kryo/BaseSerializer.html) |  |  
-| [*DebugKryo*](https://www.kivakit.org/1.12.0/javadoc/kivakit/kivakit-serialization-kryo/com/telenav/kivakit/serialization/kryo/DebugKryo.html) |  |  
-| [*DiagramKryo*](https://www.kivakit.org/1.12.0/javadoc/kivakit/kivakit-serialization-kryo/com/telenav/kivakit/serialization/kryo/internal/lexakai/DiagramKryo.html) |  |  
-| [*KivaKitCoreKryoTypes*](https://www.kivakit.org/1.12.0/javadoc/kivakit/kivakit-serialization-kryo/com/telenav/kivakit/serialization/kryo/types/KivaKitCoreKryoTypes.html) |  |  
-| [*KivaKitResourceKryoTypes*](https://www.kivakit.org/1.12.0/javadoc/kivakit/kivakit-serialization-kryo/com/telenav/kivakit/serialization/kryo/types/KivaKitResourceKryoTypes.html) |  |  
-| [*KryoObjectSerializer*](https://www.kivakit.org/1.12.0/javadoc/kivakit/kivakit-serialization-kryo/com/telenav/kivakit/serialization/kryo/KryoObjectSerializer.html) |  |  
-| [*KryoSerializationSession*](https://www.kivakit.org/1.12.0/javadoc/kivakit/kivakit-serialization-kryo/com/telenav/kivakit/serialization/kryo/KryoSerializationSession.html) |  |  
-| [*KryoSerializationSessionFactory*](https://www.kivakit.org/1.12.0/javadoc/kivakit/kivakit-serialization-kryo/com/telenav/kivakit/serialization/kryo/KryoSerializationSessionFactory.html) |  |  
-| [*KryoTypeEntry*](https://www.kivakit.org/1.12.0/javadoc/kivakit/kivakit-serialization-kryo/com/telenav/kivakit/serialization/kryo/types/KryoTypeEntry.html) |  |  
-| [*KryoTypes*](https://www.kivakit.org/1.12.0/javadoc/kivakit/kivakit-serialization-kryo/com/telenav/kivakit/serialization/kryo/types/KryoTypes.html) | Kryo Serialization Identifiers |  
-| | Serialization |  
-| | Backwards Compatibility |  
-| | Important Note |  
+| Class                                                                                                                                                                                      | Documentation Sections         |
+|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------|
+| [*AtomicIntegerSerializer*](https://www.kivakit.org/1.12.0/javadoc/kivakit/kivakit-serialization-kryo/com/telenav/kivakit/serialization/kryo/serializers/AtomicIntegerSerializer.html)     |                                |  
+| [*AtomicLongSerializer*](https://www.kivakit.org/1.12.0/javadoc/kivakit/kivakit-serialization-kryo/com/telenav/kivakit/serialization/kryo/serializers/AtomicLongSerializer.html)           |                                |  
+| [*BaseSerializer*](https://www.kivakit.org/1.12.0/javadoc/kivakit/kivakit-serialization-kryo/com/telenav/kivakit/serialization/kryo/BaseSerializer.html)                                   |                                |  
+| [*DebugKryo*](https://www.kivakit.org/1.12.0/javadoc/kivakit/kivakit-serialization-kryo/com/telenav/kivakit/serialization/kryo/DebugKryo.html)                                             |                                |  
+| [*DiagramKryo*](https://www.kivakit.org/1.12.0/javadoc/kivakit/kivakit-serialization-kryo/com/telenav/kivakit/serialization/kryo/internal/lexakai/DiagramKryo.html)                        |                                |  
+| [*KivaKitCoreKryoTypes*](https://www.kivakit.org/1.12.0/javadoc/kivakit/kivakit-serialization-kryo/com/telenav/kivakit/serialization/kryo/types/KivaKitCoreKryoTypes.html)                 |                                |  
+| [*KivaKitResourceKryoTypes*](https://www.kivakit.org/1.12.0/javadoc/kivakit/kivakit-serialization-kryo/com/telenav/kivakit/serialization/kryo/types/KivaKitResourceKryoTypes.html)         |                                |  
+| [*KryoObjectSerializer*](https://www.kivakit.org/1.12.0/javadoc/kivakit/kivakit-serialization-kryo/com/telenav/kivakit/serialization/kryo/KryoObjectSerializer.html)                       |                                |  
+| [*KryoSerializationSession*](https://www.kivakit.org/1.12.0/javadoc/kivakit/kivakit-serialization-kryo/com/telenav/kivakit/serialization/kryo/KryoSerializationSession.html)               |                                |  
+| [*KryoSerializationSessionFactory*](https://www.kivakit.org/1.12.0/javadoc/kivakit/kivakit-serialization-kryo/com/telenav/kivakit/serialization/kryo/KryoSerializationSessionFactory.html) |                                |  
+| [*KryoTypeEntry*](https://www.kivakit.org/1.12.0/javadoc/kivakit/kivakit-serialization-kryo/com/telenav/kivakit/serialization/kryo/types/KryoTypeEntry.html)                               |                                |  
+| [*KryoTypes*](https://www.kivakit.org/1.12.0/javadoc/kivakit/kivakit-serialization-kryo/com/telenav/kivakit/serialization/kryo/types/KryoTypes.html)                                       | Kryo Serialization Identifiers |  
+|                                                                                                                                                                                            | Serialization                  |  
+|                                                                                                                                                                                            | Backwards Compatibility        |  
+|                                                                                                                                                                                            | Important Note                 |  
 
 [//]: # (start-user-text)
 

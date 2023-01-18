@@ -19,9 +19,7 @@
 package com.telenav.kivakit.resource;
 
 import com.telenav.kivakit.annotations.code.quality.TypeQuality;
-import com.telenav.kivakit.conversion.core.time.LocalDateConverter;
-import com.telenav.kivakit.conversion.core.time.LocalDateTimeConverter;
-import com.telenav.kivakit.conversion.core.time.LocalTimeConverter;
+import com.telenav.kivakit.conversion.core.time.kivakit.KivaKitLocalDateTimeConverter;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.messaging.messages.MessageException;
 import com.telenav.kivakit.core.time.LocalTime;
@@ -60,16 +58,11 @@ import static com.telenav.kivakit.resource.ResourcePath.parseResourcePath;
  * </p>
  *
  * <ul>
- *     <li>{@link #fileNameForDate()}</li>
- *     <li>{@link #fileNameForDate(LocalTime)}</li>
- *     <li>{@link #fileNameForDate(LocalTime, ZoneId)}</li>
- *     <li>{@link #fileNameForDateTime()}</li>
- *     <li>{@link #fileNameForDateTime(LocalTime)}</li>
- *     <li>{@link #fileNameForDateTime(LocalTime, ZoneId)}</li>
- *     <li>{@link #fileNameForTime(LocalTime)}</li>
- *     <li>{@link #fileNameForTime(LocalTime, ZoneId)}</li>
- *     <li>{@link #parseDateTimeFileName(Listener, String)}</li>
- *     <li>{@link #parseDateTimeFileName(Listener, String, ZoneId)}</li>
+ *     <li>{@link #kivakitFileNameForNow()}</li>
+ *     <li>{@link #kivakitFileName(LocalTime)}</li>
+ *     <li>{@link #kivakitFileName(LocalTime, ZoneId)}</li>
+ *     <li>{@link #parseKivaKitFileName(Listener, String)}</li>
+ *     <li>{@link #parseKivaKitFileName(Listener, String, ZoneId)}</li>
  *     <li>{@link #parseFileName(Listener, String)}</li>
  * </ul>
  *
@@ -140,107 +133,28 @@ public class FileName implements
     }
 
     /**
-     * Returns a filename for the current date
-     */
-    public static FileName fileNameForDate()
-    {
-        return parseFileName(throwingListener(), LocalTime.now().asDateString());
-    }
-
-    /**
-     * Returns a filename for the current local time
-     */
-    @SuppressWarnings("ConstantConditions")
-    public static FileName fileNameForDate(@NotNull LocalTime time)
-    {
-        return parseFileName(throwingListener(), new LocalDateConverter(throwingListener()).unconvert(time));
-    }
-
-    /**
-     * Returns a filename for the given time in the given timezone
-     */
-    @SuppressWarnings("ConstantConditions")
-    public static FileName fileNameForDate(@NotNull LocalTime time,
-                                           @NotNull ZoneId zone)
-    {
-        return parseFileName(throwingListener(), new LocalDateConverter(throwingListener(), zone).unconvert(time));
-    }
-
-    /**
      * Returns a filename for the current date and time
      */
-    public static FileName fileNameForDateTime()
+    public static FileName kivakitFileName(@NotNull LocalTime time)
     {
-        return fileNameForDateTime(LocalTime.now());
-    }
-
-    /**
-     * Returns a filename for the current date and time
-     */
-    @SuppressWarnings("ConstantConditions")
-    public static FileName fileNameForDateTime(@NotNull LocalTime time)
-    {
-        return parseFileName(throwingListener(), new LocalDateTimeConverter(throwingListener()).unconvert(time));
+        return parseFileName(throwingListener(), new KivaKitLocalDateTimeConverter().unconvert(time));
     }
 
     /**
      * Returns a filename for the given local time in the given timezone
      */
-    @SuppressWarnings("ConstantConditions")
-    public static FileName fileNameForDateTime(@NotNull LocalTime time,
-                                               @NotNull ZoneId zone)
-    {
-        return parseFileName(throwingListener(), new LocalDateTimeConverter(throwingListener(), zone).unconvert(time));
-    }
-
-    /**
-     * Returns a filename for the given local time
-     *
-     * @param time The time
-     */
-    @SuppressWarnings("ConstantConditions")
-    public static FileName fileNameForTime(@NotNull LocalTime time)
-    {
-        return parseFileName(throwingListener(), new LocalTimeConverter(throwingListener(), time.timeZone()).unconvert(time));
-    }
-
-    /**
-     * Returns a filename for the given local time and timezone
-     *
-     * @param time The time
-     * @param zone The timezone
-     */
-    @SuppressWarnings("ConstantConditions")
-    public static FileName fileNameForTime(@NotNull LocalTime time,
+    public static FileName kivakitFileName(@NotNull LocalTime time,
                                            @NotNull ZoneId zone)
     {
-        return parseFileName(throwingListener(), new LocalTimeConverter(throwingListener(), zone).unconvert(time));
+        return parseFileName(throwingListener(), new KivaKitLocalDateTimeConverter(zone).unconvert(time));
     }
 
     /**
-     * Parses the given text into a {@link java.time.LocalTime} object
-     *
-     * @param listener The listener to call with any problems
-     * @param text The text to parse
+     * Returns a filename for the current date and time
      */
-    public static LocalTime parseDateTimeFileName(@NotNull Listener listener,
-                                                  @NotNull String text)
+    public static FileName kivakitFileNameForNow()
     {
-        return new LocalDateTimeConverter(listener).convert(text);
-    }
-
-    /**
-     * Parses the given text into a {@link java.time.LocalTime} object
-     *
-     * @param listener The listener to call with any problems
-     * @param text The text to parse
-     * @param zone The timezone
-     */
-    public static LocalTime parseDateTimeFileName(@NotNull Listener listener,
-                                                  @NotNull String text,
-                                                  @NotNull ZoneId zone)
-    {
-        return new LocalDateTimeConverter(listener, zone).convert(text);
+        return kivakitFileName(LocalTime.now());
     }
 
     /**
@@ -253,6 +167,32 @@ public class FileName implements
                                          @NotNull String text)
     {
         return new FileName(text);
+    }
+
+    /**
+     * Parses the given text into a {@link java.time.LocalTime} object
+     *
+     * @param listener The listener to call with any problems
+     * @param text The text to parse
+     */
+    public static LocalTime parseKivaKitFileName(@NotNull Listener listener,
+                                                 @NotNull String text)
+    {
+        return new KivaKitLocalDateTimeConverter(listener).convert(text);
+    }
+
+    /**
+     * Parses the given text into a {@link java.time.LocalTime} object
+     *
+     * @param listener The listener to call with any problems
+     * @param text The text to parse
+     * @param zone The timezone
+     */
+    public static LocalTime parseKivaKitFileName(@NotNull Listener listener,
+                                                 @NotNull String text,
+                                                 @NotNull ZoneId zone)
+    {
+        return new KivaKitLocalDateTimeConverter(listener, zone).convert(text);
     }
 
     private final String name;
@@ -379,11 +319,11 @@ public class FileName implements
     public LocalTime localDateTime(@NotNull Listener listener)
     {
         LocalTime time;
-        if ((time = new LocalDateTimeConverter(listener).convert(name())) != null)
+        if ((time = new KivaKitLocalDateTimeConverter(listener).convert(name())) != null)
         {
             return time;
         }
-        return new LocalDateConverter(listener).convert(name());
+        return new KivaKitLocalDateTimeConverter(listener).convert(name());
     }
 
     /**

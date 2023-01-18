@@ -51,7 +51,6 @@ public class Nio
             var existing = filesystemForUri.get(key);
             if (existing == filesystem)
             {
-                //noinspection resource
                 filesystemForUri.remove(key);
                 try
                 {

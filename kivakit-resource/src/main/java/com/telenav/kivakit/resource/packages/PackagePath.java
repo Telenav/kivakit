@@ -66,7 +66,7 @@ import static com.telenav.kivakit.resource.packages.Package.packageForPath;
  * <p><b>Conversions</b></p>
  *
  * <ul>
- *     <li>{@link #asPackage(Listener)}</li>A
+ *     <li>{@link #asPackage(Listener)}</li>
  *     <li>{@link #asPackageReference()}</li>
  * </ul>
  *
@@ -100,7 +100,7 @@ import static com.telenav.kivakit.resource.packages.Package.packageForPath;
  *
  * @author jonathanl (shibo)
  */
-@SuppressWarnings({ "unused", "DuplicatedCode", "SpellCheckingInspection" })
+@SuppressWarnings({ "unused" })
 @UmlClassDiagram(diagram = DiagramResource.class)
 @UmlClassDiagram(diagram = DiagramResourcePath.class)
 @TypeQuality(stability = UNSTABLE,

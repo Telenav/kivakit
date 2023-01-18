@@ -41,7 +41,7 @@ import static java.lang.Boolean.TRUE;
  *
  * @author jonathanl (shibo)
  */
-@SuppressWarnings("DuplicatedCode") @UmlClassDiagram(diagram = DiagramValidation.class)
+@UmlClassDiagram(diagram = DiagramValidation.class)
 @UmlNotPublicApi
 @TypeQuality(stability = STABLE_EXTENSIBLE,
              testing = UNTESTED,

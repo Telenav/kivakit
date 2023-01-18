@@ -26,10 +26,12 @@ import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeMember;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
-import static com.telenav.kivakit.core.language.primitive.Booleans.*;
+import static com.telenav.kivakit.core.language.primitive.Booleans.isFalse;
+import static com.telenav.kivakit.core.language.primitive.Booleans.isTrue;
+import static com.telenav.kivakit.core.messaging.Listener.throwingListener;
 
 /**
  * Converts between booleans and strings. Several values in addition to "true" and "false" can be used to represent
@@ -49,6 +51,11 @@ public class BooleanConverter extends BaseStringConverter<Boolean>
     public BooleanConverter(Listener listener)
     {
         super(listener, Boolean.class);
+    }
+
+    public BooleanConverter()
+    {
+        this(throwingListener());
     }
 
     /**

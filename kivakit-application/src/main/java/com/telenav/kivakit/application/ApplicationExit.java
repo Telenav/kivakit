@@ -18,7 +18,7 @@ import static com.telenav.kivakit.application.ExitCode.SUCCEEDED;
 public class ApplicationExit
 {
     /** Successful exit */
-    public static ApplicationExit SUCCESS = new ApplicationExit(SUCCEEDED);
+    public static final ApplicationExit SUCCESS = new ApplicationExit(SUCCEEDED);
 
     /** This application's exit code */
     private final ExitCode code;

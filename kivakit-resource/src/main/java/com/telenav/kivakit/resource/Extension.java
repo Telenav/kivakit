@@ -133,7 +133,6 @@ public class Extension implements
 
     public static final Extension CSV = parseExtension(".csv");
 
-    @SuppressWarnings("SpellCheckingInspection")
     public static final Extension GEOJSON = parseExtension(".geojson");
 
     public static final Extension GRAPH = parseExtension(".graph");
@@ -196,7 +195,6 @@ public class Extension implements
     /**
      * Returns all extensions that are well-known (to KivaKit)
      */
-    @SuppressWarnings("DuplicatedCode")
     public static ObjectList<Extension> allExtensions()
     {
         return list(CLASS, CSV, GEOJSON, GRAPH, GRAPH_GZIP,

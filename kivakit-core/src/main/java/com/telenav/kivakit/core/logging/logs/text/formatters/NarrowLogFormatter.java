@@ -35,7 +35,6 @@ import static com.telenav.kivakit.core.logging.logs.text.formatters.BaseColumnar
  *
  * @author jonathanl (shibo)
  */
-@SuppressWarnings("DuplicatedCode")
 @UmlClassDiagram(diagram = DiagramLogs.class)
 @TypeQuality(stability = STABLE,
              testing = UNTESTED,

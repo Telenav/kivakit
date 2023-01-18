@@ -255,7 +255,6 @@ public class StringList extends ObjectList<String>
     /**
      * Returns a list of words from the given text with word breaks occurring on whitespace
      */
-    @SuppressWarnings("DuplicatedCode")
     public static StringList words(String text)
     {
         var list = new StringList();
@@ -674,7 +673,6 @@ public class StringList extends ObjectList<String>
      * {@inheritDoc}
      */
     @Override
-    @SuppressWarnings("SpellCheckingInspection")
     public StringList uniqued()
     {
         return (StringList) super.uniqued();
@@ -723,6 +721,24 @@ public class StringList extends ObjectList<String>
     public StringList without(Matcher<String> matcher)
     {
         return (StringList) super.without(matcher);
+    }
+
+    @Override
+    public StringList without(Collection<String> that)
+    {
+        return (StringList) super.without(that);
+    }
+
+    @Override
+    public StringList without(String s)
+    {
+        return (StringList) super.without(s);
+    }
+
+    @Override
+    public StringList without(String[] that)
+    {
+        return (StringList) super.without(that);
     }
 
     protected String objectToString(Object object)

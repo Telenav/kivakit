@@ -50,9 +50,12 @@ import static com.telenav.kivakit.core.string.Strip.stripLeading;
  * This class contains numerous methods which down-cast the return value of the superclass to make use easier for
  * clients. Methods that are unique to this class mainly have to do with resources and modules:
  * </p>
- * <li>{@link #contains(PackageReference)} - True if this package contains the given resource</li>
- * <li>{@link #containsNested(PackageReference)} - True if this package contains the given resource at any depth</li>
- * <li>#</li>
+ *
+ * <p><b>Contains</b></p>
+ *
+ * <ul>
+ *     <li>{@link #contains(PackageReference)} - True if this package contains the given resource</li>
+ *     <li>{@link #containsNested(PackageReference)} - True if this package contains the given resource at any depth</li>
  * </ul>
  *
  * <p><b>Parsing</b></p>
@@ -84,7 +87,7 @@ import static com.telenav.kivakit.core.string.Strip.stripLeading;
  *
  * @author jonathanl (shibo)
  */
-@SuppressWarnings({ "unused", "DuplicatedCode", "SpellCheckingInspection" })
+@SuppressWarnings({ "unused" })
 @UmlClassDiagram(diagram = DiagramPath.class)
 @TypeQuality(stability = STABLE_EXTENSIBLE,
              testing = TESTING_NOT_NEEDED,
@@ -123,7 +126,6 @@ public final class PackageReference extends StringPath
      */
     public static PackageReference packageReference(Class<?> type)
     {
-        //noinspection ConstantConditions
         return packageReference(type, parseStringPath(throwingListener(), type.getName(), null, "\\.")
                 .withoutLast());
     }

@@ -1,5 +1,7 @@
 package com.telenav.kivakit.conversion.core.time;
 
+import com.telenav.kivakit.conversion.core.time.duration.DurationConverter;
+import com.telenav.kivakit.conversion.core.time.duration.DurationInSecondsConverter;
 import com.telenav.kivakit.internal.testing.CoreUnitTest;
 import org.junit.Test;
 
@@ -41,6 +43,6 @@ public class DurationConverterTest extends CoreUnitTest
     @Test
     public void testSecondsConverter()
     {
-        ensureEqual(seconds(5), new SecondsConverter(nullListener()).convert("5"));
+        ensureEqual(seconds(5), new DurationInSecondsConverter(nullListener()).convert("5"));
     }
 }

@@ -18,7 +18,7 @@
 
 KivaKit is an integrated set of frameworks. One of the major ways in which mini-frameworks inside KivaKit  
 are connected together is by way of the set of broadly generic, *small* interfaces in *kivakit-core-kernel interfaces*.  
-For example, the *interfaces.collection* package contains these interfaces:
+For example, the '*interfaces.collection*' package contains these interfaces:
 
 * Addable
 * Appendable

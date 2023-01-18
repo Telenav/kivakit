@@ -24,7 +24,6 @@ import org.junit.Test;
 import static com.telenav.kivakit.core.version.Version.parseVersion;
 import static com.telenav.kivakit.core.version.Version.version;
 
-@SuppressWarnings("ConstantConditions")
 public class VersionTest extends CoreUnitTest
 {
     @Test

@@ -36,7 +36,6 @@ import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
  * @version 1.0.0 2013-7-1
  * @see DeduplicatingIterator
  */
-@SuppressWarnings("SpellCheckingInspection")
 @UmlClassDiagram(diagram = DiagramIteration.class)
 @TypeQuality(stability = STABLE,
              testing = UNTESTED,

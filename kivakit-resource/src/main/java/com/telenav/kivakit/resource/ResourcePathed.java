@@ -43,7 +43,7 @@ import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
  *
  * <ul>
  *     <li>{@link #path()}</li>
- *     <li>{@link #uri()}</li>
+ *     <li>{@link #asUri()}</li>
  *     <li>{@link #url()}</li>
  * </ul>
  *
@@ -145,9 +145,9 @@ public interface ResourcePathed extends UriIdentified
      * {@inheritDoc}
      */
     @Override
-    default URI uri()
+    default URI asUri()
     {
-        return path().uri();
+        return path().asUri();
     }
 
     /**
@@ -157,11 +157,11 @@ public interface ResourcePathed extends UriIdentified
     {
         try
         {
-            return uri().toURL();
+            return asUri().toURL();
         }
         catch (MalformedURLException e)
         {
-            new Problem(e, "Unable to convert to URL: $", uri()).throwMessage();
+            new Problem(e, "Unable to convert to URL: $", asUri()).throwMessage();
             return null;
         }
     }

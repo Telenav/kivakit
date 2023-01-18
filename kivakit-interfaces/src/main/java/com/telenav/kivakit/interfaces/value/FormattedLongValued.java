@@ -32,13 +32,10 @@ public interface FormattedLongValued extends
     @SuppressWarnings("SwitchStatementWithTooFewBranches")
     default String asString(StringFormattable.@NotNull Format format)
     {
-        switch (format)
-        {
-            case PROGRAMMATIC:
-                return asSimpleString();
-
-            default:
-                return asCommaSeparatedString();
-        }
+        return switch (format)
+            {
+                case PROGRAMMATIC -> asSimpleString();
+                default -> asCommaSeparatedString();
+            };
     }
 }

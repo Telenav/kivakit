@@ -40,7 +40,7 @@ import static com.telenav.kivakit.interfaces.string.StringFormattable.Format.USE
  *
  * @author jonathanl (shibo)
  */
-@SuppressWarnings({ "DuplicatedCode", "unused" })
+@SuppressWarnings({ "unused" })
 @UmlClassDiagram(diagram = DiagramLogs.class)
 @TypeQuality(stability = STABLE,
              testing = UNTESTED,

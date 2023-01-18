@@ -19,7 +19,6 @@
 package com.telenav.kivakit.network.core;
 
 import com.telenav.kivakit.annotations.code.quality.TypeQuality;
-import com.telenav.kivakit.conversion.BaseStringConverter;
 import com.telenav.kivakit.core.collections.map.VariableMap;
 import com.telenav.kivakit.core.language.reflection.property.IncludeProperty;
 import com.telenav.kivakit.core.messaging.Listener;
@@ -40,7 +39,6 @@ import java.net.URL;
 import java.net.URLDecoder;
 
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.language.Hash.hashMany;
@@ -153,22 +151,6 @@ public class NetworkLocation implements
         {
             listener.problem(e, "Bad network location ${debug}", text);
             return null;
-        }
-    }
-
-    /**
-     * Converts to and from a {@link NetworkLocation}
-     *
-     * @author jonathanl (shibo)
-     */
-    @TypeQuality(stability = STABLE,
-                 testing = UNTESTED,
-                 documentation = DOCUMENTED)
-    public static class Converter extends BaseStringConverter<NetworkLocation>
-    {
-        public Converter(Listener listener)
-        {
-            super(listener, NetworkLocation.class, NetworkLocation::parseNetworkLocation);
         }
     }
 

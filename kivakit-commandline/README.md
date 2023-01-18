@@ -60,9 +60,9 @@ Code quality for this project is 66.7%.
   
 &nbsp; &nbsp; <img src="https://telenav.github.io/telenav-assets/images/meters/meter-70-96.png" srcset="https://telenav.github.io/telenav-assets/images/meters/meter-70-96-2x.png 2x"/>
 
-| Measurement   | Value                    |
-|---------------|--------------------------|
-| Stability     | 100.0%&nbsp; &nbsp; <img src="https://telenav.github.io/telenav-assets/images/meters/meter-100-96.png" srcset="https://telenav.github.io/telenav-assets/images/meters/meter-100-96-2x.png 2x"/>     |
+| Measurement   | Value                                                                                                                                                                                           |
+|---------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Stability     | 100.0%&nbsp; &nbsp; <img src="https://telenav.github.io/telenav-assets/images/meters/meter-100-96.png" srcset="https://telenav.github.io/telenav-assets/images/meters/meter-100-96-2x.png 2x"/> |
 | Testing       | 0.0%&nbsp; &nbsp; <img src="https://telenav.github.io/telenav-assets/images/meters/meter-0-96.png" srcset="https://telenav.github.io/telenav-assets/images/meters/meter-0-96-2x.png 2x"/>       |
 | Documentation | 100.0%&nbsp; &nbsp; <img src="https://telenav.github.io/telenav-assets/images/meters/meter-100-96.png" srcset="https://telenav.github.io/telenav-assets/images/meters/meter-100-96-2x.png 2x"/> |
 
@@ -85,50 +85,50 @@ Code quality for this project is 66.7%.
 
 ### Javadoc <a name="code-quality"></a> &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/books-24.png" srcset="https://telenav.github.io/telenav-assets/images/icons/books-24-2x.png 2x"/>
 
-| Class | Documentation Sections  |
-|-------|-------------------------|
-| [*ApplicationMetadata*](https://www.kivakit.org/1.12.0/javadoc/kivakit/kivakit-commandline/com/telenav/kivakit/commandline/ApplicationMetadata.html) |  |  
-| [*ArgumentParser*](https://www.kivakit.org/1.12.0/javadoc/kivakit/kivakit-commandline/com/telenav/kivakit/commandline/ArgumentParser.html) | Example |  
-| | Arguments |  
-| | Properties |  
-| | Argument Parser Builders |  
-| [*ArgumentParser.Builder*](https://www.kivakit.org/1.12.0/javadoc/kivakit/kivakit-commandline/com/telenav/kivakit/commandline/ArgumentParser.Builder.html) |  |  
-| [*ArgumentParserList*](https://www.kivakit.org/1.12.0/javadoc/kivakit/kivakit-commandline/com/telenav/kivakit/commandline/parsing/ArgumentParserList.html) |  |  
-| [*ArgumentParsers*](https://www.kivakit.org/1.12.0/javadoc/kivakit/kivakit-commandline/com/telenav/kivakit/commandline/ArgumentParsers.html) | Values |  
-| | Primitives |  
-| [*ArgumentValue*](https://www.kivakit.org/1.12.0/javadoc/kivakit/kivakit-commandline/com/telenav/kivakit/commandline/ArgumentValue.html) |  |  
-| [*ArgumentValueList*](https://www.kivakit.org/1.12.0/javadoc/kivakit/kivakit-commandline/com/telenav/kivakit/commandline/ArgumentValueList.html) | Arguments |  
-| | Adding |  
-| [*ArgumentValueListValidator*](https://www.kivakit.org/1.12.0/javadoc/kivakit/kivakit-commandline/com/telenav/kivakit/commandline/parsing/ArgumentValueListValidator.html) |  |  
-| [*CommandLine*](https://www.kivakit.org/1.12.0/javadoc/kivakit/kivakit-commandline/com/telenav/kivakit/commandline/CommandLine.html) | Switches |  
-| | Arguments |  
-| | Retrieving Switches and Arguments |  
-| | Error Handling |  
-| | Operations |  
-| | Conversion |  
-| [*CommandLineParser*](https://www.kivakit.org/1.12.0/javadoc/kivakit/kivakit-commandline/com/telenav/kivakit/commandline/CommandLineParser.html) | Example |  
-| | Parsing a Command Line |  
-| | Switch Conventions |  
-| [*DiagramArgument*](https://www.kivakit.org/1.12.0/javadoc/kivakit/kivakit-commandline/com/telenav/kivakit/commandline/internal/lexakai/DiagramArgument.html) |  |  
-| [*DiagramCommandLine*](https://www.kivakit.org/1.12.0/javadoc/kivakit/kivakit-commandline/com/telenav/kivakit/commandline/internal/lexakai/DiagramCommandLine.html) |  |  
-| [*DiagramSwitch*](https://www.kivakit.org/1.12.0/javadoc/kivakit/kivakit-commandline/com/telenav/kivakit/commandline/internal/lexakai/DiagramSwitch.html) |  |  
-| [*DiagramValidation*](https://www.kivakit.org/1.12.0/javadoc/kivakit/kivakit-commandline/com/telenav/kivakit/commandline/internal/lexakai/DiagramValidation.html) |  |  
-| [*Quantifier*](https://www.kivakit.org/1.12.0/javadoc/kivakit/kivakit-commandline/com/telenav/kivakit/commandline/Quantifier.html) |  |  
-| [*SwitchParser*](https://www.kivakit.org/1.12.0/javadoc/kivakit/kivakit-commandline/com/telenav/kivakit/commandline/SwitchParser.html) | Validation |  
-| | Parser Builders |  
-| | Values |  
-| | Properties |  
-| | Built-In Parsers |  
-| [*SwitchParser.Builder*](https://www.kivakit.org/1.12.0/javadoc/kivakit/kivakit-commandline/com/telenav/kivakit/commandline/SwitchParser.Builder.html) |  |  
-| [*SwitchParserList*](https://www.kivakit.org/1.12.0/javadoc/kivakit/kivakit-commandline/com/telenav/kivakit/commandline/parsing/SwitchParserList.html) |  |  
-| [*SwitchParsers*](https://www.kivakit.org/1.12.0/javadoc/kivakit/kivakit-commandline/com/telenav/kivakit/commandline/SwitchParsers.html) | Values |  
-| | Time |  
-| | Primitives |  
-| [*SwitchValue*](https://www.kivakit.org/1.12.0/javadoc/kivakit/kivakit-commandline/com/telenav/kivakit/commandline/SwitchValue.html) |  |  
-| [*SwitchValueList*](https://www.kivakit.org/1.12.0/javadoc/kivakit/kivakit-commandline/com/telenav/kivakit/commandline/SwitchValueList.html) | Retrieval |  
-| | Adding |  
-| | Conversion |  
-| [*SwitchValueListValidator*](https://www.kivakit.org/1.12.0/javadoc/kivakit/kivakit-commandline/com/telenav/kivakit/commandline/parsing/SwitchValueListValidator.html) |  |  
+| Class                                                                                                                                                                      | Documentation Sections            |
+|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------|
+| [*ApplicationMetadata*](https://www.kivakit.org/1.12.0/javadoc/kivakit/kivakit-commandline/com/telenav/kivakit/commandline/ApplicationMetadata.html)                       |                                   |  
+| [*ArgumentParser*](https://www.kivakit.org/1.12.0/javadoc/kivakit/kivakit-commandline/com/telenav/kivakit/commandline/ArgumentParser.html)                                 | Example                           |  
+|                                                                                                                                                                            | Arguments                         |  
+|                                                                                                                                                                            | Properties                        |  
+|                                                                                                                                                                            | Argument Parser Builders          |  
+| [*ArgumentParser.Builder*](https://www.kivakit.org/1.12.0/javadoc/kivakit/kivakit-commandline/com/telenav/kivakit/commandline/ArgumentParser.Builder.html)                 |                                   |  
+| [*ArgumentParserList*](https://www.kivakit.org/1.12.0/javadoc/kivakit/kivakit-commandline/com/telenav/kivakit/commandline/parsing/ArgumentParserList.html)                 |                                   |  
+| [*ArgumentParsers*](https://www.kivakit.org/1.12.0/javadoc/kivakit/kivakit-commandline/com/telenav/kivakit/commandline/ArgumentParsers.html)                               | Values                            |  
+|                                                                                                                                                                            | Primitives                        |  
+| [*ArgumentValue*](https://www.kivakit.org/1.12.0/javadoc/kivakit/kivakit-commandline/com/telenav/kivakit/commandline/ArgumentValue.html)                                   |                                   |  
+| [*ArgumentValueList*](https://www.kivakit.org/1.12.0/javadoc/kivakit/kivakit-commandline/com/telenav/kivakit/commandline/ArgumentValueList.html)                           | Arguments                         |  
+|                                                                                                                                                                            | Adding                            |  
+| [*ArgumentValueListValidator*](https://www.kivakit.org/1.12.0/javadoc/kivakit/kivakit-commandline/com/telenav/kivakit/commandline/parsing/ArgumentValueListValidator.html) |                                   |  
+| [*CommandLine*](https://www.kivakit.org/1.12.0/javadoc/kivakit/kivakit-commandline/com/telenav/kivakit/commandline/CommandLine.html)                                       | Switches                          |  
+|                                                                                                                                                                            | Arguments                         |  
+|                                                                                                                                                                            | Retrieving Switches and Arguments |  
+|                                                                                                                                                                            | Error Handling                    |  
+|                                                                                                                                                                            | Operations                        |  
+|                                                                                                                                                                            | Conversion                        |  
+| [*CommandLineParser*](https://www.kivakit.org/1.12.0/javadoc/kivakit/kivakit-commandline/com/telenav/kivakit/commandline/CommandLineParser.html)                           | Example                           |  
+|                                                                                                                                                                            | Parsing a Command Line            |  
+|                                                                                                                                                                            | Switch Conventions                |  
+| [*DiagramArgument*](https://www.kivakit.org/1.12.0/javadoc/kivakit/kivakit-commandline/com/telenav/kivakit/commandline/internal/lexakai/DiagramArgument.html)              |                                   |  
+| [*DiagramCommandLine*](https://www.kivakit.org/1.12.0/javadoc/kivakit/kivakit-commandline/com/telenav/kivakit/commandline/internal/lexakai/DiagramCommandLine.html)        |                                   |  
+| [*DiagramSwitch*](https://www.kivakit.org/1.12.0/javadoc/kivakit/kivakit-commandline/com/telenav/kivakit/commandline/internal/lexakai/DiagramSwitch.html)                  |                                   |  
+| [*DiagramValidation*](https://www.kivakit.org/1.12.0/javadoc/kivakit/kivakit-commandline/com/telenav/kivakit/commandline/internal/lexakai/DiagramValidation.html)          |                                   |  
+| [*Quantifier*](https://www.kivakit.org/1.12.0/javadoc/kivakit/kivakit-commandline/com/telenav/kivakit/commandline/Quantifier.html)                                         |                                   |  
+| [*SwitchParser*](https://www.kivakit.org/1.12.0/javadoc/kivakit/kivakit-commandline/com/telenav/kivakit/commandline/SwitchParser.html)                                     | Validation                        |  
+|                                                                                                                                                                            | Parser Builders                   |  
+|                                                                                                                                                                            | Values                            |  
+|                                                                                                                                                                            | Properties                        |  
+|                                                                                                                                                                            | Built-In Parsers                  |  
+| [*SwitchParser.Builder*](https://www.kivakit.org/1.12.0/javadoc/kivakit/kivakit-commandline/com/telenav/kivakit/commandline/SwitchParser.Builder.html)                     |                                   |  
+| [*SwitchParserList*](https://www.kivakit.org/1.12.0/javadoc/kivakit/kivakit-commandline/com/telenav/kivakit/commandline/parsing/SwitchParserList.html)                     |                                   |  
+| [*SwitchParsers*](https://www.kivakit.org/1.12.0/javadoc/kivakit/kivakit-commandline/com/telenav/kivakit/commandline/SwitchParsers.html)                                   | Values                            |  
+|                                                                                                                                                                            | Time                              |  
+|                                                                                                                                                                            | Primitives                        |  
+| [*SwitchValue*](https://www.kivakit.org/1.12.0/javadoc/kivakit/kivakit-commandline/com/telenav/kivakit/commandline/SwitchValue.html)                                       |                                   |  
+| [*SwitchValueList*](https://www.kivakit.org/1.12.0/javadoc/kivakit/kivakit-commandline/com/telenav/kivakit/commandline/SwitchValueList.html)                               | Retrieval                         |  
+|                                                                                                                                                                            | Adding                            |  
+|                                                                                                                                                                            | Conversion                        |  
+| [*SwitchValueListValidator*](https://www.kivakit.org/1.12.0/javadoc/kivakit/kivakit-commandline/com/telenav/kivakit/commandline/parsing/SwitchValueListValidator.html)     |                                   |  
 
 [//]: # (start-user-text)
 

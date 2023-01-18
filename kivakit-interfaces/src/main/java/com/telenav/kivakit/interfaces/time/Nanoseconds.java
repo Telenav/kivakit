@@ -21,7 +21,6 @@ import static java.util.Objects.hash;
  *
  * @author jonathanl (shibo)
  */
-@SuppressWarnings("DuplicatedCode")
 @TypeQuality(stability = STABLE_EXTENSIBLE,
              testing = UNTESTED,
              documentation = DOCUMENTED)
@@ -33,13 +32,13 @@ public class Nanoseconds implements
     private static final long NANOSECONDS_PER_SECOND = (long) 1E9;
 
     /** Zero nanoseconds */
-    public static Nanoseconds ZERO = nanoseconds(0);
+    public static final Nanoseconds ZERO = nanoseconds(0);
 
     /** One nanosecond */
-    public static Nanoseconds ONE_NANOSECOND = nanoseconds(1);
+    public static final Nanoseconds ONE_NANOSECOND = nanoseconds(1);
 
     /** One nanosecond */
-    public static Nanoseconds ONE_SECOND = nanoseconds(NANOSECONDS_PER_SECOND);
+    public static final Nanoseconds ONE_SECOND = nanoseconds(NANOSECONDS_PER_SECOND);
 
     /**
      * Factory method

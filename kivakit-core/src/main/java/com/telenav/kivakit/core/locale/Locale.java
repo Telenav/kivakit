@@ -139,7 +139,7 @@ public class Locale
     }
 
     /**
-     * Produces a path of the form "locales/[language-name](/[region-name])?. This path can be used when loading
+     * Produces a path of the form "locales/[language-name](/[region-name])?". This path can be used when loading
      * localized resources.
      *
      * @param language The name of the language

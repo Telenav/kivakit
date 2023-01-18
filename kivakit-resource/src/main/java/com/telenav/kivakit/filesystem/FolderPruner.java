@@ -122,11 +122,11 @@ public class FolderPruner extends BaseRepeater implements
                     // For each file we can remove
                     for (var file : files)
                     {
-                        // If we're low on disk or we're exceeding the folder capacity
+                        // If we're low on disk, or we're exceeding the folder capacity
                         if (folder.disk().percentUsable().isLessThan(minimumUsableDiskSpace())
                                 || size.isGreaterThan(capacity()))
                         {
-                            // and the file is old enough to remove and we can remove it
+                            // and the file is old enough to remove, and we can remove it
                             if (age(file).isGreaterThanOrEqualTo(maximumAge()) && canRemove(file, files))
                             {
                                 // then remove the file and adjust the folder size

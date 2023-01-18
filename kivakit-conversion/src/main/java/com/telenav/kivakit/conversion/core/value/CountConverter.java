@@ -7,9 +7,10 @@ import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.value.count.Count;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static com.telenav.kivakit.core.messaging.Listener.throwingListener;
 
 /**
  * Converts to and from a {@link Count}
@@ -26,4 +27,10 @@ public class CountConverter extends BaseStringConverter<Count>
     {
         super(listener, Count.class, Count::parseCount);
     }
+
+    public CountConverter()
+    {
+        this(throwingListener());
+    }
 }
+

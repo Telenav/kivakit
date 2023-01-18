@@ -25,9 +25,10 @@ import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeMember;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static com.telenav.kivakit.core.messaging.Listener.throwingListener;
 import static java.lang.Double.isInfinite;
 import static java.lang.Double.isNaN;
 
@@ -48,6 +49,11 @@ public class DoubleConverter extends BaseStringConverter<Double>
     public DoubleConverter(Listener listener)
     {
         super(listener, Double.class);
+    }
+
+    public DoubleConverter()
+    {
+        this(throwingListener());
     }
 
     /**

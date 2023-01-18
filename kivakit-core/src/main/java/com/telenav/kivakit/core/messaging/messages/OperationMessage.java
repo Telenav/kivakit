@@ -182,11 +182,10 @@ public abstract class OperationMessage implements Named, Message
     @Override
     public String asString(@NotNull Format format)
     {
-        switch (format)
-        {
-            default:
-                return formatted(WITH_EXCEPTION);
-        }
+        return switch (format)
+            {
+                default -> formatted(WITH_EXCEPTION);
+            };
     }
 
     /**

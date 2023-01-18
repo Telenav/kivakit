@@ -124,7 +124,7 @@ import static com.telenav.kivakit.core.language.reflection.Type.typeForClass;
  * @see StringConverter
  * @see Converter
  */
-@SuppressWarnings({ "unused", "DuplicatedCode" })
+@SuppressWarnings({ "unused" })
 @UmlClassDiagram(diagram = DiagramSwitch.class)
 @UmlClassDiagram(diagram = DiagramCommandLine.class, includeMembers = false)
 @UmlExcludeSuperTypes
@@ -159,7 +159,6 @@ public class SwitchParser<T> implements Named
      *
      * @author jonathanl (shibo)
      */
-    @SuppressWarnings("DuplicatedCode")
     @TypeQuality(stability = STABLE_EXTENSIBLE,
                  testing = UNTESTED,
                  documentation = DOCUMENTED)

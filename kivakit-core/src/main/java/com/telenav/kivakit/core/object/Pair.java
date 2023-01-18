@@ -38,28 +38,8 @@ import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_N
 @TypeQuality(stability = STABLE_EXTENSIBLE,
              testing = TESTING_NOT_NEEDED,
              documentation = DOCUMENTED)
-public class Pair<T> implements Iterable<T>
+public record Pair<T>(T a, T b) implements Iterable<T>
 {
-    private final T a;
-
-    private final T b;
-
-    public Pair(T a, T b)
-    {
-        this.a = a;
-        this.b = b;
-    }
-
-    public T a()
-    {
-        return a;
-    }
-
-    public T b()
-    {
-        return b;
-    }
-
     public boolean isIdentity()
     {
         return a.equals(b);
@@ -78,15 +58,12 @@ public class Pair<T> implements Iterable<T>
             @Override
             protected T onNext()
             {
-                switch (index++)
-                {
-                    case 0:
-                        return a;
-
-                    case 1:
-                        return b;
-                }
-                return null;
+                return switch (index++)
+                    {
+                        case 0 -> a;
+                        case 1 -> b;
+                        default -> null;
+                    };
             }
         };
     }

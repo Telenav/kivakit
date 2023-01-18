@@ -1,7 +1,7 @@
 package com.telenav.kivakit.network.http;
 
 import com.telenav.kivakit.annotations.code.quality.TypeQuality;
-import com.telenav.kivakit.network.http.secure.SecureHttpNetworkLocation;
+import com.telenav.kivakit.network.https.HttpsNetworkLocationConverter;
 import com.telenav.kivakit.resource.Resource;
 import com.telenav.kivakit.resource.ResourceIdentifier;
 import com.telenav.kivakit.resource.internal.lexakai.DiagramResourceService;
@@ -44,7 +44,7 @@ public class HttpGetResourceResolver implements ResourceResolver
         var identifier = resourceIdentifier.identifier();
         if (identifier.startsWith("http:"))
         {
-            var location = new HttpNetworkLocation.Converter(this).convert(identifier);
+            var location = new HttpNetworkLocationConverter(this).convert(identifier);
             if (location != null)
             {
                 return location.get();
@@ -52,7 +52,7 @@ public class HttpGetResourceResolver implements ResourceResolver
         }
         if (identifier.startsWith("https:"))
         {
-            var location = new SecureHttpNetworkLocation.Converter(this).convert(identifier);
+            var location = new HttpsNetworkLocationConverter(this).convert(identifier);
             if (location != null)
             {
                 return location.get();

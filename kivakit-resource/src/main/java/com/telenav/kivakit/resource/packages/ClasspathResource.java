@@ -37,7 +37,7 @@ import static java.nio.file.Files.readAttributes;
  * <p><b>Attributes</b></p>
  *
  * <ul>
- *     <li>{@link #uri()} - The {@link URI} to the resource</li>
+ *     <li>{@link #asUri()} - The {@link URI} to the resource</li>
  *     <li>{@link #packageReference()} - The package where the resource resides</li>
  *     <li>{@link #javaPath()} - The full package path to the resource</li>
  *     <li>{@link #lastModified()} - The time of the last modification to the resource</li>
@@ -185,7 +185,7 @@ public class ClasspathResource implements ResourcePathed
      */
     public ResourcePath resourcePath()
     {
-        return parseResourcePath(throwingListener(), uri());
+        return parseResourcePath(throwingListener(), asUri());
     }
 
     /**
@@ -207,7 +207,7 @@ public class ClasspathResource implements ResourcePathed
      * Returns the URI of the resource
      */
     @Override
-    public URI uri()
+    public URI asUri()
     {
         return uri;
     }

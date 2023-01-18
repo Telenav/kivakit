@@ -42,7 +42,6 @@ import static com.telenav.kivakit.core.value.count.Count.count;
  *
  * @author jonathanl (shibo)
  */
-@SuppressWarnings("resource")
 @TypeQuality(stability = STABLE_EXTENSIBLE,
              testing = TESTING_NOT_NEEDED,
              documentation = DOCUMENTED)

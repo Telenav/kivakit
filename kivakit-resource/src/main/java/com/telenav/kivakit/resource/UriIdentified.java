@@ -19,5 +19,5 @@ public interface UriIdentified
     /**
      * Returns the Universal Resource Identifier (URI) for this object
      */
-    URI uri();
+    URI asUri();
 }

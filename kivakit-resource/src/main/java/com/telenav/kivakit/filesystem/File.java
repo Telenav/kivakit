@@ -19,7 +19,6 @@
 package com.telenav.kivakit.filesystem;
 
 import com.telenav.kivakit.annotations.code.quality.TypeQuality;
-import com.telenav.kivakit.conversion.BaseStringConverter;
 import com.telenav.kivakit.core.collections.map.VariableMap;
 import com.telenav.kivakit.core.collections.set.ObjectSet;
 import com.telenav.kivakit.core.ensure.Ensure;
@@ -54,10 +53,8 @@ import java.nio.charset.Charset;
 import java.nio.file.attribute.PosixFilePermission;
 
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_INSUFFICIENT;
-import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
 import static com.telenav.kivakit.core.collections.set.ObjectSet.set;
 import static com.telenav.kivakit.core.ensure.Ensure.ensure;
 import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
@@ -339,22 +336,6 @@ public class File extends BaseWritableResource implements FileSystemObject
     public static File temporaryFile(@NotNull Extension extension)
     {
         return kivakitTemporaryFolder().file("temp-" + temporaryFileNumber++ + extension);
-    }
-
-    /**
-     * Converts to and from {@link File} objects
-     *
-     * @author jonathanl (shibo)
-     */
-    @TypeQuality(stability = STABLE,
-                 testing = TESTING_NOT_NEEDED,
-                 documentation = DOCUMENTED)
-    public static class Converter extends BaseStringConverter<File>
-    {
-        public Converter(@NotNull Listener listener)
-        {
-            super(listener, File.class, File::parseFile);
-        }
     }
 
     @UmlAggregation(label = "delegates to")

@@ -20,7 +20,6 @@ package com.telenav.kivakit.network.core;
 
 import com.telenav.kivakit.annotations.code.quality.TypeQuality;
 import com.telenav.kivakit.commandline.SwitchParser;
-import com.telenav.kivakit.conversion.BaseStringConverter;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.path.Path;
 import com.telenav.kivakit.core.path.StringPath;
@@ -38,7 +37,6 @@ import java.util.List;
 import java.util.function.Function;
 
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
 import static com.telenav.kivakit.commandline.SwitchParser.switchParser;
@@ -163,7 +161,7 @@ public class NetworkPath extends FilePath
     {
         return switchParser(NetworkPath.class)
             .name(name)
-            .converter(new NetworkPath.Converter(listener))
+            .converter(new NetworkPathConverter(listener))
             .description(description);
     }
 
@@ -183,22 +181,6 @@ public class NetworkPath extends FilePath
         {
             listener.problem("Invalid network path: $", text);
             return null;
-        }
-    }
-
-    /**
-     * Converts to and from {@link NetworkPath}s
-     *
-     * @author jonathanl (shibo)
-     */
-    @TypeQuality(stability = STABLE,
-                 testing = TESTING_NOT_NEEDED,
-                 documentation = DOCUMENTED)
-    public static class Converter extends BaseStringConverter<NetworkPath>
-    {
-        public Converter(Listener listener)
-        {
-            super(listener, NetworkPath.class, NetworkPath::parseNetworkPath);
         }
     }
 
@@ -304,7 +286,6 @@ public class NetworkPath extends FilePath
     /**
      * {@inheritDoc}
      */
-    @SuppressWarnings("SpellCheckingInspection")
     @Override
     public NetworkPath subpath(int start, int end)
     {

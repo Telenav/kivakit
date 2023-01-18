@@ -12,6 +12,7 @@ import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.locale.LocaleLanguage.languageForIso2Code;
 import static com.telenav.kivakit.core.locale.LocaleLanguage.languageForIso3Code;
+import static com.telenav.kivakit.core.messaging.Listener.throwingListener;
 
 /**
  * Converts to and from a {@link LocaleLanguage}. Both ISO2 and ISO3 values are supported.
@@ -27,6 +28,11 @@ public class LocaleLanguageConverter extends BaseStringConverter<LocaleLanguage>
     public LocaleLanguageConverter(Listener listener)
     {
         super(listener, LocaleLanguage.class);
+    }
+
+    public LocaleLanguageConverter()
+    {
+        this(throwingListener());
     }
 
     @Override

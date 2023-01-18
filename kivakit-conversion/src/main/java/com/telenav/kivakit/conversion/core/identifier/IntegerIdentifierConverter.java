@@ -10,6 +10,7 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static com.telenav.kivakit.core.messaging.Listener.throwingListener;
 
 /**
  * Converts to and from an {@link IntegerIdentifier}
@@ -30,5 +31,10 @@ public class IntegerIdentifierConverter extends LongValuedConverter<IntegerIdent
         super(listener, IntegerIdentifier.class, identifier -> identifier == null
             ? null
             : new IntegerIdentifier(identifier.intValue()));
+    }
+
+    public IntegerIdentifierConverter()
+    {
+        this(throwingListener());
     }
 }

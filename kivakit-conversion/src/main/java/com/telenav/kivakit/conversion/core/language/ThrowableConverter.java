@@ -27,8 +27,8 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 
 /**
@@ -48,6 +48,11 @@ public class ThrowableConverter extends BaseStringConverter<Throwable>
     public ThrowableConverter(Listener listener)
     {
         super(listener, Throwable.class);
+    }
+
+    public ThrowableConverter()
+    {
+        this(Listener.throwingListener());
     }
 
     /**

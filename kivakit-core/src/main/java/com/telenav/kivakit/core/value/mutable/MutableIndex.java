@@ -29,7 +29,7 @@ import static com.telenav.kivakit.core.ensure.Ensure.ensure;
 
 /**
  * A thread-safe mutable index value for use in lambdas and anonymous inner classes. Can be {@link #increment()}ed,
- * {@link #decrement()}ed, added to with {@link #offset(int)}, set with {@link #set(int)} and retrieved with
+ * {@link #decrement()}ed, added to with {@link #offset(int)}, set with {@link #set(long)} and retrieved with
  * {@link #get()}.
  *
  * @author jonathanl (shibo)

@@ -35,7 +35,6 @@ import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
  *
  * @author jonathanl (shibo)
  */
-@SuppressWarnings("SpellCheckingInspection")
 @TypeQuality(stability = STABLE,
              testing = UNTESTED,
              documentation = DOCUMENTED)

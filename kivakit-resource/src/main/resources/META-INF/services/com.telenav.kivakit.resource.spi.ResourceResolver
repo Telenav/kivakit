@@ -1,2 +1,3 @@
 com.telenav.kivakit.filesystem.FileResourceResolver
 com.telenav.kivakit.resource.packages.PackageResourceResolver
+com.telenav.kivakit.resource.resources.ResourceSectionResolver

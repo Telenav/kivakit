@@ -61,7 +61,7 @@ public class TimeSpan
     }
 
     /**
-     * Returns a timespan from now to the the given duration in the future
+     * Returns a timespan from now to the given duration in the future
      */
     public static TimeSpan timeSpanFromNow(Duration duration)
     {

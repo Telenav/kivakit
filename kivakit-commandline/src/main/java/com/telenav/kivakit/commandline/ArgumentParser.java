@@ -129,7 +129,6 @@ public class ArgumentParser<T>
      *
      * @author jonathanl (shibo)
      */
-    @SuppressWarnings("DuplicatedCode")
     @UmlClassDiagram(diagram = DiagramArgument.class)
     @TypeQuality(stability = STABLE_EXTENSIBLE,
                  testing = UNTESTED,

@@ -7,9 +7,10 @@ import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.value.count.Bytes;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static com.telenav.kivakit.core.messaging.Listener.throwingListener;
 import static com.telenav.kivakit.core.value.count.Bytes.parseBytes;
 
 /**
@@ -34,6 +35,11 @@ public class BytesConverter extends BaseStringConverter<Bytes>
     public BytesConverter(Listener listener)
     {
         super(listener, Bytes.class);
+    }
+
+    public BytesConverter()
+    {
+        this(throwingListener());
     }
 
     @Override

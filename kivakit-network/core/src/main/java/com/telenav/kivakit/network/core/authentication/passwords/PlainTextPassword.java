@@ -19,7 +19,6 @@
 package com.telenav.kivakit.network.core.authentication.passwords;
 
 import com.telenav.kivakit.annotations.code.quality.TypeQuality;
-import com.telenav.kivakit.conversion.BaseStringConverter;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.interfaces.string.StringFormattable;
 import com.telenav.kivakit.network.core.authentication.Password;
@@ -55,28 +54,6 @@ public class PlainTextPassword implements Password, StringFormattable
     public static PlainTextPassword parsePlainTextPassword(Listener listener, String text)
     {
         return new PlainTextPassword(text);
-    }
-
-    /**
-     * Converts passwords to and from {@link Password} objects.
-     *
-     * @author jonathanl (shibo)
-     */
-    @TypeQuality(stability = STABLE_EXTENSIBLE,
-                 testing = UNTESTED,
-                 documentation = DOCUMENTED)
-    public static class Converter extends BaseStringConverter<Password>
-    {
-        public Converter(Listener listener)
-        {
-            super(listener, Password.class);
-        }
-
-        @Override
-        protected Password onToValue(String value)
-        {
-            return parsePlainTextPassword(this, value);
-        }
     }
 
     private final String password;

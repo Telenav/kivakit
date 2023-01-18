@@ -19,14 +19,11 @@
 package com.telenav.kivakit.filesystem;
 
 import com.telenav.kivakit.annotations.code.quality.TypeQuality;
-import com.telenav.kivakit.conversion.BaseStringConverter;
 import com.telenav.kivakit.core.collections.list.ObjectList;
-import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.filesystem.spi.FileService;
 import com.telenav.kivakit.interfaces.comparison.Filter;
 import com.telenav.kivakit.interfaces.comparison.Matcher;
 import com.telenav.kivakit.resource.BaseResourceList;
-import com.telenav.kivakit.resource.Extension;
 import com.telenav.kivakit.resource.Resource;
 import com.telenav.kivakit.resource.ResourceFolder;
 import com.telenav.kivakit.resource.ResourcePath;
@@ -42,11 +39,9 @@ import java.util.List;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
-import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.collections.iteration.Iterables.iterable;
 import static com.telenav.kivakit.core.messaging.Listener.throwingListener;
 import static com.telenav.kivakit.filesystem.File.file;
-import static com.telenav.kivakit.filesystem.File.parseFile;
 import static com.telenav.kivakit.filesystem.FilePath.filePath;
 
 /**
@@ -129,51 +124,6 @@ public class FileList extends BaseResourceList<File> implements Iterable<File>
             files.add(new File(file));
         }
         return files;
-    }
-
-    /**
-     * Converts to and from {@link FileList}s
-     *
-     * @author jonathanl (shibo)
-     */
-    @TypeQuality(stability = STABLE_EXTENSIBLE,
-                 testing = UNTESTED,
-                 documentation = DOCUMENTED)
-    public static class Converter extends BaseStringConverter<FileList>
-    {
-        private final Extension extension;
-
-        public Converter(@NotNull Listener listener, @NotNull Extension extension)
-        {
-            super(listener, FileList.class);
-            this.extension = extension;
-        }
-
-        @Override
-        protected FileList onToValue(String value)
-        {
-            var files = new FileList();
-            for (var path : value.split(","))
-            {
-                var file = parseFile(this, path.trim());
-                if (file.isFolder())
-                {
-                    files.addAll(file.asFolder().nestedFiles(extension::matches));
-                }
-                else
-                {
-                    if (file.fileName().endsWith(extension))
-                    {
-                        files.add(file);
-                    }
-                    else
-                    {
-                        warning("$ is not a $ file", file, extension);
-                    }
-                }
-            }
-            return files;
-        }
     }
 
     public FileList()
@@ -282,6 +232,30 @@ public class FileList extends BaseResourceList<File> implements Iterable<File>
     public FileList without(Filter<ResourcePathed> filter)
     {
         return (FileList) super.without(filter);
+    }
+
+    @Override
+    public FileList without(File file)
+    {
+        return (FileList) super.without(file);
+    }
+
+    @Override
+    public FileList without(Collection<File> that)
+    {
+        return (FileList) super.without(that);
+    }
+
+    @Override
+    public FileList without(File[] that)
+    {
+        return (FileList) super.without(that);
+    }
+
+    @Override
+    public FileList without(Matcher<File> matcher)
+    {
+        return (FileList) super.without(matcher);
     }
 
     /**

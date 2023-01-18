@@ -43,18 +43,11 @@ import static com.telenav.kivakit.resource.ResourceFolder.resolveResourceFolder;
 @TypeQuality(stability = STABLE_EXTENSIBLE,
              testing = UNTESTED,
              documentation = DOCUMENTED)
-public class ResourceFolderIdentifier
+public record ResourceFolderIdentifier(String identifier)
 {
-    private final String identifier;
-
     public ResourceFolderIdentifier(@NotNull String identifier)
     {
         this.identifier = identifier;
-    }
-
-    public String identifier()
-    {
-        return identifier;
     }
 
     public ResourceFolder<?> resolve(@NotNull Listener listener)

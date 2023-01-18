@@ -93,7 +93,7 @@ import static java.util.Objects.hash;
  *     <li>{@link #parent()}</li>
  *     <li>{@link #path()}</li>
  *     <li>{@link #reference()}</li>
- *     <li>{@link #uri()}</li>
+ *     <li>{@link #asUri()}</li>
  * </ul>
  *
  * <p><b>Access</b></p>
@@ -375,8 +375,8 @@ public class Package extends BaseRepeater implements ResourceFolder<Package>
      * {@inheritDoc}
      */
     @Override
-    public URI uri()
+    public URI asUri()
     {
-        return packagePath.uri();
+        return packagePath.asUri();
     }
 }

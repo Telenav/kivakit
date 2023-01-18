@@ -28,9 +28,10 @@ import com.telenav.lexakai.annotations.visibility.UmlExcludeMember;
 import java.text.DecimalFormat;
 import java.text.ParseException;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static com.telenav.kivakit.core.messaging.Listener.throwingListener;
 
 /**
  * Converts a Long to and from a formatted string.
@@ -54,6 +55,11 @@ public class FormattedLongConverter extends BaseStringConverter<Long>
     public FormattedLongConverter(Listener listener)
     {
         this(listener, true);
+    }
+
+    public FormattedLongConverter()
+    {
+        this(throwingListener());
     }
 
     /**

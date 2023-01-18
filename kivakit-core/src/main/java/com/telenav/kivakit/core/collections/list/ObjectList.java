@@ -453,7 +453,6 @@ public class ObjectList<Value> extends BaseList<Value>
      * @return The unique objects
      */
     @Override
-    @SuppressWarnings("SpellCheckingInspection")
     public ObjectList<Value> uniqued()
     {
         return (ObjectList<Value>) super.uniqued();
@@ -490,7 +489,7 @@ public class ObjectList<Value> extends BaseList<Value>
      * {@inheritDoc}
      */
     @Override
-    public ObjectList<Value> with(Value... value)
+    public ObjectList<Value> with(Value[] value)
     {
         return (ObjectList<Value>) super.with(value);
     }
@@ -502,6 +501,24 @@ public class ObjectList<Value> extends BaseList<Value>
     public ObjectList<Value> without(Matcher<Value> matcher)
     {
         return (ObjectList<Value>) super.without(matcher);
+    }
+
+    @Override
+    public ObjectList<Value> without(Value value)
+    {
+        return (ObjectList<Value>) super.without(value);
+    }
+
+    @Override
+    public ObjectList<Value> without(Collection<Value> that)
+    {
+        return (ObjectList<Value>) super.without(that);
+    }
+
+    @Override
+    public ObjectList<Value> without(Value[] that)
+    {
+        return (ObjectList<Value>) super.without(that);
     }
 
     /**

@@ -57,7 +57,6 @@ import static com.telenav.kivakit.core.progress.ProgressReporter.nullProgressRep
  * {
  *     [...]
  * }</pre>
- * </p>
  *
  * @author jonathanl (shibo)
  */

@@ -25,9 +25,10 @@ import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeMember;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static com.telenav.kivakit.core.messaging.Listener.throwingListener;
 import static java.lang.Float.isInfinite;
 import static java.lang.Float.isNaN;
 
@@ -48,6 +49,11 @@ public class FloatConverter extends BaseStringConverter<Float>
     public FloatConverter(Listener listener)
     {
         super(listener, Float.class);
+    }
+
+    public FloatConverter()
+    {
+        this(throwingListener());
     }
 
     /**
