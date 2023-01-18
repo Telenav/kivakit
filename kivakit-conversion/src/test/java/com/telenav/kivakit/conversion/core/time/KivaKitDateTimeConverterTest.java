@@ -22,6 +22,8 @@ import com.telenav.kivakit.conversion.core.time.kivakit.KivaKitLocalDateTimeConv
 import com.telenav.kivakit.internal.testing.CoreUnitTest;
 import org.junit.Test;
 
+import java.time.ZoneId;
+
 import static com.telenav.kivakit.core.time.TimeZones.utc;
 
 public class KivaKitDateTimeConverterTest extends CoreUnitTest
@@ -39,7 +41,7 @@ public class KivaKitDateTimeConverterTest extends CoreUnitTest
     @Test
     public void testKivakitDateTimeConverterZoned()
     {
-        var converter = new KivaKitLocalDateTimeConverter(this);
+        var converter = new KivaKitLocalDateTimeConverter(this, ZoneId.of("America/Denver"));
         var timeString = "2023.01.11_11.00PM_MST";
         var time = converter.convert(timeString);
         var text = converter.unconvert(time);
