@@ -96,7 +96,8 @@ public class Escape
     {
         return text
             .replaceAll("\\\\", "")
-            .replaceAll("''", "'");
+            .replaceAll("''", "'")
+            .replaceAll("\\p{Cntrl}", "");
     }
 
     /**
