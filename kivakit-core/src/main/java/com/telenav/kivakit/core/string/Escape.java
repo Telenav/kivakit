@@ -59,8 +59,8 @@ public class Escape
         // replace whitespace and newlines with one space,
         text = text.replaceAll("[\\s\n]+", " ");
 
-        // escape " and % and _ with \,
-        text = text.replaceAll("([\"%_])", "\\\\$1");
+        // escape " and % with \" and \%,
+        text = text.replaceAll("([\"%])", "\\\\$1");
 
         // remove all control characters,
         text = text.replaceAll("\\p{Cntrl}", "");
