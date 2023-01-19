@@ -92,6 +92,13 @@ public class Escape
         return replaceAll(u4, ">", "&gt;");
     }
 
+    public static String unescapeSql(String text)
+    {
+        return text
+            .replaceAll("\\\\", "")
+            .replaceAll("''", "'");
+    }
+
     /**
      * Returns the given xml string with escaping removed
      */
