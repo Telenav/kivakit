@@ -37,6 +37,7 @@ import static com.telenav.kivakit.core.messaging.Listener.throwingListener;
 import static com.telenav.kivakit.core.time.DayOfWeek.javaDayOfWeek;
 import static com.telenav.kivakit.core.time.Hour.militaryHour;
 import static com.telenav.kivakit.core.time.KivaKitTimeFormats.KIVAKIT_DATE;
+import static com.telenav.kivakit.core.time.KivaKitTimeFormats.KIVAKIT_DATE_TIME;
 import static com.telenav.kivakit.core.time.KivaKitTimeFormats.KIVAKIT_TIME;
 import static com.telenav.kivakit.core.time.Second.second;
 import static com.telenav.kivakit.core.time.TimeZones.shortDisplayName;
