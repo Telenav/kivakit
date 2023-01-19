@@ -170,7 +170,10 @@ public interface SettingsStore extends
             register(at.object(), at.identifier().instance());
         });
 
-        information(registrations.titledBox(OPEN, "$", name()));
+        if (!registrations.isEmpty())
+        {
+            information(registrations.titledBox(OPEN, "$", name()));
+        }
         return true;
     }
 
