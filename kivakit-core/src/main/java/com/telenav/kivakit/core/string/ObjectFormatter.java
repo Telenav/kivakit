@@ -141,7 +141,7 @@ public class ObjectFormatter
                 return strings
                     .indented(4)
                     .bracketed()
-                    .asString();
+                    .join("\n");
             }
         }
     }

@@ -20,6 +20,7 @@ package com.telenav.kivakit.settings;
 
 import com.telenav.kivakit.annotations.code.quality.TypeQuality;
 import com.telenav.kivakit.commandline.SwitchParser;
+import com.telenav.kivakit.core.collections.set.ConcurrentHashSet;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.messaging.repeaters.BaseRepeater;
 import com.telenav.kivakit.core.registry.RegistryTrait;
@@ -31,7 +32,6 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlAggregation;
 
 import java.util.Collection;
-import java.util.HashSet;
 import java.util.Set;
 
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
@@ -124,7 +124,7 @@ public class DeploymentSet extends BaseRepeater implements RegistryTrait
 
         // and if a deployment folder was specified, and it exists,
         var deploymentFolder = propertyMap(javaVirtualMachine().systemProperties())
-                .asFolder("KIVAKIT_DEPLOYMENT_FOLDER");
+            .asFolder("KIVAKIT_DEPLOYMENT_FOLDER");
         if (deploymentFolder != null && deploymentFolder.exists())
         {
             // then add all the deployments in that folder.
@@ -136,7 +136,7 @@ public class DeploymentSet extends BaseRepeater implements RegistryTrait
 
     /** The set of deployments */
     @UmlAggregation
-    private final Set<Deployment> deployments = new HashSet<>();
+    private final Set<Deployment> deployments = new ConcurrentHashSet<>();
 
     protected DeploymentSet()
     {
@@ -155,7 +155,7 @@ public class DeploymentSet extends BaseRepeater implements RegistryTrait
      */
     public void addAll(Collection<Deployment> deployments)
     {
-        this.deployments.addAll(deployments);
+        deployments.forEach(this::add);
     }
 
     /**
@@ -173,10 +173,10 @@ public class DeploymentSet extends BaseRepeater implements RegistryTrait
             var deployment = listenTo(new Deployment(this, child.path().last(), description));
 
             // and add the configuration information from the sub-folder,
-            deployment.indexAll(listenTo(new ResourceFolderSettingsStore(this, child)));
+            deployment.addAll(listenTo(new ResourceFolderSettingsStore(this, child)));
 
             // add it to this set of deployments.
-            deployments.add(deployment);
+            add(deployment);
         }
         return this;
     }

@@ -131,19 +131,19 @@ import static com.telenav.kivakit.settings.SettingsStore.AccessMode.LOAD;
              testing = UNTESTED,
              documentation = DOCUMENTED)
 public class SettingsRegistry extends MemorySettingsStore implements
-        SettingsTrait,
-        JavaTrait
+    SettingsTrait,
+    JavaTrait
 {
     /** The global settings registry */
     private static final Lazy<SettingsRegistry> global = lazy(() ->
-            globalListener().listenTo(new SettingsRegistry()
+        globalListener().listenTo(new SettingsRegistry()
+        {
+            @Override
+            public String name()
             {
-                @Override
-                public String name()
-                {
-                    return "[Global Settings]";
-                }
-            }));
+                return "Global Settings Registry";
+            }
+        }));
 
     /**
      * Returns the global settings object
@@ -221,7 +221,7 @@ public class SettingsRegistry extends MemorySettingsStore implements
         }
 
         // otherwise, index the object in the settings store,
-        index(new SettingsObject(settings, instance));
+        add(new SettingsObject(settings, instance));
 
         // add the object to the global lookup registry.
         register(settings, instance);
@@ -243,7 +243,7 @@ public class SettingsRegistry extends MemorySettingsStore implements
         }
 
         // Index the settings objects in the given store,
-        indexAll(store);
+        addAll(store);
 
         // and register the settings objects in the global object registry.
         registerAllIn(store);
@@ -266,7 +266,7 @@ public class SettingsRegistry extends MemorySettingsStore implements
                 var folder = parseFolder(this, path);
                 if (folder != null)
                 {
-                    indexAll(new ResourceFolderSettingsStore(this, folder));
+                    addAll(new ResourceFolderSettingsStore(this, folder));
                 }
                 else
                 {

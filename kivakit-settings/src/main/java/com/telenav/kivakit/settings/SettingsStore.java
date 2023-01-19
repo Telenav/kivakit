@@ -6,11 +6,12 @@ import com.telenav.kivakit.core.messaging.Repeater;
 import com.telenav.kivakit.core.registry.RegistryTrait;
 import com.telenav.kivakit.interfaces.naming.Named;
 
-import java.util.Set;
-
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static com.telenav.kivakit.core.collections.list.StringList.stringList;
+import static com.telenav.kivakit.core.registry.InstanceIdentifier.singletonInstanceIdentifier;
+import static com.telenav.kivakit.core.string.AsciiArt.TextBoxStyle.OPEN;
 
 /**
  * <b>Service Provider API</b>
@@ -36,8 +37,8 @@ import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
  *
  * <p>
  * Note that it is not necessary for settings {@link Object}s to implement the {@link Object#hashCode()} /
- * {@link Object#equals(Object)} contract. The {@link SettingsObject.SettingsObjectIdentifier} class implements this contract,
- * allowing {@link SettingsObject}s to be accessed in maps and stored in sets.
+ * {@link Object#equals(Object)} contract. The {@link SettingsObject.SettingsObjectIdentifier} class implements this
+ * contract, allowing {@link SettingsObject}s to be accessed in maps and stored in sets.
  * </p>
  *
  * @author jonathanl (shibo)
@@ -47,10 +48,10 @@ import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
              testing = UNTESTED,
              documentation = DOCUMENTED)
 public interface SettingsStore extends
-        RegistryTrait,
-        Repeater,
-        Named,
-        Iterable<Object>
+    RegistryTrait,
+    Repeater,
+    Named,
+    Iterable<Object>
 {
     /**
      * <p>
@@ -91,6 +92,26 @@ public interface SettingsStore extends
 
     /**
      * <b>Service Provider API</b>
+     * <p>
+     * Adds the given object to the in-memory index of this settings store. This will <i>not</i>> add the object to the
+     * underlying persistent store. To do that, call {@link #save(SettingsObject)}.
+     */
+    boolean add(SettingsObject object);
+
+    /**
+     * <b>Service Provider API</b>
+     * <p>
+     * Adds all {@link SettingsObject}s to this store's in-memory index via {@link #add(SettingsObject)}.
+     * </p>
+     */
+    default boolean addAll(SettingsStore store)
+    {
+        store.objects().forEach(this::add);
+        return true;
+    }
+
+    /**
+     * <b>Service Provider API</b>
      *
      * <p>
      * Deletes the given settings object from this store
@@ -102,23 +123,14 @@ public interface SettingsStore extends
 
     /**
      * <b>Service Provider API</b>
+     *
      * <p>
-     * Adds the given object to the in-memory index of this settings store. This will <i>not</i>> add the object to the
-     * underlying persistent store. To do that, call {@link #save(SettingsObject)}.
-     */
-    boolean index(SettingsObject object);
-
-    /**
-     * <b>Service Provider API</b>
-     * <p>
-     * Adds all {@link SettingsObject}s to this store's in-memory index via {@link #index(SettingsObject)}.
+     * Loads this settings store with {@link SettingsObject}s
      * </p>
+     *
+     * @return The set of {@link SettingsObject} instances in this store
      */
-    default boolean indexAll(SettingsStore store)
-    {
-        store.indexed().forEach(this::index);
-        return true;
-    }
+    ObjectSet<SettingsObject> load();
 
     /**
      * <b>Service Provider API</b>
@@ -129,18 +141,7 @@ public interface SettingsStore extends
      * @return All objects in this store's in-memory index. If the store supports loading, and it has not yet been
      * loaded, {@link #load()} will be called first.
      */
-    ObjectSet<SettingsObject> indexed();
-
-    /**
-     * <b>Service Provider API</b>
-     *
-     * <p>
-     * Loads this settings store with {@link SettingsObject}s
-     * </p>
-     *
-     * @return The set of {@link SettingsObject} instances in this store
-     */
-    Set<SettingsObject> load();
+    ObjectSet<SettingsObject> objects();
 
     /**
      * A settings store to propagate changes to
@@ -156,9 +157,31 @@ public interface SettingsStore extends
      */
     default boolean registerAllIn(SettingsStore store)
     {
-        store.indexed().forEach(at -> register(at.object(), at.identifier().instance()));
+        var registrations = stringList();
+
+        store.objects().forEach(at ->
+        {
+            var instance = at.identifier().instance();
+            registrations.add("$\n$",
+                at.object().getClass().getSimpleName()
+                    + (instance == singletonInstanceIdentifier() ? "" : ":" + instance),
+                at.object());
+
+            register(at.object(), at.identifier().instance());
+        });
+
+        information(registrations.titledBox(OPEN, "$", name()));
         return true;
     }
+
+    /**
+     * <b>Service Provider API</b>
+     * <p>
+     * Removes the given object from the in-memory index of this settings store. This will <i>not</i> add the object to
+     * the underlying persistent store. To do that, call {@link #save(SettingsObject)}.
+     */
+    @SuppressWarnings("SpellCheckingInspection")
+    boolean remove(SettingsObject object);
 
     /**
      * <b>Service Provider API</b>
@@ -176,7 +199,7 @@ public interface SettingsStore extends
      */
     default void saveAllFrom(SettingsStore that)
     {
-        that.indexed().forEach(this::save);
+        that.objects().forEach(this::save);
     }
 
     /**
@@ -189,15 +212,6 @@ public interface SettingsStore extends
     {
         return accessModes().contains(accessMode);
     }
-
-    /**
-     * <b>Service Provider API</b>
-     * <p>
-     * Removes the given object from the in-memory index of this settings store. This will <i>not</i>> add the object to
-     * the underlying persistent store. To do that, call {@link #save(SettingsObject)}.
-     */
-    @SuppressWarnings("SpellCheckingInspection")
-    boolean unindex(SettingsObject object);
 
     /**
      * <b>Service Provider API</b>

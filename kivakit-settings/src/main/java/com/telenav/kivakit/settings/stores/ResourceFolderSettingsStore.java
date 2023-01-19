@@ -33,10 +33,8 @@ import com.telenav.kivakit.settings.internal.lexakai.DiagramSettings;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeMember;
 
-import java.util.Set;
-
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.collections.set.ObjectSet.set;
 import static com.telenav.kivakit.core.ensure.Ensure.unsupported;
@@ -45,7 +43,6 @@ import static com.telenav.kivakit.settings.SettingsStore.AccessMode.DELETE;
 import static com.telenav.kivakit.settings.SettingsStore.AccessMode.INDEX;
 import static com.telenav.kivakit.settings.SettingsStore.AccessMode.LOAD;
 import static com.telenav.kivakit.settings.SettingsStore.AccessMode.UNLOAD;
-import static java.util.Collections.emptySet;
 
 /**
  * <p>
@@ -56,8 +53,8 @@ import static java.util.Collections.emptySet;
  * A {@link ResourceFolderSettingsStore} can be created with
  * {@link ResourceFolderSettingsStore#ResourceFolderSettingsStore(Listener, ResourceFolder)}. The specified package
  * should contain a set of settings files, each of which can be passed to the {@link ObjectSerializer} for the file's
- * extension to deserialize the object. Object serializers are located with the {@link ObjectSerializerRegistry} object found
- * in the global {@link Registry}.
+ * extension to deserialize the object. Object serializers are located with the {@link ObjectSerializerRegistry} object
+ * found in the global {@link Registry}.
  * </p>
  *
  * @author jonathanl (shibo)
@@ -110,7 +107,7 @@ public class ResourceFolderSettingsStore extends BaseResourceSettingsStore
      */
     @Override
     @UmlExcludeMember
-    public Set<SettingsObject> onLoad()
+    public ObjectSet<SettingsObject> onLoad()
     {
         var objects = new ObjectSet<SettingsObject>();
 
@@ -118,7 +115,7 @@ public class ResourceFolderSettingsStore extends BaseResourceSettingsStore
         if (serializers.serializers().isEmpty())
         {
             problem("Cannot load settings: no registered object serializers for $", this);
-            return emptySet();
+            return set();
         }
 
         // Go through resources in the folder

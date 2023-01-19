@@ -26,8 +26,8 @@ import com.telenav.lexakai.annotations.associations.UmlRelation;
 import java.util.HashMap;
 import java.util.Map;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
 import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
 
@@ -115,7 +115,7 @@ public class Registry implements RegistryTrait
      */
     @Override
     @SuppressWarnings({ "unchecked" })
-    public <T> T lookup(Class<T> type, InstanceIdentifier instance)
+    public synchronized <T> T lookup(Class<T> type, InstanceIdentifier instance)
     {
         return (T) registered.get(instance.key(type));
     }
@@ -124,7 +124,7 @@ public class Registry implements RegistryTrait
      * Registers the specified instance of the given object's type in the lookup
      */
     @Override
-    public <T> T register(T object, InstanceIdentifier instance)
+    public synchronized <T> T register(T object, InstanceIdentifier instance)
     {
         ensureNotNull(object);
 
@@ -144,7 +144,7 @@ public class Registry implements RegistryTrait
      * {@inheritDoc}
      */
     @Override
-    public <T> T require(Class<T> type, InstanceIdentifier instance)
+    public synchronized <T> T require(Class<T> type, InstanceIdentifier instance)
     {
         return ensureNotNull(lookup(type, instance), "Unable to find required object: $:$", type, instance);
     }
@@ -153,13 +153,13 @@ public class Registry implements RegistryTrait
      * {@inheritDoc}
      */
     @Override
-    public void unregister(Object object, InstanceIdentifier instance)
+    public synchronized void unregister(Object object, InstanceIdentifier instance)
     {
         registered.remove(instance.key(object.getClass()));
     }
 
     @Override
-    public void unregisterAll()
+    public synchronized void unregisterAll()
     {
         registered.clear();
     }

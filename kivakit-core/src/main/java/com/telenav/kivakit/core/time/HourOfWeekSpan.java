@@ -182,7 +182,7 @@ public class HourOfWeekSpan
      */
     public boolean includes(Time time)
     {
-        return includes(time.inTimeZone(utc()));
+        return includes(time.asLocalTime(utc()));
     }
 
     /**

@@ -152,6 +152,7 @@ public class PackageResource extends BaseReadableResource
     }
 
     /** The underlying classpath resource */
+    @FormatProperty
     private final ClasspathResource resource;
 
     protected PackageResource(@NotNull Listener listener, @NotNull ClasspathResource resource)

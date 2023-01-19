@@ -64,6 +64,10 @@ public class KivaKitTimeFormats
     public static final DateTimeFormatter KIVAKIT_DATE_TIME = builder("yyyy.MM.dd_h.mma_z")
         .toFormatter();
 
+    /** KivaKit date and time format */
+    public static final DateTimeFormatter KIVAKIT_UTC_DATE_TIME = builder("yyyy.MM.dd_h.mma")
+        .toFormatter();
+
     /** KivaKit date, time, and seconds format */
     public static final DateTimeFormatter KIVAKIT_DATE_TIME_SECONDS = builder("yyyy.MM.dd_h.mm.ssa_z")
         .toFormatter();

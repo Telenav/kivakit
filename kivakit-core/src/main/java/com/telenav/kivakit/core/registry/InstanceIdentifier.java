@@ -30,8 +30,6 @@ import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
 import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
 import static com.telenav.kivakit.core.language.Classes.classForName;
-import static com.telenav.kivakit.core.language.Hash.hashMany;
-import static com.telenav.kivakit.core.language.Objects.areEqualPairs;
 import static com.telenav.kivakit.core.string.Paths.pathOptionalSuffix;
 import static com.telenav.kivakit.core.string.Paths.pathWithoutSuffix;
 
@@ -168,9 +166,7 @@ public class InstanceIdentifier
     {
         if (object instanceof InstanceIdentifier that)
         {
-            return areEqualPairs(
-                this.enumIdentifier, that.enumIdentifier,
-                this.stringIdentifier, that.stringIdentifier);
+            return name().equals(that.name());
         }
         return false;
     }
@@ -181,7 +177,7 @@ public class InstanceIdentifier
     @Override
     public int hashCode()
     {
-        return hashMany(enumIdentifier, stringIdentifier);
+        return name().hashCode();
     }
 
     /**

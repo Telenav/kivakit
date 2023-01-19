@@ -24,8 +24,8 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.Arrays;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_INSUFFICIENT;
 import static com.telenav.kivakit.core.ensure.Ensure.fail;
 
@@ -42,7 +42,7 @@ import static com.telenav.kivakit.core.ensure.Ensure.fail;
  * <p><b>Nullity</b></p>
  *
  * <ul>
- *     <li>{@link #isAnyNull(Object...)}</li>
+ *     <li>{@link #areAnyNull(Object...)}</li>
  *     <li>{@link #isNotNull(Object)}</li>
  *     <li>{@link #isNull(Object)}</li>
  *     <li>{@link #nonNullOr(Object, Object)}</li>
@@ -57,6 +57,21 @@ import static com.telenav.kivakit.core.ensure.Ensure.fail;
              documentation = DOCUMENTED)
 public class Objects
 {
+    /**
+     * Returns true if any of the given objects is null.
+     */
+    public static boolean areAnyNull(Object... objects)
+    {
+        for (var object : objects)
+        {
+            if (object == null)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
     /**
      * Returns true if the given variable number of values contains a series of equal pairs
      */
@@ -78,18 +93,18 @@ public class Objects
     }
 
     /**
-     * Returns true if any of the given objects is null.
+     * Returns true if all the given objects are null
      */
-    public static boolean isAnyNull(Object... objects)
+    public static boolean areNull(Object... objects)
     {
         for (var object : objects)
         {
-            if (object == null)
+            if (object != null)
             {
-                return true;
+                return false;
             }
         }
-        return false;
+        return true;
     }
 
     /**

@@ -16,35 +16,30 @@
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-package com.telenav.kivakit.conversion.core.time;
+package com.telenav.kivakit.conversion.core.time.kivakit;
 
-import com.telenav.kivakit.conversion.core.time.kivakit.KivaKitLocalDateTimeConverter;
+import com.telenav.kivakit.conversion.core.time.kivakit.KivaKitLocalDateConverter;
 import com.telenav.kivakit.internal.testing.CoreUnitTest;
 import org.junit.Test;
 
-import java.time.ZoneId;
+import java.time.Instant;
+import java.time.temporal.ChronoUnit;
 
-import static com.telenav.kivakit.core.time.TimeZones.utc;
+import static com.telenav.kivakit.core.time.LocalTime.utcTimeZone;
 
-public class KivaKitDateTimeConverterTest extends CoreUnitTest
+public class KivaKitLocalDateConverterTest extends CoreUnitTest
 {
     @Test
-    public void testKivakitDateTimeConverter()
+    public void convert()
     {
-        var converter = new KivaKitLocalDateTimeConverter(this, utc());
-        var timeString = "2023.01.11_11.00PM_UTC";
-        var time = converter.convert(timeString);
-        var text = converter.unconvert(time);
-        ensureEqual(text, timeString);
-    }
+        var converter = new KivaKitLocalDateConverter(this, utcTimeZone());
 
-    @Test
-    public void testKivakitDateTimeConverterZoned()
-    {
-        var converter = new KivaKitLocalDateTimeConverter(this, ZoneId.of("America/Denver"));
-        var timeString = "2023.01.11_11.00PM_MST";
-        var time = converter.convert(timeString);
-        var text = converter.unconvert(time);
-        ensureEqual(text, timeString);
+        var time = converter.convert("2011.07.06");
+
+        // Using https://www.epochconverter.com/ midnight of that date UTC time
+        // was converted to milliseconds.
+        ensure(time != null);
+        assert time != null;
+        ensureEqual(ChronoUnit.MILLIS.between(Instant.EPOCH, time.startOfDay().asJavaInstant()), 1309910400000L);
     }
 }

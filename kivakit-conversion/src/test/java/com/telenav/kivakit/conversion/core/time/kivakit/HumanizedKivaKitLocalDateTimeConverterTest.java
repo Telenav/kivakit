@@ -16,7 +16,7 @@
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-package com.telenav.kivakit.conversion.core.time;
+package com.telenav.kivakit.conversion.core.time.kivakit;
 
 import com.telenav.kivakit.conversion.core.time.kivakit.HumanizedKivaKitLocalDateTimeConverter;
 import com.telenav.kivakit.internal.testing.CoreUnitTest;
@@ -27,7 +27,7 @@ import static com.telenav.kivakit.core.time.LocalTime.now;
 import static com.telenav.kivakit.core.time.Meridiem.PM;
 import static com.telenav.kivakit.core.time.Minute.minute;
 
-public class HumanizedLocalDateTimeConverterTest extends CoreUnitTest
+public class HumanizedKivaKitLocalDateTimeConverterTest extends CoreUnitTest
 {
     @Test
     public void convert()

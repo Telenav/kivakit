@@ -52,6 +52,6 @@ public class UtcTimeInKivaKitFormatGsonSerializer extends PrimitiveGsonSerialize
     @Override
     protected String toPrimitive(Time time)
     {
-        return time.inTimeZone(utcTimeZone()).asDateTimeString();
+        return time.asLocalTime(utcTimeZone()).asDateTimeString();
     }
 }

@@ -34,10 +34,13 @@ import static com.telenav.kivakit.core.logging.logs.text.LogFormatter.logFormatt
 import static com.telenav.kivakit.core.os.OperatingSystem.operatingSystem;
 import static com.telenav.kivakit.core.string.Align.center;
 import static com.telenav.kivakit.core.string.Align.leftAlign;
+import static com.telenav.kivakit.core.string.AsciiArt.TextBoxStyle.CLOSED;
+import static com.telenav.kivakit.core.string.AsciiArt.TextBoxStyle.OPEN;
 import static com.telenav.kivakit.core.string.Formatter.format;
 import static com.telenav.kivakit.core.string.Join.join;
 import static com.telenav.kivakit.core.string.Strings.leading;
 import static com.telenav.kivakit.core.string.Strings.occurrences;
+import static java.lang.Integer.MAX_VALUE;
 import static java.lang.Math.max;
 import static java.lang.Math.min;
 
@@ -102,8 +105,8 @@ public class AsciiArt
     {
         message = " " + format(message, arguments) + " ";
         return BOTTOM_LEFT_LINE_CHARACTER + line(4) + message
-                + line(max(4, width - 6 - message.length()))
-                + BOTTOM_RIGHT_LINE_CHARACTER;
+            + line(max(4, width - 6 - message.length()))
+            + BOTTOM_RIGHT_LINE_CHARACTER;
     }
 
     /**
@@ -205,10 +208,10 @@ public class AsciiArt
     public static String line(String message)
     {
         return line(4)
-                + " "
-                + message
-                + " "
-                + line(max(4, maximumWidth - 6 - message.length()));
+            + " "
+            + message
+            + " "
+            + line(max(4, maximumWidth - 6 - message.length()));
     }
 
     /**
@@ -266,10 +269,15 @@ public class AsciiArt
         return repeat(count, ' ');
     }
 
+    public static String textBox(String message, char horizontal, char vertical)
+    {
+        return textBox(CLOSED, message, horizontal, vertical);
+    }
+
     /**
      * Returns a box using the given horizontal and vertical line drawing characters that contains the given message
      */
-    public static String textBox(String message, char horizontal, char vertical)
+    public static String textBox(TextBoxStyle style, String message, char horizontal, char vertical)
     {
         var builder = new StringBuilder();
         var width = min(maximumWidth, widestLine(message));
@@ -289,26 +297,41 @@ public class AsciiArt
         return builder.toString();
     }
 
+    public static String textBox(String message, Object... arguments)
+    {
+        return textBox(CLOSED, message, arguments);
+    }
+
     /**
      * Returns an ASCII art box containing the given message
      */
-    public static String textBox(String message, Object... arguments)
+    public static String textBox(TextBoxStyle style, String message, Object... arguments)
     {
-        return textBox(format(message, arguments), HORIZONTAL_LINE_CHARACTER, VERTICAL_LINE_CHARACTER);
+        return textBox(style, format(message, arguments), HORIZONTAL_LINE_CHARACTER, VERTICAL_LINE_CHARACTER);
     }
 
-    /**
-     * Returns an ASCII art box with the given title and message
-     */
     public static String textBox(String title, String message, Object... arguments)
     {
-        return textBox(maximumWidth(), title, message, arguments);
+        return textBox(CLOSED, title, message, arguments);
     }
 
     /**
      * Returns an ASCII art box with the given title and message
      */
+    public static String textBox(TextBoxStyle style, String title, String message, Object... arguments)
+    {
+        return textBox(style, maximumWidth(), title, message, arguments);
+    }
+
     public static String textBox(int width, String title, String message, Object... arguments)
+    {
+        return textBox(CLOSED, width, title, message, arguments);
+    }
+
+    /**
+     * Returns an ASCII art box with the given title and message
+     */
+    public static String textBox(TextBoxStyle style, int width, String title, String message, Object... arguments)
     {
         title = title(title);
         message = format(message, arguments);
@@ -318,33 +341,39 @@ public class AsciiArt
 
         // Add the top of the box
         builder.append(TOP_LEFT_LINE_CHARACTER)
-                .append(center(title, width - 2, HORIZONTAL_LINE_CHARACTER))
-                .append(TOP_RIGHT_LINE_CHARACTER)
-                .append("\n");
+            .append(center(title, width - 2, HORIZONTAL_LINE_CHARACTER))
+            .append(style == OPEN ? "" : TOP_RIGHT_LINE_CHARACTER)
+            .append("\n");
 
         // For each line in the message,
         for (var line : message.split("\n"))
         {
-            // add the line, wrapping if necessary
-            var wrapped = new StringBuilder();
-            do
+            if (style == OPEN)
             {
-                var next = line.substring(0, min(width - 4, line.length()));
-                appendTextBoxLine(builder, next, width - 4);
-                line = line.substring(next.length());
+                appendTextBoxLine(style, builder, line, MAX_VALUE);
             }
-            while (line.length() > width);
-
-            if (!line.isEmpty())
+            else
             {
-                appendTextBoxLine(builder, line, width - 4);
+                do
+                {
+                    // add the line, wrapping if necessary
+                    var next = line.substring(0, min(width - 4, line.length()));
+                    appendTextBoxLine(style, builder, next, width - 4);
+                    line = line.substring(next.length());
+                }
+                while (line.length() > width);
+
+                if (!line.isEmpty())
+                {
+                    appendTextBoxLine(style, builder, line, width - 4);
+                }
             }
         }
 
         // Add the bottom of the box
         builder.append(BOTTOM_LEFT_LINE_CHARACTER)
-                .append(line(width - 2))
-                .append(BOTTOM_RIGHT_LINE_CHARACTER);
+            .append(line(width - 2))
+            .append(style == OPEN ? "" : BOTTOM_RIGHT_LINE_CHARACTER);
 
         return builder.toString();
     }
@@ -364,9 +393,9 @@ public class AsciiArt
     {
         title = title(title, arguments);
         return (width > 0 ? " \n" : "")
-                + TOP_LEFT_LINE_CHARACTER + line(4) + title
-                + line(max(4, width - 6 - title.length()))
-                + TOP_RIGHT_LINE_CHARACTER;
+            + TOP_LEFT_LINE_CHARACTER + line(4) + title
+            + line(max(4, width - 6 - title.length()))
+            + TOP_RIGHT_LINE_CHARACTER;
     }
 
     /**
@@ -383,11 +412,24 @@ public class AsciiArt
         return width;
     }
 
-    private static void appendTextBoxLine(StringBuilder builder, String text, int width)
+    public enum TextBoxStyle
+    {
+        OPEN,
+        CLOSED
+    }
+
+    private static void appendTextBoxLine(TextBoxStyle style, StringBuilder builder, String text, int width)
     {
         builder.append(VERTICAL_LINE_CHARACTER).append(" ");
-        builder.append(leftAlign(text, width, ' '));
-        builder.append(" ").append(VERTICAL_LINE_CHARACTER);
+        if (style == CLOSED)
+        {
+            builder.append(leftAlign(text, width, ' '));
+            builder.append(" ").append(VERTICAL_LINE_CHARACTER);
+        }
+        else
+        {
+            builder.append(text);
+        }
         builder.append('\n');
     }
 

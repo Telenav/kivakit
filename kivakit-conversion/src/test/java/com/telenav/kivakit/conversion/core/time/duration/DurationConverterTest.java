@@ -1,4 +1,4 @@
-package com.telenav.kivakit.conversion.core.time;
+package com.telenav.kivakit.conversion.core.time.duration;
 
 import com.telenav.kivakit.conversion.core.time.duration.DurationConverter;
 import com.telenav.kivakit.conversion.core.time.duration.DurationInSecondsConverter;

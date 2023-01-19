@@ -51,7 +51,7 @@ public class MemorySettingsStore extends BaseSettingsStore
      * {@inheritDoc}
      */
     @Override
-    protected Set<SettingsObject> onLoad()
+    protected ObjectSet<SettingsObject> onLoad()
     {
         return unsupported();
     }
