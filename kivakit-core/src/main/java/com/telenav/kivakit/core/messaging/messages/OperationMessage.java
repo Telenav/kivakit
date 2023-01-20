@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.core.messaging.messages;
 
-import com.telenav.kivakit.annotations.code.quality.CodeQuality;
+import com.telenav.kivakit.annotations.code.quality.TypeQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramMessageType;
 import com.telenav.kivakit.core.language.Hash;
 import com.telenav.kivakit.core.logging.Log;
@@ -37,7 +37,7 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeSuperTypes;
 import org.jetbrains.annotations.NotNull;
 
-import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
 import static com.telenav.kivakit.core.language.Arrays.arrayContains;
@@ -102,9 +102,9 @@ import static com.telenav.kivakit.core.time.Time.now;
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramMessageType.class)
 @UmlExcludeSuperTypes({ Named.class })
-@CodeQuality(stability = STABLE_EXTENSIBLE,
+@TypeQuality(stability = STABLE_EXTENSIBLE,
              testing = TESTING_NOT_NEEDED,
-             documentation = DOCUMENTATION_COMPLETE)
+             documentation = DOCUMENTED)
 public abstract class OperationMessage implements Named, Message
 {
     private static final ReentrancyTracker reentrancy = new ReentrancyTracker();
@@ -182,11 +182,10 @@ public abstract class OperationMessage implements Named, Message
     @Override
     public String asString(@NotNull Format format)
     {
-        switch (format)
-        {
-            default:
-                return formatted(WITH_EXCEPTION);
-        }
+        return switch (format)
+            {
+                default -> formatted(WITH_EXCEPTION);
+            };
     }
 
     /**

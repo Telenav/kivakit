@@ -1,14 +1,13 @@
 package com.telenav.kivakit.annotations.code.change;
 
-import com.telenav.kivakit.annotations.code.quality.CodeQuality;
+import com.telenav.kivakit.annotations.code.quality.TypeQuality;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
 
-import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABILITY_UNDETERMINED;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
 import static java.lang.annotation.ElementType.METHOD;
 import static java.lang.annotation.RetentionPolicy.SOURCE;
 
@@ -41,9 +40,8 @@ import static java.lang.annotation.RetentionPolicy.SOURCE;
 @SuppressWarnings("unused")
 @Retention(SOURCE)
 @Target(METHOD)
-@CodeQuality(stability = STABILITY_UNDETERMINED,
-             testing = TESTING_NOT_NEEDED,
-             documentation = DOCUMENTATION_COMPLETE,
+@TypeQuality(stability = STABILITY_UNDETERMINED,
+             documentation = DOCUMENTED,
              reviews = 1,
              reviewers = "shibo")
 public @interface MethodChange
@@ -51,9 +49,8 @@ public @interface MethodChange
     /**
      * The type of change that occurred
      */
-    @CodeQuality(stability = STABLE_EXTENSIBLE,
-                 testing = TESTING_NOT_NEEDED,
-                 documentation = DOCUMENTATION_COMPLETE)
+    @TypeQuality(stability = STABLE_EXTENSIBLE,
+                 documentation = DOCUMENTED)
     enum Change
     {
         /** The annotated method was added */

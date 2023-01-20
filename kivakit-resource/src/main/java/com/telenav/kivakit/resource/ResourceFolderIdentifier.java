@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.resource;
 
-import com.telenav.kivakit.annotations.code.quality.CodeQuality;
+import com.telenav.kivakit.annotations.code.quality.TypeQuality;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.filesystem.Folder;
 import com.telenav.kivakit.resource.internal.lexakai.DiagramResourceService;
@@ -27,7 +27,7 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 import org.jetbrains.annotations.NotNull;
 
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.resource.ResourceFolder.resolveResourceFolder;
 
@@ -40,21 +40,14 @@ import static com.telenav.kivakit.resource.ResourceFolder.resolveResourceFolder;
  * @see ResourceFolder
  */
 @UmlClassDiagram(diagram = DiagramResourceService.class)
-@CodeQuality(stability = STABLE_EXTENSIBLE,
+@TypeQuality(stability = STABLE_EXTENSIBLE,
              testing = UNTESTED,
-             documentation = DOCUMENTATION_COMPLETE)
-public class ResourceFolderIdentifier
+             documentation = DOCUMENTED)
+public record ResourceFolderIdentifier(String identifier)
 {
-    private final String identifier;
-
     public ResourceFolderIdentifier(@NotNull String identifier)
     {
         this.identifier = identifier;
-    }
-
-    public String identifier()
-    {
-        return identifier;
     }
 
     public ResourceFolder<?> resolve(@NotNull Listener listener)

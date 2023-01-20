@@ -5,15 +5,17 @@ import com.google.gson.Gson;
 import com.google.gson.InstanceCreator;
 import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonSerializer;
+import com.google.gson.TypeAdapter;
 import com.google.gson.TypeAdapterFactory;
 import com.google.gson.annotations.Expose;
-import com.telenav.kivakit.annotations.code.quality.CodeQuality;
+import com.telenav.kivakit.annotations.code.quality.TypeQuality;
 import com.telenav.kivakit.conversion.StringConverter;
 import com.telenav.kivakit.core.messaging.Repeater;
+import com.telenav.kivakit.core.registry.Register;
 import com.telenav.kivakit.core.version.Version;
 
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 
 /**
@@ -22,9 +24,10 @@ import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
  * @author jonathanl (shibo)
  */
 @SuppressWarnings({ "unused", "UnusedReturnValue" })
-@CodeQuality(stability = STABLE_EXTENSIBLE,
+@TypeQuality(stability = STABLE_EXTENSIBLE,
              testing = UNTESTED,
-             documentation = DOCUMENTATION_COMPLETE)
+             documentation = DOCUMENTED)
+@Register
 public interface GsonFactory extends Repeater
 {
     /**
@@ -60,7 +63,9 @@ public interface GsonFactory extends Repeater
      */
     <T> GsonFactory addJsonSerializerDeserializer(Class<T> type, JsonSerializerDeserializer<T> serializerDeserializer);
 
-    GsonFactory addTypeAdapterFactory(TypeAdapterFactory factory);
+    <T> BaseGsonFactory addTypeAdapter(Class<T> type, TypeAdapter<T> typeAdapter);
+
+    BaseGsonFactory addTypeAdapterFactory(TypeAdapterFactory adapter);
 
     GsonFactory dateFormat(String dateFormat);
 

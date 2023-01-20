@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.core.string;
 
-import com.telenav.kivakit.annotations.code.quality.CodeQuality;
+import com.telenav.kivakit.annotations.code.quality.TypeQuality;
 import com.telenav.kivakit.core.collections.list.StringList;
 import com.telenav.kivakit.core.internal.lexakai.DiagramReflection;
 import com.telenav.kivakit.core.language.reflection.Type;
@@ -29,15 +29,17 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 import java.util.Collection;
 import java.util.Set;
 
-import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_INSUFFICIENT;
+import static com.telenav.kivakit.core.collections.list.StringList.lines;
 import static com.telenav.kivakit.core.collections.set.ObjectSet.set;
 import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
-import static com.telenav.kivakit.core.ensure.Ensure.fail;
 import static com.telenav.kivakit.core.language.reflection.Type.type;
 import static com.telenav.kivakit.core.language.reflection.property.PropertyFilter.allProperties;
 import static com.telenav.kivakit.core.language.reflection.property.PropertyMemberSelector.ALL_FIELDS_AND_METHODS;
+import static com.telenav.kivakit.core.string.AsciiArt.repeat;
+import static com.telenav.kivakit.core.string.ObjectFormatter.ObjectFormat.MULTILINE;
 import static com.telenav.kivakit.core.string.ObjectFormatter.ObjectFormat.SINGLE_LINE;
 
 /**
@@ -48,9 +50,9 @@ import static com.telenav.kivakit.core.string.ObjectFormatter.ObjectFormat.SINGL
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramReflection.class)
-@CodeQuality(stability = STABLE_EXTENSIBLE,
+@TypeQuality(stability = STABLE_EXTENSIBLE,
              testing = TESTING_INSUFFICIENT,
-             documentation = DOCUMENTATION_COMPLETE)
+             documentation = DOCUMENTED)
 public class ObjectFormatter
 {
     /**
@@ -68,6 +70,8 @@ public class ObjectFormatter
 
     /** The object to format */
     private final Object object;
+
+    private int indent;
 
     /**
      * @param object The object to format
@@ -127,7 +131,7 @@ public class ObjectFormatter
         if (strings.isEmpty())
         {
             // that is a problem
-            return fail("Unable to find any properties to format in object of type $", type);
+            return repeat(indent, ' ') + "{}";
         }
         else
         {
@@ -141,9 +145,21 @@ public class ObjectFormatter
                 return strings
                     .indented(4)
                     .bracketed()
-                    .asString();
+                    .indented(indent)
+                    .join("\n");
             }
         }
+    }
+
+    public StringList asStringList()
+    {
+        return lines(asString(MULTILINE));
+    }
+
+    public ObjectFormatter indent(int spaces)
+    {
+        this.indent = spaces;
+        return this;
     }
 
     /**

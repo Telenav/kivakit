@@ -18,9 +18,10 @@
 
 package com.telenav.kivakit.core.collections.set;
 
-import com.telenav.kivakit.annotations.code.quality.CodeQuality;
+import com.telenav.kivakit.annotations.code.quality.TypeQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramCollections;
 import com.telenav.kivakit.core.value.count.Maximum;
+import com.telenav.kivakit.interfaces.comparison.Matcher;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.AbstractSet;
@@ -30,8 +31,8 @@ import java.util.Iterator;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_INSUFFICIENT;
 import static com.telenav.kivakit.core.value.count.Maximum.MAXIMUM;
 
@@ -41,9 +42,9 @@ import static com.telenav.kivakit.core.value.count.Maximum.MAXIMUM;
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramCollections.class)
-@CodeQuality(stability = STABLE_EXTENSIBLE,
+@TypeQuality(stability = STABLE_EXTENSIBLE,
              testing = TESTING_INSUFFICIENT,
-             documentation = DOCUMENTATION_COMPLETE)
+             documentation = DOCUMENTED)
 public class ConcurrentHashSet<Value> extends BaseSet<Value>
 {
     /** The backing map */
@@ -85,6 +86,54 @@ public class ConcurrentHashSet<Value> extends BaseSet<Value>
     public Value take(Value prototype)
     {
         return map.remove(prototype);
+    }
+
+    @Override
+    public ConcurrentHashSet<Value> with(Collection<Value> that)
+    {
+        return (ConcurrentHashSet<Value>) super.with(that);
+    }
+
+    @Override
+    public ConcurrentHashSet<Value> with(Value[] that)
+    {
+        return (ConcurrentHashSet<Value>) super.with(that);
+    }
+
+    @Override
+    public BaseSet<Value> with(Value value)
+    {
+        return super.with(value);
+    }
+
+    @Override
+    public ConcurrentHashSet<Value> with(Iterable<Value> that)
+    {
+        return (ConcurrentHashSet<Value>) super.with(that);
+    }
+
+    @Override
+    public ConcurrentHashSet<Value> without(Value[] that)
+    {
+        return (ConcurrentHashSet<Value>) super.without(that);
+    }
+
+    @Override
+    public ConcurrentHashSet<Value> without(Value value)
+    {
+        return (ConcurrentHashSet<Value>) super.without(value);
+    }
+
+    @Override
+    public BaseSet<Value> without(Matcher<Value> matcher)
+    {
+        return super.without(matcher);
+    }
+
+    @Override
+    public ConcurrentHashSet<Value> without(Collection<Value> that)
+    {
+        return (ConcurrentHashSet<Value>) super.without(that);
     }
 
     /**

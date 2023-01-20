@@ -1,7 +1,7 @@
 package com.telenav.kivakit.network.http;
 
-import com.telenav.kivakit.annotations.code.quality.CodeQuality;
-import com.telenav.kivakit.network.http.secure.SecureHttpNetworkLocation;
+import com.telenav.kivakit.annotations.code.quality.TypeQuality;
+import com.telenav.kivakit.network.https.HttpsNetworkLocationConverter;
 import com.telenav.kivakit.resource.Resource;
 import com.telenav.kivakit.resource.ResourceIdentifier;
 import com.telenav.kivakit.resource.internal.lexakai.DiagramResourceService;
@@ -10,7 +10,7 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 import org.jetbrains.annotations.NotNull;
 
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.ensure.Ensure.fail;
 
@@ -20,9 +20,9 @@ import static com.telenav.kivakit.core.ensure.Ensure.fail;
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramResourceService.class)
-@CodeQuality(stability = STABLE_EXTENSIBLE,
+@TypeQuality(stability = STABLE_EXTENSIBLE,
              testing = UNTESTED,
-             documentation = DOCUMENTATION_COMPLETE)
+             documentation = DOCUMENTED)
 public class HttpGetResourceResolver implements ResourceResolver
 {
     /**
@@ -44,7 +44,7 @@ public class HttpGetResourceResolver implements ResourceResolver
         var identifier = resourceIdentifier.identifier();
         if (identifier.startsWith("http:"))
         {
-            var location = new HttpNetworkLocation.Converter(this).convert(identifier);
+            var location = new HttpNetworkLocationConverter(this).convert(identifier);
             if (location != null)
             {
                 return location.get();
@@ -52,7 +52,7 @@ public class HttpGetResourceResolver implements ResourceResolver
         }
         if (identifier.startsWith("https:"))
         {
-            var location = new SecureHttpNetworkLocation.Converter(this).convert(identifier);
+            var location = new HttpsNetworkLocationConverter(this).convert(identifier);
             if (location != null)
             {
                 return location.get();

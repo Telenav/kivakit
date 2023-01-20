@@ -18,8 +18,7 @@
 
 package com.telenav.kivakit.filesystem;
 
-import com.telenav.kivakit.annotations.code.quality.CodeQuality;
-import com.telenav.kivakit.conversion.BaseStringConverter;
+import com.telenav.kivakit.annotations.code.quality.TypeQuality;
 import com.telenav.kivakit.core.collections.list.StringList;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.path.Path;
@@ -39,16 +38,18 @@ import java.util.List;
 import java.util.function.Function;
 import java.util.regex.Pattern;
 
-import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.collections.list.StringList.split;
 import static com.telenav.kivakit.core.collections.list.StringList.stringList;
+import static com.telenav.kivakit.core.ensure.Ensure.illegalState;
 import static com.telenav.kivakit.core.messaging.Listener.nullListener;
 import static com.telenav.kivakit.core.messaging.Listener.throwingListener;
 import static com.telenav.kivakit.core.os.OperatingSystem.operatingSystem;
 import static com.telenav.kivakit.core.string.Formatter.format;
 import static com.telenav.kivakit.core.string.Paths.pathTail;
+import static com.telenav.kivakit.core.string.Strings.ensureEndsWith;
 import static com.telenav.kivakit.core.string.Strings.isNullOrBlank;
 import static com.telenav.kivakit.core.string.Strip.stripLeading;
 import static com.telenav.kivakit.core.string.Strip.stripTrailing;
@@ -154,9 +155,9 @@ import static com.telenav.kivakit.filesystem.Folders.currentFolder;
  */
 @SuppressWarnings({ "unused", "JavadocLinkAsPlainText" })
 @UmlClassDiagram(diagram = DiagramResourcePath.class)
-@CodeQuality(stability = STABLE_EXTENSIBLE,
+@TypeQuality(stability = STABLE_EXTENSIBLE,
              testing = UNTESTED,
-             documentation = DOCUMENTATION_COMPLETE)
+             documentation = DOCUMENTED)
 public class FilePath extends ResourcePath
 {
     private static final Pattern SCHEME_PATTERN = Pattern.compile("([A-Za-z]+):");
@@ -244,6 +245,16 @@ public class FilePath extends ResourcePath
     }
 
     /**
+     * Returns a file path for the given string path
+     *
+     * @throws RuntimeException Thrown if the path cannot be parsed
+     */
+    public static FilePath filePath(@NotNull String path, Object... arguments)
+    {
+        return parseFilePath(throwingListener(), path, arguments);
+    }
+
+    /**
      * Returns a file path for the given string
      */
     public static FilePath parseFilePath(@NotNull Listener listener,
@@ -279,25 +290,9 @@ public class FilePath extends ResourcePath
             elements = stringList();
         }
         return filePath(stringPath(elements))
-                .withSchemes(schemes)
-                .withRoot(root)
-                .withoutFileScheme();
-    }
-
-    /**
-     * Converts to and from {@link FilePath}s
-     *
-     * @author jonathanl (shibo)
-     */
-    @CodeQuality(stability = STABLE_EXTENSIBLE,
-                 testing = UNTESTED,
-                 documentation = DOCUMENTATION_COMPLETE)
-    public static class Converter extends BaseStringConverter<FilePath>
-    {
-        public Converter(@NotNull Listener listener)
-        {
-            super(listener, FilePath.class, FilePath::parseFilePath);
-        }
+            .withSchemes(schemes)
+            .withRoot(root)
+            .withoutFileScheme();
     }
 
     /**
@@ -403,12 +398,22 @@ public class FilePath extends ResourcePath
         return join("/");
     }
 
-    /**
-     * Returns the URI for this file path
-     */
+    @Override
     public URI asUri()
     {
-        return URI.create(toString());
+        try
+        {
+            var path = this;
+            if (!path.hasScheme())
+            {
+                path = path.withScheme("file");
+            }
+            return new URI(ensureEndsWith(path.toString(), "/"));
+        }
+        catch (Exception e)
+        {
+            return illegalState(e, "Cannot convert to URI: $", this);
+        }
     }
 
     /**
@@ -527,7 +532,6 @@ public class FilePath extends ResourcePath
     /**
      * {@inheritDoc}
      */
-    @SuppressWarnings("SpellCheckingInspection")
     @Override
     public FilePath subpath(int start, int end)
     {

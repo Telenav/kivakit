@@ -18,15 +18,13 @@
 
 package com.telenav.kivakit.network.core;
 
-import com.telenav.kivakit.annotations.code.quality.CodeQuality;
-import com.telenav.kivakit.conversion.BaseStringConverter;
+import com.telenav.kivakit.annotations.code.quality.TypeQuality;
 import com.telenav.kivakit.core.messaging.Listener;
 
 import java.util.regex.Pattern;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
 
 /**
@@ -46,9 +44,9 @@ import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_N
  *
  * @author jonathanl (shibo)
  */
-@CodeQuality(stability = STABLE_EXTENSIBLE,
+@TypeQuality(stability = STABLE_EXTENSIBLE,
              testing = TESTING_NOT_NEEDED,
-             documentation = DOCUMENTATION_COMPLETE)
+             documentation = DOCUMENTED)
 public class EmailAddress
 {
     /** Email pattern. See RFC 5322 */
@@ -69,22 +67,6 @@ public class EmailAddress
         }
         listener.warning("Invalid email address: $", text);
         return null;
-    }
-
-    /**
-     * Converts to and from an {@link EmailAddress}
-     *
-     * @author jonathanl (shibo)
-     */
-    @CodeQuality(stability = STABLE,
-                 testing = TESTING_NOT_NEEDED,
-                 documentation = DOCUMENTATION_COMPLETE)
-    public static class Converter extends BaseStringConverter<EmailAddress>
-    {
-        protected Converter(Listener listener)
-        {
-            super(listener, EmailAddress.class, EmailAddress::parseEmailAddress);
-        }
     }
 
     /** The email address */

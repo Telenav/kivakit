@@ -1,9 +1,9 @@
 package com.telenav.kivakit.core.time;
 
-import com.telenav.kivakit.annotations.code.quality.CodeQuality;
+import com.telenav.kivakit.annotations.code.quality.TypeQuality;
 import com.telenav.kivakit.interfaces.time.Nanoseconds;
 
-import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.ensure.Ensure.ensure;
@@ -25,9 +25,9 @@ import static java.lang.Integer.MAX_VALUE;
  * @author jonathanl (shibo)
  */
 @SuppressWarnings("unused")
-@CodeQuality(stability = STABLE_EXTENSIBLE,
+@TypeQuality(stability = STABLE_EXTENSIBLE,
              testing = UNTESTED,
-             documentation = DOCUMENTATION_COMPLETE)
+             documentation = DOCUMENTED)
 public class Day extends BaseTime<Day>
 {
     /** The number of nanoseconds per day */
@@ -145,53 +145,36 @@ public class Day extends BaseTime<Day>
      * <p>
      * {@inheritDoc}
      */
+    @SuppressWarnings("UnnecessaryDefault")
     @Override
     public int asUnits()
     {
         var units = super.asUnits();
 
-        switch (type)
-        {
-            case DAY:
-            case DAY_OF_WEEK:
-            case DAY_OF_YEAR:
-            case DAY_OF_UNIX_EPOCH:
-                return units;
-
-            case DAY_OF_MONTH:
-                return units + 1;
-
-            default:
-                return unsupported();
-        }
+        return switch (type)
+            {
+                case DAY, DAY_OF_WEEK, DAY_OF_YEAR, DAY_OF_UNIX_EPOCH -> units;
+                case DAY_OF_MONTH -> units + 1;
+                default -> unsupported();
+            };
     }
 
     /**
      * Returns false if this day is invalid, true if it might be valid. If true is returned, the day might still be
      * invalid in some context, for example, the 31st day of the month doesn't exist for all months.
      */
+    @SuppressWarnings("UnnecessaryDefault")
     public boolean isValid()
     {
-        switch (type)
-        {
-            case DAY:
-                return asUnits() >= 0;
-
-            case DAY_OF_MONTH:
-                return intIsBetweenInclusive(asUnits(), 1, 31);
-
-            case DAY_OF_WEEK:
-                return intIsBetweenInclusive(asUnits(), 0, 6);
-
-            case DAY_OF_YEAR:
-                return intIsBetweenInclusive(asUnits(), 0, 365);
-
-            case DAY_OF_UNIX_EPOCH:
-                return intIsBetweenInclusive(asUnits(), 0, MAX_VALUE);
-
-            default:
-                return unsupported();
-        }
+        return switch (type)
+            {
+                case DAY -> asUnits() >= 0;
+                case DAY_OF_MONTH -> intIsBetweenInclusive(asUnits(), 1, 31);
+                case DAY_OF_WEEK -> intIsBetweenInclusive(asUnits(), 0, 6);
+                case DAY_OF_YEAR -> intIsBetweenInclusive(asUnits(), 0, 365);
+                case DAY_OF_UNIX_EPOCH -> intIsBetweenInclusive(asUnits(), 0, MAX_VALUE);
+                default -> unsupported();
+            };
     }
 
     /**
@@ -200,20 +183,12 @@ public class Day extends BaseTime<Day>
     @Override
     public Day maximum()
     {
-        switch (type)
-        {
-            case DAY_OF_WEEK:
-                return isoDayOfWeek(6);
-
-            case DAY_OF_UNIX_EPOCH:
-            case DAY:
-                return dayOfUnixEpoch((int) 1E9);
-
-            case DAY_OF_MONTH:
-            case DAY_OF_YEAR:
-            default:
-                return unsupported();
-        }
+        return switch (type)
+            {
+                case DAY_OF_WEEK -> isoDayOfWeek(6);
+                case DAY_OF_UNIX_EPOCH, DAY -> dayOfUnixEpoch((int) 1E9);
+                default -> unsupported();
+            };
     }
 
     /**
@@ -222,15 +197,11 @@ public class Day extends BaseTime<Day>
     @Override
     public Day minimum()
     {
-        switch (type)
-        {
-            case DAY_OF_MONTH:
-            case DAY_OF_YEAR:
-                return unsupported();
-
-            default:
-                return day(0);
-        }
+        return switch (type)
+            {
+                case DAY_OF_MONTH, DAY_OF_YEAR -> unsupported();
+                default -> day(0);
+            };
     }
 
     /**
@@ -266,7 +237,7 @@ public class Day extends BaseTime<Day>
     protected Topology topology()
     {
         return type() == DAY || type() == DAY_OF_UNIX_EPOCH
-                ? LINEAR
-                : CYCLIC;
+            ? LINEAR
+            : CYCLIC;
     }
 }

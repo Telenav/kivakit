@@ -18,13 +18,13 @@
 
 package com.telenav.kivakit.core.string;
 
-import com.telenav.kivakit.annotations.code.quality.CodeQuality;
+import com.telenav.kivakit.annotations.code.quality.TypeQuality;
 import com.telenav.kivakit.core.collections.map.VariableMap;
 import com.telenav.kivakit.core.internal.lexakai.DiagramString;
 import com.telenav.kivakit.interfaces.naming.Named;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
-import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.language.Classes.simpleName;
@@ -88,9 +88,9 @@ import static java.lang.Long.toHexString;
  * @see Named
  */
 @UmlClassDiagram(diagram = DiagramString.class)
-@CodeQuality(stability = STABLE,
+@TypeQuality(stability = STABLE,
              testing = UNTESTED,
-             documentation = DOCUMENTATION_COMPLETE)
+             documentation = DOCUMENTED)
 public class Formatter
 {
     /**
@@ -216,56 +216,20 @@ public class Formatter
                         // Interpret the command
                         switch (command)
                         {
-                            case "object":
-                                builder.append(new ObjectFormatter(arguments[argumentIndex++]));
-                                break;
-
-                            case "string":
-                                builder.append(toHumanizedString(arguments[argumentIndex++]));
-                                break;
-
-                            case "lower":
-                                builder.append(toHumanizedString(arguments[argumentIndex++]).toLowerCase());
-                                break;
-
-                            case "upper":
-                                builder.append(toHumanizedString(arguments[argumentIndex++]).toUpperCase());
-                                break;
-
-                            case "integer":
-                            case "long":
-                                builder.append(arguments[argumentIndex++]);
-                                break;
-
-                            case "float":
-                                builder.append(formatDouble((float) arguments[argumentIndex++], 1));
-                                break;
-
-                            case "double":
-                                builder.append(formatDouble((double) arguments[argumentIndex++], 1));
-                                break;
-
-                            case "right":
-                                builder.append(rightAlign(arguments[argumentIndex++].toString(), 16, ' '));
-                                break;
-
-                            case "left":
-                                builder.append(leftAlign(arguments[argumentIndex++].toString(), 16, ' '));
-                                break;
-
-                            case "hex":
-                                builder.append(toHexString(parseLong(arguments[argumentIndex++].toString())));
-                                break;
-
-                            case "binary":
+                            case "object" -> builder.append(new ObjectFormatter(arguments[argumentIndex++]));
+                            case "string" -> builder.append(toHumanizedString(arguments[argumentIndex++]));
+                            case "lower" -> builder.append(toHumanizedString(arguments[argumentIndex++]).toLowerCase());
+                            case "upper" -> builder.append(toHumanizedString(arguments[argumentIndex++]).toUpperCase());
+                            case "integer", "long" -> builder.append(arguments[argumentIndex++]);
+                            case "float" -> builder.append(formatDouble((float) arguments[argumentIndex++], 1));
+                            case "double" -> builder.append(formatDouble((double) arguments[argumentIndex++], 1));
+                            case "right" -> builder.append(rightAlign(arguments[argumentIndex++].toString(), 16, ' '));
+                            case "left" -> builder.append(leftAlign(arguments[argumentIndex++].toString(), 16, ' '));
+                            case "hex" -> builder.append(toHexString(parseLong(arguments[argumentIndex++].toString())));
+                            case "binary" ->
                                 builder.append(toBinaryString(parseLong(arguments[argumentIndex++].toString())));
-                                break;
-
-                            case "debug":
-                                builder.append(toDebugString(arguments[argumentIndex++]));
-                                break;
-
-                            case "class":
+                            case "debug" -> builder.append(toDebugString(arguments[argumentIndex++]));
+                            case "class" ->
                             {
                                 var cast = cast(arguments[argumentIndex++], Class.class);
                                 if (cast == null)
@@ -273,10 +237,8 @@ public class Formatter
                                     return "Expected parameter of type '" + Class.class + "' for 'class'";
                                 }
                                 builder.append(simpleName(cast));
-                                break;
                             }
-
-                            case "flag":
+                            case "flag" ->
                             {
                                 var cast = cast(arguments[argumentIndex++], Boolean.class);
                                 if (cast == null)
@@ -284,10 +246,8 @@ public class Formatter
                                     return "Expected parameter of type '" + Boolean.class + "' for 'flag'";
                                 }
                                 builder.append(cast ? "enabled" : "disabled");
-                                break;
                             }
-
-                            case "name":
+                            case "name" ->
                             {
                                 var named = cast(arguments[argumentIndex++], Named.class);
                                 if (named == null)
@@ -297,14 +257,10 @@ public class Formatter
                                 builder.append("'");
                                 builder.append(named.name());
                                 builder.append("'");
-                                break;
                             }
-
-                            case "nowrap":
-                                builder.append("${nowrap}");
-                                break;
-
-                            default:
+                            case "nowrap" -> builder.append("${nowrap}");
+                            default ->
+                            {
                                 try
                                 {
                                     var position = parseInt(command);
@@ -321,7 +277,7 @@ public class Formatter
                                 {
                                     return "Unrecognized interpolation '" + command + "' in: " + message;
                                 }
-                                break;
+                            }
                         }
                     }
 

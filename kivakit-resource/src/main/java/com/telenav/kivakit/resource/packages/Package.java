@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.resource.packages;
 
-import com.telenav.kivakit.annotations.code.quality.CodeQuality;
+import com.telenav.kivakit.annotations.code.quality.TypeQuality;
 import com.telenav.kivakit.core.collections.list.ObjectList;
 import com.telenav.kivakit.core.language.packaging.PackageReference;
 import com.telenav.kivakit.core.locale.Locale;
@@ -45,7 +45,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.net.URI;
 
-import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.quality.Stability.UNSTABLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.ensure.Ensure.fail;
@@ -93,7 +93,7 @@ import static java.util.Objects.hash;
  *     <li>{@link #parent()}</li>
  *     <li>{@link #path()}</li>
  *     <li>{@link #reference()}</li>
- *     <li>{@link #uri()}</li>
+ *     <li>{@link #asUri()}</li>
  * </ul>
  *
  * <p><b>Access</b></p>
@@ -117,9 +117,9 @@ import static java.util.Objects.hash;
  */
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramResourceType.class)
-@CodeQuality(stability = UNSTABLE,
+@TypeQuality(stability = UNSTABLE,
              testing = UNTESTED,
-             documentation = DOCUMENTATION_COMPLETE)
+             documentation = DOCUMENTED)
 public class Package extends BaseRepeater implements ResourceFolder<Package>
 {
     /**
@@ -157,6 +157,15 @@ public class Package extends BaseRepeater implements ResourceFolder<Package>
     {
         listener.listenTo(this);
         this.packagePath = packagePath;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public URI asUri()
+    {
+        return packagePath.asUri();
     }
 
     /**
@@ -369,14 +378,5 @@ public class Package extends BaseRepeater implements ResourceFolder<Package>
     public String toString()
     {
         return packagePath.toString();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public URI uri()
-    {
-        return packagePath.uri();
     }
 }

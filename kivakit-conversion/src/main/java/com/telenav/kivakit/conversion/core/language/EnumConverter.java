@@ -18,16 +18,17 @@
 
 package com.telenav.kivakit.conversion.core.language;
 
-import com.telenav.kivakit.annotations.code.quality.CodeQuality;
+import com.telenav.kivakit.annotations.code.quality.TypeQuality;
 import com.telenav.kivakit.conversion.BaseStringConverter;
 import com.telenav.kivakit.conversion.internal.lexakai.DiagramConversionLanguage;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
-import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
+import static com.telenav.kivakit.core.messaging.Listener.throwingListener;
 import static com.telenav.kivakit.core.string.CaseFormat.lowerHyphenToUpperUnderscore;
 
 /**
@@ -37,9 +38,9 @@ import static com.telenav.kivakit.core.string.CaseFormat.lowerHyphenToUpperUnder
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramConversionLanguage.class)
-@CodeQuality(stability = STABLE,
+@TypeQuality(stability = STABLE,
              testing = UNTESTED,
-             documentation = DOCUMENTATION_COMPLETE)
+             documentation = DOCUMENTED)
 public class EnumConverter<T extends Enum<T>> extends BaseStringConverter<T>
 {
     /** The type of enum */
@@ -53,6 +54,11 @@ public class EnumConverter<T extends Enum<T>> extends BaseStringConverter<T>
     {
         super(listener, enumType);
         this.enumType = ensureNotNull(enumType);
+    }
+
+    public EnumConverter(Class<T> enumType)
+    {
+        this(throwingListener(), enumType);
     }
 
     /**

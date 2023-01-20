@@ -76,7 +76,7 @@ To enable debugging for one or more classes or packages in your application at r
 
 The *Debug* constructor inspects the call stack (only once per class) to see if the class that is constructing the *Debug* object matches a list of simplified regular expression patterns in the **KIVAKIT_DEBUG** system property. If there is a match, then debugging is enabled for that class.
 
-In simplified regular expression patterns, dot (.) matches a literal dot instead of any character and star (\*) matches zero or more characters as if it was ".\*". Otherwise all regular expression features work as always.
+In simplified regular expression patterns, dot (.) matches a literal dot instead of any character and star (\*) matches zero or more characters as if it was ".\*". Otherwise, all regular expression features work as always.
 
 Multiple patterns can be separated by commas, *not* negates the matching of a pattern, and *extends* can be used to match subclasses.
 

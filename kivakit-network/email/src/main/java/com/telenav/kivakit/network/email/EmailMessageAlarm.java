@@ -33,7 +33,6 @@ public abstract class EmailMessageAlarm extends MessageAlarm implements Registry
      * Composes and sends an email for this alarm
      * </p>
      */
-    @SuppressWarnings("resource")
     @Override
     protected void onTrigger(Rate rate)
     {

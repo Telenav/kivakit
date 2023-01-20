@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.core.path;
 
-import com.telenav.kivakit.annotations.code.quality.CodeQuality;
+import com.telenav.kivakit.annotations.code.quality.TypeQuality;
 import com.telenav.kivakit.core.collections.list.ObjectList;
 import com.telenav.kivakit.core.internal.lexakai.DiagramPath;
 import com.telenav.kivakit.core.language.Streams;
@@ -34,14 +34,13 @@ import java.util.List;
 import java.util.function.Function;
 import java.util.stream.Stream;
 
-import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.collections.list.ObjectList.list;
 import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
 import static com.telenav.kivakit.core.language.Hash.hashMany;
 import static com.telenav.kivakit.core.language.Objects.areEqualPairs;
-import static java.lang.Math.min;
 
 /**
  * Abstraction of an immutable path of elements of a given type with an optional root element. Functional methods in
@@ -149,11 +148,11 @@ import static java.lang.Math.min;
  *
  * @author jonathanl (shibo)
  */
-@SuppressWarnings({ "UnusedReturnValue", "SpellCheckingInspection", "SwitchStatementWithTooFewBranches" })
+@SuppressWarnings({ "UnusedReturnValue", "SwitchStatementWithTooFewBranches" })
 @UmlClassDiagram(diagram = DiagramPath.class)
-@CodeQuality(stability = STABLE_EXTENSIBLE,
+@TypeQuality(stability = STABLE_EXTENSIBLE,
              testing = UNTESTED,
-             documentation = DOCUMENTATION_COMPLETE)
+             documentation = DOCUMENTED)
 public abstract class Path<Element extends Comparable<Element>> implements
         Iterable<Element>,
         Comparable<Path<Element>>,
@@ -189,14 +188,11 @@ public abstract class Path<Element extends Comparable<Element>> implements
     @Override
     public String asString(@NotNull Format format)
     {
-        switch (format)
-        {
-            case FILESYSTEM:
-                return elements.join(File.separator);
-
-            default:
-                return elements.join("/");
-        }
+        return switch (format)
+            {
+                case FILESYSTEM -> elements.join(File.separator);
+                default -> elements.join("/");
+            };
     }
 
     /**
@@ -207,13 +203,17 @@ public abstract class Path<Element extends Comparable<Element>> implements
     {
         var a = elements();
         var b = that.elements();
-        for (int i = 0; i < min(a.size(), b.size()); i++)
+        if (a.size() == b.size())
         {
-            var result = a.get(i).compareTo(b.get(i));
-            if (result != 0)
+            for (int i = 0; i < a.size(); i++)
             {
-                return result;
+                var result = a.get(i).compareTo(b.get(i));
+                if (result != 0)
+                {
+                    return result;
+                }
             }
+            return 0;
         }
         return a.size() < b.size() ? -1 : 1;
     }
@@ -538,17 +538,12 @@ public abstract class Path<Element extends Comparable<Element>> implements
      */
     public Path<Element> withoutFirst()
     {
-        switch (size())
-        {
-            case 0:
-                return null;
-
-            case 1:
-                return isAbsolute() ? root() : emptyPath();
-
-            default:
-                return subpath(1, size());
-        }
+        return switch (size())
+            {
+                case 0 -> null;
+                case 1 -> isAbsolute() ? root() : emptyPath();
+                default -> subpath(1, size());
+            };
     }
 
     /**
@@ -560,18 +555,22 @@ public abstract class Path<Element extends Comparable<Element>> implements
     {
         switch (size())
         {
-            case 0:
+            case 0 ->
+            {
                 return null;
-
-            case 1:
+            }
+            case 1 ->
+            {
                 return isAbsolute() ? root() : emptyPath();
-
-            default:
+            }
+            default ->
+            {
                 if ("".equals(last()))
                 {
                     return subpath(0, size() - 2);
                 }
                 return subpath(0, size() - 1);
+            }
         }
     }
 

@@ -1,6 +1,6 @@
 package com.telenav.kivakit.core.function;
 
-import com.telenav.kivakit.annotations.code.quality.CodeQuality;
+import com.telenav.kivakit.annotations.code.quality.TypeQuality;
 import com.telenav.kivakit.core.code.UncheckedVoidCode;
 import com.telenav.kivakit.core.function.arities.PentaFunction;
 import com.telenav.kivakit.core.function.arities.TetraFunction;
@@ -20,7 +20,7 @@ import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.stream.Stream;
 
-import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_INSUFFICIENT;
 import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
@@ -110,13 +110,13 @@ import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
  * @author viniciusluisr
  * @see <a href="https://github.com/viniciusluisr/improved-optional">improved-optional</a>
  */
-@SuppressWarnings("unused") @CodeQuality(stability = STABLE_EXTENSIBLE,
+@SuppressWarnings("unused") @TypeQuality(stability = STABLE_EXTENSIBLE,
                                          testing = TESTING_INSUFFICIENT,
-                                         documentation = DOCUMENTATION_COMPLETE)
+                                         documentation = DOCUMENTED)
 public class Maybe<Value> implements
-        Presence,
-        TryCatchTrait,
-        Source<Value>
+    Presence,
+    TryCatchTrait,
+    Source<Value>
 {
     /**
      * Returns maybe value for null
@@ -170,8 +170,8 @@ public class Maybe<Value> implements
     public Maybe<Value> absentIf(Function<Value, Boolean> predicate)
     {
         return tryCatch(() -> value != null && ensureNotNull(predicate).apply(value)
-                ? newAbsent()
-                : this);
+            ? newAbsent()
+            : this);
     }
 
     /**
@@ -222,8 +222,8 @@ public class Maybe<Value> implements
     public <Output> Maybe<Output> apply(Function<? super Value, ? extends Maybe<? extends Output>> function)
     {
         return tryCatchDefault(() -> isPresent()
-                ? ensureNotNull((Maybe<Output>) function.apply(value))
-                : newAbsent(), newAbsent());
+            ? ensureNotNull((Maybe<Output>) function.apply(value))
+            : newAbsent(), newAbsent());
     }
 
     /**
@@ -316,8 +316,8 @@ public class Maybe<Value> implements
     }
 
     /**
-     * Returns true if there is a value present and it is not {@link Boolean#FALSE}. The check for false allows false
-     * monads to be treated as if they were null.
+     * Returns true if there is a value present, and it is not {@link Boolean#FALSE}. The check for false allows monads
+     * to be treated as if they were null.
      */
     @Override
     public boolean isPresent()
@@ -357,11 +357,11 @@ public class Maybe<Value> implements
      * @return The mapped value or {@link #absent()}
      */
     public <ResultType> Maybe<ResultType> map(
-            Function<? super Value, ? extends ResultType> mapper)
+        Function<? super Value, ? extends ResultType> mapper)
     {
         return tryCatchDefault(() -> isPresent()
-                ? newMaybe(ensureNotNull(mapper).apply(value))
-                : newAbsent(), newAbsent());
+            ? newMaybe(ensureNotNull(mapper).apply(value))
+            : newAbsent(), newAbsent());
     }
 
     /**
@@ -374,8 +374,8 @@ public class Maybe<Value> implements
      * {@link #absent()}.
      */
     public <Argument2, ResultType> Maybe<ResultType> map(
-            BiFunction<Value, Argument2, ResultType> function,
-            Argument2 argument2)
+        BiFunction<Value, Argument2, ResultType> function,
+        Argument2 argument2)
     {
         if (isPresent() && value != null)
         {
@@ -396,9 +396,9 @@ public class Maybe<Value> implements
      * {@link #absent()}.
      */
     public <Argument2, Argument3, ResultType> Maybe<ResultType> map(
-            TriFunction<Value, Argument2, Argument3, ResultType> function,
-            Argument2 argument2,
-            Argument3 argument3)
+        TriFunction<Value, Argument2, Argument3, ResultType> function,
+        Argument2 argument2,
+        Argument3 argument3)
     {
         if (isPresent() && argument2 != null && argument3 != null)
         {
@@ -420,10 +420,10 @@ public class Maybe<Value> implements
      * {@link #absent()}.
      */
     public <Argument2, Argument3, Argument4, ResultType> Maybe<ResultType> map(
-            TetraFunction<Value, Argument2, Argument3, Argument4, ResultType> function,
-            Argument2 argument2,
-            Argument3 argument3,
-            Argument4 argument4)
+        TetraFunction<Value, Argument2, Argument3, Argument4, ResultType> function,
+        Argument2 argument2,
+        Argument3 argument3,
+        Argument4 argument4)
     {
         if (isPresent() && argument2 != null && argument3 != null && argument4 != null)
         {
@@ -446,11 +446,11 @@ public class Maybe<Value> implements
      * {@link #absent()}.
      */
     public <Argument2, Argument3, Argument4, Argument5, ResultType> Maybe<ResultType> map(
-            PentaFunction<Value, Argument2, Argument3, Argument4, Argument5, ResultType> function,
-            Argument2 argument2,
-            Argument3 argument3,
-            Argument4 argument4,
-            Argument5 argument5)
+        PentaFunction<Value, Argument2, Argument3, Argument4, Argument5, ResultType> function,
+        Argument2 argument2,
+        Argument3 argument3,
+        Argument4 argument4,
+        Argument5 argument5)
     {
         if (isPresent() && argument2 != null && argument3 != null && argument4 != null && argument5 != null)
         {
@@ -471,11 +471,11 @@ public class Maybe<Value> implements
      * @return The mapped value or {@link #absent()}
      */
     public <To, ResultType extends Future<To>> Maybe<ResultType> mapTask(
-            Function<? super Value, ? extends ResultType> mapper)
+        Function<? super Value, ? extends ResultType> mapper)
     {
         return tryCatchDefault(() -> isPresent()
-                ? newMaybe(ensureNotNull(mapper).apply(value))
-                : newAbsent(), newAbsent());
+            ? newMaybe(ensureNotNull(mapper).apply(value))
+            : newAbsent(), newAbsent());
     }
 
     /**
@@ -516,8 +516,8 @@ public class Maybe<Value> implements
     public Value orDefaultTo(Value defaultValue)
     {
         return tryCatch(() -> isPresent()
-                ? value
-                : defaultValue);
+            ? value
+            : defaultValue);
     }
 
     /**
@@ -529,8 +529,8 @@ public class Maybe<Value> implements
     public Value orDefaultTo(Source<Value> defaultValue)
     {
         return tryCatch(() -> isPresent()
-                ? value
-                : defaultValue.get());
+            ? value
+            : defaultValue.get());
     }
 
     /**
@@ -542,8 +542,8 @@ public class Maybe<Value> implements
     public Maybe<Value> orMaybe(Source<Value> source)
     {
         return tryCatch(() -> isPresent()
-                ? this
-                : newMaybe(ensureNotNull(source).get()));
+            ? this
+            : newMaybe(ensureNotNull(source).get()));
     }
 
     /**
@@ -555,8 +555,8 @@ public class Maybe<Value> implements
     public Maybe<Value> orMaybe(Value value)
     {
         return tryCatch(() -> isPresent()
-                ? this
-                : newMaybe(value));
+            ? this
+            : newMaybe(value));
     }
 
     /**
@@ -596,8 +596,8 @@ public class Maybe<Value> implements
     public Maybe<Value> presentIf(Function<Value, Boolean> predicate)
     {
         return tryCatch(() -> value != null && ensureNotNull(predicate).apply(value)
-                ? this
-                : newAbsent());
+            ? this
+            : newAbsent());
     }
 
     /**
@@ -624,11 +624,11 @@ public class Maybe<Value> implements
      * {@link #absent()}.
      */
     public <Argument2, Argument3, Argument4, Argument5> Maybe<Value> then(
-            PentaFunction<Value, Argument2, Argument3, Argument4, Argument5, Value> function,
-            Argument2 argument2,
-            Argument3 argument3,
-            Argument4 argument4,
-            Argument5 argument5)
+        PentaFunction<Value, Argument2, Argument3, Argument4, Argument5, Value> function,
+        Argument2 argument2,
+        Argument3 argument3,
+        Argument4 argument4,
+        Argument5 argument5)
     {
         if (isPresent() && argument2 != null && argument3 != null && argument4 != null && argument5 != null)
         {
@@ -650,10 +650,10 @@ public class Maybe<Value> implements
      * {@link #absent()}.
      */
     public <Argument2, Argument3, Argument4> Maybe<Value> then(
-            TetraFunction<Value, Argument2, Argument3, Argument4, Value> function,
-            Argument2 argument2,
-            Argument3 argument3,
-            Argument4 argument4)
+        TetraFunction<Value, Argument2, Argument3, Argument4, Value> function,
+        Argument2 argument2,
+        Argument3 argument3,
+        Argument4 argument4)
     {
         if (isPresent() && argument2 != null && argument3 != null && argument4 != null)
         {
@@ -674,9 +674,9 @@ public class Maybe<Value> implements
      * {@link #absent()}.
      */
     public <Argument2, Argument3> Maybe<Value> then(
-            TriFunction<Value, Argument2, Argument3, Value> function,
-            Argument2 argument2,
-            Argument3 argument3)
+        TriFunction<Value, Argument2, Argument3, Value> function,
+        Argument2 argument2,
+        Argument3 argument3)
     {
         if (isPresent() && argument2 != null && argument3 != null)
         {
@@ -696,8 +696,8 @@ public class Maybe<Value> implements
      * {@link #absent()}.
      */
     public <Argument2> Maybe<Value> then(
-            BiFunction<Value, Argument2, Value> function,
-            Argument2 argument2)
+        BiFunction<Value, Argument2, Value> function,
+        Argument2 argument2)
     {
         if (isPresent() && value != null)
         {

@@ -1,7 +1,7 @@
 package com.telenav.kivakit.core.vm;
 
 import com.telenav.cactus.metadata.BuildMetadata;
-import com.telenav.kivakit.annotations.code.quality.CodeQuality;
+import com.telenav.kivakit.annotations.code.quality.TypeQuality;
 import com.telenav.kivakit.core.collections.map.VariableMap;
 import com.telenav.kivakit.core.os.OperatingSystem;
 import com.telenav.kivakit.core.project.Project;
@@ -10,7 +10,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import static com.telenav.cactus.metadata.BuildMetadata.buildMetaData;
-import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.collections.map.VariableMap.variableMap;
@@ -25,9 +25,9 @@ import static com.telenav.kivakit.core.vm.JavaVirtualMachine.javaVirtualMachine;
  *
  * @author jonathanl (shibo)
  */
-@CodeQuality(stability = STABLE_EXTENSIBLE,
+@TypeQuality(stability = STABLE_EXTENSIBLE,
              testing = UNTESTED,
-             documentation = DOCUMENTATION_COMPLETE)
+             documentation = DOCUMENTED)
 public class Properties
 {
     /** A map from root package name to project properties */

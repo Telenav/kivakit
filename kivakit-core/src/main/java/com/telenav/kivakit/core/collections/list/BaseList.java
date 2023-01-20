@@ -18,10 +18,11 @@
 
 package com.telenav.kivakit.core.collections.list;
 
-import com.telenav.kivakit.annotations.code.quality.CodeQuality;
+import com.telenav.kivakit.annotations.code.quality.TypeQuality;
 import com.telenav.kivakit.core.collections.BaseCollection;
 import com.telenav.kivakit.core.internal.lexakai.DiagramCollections;
 import com.telenav.kivakit.core.string.AsciiArt;
+import com.telenav.kivakit.core.string.AsciiArt.TextBoxStyle;
 import com.telenav.kivakit.core.value.count.Count;
 import com.telenav.kivakit.core.value.count.Maximum;
 import com.telenav.kivakit.interfaces.collection.Appendable;
@@ -48,7 +49,7 @@ import java.util.function.Predicate;
 import java.util.function.UnaryOperator;
 import java.util.stream.Stream;
 
-import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_INSUFFICIENT;
 import static com.telenav.kivakit.core.string.AsciiArt.textBox;
@@ -245,9 +246,9 @@ import static com.telenav.kivakit.core.value.count.Maximum.MAXIMUM;
  */
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramCollections.class, excludeAllSuperTypes = true)
-@CodeQuality(stability = STABLE_EXTENSIBLE,
+@TypeQuality(stability = STABLE_EXTENSIBLE,
              testing = TESTING_INSUFFICIENT,
-             documentation = DOCUMENTATION_COMPLETE)
+             documentation = DOCUMENTED)
 public abstract class BaseList<Value> extends BaseCollection<Value> implements
     Appendable<Value>,
     Copyable<Value, BaseList<Value>>,
@@ -563,13 +564,13 @@ public abstract class BaseList<Value> extends BaseCollection<Value> implements
     @Override
     public BaseList<Value> prepending(Iterable<? extends Value> values)
     {
-        return (BaseList<Value>) Appendable.super.appending(values);
+        return (BaseList<Value>) Prependable.super.prepending(values);
     }
 
     @Override
     public BaseList<Value> prepending(Value value)
     {
-        return (BaseList<Value>) Appendable.super.appending(value);
+        return (BaseList<Value>) Prependable.super.prepending(value);
     }
 
     /**
@@ -709,6 +710,16 @@ public abstract class BaseList<Value> extends BaseCollection<Value> implements
     public String titledBox(String title)
     {
         return textBox(title, join("\n"));
+    }
+
+    public String titledBox(TextBoxStyle style, String title)
+    {
+        return textBox(style, title, join("\n"));
+    }
+
+    public String titledBox(TextBoxStyle style, String title, Object... arguments)
+    {
+        return titledBox(style, format(title, arguments));
     }
 
     /**

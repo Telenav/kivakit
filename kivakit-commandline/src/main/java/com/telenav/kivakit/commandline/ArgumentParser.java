@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.commandline;
 
-import com.telenav.kivakit.annotations.code.quality.CodeQuality;
+import com.telenav.kivakit.annotations.code.quality.TypeQuality;
 import com.telenav.kivakit.commandline.internal.lexakai.DiagramArgument;
 import com.telenav.kivakit.commandline.internal.lexakai.DiagramCommandLine;
 import com.telenav.kivakit.conversion.Converter;
@@ -31,7 +31,7 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlAggregation;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
 
-import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.commandline.Quantifier.ONE_OR_MORE;
@@ -101,9 +101,9 @@ import static com.telenav.kivakit.core.language.reflection.Type.typeForClass;
 @SuppressWarnings({ "unused", "DuplicatedCode" })
 @UmlClassDiagram(diagram = DiagramArgument.class)
 @UmlClassDiagram(diagram = DiagramCommandLine.class, includeMembers = false)
-@CodeQuality(stability = STABLE_EXTENSIBLE,
+@TypeQuality(stability = STABLE_EXTENSIBLE,
              testing = UNTESTED,
-             documentation = DOCUMENTATION_COMPLETE)
+             documentation = DOCUMENTED)
 public class ArgumentParser<T>
 {
     /**
@@ -129,11 +129,10 @@ public class ArgumentParser<T>
      *
      * @author jonathanl (shibo)
      */
-    @SuppressWarnings("DuplicatedCode")
     @UmlClassDiagram(diagram = DiagramArgument.class)
-    @CodeQuality(stability = STABLE_EXTENSIBLE,
+    @TypeQuality(stability = STABLE_EXTENSIBLE,
                  testing = UNTESTED,
-                 documentation = DOCUMENTATION_COMPLETE)
+                 documentation = DOCUMENTED)
     public static class Builder<T>
     {
         /** The parser that we're building */

@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.resource;
 
-import com.telenav.kivakit.annotations.code.quality.CodeQuality;
+import com.telenav.kivakit.annotations.code.quality.TypeQuality;
 import com.telenav.kivakit.core.collections.list.ObjectList;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.value.count.Count;
@@ -33,7 +33,7 @@ import com.telenav.kivakit.resource.internal.lexakai.DiagramResourcePath;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import org.jetbrains.annotations.NotNull;
 
-import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.collections.list.ObjectList.list;
@@ -119,9 +119,9 @@ import static com.telenav.kivakit.core.value.count.Count.count;
  */
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramResourcePath.class)
-@CodeQuality(stability = STABLE_EXTENSIBLE,
+@TypeQuality(stability = STABLE_EXTENSIBLE,
              testing = UNTESTED,
-             documentation = DOCUMENTATION_COMPLETE)
+             documentation = DOCUMENTED)
 public class Extension implements
     Named,
     Matchable<ResourcePathed>,
@@ -133,7 +133,6 @@ public class Extension implements
 
     public static final Extension CSV = parseExtension(".csv");
 
-    @SuppressWarnings("SpellCheckingInspection")
     public static final Extension GEOJSON = parseExtension(".geojson");
 
     public static final Extension GRAPH = parseExtension(".graph");
@@ -196,7 +195,6 @@ public class Extension implements
     /**
      * Returns all extensions that are well-known (to KivaKit)
      */
-    @SuppressWarnings("DuplicatedCode")
     public static ObjectList<Extension> allExtensions()
     {
         return list(CLASS, CSV, GEOJSON, GRAPH, GRAPH_GZIP,

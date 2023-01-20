@@ -1,6 +1,6 @@
 package com.telenav.kivakit.interfaces.time;
 
-import com.telenav.kivakit.annotations.code.quality.CodeQuality;
+import com.telenav.kivakit.annotations.code.quality.TypeQuality;
 import com.telenav.kivakit.interfaces.code.Callback;
 import com.telenav.kivakit.interfaces.internal.lexakai.DiagramTime;
 import com.telenav.kivakit.interfaces.string.StringFormattable;
@@ -14,7 +14,7 @@ import java.util.TimeZone;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.interfaces.time.WakeState.COMPLETED;
@@ -90,14 +90,14 @@ import static java.util.concurrent.TimeUnit.MILLISECONDS;
  */
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramTime.class)
-@CodeQuality(stability = STABLE,
+@TypeQuality(stability = STABLE,
              testing = UNTESTED,
-             documentation = DOCUMENTATION_COMPLETE)
+             documentation = DOCUMENTED)
 public interface LengthOfTime<Duration extends LongValued & LengthOfTime<Duration>> extends
-        LongValued,
-        Comparable<LengthOfTime<?>>,
-        StringFormattable,
-        TimeMeasurement
+    LongValued,
+    Comparable<LengthOfTime<?>>,
+    StringFormattable,
+    TimeMeasurement
 {
 
     /**
@@ -112,54 +112,15 @@ public interface LengthOfTime<Duration extends LongValued & LengthOfTime<Duratio
      * {@inheritDoc}
      */
     @Override
-    @SuppressWarnings({ "SpellCheckingInspection", "DuplicatedCode" })
     default String asString(@NotNull Format format)
     {
-        switch (format)
-        {
-            case FILESYSTEM:
-                return asHumanReadableString().replace(' ', '_');
-
-            case PROGRAMMATIC:
-                return String.valueOf(milliseconds());
-
-            case COMPACT:
+        return switch (format)
             {
-
-                String dateFormatPattern;
-                if (asHours() > 1.0)
-                {
-                    dateFormatPattern = "H:mm:ss";
-                }
-                else if (asMinutes() > 1.0)
-                {
-                    dateFormatPattern = "m:ss'm'";
-                }
-                else if (asSeconds() > 1.0)
-                {
-                    dateFormatPattern = "s's'";
-                }
-                else
-                {
-                    dateFormatPattern = "S'ms'";
-                }
-                SimpleDateFormat dateFormat = new SimpleDateFormat(dateFormatPattern);
-                dateFormat.setTimeZone(TimeZone.getTimeZone("GMT"));
-                Date date = new Date(milliseconds());
-                return dateFormat.format(date);
-            }
-
-            case DEBUG:
-            case USER_SINGLE_LINE:
-            case USER_LABEL:
-            case HTML:
-            case TO_STRING:
-            case LOG:
-            case USER_MULTILINE:
-            case TEXT:
-            default:
-                return asHumanReadableString();
-        }
+                case FILESYSTEM -> asHumanReadableString().replace(' ', '_');
+                case PROGRAMMATIC -> String.valueOf(milliseconds());
+                case COMPACT -> asCompactString();
+                default -> asHumanReadableString();
+            };
     }
 
     /**
@@ -385,5 +346,31 @@ public interface LengthOfTime<Duration extends LongValued & LengthOfTime<Duratio
                 onTimer.call(timer);
             }
         }, milliseconds());
+    }
+
+    @NotNull
+    private String asCompactString()
+    {
+        String dateFormatPattern;
+        if (asHours() > 1.0)
+        {
+            dateFormatPattern = "H:mm:ss";
+        }
+        else if (asMinutes() > 1.0)
+        {
+            dateFormatPattern = "m:ss'm'";
+        }
+        else if (asSeconds() > 1.0)
+        {
+            dateFormatPattern = "s's'";
+        }
+        else
+        {
+            dateFormatPattern = "S'ms'";
+        }
+        SimpleDateFormat dateFormat = new SimpleDateFormat(dateFormatPattern);
+        dateFormat.setTimeZone(TimeZone.getTimeZone("GMT"));
+        Date date = new Date(milliseconds());
+        return dateFormat.format(date);
     }
 }

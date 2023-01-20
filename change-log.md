@@ -1,5 +1,41 @@
 # KivaKit Change Log
 
+## Version 1.13.0 (2023.01.20) "transparent dinosaur"
+
+## Administrative
+
+ - code analysis and cleanup
+ - documentation improvements
+
+## Core
+
+ - moved nested converters to top level
+ - provide default constructors for converters that throw
+ - corrected time formatting/parsing in BaseTimeConverter
+ - added EpochTimeConverterTest
+ - added open vs closed boxes to AsciiArt
+ - Time.inTimeZone() -> asLocalTime()
+ - added KivaKitTimeFormats.KIVAKIT_UTC_DATE_TIME, KivaKitUtcTimeConverter, test
+ - added Objects.areNull(), Objects.isAnyNull() -> areAnyNull()
+ - added Package.asUri()
+ - added @Register annotation for marking supertype registrations
+ - added registry and settings dumps to startup information
+ - added Escape.unescapeSql()
+ - added StringList.lines(), trim(), tail(), doubleSpaced()
+ - added SettingsStore.asStringList()
+ - added quoting support for csv columns with type string
+ - repackaged and refactored (minor) time converters for clarity
+
+## Fixes
+
+ - fixed threading problems in setting stores
+ - fixed casting problem in MessageList
+ - fixed multi-line formatting problem in ObjectFormatter
+ - fixed registry search code and threading issues
+ - fixed datatimeconverter test
+
+-----------------------------------------------------------------------------------------------------------------------
+
 ## Version 1.12.0 (2023.01.12) "transparent monkey"
 
 ### Core
@@ -39,6 +75,8 @@
 
  - Provided implementation of last modified time for StringResource
  
+-----------------------------------------------------------------------------------------------------------------------
+
 ## Version 1.11.0 (2023.01.09) "happy beanbag"
 
 ### Bug Fixes

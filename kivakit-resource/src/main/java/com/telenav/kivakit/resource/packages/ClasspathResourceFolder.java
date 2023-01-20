@@ -1,9 +1,11 @@
 package com.telenav.kivakit.resource.packages;
 
-import com.telenav.kivakit.annotations.code.quality.CodeQuality;
+import com.telenav.kivakit.annotations.code.quality.TypeQuality;
 import com.telenav.kivakit.core.collections.list.ObjectList;
 import com.telenav.kivakit.core.language.packaging.PackageReference;
 import com.telenav.kivakit.core.messaging.Listener;
+import com.telenav.kivakit.core.string.FormatProperty;
+import com.telenav.kivakit.core.string.ObjectFormatter;
 import com.telenav.kivakit.filesystem.Folder;
 import io.github.classgraph.Resource;
 
@@ -14,11 +16,12 @@ import java.nio.file.FileSystems;
 import java.util.HashMap;
 import java.util.Map;
 
-import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.quality.Stability.UNSTABLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.collections.list.ObjectList.list;
 import static com.telenav.kivakit.core.language.Hash.hashMany;
+import static com.telenav.kivakit.core.os.Console.console;
 import static com.telenav.kivakit.core.path.StringPath.parseStringPath;
 
 /**
@@ -27,9 +30,9 @@ import static com.telenav.kivakit.core.path.StringPath.parseStringPath;
  * @author jonathanl (shibo)
  */
 @SuppressWarnings("unused")
-@CodeQuality(stability = UNSTABLE,
+@TypeQuality(stability = UNSTABLE,
              testing = UNTESTED,
-             documentation = DOCUMENTATION_COMPLETE)
+             documentation = DOCUMENTED)
 public class ClasspathResourceFolder
 {
     /** Map from classpath element URI to {@link ClasspathResourceFolder} */
@@ -95,6 +98,7 @@ public class ClasspathResourceFolder
     private URI classpathRoot;
 
     /** The package path within the classpath root */
+    @FormatProperty
     private PackagePath packagePath;
 
     /**
@@ -106,12 +110,12 @@ public class ClasspathResourceFolder
     }
 
     @Override
-    public boolean equals(final Object object)
+    public boolean equals(Object object)
     {
         if (object instanceof ClasspathResourceFolder that)
         {
             return classpathRoot.equals(that.classpathRoot)
-                    && packagePath.equals(that.packagePath);
+                && packagePath.equals(that.packagePath);
         }
         return false;
     }
@@ -144,6 +148,12 @@ public class ClasspathResourceFolder
     public final ObjectList<ClasspathResource> resources()
     {
         return resources;
+    }
+
+    @Override
+    public String toString()
+    {
+        return new ObjectFormatter(this).toString();
     }
 
     /**

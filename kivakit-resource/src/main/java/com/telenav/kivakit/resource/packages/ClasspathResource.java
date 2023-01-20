@@ -1,6 +1,6 @@
 package com.telenav.kivakit.resource.packages;
 
-import com.telenav.kivakit.annotations.code.quality.CodeQuality;
+import com.telenav.kivakit.annotations.code.quality.TypeQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramModule;
 import com.telenav.kivakit.core.language.packaging.PackageReference;
 import com.telenav.kivakit.core.messaging.Listener;
@@ -19,7 +19,7 @@ import java.net.URI;
 import java.nio.file.Path;
 import java.nio.file.attribute.BasicFileAttributes;
 
-import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.quality.Stability.UNSTABLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.language.Try.tryCatch;
@@ -37,7 +37,7 @@ import static java.nio.file.Files.readAttributes;
  * <p><b>Attributes</b></p>
  *
  * <ul>
- *     <li>{@link #uri()} - The {@link URI} to the resource</li>
+ *     <li>{@link #asUri()} - The {@link URI} to the resource</li>
  *     <li>{@link #packageReference()} - The package where the resource resides</li>
  *     <li>{@link #javaPath()} - The full package path to the resource</li>
  *     <li>{@link #lastModified()} - The time of the last modification to the resource</li>
@@ -50,9 +50,9 @@ import static java.nio.file.Files.readAttributes;
  */
 @SuppressWarnings({ "unused", "UnusedReturnValue" })
 @UmlClassDiagram(diagram = DiagramModule.class)
-@CodeQuality(stability = UNSTABLE,
+@TypeQuality(stability = UNSTABLE,
              testing = UNTESTED,
-             documentation = DOCUMENTATION_COMPLETE)
+             documentation = DOCUMENTED)
 public class ClasspathResource implements ResourcePathed
 {
     public static ClasspathResource classpathResource(Listener listener, Resource resource)
@@ -185,7 +185,7 @@ public class ClasspathResource implements ResourcePathed
      */
     public ResourcePath resourcePath()
     {
-        return parseResourcePath(throwingListener(), uri());
+        return parseResourcePath(throwingListener(), asUri());
     }
 
     /**
@@ -207,7 +207,7 @@ public class ClasspathResource implements ResourcePathed
      * Returns the URI of the resource
      */
     @Override
-    public URI uri()
+    public URI asUri()
     {
         return uri;
     }

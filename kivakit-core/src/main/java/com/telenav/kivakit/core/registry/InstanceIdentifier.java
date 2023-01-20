@@ -18,20 +18,18 @@
 
 package com.telenav.kivakit.core.registry;
 
-import com.telenav.kivakit.annotations.code.quality.CodeQuality;
+import com.telenav.kivakit.annotations.code.quality.TypeQuality;
 import com.telenav.kivakit.core.collections.map.StringMap;
 import com.telenav.kivakit.core.internal.lexakai.DiagramRegistry;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeSuperTypes;
 
-import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
 import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
 import static com.telenav.kivakit.core.language.Classes.classForName;
-import static com.telenav.kivakit.core.language.Hash.hashMany;
-import static com.telenav.kivakit.core.language.Objects.areEqualPairs;
 import static com.telenav.kivakit.core.string.Paths.pathOptionalSuffix;
 import static com.telenav.kivakit.core.string.Paths.pathWithoutSuffix;
 
@@ -42,7 +40,7 @@ import static com.telenav.kivakit.core.string.Paths.pathWithoutSuffix;
  * <p><b>Creation</b></p>
  *
  * <ul>
- *     <li>{@link #singletonInstanceIdentifier()}</li>
+ *     <li>{@link #singleton()}</li>
  *     <li>{@link #instanceIdentifier(Enum)}</li>
  * </ul>
  *
@@ -52,9 +50,9 @@ import static com.telenav.kivakit.core.string.Paths.pathWithoutSuffix;
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramRegistry.class)
 @UmlExcludeSuperTypes
-@CodeQuality(stability = STABLE,
+@TypeQuality(stability = STABLE,
              testing = TESTING_NOT_NEEDED,
-             documentation = DOCUMENTATION_COMPLETE)
+             documentation = DOCUMENTED)
 public class InstanceIdentifier
 {
     /** Identifies the one and only instance of a singleton */
@@ -91,9 +89,9 @@ public class InstanceIdentifier
     public static <T extends Enum<T>> InstanceIdentifier instanceIdentifierForEnumName(Listener listener,
                                                                                        String enumValueName)
     {
-        if (enumValueName.equals(singletonInstanceIdentifier().name()))
+        if (enumValueName.equals(singleton().name()))
         {
-            return singletonInstanceIdentifier();
+            return singleton();
         }
         var identifier = instanceIdentifierForEnumName.get(enumValueName);
         if (identifier == null)
@@ -113,7 +111,7 @@ public class InstanceIdentifier
     /**
      * Returns an instance identifier for singleton objects
      */
-    public static InstanceIdentifier singletonInstanceIdentifier()
+    public static InstanceIdentifier singleton()
     {
         if (SINGLETON == null)
         {
@@ -168,9 +166,7 @@ public class InstanceIdentifier
     {
         if (object instanceof InstanceIdentifier that)
         {
-            return areEqualPairs(
-                this.enumIdentifier, that.enumIdentifier,
-                this.stringIdentifier, that.stringIdentifier);
+            return name().equals(that.name());
         }
         return false;
     }
@@ -181,7 +177,15 @@ public class InstanceIdentifier
     @Override
     public int hashCode()
     {
-        return hashMany(enumIdentifier, stringIdentifier);
+        return name().hashCode();
+    }
+
+    /**
+     * Returns true if this is the singleton instance identifier
+     */
+    public boolean isSingleton()
+    {
+        return this == SINGLETON;
     }
 
     /**
@@ -208,7 +212,7 @@ public class InstanceIdentifier
 
     RegistryKey key(Class<?> at)
     {
-        return new RegistryKey(at.getName() + ":" + identifier());
+        return new RegistryKey(at, this);
     }
 
     private String identifier()

@@ -18,8 +18,7 @@
 
 package com.telenav.kivakit.core.collections.set;
 
-import com.telenav.kivakit.annotations.code.quality.CodeQuality;
-import com.telenav.kivakit.core.collections.BaseCollection;
+import com.telenav.kivakit.annotations.code.quality.TypeQuality;
 import com.telenav.kivakit.core.collections.list.ObjectList;
 import com.telenav.kivakit.core.value.count.Maximum;
 import com.telenav.kivakit.interfaces.comparison.Matcher;
@@ -31,7 +30,7 @@ import java.util.Set;
 import java.util.function.Function;
 import java.util.function.Predicate;
 
-import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_INSUFFICIENT;
 import static com.telenav.kivakit.core.collections.list.ObjectList.list;
@@ -153,9 +152,9 @@ import static com.telenav.kivakit.core.value.count.Maximum.MAXIMUM;
  * @author jonathanl (shibo)
  * @see BaseSet
  */
-@CodeQuality(stability = STABLE_EXTENSIBLE,
+@TypeQuality(stability = STABLE_EXTENSIBLE,
              testing = TESTING_INSUFFICIENT,
-             documentation = DOCUMENTATION_COMPLETE)
+             documentation = DOCUMENTED)
 public class ObjectSet<Value> extends BaseSet<Value>
 {
     /**
@@ -294,6 +293,30 @@ public class ObjectSet<Value> extends BaseSet<Value>
         return (ObjectSet<Value>) super.with(that);
     }
 
+    @Override
+    public ObjectSet<Value> without(Value[] that)
+    {
+        return (ObjectSet<Value>) super.without(that);
+    }
+
+    @Override
+    public BaseSet<Value> without(Matcher<Value> matcher)
+    {
+        return super.without(matcher);
+    }
+
+    @Override
+    public ObjectSet<Value> without(Value value)
+    {
+        return (ObjectSet<Value>) super.without(value);
+    }
+
+    @Override
+    public ObjectSet<Value> without(Collection<Value> that)
+    {
+        return (ObjectSet<Value>) super.without(that);
+    }
+
     /**
      * {@inheritDoc}
      */
@@ -307,7 +330,7 @@ public class ObjectSet<Value> extends BaseSet<Value>
      * {@inheritDoc}
      */
     @Override
-    protected BaseCollection<Value> onNewCollection()
+    protected ObjectSet<Value> onNewCollection()
     {
         return set();
     }

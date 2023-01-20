@@ -2,6 +2,8 @@ package com.telenav.kivakit.network.http;
 
 import com.telenav.kivakit.core.collections.list.ObjectList;
 import com.telenav.kivakit.core.messaging.repeaters.BaseRepeater;
+import com.telenav.kivakit.core.string.FormatProperty;
+import com.telenav.kivakit.core.string.ObjectFormatter;
 import com.telenav.kivakit.interfaces.comparison.Matcher;
 import com.telenav.kivakit.resource.Extension;
 import com.telenav.kivakit.resource.FileName;
@@ -25,8 +27,9 @@ import static com.telenav.kivakit.network.core.NetworkAccessConstraints.defaultN
  * @author jonathanl (shibo)
  */
 public class HttpResourceFolder extends BaseRepeater implements
-        ResourceFolder<HttpResourceFolder>
+    ResourceFolder<HttpResourceFolder>
 {
+    @FormatProperty
     private final HttpNetworkLocation location;
 
     public HttpResourceFolder(URI uri)
@@ -85,8 +88,8 @@ public class HttpResourceFolder extends BaseRepeater implements
     {
         var parent = location.parent();
         return parent == null
-                ? null
-                : new HttpResourceFolder(parent);
+            ? null
+            : new HttpResourceFolder(parent);
     }
 
     @Override
@@ -123,5 +126,11 @@ public class HttpResourceFolder extends BaseRepeater implements
     public WritableResource temporaryFile(@NotNull FileName baseName, @NotNull Extension extension)
     {
         return unsupported();
+    }
+
+    @Override
+    public String toString()
+    {
+        return new ObjectFormatter(this).toString();
     }
 }

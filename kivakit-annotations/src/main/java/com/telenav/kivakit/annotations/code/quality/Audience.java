@@ -1,22 +1,25 @@
 package com.telenav.kivakit.annotations.code.quality;
 
-import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
 
 /**
- * The intended audience for a class or interface. Types annotated with {@link CodeQuality} default to an audience of
+ * The intended audience for a class or interface. Types annotated with {@link TypeQuality} default to an audience of
  * AUDIENCE_PUBLIC.
  *
  * @author jonathanl (shibo)
- * @see CodeQuality
+ * @see TypeQuality
  */
 @SuppressWarnings("unused")
-@CodeQuality(stability = STABLE,
-             testing = TESTING_NOT_NEEDED,
-             documentation = DOCUMENTATION_COMPLETE,
-             reviews = 1,
-             reviewers = "shibo")
+@TypeQuality
+    (
+        stability = STABLE,
+        testing = TESTING_NOT_NEEDED,
+        documentation = DOCUMENTED,
+        reviews = 1,
+        reviewers = "shibo"
+    )
 public enum Audience
 {
     /** The annotated code is public and intended for end-users */

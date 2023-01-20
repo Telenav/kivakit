@@ -1,34 +1,32 @@
 package com.telenav.kivakit.settings;
 
-import com.telenav.kivakit.annotations.code.quality.CodeQuality;
+import com.telenav.kivakit.annotations.code.quality.TypeQuality;
 import com.telenav.kivakit.core.collections.set.ObjectSet;
 import com.telenav.kivakit.core.messaging.repeaters.BaseRepeater;
 import com.telenav.kivakit.core.registry.Registry;
 import com.telenav.kivakit.core.registry.RegistryTrait;
-import com.telenav.kivakit.core.thread.locks.ReadWriteLock;
 import com.telenav.kivakit.core.vm.JavaTrait;
+import com.telenav.kivakit.settings.SettingsObject.SettingsObjectIdentifier;
 import com.telenav.kivakit.settings.stores.MemorySettingsStore;
 import com.telenav.kivakit.settings.stores.ResourceFolderSettingsStore;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Map;
-import java.util.Set;
 
-import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.collections.set.ObjectSet.set;
 import static com.telenav.kivakit.core.ensure.Ensure.ensure;
 import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
 import static com.telenav.kivakit.core.registry.Registry.globalRegistry;
+import static com.telenav.kivakit.settings.SettingsStore.AccessMode.ADD;
+import static com.telenav.kivakit.settings.SettingsStore.AccessMode.CLEAR;
 import static com.telenav.kivakit.settings.SettingsStore.AccessMode.DELETE;
-import static com.telenav.kivakit.settings.SettingsStore.AccessMode.INDEX;
 import static com.telenav.kivakit.settings.SettingsStore.AccessMode.LOAD;
 import static com.telenav.kivakit.settings.SettingsStore.AccessMode.SAVE;
-import static com.telenav.kivakit.settings.SettingsStore.AccessMode.UNLOAD;
 
 /**
  * <b>Service Provider API</b>
@@ -55,12 +53,12 @@ import static com.telenav.kivakit.settings.SettingsStore.AccessMode.UNLOAD;
  * <p>
  * {@link SettingsStore} providers inherit several useful methods and implementations from this base class:
  * <ul>
- *     <li>{@link #index(SettingsObject)} - Adds the given object to the store's in-memory index (but not to any persistent storage)</li>
- *     <li>{@link #indexed()} - The set of objects in this store. If the store is loadable, {@link #load()} is called before returning the set</li>
- *     <li>{@link #unload()} - Clears this store's in-memory index</li>
+ *     <li>{@link #add(SettingsObject)} - Adds the given object to the store's in-memory index (but not to any persistent storage)</li>
+ *     <li>{@link #objects()} - The set of objects in this store. If the store is loadable, {@link #load()} is called before returning the set</li>
+ *     <li>{@link #clear()} - Clears this store's in-memory index</li>
  *     <li>{@link #iterator()} - Iterates through each settings {@link Object} in this store</li>
  *     <li>{@link #load()} - Lazy-loads objects from persistent storage by calling {@link #onLoad()} and then adds them to the in-memory index</li>
- *     <li>{@link #lookup(SettingsObject.SettingsObjectIdentifier)} - Looks up the object for the given identifier in the store's index</li>
+ *     <li>{@link #lookup(SettingsObjectIdentifier)} - Looks up the object for the given identifier in the store's index</li>
  *     <li>{@link #save(SettingsObject)} - Saves the given settings object to persistent storage by calling {@link #onSave(SettingsObject)}</li>
  * </ul>
  *
@@ -81,22 +79,19 @@ import static com.telenav.kivakit.settings.SettingsStore.AccessMode.UNLOAD;
  * @see Deployment
  * @see ResourceFolderSettingsStore
  */
-@CodeQuality(stability = STABLE_EXTENSIBLE,
+@TypeQuality(stability = STABLE_EXTENSIBLE,
              testing = UNTESTED,
-             documentation = DOCUMENTATION_COMPLETE)
+             documentation = DOCUMENTED)
 public abstract class BaseSettingsStore extends BaseRepeater implements
-        SettingsStore,
-        RegistryTrait,
-        JavaTrait
+    SettingsStore,
+    RegistryTrait,
+    JavaTrait
 {
     /** True if settings have been loaded into this store */
     private boolean loaded;
 
-    /** Lock for accessing settings entries */
-    private final ReadWriteLock lock = new ReadWriteLock();
-
     /** Map to get settings entries by identifier */
-    private final Map<SettingsObject.SettingsObjectIdentifier, SettingsObject> objects = new HashMap<>();
+    private final Map<SettingsObjectIdentifier, SettingsObject> objects = new HashMap<>();
 
     /** Store to propagate changes to */
     private SettingsStore propagateChangesTo;
@@ -105,81 +100,76 @@ public abstract class BaseSettingsStore extends BaseRepeater implements
     private boolean reloading;
 
     /**
-     * {@inheritDoc}
-     */
-    @Override
-    public boolean delete(SettingsObject object)
-    {
-        ensure(supports(DELETE));
-
-        lock.write(() ->
-        {
-            onDelete(object);
-            unindex(object);
-        });
-        return true;
-    }
-
-    /**
      * Adds the given settings object to the in-memory index for this store. The object (from
      * {@link SettingsObject#object()}) is indexed under its class and all implemented interfaces. It is also indexed
      * under all superclasses and superinterfaces.
      */
     @Override
-    public boolean index(SettingsObject settings)
+    public synchronized boolean add(SettingsObject settings)
     {
-        ensure(supports(INDEX));
+        ensure(supports(ADD));
         ensureNotNull(settings);
 
         globalRegistry().register(settings.object(), settings.identifier().instance());
 
-        // Lock for writing,
-        return lock.write(() ->
+        // then walk up the class hierarchy of the object,
+        var instance = settings.identifier().instance();
+        for (var at = (Class<?>) settings.object().getClass(); !at.equals(Object.class); at = at.getSuperclass())
         {
-            // then walk up the class hierarchy of the object,
-            var instance = settings.identifier().instance();
-            for (var at = (Class<?>) settings.object().getClass(); !at.equals(Object.class); at = at.getSuperclass())
+            // add the interfaces of the object,
+            for (var in : at.getInterfaces())
             {
-                // add the interfaces of the object,
-                for (var in : at.getInterfaces())
-                {
-                    internalPut(new SettingsObject(settings.object(), in, instance));
-                }
-
-                // and the class itself.
-                internalPut(new SettingsObject(settings.object(), at, instance));
+                internalPut(new SettingsObject(settings.object(), in, instance));
             }
-            return true;
-        });
-    }
 
-    /**
-     * Gets a <b>copy</b> of the {@link SettingsObject}s indexed in this store, loading them if need be
-     */
-    @Override
-    public ObjectSet<SettingsObject> indexed()
-    {
-        maybeLoad();
-
-        return lock.write(() -> set(objects.values()));
-    }
-
-    @NotNull
-    @Override
-    public Iterator<Object> iterator()
-    {
-        maybeLoad();
-        return indexed()
-                .stream()
-                .map(SettingsObject::object)
-                .iterator();
+            // and the class itself.
+            internalPut(new SettingsObject(settings.object(), at, instance));
+        }
+        return true;
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public final synchronized Set<SettingsObject> load()
+    public synchronized void clear()
+    {
+        ensure(supports(CLEAR));
+
+        objects.clear();
+        onUnload();
+        loaded = false;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public synchronized boolean delete(SettingsObject object)
+    {
+        ensure(supports(DELETE));
+
+        onDelete(object);
+        remove(object);
+        return true;
+    }
+
+    @NotNull
+    @Override
+    public synchronized Iterator<Object> iterator()
+    {
+        maybeLoad();
+        return set(objects())
+            .stream()
+            .map(SettingsObject::object)
+            .iterator();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public final synchronized ObjectSet<SettingsObject> load()
     {
         ensure(supports(LOAD));
 
@@ -188,11 +178,11 @@ public abstract class BaseSettingsStore extends BaseRepeater implements
         {
             // load settings by calling the subclass.
             trace("Loading settings from: $", name());
-            lock.write(() -> onLoad().forEach(this::index));
+            onLoad().forEach(this::add);
             loaded = true;
         }
 
-        return lock.read(() -> new HashSet<>(objects.values()));
+        return set(objects.values());
     }
 
     /**
@@ -202,34 +192,42 @@ public abstract class BaseSettingsStore extends BaseRepeater implements
      * @return Any settings object for the given identifier
      */
     @SuppressWarnings("unchecked")
-    public <T> T lookup(SettingsObject.SettingsObjectIdentifier identifier)
+    public synchronized <T> T lookup(SettingsObjectIdentifier identifier)
     {
         maybeLoad();
 
-        return lock.read(() ->
+        // First try the global object registry,
+        T object = (T) lookup(identifier.type(), identifier.instance());
+        if (object == null)
         {
-            // First try the global object registry,
-            T object = (T) lookup(identifier.type(), identifier.instance());
-            if (object == null)
+            // and try the index.
+            var settings = objects.get(identifier);
+            if (settings != null)
             {
-                // and try the index.
-                var settings = objects.get(identifier);
-                if (settings != null)
-                {
-                    object = settings.object();
-                }
+                object = settings.object();
             }
-            return object;
-        });
+        }
+        return object;
     }
 
-    public SettingsStore propagateChangesTo()
+    /**
+     * Gets a <b>copy</b> of the {@link SettingsObject}s indexed in this store, loading them if need be
+     */
+    @Override
+    public synchronized ObjectSet<SettingsObject> objects()
+    {
+        maybeLoad();
+
+        return set(objects.values());
+    }
+
+    public synchronized SettingsStore propagateChangesTo()
     {
         return propagateChangesTo;
     }
 
     @Override
-    public void propagateChangesTo(SettingsStore store)
+    public synchronized void propagateChangesTo(SettingsStore store)
     {
         propagateChangesTo = store;
     }
@@ -239,36 +237,15 @@ public abstract class BaseSettingsStore extends BaseRepeater implements
      * <p>
      * Forces this settings store to reload
      */
-    public void reload()
+    public synchronized void reload()
     {
         if (!reloading)
         {
             reloading = true;
-            unload();
+            clear();
             load();
             reloading = false;
         }
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public boolean save(SettingsObject object)
-    {
-        ensure(supports(SAVE));
-
-        return lock.write(() ->
-        {
-            index(object);
-            return onSave(object);
-        });
-    }
-
-    @Override
-    public String toString()
-    {
-        return name();
     }
 
     /**
@@ -277,51 +254,46 @@ public abstract class BaseSettingsStore extends BaseRepeater implements
      * under all superclasses and superinterfaces.
      */
     @Override
-    @SuppressWarnings("SpellCheckingInspection")
-    public boolean unindex(SettingsObject settings)
+    public synchronized boolean remove(SettingsObject settings)
     {
-        ensure(supports(INDEX));
+        ensure(supports(ADD));
         ensureNotNull(settings);
 
-        // Obtain a write-lock,
-        return lock.write(() ->
+        // Remove the object to the global lookup registry
+        unregister(settings.object(), settings.identifier().instance());
+
+        // then walk up the class hierarchy of the object,
+        var instance = settings.identifier().instance();
+        for (var at = (Class<?>) settings.object().getClass(); !at.equals(Object.class); at = at.getSuperclass())
         {
-            // add the object to the global lookup registry
-            unregister(settings.object(), settings.identifier().instance());
-
-            // then walk up the class hierarchy of the object,
-            var instance = settings.identifier().instance();
-            for (var at = (Class<?>) settings.object().getClass(); !at.equals(Object.class); at = at.getSuperclass())
+            // add the interfaces of the object,
+            for (var in : at.getInterfaces())
             {
-                // add the interfaces of the object,
-                for (var in : at.getInterfaces())
-                {
-                    internalRemove(new SettingsObject(settings.object(), in, instance));
-                }
-
-                // and the class itself.
-                internalPut(new SettingsObject(settings.object(), at, instance));
+                internalRemove(new SettingsObject(settings.object(), in, instance));
             }
-            return true;
-        });
+
+            // and the class itself.
+            internalPut(new SettingsObject(settings.object(), at, instance));
+        }
+        return true;
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public boolean unload()
+    public synchronized boolean save(SettingsObject object)
     {
-        ensure(supports(UNLOAD));
+        ensure(supports(SAVE));
 
-        lock.write(() ->
-        {
-            objects.clear();
-            onUnload();
-            loaded = false;
-        });
+        add(object);
+        return onSave(object);
+    }
 
-        return true;
+    @Override
+    public String toString()
+    {
+        return name();
     }
 
     /**
@@ -336,7 +308,7 @@ public abstract class BaseSettingsStore extends BaseRepeater implements
      *
      * @return All settings in this store
      */
-    protected abstract Set<SettingsObject> onLoad();
+    protected abstract ObjectSet<SettingsObject> onLoad();
 
     /**
      * Called to save a settings object, if this store supports saving
@@ -352,17 +324,17 @@ public abstract class BaseSettingsStore extends BaseRepeater implements
     {
     }
 
-    private void internalPut(SettingsObject settings)
+    private synchronized void internalPut(SettingsObject settings)
     {
-        lock.write(() -> objects.put(settings.identifier(), settings));
+        objects.put(settings.identifier(), settings);
     }
 
-    private void internalRemove(SettingsObject settings)
+    private synchronized void internalRemove(SettingsObject settings)
     {
-        lock.write(() -> objects.remove(settings.identifier()));
+        objects.remove(settings.identifier());
     }
 
-    private void maybeLoad()
+    private synchronized void maybeLoad()
     {
         // If we can load this store,
         if (supports(LOAD))

@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.core.logging;
 
-import com.telenav.kivakit.annotations.code.quality.CodeQuality;
+import com.telenav.kivakit.annotations.code.quality.TypeQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramLogging;
 import com.telenav.kivakit.core.language.reflection.property.IncludeProperty;
 import com.telenav.kivakit.core.logging.logs.text.LogFormatter;
@@ -36,7 +36,7 @@ import com.telenav.lexakai.annotations.visibility.UmlExcludeMember;
 
 import java.util.concurrent.atomic.AtomicInteger;
 
-import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
@@ -73,9 +73,9 @@ import static com.telenav.kivakit.core.time.Time.now;
  * @author jonathanl (shibo)
  */
 @SuppressWarnings("unused") @UmlClassDiagram(diagram = DiagramLogging.class)
-@CodeQuality(stability = STABLE_EXTENSIBLE,
+@TypeQuality(stability = STABLE_EXTENSIBLE,
              testing = UNTESTED,
-             documentation = DOCUMENTATION_COMPLETE)
+             documentation = DOCUMENTED)
 public class LogEntry implements Triaged
 {
     /**
@@ -178,7 +178,7 @@ public class LogEntry implements Triaged
     {
         ensureNotNull(context);
 
-        // If the formatted entry exists and we're re-formatting with the same formatter,
+        // If the formatted entry exists, and we're re-formatting with the same formatter,
         if (formattedEntry != null && isEqual(formatter, lastFormatter))
         {
             // then reuse the formatted text we made last time

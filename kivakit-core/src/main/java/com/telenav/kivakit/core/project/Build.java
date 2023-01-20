@@ -19,7 +19,7 @@
 package com.telenav.kivakit.core.project;
 
 import com.telenav.cactus.metadata.BuildMetadata;
-import com.telenav.kivakit.annotations.code.quality.CodeQuality;
+import com.telenav.kivakit.annotations.code.quality.TypeQuality;
 import com.telenav.kivakit.core.collections.map.VariableMap;
 import com.telenav.kivakit.core.time.LocalTime;
 import com.telenav.kivakit.interfaces.naming.Named;
@@ -28,7 +28,7 @@ import java.time.LocalDate;
 
 import static com.telenav.cactus.metadata.BuildMetadata.buildMetaData;
 import static com.telenav.cactus.metadata.BuildName.TELENAV_EPOCH_DAY;
-import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.collections.map.VariableMap.variableMap;
@@ -55,9 +55,9 @@ import static java.time.format.DateTimeFormatter.ISO_INSTANT;
  * @author jonathanl (shibo)
  */
 @SuppressWarnings("unused")
-@CodeQuality(stability = STABLE_EXTENSIBLE,
+@TypeQuality(stability = STABLE_EXTENSIBLE,
              testing = UNTESTED,
-             documentation = DOCUMENTATION_COMPLETE)
+             documentation = DOCUMENTED)
 public class Build implements Named
 {
     /**

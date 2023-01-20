@@ -18,25 +18,22 @@
 
 package com.telenav.kivakit.filesystem;
 
-import com.telenav.kivakit.annotations.code.quality.CodeQuality;
-import com.telenav.kivakit.conversion.BaseStringConverter;
+import com.telenav.kivakit.annotations.code.quality.TypeQuality;
 import com.telenav.kivakit.core.collections.list.ObjectList;
-import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.filesystem.spi.FolderService;
 import com.telenav.kivakit.interfaces.comparison.Matcher;
 import com.telenav.kivakit.resource.internal.lexakai.DiagramFileSystemFolder;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
-import static com.telenav.kivakit.filesystem.Folder.parseFolder;
 
 /**
  * A list of folders with additional useful methods, including:
@@ -50,9 +47,9 @@ import static com.telenav.kivakit.filesystem.Folder.parseFolder;
  */
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramFileSystemFolder.class)
-@CodeQuality(stability = STABLE_EXTENSIBLE,
+@TypeQuality(stability = STABLE_EXTENSIBLE,
              testing = UNTESTED,
-             documentation = DOCUMENTATION_COMPLETE)
+             documentation = DOCUMENTED)
 public class FolderList extends ObjectList<Folder>
 {
     /**
@@ -66,33 +63,6 @@ public class FolderList extends ObjectList<Folder>
             folders.add(new Folder(folder));
         }
         return folders;
-    }
-
-    /**
-     * Converts to and from folder lists separated by commas
-     *
-     * @author jonathanl (shibo)
-     */
-    @CodeQuality(stability = STABLE,
-                 testing = UNTESTED,
-                 documentation = DOCUMENTATION_COMPLETE)
-    public static class Converter extends BaseStringConverter<FolderList>
-    {
-        public Converter(@NotNull Listener listener)
-        {
-            super(listener, FolderList.class);
-        }
-
-        @Override
-        protected FolderList onToValue(String value)
-        {
-            var folders = new FolderList();
-            for (var path : value.split(","))
-            {
-                folders.add(parseFolder(this, path));
-            }
-            return folders;
-        }
     }
 
     public FolderList()
@@ -123,5 +93,53 @@ public class FolderList extends ObjectList<Folder>
             }
         }
         return folders;
+    }
+
+    @Override
+    public FolderList with(Folder folder)
+    {
+        return (FolderList) super.with(folder);
+    }
+
+    @Override
+    public FolderList with(Folder[] value)
+    {
+        return (FolderList) super.with(value);
+    }
+
+    @Override
+    public FolderList with(Collection<Folder> value)
+    {
+        return (FolderList) super.with(value);
+    }
+
+    @Override
+    public FolderList with(Iterable<Folder> value)
+    {
+        return (FolderList) super.with(value);
+    }
+
+    @Override
+    public FolderList without(Collection<Folder> that)
+    {
+        return (FolderList) super.without(that);
+    }
+
+    @Override
+    public FolderList without(Folder folder)
+    {
+        return (FolderList) super.without(folder);
+    }
+
+    @Override
+    public FolderList without(Matcher<Folder> matcher)
+    {
+        return (FolderList) super.without(matcher);
+    }
+
+    @Override
+    public FolderList without(Folder[] that)
+    {
+        return (FolderList) super.without(that);
     }
 }

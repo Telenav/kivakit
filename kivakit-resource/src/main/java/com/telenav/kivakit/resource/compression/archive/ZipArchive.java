@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.resource.compression.archive;
 
-import com.telenav.kivakit.annotations.code.quality.CodeQuality;
+import com.telenav.kivakit.annotations.code.quality.TypeQuality;
 import com.telenav.kivakit.core.collections.map.VariableMap;
 import com.telenav.kivakit.core.io.IO;
 import com.telenav.kivakit.core.io.Nio;
@@ -57,7 +57,7 @@ import java.util.List;
 import java.util.regex.Pattern;
 import java.util.zip.ZipFile;
 
-import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
@@ -144,9 +144,9 @@ import static com.telenav.kivakit.resource.serialization.ObjectMetadata.METADATA
 @UmlRelation(label = "stores", referent = ZipEntry.class)
 @UmlRelation(label = "opens for access", referent = ZipArchive.AccessMode.class)
 @UmlExcludeSuperTypes({ AutoCloseable.class, Iterable.class })
-@CodeQuality(stability = STABLE_EXTENSIBLE,
+@TypeQuality(stability = STABLE_EXTENSIBLE,
              testing = UNTESTED,
-             documentation = DOCUMENTATION_COMPLETE)
+             documentation = DOCUMENTED)
 public final class ZipArchive extends BaseRepeater implements
         Iterable<ZipEntry>,
         Closeable,
@@ -209,9 +209,9 @@ public final class ZipArchive extends BaseRepeater implements
      * @author jonathanl (shibo)
      */
     @UmlClassDiagram(diagram = DiagramResourceArchive.class)
-    @CodeQuality(stability = STABLE_EXTENSIBLE,
+    @TypeQuality(stability = STABLE_EXTENSIBLE,
                  testing = TESTING_NOT_NEEDED,
-                 documentation = DOCUMENTATION_COMPLETE)
+                 documentation = DOCUMENTED)
     public enum AccessMode
     {
         READ,
@@ -252,7 +252,6 @@ public final class ZipArchive extends BaseRepeater implements
      * @param files The files to add
      * @param reporter The progress reporter to call as each file is added
      */
-    @SuppressWarnings("resource")
     public void add(@NotNull Collection<File> files,
                     @NotNull ProgressReporter reporter)
     {
@@ -457,14 +456,13 @@ public final class ZipArchive extends BaseRepeater implements
         var uri = URI.create("jar:" + fileUri);
         switch (mode)
         {
-            case WRITE:
+            case WRITE ->
             {
                 var environment = new VariableMap<String>();
                 environment.put("create", "true");
                 return unchecked(() -> Nio.filesystem(listener, uri, environment)).orNull();
             }
-
-            case READ:
+            case READ ->
             {
                 if (file.exists())
                 {
@@ -484,9 +482,10 @@ public final class ZipArchive extends BaseRepeater implements
                 }
                 return null;
             }
-
-            default:
+            default ->
+            {
                 return null;
+            }
         }
     }
 }

@@ -1,6 +1,6 @@
 package com.telenav.kivakit.core.function;
 
-import com.telenav.kivakit.annotations.code.quality.CodeQuality;
+import com.telenav.kivakit.annotations.code.quality.TypeQuality;
 import com.telenav.kivakit.core.messaging.Message;
 import com.telenav.kivakit.core.messaging.Repeater;
 import com.telenav.kivakit.core.messaging.messages.status.Problem;
@@ -9,7 +9,7 @@ import com.telenav.kivakit.interfaces.code.Code;
 import java.util.Objects;
 import java.util.function.Predicate;
 
-import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 
@@ -39,8 +39,8 @@ import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
  * @see Code
  */
 @SuppressWarnings("unused")
-@CodeQuality(stability = STABLE_EXTENSIBLE,
-             documentation = DOCUMENTATION_COMPLETE,
+@TypeQuality(stability = STABLE_EXTENSIBLE,
+             documentation = DOCUMENTED,
              testing = UNTESTED)
 public interface ResultTrait extends Repeater
 {
@@ -135,7 +135,7 @@ public interface ResultTrait extends Repeater
      */
     default <T> Result<T> run(Code<T> code)
     {
-        return Result.run(this, code);
+        return Result.result(this, code);
     }
 
     /**
@@ -146,7 +146,7 @@ public interface ResultTrait extends Repeater
      */
     default <T> Result<T> success(Maybe<T> value)
     {
-        return listenTo(Result.success(value));
+        return listenTo(Result.result(value));
     }
 
     /**
@@ -156,6 +156,6 @@ public interface ResultTrait extends Repeater
      */
     default <T> Result<T> success(T value)
     {
-        return listenTo(Result.success(value));
+        return listenTo(Result.result(value));
     }
 }

@@ -18,9 +18,8 @@
 
 package com.telenav.kivakit.resource;
 
-import com.telenav.kivakit.annotations.code.quality.CodeQuality;
+import com.telenav.kivakit.annotations.code.quality.TypeQuality;
 import com.telenav.kivakit.commandline.SwitchParser;
-import com.telenav.kivakit.conversion.BaseStringConverter;
 import com.telenav.kivakit.core.collections.list.StringList;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.path.Path;
@@ -36,7 +35,7 @@ import java.net.URI;
 import java.util.List;
 import java.util.function.Function;
 
-import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.commandline.SwitchParser.switchParser;
@@ -82,13 +81,14 @@ import static com.telenav.kivakit.resource.FileName.parseFileName;
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramResource.class)
 @UmlClassDiagram(diagram = DiagramResourcePath.class)
-@CodeQuality(stability = STABLE_EXTENSIBLE,
-             documentation = DOCUMENTATION_COMPLETE,
+@TypeQuality(stability = STABLE_EXTENSIBLE,
+             documentation = DOCUMENTED,
              testing = UNTESTED)
 public class ResourcePath extends StringPath implements
     UriIdentified,
     ResourcePathed
 {
+
     /**
      * Returns a resource path for the given string
      */
@@ -144,6 +144,14 @@ public class ResourcePath extends StringPath implements
     }
 
     /**
+     * Returns a resource path for the given string
+     */
+    public static ResourcePath resourcePath(@NotNull String path)
+    {
+        return parseFilePath(throwingListener(), path);
+    }
+
+    /**
      * Returns a resource path for the given string path
      */
     public static ResourcePath resourcePath(@NotNull StringPath path)
@@ -157,7 +165,7 @@ public class ResourcePath extends StringPath implements
     {
         return switchParser(ResourcePath.class)
             .name(name)
-            .converter(new ResourcePath.Converter(listener))
+            .converter(new ResourcePathConverter(listener))
             .description(description);
     }
 
@@ -167,28 +175,6 @@ public class ResourcePath extends StringPath implements
     public static ResourcePath unixResourcePath(@NotNull String path)
     {
         return parseUnixResourcePath(throwingListener(), path);
-    }
-
-    /**
-     * Converts to and from {@link ResourcePath}s
-     *
-     * @author jonathanl (shibo)
-     */
-    @CodeQuality(stability = STABLE_EXTENSIBLE,
-                 testing = UNTESTED,
-                 documentation = DOCUMENTATION_COMPLETE)
-    public static class Converter extends BaseStringConverter<ResourcePath>
-    {
-        public Converter(@NotNull Listener listener)
-        {
-            super(listener, ResourcePath.class);
-        }
-
-        @Override
-        protected ResourcePath onToValue(String value)
-        {
-            return parseResourcePath(this, value);
-        }
     }
 
     /** The {@link URI} schemes for this resource path */
@@ -371,7 +357,6 @@ public class ResourcePath extends StringPath implements
     /**
      * {@inheritDoc}
      */
-    @SuppressWarnings("SpellCheckingInspection")
     @Override
     public ResourcePath subpath(int start, int end)
     {
@@ -391,7 +376,7 @@ public class ResourcePath extends StringPath implements
      * {@inheritDoc}
      */
     @Override
-    public URI uri()
+    public URI asUri()
     {
         return URI.create(join());
     }

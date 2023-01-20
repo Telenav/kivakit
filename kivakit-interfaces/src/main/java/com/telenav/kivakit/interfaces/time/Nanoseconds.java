@@ -1,12 +1,12 @@
 package com.telenav.kivakit.interfaces.time;
 
-import com.telenav.kivakit.annotations.code.quality.CodeQuality;
+import com.telenav.kivakit.annotations.code.quality.TypeQuality;
 import com.telenav.kivakit.interfaces.numeric.Zeroable;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
-import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static java.lang.Long.compare;
@@ -21,10 +21,9 @@ import static java.util.Objects.hash;
  *
  * @author jonathanl (shibo)
  */
-@SuppressWarnings("DuplicatedCode")
-@CodeQuality(stability = STABLE_EXTENSIBLE,
+@TypeQuality(stability = STABLE_EXTENSIBLE,
              testing = UNTESTED,
-             documentation = DOCUMENTATION_COMPLETE)
+             documentation = DOCUMENTED)
 public class Nanoseconds implements
         Comparable<Nanoseconds>,
         Zeroable
@@ -33,13 +32,13 @@ public class Nanoseconds implements
     private static final long NANOSECONDS_PER_SECOND = (long) 1E9;
 
     /** Zero nanoseconds */
-    public static Nanoseconds ZERO = nanoseconds(0);
+    public static final Nanoseconds ZERO = nanoseconds(0);
 
     /** One nanosecond */
-    public static Nanoseconds ONE_NANOSECOND = nanoseconds(1);
+    public static final Nanoseconds ONE_NANOSECOND = nanoseconds(1);
 
     /** One nanosecond */
-    public static Nanoseconds ONE_SECOND = nanoseconds(NANOSECONDS_PER_SECOND);
+    public static final Nanoseconds ONE_SECOND = nanoseconds(NANOSECONDS_PER_SECOND);
 
     /**
      * Factory method

@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.core.logging.logs.text;
 
-import com.telenav.kivakit.annotations.code.quality.CodeQuality;
+import com.telenav.kivakit.annotations.code.quality.TypeQuality;
 import com.telenav.kivakit.core.collections.map.VariableMap;
 import com.telenav.kivakit.core.internal.lexakai.DiagramLogs;
 import com.telenav.kivakit.core.logging.LogEntry;
@@ -31,7 +31,7 @@ import com.telenav.lexakai.annotations.visibility.UmlExcludeMember;
 import org.jetbrains.annotations.MustBeInvokedByOverriders;
 import org.jetbrains.annotations.NotNull;
 
-import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.ensure.Ensure.unsupported;
@@ -56,9 +56,9 @@ import static com.telenav.kivakit.core.messaging.MessageFormat.WITH_EXCEPTION;
 @SuppressWarnings({ "SpellCheckingInspection", "unused" })
 @UmlClassDiagram(diagram = DiagramLogs.class)
 @UmlRelation(label = "formats entries with", referent = LogFormatter.class)
-@CodeQuality(stability = STABLE_EXTENSIBLE,
+@TypeQuality(stability = STABLE_EXTENSIBLE,
              testing = UNTESTED,
-             documentation = DOCUMENTATION_COMPLETE)
+             documentation = DOCUMENTED)
 public abstract class BaseTextLog extends BaseLog
 {
     /** The formatting to use */
@@ -100,17 +100,12 @@ public abstract class BaseTextLog extends BaseLog
      */
     protected String formatted(LogEntry entry)
     {
-        switch (formattedOrNot())
-        {
-            case FORMATTED:
-                return entry.format(formatter, formattedOrNot(), withExceptionOrWithout());
-
-            case UNFORMATTED:
-                return entry.format(simpleFormatter, formattedOrNot(), withExceptionOrWithout());
-
-            default:
-                return unsupported();
-        }
+        return switch (formattedOrNot())
+            {
+                case FORMATTED -> entry.format(formatter, formattedOrNot(), withExceptionOrWithout());
+                case UNFORMATTED -> entry.format(simpleFormatter, formattedOrNot(), withExceptionOrWithout());
+                default -> unsupported();
+            };
     }
 
     /**

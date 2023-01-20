@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.core.language.packaging;
 
-import com.telenav.kivakit.annotations.code.quality.CodeQuality;
+import com.telenav.kivakit.annotations.code.quality.TypeQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramPath;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.path.Path;
@@ -35,7 +35,7 @@ import java.util.function.Function;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
-import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
 import static com.telenav.kivakit.core.messaging.Listener.nullListener;
@@ -50,9 +50,12 @@ import static com.telenav.kivakit.core.string.Strip.stripLeading;
  * This class contains numerous methods which down-cast the return value of the superclass to make use easier for
  * clients. Methods that are unique to this class mainly have to do with resources and modules:
  * </p>
- * <li>{@link #contains(PackageReference)} - True if this package contains the given resource</li>
- * <li>{@link #containsNested(PackageReference)} - True if this package contains the given resource at any depth</li>
- * <li>#</li>
+ *
+ * <p><b>Contains</b></p>
+ *
+ * <ul>
+ *     <li>{@link #contains(PackageReference)} - True if this package contains the given resource</li>
+ *     <li>{@link #containsNested(PackageReference)} - True if this package contains the given resource at any depth</li>
  * </ul>
  *
  * <p><b>Parsing</b></p>
@@ -84,11 +87,11 @@ import static com.telenav.kivakit.core.string.Strip.stripLeading;
  *
  * @author jonathanl (shibo)
  */
-@SuppressWarnings({ "unused", "DuplicatedCode", "SpellCheckingInspection" })
+@SuppressWarnings({ "unused" })
 @UmlClassDiagram(diagram = DiagramPath.class)
-@CodeQuality(stability = STABLE_EXTENSIBLE,
+@TypeQuality(stability = STABLE_EXTENSIBLE,
              testing = TESTING_NOT_NEEDED,
-             documentation = DOCUMENTATION_COMPLETE)
+             documentation = DOCUMENTED)
 public final class PackageReference extends StringPath
 {
     /** Reference to the com.telenav package */
@@ -123,7 +126,6 @@ public final class PackageReference extends StringPath
      */
     public static PackageReference packageReference(Class<?> type)
     {
-        //noinspection ConstantConditions
         return packageReference(type, parseStringPath(throwingListener(), type.getName(), null, "\\.")
                 .withoutLast());
     }

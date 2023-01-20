@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.core.locale;
 
-import com.telenav.kivakit.annotations.code.quality.CodeQuality;
+import com.telenav.kivakit.annotations.code.quality.TypeQuality;
 import com.telenav.kivakit.core.collections.list.ObjectList;
 import com.telenav.kivakit.core.internal.lexakai.DiagramLocale;
 import com.telenav.kivakit.core.path.StringPath;
@@ -28,7 +28,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.Collection;
 
-import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.collections.list.ObjectList.list;
@@ -45,9 +45,9 @@ import static com.telenav.kivakit.core.string.StringConversions.toNonNullString;
  */
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramLocale.class)
-@CodeQuality(stability = STABLE_EXTENSIBLE,
+@TypeQuality(stability = STABLE_EXTENSIBLE,
              testing = UNTESTED,
-             documentation = DOCUMENTATION_COMPLETE)
+             documentation = DOCUMENTED)
 public class Locale
 {
     /** The region for the locale, which might increase specificity, for example, US and Australian English. */
@@ -139,7 +139,7 @@ public class Locale
     }
 
     /**
-     * Produces a path of the form "locales/[language-name](/[region-name])?. This path can be used when loading
+     * Produces a path of the form "locales/[language-name](/[region-name])?". This path can be used when loading
      * localized resources.
      *
      * @param language The name of the language

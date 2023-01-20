@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.resource.compression.archive;
 
-import com.telenav.kivakit.annotations.code.quality.CodeQuality;
+import com.telenav.kivakit.annotations.code.quality.TypeQuality;
 import com.telenav.kivakit.core.language.reflection.Type;
 import com.telenav.kivakit.core.language.reflection.property.IncludeProperty;
 import com.telenav.kivakit.core.language.reflection.property.Property;
@@ -42,7 +42,7 @@ import com.telenav.lexakai.annotations.associations.UmlAggregation;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
 import org.jetbrains.annotations.NotNull;
 
-import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.ensure.Ensure.ensure;
@@ -112,22 +112,21 @@ import static com.telenav.kivakit.resource.compression.archive.ZipArchive.zipArc
  * @see ZipArchive
  * @see Repeater
  */
-@SuppressWarnings({ "unused", "resource" })
+@SuppressWarnings({ "unused" })
 @UmlClassDiagram(diagram = DiagramResourceArchive.class)
 @UmlRelation(label = "reads annotations", referent = ArchivedField.class)
 @UmlRelation(label = "reads and writes", referent = NamedObject.class)
-@CodeQuality(stability = STABLE_EXTENSIBLE,
+@TypeQuality(stability = STABLE_EXTENSIBLE,
              testing = UNTESTED,
-             documentation = DOCUMENTATION_COMPLETE)
+             documentation = DOCUMENTED)
 public class FieldArchive extends BaseRepeater implements Closeable
 {
     /**
      * A particular field of an object
      */
-    @SuppressWarnings("resource")
-    @CodeQuality(stability = STABLE_EXTENSIBLE,
+    @TypeQuality(stability = STABLE_EXTENSIBLE,
                  testing = UNTESTED,
-                 documentation = DOCUMENTATION_COMPLETE)
+                 documentation = DOCUMENTED)
     private class ObjectField
     {
         /** The object */
@@ -237,7 +236,7 @@ public class FieldArchive extends BaseRepeater implements Closeable
      * @param fieldName The field to load
      * @return The value of the field after attempting to load
      */
-    @SuppressWarnings({ "ConstantConditions", "unchecked" })
+    @SuppressWarnings({ "unchecked" })
     public synchronized <T> T loadFieldOf(@NotNull ObjectReader reader,
                                           @NotNull NamedObject object,
                                           @NotNull String fieldName)
@@ -285,7 +284,7 @@ public class FieldArchive extends BaseRepeater implements Closeable
      * @param objects The object whose fields should be loaded
      * @return True if all fields were loaded
      */
-    @SuppressWarnings({ "UnusedReturnValue", "ConstantConditions" })
+    @SuppressWarnings({ "UnusedReturnValue" })
     public synchronized boolean loadFieldsOf(@NotNull ObjectReader reader,
                                              @NotNull NamedObject... objects)
     {

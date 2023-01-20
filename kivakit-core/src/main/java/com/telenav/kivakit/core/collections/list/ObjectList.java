@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.core.collections.list;
 
-import com.telenav.kivakit.annotations.code.quality.CodeQuality;
+import com.telenav.kivakit.annotations.code.quality.TypeQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramCollections;
 import com.telenav.kivakit.core.value.count.Count;
 import com.telenav.kivakit.core.value.count.Maximum;
@@ -32,7 +32,7 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.function.Function;
 
-import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_INSUFFICIENT;
 import static com.telenav.kivakit.core.value.count.Maximum.MAXIMUM;
@@ -86,9 +86,9 @@ import static java.lang.Math.round;
  */
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramCollections.class)
-@CodeQuality(stability = STABLE_EXTENSIBLE,
+@TypeQuality(stability = STABLE_EXTENSIBLE,
              testing = TESTING_INSUFFICIENT,
-             documentation = DOCUMENTATION_COMPLETE)
+             documentation = DOCUMENTED)
 public class ObjectList<Value> extends BaseList<Value>
 {
     /**
@@ -453,7 +453,6 @@ public class ObjectList<Value> extends BaseList<Value>
      * @return The unique objects
      */
     @Override
-    @SuppressWarnings("SpellCheckingInspection")
     public ObjectList<Value> uniqued()
     {
         return (ObjectList<Value>) super.uniqued();
@@ -490,7 +489,7 @@ public class ObjectList<Value> extends BaseList<Value>
      * {@inheritDoc}
      */
     @Override
-    public ObjectList<Value> with(Value... value)
+    public ObjectList<Value> with(Value[] value)
     {
         return (ObjectList<Value>) super.with(value);
     }
@@ -502,6 +501,24 @@ public class ObjectList<Value> extends BaseList<Value>
     public ObjectList<Value> without(Matcher<Value> matcher)
     {
         return (ObjectList<Value>) super.without(matcher);
+    }
+
+    @Override
+    public ObjectList<Value> without(Value value)
+    {
+        return (ObjectList<Value>) super.without(value);
+    }
+
+    @Override
+    public ObjectList<Value> without(Collection<Value> that)
+    {
+        return (ObjectList<Value>) super.without(that);
+    }
+
+    @Override
+    public ObjectList<Value> without(Value[] that)
+    {
+        return (ObjectList<Value>) super.without(that);
     }
 
     /**

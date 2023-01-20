@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.core.messaging.listeners;
 
-import com.telenav.kivakit.annotations.code.quality.CodeQuality;
+import com.telenav.kivakit.annotations.code.quality.TypeQuality;
 import com.telenav.kivakit.core.code.UncheckedCode;
 import com.telenav.kivakit.core.collections.list.ObjectList;
 import com.telenav.kivakit.core.collections.list.StringList;
@@ -34,7 +34,7 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.Collection;
 
-import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.ensure.Ensure.unsupported;
@@ -92,9 +92,9 @@ import static com.telenav.kivakit.interfaces.comparison.Filter.acceptAll;
  */
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramListenerType.class)
-@CodeQuality(stability = STABLE_EXTENSIBLE,
+@TypeQuality(stability = STABLE_EXTENSIBLE,
              testing = UNTESTED,
-             documentation = DOCUMENTATION_COMPLETE)
+             documentation = DOCUMENTED)
 public class MessageList extends ObjectList<Message> implements MessageCounter
 {
     private static final MessageList EMPTY = new MessageList()
@@ -113,6 +113,10 @@ public class MessageList extends ObjectList<Message> implements MessageCounter
         try
         {
             code.run();
+        }
+        catch (Exception e)
+        {
+            issues.problem(e, "Code threw exception");
         }
         finally
         {
@@ -348,5 +352,35 @@ public class MessageList extends ObjectList<Message> implements MessageCounter
     public MessageList without(Matcher<Message> matcher)
     {
         return (MessageList) super.without(matcher);
+    }
+
+    @Override
+    public MessageList without(Message message)
+    {
+        return (MessageList) super.without(message);
+    }
+
+    @Override
+    public MessageList without(Collection<Message> that)
+    {
+        return (MessageList) super.without(that);
+    }
+
+    @Override
+    public MessageList without(Message[] that)
+    {
+        return (MessageList) super.without(that);
+    }
+
+    @Override
+    protected MessageList onNewCollection()
+    {
+        return new MessageList();
+    }
+
+    @Override
+    protected MessageList onNewList()
+    {
+        return new MessageList();
     }
 }

@@ -1,6 +1,6 @@
 package com.telenav.kivakit.core.collections;
 
-import com.telenav.kivakit.annotations.code.quality.CodeQuality;
+import com.telenav.kivakit.annotations.code.quality.TypeQuality;
 import com.telenav.kivakit.core.collections.iteration.BaseIterator;
 import com.telenav.kivakit.core.collections.iteration.FilteredIterable;
 import com.telenav.kivakit.core.collections.list.BaseList;
@@ -28,10 +28,11 @@ import java.util.Set;
 import java.util.function.Function;
 import java.util.function.Predicate;
 
-import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_INSUFFICIENT;
 import static com.telenav.kivakit.core.KivaKit.globalListener;
+import static com.telenav.kivakit.core.collections.list.ObjectList.list;
 import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
 import static com.telenav.kivakit.core.value.count.Maximum.maximum;
 import static com.telenav.kivakit.interfaces.string.StringFormattable.Format.TO_STRING;
@@ -157,9 +158,9 @@ import static com.telenav.kivakit.interfaces.string.StringFormattable.Format.TO_
  * @see StringFormattable
  */
 @SuppressWarnings("unused")
-@CodeQuality(stability = STABLE_EXTENSIBLE,
+@TypeQuality(stability = STABLE_EXTENSIBLE,
              testing = TESTING_INSUFFICIENT,
-             documentation = DOCUMENTATION_COMPLETE)
+             documentation = DOCUMENTED)
 public abstract class BaseCollection<Value> implements
     Addable<Value>,
     Collection<Value>,
@@ -553,6 +554,42 @@ public abstract class BaseCollection<Value> implements
         var copy = newCollection();
         copy.addAll(this);
         copy.add(value);
+        return copy;
+    }
+
+    /**
+     * Returns this list with the given values
+     */
+    public BaseCollection<Value> without(Collection<Value> that)
+    {
+        var copy = newCollection();
+        copy.addAll(this);
+        copy.removeAll(that);
+        return copy;
+    }
+
+    /**
+     * Returns this list with the given values
+     */
+    public BaseCollection<Value> without(Value[] that)
+    {
+        var copy = newCollection();
+        copy.addAll(this);
+        copy.removeAll(list(that));
+        return copy;
+    }
+
+    /**
+     * Makes a copy of this object but with the given value appended
+     *
+     * @param value The value to add
+     * @return This object
+     */
+    public BaseCollection<Value> without(Value value)
+    {
+        var copy = newCollection();
+        copy.addAll(this);
+        copy.remove(value);
         return copy;
     }
 

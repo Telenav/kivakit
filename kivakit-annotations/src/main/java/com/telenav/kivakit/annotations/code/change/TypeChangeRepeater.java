@@ -1,12 +1,12 @@
 package com.telenav.kivakit.annotations.code.change;
 
-import com.telenav.kivakit.annotations.code.quality.CodeQuality;
+import com.telenav.kivakit.annotations.code.quality.TypeQuality;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
 
 import static com.telenav.kivakit.annotations.code.quality.Audience.AUDIENCE_INTERNAL;
-import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
 import static java.lang.annotation.ElementType.TYPE;
@@ -23,10 +23,10 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
  */
 @Retention(RUNTIME)
 @Target(TYPE)
-@CodeQuality(audience = AUDIENCE_INTERNAL,
+@TypeQuality(audience = AUDIENCE_INTERNAL,
              stability = STABLE,
              testing = TESTING_NOT_NEEDED,
-             documentation = DOCUMENTATION_COMPLETE,
+             documentation = DOCUMENTED,
              reviews = 1,
              reviewers = "shibo")
 public @interface TypeChangeRepeater

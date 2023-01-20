@@ -18,14 +18,13 @@
 
 package com.telenav.kivakit.core.string;
 
-import com.telenav.kivakit.annotations.code.quality.CodeQuality;
+import com.telenav.kivakit.annotations.code.quality.TypeQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramString;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
-import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
-import static com.telenav.kivakit.core.os.Console.console;
 import static com.telenav.kivakit.core.string.Strings.chop;
 import static com.telenav.kivakit.core.string.Strings.replaceAll;
 
@@ -36,9 +35,9 @@ import static com.telenav.kivakit.core.string.Strings.replaceAll;
  */
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramString.class)
-@CodeQuality(stability = STABLE_EXTENSIBLE,
+@TypeQuality(stability = STABLE_EXTENSIBLE,
              testing = UNTESTED,
-             documentation = DOCUMENTATION_COMPLETE)
+             documentation = DOCUMENTED)
 public class Escape
 {
     /**
@@ -54,8 +53,19 @@ public class Escape
      */
     public static String escapeSql(String text, int maximumLength)
     {
+        // Escape ' as '',
         text = replaceAll(text, "'", "''");
-        text = text.replaceAll("([\"%_])", "\\\\$1");
+
+        // replace whitespace and newlines with one space,
+        text = text.replaceAll("[\\s\n]+", " ");
+
+        // escape " and % with \" and \%,
+        text = text.replaceAll("([\"%])", "\\\\$1");
+
+        // remove all control characters,
+        text = text.replaceAll("\\p{Cntrl}", "");
+
+        // and chop off any characters that won't fit.
         return chop(text.trim(), maximumLength - 1);
     }
 
@@ -80,6 +90,14 @@ public class Escape
         var u3 = replaceAll(u2, "'", "&apos;");
         var u4 = replaceAll(u3, "<", "&lt;");
         return replaceAll(u4, ">", "&gt;");
+    }
+
+    public static String unescapeSql(String text)
+    {
+        return text
+            .replaceAll("\\\\", "")
+            .replaceAll("''", "'")
+            .replaceAll("\\p{Cntrl}", "");
     }
 
     /**

@@ -18,14 +18,17 @@
 
 package com.telenav.kivakit.resource;
 
-import com.telenav.kivakit.annotations.code.quality.CodeQuality;
+import com.telenav.kivakit.annotations.code.quality.TypeQuality;
+import com.telenav.kivakit.interfaces.comparison.Filter;
 import com.telenav.kivakit.interfaces.comparison.Matcher;
 import com.telenav.kivakit.resource.internal.lexakai.DiagramResource;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
 import org.jetbrains.annotations.NotNull;
 
-import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import java.util.Collection;
+
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.collections.iteration.Iterables.iterable;
@@ -47,8 +50,8 @@ import static com.telenav.kivakit.resource.Resource.resolveResource;
  */
 @UmlClassDiagram(diagram = DiagramResource.class)
 @UmlRelation(label = "contains", referent = Resource.class)
-@CodeQuality(stability = STABLE_EXTENSIBLE,
-             documentation = DOCUMENTATION_COMPLETE,
+@TypeQuality(stability = STABLE_EXTENSIBLE,
+             documentation = DOCUMENTED,
              testing = UNTESTED)
 public class ResourceList extends BaseResourceList<Resource>
 {
@@ -78,6 +81,54 @@ public class ResourceList extends BaseResourceList<Resource>
         {
             add(resource);
         }
+    }
+
+    @Override
+    public ResourceList with(Collection<Resource> value)
+    {
+        return (ResourceList) super.with(value);
+    }
+
+    @Override
+    public ResourceList with(Resource[] value)
+    {
+        return (ResourceList) super.with(value);
+    }
+
+    @Override
+    public ResourceList with(Resource resource)
+    {
+        return (ResourceList) super.with(resource);
+    }
+
+    @Override
+    public ResourceList without(Matcher<Resource> matcher)
+    {
+        return (ResourceList) super.without(matcher);
+    }
+
+    @Override
+    public BaseResourceList<Resource> without(Filter<ResourcePathed> filter)
+    {
+        return super.without(filter);
+    }
+
+    @Override
+    public ResourceList without(Resource[] that)
+    {
+        return (ResourceList) super.without(that);
+    }
+
+    @Override
+    public ResourceList without(Collection<Resource> that)
+    {
+        return (ResourceList) super.without(that);
+    }
+
+    @Override
+    public ResourceList without(Resource resource)
+    {
+        return (ResourceList) super.without(resource);
     }
 
     /**

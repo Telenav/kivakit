@@ -25,14 +25,14 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonParseException;
 import com.google.gson.JsonSerializationContext;
 import com.google.gson.JsonSerializer;
-import com.telenav.kivakit.annotations.code.quality.CodeQuality;
+import com.telenav.kivakit.annotations.code.quality.TypeQuality;
 import com.telenav.kivakit.core.time.Duration;
 import com.telenav.kivakit.serialization.gson.factory.JsonSerializerDeserializer;
 
 import java.lang.reflect.Type;
 
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
-import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 
 /**
@@ -43,9 +43,9 @@ import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
  * @see JsonSerializer
  * @see JsonDeserializer
  */
-@CodeQuality(stability = STABLE,
+@TypeQuality(stability = STABLE,
              testing = UNTESTED,
-             documentation = DOCUMENTATION_COMPLETE)
+             documentation = DOCUMENTED)
 public abstract class PrimitiveGsonSerializer<T, Primitive> implements JsonSerializerDeserializer<T>
 {
     private final Class<Primitive> type;

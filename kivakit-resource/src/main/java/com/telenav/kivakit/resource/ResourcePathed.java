@@ -18,9 +18,8 @@
 
 package com.telenav.kivakit.resource;
 
-import com.telenav.kivakit.annotations.code.quality.CodeQuality;
+import com.telenav.kivakit.annotations.code.quality.TypeQuality;
 import com.telenav.kivakit.core.messaging.messages.status.Problem;
-import com.telenav.kivakit.core.string.FormatProperty;
 import com.telenav.kivakit.interfaces.comparison.Matcher;
 import com.telenav.kivakit.resource.internal.lexakai.DiagramResource;
 import com.telenav.kivakit.resource.internal.lexakai.DiagramResourcePath;
@@ -33,7 +32,7 @@ import java.net.URI;
 import java.net.URL;
 
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 
 /**
@@ -44,7 +43,7 @@ import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
  *
  * <ul>
  *     <li>{@link #path()}</li>
- *     <li>{@link #uri()}</li>
+ *     <li>{@link #asUri()}</li>
  *     <li>{@link #url()}</li>
  * </ul>
  *
@@ -75,9 +74,9 @@ import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 @SuppressWarnings("SpellCheckingInspection")
 @UmlClassDiagram(diagram = DiagramResourcePath.class)
 @UmlClassDiagram(diagram = DiagramResource.class)
-@CodeQuality(stability = STABLE_EXTENSIBLE,
+@TypeQuality(stability = STABLE_EXTENSIBLE,
              testing = UNTESTED,
-             documentation = DOCUMENTATION_COMPLETE)
+             documentation = DOCUMENTED)
 public interface ResourcePathed extends UriIdentified
 {
     /**
@@ -146,9 +145,9 @@ public interface ResourcePathed extends UriIdentified
      * {@inheritDoc}
      */
     @Override
-    default URI uri()
+    default URI asUri()
     {
-        return path().uri();
+        return path().asUri();
     }
 
     /**
@@ -158,11 +157,11 @@ public interface ResourcePathed extends UriIdentified
     {
         try
         {
-            return uri().toURL();
+            return asUri().toURL();
         }
         catch (MalformedURLException e)
         {
-            new Problem(e, "Unable to convert to URL: $", uri()).throwMessage();
+            new Problem(e, "Unable to convert to URL: $", asUri()).throwMessage();
             return null;
         }
     }

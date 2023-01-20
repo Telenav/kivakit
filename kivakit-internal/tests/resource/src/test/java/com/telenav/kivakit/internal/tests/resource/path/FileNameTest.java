@@ -18,9 +18,8 @@
 
 package com.telenav.kivakit.internal.tests.resource.path;
 
-import com.telenav.kivakit.conversion.core.time.LocalDateTimeWithMillisecondsConverter;
-import com.telenav.kivakit.conversion.core.time.LocalDateTimeWithSecondsConverter;
-import com.telenav.kivakit.core.messaging.listeners.ThrowingListener;
+import com.telenav.kivakit.conversion.core.time.kivakit.KivaKitLocalDateTimeWithMillisecondsConverter;
+import com.telenav.kivakit.conversion.core.time.kivakit.KivaKitLocalDateTimeWithSecondsConverter;
 import com.telenav.kivakit.core.time.LocalTime;
 import com.telenav.kivakit.core.time.Time;
 import com.telenav.kivakit.testing.UnitTest;
@@ -32,7 +31,6 @@ import java.time.ZoneId;
 import static com.telenav.kivakit.core.time.DayOfWeek.FRIDAY;
 import static com.telenav.kivakit.core.time.Time.now;
 
-@SuppressWarnings("ConstantConditions")
 public class FileNameTest extends UnitTest
 {
     @Test
@@ -55,7 +53,7 @@ public class FileNameTest extends UnitTest
         var localTime = LocalTime.milliseconds(timeZone, 1344025281123L);
         trace("LocalTime: ${debug}", localTime.asMilliseconds());
 
-        var localMillisecondsConverter = new LocalDateTimeWithMillisecondsConverter(this);
+        var localMillisecondsConverter = new KivaKitLocalDateTimeWithMillisecondsConverter(this);
         var timeRepresentation = localMillisecondsConverter.unconvert(localTime);
         trace("Time Representation: ${debug}", timeRepresentation);
 
@@ -91,8 +89,10 @@ public class FileNameTest extends UnitTest
         /*
           Converters
          */
-        var millisecondsConverter = new LocalDateTimeWithMillisecondsConverter(new ThrowingListener());
-        var secondsConverter = new LocalDateTimeWithSecondsConverter(new ThrowingListener());
+        var millisecondsConverter =
+            new KivaKitLocalDateTimeWithMillisecondsConverter(timeZone);
+        var secondsConverter =
+            new KivaKitLocalDateTimeWithSecondsConverter(timeZone);
 
         String timeRepresentation;
 
@@ -101,20 +101,20 @@ public class FileNameTest extends UnitTest
          */
         timeRepresentation = millisecondsConverter.unconvert(localTime);
         trace("Time Representation: ${debug}", timeRepresentation);
-        ensure(timeRepresentation.matches("2012\\.08\\.03_1\\.21\\.21\\.123PM.PT"));
+        ensure(timeRepresentation.matches("2012\\.08\\.03_1\\.21\\.21\\.123PM.PDT"));
 
         /*
           Test the local seconds
          */
         timeRepresentation = secondsConverter.unconvert(localTime);
         trace("Time Representation: ${debug}", timeRepresentation);
-        ensure(timeRepresentation.matches("2012\\.08\\.03_1\\.21\\.21PM.PT"));
+        ensure(timeRepresentation.matches("2012\\.08\\.03_1\\.21\\.21PM.PDT"));
 
         /*
           Test the GMT seconds
          */
         timeRepresentation = secondsConverter.unconvert(localTime);
         trace("Time Representation: ${debug}", timeRepresentation);
-        ensure(timeRepresentation.matches("2012\\.08\\.03_[0-9]+\\.21\\.21PM.PT"));
+        ensure(timeRepresentation.matches("2012\\.08\\.03_[0-9]+\\.21\\.21PM.PDT"));
     }
 }

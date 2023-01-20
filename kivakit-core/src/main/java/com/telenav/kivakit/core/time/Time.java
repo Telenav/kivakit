@@ -18,16 +18,17 @@
 
 package com.telenav.kivakit.core.time;
 
-import com.telenav.kivakit.annotations.code.quality.CodeQuality;
+import com.telenav.kivakit.annotations.code.quality.TypeQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramTime;
 import com.telenav.kivakit.core.language.Try;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.interfaces.time.Nanoseconds;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
+import java.time.Instant;
 import java.time.ZoneId;
 
-import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
@@ -36,6 +37,8 @@ import static com.telenav.kivakit.core.time.BaseTime.Topology.LINEAR;
 import static com.telenav.kivakit.core.time.Day.dayOfMonth;
 import static com.telenav.kivakit.core.time.Duration.ZERO_DURATION;
 import static com.telenav.kivakit.core.time.Hour.militaryHour;
+import static com.telenav.kivakit.core.time.KivaKitTimeFormats.KIVAKIT_DATE_TIME;
+import static com.telenav.kivakit.core.time.LocalTime.localTime;
 import static com.telenav.kivakit.core.time.LocalTime.localTimeZone;
 import static com.telenav.kivakit.core.time.LocalTime.utcTimeZone;
 import static com.telenav.kivakit.core.time.Minute.minute;
@@ -115,9 +118,9 @@ import static java.lang.System.currentTimeMillis;
  */
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramTime.class)
-@CodeQuality(stability = STABLE_EXTENSIBLE,
+@TypeQuality(stability = STABLE_EXTENSIBLE,
              testing = UNTESTED,
-             documentation = DOCUMENTATION_COMPLETE)
+             documentation = DOCUMENTED)
 public class Time extends BaseTime<Time>
 {
     /** The beginning of UNIX time: January 1, 1970, 0:00 GMT. */
@@ -176,6 +179,17 @@ public class Time extends BaseTime<Time>
         return Try.tryCatch(listener, () -> epochMilliseconds(parseLong(milliseconds)), "Unable to parse $: ", milliseconds);
     }
 
+    public static Time parseTime(Listener listener, String text)
+    {
+        var time = KIVAKIT_DATE_TIME.parse(text, Instant::from);
+        return epochMilliseconds(time.toEpochMilli());
+    }
+
+    public static Time time(String text)
+    {
+        return parseTime(throwingListener(), text);
+    }
+
     public static Time utcTime(Year year, Month month, Day dayOfMonth, Hour hour)
     {
         return utcTime(year, month, dayOfMonth, hour, minute(0), second(0));
@@ -198,7 +212,7 @@ public class Time extends BaseTime<Time>
                                Minute minute,
                                Second second)
     {
-        return epochNanoseconds(LocalTime.localTime(utcTimeZone(), year, month, dayOfMonth, hour, minute, second).nanoseconds());
+        return epochNanoseconds(localTime(utcTimeZone(), year, month, dayOfMonth, hour, minute, second).nanoseconds());
     }
 
     /**
@@ -217,7 +231,12 @@ public class Time extends BaseTime<Time>
 
     public LocalTime asLocalTime()
     {
-        return inTimeZone(localTimeZone());
+        return asLocalTime(localTimeZone());
+    }
+
+    public LocalTime asLocalTime(ZoneId zone)
+    {
+        return localTime(ensureNotNull(zone), this);
     }
 
     /**
@@ -254,11 +273,6 @@ public class Time extends BaseTime<Time>
         }
 
         return ZERO_DURATION;
-    }
-
-    public LocalTime inTimeZone(ZoneId zone)
-    {
-        return LocalTime.localTime(ensureNotNull(zone), this);
     }
 
     /**
@@ -377,7 +391,7 @@ public class Time extends BaseTime<Time>
     @Override
     public String toString()
     {
-        return asLocalTime().toString();
+        return asLocalTime(timeZone()).toString();
     }
 
     public Duration until(Time that)

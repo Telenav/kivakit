@@ -18,11 +18,11 @@
 
 package com.telenav.kivakit.core.time;
 
-import com.telenav.kivakit.annotations.code.quality.CodeQuality;
+import com.telenav.kivakit.annotations.code.quality.TypeQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramTime;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
-import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.ensure.Ensure.ensure;
@@ -37,9 +37,9 @@ import static com.telenav.kivakit.core.language.primitive.Ints.intIsBetweenInclu
  */
 @SuppressWarnings({ "unused", "SpellCheckingInspection" })
 @UmlClassDiagram(diagram = DiagramTime.class)
-@CodeQuality(stability = STABLE,
+@TypeQuality(stability = STABLE,
              testing = UNTESTED,
-             documentation = DOCUMENTATION_COMPLETE)
+             documentation = DOCUMENTED)
 public enum Meridiem
 {
     NO_MERIDIEM,
@@ -86,25 +86,30 @@ public enum Meridiem
 
         switch (this)
         {
-            case PM:
+            case PM ->
+            {
                 if (meridiemHour == 12)
                 {
                     return 12;
                 }
                 return meridiemHour + 12;
-
-            case AM:
+            }
+            case AM ->
+            {
                 if (meridiemHour == 12)
                 {
                     return 0;
                 }
                 return meridiemHour;
-
-            case NO_MERIDIEM:
+            }
+            case NO_MERIDIEM ->
+            {
                 return meridiemHour;
-
-            default:
+            }
+            default ->
+            {
                 return unsupported();
+            }
         }
     }
 }

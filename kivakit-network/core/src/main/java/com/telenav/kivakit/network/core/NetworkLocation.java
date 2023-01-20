@@ -18,12 +18,12 @@
 
 package com.telenav.kivakit.network.core;
 
-import com.telenav.kivakit.annotations.code.quality.CodeQuality;
-import com.telenav.kivakit.conversion.BaseStringConverter;
+import com.telenav.kivakit.annotations.code.quality.TypeQuality;
 import com.telenav.kivakit.core.collections.map.VariableMap;
 import com.telenav.kivakit.core.language.reflection.property.IncludeProperty;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.messaging.broadcasters.GlobalRepeater;
+import com.telenav.kivakit.core.string.FormatProperty;
 import com.telenav.kivakit.core.string.ObjectFormatter;
 import com.telenav.kivakit.interfaces.string.StringFormattable;
 import com.telenav.kivakit.network.core.internal.lexakai.DiagramNetworkLocation;
@@ -38,8 +38,7 @@ import java.net.URISyntaxException;
 import java.net.URL;
 import java.net.URLDecoder;
 
-import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.language.Hash.hashMany;
@@ -103,13 +102,13 @@ import static java.nio.charset.StandardCharsets.UTF_8;
  */
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramNetworkLocation.class)
-@CodeQuality(stability = STABLE_EXTENSIBLE,
+@TypeQuality(stability = STABLE_EXTENSIBLE,
              testing = UNTESTED,
-             documentation = DOCUMENTATION_COMPLETE)
+             documentation = DOCUMENTED)
 public class NetworkLocation implements
-        StringFormattable,
-        Comparable<NetworkLocation>,
-        GlobalRepeater
+    StringFormattable,
+    Comparable<NetworkLocation>,
+    GlobalRepeater
 {
     /**
      * Returns a network location for a {@link URI}
@@ -155,32 +154,18 @@ public class NetworkLocation implements
         }
     }
 
-    /**
-     * Converts to and from a {@link NetworkLocation}
-     *
-     * @author jonathanl (shibo)
-     */
-    @CodeQuality(stability = STABLE,
-                 testing = UNTESTED,
-                 documentation = DOCUMENTATION_COMPLETE)
-    public static class Converter extends BaseStringConverter<NetworkLocation>
-    {
-        public Converter(Listener listener)
-        {
-            super(listener, NetworkLocation.class, NetworkLocation::parseNetworkLocation);
-        }
-    }
-
     /** The constraints for accessing this network location */
     @UmlAggregation
     private NetworkAccessConstraints constraints;
 
     /** The path to this location */
     @UmlAggregation
+    @FormatProperty
     private NetworkPath networkPath;
 
     /** The host and port for this location */
     @UmlAggregation
+    @FormatProperty
     private final Port port;
 
     /** Any query parameters for this location */
@@ -231,7 +216,7 @@ public class NetworkLocation implements
             // Decode path, so we avoid double-encoding if the path is already encoded
             var path = URLDecoder.decode(networkPath().asStringPath().toString(), UTF_8);
             return new URI(protocol().name(), username, host().name(), portNumber, "/" + path,
-                    queryParameters == null ? null : queryParameters.toString(), reference);
+                queryParameters == null ? null : queryParameters.toString(), reference);
         }
         catch (URISyntaxException e)
         {
@@ -299,8 +284,8 @@ public class NetworkLocation implements
         if (object instanceof NetworkLocation that)
         {
             return port.equals(that.port) && networkPath.equals(that.networkPath)
-                    && isEqual(queryParameters, that.queryParameters)
-                    && isEqual(reference, that.reference);
+                && isEqual(queryParameters, that.queryParameters)
+                && isEqual(reference, that.reference);
         }
         return false;
     }
@@ -475,7 +460,7 @@ public class NetworkLocation implements
             if (pathString.indexOf('&') >= 0 || pathString.indexOf('?') >= 0 || pathString.indexOf('#') >= 0)
             {
                 throw new IllegalArgumentException(
-                        "NetworkLocation path cannot contain query parameters or references:  " + pathString);
+                    "NetworkLocation path cannot contain query parameters or references:  " + pathString);
             }
         }
     }

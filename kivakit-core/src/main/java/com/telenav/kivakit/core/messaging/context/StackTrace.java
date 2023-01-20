@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.core.messaging.context;
 
-import com.telenav.kivakit.annotations.code.quality.CodeQuality;
+import com.telenav.kivakit.annotations.code.quality.TypeQuality;
 import com.telenav.kivakit.core.string.IndentingStringBuilder;
 import com.telenav.kivakit.interfaces.collection.Sized;
 import com.telenav.kivakit.interfaces.string.StringFormattable;
@@ -27,7 +27,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.HashMap;
 import java.util.Map;
 
-import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.language.Classes.simpleName;
@@ -41,9 +41,9 @@ import static java.lang.Thread.currentThread;
  * @author jonathanl (shibo)
  */
 @SuppressWarnings("unused")
-@CodeQuality(stability = STABLE_EXTENSIBLE,
+@TypeQuality(stability = STABLE_EXTENSIBLE,
              testing = UNTESTED,
-             documentation = DOCUMENTATION_COMPLETE)
+             documentation = DOCUMENTED)
 public class StackTrace implements
         Sized,
         StringFormattable
@@ -176,15 +176,11 @@ public class StackTrace implements
     @Override
     public String asString(@NotNull Format format)
     {
-        switch (format)
-        {
-            case HTML:
-                return toHtmlString();
-
-            case TEXT:
-            default:
-                return toString();
-        }
+        return switch (format)
+            {
+                case HTML -> toHtmlString();
+                default -> toString();
+            };
     }
 
     /**

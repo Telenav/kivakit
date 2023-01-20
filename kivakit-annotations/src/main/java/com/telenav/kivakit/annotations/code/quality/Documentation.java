@@ -1,6 +1,6 @@
 package com.telenav.kivakit.annotations.code.quality;
 
-import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABILITY_UNDETERMINED;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
 
@@ -9,18 +9,21 @@ import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_N
  * documentation, some less, so subjective opinion is necessary to determine documentation quality level.
  *
  * @author jonathanl (shibo)
- * @see CodeQuality
+ * @see TypeQuality
  */
 @SuppressWarnings("unused")
-@CodeQuality(stability = STABILITY_UNDETERMINED,
-             testing = TESTING_NOT_NEEDED,
-             documentation = DOCUMENTATION_COMPLETE,
-             reviews = 1,
-             reviewers = "shibo")
+@TypeQuality
+    (
+        stability = STABILITY_UNDETERMINED,
+        testing = TESTING_NOT_NEEDED,
+        documentation = DOCUMENTED,
+        reviews = 1,
+        reviewers = "shibo"
+    )
 public enum Documentation
 {
     /** Documentation is complete */
-    DOCUMENTATION_COMPLETE,
+    DOCUMENTED,
 
     /** Some documentation is available, but more is required */
     DOCUMENTATION_INSUFFICIENT,
@@ -29,14 +32,17 @@ public enum Documentation
     UNDOCUMENTED,
 
     /** Documentation status has not been evaluated */
-    DOCUMENTATION_UNDETERMINED;
+    DOCUMENTATION_UNDETERMINED,
+
+    /** The method is trivial and needs no documentation */
+    DOCUMENTATION_NOT_NEEDED;
 
     /**
      * Returns true if this value is DOCUMENTATION_COMPLETE
      */
     public boolean isComplete()
     {
-        return this == DOCUMENTATION_COMPLETE;
+        return this == DOCUMENTED;
     }
 
     /**

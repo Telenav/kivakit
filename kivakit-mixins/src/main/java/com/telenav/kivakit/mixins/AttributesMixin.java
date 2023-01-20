@@ -1,12 +1,12 @@
 package com.telenav.kivakit.mixins;
 
-import com.telenav.kivakit.annotations.code.quality.CodeQuality;
+import com.telenav.kivakit.annotations.code.quality.TypeQuality;
 import com.telenav.kivakit.mixins.internal.lexakai.DiagramMixin;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.HashMap;
 
-import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTED;
 
@@ -47,9 +47,9 @@ import static com.telenav.kivakit.annotations.code.quality.Testing.TESTED;
  */
 @SuppressWarnings("SpellCheckingInspection")
 @UmlClassDiagram(diagram = DiagramMixin.class)
-@CodeQuality(stability = STABLE,
+@TypeQuality(stability = STABLE,
              testing = TESTED,
-             documentation = DOCUMENTATION_COMPLETE)
+             documentation = DOCUMENTED)
 public interface AttributesMixin<Key, Value> extends Mixin
 {
     /**

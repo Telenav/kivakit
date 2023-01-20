@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.core.string;
 
-import com.telenav.kivakit.annotations.code.quality.CodeQuality;
+import com.telenav.kivakit.annotations.code.quality.TypeQuality;
 import com.telenav.kivakit.core.collections.list.StringList;
 import com.telenav.kivakit.core.internal.lexakai.DiagramString;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
@@ -28,7 +28,7 @@ import java.util.Arrays;
 import java.util.stream.Collectors;
 
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.collections.list.StringList.stringList;
 
@@ -37,10 +37,10 @@ import static com.telenav.kivakit.core.collections.list.StringList.stringList;
  *
  * @author jonathanl (shibo)
  */
-@SuppressWarnings("DuplicatedCode") @UmlClassDiagram(diagram = DiagramString.class)
-@CodeQuality(stability = STABLE_EXTENSIBLE,
+@UmlClassDiagram(diagram = DiagramString.class)
+@TypeQuality(stability = STABLE_EXTENSIBLE,
              testing = UNTESTED,
-             documentation = DOCUMENTATION_COMPLETE)
+             documentation = DOCUMENTED)
 public class Split
 {
     /**
@@ -61,39 +61,7 @@ public class Split
      */
     public static StringList splitIntoWords(String text)
     {
-        var list = new ArrayList<String>();
-
-        var startOfWord = -1;
-        var length = text.length();
-        for (int at = 0; at < length; at++)
-        {
-            switch (text.charAt(at))
-            {
-                case ' ':
-                case '\t':
-                case '\n':
-                    if (startOfWord >= 0)
-                    {
-                        list.add(text.substring(startOfWord, at));
-                        startOfWord = -1;
-                    }
-                    break;
-
-                default:
-                    if (startOfWord < 0)
-                    {
-                        startOfWord = at;
-                    }
-                    break;
-            }
-        }
-
-        if (startOfWord >= 0)
-        {
-            list.add(text.substring(startOfWord));
-        }
-
-        return stringList(list);
+        return StringList.words(text);
     }
 
     /**

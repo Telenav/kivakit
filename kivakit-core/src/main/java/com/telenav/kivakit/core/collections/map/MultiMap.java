@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.core.collections.map;
 
-import com.telenav.kivakit.annotations.code.quality.CodeQuality;
+import com.telenav.kivakit.annotations.code.quality.TypeQuality;
 import com.telenav.kivakit.core.collections.list.ObjectList;
 import com.telenav.kivakit.core.value.count.Count;
 import com.telenav.kivakit.core.value.count.Maximum;
@@ -29,7 +29,7 @@ import java.util.List;
 import java.util.Map;
 
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.value.count.Count.count;
 import static com.telenav.kivakit.core.value.count.Maximum.MAXIMUM;
@@ -62,9 +62,9 @@ import static java.lang.Math.max;
  * @author jonathanl (shibo)
  */
 @SuppressWarnings("unused")
-@CodeQuality(stability = STABLE_EXTENSIBLE,
+@TypeQuality(stability = STABLE_EXTENSIBLE,
              testing = UNTESTED,
-             documentation = DOCUMENTATION_COMPLETE)
+             documentation = DOCUMENTED)
 public class MultiMap<Key, Value> extends BaseMap<Key, ObjectList<Value>>
 {
     public MultiMap()
@@ -140,7 +140,7 @@ public class MultiMap<Key, Value> extends BaseMap<Key, ObjectList<Value>>
     }
 
     /**
-     * Returns a list with all values in this multi-map
+     * Returns a list with all values in this multimap
      */
     public ObjectList<Value> flatValues()
     {

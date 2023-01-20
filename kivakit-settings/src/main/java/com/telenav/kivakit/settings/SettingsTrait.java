@@ -1,6 +1,6 @@
 package com.telenav.kivakit.settings;
 
-import com.telenav.kivakit.annotations.code.quality.CodeQuality;
+import com.telenav.kivakit.annotations.code.quality.TypeQuality;
 import com.telenav.kivakit.core.collections.set.ObjectSet;
 import com.telenav.kivakit.core.ensure.Ensure;
 import com.telenav.kivakit.core.messaging.Repeater;
@@ -10,12 +10,12 @@ import com.telenav.kivakit.resource.packages.Package;
 import com.telenav.kivakit.settings.stores.ResourceFolderSettingsStore;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
 
-import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
 import static com.telenav.kivakit.core.registry.InstanceIdentifier.instanceIdentifier;
-import static com.telenav.kivakit.core.registry.InstanceIdentifier.singletonInstanceIdentifier;
+import static com.telenav.kivakit.core.registry.InstanceIdentifier.singleton;
 import static com.telenav.kivakit.settings.SettingsRegistry.settingsFor;
 
 /**
@@ -83,9 +83,9 @@ import static com.telenav.kivakit.settings.SettingsRegistry.settingsFor;
  * @see SettingsRegistry
  */
 @SuppressWarnings({ "unused", "UnusedReturnValue" })
-@CodeQuality(stability = STABLE_EXTENSIBLE,
+@TypeQuality(stability = STABLE_EXTENSIBLE,
              testing = UNTESTED,
-             documentation = DOCUMENTATION_COMPLETE)
+             documentation = DOCUMENTED)
 public interface SettingsTrait extends Repeater
 {
     /**
@@ -153,7 +153,7 @@ public interface SettingsTrait extends Repeater
      */
     default SettingsRegistry registerSettings(Object settings)
     {
-        return registerSettings(settings, singletonInstanceIdentifier());
+        return registerSettings(settings, singleton());
     }
 
     /**
@@ -193,7 +193,7 @@ public interface SettingsTrait extends Repeater
      */
     default <T> T requireSettings(Class<T> type)
     {
-        return requireSettings(type, singletonInstanceIdentifier());
+        return requireSettings(type, singleton());
     }
 
     /**
@@ -247,7 +247,7 @@ public interface SettingsTrait extends Repeater
      */
     default boolean saveSettings(SettingsStore store, Object object)
     {
-        return saveSettings(store, object, singletonInstanceIdentifier());
+        return saveSettings(store, object, singleton());
     }
 
     /**
@@ -265,14 +265,14 @@ public interface SettingsTrait extends Repeater
      */
     default ObjectSet<SettingsObject> settingsIn(SettingsStore store)
     {
-        return store.indexed();
+        return store.objects();
     }
 
     /**
      * Returns true if all settings were cleared
      */
-    default boolean unloadSettings()
+    default void unloadSettings()
     {
-        return settingsForThis().unload();
+        settingsForThis().clear();
     }
 }

@@ -18,8 +18,7 @@
 
 package com.telenav.kivakit.resource;
 
-import com.telenav.kivakit.annotations.code.quality.CodeQuality;
-import com.telenav.kivakit.conversion.BaseStringConverter;
+import com.telenav.kivakit.annotations.code.quality.TypeQuality;
 import com.telenav.kivakit.core.collections.list.ObjectList;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.messaging.Repeater;
@@ -31,8 +30,7 @@ import com.telenav.kivakit.resource.packages.Package;
 import com.telenav.kivakit.resource.writing.WritableResource;
 import org.jetbrains.annotations.NotNull;
 
-import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
 import static com.telenav.kivakit.core.ensure.Ensure.ensure;
@@ -108,9 +106,9 @@ import static com.telenav.kivakit.resource.spi.ResourceFolderResolverService.res
  * @author jonathanl (shibo)
  */
 @SuppressWarnings("unused")
-@CodeQuality(stability = STABLE_EXTENSIBLE,
+@TypeQuality(stability = STABLE_EXTENSIBLE,
              testing = TESTING_NOT_NEEDED,
-             documentation = DOCUMENTATION_COMPLETE)
+             documentation = DOCUMENTED)
 public interface ResourceFolder<T extends ResourceFolder<T>> extends
     Repeater,
     UriIdentified,
@@ -132,29 +130,6 @@ public interface ResourceFolder<T extends ResourceFolder<T>> extends
     static ResourceFolderIdentifier resourceFolderIdentifier(@NotNull String identifier)
     {
         return new ResourceFolderIdentifier(identifier);
-    }
-
-    /**
-     * Converts to and from {@link ResourceFolder}s by resolving strings via {@link ResourceFolderIdentifier}s.
-     *
-     * @author jonathanl (shibo)
-     */
-    @SuppressWarnings("rawtypes")
-    @CodeQuality(stability = STABLE,
-                 testing = TESTING_NOT_NEEDED,
-                 documentation = DOCUMENTATION_COMPLETE)
-    class Converter extends BaseStringConverter<ResourceFolder>
-    {
-        public Converter(Listener listener)
-        {
-            super(listener, ResourceFolder.class);
-        }
-
-        @Override
-        protected ResourceFolder<?> onToValue(String value)
-        {
-            return new ResourceFolderIdentifier(value).resolve(this);
-        }
     }
 
     /**

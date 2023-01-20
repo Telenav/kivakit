@@ -25,11 +25,11 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.InstanceCreator;
 import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonSerializer;
+import com.google.gson.TypeAdapter;
 import com.google.gson.TypeAdapterFactory;
-import com.telenav.kivakit.annotations.code.quality.CodeQuality;
+import com.telenav.kivakit.annotations.code.quality.TypeQuality;
 import com.telenav.kivakit.conversion.StringConverter;
 import com.telenav.kivakit.core.collections.set.ObjectSet;
-import com.telenav.kivakit.core.language.Hash;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.messaging.repeaters.BaseRepeater;
 import com.telenav.kivakit.core.version.Version;
@@ -40,11 +40,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.collections.list.ObjectList.list;
 import static com.telenav.kivakit.core.collections.set.ObjectSet.set;
+import static com.telenav.kivakit.core.language.Hash.hashMany;
 import static com.telenav.kivakit.core.language.Objects.areEqualPairs;
 import static com.telenav.kivakit.core.version.Version.parseVersion;
 
@@ -65,12 +66,12 @@ import static com.telenav.kivakit.core.version.Version.parseVersion;
  *     <li>{@link #addJsonDeserializer(Class, JsonDeserializer)}</li>
  *     <li>{@link #addJsonSerializer(Class, JsonSerializer)}</li>
  *     <li>{@link #addJsonSerializerDeserializer(Class, JsonSerializerDeserializer)}</li>
- *     <li>{@link #addTypeAdapterFactory(TypeAdapterFactory)}</li>
+ *     <li>{@link #addTypeAdapter(Class, TypeAdapter)}</li>
  *     <li>{@link #exclusionStrategy(ExclusionStrategy)}</li>
  *     <li>{@link #ignoreClass(Class)}</li>
  *     <li>{@link #ignoreField(String)}</li>
  * </ul>
- * 
+ *
  * <p><b>Properties</b></p>
  *
  * <ul>
@@ -84,9 +85,9 @@ import static com.telenav.kivakit.core.version.Version.parseVersion;
  *
  * @author jonathanl (shibo)
  */
-@CodeQuality(stability = STABLE_EXTENSIBLE,
+@TypeQuality(stability = STABLE_EXTENSIBLE,
              testing = UNTESTED,
-             documentation = DOCUMENTATION_COMPLETE)
+             documentation = DOCUMENTED)
 public abstract class BaseGsonFactory extends BaseRepeater implements GsonFactory
 {
     /**
@@ -121,6 +122,8 @@ public abstract class BaseGsonFactory extends BaseRepeater implements GsonFactor
 
         private final Map<Class<?>, JsonSerializer<?>> serializers = new HashMap<>();
 
+        private final List<TypeAdapterEntry> typeAdapters = new ArrayList<>();
+
         private final List<TypeAdapterFactory> typeAdapterFactories = new ArrayList<>();
 
         private final Map<Class<?>, Object> typeHierarchyAdapters = new HashMap<>();
@@ -149,6 +152,7 @@ public abstract class BaseGsonFactory extends BaseRepeater implements GsonFactor
         {
             var builder = new GsonBuilder();
 
+            typeAdapters.forEach(entry -> builder.registerTypeAdapter(entry.type, entry.adapter));
             typeAdapterFactories.forEach(builder::registerTypeAdapterFactory);
             serializers.forEach(builder::registerTypeAdapter);
             deserializers.forEach(builder::registerTypeAdapter);
@@ -188,18 +192,19 @@ public abstract class BaseGsonFactory extends BaseRepeater implements GsonFactor
             if (object instanceof GsonSettings that)
             {
                 return areEqualPairs(
-                        typeAdapterFactories, that.typeAdapterFactories,
-                        serializers, that.serializers,
-                        deserializers, that.deserializers,
-                        instanceCreators, that.instanceCreators,
-                        typeHierarchyAdapters, that.typeHierarchyAdapters,
-                        exclusionStrategies, that.exclusionStrategies,
-                        dateFormat, that.dateFormat,
-                        escapeHtml, that.escapeHtml,
-                        requireExposeAnnotation, that.requireExposeAnnotation,
-                        prettyPrinting, that.prettyPrinting,
-                        serializeNulls, that.serializeNulls,
-                        version, that.version);
+                    typeAdapters, that.typeAdapters,
+                    typeAdapterFactories, that.typeAdapterFactories,
+                    serializers, that.serializers,
+                    deserializers, that.deserializers,
+                    instanceCreators, that.instanceCreators,
+                    typeHierarchyAdapters, that.typeHierarchyAdapters,
+                    exclusionStrategies, that.exclusionStrategies,
+                    dateFormat, that.dateFormat,
+                    escapeHtml, that.escapeHtml,
+                    requireExposeAnnotation, that.requireExposeAnnotation,
+                    prettyPrinting, that.prettyPrinting,
+                    serializeNulls, that.serializeNulls,
+                    version, that.version);
             }
             return false;
         }
@@ -207,21 +212,24 @@ public abstract class BaseGsonFactory extends BaseRepeater implements GsonFactor
         @Override
         public int hashCode()
         {
-            return Hash.hashMany(
-                    typeAdapterFactories,
-                    serializers,
-                    deserializers,
-                    instanceCreators,
-                    typeHierarchyAdapters,
-                    exclusionStrategies,
-                    dateFormat,
-                    escapeHtml,
-                    requireExposeAnnotation,
-                    prettyPrinting,
-                    serializeNulls,
-                    version);
+            return hashMany(
+                typeAdapters,
+                typeAdapterFactories,
+                serializers,
+                deserializers,
+                instanceCreators,
+                typeHierarchyAdapters,
+                exclusionStrategies,
+                dateFormat,
+                escapeHtml,
+                requireExposeAnnotation,
+                prettyPrinting,
+                serializeNulls,
+                version);
         }
     }
+
+    private record TypeAdapterEntry(Class<?> type, TypeAdapter<?> adapter) {}
 
     private final GsonSettings settings = new GsonSettings();
 
@@ -288,9 +296,19 @@ public abstract class BaseGsonFactory extends BaseRepeater implements GsonFactor
      * {@inheritDoc}
      */
     @Override
-    public BaseGsonFactory addTypeAdapterFactory(TypeAdapterFactory factory)
+    public <T> BaseGsonFactory addTypeAdapter(Class<T> type, TypeAdapter<T> adapter)
     {
-        settings.typeAdapterFactories.add(factory);
+        settings.typeAdapters.add(new TypeAdapterEntry(type, adapter));
+        return this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public BaseGsonFactory addTypeAdapterFactory(TypeAdapterFactory adapter)
+    {
+        settings.typeAdapterFactories.add(adapter);
         return this;
     }
 

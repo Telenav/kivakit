@@ -18,9 +18,10 @@
 
 package com.telenav.kivakit.core.collections.set;
 
-import com.telenav.kivakit.annotations.code.quality.CodeQuality;
+import com.telenav.kivakit.annotations.code.quality.TypeQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramCollections;
 import com.telenav.kivakit.core.value.count.Maximum;
+import com.telenav.kivakit.interfaces.comparison.Matcher;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.AbstractSet;
@@ -31,8 +32,8 @@ import java.util.Iterator;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_INSUFFICIENT;
 import static com.telenav.kivakit.core.value.count.Maximum.MAXIMUM;
 
@@ -42,9 +43,9 @@ import static com.telenav.kivakit.core.value.count.Maximum.MAXIMUM;
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramCollections.class)
-@CodeQuality(stability = STABLE_EXTENSIBLE,
+@TypeQuality(stability = STABLE_EXTENSIBLE,
              testing = TESTING_INSUFFICIENT,
-             documentation = DOCUMENTATION_COMPLETE)
+             documentation = DOCUMENTED)
 public class IdentitySet<Value> extends BaseSet<Value>
 {
     private final IdentityHashMap<Value, Value> map = new IdentityHashMap<>();
@@ -85,6 +86,54 @@ public class IdentitySet<Value> extends BaseSet<Value>
     public Value take(Value prototype)
     {
         return map.remove(prototype);
+    }
+
+    @Override
+    public IdentitySet<Value> with(Iterable<Value> that)
+    {
+        return (IdentitySet<Value>) super.with(that);
+    }
+
+    @Override
+    public IdentitySet<Value> with(Value value)
+    {
+        return (IdentitySet<Value>) super.with(value);
+    }
+
+    @Override
+    public IdentitySet<Value> with(Value[] that)
+    {
+        return (IdentitySet<Value>) super.with(that);
+    }
+
+    @Override
+    public IdentitySet<Value> with(Collection<Value> that)
+    {
+        return (IdentitySet<Value>) super.with(that);
+    }
+
+    @Override
+    public IdentitySet<Value> without(Value value)
+    {
+        return (IdentitySet<Value>) super.without(value);
+    }
+
+    @Override
+    public IdentitySet<Value> without(Value[] that)
+    {
+        return (IdentitySet<Value>) super.without(that);
+    }
+
+    @Override
+    public IdentitySet<Value> without(Collection<Value> that)
+    {
+        return (IdentitySet<Value>) super.without(that);
+    }
+
+    @Override
+    public BaseSet<Value> without(Matcher<Value> matcher)
+    {
+        return super.without(matcher);
     }
 
     /**

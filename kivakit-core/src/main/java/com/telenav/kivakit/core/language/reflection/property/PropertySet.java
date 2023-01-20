@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.core.language.reflection.property;
 
-import com.telenav.kivakit.annotations.code.quality.CodeQuality;
+import com.telenav.kivakit.annotations.code.quality.TypeQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramReflection;
 import com.telenav.kivakit.core.language.reflection.Field;
 import com.telenav.kivakit.core.language.reflection.Method;
@@ -27,7 +27,7 @@ import com.telenav.lexakai.annotations.associations.UmlAggregation;
 
 import java.util.Set;
 
-import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.language.reflection.property.PropertyMemberSelector.ALL_FIELDS_AND_METHODS;
@@ -72,9 +72,9 @@ import static java.lang.Character.isUpperCase;
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramReflection.class)
-@CodeQuality(stability = STABLE_EXTENSIBLE,
+@TypeQuality(stability = STABLE_EXTENSIBLE,
              testing = UNTESTED,
-             documentation = DOCUMENTATION_COMPLETE)
+             documentation = DOCUMENTED)
 public class PropertySet implements PropertyFilter
 {
     /** The property naming convention */
@@ -228,20 +228,13 @@ public class PropertySet implements PropertyFilter
         if (method.parameterTypes().length == 0)
         {
             // then determine if it's a getter in the given style
-            switch (convention)
-            {
-                case JAVA_BEANS_NAMING:
-                    return isJavaBeansGetterMethod(method);
-
-                case KIVAKIT_PROPERTY_NAMING:
-                    return isKivaKitGetterMethod(method);
-
-                case ANY_NAMING_CONVENTION:
-                    return isJavaBeansGetterMethod(method) || isKivaKitGetterMethod(method);
-
-                default:
-                    return false;
-            }
+            return switch (convention)
+                {
+                    case JAVA_BEANS_NAMING -> isJavaBeansGetterMethod(method);
+                    case KIVAKIT_PROPERTY_NAMING -> isKivaKitGetterMethod(method);
+                    case ANY_NAMING_CONVENTION -> isJavaBeansGetterMethod(method) || isKivaKitGetterMethod(method);
+                    default -> false;
+                };
         }
         return false;
     }

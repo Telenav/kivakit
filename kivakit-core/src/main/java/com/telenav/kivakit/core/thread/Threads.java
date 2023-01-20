@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.core.thread;
 
-import com.telenav.kivakit.annotations.code.quality.CodeQuality;
+import com.telenav.kivakit.annotations.code.quality.TypeQuality;
 import com.telenav.kivakit.core.collections.list.ObjectList;
 import com.telenav.kivakit.core.internal.lexakai.DiagramThread;
 import com.telenav.kivakit.core.value.count.Count;
@@ -27,7 +27,7 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.concurrent.ExecutorService;
 
-import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.code.UncheckedCode.unchecked;
@@ -45,9 +45,9 @@ import static java.util.concurrent.TimeUnit.MILLISECONDS;
  */
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramThread.class)
-@CodeQuality(stability = STABLE_EXTENSIBLE,
+@TypeQuality(stability = STABLE_EXTENSIBLE,
              testing = UNTESTED,
-             documentation = DOCUMENTATION_COMPLETE)
+             documentation = DOCUMENTED)
 public class Threads
 {
     /**
@@ -58,7 +58,7 @@ public class Threads
         // Get the root thread group
         var rootGroup = rootThreadGroup();
 
-        // Initially expect the larger of 8 or the number of active threads
+        // Initially expect the largest of 8 or the number of active threads
         var expected = max(8, rootGroup.activeCount());
 
         // Allocate initial array for threads
@@ -98,7 +98,7 @@ public class Threads
     }
 
     /**
-     * Tells the given executor to shutdown, then waits for it to do so
+     * Tells the given executor to shut down, then waits for it to do so
      */
     public static void shutdownAndAwaitTermination(ExecutorService executor)
     {

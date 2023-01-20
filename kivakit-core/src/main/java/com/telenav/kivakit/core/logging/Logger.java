@@ -23,6 +23,7 @@ import com.telenav.kivakit.core.internal.lexakai.DiagramLogging;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.messaging.Message;
 import com.telenav.kivakit.core.messaging.Repeater;
+import com.telenav.kivakit.core.registry.Register;
 import com.telenav.kivakit.core.time.Duration;
 import com.telenav.kivakit.core.time.Time;
 import com.telenav.kivakit.interfaces.comparison.Filter;
@@ -104,10 +105,11 @@ import com.telenav.lexakai.annotations.visibility.UmlExcludeSuperTypes;
 @UmlClassDiagram(diagram = DiagramLogging.class)
 @UmlClassDiagram(diagram = DiagramListenerType.class)
 @UmlExcludeSuperTypes({ Flushable.class })
+@Register
 public interface Logger extends
-        Listener,
-        Filtered<LogEntry>,
-        Flushable<Duration>
+    Listener,
+    Filtered<LogEntry>,
+    Flushable<Duration>
 {
     /**
      * Set a new filter

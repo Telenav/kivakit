@@ -18,12 +18,14 @@
 
 package com.telenav.kivakit.network.email.senders;
 
-import com.telenav.kivakit.annotations.code.quality.CodeQuality;
+import com.telenav.kivakit.annotations.code.quality.TypeQuality;
 import com.telenav.kivakit.conversion.core.language.object.ConvertedProperty;
 import com.telenav.kivakit.network.core.Host;
+import com.telenav.kivakit.network.core.HostConverter;
 import com.telenav.kivakit.network.core.authentication.Password;
 import com.telenav.kivakit.network.core.authentication.UserName;
-import com.telenav.kivakit.network.core.authentication.passwords.PlainTextPassword;
+import com.telenav.kivakit.network.core.authentication.UserNameConverter;
+import com.telenav.kivakit.network.core.authentication.passwords.PlainTextPasswordConverter;
 import com.telenav.kivakit.network.email.EmailSender;
 import com.telenav.kivakit.network.email.internal.lexakai.DiagramEmail;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
@@ -31,7 +33,7 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 import java.util.Properties;
 
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 
 /**
@@ -40,9 +42,9 @@ import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramEmail.class)
-@CodeQuality(stability = STABLE_EXTENSIBLE,
+@TypeQuality(stability = STABLE_EXTENSIBLE,
              testing = UNTESTED,
-             documentation = DOCUMENTATION_COMPLETE)
+             documentation = DOCUMENTED)
 public class SmtpEmailSender extends EmailSender
 {
     /**
@@ -50,9 +52,9 @@ public class SmtpEmailSender extends EmailSender
      *
      * @author jonathanl (shibo)
      */
-    @CodeQuality(stability = STABLE_EXTENSIBLE,
+    @TypeQuality(stability = STABLE_EXTENSIBLE,
                  testing = UNTESTED,
-                 documentation = DOCUMENTATION_COMPLETE)
+                 documentation = DOCUMENTED)
     public static class Configuration extends EmailSender.Configuration
     {
         private Host host;
@@ -66,7 +68,7 @@ public class SmtpEmailSender extends EmailSender
             return host;
         }
 
-        @ConvertedProperty(Host.Converter.class)
+        @ConvertedProperty(HostConverter.class)
         public Configuration host(Host host)
         {
             this.host = host;
@@ -78,7 +80,7 @@ public class SmtpEmailSender extends EmailSender
             return password;
         }
 
-        @ConvertedProperty(PlainTextPassword.Converter.class)
+        @ConvertedProperty(PlainTextPasswordConverter.class)
         public Configuration password(Password password)
         {
             this.password = password;
@@ -90,7 +92,7 @@ public class SmtpEmailSender extends EmailSender
             return username;
         }
 
-        @ConvertedProperty(UserName.Converter.class)
+        @ConvertedProperty(UserNameConverter.class)
         public Configuration username(UserName username)
         {
             this.username = username;

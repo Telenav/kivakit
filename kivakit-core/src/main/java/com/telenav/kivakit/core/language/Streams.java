@@ -18,15 +18,15 @@
 
 package com.telenav.kivakit.core.language;
 
-import com.telenav.kivakit.annotations.code.quality.CodeQuality;
+import com.telenav.kivakit.annotations.code.quality.TypeQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramLanguage;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.stream.Stream;
 import java.util.stream.StreamSupport;
 
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
 
 /**
@@ -43,9 +43,9 @@ import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_N
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramLanguage.class)
-@CodeQuality(stability = STABLE_EXTENSIBLE,
+@TypeQuality(stability = STABLE_EXTENSIBLE,
              testing = TESTING_NOT_NEEDED,
-             documentation = DOCUMENTATION_COMPLETE)
+             documentation = DOCUMENTED)
 public class Streams
 {
     /**
@@ -57,7 +57,7 @@ public class Streams
     }
 
     /**
-     * Re3turns a stream for an iterable
+     * Returns a stream for an iterable
      */
     public static <T> Stream<T> stream(Iterable<T> iterable)
     {
@@ -69,15 +69,11 @@ public class Streams
      */
     public static <T> Stream<T> stream(Processing processing, Iterable<T> iterable)
     {
-        switch (processing)
-        {
-            case PARALLEL:
-                return parallelStream(iterable);
-
-            case SEQUENTIAL:
-            default:
-                return stream(iterable);
-        }
+        return switch (processing)
+            {
+                case PARALLEL -> parallelStream(iterable);
+                default -> stream(iterable);
+            };
     }
 
     /**

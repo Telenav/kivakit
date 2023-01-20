@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.core.object;
 
-import com.telenav.kivakit.annotations.code.quality.CodeQuality;
+import com.telenav.kivakit.annotations.code.quality.TypeQuality;
 import com.telenav.kivakit.core.collections.iteration.BaseIterator;
 import com.telenav.kivakit.core.internal.lexakai.DiagramObject;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
@@ -26,7 +26,7 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 import java.util.Iterator;
 
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
 
 /**
@@ -35,31 +35,11 @@ import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_N
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramObject.class)
-@CodeQuality(stability = STABLE_EXTENSIBLE,
+@TypeQuality(stability = STABLE_EXTENSIBLE,
              testing = TESTING_NOT_NEEDED,
-             documentation = DOCUMENTATION_COMPLETE)
-public class Pair<T> implements Iterable<T>
+             documentation = DOCUMENTED)
+public record Pair<T>(T a, T b) implements Iterable<T>
 {
-    private final T a;
-
-    private final T b;
-
-    public Pair(T a, T b)
-    {
-        this.a = a;
-        this.b = b;
-    }
-
-    public T a()
-    {
-        return a;
-    }
-
-    public T b()
-    {
-        return b;
-    }
-
     public boolean isIdentity()
     {
         return a.equals(b);
@@ -78,15 +58,12 @@ public class Pair<T> implements Iterable<T>
             @Override
             protected T onNext()
             {
-                switch (index++)
-                {
-                    case 0:
-                        return a;
-
-                    case 1:
-                        return b;
-                }
-                return null;
+                return switch (index++)
+                    {
+                        case 0 -> a;
+                        case 1 -> b;
+                        default -> null;
+                    };
             }
         };
     }

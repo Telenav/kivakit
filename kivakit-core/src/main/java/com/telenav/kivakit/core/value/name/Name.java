@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.core.value.name;
 
-import com.telenav.kivakit.annotations.code.quality.CodeQuality;
+import com.telenav.kivakit.annotations.code.quality.TypeQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramValue;
 import com.telenav.kivakit.interfaces.naming.Nameable;
 import com.telenav.kivakit.interfaces.naming.Named;
@@ -27,7 +27,7 @@ import com.telenav.kivakit.interfaces.string.AsString;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.interfaces.naming.NamedObject.syntheticName;
 
@@ -37,9 +37,9 @@ import static com.telenav.kivakit.interfaces.naming.NamedObject.syntheticName;
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramValue.class)
-@CodeQuality(stability = STABLE_EXTENSIBLE,
+@TypeQuality(stability = STABLE_EXTENSIBLE,
              testing = UNTESTED,
-             documentation = DOCUMENTATION_COMPLETE)
+             documentation = DOCUMENTED)
 public class Name implements
         Named,
         Nameable,

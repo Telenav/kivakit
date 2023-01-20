@@ -223,7 +223,6 @@ public class StringsTest extends CoreUnitTest
         ensure(Iterables.equalIterables(split("a,b,", ","), Split.split("a,b,", ",")));
     }
 
-    @SuppressWarnings("ConstantConditions")
     @Test
     public void testSplitOnFirst()
     {

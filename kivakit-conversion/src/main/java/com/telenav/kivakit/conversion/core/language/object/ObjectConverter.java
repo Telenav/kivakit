@@ -1,6 +1,6 @@
 package com.telenav.kivakit.conversion.core.language.object;
 
-import com.telenav.kivakit.annotations.code.quality.CodeQuality;
+import com.telenav.kivakit.annotations.code.quality.TypeQuality;
 import com.telenav.kivakit.conversion.BaseConverter;
 import com.telenav.kivakit.conversion.StringConverter;
 import com.telenav.kivakit.conversion.core.language.IdentityConverter;
@@ -8,7 +8,7 @@ import com.telenav.kivakit.core.language.reflection.property.Property;
 import com.telenav.kivakit.core.language.reflection.property.PropertyValue;
 import com.telenav.kivakit.core.messaging.Listener;
 
-import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.language.Classes.constructor;
@@ -21,9 +21,9 @@ import static com.telenav.kivakit.core.language.reflection.property.PropertyNami
  *
  * @author jonathanl (shibo)
  */
-@CodeQuality(stability = STABLE,
+@TypeQuality(stability = STABLE,
              testing = UNTESTED,
-             documentation = DOCUMENTATION_COMPLETE)
+             documentation = DOCUMENTED)
 public class ObjectConverter<Value> extends BaseConverter<PropertyValue, Value>
 {
     /** The object type to convert to */

@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.resource.reading;
 
-import com.telenav.kivakit.annotations.code.quality.CodeQuality;
+import com.telenav.kivakit.annotations.code.quality.TypeQuality;
 import com.telenav.kivakit.core.io.IO;
 import com.telenav.kivakit.core.messaging.repeaters.BaseRepeater;
 import com.telenav.kivakit.core.object.Lazy;
@@ -28,9 +28,9 @@ import com.telenav.kivakit.filesystem.File;
 import com.telenav.kivakit.filesystem.FilePath;
 import com.telenav.kivakit.filesystem.Folder;
 import com.telenav.kivakit.resource.CloseMode;
-import com.telenav.kivakit.resource.WriteMode;
 import com.telenav.kivakit.resource.Resource;
 import com.telenav.kivakit.resource.ResourcePath;
+import com.telenav.kivakit.resource.WriteMode;
 import com.telenav.kivakit.resource.compression.Codec;
 import com.telenav.kivakit.resource.compression.codecs.NullCodec;
 import com.telenav.kivakit.resource.internal.lexakai.DiagramFileSystemFile;
@@ -42,7 +42,7 @@ import org.jetbrains.annotations.NotNull;
 import java.io.InputStream;
 import java.nio.charset.Charset;
 
-import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.ensure.Ensure.ensure;
@@ -55,6 +55,7 @@ import static com.telenav.kivakit.filesystem.File.parseFile;
 import static com.telenav.kivakit.filesystem.Folder.FolderType.CLEAN_UP_ON_EXIT;
 import static com.telenav.kivakit.filesystem.Folder.temporaryFolderForProcess;
 import static com.telenav.kivakit.resource.CloseMode.CLOSE;
+import static com.telenav.kivakit.resource.ResourcePath.resourcePath;
 import static com.telenav.kivakit.resource.WriteMode.OVERWRITE;
 import static java.nio.charset.StandardCharsets.UTF_8;
 import static java.util.Objects.hash;
@@ -70,16 +71,16 @@ import static java.util.Objects.hash;
  */
 @UmlClassDiagram(diagram = DiagramResource.class)
 @UmlClassDiagram(diagram = DiagramFileSystemFile.class)
-@CodeQuality(stability = STABLE_EXTENSIBLE,
+@TypeQuality(stability = STABLE_EXTENSIBLE,
              testing = UNTESTED,
-             documentation = DOCUMENTATION_COMPLETE)
+             documentation = DOCUMENTED)
 public abstract class BaseReadableResource extends BaseRepeater implements Resource
 {
     /**
      * The temporary cache folder for storing materialized files
      */
     private static final Lazy<Folder> cacheFolder = lazy(() ->
-            temporaryFolderForProcess(CLEAN_UP_ON_EXIT).ensureExists());
+        temporaryFolderForProcess(CLEAN_UP_ON_EXIT).ensureExists());
 
     /**
      * Character mapping (default is UTF-8)
@@ -172,7 +173,7 @@ public abstract class BaseReadableResource extends BaseRepeater implements Resou
 
         // copy the resource stream (which might involve compression or decompression or both).
         var input = openForReading(reporter);
-        var output = target.openForWriting();
+        var output = target.openForWriting(writeMode);
         if (closeMode == CLOSE)
         {
             ensure(copyAndClose(this, input, output), "Unable to copy ($) $ => $", writeMode, this, target);
@@ -274,7 +275,7 @@ public abstract class BaseReadableResource extends BaseRepeater implements Resou
                         trace("Materializing $ to $", this, cached.path().asAbsolute());
                         safeCopyTo(cached, OVERWRITE, reporter);
                         trace("Materialized ${debug} ($) from ${debug} in ${debug}", cached.path().asAbsolute(),
-                                cached.sizeInBytes(), this, start.elapsedSince());
+                            cached.sizeInBytes(), this, start.elapsedSince());
                     }
                     materialized = cached;
                 }
@@ -309,7 +310,9 @@ public abstract class BaseReadableResource extends BaseRepeater implements Resou
     @Override
     public ResourcePath path()
     {
-        return path;
+        return path == null
+            ? resourcePath("/unknown/" + getClass().getSimpleName() + "/" + hashCode() + ".hash")
+            : path;
     }
 
     @Override

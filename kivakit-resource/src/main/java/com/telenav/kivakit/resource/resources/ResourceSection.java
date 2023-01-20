@@ -18,12 +18,13 @@
 
 package com.telenav.kivakit.resource.resources;
 
-import com.telenav.kivakit.annotations.code.quality.CodeQuality;
+import com.telenav.kivakit.annotations.code.quality.TypeQuality;
 import com.telenav.kivakit.core.io.IO;
 import com.telenav.kivakit.core.time.Time;
 import com.telenav.kivakit.core.value.count.Bytes;
 import com.telenav.kivakit.filesystem.File;
 import com.telenav.kivakit.resource.Resource;
+import com.telenav.kivakit.resource.ResourceIdentifier;
 import com.telenav.kivakit.resource.internal.lexakai.DiagramResourceType;
 import com.telenav.kivakit.resource.reading.BaseReadableResource;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
@@ -34,7 +35,7 @@ import java.io.InputStream;
 import java.io.RandomAccessFile;
 import java.nio.channels.Channels;
 
-import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
@@ -47,8 +48,8 @@ import static com.telenav.kivakit.core.value.count.Bytes.bytes;
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramResourceType.class)
-@CodeQuality(stability = STABLE_EXTENSIBLE,
-             documentation = DOCUMENTATION_COMPLETE,
+@TypeQuality(stability = STABLE_EXTENSIBLE,
+             documentation = DOCUMENTED,
              testing = UNTESTED)
 public class ResourceSection extends BaseReadableResource
 {
@@ -87,6 +88,17 @@ public class ResourceSection extends BaseReadableResource
     public Time createdAt()
     {
         return resource().createdAt();
+    }
+
+    @Override
+    public ResourceIdentifier identifier()
+    {
+        return new ResourceIdentifier("section:"
+            + startOffset
+            + ":"
+            + endOffset
+            + ":"
+            + resource.identifier());
     }
 
     /**
@@ -151,6 +163,6 @@ public class ResourceSection extends BaseReadableResource
     public String toString()
     {
         return "[ResourceSection resource = " + resource + ", start = " + startOffset + ", end = "
-                + endOffset + "]";
+            + endOffset + "]";
     }
 }

@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.serialization.kryo.test;
 
-import com.telenav.kivakit.annotations.code.quality.CodeQuality;
+import com.telenav.kivakit.annotations.code.quality.TypeQuality;
 import com.telenav.kivakit.core.value.count.Count;
 import com.telenav.kivakit.core.version.Version;
 import com.telenav.kivakit.resource.serialization.SerializableObject;
@@ -35,7 +35,7 @@ import com.telenav.kivakit.testing.UnitTest;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 
-import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.path.StringPath.stringPath;
@@ -59,15 +59,15 @@ import static com.telenav.kivakit.serialization.core.SerializationSession.Sessio
  * @author jonathanl (shibo)
  */
 @SuppressWarnings("unused")
-@CodeQuality(stability = STABLE_EXTENSIBLE,
+@TypeQuality(stability = STABLE_EXTENSIBLE,
              testing = UNTESTED,
-             documentation = DOCUMENTATION_COMPLETE)
+             documentation = DOCUMENTED)
 public abstract class KryoUnitTest extends UnitTest
 {
     private SerializationSessionFactory factory;
 
     /**
-     * Returns the kryo types for this unit test. By default this is the kivakit-core types and the kivakit-resource
+     * Returns the kryo types for this unit test. By default, this is the kivakit-core types and the kivakit-resource
      * types.
      */
     protected KryoTypes kryoTypes()

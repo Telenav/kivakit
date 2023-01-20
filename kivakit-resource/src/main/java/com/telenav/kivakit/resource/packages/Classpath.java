@@ -1,7 +1,7 @@
 package com.telenav.kivakit.resource.packages;
 
 import com.google.common.reflect.ClassPath;
-import com.telenav.kivakit.annotations.code.quality.CodeQuality;
+import com.telenav.kivakit.annotations.code.quality.TypeQuality;
 import com.telenav.kivakit.core.collections.list.ObjectList;
 import com.telenav.kivakit.core.collections.set.ObjectSet;
 import com.telenav.kivakit.core.language.packaging.PackageReference;
@@ -9,7 +9,7 @@ import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.object.Lazy;
 import io.github.classgraph.ClassGraph;
 
-import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.quality.Stability.UNSTABLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.object.Lazy.lazy;
@@ -41,9 +41,9 @@ import static java.util.regex.Pattern.compile;
  * @see ClasspathResource
  */
 @SuppressWarnings("unused")
-@CodeQuality(stability = UNSTABLE,
+@TypeQuality(stability = UNSTABLE,
              testing = UNTESTED,
-             documentation = DOCUMENTATION_COMPLETE)
+             documentation = DOCUMENTED)
 public class Classpath
 {
     /** The single instance of this class */
@@ -68,7 +68,7 @@ public class Classpath
     /**
      * Returns all resource folders on the classpath
      */
-    public ObjectList<ClasspathResourceFolder> allResourceFolders(Listener listener)
+    public synchronized ObjectList<ClasspathResourceFolder> allResourceFolders(Listener listener)
     {
         scan(listener);
         return resourceFolders.asList();
@@ -77,7 +77,7 @@ public class Classpath
     /**
      * Returns the set of all non-class resources on the class path, as supplied by Guava's {@link ClassPath} facility.
      */
-    public ObjectList<ClasspathResource> allResources(Listener listener)
+    public synchronized ObjectList<ClasspathResource> allResources(Listener listener)
     {
         scan(listener);
         return resources;
@@ -86,7 +86,8 @@ public class Classpath
     /**
      * Returns all resource folders on the classpath
      */
-    public ObjectList<ClasspathResourceFolder> nestedResourceFolders(Listener listener, PackageReference under)
+    public synchronized ObjectList<ClasspathResourceFolder> nestedResourceFolders(Listener listener,
+                                                                                  PackageReference under)
     {
         scan(listener);
         return resourceFolders.asList().matching(folder -> folder.packageReference().startsWith(under));
@@ -98,7 +99,7 @@ public class Classpath
      * @param under The package to look under
      * @return The list of resources
      */
-    public ObjectList<ClasspathResource> nestedResources(Listener listener, PackageReference under)
+    public synchronized ObjectList<ClasspathResource> nestedResources(Listener listener, PackageReference under)
     {
         return allResources(listener).matching(resource -> resource.packageReference().startsWith(under));
     }
@@ -109,10 +110,10 @@ public class Classpath
      * @param in The package
      * @return The list of resources
      */
-    public ObjectList<ClasspathResourceFolder> resourceFoldersIn(Listener listener, PackageReference in)
+    public synchronized ObjectList<ClasspathResourceFolder> resourceFoldersIn(Listener listener, PackageReference in)
     {
         return allResourceFolders(listener).matching(resource -> resource.packageReference().startsWith(in)
-                && resource.packageReference().size() == in.size() + 1);
+            && resource.packageReference().size() == in.size() + 1);
     }
 
     /**
@@ -121,7 +122,7 @@ public class Classpath
      * @param in The package
      * @return The list of resources
      */
-    public ObjectList<ClasspathResource> resourcesIn(Listener listener, PackageReference in)
+    public synchronized ObjectList<ClasspathResource> resourcesIn(Listener listener, PackageReference in)
     {
         return allResources(listener).matching(resource -> resource.packageReference().equals(in));
     }

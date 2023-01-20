@@ -6,8 +6,6 @@ import com.telenav.kivakit.internal.testing.CoreUnitTest;
 import com.telenav.kivakit.core.value.mutable.MutableValue;
 import org.junit.Test;
 
-import java.util.stream.Collectors;
-
 public class MaybeTest extends CoreUnitTest
 {
     @Test
@@ -30,7 +28,7 @@ public class MaybeTest extends CoreUnitTest
     @Test
     public void testAsStream()
     {
-        ensureEqual(3, Maybe.present(3).asStream().collect(Collectors.toList()).get(0));
+        ensureEqual(3, Maybe.present(3).asStream().toList().get(0));
         ensure(Maybe.absent().asStream().findAny().isEmpty());
     }
 

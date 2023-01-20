@@ -76,11 +76,12 @@ public class AsIndentedStringTest extends CoreUnitTest implements AsIndentedStri
     {
         var foo = new Foo();
         ensureEqual(
-                "bar:\n" +
-                        "  y: 5\n" +
-                        "  z: 7\n" +
-                        "y: 1\n" +
-                        "z: 3", foo.asString());
+            """
+                bar:
+                  y: 5
+                  z: 7
+                y: 1
+                z: 3""", foo.asString());
     }
 
     @Test
@@ -90,10 +91,11 @@ public class AsIndentedStringTest extends CoreUnitTest implements AsIndentedStri
                 .levels(Maximum._4)
                 .pruneAt(Bar.class);
         asString(TEXT, indenter);
-        ensureEqual("foo:\n" +
-                "  bar: Bar\n" +
-                "  y: 1\n" +
-                "  z: 3\n" +
-                "x: 9", indenter.toString());
+        ensureEqual("""
+            foo:
+              bar: Bar
+              y: 1
+              z: 3
+            x: 9""", indenter.toString());
     }
 }

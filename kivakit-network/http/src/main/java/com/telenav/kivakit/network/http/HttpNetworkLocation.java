@@ -18,8 +18,7 @@
 
 package com.telenav.kivakit.network.http;
 
-import com.telenav.kivakit.annotations.code.quality.CodeQuality;
-import com.telenav.kivakit.conversion.BaseStringConverter;
+import com.telenav.kivakit.annotations.code.quality.TypeQuality;
 import com.telenav.kivakit.core.collections.map.VariableMap;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.network.core.NetworkAccessConstraints;
@@ -32,13 +31,10 @@ import com.telenav.kivakit.resource.Resourceful;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
 
-import java.net.MalformedURLException;
 import java.net.URI;
-import java.net.URISyntaxException;
 import java.net.http.HttpRequest;
 
-import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.collections.list.ObjectList.list;
@@ -84,9 +80,9 @@ import static com.telenav.kivakit.network.core.NetworkAccessConstraints.defaultN
  */
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramHttp.class)
-@CodeQuality(stability = STABLE_EXTENSIBLE,
+@TypeQuality(stability = STABLE_EXTENSIBLE,
              testing = UNTESTED,
-             documentation = DOCUMENTATION_COMPLETE)
+             documentation = DOCUMENTED)
 public class HttpNetworkLocation extends NetworkLocation implements Resourceful
 {
     public static HttpNetworkLocation httpNetworkLocation(String path)
@@ -101,47 +97,7 @@ public class HttpNetworkLocation extends NetworkLocation implements Resourceful
 
     public static HttpNetworkLocation parseHttpNetworkLocation(Listener listener, String path)
     {
-        return new Converter(listener).convert(path);
-    }
-
-    /**
-     * Converts to and from {@link HttpNetworkLocation}
-     *
-     * @author jonathanl (shibo)
-     */
-    @CodeQuality(stability = STABLE,
-                 testing = UNTESTED,
-                 documentation = DOCUMENTATION_COMPLETE)
-    public static class Converter extends BaseStringConverter<HttpNetworkLocation>
-    {
-        public Converter(Listener listener)
-        {
-            super(listener, HttpNetworkLocation.class);
-        }
-
-        @Override
-        protected HttpNetworkLocation onToValue(String value)
-        {
-            try
-            {
-                // NOTE: This code is very similar to the code in HttpNetworkLocationConverter
-                var uri = new URI(value);
-                var url = uri.toURL();
-                var location = new HttpNetworkLocation(NetworkPath.networkPath(this, uri));
-                var query = url.getQuery();
-                if (query != null)
-                {
-                    location.queryParameters(QueryParameters.parseQueryParameters(this, query));
-                }
-                location.reference(url.getRef());
-                return location;
-            }
-            catch (URISyntaxException | MalformedURLException e)
-            {
-                problem(e, "Bad network location ${debug}", value);
-                return null;
-            }
-        }
+        return new HttpNetworkLocationConverter(listener).convert(path);
     }
 
     public HttpNetworkLocation(NetworkLocation that)

@@ -19,7 +19,7 @@
 package com.telenav.kivakit.network.ftp.secure;
 
 import com.jcraft.jsch.ChannelSftp.LsEntry;
-import com.telenav.kivakit.annotations.code.quality.CodeQuality;
+import com.telenav.kivakit.annotations.code.quality.TypeQuality;
 import com.telenav.kivakit.collections.watcher.PeriodicCollectionChangeWatcher;
 import com.telenav.kivakit.core.time.Frequency;
 import com.telenav.kivakit.core.time.Time;
@@ -36,7 +36,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.time.Time.epochMilliseconds;
 
@@ -49,9 +49,9 @@ import static com.telenav.kivakit.core.time.Time.epochMilliseconds;
  */
 @UmlClassDiagram(diagram = DiagramSecureFtp.class)
 @UmlRelation(label = "connects with", referent = SecureFtpConnector.class)
-@CodeQuality(stability = STABLE_EXTENSIBLE,
+@TypeQuality(stability = STABLE_EXTENSIBLE,
              testing = UNTESTED,
-             documentation = DOCUMENTATION_COMPLETE)
+             documentation = DOCUMENTED)
 public class SftpFolderWatcher extends PeriodicCollectionChangeWatcher<NetworkPath>
 {
     private boolean initialized;

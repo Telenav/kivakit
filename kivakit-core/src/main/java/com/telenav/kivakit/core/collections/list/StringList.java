@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.core.collections.list;
 
-import com.telenav.kivakit.annotations.code.quality.CodeQuality;
+import com.telenav.kivakit.annotations.code.quality.TypeQuality;
 import com.telenav.kivakit.core.collections.map.VariableMap;
 import com.telenav.kivakit.core.internal.lexakai.DiagramString;
 import com.telenav.kivakit.core.string.AsciiArt;
@@ -34,7 +34,7 @@ import java.util.Comparator;
 import java.util.Iterator;
 import java.util.function.Function;
 
-import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_INSUFFICIENT;
 import static com.telenav.kivakit.core.os.Console.console;
@@ -89,11 +89,21 @@ import static java.lang.Math.max;
  * </ul>
  */
 @SuppressWarnings("unused") @UmlClassDiagram(diagram = DiagramString.class)
-@CodeQuality(stability = STABLE_EXTENSIBLE,
+@TypeQuality(stability = STABLE_EXTENSIBLE,
              testing = TESTING_INSUFFICIENT,
-             documentation = DOCUMENTATION_COMPLETE)
+             documentation = DOCUMENTED)
 public class StringList extends ObjectList<String>
 {
+    /**
+     * Returns a list of the lines in the given text
+     *
+     * @param text The text
+     */
+    public static StringList lines(String text)
+    {
+        return split(text, "\n");
+    }
+
     /**
      * Returns a string list of the given text repeated the given number of times
      */
@@ -255,7 +265,6 @@ public class StringList extends ObjectList<String>
     /**
      * Returns a list of words from the given text with word breaks occurring on whitespace
      */
-    @SuppressWarnings("DuplicatedCode")
     public static StringList words(String text)
     {
         var list = new StringList();
@@ -401,7 +410,7 @@ public class StringList extends ObjectList<String>
      */
     public StringList bracketed()
     {
-        return newInstance()
+        return copy()
             .prepending("{")
             .appending("}");
     }
@@ -426,6 +435,23 @@ public class StringList extends ObjectList<String>
             quoted.add("\"" + value + "\"");
         }
         return quoted;
+    }
+
+    /**
+     * Returns this string list alternated with blank lines
+     */
+    public StringList doubleSpaced()
+    {
+        var doubleSpaced = stringList();
+        for (var at : this)
+        {
+            if (doubleSpaced.isNonEmpty())
+            {
+                doubleSpaced.add("");
+            }
+            doubleSpaced.add(at);
+        }
+        return doubleSpaced;
     }
 
     /**
@@ -670,11 +696,33 @@ public class StringList extends ObjectList<String>
         return (StringList) super.subList(start, end);
     }
 
+    @Override
+    public StringList tail()
+    {
+        return (StringList) super.tail();
+    }
+
+    /**
+     * Removes all leading and trailing blank lines
+     */
+    public StringList trim()
+    {
+        var trimmed = copy();
+        while (trimmed.first().isBlank())
+        {
+            trimmed = trimmed.tail();
+        }
+        while (trimmed.last().isBlank())
+        {
+            trimmed = trimmed.first(trimmed.size() - 1);
+        }
+        return trimmed;
+    }
+
     /**
      * {@inheritDoc}
      */
     @Override
-    @SuppressWarnings("SpellCheckingInspection")
     public StringList uniqued()
     {
         return (StringList) super.uniqued();
@@ -723,6 +771,24 @@ public class StringList extends ObjectList<String>
     public StringList without(Matcher<String> matcher)
     {
         return (StringList) super.without(matcher);
+    }
+
+    @Override
+    public StringList without(Collection<String> that)
+    {
+        return (StringList) super.without(that);
+    }
+
+    @Override
+    public StringList without(String s)
+    {
+        return (StringList) super.without(s);
+    }
+
+    @Override
+    public StringList without(String[] that)
+    {
+        return (StringList) super.without(that);
     }
 
     protected String objectToString(Object object)

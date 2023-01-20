@@ -1,16 +1,19 @@
 package com.telenav.kivakit.core.registry;
 
-import com.telenav.kivakit.core.value.identifier.StringIdentifier;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeType;
 
 /**
  * <b>Not public API</b>
  */
 @UmlExcludeType
-class RegistryKey extends StringIdentifier
+record RegistryKey(Class<?> type, InstanceIdentifier identifier)
 {
-    RegistryKey(String identifier)
+    @Override
+    public String toString()
     {
-        super(identifier);
+        return type.getSimpleName()
+            + (identifier.isSingleton()
+            ? ""
+            : ":" + identifier);
     }
 }
