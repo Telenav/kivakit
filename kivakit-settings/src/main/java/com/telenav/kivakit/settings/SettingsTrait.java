@@ -271,8 +271,8 @@ public interface SettingsTrait extends Repeater
     /**
      * Returns true if all settings were cleared
      */
-    default boolean unloadSettings()
+    default void unloadSettings()
     {
-        return settingsForThis().unload();
+        settingsForThis().clear();
     }
 }

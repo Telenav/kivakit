@@ -22,11 +22,11 @@ import static com.telenav.kivakit.core.collections.set.ObjectSet.set;
 import static com.telenav.kivakit.core.ensure.Ensure.ensure;
 import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
 import static com.telenav.kivakit.core.registry.Registry.globalRegistry;
-import static com.telenav.kivakit.settings.SettingsStore.AccessMode.DELETE;
 import static com.telenav.kivakit.settings.SettingsStore.AccessMode.ADD;
+import static com.telenav.kivakit.settings.SettingsStore.AccessMode.CLEAR;
+import static com.telenav.kivakit.settings.SettingsStore.AccessMode.DELETE;
 import static com.telenav.kivakit.settings.SettingsStore.AccessMode.LOAD;
 import static com.telenav.kivakit.settings.SettingsStore.AccessMode.SAVE;
-import static com.telenav.kivakit.settings.SettingsStore.AccessMode.CLEAR;
 
 /**
  * <b>Service Provider API</b>
@@ -55,7 +55,7 @@ import static com.telenav.kivakit.settings.SettingsStore.AccessMode.CLEAR;
  * <ul>
  *     <li>{@link #add(SettingsObject)} - Adds the given object to the store's in-memory index (but not to any persistent storage)</li>
  *     <li>{@link #objects()} - The set of objects in this store. If the store is loadable, {@link #load()} is called before returning the set</li>
- *     <li>{@link #unload()} - Clears this store's in-memory index</li>
+ *     <li>{@link #clear()} - Clears this store's in-memory index</li>
  *     <li>{@link #iterator()} - Iterates through each settings {@link Object} in this store</li>
  *     <li>{@link #load()} - Lazy-loads objects from persistent storage by calling {@link #onLoad()} and then adds them to the in-memory index</li>
  *     <li>{@link #lookup(SettingsObjectIdentifier)} - Looks up the object for the given identifier in the store's index</li>
@@ -126,6 +126,19 @@ public abstract class BaseSettingsStore extends BaseRepeater implements
             internalPut(new SettingsObject(settings.object(), at, instance));
         }
         return true;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public synchronized void clear()
+    {
+        ensure(supports(CLEAR));
+
+        objects.clear();
+        onUnload();
+        loaded = false;
     }
 
     /**
@@ -229,7 +242,7 @@ public abstract class BaseSettingsStore extends BaseRepeater implements
         if (!reloading)
         {
             reloading = true;
-            unload();
+            clear();
             load();
             reloading = false;
         }
@@ -281,21 +294,6 @@ public abstract class BaseSettingsStore extends BaseRepeater implements
     public String toString()
     {
         return name();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public synchronized boolean unload()
-    {
-        ensure(supports(CLEAR));
-
-        objects.clear();
-        onUnload();
-        loaded = false;
-
-        return true;
     }
 
     /**

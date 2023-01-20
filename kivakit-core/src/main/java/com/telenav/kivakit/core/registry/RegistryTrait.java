@@ -215,8 +215,8 @@ public interface RegistryTrait
     /**
      * Remove all entries from this registry
      */
-    default void unregisterAll()
+    default void clear()
     {
-        registry().unregisterAll();
+        registry().clear();
     }
 }

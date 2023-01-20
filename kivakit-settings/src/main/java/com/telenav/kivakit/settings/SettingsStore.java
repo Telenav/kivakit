@@ -220,14 +220,4 @@ public interface SettingsStore extends
     {
         return accessModes().contains(accessMode);
     }
-
-    /**
-     * <b>Service Provider API</b>
-     * <p>
-     * Unloads all data in this store
-     * </p>
-     *
-     * @return True if the in-memory index of this store was cleared
-     */
-    boolean unload();
 }

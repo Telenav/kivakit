@@ -173,6 +173,12 @@ public class Registry implements RegistryTrait, Named
         return registrations;
     }
 
+    @Override
+    public synchronized void clear()
+    {
+        registered.clear();
+    }
+
     /**
      * Returns any registered object of the given type with the given instance identifier
      */
@@ -256,12 +262,6 @@ public class Registry implements RegistryTrait, Named
     public synchronized void unregister(Object object, InstanceIdentifier instance)
     {
         registered.remove(instance.key(object.getClass()));
-    }
-
-    @Override
-    public synchronized void unregisterAll()
-    {
-        registered.clear();
     }
 
     /**
