@@ -22,6 +22,7 @@ import com.telenav.kivakit.annotations.code.quality.TypeQuality;
 import com.telenav.kivakit.core.collections.BaseCollection;
 import com.telenav.kivakit.core.internal.lexakai.DiagramCollections;
 import com.telenav.kivakit.core.string.AsciiArt;
+import com.telenav.kivakit.core.string.AsciiArt.TextBoxStyle;
 import com.telenav.kivakit.core.value.count.Count;
 import com.telenav.kivakit.core.value.count.Maximum;
 import com.telenav.kivakit.interfaces.collection.Appendable;
@@ -709,6 +710,16 @@ public abstract class BaseList<Value> extends BaseCollection<Value> implements
     public String titledBox(String title)
     {
         return textBox(title, join("\n"));
+    }
+
+    public String titledBox(TextBoxStyle style, String title)
+    {
+        return textBox(style, title, join("\n"));
+    }
+
+    public String titledBox(TextBoxStyle style, String title, Object... arguments)
+    {
+        return titledBox(style, format(title, arguments));
     }
 
     /**

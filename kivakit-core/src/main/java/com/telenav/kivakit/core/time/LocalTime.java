@@ -478,7 +478,7 @@ public class LocalTime extends Time
         {
             return this;
         }
-        return inTimeZone(utcTimeZone());
+        return asLocalTime(utcTimeZone());
     }
 
     /**
@@ -784,6 +784,6 @@ public class LocalTime extends Time
     {
         return that.isLocal()
             ? (LocalTime) that
-            : that.inTimeZone(timeZone());
+            : that.asLocalTime(timeZone());
     }
 }

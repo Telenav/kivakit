@@ -131,19 +131,19 @@ import static com.telenav.kivakit.settings.SettingsStore.AccessMode.LOAD;
              testing = UNTESTED,
              documentation = DOCUMENTED)
 public class SettingsRegistry extends MemorySettingsStore implements
-        SettingsTrait,
-        JavaTrait
+    SettingsTrait,
+    JavaTrait
 {
     /** The global settings registry */
     private static final Lazy<SettingsRegistry> global = lazy(() ->
-            globalListener().listenTo(new SettingsRegistry()
+        globalListener().listenTo(new SettingsRegistry()
+        {
+            @Override
+            public String name()
             {
-                @Override
-                public String name()
-                {
-                    return "[Global Settings]";
-                }
-            }));
+                return "Deployment Settings";
+            }
+        }));
 
     /**
      * Returns the global settings object
@@ -168,9 +168,9 @@ public class SettingsRegistry extends MemorySettingsStore implements
      * settings if it is not found there.
      */
     @Override
-    public <T> T lookupSettings(Class<T> type,
-                                InstanceIdentifier instance,
-                                ResourceFolder<?> defaultSettings)
+    public synchronized <T> T lookupSettings(Class<T> type,
+                                             InstanceIdentifier instance,
+                                             ResourceFolder<?> defaultSettings)
     {
         // First load any settings overrides from KIVAKIT_SETTINGS_FOLDERS,
         loadSettingsFolders();
@@ -202,7 +202,7 @@ public class SettingsRegistry extends MemorySettingsStore implements
      * Returns the settings object for the given type and instance identifier
      */
     @Override
-    public <T> T lookupSettings(Class<T> type, InstanceIdentifier instance)
+    public synchronized <T> T lookupSettings(Class<T> type, InstanceIdentifier instance)
     {
         return lookupSettings(type, instance, null);
     }
@@ -221,7 +221,7 @@ public class SettingsRegistry extends MemorySettingsStore implements
         }
 
         // otherwise, index the object in the settings store,
-        index(new SettingsObject(settings, instance));
+        add(new SettingsObject(settings, instance));
 
         // add the object to the global lookup registry.
         register(settings, instance);
@@ -230,7 +230,7 @@ public class SettingsRegistry extends MemorySettingsStore implements
     }
 
     @Override
-    public SettingsRegistry registerSettingsIn(SettingsStore store)
+    public synchronized SettingsRegistry registerSettingsIn(SettingsStore store)
     {
         // If we can load the settings store,
         if (store.supports(LOAD))
@@ -243,7 +243,7 @@ public class SettingsRegistry extends MemorySettingsStore implements
         }
 
         // Index the settings objects in the given store,
-        indexAll(store);
+        addAll(store);
 
         // and register the settings objects in the global object registry.
         registerAllIn(store);
@@ -254,7 +254,7 @@ public class SettingsRegistry extends MemorySettingsStore implements
     /**
      * Loads settings from the list of folders specified by the KIVAKIT_SETTINGS_FOLDERS environment variable
      */
-    private void loadSettingsFolders()
+    private synchronized void loadSettingsFolders()
     {
         // Go through each path specified by the KIVAKIT_SETTINGS_FOLDERS environment variable
         var settingsFolders = systemPropertyOrEnvironmentVariable("KIVAKIT_SETTINGS_FOLDERS");
@@ -266,7 +266,7 @@ public class SettingsRegistry extends MemorySettingsStore implements
                 var folder = parseFolder(this, path);
                 if (folder != null)
                 {
-                    indexAll(new ResourceFolderSettingsStore(this, folder));
+                    addAll(new ResourceFolderSettingsStore(this, folder));
                 }
                 else
                 {

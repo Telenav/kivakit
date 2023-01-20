@@ -26,7 +26,7 @@ import static com.telenav.kivakit.core.language.Arrays.arrayContains;
 import static com.telenav.kivakit.core.language.Classes.classForName;
 import static com.telenav.kivakit.core.progress.ProgressReporter.nullProgressReporter;
 import static com.telenav.kivakit.core.registry.InstanceIdentifier.instanceIdentifierForEnumName;
-import static com.telenav.kivakit.core.registry.InstanceIdentifier.singletonInstanceIdentifier;
+import static com.telenav.kivakit.core.registry.InstanceIdentifier.singleton;
 import static com.telenav.kivakit.core.version.Version.parseVersion;
 import static com.telenav.kivakit.properties.PropertyMap.loadPropertyMap;
 import static com.telenav.kivakit.resource.serialization.ObjectMetadata.METADATA_OBJECT_INSTANCE;
@@ -112,10 +112,10 @@ public class PropertiesObjectSerializer implements ObjectSerializer
             }
 
             // get any instance identifier,
-            var instance = singletonInstanceIdentifier();
+            var instance = singleton();
             if (arrayContains(metadata, METADATA_OBJECT_INSTANCE))
             {
-                var enumName = properties.getOrDefault("instance", singletonInstanceIdentifier().name());
+                var enumName = properties.getOrDefault("instance", singleton().name());
                 instance = instanceIdentifierForEnumName(this, enumName);
             }
 

@@ -160,6 +160,15 @@ public class Package extends BaseRepeater implements ResourceFolder<Package>
     }
 
     /**
+     * {@inheritDoc}
+     */
+    @Override
+    public URI asUri()
+    {
+        return packagePath.asUri();
+    }
+
+    /**
      * Returns the named sub-package under this one
      */
     public Package child(@NotNull String name)
@@ -369,14 +378,5 @@ public class Package extends BaseRepeater implements ResourceFolder<Package>
     public String toString()
     {
         return packagePath.toString();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public URI asUri()
-    {
-        return packagePath.asUri();
     }
 }

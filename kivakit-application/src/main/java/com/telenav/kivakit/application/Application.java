@@ -110,6 +110,7 @@ import static com.telenav.kivakit.core.logging.LoggerFactory.newLogger;
 import static com.telenav.kivakit.core.project.Project.resolveProject;
 import static com.telenav.kivakit.core.project.StartUpOptions.isStartupOptionEnabled;
 import static com.telenav.kivakit.core.string.Align.rightAlign;
+import static com.telenav.kivakit.core.string.AsciiArt.TextBoxStyle.OPEN;
 import static com.telenav.kivakit.core.string.AsciiArt.repeat;
 import static com.telenav.kivakit.core.string.AsciiArt.textBox;
 import static com.telenav.kivakit.core.string.Strip.stripLeading;
@@ -812,6 +813,7 @@ public abstract class Application extends BaseComponent implements
                 box.add(repeat(4, ' ') + "$. $", number++, argument.value());
             }
         }
+
         if (!internalSwitchParsers().isEmpty())
         {
             box.add("");
@@ -831,8 +833,22 @@ public abstract class Application extends BaseComponent implements
                     value == null ? "N/A" : value);
             }
         }
+
+        if (has(DEPLOYMENT))
+        {
+            box.add(" ");
+            box.add("Deployment Settings:");
+            box.add(" ");
+            box.addAll(get(DEPLOYMENT)
+                .asStringList()
+                    .trim()
+                .indented(4));
+        }
+
         box.add(" ");
-        return box.titledBox(title);
+        box.addAll(registry().asStringList());
+
+        return box.titledBox(OPEN, title);
     }
 
     /**

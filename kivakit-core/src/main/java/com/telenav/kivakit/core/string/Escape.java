@@ -59,8 +59,8 @@ public class Escape
         // replace whitespace and newlines with one space,
         text = text.replaceAll("[\\s\n]+", " ");
 
-        // escape " and % and _ with \,
-        text = text.replaceAll("([\"%_])", "\\\\$1");
+        // escape " and % with \" and \%,
+        text = text.replaceAll("([\"%])", "\\\\$1");
 
         // remove all control characters,
         text = text.replaceAll("\\p{Cntrl}", "");
@@ -90,6 +90,14 @@ public class Escape
         var u3 = replaceAll(u2, "'", "&apos;");
         var u4 = replaceAll(u3, "<", "&lt;");
         return replaceAll(u4, ">", "&gt;");
+    }
+
+    public static String unescapeSql(String text)
+    {
+        return text
+            .replaceAll("\\\\", "")
+            .replaceAll("''", "'")
+            .replaceAll("\\p{Cntrl}", "");
     }
 
     /**

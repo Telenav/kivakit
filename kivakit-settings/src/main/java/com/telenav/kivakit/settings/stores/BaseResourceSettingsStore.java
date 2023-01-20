@@ -12,8 +12,8 @@ import com.telenav.kivakit.settings.BaseSettingsStore;
 import com.telenav.kivakit.settings.SettingsObject;
 import com.telenav.kivakit.settings.SettingsStore;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.resource.serialization.ObjectMetadata.METADATA_OBJECT_INSTANCE;
 import static com.telenav.kivakit.resource.serialization.ObjectMetadata.METADATA_OBJECT_TYPE;
@@ -112,8 +112,8 @@ import static com.telenav.kivakit.resource.serialization.ObjectMetadata.METADATA
              testing = UNTESTED,
              documentation = DOCUMENTED)
 public abstract class BaseResourceSettingsStore extends BaseSettingsStore implements
-        SettingsStore,
-        RegistryTrait
+    SettingsStore,
+    RegistryTrait
 {
     /**
      * Loads a settings object from the given resource
@@ -121,10 +121,10 @@ public abstract class BaseResourceSettingsStore extends BaseSettingsStore implem
      * @param resource The resource to read
      * @return The {@link SettingsObject}
      */
-    protected SettingsObject read(Resource resource)
+    protected synchronized SettingsObject read(Resource resource)
     {
         var reader = require(ObjectSerializerRegistry.class, ObjectSerializerRegistry::new)
-                .serializer(resource.extension());
+            .serializer(resource.extension());
         if (reader != null)
         {
             var object = reader.readObject(resource, METADATA_OBJECT_TYPE, METADATA_OBJECT_INSTANCE);

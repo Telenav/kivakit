@@ -102,6 +102,8 @@ public class ComplexDeploymentTest extends UnitTest
     @Test
     public void testDevelopment()
     {
+        registry().clear();
+        settingsFor(this).clear();
         settingsFor(this).registerSettingsIn(new Development());
 
         var server1 = settingsFor(this).requireSettings(ServerSettings.class, SERVER1);

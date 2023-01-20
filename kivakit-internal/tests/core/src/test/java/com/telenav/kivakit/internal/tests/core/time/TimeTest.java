@@ -69,7 +69,7 @@ public class TimeTest extends CoreUnitTest
     {
         var text = "2023.01.16_07.56PM_UTC";
         var time = Time.time(text);
-        var localTime = time.inTimeZone(utc());
+        var localTime = time.asLocalTime(utc());
         ensureEqual(localTime.toString(), text);
     }
 

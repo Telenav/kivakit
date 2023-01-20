@@ -68,7 +68,7 @@ public class Classpath
     /**
      * Returns all resource folders on the classpath
      */
-    public ObjectList<ClasspathResourceFolder> allResourceFolders(Listener listener)
+    public synchronized ObjectList<ClasspathResourceFolder> allResourceFolders(Listener listener)
     {
         scan(listener);
         return resourceFolders.asList();
@@ -77,7 +77,7 @@ public class Classpath
     /**
      * Returns the set of all non-class resources on the class path, as supplied by Guava's {@link ClassPath} facility.
      */
-    public ObjectList<ClasspathResource> allResources(Listener listener)
+    public synchronized ObjectList<ClasspathResource> allResources(Listener listener)
     {
         scan(listener);
         return resources;
@@ -86,7 +86,8 @@ public class Classpath
     /**
      * Returns all resource folders on the classpath
      */
-    public ObjectList<ClasspathResourceFolder> nestedResourceFolders(Listener listener, PackageReference under)
+    public synchronized ObjectList<ClasspathResourceFolder> nestedResourceFolders(Listener listener,
+                                                                                  PackageReference under)
     {
         scan(listener);
         return resourceFolders.asList().matching(folder -> folder.packageReference().startsWith(under));
@@ -98,7 +99,7 @@ public class Classpath
      * @param under The package to look under
      * @return The list of resources
      */
-    public ObjectList<ClasspathResource> nestedResources(Listener listener, PackageReference under)
+    public synchronized ObjectList<ClasspathResource> nestedResources(Listener listener, PackageReference under)
     {
         return allResources(listener).matching(resource -> resource.packageReference().startsWith(under));
     }
@@ -109,10 +110,10 @@ public class Classpath
      * @param in The package
      * @return The list of resources
      */
-    public ObjectList<ClasspathResourceFolder> resourceFoldersIn(Listener listener, PackageReference in)
+    public synchronized ObjectList<ClasspathResourceFolder> resourceFoldersIn(Listener listener, PackageReference in)
     {
         return allResourceFolders(listener).matching(resource -> resource.packageReference().startsWith(in)
-                && resource.packageReference().size() == in.size() + 1);
+            && resource.packageReference().size() == in.size() + 1);
     }
 
     /**
@@ -121,7 +122,7 @@ public class Classpath
      * @param in The package
      * @return The list of resources
      */
-    public ObjectList<ClasspathResource> resourcesIn(Listener listener, PackageReference in)
+    public synchronized ObjectList<ClasspathResource> resourcesIn(Listener listener, PackageReference in)
     {
         return allResources(listener).matching(resource -> resource.packageReference().equals(in));
     }

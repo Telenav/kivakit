@@ -38,6 +38,7 @@ import static com.telenav.kivakit.core.time.Day.dayOfMonth;
 import static com.telenav.kivakit.core.time.Duration.ZERO_DURATION;
 import static com.telenav.kivakit.core.time.Hour.militaryHour;
 import static com.telenav.kivakit.core.time.KivaKitTimeFormats.KIVAKIT_DATE_TIME;
+import static com.telenav.kivakit.core.time.LocalTime.localTime;
 import static com.telenav.kivakit.core.time.LocalTime.localTimeZone;
 import static com.telenav.kivakit.core.time.LocalTime.utcTimeZone;
 import static com.telenav.kivakit.core.time.Minute.minute;
@@ -211,7 +212,7 @@ public class Time extends BaseTime<Time>
                                Minute minute,
                                Second second)
     {
-        return epochNanoseconds(LocalTime.localTime(utcTimeZone(), year, month, dayOfMonth, hour, minute, second).nanoseconds());
+        return epochNanoseconds(localTime(utcTimeZone(), year, month, dayOfMonth, hour, minute, second).nanoseconds());
     }
 
     /**
@@ -230,7 +231,12 @@ public class Time extends BaseTime<Time>
 
     public LocalTime asLocalTime()
     {
-        return inTimeZone(localTimeZone());
+        return asLocalTime(localTimeZone());
+    }
+
+    public LocalTime asLocalTime(ZoneId zone)
+    {
+        return localTime(ensureNotNull(zone), this);
     }
 
     /**
@@ -267,11 +273,6 @@ public class Time extends BaseTime<Time>
         }
 
         return ZERO_DURATION;
-    }
-
-    public LocalTime inTimeZone(ZoneId zone)
-    {
-        return LocalTime.localTime(ensureNotNull(zone), this);
     }
 
     /**
@@ -390,7 +391,7 @@ public class Time extends BaseTime<Time>
     @Override
     public String toString()
     {
-        return asLocalTime().toString();
+        return asLocalTime(timeZone()).toString();
     }
 
     public Duration until(Time that)
