@@ -1,9 +1,11 @@
 package com.telenav.kivakit.settings;
 
 import com.telenav.kivakit.annotations.code.quality.TypeQuality;
+import com.telenav.kivakit.core.collections.list.StringList;
 import com.telenav.kivakit.core.collections.set.ObjectSet;
 import com.telenav.kivakit.core.messaging.Repeater;
 import com.telenav.kivakit.core.registry.RegistryTrait;
+import com.telenav.kivakit.core.string.ObjectFormatter;
 import com.telenav.kivakit.interfaces.naming.Named;
 
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
@@ -11,7 +13,6 @@ import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTE
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.collections.list.StringList.stringList;
 import static com.telenav.kivakit.core.registry.InstanceIdentifier.singleton;
-import static com.telenav.kivakit.core.string.AsciiArt.TextBoxStyle.OPEN;
 
 /**
  * <b>Service Provider API</b>
@@ -110,6 +111,22 @@ public interface SettingsStore extends
         return true;
     }
 
+    default StringList asStringList()
+    {
+        var registrations = stringList();
+
+        objects().forEach(at ->
+        {
+            var instance = at.identifier().instance();
+            registrations.add("$", at.object().getClass().getSimpleName()
+                + (instance == singleton() ? "" : ":" + instance));
+            registrations.addAll(new ObjectFormatter(at.object()).asStringList());
+            registrations.add("");
+        });
+
+        return registrations;
+    }
+
     /**
      * <b>Service Provider API</b>
      *
@@ -157,25 +174,11 @@ public interface SettingsStore extends
      */
     default boolean registerAllIn(SettingsStore store)
     {
-        var registrations = stringList();
-
         store.objects().forEach(at ->
         {
             var instance = at.identifier().instance();
-            registrations.add("$\n$",
-                at.object().getClass().getSimpleName()
-                    + (instance == singleton() ? "" : ":" + instance),
-                at.object());
-
             register(at.object(), at.identifier().instance());
         });
-
-        if (!registrations.isEmpty())
-        {
-            information(registrations
-                .doubleSpaced()
-                .titledBox(OPEN, "$", name()));
-        }
         return true;
     }
 

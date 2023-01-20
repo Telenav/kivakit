@@ -95,6 +95,16 @@ import static java.lang.Math.max;
 public class StringList extends ObjectList<String>
 {
     /**
+     * Returns a list of the lines in the given text
+     *
+     * @param text The text
+     */
+    public static StringList lines(String text)
+    {
+        return split(text, "\n");
+    }
+
+    /**
      * Returns a string list of the given text repeated the given number of times
      */
     public static StringList repeat(String text, int times)
@@ -684,6 +694,29 @@ public class StringList extends ObjectList<String>
     public StringList subList(int start, int end)
     {
         return (StringList) super.subList(start, end);
+    }
+
+    @Override
+    public StringList tail()
+    {
+        return (StringList) super.tail();
+    }
+
+    /**
+     * Removes all leading and trailing blank lines
+     */
+    public StringList trim()
+    {
+        var trimmed = copy();
+        while (trimmed.first().isBlank())
+        {
+            trimmed = trimmed.tail();
+        }
+        while (trimmed.last().isBlank())
+        {
+            trimmed = trimmed.first(trimmed.size() - 1);
+        }
+        return trimmed;
     }
 
     /**
