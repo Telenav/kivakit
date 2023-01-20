@@ -30,14 +30,14 @@ This module defines core serialization abstractions.
 
 ### Dependencies <a name="dependencies"></a> &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/dependencies-32.png" srcset="https://telenav.github.io/telenav-assets/images/icons/dependencies-32-2x.png 2x"/>
 
-[*Dependency Diagram*](https://www.kivakit.org/1.12.0/lexakai/kivakit/kivakit-serialization/core/documentation/diagrams/dependencies.svg)
+[*Dependency Diagram*](https://www.kivakit.org/1.13.0/lexakai/kivakit/kivakit-serialization/core/documentation/diagrams/dependencies.svg)
 
 #### Maven Dependency
 
     <dependency>
         <groupId>com.telenav.kivakit</groupId>
         <artifactId>kivakit-serialization-core</artifactId>
-        <version>1.12.0</version>
+        <version>1.13.0</version>
     </dependency>
 
 <img src="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128.png" srcset="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128-2x.png 2x"/>
@@ -54,15 +54,15 @@ This package provides serialization abstraction useful to Kryo and other seriali
 
 ### Code Quality <a name="code-quality"></a> &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/ruler-32.png" srcset="https://telenav.github.io/telenav-assets/images/icons/ruler-32-2x.png 2x"/>
 
-Code quality for this project is 66.7%.  
+Code quality for this project is 0.0%.  
   
-&nbsp; &nbsp; <img src="https://telenav.github.io/telenav-assets/images/meters/meter-70-96.png" srcset="https://telenav.github.io/telenav-assets/images/meters/meter-70-96-2x.png 2x"/>
+&nbsp; &nbsp; <img src="https://telenav.github.io/telenav-assets/images/meters/meter-0-96.png" srcset="https://telenav.github.io/telenav-assets/images/meters/meter-0-96-2x.png 2x"/>
 
 | Measurement   | Value                    |
 |---------------|--------------------------|
-| Stability     | 100.0%&nbsp; &nbsp; <img src="https://telenav.github.io/telenav-assets/images/meters/meter-100-96.png" srcset="https://telenav.github.io/telenav-assets/images/meters/meter-100-96-2x.png 2x"/>     |
+| Stability     | 0.0%&nbsp; &nbsp; <img src="https://telenav.github.io/telenav-assets/images/meters/meter-0-96.png" srcset="https://telenav.github.io/telenav-assets/images/meters/meter-0-96-2x.png 2x"/>     |
 | Testing       | 0.0%&nbsp; &nbsp; <img src="https://telenav.github.io/telenav-assets/images/meters/meter-0-96.png" srcset="https://telenav.github.io/telenav-assets/images/meters/meter-0-96-2x.png 2x"/>       |
-| Documentation | 100.0%&nbsp; &nbsp; <img src="https://telenav.github.io/telenav-assets/images/meters/meter-100-96.png" srcset="https://telenav.github.io/telenav-assets/images/meters/meter-100-96-2x.png 2x"/> |
+| Documentation | 0.0%&nbsp; &nbsp; <img src="https://telenav.github.io/telenav-assets/images/meters/meter-0-96.png" srcset="https://telenav.github.io/telenav-assets/images/meters/meter-0-96-2x.png 2x"/> |
 
 <img src="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128.png" srcset="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128-2x.png 2x"/>
 
@@ -74,20 +74,20 @@ None
 
 ### Package Diagrams <a name="package-diagrams"></a> &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/box-24.png" srcset="https://telenav.github.io/telenav-assets/images/icons/box-24-2x.png 2x"/>
 
-[*com.telenav.kivakit.serialization.core*](https://www.kivakit.org/1.12.0/lexakai/kivakit/kivakit-serialization/core/documentation/diagrams/com.telenav.kivakit.serialization.core.svg)
+[*com.telenav.kivakit.serialization.core*](https://www.kivakit.org/1.13.0/lexakai/kivakit/kivakit-serialization/core/documentation/diagrams/com.telenav.kivakit.serialization.core.svg)
 
 ### Javadoc <a name="code-quality"></a> &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/books-24.png" srcset="https://telenav.github.io/telenav-assets/images/icons/books-24-2x.png 2x"/>
 
 | Class | Documentation Sections  |
 |-------|-------------------------|
-| [*SerializationSession*](https://www.kivakit.org/1.12.0/javadoc/kivakit/kivakit-serialization-core/com/telenav/kivakit/serialization/core/SerializationSession.html) | Creating a Session |  
+| [*SerializationSession*](https://www.kivakit.org/1.13.0/javadoc/kivakit/kivakit-serialization-core/com/telenav/kivakit/serialization/core/SerializationSession.html) | Creating a Session |  
 | | Reading and Writing |  
 | | Opening a Session |  
 | | Example |  
 | | Closing a Session |  
 | | Properties |  
-| [*SerializationSession.SessionType*](https://www.kivakit.org/1.12.0/javadoc/kivakit/kivakit-serialization-core/com/telenav/kivakit/serialization/core/SerializationSession.SessionType.html) |  |  
-| [*SerializationSessionFactory*](https://www.kivakit.org/1.12.0/javadoc/kivakit/kivakit-serialization-core/com/telenav/kivakit/serialization/core/SerializationSessionFactory.html) |  |  
+| [*SerializationSession.SessionType*](https://www.kivakit.org/1.13.0/javadoc/kivakit/kivakit-serialization-core/com/telenav/kivakit/serialization/core/SerializationSession.SessionType.html) |  |  
+| [*SerializationSessionFactory*](https://www.kivakit.org/1.13.0/javadoc/kivakit/kivakit-serialization-core/com/telenav/kivakit/serialization/core/SerializationSessionFactory.html) |  |  
 
 [//]: # (start-user-text)
 
