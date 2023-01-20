@@ -66,13 +66,13 @@ public interface SettingsStore extends
     enum AccessMode
     {
         /** Can add objects to in-memory index */
-        INDEX,
+        ADD,
 
         /** Can remove objects from the in-memory index */
         DELETE,
 
         /** Can clear loaded and added objects from in-memory index */
-        UNLOAD,
+        CLEAR,
 
         /** Can load objects from persistent storage */
         LOAD,

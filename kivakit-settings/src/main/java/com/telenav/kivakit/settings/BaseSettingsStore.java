@@ -23,10 +23,10 @@ import static com.telenav.kivakit.core.ensure.Ensure.ensure;
 import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
 import static com.telenav.kivakit.core.registry.Registry.globalRegistry;
 import static com.telenav.kivakit.settings.SettingsStore.AccessMode.DELETE;
-import static com.telenav.kivakit.settings.SettingsStore.AccessMode.INDEX;
+import static com.telenav.kivakit.settings.SettingsStore.AccessMode.ADD;
 import static com.telenav.kivakit.settings.SettingsStore.AccessMode.LOAD;
 import static com.telenav.kivakit.settings.SettingsStore.AccessMode.SAVE;
-import static com.telenav.kivakit.settings.SettingsStore.AccessMode.UNLOAD;
+import static com.telenav.kivakit.settings.SettingsStore.AccessMode.CLEAR;
 
 /**
  * <b>Service Provider API</b>
@@ -107,7 +107,7 @@ public abstract class BaseSettingsStore extends BaseRepeater implements
     @Override
     public synchronized boolean add(SettingsObject settings)
     {
-        ensure(supports(INDEX));
+        ensure(supports(ADD));
         ensureNotNull(settings);
 
         globalRegistry().register(settings.object(), settings.identifier().instance());
@@ -243,7 +243,7 @@ public abstract class BaseSettingsStore extends BaseRepeater implements
     @Override
     public synchronized boolean remove(SettingsObject settings)
     {
-        ensure(supports(INDEX));
+        ensure(supports(ADD));
         ensureNotNull(settings);
 
         // Remove the object to the global lookup registry
@@ -289,7 +289,7 @@ public abstract class BaseSettingsStore extends BaseRepeater implements
     @Override
     public synchronized boolean unload()
     {
-        ensure(supports(UNLOAD));
+        ensure(supports(CLEAR));
 
         objects.clear();
         onUnload();

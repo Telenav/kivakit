@@ -40,9 +40,9 @@ import static com.telenav.kivakit.core.collections.set.ObjectSet.set;
 import static com.telenav.kivakit.core.ensure.Ensure.unsupported;
 import static com.telenav.kivakit.core.string.Formatter.format;
 import static com.telenav.kivakit.settings.SettingsStore.AccessMode.DELETE;
-import static com.telenav.kivakit.settings.SettingsStore.AccessMode.INDEX;
+import static com.telenav.kivakit.settings.SettingsStore.AccessMode.ADD;
 import static com.telenav.kivakit.settings.SettingsStore.AccessMode.LOAD;
-import static com.telenav.kivakit.settings.SettingsStore.AccessMode.UNLOAD;
+import static com.telenav.kivakit.settings.SettingsStore.AccessMode.CLEAR;
 
 /**
  * <p>
@@ -90,7 +90,7 @@ public class ResourceFolderSettingsStore extends BaseResourceSettingsStore
     @Override
     public ObjectSet<AccessMode> accessModes()
     {
-        return set(INDEX, DELETE, UNLOAD, LOAD);
+        return set(ADD, DELETE, CLEAR, LOAD);
     }
 
     /**
