@@ -19,7 +19,7 @@
     <parent>
         <groupId>com.telenav.kivakit</groupId>
         <artifactId>kivakit-parent</artifactId>
-        <version>1.13.0</version>
+        <version>1.14.0</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
 
