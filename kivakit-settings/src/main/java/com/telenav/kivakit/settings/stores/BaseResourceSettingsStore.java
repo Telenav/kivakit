@@ -121,7 +121,7 @@ public abstract class BaseResourceSettingsStore extends BaseSettingsStore implem
      * @param resource The resource to read
      * @return The {@link SettingsObject}
      */
-    protected SettingsObject read(Resource resource)
+    protected synchronized SettingsObject read(Resource resource)
     {
         var reader = require(ObjectSerializerRegistry.class, ObjectSerializerRegistry::new)
             .serializer(resource.extension());

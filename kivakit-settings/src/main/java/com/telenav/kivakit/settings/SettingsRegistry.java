@@ -141,7 +141,7 @@ public class SettingsRegistry extends MemorySettingsStore implements
             @Override
             public String name()
             {
-                return "Global Settings Registry";
+                return "Deployment Settings";
             }
         }));
 

@@ -107,7 +107,7 @@ public class ResourceFolderSettingsStore extends BaseResourceSettingsStore
      */
     @Override
     @UmlExcludeMember
-    public ObjectSet<SettingsObject> onLoad()
+    public synchronized ObjectSet<SettingsObject> onLoad()
     {
         var objects = new ObjectSet<SettingsObject>();
 

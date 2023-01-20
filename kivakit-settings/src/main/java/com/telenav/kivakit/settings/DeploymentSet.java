@@ -20,7 +20,6 @@ package com.telenav.kivakit.settings;
 
 import com.telenav.kivakit.annotations.code.quality.TypeQuality;
 import com.telenav.kivakit.commandline.SwitchParser;
-import com.telenav.kivakit.core.collections.set.ConcurrentHashSet;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.messaging.repeaters.BaseRepeater;
 import com.telenav.kivakit.core.registry.RegistryTrait;
@@ -32,6 +31,7 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlAggregation;
 
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.Set;
 
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
@@ -136,7 +136,7 @@ public class DeploymentSet extends BaseRepeater implements RegistryTrait
 
     /** The set of deployments */
     @UmlAggregation
-    private final Set<Deployment> deployments = new ConcurrentHashSet<>();
+    private final Set<Deployment> deployments = new HashSet<>();
 
     protected DeploymentSet()
     {
@@ -145,7 +145,7 @@ public class DeploymentSet extends BaseRepeater implements RegistryTrait
     /**
      * Adds the given deployment to this set
      */
-    public void add(Deployment deployment)
+    public synchronized void add(Deployment deployment)
     {
         deployments.add(deployment);
     }
@@ -153,7 +153,7 @@ public class DeploymentSet extends BaseRepeater implements RegistryTrait
     /**
      * Adds all the deployments in the given collection to this set
      */
-    public void addAll(Collection<Deployment> deployments)
+    public synchronized void addAll(Collection<Deployment> deployments)
     {
         deployments.forEach(this::add);
     }
@@ -161,7 +161,7 @@ public class DeploymentSet extends BaseRepeater implements RegistryTrait
     /**
      * Adds all the deployments from the sub-packages found in the given package.
      */
-    public DeploymentSet addDeploymentsIn(ResourceFolder<?> folder)
+    public synchronized DeploymentSet addDeploymentsIn(ResourceFolder<?> folder)
     {
         // Go through the sub-packages,
         for (var child : folder.folders())
@@ -184,7 +184,7 @@ public class DeploymentSet extends BaseRepeater implements RegistryTrait
     /**
      * Returns the named deployment
      */
-    public Deployment deployment(String name)
+    public synchronized Deployment deployment(String name)
     {
         for (var deployment : deployments)
         {
@@ -199,15 +199,15 @@ public class DeploymentSet extends BaseRepeater implements RegistryTrait
     /**
      * Returns the deployments in this set
      */
-    public Set<Deployment> deployments()
+    public synchronized Set<Deployment> deployments()
     {
-        return deployments;
+        return new HashSet<>(deployments);
     }
 
     /**
      * Returns true if this deployment set is empty
      */
-    public boolean isEmpty()
+    public synchronized boolean isEmpty()
     {
         return deployments.isEmpty();
     }
@@ -215,7 +215,7 @@ public class DeploymentSet extends BaseRepeater implements RegistryTrait
     /**
      * Returns the number of deployments in this set
      */
-    public int size()
+    public synchronized int size()
     {
         return deployments.size();
     }

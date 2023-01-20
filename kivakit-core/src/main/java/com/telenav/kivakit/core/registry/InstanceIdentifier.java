@@ -40,7 +40,7 @@ import static com.telenav.kivakit.core.string.Paths.pathWithoutSuffix;
  * <p><b>Creation</b></p>
  *
  * <ul>
- *     <li>{@link #singletonInstanceIdentifier()}</li>
+ *     <li>{@link #singleton()}</li>
  *     <li>{@link #instanceIdentifier(Enum)}</li>
  * </ul>
  *
@@ -89,9 +89,9 @@ public class InstanceIdentifier
     public static <T extends Enum<T>> InstanceIdentifier instanceIdentifierForEnumName(Listener listener,
                                                                                        String enumValueName)
     {
-        if (enumValueName.equals(singletonInstanceIdentifier().name()))
+        if (enumValueName.equals(singleton().name()))
         {
-            return singletonInstanceIdentifier();
+            return singleton();
         }
         var identifier = instanceIdentifierForEnumName.get(enumValueName);
         if (identifier == null)
@@ -111,7 +111,7 @@ public class InstanceIdentifier
     /**
      * Returns an instance identifier for singleton objects
      */
-    public static InstanceIdentifier singletonInstanceIdentifier()
+    public static InstanceIdentifier singleton()
     {
         if (SINGLETON == null)
         {
@@ -181,6 +181,14 @@ public class InstanceIdentifier
     }
 
     /**
+     * Returns true if this is the singleton instance identifier
+     */
+    public boolean isSingleton()
+    {
+        return this == SINGLETON;
+    }
+
+    /**
      * Return the name of this identifier
      */
     public String name()
@@ -204,7 +212,7 @@ public class InstanceIdentifier
 
     RegistryKey key(Class<?> at)
     {
-        return new RegistryKey(at.getName() + ":" + identifier());
+        return new RegistryKey(at, this);
     }
 
     private String identifier()

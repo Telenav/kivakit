@@ -15,7 +15,7 @@ import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTE
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
 import static com.telenav.kivakit.core.registry.InstanceIdentifier.instanceIdentifier;
-import static com.telenav.kivakit.core.registry.InstanceIdentifier.singletonInstanceIdentifier;
+import static com.telenav.kivakit.core.registry.InstanceIdentifier.singleton;
 import static com.telenav.kivakit.settings.SettingsRegistry.settingsFor;
 
 /**
@@ -153,7 +153,7 @@ public interface SettingsTrait extends Repeater
      */
     default SettingsRegistry registerSettings(Object settings)
     {
-        return registerSettings(settings, singletonInstanceIdentifier());
+        return registerSettings(settings, singleton());
     }
 
     /**
@@ -193,7 +193,7 @@ public interface SettingsTrait extends Repeater
      */
     default <T> T requireSettings(Class<T> type)
     {
-        return requireSettings(type, singletonInstanceIdentifier());
+        return requireSettings(type, singleton());
     }
 
     /**
@@ -247,7 +247,7 @@ public interface SettingsTrait extends Repeater
      */
     default boolean saveSettings(SettingsStore store, Object object)
     {
-        return saveSettings(store, object, singletonInstanceIdentifier());
+        return saveSettings(store, object, singleton());
     }
 
     /**

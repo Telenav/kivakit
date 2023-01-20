@@ -10,7 +10,7 @@ import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMEN
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.collections.list.StringList.stringList;
-import static com.telenav.kivakit.core.registry.InstanceIdentifier.singletonInstanceIdentifier;
+import static com.telenav.kivakit.core.registry.InstanceIdentifier.singleton;
 import static com.telenav.kivakit.core.string.AsciiArt.TextBoxStyle.OPEN;
 
 /**
@@ -164,7 +164,7 @@ public interface SettingsStore extends
             var instance = at.identifier().instance();
             registrations.add("$\n$",
                 at.object().getClass().getSimpleName()
-                    + (instance == singletonInstanceIdentifier() ? "" : ":" + instance),
+                    + (instance == singleton() ? "" : ":" + instance),
                 at.object());
 
             register(at.object(), at.identifier().instance());
@@ -172,7 +172,9 @@ public interface SettingsStore extends
 
         if (!registrations.isEmpty())
         {
-            information(registrations.titledBox(OPEN, "$", name()));
+            information(registrations
+                .doubleSpaced()
+                .titledBox(OPEN, "$", name()));
         }
         return true;
     }

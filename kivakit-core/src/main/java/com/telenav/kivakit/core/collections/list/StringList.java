@@ -428,6 +428,23 @@ public class StringList extends ObjectList<String>
     }
 
     /**
+     * Returns this string list alternated with blank lines
+     */
+    public StringList doubleSpaced()
+    {
+        var doubleSpaced = stringList();
+        for (var at : this)
+        {
+            if (doubleSpaced.isNonEmpty())
+            {
+                doubleSpaced.add("");
+            }
+            doubleSpaced.add(at);
+        }
+        return doubleSpaced;
+    }
+
+    /**
      * {@inheritDoc}
      */
     @Override

@@ -36,7 +36,7 @@ import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
 import static com.telenav.kivakit.core.language.Hash.hashMany;
 import static com.telenav.kivakit.core.language.Hash.identityHash;
 import static com.telenav.kivakit.core.registry.InstanceIdentifier.instanceIdentifier;
-import static com.telenav.kivakit.core.registry.InstanceIdentifier.singletonInstanceIdentifier;
+import static com.telenav.kivakit.core.registry.InstanceIdentifier.singleton;
 
 /**
  * <b>Service Provider API</b>
@@ -87,7 +87,7 @@ public class SettingsObject implements RegistryTrait
         public SettingsObjectIdentifier(Class<?> type)
         {
             this.type = type;
-            instance = singletonInstanceIdentifier();
+            instance = singleton();
         }
 
         /**
@@ -163,7 +163,7 @@ public class SettingsObject implements RegistryTrait
 
     public SettingsObject(Object object)
     {
-        this(object, singletonInstanceIdentifier());
+        this(object, singleton());
     }
 
     public SettingsObject(SerializableObject<?> object)
@@ -180,7 +180,7 @@ public class SettingsObject implements RegistryTrait
     {
         if (instance == null)
         {
-            instance = singletonInstanceIdentifier();
+            instance = singleton();
         }
         ensureNotNull(object);
         ensureFalse(object instanceof SerializableObject, "Internal error: Unwrapped SerializableObject");

@@ -11,7 +11,7 @@ import static com.telenav.kivakit.annotations.code.quality.Stability.UNSTABLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.language.Hash.hashMany;
 import static com.telenav.kivakit.core.language.Objects.areEqualPairs;
-import static com.telenav.kivakit.core.registry.InstanceIdentifier.singletonInstanceIdentifier;
+import static com.telenav.kivakit.core.registry.InstanceIdentifier.singleton;
 
 /**
  * A serializable object is a versioned object with an optional instance identifier
@@ -24,7 +24,7 @@ import static com.telenav.kivakit.core.registry.InstanceIdentifier.singletonInst
 public class SerializableObject<T> extends VersionedObject<T>
 {
     /** The instance identifier for this serializable object */
-    private InstanceIdentifier instance = singletonInstanceIdentifier();
+    private InstanceIdentifier instance = singleton();
 
     public SerializableObject(@NotNull VersionedObject<T> object)
     {

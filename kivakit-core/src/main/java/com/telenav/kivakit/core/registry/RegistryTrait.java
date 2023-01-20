@@ -3,12 +3,12 @@ package com.telenav.kivakit.core.registry;
 import com.telenav.kivakit.annotations.code.quality.TypeQuality;
 import com.telenav.kivakit.interfaces.factory.Factory;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
 import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
 import static com.telenav.kivakit.core.registry.InstanceIdentifier.instanceIdentifier;
-import static com.telenav.kivakit.core.registry.InstanceIdentifier.singletonInstanceIdentifier;
+import static com.telenav.kivakit.core.registry.InstanceIdentifier.singleton;
 import static com.telenav.kivakit.core.registry.Registry.registryFor;
 
 /**
@@ -55,7 +55,7 @@ public interface RegistryTrait
      */
     default <T> T lookup(Class<T> type)
     {
-        return lookup(type, singletonInstanceIdentifier());
+        return lookup(type, singleton());
     }
 
     /**
@@ -88,12 +88,7 @@ public interface RegistryTrait
      */
     default <T> T register(T object)
     {
-        for (var at = object.getClass(); at != Object.class; at = at.getSuperclass())
-        {
-            register(object, singletonInstanceIdentifier());
-        }
-
-        return object;
+        return registry().register(object, singleton());
     }
 
     /**
@@ -158,7 +153,7 @@ public interface RegistryTrait
      */
     default <T> T require(Class<T> type)
     {
-        return require(type, singletonInstanceIdentifier());
+        return require(type, singleton());
     }
 
     /**
@@ -192,7 +187,7 @@ public interface RegistryTrait
      */
     default void unregister(Object object)
     {
-        unregister(object, singletonInstanceIdentifier());
+        unregister(object, singleton());
     }
 
     /**

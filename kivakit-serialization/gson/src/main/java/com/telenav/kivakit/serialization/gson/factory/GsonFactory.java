@@ -11,6 +11,7 @@ import com.google.gson.annotations.Expose;
 import com.telenav.kivakit.annotations.code.quality.TypeQuality;
 import com.telenav.kivakit.conversion.StringConverter;
 import com.telenav.kivakit.core.messaging.Repeater;
+import com.telenav.kivakit.core.registry.Register;
 import com.telenav.kivakit.core.version.Version;
 
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
@@ -26,6 +27,7 @@ import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 @TypeQuality(stability = STABLE_EXTENSIBLE,
              testing = UNTESTED,
              documentation = DOCUMENTED)
+@Register
 public interface GsonFactory extends Repeater
 {
     /**

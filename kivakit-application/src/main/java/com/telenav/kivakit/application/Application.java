@@ -832,6 +832,7 @@ public abstract class Application extends BaseComponent implements
             }
         }
         box.add(" ");
+        box.addAll(registry().asStringList());
         return box.titledBox(title);
     }
 
