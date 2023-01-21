@@ -13,6 +13,7 @@ import java.util.Date;
 import java.util.TimeZone;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.concurrent.locks.Condition;
 
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
@@ -80,6 +81,7 @@ import static java.util.concurrent.TimeUnit.MILLISECONDS;
  *
  * <ul>
  *     <li>{@link #await(Awaitable)}</li>
+ *     <li>{@link #await(Condition)}</li>
  *     <li>{@link #repeat(Callback)}</li>
  *     <li>{@link #sleep()}</li>
  *     <li>{@link #wait(Object)}</li>
@@ -126,11 +128,11 @@ public interface LengthOfTime<Duration extends LongValued & LengthOfTime<Duratio
     /**
      * Wait for the given operation to complete or time out.
      */
-    default WakeState await(Awaitable awaitable)
+    default WakeState await(Condition condition)
     {
         try
         {
-            if (awaitable.await(milliseconds(), MILLISECONDS))
+            if (condition.await(milliseconds(), MILLISECONDS))
             {
                 return COMPLETED;
             }
@@ -143,6 +145,33 @@ public interface LengthOfTime<Duration extends LongValued & LengthOfTime<Duratio
         catch (Exception e)
         {
             return terminated(e);
+        }
+    }
+
+    /**
+     * Wait for the given operation to complete or time out.
+     */
+    @SuppressWarnings("SynchronizationOnLocalVariableOrMethodParameter")
+    default WakeState await(Awaitable awaitable)
+    {
+        synchronized (awaitable)
+        {
+            try
+            {
+                if (awaitable.await(milliseconds(), MILLISECONDS))
+                {
+                    return COMPLETED;
+                }
+                return TIMED_OUT;
+            }
+            catch (InterruptedException e)
+            {
+                return INTERRUPTED;
+            }
+            catch (Exception e)
+            {
+                return terminated(e);
+            }
         }
     }
 

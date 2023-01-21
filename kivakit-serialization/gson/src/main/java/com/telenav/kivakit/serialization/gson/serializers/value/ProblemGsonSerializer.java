@@ -16,41 +16,45 @@
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-package com.telenav.kivakit.serialization.gson.serializers;
+package com.telenav.kivakit.serialization.gson.serializers.value;
 
 import com.telenav.kivakit.annotations.code.quality.TypeQuality;
-import com.telenav.kivakit.core.time.Time;
-import com.telenav.kivakit.serialization.gson.PrimitiveGsonSerializer;
+import com.telenav.kivakit.core.messaging.Listener;
+import com.telenav.kivakit.core.messaging.MessageFormat;
+import com.telenav.kivakit.core.messaging.messages.status.Problem;
+import com.telenav.kivakit.serialization.gson.serializers.BaseGsonValueSerializer;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
-import static com.telenav.kivakit.core.time.Time.epochMilliseconds;
 
 /**
- * Serializes {@link Time} objects to and from JSON as a number of milliseconds since the start of the UNIX epoch.
+ * Serializes {@link Problem}s to and from JSON.
  *
  * @author jonathanl (shibo)
  */
 @TypeQuality(stability = STABLE_EXTENSIBLE,
              testing = UNTESTED,
              documentation = DOCUMENTED)
-public class TimeInMillisecondsGsonSerializer extends PrimitiveGsonSerializer<Time, Long>
+public class ProblemGsonSerializer extends BaseGsonValueSerializer<Problem, String>
 {
-    public TimeInMillisecondsGsonSerializer()
+    private final MessageFormat format;
+
+    public ProblemGsonSerializer(Listener listener, MessageFormat format)
     {
-        super(Long.class);
+        super(Problem.class, String.class);
+        this.format = format;
     }
 
     @Override
-    protected Time toObject(Long identifier)
+    protected Problem onDeserialize(String serialized)
     {
-        return epochMilliseconds(identifier);
+        return new Problem(serialized);
     }
 
     @Override
-    protected Long toPrimitive(Time time)
+    protected String onSerialize(Problem value)
     {
-        return time.milliseconds();
+        return value.formatted(format);
     }
 }

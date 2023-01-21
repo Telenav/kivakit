@@ -35,7 +35,7 @@ import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
  *
  * @author jonathanl (shibo)
  * @see Multicaster
- * @see AbortTransmissionException
+ * @see ThrowingListenerException
  */
 @UmlClassDiagram(diagram = DiagramListenerType.class)
 @TypeQuality(stability = STABLE,
@@ -52,7 +52,7 @@ public class ThrowingListener implements Listener
             // we throw a special exception that circumvents the trapping of exceptions
             // in Multicaster, which otherwise would ensure that all listeners get a
             // message delivered.
-            throw new AbortTransmissionException(message);
+            throw new ThrowingListenerException(message);
         }
     }
 }

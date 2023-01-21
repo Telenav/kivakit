@@ -1,18 +1,20 @@
-package com.telenav.kivakit.serialization.gson.factory;
+package com.telenav.kivakit.serialization.gson.serializers;
 
+import com.google.gson.Gson;
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonPrimitive;
 import com.google.gson.JsonSerializer;
 import com.telenav.kivakit.annotations.code.quality.TypeQuality;
+import com.telenav.kivakit.core.messaging.Repeater;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 
 /**
- * Combines {@link JsonSerializer} and {@link JsonDeserializer} interfaces
+ * Combines {@link Gson}'s {@link JsonSerializer} and {@link JsonDeserializer} interfaces into one
  *
  * @author jonathanl (shibo)
  */
@@ -20,9 +22,10 @@ import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 @TypeQuality(stability = STABLE_EXTENSIBLE,
              testing = UNTESTED,
              documentation = DOCUMENTED)
-public interface JsonSerializerDeserializer<T> extends
-        JsonSerializer<T>,
-        JsonDeserializer<T>
+public interface GsonValueSerializer<V, S> extends
+    JsonSerializer<V>,
+    JsonDeserializer<V>,
+    Repeater
 {
     /**
      * Adds the given property to the given json object
@@ -69,4 +72,22 @@ public interface JsonSerializerDeserializer<T> extends
     {
         return context.deserialize(object.get(propertyName), type);
     }
+
+    /**
+     * Returns a string that identifies this serializer
+     */
+    default String identity()
+    {
+        return getClass() + ":" + valueType() + ":" + serializedType();
+    }
+
+    /**
+     * Returns the serialized type for this value serializer
+     */
+    Class<S> serializedType();
+
+    /**
+     * Returns the value type for this value serializer
+     */
+    Class<V> valueType();
 }

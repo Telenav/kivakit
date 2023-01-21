@@ -16,41 +16,41 @@
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-package com.telenav.kivakit.serialization.gson.serializers;
+package com.telenav.kivakit.serialization.gson.serializers.time;
 
 import com.telenav.kivakit.annotations.code.quality.TypeQuality;
-import com.telenav.kivakit.core.value.count.Count;
-import com.telenav.kivakit.serialization.gson.PrimitiveGsonSerializer;
+import com.telenav.kivakit.core.time.Time;
+import com.telenav.kivakit.serialization.gson.serializers.BaseGsonValueSerializer;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
-import static com.telenav.kivakit.core.value.count.Count.count;
+import static com.telenav.kivakit.core.time.Time.epochMilliseconds;
 
 /**
- * Gson serializer for {@link Count} objects
+ * Serializes {@link Time} objects to and from JSON as a number of milliseconds since the start of the UNIX epoch.
  *
  * @author jonathanl (shibo)
  */
 @TypeQuality(stability = STABLE_EXTENSIBLE,
              testing = UNTESTED,
              documentation = DOCUMENTED)
-public class CountGsonSerializer extends PrimitiveGsonSerializer<Count, Integer>
+public class TimeInMillisecondsGsonSerializer extends BaseGsonValueSerializer<Time, Long>
 {
-    public CountGsonSerializer()
+    public TimeInMillisecondsGsonSerializer()
     {
-        super(Integer.class);
+        super(Time.class, Long.class);
     }
 
     @Override
-    protected Count toObject(Integer primitive)
+    protected Time onDeserialize(Long serialized)
     {
-        return count(primitive);
+        return epochMilliseconds(serialized);
     }
 
     @Override
-    protected Integer toPrimitive(Count object)
+    protected Long onSerialize(Time value)
     {
-        return object.asInt();
+        return value.milliseconds();
     }
 }

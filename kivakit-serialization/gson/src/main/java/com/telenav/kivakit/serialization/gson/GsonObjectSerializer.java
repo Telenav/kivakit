@@ -10,7 +10,6 @@ import com.telenav.kivakit.resource.resources.OutputResource;
 import com.telenav.kivakit.resource.serialization.ObjectMetadata;
 import com.telenav.kivakit.resource.serialization.ObjectSerializer;
 import com.telenav.kivakit.resource.serialization.SerializableObject;
-import com.telenav.kivakit.serialization.gson.factory.GsonFactory;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 

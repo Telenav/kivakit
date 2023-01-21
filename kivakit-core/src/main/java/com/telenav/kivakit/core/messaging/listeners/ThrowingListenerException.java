@@ -12,9 +12,9 @@ import com.telenav.kivakit.interfaces.messaging.Transmittable;
  * @author jonathanl (shibo)
  * @see ThrowingListener
  */
-public class AbortTransmissionException extends MessageException
+public class ThrowingListenerException extends MessageException
 {
-    public AbortTransmissionException(Message message)
+    public ThrowingListenerException(Message message)
     {
         super(message);
     }

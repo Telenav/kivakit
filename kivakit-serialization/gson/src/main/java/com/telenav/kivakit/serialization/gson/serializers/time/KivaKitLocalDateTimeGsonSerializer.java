@@ -16,42 +16,33 @@
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-package com.telenav.kivakit.serialization.gson.serializers;
+package com.telenav.kivakit.serialization.gson.serializers.time;
 
 import com.telenav.kivakit.annotations.code.quality.TypeQuality;
 import com.telenav.kivakit.conversion.core.time.kivakit.KivaKitLocalDateTimeConverter;
 import com.telenav.kivakit.core.time.LocalTime;
-import com.telenav.kivakit.serialization.gson.PrimitiveGsonSerializer;
+import com.telenav.kivakit.core.time.Time;
+import com.telenav.kivakit.serialization.gson.serializers.StringConverterGsonSerializer;
+
+import java.time.ZoneId;
 
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
-import static com.telenav.kivakit.core.time.LocalTime.localTimeZone;
+import static com.telenav.kivakit.core.messaging.Listener.throwingListener;
 
 /**
- * Serializes {@link LocalTime} objects to and from JSON in KivaKit format.
+ * Serializes {@link Time} objects to and from JSON as a number of milliseconds since the start of the UNIX epoch.
  *
  * @author jonathanl (shibo)
  */
 @TypeQuality(stability = STABLE_EXTENSIBLE,
              testing = UNTESTED,
              documentation = DOCUMENTED)
-public class LocalTimeGsonSerializer extends PrimitiveGsonSerializer<LocalTime, String>
+public class KivaKitLocalDateTimeGsonSerializer extends StringConverterGsonSerializer<LocalTime>
 {
-    public LocalTimeGsonSerializer()
+    public KivaKitLocalDateTimeGsonSerializer(ZoneId zone)
     {
-        super(String.class);
-    }
-
-    @Override
-    protected LocalTime toObject(String text)
-    {
-        return new KivaKitLocalDateTimeConverter(localTimeZone()).convert(text);
-    }
-
-    @Override
-    protected String toPrimitive(LocalTime time)
-    {
-        return time.asUtc().toString();
+        super(new KivaKitLocalDateTimeConverter(throwingListener(), zone));
     }
 }

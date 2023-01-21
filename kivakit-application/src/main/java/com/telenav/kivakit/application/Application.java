@@ -66,7 +66,7 @@ import com.telenav.kivakit.properties.PropertyMap;
 import com.telenav.kivakit.resource.packages.PackageTrait;
 import com.telenav.kivakit.resource.serialization.ObjectSerializerRegistry;
 import com.telenav.kivakit.serialization.gson.GsonObjectSerializer;
-import com.telenav.kivakit.serialization.gson.factory.KivaKitCoreGsonFactory;
+import com.telenav.kivakit.serialization.gson.KivaKitCoreGsonFactory;
 import com.telenav.kivakit.serialization.properties.PropertiesObjectSerializer;
 import com.telenav.kivakit.settings.Deployment;
 import com.telenav.kivakit.settings.DeploymentSet;
@@ -841,7 +841,7 @@ public abstract class Application extends BaseComponent implements
             box.add(" ");
             box.addAll(get(DEPLOYMENT)
                 .asStringList()
-                    .trim()
+                .trim()
                 .indented(4));
         }
 
@@ -958,7 +958,7 @@ public abstract class Application extends BaseComponent implements
 
     protected void onRegisterObjectSerializers()
     {
-        register(new KivaKitCoreGsonFactory(this));
+        register(new KivaKitCoreGsonFactory());
 
         var serializers = new ObjectSerializerRegistry();
         tryCatch(() -> serializers.add(JSON, listenTo(new GsonObjectSerializer())), "Unable to register JSON serializer");

@@ -36,7 +36,6 @@ import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTE
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
 import static com.telenav.kivakit.core.collections.list.StringList.stringList;
 import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
-import static com.telenav.kivakit.core.os.Console.console;
 import static com.telenav.kivakit.core.string.AsciiArt.TextBoxStyle.OPEN;
 import static com.telenav.kivakit.core.string.ObjectFormatter.ObjectFormat.MULTILINE;
 
@@ -186,10 +185,6 @@ public class Registry implements RegistryTrait, Named
     @SuppressWarnings({ "unchecked" })
     public synchronized <T> T lookup(Class<T> type, InstanceIdentifier instance)
     {
-        if (registered.get(instance.key(type)) == null)
-        {
-            console().println("hi");
-        }
         return (T) registered.get(instance.key(type));
     }
 
