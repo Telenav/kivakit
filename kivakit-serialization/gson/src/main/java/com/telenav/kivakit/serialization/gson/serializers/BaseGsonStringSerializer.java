@@ -3,14 +3,14 @@ package com.telenav.kivakit.serialization.gson.serializers;
 import com.telenav.kivakit.core.messaging.listeners.ThrowingListenerException;
 
 /**
- * Base class for {@link GsonValueSerializer}s that convert from a value type, V, to a String. The subclass is
+ * Base class for {@link GsonSerializer}s that convert from a value type, V, to a String. The subclass is
  * responsible for implementing {@link #onDeserialize(String)}, and optionally, {@link #onSerialize(Object)} (the
  * default implementation is to call {@link #toString()} on the value. If an exception is * thrown by the
  * implementation, it will be rethrown as a {@link ThrowingListenerException}.
  *
  * @author Jonathan Locke
  */
-public abstract class BaseGsonStringSerializer<V> extends BaseGsonValueSerializer<V, String>
+public abstract class BaseGsonStringSerializer<V> extends BaseGsonSerializer<V, String>
 {
     public BaseGsonStringSerializer(Class<V> valueType)
     {

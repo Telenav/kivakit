@@ -15,9 +15,9 @@ import com.telenav.kivakit.core.registry.Register;
 import com.telenav.kivakit.core.version.Version;
 import com.telenav.kivakit.serialization.gson.serializers.BaseGsonElementSerializer;
 import com.telenav.kivakit.serialization.gson.serializers.BaseGsonStringSerializer;
-import com.telenav.kivakit.serialization.gson.serializers.BaseGsonValueSerializer;
-import com.telenav.kivakit.serialization.gson.serializers.GsonValueSerializer;
-import com.telenav.kivakit.serialization.gson.serializers.StringConverterGsonSerializer;
+import com.telenav.kivakit.serialization.gson.serializers.BaseGsonSerializer;
+import com.telenav.kivakit.serialization.gson.serializers.GsonSerializer;
+import com.telenav.kivakit.serialization.gson.serializers.converter.StringConverterGsonSerializer;
 
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
@@ -49,7 +49,7 @@ import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
  *
  * <ul>
  *     <li>{@link #addSerializer(StringConverter)}</li>
- *     <li>{@link #addSerializer(GsonValueSerializer)}</li>
+ *     <li>{@link #addSerializer(GsonSerializer)}</li>
  * </ul>
  *
  * <p><b>Gson Serializers</b></p>
@@ -66,8 +66,8 @@ import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
  * @see GsonFactory
  * @see BaseGsonElementSerializer
  * @see BaseGsonStringSerializer
- * @see BaseGsonValueSerializer
- * @see GsonValueSerializer
+ * @see BaseGsonSerializer
+ * @see GsonSerializer
  * @see StringConverterGsonSerializer
  */
 @SuppressWarnings({ "unused", "UnusedReturnValue" })
@@ -130,16 +130,16 @@ public interface GsonFactory extends Repeater
     <T> GsonFactory addSerializer(Class<T> type, JsonSerializer<T> serializer);
 
     /**
-     * Adds the given KivaKit {@link GsonValueSerializer}, which is bidirectional, supporting both serialization and
+     * Adds the given KivaKit {@link GsonSerializer}, which is bidirectional, supporting both serialization and
      * deserialization. Implementations of this interface include subclasses of {@link BaseGsonElementSerializer},
-     * {@link BaseGsonValueSerializer}, and {@link BaseGsonStringSerializer}. Of particular interest is
+     * {@link BaseGsonSerializer}, and {@link BaseGsonStringSerializer}. Of particular interest is
      * {@link StringConverterGsonSerializer}, which adapts kivakit {@link StringConverter}s as serializers.
      *
      * @param serializer The bidirectional value serializer
      * @return This object, for method chaining
      * @see #addSerializer(StringConverter)
      */
-    <V, S> GsonFactory addSerializer(GsonValueSerializer<V, S> serializer);
+    <V, S> GsonFactory addSerializer(GsonSerializer<V, S> serializer);
 
     /**
      * Adds a serializer for the given {@link StringConverter} to the {@link Gson} objects produced by this factory

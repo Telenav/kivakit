@@ -20,7 +20,7 @@ package com.telenav.kivakit.serialization.gson.serializers.value;
 
 import com.telenav.kivakit.annotations.code.quality.TypeQuality;
 import com.telenav.kivakit.core.value.count.Count;
-import com.telenav.kivakit.serialization.gson.serializers.BaseGsonValueSerializer;
+import com.telenav.kivakit.serialization.gson.serializers.BaseGsonSerializer;
 
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
@@ -35,7 +35,7 @@ import static com.telenav.kivakit.core.value.count.Count.count;
 @TypeQuality(stability = STABLE_EXTENSIBLE,
              testing = UNTESTED,
              documentation = DOCUMENTED)
-public class CountGsonSerializer extends BaseGsonValueSerializer<Count, Integer>
+public class CountGsonSerializer extends BaseGsonSerializer<Count, Integer>
 {
     public CountGsonSerializer()
     {

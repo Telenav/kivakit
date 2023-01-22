@@ -16,14 +16,14 @@ import static com.telenav.kivakit.core.ensure.Ensure.unsupported;
 import static com.telenav.kivakit.core.messaging.Listener.throwingListener;
 
 /**
- * Base class for {@link GsonValueSerializer}s that convert from a value type, V, to a {@link JsonElement}. The subclass
+ * Base class for {@link GsonSerializer}s that convert from a value type, V, to a {@link JsonElement}. The subclass
  * is responsible for implementing {@link #toJson(Object)} and {@link #toValue(JsonElement)}. If an exception is thrown
  * by the implementation, it will be rethrown as a {@link ThrowingListenerException}.
  *
  * @author Jonathan Locke
  */
 public abstract class BaseGsonElementSerializer<V> extends BaseRepeater implements
-    GsonValueSerializer<V, JsonElement>
+    GsonSerializer<V, JsonElement>
 {
     /** The type to serialized */
     private final Class<V> valueType;

@@ -22,7 +22,7 @@ import com.telenav.kivakit.annotations.code.quality.TypeQuality;
 import com.telenav.kivakit.conversion.core.time.kivakit.KivaKitLocalDateTimeConverter;
 import com.telenav.kivakit.core.time.LocalTime;
 import com.telenav.kivakit.core.time.Time;
-import com.telenav.kivakit.serialization.gson.serializers.StringConverterGsonSerializer;
+import com.telenav.kivakit.serialization.gson.serializers.converter.StringConverterGsonSerializer;
 
 import java.time.ZoneId;
 

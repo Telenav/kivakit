@@ -19,7 +19,7 @@ import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 @TypeQuality(stability = STABLE_EXTENSIBLE,
              testing = UNTESTED,
              documentation = DOCUMENTED)
-public interface GsonValueSerializer<V, S> extends
+public interface GsonSerializer<V, S> extends
     JsonSerializer<V>,
     JsonDeserializer<V>,
     Repeater

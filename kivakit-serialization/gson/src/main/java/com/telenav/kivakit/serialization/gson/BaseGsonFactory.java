@@ -35,9 +35,9 @@ import com.telenav.kivakit.core.messaging.repeaters.BaseRepeater;
 import com.telenav.kivakit.core.version.Version;
 import com.telenav.kivakit.serialization.gson.serializers.BaseGsonElementSerializer;
 import com.telenav.kivakit.serialization.gson.serializers.BaseGsonStringSerializer;
-import com.telenav.kivakit.serialization.gson.serializers.BaseGsonValueSerializer;
-import com.telenav.kivakit.serialization.gson.serializers.GsonValueSerializer;
-import com.telenav.kivakit.serialization.gson.serializers.StringConverterGsonSerializer;
+import com.telenav.kivakit.serialization.gson.serializers.BaseGsonSerializer;
+import com.telenav.kivakit.serialization.gson.serializers.GsonSerializer;
+import com.telenav.kivakit.serialization.gson.serializers.converter.StringConverterGsonSerializer;
 
 import java.util.IdentityHashMap;
 import java.util.Map;
@@ -74,7 +74,7 @@ import static com.telenav.kivakit.core.collections.set.ObjectSet.set;
  *
  * <ul>
  *     <li>{@link #addSerializer(StringConverter)}</li>
- *     <li>{@link #addSerializer(GsonValueSerializer)}</li>
+ *     <li>{@link #addSerializer(GsonSerializer)}</li>
  * </ul>
  *
  * <p><b>Gson Serializers</b></p>
@@ -91,8 +91,8 @@ import static com.telenav.kivakit.core.collections.set.ObjectSet.set;
  * @see GsonFactory
  * @see BaseGsonElementSerializer
  * @see BaseGsonStringSerializer
- * @see BaseGsonValueSerializer
- * @see GsonValueSerializer
+ * @see BaseGsonSerializer
+ * @see GsonSerializer
  * @see StringConverterGsonSerializer
  */
 @TypeQuality(stability = STABLE_EXTENSIBLE,
@@ -265,7 +265,7 @@ public abstract class BaseGsonFactory extends BaseRepeater implements GsonFactor
      * {@inheritDoc}
      */
     @Override
-    public <V, S> BaseGsonFactory addSerializer(GsonValueSerializer<V, S> serializer)
+    public <V, S> BaseGsonFactory addSerializer(GsonSerializer<V, S> serializer)
     {
         var token = token("value-serializer", serializer.identity());
 

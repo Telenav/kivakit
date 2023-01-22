@@ -28,8 +28,8 @@ import org.jetbrains.annotations.NotNull;
 import java.io.IOException;
 import java.io.InputStream;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 
 /**
@@ -137,5 +137,11 @@ public class ProgressiveInputStream extends InputStream
         catch (IOException ignored)
         {
         }
+    }
+
+    @Override
+    public String toString()
+    {
+        return "[ProgressiveInputStream input = " + input.getClass().getSimpleName() + "]";
     }
 }

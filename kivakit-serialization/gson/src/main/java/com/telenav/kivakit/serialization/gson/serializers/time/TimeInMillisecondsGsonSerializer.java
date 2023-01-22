@@ -20,7 +20,7 @@ package com.telenav.kivakit.serialization.gson.serializers.time;
 
 import com.telenav.kivakit.annotations.code.quality.TypeQuality;
 import com.telenav.kivakit.core.time.Time;
-import com.telenav.kivakit.serialization.gson.serializers.BaseGsonValueSerializer;
+import com.telenav.kivakit.serialization.gson.serializers.BaseGsonSerializer;
 
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
@@ -35,7 +35,7 @@ import static com.telenav.kivakit.core.time.Time.epochMilliseconds;
 @TypeQuality(stability = STABLE_EXTENSIBLE,
              testing = UNTESTED,
              documentation = DOCUMENTED)
-public class TimeInMillisecondsGsonSerializer extends BaseGsonValueSerializer<Time, Long>
+public class TimeInMillisecondsGsonSerializer extends BaseGsonSerializer<Time, Long>
 {
     public TimeInMillisecondsGsonSerializer()
     {

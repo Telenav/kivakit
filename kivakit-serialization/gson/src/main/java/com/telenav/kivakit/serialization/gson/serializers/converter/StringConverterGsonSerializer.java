@@ -1,7 +1,8 @@
-package com.telenav.kivakit.serialization.gson.serializers;
+package com.telenav.kivakit.serialization.gson.serializers.converter;
 
 import com.google.gson.Gson;
 import com.telenav.kivakit.conversion.StringConverter;
+import com.telenav.kivakit.serialization.gson.serializers.BaseGsonStringSerializer;
 
 /**
  * A base class for {@link Gson} serializers that convert from

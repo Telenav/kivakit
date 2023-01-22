@@ -141,7 +141,7 @@ public class ResourceReader extends BaseRepeater implements AsString
      */
     public byte[] readBytes()
     {
-        var in = open();
+        var in = openForReading();
         if (in != null)
         {
             return IO.readBytes(this, in);
@@ -283,7 +283,7 @@ public class ResourceReader extends BaseRepeater implements AsString
      */
     public Reader textReader()
     {
-        var in = open();
+        var in = openForReading();
         if (in != null)
         {
             if (charset == null)
@@ -307,7 +307,7 @@ public class ResourceReader extends BaseRepeater implements AsString
         return resource.toString();
     }
 
-    private InputStream open()
+    private InputStream openForReading()
     {
         var size = resource.sizeInBytes();
         if (size != null)

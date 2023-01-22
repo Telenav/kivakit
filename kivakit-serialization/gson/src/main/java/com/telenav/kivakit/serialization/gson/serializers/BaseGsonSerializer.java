@@ -13,14 +13,14 @@ import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
 import static com.telenav.kivakit.core.messaging.Listener.throwingListener;
 
 /**
- * Base class for {@link GsonValueSerializer}s that convert from a value type, V, to a serialized type, S. The subclass
- * is responsible for implementing {@link #onSerialize(Object)} and {@link #onDeserialize(Object)}. If an exception is
+ * Base class for {@link GsonSerializer}s that convert from a value type, V, to a serialized type, S. The subclass is
+ * responsible for implementing {@link #onSerialize(Object)} and {@link #onDeserialize(Object)}. If an exception is
  * thrown by the implementation, it will be rethrown as a {@link ThrowingListenerException}.
  *
  * @author Jonathan Locke
  */
-public abstract class BaseGsonValueSerializer<V, S> extends BaseRepeater implements
-    GsonValueSerializer<V, S>
+public abstract class BaseGsonSerializer<V, S> extends BaseRepeater implements
+    GsonSerializer<V, S>
 {
     /** The type to serialized */
     private final Class<V> valueType;
@@ -28,8 +28,8 @@ public abstract class BaseGsonValueSerializer<V, S> extends BaseRepeater impleme
     /** The type of the serialized representation */
     private final Class<S> serializedType;
 
-    public BaseGsonValueSerializer(Class<V> valueType,
-                                   Class<S> serializedType)
+    public BaseGsonSerializer(Class<V> valueType,
+                              Class<S> serializedType)
     {
         this.valueType = ensureNotNull(valueType);
         this.serializedType = ensureNotNull(serializedType);
