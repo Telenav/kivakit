@@ -1,21 +1,24 @@
 package com.telenav.kivakit.serialization.gson.serializers;
 
-import com.google.gson.Gson;
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
+import com.google.gson.JsonPrimitive;
 import com.google.gson.JsonSerializationContext;
 import com.telenav.kivakit.core.messaging.listeners.ThrowingListenerException;
 import com.telenav.kivakit.core.messaging.repeaters.BaseRepeater;
 
+import java.lang.reflect.Type;
+
 import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
+import static com.telenav.kivakit.core.ensure.Ensure.unsupported;
 import static com.telenav.kivakit.core.messaging.Listener.throwingListener;
 
 /**
  * Base class for {@link GsonValueSerializer}s that convert from a value type, V, to a {@link JsonElement}. The subclass
- * is responsible for implementing {@link #toJson(JsonSerializationContext, Object)} and
- * {@link #toValue(JsonDeserializationContext, JsonElement)}. If an exception is thrown by the implementation, it will
- * be rethrown as a {@link ThrowingListenerException}.
+ * is responsible for implementing {@link #toJson(Object)} and {@link #toValue(JsonElement)}. If an exception is thrown
+ * by the implementation, it will be rethrown as a {@link ThrowingListenerException}.
  *
  * @author Jonathan Locke
  */
@@ -24,6 +27,10 @@ public abstract class BaseGsonElementSerializer<V> extends BaseRepeater implemen
 {
     /** The type to serialized */
     private final Class<V> valueType;
+
+    private final ThreadLocal<JsonSerializationContext> serializer = new ThreadLocal<>();
+
+    private final ThreadLocal<JsonDeserializationContext> deserializer = new ThreadLocal<>();
 
     public BaseGsonElementSerializer(Class<V> valueType)
     {
@@ -37,13 +44,13 @@ public abstract class BaseGsonElementSerializer<V> extends BaseRepeater implemen
      */
     @Override
     public V deserialize(JsonElement json,
-                          java.lang.reflect.Type typeOfT,
-                          JsonDeserializationContext context)
-        throws JsonParseException
+                         Type type,
+                         JsonDeserializationContext context) throws JsonParseException
     {
         try
         {
-            return toValue(context, context.deserialize(json, valueType));
+            deserializer.set(context);
+            return toValue(json);
         }
         catch (Exception e)
         {
@@ -52,17 +59,28 @@ public abstract class BaseGsonElementSerializer<V> extends BaseRepeater implemen
         }
     }
 
+    public JsonDeserializationContext deserializer()
+    {
+        return deserializer.get();
+    }
+
+    public <T> JsonObject serialize(T object)
+    {
+        return (JsonObject) serializer().serialize(object, object.getClass());
+    }
+
     /**
      * {@inheritDoc}
      */
     @Override
     public JsonElement serialize(V value,
-                                  java.lang.reflect.Type typeOfSrc,
-                                  JsonSerializationContext context)
+                                 Type type,
+                                 JsonSerializationContext context)
     {
         try
         {
-            return context.serialize(toJson(context, value), JsonElement.class);
+            serializer.set(context);
+            return serializer().serialize(toJson(value));
         }
         catch (Exception e)
         {
@@ -77,6 +95,11 @@ public abstract class BaseGsonElementSerializer<V> extends BaseRepeater implemen
         return JsonElement.class;
     }
 
+    public JsonSerializationContext serializer()
+    {
+        return serializer.get();
+    }
+
     @Override
     public Class<V> valueType()
     {
@@ -84,22 +107,52 @@ public abstract class BaseGsonElementSerializer<V> extends BaseRepeater implemen
     }
 
     /**
+     * Deserializes an object property
+     *
+     * @param element The JSON element
+     * @param propertyName The property to deserialize
+     * @param type The type of value
+     */
+    protected <T> T deserialize(JsonElement element,
+                                String propertyName,
+                                Class<T> type)
+    {
+        var object = (JsonObject) element;
+        if (type.isPrimitive() || type == String.class)
+        {
+            JsonPrimitive value = object.getAsJsonPrimitive(propertyName);
+            return switch (type.getSimpleName())
+                {
+                    case "Integer" -> type.cast(value.getAsInt());
+                    case "Long" -> type.cast(value.getAsLong());
+                    case "Boolean" -> type.cast(value.getAsBoolean());
+                    case "Float" -> type.cast(value.getAsFloat());
+                    case "Double" -> type.cast(value.getAsDouble());
+                    case "String" -> type.cast(value.getAsString());
+                    default -> unsupported();
+                };
+        }
+        else
+        {
+            return deserializer().deserialize(object.get(propertyName), type);
+        }
+    }
+
+    /**
      * Converts a value to its serialized representation
      *
-     * @param context The {@link Gson} serialiation context
      * @param value The value to serialize
      * @return The serialized representation of the value
      * @throws ThrowingListenerException Thrown if serialization fails
      */
-    protected abstract JsonElement toJson(JsonSerializationContext context, V value);
+    protected abstract JsonElement toJson(V value);
 
     /**
      * Converts a serialized object to a value
      *
-     * @param context The {@link Gson} deserialization context
-     * @param serialized The serialized representation
+     * @param object The serialized representation
      * @return The deserialized value
      * @throws ThrowingListenerException Thrown if deserialization fails
      */
-    protected abstract V toValue(JsonDeserializationContext context, JsonElement serialized);
+    protected abstract V toValue(JsonElement object);
 }

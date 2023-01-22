@@ -19,7 +19,6 @@
 package com.telenav.kivakit.serialization.gson.serializers.value;
 
 import com.telenav.kivakit.annotations.code.quality.TypeQuality;
-import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.messaging.MessageFormat;
 import com.telenav.kivakit.core.messaging.messages.status.Problem;
 import com.telenav.kivakit.serialization.gson.serializers.BaseGsonValueSerializer;
@@ -40,7 +39,7 @@ public class ProblemGsonSerializer extends BaseGsonValueSerializer<Problem, Stri
 {
     private final MessageFormat format;
 
-    public ProblemGsonSerializer(Listener listener, MessageFormat format)
+    public ProblemGsonSerializer(MessageFormat format)
     {
         super(Problem.class, String.class);
         this.format = format;

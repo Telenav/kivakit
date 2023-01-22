@@ -52,6 +52,7 @@ import com.telenav.kivakit.core.project.Project;
 import com.telenav.kivakit.core.project.ProjectTrait;
 import com.telenav.kivakit.core.project.StartUpOptions;
 import com.telenav.kivakit.core.project.StartUpOptions.StartupOption;
+import com.telenav.kivakit.core.registry.Register;
 import com.telenav.kivakit.core.registry.Registry;
 import com.telenav.kivakit.core.registry.RegistryTrait;
 import com.telenav.kivakit.core.string.Formatter;
@@ -321,6 +322,7 @@ import static java.util.Comparator.comparing;
 @TypeQuality(stability = STABLE_EXTENSIBLE,
              testing = UNTESTED,
              documentation = DOCUMENTED)
+@Register
 public abstract class Application extends BaseComponent implements
     PackageTrait,
     ProjectTrait,
