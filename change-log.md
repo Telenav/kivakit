@@ -1,5 +1,30 @@
 # KivaKit Change Log
 
+## Version 1.14.0 (2023.01.23) "transparent bunny"
+
+## Core
+
+ - added StringMap.withCaseSensitivity()
+ - removed CaseFoldingStringMap
+ - improved registration of serializers in GsonFactory
+ - AbortTransmissionException -> ThrowingListenerException
+ - unified implementations of GsonValueSerializer and made clearer
+ - added BaseGsonValueSerializer, BaseGsonStringSerializer, BaseGsonElementSerializer
+ - separated kivakit vs gson serializers in GsonFactory
+ - added lock condition support to Duration.await()
+ - simplified BaseGsonElementSerializer
+
+### Microservice
+
+ - simplified JettyRestResponse
+ - added @Register annotation to Application and Microservice
+
+### Fixes
+
+ - fixed bug in building requests in RestClient
+ - fixed serializer unit tests
+ - fixed bug in primitive serialization
+
 ## Version 1.13.0 (2023.01.20) "transparent dinosaur"
 
 ## Administrative
