@@ -1,4 +1,4 @@
-package com.telenav.kivakit.serialization.gson.factory;
+package com.telenav.kivakit.serialization.gson;
 
 import com.telenav.kivakit.annotations.code.quality.TypeQuality;
 

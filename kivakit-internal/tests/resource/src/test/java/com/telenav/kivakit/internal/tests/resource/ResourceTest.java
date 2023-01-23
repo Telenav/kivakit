@@ -27,6 +27,14 @@ import static com.telenav.kivakit.resource.Resource.resolveResource;
 public class ResourceTest extends UnitTest
 {
     @Test
+    public void testReadBytes()
+    {
+        var resource = packageResource("a.txt");
+        resource.reader().readBytes();
+        resource.reader().readBytes();
+    }
+
+    @Test
     public void testResolution()
     {
         var properties = resolveResource(this, "classpath:com/telenav/kivakit/internal/tests/resource/ResourceTest.properties");

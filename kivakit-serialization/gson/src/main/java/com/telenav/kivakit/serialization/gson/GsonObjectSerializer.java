@@ -10,7 +10,6 @@ import com.telenav.kivakit.resource.resources.OutputResource;
 import com.telenav.kivakit.resource.serialization.ObjectMetadata;
 import com.telenav.kivakit.resource.serialization.ObjectSerializer;
 import com.telenav.kivakit.resource.serialization.SerializableObject;
-import com.telenav.kivakit.serialization.gson.factory.GsonFactory;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -87,10 +86,10 @@ public class GsonObjectSerializer implements
                                                 Class<T> typeToRead,
                                                 ObjectMetadata @NotNull ... metadata)
     {
-        return tryCatchThrow(() ->
+        try
         {
             // Read JSON from input,
-            var json = readString(this, input);
+            var json = maybeBracket(readString(this, input));
 
             // get the type to read,
             var type = arrayContains(metadata, METADATA_OBJECT_TYPE)
@@ -100,7 +99,11 @@ public class GsonObjectSerializer implements
             // and return the deserialized object.
             return new SerializableObject<>(factory.gson().fromJson(json, type),
                 version(json), instance(json, metadata));
-        }, "Unable to read from " + path.join("/"));
+        }
+        catch (Exception e)
+        {
+            throw problem(e, "Unable to read from " + path.join("/")).asException();
+        }
     }
 
     /**
@@ -148,6 +151,15 @@ public class GsonObjectSerializer implements
             instance = InstanceIdentifier.instanceIdentifierForEnumName(this, instanceMatcher.group("instance"));
         }
         return instance;
+    }
+
+    private String maybeBracket(String json)
+    {
+        if (!json.strip().startsWith("{"))
+        {
+            return "{\n" + json + "\n}";
+        }
+        return json;
     }
 
     @Nullable

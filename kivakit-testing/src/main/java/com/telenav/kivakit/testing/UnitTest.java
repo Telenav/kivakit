@@ -5,21 +5,22 @@ import com.telenav.kivakit.core.ensure.Ensure;
 import com.telenav.kivakit.core.language.trait.LanguageTrait;
 import com.telenav.kivakit.core.messaging.Broadcaster;
 import com.telenav.kivakit.core.messaging.Repeater;
+import com.telenav.kivakit.core.os.ConsoleTrait;
 import com.telenav.kivakit.core.project.ProjectTrait;
 import com.telenav.kivakit.core.registry.RegistryTrait;
-import com.telenav.kivakit.internal.testing.RandomValueFactory;
 import com.telenav.kivakit.core.time.Duration;
 import com.telenav.kivakit.core.vm.JavaTrait;
 import com.telenav.kivakit.interfaces.naming.NamedObject;
 import com.telenav.kivakit.internal.testing.CoreUnitTest;
+import com.telenav.kivakit.internal.testing.RandomValueFactory;
 import com.telenav.kivakit.resource.packages.PackageTrait;
 
 import java.util.Collection;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
 
 /**
@@ -123,12 +124,13 @@ import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_N
              testing = TESTING_NOT_NEEDED,
              documentation = DOCUMENTED)
 public class UnitTest extends CoreUnitTest implements
-        JavaTrait,
-        ProjectTrait,
-        PackageTrait,
-        RegistryTrait,
-        LanguageTrait,
-        Repeater,
-        NamedObject
+    JavaTrait,
+    ProjectTrait,
+    PackageTrait,
+    RegistryTrait,
+    LanguageTrait,
+    Repeater,
+    NamedObject,
+    ConsoleTrait
 {
 }

@@ -16,42 +16,44 @@
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-package com.telenav.kivakit.serialization.gson.serializers;
+package com.telenav.kivakit.serialization.gson.serializers.value;
 
 import com.telenav.kivakit.annotations.code.quality.TypeQuality;
-import com.telenav.kivakit.conversion.core.time.kivakit.KivaKitLocalDateTimeConverter;
-import com.telenav.kivakit.core.time.LocalTime;
-import com.telenav.kivakit.serialization.gson.PrimitiveGsonSerializer;
+import com.telenav.kivakit.core.messaging.MessageFormat;
+import com.telenav.kivakit.core.messaging.messages.status.Problem;
+import com.telenav.kivakit.serialization.gson.serializers.BaseGsonSerializer;
 
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
-import static com.telenav.kivakit.core.time.LocalTime.localTimeZone;
 
 /**
- * Serializes {@link LocalTime} objects to and from JSON in KivaKit format.
+ * Serializes {@link Problem}s to and from JSON.
  *
  * @author jonathanl (shibo)
  */
 @TypeQuality(stability = STABLE_EXTENSIBLE,
              testing = UNTESTED,
              documentation = DOCUMENTED)
-public class LocalTimeGsonSerializer extends PrimitiveGsonSerializer<LocalTime, String>
+public class ProblemGsonSerializer extends BaseGsonSerializer<Problem, String>
 {
-    public LocalTimeGsonSerializer()
+    private final MessageFormat format;
+
+    public ProblemGsonSerializer(MessageFormat format)
     {
-        super(String.class);
+        super(Problem.class, String.class);
+        this.format = format;
     }
 
     @Override
-    protected LocalTime toObject(String text)
+    protected Problem onDeserialize(String serialized)
     {
-        return new KivaKitLocalDateTimeConverter(localTimeZone()).convert(text);
+        return new Problem(serialized);
     }
 
     @Override
-    protected String toPrimitive(LocalTime time)
+    protected String onSerialize(Problem value)
     {
-        return time.asUtc().toString();
+        return value.formatted(format);
     }
 }

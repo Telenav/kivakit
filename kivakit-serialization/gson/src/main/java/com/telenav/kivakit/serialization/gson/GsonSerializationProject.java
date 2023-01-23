@@ -4,9 +4,6 @@ import com.telenav.kivakit.core.BaseKivaKitProject;
 import com.telenav.kivakit.core.project.Project;
 import com.telenav.kivakit.core.registry.Registry;
 import com.telenav.kivakit.resource.serialization.ObjectSerializerRegistry;
-import com.telenav.kivakit.serialization.gson.factory.BaseGsonFactory;
-import com.telenav.kivakit.serialization.gson.factory.GsonFactory;
-import com.telenav.kivakit.serialization.gson.factory.KivaKitCoreGsonFactory;
 
 import static com.telenav.kivakit.resource.Extension.JSON;
 
@@ -36,9 +33,9 @@ public class GsonSerializationProject extends BaseKivaKitProject
     {
         // Associate Gson object serializer with .json resources
         require(ObjectSerializerRegistry.class, ObjectSerializerRegistry::new)
-                .add(JSON, listenTo(new GsonObjectSerializer()));
+            .add(JSON, listenTo(new GsonObjectSerializer()));
 
         // Register default GsonFactory
-        register(new KivaKitCoreGsonFactory(this));
+        register(new KivaKitCoreGsonFactory());
     }
 }

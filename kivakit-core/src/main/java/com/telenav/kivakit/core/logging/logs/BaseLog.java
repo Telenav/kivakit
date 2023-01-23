@@ -29,7 +29,6 @@ import com.telenav.kivakit.core.logging.filters.LogEntriesWithSeverityGreaterTha
 import com.telenav.kivakit.core.messaging.messages.Severity;
 import com.telenav.kivakit.core.messaging.messages.status.Problem;
 import com.telenav.kivakit.core.string.ObjectFormatter;
-import com.telenav.kivakit.core.string.Plural;
 import com.telenav.kivakit.core.thread.RepeatingThread;
 import com.telenav.kivakit.core.thread.StateWatcher;
 import com.telenav.kivakit.core.time.Duration;
@@ -51,6 +50,7 @@ import static com.telenav.kivakit.core.language.Classes.simpleName;
 import static com.telenav.kivakit.core.messaging.Listener.nullListener;
 import static com.telenav.kivakit.core.messaging.messages.Severity.NONE;
 import static com.telenav.kivakit.core.os.Console.console;
+import static com.telenav.kivakit.core.string.Plural.pluralizeEnglish;
 import static com.telenav.kivakit.core.thread.KivaKitThread.State.STOP_REQUESTED;
 import static com.telenav.kivakit.core.time.Duration.FOREVER;
 import static com.telenav.kivakit.core.time.Duration.ONE_MINUTE;
@@ -118,9 +118,9 @@ import static com.telenav.kivakit.core.vm.ShutdownHook.registerShutdownHook;
              testing = UNTESTED,
              documentation = DOCUMENTED)
 public abstract class BaseLog implements
-        Startable,
-        Stoppable<Duration>,
-        Log
+    Startable,
+    Stoppable<Duration>,
+    Log
 {
     /** True if logging is asynchronous (applies to all logs) */
     private static volatile boolean isAsynchronous;
@@ -530,7 +530,7 @@ public abstract class BaseLog implements
         {
             synchronized (messageCounts)
             {
-                messageCounts.increment(Plural.pluralizeEnglish(entry.messageType()));
+                messageCounts.increment(pluralizeEnglish(entry.messageType()));
             }
         }
         var success = true;

@@ -33,10 +33,11 @@ import org.jetbrains.annotations.NotNull;
 import java.lang.management.ManagementFactory;
 import java.lang.management.ThreadMXBean;
 import java.math.BigDecimal;
+import java.util.concurrent.locks.Condition;
 import java.util.regex.Pattern;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.messaging.Listener.throwingListener;
 import static com.telenav.kivakit.core.string.Strings.isOneOf;
@@ -163,8 +164,8 @@ import static java.util.regex.Pattern.CASE_INSENSITIVE;
              testing = UNTESTED,
              documentation = DOCUMENTED)
 public class Duration implements
-        LengthOfTime<Duration>,
-        DoubleValued
+    LengthOfTime<Duration>,
+    DoubleValued
 {
     /** Constant for maximum duration, essentially "forever" */
     public static final Duration FOREVER = nanoseconds(Long.MAX_VALUE);
@@ -201,9 +202,9 @@ public class Duration implements
 
     /** Pattern to match strings */
     private static final Pattern PATTERN = Pattern.compile(
-            "(?x) (?<quantity> \\d+ ([.,] \\d+)?) "
-                    + "(\\s+ | - | _)?"
-                    + "(?<units> d | h | m | s | ms | us | ns | ((nanosecond | microsecond | millisecond | second | minute | hour | day | week | year) s?))", CASE_INSENSITIVE);
+        "(?x) (?<quantity> \\d+ ([.,] \\d+)?) "
+            + "(\\s+ | - | _)?"
+            + "(?<units> d | h | m | s | ms | us | ns | ((nanosecond | microsecond | millisecond | second | minute | hour | day | week | year) s?))", CASE_INSENSITIVE);
 
     private static final ThreadMXBean cpu = ManagementFactory.getThreadMXBean();
 
@@ -542,6 +543,12 @@ public class Duration implements
     }
 
     @Override
+    public WakeState await(Condition awaitable)
+    {
+        return LengthOfTime.super.await(awaitable);
+    }
+
+    @Override
     public int compareTo(LengthOfTime<?> that)
     {
         return LengthOfTime.super.compareTo(that);
@@ -712,8 +719,8 @@ public class Duration implements
     public Percent percentageOf(Duration that)
     {
         return percent(nanoseconds()
-                .times(100)
-                .dividedBy(that.nanoseconds()));
+            .times(100)
+            .dividedBy(that.nanoseconds()));
     }
 
     /**
