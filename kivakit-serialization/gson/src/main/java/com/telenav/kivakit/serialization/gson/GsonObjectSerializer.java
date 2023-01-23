@@ -89,7 +89,7 @@ public class GsonObjectSerializer implements
         return tryCatchThrow(() ->
         {
             // Read JSON from input,
-            var json = readString(this, input);
+            var json = "{\n" + readString(this, input) + "\n}";
 
             // get the type to read,
             var type = arrayContains(metadata, METADATA_OBJECT_TYPE)

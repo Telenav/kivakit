@@ -37,7 +37,6 @@ import java.net.http.HttpRequest;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
-import static com.telenav.kivakit.core.collections.list.ObjectList.list;
 import static com.telenav.kivakit.core.ensure.Ensure.ensure;
 import static com.telenav.kivakit.core.messaging.Listener.throwingListener;
 import static com.telenav.kivakit.network.core.NetworkAccessConstraints.defaultNetworkAccessConstraints;
@@ -158,12 +157,13 @@ public class HttpNetworkLocation extends NetworkLocation implements Resourceful
         return new HttpGetResource(this, constraints)
         {
             @Override
-            public void onInitialize(HttpRequest request)
+            public HttpRequest.Builder onInitialize(HttpRequest.Builder builder)
             {
                 if (contentType != null)
                 {
-                    request.headers().map().put("Accept", list(contentType));
+                    builder.header("Accept", contentType);
                 }
+                return builder;
             }
         };
     }
@@ -220,18 +220,11 @@ public class HttpNetworkLocation extends NetworkLocation implements Resourceful
         return new HttpPostResource(this, constraints)
         {
             @Override
-            public void onInitialize(HttpRequest.Builder builder)
+            public HttpRequest.Builder onInitialize(HttpRequest.Builder builder)
             {
-                builder.POST(HttpRequest.BodyPublishers.ofString(content));
-            }
-
-            @Override
-            public void onInitialize(HttpRequest request)
-            {
-                if (contentType != null)
-                {
-                    header(request, "Content-CheckType", contentType);
-                }
+                return builder
+                    .header("Content-Type", contentType)
+                    .POST(HttpRequest.BodyPublishers.ofString(content));
             }
         };
     }
@@ -259,15 +252,11 @@ public class HttpNetworkLocation extends NetworkLocation implements Resourceful
         return new HttpPutResource(this, constraints)
         {
             @Override
-            public void onInitialize(HttpRequest.Builder builder)
+            public HttpRequest.Builder onInitialize(HttpRequest.Builder builder)
             {
-                builder.PUT(HttpRequest.BodyPublishers.ofString(content));
-            }
-
-            @Override
-            public void onInitialize(HttpRequest request)
-            {
-                header(request, "Content-CheckType", contentType);
+                return builder
+                    .header("Content-Type", contentType)
+                    .PUT(HttpRequest.BodyPublishers.ofString(content));
             }
         };
     }

@@ -26,7 +26,6 @@ import java.net.http.HttpRequest;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
-import static com.telenav.kivakit.core.collections.list.ObjectList.list;
 
 /**
  * Allows customization of an {@link HttpRequest} through the {@link HttpRequest.Builder} interface as well as through
@@ -40,8 +39,7 @@ import static com.telenav.kivakit.core.collections.list.ObjectList.list;
 public interface HttpRequestFactory
 {
     /**
-     * Builds a request, customizing it with the {@link #onInitialize(HttpRequest.Builder)} and
-     * {@link #onInitialize(HttpRequest)} methods
+     * Builds a request, allowing customization by overriding {@link #onInitialize(HttpRequest.Builder)}
      *
      * @param uri The URI for the request
      * @return The request
@@ -49,39 +47,17 @@ public interface HttpRequestFactory
     default HttpRequest build(URI uri)
     {
         var builder = HttpRequest.newBuilder(uri);
-        onInitialize(builder);
-        var request = builder.build();
-        onInitialize(request);
-        return request;
+        builder = onInitialize(builder);
+        return builder.build();
     }
 
     /**
-     * Sets the given header value in the request
-     *
-     * @param request The HTTP request
-     * @param key The header key
-     * @param value The header value
-     */
-    default void header(HttpRequest request, String key, String value)
-    {
-        request.headers().map().put(key, list(value));
-    }
-
-    /**
-     * Allows customization of the given {@link HttpRequest.Builder}
+     * Allows initialization of the given {@link HttpRequest.Builder}
      *
      * @param builder The builder
      */
-    default void onInitialize(HttpRequest.Builder builder)
+    default HttpRequest.Builder onInitialize(HttpRequest.Builder builder)
     {
-    }
-
-    /**
-     * Allows initialization of the request, such as populating header values
-     *
-     * @param request The request
-     */
-    default void onInitialize(HttpRequest request)
-    {
+        return builder;
     }
 }

@@ -108,7 +108,7 @@ public class Formatter
         }
         return message;
     }
-    
+
     @SuppressWarnings({ "unchecked" })
     private static <T> T cast(Object object, Class<T> type)
     {
@@ -197,7 +197,7 @@ public class Formatter
                     // Ensure argument index
                     if (argumentIndex >= arguments.length)
                     {
-                        return "Out of arguments: " + message;
+                        builder.append("<???>");
                     }
 
                     // If we've got a string value map,
@@ -290,10 +290,7 @@ public class Formatter
             // We must consume all arguments if the format is positional
             if (map == null && argumentIndex != arguments.length)
             {
-                return "Extraneous arguments: " + arguments.length
-                        + " arguments provided, but only consumed "
-                        + argumentIndex + " arguments:\n"
-                        + message;
+                builder.append(" <???>");
             }
 
             // Add the tail end

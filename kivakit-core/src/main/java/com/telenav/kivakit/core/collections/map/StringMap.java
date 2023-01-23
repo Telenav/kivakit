@@ -25,9 +25,10 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.TreeMap;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_INSUFFICIENT;
+import static com.telenav.kivakit.core.collections.map.StringMap.KeyCaseSensitivity.PRESERVE_CASE;
 import static com.telenav.kivakit.core.value.count.Maximum.MAXIMUM;
 
 /**
@@ -41,6 +42,15 @@ import static com.telenav.kivakit.core.value.count.Maximum.MAXIMUM;
              documentation = DOCUMENTED)
 public class StringMap<Value> extends BaseStringMap<Value>
 {
+    public enum KeyCaseSensitivity
+    {
+        PRESERVE_CASE,
+        FOLD_CASE_LOWER,
+        FOLD_CASE_UPPER
+    }
+
+    private KeyCaseSensitivity keyCaseSensitivity = PRESERVE_CASE;
+
     public StringMap()
     {
         super(MAXIMUM, new TreeMap<>());
@@ -59,5 +69,34 @@ public class StringMap<Value> extends BaseStringMap<Value>
         var copy = new StringMap<Value>();
         copy.putAll(this);
         return copy;
+    }
+
+    @Override
+    public Value get(String key, Value defaultValue)
+    {
+        return super.get(fold(key), defaultValue);
+    }
+
+    @Override
+    public Value put(String key, Value value)
+    {
+        return super.put(fold(key), value);
+    }
+
+    public StringMap<Value> withKeyCaseSensitivity(KeyCaseSensitivity keyCaseSensitivity)
+    {
+        var copy = copy();
+        copy.keyCaseSensitivity = keyCaseSensitivity;
+        return copy;
+    }
+
+    private String fold(String key)
+    {
+        return switch (keyCaseSensitivity)
+            {
+                case PRESERVE_CASE -> key;
+                case FOLD_CASE_LOWER -> key.toLowerCase();
+                case FOLD_CASE_UPPER -> key.toUpperCase();
+            };
     }
 }
