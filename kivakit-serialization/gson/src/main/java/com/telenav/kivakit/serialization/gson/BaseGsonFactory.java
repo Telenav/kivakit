@@ -34,8 +34,8 @@ import com.telenav.kivakit.core.collections.set.ObjectSet;
 import com.telenav.kivakit.core.messaging.repeaters.BaseRepeater;
 import com.telenav.kivakit.core.version.Version;
 import com.telenav.kivakit.serialization.gson.serializers.BaseGsonElementSerializer;
-import com.telenav.kivakit.serialization.gson.serializers.BaseGsonStringSerializer;
 import com.telenav.kivakit.serialization.gson.serializers.BaseGsonSerializer;
+import com.telenav.kivakit.serialization.gson.serializers.BaseGsonStringSerializer;
 import com.telenav.kivakit.serialization.gson.serializers.GsonSerializer;
 import com.telenav.kivakit.serialization.gson.serializers.converter.StringConverterGsonSerializer;
 
@@ -250,6 +250,17 @@ public abstract class BaseGsonFactory extends BaseRepeater implements GsonFactor
      * {@inheritDoc}
      */
     @Override
+    public BaseGsonFactory addGsonTypeHierarchyAdapter(Class<?> base, Object adapter)
+    {
+        var token = token("type-hierarchy-adapter", adapter.getClass().getName());
+
+        return onBuild(token, builder -> builder.registerTypeHierarchyAdapter(base, adapter));
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public <T> BaseGsonFactory addSerializer(Class<T> type, JsonSerializer<T> serializer)
     {
         var token = token("json-serializer", type, serializer.getClass());
@@ -267,13 +278,33 @@ public abstract class BaseGsonFactory extends BaseRepeater implements GsonFactor
     @Override
     public <V, S> BaseGsonFactory addSerializer(GsonSerializer<V, S> serializer)
     {
-        var token = token("value-serializer", serializer.identity());
+        var token = token("serializer", serializer.identity());
 
         return onBuild(token, builder -> builder.registerTypeAdapter(serializer.valueType(), serializer));
     }
 
     /**
-     * Adds a serializer for the given {@link StringConverter}.
+     * {@inheritDoc}
+     */
+    @Override
+    public <V, S> BaseGsonFactory addSerializer(Class<V> valueType, GsonSerializer<V, S> serializer)
+    {
+        var token = token("value-serializer", serializer.identity());
+
+        return onBuild(token, builder -> builder.registerTypeAdapter(valueType, serializer));
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public <V> GsonFactory addSerializer(Class<V> valueType, StringConverter<V> converter)
+    {
+        return addSerializer(valueType, new StringConverterGsonSerializer<>(converter));
+    }
+
+    /**
+     * {@inheritDoc}
      */
     @Override
     public <T> GsonFactory addSerializer(StringConverter<T> converter)
@@ -318,6 +349,7 @@ public abstract class BaseGsonFactory extends BaseRepeater implements GsonFactor
     @Override
     public synchronized Gson gson()
     {
+        allowReuse = false;
         if (allowReuse)
         {
             var instance = instances.get(settings);
@@ -343,6 +375,13 @@ public abstract class BaseGsonFactory extends BaseRepeater implements GsonFactor
     {
         settings.classesToExclude.add(type);
         return this;
+    }
+
+    public BaseGsonFactory lenient(boolean enable)
+    {
+        var token = token("lenient", enable);
+
+        return enable ? onBuild(token, GsonBuilder::setLenient) : this;
     }
 
     /**

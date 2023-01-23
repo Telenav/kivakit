@@ -14,8 +14,8 @@ import com.telenav.kivakit.core.messaging.Repeater;
 import com.telenav.kivakit.core.registry.Register;
 import com.telenav.kivakit.core.version.Version;
 import com.telenav.kivakit.serialization.gson.serializers.BaseGsonElementSerializer;
-import com.telenav.kivakit.serialization.gson.serializers.BaseGsonStringSerializer;
 import com.telenav.kivakit.serialization.gson.serializers.BaseGsonSerializer;
+import com.telenav.kivakit.serialization.gson.serializers.BaseGsonStringSerializer;
 import com.telenav.kivakit.serialization.gson.serializers.GsonSerializer;
 import com.telenav.kivakit.serialization.gson.serializers.converter.StringConverterGsonSerializer;
 
@@ -121,6 +121,15 @@ public interface GsonFactory extends Repeater
     GsonFactory addGsonTypeAdapterFactory(TypeAdapterFactory adapter);
 
     /**
+     * Adds the given {@link Gson} adapter for the hierarchy of classes with the given base class
+     *
+     * @param base The base class or interface
+     * @param adapter The adapter
+     * @return This object, for method chaining
+     */
+    GsonFactory addGsonTypeHierarchyAdapter(Class<?> base, Object adapter);
+
+    /**
      * Adds the given {@link Gson} {@link JsonSerializer} to the {@link Gson} objects produced by this factory
      *
      * @param type The type
@@ -142,12 +151,34 @@ public interface GsonFactory extends Repeater
     <V, S> GsonFactory addSerializer(GsonSerializer<V, S> serializer);
 
     /**
+     * Adds the given KivaKit {@link GsonSerializer}, which is bidirectional, supporting both serialization and
+     * deserialization. Implementations of this interface include subclasses of {@link BaseGsonElementSerializer},
+     * {@link BaseGsonSerializer}, and {@link BaseGsonStringSerializer}. Of particular interest is
+     * {@link StringConverterGsonSerializer}, which adapts kivakit {@link StringConverter}s as serializers.
+     *
+     * @param valueType The type of value to use the serializer for
+     * @param serializer The bidirectional value serializer
+     * @return This object, for method chaining
+     * @see #addSerializer(StringConverter)
+     */
+    <V, S> BaseGsonFactory addSerializer(Class<V> valueType, GsonSerializer<V, S> serializer);
+
+    /**
      * Adds a serializer for the given {@link StringConverter} to the {@link Gson} objects produced by this factory
      *
      * @param converter The string converter
      * @return This object, for method chaining
      */
     <V> GsonFactory addSerializer(StringConverter<V> converter);
+
+    /**
+     * Adds a serializer for the given {@link StringConverter} to the {@link Gson} objects produced by this factory
+     *
+     * @param valueType The type of value to use the serializer for
+     * @param converter The string converter
+     * @return This object, for method chaining
+     */
+    <V> GsonFactory addSerializer(Class<V> valueType, StringConverter<V> converter);
 
     /**
      * Allows reuse of gson objects with the same configuration (defaults to true)

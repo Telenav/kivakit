@@ -108,6 +108,7 @@ import static com.telenav.kivakit.core.function.Result.result;
 import static com.telenav.kivakit.core.language.Classes.newInstance;
 import static com.telenav.kivakit.core.language.Classes.simpleName;
 import static com.telenav.kivakit.core.logging.LoggerFactory.newLogger;
+import static com.telenav.kivakit.core.logging.logs.BaseLog.logs;
 import static com.telenav.kivakit.core.project.Project.resolveProject;
 import static com.telenav.kivakit.core.project.StartUpOptions.isStartupOptionEnabled;
 import static com.telenav.kivakit.core.string.Align.rightAlign;
@@ -751,10 +752,10 @@ public abstract class Application extends BaseComponent implements
             }
 
             // STOPPING - 2. Flush logs
-            BaseLog.logs().forEach(BaseLog::flush);
+            logs().forEach(BaseLog::flush);
 
             // STOPPING - 3. Show message statistics
-            for (var log : BaseLog.logs())
+            for (var log : logs())
             {
                 if (log.messageCounts().size() > 0)
                 {

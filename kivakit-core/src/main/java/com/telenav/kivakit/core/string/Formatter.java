@@ -197,7 +197,7 @@ public class Formatter
                     // Ensure argument index
                     if (argumentIndex >= arguments.length)
                     {
-                        builder.append("<???>");
+                        return "Out of arguments: " + message;
                     }
 
                     // If we've got a string value map,
@@ -290,7 +290,10 @@ public class Formatter
             // We must consume all arguments if the format is positional
             if (map == null && argumentIndex != arguments.length)
             {
-                builder.append(" <???>");
+                return "Too many arguments: " + arguments.length
+                    + " arguments provided, but only consumed "
+                    + argumentIndex + " arguments:\n"
+                    + message;
             }
 
             // Add the tail end

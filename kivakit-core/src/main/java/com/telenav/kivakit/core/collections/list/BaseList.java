@@ -761,7 +761,7 @@ public abstract class BaseList<Value> extends BaseCollection<Value> implements
     /**
      * Returns a new {@link BaseList} subclass
      */
-    protected final BaseList<Value> newList()
+    protected BaseList<Value> newList()
     {
         return onNewList();
     }
