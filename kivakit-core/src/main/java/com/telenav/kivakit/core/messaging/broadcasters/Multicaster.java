@@ -27,7 +27,7 @@ import com.telenav.kivakit.core.messaging.Broadcaster;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.messaging.Message;
 import com.telenav.kivakit.core.messaging.context.CodeContext;
-import com.telenav.kivakit.core.messaging.listeners.AbortTransmissionException;
+import com.telenav.kivakit.core.messaging.listeners.ThrowingListenerException;
 import com.telenav.kivakit.core.messaging.messages.OperationMessage;
 import com.telenav.kivakit.core.string.IndentingStringBuilder;
 import com.telenav.kivakit.core.thread.locks.ReadWriteLock;
@@ -395,7 +395,7 @@ public class Multicaster implements Broadcaster
                         // hand them the message.
                         member.receive(message);
                     }
-                    catch (AbortTransmissionException e)
+                    catch (ThrowingListenerException e)
                     {
                         // If we get an exception of this special type, it was thrown
                         // by ThrowingListener and so it should not be trapped here

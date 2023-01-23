@@ -31,6 +31,7 @@ import java.util.Map;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
+import static com.telenav.kivakit.core.collections.map.StringMap.KeyCaseSensitivity.FOLD_CASE_LOWER;
 
 /**
  * An identifier for a particular named protocol

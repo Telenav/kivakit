@@ -63,6 +63,7 @@ import static java.lang.Math.min;
  * <ul>
  *     <li>{@link #digitCount(String)}</li>
  *     <li>{@link #doubleQuoted(String)}</li>
+ *     <li>{@link #ensureStartsWith(String, String)}</li>
  *     <li>{@link #ensureEndsWith(String, String)}</li>
  *     <li>{@link #extractFirstGroup(String, String)}</li>
  *     <li>{@link Formatter#format(String, Object...)}</li>
@@ -151,15 +152,27 @@ public class Strings
     }
 
     /**
-     * Returns the given text with the terminator appended if it doesn't already end in the terminator
+     * Returns the given text with the suffix appended if it doesn't already end in the suffix
      */
-    public static String ensureEndsWith(String text, String terminator)
+    public static String ensureEndsWith(String text, String suffix)
     {
-        if (text.endsWith(terminator))
+        if (text.endsWith(suffix))
         {
             return text;
         }
-        return text + terminator;
+        return text + suffix;
+    }
+
+    /**
+     * Returns the given text with the prefix prepended if it doesn't already start with the prefix
+     */
+    public static String ensureStartsWith(String text, String prefix)
+    {
+        if (text.startsWith(prefix))
+        {
+            return text;
+        }
+        return prefix + text;
     }
 
     /**

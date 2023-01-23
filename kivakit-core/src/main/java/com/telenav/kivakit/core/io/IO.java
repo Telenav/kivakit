@@ -23,6 +23,7 @@ import com.telenav.kivakit.core.internal.lexakai.DiagramIo;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.progress.ProgressReporter;
 import com.telenav.kivakit.core.progress.reporters.ProgressiveInputStream;
+import com.telenav.kivakit.core.progress.reporters.ProgressiveOutputStream;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.io.BufferedInputStream;
@@ -102,33 +103,29 @@ public class IO
     /**
      * Returns the given input stream buffered, if it is not already
      */
-    public static BufferedInputStream buffer(InputStream in)
+    public static InputStream buffer(InputStream in)
     {
-        if (in instanceof BufferedInputStream)
-        {
-            return (BufferedInputStream) in;
-        }
-        if (in != null)
+        ensureNotNull(in);
+
+        if (!(in instanceof BufferedInputStream) && !(in instanceof ProgressiveInputStream))
         {
             return new BufferedInputStream(in);
         }
-        return null;
+        return in;
     }
 
     /**
      * Returns the given output stream buffered, if it is not already
      */
-    public static BufferedOutputStream buffer(OutputStream out)
+    public static OutputStream buffer(OutputStream out)
     {
-        if (out instanceof BufferedOutputStream)
-        {
-            return (BufferedOutputStream) out;
-        }
-        if (out != null)
+        ensureNotNull(out);
+
+        if (!(out instanceof BufferedOutputStream) && !(out instanceof ProgressiveOutputStream))
         {
             return new BufferedOutputStream(out);
         }
-        return null;
+        return out;
     }
 
     /**
@@ -379,9 +376,9 @@ public class IO
         try
         {
             return new BufferedReader(in)
-                    .lines()
-                    .collect(Collectors.joining("\n"))
-                    .trim();
+                .lines()
+                .collect(Collectors.joining("\n"))
+                .trim();
         }
         catch (Exception e)
         {

@@ -19,7 +19,7 @@ package com.telenav.kivakit.settings;///////////////////////////////////////////
 import com.telenav.kivakit.core.registry.InstanceIdentifier;
 import com.telenav.kivakit.resource.packages.PackageTrait;
 import com.telenav.kivakit.serialization.gson.GsonSerializationProject;
-import com.telenav.kivakit.serialization.gson.factory.KivaKitCoreGsonFactory;
+import com.telenav.kivakit.serialization.gson.KivaKitCoreGsonFactory;
 import com.telenav.kivakit.serialization.properties.PropertiesSerializationProject;
 import com.telenav.kivakit.settings.stores.ResourceFolderSettingsStore;
 import com.telenav.kivakit.testing.UnitTest;
@@ -47,7 +47,7 @@ public class SettingsRegistryTest extends UnitTest implements PackageTrait
     @Before
     public void setup()
     {
-        register(new KivaKitCoreGsonFactory(this));
+        register(new KivaKitCoreGsonFactory());
 
         initializeProject(PropertiesSerializationProject.class);
         initializeProject(GsonSerializationProject.class);

@@ -108,7 +108,7 @@ public class Formatter
         }
         return message;
     }
-    
+
     @SuppressWarnings({ "unchecked" })
     private static <T> T cast(Object object, Class<T> type)
     {
@@ -290,10 +290,10 @@ public class Formatter
             // We must consume all arguments if the format is positional
             if (map == null && argumentIndex != arguments.length)
             {
-                return "Extraneous arguments: " + arguments.length
-                        + " arguments provided, but only consumed "
-                        + argumentIndex + " arguments:\n"
-                        + message;
+                return "Too many arguments: " + arguments.length
+                    + " arguments provided, but only consumed "
+                    + argumentIndex + " arguments:\n"
+                    + message;
             }
 
             // Add the tail end

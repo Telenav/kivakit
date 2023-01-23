@@ -28,6 +28,7 @@ import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMEN
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.messaging.Listener.throwingListener;
+import static com.telenav.kivakit.core.string.Strip.stripLeading;
 
 /**
  * Converts between {@link Class} objects and fully-qualified class names.
@@ -62,6 +63,10 @@ public class ClassConverter extends BaseStringConverter<Class>
     {
         try
         {
+            if (value.startsWith("class "))
+            {
+                value = stripLeading(value, "class ");
+            }
             return Class.forName(value);
         }
         catch (ClassNotFoundException e)

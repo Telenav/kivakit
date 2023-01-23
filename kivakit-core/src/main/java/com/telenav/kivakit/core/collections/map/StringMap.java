@@ -22,12 +22,18 @@ import com.telenav.kivakit.annotations.code.quality.TypeQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramCollections;
 import com.telenav.kivakit.core.value.count.Maximum;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
+import java.util.Map;
 import java.util.TreeMap;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_INSUFFICIENT;
+import static com.telenav.kivakit.core.collections.map.StringMap.KeyCaseSensitivity.FOLD_CASE_LOWER;
+import static com.telenav.kivakit.core.ensure.Ensure.ensure;
+import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
 import static com.telenav.kivakit.core.value.count.Maximum.MAXIMUM;
 
 /**
@@ -41,6 +47,15 @@ import static com.telenav.kivakit.core.value.count.Maximum.MAXIMUM;
              documentation = DOCUMENTED)
 public class StringMap<Value> extends BaseStringMap<Value>
 {
+    public enum KeyCaseSensitivity
+    {
+        PRESERVE_CASE,
+        FOLD_CASE_LOWER,
+        FOLD_CASE_UPPER
+    }
+
+    private KeyCaseSensitivity keyCaseSensitivity = FOLD_CASE_LOWER;
+
     public StringMap()
     {
         super(MAXIMUM, new TreeMap<>());
@@ -59,5 +74,82 @@ public class StringMap<Value> extends BaseStringMap<Value>
         var copy = new StringMap<Value>();
         copy.putAll(this);
         return copy;
+    }
+
+    @Override
+    public Value get(Object key)
+    {
+        ensure(key instanceof String);
+        return super.get(fold((String) key));
+    }
+
+    @Override
+    public Value get(String key, Value defaultValue)
+    {
+        return super.get(fold(key), defaultValue);
+    }
+
+    @Override
+    public Value getOrCreate(String key)
+    {
+        return super.getOrCreate(fold(key));
+    }
+
+    @Override
+    public Value getOrDefault(Object key, Value defaultValue)
+    {
+        ensure(key instanceof String);
+        return super.getOrDefault(fold((String) key), defaultValue);
+    }
+
+    @Override
+    public Value put(String key, Value value, Value defaultValue)
+    {
+        return super.put(fold(key), value, defaultValue);
+    }
+
+    @Override
+    public Value put(String key, Value value)
+    {
+        return super.put(fold(key), value);
+    }
+
+    @Override
+    public void putAll(@NotNull Map<? extends String, ? extends Value> that)
+    {
+        for (var entry : that.entrySet())
+        {
+            put(entry.getKey(), entry.getValue());
+        }
+    }
+
+    @Override
+    public @Nullable Value putIfAbsent(@NotNull String key, Value value)
+    {
+        return super.putIfAbsent(fold(key), value);
+    }
+
+    @Override
+    public boolean putIfNotNull(String key, Value value)
+    {
+        return super.putIfNotNull(fold(key), value);
+    }
+
+    public StringMap<Value> withKeyCaseSensitivity(KeyCaseSensitivity keyCaseSensitivity)
+    {
+        var copy = copy();
+        copy.keyCaseSensitivity = keyCaseSensitivity;
+        return copy;
+    }
+
+    private String fold(String key)
+    {
+        ensureNotNull(key);
+        return switch (keyCaseSensitivity)
+            {
+                case PRESERVE_CASE -> key;
+                case FOLD_CASE_LOWER -> key.toLowerCase();
+                case FOLD_CASE_UPPER -> key.toUpperCase();
+            };
     }
 }

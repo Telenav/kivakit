@@ -76,7 +76,7 @@ public final class StateWatcher<State>
     /**
      * A thread that is waiting for its predicate to be satisfied
      */
-        private class Waiter
+    private class Waiter
     {
         /** The predicate that must be satisfied */
         final Predicate<State> predicate;
@@ -168,7 +168,7 @@ public final class StateWatcher<State>
 
             // and go to sleep until our condition is satisfied or half a second elapses
             // (we wait only a short time as a defensive measure to avoid hangs)
-            var wake = seconds(0.5).await(waiter.condition::await);
+            var wake = seconds(0.5).await(waiter.condition);
             if (wake == TERMINATED || wake == INTERRUPTED)
             {
                 return wake;

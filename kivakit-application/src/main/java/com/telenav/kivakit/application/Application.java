@@ -52,6 +52,7 @@ import com.telenav.kivakit.core.project.Project;
 import com.telenav.kivakit.core.project.ProjectTrait;
 import com.telenav.kivakit.core.project.StartUpOptions;
 import com.telenav.kivakit.core.project.StartUpOptions.StartupOption;
+import com.telenav.kivakit.core.registry.Register;
 import com.telenav.kivakit.core.registry.Registry;
 import com.telenav.kivakit.core.registry.RegistryTrait;
 import com.telenav.kivakit.core.string.Formatter;
@@ -66,7 +67,7 @@ import com.telenav.kivakit.properties.PropertyMap;
 import com.telenav.kivakit.resource.packages.PackageTrait;
 import com.telenav.kivakit.resource.serialization.ObjectSerializerRegistry;
 import com.telenav.kivakit.serialization.gson.GsonObjectSerializer;
-import com.telenav.kivakit.serialization.gson.factory.KivaKitCoreGsonFactory;
+import com.telenav.kivakit.serialization.gson.KivaKitCoreGsonFactory;
 import com.telenav.kivakit.serialization.properties.PropertiesObjectSerializer;
 import com.telenav.kivakit.settings.Deployment;
 import com.telenav.kivakit.settings.DeploymentSet;
@@ -107,6 +108,7 @@ import static com.telenav.kivakit.core.function.Result.result;
 import static com.telenav.kivakit.core.language.Classes.newInstance;
 import static com.telenav.kivakit.core.language.Classes.simpleName;
 import static com.telenav.kivakit.core.logging.LoggerFactory.newLogger;
+import static com.telenav.kivakit.core.logging.logs.BaseLog.logs;
 import static com.telenav.kivakit.core.project.Project.resolveProject;
 import static com.telenav.kivakit.core.project.StartUpOptions.isStartupOptionEnabled;
 import static com.telenav.kivakit.core.string.Align.rightAlign;
@@ -321,6 +323,7 @@ import static java.util.Comparator.comparing;
 @TypeQuality(stability = STABLE_EXTENSIBLE,
              testing = UNTESTED,
              documentation = DOCUMENTED)
+@Register
 public abstract class Application extends BaseComponent implements
     PackageTrait,
     ProjectTrait,
@@ -749,10 +752,10 @@ public abstract class Application extends BaseComponent implements
             }
 
             // STOPPING - 2. Flush logs
-            BaseLog.logs().forEach(BaseLog::flush);
+            logs().forEach(BaseLog::flush);
 
             // STOPPING - 3. Show message statistics
-            for (var log : BaseLog.logs())
+            for (var log : logs())
             {
                 if (log.messageCounts().size() > 0)
                 {
@@ -841,7 +844,7 @@ public abstract class Application extends BaseComponent implements
             box.add(" ");
             box.addAll(get(DEPLOYMENT)
                 .asStringList()
-                    .trim()
+                .trim()
                 .indented(4));
         }
 
@@ -958,7 +961,7 @@ public abstract class Application extends BaseComponent implements
 
     protected void onRegisterObjectSerializers()
     {
-        register(new KivaKitCoreGsonFactory(this));
+        register(new KivaKitCoreGsonFactory());
 
         var serializers = new ObjectSerializerRegistry();
         tryCatch(() -> serializers.add(JSON, listenTo(new GsonObjectSerializer())), "Unable to register JSON serializer");

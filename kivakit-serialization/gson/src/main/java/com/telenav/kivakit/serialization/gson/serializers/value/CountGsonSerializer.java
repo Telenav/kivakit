@@ -16,41 +16,41 @@
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-package com.telenav.kivakit.serialization.gson.serializers;
+package com.telenav.kivakit.serialization.gson.serializers.value;
 
 import com.telenav.kivakit.annotations.code.quality.TypeQuality;
-import com.telenav.kivakit.core.time.Time;
-import com.telenav.kivakit.serialization.gson.PrimitiveGsonSerializer;
+import com.telenav.kivakit.core.value.count.Count;
+import com.telenav.kivakit.serialization.gson.serializers.BaseGsonSerializer;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
-import static com.telenav.kivakit.core.time.Time.epochMilliseconds;
+import static com.telenav.kivakit.core.value.count.Count.count;
 
 /**
- * Serializes {@link Time} objects to and from JSON as a number of milliseconds since the start of the UNIX epoch.
+ * Gson serializer for {@link Count} objects
  *
  * @author jonathanl (shibo)
  */
 @TypeQuality(stability = STABLE_EXTENSIBLE,
              testing = UNTESTED,
              documentation = DOCUMENTED)
-public class TimeInMillisecondsGsonSerializer extends PrimitiveGsonSerializer<Time, Long>
+public class CountGsonSerializer extends BaseGsonSerializer<Count, Integer>
 {
-    public TimeInMillisecondsGsonSerializer()
+    public CountGsonSerializer()
     {
-        super(Long.class);
+        super(Count.class, Integer.class);
     }
 
     @Override
-    protected Time toObject(Long identifier)
+    protected Count onDeserialize(Integer serialized)
     {
-        return epochMilliseconds(identifier);
+        return count(serialized);
     }
 
     @Override
-    protected Long toPrimitive(Time time)
+    protected Integer onSerialize(Count value)
     {
-        return time.milliseconds();
+        return value.asInt();
     }
 }
