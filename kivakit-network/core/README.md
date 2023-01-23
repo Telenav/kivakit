@@ -34,14 +34,14 @@ kivakit-core-network extend this base functionality.
 
 ### Dependencies <a name="dependencies"></a> &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/dependencies-32.png" srcset="https://telenav.github.io/telenav-assets/images/icons/dependencies-32-2x.png 2x"/>
 
-[*Dependency Diagram*](https://www.kivakit.org/1.13.0/lexakai/kivakit/kivakit-network/core/documentation/diagrams/dependencies.svg)
+[*Dependency Diagram*](https://www.kivakit.org/1.14.0/lexakai/kivakit/kivakit-network/core/documentation/diagrams/dependencies.svg)
 
 #### Maven Dependency
 
     <dependency>
         <groupId>com.telenav.kivakit</groupId>
         <artifactId>kivakit-network-core</artifactId>
-        <version>1.13.0</version>
+        <version>1.14.0</version>
     </dependency>
 
 <img src="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128.png" srcset="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128-2x.png 2x"/>
@@ -128,74 +128,74 @@ Code quality for this project is 0.0%.
 
 ### Class Diagrams <a name="class-diagrams"></a> &nbsp; &nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/diagram-40.png" srcset="https://telenav.github.io/telenav-assets/images/icons/diagram-40-2x.png 2x"/>
 
-[*Hosts, Ports and Protocols*](https://www.kivakit.org/1.13.0/lexakai/kivakit/kivakit-network/core/documentation/diagrams/diagram-port.svg)  
-[*Network Locations*](https://www.kivakit.org/1.13.0/lexakai/kivakit/kivakit-network/core/documentation/diagrams/diagram-network-location.svg)  
-[*diagram-authentication*](https://www.kivakit.org/1.13.0/lexakai/kivakit/kivakit-network/core/documentation/diagrams/diagram-authentication.svg)
+[*Hosts, Ports and Protocols*](https://www.kivakit.org/1.14.0/lexakai/kivakit/kivakit-network/core/documentation/diagrams/diagram-port.svg)  
+[*Network Locations*](https://www.kivakit.org/1.14.0/lexakai/kivakit/kivakit-network/core/documentation/diagrams/diagram-network-location.svg)  
+[*diagram-authentication*](https://www.kivakit.org/1.14.0/lexakai/kivakit/kivakit-network/core/documentation/diagrams/diagram-authentication.svg)
 
 <img src="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128.png" srcset="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128-2x.png 2x"/>
 
 ### Package Diagrams <a name="package-diagrams"></a> &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/box-24.png" srcset="https://telenav.github.io/telenav-assets/images/icons/box-24-2x.png 2x"/>
 
-[*com.telenav.kivakit.network.core*](https://www.kivakit.org/1.13.0/lexakai/kivakit/kivakit-network/core/documentation/diagrams/com.telenav.kivakit.network.core.svg)  
-[*com.telenav.kivakit.network.core.authentication*](https://www.kivakit.org/1.13.0/lexakai/kivakit/kivakit-network/core/documentation/diagrams/com.telenav.kivakit.network.core.authentication.svg)  
-[*com.telenav.kivakit.network.core.authentication.passwords*](https://www.kivakit.org/1.13.0/lexakai/kivakit/kivakit-network/core/documentation/diagrams/com.telenav.kivakit.network.core.authentication.passwords.svg)  
-[*com.telenav.kivakit.network.core.internal.lexakai*](https://www.kivakit.org/1.13.0/lexakai/kivakit/kivakit-network/core/documentation/diagrams/com.telenav.kivakit.network.core.internal.lexakai.svg)
+[*com.telenav.kivakit.network.core*](https://www.kivakit.org/1.14.0/lexakai/kivakit/kivakit-network/core/documentation/diagrams/com.telenav.kivakit.network.core.svg)  
+[*com.telenav.kivakit.network.core.authentication*](https://www.kivakit.org/1.14.0/lexakai/kivakit/kivakit-network/core/documentation/diagrams/com.telenav.kivakit.network.core.authentication.svg)  
+[*com.telenav.kivakit.network.core.authentication.passwords*](https://www.kivakit.org/1.14.0/lexakai/kivakit/kivakit-network/core/documentation/diagrams/com.telenav.kivakit.network.core.authentication.passwords.svg)  
+[*com.telenav.kivakit.network.core.internal.lexakai*](https://www.kivakit.org/1.14.0/lexakai/kivakit/kivakit-network/core/documentation/diagrams/com.telenav.kivakit.network.core.internal.lexakai.svg)
 
 ### Javadoc <a name="code-quality"></a> &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/books-24.png" srcset="https://telenav.github.io/telenav-assets/images/icons/books-24-2x.png 2x"/>
 
 | Class | Documentation Sections  |
 |-------|-------------------------|
-| [*BaseNetworkResource*](https://www.kivakit.org/1.13.0/javadoc/kivakit/kivakit-network-core/com/telenav/kivakit/network/core/BaseNetworkResource.html) |  |  
-| [*DiagramAuthentication*](https://www.kivakit.org/1.13.0/javadoc/kivakit/kivakit-network-core/com/telenav/kivakit/network/core/internal/lexakai/DiagramAuthentication.html) |  |  
-| [*DiagramNetworkLocation*](https://www.kivakit.org/1.13.0/javadoc/kivakit/kivakit-network-core/com/telenav/kivakit/network/core/internal/lexakai/DiagramNetworkLocation.html) |  |  
-| [*DiagramPort*](https://www.kivakit.org/1.13.0/javadoc/kivakit/kivakit-network-core/com/telenav/kivakit/network/core/internal/lexakai/DiagramPort.html) |  |  
-| [*DigestPassword*](https://www.kivakit.org/1.13.0/javadoc/kivakit/kivakit-network-core/com/telenav/kivakit/network/core/authentication/passwords/DigestPassword.html) |  |  
-| [*EmailAddress*](https://www.kivakit.org/1.13.0/javadoc/kivakit/kivakit-network-core/com/telenav/kivakit/network/core/EmailAddress.html) | Parsing |  
+| [*BaseNetworkResource*](https://www.kivakit.org/1.14.0/javadoc/kivakit/kivakit-network-core/com/telenav/kivakit/network/core/BaseNetworkResource.html) |  |  
+| [*DiagramAuthentication*](https://www.kivakit.org/1.14.0/javadoc/kivakit/kivakit-network-core/com/telenav/kivakit/network/core/internal/lexakai/DiagramAuthentication.html) |  |  
+| [*DiagramNetworkLocation*](https://www.kivakit.org/1.14.0/javadoc/kivakit/kivakit-network-core/com/telenav/kivakit/network/core/internal/lexakai/DiagramNetworkLocation.html) |  |  
+| [*DiagramPort*](https://www.kivakit.org/1.14.0/javadoc/kivakit/kivakit-network-core/com/telenav/kivakit/network/core/internal/lexakai/DiagramPort.html) |  |  
+| [*DigestPassword*](https://www.kivakit.org/1.14.0/javadoc/kivakit/kivakit-network-core/com/telenav/kivakit/network/core/authentication/passwords/DigestPassword.html) |  |  
+| [*EmailAddress*](https://www.kivakit.org/1.14.0/javadoc/kivakit/kivakit-network-core/com/telenav/kivakit/network/core/EmailAddress.html) | Parsing |  
 | | Properties |  
-| [*EmailAddressConverter*](https://www.kivakit.org/1.13.0/javadoc/kivakit/kivakit-network-core/com/telenav/kivakit/network/core/EmailAddressConverter.html) |  |  
-| [*Host*](https://www.kivakit.org/1.13.0/javadoc/kivakit/kivakit-network-core/com/telenav/kivakit/network/core/Host.html) | Hosts |  
+| [*EmailAddressConverter*](https://www.kivakit.org/1.14.0/javadoc/kivakit/kivakit-network-core/com/telenav/kivakit/network/core/EmailAddressConverter.html) |  |  
+| [*Host*](https://www.kivakit.org/1.14.0/javadoc/kivakit/kivakit-network-core/com/telenav/kivakit/network/core/Host.html) | Hosts |  
 | | Creation |  
 | | Conversions |  
 | | Comparison |  
 | | Attributes |  
 | | Ports |  
 | | Properties |  
-| [*HostConverter*](https://www.kivakit.org/1.13.0/javadoc/kivakit/kivakit-network-core/com/telenav/kivakit/network/core/HostConverter.html) |  |  
-| [*LocalHost*](https://www.kivakit.org/1.13.0/javadoc/kivakit/kivakit-network-core/com/telenav/kivakit/network/core/LocalHost.html) |  |  
-| [*Loopback*](https://www.kivakit.org/1.13.0/javadoc/kivakit/kivakit-network-core/com/telenav/kivakit/network/core/Loopback.html) |  |  
-| [*NetworkAccessConstraints*](https://www.kivakit.org/1.13.0/javadoc/kivakit/kivakit-network-core/com/telenav/kivakit/network/core/NetworkAccessConstraints.html) |  |  
-| [*NetworkLocation*](https://www.kivakit.org/1.13.0/javadoc/kivakit/kivakit-network-core/com/telenav/kivakit/network/core/NetworkLocation.html) | Functional |  
+| [*HostConverter*](https://www.kivakit.org/1.14.0/javadoc/kivakit/kivakit-network-core/com/telenav/kivakit/network/core/HostConverter.html) |  |  
+| [*LocalHost*](https://www.kivakit.org/1.14.0/javadoc/kivakit/kivakit-network-core/com/telenav/kivakit/network/core/LocalHost.html) |  |  
+| [*Loopback*](https://www.kivakit.org/1.14.0/javadoc/kivakit/kivakit-network-core/com/telenav/kivakit/network/core/Loopback.html) |  |  
+| [*NetworkAccessConstraints*](https://www.kivakit.org/1.14.0/javadoc/kivakit/kivakit-network-core/com/telenav/kivakit/network/core/NetworkAccessConstraints.html) |  |  
+| [*NetworkLocation*](https://www.kivakit.org/1.14.0/javadoc/kivakit/kivakit-network-core/com/telenav/kivakit/network/core/NetworkLocation.html) | Functional |  
 | | Parsing |  
 | | Conversions |  
 | | Comparison |  
 | | Factory Methods |  
 | | Properties |  
-| [*NetworkLocationConverter*](https://www.kivakit.org/1.13.0/javadoc/kivakit/kivakit-network-core/com/telenav/kivakit/network/core/NetworkLocationConverter.html) |  |  
-| [*NetworkPath*](https://www.kivakit.org/1.13.0/javadoc/kivakit/kivakit-network-core/com/telenav/kivakit/network/core/NetworkPath.html) | Functional |  
+| [*NetworkLocationConverter*](https://www.kivakit.org/1.14.0/javadoc/kivakit/kivakit-network-core/com/telenav/kivakit/network/core/NetworkLocationConverter.html) |  |  
+| [*NetworkPath*](https://www.kivakit.org/1.14.0/javadoc/kivakit/kivakit-network-core/com/telenav/kivakit/network/core/NetworkPath.html) | Functional |  
 | | Conversions |  
 | | Path Parsing Methods |  
 | | Path Factory Methods |  
 | | Properties |  
-| [*NetworkPathConverter*](https://www.kivakit.org/1.13.0/javadoc/kivakit/kivakit-network-core/com/telenav/kivakit/network/core/NetworkPathConverter.html) |  |  
-| [*NetworkResource*](https://www.kivakit.org/1.13.0/javadoc/kivakit/kivakit-network-core/com/telenav/kivakit/network/core/NetworkResource.html) |  |  
-| [*Password*](https://www.kivakit.org/1.13.0/javadoc/kivakit/kivakit-network-core/com/telenav/kivakit/network/core/authentication/Password.html) |  |  
-| [*PlainTextPassword*](https://www.kivakit.org/1.13.0/javadoc/kivakit/kivakit-network-core/com/telenav/kivakit/network/core/authentication/passwords/PlainTextPassword.html) |  |  
-| [*PlainTextPasswordConverter*](https://www.kivakit.org/1.13.0/javadoc/kivakit/kivakit-network-core/com/telenav/kivakit/network/core/authentication/passwords/PlainTextPasswordConverter.html) |  |  
-| [*Port*](https://www.kivakit.org/1.13.0/javadoc/kivakit/kivakit-network-core/com/telenav/kivakit/network/core/Port.html) | Creation |  
+| [*NetworkPathConverter*](https://www.kivakit.org/1.14.0/javadoc/kivakit/kivakit-network-core/com/telenav/kivakit/network/core/NetworkPathConverter.html) |  |  
+| [*NetworkResource*](https://www.kivakit.org/1.14.0/javadoc/kivakit/kivakit-network-core/com/telenav/kivakit/network/core/NetworkResource.html) |  |  
+| [*Password*](https://www.kivakit.org/1.14.0/javadoc/kivakit/kivakit-network-core/com/telenav/kivakit/network/core/authentication/Password.html) |  |  
+| [*PlainTextPassword*](https://www.kivakit.org/1.14.0/javadoc/kivakit/kivakit-network-core/com/telenav/kivakit/network/core/authentication/passwords/PlainTextPassword.html) |  |  
+| [*PlainTextPasswordConverter*](https://www.kivakit.org/1.14.0/javadoc/kivakit/kivakit-network-core/com/telenav/kivakit/network/core/authentication/passwords/PlainTextPasswordConverter.html) |  |  
+| [*Port*](https://www.kivakit.org/1.14.0/javadoc/kivakit/kivakit-network-core/com/telenav/kivakit/network/core/Port.html) | Creation |  
 | | Parsing |  
 | | Conversions |  
 | | Paths |  
 | | Properties |  
 | | Operations |  
-| [*PortConverter*](https://www.kivakit.org/1.13.0/javadoc/kivakit/kivakit-network-core/com/telenav/kivakit/network/core/PortConverter.html) |  |  
-| [*Protocol*](https://www.kivakit.org/1.13.0/javadoc/kivakit/kivakit-network-core/com/telenav/kivakit/network/core/Protocol.html) | Parsing |  
+| [*PortConverter*](https://www.kivakit.org/1.14.0/javadoc/kivakit/kivakit-network-core/com/telenav/kivakit/network/core/PortConverter.html) |  |  
+| [*Protocol*](https://www.kivakit.org/1.14.0/javadoc/kivakit/kivakit-network-core/com/telenav/kivakit/network/core/Protocol.html) | Parsing |  
 | | Access |  
 | | Common Ports |  
-| [*QueryParameters*](https://www.kivakit.org/1.13.0/javadoc/kivakit/kivakit-network-core/com/telenav/kivakit/network/core/QueryParameters.html) | Creation |  
+| [*QueryParameters*](https://www.kivakit.org/1.14.0/javadoc/kivakit/kivakit-network-core/com/telenav/kivakit/network/core/QueryParameters.html) | Creation |  
 | | Parsing |  
 | | Conversion |  
-| [*UserName*](https://www.kivakit.org/1.13.0/javadoc/kivakit/kivakit-network-core/com/telenav/kivakit/network/core/authentication/UserName.html) |  |  
-| [*UserNameConverter*](https://www.kivakit.org/1.13.0/javadoc/kivakit/kivakit-network-core/com/telenav/kivakit/network/core/authentication/UserNameConverter.html) |  |  
+| [*UserName*](https://www.kivakit.org/1.14.0/javadoc/kivakit/kivakit-network-core/com/telenav/kivakit/network/core/authentication/UserName.html) |  |  
+| [*UserNameConverter*](https://www.kivakit.org/1.14.0/javadoc/kivakit/kivakit-network-core/com/telenav/kivakit/network/core/authentication/UserNameConverter.html) |  |  
 
 [//]: # (start-user-text)
 
