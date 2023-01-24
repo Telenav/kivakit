@@ -25,6 +25,8 @@
  - fixed serializer unit tests
  - fixed bug in primitive serialization
 
+-----------------------------------------------------------------------------------------------------------------------
+
 ## Version 1.13.0 (2023.01.20) "transparent dinosaur"
 
 ## Administrative
