@@ -40,9 +40,8 @@ import org.jetbrains.annotations.NotNull;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
-import static com.telenav.kivakit.core.language.Arrays.arrayContains;
 import static com.telenav.kivakit.core.language.Objects.areEqualPairs;
-import static com.telenav.kivakit.core.messaging.MessageFormat.WITH_EXCEPTION;
+import static com.telenav.kivakit.core.messaging.Messages.messages;
 import static com.telenav.kivakit.core.messaging.messages.Importance.importanceOfMessage;
 import static com.telenav.kivakit.core.messaging.messages.Severity.NONE;
 import static com.telenav.kivakit.core.string.Formatter.format;
@@ -139,12 +138,12 @@ public abstract class OperationMessage implements Named, Message
     protected OperationMessage(String message)
     {
         this.message = message;
-        Messages.messages().put(name(), this);
+        messages().put(name(), this);
     }
 
     protected OperationMessage()
     {
-        Messages.messages().put(name(), this);
+        messages().put(name(), this);
     }
 
     /**
@@ -184,7 +183,7 @@ public abstract class OperationMessage implements Named, Message
     {
         return switch (format)
             {
-                default -> formatted(WITH_EXCEPTION);
+                default -> formatted();
             };
     }
 
@@ -262,11 +261,11 @@ public abstract class OperationMessage implements Named, Message
         if (object instanceof OperationMessage that)
         {
             return areEqualPairs(
-                    this.getClass(), that.getClass(),
-                    this.created, that.created,
-                    this.message, that.message,
-                    this.stackTrace, that.stackTrace,
-                    this.arguments, that.arguments);
+                this.getClass(), that.getClass(),
+                this.created, that.created,
+                this.message, that.message,
+                this.stackTrace, that.stackTrace,
+                this.arguments, that.arguments);
         }
         return false;
     }
@@ -288,14 +287,6 @@ public abstract class OperationMessage implements Named, Message
                 else
                 {
                     formattedMessage = format(message, arguments);
-                    if (arrayContains(formats, WITH_EXCEPTION))
-                    {
-                        var cause = cause();
-                        if (cause != null)
-                        {
-                            formattedMessage += "\n" + stackTrace().toString();
-                        }
-                    }
                 }
             }
             finally
@@ -400,6 +391,6 @@ public abstract class OperationMessage implements Named, Message
     @Override
     public String toString()
     {
-        return formatted(WITH_EXCEPTION);
+        return formatted();
     }
 }

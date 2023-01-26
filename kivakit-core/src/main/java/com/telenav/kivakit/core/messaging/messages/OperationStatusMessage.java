@@ -64,7 +64,7 @@ public abstract class OperationStatusMessage extends OperationMessage
 
     protected OperationStatusMessage(Throwable cause, String message, Object... arguments)
     {
-        super(message + ": " + causeToString(cause));
+        super(message + (cause == null ? "" : "\n\n" + causeToString(cause)));
         cause(cause);
         arguments(arguments);
     }
