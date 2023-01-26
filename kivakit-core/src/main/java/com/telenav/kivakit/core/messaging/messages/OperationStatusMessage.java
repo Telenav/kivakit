@@ -25,6 +25,7 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
+import static com.telenav.kivakit.core.language.Throwables.causeToString;
 import static com.telenav.kivakit.core.messaging.Message.OperationStatus.NOT_APPLICABLE;
 
 /**
@@ -61,9 +62,10 @@ public abstract class OperationStatusMessage extends OperationMessage
     {
     }
 
-    protected OperationStatusMessage(String message, Object... arguments)
+    protected OperationStatusMessage(Throwable cause, String message, Object... arguments)
     {
-        super(message);
+        super(message + ": " + causeToString(cause));
+        cause(cause);
         arguments(arguments);
     }
 

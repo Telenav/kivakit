@@ -49,17 +49,12 @@ public class Step extends OperationStatusMessage
 
     public Step(String message, Object... arguments)
     {
-        super(message);
-        arguments(arguments);
+        this(null, message, arguments);
     }
 
     public Step(Throwable cause, String message, Object... arguments)
     {
-        super(message + (cause == null
-                ? ""
-                :  ": " + escapeMessageText(cause.getMessage())));
-        cause(cause);
-        arguments(arguments);
+        super(cause, message, arguments);
     }
 
     /**

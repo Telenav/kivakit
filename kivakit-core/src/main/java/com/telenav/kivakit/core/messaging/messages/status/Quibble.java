@@ -27,9 +27,8 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
-import static com.telenav.kivakit.core.messaging.Message.Status.*;
-import static com.telenav.kivakit.core.messaging.Message.escapeMessageText;
-import static com.telenav.kivakit.core.messaging.messages.Severity.*;
+import static com.telenav.kivakit.core.messaging.Message.Status.COMPLETED;
+import static com.telenav.kivakit.core.messaging.messages.Severity.LOW;
 
 /**
  * A notice that something trivial has gone wrong.
@@ -50,7 +49,7 @@ import static com.telenav.kivakit.core.messaging.messages.Severity.*;
  *     <li>Information - Commonly useful information that doesn't represent any problem</li>
  *     <li>Trace - Diagnostic information for use when debugging</li>
  * </ul>
- *
+ * <p>
  *  @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramMessageType.class)
@@ -61,15 +60,12 @@ public class Quibble extends OperationStatusMessage
 {
     public Quibble(String message, Object... arguments)
     {
-        super(message);
-        arguments(arguments);
+        this(null, message, arguments);
     }
 
     public Quibble(Throwable cause, String message, Object... arguments)
     {
-        super(message + ": " + escapeMessageText(cause.getMessage()));
-        cause(cause);
-        arguments(arguments);
+        super(cause, message, arguments);
     }
 
     public Quibble()

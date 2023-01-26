@@ -29,7 +29,6 @@ import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMEN
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
 import static com.telenav.kivakit.core.messaging.Message.Status.FAILED;
-import static com.telenav.kivakit.core.messaging.Message.escapeMessageText;
 import static com.telenav.kivakit.core.messaging.messages.Severity.HIGH;
 
 /**
@@ -63,16 +62,12 @@ public class FatalProblem extends Problem
 {
     public FatalProblem(String message, Object... arguments)
     {
-        super(message);
-        cause(new Throwable("Fatal stack trace"));
-        arguments(arguments);
+        this(new Throwable(), message, arguments);
     }
 
     public FatalProblem(Throwable cause, String message, Object... arguments)
     {
-        super(message + ": " + escapeMessageText(cause.getMessage()));
-        cause(cause);
-        arguments(arguments);
+        super(cause, message, arguments);
     }
 
     public FatalProblem()

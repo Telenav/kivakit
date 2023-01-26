@@ -59,4 +59,11 @@ public class Stack<Value> extends ObjectList<Value>
     {
         super(values);
     }
+
+    public Value top()
+    {
+        return size() > 0
+            ? get(size() - 1)
+            : null;
+    }
 }

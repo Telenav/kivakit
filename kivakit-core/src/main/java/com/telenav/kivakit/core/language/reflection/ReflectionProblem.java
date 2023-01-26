@@ -6,7 +6,6 @@ import com.telenav.kivakit.core.messaging.messages.status.Problem;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
-import static com.telenav.kivakit.core.string.Formatter.format;
 
 /**
  * A problem object describing an issue with reflection
@@ -20,11 +19,11 @@ public class ReflectionProblem extends Problem
 {
     public ReflectionProblem(String message, Object... arguments)
     {
-        super(format(message, arguments));
+        this(null, message, arguments);
     }
 
     public ReflectionProblem(Exception cause, String message, Object... arguments)
     {
-        super(cause, format(message, arguments));
+        super(cause, message, arguments);
     }
 }

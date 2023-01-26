@@ -61,8 +61,7 @@ public class Announcement extends OperationStatusMessage
 {
     public Announcement(String message, Object... arguments)
     {
-        super(message);
-        arguments(arguments);
+        super(null, message, arguments);
     }
 
     public Announcement()

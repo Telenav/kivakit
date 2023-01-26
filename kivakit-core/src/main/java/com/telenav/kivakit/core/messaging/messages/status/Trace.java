@@ -61,15 +61,12 @@ public class Trace extends OperationStatusMessage
 {
     public Trace(String message, Object... arguments)
     {
-        super(message);
-        arguments(arguments);
+        this(null, message, arguments);
     }
 
     public Trace(Throwable cause, String message, Object... arguments)
     {
-        super(message + ": " + cause.getMessage());
-        cause(cause);
-        arguments(arguments);
+        super(cause, message, arguments);
     }
 
     public Trace()

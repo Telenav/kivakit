@@ -60,8 +60,7 @@ public class Narration extends OperationStatusMessage
 {
     public Narration(String message, Object... arguments)
     {
-        super(message);
-        arguments(arguments);
+        super(null, message, arguments);
     }
 
     public Narration()
