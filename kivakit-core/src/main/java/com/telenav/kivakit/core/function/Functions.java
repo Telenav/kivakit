@@ -4,8 +4,8 @@ import com.telenav.kivakit.annotations.code.quality.TypeQuality;
 
 import java.util.function.Function;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
 
 /**
@@ -31,5 +31,48 @@ public class Functions
     public static <Input, Output> Output apply(Input value, Function<Input, Output> function)
     {
         return value != null ? function.apply(value) : null;
+    }
+
+    /**
+     * Convenient functional interface for any one-parameter callback
+     */
+    public static void doNothing(Object ignored)
+    {
+    }
+
+    /**
+     * Convenient functional interface for any two-parameter callback
+     */
+    public static void doNothing(Object ignored, Object ignored2)
+    {
+    }
+
+    /**
+     * Convenient functional interface for any three-parameter callback
+     */
+    public static void doNothing(Object ignored, Object ignored2, Object ignored3)
+    {
+    }
+
+    /**
+     * Runs the given list of {@link Function}s, until one returns a non-null value.
+     *
+     * @param from The value to transform
+     * @param functions The functions to apply
+     * @return The value returned by the first function that returns a non-null value.
+     */
+    @SuppressWarnings({ "unchecked", "unused" })
+    @SafeVarargs
+    public static <From, To> To firstSuccessfulFunction(From from, Function<From, To>... functions)
+    {
+        for (var function : functions)
+        {
+            var result = function.apply(from);
+            if (result != null)
+            {
+                return result;
+            }
+        }
+        return null;
     }
 }
