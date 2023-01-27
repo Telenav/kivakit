@@ -41,6 +41,7 @@ import java.net.http.HttpResponse;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static com.telenav.kivakit.core.thread.Retry.retry;
 import static com.telenav.kivakit.network.http.HttpStatus.OK;
 import static java.net.http.HttpRequest.BodyPublishers.noBody;
 import static java.net.http.HttpResponse.BodyHandlers.ofInputStream;
@@ -320,23 +321,28 @@ public abstract class BaseHttpResource extends BaseNetworkResource implements Ht
     {
         if (response == null)
         {
-            try
+            retry(this, constraints.retries(), constraints.pauseBetweenRetries(), () -> trySend(httpRequest));
+        }
+    }
+
+    private void trySend(HttpRequest httpRequest)
+    {
+        try
+        {
+            response = newClient().send(httpRequest, ofInputStream());
+            status = HttpStatus.httpStatus(response.statusCode());
+            if (responseHeader != null)
             {
-                response = newClient().send(httpRequest, ofInputStream());
-                status = HttpStatus.httpStatus(response.statusCode());
-                if (responseHeader != null)
+                var map = response.headers().map();
+                for (var name : map.keySet())
                 {
-                    var map = response.headers().map();
-                    for (var name : map.keySet())
-                    {
-                        responseHeader.put(name, map.get(name).get(0));
-                    }
+                    responseHeader.put(name, map.get(name).get(0));
                 }
             }
-            catch (Exception e)
-            {
-                problem(e, "Unable to execute HTTP request to: $", httpRequest);
-            }
+        }
+        catch (Exception e)
+        {
+            problem(e, "Unable to execute HTTP request to: $", httpRequest);
         }
     }
 }
