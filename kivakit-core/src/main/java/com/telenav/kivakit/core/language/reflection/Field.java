@@ -31,6 +31,7 @@ import java.lang.reflect.ParameterizedType;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static com.telenav.kivakit.core.collections.list.ObjectList.list;
 import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
 import static com.telenav.kivakit.core.language.Classes.simpleName;
 import static com.telenav.kivakit.core.language.Hash.hashMany;
@@ -179,7 +180,7 @@ public class Field extends Member
             }
             return list;
         }
-        return null;
+        return list();
     }
 
     /**
