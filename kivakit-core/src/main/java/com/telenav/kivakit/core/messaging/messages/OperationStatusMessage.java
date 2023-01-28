@@ -27,6 +27,7 @@ import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
 import static com.telenav.kivakit.core.language.Throwables.causeToString;
 import static com.telenav.kivakit.core.messaging.Message.OperationStatus.NOT_APPLICABLE;
+import static com.telenav.kivakit.core.string.Formatter.format;
 
 /**
  * Signals the status of an operation.
@@ -64,7 +65,7 @@ public abstract class OperationStatusMessage extends OperationMessage
 
     protected OperationStatusMessage(Throwable cause, String message, Object... arguments)
     {
-        super(message + (cause == null ? "" : "\n\n" + causeToString(cause)));
+        super(message + (cause == null ? "" : "\n\nCause:\n\n" + causeToString(cause)));
         cause(cause);
         arguments(arguments);
     }

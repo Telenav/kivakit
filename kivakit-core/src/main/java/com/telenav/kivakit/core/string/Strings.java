@@ -265,6 +265,32 @@ public class Strings
     }
 
     /**
+     * Returns true if a string is non-empty and contains only digits and an optional leading negative sign
+     *
+     * @param string The string to check
+     * @return True if it's a number
+     */
+    public static boolean isInteger(String string)
+    {
+        if (isNullOrBlank(string))
+        {
+            return false;
+        }
+        if (string.startsWith("-"))
+        {
+            string = string.substring(1);
+        }
+        for (var i = 0; i < string.length(); i++)
+        {
+            if (!isDigit(string.charAt(i)))
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    /**
      * Returns true if the given text is a Java identifier
      */
     public static boolean isJavaIdentifier(String text)
