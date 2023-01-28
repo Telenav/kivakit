@@ -33,7 +33,7 @@ import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 @TypeQuality(stability = STABLE_EXTENSIBLE,
              testing = UNTESTED,
              documentation = DOCUMENTED)
-public interface ApplicationMetadata extends Versioned
+public interface ApplicationMetadataTrait extends Versioned
 {
     /**
      * Returns true if command line parsing problems should result in a call to {@link System#exit(int)}. The default
