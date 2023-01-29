@@ -9,7 +9,9 @@ package com.telenav.kivakit.interfaces.string;
 public interface Described
 {
     /**
-     * Returns the description
+     * Returns the description of this object
+     *
+     * @return the description
      */
     String description();
 }
