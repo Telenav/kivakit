@@ -76,8 +76,8 @@ import com.telenav.lexakai.annotations.associations.UmlAggregation;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeMember;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeSuperTypes;
+import org.jetbrains.annotations.MustBeInvokedByOverriders;
 
-import javax.annotation.OverridingMethodsMustInvokeSuper;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
@@ -543,7 +543,7 @@ public abstract class Application extends BaseComponent implements
      */
     public Application addProject(Class<? extends Project> project)
     {
-        ensureInvoked(set(ON_INITIALIZE), "addProject(project)");
+        ensureInvoked(set(ON_INITIALIZE, INTERNAL), "addProject(project)");
 
         projects.add(resolveProject(project));
         return this;
@@ -1049,7 +1049,6 @@ public abstract class Application extends BaseComponent implements
     /**
      * Called when projects should be added
      */
-    @OverridingMethodsMustInvokeSuper
     protected void onAddProjects()
     {
     }
@@ -1146,6 +1145,7 @@ public abstract class Application extends BaseComponent implements
     /**
      * Called to register object serializers
      */
+    @MustBeInvokedByOverriders
     protected void onSerializationInitialize()
     {
         onRegisterObjectSerializers();
