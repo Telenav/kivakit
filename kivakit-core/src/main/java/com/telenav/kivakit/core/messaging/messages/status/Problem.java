@@ -25,6 +25,7 @@ import com.telenav.kivakit.core.messaging.messages.lifecycle.OperationHalted;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import static com.telenav.kivakit.core.messaging.Message.Status.PROBLEM;
+import static com.telenav.kivakit.core.messaging.messages.OperationStatusMessage.CauseFormatting.FORMAT_CAUSE;
 import static com.telenav.kivakit.core.messaging.messages.Severity.HIGH;
 
 /**
@@ -55,12 +56,12 @@ public class Problem extends OperationStatusMessage
 {
     public Problem(String message, Object... arguments)
     {
-        super(new Throwable(), message, arguments);
+        this(new Throwable(), message, arguments);
     }
 
     public Problem(Throwable cause, String message, Object... arguments)
     {
-        super(cause, message, arguments);
+        super(FORMAT_CAUSE, cause, message, arguments);
     }
 
     public Problem()

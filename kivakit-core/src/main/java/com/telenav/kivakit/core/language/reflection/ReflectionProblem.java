@@ -19,7 +19,7 @@ public class ReflectionProblem extends Problem
 {
     public ReflectionProblem(String message, Object... arguments)
     {
-        this(null, message, arguments);
+        super(message, arguments);
     }
 
     public ReflectionProblem(Exception cause, String message, Object... arguments)

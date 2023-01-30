@@ -20,15 +20,14 @@ package com.telenav.kivakit.core.messaging.messages.status.activity;
 
 import com.telenav.kivakit.annotations.code.quality.TypeQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramMessageType;
-import com.telenav.kivakit.core.messaging.messages.OperationStatusMessage;
 import com.telenav.kivakit.core.messaging.messages.Severity;
+import com.telenav.kivakit.core.messaging.messages.status.Information;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
 import static com.telenav.kivakit.core.messaging.Message.Status.SUCCEEDED;
-import static com.telenav.kivakit.core.messaging.Message.escapeMessageText;
 import static com.telenav.kivakit.core.messaging.messages.Severity.LOW;
 
 /**
@@ -41,7 +40,7 @@ import static com.telenav.kivakit.core.messaging.messages.Severity.LOW;
 @TypeQuality(stability = STABLE,
              testing = TESTING_NOT_NEEDED,
              documentation = DOCUMENTED)
-public class Step extends OperationStatusMessage
+public class Step extends Information
 {
     public Step()
     {
@@ -49,7 +48,7 @@ public class Step extends OperationStatusMessage
 
     public Step(String message, Object... arguments)
     {
-        this(null, message, arguments);
+        super(message, arguments);
     }
 
     public Step(Throwable cause, String message, Object... arguments)

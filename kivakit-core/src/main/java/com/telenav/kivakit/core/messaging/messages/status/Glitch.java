@@ -61,11 +61,11 @@ import static com.telenav.kivakit.core.messaging.messages.Severity.NONE;
 @TypeQuality(stability = STABLE,
              testing = TESTING_NOT_NEEDED,
              documentation = DOCUMENTED)
-public class Glitch extends OperationStatusMessage
+public class Glitch extends Warning
 {
     public Glitch(String message, Object... arguments)
     {
-        this(null, message, arguments);
+        this(new Throwable(), message, arguments);
     }
 
     public Glitch(Throwable cause, String message, Object... arguments)
