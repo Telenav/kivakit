@@ -44,7 +44,7 @@ import static java.lang.System.arraycopy;
  *
  * <ul>
  *     <li><b>{@link Failure}</b> - A generic failure message reported by {@link #fail(String, Object...)}</li>
- *     <li><b>{@link EnsureProblem}</b> - An ensure failure reported by one of the ensure() methods</li>
+ *     <li><b>{@link EnsureFailure}</b> - An ensure failure reported by one of the ensure() methods</li>
  *     <li><b>{@link Unsupported}</b> - An unsupported operation reported by {@link #unsupported(String, Object...)}</li>
  * </ul>
  *
@@ -170,7 +170,7 @@ import static java.lang.System.arraycopy;
  * @see Formatter
  */
 @SuppressWarnings("unused") @UmlClassDiagram(diagram = DiagramEnsure.class)
-@UmlRelation(label = "reports", referent = EnsureProblem.class)
+@UmlRelation(label = "reports", referent = EnsureFailure.class)
 @TypeQuality(stability = STABLE_EXTENSIBLE,
              testing = TESTING_INSUFFICIENT,
              documentation = DOCUMENTATION_INSUFFICIENT)
@@ -206,7 +206,7 @@ public class Ensure
     }
 
     /**
-     * If the condition is false (the check is invalid), a {@link EnsureProblem} message is given to the
+     * If the condition is false (the check is invalid), a {@link EnsureFailure} message is given to the
      * {@link FailureReporter} that message type.
      */
     public static <T> T ensure(boolean condition,
@@ -216,7 +216,7 @@ public class Ensure
     {
         if (!condition)
         {
-            Failure.report(EnsureProblem.class, e, message, arguments);
+            Failure.report(EnsureFailure.class, e, message, arguments);
         }
         return null;
     }
@@ -440,7 +440,7 @@ public class Ensure
 
     public static <T> T fail(Throwable e, String message, Object... arguments)
     {
-        Failure.report(EnsureProblem.class, e, message, arguments);
+        Failure.report(EnsureFailure.class, e, message, arguments);
         return null;
     }
 

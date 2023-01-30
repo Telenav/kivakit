@@ -36,6 +36,7 @@ import static com.telenav.kivakit.core.messaging.messages.Severity.LOW;
  * <p>
  * {@link OperationStatusMessage}s in order of importance:
  * </p>
+ *
  * <ul>
  *     <li>Critical Alert - An operation failed and needs <i>immediate attention</i> from a human operator</li>
  *     <li>Alert - An operation failed and needs to be looked at by an operator soon</li>
@@ -49,18 +50,18 @@ import static com.telenav.kivakit.core.messaging.messages.Severity.LOW;
  *     <li>Information - Commonly useful information that doesn't represent any problem</li>
  *     <li>Trace - Diagnostic information for use when debugging</li>
  * </ul>
- * <p>
+ *
  *  @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramMessageType.class)
 @TypeQuality(stability = STABLE,
              testing = TESTING_NOT_NEEDED,
              documentation = DOCUMENTED)
-public class Quibble extends OperationStatusMessage
+public class Quibble extends Warning
 {
     public Quibble(String message, Object... arguments)
     {
-        this(null, message, arguments);
+        this(new Throwable(), message, arguments);
     }
 
     public Quibble(Throwable cause, String message, Object... arguments)

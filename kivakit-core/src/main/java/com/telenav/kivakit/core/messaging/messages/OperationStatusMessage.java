@@ -27,7 +27,7 @@ import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
 import static com.telenav.kivakit.core.language.Throwables.causeToString;
 import static com.telenav.kivakit.core.messaging.Message.OperationStatus.NOT_APPLICABLE;
-import static com.telenav.kivakit.core.string.Formatter.format;
+import static com.telenav.kivakit.core.messaging.messages.OperationStatusMessage.CauseFormatting.FORMAT_CAUSE;
 
 /**
  * Signals the status of an operation.
@@ -56,6 +56,12 @@ import static com.telenav.kivakit.core.string.Formatter.format;
              documentation = DOCUMENTED)
 public abstract class OperationStatusMessage extends OperationMessage
 {
+    public enum CauseFormatting
+    {
+        DO_NOT_FORMAT_CAUSE,
+        FORMAT_CAUSE
+    }
+
     /** A hierarchical error code per IETF RFC 7807. */
     public String code;
 
@@ -63,10 +69,18 @@ public abstract class OperationStatusMessage extends OperationMessage
     {
     }
 
-    protected OperationStatusMessage(Throwable cause, String message, Object... arguments)
+    protected OperationStatusMessage(CauseFormatting causeFormatting, Throwable cause, String message,
+                                     Object... arguments)
     {
-        super(message + (cause == null ? "" : "\n\nCause:\n\n" + causeToString(cause)));
-        cause(cause);
+        super(message + (causeFormatting == FORMAT_CAUSE
+            ? "\n\nCause:\n\n" + causeToString(cause)
+            : ""));
+
+        if (cause != null)
+        {
+            cause(cause);
+        }
+
         arguments(arguments);
     }
 

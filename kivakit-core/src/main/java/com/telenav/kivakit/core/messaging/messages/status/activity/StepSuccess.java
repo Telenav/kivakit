@@ -20,8 +20,8 @@ package com.telenav.kivakit.core.messaging.messages.status.activity;
 
 import com.telenav.kivakit.annotations.code.quality.TypeQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramMessageType;
-import com.telenav.kivakit.core.messaging.messages.OperationStatusMessage;
 import com.telenav.kivakit.core.messaging.messages.Severity;
+import com.telenav.kivakit.core.messaging.messages.status.Information;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
@@ -39,11 +39,11 @@ import static com.telenav.kivakit.core.messaging.messages.Severity.NONE;
 @TypeQuality(stability = STABLE,
              testing = TESTING_NOT_NEEDED,
              documentation = DOCUMENTED)
-public class StepSuccess extends OperationStatusMessage
+public class StepSuccess extends Information
 {
     public StepSuccess(String message, Object... arguments)
     {
-        super(null, message, arguments);
+        super(message, arguments);
     }
 
     public StepSuccess()

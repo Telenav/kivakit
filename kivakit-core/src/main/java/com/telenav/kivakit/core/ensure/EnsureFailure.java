@@ -20,7 +20,7 @@ package com.telenav.kivakit.core.ensure;
 
 import com.telenav.kivakit.annotations.code.quality.TypeQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramEnsure;
-import com.telenav.kivakit.core.messaging.messages.status.Problem;
+import com.telenav.kivakit.core.messaging.messages.status.FatalProblem;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
@@ -36,19 +36,19 @@ import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_N
 @TypeQuality(stability = STABLE,
              testing = TESTING_NOT_NEEDED,
              documentation = DOCUMENTED)
-public class EnsureProblem extends Problem
+public class EnsureFailure extends FatalProblem
 {
-    public EnsureProblem(String message, Object... arguments)
+    public EnsureFailure(String message, Object... arguments)
     {
-        this(null, message, arguments);
+        super(message, arguments);
     }
 
-    public EnsureProblem(Throwable cause, String message, Object... arguments)
+    public EnsureFailure(Throwable cause, String message, Object... arguments)
     {
         super(cause, message, arguments);
     }
 
-    public EnsureProblem()
+    public EnsureFailure()
     {
     }
 }
