@@ -38,7 +38,6 @@ import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMEN
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.ensure.Ensure.unsupported;
-import static com.telenav.kivakit.core.messaging.MessageFormat.WITH_EXCEPTION;
 import static com.telenav.kivakit.core.string.AsciiArt.bullet;
 import static com.telenav.kivakit.core.value.count.Maximum.MAXIMUM;
 import static com.telenav.kivakit.interfaces.comparison.Filter.acceptAll;
@@ -258,7 +257,7 @@ public class MessageList extends ObjectList<Message> implements MessageCounter
         var messages = new StringList(maximumSize());
         for (var message : this)
         {
-            messages.add(message.formatted(WITH_EXCEPTION));
+            messages.add(message.formatted());
         }
         return messages;
     }

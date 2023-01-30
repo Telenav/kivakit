@@ -24,8 +24,8 @@ import com.telenav.kivakit.core.messaging.messages.OperationStatusMessage;
 import com.telenav.kivakit.core.messaging.messages.Severity;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
 import static com.telenav.kivakit.core.messaging.Message.Status.SUCCEEDED;
 import static com.telenav.kivakit.core.messaging.messages.Severity.NONE;
@@ -60,8 +60,7 @@ public class Information extends OperationStatusMessage
 {
     public Information(String message, Object... arguments)
     {
-        super(message);
-        arguments(arguments);
+        super(null, message, arguments);
     }
 
     public Information()

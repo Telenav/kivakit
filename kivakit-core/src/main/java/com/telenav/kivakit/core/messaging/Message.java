@@ -59,7 +59,6 @@ import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.language.Classes.newInstance;
 import static com.telenav.kivakit.core.language.Classes.simpleName;
 import static com.telenav.kivakit.core.messaging.MessageFormat.FORMATTED;
-import static com.telenav.kivakit.core.messaging.MessageFormat.WITHOUT_EXCEPTION;
 import static com.telenav.kivakit.core.messaging.Messages.parseMessageType;
 import static com.telenav.kivakit.core.string.Strings.replaceAll;
 
@@ -296,7 +295,7 @@ public interface Message extends
 
     default String formatted()
     {
-        return formatted(FORMATTED, WITHOUT_EXCEPTION);
+        return formatted(FORMATTED);
     }
 
     /**

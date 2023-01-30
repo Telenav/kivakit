@@ -40,6 +40,19 @@ public class Mixins
     /** Map from mixin state to the object that owns it */
     private static final Map<Object, Object> owner = new IdentityHashMap<>();
 
+    @SuppressWarnings("unchecked")
+    public static synchronized <State> void detach(Object object,
+                                                   Class<? extends Mixin> mixinType)
+    {
+        var key = new MixinKey(object, mixinType);
+        if (mixin.containsKey(key))
+        {
+            var value = (State) mixin.get(key);
+            owner.remove(value);
+            mixin.remove(key);
+        }
+    }
+
     /**
      * <b>Not public API</b>
      *
@@ -96,32 +109,32 @@ public class Mixins
     }
 
     /**
-         * <b>Not public API</b>
-         *
-         * @author jonathanl (shibo)
-         */
-        @SuppressWarnings("SpellCheckingInspection")
-        @TypeQuality(audience = AUDIENCE_INTERNAL,
-                     stability = STABLE,
-                     testing = TESTED,
-                     documentation = DOCUMENTED)
-        private record MixinKey(Object attachTo, Class<? extends Mixin> mixinType)
+     * <b>Not public API</b>
+     *
+     * @author jonathanl (shibo)
+     */
+    @SuppressWarnings("SpellCheckingInspection")
+    @TypeQuality(audience = AUDIENCE_INTERNAL,
+                 stability = STABLE,
+                 testing = TESTED,
+                 documentation = DOCUMENTED)
+    private record MixinKey(Object attachTo, Class<? extends Mixin> mixinType)
+    {
+
+        @Override
+        public boolean equals(Object uncast)
         {
-
-            @Override
-            public boolean equals(Object uncast)
+            if (uncast instanceof MixinKey that)
             {
-                if (uncast instanceof MixinKey that)
-                {
-                    return attachTo == that.attachTo && mixinType == that.mixinType;
-                }
-                return false;
+                return attachTo == that.attachTo && mixinType == that.mixinType;
             }
-
-            @Override
-            public String toString()
-            {
-                return "[Mixin object = " + attachTo.getClass() + ", mixin = " + mixinType + "]";
-            }
+            return false;
         }
+
+        @Override
+        public String toString()
+        {
+            return "[Mixin object = " + attachTo.getClass() + ", mixin = " + mixinType + "]";
+        }
+    }
 }

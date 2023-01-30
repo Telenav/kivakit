@@ -19,7 +19,6 @@
 package com.telenav.kivakit.serialization.gson.serializers.value;
 
 import com.telenav.kivakit.annotations.code.quality.TypeQuality;
-import com.telenav.kivakit.core.messaging.MessageFormat;
 import com.telenav.kivakit.core.messaging.messages.status.Problem;
 import com.telenav.kivakit.serialization.gson.serializers.BaseGsonSerializer;
 
@@ -37,12 +36,9 @@ import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
              documentation = DOCUMENTED)
 public class ProblemGsonSerializer extends BaseGsonSerializer<Problem, String>
 {
-    private final MessageFormat format;
-
-    public ProblemGsonSerializer(MessageFormat format)
+    public ProblemGsonSerializer()
     {
         super(Problem.class, String.class);
-        this.format = format;
     }
 
     @Override
@@ -54,6 +50,6 @@ public class ProblemGsonSerializer extends BaseGsonSerializer<Problem, String>
     @Override
     protected String onSerialize(Problem value)
     {
-        return value.formatted(format);
+        return value.formatted();
     }
 }
