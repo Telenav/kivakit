@@ -3,14 +3,16 @@ package com.telenav.kivakit.core.language.trait;
 import com.telenav.kivakit.annotations.code.quality.TypeQuality;
 import com.telenav.kivakit.core.code.UncheckedCode;
 import com.telenav.kivakit.core.code.UncheckedVoidCode;
+import com.telenav.kivakit.core.messaging.messages.MessageException;
+import com.telenav.kivakit.core.messaging.messages.status.Problem;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 
 /**
- * Provides methods that execute code, stripping off checked exceptions. {@link TryTrait} extends
- * this interface to provide try-related methods that broadcast problems.
+ * Provides methods that execute code, stripping off checked exceptions. {@link TryTrait} extends this interface to
+ * provide try-related methods that broadcast problems.
  *
  * <p><b>try/catch</b></p>
  *
@@ -75,7 +77,7 @@ public interface TryCatchTrait
     }
 
     /**
-     * Runs the given code catching all exceptions, including checked exceptions. If an exception is thrown, the given
+     * Runs the given code, catching all exceptions, including checked exceptions. If an exception is thrown, the given
      * default value will be returned.
      *
      * @param code The code to run
@@ -91,6 +93,47 @@ public interface TryCatchTrait
         catch (Exception e)
         {
             return defaultValue;
+        }
+    }
+
+    /**
+     * Runs the given code, catching all exceptions, including checked exceptions. If an exception is thrown, it will be
+     * caught and a {@link MessageException} will be rethrown, adding the given formatted message.
+     *
+     * @param code The code to run
+     * @param message The message to format
+     * @param arguments Arguments to message formatting
+     * @return The result of the code
+     */
+    default <T> T tryCatchRethrow(UncheckedCode<T> code, String message, Object... arguments)
+    {
+        try
+        {
+            return code.run();
+        }
+        catch (Exception e)
+        {
+            throw new MessageException(new Problem(e, message, arguments));
+        }
+    }
+
+    /**
+     * Runs the given code, catching all exceptions, including checked exceptions. If an exception is thrown, it will be
+     * caught and a {@link MessageException} will be rethrown, adding the given formatted message.
+     *
+     * @param code The code to run
+     * @param message The message to format
+     * @param arguments Arguments to message formatting
+     */
+    default void tryCatchRethrow(UncheckedVoidCode code, String message, Object... arguments)
+    {
+        try
+        {
+            code.run();
+        }
+        catch (Exception e)
+        {
+            throw new MessageException(new Problem(e, message, arguments));
         }
     }
 }

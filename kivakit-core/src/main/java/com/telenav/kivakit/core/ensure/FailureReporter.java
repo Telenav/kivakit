@@ -28,7 +28,6 @@ import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMEN
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
 import static com.telenav.kivakit.core.KivaKit.globalListener;
-import static com.telenav.kivakit.core.messaging.MessageFormat.WITH_EXCEPTION;
 
 /**
  * Reporter of failure messages. Reporter implementations include:
@@ -85,7 +84,7 @@ public interface FailureReporter extends Listener
     {
         return message ->
         {
-            throw new IllegalStateException(message.formatted(WITH_EXCEPTION), message.cause());
+            throw new IllegalStateException(message.formatted(), message.cause());
         };
     }
 

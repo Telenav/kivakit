@@ -294,7 +294,7 @@ public class PropertyMap extends VariableMap<String>
             .asStringList()
             .indented(4)
             .bracketed()
-            .asString();
+            .join("\n");
     }
 
     /**

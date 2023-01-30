@@ -44,15 +44,12 @@ public class StepIncomplete extends OperationStatusMessage
 {
     public StepIncomplete(String message, Object... arguments)
     {
-        super(message);
-        arguments(arguments);
+        this(null, message, arguments);
     }
 
     public StepIncomplete(Throwable cause, String message, Object... arguments)
     {
-        super(message + ": " + escapeMessageText(cause.getMessage()));
-        cause(cause);
-        arguments(arguments);
+        super(cause, message, arguments);
     }
 
     public StepIncomplete()

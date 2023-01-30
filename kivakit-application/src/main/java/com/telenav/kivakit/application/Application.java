@@ -20,7 +20,7 @@ package com.telenav.kivakit.application;
 
 import com.telenav.kivakit.annotations.code.quality.TypeQuality;
 import com.telenav.kivakit.application.internal.lexakai.DiagramApplication;
-import com.telenav.kivakit.commandline.ApplicationMetadata;
+import com.telenav.kivakit.commandline.ApplicationMetadataTrait;
 import com.telenav.kivakit.commandline.ArgumentParser;
 import com.telenav.kivakit.commandline.ArgumentValueList;
 import com.telenav.kivakit.commandline.CommandLine;
@@ -33,7 +33,6 @@ import com.telenav.kivakit.core.collections.list.StringList;
 import com.telenav.kivakit.core.collections.set.IdentitySet;
 import com.telenav.kivakit.core.collections.set.ObjectSet;
 import com.telenav.kivakit.core.function.Result;
-import com.telenav.kivakit.core.language.trait.LanguageTrait;
 import com.telenav.kivakit.core.language.trait.TryTrait;
 import com.telenav.kivakit.core.locale.Locale;
 import com.telenav.kivakit.core.locale.LocaleLanguage;
@@ -61,8 +60,8 @@ import com.telenav.kivakit.core.value.identifier.StringIdentifier;
 import com.telenav.kivakit.core.version.Version;
 import com.telenav.kivakit.core.vm.ShutdownHook;
 import com.telenav.kivakit.filesystem.Folder;
+import com.telenav.kivakit.interfaces.code.Code;
 import com.telenav.kivakit.interfaces.naming.Named;
-import com.telenav.kivakit.interfaces.naming.NamedObject;
 import com.telenav.kivakit.properties.PropertyMap;
 import com.telenav.kivakit.resource.packages.PackageTrait;
 import com.telenav.kivakit.resource.serialization.ObjectSerializerRegistry;
@@ -77,6 +76,7 @@ import com.telenav.lexakai.annotations.associations.UmlAggregation;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeMember;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeSuperTypes;
+import org.jetbrains.annotations.MustBeInvokedByOverriders;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -86,6 +86,19 @@ import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMEN
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static com.telenav.kivakit.application.Application.InMethod.INTERNAL;
+import static com.telenav.kivakit.application.Application.InMethod.NO_METHOD;
+import static com.telenav.kivakit.application.Application.InMethod.ON_ADD_PROJECTS;
+import static com.telenav.kivakit.application.Application.InMethod.ON_INITIALIZE;
+import static com.telenav.kivakit.application.Application.InMethod.ON_INITIALIZED;
+import static com.telenav.kivakit.application.Application.InMethod.ON_INITIALIZING;
+import static com.telenav.kivakit.application.Application.InMethod.ON_PROJECTS_INITIALIZE;
+import static com.telenav.kivakit.application.Application.InMethod.ON_PROJECTS_INITIALIZED;
+import static com.telenav.kivakit.application.Application.InMethod.ON_PROJECTS_INITIALIZING;
+import static com.telenav.kivakit.application.Application.InMethod.ON_RAN;
+import static com.telenav.kivakit.application.Application.InMethod.ON_RUN;
+import static com.telenav.kivakit.application.Application.InMethod.ON_RUNNING;
+import static com.telenav.kivakit.application.Application.InMethod.ON_SERIALIZATION_INITIALIZE;
 import static com.telenav.kivakit.application.Application.LifecyclePhase.CONSTRUCTING;
 import static com.telenav.kivakit.application.Application.LifecyclePhase.INITIALIZING;
 import static com.telenav.kivakit.application.Application.LifecyclePhase.READY;
@@ -134,25 +147,14 @@ import static java.util.Comparator.comparing;
  * </p>
  *
  * <ul>
- *     <li>Project Initialization - Initializes {@link Project}s used by the application</li>
- *     <li>Application Metadata - Provides information about the application and its environment</li>
+ *     <li>Project Initialization - Initializes {@link Project}s used by the application. Project initialization
+ *        allows other KivaKit projects to perform tasks that are required for their use, such as loading resources,
+ *        or registering objects like serializers.</li>
+ *     <li>Application Metadata - Application metadata provides information about the application and its environment</li>
  *     <li>Application Environment - Provides information about the execution environment</li>
  *     <li>Application Execution - Runs the application</li>
  *     <li>Command Line Parsing - Parses command line switches and arguments</li>
  *     <li>Messaging and Logging - Captures and logs {@link Message}s broadcast by child components</li>
- * </ul>
- *
- * <p>
- * {@link Application} is also a {@link Component} and so it inherits:
- * </p>
- *
- * <ul>
- *     <li>{@link PackageTrait} - Provides access to packages and packaged resources</li>
- *     <li>{@link SettingsTrait} - Loads settings objects and deployment configurations</li>
- *     <li>{@link RegistryTrait} - Service {@link Registry} access</li>
- *     <li>{@link LanguageTrait} - Enhancements that reduce language verbosity</li>
- *     <li>{@link Repeater} - Message broadcasting, listening and repeating</li>
- *     <li>{@link NamedObject} - Provides component name</li>
  * </ul>
  *
  * <p><b>Creating an Application</b></p>
@@ -172,17 +174,34 @@ import static java.util.Comparator.comparing;
  *     [...]
  * }</pre>
  *
+ * <p><b>Inherited Traits</b></p>
+ *
+ * <p>
+ * {@link Application} inherits several traits, some from of which are inherited indirectly from {@link Component}:
+ * </p>
+ *
+ * <ul>
+ *     <li>{@link ApplicationMetadataTrait} - Provides a description of the application</li>
+ *     <li>{@link Named} - Provides the application name</li>
+ *     <li>{@link PackageTrait} - Provides access to packages and packaged resources</li>
+ *     <li>{@link ProjectTrait} - Provides project lookup and KivaKit's version</li>
+ *     <li>{@link RegistryTrait} - Provides convenient access to the object {@link Registry}</li>
+ *     <li>{@link Repeater} - Provides message broadcasting, listening and repeating</li>
+ *     <li>{@link SettingsTrait} - Loads settings objects and deployment configurations</li>
+ *     <li>{@link TryTrait} - Provides convenient methods for implementing try/catch/finally blocks</li>
+ * </ul>
+ *
  * <p><b>Project Initialization</b></p>
  *
  * <p>
- * Application constructors should pass one or more {@link Project}s to the {@link Application} constructor to
- * ensure that all of the application's transitively dependent project(s) are initialized. See {@link Project} for details.
+ * Applications can register one or more {@link Project}s in {@link #onProjectsInitialize()} by calling {@link #addProject(Class)}.
+ * KivaKit will ensure that all of the application's transitively dependent project(s) are initialized. See {@link Project} for details.
  * </p>
  *
  * <p><b>Application Metadata</b></p>
  *
  * <p>
- * Applications provide {@link ApplicationMetadata} about themselves:
+ * Applications provide {@link ApplicationMetadataTrait} about themselves:
  * </p>
  *
  * <ul>
@@ -325,11 +344,11 @@ import static java.util.Comparator.comparing;
              documentation = DOCUMENTED)
 @Register
 public abstract class Application extends BaseComponent implements
+    Named,
     PackageTrait,
     ProjectTrait,
     SettingsTrait,
-    Named,
-    ApplicationMetadata,
+    ApplicationMetadataTrait,
     TryTrait
 {
     /** The one and only application running in this process */
@@ -388,6 +407,34 @@ public abstract class Application extends BaseComponent implements
     }
 
     /**
+     * These enum values are used to restrict user calls to a particular method scope. For example, the
+     * {@link #addProject(Class)} method can only be called from {@link #onAddProjects()}.
+     */
+    protected enum InMethod
+    {
+        INTERNAL,
+        NO_METHOD,
+
+        ON_ADD_PROJECTS,
+        ON_CONFIGURE_LISTENERS,
+
+        ON_INITIALIZING,
+        ON_INITIALIZE,
+        ON_INITIALIZED,
+
+        ON_PROJECTS_INITIALIZING,
+        ON_PROJECTS_INITIALIZE,
+        ON_PROJECTS_INITIALIZED,
+
+        ON_RUNNING,
+        ON_RUN,
+        ON_RAN,
+
+        ON_REGISTER_OBJECT_SERIALIZERS,
+        ON_SERIALIZATION_INITIALIZE
+    }
+
+    /**
      * The phase of the application's lifecycle
      */
     public enum LifecyclePhase
@@ -421,6 +468,39 @@ public abstract class Application extends BaseComponent implements
         {
         }
     }
+
+    private final ObjectSet<InMethod> AFTER_COMMAND_LINE_PARSED =
+        set
+            (
+                ON_INITIALIZING,
+                ON_INITIALIZE,
+                ON_INITIALIZED,
+                ON_PROJECTS_INITIALIZING,
+                ON_PROJECTS_INITIALIZE,
+                ON_PROJECTS_INITIALIZED,
+                ON_RUNNING,
+                ON_RUN,
+                ON_RAN
+            );
+
+    private final ObjectSet<InMethod> AFTER_PROJECTS_INITIALIZED =
+        set
+            (
+                ON_RUNNING,
+                ON_RUN,
+                ON_RAN
+            );
+
+    private final ObjectSet<InMethod> WHEN_RUNNING =
+        set
+            (
+                ON_RUNNING,
+                ON_RUN,
+                ON_RAN
+            );
+
+    /** What user method is being called */
+    private InMethod inMethod;
 
     /** Switch parser to specify deployment settings */
     private SwitchParser<Deployment> DEPLOYMENT;
@@ -463,8 +543,7 @@ public abstract class Application extends BaseComponent implements
      */
     public Application addProject(Class<? extends Project> project)
     {
-        // We can only add projects during application construction.
-        ensure(phase.is(CONSTRUCTING));
+        ensureInvoked(set(ON_INITIALIZE, INTERNAL), "addProject(project)");
 
         projects.add(resolveProject(project));
         return this;
@@ -475,6 +554,8 @@ public abstract class Application extends BaseComponent implements
      */
     public <T> T argument(int index, ArgumentParser<T> parser)
     {
+        ensureInvoked(AFTER_COMMAND_LINE_PARSED, "argument(index, parser)");
+
         return commandLine().argument(index, parser);
     }
 
@@ -483,6 +564,8 @@ public abstract class Application extends BaseComponent implements
      */
     public <T> T argument(ArgumentParser<T> parser)
     {
+        ensureInvoked(AFTER_COMMAND_LINE_PARSED, "argument(parser)");
+
         return commandLine().argument(parser);
     }
 
@@ -491,6 +574,8 @@ public abstract class Application extends BaseComponent implements
      */
     public ArgumentValueList argumentList()
     {
+        ensureInvoked(AFTER_COMMAND_LINE_PARSED, "argumentList()");
+
         return commandLine().argumentValues();
     }
 
@@ -499,7 +584,8 @@ public abstract class Application extends BaseComponent implements
      */
     public <T> ObjectList<T> arguments(ArgumentParser<T> parser)
     {
-        ensureNotInitializing();
+        ensureInvoked(AFTER_COMMAND_LINE_PARSED, "arguments(parser)");
+
         var arguments = new ObjectList<T>();
         for (int i = 0; i < argumentList().size(); i++)
         {
@@ -525,6 +611,8 @@ public abstract class Application extends BaseComponent implements
     @UmlRelation(label = "parses arguments into")
     public CommandLine commandLine()
     {
+        ensureInvoked(AFTER_COMMAND_LINE_PARSED, "commandLine()");
+
         ensureNotNull(commandLine, "Cannot access command line during initialization");
         return commandLine;
     }
@@ -546,7 +634,8 @@ public abstract class Application extends BaseComponent implements
      */
     public void exit(String message, Object... arguments)
     {
-        ensureNotInitializing();
+        ensureInvoked(AFTER_COMMAND_LINE_PARSED, "exit(message, arguments)");
+
         commandLine().exit(message, arguments);
     }
 
@@ -556,6 +645,8 @@ public abstract class Application extends BaseComponent implements
 
     public <T> T get(SwitchParser<T> parser)
     {
+        ensureInvoked(AFTER_COMMAND_LINE_PARSED, "get(parser)");
+
         return commandLine().get(ensureNotNull(parser));
     }
 
@@ -565,6 +656,8 @@ public abstract class Application extends BaseComponent implements
      */
     public <T> T get(SwitchParser<T> parser, T defaultValue)
     {
+        ensureInvoked(AFTER_COMMAND_LINE_PARSED, "get(parser, defaultValue)");
+
         return commandLine().get(ensureNotNull(parser), defaultValue);
     }
 
@@ -573,6 +666,8 @@ public abstract class Application extends BaseComponent implements
      */
     public <T> boolean has(SwitchParser<T> parser)
     {
+        ensureInvoked(AFTER_COMMAND_LINE_PARSED, "has(parser)");
+
         return commandLine().has(ensureNotNull(parser));
     }
 
@@ -604,9 +699,13 @@ public abstract class Application extends BaseComponent implements
 
     /**
      * Returns the set of projects on which this application depends
+     *
+     * @return The project dependencies
      */
     public Set<Project> projects()
     {
+        ensureInvoked(AFTER_PROJECTS_INITIALIZED, "projects");
+
         return projects;
     }
 
@@ -652,13 +751,14 @@ public abstract class Application extends BaseComponent implements
             phase.transitionTo(INITIALIZING);
 
             // INITIALIZING - 2. Notify that we are initializing
-            onInitializing();
+            invoke(ON_ADD_PROJECTS, this::onAddProjects);
+            invoke(ON_INITIALIZING, this::onInitializing);
 
             // INITIALIZING - 3. Enable start-up options
             startupOptions().forEach(StartUpOptions::enableStartupOption);
 
             // INITIALIZING - 4. Register any object serializers,
-            onSerializationInitialize();
+            invoke(ON_SERIALIZATION_INITIALIZE, this::onSerializationInitialize);
 
             // INITIALIZING - 5. Load deployments,
             deployments = loadDeploymentSet(this, getClass());
@@ -698,29 +798,29 @@ public abstract class Application extends BaseComponent implements
             // INITIALIZING - 7. If a deployment was specified, register its settings
             if (deploymentSpecified())
             {
-                registerSettingsIn(get(DEPLOYMENT));
+                invoke(INTERNAL, () -> registerSettingsIn(get(DEPLOYMENT)));
             }
 
             // INITIALIZING - 8. Initialize the application,
-            onInitialize();
+            invoke(ON_INITIALIZE, this::onInitialize);
 
             // INITIALIZING - 9. Projects will be initialized
-            onProjectsInitializing();
+            invoke(ON_PROJECTS_INITIALIZING, this::onProjectsInitializing);
 
             // INITIALIZING - 10. Initialize projects
-            onProjectsInitialize();
+            invoke(ON_PROJECTS_INITIALIZE, this::onProjectsInitialize);
 
             // INITIALIZING - 12. Projects have been initialized
-            onProjectsInitialized();
+            invoke(ON_PROJECTS_INITIALIZED, this::onProjectsInitialized);
 
             // INITIALIZING - 13. Notify that we are done initializing
-            onInitialized();
+            invoke(ON_INITIALIZED, this::onInitialized);
 
             // RUNNING - 1. Transition to running phase
             phase.transitionTo(RUNNING);
 
             // RUNNING - 2. Notify that we are starting to run
-            onRunning();
+            invoke(ON_RUNNING, this::onRunning);
 
             // RUNNING - 3. Remove temporary logger and allow subclass to configure output streams
             clearListeners();
@@ -729,7 +829,7 @@ public abstract class Application extends BaseComponent implements
             // RUNNING - 4. Show startup information
             if (!isStartupOptionEnabled(StartupOption.QUIET))
             {
-                showStartupInformation();
+                invoke(INTERNAL, this::showStartupInformation);
             }
 
             // READY - 1. Transition to READY phase
@@ -738,7 +838,7 @@ public abstract class Application extends BaseComponent implements
             try
             {
                 // READY - 2. Run the application's code
-                onRun();
+                invoke(ON_RUN, this::onRun);
             }
             catch (Exception e)
             {
@@ -764,7 +864,7 @@ public abstract class Application extends BaseComponent implements
             }
 
             // STOPPING - 4. Notify that the application has run
-            onRan();
+            invoke(ON_RAN, this::onRan);
 
             // STOPPED - 1. Transition to stopped phase
             phase.transitionTo(STOPPED);
@@ -785,6 +885,8 @@ public abstract class Application extends BaseComponent implements
     @UmlExcludeMember
     public void showStartupInformation()
     {
+        ensureInvoked(WHEN_RUNNING, "showStartupInformation()");
+
         announce(startupInformation(name()));
     }
 
@@ -793,10 +895,12 @@ public abstract class Application extends BaseComponent implements
      */
     public String startupInformation(String title)
     {
+        ensureInvoked(WHEN_RUNNING, "startupInformation(title)");
+
         var box = new StringList();
         int number = 1;
 
-        var deployment = deploymentSpecified() ? get(DEPLOYMENT) : null;
+        var deployment = deploymentSpecified() ? invoke(INTERNAL, () -> get(DEPLOYMENT)) : null;
 
         box.add(" ");
         box.add("    Version: $", version());
@@ -806,12 +910,13 @@ public abstract class Application extends BaseComponent implements
             box.add(" Deployment: $ ($)", deployment.name(), deployment.description());
         }
 
-        if (!argumentList().isEmpty())
+        var arguments = invoke(INTERNAL, this::argumentList);
+        if (!arguments.isEmpty())
         {
             box.add("");
             box.add("Arguments:");
             box.add("");
-            for (var argument : argumentList())
+            for (var argument : arguments)
             {
                 box.add(repeat(4, ' ') + "$. $", number++, argument.value());
             }
@@ -827,7 +932,7 @@ public abstract class Application extends BaseComponent implements
             var width = new StringList(sorted).longest().asInt();
             for (var switchParser : sorted)
             {
-                var value = get(switchParser);
+                var value = invoke(INTERNAL, () -> get(switchParser));
                 if (value instanceof Folder)
                 {
                     value = ((Folder) value).path().asContraction(80);
@@ -837,12 +942,12 @@ public abstract class Application extends BaseComponent implements
             }
         }
 
-        if (has(DEPLOYMENT))
+        if (invoke(INTERNAL, () -> has(DEPLOYMENT)))
         {
             box.add(" ");
             box.add("Deployment Settings:");
             box.add(" ");
-            box.addAll(get(DEPLOYMENT)
+            box.addAll(invoke(INTERNAL, () -> get(DEPLOYMENT))
                 .asStringList()
                 .trim()
                 .indented(4));
@@ -880,9 +985,56 @@ public abstract class Application extends BaseComponent implements
         return list();
     }
 
-    protected boolean ignoreDeployments()
+    /**
+     * If this method returns true, the deployments switch is not included
+     */
+    protected boolean ignoreDeploymentSwitch()
     {
         return false;
+    }
+
+    /**
+     * <b>Not public API</b>
+     * <p>
+     * Invokes the given onXXX() method, setting inMethod to the given value and then setting it to NO_METHOD after the
+     * invokation
+     *
+     * @param inMethod The identitiy of the method being invoked
+     * @param on The code to invoke
+     */
+    protected <T> T invoke(InMethod inMethod, Code<T> on)
+    {
+        this.inMethod = inMethod;
+        try
+        {
+            return on.run();
+        }
+        finally
+        {
+            this.inMethod = NO_METHOD;
+        }
+    }
+
+    /**
+     * <b>Not public API</b>
+     * <p>
+     * Invokes the given onXXX() method, setting inMethod to the given value and then setting it to NO_METHOD after the
+     * invokation
+     *
+     * @param inMethod The identitiy of the method being invoked
+     * @param on The code to invoke
+     */
+    protected void invoke(InMethod inMethod, Runnable on)
+    {
+        this.inMethod = inMethod;
+        try
+        {
+            on.run();
+        }
+        finally
+        {
+            this.inMethod = NO_METHOD;
+        }
     }
 
     /**
@@ -894,6 +1046,13 @@ public abstract class Application extends BaseComponent implements
     protected Project newProject()
     {
         return null;
+    }
+
+    /**
+     * Called when projects should be added
+     */
+    protected void onAddProjects()
+    {
     }
 
     /**
@@ -959,6 +1118,9 @@ public abstract class Application extends BaseComponent implements
     {
     }
 
+    /**
+     * This method is called when {@link #onSerializationInitialize()} is called to register object serializers
+     */
     protected void onRegisterObjectSerializers()
     {
         register(new KivaKitCoreGsonFactory());
@@ -985,6 +1147,7 @@ public abstract class Application extends BaseComponent implements
     /**
      * Called to register object serializers
      */
+    @MustBeInvokedByOverriders
     protected void onSerializationInitialize()
     {
         onRegisterObjectSerializers();
@@ -1014,22 +1177,30 @@ public abstract class Application extends BaseComponent implements
     @UmlExcludeMember
     private void configureLogging()
     {
-        var filter = get(QUIET)
+        var filter = invoke(INTERNAL, () -> get(QUIET))
             ? new MessagesWithSeverityOf(new Glitch().severity())
             : new AllMessages();
 
         globalLogger().listenTo(this, filter);
     }
 
+    /**
+     * Returns true if a deployment was specified on the command line
+     */
     private boolean deploymentSpecified()
     {
-        return !ignoreDeployments() && has(DEPLOYMENT);
+        return invoke(INTERNAL, () -> !ignoreDeploymentSwitch() && has(DEPLOYMENT));
     }
 
-    private void ensureNotInitializing()
+    /**
+     * Ensures that the caller is in one of the given methods. If not, fails with the given message.
+     *
+     * @param methods The allowed methods
+     */
+    private void ensureInvoked(ObjectSet<InMethod> methods, String methodName)
     {
-        ensure(!phase.is(CONSTRUCTING), "Not valid during application construction");
-        ensure(!phase.is(INITIALIZING), "Not valid during application initialization");
+        ensure(methods.with(INTERNAL).contains(inMethod), "Can only invoke $ in one of the following methods: $",
+            methodName, methods.without(INTERNAL));
     }
 
     private void initializeProject(IdentitySet<Project> uninitialized, Project project)
@@ -1055,7 +1226,7 @@ public abstract class Application extends BaseComponent implements
     {
         // Start with all projects uninitialized,
         var uninitialized = new IdentitySet<Project>();
-        var projects = projects();
+        var projects = invoke(INTERNAL, this::projects);
         uninitialized.addAll(projects);
 
         // then for each project,
@@ -1074,7 +1245,7 @@ public abstract class Application extends BaseComponent implements
     {
         var parsers = new HashSet<SwitchParser<?>>();
 
-        if (!ignoreDeployments() && DEPLOYMENT == null)
+        if (!ignoreDeploymentSwitch() && DEPLOYMENT == null)
         {
             DEPLOYMENT = deployments
                 .switchParser("deployment")

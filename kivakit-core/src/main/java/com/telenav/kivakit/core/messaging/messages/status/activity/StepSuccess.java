@@ -43,8 +43,7 @@ public class StepSuccess extends OperationStatusMessage
 {
     public StepSuccess(String message, Object... arguments)
     {
-        super(message);
-        arguments(arguments);
+        super(null, message, arguments);
     }
 
     public StepSuccess()

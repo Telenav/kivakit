@@ -2,8 +2,8 @@ package com.telenav.kivakit.core.messaging;
 
 import com.telenav.kivakit.annotations.code.quality.TypeQuality;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
 
 /**
@@ -20,11 +20,5 @@ public enum MessageFormat
     FORMATTED,
 
     /** The message should not be formatted */
-    UNFORMATTED,
-
-    /** The formatted message should include any exception */
-    WITH_EXCEPTION,
-
-    /** The formatted message should not include any exception */
-    WITHOUT_EXCEPTION
+    UNFORMATTED
 }

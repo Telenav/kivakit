@@ -33,6 +33,16 @@ import static com.telenav.kivakit.annotations.code.quality.Testing.TESTED;
 public interface Mixin
 {
     /**
+     * Removes any mixin object of the given type attached to this object
+     *
+     * @param mixinType The mixin type to detach
+     */
+    default <MixinState> void detach(Class<? extends Mixin> mixinType)
+    {
+        Mixins.detach(this, mixinType);
+    }
+
+    /**
      * Attaches or retrieves mixin state for this object. The given {@link Mixin} type is used to distinguish between
      * different mixins that may be attached to an object. If there is not yet any state of the given {@link Mixin} type
      * attached, the given mixin state factory is used to create and attach an initial value.

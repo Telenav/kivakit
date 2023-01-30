@@ -699,7 +699,7 @@ public class StringList extends ObjectList<String>
     @Override
     public StringList tail()
     {
-        return (StringList) super.tail();
+        return stringList(super.tail());
     }
 
     /**
