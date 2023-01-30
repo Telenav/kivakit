@@ -1,4 +1,33 @@
+
 # KivaKit Change Log
+
+## Version 1.15.0 (2023.01.30) "transparent kangaroo"
+
+## Features
+
+ - added kivakit-yaml parser
+ - added Throwables.causeToString()
+ - added TryCatchTrait.tryCatchRethrow() methods
+
+## Core
+
+ - tightened application methods, so they can only be called from certain onX() methods, preventing application usage errors
+ - improved Retry, NetworkAccessConstraints and BaseHttpResource
+ - simplified BaseGsonElementSerializer
+
+## Microservice
+
+ - removed old open api annotations, replaced with single @OpenApi annotation
+ - added @Register annotation to Application and Microservice
+
+## Fixes
+ 
+ - fixed bracketing of rest requests and responses
+ - fixed serializer unit tests
+ - fixed bug in primitive serialization
+ - fix to gson factory registration
+
+-----------------------------------------------------------------------------------------------------------------------
 
 ## Version 1.14.0 (2023.01.23) "transparent bunny"
 
