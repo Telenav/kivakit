@@ -699,6 +699,8 @@ public abstract class Application extends BaseComponent implements
 
     /**
      * Returns the set of projects on which this application depends
+     *
+     * @return The project dependencies
      */
     public Set<Project> projects()
     {
