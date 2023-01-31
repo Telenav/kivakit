@@ -545,8 +545,10 @@
                                     <executable>java</executable>
                                     <workingDirectory>${documentation.lexakai.downloads.folder}</workingDirectory>
                                     <arguments>
+                                        <argument>-DKIVAKIT_LOG_LEVEL=Problem</argument>
                                         <argument>-jar</argument>
                                         <argument>${documentation.lexakai.downloads.folder}/lexakai-application-${lexakai.version}.jar</argument>
+                                        <argument>-quiet=true</argument>
                                         <argument>-update-readme=true</argument>
                                         <argument>-output-folder=${documentation.lexakai.folder}</argument>
                                         <!--suppress UnresolvedMavenProperty -->
