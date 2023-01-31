@@ -403,7 +403,7 @@ Code quality for this project is 0.0%.
 | | Ensure Math |  
 | | Fail Methods |  
 | | Ensure |  
-| [*EnsureProblem*](https://www.kivakit.org/1.15.0/javadoc/kivakit/kivakit-core/com/telenav/kivakit/core/ensure/EnsureProblem.html) |  |  
+| [*EnsureFailure*](https://www.kivakit.org/1.15.0/javadoc/kivakit/kivakit-core/com/telenav/kivakit/core/ensure/EnsureFailure.html) |  |  
 | [*EnsureTrait*](https://www.kivakit.org/1.15.0/javadoc/kivakit/kivakit-core/com/telenav/kivakit/core/ensure/EnsureTrait.html) |  |  
 | [*Escape*](https://www.kivakit.org/1.15.0/javadoc/kivakit/kivakit-core/com/telenav/kivakit/core/string/Escape.html) |  |  
 | [*Estimate*](https://www.kivakit.org/1.15.0/javadoc/kivakit/kivakit-core/com/telenav/kivakit/core/value/count/Estimate.html) |  |  
@@ -634,6 +634,7 @@ Code quality for this project is 0.0%.
 | | Properties |  
 | [*OperationStarted*](https://www.kivakit.org/1.15.0/javadoc/kivakit/kivakit-core/com/telenav/kivakit/core/messaging/messages/lifecycle/OperationStarted.html) |  |  
 | [*OperationStatusMessage*](https://www.kivakit.org/1.15.0/javadoc/kivakit/kivakit-core/com/telenav/kivakit/core/messaging/messages/OperationStatusMessage.html) |  |  
+| [*OperationStatusMessage.CauseFormatting*](https://www.kivakit.org/1.15.0/javadoc/kivakit/kivakit-core/com/telenav/kivakit/core/messaging/messages/OperationStatusMessage.CauseFormatting.html) |  |  
 | [*OperationSucceeded*](https://www.kivakit.org/1.15.0/javadoc/kivakit/kivakit-core/com/telenav/kivakit/core/messaging/messages/lifecycle/OperationSucceeded.html) |  |  
 | [*OptionalProperty*](https://www.kivakit.org/1.15.0/javadoc/kivakit/kivakit-core/com/telenav/kivakit/core/language/reflection/property/OptionalProperty.html) |  |  
 | [*PackageReference*](https://www.kivakit.org/1.15.0/javadoc/kivakit/kivakit-core/com/telenav/kivakit/core/language/packaging/PackageReference.html) | Parsing |  
