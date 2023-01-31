@@ -300,6 +300,7 @@
                     <source>${java.version}</source>
                     <target>${java.version}</target>
                     <release>${java.version}</release>
+                    <fork>false</fork>
                     <encoding>UTF-8</encoding>
                     <compilerArgs>
                         <compilerArg>-Xlint:unchecked</compilerArg>
