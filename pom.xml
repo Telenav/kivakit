@@ -380,7 +380,10 @@
                     <sourceFileIncludes>
                         <sourceFileInclude>**/*.java</sourceFileInclude>
                     </sourceFileIncludes>
-                    <excludePackageNames>com.telenav.kivakit.microservice.internal.*</excludePackageNames>
+                    <sourceFileExcludes>
+                        <sourceFileExclude>**/internal/**/*.java</sourceFileExclude>
+                        <sourceFileExclude>**/src/test/**/*.java</sourceFileExclude>
+                    </sourceFileExcludes>
                 </configuration>
                 <executions>
                     <execution>
