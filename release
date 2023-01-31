@@ -1,3 +1,0 @@
-#!/bin/bash
-
-mvn -P release clean javadoc:aggregate deploy
