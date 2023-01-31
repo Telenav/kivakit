@@ -381,8 +381,8 @@
                         <sourceFileInclude>**/*.java</sourceFileInclude>
                     </sourceFileIncludes>
                     <sourceFileExcludes>
-                        <sourceFileExclude>**/internal/**/*.java</sourceFileExclude>
-                        <sourceFileExclude>**/src/test/**/*.java</sourceFileExclude>
+                        <sourceFileExclude>**/*internal/**/*.java</sourceFileExclude>
+                        <sourceFileExclude>**/*test/**/*.java</sourceFileExclude>
                     </sourceFileExcludes>
                 </configuration>
                 <executions>
