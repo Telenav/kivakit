@@ -39,6 +39,25 @@ import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_N
 public interface Code<Value>
 {
     /**
+     * Runs the given list of {@link Code} objects, until one returns a non-null value.
+     *
+     * @param codes The code objects to run
+     * @return The value returned by the first code object that returns a non-null value.
+     */
+    static <Value> Value firstSuccessfulCode(Code<Value>... codes)
+    {
+        for (var code : codes)
+        {
+            var result = code.run();
+            if (result != null)
+            {
+                return result;
+            }
+        }
+        return null;
+    }
+
+    /**
      * Returns the value returned by the code
      */
     Value run();

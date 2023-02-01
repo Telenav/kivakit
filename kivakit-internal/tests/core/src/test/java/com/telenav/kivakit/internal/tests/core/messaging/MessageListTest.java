@@ -26,7 +26,6 @@ import com.telenav.kivakit.core.value.count.MutableCount;
 import com.telenav.kivakit.internal.testing.CoreUnitTest;
 import org.junit.Test;
 
-import static com.telenav.kivakit.core.messaging.MessageFormat.WITH_EXCEPTION;
 import static com.telenav.kivakit.interfaces.comparison.Matcher.matchAll;
 
 public class MessageListTest extends CoreUnitTest
@@ -45,6 +44,6 @@ public class MessageListTest extends CoreUnitTest
         repeater.receive(new Information("Test"));
         ensureEqual(2L, count.asLong());
         ensureEqual(2, list.size());
-        ensureEqual("Test", list.get(0).formatted(WITH_EXCEPTION));
+        ensureEqual("Test", list.get(0).formatted());
     }
 }

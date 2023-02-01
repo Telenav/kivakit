@@ -26,14 +26,13 @@ import com.telenav.kivakit.internal.testing.internal.lexakai.DiagramTest;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import org.junit.Assert;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
-import static com.telenav.kivakit.core.messaging.MessageFormat.WITH_EXCEPTION;
 
 /**
- * A {@link FailureReporter} that causes a JUnit test failure. This validation reporter is installed by {@link CoreUnitTest}
- * to ensure that validation failures by {@link Ensure} are reported through JUnit.
+ * A {@link FailureReporter} that causes a JUnit test failure. This validation reporter is installed by
+ * {@link CoreUnitTest} to ensure that validation failures by {@link Ensure} are reported through JUnit.
  *
  * @author jonathanl (shibo)
  */
@@ -46,6 +45,6 @@ public class JUnitFailureReporter implements FailureReporter
     @Override
     public void report(Message message)
     {
-        Assert.fail(message.formatted(WITH_EXCEPTION));
+        Assert.fail(message.formatted());
     }
 }

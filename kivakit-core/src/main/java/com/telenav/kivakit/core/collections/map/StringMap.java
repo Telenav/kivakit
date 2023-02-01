@@ -25,6 +25,7 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -58,12 +59,12 @@ public class StringMap<Value> extends BaseStringMap<Value>
 
     public StringMap()
     {
-        super(MAXIMUM, new TreeMap<>());
+        super(MAXIMUM, new LinkedHashMap<>());
     }
 
     public StringMap(Maximum maximumSize)
     {
-        super(maximumSize, new TreeMap<>());
+        super(maximumSize, new LinkedHashMap<>());
     }
 
     /**

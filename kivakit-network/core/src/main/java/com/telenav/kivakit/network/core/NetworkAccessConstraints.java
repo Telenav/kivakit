@@ -22,6 +22,7 @@ import com.telenav.kivakit.annotations.code.quality.TypeQuality;
 import com.telenav.kivakit.core.string.FormatProperty;
 import com.telenav.kivakit.core.string.ObjectFormatter;
 import com.telenav.kivakit.core.time.Duration;
+import com.telenav.kivakit.core.value.count.Count;
 import com.telenav.kivakit.network.core.authentication.Password;
 import com.telenav.kivakit.network.core.authentication.UserName;
 import com.telenav.kivakit.network.core.internal.lexakai.DiagramNetworkLocation;
@@ -36,6 +37,7 @@ import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMEN
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.time.Duration.seconds;
+import static com.telenav.kivakit.core.value.count.Count._8;
 
 /**
  * Access constraints for network requests, including {@link #timeout()} and basic authentication requirements.
@@ -65,6 +67,12 @@ public class NetworkAccessConstraints implements Validatable
     @UmlAggregation
     private Password password;
 
+    @UmlAggregation
+    private Count retries = _8;
+
+    @UmlAggregation
+    private Duration pauseBetweenRetries = seconds(3);
+
     @FormatProperty
     public Password password()
     {
@@ -74,6 +82,28 @@ public class NetworkAccessConstraints implements Validatable
     public void password(Password password)
     {
         this.password = password;
+    }
+
+    public Duration pauseBetweenRetries()
+    {
+        return pauseBetweenRetries;
+    }
+
+    public NetworkAccessConstraints pauseBetweenRetries(Duration pauseBetweenRetries)
+    {
+        this.pauseBetweenRetries = pauseBetweenRetries;
+        return this;
+    }
+
+    public Count retries()
+    {
+        return retries;
+    }
+
+    public NetworkAccessConstraints retries(Count retries)
+    {
+        this.retries = retries;
+        return this;
     }
 
     @FormatProperty

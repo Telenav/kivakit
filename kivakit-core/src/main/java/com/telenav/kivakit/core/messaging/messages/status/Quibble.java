@@ -27,9 +27,8 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
-import static com.telenav.kivakit.core.messaging.Message.Status.*;
-import static com.telenav.kivakit.core.messaging.Message.escapeMessageText;
-import static com.telenav.kivakit.core.messaging.messages.Severity.*;
+import static com.telenav.kivakit.core.messaging.Message.Status.COMPLETED;
+import static com.telenav.kivakit.core.messaging.messages.Severity.LOW;
 
 /**
  * A notice that something trivial has gone wrong.
@@ -37,6 +36,7 @@ import static com.telenav.kivakit.core.messaging.messages.Severity.*;
  * <p>
  * {@link OperationStatusMessage}s in order of importance:
  * </p>
+ *
  * <ul>
  *     <li>Critical Alert - An operation failed and needs <i>immediate attention</i> from a human operator</li>
  *     <li>Alert - An operation failed and needs to be looked at by an operator soon</li>
@@ -57,19 +57,16 @@ import static com.telenav.kivakit.core.messaging.messages.Severity.*;
 @TypeQuality(stability = STABLE,
              testing = TESTING_NOT_NEEDED,
              documentation = DOCUMENTED)
-public class Quibble extends OperationStatusMessage
+public class Quibble extends Warning
 {
     public Quibble(String message, Object... arguments)
     {
-        super(message);
-        arguments(arguments);
+        this(new Throwable(), message, arguments);
     }
 
     public Quibble(Throwable cause, String message, Object... arguments)
     {
-        super(message + ": " + escapeMessageText(cause.getMessage()));
-        cause(cause);
-        arguments(arguments);
+        super(cause, message, arguments);
     }
 
     public Quibble()

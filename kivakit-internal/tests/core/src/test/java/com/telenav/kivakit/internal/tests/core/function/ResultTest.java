@@ -16,8 +16,8 @@ import static com.telenav.kivakit.internal.tests.core.function.ResultTest.Operat
 
 @SuppressWarnings("CodeBlock2Expr")
 public class ResultTest extends CoreUnitTest implements
-        CheckTrait,
-        EnsureTrait
+    CheckTrait,
+    EnsureTrait
 {
     enum OperationResult
     {
@@ -64,7 +64,7 @@ public class ResultTest extends CoreUnitTest implements
         ensureEqual(result.get(), null);
         ensure(result.failed());
         ensure(result.messages().isNonEmpty());
-        ensure("Failed!".equals(result.messages().get(0).formatted()));
+        ensure(result.messages().get(0).formatted().contains("Failed!"));
     }
 
     @Test
@@ -74,7 +74,7 @@ public class ResultTest extends CoreUnitTest implements
         var result = read(operation);
         ensure(result.failed());
         ensure(result.get() == null);
-        ensureEqual(result.messages().get(0).formatted(), "Code broadcast failure: Could not read string");
+        ensure(result.messages().get(0).formatted().contains("Code broadcast failure: Could not read string"));
     }
 
     @Test
@@ -93,7 +93,7 @@ public class ResultTest extends CoreUnitTest implements
         var result = read(operation);
         ensure(result.failed());
         ensure(result.get() == null);
-        ensure(result.messages().get(0).formatted().startsWith("Code threw exception: Could not read string: Throwing!"));
+        ensure(result.messages().get(0).formatted().contains("Code threw exception: Could not read string"));
     }
 
     @Test
@@ -102,8 +102,8 @@ public class ResultTest extends CoreUnitTest implements
         try
         {
             var result = run(this::a) // get result of calling a(),
-                    .or(this::b) // or the result of b(), if a() failed,
-                    .orThrow(); // and if both failed, throw an exception, otherwise return the result.
+                .or(this::b) // or the result of b(), if a() failed,
+                .orThrow(); // and if both failed, throw an exception, otherwise return the result.
 
             // The result should be 7,
             ensureEqual(result, 7);

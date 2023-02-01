@@ -20,16 +20,15 @@ package com.telenav.kivakit.core.messaging.messages.status.activity;
 
 import com.telenav.kivakit.annotations.code.quality.TypeQuality;
 import com.telenav.kivakit.core.internal.lexakai.DiagramMessageType;
-import com.telenav.kivakit.core.messaging.messages.OperationStatusMessage;
 import com.telenav.kivakit.core.messaging.messages.Severity;
+import com.telenav.kivakit.core.messaging.messages.status.Warning;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
-import static com.telenav.kivakit.core.messaging.Message.Status.*;
-import static com.telenav.kivakit.core.messaging.Message.escapeMessageText;
-import static com.telenav.kivakit.core.messaging.messages.Severity.*;
+import static com.telenav.kivakit.core.messaging.Message.Status.RESULT_INCOMPLETE;
+import static com.telenav.kivakit.core.messaging.messages.Severity.MEDIUM;
 
 /**
  * The current step had to discard some result to continue
@@ -40,19 +39,16 @@ import static com.telenav.kivakit.core.messaging.messages.Severity.*;
 @TypeQuality(stability = STABLE,
              testing = TESTING_NOT_NEEDED,
              documentation = DOCUMENTED)
-public class StepIncomplete extends OperationStatusMessage
+public class StepIncomplete extends Warning
 {
     public StepIncomplete(String message, Object... arguments)
     {
-        super(message);
-        arguments(arguments);
+        this(new Throwable(), message, arguments);
     }
 
     public StepIncomplete(Throwable cause, String message, Object... arguments)
     {
-        super(message + ": " + escapeMessageText(cause.getMessage()));
-        cause(cause);
-        arguments(arguments);
+        super(cause, message, arguments);
     }
 
     public StepIncomplete()

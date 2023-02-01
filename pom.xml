@@ -16,7 +16,7 @@
 
     <groupId>com.telenav.kivakit</groupId>
     <artifactId>kivakit-parent</artifactId>
-    <version>1.14.0</version>
+    <version>1.15.0</version>
 
     <packaging>pom</packaging>
 
@@ -300,6 +300,7 @@
                     <source>${java.version}</source>
                     <target>${java.version}</target>
                     <release>${java.version}</release>
+                    <fork>false</fork>
                     <encoding>UTF-8</encoding>
                     <compilerArgs>
                         <compilerArg>-Xlint:unchecked</compilerArg>
@@ -379,7 +380,6 @@
                     <sourceFileIncludes>
                         <sourceFileInclude>**/*.java</sourceFileInclude>
                     </sourceFileIncludes>
-                    <excludePackageNames>com.telenav.kivakit.microservice.internal.*</excludePackageNames>
                 </configuration>
                 <executions>
                     <execution>
@@ -401,6 +401,16 @@
                         </goals>
                     </execution>
                 </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-project-info-reports-plugin</artifactId>
+                <version>${maven.javadoc.plugin.version}</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-site-plugin</artifactId>
+                <version>3.12.1</version>
             </plugin>
 
         </plugins>
@@ -544,8 +554,10 @@
                                     <executable>java</executable>
                                     <workingDirectory>${documentation.lexakai.downloads.folder}</workingDirectory>
                                     <arguments>
+                                        <argument>-DKIVAKIT_LOG_LEVEL=Problem</argument>
                                         <argument>-jar</argument>
                                         <argument>${documentation.lexakai.downloads.folder}/lexakai-application-${lexakai.version}.jar</argument>
+                                        <argument>-quiet=true</argument>
                                         <argument>-update-readme=true</argument>
                                         <argument>-output-folder=${documentation.lexakai.folder}</argument>
                                         <!--suppress UnresolvedMavenProperty -->

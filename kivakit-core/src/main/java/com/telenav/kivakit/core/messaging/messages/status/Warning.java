@@ -28,7 +28,7 @@ import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMEN
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
 import static com.telenav.kivakit.core.messaging.Message.Status.COMPLETED;
-import static com.telenav.kivakit.core.messaging.Message.escapeMessageText;
+import static com.telenav.kivakit.core.messaging.messages.OperationStatusMessage.CauseFormatting.DO_NOT_FORMAT_CAUSE;
 import static com.telenav.kivakit.core.messaging.messages.Severity.LOW;
 
 /**
@@ -62,15 +62,12 @@ public class Warning extends OperationStatusMessage
 {
     public Warning(String message, Object... arguments)
     {
-        super(message);
-        arguments(arguments);
+        this(new Throwable(), message, arguments);
     }
 
     public Warning(Throwable cause, String message, Object... arguments)
     {
-        super(message + ": " + escapeMessageText(cause.getMessage()));
-        cause(cause);
-        arguments(arguments);
+        super(DO_NOT_FORMAT_CAUSE, cause, message, arguments);
     }
 
     public Warning()

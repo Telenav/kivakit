@@ -34,12 +34,9 @@ import org.jetbrains.annotations.NotNull;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
-import static com.telenav.kivakit.core.ensure.Ensure.unsupported;
 import static com.telenav.kivakit.core.language.Arrays.arrayContains;
 import static com.telenav.kivakit.core.messaging.MessageFormat.FORMATTED;
 import static com.telenav.kivakit.core.messaging.MessageFormat.UNFORMATTED;
-import static com.telenav.kivakit.core.messaging.MessageFormat.WITHOUT_EXCEPTION;
-import static com.telenav.kivakit.core.messaging.MessageFormat.WITH_EXCEPTION;
 
 /**
  * Base class for text logs
@@ -102,9 +99,8 @@ public abstract class BaseTextLog extends BaseLog
     {
         return switch (formattedOrNot())
             {
-                case FORMATTED -> entry.format(formatter, formattedOrNot(), withExceptionOrWithout());
-                case UNFORMATTED -> entry.format(simpleFormatter, formattedOrNot(), withExceptionOrWithout());
-                default -> unsupported();
+                case FORMATTED -> entry.format(formatter, formattedOrNot());
+                case UNFORMATTED -> entry.format(simpleFormatter, formattedOrNot());
             };
     }
 
@@ -115,18 +111,7 @@ public abstract class BaseTextLog extends BaseLog
     private MessageFormat formattedOrNot()
     {
         return arrayContains(formats, FORMATTED)
-                ? FORMATTED
-                : UNFORMATTED;
-    }
-
-    /**
-     * Returns either WITH_EXCEPTION or WITHOUT_EXCEPTION
-     */
-    @NotNull
-    private MessageFormat withExceptionOrWithout()
-    {
-        return arrayContains(formats, WITH_EXCEPTION)
-                ? WITH_EXCEPTION
-                : WITHOUT_EXCEPTION;
+            ? FORMATTED
+            : UNFORMATTED;
     }
 }

@@ -16,39 +16,39 @@
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-package com.telenav.kivakit.commandline;
+package com.telenav.kivakit.core.ensure;
 
 import com.telenav.kivakit.annotations.code.quality.TypeQuality;
-import com.telenav.kivakit.core.version.Versioned;
+import com.telenav.kivakit.core.internal.lexakai.DiagramEnsure;
+import com.telenav.kivakit.core.messaging.messages.status.FatalProblem;
+import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
-import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
 
 /**
- * Application metadata used in formulating command line usage help.
+ * A problem subclass reported by {@link Ensure} failures.
  *
  * @author jonathanl (shibo)
  */
-@TypeQuality(stability = STABLE_EXTENSIBLE,
-             testing = UNTESTED,
+@UmlClassDiagram(diagram = DiagramEnsure.class)
+@TypeQuality(stability = STABLE,
+             testing = TESTING_NOT_NEEDED,
              documentation = DOCUMENTED)
-public interface ApplicationMetadata extends Versioned
+public class EnsureFailure extends FatalProblem
 {
-    /**
-     * Returns true if command line parsing problems should result in a call to {@link System#exit(int)}. The default
-     * return value for this method is *true* to ensure that the VM isn't prevented from exiting by non-daemon threads.
-     */
-    default boolean callSystemExitOnCommandLineError()
+    public EnsureFailure(String message, Object... arguments)
     {
-        return true;
+        super(message, arguments);
     }
 
-    /**
-     * Returns the application description
-     */
-    default String description()
+    public EnsureFailure(Throwable cause, String message, Object... arguments)
     {
-        return "No description";
+        super(cause, message, arguments);
+    }
+
+    public EnsureFailure()
+    {
     }
 }

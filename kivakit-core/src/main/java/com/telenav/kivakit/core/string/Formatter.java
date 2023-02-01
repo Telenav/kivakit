@@ -27,13 +27,14 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
+import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
 import static com.telenav.kivakit.core.language.Classes.simpleName;
+import static com.telenav.kivakit.core.language.Throwables.causeToString;
 import static com.telenav.kivakit.core.language.primitive.Doubles.formatDouble;
 import static com.telenav.kivakit.core.string.Align.leftAlign;
 import static com.telenav.kivakit.core.string.Align.rightAlign;
 import static com.telenav.kivakit.core.string.StringConversions.toDebugString;
 import static com.telenav.kivakit.core.string.StringConversions.toHumanizedString;
-import static com.telenav.kivakit.core.string.Strings.replaceAll;
 import static java.lang.Integer.parseInt;
 import static java.lang.Long.parseLong;
 import static java.lang.Long.toBinaryString;
@@ -102,7 +103,10 @@ public class Formatter
      */
     public static String format(String message, Object... arguments)
     {
-        if (arguments.length > 0 || message.contains("$"))
+        ensureNotNull(message);
+        ensureNotNull(arguments);
+
+        if (message.contains("$") || arguments.length > 0)
         {
             return formatArray(message, arguments);
         }
@@ -304,17 +308,7 @@ public class Formatter
         }
         catch (Throwable e)
         {
-            // We can't use the logging facility here because we may be formatting a log message
-            var cause = e.getMessage();
-            if (cause != null)
-            {
-                cause = replaceAll(cause, "$", "$$");
-            }
-            else
-            {
-                cause = "Unknown cause";
-            }
-            return "Problem: Unable to format message '" + message + "' due to exception: " + cause;
+            return "Problem: Unable to format message \n\n" + message + "\n\nException: " + causeToString(e);
         }
     }
 }

@@ -28,7 +28,6 @@ import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMEN
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
 import static com.telenav.kivakit.core.messaging.Message.Status.RESULT_COMPROMISED;
-import static com.telenav.kivakit.core.messaging.Message.escapeMessageText;
 import static com.telenav.kivakit.core.messaging.messages.Severity.NONE;
 
 /**
@@ -62,19 +61,16 @@ import static com.telenav.kivakit.core.messaging.messages.Severity.NONE;
 @TypeQuality(stability = STABLE,
              testing = TESTING_NOT_NEEDED,
              documentation = DOCUMENTED)
-public class Glitch extends OperationStatusMessage
+public class Glitch extends Warning
 {
     public Glitch(String message, Object... arguments)
     {
-        super(message);
-        arguments(arguments);
+        this(new Throwable(), message, arguments);
     }
 
     public Glitch(Throwable cause, String message, Object... arguments)
     {
-        super(message + ": " + escapeMessageText(cause.getMessage()));
-        cause(cause);
-        arguments(arguments);
+        super(cause, message, arguments);
     }
 
     public Glitch()

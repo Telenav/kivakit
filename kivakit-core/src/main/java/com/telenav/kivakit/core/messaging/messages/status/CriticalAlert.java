@@ -27,7 +27,6 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
-import static com.telenav.kivakit.core.messaging.Message.escapeMessageText;
 import static com.telenav.kivakit.core.messaging.messages.Severity.CRITICAL;
 
 /**
@@ -61,14 +60,12 @@ public class CriticalAlert extends Alert
 {
     public CriticalAlert(String solution, String message, Object... arguments)
     {
-        super(solution, message, arguments);
+        this(new Throwable(), solution, message, arguments);
     }
 
-    public CriticalAlert(String solution, Throwable cause, String message, Object... arguments)
+    public CriticalAlert(Throwable cause, String solution, String message, Object... arguments)
     {
-        super(solution, message + ": " + escapeMessageText(cause.getMessage()), arguments);
-        cause(cause);
-        arguments(arguments);
+        super(cause, solution, message, arguments);
     }
 
     public CriticalAlert()

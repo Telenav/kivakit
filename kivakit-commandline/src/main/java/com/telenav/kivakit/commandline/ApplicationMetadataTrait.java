@@ -16,39 +16,39 @@
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-package com.telenav.kivakit.core.ensure;
+package com.telenav.kivakit.commandline;
 
 import com.telenav.kivakit.annotations.code.quality.TypeQuality;
-import com.telenav.kivakit.core.messaging.messages.status.Problem;
-import com.telenav.kivakit.core.internal.lexakai.DiagramEnsure;
-import com.telenav.lexakai.annotations.UmlClassDiagram;
+import com.telenav.kivakit.core.version.Versioned;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
-import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
+import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 
 /**
- * A problem subclass reported by {@link Ensure} failures.
+ * Application metadata used in formulating command line usage help.
  *
  * @author jonathanl (shibo)
  */
-@UmlClassDiagram(diagram = DiagramEnsure.class)
-@TypeQuality(stability = STABLE,
-             testing = TESTING_NOT_NEEDED,
+@TypeQuality(stability = STABLE_EXTENSIBLE,
+             testing = UNTESTED,
              documentation = DOCUMENTED)
-public class EnsureProblem extends Problem
+public interface ApplicationMetadataTrait extends Versioned
 {
-    public EnsureProblem(String message, Object... arguments)
+    /**
+     * Returns true if command line parsing problems should result in a call to {@link System#exit(int)}. The default
+     * return value for this method is *true* to ensure that the VM isn't prevented from exiting by non-daemon threads.
+     */
+    default boolean callSystemExitOnCommandLineError()
     {
-        super(message, arguments);
+        return true;
     }
 
-    public EnsureProblem(Throwable cause, String message, Object... arguments)
+    /**
+     * Returns the application description
+     */
+    default String description()
     {
-        super(cause, message, arguments);
-    }
-
-    public EnsureProblem()
-    {
+        return "No description";
     }
 }

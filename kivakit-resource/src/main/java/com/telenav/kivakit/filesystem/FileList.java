@@ -171,6 +171,42 @@ public class FileList extends BaseResourceList<File> implements Iterable<File>
     }
 
     /**
+     * Returns the most specific folder that contains all files in this list
+     *
+     * @return The common root of all files in this list
+     */
+    public Folder parent()
+    {
+        Folder root = null;
+
+        // Go through each file,
+        for (var file : this)
+        {
+            // and if there is no root yet,
+            if (root == null)
+            {
+                // make it the parent of that file,
+                root = file.parent();
+            }
+            else
+            {
+                // then walk up the chain from the current root,
+                for (var current = root; ; current.parent())
+                {
+                    // and if the file's parent is the current folder,
+                    if (file.parent().equals(current))
+                    {
+                        // then that is the new root.
+                        root = current;
+                        break;
+                    }
+                }
+            }
+        }
+        return root;
+    }
+
+    /**
      * Returns the smallest file in this list
      */
     @Override

@@ -135,12 +135,12 @@ public class CommandLineParser
     private final SwitchParserList switchParsers = new SwitchParserList();
 
     /** The application that created this command line parser */
-    private final ApplicationMetadata application;
+    private final ApplicationMetadataTrait application;
 
     /**
      * @param application The application's class
      */
-    public CommandLineParser(@NotNull ApplicationMetadata application)
+    public CommandLineParser(@NotNull ApplicationMetadataTrait application)
     {
         this.application = application;
     }

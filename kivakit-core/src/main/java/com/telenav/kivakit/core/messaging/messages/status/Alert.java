@@ -25,8 +25,8 @@ import com.telenav.kivakit.core.messaging.messages.OperationStatusMessage;
 import com.telenav.kivakit.core.messaging.messages.Severity;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
 import static com.telenav.kivakit.core.messaging.Message.Status.FAILED;
 import static com.telenav.kivakit.core.messaging.messages.Severity.HIGH;
@@ -57,15 +57,18 @@ import static com.telenav.kivakit.core.messaging.messages.Severity.HIGH;
 @TypeQuality(stability = STABLE,
              testing = TESTING_NOT_NEEDED,
              documentation = DOCUMENTED)
-public class Alert extends OperationStatusMessage
+public class Alert extends Problem
 {
     private String solution = "No solution provided";
 
     public Alert(String message, Object... arguments)
     {
-        super(message);
-        cause(new Throwable());
-        arguments(arguments);
+        this(new Throwable(), message, arguments);
+    }
+
+    public Alert(Throwable cause, String message, Object... arguments)
+    {
+        super(cause, message, arguments);
     }
 
     public Alert()
