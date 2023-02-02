@@ -86,19 +86,20 @@ import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMEN
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
-import static com.telenav.kivakit.application.Application.InMethod.INTERNAL;
-import static com.telenav.kivakit.application.Application.InMethod.NO_METHOD;
-import static com.telenav.kivakit.application.Application.InMethod.ON_ADD_PROJECTS;
-import static com.telenav.kivakit.application.Application.InMethod.ON_INITIALIZE;
-import static com.telenav.kivakit.application.Application.InMethod.ON_INITIALIZED;
-import static com.telenav.kivakit.application.Application.InMethod.ON_INITIALIZING;
-import static com.telenav.kivakit.application.Application.InMethod.ON_PROJECTS_INITIALIZE;
-import static com.telenav.kivakit.application.Application.InMethod.ON_PROJECTS_INITIALIZED;
-import static com.telenav.kivakit.application.Application.InMethod.ON_PROJECTS_INITIALIZING;
-import static com.telenav.kivakit.application.Application.InMethod.ON_RAN;
-import static com.telenav.kivakit.application.Application.InMethod.ON_RUN;
-import static com.telenav.kivakit.application.Application.InMethod.ON_RUNNING;
-import static com.telenav.kivakit.application.Application.InMethod.ON_SERIALIZATION_INITIALIZE;
+import static com.telenav.kivakit.application.Application.ApplicationMethod.INTERNAL;
+import static com.telenav.kivakit.application.Application.ApplicationMethod.NO_METHOD;
+import static com.telenav.kivakit.application.Application.ApplicationMethod.ON_ADD_PROJECTS;
+import static com.telenav.kivakit.application.Application.ApplicationMethod.ON_COMMAND_LINE_PARSED;
+import static com.telenav.kivakit.application.Application.ApplicationMethod.ON_INITIALIZE;
+import static com.telenav.kivakit.application.Application.ApplicationMethod.ON_INITIALIZED;
+import static com.telenav.kivakit.application.Application.ApplicationMethod.ON_INITIALIZING;
+import static com.telenav.kivakit.application.Application.ApplicationMethod.ON_PROJECTS_INITIALIZE;
+import static com.telenav.kivakit.application.Application.ApplicationMethod.ON_PROJECTS_INITIALIZED;
+import static com.telenav.kivakit.application.Application.ApplicationMethod.ON_PROJECTS_INITIALIZING;
+import static com.telenav.kivakit.application.Application.ApplicationMethod.ON_RAN;
+import static com.telenav.kivakit.application.Application.ApplicationMethod.ON_RUN;
+import static com.telenav.kivakit.application.Application.ApplicationMethod.ON_RUNNING;
+import static com.telenav.kivakit.application.Application.ApplicationMethod.ON_SERIALIZATION_INITIALIZE;
 import static com.telenav.kivakit.application.Application.LifecyclePhase.CONSTRUCTING;
 import static com.telenav.kivakit.application.Application.LifecyclePhase.INITIALIZING;
 import static com.telenav.kivakit.application.Application.LifecyclePhase.READY;
@@ -410,27 +411,23 @@ public abstract class Application extends BaseComponent implements
      * These enum values are used to restrict user calls to a particular method scope. For example, the
      * {@link #addProject(Class)} method can only be called from {@link #onAddProjects()}.
      */
-    protected enum InMethod
+    protected enum ApplicationMethod
     {
         INTERNAL,
         NO_METHOD,
-
         ON_ADD_PROJECTS,
+        ON_COMMAND_LINE_PARSED,
         ON_CONFIGURE_LISTENERS,
-
-        ON_INITIALIZING,
         ON_INITIALIZE,
         ON_INITIALIZED,
-
-        ON_PROJECTS_INITIALIZING,
+        ON_INITIALIZING,
         ON_PROJECTS_INITIALIZE,
         ON_PROJECTS_INITIALIZED,
-
-        ON_RUNNING,
-        ON_RUN,
+        ON_PROJECTS_INITIALIZING,
         ON_RAN,
-
         ON_REGISTER_OBJECT_SERIALIZERS,
+        ON_RUN,
+        ON_RUNNING,
         ON_SERIALIZATION_INITIALIZE
     }
 
@@ -469,29 +466,7 @@ public abstract class Application extends BaseComponent implements
         }
     }
 
-    private final ObjectSet<InMethod> AFTER_COMMAND_LINE_PARSED =
-        set
-            (
-                ON_INITIALIZING,
-                ON_INITIALIZE,
-                ON_INITIALIZED,
-                ON_PROJECTS_INITIALIZING,
-                ON_PROJECTS_INITIALIZE,
-                ON_PROJECTS_INITIALIZED,
-                ON_RUNNING,
-                ON_RUN,
-                ON_RAN
-            );
-
-    private final ObjectSet<InMethod> AFTER_PROJECTS_INITIALIZED =
-        set
-            (
-                ON_RUNNING,
-                ON_RUN,
-                ON_RAN
-            );
-
-    private final ObjectSet<InMethod> WHEN_RUNNING =
+    private final ObjectSet<ApplicationMethod> WHEN_RUNNING =
         set
             (
                 ON_RUNNING,
@@ -500,7 +475,7 @@ public abstract class Application extends BaseComponent implements
             );
 
     /** What user method is being called */
-    private InMethod inMethod;
+    private ApplicationMethod applicationMethod;
 
     /** Switch parser to specify deployment settings */
     private SwitchParser<Deployment> DEPLOYMENT;
@@ -525,6 +500,9 @@ public abstract class Application extends BaseComponent implements
             .optional()
             .defaultValue(false)
             .build();
+
+    /** The set of methods that have been invoked */
+    private final ObjectSet<ApplicationMethod> invoked = set();
 
     protected Application()
     {
@@ -554,7 +532,7 @@ public abstract class Application extends BaseComponent implements
      */
     public <T> T argument(int index, ArgumentParser<T> parser)
     {
-        ensureInvoked(AFTER_COMMAND_LINE_PARSED, "argument(index, parser)");
+        ensureInvokedAfter(ON_COMMAND_LINE_PARSED, "argument(index, parser)");
 
         return commandLine().argument(index, parser);
     }
@@ -564,7 +542,7 @@ public abstract class Application extends BaseComponent implements
      */
     public <T> T argument(ArgumentParser<T> parser)
     {
-        ensureInvoked(AFTER_COMMAND_LINE_PARSED, "argument(parser)");
+        ensureInvokedAfter(ON_COMMAND_LINE_PARSED, "argument(parser)");
 
         return commandLine().argument(parser);
     }
@@ -574,7 +552,7 @@ public abstract class Application extends BaseComponent implements
      */
     public ArgumentValueList argumentList()
     {
-        ensureInvoked(AFTER_COMMAND_LINE_PARSED, "argumentList()");
+        ensureInvokedAfter(ON_COMMAND_LINE_PARSED, "argumentList()");
 
         return commandLine().argumentValues();
     }
@@ -584,7 +562,7 @@ public abstract class Application extends BaseComponent implements
      */
     public <T> ObjectList<T> arguments(ArgumentParser<T> parser)
     {
-        ensureInvoked(AFTER_COMMAND_LINE_PARSED, "arguments(parser)");
+        ensureInvokedAfter(ON_COMMAND_LINE_PARSED, "arguments(parser)");
 
         var arguments = new ObjectList<T>();
         for (int i = 0; i < argumentList().size(); i++)
@@ -611,7 +589,7 @@ public abstract class Application extends BaseComponent implements
     @UmlRelation(label = "parses arguments into")
     public CommandLine commandLine()
     {
-        ensureInvoked(AFTER_COMMAND_LINE_PARSED, "commandLine()");
+        ensureInvokedAfter(ON_COMMAND_LINE_PARSED, "commandLine()");
 
         ensureNotNull(commandLine, "Cannot access command line during initialization");
         return commandLine;
@@ -634,7 +612,7 @@ public abstract class Application extends BaseComponent implements
      */
     public void exit(String message, Object... arguments)
     {
-        ensureInvoked(AFTER_COMMAND_LINE_PARSED, "exit(message, arguments)");
+        ensureInvokedAfter(ON_COMMAND_LINE_PARSED, "exit(message, arguments)");
 
         commandLine().exit(message, arguments);
     }
@@ -645,7 +623,7 @@ public abstract class Application extends BaseComponent implements
 
     public <T> T get(SwitchParser<T> parser)
     {
-        ensureInvoked(AFTER_COMMAND_LINE_PARSED, "get(parser)");
+        ensureInvokedAfter(ON_COMMAND_LINE_PARSED, "get(parser)");
 
         return commandLine().get(ensureNotNull(parser));
     }
@@ -656,7 +634,7 @@ public abstract class Application extends BaseComponent implements
      */
     public <T> T get(SwitchParser<T> parser, T defaultValue)
     {
-        ensureInvoked(AFTER_COMMAND_LINE_PARSED, "get(parser, defaultValue)");
+        ensureInvokedAfter(ON_COMMAND_LINE_PARSED, "get(parser, defaultValue)");
 
         return commandLine().get(ensureNotNull(parser), defaultValue);
     }
@@ -666,7 +644,7 @@ public abstract class Application extends BaseComponent implements
      */
     public <T> boolean has(SwitchParser<T> parser)
     {
-        ensureInvoked(AFTER_COMMAND_LINE_PARSED, "has(parser)");
+        ensureInvokedAfter(ON_COMMAND_LINE_PARSED, "has(parser)");
 
         return commandLine().has(ensureNotNull(parser));
     }
@@ -704,7 +682,7 @@ public abstract class Application extends BaseComponent implements
      */
     public Set<Project> projects()
     {
-        ensureInvoked(AFTER_PROJECTS_INITIALIZED, "projects");
+        ensureInvokedAfter(ON_PROJECTS_INITIALIZED, "projects");
 
         return projects;
     }
@@ -794,6 +772,9 @@ public abstract class Application extends BaseComponent implements
                 .addSwitchParsers(internalSwitchParsers())
                 .addArgumentParsers(argumentParsers())
                 .parse(argumentList.asStringArray());
+
+            // (notify that the command line has been parsed)
+            invoke(ON_COMMAND_LINE_PARSED, this::onCommandLineParsed);
 
             // INITIALIZING - 7. If a deployment was specified, register its settings
             if (deploymentSpecified())
@@ -996,44 +977,46 @@ public abstract class Application extends BaseComponent implements
     /**
      * <b>Not public API</b>
      * <p>
-     * Invokes the given onXXX() method, setting inMethod to the given value and then setting it to NO_METHOD after the
-     * invokation
+     * Invokes the given onXXX() method, setting applicationMethod to the given value and then setting it to NO_METHOD
+     * after the invokation
      *
-     * @param inMethod The identitiy of the method being invoked
+     * @param applicationMethod The identitiy of the method being invoked
      * @param on The code to invoke
      */
-    protected <T> T invoke(InMethod inMethod, Code<T> on)
+    protected <T> T invoke(ApplicationMethod applicationMethod, Code<T> on)
     {
-        this.inMethod = inMethod;
+        this.applicationMethod = applicationMethod;
         try
         {
             return on.run();
         }
         finally
         {
-            this.inMethod = NO_METHOD;
+            this.applicationMethod = NO_METHOD;
+            invoked.add(applicationMethod);
         }
     }
 
     /**
      * <b>Not public API</b>
      * <p>
-     * Invokes the given onXXX() method, setting inMethod to the given value and then setting it to NO_METHOD after the
-     * invokation
+     * Invokes the given onXXX() method, setting applicationMethod to the given value and then setting it to NO_METHOD
+     * after the invokation
      *
-     * @param inMethod The identitiy of the method being invoked
+     * @param applicationMethod The identitiy of the method being invoked
      * @param on The code to invoke
      */
-    protected void invoke(InMethod inMethod, Runnable on)
+    protected void invoke(ApplicationMethod applicationMethod, Runnable on)
     {
-        this.inMethod = inMethod;
+        this.applicationMethod = applicationMethod;
         try
         {
             on.run();
         }
         finally
         {
-            this.inMethod = NO_METHOD;
+            this.applicationMethod = NO_METHOD;
+            invoked.add(applicationMethod);
         }
     }
 
@@ -1052,6 +1035,10 @@ public abstract class Application extends BaseComponent implements
      * Called when projects should be added
      */
     protected void onAddProjects()
+    {
+    }
+
+    protected void onCommandLineParsed()
     {
     }
 
@@ -1197,10 +1184,20 @@ public abstract class Application extends BaseComponent implements
      *
      * @param methods The allowed methods
      */
-    private void ensureInvoked(ObjectSet<InMethod> methods, String methodName)
+    private void ensureInvoked(ObjectSet<ApplicationMethod> methods, String methodName)
     {
-        ensure(methods.with(INTERNAL).contains(inMethod), "Can only invoke $ in one of the following methods: $",
+        ensure(methods.with(INTERNAL).contains(applicationMethod), "Can only invoke $ in one of the following methods: $",
             methodName, methods.without(INTERNAL));
+    }
+
+    /**
+     * Ensures that the caller has already invoked the given method.
+     *
+     * @param method The method that must already have been invoked
+     */
+    private void ensureInvokedAfter(ApplicationMethod method, String methodName)
+    {
+        ensure(invoked.contains(applicationMethod), "Can only invoke $ in after $ has been invoked", methodName, method);
     }
 
     private void initializeProject(IdentitySet<Project> uninitialized, Project project)
