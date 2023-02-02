@@ -338,7 +338,7 @@ import static java.util.Comparator.comparing;
  * @see SwitchParser
  * @see ArgumentParser
  */
-@SuppressWarnings({ "unused", "BooleanMethodIsAlwaysInverted" })
+@SuppressWarnings({ "unused", "BooleanMethodIsAlwaysInverted", "SameParameterValue" })
 @UmlClassDiagram(diagram = DiagramApplication.class)
 @TypeQuality(stability = STABLE_EXTENSIBLE,
              testing = UNTESTED,
@@ -725,7 +725,7 @@ public abstract class Application extends BaseComponent implements
      */
     public Set<Project> projects()
     {
-        ensureInvokedAfter(ON_PROJECTS_INITIALIZED, "projects");
+        ensureInvokedDuringOrAfter(ON_PROJECTS_INITIALIZE, "projects()");
 
         return projects;
     }
@@ -989,9 +989,9 @@ public abstract class Application extends BaseComponent implements
      * <b>Not public API</b>
      * <p>
      * Invokes the given onXXX() method, setting methodScope to the given value and then setting it to NO_METHOD after
-     * the invokation
+     * the invocation
      *
-     * @param methodScope The identitiy of the method being invoked
+     * @param methodScope The identity of the method being invoked
      * @param on The code to invoke
      */
     protected <T> T invoke(MethodScope methodScope, Code<T> on)
@@ -1003,8 +1003,8 @@ public abstract class Application extends BaseComponent implements
         }
         finally
         {
-            this.methodScope = NO_METHOD;
             invoked.add(methodScope);
+            this.methodScope = NO_METHOD;
         }
     }
 
@@ -1012,9 +1012,9 @@ public abstract class Application extends BaseComponent implements
      * <b>Not public API</b>
      * <p>
      * Invokes the given onXXX() method, setting methodScope to the given value and then setting it to NO_METHOD after
-     * the invokation
+     * the invocation
      *
-     * @param methodScope The identitiy of the method being invoked
+     * @param methodScope The identity of the method being invoked
      * @param on The code to invoke
      */
     protected void invoke(MethodScope methodScope, Runnable on)
@@ -1026,8 +1026,8 @@ public abstract class Application extends BaseComponent implements
         }
         finally
         {
-            this.methodScope = NO_METHOD;
             invoked.add(methodScope);
+            this.methodScope = NO_METHOD;
         }
     }
 
@@ -1197,7 +1197,7 @@ public abstract class Application extends BaseComponent implements
      */
     private void ensureInvoked(ObjectSet<MethodScope> methods, String methodName)
     {
-        ensure(methods.with(INTERNAL).contains(methodScope), "Can only invoke $ in one of the following methods: $",
+        ensure(methods.contains(methodScope) || this.methodScope == INTERNAL, "Can only invoke $ in one of the following methods: $",
             methodName, methods.without(INTERNAL));
     }
 
@@ -1208,7 +1208,18 @@ public abstract class Application extends BaseComponent implements
      */
     private void ensureInvokedAfter(MethodScope method, String methodName)
     {
-        ensure(invoked.contains(methodScope), "Can only invoke $ in after $ has been invoked", methodName, method);
+        ensure(invoked.contains(method) || this.methodScope == INTERNAL, "Can only invoke $ after $ has been invoked", methodName, method);
+    }
+
+    /**
+     * Ensures that the caller has already invoked the given method.
+     *
+     * @param method The method that must already have been invoked
+     */
+    private void ensureInvokedDuringOrAfter(MethodScope method, String methodName)
+    {
+        ensure(invoked.contains(method) || (this.methodScope == method || this.methodScope == INTERNAL),
+            "Can only invoke $ during or after $ has been invoked", methodName, method);
     }
 
     private void initializeProject(IdentitySet<Project> uninitialized, Project project)
