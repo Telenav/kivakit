@@ -100,12 +100,13 @@ import static com.telenav.kivakit.application.Application.InvocationScope.ON_RAN
 import static com.telenav.kivakit.application.Application.InvocationScope.ON_RUN;
 import static com.telenav.kivakit.application.Application.InvocationScope.ON_RUNNING;
 import static com.telenav.kivakit.application.Application.InvocationScope.ON_SERIALIZATION_INITIALIZE;
-import static com.telenav.kivakit.application.Application.LifecyclePhase.CONSTRUCTING;
-import static com.telenav.kivakit.application.Application.LifecyclePhase.INITIALIZING;
-import static com.telenav.kivakit.application.Application.LifecyclePhase.READY;
-import static com.telenav.kivakit.application.Application.LifecyclePhase.RUNNING;
-import static com.telenav.kivakit.application.Application.LifecyclePhase.STOPPED;
-import static com.telenav.kivakit.application.Application.LifecyclePhase.STOPPING;
+import static com.telenav.kivakit.application.ApplicationExit.EXIT_SUCCESS;
+import static com.telenav.kivakit.application.LifecyclePhase.CONSTRUCTING;
+import static com.telenav.kivakit.application.LifecyclePhase.INITIALIZING;
+import static com.telenav.kivakit.application.LifecyclePhase.READY;
+import static com.telenav.kivakit.application.LifecyclePhase.RUNNING;
+import static com.telenav.kivakit.application.LifecyclePhase.STOPPED;
+import static com.telenav.kivakit.application.LifecyclePhase.STOPPING;
 import static com.telenav.kivakit.application.ExitCode.FAILED;
 import static com.telenav.kivakit.application.ExitCode.SUCCEEDED;
 import static com.telenav.kivakit.commandline.Quantifier.OPTIONAL;
@@ -345,12 +346,12 @@ import static java.util.Comparator.comparing;
              documentation = DOCUMENTED)
 @Register
 public abstract class Application extends BaseComponent implements
-        Named,
-        PackageTrait,
-        ProjectTrait,
-        SettingsTrait,
-        ApplicationMetadataTrait,
-        TryTrait
+    Named,
+    PackageTrait,
+    ProjectTrait,
+    SettingsTrait,
+    ApplicationMetadataTrait,
+    TryTrait
 {
     /** The one and only application running in this process */
     private static Application application;
@@ -431,19 +432,6 @@ public abstract class Application extends BaseComponent implements
     }
 
     /**
-     * The phase of the application's lifecycle
-     */
-    public enum LifecyclePhase
-    {
-        CONSTRUCTING,
-        INITIALIZING,
-        RUNNING,
-        READY,
-        STOPPING,
-        STOPPED
-    }
-
-    /**
      * A unique string identifier for a KivaKit {@link Application}.
      *
      * @author jonathanl (shibo)
@@ -465,17 +453,6 @@ public abstract class Application extends BaseComponent implements
         }
     }
 
-    private final ObjectSet<InvocationScope> WHEN_RUNNING =
-            set
-                    (
-                            ON_RUNNING,
-                            ON_RUN,
-                            ON_RAN
-                    );
-
-    /** Stack of invocation scopes. The top of stack is the current code scope. */
-    private final Stack<InvocationScope> invocationScope = new Stack<>();
-
     /** Switch parser to specify deployment settings */
     private SwitchParser<Deployment> DEPLOYMENT;
 
@@ -495,17 +472,20 @@ public abstract class Application extends BaseComponent implements
 
     @UmlExcludeMember
     protected final SwitchParser<Boolean> QUIET =
-            booleanSwitchParser(this, "quiet", "Minimize output")
-                    .optional()
-                    .defaultValue(false)
-                    .build();
+        booleanSwitchParser(this, "quiet", "Minimize output")
+            .optional()
+            .defaultValue(false)
+            .build();
+
+    /** Stack of invocation scopes. The top of stack is the current code scope. */
+    private final Stack<InvocationScope> scopeStack = new Stack<>();
 
     /** The set of scopes that have been invoked */
     private final ObjectSet<InvocationScope> invokedScopes = set();
 
     protected Application()
     {
-        invocationScope.push(INTERNAL_SCOPE);
+        scopeStack.push(INTERNAL_SCOPE);
 
         // CONSTRUCTING - 3. Create application
         register(this);
@@ -701,9 +681,9 @@ public abstract class Application extends BaseComponent implements
 
         // then parse the command line arguments,
         commandLine = new CommandLineParser(this)
-                .addSwitchParsers(internalSwitchParsers())
-                .addArgumentParsers(argumentParsers())
-                .parse(argumentList.asStringArray());
+            .addSwitchParsers(internalSwitchParsers())
+            .addArgumentParsers(argumentParsers())
+            .parse(argumentList.asStringArray());
 
         // and notify that the command line has been parsed.
         invoke(ON_COMMAND_LINE_PARSED, this::onCommandLineParsed);
@@ -871,14 +851,14 @@ public abstract class Application extends BaseComponent implements
 
         // STOPPED - 2. Return the application exit code
         return exitCode == SUCCEEDED
-                ? result(ApplicationExit.SUCCESS)
-                : failure(new ApplicationExit(exitCode, exception), "Application failed");
+            ? result(EXIT_SUCCESS)
+            : failure(new ApplicationExit(exitCode, exception), "Application failed");
     }
 
     @UmlExcludeMember
     public void showStartupInformation()
     {
-        ensureInvoked(WHEN_RUNNING, "showStartupInformation()");
+        ensureInvokedAfter(ON_RUNNING, "showStartupInformation()");
 
         announce(startupInformation(name()));
     }
@@ -888,7 +868,7 @@ public abstract class Application extends BaseComponent implements
      */
     public String startupInformation(String title)
     {
-        ensureInvoked(WHEN_RUNNING, "startupInformation(title)");
+        ensureInvokedAfter(ON_RUNNING, "startupInformation(title)");
 
         var box = new StringList();
         int number = 1;
@@ -931,7 +911,7 @@ public abstract class Application extends BaseComponent implements
                     value = ((Folder) value).path().asContraction(80);
                 }
                 box.add("   $ = $", rightAlign(switchParser.name(), width, ' '),
-                        value == null ? "N/A" : value);
+                    value == null ? "N/A" : value);
             }
         }
 
@@ -941,9 +921,9 @@ public abstract class Application extends BaseComponent implements
             box.add("Deployment Settings:");
             box.add(" ");
             box.addAll(invoke(INTERNAL_SCOPE, () -> get(DEPLOYMENT))
-                    .asStringList()
-                    .trim()
-                    .indented(4));
+                .asStringList()
+                .trim()
+                .indented(4));
         }
 
         box.add(" ");
@@ -999,7 +979,7 @@ public abstract class Application extends BaseComponent implements
      */
     protected <T> T invoke(InvocationScope scope, Code<T> code)
     {
-        this.invocationScope.push(scope);
+        this.scopeStack.push(scope);
         try
         {
             return code.run();
@@ -1007,7 +987,7 @@ public abstract class Application extends BaseComponent implements
         finally
         {
             invokedScopes.add(scope);
-            invocationScope.pop();
+            scopeStack.pop();
         }
     }
 
@@ -1024,7 +1004,7 @@ public abstract class Application extends BaseComponent implements
      */
     protected void invoke(InvocationScope scope, Runnable code)
     {
-        this.invocationScope.push(scope);
+        this.scopeStack.push(scope);
         try
         {
             code.run();
@@ -1032,7 +1012,7 @@ public abstract class Application extends BaseComponent implements
         finally
         {
             invokedScopes.add(scope);
-            invocationScope.pop();
+            scopeStack.pop();
         }
     }
 
@@ -1184,8 +1164,8 @@ public abstract class Application extends BaseComponent implements
     private void configureLogging()
     {
         var filter = invoke(INTERNAL_SCOPE, () -> get(QUIET))
-                ? new MessagesWithSeverityOf(new Glitch().severity())
-                : new AllMessages();
+            ? new MessagesWithSeverityOf(new Glitch().severity())
+            : new AllMessages();
 
         globalLogger().listenTo(this, filter);
     }
@@ -1206,8 +1186,8 @@ public abstract class Application extends BaseComponent implements
      */
     private void ensureInvoked(ObjectSet<InvocationScope> scopes, String methodName)
     {
-        ensure(scopes.contains(invocationScope.top()) || isInInternalScope(), "Can only invoke $ in one of the following methods: $",
-                methodName, scopes.without(INTERNAL_SCOPE));
+        ensure(scopes.contains(scopeStack.top()) || isInInternalScope(), "Can only invoke $ in one of the following methods: $",
+            methodName, scopes.without(INTERNAL_SCOPE));
     }
 
     /**
@@ -1230,7 +1210,7 @@ public abstract class Application extends BaseComponent implements
     private void ensureInvokedDuringOrAfter(InvocationScope scope, String methodName)
     {
         ensure(isAfterScope(scope) || (isInScope(scope) || isInInternalScope()),
-                "Can only invoke $ during or after $ has been invoked", methodName, scope);
+            "Can only invoke $ during or after $ has been invoked", methodName, scope);
     }
 
     private void initializeProject(IdentitySet<Project> uninitialized, Project project)
@@ -1278,9 +1258,9 @@ public abstract class Application extends BaseComponent implements
         if (!ignoreDeploymentSwitch() && DEPLOYMENT == null)
         {
             DEPLOYMENT = deployments
-                    .switchParser("deployment")
-                    .quantifier(deployments.isEmpty() ? OPTIONAL : REQUIRED)
-                    .build();
+                .switchParser("deployment")
+                .quantifier(deployments.isEmpty() ? OPTIONAL : REQUIRED)
+                .build();
 
             parsers.add(DEPLOYMENT);
         }
@@ -1328,6 +1308,6 @@ public abstract class Application extends BaseComponent implements
      */
     private InvocationScope scope()
     {
-        return this.invocationScope.top();
+        return this.scopeStack.top();
     }
 }
