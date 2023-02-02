@@ -86,26 +86,26 @@ import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMEN
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
-import static com.telenav.kivakit.application.Application.ApplicationMethod.INTERNAL;
-import static com.telenav.kivakit.application.Application.ApplicationMethod.NO_METHOD;
-import static com.telenav.kivakit.application.Application.ApplicationMethod.ON_ADD_PROJECTS;
-import static com.telenav.kivakit.application.Application.ApplicationMethod.ON_COMMAND_LINE_PARSED;
-import static com.telenav.kivakit.application.Application.ApplicationMethod.ON_INITIALIZE;
-import static com.telenav.kivakit.application.Application.ApplicationMethod.ON_INITIALIZED;
-import static com.telenav.kivakit.application.Application.ApplicationMethod.ON_INITIALIZING;
-import static com.telenav.kivakit.application.Application.ApplicationMethod.ON_PROJECTS_INITIALIZE;
-import static com.telenav.kivakit.application.Application.ApplicationMethod.ON_PROJECTS_INITIALIZED;
-import static com.telenav.kivakit.application.Application.ApplicationMethod.ON_PROJECTS_INITIALIZING;
-import static com.telenav.kivakit.application.Application.ApplicationMethod.ON_RAN;
-import static com.telenav.kivakit.application.Application.ApplicationMethod.ON_RUN;
-import static com.telenav.kivakit.application.Application.ApplicationMethod.ON_RUNNING;
-import static com.telenav.kivakit.application.Application.ApplicationMethod.ON_SERIALIZATION_INITIALIZE;
 import static com.telenav.kivakit.application.Application.LifecyclePhase.CONSTRUCTING;
 import static com.telenav.kivakit.application.Application.LifecyclePhase.INITIALIZING;
 import static com.telenav.kivakit.application.Application.LifecyclePhase.READY;
 import static com.telenav.kivakit.application.Application.LifecyclePhase.RUNNING;
 import static com.telenav.kivakit.application.Application.LifecyclePhase.STOPPED;
 import static com.telenav.kivakit.application.Application.LifecyclePhase.STOPPING;
+import static com.telenav.kivakit.application.Application.MethodScope.INTERNAL;
+import static com.telenav.kivakit.application.Application.MethodScope.NO_METHOD;
+import static com.telenav.kivakit.application.Application.MethodScope.ON_ADD_PROJECTS;
+import static com.telenav.kivakit.application.Application.MethodScope.ON_COMMAND_LINE_PARSED;
+import static com.telenav.kivakit.application.Application.MethodScope.ON_INITIALIZE;
+import static com.telenav.kivakit.application.Application.MethodScope.ON_INITIALIZED;
+import static com.telenav.kivakit.application.Application.MethodScope.ON_INITIALIZING;
+import static com.telenav.kivakit.application.Application.MethodScope.ON_PROJECTS_INITIALIZE;
+import static com.telenav.kivakit.application.Application.MethodScope.ON_PROJECTS_INITIALIZED;
+import static com.telenav.kivakit.application.Application.MethodScope.ON_PROJECTS_INITIALIZING;
+import static com.telenav.kivakit.application.Application.MethodScope.ON_RAN;
+import static com.telenav.kivakit.application.Application.MethodScope.ON_RUN;
+import static com.telenav.kivakit.application.Application.MethodScope.ON_RUNNING;
+import static com.telenav.kivakit.application.Application.MethodScope.ON_SERIALIZATION_INITIALIZE;
 import static com.telenav.kivakit.application.ExitCode.FAILED;
 import static com.telenav.kivakit.application.ExitCode.SUCCEEDED;
 import static com.telenav.kivakit.commandline.Quantifier.OPTIONAL;
@@ -408,10 +408,23 @@ public abstract class Application extends BaseComponent implements
     }
 
     /**
+     * The phase of the application's lifecycle
+     */
+    public enum LifecyclePhase
+    {
+        CONSTRUCTING,
+        INITIALIZING,
+        RUNNING,
+        READY,
+        STOPPING,
+        STOPPED
+    }
+
+    /**
      * These enum values are used to restrict user calls to a particular method scope. For example, the
      * {@link #addProject(Class)} method can only be called from {@link #onAddProjects()}.
      */
-    protected enum ApplicationMethod
+    protected enum MethodScope
     {
         INTERNAL,
         NO_METHOD,
@@ -429,19 +442,6 @@ public abstract class Application extends BaseComponent implements
         ON_RUN,
         ON_RUNNING,
         ON_SERIALIZATION_INITIALIZE
-    }
-
-    /**
-     * The phase of the application's lifecycle
-     */
-    public enum LifecyclePhase
-    {
-        CONSTRUCTING,
-        INITIALIZING,
-        RUNNING,
-        READY,
-        STOPPING,
-        STOPPED
     }
 
     /**
@@ -466,7 +466,7 @@ public abstract class Application extends BaseComponent implements
         }
     }
 
-    private final ObjectSet<ApplicationMethod> WHEN_RUNNING =
+    private final ObjectSet<MethodScope> WHEN_RUNNING =
         set
             (
                 ON_RUNNING,
@@ -475,7 +475,7 @@ public abstract class Application extends BaseComponent implements
             );
 
     /** What user method is being called */
-    private ApplicationMethod applicationMethod;
+    private MethodScope methodScope;
 
     /** Switch parser to specify deployment settings */
     private SwitchParser<Deployment> DEPLOYMENT;
@@ -502,7 +502,7 @@ public abstract class Application extends BaseComponent implements
             .build();
 
     /** The set of methods that have been invoked */
-    private final ObjectSet<ApplicationMethod> invoked = set();
+    private final ObjectSet<MethodScope> invoked = set();
 
     protected Application()
     {
@@ -666,6 +666,49 @@ public abstract class Application extends BaseComponent implements
     }
 
     /**
+     * Parses the given command line arguments. Normally, this method does not need to be called, but it may be
+     * necessary in certain tests to parse a command line without running the application.
+     *
+     * @param arguments The arguments to parse
+     */
+    public void parseCommandLine(String[] arguments)
+    {
+        var argumentList = new StringList();
+        for (var argument : arguments)
+        {
+            // and if the argument is -switches=[resource]
+            if (argument.startsWith("-switches="))
+            {
+                // then load properties from the resource
+                var resourceIdentifier = stripLeading(argument, "-switches=");
+                var resource = resolveResource(this, resourceIdentifier);
+                var properties = loadPropertyMap(this, resource);
+
+                // and add those properties to the argument list
+                for (var key : properties.keySet())
+                {
+                    var value = properties.get(key);
+                    argumentList.add(key + "=" + value);
+                }
+            }
+            else
+            {
+                // otherwise, add the argument
+                argumentList.add(argument);
+            }
+        }
+
+        // then parse the command line arguments,
+        commandLine = new CommandLineParser(this)
+            .addSwitchParsers(internalSwitchParsers())
+            .addArgumentParsers(argumentParsers())
+            .parse(argumentList.asStringArray());
+
+        // and notify that the command line has been parsed.
+        invoke(ON_COMMAND_LINE_PARSED, this::onCommandLineParsed);
+    }
+
+    /**
      * Returns the state
      *
      * @return The application lifecycle state
@@ -742,39 +785,7 @@ public abstract class Application extends BaseComponent implements
             deployments = loadDeploymentSet(this, getClass());
 
             // INITIALIZING - 6. Parse command line
-            var argumentList = new StringList();
-            for (var argument : arguments)
-            {
-                // and if the argument is -switches=[resource]
-                if (argument.startsWith("-switches="))
-                {
-                    // then load properties from the resource
-                    var resourceIdentifier = stripLeading(argument, "-switches=");
-                    var resource = resolveResource(this, resourceIdentifier);
-                    var properties = loadPropertyMap(this, resource);
-
-                    // and add those properties to the argument list
-                    for (var key : properties.keySet())
-                    {
-                        var value = properties.get(key);
-                        argumentList.add(key + "=" + value);
-                    }
-                }
-                else
-                {
-                    // otherwise, add the argument
-                    argumentList.add(argument);
-                }
-            }
-
-            // then parse the command line arguments,
-            commandLine = new CommandLineParser(this)
-                .addSwitchParsers(internalSwitchParsers())
-                .addArgumentParsers(argumentParsers())
-                .parse(argumentList.asStringArray());
-
-            // (notify that the command line has been parsed)
-            invoke(ON_COMMAND_LINE_PARSED, this::onCommandLineParsed);
+            parseCommandLine(arguments);
 
             // INITIALIZING - 7. If a deployment was specified, register its settings
             if (deploymentSpecified())
@@ -977,46 +988,46 @@ public abstract class Application extends BaseComponent implements
     /**
      * <b>Not public API</b>
      * <p>
-     * Invokes the given onXXX() method, setting applicationMethod to the given value and then setting it to NO_METHOD
-     * after the invokation
+     * Invokes the given onXXX() method, setting methodScope to the given value and then setting it to NO_METHOD after
+     * the invokation
      *
-     * @param applicationMethod The identitiy of the method being invoked
+     * @param methodScope The identitiy of the method being invoked
      * @param on The code to invoke
      */
-    protected <T> T invoke(ApplicationMethod applicationMethod, Code<T> on)
+    protected <T> T invoke(MethodScope methodScope, Code<T> on)
     {
-        this.applicationMethod = applicationMethod;
+        this.methodScope = methodScope;
         try
         {
             return on.run();
         }
         finally
         {
-            this.applicationMethod = NO_METHOD;
-            invoked.add(applicationMethod);
+            this.methodScope = NO_METHOD;
+            invoked.add(methodScope);
         }
     }
 
     /**
      * <b>Not public API</b>
      * <p>
-     * Invokes the given onXXX() method, setting applicationMethod to the given value and then setting it to NO_METHOD
-     * after the invokation
+     * Invokes the given onXXX() method, setting methodScope to the given value and then setting it to NO_METHOD after
+     * the invokation
      *
-     * @param applicationMethod The identitiy of the method being invoked
+     * @param methodScope The identitiy of the method being invoked
      * @param on The code to invoke
      */
-    protected void invoke(ApplicationMethod applicationMethod, Runnable on)
+    protected void invoke(MethodScope methodScope, Runnable on)
     {
-        this.applicationMethod = applicationMethod;
+        this.methodScope = methodScope;
         try
         {
             on.run();
         }
         finally
         {
-            this.applicationMethod = NO_METHOD;
-            invoked.add(applicationMethod);
+            this.methodScope = NO_METHOD;
+            invoked.add(methodScope);
         }
     }
 
@@ -1184,9 +1195,9 @@ public abstract class Application extends BaseComponent implements
      *
      * @param methods The allowed methods
      */
-    private void ensureInvoked(ObjectSet<ApplicationMethod> methods, String methodName)
+    private void ensureInvoked(ObjectSet<MethodScope> methods, String methodName)
     {
-        ensure(methods.with(INTERNAL).contains(applicationMethod), "Can only invoke $ in one of the following methods: $",
+        ensure(methods.with(INTERNAL).contains(methodScope), "Can only invoke $ in one of the following methods: $",
             methodName, methods.without(INTERNAL));
     }
 
@@ -1195,9 +1206,9 @@ public abstract class Application extends BaseComponent implements
      *
      * @param method The method that must already have been invoked
      */
-    private void ensureInvokedAfter(ApplicationMethod method, String methodName)
+    private void ensureInvokedAfter(MethodScope method, String methodName)
     {
-        ensure(invoked.contains(applicationMethod), "Can only invoke $ in after $ has been invoked", methodName, method);
+        ensure(invoked.contains(methodScope), "Can only invoke $ in after $ has been invoked", methodName, method);
     }
 
     private void initializeProject(IdentitySet<Project> uninitialized, Project project)
