@@ -367,8 +367,8 @@ public class BroadcastingProgressReporter extends Multicaster implements Progres
         {
             started = true;
             this.at = 0;
-            var formatter = format(message, arguments);
-            feedback(topLine(70, message + " " + unitName));
+            var formatted = format(message, arguments);
+            feedback(topLine(70, formatted + " " + unitName));
             start = now().milliseconds();
             if (listener != null)
             {

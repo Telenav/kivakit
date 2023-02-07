@@ -148,4 +148,10 @@ public class FolderList extends ObjectList<Folder>
     {
         return (FolderList) super.without(that);
     }
+
+    @Override
+    protected FolderList onNewList()
+    {
+        return new FolderList();
+    }
 }
