@@ -101,14 +101,14 @@ import static com.telenav.kivakit.application.Application.InvocationScope.ON_RUN
 import static com.telenav.kivakit.application.Application.InvocationScope.ON_RUNNING;
 import static com.telenav.kivakit.application.Application.InvocationScope.ON_SERIALIZATION_INITIALIZE;
 import static com.telenav.kivakit.application.ApplicationExit.EXIT_SUCCESS;
+import static com.telenav.kivakit.application.ExitCode.FAILED;
+import static com.telenav.kivakit.application.ExitCode.SUCCEEDED;
 import static com.telenav.kivakit.application.LifecyclePhase.CONSTRUCTING;
 import static com.telenav.kivakit.application.LifecyclePhase.INITIALIZING;
 import static com.telenav.kivakit.application.LifecyclePhase.READY;
 import static com.telenav.kivakit.application.LifecyclePhase.RUNNING;
 import static com.telenav.kivakit.application.LifecyclePhase.STOPPED;
 import static com.telenav.kivakit.application.LifecyclePhase.STOPPING;
-import static com.telenav.kivakit.application.ExitCode.FAILED;
-import static com.telenav.kivakit.application.ExitCode.SUCCEEDED;
 import static com.telenav.kivakit.commandline.Quantifier.OPTIONAL;
 import static com.telenav.kivakit.commandline.Quantifier.REQUIRED;
 import static com.telenav.kivakit.commandline.SwitchParsers.booleanSwitchParser;
@@ -915,7 +915,7 @@ public abstract class Application extends BaseComponent implements
             }
         }
 
-        if (invoke(INTERNAL_SCOPE, () -> has(DEPLOYMENT)))
+        if (deploymentSpecified() && invoke(INTERNAL_SCOPE, () -> has(DEPLOYMENT)))
         {
             box.add(" ");
             box.add("Deployment Settings:");

@@ -25,6 +25,7 @@ import com.telenav.kivakit.core.messaging.messages.lifecycle.OperationHalted;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import static com.telenav.kivakit.core.messaging.Message.Status.PROBLEM;
+import static com.telenav.kivakit.core.messaging.messages.OperationStatusMessage.CauseFormatting.DO_NOT_FORMAT_CAUSE;
 import static com.telenav.kivakit.core.messaging.messages.OperationStatusMessage.CauseFormatting.FORMAT_CAUSE;
 import static com.telenav.kivakit.core.messaging.messages.Severity.HIGH;
 
@@ -48,7 +49,7 @@ import static com.telenav.kivakit.core.messaging.messages.Severity.HIGH;
  *     <li>Information - Commonly useful information that doesn't represent any problem</li>
  *     <li>Trace - Diagnostic information for use when debugging</li>
  * </ul>
- *
+ * <p>
  *  @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramMessageType.class)
@@ -56,7 +57,7 @@ public class Problem extends OperationStatusMessage
 {
     public Problem(String message, Object... arguments)
     {
-        this(new Throwable(), message, arguments);
+        super(DO_NOT_FORMAT_CAUSE, null, message, arguments);
     }
 
     public Problem(Throwable cause, String message, Object... arguments)

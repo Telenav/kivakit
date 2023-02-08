@@ -40,8 +40,8 @@ import static java.util.Comparator.comparing;
 /**
  * <b>Not Public API</b>
  * <p>
- * A list of switch parsers, which can be retrieved by name with {@link #forName(String)} and for which there is {@link
- * #help()} available.
+ * A list of switch parsers, which can be retrieved by name with {@link #forName(String)} and for which there is
+ * {@link #help()} available.
  *
  * @author jonathanl (shibo)
  */
@@ -106,7 +106,7 @@ public class SwitchParserList implements Iterable<SwitchParser<?>>
                 if (optional == 0)
                 {
                     optional++;
-                    descriptions.add((required > 0 ? "\n" : "") + "  Optional:\n");
+                    descriptions.add((required > 0 ? "\n" : "") + "Optional:\n");
                 }
                 descriptions.add(parser.help());
             }
