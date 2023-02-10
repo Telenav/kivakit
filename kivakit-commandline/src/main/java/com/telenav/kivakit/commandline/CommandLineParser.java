@@ -265,9 +265,9 @@ public class CommandLineParser
         var switches = "\n\nSwitches:\n\n" + switchParsers.help();
 
         return kivakitVersion
-                + usage
-                + description
-                + arguments
-                + switches;
+            + usage
+            + description
+            + arguments
+            + switches;
     }
 }

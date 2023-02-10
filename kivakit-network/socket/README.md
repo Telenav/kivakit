@@ -31,14 +31,14 @@ This module improves access to TCP/IP sockets.
 
 ### Dependencies <a name="dependencies"></a> &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/dependencies-32.png" srcset="https://telenav.github.io/telenav-assets/images/icons/dependencies-32-2x.png 2x"/>
 
-[*Dependency Diagram*](https://www.kivakit.org/1.15.0/lexakai/kivakit/kivakit-network/socket/documentation/diagrams/dependencies.svg)
+[*Dependency Diagram*](https://www.kivakit.org/1.16.0/lexakai/kivakit/kivakit-network/socket/documentation/diagrams/dependencies.svg)
 
 #### Maven Dependency
 
     <dependency>
         <groupId>com.telenav.kivakit</groupId>
         <artifactId>kivakit-network-socket</artifactId>
-        <version>1.15.0</version>
+        <version>1.16.0</version>
     </dependency>
 
 <img src="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128.png" srcset="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128-2x.png 2x"/>
@@ -90,15 +90,15 @@ None
 
 ### Package Diagrams <a name="package-diagrams"></a> &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/box-24.png" srcset="https://telenav.github.io/telenav-assets/images/icons/box-24-2x.png 2x"/>
 
-[*com.telenav.kivakit.network.socket.internal.lexakai*](https://www.kivakit.org/1.15.0/lexakai/kivakit/kivakit-network/socket/documentation/diagrams/com.telenav.kivakit.network.socket.internal.lexakai.svg)  
-[*com.telenav.kivakit.network.socket.server*](https://www.kivakit.org/1.15.0/lexakai/kivakit/kivakit-network/socket/documentation/diagrams/com.telenav.kivakit.network.socket.server.svg)
+[*com.telenav.kivakit.network.socket.internal.lexakai*](https://www.kivakit.org/1.16.0/lexakai/kivakit/kivakit-network/socket/documentation/diagrams/com.telenav.kivakit.network.socket.internal.lexakai.svg)  
+[*com.telenav.kivakit.network.socket.server*](https://www.kivakit.org/1.16.0/lexakai/kivakit/kivakit-network/socket/documentation/diagrams/com.telenav.kivakit.network.socket.server.svg)
 
 ### Javadoc <a name="code-quality"></a> &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/books-24.png" srcset="https://telenav.github.io/telenav-assets/images/icons/books-24-2x.png 2x"/>
 
 | Class | Documentation Sections  |
 |-------|-------------------------|
-| [*ConnectionListener*](https://www.kivakit.org/1.15.0/javadoc/kivakit/kivakit-network-socket/com/telenav/kivakit/network/socket/server/ConnectionListener.html) |  |  
-| [*DiagramSocketServer*](https://www.kivakit.org/1.15.0/javadoc/kivakit/kivakit-network-socket/com/telenav/kivakit/network/socket/internal/lexakai/DiagramSocketServer.html) |  |  
+| [*ConnectionListener*](https://www.kivakit.org/1.16.0/javadoc/kivakit/kivakit-network-socket/com/telenav/kivakit/network/socket/server/ConnectionListener.html) |  |  
+| [*DiagramSocketServer*](https://www.kivakit.org/1.16.0/javadoc/kivakit/kivakit-network-socket/com/telenav/kivakit/network/socket/internal/lexakai/DiagramSocketServer.html) |  |  
 
 [//]: # (start-user-text)
 

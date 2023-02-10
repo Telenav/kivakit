@@ -78,6 +78,12 @@ public class FolderList extends ObjectList<Folder>
         return new HashSet<>(this);
     }
 
+    @Override
+    public FolderList copy()
+    {
+        return (FolderList) super.copy();
+    }
+
     /**
      * {@inheritDoc}
      */
@@ -141,5 +147,11 @@ public class FolderList extends ObjectList<Folder>
     public FolderList without(Folder[] that)
     {
         return (FolderList) super.without(that);
+    }
+
+    @Override
+    protected FolderList onNewList()
+    {
+        return new FolderList();
     }
 }

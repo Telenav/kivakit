@@ -291,6 +291,17 @@ public abstract class BaseCollection<Value> implements
     }
 
     /**
+     * Returns true if this collection contains any value in the given collection
+     *
+     * @param collection The collection to check
+     * @return True if this collection contains a value in the given collection
+     */
+    public boolean containsAny(@NotNull Collection<?> collection)
+    {
+        return stream().anyMatch(collection::contains);
+    }
+
+    /**
      * {@inheritDoc}
      */
     @Override

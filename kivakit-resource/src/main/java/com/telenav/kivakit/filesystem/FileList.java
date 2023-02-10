@@ -19,6 +19,7 @@
 package com.telenav.kivakit.filesystem;
 
 import com.telenav.kivakit.annotations.code.quality.TypeQuality;
+import com.telenav.kivakit.core.collections.list.BaseList;
 import com.telenav.kivakit.core.collections.list.ObjectList;
 import com.telenav.kivakit.filesystem.spi.FileService;
 import com.telenav.kivakit.interfaces.comparison.Filter;
@@ -168,6 +169,12 @@ public class FileList extends BaseResourceList<File> implements Iterable<File>
     public FileList matching(@NotNull Matcher<File> matcher)
     {
         return (FileList) super.matching(matcher);
+    }
+
+    @Override
+    protected FileList onNewList()
+    {
+        return new FileList();
     }
 
     /**

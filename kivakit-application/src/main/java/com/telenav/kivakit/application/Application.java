@@ -29,6 +29,7 @@ import com.telenav.kivakit.commandline.SwitchParser;
 import com.telenav.kivakit.component.BaseComponent;
 import com.telenav.kivakit.component.Component;
 import com.telenav.kivakit.core.collections.list.ObjectList;
+import com.telenav.kivakit.core.collections.list.Stack;
 import com.telenav.kivakit.core.collections.list.StringList;
 import com.telenav.kivakit.core.collections.set.IdentitySet;
 import com.telenav.kivakit.core.collections.set.ObjectSet;
@@ -86,27 +87,28 @@ import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMEN
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
-import static com.telenav.kivakit.application.Application.InMethod.INTERNAL;
-import static com.telenav.kivakit.application.Application.InMethod.NO_METHOD;
-import static com.telenav.kivakit.application.Application.InMethod.ON_ADD_PROJECTS;
-import static com.telenav.kivakit.application.Application.InMethod.ON_INITIALIZE;
-import static com.telenav.kivakit.application.Application.InMethod.ON_INITIALIZED;
-import static com.telenav.kivakit.application.Application.InMethod.ON_INITIALIZING;
-import static com.telenav.kivakit.application.Application.InMethod.ON_PROJECTS_INITIALIZE;
-import static com.telenav.kivakit.application.Application.InMethod.ON_PROJECTS_INITIALIZED;
-import static com.telenav.kivakit.application.Application.InMethod.ON_PROJECTS_INITIALIZING;
-import static com.telenav.kivakit.application.Application.InMethod.ON_RAN;
-import static com.telenav.kivakit.application.Application.InMethod.ON_RUN;
-import static com.telenav.kivakit.application.Application.InMethod.ON_RUNNING;
-import static com.telenav.kivakit.application.Application.InMethod.ON_SERIALIZATION_INITIALIZE;
-import static com.telenav.kivakit.application.Application.LifecyclePhase.CONSTRUCTING;
-import static com.telenav.kivakit.application.Application.LifecyclePhase.INITIALIZING;
-import static com.telenav.kivakit.application.Application.LifecyclePhase.READY;
-import static com.telenav.kivakit.application.Application.LifecyclePhase.RUNNING;
-import static com.telenav.kivakit.application.Application.LifecyclePhase.STOPPED;
-import static com.telenav.kivakit.application.Application.LifecyclePhase.STOPPING;
+import static com.telenav.kivakit.application.Application.InvocationScope.INTERNAL_SCOPE;
+import static com.telenav.kivakit.application.Application.InvocationScope.ON_ADD_PROJECTS;
+import static com.telenav.kivakit.application.Application.InvocationScope.ON_COMMAND_LINE_PARSED;
+import static com.telenav.kivakit.application.Application.InvocationScope.ON_INITIALIZE;
+import static com.telenav.kivakit.application.Application.InvocationScope.ON_INITIALIZED;
+import static com.telenav.kivakit.application.Application.InvocationScope.ON_INITIALIZING;
+import static com.telenav.kivakit.application.Application.InvocationScope.ON_PROJECTS_INITIALIZE;
+import static com.telenav.kivakit.application.Application.InvocationScope.ON_PROJECTS_INITIALIZED;
+import static com.telenav.kivakit.application.Application.InvocationScope.ON_PROJECTS_INITIALIZING;
+import static com.telenav.kivakit.application.Application.InvocationScope.ON_RAN;
+import static com.telenav.kivakit.application.Application.InvocationScope.ON_RUN;
+import static com.telenav.kivakit.application.Application.InvocationScope.ON_RUNNING;
+import static com.telenav.kivakit.application.Application.InvocationScope.ON_SERIALIZATION_INITIALIZE;
+import static com.telenav.kivakit.application.ApplicationExit.EXIT_SUCCESS;
 import static com.telenav.kivakit.application.ExitCode.FAILED;
 import static com.telenav.kivakit.application.ExitCode.SUCCEEDED;
+import static com.telenav.kivakit.application.LifecyclePhase.CONSTRUCTING;
+import static com.telenav.kivakit.application.LifecyclePhase.INITIALIZING;
+import static com.telenav.kivakit.application.LifecyclePhase.READY;
+import static com.telenav.kivakit.application.LifecyclePhase.RUNNING;
+import static com.telenav.kivakit.application.LifecyclePhase.STOPPED;
+import static com.telenav.kivakit.application.LifecyclePhase.STOPPING;
 import static com.telenav.kivakit.commandline.Quantifier.OPTIONAL;
 import static com.telenav.kivakit.commandline.Quantifier.REQUIRED;
 import static com.telenav.kivakit.commandline.SwitchParsers.booleanSwitchParser;
@@ -337,7 +339,7 @@ import static java.util.Comparator.comparing;
  * @see SwitchParser
  * @see ArgumentParser
  */
-@SuppressWarnings({ "unused", "BooleanMethodIsAlwaysInverted" })
+@SuppressWarnings({ "unused", "BooleanMethodIsAlwaysInverted", "SameParameterValue" })
 @UmlClassDiagram(diagram = DiagramApplication.class)
 @TypeQuality(stability = STABLE_EXTENSIBLE,
              testing = UNTESTED,
@@ -407,44 +409,26 @@ public abstract class Application extends BaseComponent implements
     }
 
     /**
-     * These enum values are used to restrict user calls to a particular method scope. For example, the
+     * These enum values are used to restrict user calls to a particular code scope. For example, the
      * {@link #addProject(Class)} method can only be called from {@link #onAddProjects()}.
      */
-    protected enum InMethod
+    protected enum InvocationScope
     {
-        INTERNAL,
-        NO_METHOD,
-
+        INTERNAL_SCOPE,
         ON_ADD_PROJECTS,
+        ON_COMMAND_LINE_PARSED,
         ON_CONFIGURE_LISTENERS,
-
-        ON_INITIALIZING,
         ON_INITIALIZE,
         ON_INITIALIZED,
-
-        ON_PROJECTS_INITIALIZING,
+        ON_INITIALIZING,
         ON_PROJECTS_INITIALIZE,
         ON_PROJECTS_INITIALIZED,
-
-        ON_RUNNING,
-        ON_RUN,
+        ON_PROJECTS_INITIALIZING,
         ON_RAN,
-
         ON_REGISTER_OBJECT_SERIALIZERS,
+        ON_RUN,
+        ON_RUNNING,
         ON_SERIALIZATION_INITIALIZE
-    }
-
-    /**
-     * The phase of the application's lifecycle
-     */
-    public enum LifecyclePhase
-    {
-        CONSTRUCTING,
-        INITIALIZING,
-        RUNNING,
-        READY,
-        STOPPING,
-        STOPPED
     }
 
     /**
@@ -468,39 +452,6 @@ public abstract class Application extends BaseComponent implements
         {
         }
     }
-
-    private final ObjectSet<InMethod> AFTER_COMMAND_LINE_PARSED =
-        set
-            (
-                ON_INITIALIZING,
-                ON_INITIALIZE,
-                ON_INITIALIZED,
-                ON_PROJECTS_INITIALIZING,
-                ON_PROJECTS_INITIALIZE,
-                ON_PROJECTS_INITIALIZED,
-                ON_RUNNING,
-                ON_RUN,
-                ON_RAN
-            );
-
-    private final ObjectSet<InMethod> AFTER_PROJECTS_INITIALIZED =
-        set
-            (
-                ON_RUNNING,
-                ON_RUN,
-                ON_RAN
-            );
-
-    private final ObjectSet<InMethod> WHEN_RUNNING =
-        set
-            (
-                ON_RUNNING,
-                ON_RUN,
-                ON_RAN
-            );
-
-    /** What user method is being called */
-    private InMethod inMethod;
 
     /** Switch parser to specify deployment settings */
     private SwitchParser<Deployment> DEPLOYMENT;
@@ -526,8 +477,16 @@ public abstract class Application extends BaseComponent implements
             .defaultValue(false)
             .build();
 
+    /** Stack of invocation scopes. The top of stack is the current code scope. */
+    private final Stack<InvocationScope> scopeStack = new Stack<>();
+
+    /** The set of scopes that have been invoked */
+    private final ObjectSet<InvocationScope> invokedScopes = set();
+
     protected Application()
     {
+        scopeStack.push(INTERNAL_SCOPE);
+
         // CONSTRUCTING - 3. Create application
         register(this);
         register(globalLogger());
@@ -543,7 +502,7 @@ public abstract class Application extends BaseComponent implements
      */
     public Application addProject(Class<? extends Project> project)
     {
-        ensureInvoked(set(ON_INITIALIZE, INTERNAL), "addProject(project)");
+        ensureInvoked(set(ON_INITIALIZE, INTERNAL_SCOPE), "addProject(project)");
 
         projects.add(resolveProject(project));
         return this;
@@ -554,7 +513,7 @@ public abstract class Application extends BaseComponent implements
      */
     public <T> T argument(int index, ArgumentParser<T> parser)
     {
-        ensureInvoked(AFTER_COMMAND_LINE_PARSED, "argument(index, parser)");
+        ensureInvokedAfter(ON_COMMAND_LINE_PARSED, "argument(index, parser)");
 
         return commandLine().argument(index, parser);
     }
@@ -564,7 +523,7 @@ public abstract class Application extends BaseComponent implements
      */
     public <T> T argument(ArgumentParser<T> parser)
     {
-        ensureInvoked(AFTER_COMMAND_LINE_PARSED, "argument(parser)");
+        ensureInvokedAfter(ON_COMMAND_LINE_PARSED, "argument(parser)");
 
         return commandLine().argument(parser);
     }
@@ -574,7 +533,7 @@ public abstract class Application extends BaseComponent implements
      */
     public ArgumentValueList argumentList()
     {
-        ensureInvoked(AFTER_COMMAND_LINE_PARSED, "argumentList()");
+        ensureInvokedAfter(ON_COMMAND_LINE_PARSED, "argumentList()");
 
         return commandLine().argumentValues();
     }
@@ -584,7 +543,7 @@ public abstract class Application extends BaseComponent implements
      */
     public <T> ObjectList<T> arguments(ArgumentParser<T> parser)
     {
-        ensureInvoked(AFTER_COMMAND_LINE_PARSED, "arguments(parser)");
+        ensureInvokedAfter(ON_COMMAND_LINE_PARSED, "arguments(parser)");
 
         var arguments = new ObjectList<T>();
         for (int i = 0; i < argumentList().size(); i++)
@@ -611,7 +570,7 @@ public abstract class Application extends BaseComponent implements
     @UmlRelation(label = "parses arguments into")
     public CommandLine commandLine()
     {
-        ensureInvoked(AFTER_COMMAND_LINE_PARSED, "commandLine()");
+        ensureInvokedAfter(ON_COMMAND_LINE_PARSED, "commandLine()");
 
         ensureNotNull(commandLine, "Cannot access command line during initialization");
         return commandLine;
@@ -634,7 +593,7 @@ public abstract class Application extends BaseComponent implements
      */
     public void exit(String message, Object... arguments)
     {
-        ensureInvoked(AFTER_COMMAND_LINE_PARSED, "exit(message, arguments)");
+        ensureInvokedAfter(ON_COMMAND_LINE_PARSED, "exit(message, arguments)");
 
         commandLine().exit(message, arguments);
     }
@@ -645,7 +604,7 @@ public abstract class Application extends BaseComponent implements
 
     public <T> T get(SwitchParser<T> parser)
     {
-        ensureInvoked(AFTER_COMMAND_LINE_PARSED, "get(parser)");
+        ensureInvokedAfter(ON_COMMAND_LINE_PARSED, "get(parser)");
 
         return commandLine().get(ensureNotNull(parser));
     }
@@ -656,7 +615,7 @@ public abstract class Application extends BaseComponent implements
      */
     public <T> T get(SwitchParser<T> parser, T defaultValue)
     {
-        ensureInvoked(AFTER_COMMAND_LINE_PARSED, "get(parser, defaultValue)");
+        ensureInvokedAfter(ON_COMMAND_LINE_PARSED, "get(parser, defaultValue)");
 
         return commandLine().get(ensureNotNull(parser), defaultValue);
     }
@@ -666,7 +625,7 @@ public abstract class Application extends BaseComponent implements
      */
     public <T> boolean has(SwitchParser<T> parser)
     {
-        ensureInvoked(AFTER_COMMAND_LINE_PARSED, "has(parser)");
+        ensureInvokedAfter(ON_COMMAND_LINE_PARSED, "has(parser)");
 
         return commandLine().has(ensureNotNull(parser));
     }
@@ -688,6 +647,49 @@ public abstract class Application extends BaseComponent implements
     }
 
     /**
+     * Parses the given command line arguments. Normally, this method does not need to be called, but it may be
+     * necessary in certain tests to parse a command line without running the application.
+     *
+     * @param arguments The arguments to parse
+     */
+    public void parseCommandLine(String[] arguments)
+    {
+        var argumentList = new StringList();
+        for (var argument : arguments)
+        {
+            // and if the argument is -switches=[resource]
+            if (argument.startsWith("-switches="))
+            {
+                // then load properties from the resource
+                var resourceIdentifier = stripLeading(argument, "-switches=");
+                var resource = resolveResource(this, resourceIdentifier);
+                var properties = loadPropertyMap(this, resource);
+
+                // and add those properties to the argument list
+                for (var key : properties.keySet())
+                {
+                    var value = properties.get(key);
+                    argumentList.add(key + "=" + value);
+                }
+            }
+            else
+            {
+                // otherwise, add the argument
+                argumentList.add(argument);
+            }
+        }
+
+        // then parse the command line arguments,
+        commandLine = new CommandLineParser(this)
+            .addSwitchParsers(internalSwitchParsers())
+            .addArgumentParsers(argumentParsers())
+            .parse(argumentList.asStringArray());
+
+        // and notify that the command line has been parsed.
+        invoke(ON_COMMAND_LINE_PARSED, this::onCommandLineParsed);
+    }
+
+    /**
      * Returns the state
      *
      * @return The application lifecycle state
@@ -704,7 +706,7 @@ public abstract class Application extends BaseComponent implements
      */
     public Set<Project> projects()
     {
-        ensureInvoked(AFTER_PROJECTS_INITIALIZED, "projects");
+        ensureInvokedDuringOrAfter(ON_PROJECTS_INITIALIZE, "projects()");
 
         return projects;
     }
@@ -764,41 +766,12 @@ public abstract class Application extends BaseComponent implements
             deployments = loadDeploymentSet(this, getClass());
 
             // INITIALIZING - 6. Parse command line
-            var argumentList = new StringList();
-            for (var argument : arguments)
-            {
-                // and if the argument is -switches=[resource]
-                if (argument.startsWith("-switches="))
-                {
-                    // then load properties from the resource
-                    var resourceIdentifier = stripLeading(argument, "-switches=");
-                    var resource = resolveResource(this, resourceIdentifier);
-                    var properties = loadPropertyMap(this, resource);
-
-                    // and add those properties to the argument list
-                    for (var key : properties.keySet())
-                    {
-                        var value = properties.get(key);
-                        argumentList.add(key + "=" + value);
-                    }
-                }
-                else
-                {
-                    // otherwise, add the argument
-                    argumentList.add(argument);
-                }
-            }
-
-            // then parse the command line arguments,
-            commandLine = new CommandLineParser(this)
-                .addSwitchParsers(internalSwitchParsers())
-                .addArgumentParsers(argumentParsers())
-                .parse(argumentList.asStringArray());
+            parseCommandLine(arguments);
 
             // INITIALIZING - 7. If a deployment was specified, register its settings
             if (deploymentSpecified())
             {
-                invoke(INTERNAL, () -> registerSettingsIn(get(DEPLOYMENT)));
+                invoke(INTERNAL_SCOPE, () -> registerSettingsIn(get(DEPLOYMENT)));
             }
 
             // INITIALIZING - 8. Initialize the application,
@@ -829,7 +802,7 @@ public abstract class Application extends BaseComponent implements
             // RUNNING - 4. Show startup information
             if (!isStartupOptionEnabled(StartupOption.QUIET))
             {
-                invoke(INTERNAL, this::showStartupInformation);
+                invoke(INTERNAL_SCOPE, this::showStartupInformation);
             }
 
             // READY - 1. Transition to READY phase
@@ -878,14 +851,14 @@ public abstract class Application extends BaseComponent implements
 
         // STOPPED - 2. Return the application exit code
         return exitCode == SUCCEEDED
-            ? result(ApplicationExit.SUCCESS)
+            ? result(EXIT_SUCCESS)
             : failure(new ApplicationExit(exitCode, exception), "Application failed");
     }
 
     @UmlExcludeMember
     public void showStartupInformation()
     {
-        ensureInvoked(WHEN_RUNNING, "showStartupInformation()");
+        ensureInvokedAfter(ON_RUNNING, "showStartupInformation()");
 
         announce(startupInformation(name()));
     }
@@ -895,12 +868,12 @@ public abstract class Application extends BaseComponent implements
      */
     public String startupInformation(String title)
     {
-        ensureInvoked(WHEN_RUNNING, "startupInformation(title)");
+        ensureInvokedAfter(ON_RUNNING, "startupInformation(title)");
 
         var box = new StringList();
         int number = 1;
 
-        var deployment = deploymentSpecified() ? invoke(INTERNAL, () -> get(DEPLOYMENT)) : null;
+        var deployment = deploymentSpecified() ? invoke(INTERNAL_SCOPE, () -> get(DEPLOYMENT)) : null;
 
         box.add(" ");
         box.add("    Version: $", version());
@@ -910,7 +883,7 @@ public abstract class Application extends BaseComponent implements
             box.add(" Deployment: $ ($)", deployment.name(), deployment.description());
         }
 
-        var arguments = invoke(INTERNAL, this::argumentList);
+        var arguments = invoke(INTERNAL_SCOPE, this::argumentList);
         if (!arguments.isEmpty())
         {
             box.add("");
@@ -932,7 +905,7 @@ public abstract class Application extends BaseComponent implements
             var width = new StringList(sorted).longest().asInt();
             for (var switchParser : sorted)
             {
-                var value = invoke(INTERNAL, () -> get(switchParser));
+                var value = invoke(INTERNAL_SCOPE, () -> get(switchParser));
                 if (value instanceof Folder)
                 {
                     value = ((Folder) value).path().asContraction(80);
@@ -942,12 +915,12 @@ public abstract class Application extends BaseComponent implements
             }
         }
 
-        if (invoke(INTERNAL, () -> has(DEPLOYMENT)))
+        if (deploymentSpecified() && invoke(INTERNAL_SCOPE, () -> has(DEPLOYMENT)))
         {
             box.add(" ");
             box.add("Deployment Settings:");
             box.add(" ");
-            box.addAll(invoke(INTERNAL, () -> get(DEPLOYMENT))
+            box.addAll(invoke(INTERNAL_SCOPE, () -> get(DEPLOYMENT))
                 .asStringList()
                 .trim()
                 .indented(4));
@@ -995,51 +968,57 @@ public abstract class Application extends BaseComponent implements
 
     /**
      * <b>Not public API</b>
-     * <p>
-     * Invokes the given onXXX() method, setting inMethod to the given value and then setting it to NO_METHOD after the
-     * invokation
      *
-     * @param inMethod The identitiy of the method being invoked
-     * @param on The code to invoke
+     * <p>
+     * Invokes the given scoped code (typically an onXXX() method), pushing the given invocation scope onto the scope
+     * stack before the call and popping the scope off the stack after the call.
+     * </p>
+     *
+     * @param scope The identity of the scope being invoked
+     * @param code The scoped code to invoke
      */
-    protected <T> T invoke(InMethod inMethod, Code<T> on)
+    protected <T> T invoke(InvocationScope scope, Code<T> code)
     {
-        this.inMethod = inMethod;
+        this.scopeStack.push(scope);
         try
         {
-            return on.run();
+            return code.run();
         }
         finally
         {
-            this.inMethod = NO_METHOD;
+            invokedScopes.add(scope);
+            scopeStack.pop();
         }
     }
 
     /**
      * <b>Not public API</b>
-     * <p>
-     * Invokes the given onXXX() method, setting inMethod to the given value and then setting it to NO_METHOD after the
-     * invokation
      *
-     * @param inMethod The identitiy of the method being invoked
-     * @param on The code to invoke
+     * <p>
+     * Invokes the given scoped code (typically an onXXX() method), pushing the given invocation scope onto the scope
+     * stack before the call and popping the scope off the stack after the call.
+     * </p>
+     *
+     * @param scope The identity of the scope being invoked
+     * @param code The scoped code to invoke
      */
-    protected void invoke(InMethod inMethod, Runnable on)
+    protected void invoke(InvocationScope scope, Runnable code)
     {
-        this.inMethod = inMethod;
+        this.scopeStack.push(scope);
         try
         {
-            on.run();
+            code.run();
         }
         finally
         {
-            this.inMethod = NO_METHOD;
+            invokedScopes.add(scope);
+            scopeStack.pop();
         }
     }
 
     /**
-     * If a project is <i>not</i> passed to the constructor, then this method can be overridden to provide a
-     * {@link Project} dynamically.
+     * This method can be overridden to provide a {@link Project} instance dynamically, instead of calling
+     * {@link #addProject(Class)}.
      *
      * @return The {@link Project} for this application
      */
@@ -1052,6 +1031,13 @@ public abstract class Application extends BaseComponent implements
      * Called when projects should be added
      */
     protected void onAddProjects()
+    {
+    }
+
+    /**
+     * Called when the command line has been parsed
+     */
+    protected void onCommandLineParsed()
     {
     }
 
@@ -1177,7 +1163,7 @@ public abstract class Application extends BaseComponent implements
     @UmlExcludeMember
     private void configureLogging()
     {
-        var filter = invoke(INTERNAL, () -> get(QUIET))
+        var filter = invoke(INTERNAL_SCOPE, () -> get(QUIET))
             ? new MessagesWithSeverityOf(new Glitch().severity())
             : new AllMessages();
 
@@ -1189,18 +1175,42 @@ public abstract class Application extends BaseComponent implements
      */
     private boolean deploymentSpecified()
     {
-        return invoke(INTERNAL, () -> !ignoreDeploymentSwitch() && has(DEPLOYMENT));
+        return invoke(INTERNAL_SCOPE, () -> !ignoreDeploymentSwitch() && has(DEPLOYMENT));
     }
 
     /**
-     * Ensures that the caller is in one of the given methods. If not, fails with the given message.
+     * Ensures that the caller is in one of the given scopes, or the internal scope
      *
-     * @param methods The allowed methods
+     * @param scopes The allowed scopes
+     * @param methodName The calling method
      */
-    private void ensureInvoked(ObjectSet<InMethod> methods, String methodName)
+    private void ensureInvoked(ObjectSet<InvocationScope> scopes, String methodName)
     {
-        ensure(methods.with(INTERNAL).contains(inMethod), "Can only invoke $ in one of the following methods: $",
-            methodName, methods.without(INTERNAL));
+        ensure(scopes.contains(scopeStack.top()) || isInInternalScope(), "Can only invoke $ in one of the following methods: $",
+            methodName, scopes.without(INTERNAL_SCOPE));
+    }
+
+    /**
+     * Ensures that the given scope has already been invoked
+     *
+     * @param scope The scope that must already have been invoked
+     * @param methodName The calling method
+     */
+    private void ensureInvokedAfter(InvocationScope scope, String methodName)
+    {
+        ensure(isAfterScope(scope) || isInInternalScope(), "Can only invoke $ after $ has been invoked", methodName, scope);
+    }
+
+    /**
+     * Ensures that the caller has already been through the given scope, or is still in it.
+     *
+     * @param scope The scope that must already have been passed through or which the caller is still in
+     * @param methodName The calling method
+     */
+    private void ensureInvokedDuringOrAfter(InvocationScope scope, String methodName)
+    {
+        ensure(isAfterScope(scope) || (isInScope(scope) || isInInternalScope()),
+            "Can only invoke $ during or after $ has been invoked", methodName, scope);
     }
 
     private void initializeProject(IdentitySet<Project> uninitialized, Project project)
@@ -1226,7 +1236,7 @@ public abstract class Application extends BaseComponent implements
     {
         // Start with all projects uninitialized,
         var uninitialized = new IdentitySet<Project>();
-        var projects = invoke(INTERNAL, this::projects);
+        var projects = invoke(INTERNAL_SCOPE, this::projects);
         uninitialized.addAll(projects);
 
         // then for each project,
@@ -1259,5 +1269,45 @@ public abstract class Application extends BaseComponent implements
         parsers.addAll(switchParsers());
 
         return parsers;
+    }
+
+    /**
+     * True if the given scope has already been invoked
+     *
+     * @param scope The scope
+     * @return True if the scope has already been invoked
+     */
+    private boolean isAfterScope(InvocationScope scope)
+    {
+        return invokedScopes.contains(scope);
+    }
+
+    /**
+     * Returns true if we are in the internal scope
+     *
+     * @return True if the current scope is internal
+     */
+    private boolean isInInternalScope()
+    {
+        return isInScope(INTERNAL_SCOPE);
+    }
+
+    /**
+     * Returns true if the given scope is the current scope
+     *
+     * @param scope The scope
+     * @return True if the caller is in the given scope
+     */
+    private boolean isInScope(InvocationScope scope)
+    {
+        return scope() == scope;
+    }
+
+    /**
+     * Returns the current scope
+     */
+    private InvocationScope scope()
+    {
+        return this.scopeStack.top();
     }
 }

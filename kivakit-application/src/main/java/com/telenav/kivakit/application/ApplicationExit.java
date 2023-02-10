@@ -2,8 +2,8 @@ package com.telenav.kivakit.application;
 
 import com.telenav.kivakit.annotations.code.quality.TypeQuality;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.application.ExitCode.SUCCEEDED;
 
@@ -18,7 +18,7 @@ import static com.telenav.kivakit.application.ExitCode.SUCCEEDED;
 public class ApplicationExit
 {
     /** Successful exit */
-    public static final ApplicationExit SUCCESS = new ApplicationExit(SUCCEEDED);
+    public static final ApplicationExit EXIT_SUCCESS = new ApplicationExit(SUCCEEDED);
 
     /** This application's exit code */
     private final ExitCode code;
