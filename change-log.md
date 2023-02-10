@@ -1,6 +1,23 @@
 
 # KivaKit Change Log
 
+## Version 1.16.0 (2023.02.10) "transparent truck"
+
+## Fixes
+
+ - Added apiVersion() method to RestService 
+ - Added deploymentSpecified() check before displaying deployment settings
+ - Improved invocation tracking in Application
+
+## Features
+
+ - Added BaseCollection.containsAny()
+ - Added ReadOnlyList interface
+
+-----------------------------------------------------------------------------------------------------------------------
+
+# KivaKit Change Log
+
 ## Version 1.15.0 (2023.01.30) "transparent kangaroo"
 
 ## Features
