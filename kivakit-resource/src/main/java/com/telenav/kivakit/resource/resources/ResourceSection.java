@@ -101,6 +101,12 @@ public class ResourceSection extends BaseReadableResource
             + resource.identifier());
     }
 
+    @Override
+    public Time lastModified()
+    {
+        return resource().lastModified();
+    }
+
     /**
      * {@inheritDoc}
      */

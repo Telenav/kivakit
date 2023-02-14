@@ -55,7 +55,7 @@ import static com.telenav.kivakit.settings.SettingsStore.AccessMode.SAVE;
  * <ul>
  *     <li>{@link #add(SettingsObject)} - Adds the given object to the store's in-memory index (but not to any persistent storage)</li>
  *     <li>{@link #objects()} - The set of objects in this store. If the store is loadable, {@link #load()} is called before returning the set</li>
- *     <li>{@link #clear()} - Clears this store's in-memory index</li>
+ *     <li>{@link #clearRegistry()} - Clears this store's in-memory index</li>
  *     <li>{@link #iterator()} - Iterates through each settings {@link Object} in this store</li>
  *     <li>{@link #load()} - Lazy-loads objects from persistent storage by calling {@link #onLoad()} and then adds them to the in-memory index</li>
  *     <li>{@link #lookup(SettingsObjectIdentifier)} - Looks up the object for the given identifier in the store's index</li>
@@ -132,7 +132,7 @@ public abstract class BaseSettingsStore extends BaseRepeater implements
      * {@inheritDoc}
      */
     @Override
-    public synchronized void clear()
+    public synchronized void clearRegistry()
     {
         ensure(supports(CLEAR));
 
@@ -242,7 +242,7 @@ public abstract class BaseSettingsStore extends BaseRepeater implements
         if (!reloading)
         {
             reloading = true;
-            clear();
+            clearRegistry();
             load();
             reloading = false;
         }

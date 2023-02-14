@@ -173,7 +173,7 @@ public class Registry implements RegistryTrait, Named
     }
 
     @Override
-    public synchronized void clear()
+    public synchronized void clearRegistry()
     {
         registered.clear();
     }
