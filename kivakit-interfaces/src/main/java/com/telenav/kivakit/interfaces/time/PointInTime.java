@@ -4,8 +4,8 @@ import com.telenav.kivakit.annotations.code.quality.TypeQuality;
 
 import java.time.Instant;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
 
 /**
@@ -83,8 +83,8 @@ import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_N
              testing = TESTING_NOT_NEEDED,
              documentation = DOCUMENTED)
 public interface PointInTime<Time extends PointInTime<Time, Duration>, Duration extends LengthOfTime<Duration>> extends
-        Comparable<PointInTime<?, ?>>,
-        TimeMeasurement
+    Comparable<PointInTime<?, ?>>,
+    TimeMeasurement
 {
     /**
      * Returns a Java {@link Instant} for this time value
@@ -260,6 +260,16 @@ public interface PointInTime<Time extends PointInTime<Time, Duration>, Duration 
     default Time roundDown(Duration unit)
     {
         return newTime(nanoseconds().roundDown(unit.nanoseconds()));
+    }
+
+    /**
+     * Returns this time rounded down, so it is measured in seconds, without any fractions of a second
+     *
+     * @return This time in seconds
+     */
+    default Time roundDownToSeconds()
+    {
+        return newTime(nanoseconds().roundDownToSeconds());
     }
 
     /**

@@ -25,8 +25,8 @@ import static java.util.Objects.hash;
              testing = UNTESTED,
              documentation = DOCUMENTED)
 public class Nanoseconds implements
-        Comparable<Nanoseconds>,
-        Zeroable
+    Comparable<Nanoseconds>,
+    Zeroable
 {
     /** The number of nanoseconds in a second */
     private static final long NANOSECONDS_PER_SECOND = (long) 1E9;
@@ -82,8 +82,8 @@ public class Nanoseconds implements
     public static Nanoseconds nanoseconds(BigDecimal nanoseconds)
     {
         return new Nanoseconds(
-                (long) nanoseconds.divide(BigDecimal.valueOf(NANOSECONDS_PER_SECOND), RoundingMode.DOWN).doubleValue(),
-                nanoseconds.remainder(BigDecimal.valueOf(NANOSECONDS_PER_SECOND)).longValueExact());
+            (long) nanoseconds.divide(BigDecimal.valueOf(NANOSECONDS_PER_SECOND), RoundingMode.DOWN).doubleValue(),
+            nanoseconds.remainder(BigDecimal.valueOf(NANOSECONDS_PER_SECOND)).longValueExact());
     }
 
     /**
@@ -141,8 +141,8 @@ public class Nanoseconds implements
     public BigDecimal asBigDecimal()
     {
         return BigDecimal.valueOf(this.seconds)
-                .multiply(BigDecimal.valueOf(NANOSECONDS_PER_SECOND))
-                .add(BigDecimal.valueOf(this.nanoseconds));
+            .multiply(BigDecimal.valueOf(NANOSECONDS_PER_SECOND))
+            .add(BigDecimal.valueOf(this.nanoseconds));
     }
 
     /**
@@ -336,8 +336,18 @@ public class Nanoseconds implements
     public Nanoseconds roundDown(Nanoseconds unit)
     {
         return nanoseconds(asBigDecimal()
-                .divide(unit.asBigDecimal(), RoundingMode.DOWN)
-                .multiply(unit.asBigDecimal()));
+            .divide(unit.asBigDecimal(), RoundingMode.DOWN)
+            .multiply(unit.asBigDecimal()));
+    }
+
+    /**
+     * Returns this number of nanoseconds rounded down to the nearest second
+     *
+     * @return A copy of this object without any fractions of a second
+     */
+    public Nanoseconds roundDownToSeconds()
+    {
+        return new Nanoseconds(seconds, 0L);
     }
 
     /**
@@ -349,8 +359,8 @@ public class Nanoseconds implements
     public Nanoseconds roundUp(Nanoseconds unit)
     {
         return nanoseconds(asBigDecimal()
-                .divide(unit.asBigDecimal(), RoundingMode.UP)
-                .multiply(unit.asBigDecimal()));
+            .divide(unit.asBigDecimal(), RoundingMode.UP)
+            .multiply(unit.asBigDecimal()));
     }
 
     /**

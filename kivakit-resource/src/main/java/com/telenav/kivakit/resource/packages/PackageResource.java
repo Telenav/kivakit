@@ -206,7 +206,7 @@ public class PackageResource extends BaseReadableResource
     @Override
     public ResourceIdentifier identifier()
     {
-        return new ResourceIdentifier("classpath:" + packagePath() + "/" + fileName());
+        return new ResourceIdentifier(packagePath() + "/" + fileName());
     }
 
     /**

@@ -61,7 +61,7 @@ public class FrequencyTest extends CoreUnitTest
     public void testCycleTiming()
     {
         var now = now();
-        var cycle = EVERY_10_SECONDS.start(now);
+        var cycle = EVERY_10_SECONDS.startingAt(now);
         ensureWithin(seconds(10).asSeconds(), cycle.waitTimeBeforeNextCycle().asSeconds(), 1.0);
         ensureWithin(now.plus(seconds(10)).asSeconds(), cycle.next().asSeconds(), 1.0);
     }

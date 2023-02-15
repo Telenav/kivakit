@@ -211,7 +211,7 @@ public abstract class MessageAlarm implements Listener
         if (triggerCycle == null)
         {
             // create a frequency cycle object.
-            triggerCycle = maximumTriggerFrequency.start();
+            triggerCycle = maximumTriggerFrequency.startingAt();
         }
 
         // Return the next allowed trigger time

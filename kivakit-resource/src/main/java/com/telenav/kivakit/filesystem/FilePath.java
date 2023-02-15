@@ -336,6 +336,17 @@ public class FilePath extends ResourcePath
     }
 
     @Override
+    public URI asUri()
+    {
+        var uri = super.asUri();
+        if (!uri.isAbsolute())
+        {
+            return URI.create("file://" + uri);
+        }
+        return uri;
+    }
+
+    @Override
     public FilePath copy()
     {
         return new FilePath(this);

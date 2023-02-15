@@ -703,6 +703,12 @@ public class LocalTime extends Time
         return (LocalTime) super.roundDown(unit);
     }
 
+    @Override
+    public LocalTime roundDownToSeconds()
+    {
+        return (LocalTime) super.roundDownToSeconds();
+    }
+
     /**
      * Returns the start of the day (midnight) in local time
      */
