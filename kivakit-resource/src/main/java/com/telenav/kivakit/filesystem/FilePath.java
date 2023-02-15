@@ -19,7 +19,6 @@
 package com.telenav.kivakit.filesystem;
 
 import com.telenav.kivakit.annotations.code.quality.TypeQuality;
-import com.telenav.kivakit.core.collections.list.StringList;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.path.Path;
 import com.telenav.kivakit.core.path.StringPath;
@@ -27,10 +26,11 @@ import com.telenav.kivakit.interfaces.comparison.Matcher;
 import com.telenav.kivakit.resource.Extension;
 import com.telenav.kivakit.resource.FileName;
 import com.telenav.kivakit.resource.ResourcePath;
+import com.telenav.kivakit.resource.UriAuthority;
+import com.telenav.kivakit.resource.UriSchemes;
 import com.telenav.kivakit.resource.internal.lexakai.DiagramResourcePath;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 import java.net.URI;
 import java.util.ArrayList;
@@ -41,19 +41,13 @@ import java.util.regex.Pattern;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
-import static com.telenav.kivakit.core.collections.list.StringList.split;
-import static com.telenav.kivakit.core.collections.list.StringList.stringList;
-import static com.telenav.kivakit.core.ensure.Ensure.illegalState;
 import static com.telenav.kivakit.core.messaging.Listener.nullListener;
 import static com.telenav.kivakit.core.messaging.Listener.throwingListener;
 import static com.telenav.kivakit.core.os.OperatingSystem.operatingSystem;
 import static com.telenav.kivakit.core.string.Formatter.format;
-import static com.telenav.kivakit.core.string.Paths.pathTail;
-import static com.telenav.kivakit.core.string.Strings.ensureEndsWith;
-import static com.telenav.kivakit.core.string.Strings.isNullOrBlank;
 import static com.telenav.kivakit.core.string.Strip.stripLeading;
-import static com.telenav.kivakit.core.string.Strip.stripTrailing;
 import static com.telenav.kivakit.filesystem.Folders.currentFolder;
+import static com.telenav.kivakit.resource.UriSchemes.uriScheme;
 
 /**
  * An abstraction for a path on any kind of filesystem or file-related data source.
@@ -130,6 +124,7 @@ import static com.telenav.kivakit.filesystem.Folders.currentFolder;
  * <p><b>Functional</b></p>
  *
  * <ul>
+ *     <li>{@link #withAuthority(UriAuthority)}</li>
  *     <li>{@link #withChild(Path)}</li>
  *     <li>{@link #withChild(String)}</li>
  *     <li>{@link #withExtension(Extension)}</li>
@@ -139,14 +134,16 @@ import static com.telenav.kivakit.filesystem.Folders.currentFolder;
  *     <li>{@link #withTrailingSlash()}</li>
  *     <li>{@link #withRoot(String)}</li>
  *     <li>{@link #withScheme(String)}</li>
- *     <li>{@link #withSchemes(StringList)}</li>
+ *     <li>{@link #withSchemes(UriSchemes)}</li>
  *     <li>{@link #withSeparator(String)}</li>
+ *     <li>{@link #withoutAuthority()}</li>
  *     <li>{@link #withoutFirst()}</li>
  *     <li>{@link #withoutLast()}</li>
  *     <li>{@link #withoutOptionalPrefix(Path)}</li>
  *     <li>{@link #withoutOptionalSuffix(Path)}</li>
  *     <li>{@link #withoutPrefix(Path)}</li>
  *     <li>{@link #withoutRoot()}</li>
+ *     <li>{@link #withoutSchemes()}</li>
  *     <li>{@link #withoutSuffix(Path)}</li>
  *     <li>{@link #withoutTrailingSlash()}</li>
  * </ul>
@@ -160,54 +157,14 @@ import static com.telenav.kivakit.filesystem.Folders.currentFolder;
              documentation = DOCUMENTED)
 public class FilePath extends ResourcePath
 {
-    private static final Pattern SCHEME_PATTERN = Pattern.compile("([A-Za-z]+):");
+    private static final Pattern SCHEME_PATTERN = Pattern.compile("(?<scheme>[A-Za-z]+):(?<rest>.*)");
 
     /**
      * Returns file path for the given URI
      */
     public static FilePath filePath(@NotNull URI uri)
     {
-        // If there is a scheme,
-        var scheme = uri.getScheme();
-        if (!isNullOrBlank(scheme))
-        {
-            // the default root is slash,
-            var root = "/";
-            var path = uri.getPath();
-            var schemes = stringList(scheme);
-
-            // but if there is an authority (host:port),
-            var authority = authority(uri);
-            if (authority != null)
-            {
-                // the root is //host:port/.
-                root = "//" + authority + "/";
-            }
-
-            // Add to the list of schemes if there is more than one (java:file).
-            var subPart = uri.getSchemeSpecificPart();
-            List<String> elements;
-            if (isNullOrBlank(path))
-            {
-                var subPath = parseFilePath(throwingListener(), subPart);
-                schemes.addAll(subPath.schemes());
-                var subPathRoot = subPath.rootElement();
-                if (subPathRoot != null)
-                {
-                    root = subPathRoot;
-                }
-                elements = subPath.elements();
-            }
-            else
-            {
-                elements = split(stripLeading(uri.getPath(), "/"), "/");
-            }
-
-            // and create a new FilePath with the given scheme, root authority and elements.
-            return new FilePath(schemes, root, elements);
-        }
-
-        return simpleFilePath(uri);
+        return new FilePath(uri);
     }
 
     /**
@@ -215,7 +172,7 @@ public class FilePath extends ResourcePath
      */
     public static FilePath filePath(@NotNull java.io.File file)
     {
-        return filePath(file.toPath()).withoutFileScheme();
+        return filePath(file.toPath());
     }
 
     /**
@@ -223,7 +180,7 @@ public class FilePath extends ResourcePath
      */
     public static FilePath filePath(@NotNull java.nio.file.Path path)
     {
-        return filePath(path.toUri()).withoutFileScheme();
+        return filePath(path.toUri());
     }
 
     /**
@@ -241,7 +198,15 @@ public class FilePath extends ResourcePath
      */
     public static FilePath filePath(@NotNull StringPath path)
     {
-        return new FilePath(path.elements());
+        return new FilePath(path.rootElement(), path.elements());
+    }
+
+    /**
+     * Returns a file path for the given string path
+     */
+    public static FilePath filePath(@NotNull ResourcePath path)
+    {
+        return new FilePath(path.asUri(), path.schemes(), path.authority(), path.rootElement(), path.elements());
     }
 
     /**
@@ -254,50 +219,37 @@ public class FilePath extends ResourcePath
         return parseFilePath(throwingListener(), path, arguments);
     }
 
-    /**
-     * Returns a file path for the given string
-     */
     public static FilePath parseFilePath(@NotNull Listener listener,
                                          @NotNull String path,
                                          @NotNull Object... arguments)
     {
-        if (path.isBlank())
-        {
-            return emptyFilePath();
-        }
-
-        path = format(path, arguments);
-
-        var schemes = stringList();
-
-        var matcher = SCHEME_PATTERN.matcher(path);
-        while (matcher.find())
-        {
-            schemes.add(matcher.group(1));
-            path = pathTail(path, ":");
-        }
-
-        String root = null;
-        if (path.startsWith("/"))
-        {
-            root = "/";
-            path = path.substring(1);
-        }
-
-        var elements = split(path, "/");
-        if (elements.isBlank())
-        {
-            elements = stringList();
-        }
-        return filePath(stringPath(elements))
-            .withSchemes(schemes)
-            .withRoot(root)
-            .withoutFileScheme();
+        return filePath(newResourcePath(listener, format(path, arguments), null));
     }
 
-    /**
-     * Copy constructor
-     */
+    public FilePath(String pathRoot, @NotNull List<String> pathElements)
+    {
+        super(pathRoot, pathElements);
+    }
+
+    public FilePath(URI uri,
+                    UriSchemes schemes,
+                    UriAuthority authority,
+                    String pathRoot,
+                    @NotNull List<String> pathElements)
+    {
+        super(uri, schemes, authority, pathRoot, pathElements);
+    }
+
+    public FilePath(@NotNull ResourcePath that)
+    {
+        super(that);
+    }
+
+    public FilePath(URI uri)
+    {
+        super(uri);
+    }
+
     protected FilePath(@NotNull FilePath that)
     {
         super(that);
@@ -306,25 +258,19 @@ public class FilePath extends ResourcePath
     /**
      * Construct with scheme
      */
-    protected FilePath(StringList schemes,
+    protected FilePath(UriSchemes schemes,
                        String root,
                        @NotNull List<String> elements)
     {
         super(schemes, root, elements);
     }
 
-    /**
-     * Construct with scheme
-     */
     protected FilePath(@NotNull List<String> elements)
     {
         super(null, null, elements);
     }
 
-    /**
-     * Construct with scheme
-     */
-    protected FilePath(StringList schemes,
+    protected FilePath(UriSchemes schemes,
                        @NotNull StringPath path)
     {
         super(schemes, path.rootElement(), path.elements());
@@ -346,7 +292,7 @@ public class FilePath extends ResourcePath
             return this;
         }
 
-        return filePath(asJavaPath().toAbsolutePath());
+        return filePath(asJavaPath().toAbsolutePath().toString());
     }
 
     /**
@@ -356,15 +302,6 @@ public class FilePath extends ResourcePath
     public File asFile()
     {
         return File.file(throwingListener(), this);
-    }
-
-    /**
-     * Returns this filepath as a string
-     */
-    @Override
-    public String asString()
-    {
-        return join();
     }
 
     /**
@@ -399,21 +336,9 @@ public class FilePath extends ResourcePath
     }
 
     @Override
-    public URI asUri()
+    public FilePath copy()
     {
-        try
-        {
-            var path = this;
-            if (!path.hasScheme())
-            {
-                path = path.withScheme("file");
-            }
-            return new URI(ensureEndsWith(path.toString(), "/"));
-        }
-        catch (Exception e)
-        {
-            return illegalState(e, "Cannot convert to URI: $", this);
-        }
+        return new FilePath(this);
     }
 
     /**
@@ -437,16 +362,6 @@ public class FilePath extends ResourcePath
     public boolean hasExtension(@NotNull Extension extension)
     {
         return extension.ends(this);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public boolean isAbsolute()
-    {
-        // A FilePath with a scheme is always absolute
-        return hasScheme() || super.isAbsolute();
     }
 
     /**
@@ -506,6 +421,12 @@ public class FilePath extends ResourcePath
         return (FilePath) super.parent();
     }
 
+    @Override
+    public FilePath relativeTo(@NotNull ResourcePath path)
+    {
+        return (FilePath) super.relativeTo(path);
+    }
+
     /**
      * {@inheritDoc}
      */
@@ -521,7 +442,7 @@ public class FilePath extends ResourcePath
     @Override
     public String separator()
     {
-        if (hasScheme() && !schemes().contains("file"))
+        if (!isFile())
         {
             return "/";
         }
@@ -538,12 +459,6 @@ public class FilePath extends ResourcePath
         return (FilePath) super.subpath(start, end);
     }
 
-    @Override
-    public String toString()
-    {
-        return join();
-    }
-
     /**
      * {@inheritDoc}
      */
@@ -551,6 +466,12 @@ public class FilePath extends ResourcePath
     public FilePath transformed(@NotNull Function<String, String> consumer)
     {
         return (FilePath) super.transformed(consumer);
+    }
+
+    @Override
+    public FilePath withAuthority(@NotNull UriAuthority authority)
+    {
+        return (FilePath) super.withAuthority(authority);
     }
 
     /**
@@ -595,7 +516,7 @@ public class FilePath extends ResourcePath
 
     public FilePath withPrefix(@NotNull String prefix)
     {
-        return parseFilePath(nullListener(), prefix + this);
+        return parseFilePath(throwingListener(), prefix + this);
     }
 
     /**
@@ -609,11 +530,11 @@ public class FilePath extends ResourcePath
 
     public FilePath withScheme(@NotNull String scheme)
     {
-        return withSchemes(stringList(scheme));
+        return withSchemes(uriScheme(scheme));
     }
 
     @Override
-    public FilePath withSchemes(@NotNull StringList scheme)
+    public FilePath withSchemes(@NotNull UriSchemes scheme)
     {
         return (FilePath) super.withSchemes(scheme);
     }
@@ -639,12 +560,18 @@ public class FilePath extends ResourcePath
         return this;
     }
 
+    @Override
+    public FilePath withoutAuthority()
+    {
+        return (FilePath) super.withoutAuthority();
+    }
+
     /**
      * Returns this path without file: scheme if that is the only scheme
      */
     public FilePath withoutFileScheme()
     {
-        if (schemes().equals(stringList("file")))
+        if (isFile())
         {
             return withoutSchemes();
         }
@@ -738,74 +665,5 @@ public class FilePath extends ResourcePath
             return first(size() - 1);
         }
         return this;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    protected FilePath onCopy(String root,
-                              @NotNull List<String> elements)
-    {
-        return new FilePath(schemes(), root, elements);
-    }
-
-    @Nullable
-    private static String authority(@NotNull URI uri)
-    {
-        // Get the host and port of the URI
-        var host = uri.getHost();
-        var port = uri.getPort();
-
-        // and if there is a host,
-        String authority = null;
-        if (!isNullOrBlank(host))
-        {
-            // add that to the root,
-            authority = host;
-            if (port > 0)
-            {
-                // and append the port.
-                authority += ":" + port;
-            }
-        }
-
-        // If there is an authority, make it a root element.
-        return authority;
-    }
-
-    @NotNull
-    private static FilePath emptyFilePath()
-    {
-        return new FilePath(new ArrayList<>());
-    }
-
-    @NotNull
-    private static FilePath simpleFilePath(@NotNull URI uri)
-    {
-        // There's no scheme, so get the URI's simple path
-        var path = uri.getPath();
-
-        // and if it starts with a slash,
-        String root = null;
-        if (path.startsWith("/"))
-        {
-            // then the root is "/",
-            root = "/";
-
-            // and we strip and leading or trailing slashes from the path
-            path = stripLeading(path, "/");
-            path = stripTrailing(path, "/");
-        }
-
-        // and if the path is not empty,
-        var pathElements = new StringList();
-        if (!isNullOrBlank(path))
-        {
-            // we split the path into elements.
-            pathElements = split(path, "/");
-        }
-
-        return new FilePath(new StringList(), root, pathElements);
     }
 }

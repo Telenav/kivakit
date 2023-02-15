@@ -29,7 +29,6 @@ import org.jetbrains.annotations.NotNull;
 import java.net.URL;
 import java.nio.file.Files;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 import java.util.function.Function;
 import java.util.zip.ZipEntry;
@@ -127,7 +126,7 @@ public final class PackageReference extends StringPath
     public static PackageReference packageReference(Class<?> type)
     {
         return packageReference(type, parseStringPath(throwingListener(), type.getName(), null, "\\.")
-                .withoutLast());
+            .withoutLast());
     }
 
     /**
@@ -190,6 +189,12 @@ public final class PackageReference extends StringPath
         return that.startsWith(this);
     }
 
+    @Override
+    public StringPath copy()
+    {
+        return new PackageReference(this);
+    }
+
     /**
      * Returns a list of sub packages under this package from the directories in classpath
      */
@@ -215,7 +220,7 @@ public final class PackageReference extends StringPath
                         try (var list = Files.list(directory))
                         {
                             list.filter(Files::isDirectory)
-                                    .forEach(path -> packages.add(withChild(path.getFileName().toString())));
+                                .forEach(path -> packages.add(withChild(path.getFileName().toString())));
                         }
                     }
                 }
@@ -320,8 +325,8 @@ public final class PackageReference extends StringPath
     public Class<?> packageType()
     {
         return packageType == null
-                ? getClass()
-                : packageType;
+            ? getClass()
+            : packageType;
     }
 
     /**
@@ -488,15 +493,6 @@ public final class PackageReference extends StringPath
     public PackageReference withoutSuffix(Path<String> suffix)
     {
         return (PackageReference) super.withoutSuffix(suffix);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    protected Path<String> onCopy(String root, List<String> elements)
-    {
-        return new PackageReference(packageType, stringPath(root, elements));
     }
 
     @NotNull

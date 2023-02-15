@@ -90,7 +90,8 @@ import static com.telenav.kivakit.core.string.Strings.notNull;
              documentation = DOCUMENTED)
 public class StringPath extends Path<String>
 {
-    private static final Map<String, Pattern> patterns = new HashMap<>();
+    /** Cache of compiled root patterns */
+    private static final Map<String, Pattern> rootPatterns = new HashMap<>();
 
     /**
      * Returns a string path with no elements
@@ -122,7 +123,7 @@ public class StringPath extends Path<String>
     {
         if (rootPattern != null)
         {
-            var matcher = pattern(rootPattern).matcher(path);
+            var matcher = rootPattern(rootPattern).matcher(path);
             if (matcher.lookingAt())
             {
                 var tail = matcher.group("path");
@@ -250,8 +251,8 @@ public class StringPath extends Path<String>
 
             // While the contracted length is too long,
             while (before.join().length()
-                    + after.join().length()
-                    + ellipsis.length() + 2 > maximumLength)
+                + after.join().length()
+                + ellipsis.length() + 2 > maximumLength)
             {
                 // remove the shortest path element.
                 if (before.size() < after.size())
@@ -264,9 +265,9 @@ public class StringPath extends Path<String>
                 }
             }
             return before
-                    .withChild(ellipsis)
-                    .withChild(after)
-                    .join();
+                .withChild(ellipsis)
+                .withChild(after)
+                .join();
         }
         else
         {
@@ -303,10 +304,10 @@ public class StringPath extends Path<String>
     public String asString(@NotNull Format format)
     {
         return switch (format)
-                {
-                    case FILESYSTEM -> join(File.separator);
-                    default -> join();
-                };
+            {
+                case FILESYSTEM -> join(File.separator);
+                default -> join();
+            };
     }
 
     /**
@@ -315,7 +316,7 @@ public class StringPath extends Path<String>
     @Override
     public StringPath copy()
     {
-        return (StringPath) super.copy();
+        return new StringPath(this);
     }
 
     /**
@@ -557,22 +558,13 @@ public class StringPath extends Path<String>
         return (StringPath) super.withoutSuffix(suffix);
     }
 
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    protected Path<String> onCopy(String root, List<String> elements)
+    private static Pattern rootPattern(String rootPattern)
     {
-        return new StringPath(root, elements);
-    }
-
-    private static Pattern pattern(String rootPattern)
-    {
-        var pattern = patterns.get(rootPattern);
+        var pattern = rootPatterns.get(rootPattern);
         if (pattern == null)
         {
             pattern = Pattern.compile("(?<root>" + rootPattern + ")(?<path>.*)");
-            patterns.put(rootPattern, pattern);
+            rootPatterns.put(rootPattern, pattern);
         }
         return pattern;
     }

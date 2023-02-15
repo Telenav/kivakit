@@ -37,10 +37,9 @@ import java.util.function.Function;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
-import static com.telenav.kivakit.core.messaging.Listener.throwingListener;
 import static com.telenav.kivakit.core.time.Time.now;
 import static com.telenav.kivakit.core.value.count.Bytes.bytes;
-import static com.telenav.kivakit.resource.ResourcePath.parseUnixResourcePath;
+import static com.telenav.kivakit.resource.ResourcePath.resourcePath;
 import static java.lang.Integer.toHexString;
 
 /**
@@ -71,8 +70,7 @@ public class StringResource extends BaseReadableResource
      */
     public StringResource(@NotNull String text)
     {
-        this(parseUnixResourcePath(throwingListener(),
-            "/objects/string/" + toHexString(text.hashCode())), text);
+        this(resourcePath("object://" + text.getClass().getSimpleName() + "/" + toHexString(text.hashCode())), text);
     }
 
     /**

@@ -148,9 +148,9 @@ import static com.telenav.kivakit.resource.serialization.ObjectMetadata.METADATA
              testing = UNTESTED,
              documentation = DOCUMENTED)
 public final class ZipArchive extends BaseRepeater implements
-        Iterable<ZipEntry>,
-        Closeable,
-        ByteSized
+    Iterable<ZipEntry>,
+    Closeable,
+    ByteSized
 {
     /**
      * Returns true if the resource is a zip archive
@@ -302,7 +302,7 @@ public final class ZipArchive extends BaseRepeater implements
         var path = unchecked(() -> filesystem.getPath(pathname)).orNull();
         if (path != null)
         {
-            return new ZipEntry(filesystem, path);
+            return new ZipEntry(this, filesystem, path);
         }
         warning("Couldn't find zip entry '$'", pathname);
         return null;
@@ -325,9 +325,9 @@ public final class ZipArchive extends BaseRepeater implements
     {
         var files = unchecked(() -> Files.walk(filesystem.getPath("/"))).orNull();
         return files == null ? null : files
-                .filter(path -> !Files.isDirectory(path))
-                .map(path -> new ZipEntry(filesystem, path))
-                .iterator();
+            .filter(path -> !Files.isDirectory(path))
+            .map(path -> new ZipEntry(this, filesystem, path))
+            .iterator();
     }
 
     /**
@@ -394,8 +394,8 @@ public final class ZipArchive extends BaseRepeater implements
             try
             {
                 writer.writeObject(new ProgressiveOutputStream(output, writer.progressReporter()),
-                        stringPath(entryName), new SerializableObject<>(object), METADATA_OBJECT_TYPE,
-                        METADATA_OBJECT_VERSION);
+                    stringPath(entryName), new SerializableObject<>(object), METADATA_OBJECT_TYPE,
+                    METADATA_OBJECT_VERSION);
             }
             finally
             {

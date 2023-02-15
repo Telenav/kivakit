@@ -28,6 +28,8 @@ import com.telenav.kivakit.filesystem.FilePath;
 import com.telenav.kivakit.network.core.internal.lexakai.DiagramNetworkLocation;
 import com.telenav.kivakit.resource.Extension;
 import com.telenav.kivakit.resource.FileName;
+import com.telenav.kivakit.resource.UriAuthority;
+import com.telenav.kivakit.resource.UriSchemes;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import org.jetbrains.annotations.NotNull;
 
@@ -40,8 +42,8 @@ import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMEN
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
 import static com.telenav.kivakit.commandline.SwitchParser.switchParser;
-import static com.telenav.kivakit.core.collections.list.StringList.stringList;
 import static com.telenav.kivakit.core.messaging.Listener.throwingListener;
+import static com.telenav.kivakit.resource.UriSchemes.uriScheme;
 
 /**
  * An abstraction for network paths.
@@ -194,7 +196,7 @@ public class NetworkPath extends FilePath
 
     protected NetworkPath(Port port, String root, List<String> elements)
     {
-        super(stringList(port.protocol().name()), root, elements);
+        super(uriScheme(port.protocol().name()), root, elements);
         this.port = port;
     }
 
@@ -236,6 +238,12 @@ public class NetworkPath extends FilePath
         {
             throw new IllegalStateException("Unable to convert " + this + " to a URI", e);
         }
+    }
+
+    @Override
+    public NetworkPath copy()
+    {
+        return new NetworkPath(this);
     }
 
     /**
@@ -301,6 +309,12 @@ public class NetworkPath extends FilePath
         return (NetworkPath) super.transformed(consumer);
     }
 
+    @Override
+    public FilePath withAuthority(@NotNull UriAuthority authority)
+    {
+        return this;
+    }
+
     /**
      * {@inheritDoc}
      */
@@ -355,6 +369,18 @@ public class NetworkPath extends FilePath
         return (NetworkPath) super.withRoot(root);
     }
 
+    @Override
+    public FilePath withScheme(@NotNull String scheme)
+    {
+        return this;
+    }
+
+    @Override
+    public FilePath withSchemes(@NotNull UriSchemes scheme)
+    {
+        return this;
+    }
+
     /**
      * {@inheritDoc}
      */
@@ -362,6 +388,18 @@ public class NetworkPath extends FilePath
     public NetworkPath withSeparator(@NotNull String separator)
     {
         return (NetworkPath) super.withSeparator(separator);
+    }
+
+    @Override
+    public FilePath withoutAuthority()
+    {
+        return this;
+    }
+
+    @Override
+    public FilePath withoutFileScheme()
+    {
+        return this;
     }
 
     /**
@@ -434,14 +472,5 @@ public class NetworkPath extends FilePath
     public NetworkPath withoutSuffix(@NotNull Path<String> suffix)
     {
         return (NetworkPath) super.withoutSuffix(suffix);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    protected NetworkPath onCopy(@NotNull String root, @NotNull List<String> elements)
-    {
-        return new NetworkPath(port(), root, elements);
     }
 }

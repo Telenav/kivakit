@@ -11,7 +11,7 @@ public class KivaKitUtcTimeConverterTest extends CoreUnitTest
     {
         // yyyy.MM.dd_h.mma
         var converter = new KivaKitUtcTimeConverter();
-        var input = "2023.01.19_6.07AM";
+        var input = "2023.01.19_06.07AM";
         var time = converter.convert(input);
         ensureEqual(converter.unconvert(time), input);
     }

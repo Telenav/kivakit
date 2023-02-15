@@ -1,14 +1,18 @@
 package com.telenav.kivakit.core.value.count;
 
 import com.telenav.kivakit.annotations.code.quality.TypeQuality;
+import com.telenav.kivakit.core.collections.iteration.BaseIterable;
 import com.telenav.kivakit.core.language.primitive.Ints;
 import com.telenav.kivakit.core.value.level.Percent;
+import com.telenav.kivakit.interfaces.collection.NextIterator;
 import com.telenav.kivakit.interfaces.numeric.Numeric;
 import com.telenav.kivakit.interfaces.value.DoubleValued;
 import com.telenav.kivakit.interfaces.value.FormattedLongValued;
 import com.telenav.kivakit.interfaces.value.LongValued;
 import com.telenav.kivakit.interfaces.value.Source;
+import org.jetbrains.annotations.NotNull;
 
+import java.util.Iterator;
 import java.util.function.Consumer;
 
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
@@ -186,12 +190,13 @@ import static java.lang.Math.min;
              testing = UNTESTED,
              documentation = DOCUMENTED)
 public abstract class BaseCount<SubClass extends BaseCount<SubClass>> implements
-        FormattedLongValued,
-        Numeric<SubClass>,
-        Countable,
-        Comparable<Countable>,
-        Source<Long>,
-        DoubleValued
+    FormattedLongValued,
+    Numeric<SubClass>,
+    Countable,
+    Comparable<Countable>,
+    Source<Long>,
+    Iterable<Long>,
+    DoubleValued
 {
     /** The underlying primitive cardinal number */
     private final long count;
@@ -471,6 +476,32 @@ public abstract class BaseCount<SubClass extends BaseCount<SubClass>> implements
         return Numeric.super.incremented();
     }
 
+    @NotNull
+    public Iterable<Integer> ints()
+    {
+        return new BaseIterable<>()
+        {
+            @Override
+            protected NextIterator<Integer> newNextIterator()
+            {
+                return new NextIterator<>()
+                {
+                    int at = 0;
+
+                    @Override
+                    public Integer next()
+                    {
+                        if (at < asInt())
+                        {
+                            return at++;
+                        }
+                        return null;
+                    }
+                };
+            }
+        };
+    }
+
     /**
      * Returns true if this count is between the given minimum and exclusive maximum
      */
@@ -566,6 +597,13 @@ public abstract class BaseCount<SubClass extends BaseCount<SubClass>> implements
         return DoubleValued.super.isZero();
     }
 
+    @NotNull
+    @Override
+    public Iterator<Long> iterator()
+    {
+        return longs().iterator();
+    }
+
     /**
      * {@inheritDoc}
      */
@@ -573,6 +611,32 @@ public abstract class BaseCount<SubClass extends BaseCount<SubClass>> implements
     public long longValue()
     {
         return count;
+    }
+
+    @NotNull
+    public Iterable<Long> longs()
+    {
+        return new BaseIterable<>()
+        {
+            @Override
+            protected NextIterator<Long> newNextIterator()
+            {
+                return new NextIterator<>()
+                {
+                    long at = 0;
+
+                    @Override
+                    public Long next()
+                    {
+                        if (at < asLong())
+                        {
+                            return at++;
+                        }
+                        return null;
+                    }
+                };
+            }
+        };
     }
 
     /**
@@ -584,6 +648,15 @@ public abstract class BaseCount<SubClass extends BaseCount<SubClass>> implements
         {
             code.run();
         }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public final SubClass map(Long count)
+    {
+        return onNewInstance(count.intValue());
     }
 
     /**
@@ -706,15 +779,6 @@ public abstract class BaseCount<SubClass extends BaseCount<SubClass>> implements
     public float[] newFloatArray()
     {
         return new float[asInt()];
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public final SubClass map(Long count)
-    {
-        return onNewInstance(count.intValue());
     }
 
     /**
@@ -847,8 +911,8 @@ public abstract class BaseCount<SubClass extends BaseCount<SubClass>> implements
     public SubClass powerOfTenCeiling(int digits)
     {
         return inRangeExclusive((asLong() + Ints.intPowerOfTen(digits))
-                / Ints.intPowerOfTen(digits)
-                * Ints.intPowerOfTen(digits));
+            / Ints.intPowerOfTen(digits)
+            * Ints.intPowerOfTen(digits));
     }
 
     /**

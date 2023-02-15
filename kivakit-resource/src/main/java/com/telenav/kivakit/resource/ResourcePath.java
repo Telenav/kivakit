@@ -20,7 +20,6 @@ package com.telenav.kivakit.resource;
 
 import com.telenav.kivakit.annotations.code.quality.TypeQuality;
 import com.telenav.kivakit.commandline.SwitchParser;
-import com.telenav.kivakit.core.collections.list.StringList;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.path.Path;
 import com.telenav.kivakit.core.path.StringPath;
@@ -32,6 +31,7 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 import org.jetbrains.annotations.NotNull;
 
 import java.net.URI;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Function;
 
@@ -41,16 +41,30 @@ import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.commandline.SwitchParser.switchParser;
 import static com.telenav.kivakit.core.collections.list.StringList.split;
 import static com.telenav.kivakit.core.collections.list.StringList.stringList;
-import static com.telenav.kivakit.core.messaging.Listener.consoleListener;
+import static com.telenav.kivakit.core.ensure.Ensure.ensure;
 import static com.telenav.kivakit.core.messaging.Listener.throwingListener;
-import static com.telenav.kivakit.core.string.Strip.stripLeading;
 import static com.telenav.kivakit.filesystem.File.parseFile;
-import static com.telenav.kivakit.filesystem.FilePath.parseFilePath;
+import static com.telenav.kivakit.filesystem.FilePath.filePath;
+import static com.telenav.kivakit.filesystem.Folders.userHome;
 import static com.telenav.kivakit.resource.FileName.parseFileName;
+import static com.telenav.kivakit.resource.UriAuthority.uriAuthority;
+import static com.telenav.kivakit.resource.UriSchemes.uriSchemes;
 
 /**
- * A path to a resource of any kind. By default, the separator character for a resource is forward slash. But in the
- * case of some file paths this may be overridden. For example, in {@link FilePath}.
+ * A path to a resource of any kind, based on URI syntax:
+ *
+ * <pre>[scheme ":"]* ["//" authority]? [root] [path] ["?" query]? ["#" fragment]?</pre>
+ *
+ * <p>
+ * Note that separating out the [root] part of paths enables non-URI paths like <i>C:\Windows</i>, where the C:\ part is
+ * the path root.
+ * </p>
+ *
+ * <p>
+ * By default, the separator character for a resource is forward slash. But in the case of some file paths this may be
+ * overridden. For example, in {@link FilePath}.
+ * </p>
+ *
  * <p>
  * This class contains numerous methods which down-cast the return value of the superclass to make use easier for
  * clients. Methods that are unique to this class mainly have to do with filenames and file paths:
@@ -66,14 +80,16 @@ import static com.telenav.kivakit.resource.FileName.parseFileName;
  * <p><b>Parsing</b></p>
  *
  * <ul>
- *     <li>{@link #parseResourcePath(Listener listener, String)} - The given string as a resource path</li>
- *     <li>{@link #parseUnixResourcePath(Listener listener, String)} - The given string as a slash-separated UNIX resource path</li>
+ *     <li>{@link #parseResourcePath(Listener listener, String)}</li>
+ *     <li>{@link #parseResourcePath(Listener, URI)}</li>
  * </ul>
  *
  * <p><b>Factories</b></p>
  *
  * <ul>
- *     <li>{@link #resourcePath(StringPath)} - The given string path as a resource path</li>
+ *     <li>{@link #resourcePath(String)}</li>
+ *     <li>{@link #resourcePath(StringPath)}</li>
+ *     <li>{@link #resourcePath(URI)}</li>
  * </ul>
  *
  * @author jonathanl (shibo)
@@ -88,32 +104,24 @@ public class ResourcePath extends StringPath implements
     UriIdentified,
     ResourcePathed
 {
-
-    /**
-     * Returns a resource path for the given string
-     */
-    public static ResourcePath parseResourcePath(@NotNull Listener listener,
-                                                 @NotNull String path)
+    @NotNull
+    protected static ResourcePath newResourcePath(Listener listener, @NotNull String string, URI uri)
     {
-        return parseFilePath(listener, path);
-    }
-
-    /**
-     * Returns a resource path for the given URI
-     */
-    public static ResourcePath parseResourcePath(@NotNull Listener listener,
-                                                 @NotNull URI uri)
-    {
-        var schemes = stringList();
-        schemes.add(uri.getScheme());
-        var path = uri.getSchemeSpecificPart();
-        if (path.startsWith("file:"))
+        var schemes = uriSchemes(string);
+        if (uri == null)
         {
-            path = stripLeading(path, "file:");
-            schemes.add("file");
+            uri = URI.create(string);
+        }
+        var authority = uriAuthority(uri);
+        var prefix = schemes.toString() + authority;
+        var path = string.substring(prefix.length());
+
+        if (path.startsWith("///"))
+        {
+            path = path.substring(2);
         }
 
-        var root = (String) null;
+        String root = null;
         if (path.startsWith("/"))
         {
             root = "/";
@@ -121,34 +129,42 @@ public class ResourcePath extends StringPath implements
         }
 
         var elements = split(path, "/");
-        if (elements.isBlank())
-        {
-            elements = stringList();
-        }
-        return new ResourcePath(schemes, root, elements);
+
+        return new ResourcePath(uri, schemes, authority, root, elements);
     }
 
     /**
-     * Returns a UNIX-style resource path for the given string
+     * Returns a resource path for the given URI
+     *
+     * @param listener The listener to broadcast any problems to
+     * @param uri The resource {@link URI}
      */
-    public static ResourcePath parseUnixResourcePath(@NotNull Listener listener,
-                                                     @NotNull String path)
+    public static ResourcePath parseResourcePath(@NotNull Listener listener,
+                                                 @NotNull URI uri)
     {
-        String root = null;
-        if (path.startsWith("/"))
-        {
-            root = "/";
-            path = stripLeading(path, "/");
-        }
-        return new ResourcePath(new StringList(), root, split(path, "/"));
+        return newResourcePath(listener, uri.toString(), uri);
     }
 
     /**
      * Returns a resource path for the given string
+     *
+     * @param listener The listener to broadcast any problems to
+     * @param path The path to parse
      */
-    public static ResourcePath resourcePath(@NotNull String path)
+    public static ResourcePath parseResourcePath(@NotNull Listener listener,
+                                                 @NotNull String path)
     {
-        return parseFilePath(throwingListener(), path);
+        return newResourcePath(listener, path, null);
+    }
+
+    /**
+     * Returns a resource path for the given URI
+     *
+     * @throws RuntimeException Should not be thrown except in the case of an internal error
+     */
+    public static ResourcePath resourcePath(@NotNull URI uri)
+    {
+        return parseResourcePath(throwingListener(), uri);
     }
 
     /**
@@ -156,7 +172,18 @@ public class ResourcePath extends StringPath implements
      */
     public static ResourcePath resourcePath(@NotNull StringPath path)
     {
-        return new ResourcePath(new StringList(), path.rootElement(), path.elements());
+        return new ResourcePath(null, uriSchemes(), uriAuthority(), path.rootElement(), path.elements());
+    }
+
+    /**
+     * Returns a resource path for the given URI
+     *
+     * @param path The path to parse
+     * @throws RuntimeException Thrown if the path cannot be parsed
+     */
+    public static ResourcePath resourcePath(@NotNull String path)
+    {
+        return parseResourcePath(throwingListener(), path);
     }
 
     public static SwitchParser.Builder<ResourcePath> resourcePathSwitchParser(@NotNull Listener listener,
@@ -169,51 +196,94 @@ public class ResourcePath extends StringPath implements
             .description(description);
     }
 
+    /** The {@link URI} schemes for this resource path, if any */
+    private UriSchemes schemes;
+
+    /** The {@link URI} authority information for this resource path, if any */
+    private UriAuthority authority;
+
+    /** Any {@link URI} for this resource path */
+    private final URI uri;
+
     /**
-     * Returns a UNIX-style resource path for the given string
+     * Creates a resource path for the given URI
+     *
+     * @param uri The URI
      */
-    public static ResourcePath unixResourcePath(@NotNull String path)
+    protected ResourcePath(URI uri)
     {
-        return parseUnixResourcePath(throwingListener(), path);
+        this(newResourcePath(throwingListener(), uri.toString(), uri));
     }
 
-    /** The {@link URI} schemes for this resource path */
-    private StringList schemes;
-
     /**
-     * @param schemes The list of schemes for this path
-     * @param root The root element
-     * @param elements The path elements
+     * Creates a resource path with the given {@link UriSchemes}, {@link UriAuthority}, path root and path elements.
+     *
+     * @param uri The URI for this resource path, if any
+     * @param schemes The list of schemes for this path, such as http: or jar:file:)
+     * @param authority The authority component of a {@link URI}, such as "kivakit.org:8080"
+     * @param pathRoot The root element, if any, such as "C:\" or "/"
+     * @param pathElements The path elements
      */
-    protected ResourcePath(StringList schemes, String root, @NotNull List<String> elements)
+    protected ResourcePath(URI uri,
+                           UriSchemes schemes,
+                           UriAuthority authority,
+                           String pathRoot,
+                           @NotNull List<String> pathElements)
     {
-        super(root, elements);
+        super(pathRoot, normalize(pathElements));
 
-        if (schemes != null)
+        if (!pathElements.isEmpty() && pathElements.get(0).equals("~"))
         {
-            this.schemes = schemes.copy();
+            rootElement("/");
         }
-        else
-        {
-            this.schemes = new StringList();
-        }
+
+        this.schemes = schemes == null ? uriSchemes() : schemes.copy();
+        this.authority = authority == null ? uriAuthority() : authority;
+        this.uri = uri;
     }
 
     /**
      * Copy constructor
+     *
+     * @param that The path to copy
      */
     protected ResourcePath(@NotNull ResourcePath that)
     {
         super(that);
+
         schemes = that.schemes.copy();
+        authority = that.authority;
+        uri = null;
     }
 
-    protected ResourcePath(@NotNull StringList schemes, @NotNull List<String> elements)
+    /**
+     * Convenience constructor
+     *
+     * @param schemes The list of schemes for this path, such as http: or jar:file:
+     * @param pathRoot The root element, if any, such as "C:\" or "/"
+     * @param pathElements The path elements
+     */
+    protected ResourcePath(UriSchemes schemes, String pathRoot, @NotNull List<String> pathElements)
     {
-        super(elements);
-        this.schemes = schemes.copy();
+        this(null, schemes, null, pathRoot, pathElements);
     }
 
+    /**
+     * Convenience constructor
+     *
+     * @param pathRoot The root element, if any, such as "C:\" or "/"
+     * @param pathElements The path elements
+     */
+    protected ResourcePath(String pathRoot, @NotNull List<String> pathElements)
+    {
+        this(null, null, null, pathRoot, pathElements);
+    }
+
+    /**
+     * Returns this path as an absolute path.
+     *
+     * @return The absolute path for this path
+     */
     public ResourcePath asAbsolute()
     {
         return this;
@@ -224,7 +294,8 @@ public class ResourcePath extends StringPath implements
      */
     public File asFile()
     {
-        return parseFile(consoleListener(), asString());
+        ensure(isFile());
+        return parseFile(throwingListener(), asString());
     }
 
     /**
@@ -232,13 +303,49 @@ public class ResourcePath extends StringPath implements
      */
     public FilePath asFilePath()
     {
-        return parseFilePath(consoleListener(), asString());
+        return filePath(this);
     }
 
+    /**
+     * Returns this resource path as a Java file
+     */
     @Override
     public java.io.File asJavaFile()
     {
-        return new java.io.File(asString());
+        return asFile().asJavaFile();
+    }
+
+    @Override
+    public String asString()
+    {
+        return schemes().toString() + authority() + join();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public URI asUri()
+    {
+        if (uri != null)
+        {
+            return uri;
+        }
+        return URI.create(asString());
+    }
+
+    /**
+     * The {@link UriAuthority} for this path, if any
+     */
+    public UriAuthority authority()
+    {
+        return authority;
+    }
+
+    @Override
+    public ResourcePath copy()
+    {
+        return new ResourcePath(this);
     }
 
     /**
@@ -251,17 +358,18 @@ public class ResourcePath extends StringPath implements
     }
 
     /**
-     * Returns the file name of this resource path
+     * Returns the file name of this resource path, if any. The only case where there will be no filename is when the
+     * path is the root path, like "/" or "C:\"
      */
     @Override
     public FileName fileName()
     {
         var last = last();
-        return last == null ? null : parseFileName(consoleListener(), last);
+        return last == null ? null : parseFileName(throwingListener(), last);
     }
 
     /**
-     * Returns true if this file path has a scheme
+     * Returns true if this file path has at least one scheme
      */
     public boolean hasScheme()
     {
@@ -283,12 +391,18 @@ public class ResourcePath extends StringPath implements
      * {@inheritDoc}
      */
     @Override
-    public String join()
+    public boolean isAbsolute()
     {
-        // NOTE: We call super.join(String) here because it is not overridden
-        return schemes.join(":")
-            + (hasScheme() ? ":" : "")
-            + join(separator());
+        // A FilePath with a scheme is always absolute
+        return hasScheme() || super.isAbsolute();
+    }
+
+    /**
+     * Returns true if this resource path is a file
+     */
+    public boolean isFile()
+    {
+        return schemes.isFile();
     }
 
     /**
@@ -321,12 +435,21 @@ public class ResourcePath extends StringPath implements
         return (ResourcePath) super.parent();
     }
 
+    /**
+     * Returns only the path component of this resource path, without any schemes or authority.
+     */
     @Override
     public ResourcePath path()
     {
-        return asFilePath();
+        return withoutSchemes().withoutAuthority();
     }
 
+    /**
+     * Returns this resource path relative to the given path
+     *
+     * @param path The path
+     * @return This path relative to the given path
+     */
     public ResourcePath relativeTo(@NotNull ResourcePath path)
     {
         if (startsWith(path))
@@ -349,7 +472,7 @@ public class ResourcePath extends StringPath implements
      * Returns any schemes for this filepath. For example, a file such as "jar:file:/test.zip" would have the schemes
      * "jar" and "file". In "s3://telenav/file.txt", there is only one scheme, "s3".
      */
-    public StringList schemes()
+    public UriSchemes schemes()
     {
         return schemes;
     }
@@ -363,6 +486,12 @@ public class ResourcePath extends StringPath implements
         return (ResourcePath) super.subpath(start, end);
     }
 
+    @Override
+    public String toString()
+    {
+        return asString();
+    }
+
     /**
      * {@inheritDoc}
      */
@@ -373,12 +502,16 @@ public class ResourcePath extends StringPath implements
     }
 
     /**
-     * {@inheritDoc}
+     * Returns a copy of this path with the given {@link URI} authority
+     *
+     * @param authority The authority
+     * @return A copy of this path
      */
-    @Override
-    public URI asUri()
+    public ResourcePath withAuthority(@NotNull UriAuthority authority)
     {
-        return URI.create(join());
+        var copy = (ResourcePath) copy();
+        copy.authority = authority;
+        return copy;
     }
 
     /**
@@ -434,7 +567,13 @@ public class ResourcePath extends StringPath implements
         return (ResourcePath) super.withRoot(root);
     }
 
-    public ResourcePath withSchemes(@NotNull StringList schemes)
+    /**
+     * Returns a copy of this path with the given {@link URI} schemes
+     *
+     * @param schemes The schemes
+     * @return A copy of this path
+     */
+    public ResourcePath withSchemes(@NotNull UriSchemes schemes)
     {
         var copy = (ResourcePath) copy();
         copy.schemes = schemes.copy();
@@ -448,6 +587,16 @@ public class ResourcePath extends StringPath implements
     public ResourcePath withSeparator(@NotNull String separator)
     {
         return (ResourcePath) super.withSeparator(separator);
+    }
+
+    /**
+     * Returns this filepath without any authority
+     */
+    public ResourcePath withoutAuthority()
+    {
+        var copy = copy();
+        copy.authority = authority();
+        return copy;
     }
 
     /**
@@ -509,8 +658,8 @@ public class ResourcePath extends StringPath implements
      */
     public ResourcePath withoutSchemes()
     {
-        ResourcePath copy = (ResourcePath) copy();
-        copy.schemes = new StringList();
+        var copy = copy();
+        copy.schemes = uriSchemes();
         return copy;
     }
 
@@ -523,13 +672,20 @@ public class ResourcePath extends StringPath implements
         return (ResourcePath) super.withoutSuffix(suffix);
     }
 
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    protected ResourcePath onCopy(String root,
-                                  @NotNull List<String> elements)
+    private static List<String> normalize(List<String> elements)
     {
-        return new ResourcePath(schemes(), root, elements);
+        if (elements.size() == 1)
+        {
+            if (elements.get(0).isBlank())
+            {
+                return new ArrayList<>();
+            }
+        }
+
+        if (!elements.isEmpty() && elements.get(0).equals("~"))
+        {
+            return stringList(elements).rightOf(0).prepending(userHome().path());
+        }
+        return elements;
     }
 }

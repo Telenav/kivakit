@@ -24,15 +24,11 @@ import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.time.ZoneId;
-import java.util.HashMap;
-import java.util.Locale;
-import java.util.Map;
 
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.messaging.Listener.nullListener;
-import static java.time.format.TextStyle.SHORT;
 
 /**
  * Utility methods to map between {@link ZoneId}s and their display names
@@ -43,25 +39,16 @@ import static java.time.format.TextStyle.SHORT;
  *     <li>{@link #utc()}</li>
  * </ul>
  *
- * <p><b>Display Names</b></p>
- *
- * <ul>
- *     <li>{@link #shortDisplayName(ZoneId)}</li>
- * </ul>
- *
  * <p><b>Parsing</b></p>
  *
  * <ul>
- *     <li>{@link #parseShortDisplayName(Listener, String)}</li>
  *     <li>{@link #parseZoneId(Listener, String)}</li>
- *     <li>{@link #parseZoneIdOrDisplayName(Listener, String)}</li>
  * </ul>
  *
  * <p><b>Checks</b></p>
  *
  * <ul>
  *     <li>{@link #isUtc(ZoneId)}</li>
- *     <li>{@link #isValidShortDisplayName(String)}</li>
  *     <li>{@link #isValidZoneId(String)}</li>
  * </ul>
  *
@@ -74,18 +61,6 @@ import static java.time.format.TextStyle.SHORT;
              documentation = DOCUMENTED)
 public class TimeZones
 {
-    /** Map from a short display name (PST) to its zone id (America/Los Angeles) */
-    private static final Map<String, String> shortDisplayNameToZoneId = new HashMap<>();
-
-    static
-    {
-        for (var zone : ZoneId.getAvailableZoneIds())
-        {
-            var zoneId = ZoneId.of(zone);
-            shortDisplayNameToZoneId.put(shortDisplayName(zoneId), zone);
-        }
-    }
-
     /**
      * Returns true if the given zone id represents UTC time
      */
@@ -95,33 +70,11 @@ public class TimeZones
     }
 
     /**
-     * Returns true if the given identifier is a valid short display name (PST)
-     */
-    public static boolean isValidShortDisplayName(String identifier)
-    {
-        return parseShortDisplayName(nullListener(), identifier) != null;
-    }
-
-    /**
      * Returns true if the given identifier is a valid zone id (America/Los Angeles)
      */
     public static boolean isValidZoneId(String identifier)
     {
         return parseZoneId(nullListener(), identifier) != null;
-    }
-
-    /**
-     * Returns the zone id (America/Los Angeles) for the given short display name (PST), or null if there is none
-     */
-    public static ZoneId parseShortDisplayName(Listener listener, String displayName)
-    {
-        var zoneId = shortDisplayNameToZoneId.get(displayName);
-        if (zoneId != null)
-        {
-            return ZoneId.of(zoneId);
-        }
-        listener.problem("Invalid zone display name (PST): $", displayName);
-        return null;
     }
 
     /**
@@ -138,31 +91,6 @@ public class TimeZones
             listener.problem("Invalid zone identifier (America/Los Angeles): $", identifier);
             return null;
         }
-    }
-
-    /**
-     * Returns the zone id for the given identifier (America/Los Angeles, or PST), or null if there is none
-     */
-    public static ZoneId parseZoneIdOrDisplayName(Listener listener, String identifier)
-    {
-        var zone = parseShortDisplayName(nullListener(), identifier);
-        if (zone == null)
-        {
-            zone = parseZoneId(nullListener(), identifier);
-        }
-        if (zone == null)
-        {
-            listener.problem("Not a valid zone identifier (America/Los Angeles) or short display name (PST): $", identifier);
-        }
-        return zone;
-    }
-
-    /**
-     * Returns the short display name (PST) for the given zone id (America/Los Angeles)
-     */
-    public static String shortDisplayName(ZoneId zone)
-    {
-        return zone.getDisplayName(SHORT, Locale.getDefault());
     }
 
     public static ZoneId utc()

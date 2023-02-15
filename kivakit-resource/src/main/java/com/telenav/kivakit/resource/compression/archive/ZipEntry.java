@@ -89,10 +89,23 @@ public class ZipEntry extends BaseWritableResource implements Closeable
 
     private final Path path;
 
-    public ZipEntry(@NotNull FileSystem filesystem,
+    private final FilePath jarPath;
+
+    private final ZipArchive archive;
+
+    public ZipEntry(ZipArchive archive,
+                    @NotNull FileSystem filesystem,
                     @NotNull Path path)
     {
+        this.archive = archive;
         this.path = filesystem.getPath(path.toString());
+        var archivePath = filePath(archive.file().path() + "!");
+        this.jarPath = filePath(path).withoutSchemes().relativeTo(archivePath);
+    }
+
+    public ZipArchive archive()
+    {
+        return archive;
     }
 
     /**
@@ -133,6 +146,16 @@ public class ZipEntry extends BaseWritableResource implements Closeable
     public Boolean isWritable()
     {
         return false;
+    }
+
+    /**
+     * The path relative to the archive containing this entry
+     *
+     * @return The archive-relative path
+     */
+    public FilePath jarPath()
+    {
+        return jarPath;
     }
 
     /**
