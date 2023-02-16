@@ -21,7 +21,6 @@ import static com.telenav.kivakit.annotations.code.quality.Stability.UNSTABLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.collections.list.ObjectList.list;
 import static com.telenav.kivakit.core.language.Hash.hashMany;
-import static com.telenav.kivakit.core.os.Console.console;
 import static com.telenav.kivakit.core.path.StringPath.parseStringPath;
 
 /**

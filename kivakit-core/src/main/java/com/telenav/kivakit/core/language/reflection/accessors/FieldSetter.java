@@ -27,8 +27,8 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.lang.annotation.Annotation;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 
 /**
@@ -57,6 +57,11 @@ public class FieldSetter implements Setter
     public <T extends Annotation> T annotation(Class<T> annotationType)
     {
         return field.annotation(annotationType);
+    }
+
+    public Field field()
+    {
+        return field;
     }
 
     /**

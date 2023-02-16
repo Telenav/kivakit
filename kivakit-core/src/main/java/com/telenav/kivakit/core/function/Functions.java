@@ -28,7 +28,7 @@ public class Functions
      * @see Maybe
      * @see Result
      */
-    public static <Input, Output> Output apply(Input value, Function<Input, Output> function)
+    public static <Input, Output> Output applyTo(Input value, Function<Input, Output> function)
     {
         return value != null ? function.apply(value) : null;
     }

@@ -26,8 +26,10 @@ import com.telenav.kivakit.core.language.reflection.Method;
 import com.telenav.kivakit.core.language.reflection.ReflectionProblem;
 import com.telenav.kivakit.core.language.reflection.Type;
 import com.telenav.kivakit.core.language.reflection.accessors.FieldGetter;
+import com.telenav.kivakit.core.language.reflection.accessors.FieldSetter;
 import com.telenav.kivakit.core.language.reflection.accessors.Getter;
 import com.telenav.kivakit.core.language.reflection.accessors.MethodGetter;
+import com.telenav.kivakit.core.language.reflection.accessors.MethodSetter;
 import com.telenav.kivakit.core.language.reflection.accessors.Setter;
 import com.telenav.kivakit.interfaces.naming.Named;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
@@ -133,6 +135,11 @@ public class Property implements Named, Comparable<Property>
         {
             return ((FieldGetter) getter).field();
         }
+        var setter = setter();
+        if (setter instanceof FieldSetter)
+        {
+            return ((FieldSetter) setter).field();
+        }
         return null;
     }
 
@@ -206,6 +213,11 @@ public class Property implements Named, Comparable<Property>
         if (getter instanceof MethodGetter)
         {
             return ((MethodGetter) getter).method();
+        }
+        var setter = setter();
+        if (setter instanceof MethodSetter)
+        {
+            return ((MethodSetter) setter).method();
         }
         return null;
     }

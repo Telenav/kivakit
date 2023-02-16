@@ -2,8 +2,6 @@ package com.telenav.kivakit.conversion.core.language.object;
 
 import com.telenav.kivakit.annotations.code.quality.TypeQuality;
 import com.telenav.kivakit.conversion.BaseConverter;
-import com.telenav.kivakit.conversion.StringConverter;
-import com.telenav.kivakit.conversion.core.language.IdentityConverter;
 import com.telenav.kivakit.core.language.reflection.property.Property;
 import com.telenav.kivakit.core.language.reflection.property.PropertyValue;
 import com.telenav.kivakit.core.messaging.Listener;
@@ -11,7 +9,7 @@ import com.telenav.kivakit.core.messaging.Listener;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
-import static com.telenav.kivakit.core.language.Classes.constructor;
+import static com.telenav.kivakit.conversion.core.language.object.PropertyConverter.PROPERTY_CONVERTER;
 import static com.telenav.kivakit.core.language.reflection.Type.typeForClass;
 import static com.telenav.kivakit.core.language.reflection.property.PropertyMemberSelector.KIVAKIT_CONVERTED_MEMBERS;
 import static com.telenav.kivakit.core.language.reflection.property.PropertyNamingConvention.KIVAKIT_PROPERTY_NAMING;
@@ -43,7 +41,7 @@ public class ObjectConverter<Value> extends BaseConverter<PropertyValue, Value>
      * {@inheritDoc}
      */
     @Override
-    protected Value onConvert(PropertyValue values)
+    protected Value onConvert(PropertyValue value)
     {
         try
         {
@@ -54,7 +52,7 @@ public class ObjectConverter<Value> extends BaseConverter<PropertyValue, Value>
             var filter = new ConvertedPropertySet(KIVAKIT_PROPERTY_NAMING, KIVAKIT_CONVERTED_MEMBERS);
 
             // and populate the object with converted values.
-            listenTo(new ObjectPopulator(filter, () -> convertedValues(values))
+            listenTo(new ObjectPopulator(filter, () -> PROPERTY_CONVERTER.converter(this, value))
             {
                 @Override
                 public boolean isOptional(Property property)
@@ -72,47 +70,8 @@ public class ObjectConverter<Value> extends BaseConverter<PropertyValue, Value>
         }
         catch (Exception e)
         {
-            problem(e, "Unable to convert to $ object:\n$", type.getSimpleName(), values.toString());
+            problem(e, "Unable to convert to $ object:\n$", type.getSimpleName(), value.toString());
             return null;
         }
-    }
-
-    private PropertyValue convertedValues(PropertyValue values)
-    {
-        var outer = this;
-        return property ->
-        {
-            try
-            {
-                var setter = property.setter();
-                if (setter != null)
-                {
-                    var annotation = setter.annotation(ConvertedProperty.class);
-                    if (annotation != null)
-                    {
-                        var converterType = annotation.converter();
-                        if (converterType == IdentityConverter.class)
-                        {
-                            converterType = annotation.value();
-                        }
-                        var constructor = constructor(converterType, Listener.class);
-                        constructor.setAccessible(true);
-                        var converter = (StringConverter<?>) constructor.newInstance(outer);
-                        var value = values.propertyValue(property);
-                        if (annotation.optional() && value == null)
-                        {
-                            return null;
-                        }
-                        return converter.convert(value.toString());
-                    }
-                }
-            }
-            catch (Exception e)
-            {
-                problem("Unable to convert property: $", property);
-            }
-
-            return null;
-        };
     }
 }

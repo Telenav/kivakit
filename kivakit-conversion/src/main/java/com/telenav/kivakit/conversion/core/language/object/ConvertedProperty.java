@@ -20,6 +20,7 @@ package com.telenav.kivakit.conversion.core.language.object;
 
 import com.telenav.kivakit.annotations.code.quality.TypeQuality;
 import com.telenav.kivakit.conversion.Converter;
+import com.telenav.kivakit.conversion.StringConverter;
 import com.telenav.kivakit.conversion.core.language.IdentityConverter;
 import com.telenav.kivakit.conversion.internal.lexakai.DiagramConversion;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
@@ -54,7 +55,7 @@ public @interface ConvertedProperty
     /**
      * Returns the converter class to apply to this field or method
      */
-    Class<? extends Converter<?, ?>> converter() default IdentityConverter.class;
+    Class<? extends StringConverter> converter() default IdentityConverter.class;
 
     /**
      * Returns true when a property is optional
@@ -64,5 +65,5 @@ public @interface ConvertedProperty
     /**
      * Returns the converter class to apply to this field or method
      */
-    Class<? extends Converter<?, ?>> value() default IdentityConverter.class;
+    Class<? extends StringConverter> value() default IdentityConverter.class;
 }

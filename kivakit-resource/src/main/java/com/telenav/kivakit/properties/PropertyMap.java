@@ -91,7 +91,7 @@ import static java.util.Comparator.naturalOrder;
  *     <li>{@link #asCount(String)} - The given value as a {@link Count}</li>
  *     <li>{@link #asFile(String)}</li>
  *     <li>{@link #asFolder(String)}</li>
- *     <li>{@link #asJson()}</li>
+ *     <li>{@link #toJson()}</li>
  * </ul>
  *
  * <p><b>Adding to Property Maps</b></p>
@@ -288,7 +288,7 @@ public class PropertyMap extends VariableMap<String>
     /**
      * Returns this property map as a JSON string
      */
-    public String asJson()
+    public String toJson()
     {
         return doubleQuoted()
             .asStringList()
