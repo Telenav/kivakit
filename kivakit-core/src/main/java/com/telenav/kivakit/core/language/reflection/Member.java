@@ -136,4 +136,11 @@ public abstract class Member
      * Returns the type to which this member belongs
      */
     public abstract Type<?> parentType();
+
+    /**
+     * The type of this member. If the member is a method, the return type is used.
+     *
+     * @return The type
+     */
+    public abstract Type<?> type();
 }

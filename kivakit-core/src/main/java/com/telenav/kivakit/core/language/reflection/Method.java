@@ -291,4 +291,10 @@ public class Method extends Member
     {
         return type + "." + name() + "(" + list(method.getParameterTypes()).join() + ")";
     }
+
+    @Override
+    public Type<?> type()
+    {
+        return type;
+    }
 }
