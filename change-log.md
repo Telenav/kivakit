@@ -5,30 +5,30 @@
 
 ## Fixes
  
- - removed unneeded custom parsing
- - added FilePath.isFile()
+ - fixed path parsing bugs by removing unneeded custom parsing
  - fixed zfs parsing, added test
  - fixed bug in FilePath regarding non-absolute URIs
  - fixed bug in YamlReader.readArrayBlock
 
 ## Refactors 
 
- - Registry/RegistryTrait.clear() -> clearRegistry() to reduce conflicts
- - Removed Path.onCopy() in favor of Copyable.copy()
- - Removed unixResourcePath()
- - KivaKit date formats now always use two digits for day of month
- - Broke out Authority and Schemes classes from path classes
- - renamed Functions.apply() -> applyTo()
- - cleaned up RestClient
  - added FieldSetter/MethodSetter.field()
- - improved Property.method() and field() to use the type of any setter if there is no getter
+ - broke out Authority and Schemes classes from path classes
  - changed JettyRestRequest and JettyRestResponse to delegate to RestSerializer for reading and writing requests and responses
- - removed special case hack for YAML in openapi code
+ - changed KivaKit date formats so they now always use two digits for day of month
  - changed RestClient to use RestSerializer
+ - cleaned up RestClient
+ - improved Property.method() and field() to use the type of any setter if there is no getter
+ - removed Path.onCopy() in favor of Copyable.copy()
+ - removed special case hack for YAML in openapi code
+ - removed unixResourcePath()
+ - renamed Functions.apply() -> applyTo()
+ - renamed Registry/RegistryTrait.clear() -> clearRegistry() to reduce conflicts
 
 ## Features
 
  - added RestClientSerializer
+ - added FilePath.isFile()
  - added RestSerializers which looks for: public static RestSerializer restSerializer()
  - added BaseCount.ints() and longs()
  - added onArguments(String[]) call at top of run(String[]) method
