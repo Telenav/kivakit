@@ -27,8 +27,8 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.lang.annotation.Annotation;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.language.reflection.Type.typeForClass;
 
@@ -58,6 +58,11 @@ public class MethodSetter implements Setter
     public <T extends Annotation> T annotation(Class<T> annotationType)
     {
         return method.annotation(annotationType);
+    }
+
+    public Method method()
+    {
+        return method;
     }
 
     /**

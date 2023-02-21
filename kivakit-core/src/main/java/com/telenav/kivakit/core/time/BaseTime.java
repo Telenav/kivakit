@@ -140,8 +140,8 @@ import static java.util.Objects.hash;
              testing = UNTESTED,
              documentation = DOCUMENTED)
 public abstract class BaseTime<TimeType extends BaseTime<TimeType>> implements
-        PointInTime<TimeType, Duration>,
-        StringFormattable
+    PointInTime<TimeType, Duration>,
+    StringFormattable
 {
     @TypeQuality(stability = STABLE,
                  testing = TESTING_NOT_NEEDED,
@@ -194,6 +194,14 @@ public abstract class BaseTime<TimeType extends BaseTime<TimeType>> implements
         return minusUnits(1);
     }
 
+    /**
+     * Returns true if this time has an equal number of seconds
+     */
+    public boolean equalInSeconds(TimeType that)
+    {
+        return this.roundDownToSeconds().equals(that.roundDownToSeconds());
+    }
+
     @Override
     public boolean equals(Object object)
     {
@@ -227,7 +235,7 @@ public abstract class BaseTime<TimeType extends BaseTime<TimeType>> implements
     public boolean isBetweenExclusive(TimeType minimum, TimeType maximum)
     {
         return nanoseconds().isGreaterThanOrEqualTo(minimum.nanoseconds())
-                && nanoseconds().isLessThan(maximum.nanoseconds());
+            && nanoseconds().isLessThan(maximum.nanoseconds());
     }
 
     /**
@@ -239,7 +247,7 @@ public abstract class BaseTime<TimeType extends BaseTime<TimeType>> implements
     public boolean isBetweenInclusive(TimeType minimum, TimeType maximum)
     {
         return nanoseconds().isGreaterThanOrEqualTo(minimum.nanoseconds())
-                && nanoseconds().isLessThanOrEqualTo(maximum.nanoseconds());
+            && nanoseconds().isLessThanOrEqualTo(maximum.nanoseconds());
     }
 
     /**

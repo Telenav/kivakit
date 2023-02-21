@@ -54,7 +54,7 @@ import static com.telenav.kivakit.core.value.count.Bytes.bytes;
 public class ResourceSection extends BaseReadableResource
 {
     /** The resource to read */
-    private final Resource resource;
+    private final Resource parentResource;
 
     /** The start offset in the resource of the section to read */
     private final long startOffset;
@@ -63,16 +63,16 @@ public class ResourceSection extends BaseReadableResource
     private final long endOffset;
 
     /**
-     * @param resource The parent resource to read from
+     * @param parentResource The parent resource to read from
      * @param startOffset The start offset, inclusive
      * @param endOffset The end offset, exclusive
      */
-    public ResourceSection(@NotNull Resource resource,
+    public ResourceSection(@NotNull Resource parentResource,
                            long startOffset,
                            long endOffset)
     {
-        super(resource.path());
-        this.resource = ensureNotNull(resource);
+        super(parentResource.path());
+        this.parentResource = ensureNotNull(parentResource);
         this.startOffset = startOffset;
         this.endOffset = endOffset;
         if (startOffset > endOffset)
@@ -98,7 +98,13 @@ public class ResourceSection extends BaseReadableResource
             + ":"
             + endOffset
             + ":"
-            + resource.identifier());
+            + parentResource.identifier());
+    }
+
+    @Override
+    public Time lastModified()
+    {
+        return parentResource.lastModified();
     }
 
     /**
@@ -109,11 +115,11 @@ public class ResourceSection extends BaseReadableResource
     public InputStream onOpenForReading()
     {
         InputStream in;
-        if (resource instanceof File)
+        if (parentResource instanceof File)
         {
             try
             {
-                var randomAccessFile = new RandomAccessFile(resource.asJavaFile(), "r");
+                var randomAccessFile = new RandomAccessFile(parentResource.asJavaFile(), "r");
                 in = Channels.newInputStream(randomAccessFile.getChannel());
                 randomAccessFile.seek(startOffset);
             }
@@ -124,7 +130,7 @@ public class ResourceSection extends BaseReadableResource
         }
         else
         {
-            in = resource.openForReading();
+            in = parentResource.openForReading();
             skip(this, in, startOffset);
         }
 
@@ -162,7 +168,7 @@ public class ResourceSection extends BaseReadableResource
     @Override
     public String toString()
     {
-        return "[ResourceSection resource = " + resource + ", start = " + startOffset + ", end = "
+        return "[ResourceSection resource = " + parentResource + ", start = " + startOffset + ", end = "
             + endOffset + "]";
     }
 }

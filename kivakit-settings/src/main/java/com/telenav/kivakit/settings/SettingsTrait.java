@@ -273,6 +273,6 @@ public interface SettingsTrait extends Repeater
      */
     default void unloadSettings()
     {
-        settingsForThis().clear();
+        settingsForThis().clearRegistry();
     }
 }

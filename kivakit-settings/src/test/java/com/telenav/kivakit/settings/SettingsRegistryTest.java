@@ -155,7 +155,7 @@ public class SettingsRegistryTest extends UnitTest implements PackageTrait
     private SettingsRegistry globalSettings()
     {
         var global = settingsFor(this);
-        global.clear();
+        global.clearRegistry();
         global.clearListeners();
         global.addListener(this);
         return global;

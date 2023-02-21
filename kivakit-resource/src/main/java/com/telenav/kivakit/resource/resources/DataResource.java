@@ -37,7 +37,7 @@ import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.language.Hash.hash;
 import static com.telenav.kivakit.core.time.Time.now;
 import static com.telenav.kivakit.core.value.count.Bytes.bytes;
-import static com.telenav.kivakit.resource.ResourcePath.unixResourcePath;
+import static com.telenav.kivakit.resource.ResourcePath.resourcePath;
 import static java.lang.Integer.toHexString;
 
 /**
@@ -62,7 +62,7 @@ public class DataResource extends BaseReadableResource
      */
     public DataResource(@NotNull byte[] data)
     {
-        this(unixResourcePath("/objects/String@" + toHexString(hash(data))), data);
+        this(resourcePath("object://" + data.getClass().getSimpleName() + "/" + toHexString(hash(data))), data);
     }
 
     /**

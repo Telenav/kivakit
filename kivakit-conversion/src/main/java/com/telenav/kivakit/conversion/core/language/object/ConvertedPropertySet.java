@@ -32,7 +32,7 @@ import static com.telenav.kivakit.core.language.reflection.property.PropertyMemb
 @TypeQuality(audience = AUDIENCE_INTERNAL,
              stability = STABLE,
              testing = TESTING_NOT_NEEDED,
-             documentation = DOCUMENTED)
+             documentation = DOCUMENTED) public
 class ConvertedPropertySet extends PropertySet
 {
     /**

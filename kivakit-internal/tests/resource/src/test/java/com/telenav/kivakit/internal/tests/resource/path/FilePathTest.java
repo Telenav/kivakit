@@ -27,10 +27,12 @@ import org.jetbrains.annotations.NotNull;
 import org.junit.Test;
 
 import java.io.File;
+import java.net.URI;
 import java.util.Objects;
 
-import static com.telenav.kivakit.core.collections.list.StringList.stringList;
+import static com.telenav.kivakit.filesystem.FilePath.filePath;
 import static com.telenav.kivakit.filesystem.FilePath.parseFilePath;
+import static com.telenav.kivakit.resource.UriSchemes.uriScheme;
 
 public class FilePathTest extends UnitTest
 {
@@ -150,6 +152,17 @@ public class FilePathTest extends UnitTest
     }
 
     @Test
+    public void testParseZipPath()
+    {
+        var path = "/Users/jonathan/temporary/processes/kivakit-process-21718/test.jar!/ExampleBuild-project.properties";
+        var filePath = filePath(URI.create("jar:file:///Users/jonathan/temporary/processes/kivakit-process-21718/test.jar!/ExampleBuild-project.properties"));
+        ensure(filePath.schemes().size() == 2);
+        ensureEqual(filePath.schemes().get(0), "jar");
+        ensureEqual(filePath.schemes().get(1), "file");
+        ensureEqual(filePath.withoutSchemes().path().asString(), path);
+    }
+
+    @Test
     public void testPrepend()
     {
         ensureEqual(path("a/b/c").withParent("z"), path("z/a/b/c"));
@@ -193,7 +206,7 @@ public class FilePathTest extends UnitTest
     public void testScheme()
     {
         var path = parseFilePath(this, "hdfs://192.168.0.1/user/jonathanl/test.txt");
-        ensureEqual(path.schemes(), stringList("hdfs"));
+        ensureEqual(path.schemes(), uriScheme("hdfs"));
     }
 
     @Test

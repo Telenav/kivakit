@@ -72,8 +72,9 @@ public class LocalFile extends BaseWritableResource implements FileService
 
     public LocalFile(@NotNull FilePath path)
     {
-        super(path.withoutFileScheme());
-        file = new java.io.File(path.join());
+        super(path.withoutSchemes());
+
+        file = new java.io.File(path.withoutSchemes().join());
     }
 
     public LocalFile(@NotNull java.io.File file)

@@ -101,14 +101,14 @@ public class FileNameTest extends UnitTest
          */
         timeRepresentation = millisecondsConverter.unconvert(localTime);
         trace("Time Representation: ${debug}", timeRepresentation);
-        ensure(timeRepresentation.matches("2012\\.08\\.03_1\\.21\\.21\\.123PM.PDT"));
+        ensure(timeRepresentation.matches("2012\\.08\\.03_01\\.21\\.21\\.123PM.PDT"));
 
         /*
           Test the local seconds
          */
         timeRepresentation = secondsConverter.unconvert(localTime);
         trace("Time Representation: ${debug}", timeRepresentation);
-        ensure(timeRepresentation.matches("2012\\.08\\.03_1\\.21\\.21PM.PDT"));
+        ensure(timeRepresentation.matches("2012\\.08\\.03_01\\.21\\.21PM.PDT"));
 
         /*
           Test the GMT seconds

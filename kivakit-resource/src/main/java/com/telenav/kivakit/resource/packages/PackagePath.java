@@ -24,20 +24,21 @@ import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.path.Path;
 import com.telenav.kivakit.core.path.StringPath;
 import com.telenav.kivakit.resource.ResourcePath;
+import com.telenav.kivakit.resource.UriAuthority;
+import com.telenav.kivakit.resource.UriSchemes;
 import com.telenav.kivakit.resource.internal.lexakai.DiagramResource;
 import com.telenav.kivakit.resource.internal.lexakai.DiagramResourcePath;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.List;
 import java.util.function.Function;
 
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.quality.Stability.UNSTABLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
-import static com.telenav.kivakit.core.collections.list.StringList.stringList;
 import static com.telenav.kivakit.core.language.packaging.PackageReference.packageReference;
 import static com.telenav.kivakit.core.messaging.Listener.throwingListener;
+import static com.telenav.kivakit.resource.UriSchemes.uriScheme;
 import static com.telenav.kivakit.resource.packages.Package.packageForPath;
 
 /**
@@ -144,7 +145,7 @@ public final class PackagePath extends ResourcePath
 
     private PackagePath(@NotNull Path<String> path)
     {
-        super(stringList(), path.elements());
+        super(uriScheme("classpath"), path.rootElement(), path.elements());
     }
 
     /**
@@ -171,6 +172,12 @@ public final class PackagePath extends ResourcePath
     public PackageReference asPackageReference()
     {
         return packageReference(this);
+    }
+
+    @Override
+    public PackagePath copy()
+    {
+        return new PackagePath(this);
     }
 
     /**
@@ -236,6 +243,12 @@ public final class PackagePath extends ResourcePath
         return (PackagePath) super.transformed(consumer);
     }
 
+    @Override
+    public PackagePath withAuthority(@NotNull UriAuthority authority)
+    {
+        return this;
+    }
+
     /**
      * {@inheritDoc}
      */
@@ -281,6 +294,12 @@ public final class PackagePath extends ResourcePath
         return (PackagePath) super.withRoot(root);
     }
 
+    @Override
+    public PackagePath withSchemes(@NotNull UriSchemes schemes)
+    {
+        return this;
+    }
+
     /**
      * {@inheritDoc}
      */
@@ -288,6 +307,12 @@ public final class PackagePath extends ResourcePath
     public PackagePath withSeparator(@NotNull String separator)
     {
         return (PackagePath) super.withSeparator(separator);
+    }
+
+    @Override
+    public PackagePath withoutAuthority()
+    {
+        return this;
     }
 
     /**
@@ -344,6 +369,12 @@ public final class PackagePath extends ResourcePath
         return (PackagePath) super.withoutRoot();
     }
 
+    @Override
+    public PackagePath withoutSchemes()
+    {
+        return this;
+    }
+
     /**
      * {@inheritDoc}
      */
@@ -351,15 +382,6 @@ public final class PackagePath extends ResourcePath
     public PackagePath withoutSuffix(@NotNull Path<String> suffix)
     {
         return (PackagePath) super.withoutSuffix(suffix);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    protected PackagePath onCopy(String root, @NotNull List<String> elements)
-    {
-        return new PackagePath(stringPath(root, elements));
     }
 
     @NotNull

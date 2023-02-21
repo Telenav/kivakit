@@ -366,6 +366,7 @@ public class Field extends Member
     /**
      * Returns the type of this field
      */
+    @Override
     public Type<?> type()
     {
         return typeForClass(field.getType());

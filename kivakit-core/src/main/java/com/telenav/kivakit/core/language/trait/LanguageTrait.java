@@ -82,7 +82,7 @@ public interface LanguageTrait extends Repeater
      */
     default <In, Out> Out ifNonNullApply(In value, Function<In, Out> function)
     {
-        return Functions.apply(value, function);
+        return Functions.applyTo(value, function);
     }
 
     /**

@@ -742,6 +742,9 @@ public abstract class Application extends BaseComponent implements
 
         try
         {
+            // Let the subclass have a first shot at the command line arguments
+            invoke(INTERNAL_SCOPE, () -> onArguments(arguments));
+
             // If there is no listener,
             if (listeners().isEmpty())
             {
@@ -1031,6 +1034,16 @@ public abstract class Application extends BaseComponent implements
      * Called when projects should be added
      */
     protected void onAddProjects()
+    {
+    }
+
+    /**
+     * Called immediately after the application is constructed. This allows an application class to inspect the command
+     * line in order to perform specified operations that affect the entire application, like "quiet" in Fiasco.
+     *
+     * @param arguments The command line arguments
+     */
+    protected void onArguments(String[] arguments)
     {
     }
 

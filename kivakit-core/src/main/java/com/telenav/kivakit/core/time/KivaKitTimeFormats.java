@@ -61,19 +61,19 @@ public class KivaKitTimeFormats
         .toFormatter();
 
     /** KivaKit date and time format */
-    public static final DateTimeFormatter KIVAKIT_DATE_TIME = builder("yyyy.MM.dd_h.mma_z")
+    public static final DateTimeFormatter KIVAKIT_DATE_TIME = builder("yyyy.MM.dd_hh.mma_z")
         .toFormatter();
 
     /** KivaKit date and time format */
-    public static final DateTimeFormatter KIVAKIT_UTC_DATE_TIME = builder("yyyy.MM.dd_h.mma")
+    public static final DateTimeFormatter KIVAKIT_UTC_DATE_TIME = builder("yyyy.MM.dd_hh.mma")
         .toFormatter();
 
     /** KivaKit date, time, and seconds format */
-    public static final DateTimeFormatter KIVAKIT_DATE_TIME_SECONDS = builder("yyyy.MM.dd_h.mm.ssa_z")
+    public static final DateTimeFormatter KIVAKIT_DATE_TIME_SECONDS = builder("yyyy.MM.dd_hh.mm.ssa_z")
         .toFormatter();
 
     /** KivaKit date, time, seconds, and milliseconds format */
-    public static final DateTimeFormatter KIVAKIT_DATE_TIME_MILLISECONDS = builder("yyyy.MM.dd_h.mm.ss.SSSa_z")
+    public static final DateTimeFormatter KIVAKIT_DATE_TIME_MILLISECONDS = builder("yyyy.MM.dd_hh.mm.ss.SSSa_z")
         .toFormatter();
 
     /**

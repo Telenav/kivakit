@@ -155,7 +155,7 @@ public class RepeatingThread extends KivaKitThread implements Pausable
         onRunning();
 
         // and while we are not requested to stop,
-        var cycle = frequency.start();
+        var cycle = frequency.startingNow();
         while (!is(STOP_REQUESTED))
         {
             // if the thread should be paused

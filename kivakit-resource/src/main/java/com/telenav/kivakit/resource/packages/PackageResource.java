@@ -148,7 +148,7 @@ public class PackageResource extends BaseReadableResource
                                                   @NotNull PackagePath packagePath,
                                                   @NotNull ResourcePathed child)
     {
-        return packageResource(listener, packagePath, (StringPath) child.path());
+        return packageResource(listener, packagePath.withoutSchemes(), (StringPath) child.path());
     }
 
     /** The underlying classpath resource */
@@ -206,7 +206,7 @@ public class PackageResource extends BaseReadableResource
     @Override
     public ResourceIdentifier identifier()
     {
-        return new ResourceIdentifier("classpath:" + packagePath() + "/" + fileName());
+        return new ResourceIdentifier(packagePath() + "/" + fileName());
     }
 
     /**

@@ -24,10 +24,12 @@ import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.interfaces.time.Nanoseconds;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
+import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.ZoneOffset;
 import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
@@ -38,10 +40,9 @@ import static com.telenav.kivakit.core.time.DayOfWeek.javaDayOfWeek;
 import static com.telenav.kivakit.core.time.Hour.militaryHour;
 import static com.telenav.kivakit.core.time.KivaKitTimeFormats.KIVAKIT_DATE;
 import static com.telenav.kivakit.core.time.KivaKitTimeFormats.KIVAKIT_DATE_TIME;
+import static com.telenav.kivakit.core.time.KivaKitTimeFormats.KIVAKIT_DATE_TIME_SECONDS;
 import static com.telenav.kivakit.core.time.KivaKitTimeFormats.KIVAKIT_TIME;
 import static com.telenav.kivakit.core.time.Second.second;
-import static com.telenav.kivakit.core.time.TimeZones.shortDisplayName;
-import static java.lang.String.format;
 import static java.time.temporal.ChronoField.DAY_OF_MONTH;
 import static java.time.temporal.ChronoField.DAY_OF_WEEK;
 import static java.time.temporal.ChronoField.DAY_OF_YEAR;
@@ -176,14 +177,24 @@ public class LocalTime extends Time
         return milliseconds(dateTime.getZone(), dateTime.toInstant().toEpochMilli());
     }
 
-    public static Time localTime(String text)
+    public static LocalTime localTime(String text)
     {
         return parseLocalTime(throwingListener(), text);
     }
 
-    public static Time localTime(String text, ZoneId zone)
+    public static LocalTime localTime(String text, ZoneId zone)
     {
         return parseLocalTime(throwingListener(), text, zone);
+    }
+
+    public static LocalTime localTime(DateTimeFormatter formatter, String text)
+    {
+        return localTime(formatter, text, ZoneId.systemDefault());
+    }
+
+    public static LocalTime localTime(DateTimeFormatter formatter, String text, ZoneId zone)
+    {
+        return parseLocalTime(throwingListener(), formatter, text, zone);
     }
 
     /**
@@ -321,16 +332,26 @@ public class LocalTime extends Time
         return Time.now().asLocalTime();
     }
 
-    public static LocalTime parseLocalTime(Listener listener, String text, ZoneId zone)
+    public static LocalTime parseLocalTime(Listener listener, DateTimeFormatter formatter, String text, ZoneId zone)
     {
-        var time = KIVAKIT_DATE_TIME
+        var time = formatter
             .withZone(zone)
             .parse(text, LocalDateTime::from);
 
         return LocalTime.localTime(zone, time);
     }
 
-    public static Time parseLocalTime(Listener listener, String text)
+    public static Time parseLocalTime(Listener listener, DateTimeFormatter formatter, String text)
+    {
+        return parseLocalTime(listener, formatter, text, ZoneId.systemDefault());
+    }
+
+    public static LocalTime parseLocalTime(Listener listener, String text, ZoneId zone)
+    {
+        return parseLocalTime(listener, KIVAKIT_DATE_TIME, text, zone);
+    }
+
+    public static LocalTime parseLocalTime(Listener listener, String text)
     {
         return parseLocalTime(listener, text, ZoneId.systemDefault());
     }
@@ -403,6 +424,24 @@ public class LocalTime extends Time
     /**
      * Returns a string representation of this date and time in the local time zone
      */
+    public String asDateTimeSecondsString()
+    {
+        return asDateTimeSecondsString(timeZone());
+    }
+
+    /**
+     * Returns a string representation of this date and time in the given time zone
+     */
+    public String asDateTimeSecondsString(ZoneId zone)
+    {
+        return KIVAKIT_DATE_TIME_SECONDS
+            .withZone(zone)
+            .format(asJavaInstant());
+    }
+
+    /**
+     * Returns a string representation of this date and time in the local time zone
+     */
     public String asDateTimeString()
     {
         return asDateTimeString(timeZone());
@@ -415,7 +454,7 @@ public class LocalTime extends Time
     {
         return KIVAKIT_DATE_TIME
             .withZone(zone)
-            .format(asJavaInstant()) + "_" + shortDisplayName(zone);
+            .format(asJavaInstant());
     }
 
     /**
@@ -643,6 +682,12 @@ public class LocalTime extends Time
         return Month.monthOfYear(asJavaLocalDateTime().getMonthValue());
     }
 
+    @Override
+    public LocalTime onNewTime(Nanoseconds nanoseconds)
+    {
+        return super.onNewTime(nanoseconds).asLocalTime();
+    }
+
     /**
      * {@inheritDoc}
      */
@@ -650,6 +695,18 @@ public class LocalTime extends Time
     public LocalTime plus(Duration duration)
     {
         return localTime(timeZone(), super.plus(duration));
+    }
+
+    @Override
+    public LocalTime roundDown(Duration unit)
+    {
+        return (LocalTime) super.roundDown(unit);
+    }
+
+    @Override
+    public LocalTime roundDownToSeconds()
+    {
+        return (LocalTime) super.roundDownToSeconds();
     }
 
     /**
@@ -708,13 +765,8 @@ public class LocalTime extends Time
     @Override
     public String toString()
     {
-        return year()
-            + "." + format("%02d", month().monthOfYear())
-            + "." + format("%02d", dayOfMonth().asUnits())
-            + "_" + format("%02d", hourOfDay().asMeridiemHour())
-            + "." + format("%02d", minute().asUnits())
-            + meridiem()
-            + "_" + shortDisplayName(timeZone);
+        var instant = Instant.ofEpochMilli(epochMilliseconds());
+        return KIVAKIT_DATE_TIME.withZone(timeZone).format(instant);
     }
 
     /**

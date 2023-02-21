@@ -229,6 +229,16 @@ public class Time extends BaseTime<Time>
     {
     }
 
+    public LocalTime asLocalFilesystemTime()
+    {
+        return asLocalTime().roundDownToSeconds();
+    }
+
+    public LocalTime asLocalFilesystemTime(ZoneId zone)
+    {
+        return asLocalTime(zone).roundDownToSeconds();
+    }
+
     public LocalTime asLocalTime()
     {
         return asLocalTime(localTimeZone());

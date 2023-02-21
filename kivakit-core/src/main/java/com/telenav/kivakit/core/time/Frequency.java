@@ -27,7 +27,14 @@ import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMEN
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
 import static com.telenav.kivakit.core.string.Strip.stripLeading;
-import static com.telenav.kivakit.core.time.Duration.*;
+import static com.telenav.kivakit.core.time.Duration.FOREVER;
+import static com.telenav.kivakit.core.time.Duration.ONE_DAY;
+import static com.telenav.kivakit.core.time.Duration.ONE_HOUR;
+import static com.telenav.kivakit.core.time.Duration.ONE_MINUTE;
+import static com.telenav.kivakit.core.time.Duration.ONE_SECOND;
+import static com.telenav.kivakit.core.time.Duration.ZERO_DURATION;
+import static com.telenav.kivakit.core.time.Duration.parseDuration;
+import static com.telenav.kivakit.core.time.Duration.seconds;
 import static com.telenav.kivakit.core.time.Time.now;
 import static java.lang.Character.isDigit;
 import static java.util.Objects.hash;
@@ -35,9 +42,18 @@ import static java.util.Objects.requireNonNull;
 
 /**
  * A simple frequency domain object. Frequency is modeled as a {@link Duration} per cycle. Static factory methods allow
- * construction of frequencies in terms of cycles per time unit. The {@link #start()} method begins tracking cycles by
- * returning a {@link Cycle} object that can be used to determine how long the caller should wait before the next cycle
- * begins (by calling {@link Cycle#waitTimeBeforeNextCycle()}.
+ * construction of frequencies in terms of cycles per time unit. The {@link #startingNow()} method begins tracking
+ * cycles by returning a {@link Cycle} object that can be used to determine how long the caller should wait before the
+ * next cycle begins (by calling {@link Cycle#waitTimeBeforeNextCycle()}.
+ *
+ * <p><b>Example</b></p>
+ *
+ * <p>
+ * This code prints "hi" every 5 minutes starting at the next minute that is evenly divisible by 5, for example, 11:30,
+ * 11:35, 11:40, etc.
+ * </p>
+ *
+ * <pre>every(minutes(5)).startingAt(now().roundUp(minutes(5)).run(() -> println("hi"))</pre>
  *
  * <p><b>Note</b></p>
  *
@@ -60,8 +76,8 @@ import static java.util.Objects.requireNonNull;
  *
  * <ul>
  *     <li>{@link #cycleLength()}</li>
- *     <li>{@link #start()}</li>
- *     <li>{@link #start(Time)}</li>
+ *     <li>{@link #startingNow()}</li>
+ *     <li>{@link #startingAt(Time)}</li>
  * </ul>
  *
  * @author jonathanl (shibo)
@@ -177,6 +193,21 @@ public class Frequency
         }
 
         /**
+         * Runs the given code using this frequency cycle
+         *
+         * @param runnable The code
+         */
+        @SuppressWarnings("InfiniteLoopStatement")
+        public void run(Runnable runnable)
+        {
+            while (true)
+            {
+                waitTimeBeforeNextCycle().sleep();
+                runnable.run();
+            }
+        }
+
+        /**
          * Returns the amount of time to wait before this cycle repeats
          */
         public Duration waitTimeBeforeNextCycle()
@@ -236,7 +267,7 @@ public class Frequency
      * @param start The time this frequency object started
      * @return A {@link Cycle} object which provides the wait time until the next cycle
      */
-    public Cycle start(Time start)
+    public Cycle startingAt(Time start)
     {
         return new Cycle(start);
     }
@@ -244,9 +275,9 @@ public class Frequency
     /**
      * Returns a {@link Cycle} object which provides the wait time until the next cycle
      */
-    public Cycle start()
+    public Cycle startingNow()
     {
-        return start(now());
+        return startingAt(now());
     }
 
     @Override

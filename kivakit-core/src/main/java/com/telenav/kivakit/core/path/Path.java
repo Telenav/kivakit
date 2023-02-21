@@ -23,12 +23,12 @@ import com.telenav.kivakit.core.collections.list.ObjectList;
 import com.telenav.kivakit.core.internal.lexakai.DiagramPath;
 import com.telenav.kivakit.core.language.Streams;
 import com.telenav.kivakit.interfaces.collection.Sized;
+import com.telenav.kivakit.interfaces.object.Copyable;
 import com.telenav.kivakit.interfaces.string.StringFormattable;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.File;
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.function.Function;
@@ -121,8 +121,8 @@ import static com.telenav.kivakit.core.language.Objects.areEqualPairs;
  * <p>
  * The following methods are functional, meaning that they return a copy of the path that is changed in some
  * way while this path itself is not altered. The copy is made with the method {@link #copy()}, which calls the
- * subclass to create the copy through {@link #onCopy(Comparable, List)}. This allows subclasses to reuse
- * the logic in this class while still dealing in instances of the subclass type.
+ * subclass to create the copy. This allows subclasses to reuse the logic in this class while still dealing
+ * in instances of the subclass type.
  * </p>
  *
  * <ul>
@@ -154,13 +154,14 @@ import static com.telenav.kivakit.core.language.Objects.areEqualPairs;
              testing = UNTESTED,
              documentation = DOCUMENTED)
 public abstract class Path<Element extends Comparable<Element>> implements
-        Iterable<Element>,
-        Comparable<Path<Element>>,
-        Sized,
-        StringFormattable
+    Iterable<Element>,
+    Comparable<Path<Element>>,
+    Sized,
+    StringFormattable,
+    Copyable<Path<Element>>
 {
     /** The list of elements */
-    private ObjectList<Element> elements = new ObjectList<>();
+    private ObjectList<Element> elements = list();
 
     /** The path root, if any */
     private Element root;
@@ -219,14 +220,6 @@ public abstract class Path<Element extends Comparable<Element>> implements
     }
 
     /**
-     * Returns a copy of this path
-     */
-    public Path<Element> copy()
-    {
-        return onCopy(root, elements);
-    }
-
-    /**
      * Returns the elements in this path as a list
      */
     public List<Element> elements()
@@ -273,7 +266,7 @@ public abstract class Path<Element extends Comparable<Element>> implements
      */
     public Element first()
     {
-        return get(0);
+        return isEmpty() ? null : get(0);
     }
 
     /**
@@ -325,6 +318,12 @@ public abstract class Path<Element extends Comparable<Element>> implements
     public boolean isEmpty()
     {
         return elements.isEmpty();
+    }
+
+    @Override
+    public boolean isNonEmpty()
+    {
+        return elements.isNonEmpty();
     }
 
     /**
@@ -474,14 +473,14 @@ public abstract class Path<Element extends Comparable<Element>> implements
      */
     public Path<Element> transformed(Function<Element, Element> function)
     {
-        var elements = new ArrayList<Element>();
+        var elements = new ObjectList<Element>();
         for (var element : this)
         {
             var transformed = function.apply(element);
             ensureNotNull(transformed != null);
             elements.add(transformed);
         }
-        return onCopy(root, elements);
+        return copy(it -> it.elements = elements);
     }
 
     /**
@@ -489,9 +488,7 @@ public abstract class Path<Element extends Comparable<Element>> implements
      */
     public Path<Element> withChild(Path<Element> that)
     {
-        var copy = copy();
-        copy.elements.appendAll(that.elements);
-        return copy;
+        return copy(it -> it.elements.appendAll(that.elements));
     }
 
     /**
@@ -499,9 +496,7 @@ public abstract class Path<Element extends Comparable<Element>> implements
      */
     public Path<Element> withChild(Element element)
     {
-        var copy = copy();
-        copy.elements.append(element);
-        return copy;
+        return copy(it -> it.elements.append(element));
     }
 
     /**
@@ -509,9 +504,7 @@ public abstract class Path<Element extends Comparable<Element>> implements
      */
     public Path<Element> withParent(Element element)
     {
-        var copy = copy();
-        copy.elements.prepend(element);
-        return copy;
+        return copy(it -> it.elements.prepend(element));
     }
 
     /**
@@ -527,9 +520,7 @@ public abstract class Path<Element extends Comparable<Element>> implements
      */
     public Path<Element> withRoot(Element root)
     {
-        var copy = copy();
-        copy.root = root;
-        return copy;
+        return copy(it -> it.root = root);
     }
 
     /**
@@ -618,9 +609,7 @@ public abstract class Path<Element extends Comparable<Element>> implements
     {
         if (!isRoot())
         {
-            var copy = copy();
-            copy.root = null;
-            return copy;
+            return copy(it -> it.root = null);
         }
         return null;
     }
@@ -643,8 +632,8 @@ public abstract class Path<Element extends Comparable<Element>> implements
         return null;
     }
 
-    /**
-     * Returns a copy of this path
-     */
-    protected abstract Path<Element> onCopy(Element root, List<Element> elements);
+    protected void rootElement(Element rootElement)
+    {
+        this.root = rootElement;
+    }
 }

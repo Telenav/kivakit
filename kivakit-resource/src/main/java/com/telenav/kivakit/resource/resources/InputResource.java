@@ -31,8 +31,7 @@ import java.io.InputStream;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE_EXTENSIBLE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.UNTESTED;
-import static com.telenav.kivakit.core.messaging.Listener.throwingListener;
-import static com.telenav.kivakit.resource.ResourcePath.parseUnixResourcePath;
+import static com.telenav.kivakit.resource.ResourcePath.resourcePath;
 import static java.lang.Integer.toHexString;
 
 /**
@@ -59,7 +58,8 @@ public class InputResource extends BaseReadableResource implements AutoCloseable
      */
     public InputResource(@NotNull InputStream in)
     {
-        super(parseUnixResourcePath(throwingListener(), "/objects/InputResource/" + toHexString(in.hashCode())));
+        super(resourcePath("object://" + in.getClass().getSimpleName() + "/" + toHexString(in.hashCode())));
+
         this.in = in;
     }
 

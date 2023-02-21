@@ -1,6 +1,53 @@
 
 # KivaKit Change Log
 
+## Version 1.17.0 (2023.02.10) "transparent cat"
+
+## Fixes
+ 
+ - fixed path parsing bugs by removing unneeded custom parsing
+ - fixed zfs parsing, added test
+ - fixed bug in FilePath regarding non-absolute URIs
+ - fixed bug in YamlReader.readArrayBlock
+
+## Refactors 
+
+ - added FieldSetter/MethodSetter.field()
+ - broke out Authority and Schemes classes from path classes
+ - changed JettyRestRequest and JettyRestResponse to delegate to RestSerializer for reading and writing requests and responses
+ - changed KivaKit date formats so they now always use two digits for day of month
+ - changed RestClient to use RestSerializer
+ - cleaned up RestClient
+ - improved Property.method() and field() to use the type of any setter if there is no getter
+ - removed Path.onCopy() in favor of Copyable.copy()
+ - removed special case hack for YAML in openapi code
+ - removed unixResourcePath()
+ - renamed Functions.apply() -> applyTo()
+ - renamed Registry/RegistryTrait.clear() -> clearRegistry() to reduce conflicts
+
+## Features
+
+ - added RestClientSerializer
+ - added FilePath.isFile()
+ - added RestSerializers which looks for: public static RestSerializer restSerializer()
+ - added BaseCount.ints() and longs()
+ - added onArguments(String[]) call at top of run(String[]) method
+ - moved internal yaml package to kivakit-extensions
+ - added ResourceSection.lastModified()
+ - added support for ~ in resource paths
+ - added access to parent resource in ResourceSection
+ - added ZipArchive property to ZipEntry
+ - added BaseTime.equalInSeconds
+ - added RestSerializer interface
+ - added GsonRestSerializer implementation
+ - added PointInTime.roundDownToSeconds
+ - added request/response specific serializers
+ - added YAML serialization to OpenApiResponse
+ - added Time.asLocalFilesystemTime, which converts to localtime and rounds down to the nearest second (which is the best accuracy on most filesystems)
+ - added asX() conversions to YamlScalar
+
+-----------------------------------------------------------------------------------------------------------------------
+
 ## Version 1.16.0 (2023.02.10) "transparent truck"
 
 ## Fixes
