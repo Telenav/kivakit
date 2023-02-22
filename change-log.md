@@ -1,6 +1,15 @@
 
 # KivaKit Change Log
 
+## Version 1.17.1 (2023.02.10) "transparent frog"
+
+## Fixes
+
+ - fix microservlet error response and bracketing
+ - fix CsvLine escaping
+
+-----------------------------------------------------------------------------------------------------------------------
+
 ## Version 1.17.0 (2023.02.10) "transparent cat"
 
 ## Fixes
